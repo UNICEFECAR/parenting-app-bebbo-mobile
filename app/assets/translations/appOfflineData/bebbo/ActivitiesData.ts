@@ -2717,6 +2717,308 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
+    "md-ro": [
+        {
+            "id": 7231,
+            "type": "Games",
+            "title": "Citești împreună cu copilul",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care aveți nevoie: O carte pentru copii (făcută din pânză sau cu copertă, imagini viu colorate și elemente tactile). Dacă nu ai o astfel de carte, poți să folosești hârtie simplă pliată în jumătate pe care poți să desenezi câteva imagini sau forme în culori strălucitoare.",
+            "body": "<p><strong>Materiale de care aveți nevoie: </strong>O carte pentru copii (făcută din pânză sau cu copertă, imagini viu colorate și elemente tactile). Dacă nu ai o astfel de carte, poți să folosești hârtie simplă pliată în jumătate pe care poți să desenezi câteva imagini sau forme în culori strălucitoare.</p><p><strong>Ce puteți face împreună:</strong> Pune-l pe bebeluș în poală, astfel încât să vă puteți uita împreună la carte, dar ar trebui să poți vedea și fața copilului. Pune cartea astfel încât să o puteți vedea amândoi și apoi să o citiți! Poți să descrii ceea ce este în imagine sau poți să spui o poveste despre această carte, să îți arăți cu degetul spre imagini și să le numești. Folosește propoziții scurte și simple. Variază tonul vocii, fii liniștită, apoi surprinsă...</p><p>Lasă copilul să îți vadă expresiile feței și observă reacțiile sale și numește-i cei pe cei pe care observi că îi plac sau nu îi plac. Permite-i să atingă cartea, să o pună în gură (dacă este în siguranță) și să o exploreze în alte moduri. Dacă bebelușul scoate un sunet în timp ce citește, dă-i voie să „citească” și el. Ascultă-l și răspunde-i repetându-i sunetele, punând întrebări și lăudându-l. Când observi că bebelușul nu mai este interesat — se uită în altă parte sau protestează în alt mod - așteaptă cu răbdare să își îndrepte din nou atenția spre carte și să continue. În cazul în care cartea nu mai este interesantă pentru el, revin-o la ea mai târziu. </p><p><strong>Ce învață copilul: </strong>Citirea și privitul cărților sunt importante pentru abilitățile de comunicare și dezvoltarea limbajului copilului.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                47
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=1FI9_YIw",
+                "name": "@Elisabeth Wales",
+                "alt": "A mother looking at the book with her baby"
+            },
+            "related_milestone": [
+                2791
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7246,
+            "type": "Games",
+            "title": "Cine este această persoană?",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: NiciunulCe puteți face împreună: S-ar putea să fii surprins că, la această vârstă, copilului tău începe brusc să-i fie frică, începe să fie timid sau neliniștit când întâlnește oameni pe care nu îi cunoaște. Înainte, poate, copilul tău oferea tuturor zâmbete largi. Acesta este un alt pas în dezvoltarea copilului. Arată că cel mic știe și îi pasă foarte mult de diferența dintre tine – oamenii lui speciali – și toți ceilalți.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul</p><p><strong>Ce puteți face împreună: </strong>S-ar putea să fii surprins că, la această vârstă, copilului tău începe brusc să-i fie frică, începe să fie timid sau neliniștit când întâlnește oameni pe care nu îi cunoaște. Înainte, poate, copilul tău oferea tuturor zâmbete largi. Acesta este un alt pas în dezvoltarea copilului. Arată că cel mic știe și îi pasă foarte mult de diferența dintre tine – oamenii lui speciali – și toți ceilalți.</p><p>Când este posibil, acordă-i copilului timp să se obișnuiască cu o persoană nouă. Ține-ți copilul în brațe, vorbește cu ușurință cu cealaltă persoană și, procedând astfel, îți consolezi copilul. În loc să-ți tachinezi sau să-ți îndemni copilul („Nu fi atât de timid!), lasă-l să răspundă sau să nu răspundă, într-un mod care pare să-l relaxeze. Dacă noua persoană începe să-l copleșească pe cel mic cu o atitudine prietenoasă, ai putea spune pur și simplu: „Să-i acordăm puțin timp să te cunoască”, evitând din nou să-ți etichetezi copilul ca fiind timid sau fricos. În funcție de situație, ai putea să îi oferi persoanei noi o jucărie mică sau un alt obiect în legătură cu care copilul tău ar putea fi curios pentru „a sparge gheața”.</p><p><strong>Ce învață copilul: </strong>Această stare de neliniște în prezența oamenilor necunoscuți poate dura destul de mult timp, dar copilul tău învață două lucruri. În primul rând, învață că ești o sursă de liniște și confort în situații supărătoare (securitate emoțională). În al doilea rând, copilul învață că alți oameni sunt deseori destul de drăguți și ar putea fi distractiv să fie cu ei (dezvoltare socială). Ca întotdeauna, sprijinul tău face o mare diferență.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                48
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=r4m_GFrg",
+                "name": "@Pixabay",
+                "alt": "Grandmother and grandfather carrying two babies"
+            },
+            "related_milestone": [
+                2871
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7306,
+            "type": "Games",
+            "title": "În căutarea sunetelor",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: Niciunul.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul.</p><p><strong>Ce puteți face împreună: </strong>Așa cum le place să caute comori, copiilor le place să pornească și în căutarea sunetelor. Tot ceea ce trebuie să faci este să începi obiceiul de a vă opri și de a asculta bine pentru a capta toate sunetele din cameră sau din jurul vostru. Taci puțin și încurajează-ți copilul să facă același lucru. Spune ceva de genul „șșșșșș, să auzim ce sunet putem prinde” și apoi arată către urechi. S-ar putea să auziți sunete precum bătăi, scâncete, scârțâit, zăngănit, scrijelit, trăncănit. Încurajează-l pe copil „Să vedem dacă putem strânge sunetele pe care le auzim. Aud ceasul ticăind, autobuzul trecând, vecinul sosind cu liftul.” Foloseşte o mulţime de cuvinte interesante de genul ăsta - chiar dacă bebelușul nu le înţelege încă.  </p><p>În cazul în care copilul este mai mare, poți să pui și întrebarea „Unde aș putea găsi acest sunet?” (Și apoi imită sunetul). Lasă-l să se bucure de senzația de descoperire și să facă legătura dintre sunet și obiectul care produce sunetul, numindu-l. Astfel, limbajul se va conecta cu conceptele și va îmbogăți și vocabularul. </p><p>Poți să folosești această activitate în aproape orice situație de viață - în timpul jocului liber și al timpului liber, dar și în timpul rutinei zilnice - îmbrăcatul, preparatul meselor, rutina igienei, cumpărături, mers pe jos, condus și (dacă cerințele locale de sănătate permit acest lucru) așteptatul autobuzului sau statul la coadă tău la bancă, la oficiul poștal, sau la medic.</p><p><strong>Ce învață copilul: </strong>Copilul așteaptă cu nerăbdare să facă activități cu tine și, în timp ce vă jucați împreună, imită expresii faciale, gesturi, și unele activități ale persoanelor apropiate, arată cu degetul arătător către ceea ce îl interesează, sau oferă lucruri altor persoane pentru a le stârni interesul și a-i implica în joc. Această activitate îi îmbunătățește vocabularul și cunoașterea lumii. Lasă-l pe copil să exploreze împrejurimile și să-ți spună ce aude, chiar și prin bâlbâieli sau cuvinte simple.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                49
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/ART_3230.JPG?itok=Pq51mhvc",
+                "name": "Vodič za roditelje",
+                "alt": "Potraga za zvukom"
+            },
+            "related_milestone": [
+                3021
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7346,
+            "type": "Games",
+            "title": "Să mergem în vizită și să vorbim!",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: Niciunul",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul</p><p><strong>Ce puteți face împreună: </strong>La această vârstă, limbajul copilului se dezvoltă rapid. Îi oferi copilului multe oportunități de a folosi sunete și cuvinte acasă. Din ce în ce mai mult, sunteți capabili să vă înțelegeți! Dacă este posibil, oferă-i copilului oportunități de a comunica cu alții, fie că este vorba despre bunici (față în față sau prin apeluri video), vecini sau vânzători. Treptat, copilul tău poate încerca să spună lucruri acestor adulți. Îl ajuți pe copilul punându-i întrebări - de tipul „Oh, iată niște fructe. Ce fructe să cumpărăm?” În cazul în care copilul tău răspunde prin câteva cuvinte, repetă sau spune puțin mai mult și comunicați cu vânzătorul. Acest tip de experiență poate să aibă loc în multe moduri diferite. Este entuziasmant pentru copil să înceapă să comunice și să fie înțeles.</p><p><strong>Ce învață copilul: </strong>Copilul își dezvoltă abilitățile de limbaj și de comunicare. De asemenea, devine din ce în ce mai încrezător în situațiile sociale. Sprijinul tău îi creează sentimentul de securitate și confort în situații noi.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                50
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=qE31flxF",
+                "name": "@Hero Images",
+                "alt": "Grandparents doing a videocall with their granddaughter"
+            },
+            "related_milestone": [
+                2876
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7571,
+            "type": "Games",
+            "title": "Imaginația zburătoare",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: NiciunulCe puteți face împreună: Roagă-i pe copii să își imagineze cum ar fi să zboare. Unde ați merge? Pe cine ați vedea? Cât de repede ați călători?Copiii și-ar putea imagina cum ar fi să facă o vizită pe Lună sau poate și-ar folosi puterile zburătoare pentru a face bine, cum ar fi să salveze animale blocate în locuri înalte.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul</p><p><strong>Ce puteți face împreună: </strong>Roagă-i pe copii să își imagineze cum ar fi să zboare. Unde ați merge? Pe cine ați vedea? Cât de repede ați călători?</p><p>Copiii și-ar putea imagina cum ar fi să facă o vizită pe Lună sau poate și-ar folosi puterile zburătoare pentru a face bine, cum ar fi să salveze animale blocate în locuri înalte.</p><p>Ai grijă să obții detalii - cum crezi că miroase la 5000m? Cum se simte pe pielea ta? Nu există răspunsuri greșite, cerul e limita! Știai că cea mai rapidă pasăre din lume este șoimul călător? Aceste păsări extraordinare pot atinge viteze de până la 386 de kilometri pe oră!</p><p><strong>Ce învață copilul: </strong>Copiilor imaginativi le va plăcea să-și lase imaginația să zboare pe măsură ce își imaginează cum ar fi să zboare ei! Această activitate se referă la comunicare, deoarece copiii tăi învață să-și exprime gândurile, sentimentele și fanteziile zburătoare.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                58
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=5vaEj2LH",
+                "name": "flying_imagination-cover-picture.jpg",
+                "alt": "Illustration of Flying imagination"
+            },
+            "related_milestone": [
+                7131
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7606,
+            "type": "Games",
+            "title": "Privește către minge",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: Minge; pătură.Ce puteți face împreună: Pentru a desfășura această activitate, trebuie să pregătești mediul în care va avea loc. Alege o cameră în care să nu fie multe elemente care să distragă atenție, așează pătura pe podea sau un pat mare. Apoi pune-l pe cel mic pe burtă pe pătură. Ar trebui să stai îndreptată către față cu picioarele deschise, cu un picior pe fiecare parte, astfel încât să creezi o barieră în fața micuțului tău.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Minge; pătură.</p><p><strong>Ce puteți face împreună: </strong>Pentru a desfășura această activitate, trebuie să pregătești mediul în care va avea loc. Alege o cameră în care să nu fie multe elemente care să distragă atenție, așează pătura pe podea sau un pat mare. Apoi pune-l pe cel mic pe burtă pe pătură. Ar trebui să stai îndreptată către față cu picioarele deschise, cu un picior pe fiecare parte, astfel încât să creezi o barieră în fața micuțului tău.</p><p>Acum vorbește cu cel mic pentru a-i atrage atenția, iar când acest lucru, ia mingea, arată-i-o și pune-o pe podea. Rotește mingea încet dintr-o parte în cealaltă, astfel încât cel mic să poată urmări mingea cu ochii. Continuă timp de aproximativ cinci minute sau până vezi că micuțul tău este obosit. Dacă cel mic nu-și poate ridica încă capul, îi poți arăta mingea mișcând-o doar de jos in sus, iar încetul cu încetul va avea suficienta forță pentru a-și putea ridica capul si a urma mingea cu ochii.</p><p><strong>Ce învață copilul: </strong>Întărește mușchii micuțului tău în timp ce îi stimulezi vederea prin dezvoltarea capacității de a urmări cu privirea obiectele în mișcare, o abilitate necesară pentru a îndeplini în viitor sarcini de coordonare ochi-mână precum cititul și scrisul.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                43
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.jpg?itok=SF_Uixzh",
+                "name": "@Spencer Selover",
+                "alt": "A new-born baby looking attentively somewhere"
+            },
+            "related_milestone": [
+                2556
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7631,
+            "type": "Games",
+            "title": "Primele mele întoarceri",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: Nici unul",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Nici unul</p><p><strong>Ce puteți face împreună: </strong>Încetul cu încetul, bebelușii ajung să își cunoască corpul mai mult și încep să își coordoneze mișcările care le vor permite să descopere lumea. Această activitate îl va ajuta pe cel mic să înceapă cu această abilitate, pe care, prin practică, o va stăpâni în cel mai scurt timp. Pentru început, trebuie doar să-l așezi pe micuț pe spate pe o suprafață moale, cum ar fi patul tău. Ia-i unul dintre picioare și pune-l încrucișat în fața celuilalt. Fă acest lucru din nou cu celălalt picior. Repetă de aproximativ trei ori și a patra oară, ia piciorul, pune-l încrucișat în fața celuilalt, pune-ți cealaltă mână sub spatele lui și ajutați-l să se rostogolească până când ajunge pe burtă. Puteți recita următoarea poezioară în timp ce faceți exercițiile:</p><p><em>     Rotește-te rotește-te și te vei schimba!</em></p><p><em>     Ce poţi vedea?</em></p><p><em>     Rotește-te rotește-te, vei da,</em></p><p><em>     Numai tu vei vedea!</em></p><p>Nu uita că toate mișcările trebuie să fie delicate și că cel mic trebuie să aibă deja suficientă forță în gât pentru a nu se răni. Pune-l pe spate și repetă pentru cealaltă parte. Termină exercițiul cu multe sărutări. Acum vorbeşte cu micuţul tău ca să-i atragi atenţia. Când faci acest lucru, poți să repeți poezioara.</p><p><strong>Ce învață copilul: </strong>Ajută-l pe cel mic să înceapă să aibă forța și mișcările coordonate pentru a se întoarce de pe spate pe burtă, ceea ce îi va permite să înceapă să aibă coordonarea necesară pentru a se deplasa peste câteva luni.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                44
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=hrrZ8Qz7",
+                "name": "my_first_turns-cover-picture.jpg",
+                "alt": "A child turning from back to tummy"
+            },
+            "related_milestone": [
+                2601
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7656,
+            "type": "Games",
+            "title": "Spune-mi numele",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: NiciunulCe puteți face împreună: Pentru a efectua această activitate, trebuie doar să îl așezi pe cel mic pe spate pe o suprafață moale, cum ar fi în pătuțul lui sau pe pat. Acum vorbeşte cu el ca să-i atragi atenţia. Când faci acest lucru, poți să-i cânți următorul cântec:     Unde este (numele copilului)?     Unde este (numele copilului)?     Uite-l! Uite-l!",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul</p><p><strong>Ce puteți face împreună: </strong>Pentru a efectua această activitate, trebuie doar să îl așezi pe cel mic pe spate pe o suprafață moale, cum ar fi în pătuțul lui sau pe pat. Acum vorbeşte cu el ca să-i atragi atenţia. Când faci acest lucru, poți să-i cânți următorul cântec:</p><p><em>     Unde este (numele copilului)?</em></p><p><em>     Unde este (numele copilului)?</em></p><p><em>     Uite-l! Uite-l!</em></p><p>Apoi poți varia, spunând cu voce tare și cu voce joasă. O altă modalitate de a-l ajuta pe copil să își recunoască numele, vocea și locul de origine al unui sunet este să te așezi în diferite poziții ale patului sau pătuțului și să cânți cântecul de acolo la picioarele patului, lângă perne, pe o parte și pe cealaltă parte. Cântă cu numele micuţului tău până când acesta se poate întoarce să vadă unde eşti. Încheie întotdeauna prin a spune copilului „Te iubesc (numele celui mic)!”. Şi dă-i un pupic.</p><p><strong>Ce învață copilul: </strong>Această activitate îl va ajuta pe cel mic să înceapă să-și recunoască numele și să folosească mișcările corpului ca răspuns la cuvinte familiare.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                45
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2022-01/say-my-name-cover-image.jpg?itok=yK6DBuDc",
+                "name": "say-my-name-cover-image.jpg",
+                "alt": "A child laying on his or her back with a focussed expression on his or her face "
+            },
+            "related_milestone": [
+                2641
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7671,
+            "type": "Games",
+            "title": "Mișcări muzicale",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: Muzică cu ritmuri diferite; mistrie / spatulă / lingură sau băț din lemn. Ce puteți face împreună: Pentru a începe această activitate, pregătește muzica pe care o vei folosi cu cel mic; poți să folosești muzică cu ritmuri diferite și să faci astfel încât aceste ritmuri să fie ușor de urmărit.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Muzică cu ritmuri diferite; mistrie / spatulă / lingură sau băț din lemn. </p><p><strong>Ce puteți face împreună: </strong>Pentru a începe această activitate, pregătește muzica pe care o vei folosi cu cel mic; poți să folosești muzică cu ritmuri diferite și să faci astfel încât aceste ritmuri să fie ușor de urmărit.</p><p>Ține-l pe cel mic în brațe și dansează în ritmul muzicii. Te poți mișca prin casă, astfel încât cel mic să se familiarizeze cu mișcarea. Apoi, poți sta cu cel mic pe podea, pe o suprafață confortabilă, și poți urma ritmul muzicii, de data aceasta lovind podeaua cu lingurile/spatulele din lemn sau cu mâinile. Invită-l să-ți imite mișcările.</p><p>În cadrul acestei activități, cel mic nu va urma ritmul, dar activitatea va servi drept introducere pentru a face acest lucru mai târziu.</p><p>Dacă nu poți să pui muzică, poți să interpretezi un cântec și să dansezi, să faci mișcări pe podea în ritm.</p><p><strong>Ce învață copilul: </strong>Prin această activitate, îl vei ajuta pe cel mic să își formeze simțul ritmului, să stabilească o relație cu mișcarea și să stea în șezut cu un anumit sprijin.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                46
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/musical_movements-cover-picture.png?itok=iGWnVtyG",
+                "name": "musical_movements-cover-picture.png",
+                "alt": "A mother is holding the child in her arms imitating dancing"
+            },
+            "related_milestone": [
+                2696
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7511,
+            "type": "Games",
+            "title": "Vânătoarea de culori",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: Obiecte mici, fiecare de o culoare (cum ar fi un ciorap roșu sau o portocală).Ce puteți face împreună: Invită-le pe copil să joace „Vânătoarea de culori”. „Uite! Iată un ciorap roșu. Poți să găsești și alte lucruri care să aibă culoarea roșie? Să ne uităm împreună!” Explorați diferite părți ale casei sau vânați în aer liber. Folosește des numele culorii.  ",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Obiecte mici, fiecare de o culoare (cum ar fi un ciorap roșu sau o portocală).</p><p><strong>Ce puteți face împreună: </strong>Invită-le pe copil să joace „Vânătoarea de culori”. „Uite! Iată un ciorap roșu. Poți să găsești și alte lucruri care să aibă culoarea roșie? Să ne uităm împreună!” Explorați diferite părți ale casei sau vânați în aer liber. Folosește des numele culorii.  </p><p>Alteori, fă vânătoare de culori căutând articole de altă culoare. Introdu violet, portocaliu, maro pe măsură ce copilul învață mai multe culori. Pe măsură ce învață mai multe, poți să-i ceri copilului doar să găsească articole de o anumită culoare fără a folosi culoarea potrivită ca model - sau poți să-l întrebi pe copil ce culoare vrea să caute. </p><p>Ajută-l pe copil să învețe culorile doar folosind denumirile acestora în conversația de zi cu zi (gătit: „Acum voi curăța bananele alea galbene” sau îmbrăcat: „Hai să găsim cămașa violet pe care să o porți astăzi.”</p><p><strong>Ce învață copilul: </strong>Cunoașterea culorilor este o parte importantă a pregătirii pentru școală. Gândirea copilului tău se dezvoltă pe măsură ce învață conceptul că obiectele pot arăta diferit, dar au aceeași culoare – și că articole similare, cum ar fi pălăriile, pot avea culori diferite.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                57
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=59xQEN1V",
+                "name": "@Cory Woodward",
+                "alt": "Child facing the coloured road"
+            },
+            "related_milestone": [
+                7061
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7406,
+            "type": "Games",
+            "title": "Să ne uităm la o carte",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: Una sau mai multe cărți cu imagini (Dacă nu ai cărți cu imagini, poți face una simplă lipind imagini din reviste pe pagini și punându-le laolaltă sau desenând imagini simple)",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Una sau mai multe cărți cu imagini (Dacă nu ai cărți cu imagini, poți face una simplă lipind imagini din reviste pe pagini și punându-le laolaltă sau desenând imagini simple)</p><p><strong>Ce puteți face împreună: </strong>Privitul cărților ilustrate este o activitate de care copilul tău se va bucura la această vârstă, dacă o împărtășești cu el.  Pe măsură ce citești sau vorbești despre imagini, încurajează-l pe copil să întoarcă paginile. Fă astfel încât această activitate să fie interesantă: de exemplu, „Oh, hai să vedem unde se duce pisica acum. Poți să întorci pagina?” Arată cum se face și ghidează mâna copilului dacă este necesar. Poți să spui: „Mulțumesc că ai întors pagina. Acum văd că pisica este în copac!” Pe măsură ce copilul devine interesat și capabil să întoarcă paginile, introdu această activitate în lectura zilnică a cărții de povești. De asemenea, poți să îl vezi pe copil cum devine dornic să întoarcă paginile cărților sau revistelor în mod independent.</p><p><strong>Ce învață copilul: </strong>Acțiunea de a întoarce paginile este o nouă abilitate motrică fină, în cadrul căreia copilul își folosește mâinile mai abil. Gândirea copilului tău este, de asemenea, consolidată pe măsură ce face conexiuni între ceea ce este pe pagini și etapa întoarcerii paginii pentru a vedea o nouă imagine.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                51
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=Ho_bSe-d",
+                "name": "@cottonbro",
+                "alt": "A child looking at a book"
+            },
+            "related_milestone": [
+                5861
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7426,
+            "type": "Games",
+            "title": "Ajutorul meu special",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "summary": "Materiale de care ai nevoie: Obiecte cotidiene sau alte materiale folosite în viața de zi cu zi. De exemplu, haine curate pliate; jucării sau alte obiecte cu care se joacă cel mic; linguri, cești incasabile sau alte obiecte folosite la o masă; materiale găsite în grădină, cum ar fi frunzele de pe jos.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Obiecte cotidiene sau alte materiale folosite în viața de zi cu zi. De exemplu, haine curate pliate; jucării sau alte obiecte cu care se joacă cel mic; linguri, cești incasabile sau alte obiecte folosite la o masă; materiale găsite în grădină, cum ar fi frunzele de pe jos.</p><p><strong>Ce puteți face împreună: </strong>Invită-ți copilul să „fie ajutorul tău special”. Spune ceva de genul „Chiar am nevoie de ajutorul tău ca să pui șosetele astea deoparte. Unele trebuie puse în dulapul surorii mai mici, altele în dulapul tău. Poți, te rog, să le iei pe astea și să le pui deoparte? Oh, ești de mare ajutor. Mulțumesc!”</p><p>Acest tip de activitate poate face parte din rutina voastră zilnică, cu diferite materiale și sarcini. </p><p><strong>Ce învață copilul: </strong>Copilul învață să coopereze și că prin faptul că îi ajută pe alții, atât el, cât și ceilalți sunt mai fericiți. Copilul învață, de asemenea, să urmeze instrucțiuni simple și învață numele mai multor obiecte. S-ar putea să învețe, de asemenea, cum să sorteze sau să grupeze lucrurile - de exemplu, ai putea să îl rogi pe copil să găsească toate șosetele foarte mici și să le pună într-o grămadă, iar șosetele mai mari să le pună în altă grămadă. Fă astfel încât această activitate să fie distractivă și prietenoasă, și nu un test al abilităților copilului.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                52
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=G0NjesNG",
+                "name": "@Phillip Goldsberry",
+                "alt": "Children helping their parents"
+            },
+            "related_milestone": [
+                6976
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        }
+    ],
     "me-cnr": [
         {
             "id": 7426,
@@ -3618,6 +3920,308 @@ export const ActivitiesData:any = {
             },
             "related_milestone": [
                 2791
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        }
+    ],
+    "ro-ro": [
+        {
+            "id": 7306,
+            "type": "Games",
+            "title": "În căutarea sunetelor",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:09",
+            "summary": "Materiale de care ai nevoie: Niciunul.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul.</p><p><strong>Ce puteți face împreună: </strong>Așa cum le place să caute comori, copiilor le place să pornească și în căutarea sunetelor. Tot ceea ce trebuie să faci este să începi obiceiul de a vă opri și de a asculta bine pentru a capta toate sunetele din cameră sau din jurul vostru. Taci puțin și încurajează-ți copilul să facă același lucru. Spune ceva de genul „șșșșșș, să auzim ce sunet putem prinde” și apoi arată către urechi. S-ar putea să auziți sunete precum bătăi, scâncete, scârțâit, zăngănit, scrijelit, trăncănit. Încurajează-l pe copil „Să vedem dacă putem strânge sunetele pe care le auzim. Aud ceasul ticăind, autobuzul trecând, vecinul sosind cu liftul.” Foloseşte o mulţime de cuvinte interesante de genul ăsta - chiar dacă bebelușul nu le înţelege încă.  </p><p>În cazul în care copilul este mai mare, poți să pui și întrebarea „Unde aș putea găsi acest sunet?” (Și apoi imită sunetul). Lasă-l să se bucure de senzația de descoperire și să facă legătura dintre sunet și obiectul care produce sunetul, numindu-l. Astfel, limbajul se va conecta cu conceptele și va îmbogăți și vocabularul. </p><p>Poți să folosești această activitate în aproape orice situație de viață - în timpul jocului liber și al timpului liber, dar și în timpul rutinei zilnice - îmbrăcatul, preparatul meselor, rutina igienei, cumpărături, mers pe jos, condus și (dacă cerințele locale de sănătate permit acest lucru) așteptatul autobuzului sau statul la coadă tău la bancă, la oficiul poștal, sau la medic.</p><p><strong>Ce învață copilul: </strong>Copilul așteaptă cu nerăbdare să facă activități cu tine și, în timp ce vă jucați împreună, imită expresii faciale, gesturi, și unele activități ale persoanelor apropiate, arată cu degetul arătător către ceea ce îl interesează, sau oferă lucruri altor persoane pentru a le stârni interesul și a-i implica în joc. Această activitate îi îmbunătățește vocabularul și cunoașterea lumii. Lasă-l pe copil să exploreze împrejurimile și să-ți spună ce aude, chiar și prin bâlbâieli sau cuvinte simple.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                49
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/ART_3230.JPG?itok=Pq51mhvc",
+                "name": "Vodič za roditelje",
+                "alt": "Potraga za zvukom"
+            },
+            "related_milestone": [
+                3021
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7231,
+            "type": "Games",
+            "title": "Citești împreună cu copilul",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:19",
+            "summary": "Materiale de care aveți nevoie: O carte pentru copii (făcută din pânză sau cu copertă, imagini viu colorate și elemente tactile). Dacă nu ai o astfel de carte, poți să folosești hârtie simplă pliată în jumătate pe care poți să desenezi câteva imagini sau forme în culori strălucitoare.",
+            "body": "<p><strong>Materiale de care aveți nevoie: </strong>O carte pentru copii (făcută din pânză sau cu copertă, imagini viu colorate și elemente tactile). Dacă nu ai o astfel de carte, poți să folosești hârtie simplă pliată în jumătate pe care poți să desenezi câteva imagini sau forme în culori strălucitoare.</p><p><strong>Ce puteți face împreună:</strong> Pune-l pe bebeluș în poală, astfel încât să vă puteți uita împreună la carte, dar ar trebui să poți vedea și fața copilului. Pune cartea astfel încât să o puteți vedea amândoi și apoi să o citiți! Poți să descrii ceea ce este în imagine sau poți să spui o poveste despre această carte, să îți arăți cu degetul spre imagini și să le numești. Folosește propoziții scurte și simple. Variază tonul vocii, fii liniștită, apoi surprinsă...</p><p>Lasă copilul să îți vadă expresiile feței și observă reacțiile sale și numește-i cei pe cei pe care observi că îi plac sau nu îi plac. Permite-i să atingă cartea, să o pună în gură (dacă este în siguranță) și să o exploreze în alte moduri. Dacă bebelușul scoate un sunet în timp ce citește, dă-i voie să „citească” și el. Ascultă-l și răspunde-i repetându-i sunetele, punând întrebări și lăudându-l. Când observi că bebelușul nu mai este interesat — se uită în altă parte sau protestează în alt mod - așteaptă cu răbdare să își îndrepte din nou atenția spre carte și să continue. În cazul în care cartea nu mai este interesantă pentru el, revin-o la ea mai târziu. </p><p><strong>Ce învață copilul: </strong>Citirea și privitul cărților sunt importante pentru abilitățile de comunicare și dezvoltarea limbajului copilului.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                47
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=1FI9_YIw",
+                "name": "@Elisabeth Wales",
+                "alt": "A mother looking at the book with her baby"
+            },
+            "related_milestone": [
+                2791
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7671,
+            "type": "Games",
+            "title": "Mișcări muzicale",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:09",
+            "summary": "Materiale de care ai nevoie: Muzică cu ritmuri diferite; mistrie / spatulă / lingură sau băț din lemn. Ce puteți face împreună: Pentru a începe această activitate, pregătește muzica pe care o vei folosi cu cel mic; poți să folosești muzică cu ritmuri diferite și să faci astfel încât aceste ritmuri să fie ușor de urmărit.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Muzică cu ritmuri diferite; mistrie / spatulă / lingură sau băț din lemn. </p><p><strong>Ce puteți face împreună: </strong>Pentru a începe această activitate, pregătește muzica pe care o vei folosi cu cel mic; poți să folosești muzică cu ritmuri diferite și să faci astfel încât aceste ritmuri să fie ușor de urmărit.</p><p>Ține-l pe cel mic în brațe și dansează în ritmul muzicii. Te poți mișca prin casă, astfel încât cel mic să se familiarizeze cu mișcarea. Apoi, poți sta cu cel mic pe podea, pe o suprafață confortabilă, și poți urma ritmul muzicii, de data aceasta lovind podeaua cu lingurile/spatulele din lemn sau cu mâinile. Invită-l să-ți imite mișcările.</p><p>În cadrul acestei activități, cel mic nu va urma ritmul, dar activitatea va servi drept introducere pentru a face acest lucru mai târziu.</p><p>Dacă nu poți să pui muzică, poți să interpretezi un cântec și să dansezi, să faci mișcări pe podea în ritm.</p><p><strong>Ce învață copilul: </strong>Prin această activitate, îl vei ajuta pe cel mic să își formeze simțul ritmului, să stabilească o relație cu mișcarea și să stea în șezut cu un anumit sprijin.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                46
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/musical_movements-cover-picture.png?itok=iGWnVtyG",
+                "name": "musical_movements-cover-picture.png",
+                "alt": "A mother is holding the child in her arms imitating dancing"
+            },
+            "related_milestone": [
+                2696
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7246,
+            "type": "Games",
+            "title": "Cine este această persoană?",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:19",
+            "summary": "Materiale de care ai nevoie: NiciunulCe puteți face împreună: S-ar putea să fii surprins că, la această vârstă, copilului tău începe brusc să-i fie frică, începe să fie timid sau neliniștit când întâlnește oameni pe care nu îi cunoaște. Înainte, poate, copilul tău oferea tuturor zâmbete largi. Acesta este un alt pas în dezvoltarea copilului. Arată că cel mic știe și îi pasă foarte mult de diferența dintre tine – oamenii lui speciali – și toți ceilalți.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul</p><p><strong>Ce puteți face împreună: </strong>S-ar putea să fii surprins că, la această vârstă, copilului tău începe brusc să-i fie frică, începe să fie timid sau neliniștit când întâlnește oameni pe care nu îi cunoaște. Înainte, poate, copilul tău oferea tuturor zâmbete largi. Acesta este un alt pas în dezvoltarea copilului. Arată că cel mic știe și îi pasă foarte mult de diferența dintre tine – oamenii lui speciali – și toți ceilalți.</p><p>Când este posibil, acordă-i copilului timp să se obișnuiască cu o persoană nouă. Ține-ți copilul în brațe, vorbește cu ușurință cu cealaltă persoană și, procedând astfel, îți consolezi copilul. În loc să-ți tachinezi sau să-ți îndemni copilul („Nu fi atât de timid!), lasă-l să răspundă sau să nu răspundă, într-un mod care pare să-l relaxeze. Dacă noua persoană începe să-l copleșească pe cel mic cu o atitudine prietenoasă, ai putea spune pur și simplu: „Să-i acordăm puțin timp să te cunoască”, evitând din nou să-ți etichetezi copilul ca fiind timid sau fricos. În funcție de situație, ai putea să îi oferi persoanei noi o jucărie mică sau un alt obiect în legătură cu care copilul tău ar putea fi curios pentru „a sparge gheața”.</p><p><strong>Ce învață copilul: </strong>Această stare de neliniște în prezența oamenilor necunoscuți poate dura destul de mult timp, dar copilul tău învață două lucruri. În primul rând, învață că ești o sursă de liniște și confort în situații supărătoare (securitate emoțională). În al doilea rând, copilul învață că alți oameni sunt deseori destul de drăguți și ar putea fi distractiv să fie cu ei (dezvoltare socială). Ca întotdeauna, sprijinul tău face o mare diferență.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                48
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=r4m_GFrg",
+                "name": "@Pixabay",
+                "alt": "Grandmother and grandfather carrying two babies"
+            },
+            "related_milestone": [
+                2871
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7346,
+            "type": "Games",
+            "title": "Să mergem în vizită și să vorbim!",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:19",
+            "summary": "Materiale de care ai nevoie: Niciunul",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul</p><p><strong>Ce puteți face împreună: </strong>La această vârstă, limbajul copilului se dezvoltă rapid. Îi oferi copilului multe oportunități de a folosi sunete și cuvinte acasă. Din ce în ce mai mult, sunteți capabili să vă înțelegeți! Dacă este posibil, oferă-i copilului oportunități de a comunica cu alții, fie că este vorba despre bunici (față în față sau prin apeluri video), vecini sau vânzători. Treptat, copilul tău poate încerca să spună lucruri acestor adulți. Îl ajuți pe copilul punându-i întrebări - de tipul „Oh, iată niște fructe. Ce fructe să cumpărăm?” În cazul în care copilul tău răspunde prin câteva cuvinte, repetă sau spune puțin mai mult și comunicați cu vânzătorul. Acest tip de experiență poate să aibă loc în multe moduri diferite. Este entuziasmant pentru copil să înceapă să comunice și să fie înțeles.</p><p><strong>Ce învață copilul: </strong>Copilul își dezvoltă abilitățile de limbaj și de comunicare. De asemenea, devine din ce în ce mai încrezător în situațiile sociale. Sprijinul tău îi creează sentimentul de securitate și confort în situații noi.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                50
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=qE31flxF",
+                "name": "@Hero Images",
+                "alt": "Grandparents doing a videocall with their granddaughter"
+            },
+            "related_milestone": [
+                2876
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7511,
+            "type": "Games",
+            "title": "Vânătoarea de culori",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:19",
+            "summary": "Materiale de care ai nevoie: Obiecte mici, fiecare de o culoare (cum ar fi un ciorap roșu sau o portocală).Ce puteți face împreună: Invită-le pe copil să joace „Vânătoarea de culori”. „Uite! Iată un ciorap roșu. Poți să găsești și alte lucruri care să aibă culoarea roșie? Să ne uităm împreună!” Explorați diferite părți ale casei sau vânați în aer liber. Folosește des numele culorii.  ",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Obiecte mici, fiecare de o culoare (cum ar fi un ciorap roșu sau o portocală).</p><p><strong>Ce puteți face împreună: </strong>Invită-le pe copil să joace „Vânătoarea de culori”. „Uite! Iată un ciorap roșu. Poți să găsești și alte lucruri care să aibă culoarea roșie? Să ne uităm împreună!” Explorați diferite părți ale casei sau vânați în aer liber. Folosește des numele culorii.  </p><p>Alteori, fă vânătoare de culori căutând articole de altă culoare. Introdu violet, portocaliu, maro pe măsură ce copilul învață mai multe culori. Pe măsură ce învață mai multe, poți să-i ceri copilului doar să găsească articole de o anumită culoare fără a folosi culoarea potrivită ca model - sau poți să-l întrebi pe copil ce culoare vrea să caute. </p><p>Ajută-l pe copil să învețe culorile doar folosind denumirile acestora în conversația de zi cu zi (gătit: „Acum voi curăța bananele alea galbene” sau îmbrăcat: „Hai să găsim cămașa violet pe care să o porți astăzi.”</p><p><strong>Ce învață copilul: </strong>Cunoașterea culorilor este o parte importantă a pregătirii pentru școală. Gândirea copilului tău se dezvoltă pe măsură ce învață conceptul că obiectele pot arăta diferit, dar au aceeași culoare – și că articole similare, cum ar fi pălăriile, pot avea culori diferite.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                57
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=59xQEN1V",
+                "name": "@Cory Woodward",
+                "alt": "Child facing the coloured road"
+            },
+            "related_milestone": [
+                7061
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7571,
+            "type": "Games",
+            "title": "Imaginația zburătoare",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:19",
+            "summary": "Materiale de care ai nevoie: NiciunulCe puteți face împreună: Roagă-i pe copii să își imagineze cum ar fi să zboare. Unde ați merge? Pe cine ați vedea? Cât de repede ați călători?Copiii și-ar putea imagina cum ar fi să facă o vizită pe Lună sau poate și-ar folosi puterile zburătoare pentru a face bine, cum ar fi să salveze animale blocate în locuri înalte.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul</p><p><strong>Ce puteți face împreună: </strong>Roagă-i pe copii să își imagineze cum ar fi să zboare. Unde ați merge? Pe cine ați vedea? Cât de repede ați călători?</p><p>Copiii și-ar putea imagina cum ar fi să facă o vizită pe Lună sau poate și-ar folosi puterile zburătoare pentru a face bine, cum ar fi să salveze animale blocate în locuri înalte.</p><p>Ai grijă să obții detalii - cum crezi că miroase la 5000m? Cum se simte pe pielea ta? Nu există răspunsuri greșite, cerul e limita! Știai că cea mai rapidă pasăre din lume este șoimul călător? Aceste păsări extraordinare pot atinge viteze de până la 386 de kilometri pe oră!</p><p><strong>Ce învață copilul: </strong>Copiilor imaginativi le va plăcea să-și lase imaginația să zboare pe măsură ce își imaginează cum ar fi să zboare ei! Această activitate se referă la comunicare, deoarece copiii tăi învață să-și exprime gândurile, sentimentele și fanteziile zburătoare.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                58
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=5vaEj2LH",
+                "name": "flying_imagination-cover-picture.jpg",
+                "alt": "Illustration of Flying imagination"
+            },
+            "related_milestone": [
+                7131
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7606,
+            "type": "Games",
+            "title": "Privește către minge",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:19",
+            "summary": "Materiale de care ai nevoie: Minge; pătură.Ce puteți face împreună: Pentru a desfășura această activitate, trebuie să pregătești mediul în care va avea loc. Alege o cameră în care să nu fie multe elemente care să distragă atenție, așează pătura pe podea sau un pat mare. Apoi pune-l pe cel mic pe burtă pe pătură. Ar trebui să stai îndreptată către față cu picioarele deschise, cu un picior pe fiecare parte, astfel încât să creezi o barieră în fața micuțului tău.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Minge; pătură.</p><p><strong>Ce puteți face împreună: </strong>Pentru a desfășura această activitate, trebuie să pregătești mediul în care va avea loc. Alege o cameră în care să nu fie multe elemente care să distragă atenție, așează pătura pe podea sau un pat mare. Apoi pune-l pe cel mic pe burtă pe pătură. Ar trebui să stai îndreptată către față cu picioarele deschise, cu un picior pe fiecare parte, astfel încât să creezi o barieră în fața micuțului tău.</p><p>Acum vorbește cu cel mic pentru a-i atrage atenția, iar când acest lucru, ia mingea, arată-i-o și pune-o pe podea. Rotește mingea încet dintr-o parte în cealaltă, astfel încât cel mic să poată urmări mingea cu ochii. Continuă timp de aproximativ cinci minute sau până vezi că micuțul tău este obosit. Dacă cel mic nu-și poate ridica încă capul, îi poți arăta mingea mișcând-o doar de jos in sus, iar încetul cu încetul va avea suficienta forță pentru a-și putea ridica capul si a urma mingea cu ochii.</p><p><strong>Ce învață copilul: </strong>Întărește mușchii micuțului tău în timp ce îi stimulezi vederea prin dezvoltarea capacității de a urmări cu privirea obiectele în mișcare, o abilitate necesară pentru a îndeplini în viitor sarcini de coordonare ochi-mână precum cititul și scrisul.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                43
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.jpg?itok=SF_Uixzh",
+                "name": "@Spencer Selover",
+                "alt": "A new-born baby looking attentively somewhere"
+            },
+            "related_milestone": [
+                2556
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7631,
+            "type": "Games",
+            "title": "Primele mele întoarceri",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:19",
+            "summary": "Materiale de care ai nevoie: Nici unul",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Nici unul</p><p><strong>Ce puteți face împreună: </strong>Încetul cu încetul, bebelușii ajung să își cunoască corpul mai mult și încep să își coordoneze mișcările care le vor permite să descopere lumea. Această activitate îl va ajuta pe cel mic să înceapă cu această abilitate, pe care, prin practică, o va stăpâni în cel mai scurt timp. Pentru început, trebuie doar să-l așezi pe micuț pe spate pe o suprafață moale, cum ar fi patul tău. Ia-i unul dintre picioare și pune-l încrucișat în fața celuilalt. Fă acest lucru din nou cu celălalt picior. Repetă de aproximativ trei ori și a patra oară, ia piciorul, pune-l încrucișat în fața celuilalt, pune-ți cealaltă mână sub spatele lui și ajutați-l să se rostogolească până când ajunge pe burtă. Puteți recita următoarea poezioară în timp ce faceți exercițiile:</p><p><em>     Rotește-te rotește-te și te vei schimba!</em></p><p><em>     Ce poţi vedea?</em></p><p><em>     Rotește-te rotește-te, vei da,</em></p><p><em>     Numai tu vei vedea!</em></p><p>Nu uita că toate mișcările trebuie să fie delicate și că cel mic trebuie să aibă deja suficientă forță în gât pentru a nu se răni. Pune-l pe spate și repetă pentru cealaltă parte. Termină exercițiul cu multe sărutări. Acum vorbeşte cu micuţul tău ca să-i atragi atenţia. Când faci acest lucru, poți să repeți poezioara.</p><p><strong>Ce învață copilul: </strong>Ajută-l pe cel mic să înceapă să aibă forța și mișcările coordonate pentru a se întoarce de pe spate pe burtă, ceea ce îi va permite să înceapă să aibă coordonarea necesară pentru a se deplasa peste câteva luni.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                44
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=hrrZ8Qz7",
+                "name": "my_first_turns-cover-picture.jpg",
+                "alt": "A child turning from back to tummy"
+            },
+            "related_milestone": [
+                2601
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7656,
+            "type": "Games",
+            "title": "Spune-mi numele",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:19",
+            "summary": "Materiale de care ai nevoie: NiciunulCe puteți face împreună: Pentru a efectua această activitate, trebuie doar să îl așezi pe cel mic pe spate pe o suprafață moale, cum ar fi în pătuțul lui sau pe pat. Acum vorbeşte cu el ca să-i atragi atenţia. Când faci acest lucru, poți să-i cânți următorul cântec:     Unde este (numele copilului)?     Unde este (numele copilului)?     Uite-l! Uite-l!",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Niciunul</p><p><strong>Ce puteți face împreună: </strong>Pentru a efectua această activitate, trebuie doar să îl așezi pe cel mic pe spate pe o suprafață moale, cum ar fi în pătuțul lui sau pe pat. Acum vorbeşte cu el ca să-i atragi atenţia. Când faci acest lucru, poți să-i cânți următorul cântec:</p><p><em>     Unde este (numele copilului)?</em></p><p><em>     Unde este (numele copilului)?</em></p><p><em>     Uite-l! Uite-l!</em></p><p>Apoi poți varia, spunând cu voce tare și cu voce joasă. O altă modalitate de a-l ajuta pe copil să își recunoască numele, vocea și locul de origine al unui sunet este să te așezi în diferite poziții ale patului sau pătuțului și să cânți cântecul de acolo la picioarele patului, lângă perne, pe o parte și pe cealaltă parte. Cântă cu numele micuţului tău până când acesta se poate întoarce să vadă unde eşti. Încheie întotdeauna prin a spune copilului „Te iubesc (numele celui mic)!”. Şi dă-i un pupic.</p><p><strong>Ce învață copilul: </strong>Această activitate îl va ajuta pe cel mic să înceapă să-și recunoască numele și să folosească mișcările corpului ca răspuns la cuvinte familiare.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                45
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2022-01/say-my-name-cover-image.jpg?itok=yK6DBuDc",
+                "name": "say-my-name-cover-image.jpg",
+                "alt": "A child laying on his or her back with a focussed expression on his or her face "
+            },
+            "related_milestone": [
+                2641
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7406,
+            "type": "Games",
+            "title": "Să ne uităm la o carte",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:20",
+            "summary": "Materiale de care ai nevoie: Una sau mai multe cărți cu imagini (Dacă nu ai cărți cu imagini, poți face una simplă lipind imagini din reviste pe pagini și punându-le laolaltă sau desenând imagini simple)",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Una sau mai multe cărți cu imagini (Dacă nu ai cărți cu imagini, poți face una simplă lipind imagini din reviste pe pagini și punându-le laolaltă sau desenând imagini simple)</p><p><strong>Ce puteți face împreună: </strong>Privitul cărților ilustrate este o activitate de care copilul tău se va bucura la această vârstă, dacă o împărtășești cu el.  Pe măsură ce citești sau vorbești despre imagini, încurajează-l pe copil să întoarcă paginile. Fă astfel încât această activitate să fie interesantă: de exemplu, „Oh, hai să vedem unde se duce pisica acum. Poți să întorci pagina?” Arată cum se face și ghidează mâna copilului dacă este necesar. Poți să spui: „Mulțumesc că ai întors pagina. Acum văd că pisica este în copac!” Pe măsură ce copilul devine interesat și capabil să întoarcă paginile, introdu această activitate în lectura zilnică a cărții de povești. De asemenea, poți să îl vezi pe copil cum devine dornic să întoarcă paginile cărților sau revistelor în mod independent.</p><p><strong>Ce învață copilul: </strong>Acțiunea de a întoarce paginile este o nouă abilitate motrică fină, în cadrul căreia copilul își folosește mâinile mai abil. Gândirea copilului tău este, de asemenea, consolidată pe măsură ce face conexiuni între ceea ce este pe pagini și etapa întoarcerii paginii pentru a vedea o nouă imagine.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                51
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=Ho_bSe-d",
+                "name": "@cottonbro",
+                "alt": "A child looking at a book"
+            },
+            "related_milestone": [
+                5861
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7426,
+            "type": "Games",
+            "title": "Ajutorul meu special",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:20",
+            "summary": "Materiale de care ai nevoie: Obiecte cotidiene sau alte materiale folosite în viața de zi cu zi. De exemplu, haine curate pliate; jucării sau alte obiecte cu care se joacă cel mic; linguri, cești incasabile sau alte obiecte folosite la o masă; materiale găsite în grădină, cum ar fi frunzele de pe jos.",
+            "body": "<p><strong>Materiale de care ai nevoie: </strong>Obiecte cotidiene sau alte materiale folosite în viața de zi cu zi. De exemplu, haine curate pliate; jucării sau alte obiecte cu care se joacă cel mic; linguri, cești incasabile sau alte obiecte folosite la o masă; materiale găsite în grădină, cum ar fi frunzele de pe jos.</p><p><strong>Ce puteți face împreună: </strong>Invită-ți copilul să „fie ajutorul tău special”. Spune ceva de genul „Chiar am nevoie de ajutorul tău ca să pui șosetele astea deoparte. Unele trebuie puse în dulapul surorii mai mici, altele în dulapul tău. Poți, te rog, să le iei pe astea și să le pui deoparte? Oh, ești de mare ajutor. Mulțumesc!”</p><p>Acest tip de activitate poate face parte din rutina voastră zilnică, cu diferite materiale și sarcini. </p><p><strong>Ce învață copilul: </strong>Copilul învață să coopereze și că prin faptul că îi ajută pe alții, atât el, cât și ceilalți sunt mai fericiți. Copilul învață, de asemenea, să urmeze instrucțiuni simple și învață numele mai multor obiecte. S-ar putea să învețe, de asemenea, cum să sorteze sau să grupeze lucrurile - de exemplu, ai putea să îl rogi pe copil să găsească toate șosetele foarte mici și să le pună într-o grămadă, iar șosetele mai mari să le pună în altă grămadă. Fă astfel încât această activitate să fie distractivă și prietenoasă, și nu un test al abilităților copilului.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                52
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=G0NjesNG",
+                "name": "@Phillip Goldsberry",
+                "alt": "Children helping their parents"
+            },
+            "related_milestone": [
+                6976
             ],
             "mandatory": 1,
             "embedded_images": []

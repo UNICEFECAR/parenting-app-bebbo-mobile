@@ -35674,6 +35674,784 @@ export const taxonomydata:any = {
             ]
         }
     }],
+    "md-ro": [{
+        "langCode": "md-ro",
+        "allData":{
+            "activity_category": [
+                {
+                    "id": 6421,
+                    "name": "Motor",
+                    "unique_name": "motor"
+                },
+                {
+                    "id": 6431,
+                    "name": "Socio-emoțional",
+                    "unique_name": "socio_ emotional"
+                },
+                {
+                    "id": 6436,
+                    "name": "Cognitiv",
+                    "unique_name": "cognitive"
+                },
+                {
+                    "id": 6441,
+                    "name": "Limbă și comunicare",
+                    "unique_name": "language_and_communication"
+                }
+            ],
+            "category": [
+                {
+                    "id": 1,
+                    "name": "Nutriție și alăptare",
+                    "unique_name": "nutrition_and_breastfeeding"
+                },
+                {
+                    "id": 2,
+                    "name": "Sănătate și bunăstare",
+                    "unique_name": "health_and_wellbeing"
+                },
+                {
+                    "id": 3,
+                    "name": "Siguranță și protecție",
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 4,
+                    "name": "Ungherașul părinților ",
+                    "unique_name": "parenting_corner"
+                },
+                {
+                    "id": 5,
+                    "name": "Creșterea copilului",
+                    "unique_name": "child_growth"
+                },
+                {
+                    "id": 6,
+                    "name": "Dezvoltarea copilului",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 7,
+                    "name": "Vizite le medic",
+                    "unique_name": "health_check_ups"
+                },
+                {
+                    "id": 8,
+                    "name": "Vaccinare",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 55,
+                    "name": "Joc și învățare",
+                    "unique_name": "play_and_learning"
+                },
+                {
+                    "id": 56,
+                    "name": "Îngrijirea receptivă",
+                    "unique_name": "responsive_parenting"
+                }
+            ],
+            "chatbot_category": [
+                {
+                    "id": 110071,
+                    "name": "Dezvoltarea copilului",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 110076,
+                    "name": "O mai bună educație parentală",
+                    "unique_name": "better_parenting"
+                },
+                {
+                    "id": 110081,
+                    "name": "Creșterea copiilor sănătoși",
+                    "unique_name": "raising_healthy_children"
+                },
+                {
+                    "id": 110086,
+                    "name": "Vaccinare",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 110091,
+                    "name": "Menţinerea propriei stări de sănătate și fericire",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Dezvoltare și învățare",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Vorbire și citire",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Mediul de învățare",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Copilul meu și grădinița",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Învățare prin joc",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Relații de iubire",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Joaca cu copilul meu",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Comportament provocator",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Învățarea acasă",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Conectarea copilului cu alte persoane",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Preocupări legate de dezvoltare",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Obiceiuri sănătoase",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Mâncat sănătos",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Alăptare",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Siguranță și protecție",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Despre vaccinuri",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Siguranța vaccinurilor",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Boli care pot fi prevenite prin vaccinare",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Schema de vaccinare",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vaccinuri și afecțiuni medicale",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Sănătate și fericire",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Ajutor pentru stresul meu",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Abordarea provocărilor legate de creșterea și educarea copiilor",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Bunăstarea psihologică",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
+                }
+            ],
+            "child_age": [
+                {
+                    "id": 43,
+                    "name": "Prima lună",
+                    "days_from": 0,
+                    "days_to": 30,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        43,
+                        44,
+                        45
+                    ]
+                },
+                {
+                    "id": 44,
+                    "name": "A doua lună",
+                    "days_from": 31,
+                    "days_to": 60,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        44,
+                        45,
+                        46
+                    ]
+                },
+                {
+                    "id": 45,
+                    "name": "3-4 luni",
+                    "days_from": 61,
+                    "days_to": 120,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        45,
+                        46,
+                        47
+                    ]
+                },
+                {
+                    "id": 46,
+                    "name": "5-6 luni",
+                    "days_from": 121,
+                    "days_to": 180,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        46,
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 47,
+                    "name": "7-9 luni",
+                    "days_from": 181,
+                    "days_to": 270,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 48,
+                    "name": "10-12 luni",
+                    "days_from": 271,
+                    "days_to": 360,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        48,
+                        49
+                    ]
+                },
+                {
+                    "id": 49,
+                    "name": "13-18 luni",
+                    "days_from": 361,
+                    "days_to": 540,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        49,
+                        50
+                    ]
+                },
+                {
+                    "id": 50,
+                    "name": "19-24 de luni",
+                    "days_from": 541,
+                    "days_to": 720,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        50,
+                        51
+                    ]
+                },
+                {
+                    "id": 51,
+                    "name": "25-36 de luni",
+                    "days_from": 721,
+                    "days_to": 1080,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        51,
+                        52
+                    ]
+                },
+                {
+                    "id": 52,
+                    "name": "37-48 de luni",
+                    "days_from": 1081,
+                    "days_to": 1440,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        52,
+                        57
+                    ]
+                },
+                {
+                    "id": 57,
+                    "name": "49-60 de luni",
+                    "days_from": 1441,
+                    "days_to": 1800,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        57,
+                        58
+                    ]
+                },
+                {
+                    "id": 58,
+                    "name": "61-72 de luni",
+                    "days_from": 1801,
+                    "days_to": 2160,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        58
+                    ]
+                }
+            ],
+            "child_gender": [
+                {
+                    "id": 40,
+                    "name": "Băiat",
+                    "unique_name": "boy"
+                },
+                {
+                    "id": 41,
+                    "name": "Fată",
+                    "unique_name": "girl"
+                },
+                {
+                    "id": 59,
+                    "name": "Ambele",
+                    "unique_name": "both"
+                }
+            ],
+            "growth_introductory": [
+                {
+                    "id": 10003,
+                    "name": "1 lună",
+                    "body": "În primele 5 zile, nou-născutul va pierde pana la 10% din greutatea sa corporală, însă, cu grijă și alimentație corespunzătoare, în primul rând alăptare, va compensa aceasta pierdere pana la sfârșitul celei de-a doua săptămâni de viață. In perioada următoare, nou-nascutul va lua 20-30 g pe zi în greutate, până la 5 cm lunar în lungime și 2-2,5 cm la circumferința capului.",
+                    "days_from": 0,
+                    "days_to": 30
+                },
+                {
+                    "id": 10004,
+                    "name": "2 luni, 3 luni",
+                    "body": "In a doua și a treia lună, copilul continuă să crească aproximativ în același ritm în care s-a înregistrat in primele săptămâni. El/ea va lua 700 până la 900 g pe lună în greutate, 2,5 până la 4 cm în lungime și aproximativ 1,2 cm în circumferința capului.",
+                    "days_from": 31,
+                    "days_to": 91
+                },
+                {
+                    "id": 10005,
+                    "name": "5 luni (acoperă 4 și 5 luni)",
+                    "body": "Creșterea începe să încetinească, iar în lunile a patra, a cincea și a șasea, copilul ia în medie 450-550 g în greutate și aproximativ 2 cm în lungime",
+                    "days_from": 92,
+                    "days_to": 152
+                },
+                {
+                    "id": 10007,
+                    "name": "6 luni",
+                    "body": "Copilul continuă să ia 450-550 de grame pe lună în greutate și aproximativ 2 cm în lungime în medie. Pana la vârsta de 6 luni, copilul și-a dublat deja greutatea de la naștere.",
+                    "days_from": 153,
+                    "days_to": 183
+                },
+                {
+                    "id": 10008,
+                    "name": "9 luni (acoperă 7 până la 9 luni)",
+                    "body": "Din luna a șaptea până în luna a noua, creșterea continuă să încetinească. Copiii cresc în ritm diferit, dar este important să se urmeze modelul de creștere stabilit în lunile precedente.",
+                    "days_from": 184,
+                    "days_to": 274
+                },
+                {
+                    "id": 10009,
+                    "name": "12 luni (acoperă de la 10 la 12 luni)",
+                    "body": "In ultimul trimestru al primului an, copilul ia aproximativ 1 cm pe lună, în timp ce greutatea variază și depinde de nivelul de activitate. În primul an, un copil își triplează de obicei greutatea la naștere, creste în medie cu 25 cm, iar circumferința capului crește cu 12,5 cm.",
+                    "days_from": 275,
+                    "days_to": 365
+                },
+                {
+                    "id": 10010,
+                    "name": "18 luni (acoperă al doilea an)",
+                    "body": "În al doilea an, încetinirea treptată a creșterii economice continuă. În cursul acestui an, un copil crește cu aproximativ 12 cm, ia în greutate între 2-2,5 kg, iar circumferința capului crește cu 2-2,5 cm.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 10012,
+                    "name": "Începând de la 3 ani (începând cu al treilea an)",
+                    "body": "Începând cu al treilea an, creșterea devine mai uniformă. Un copil ia 5-7,5 cm în înălțime și 2-3 kg în greutate pe an.",
+                    "days_from": 731,
+                    "days_to": 2190
+                }
+            ],
+            "growth_period": [
+                {
+                    "id": 6466,
+                    "name": "La naștere",
+                    "vaccination_opens": 0
+                },
+                {
+                    "id": 6471,
+                    "name": "La 1 lună împlinită",
+                    "vaccination_opens": 30
+                },
+                {
+                    "id": 6476,
+                    "name": "La 2 luni împlinite",
+                    "vaccination_opens": 60
+                },
+                {
+                    "id": 6481,
+                    "name": "La 3 luni împlinite",
+                    "vaccination_opens": 90
+                },
+                {
+                    "id": 6486,
+                    "name": "La 3,5 luni împlinite",
+                    "vaccination_opens": 105
+                },
+                {
+                    "id": 6491,
+                    "name": "La 4 luni împlinite",
+                    "vaccination_opens": 120
+                },
+                {
+                    "id": 6496,
+                    "name": "La 5 luni împlinite",
+                    "vaccination_opens": 150
+                },
+                {
+                    "id": 6501,
+                    "name": "La 6 luni împlinite",
+                    "vaccination_opens": 180
+                },
+                {
+                    "id": 6506,
+                    "name": "Între 16 și 23 de luni",
+                    "vaccination_opens": 485
+                },
+                {
+                    "id": 6511,
+                    "name": "La 7 luni împlinite",
+                    "vaccination_opens": 210
+                },
+                {
+                    "id": 6516,
+                    "name": "La 8 luni împlinite",
+                    "vaccination_opens": 240
+                },
+                {
+                    "id": 6521,
+                    "name": "La 9 luni împlinite",
+                    "vaccination_opens": 270
+                },
+                {
+                    "id": 6526,
+                    "name": "La 10 luni împlinite",
+                    "vaccination_opens": 300
+                },
+                {
+                    "id": 6531,
+                    "name": "La 11 luni împlinite",
+                    "vaccination_opens": 330
+                },
+                {
+                    "id": 6532,
+                    "name": "La 12 luni împlinite",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6533,
+                    "name": "Între 12 și 15 luni",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6534,
+                    "name": "La 15 luni împlinite",
+                    "vaccination_opens": 455
+                },
+                {
+                    "id": 6535,
+                    "name": "La 16 luni împlinite",
+                    "vaccination_opens": 485
+                },
+                {
+                    "id": 6537,
+                    "name": "La 21 de luni împlinite",
+                    "vaccination_opens": 635
+                },
+                {
+                    "id": 6538,
+                    "name": "La 2 ani împliniți",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6540,
+                    "name": "La 27 de luni împlinite",
+                    "vaccination_opens": 820
+                },
+                {
+                    "id": 6541,
+                    "name": "La 30 de luni împlinite",
+                    "vaccination_opens": 910
+                },
+                {
+                    "id": 6542,
+                    "name": "La 33 de luni împlinite",
+                    "vaccination_opens": 1000
+                },
+                {
+                    "id": 6543,
+                    "name": "La 3 ani împliniți",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6544,
+                    "name": "Între 30 și 36 de luni",
+                    "vaccination_opens": 910
+                },
+                {
+                    "id": 6545,
+                    "name": "Între 24 și 30 de luni",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6546,
+                    "name": "Între 36 și 48 de luni",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6547,
+                    "name": "La 42 de luni împlinite",
+                    "vaccination_opens": 1275
+                },
+                {
+                    "id": 6548,
+                    "name": "La 4 ani împliniți",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6549,
+                    "name": "La 54 de luni împlinite",
+                    "vaccination_opens": 1640
+                },
+                {
+                    "id": 6550,
+                    "name": "Între 48 și 61 de luni",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6551,
+                    "name": "La 5 ani împliniți",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 6552,
+                    "name": "Între 3 și 7 ani",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6553,
+                    "name": "La 6 ani împliniți",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 6556,
+                    "name": "La 6,5 ani împliniți",
+                    "vaccination_opens": 2370
+                },
+                {
+                    "id": 6557,
+                    "name": "La 7 ani împliniți",
+                    "vaccination_opens": 2555
+                },
+                {
+                    "id": 6560,
+                    "name": "La 18 luni împlinite",
+                    "vaccination_opens": 545
+                },
+                {
+                    "id": 32906,
+                    "name": "La 5,5 ani împliniți",
+                    "vaccination_opens": 2005
+                },
+                {
+                    "id": 59016,
+                    "name": "Între 5 și 6 ani",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 59041,
+                    "name": "Între 37 și 48 de luni",
+                    "vaccination_opens": 1125
+                },
+                {
+                    "id": 59051,
+                    "name": "La 13 luni împlinite",
+                    "vaccination_opens": 395
+                },
+                {
+                    "id": 59056,
+                    "name": "Între 6 și 7 ani",
+                    "vaccination_opens": 2370
+                },
+                {
+                    "id": 59061,
+                    "name": "Între 18 și 24 de luni",
+                    "vaccination_opens": 545
+                },
+                {
+                    "id": 59076,
+                    "name": "Între 12 și 18 luni",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 59326,
+                    "name": "Între 19 și 23 de luni",
+                    "vaccination_opens": 575
+                },
+                {
+                    "id": 109721,
+                    "name": "La 15 zile",
+                    "vaccination_opens": 15
+                },
+                {
+                    "id": 110006,
+                    "name": "Între 7 și 14 zile",
+                    "vaccination_opens": 7
+                },
+                {
+                    "id": 110011,
+                    "name": "Între 4 și 6 ani",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 110016,
+                    "name": "La 21 de zile",
+                    "vaccination_opens": 21
+                }
+            ],
+            "growth_type": [
+                {
+                    "id": 6461,
+                    "name": "Înălțime în funcție de greutate",
+                    "unique_name": "height_for_weight"
+                },
+                {
+                    "id": 32786,
+                    "name": "Înălțime în funcție de vârstă",
+                    "unique_name": "height_for_age"
+                }
+            ],
+            //add keywords
+            "parent_gender": [
+                {
+                    "id": 37,
+                    "name": "Masculin",
+                    "unique_name": "male"
+                },
+                {
+                    "id": 38,
+                    "name": "Feminin",
+                    "unique_name": "female"
+                },
+                {
+                    "id": 60,
+                    "name": "Ambele",
+                    "unique_name": "both"
+                }
+            ],
+            "relationship_to_parent": [
+                {
+                    "id": 109801,
+                    "name": "Mamă",
+                    "unique_name": "mother"
+                },
+                {
+                    "id": 109806,
+                    "name": "Tată",
+                    "unique_name": "father"
+                },
+                {
+                    "id": 109811,
+                    "name": "Alt îngrijitor",
+                    "unique_name": "other_caregiver"
+                },
+                {
+                    "id": 109816,
+                    "name": "Furnizor de servicii",
+                    "unique_name": "service_provider"
+                }
+            ],
+            "type_of_support": [
+                {
+                    "id": 59001,
+                    "name": "Ghidat de părinte"
+                },
+                {
+                    "id": 59006,
+                    "name": "Joc independent"
+                }
+            ]
+        },
+        "standardDevData": {
+            "standard_deviation":[
+
+            ]
+        }
+    }],
     "me-cnr": [{
         "langCode": "me-cnr",
         "allData":{
@@ -47544,6 +48322,10073 @@ export const taxonomydata:any = {
                 {
                     "id": 59006,
                     "name": "Lojë e pavarur"
+                }
+            ]
+        },
+        "standardDevData": {
+            "standard_deviation":[
+
+            ]
+        }
+    }],
+    "ro-ro": [{
+        "langCode": "ro-ro",
+        "allData":{
+            "activity_category": [
+                {
+                    "id": 6421,
+                    "name": "Dezvoltare fizică",
+                    "unique_name": "motor"
+                },
+                {
+                    "id": 6431,
+                    "name": "Dezvoltare socio-emoțională",
+                    "unique_name": "socio_ emotional"
+                },
+                {
+                    "id": 6436,
+                    "name": "Dezvoltare cognitivă",
+                    "unique_name": "cognitive"
+                },
+                {
+                    "id": 6441,
+                    "name": "Dezvoltarea limbajului și a  comunicării",
+                    "unique_name": "language_and_communication"
+                }
+            ],
+            "category": [
+                {
+                    "id": 1,
+                    "name": "Nutriție și alăptare",
+                    "unique_name": "nutrition_and_breastfeeding"
+                },
+                {
+                    "id": 2,
+                    "name": "Sănătate și bunăstare",
+                    "unique_name": "health_and_wellbeing"
+                },
+                {
+                    "id": 3,
+                    "name": "Siguranță și protecție",
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 4,
+                    "name": "Colțul pentru părinți",
+                    "unique_name": "parenting_corner"
+                },
+                {
+                    "id": 5,
+                    "name": "Creșterea copilului",
+                    "unique_name": "child_growth"
+                },
+                {
+                    "id": 6,
+                    "name": "Dezvoltarea copilului",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 7,
+                    "name": "Controale medicale",
+                    "unique_name": "health_check_ups"
+                },
+                {
+                    "id": 8,
+                    "name": "Vaccinare",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 55,
+                    "name": "Joc și învățare",
+                    "unique_name": "play_and_learning"
+                },
+                {
+                    "id": 56,
+                    "name": "Părinți receptivi",
+                    "unique_name": "responsive_parenting"
+                }
+            ],
+            "chatbot_category": [
+                {
+                    "id": 110071,
+                    "name": "Dezvoltarea copilului",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 110076,
+                    "name": "O mai bună educație parentală",
+                    "unique_name": "better_parenting"
+                },
+                {
+                    "id": 110081,
+                    "name": "Creșterea copiilor sănătoși",
+                    "unique_name": "raising_healthy_children"
+                },
+                {
+                    "id": 110086,
+                    "name": "Vaccinare",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 110091,
+                    "name": "Menţinerea propriei stări de sănătate și fericire",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Dezvoltare și învățare",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Vorbire și citire",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Mediul de învățare",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Copilul meu și grădinița",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Învățare prin joc",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Relații calde, afectuoase",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Joaca cu copilul meu",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Comportament provocator",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Învățarea acasă",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Conectarea copilului cu alte persoane",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Preocupări legate de dezvoltare",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Obiceiuri sănătoase",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Mâncat sănătos",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Alăptare",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Siguranță și protecție",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Despre vaccinuri",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Siguranța vaccinurilor",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Boli care pot fi prevenite prin vaccinare",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Schema de vaccinare",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vaccinuri și afecțiuni medicale",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Cum să menții sănatatea și starea de bine",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Ajutor pentru stresul meu",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Abordarea provocărilor legate de creșterea și educarea copiilor",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Bunăstarea psihologică",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
+                }
+            ],
+            "child_age": [
+                {
+                    "id": 43,
+                    "name": "Prima lună",
+                    "days_from": 0,
+                    "days_to": 30,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        43,
+                        44,
+                        45
+                    ]
+                },
+                {
+                    "id": 44,
+                    "name": "A doua lună",
+                    "days_from": 31,
+                    "days_to": 60,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        44,
+                        45,
+                        46
+                    ]
+                },
+                {
+                    "id": 45,
+                    "name": "3-4 luni",
+                    "days_from": 61,
+                    "days_to": 120,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        45,
+                        46,
+                        47
+                    ]
+                },
+                {
+                    "id": 46,
+                    "name": "5-6 luni",
+                    "days_from": 121,
+                    "days_to": 180,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        46,
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 47,
+                    "name": "7-9 luni",
+                    "days_from": 181,
+                    "days_to": 270,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 48,
+                    "name": "10-12 luni",
+                    "days_from": 271,
+                    "days_to": 360,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        48,
+                        49
+                    ]
+                },
+                {
+                    "id": 49,
+                    "name": "13-18 luni",
+                    "days_from": 361,
+                    "days_to": 540,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        49,
+                        50
+                    ]
+                },
+                {
+                    "id": 50,
+                    "name": "19-24 de luni",
+                    "days_from": 541,
+                    "days_to": 720,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        50,
+                        51
+                    ]
+                },
+                {
+                    "id": 51,
+                    "name": "25-36 de luni",
+                    "days_from": 721,
+                    "days_to": 1080,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        51,
+                        52
+                    ]
+                },
+                {
+                    "id": 52,
+                    "name": "37-48 de luni",
+                    "days_from": 1081,
+                    "days_to": 1440,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        52,
+                        57
+                    ]
+                },
+                {
+                    "id": 57,
+                    "name": "49-60 de luni",
+                    "days_from": 1441,
+                    "days_to": 1800,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        57,
+                        58
+                    ]
+                },
+                {
+                    "id": 58,
+                    "name": "61-72 de luni",
+                    "days_from": 1801,
+                    "days_to": 2160,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        58
+                    ]
+                }
+            ],
+            "child_gender": [
+                {
+                    "id": 40,
+                    "name": "Băiat",
+                    "unique_name": "boy"
+                },
+                {
+                    "id": 41,
+                    "name": "Fată",
+                    "unique_name": "girl"
+                },
+                {
+                    "id": 59,
+                    "name": "Ambele",
+                    "unique_name": "both"
+                }
+            ],
+            "growth_introductory": [
+                {
+                    "id": 10003,
+                    "name": "1 lună",
+                    "body": null,
+                    "days_from": 0,
+                    "days_to": 30
+                },
+                {
+                    "id": 10004,
+                    "name": "2 luni, 3 luni",
+                    "body": null,
+                    "days_from": 31,
+                    "days_to": 91
+                },
+                {
+                    "id": 10005,
+                    "name": "5 luni (acoperă 4 și 5 luni)",
+                    "body": null,
+                    "days_from": 92,
+                    "days_to": 152
+                },
+                {
+                    "id": 10007,
+                    "name": "6 luni",
+                    "body": null,
+                    "days_from": 153,
+                    "days_to": 183
+                },
+                {
+                    "id": 10008,
+                    "name": "9 luni (acoperă 7 până la 9 luni)",
+                    "body": null,
+                    "days_from": 184,
+                    "days_to": 274
+                },
+                {
+                    "id": 10009,
+                    "name": "12 luni (acoperă de la 10 la 12 luni)",
+                    "body": null,
+                    "days_from": 275,
+                    "days_to": 365
+                },
+                {
+                    "id": 10010,
+                    "name": "18 luni (acoperă al doilea an)",
+                    "body": null,
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 10012,
+                    "name": "Începând de la 3 ani (începând cu al treilea an)",
+                    "body": null,
+                    "days_from": 731,
+                    "days_to": 2190
+                }
+            ],
+            "growth_period": [
+                {
+                    "id": 6466,
+                    "name": "La naștere",
+                    "vaccination_opens": 0
+                },
+                {
+                    "id": 6471,
+                    "name": "La 1 lună împlinită",
+                    "vaccination_opens": 30
+                },
+                {
+                    "id": 6476,
+                    "name": "La 2 luni împlinite",
+                    "vaccination_opens": 60
+                },
+                {
+                    "id": 6481,
+                    "name": "La 3 luni împlinite",
+                    "vaccination_opens": 90
+                },
+                {
+                    "id": 6486,
+                    "name": "La 3,5 luni împlinite",
+                    "vaccination_opens": 105
+                },
+                {
+                    "id": 6491,
+                    "name": "La 4 luni împlinite",
+                    "vaccination_opens": 120
+                },
+                {
+                    "id": 6496,
+                    "name": "La 5 luni împlinite",
+                    "vaccination_opens": 150
+                },
+                {
+                    "id": 6501,
+                    "name": "La 6 luni împlinite",
+                    "vaccination_opens": 180
+                },
+                {
+                    "id": 6506,
+                    "name": "Între 16 și 23 de luni",
+                    "vaccination_opens": 485
+                },
+                {
+                    "id": 6511,
+                    "name": "La 7 luni împlinite",
+                    "vaccination_opens": 210
+                },
+                {
+                    "id": 6516,
+                    "name": "La 8 luni împlinite",
+                    "vaccination_opens": 240
+                },
+                {
+                    "id": 6521,
+                    "name": "La 9 luni împlinite",
+                    "vaccination_opens": 270
+                },
+                {
+                    "id": 6526,
+                    "name": "La 10 luni împlinite",
+                    "vaccination_opens": 300
+                },
+                {
+                    "id": 6531,
+                    "name": "La 11 luni împlinite",
+                    "vaccination_opens": 330
+                },
+                {
+                    "id": 6532,
+                    "name": "La 12 luni împlinite",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6533,
+                    "name": "Între 12 și 15 luni",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6534,
+                    "name": "La 15 luni împlinite",
+                    "vaccination_opens": 455
+                },
+                {
+                    "id": 6535,
+                    "name": "La 16 luni împlinite",
+                    "vaccination_opens": 485
+                },
+                {
+                    "id": 6537,
+                    "name": "La 21 de luni împlinite",
+                    "vaccination_opens": 635
+                },
+                {
+                    "id": 6538,
+                    "name": "La 2 ani împliniți",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6540,
+                    "name": "La 27 de luni împlinite",
+                    "vaccination_opens": 820
+                },
+                {
+                    "id": 6541,
+                    "name": "La 30 de luni împlinite",
+                    "vaccination_opens": 910
+                },
+                {
+                    "id": 6542,
+                    "name": "La 33 de luni împlinite",
+                    "vaccination_opens": 1000
+                },
+                {
+                    "id": 6543,
+                    "name": "La 3 ani împliniți",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6544,
+                    "name": "Între 30 și 36 de luni",
+                    "vaccination_opens": 910
+                },
+                {
+                    "id": 6545,
+                    "name": "Între 24 și 30 de luni",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6546,
+                    "name": "Între 36 și 48 de luni",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6547,
+                    "name": "La 42 de luni împlinite",
+                    "vaccination_opens": 1275
+                },
+                {
+                    "id": 6548,
+                    "name": "La 4 ani împliniți",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6549,
+                    "name": "La 54 de luni împlinite",
+                    "vaccination_opens": 1640
+                },
+                {
+                    "id": 6550,
+                    "name": "Între 48 și 61 de luni",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6551,
+                    "name": "La 5 ani împliniți",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 6552,
+                    "name": "Între 3 și 7 ani",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6553,
+                    "name": "La 6 ani împliniți",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 6556,
+                    "name": "La 6,5 ani împliniți",
+                    "vaccination_opens": 2370
+                },
+                {
+                    "id": 6557,
+                    "name": "La 7 ani împliniți",
+                    "vaccination_opens": 2555
+                },
+                {
+                    "id": 6560,
+                    "name": "La 18 luni împlinite",
+                    "vaccination_opens": 545
+                },
+                {
+                    "id": 32906,
+                    "name": "La 5,5 ani împliniți",
+                    "vaccination_opens": 2005
+                },
+                {
+                    "id": 59016,
+                    "name": "Între 5 și 6 ani",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 59041,
+                    "name": "Între 37 și 48 de luni",
+                    "vaccination_opens": 1125
+                },
+                {
+                    "id": 59051,
+                    "name": "La 13 luni împlinite",
+                    "vaccination_opens": 395
+                },
+                {
+                    "id": 59056,
+                    "name": "Între 6 și 7 ani",
+                    "vaccination_opens": 2370
+                },
+                {
+                    "id": 59061,
+                    "name": "Între 18 și 24 de luni",
+                    "vaccination_opens": 545
+                },
+                {
+                    "id": 59076,
+                    "name": "Între 12 și 18 luni",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 59326,
+                    "name": "Între 19 și 23 de luni",
+                    "vaccination_opens": 575
+                },
+                {
+                    "id": 109721,
+                    "name": "La 15 zile",
+                    "vaccination_opens": 15
+                },
+                {
+                    "id": 110006,
+                    "name": "Între 7 și 14 zile",
+                    "vaccination_opens": 7
+                },
+                {
+                    "id": 110011,
+                    "name": "Între 4 și 6 ani",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 110016,
+                    "name": "La 21 de zile",
+                    "vaccination_opens": 21
+                }
+            ],
+            "growth_type": [
+                {
+                    "id": 6461,
+                    "name": "Înălțime în funcție de greutate",
+                    "unique_name": "height_for_weight"
+                },
+                {
+                    "id": 32786,
+                    "name": "Înălțime în funcție de vârstă",
+                    "unique_name": "height_for_age"
+                }
+            ],
+            "keywords": [
+                {
+                    "id": 54,
+                    "name": "siguranța pătuțului"
+                },
+                {
+                    "id": 62,
+                    "name": "programare la medic"
+                },
+                {
+                    "id": 71,
+                    "name": "nou-născuți"
+                },
+                {
+                    "id": 76,
+                    "name": "joacă"
+                },
+                {
+                    "id": 81,
+                    "name": "dezvoltare"
+                },
+                {
+                    "id": 86,
+                    "name": "abilități motorii"
+                },
+                {
+                    "id": 91,
+                    "name": "interacțiune"
+                },
+                {
+                    "id": 96,
+                    "name": "somn"
+                },
+                {
+                    "id": 101,
+                    "name": "rutină"
+                },
+                {
+                    "id": 106,
+                    "name": "calmare"
+                },
+                {
+                    "id": 111,
+                    "name": "siguranța în timpul somnului"
+                },
+                {
+                    "id": 116,
+                    "name": "nou-născuți"
+                },
+                {
+                    "id": 121,
+                    "name": "imunizare"
+                },
+                {
+                    "id": 126,
+                    "name": "vaccinare"
+                },
+                {
+                    "id": 131,
+                    "name": "sănătatea copilului"
+                },
+                {
+                    "id": 136,
+                    "name": "prevenirea bolilor"
+                },
+                {
+                    "id": 146,
+                    "name": "alăptare"
+                },
+                {
+                    "id": 151,
+                    "name": "protecție"
+                },
+                {
+                    "id": 156,
+                    "name": "Activități de învățare"
+                },
+                {
+                    "id": 161,
+                    "name": "Cântat"
+                },
+                {
+                    "id": 166,
+                    "name": "A doua limbă"
+                },
+                {
+                    "id": 171,
+                    "name": "antepreșcolari"
+                },
+                {
+                    "id": 176,
+                    "name": "Joc"
+                },
+                {
+                    "id": 181,
+                    "name": "Distracție"
+                },
+                {
+                    "id": 186,
+                    "name": "Activitate fizică"
+                },
+                {
+                    "id": 191,
+                    "name": "Vorbire"
+                },
+                {
+                    "id": 196,
+                    "name": "dezvoltarea limbajului"
+                },
+                {
+                    "id": 201,
+                    "name": "competențe lingvistice"
+                },
+                {
+                    "id": 206,
+                    "name": "învățare"
+                },
+                {
+                    "id": 211,
+                    "name": "predare"
+                },
+                {
+                    "id": 216,
+                    "name": "îmbrăcare"
+                },
+                {
+                    "id": 221,
+                    "name": "Iarnă"
+                },
+                {
+                    "id": 226,
+                    "name": "idei de joc"
+                },
+                {
+                    "id": 231,
+                    "name": "dezvoltarea abilităților/ deprinderilor"
+                },
+                {
+                    "id": 236,
+                    "name": "obstacole"
+                },
+                {
+                    "id": 241,
+                    "name": "dezvoltare fizică"
+                },
+                {
+                    "id": 246,
+                    "name": "Citire"
+                },
+                {
+                    "id": 251,
+                    "name": "timp cu familia"
+                },
+                {
+                    "id": 256,
+                    "name": "abilități sociale"
+                },
+                {
+                    "id": 261,
+                    "name": "dezvoltarea alfabetizării"
+                },
+                {
+                    "id": 266,
+                    "name": "comunicare"
+                },
+                {
+                    "id": 271,
+                    "name": "discuții cu bebelușul"
+                },
+                {
+                    "id": 276,
+                    "name": "îngrijirea copilului la naștere"
+                },
+                {
+                    "id": 281,
+                    "name": "inițierea alăptării"
+                },
+                {
+                    "id": 286,
+                    "name": "hrănirea bebelușului la naștere"
+                },
+                {
+                    "id": 291,
+                    "name": "poziții de alăptare"
+                },
+                {
+                    "id": 296,
+                    "name": "ținerea copilului în brațe"
+                },
+                {
+                    "id": 301,
+                    "name": "simptome"
+                },
+                {
+                    "id": 306,
+                    "name": "copil bolnav"
+                },
+                {
+                    "id": 311,
+                    "name": "COVID-19"
+                },
+                {
+                    "id": 316,
+                    "name": "suspect de COVID-19"
+                },
+                {
+                    "id": 321,
+                    "name": "confirmat cu COVID-19"
+                },
+                {
+                    "id": 326,
+                    "name": "igienă"
+                },
+                {
+                    "id": 331,
+                    "name": "formulă de lapte pentru sugari"
+                },
+                {
+                    "id": 336,
+                    "name": "sigur, protejat"
+                },
+                {
+                    "id": 341,
+                    "name": "siguranță"
+                },
+                {
+                    "id": 346,
+                    "name": "vaccinuri"
+                },
+                {
+                    "id": 351,
+                    "name": "întârzierea vaccinurilor"
+                },
+                {
+                    "id": 356,
+                    "name": "protecție solară"
+                },
+                {
+                    "id": 361,
+                    "name": "bebeluș"
+                },
+                {
+                    "id": 366,
+                    "name": "grijă"
+                },
+                {
+                    "id": 371,
+                    "name": "conectare"
+                },
+                {
+                    "id": 376,
+                    "name": "stimulare"
+                },
+                {
+                    "id": 381,
+                    "name": "plâns"
+                },
+                {
+                    "id": 386,
+                    "name": "suprastimulare"
+                },
+                {
+                    "id": 391,
+                    "name": "obosit"
+                },
+                {
+                    "id": 396,
+                    "name": "icter"
+                },
+                {
+                    "id": 401,
+                    "name": "lapte matern"
+                },
+                {
+                    "id": 406,
+                    "name": "timp petrecut în fața ecranelor"
+                },
+                {
+                    "id": 411,
+                    "name": "joc sigur"
+                },
+                {
+                    "id": 416,
+                    "name": "depresie"
+                },
+                {
+                    "id": 421,
+                    "name": "bărbați"
+                },
+                {
+                    "id": 426,
+                    "name": "frecvența alăptării"
+                },
+                {
+                    "id": 431,
+                    "name": "vârsta corectată"
+                },
+                {
+                    "id": 436,
+                    "name": "vârstă ajustată"
+                },
+                {
+                    "id": 441,
+                    "name": "bebeluș născut prematur"
+                },
+                {
+                    "id": 451,
+                    "name": "tehnici de hrănire"
+                },
+                {
+                    "id": 456,
+                    "name": "inflant"
+                },
+                {
+                    "id": 461,
+                    "name": "lactație"
+                },
+                {
+                    "id": 466,
+                    "name": "relactație"
+                },
+                {
+                    "id": 471,
+                    "name": "nou-născuți"
+                },
+                {
+                    "id": 476,
+                    "name": "sugar"
+                },
+                {
+                    "id": 481,
+                    "name": "alăptare din nou"
+                },
+                {
+                    "id": 486,
+                    "name": "diaree"
+                },
+                {
+                    "id": 491,
+                    "name": "dizabilitate"
+                },
+                {
+                    "id": 496,
+                    "name": "comportament"
+                },
+                {
+                    "id": 501,
+                    "name": "dizabilități"
+                },
+                {
+                    "id": 506,
+                    "name": "frați/surori"
+                },
+                {
+                    "id": 511,
+                    "name": "sentimente"
+                },
+                {
+                    "id": 516,
+                    "name": "relații"
+                },
+                {
+                    "id": 521,
+                    "name": "familie"
+                },
+                {
+                    "id": 526,
+                    "name": "întârzierea limbajului"
+                },
+                {
+                    "id": 531,
+                    "name": "dezvoltare întârziată"
+                },
+                {
+                    "id": 536,
+                    "name": "Hepatită"
+                },
+                {
+                    "id": 541,
+                    "name": "controale medicale"
+                },
+                {
+                    "id": 546,
+                    "name": "părinți receptivi"
+                },
+                {
+                    "id": 551,
+                    "name": "păduchi"
+                },
+                {
+                    "id": 556,
+                    "name": "Râie"
+                },
+                {
+                    "id": 561,
+                    "name": "viermi"
+                },
+                {
+                    "id": 566,
+                    "name": "nutriție"
+                },
+                {
+                    "id": 571,
+                    "name": "obezitate"
+                },
+                {
+                    "id": 576,
+                    "name": "Dureri de creștere"
+                },
+                {
+                    "id": 581,
+                    "name": "Convulsii febrile"
+                },
+                {
+                    "id": 586,
+                    "name": "Durere de cap"
+                },
+                {
+                    "id": 591,
+                    "name": "Epilepsie"
+                },
+                {
+                    "id": 596,
+                    "name": "convulsii"
+                },
+                {
+                    "id": 601,
+                    "name": "Buză despicată"
+                },
+                {
+                    "id": 606,
+                    "name": "palat despicat"
+                },
+                {
+                    "id": 611,
+                    "name": "Despicătură"
+                },
+                {
+                    "id": 616,
+                    "name": "buză"
+                },
+                {
+                    "id": 621,
+                    "name": "hrănire"
+                },
+                {
+                    "id": 626,
+                    "name": "logopedie"
+                },
+                {
+                    "id": 631,
+                    "name": "Șold"
+                },
+                {
+                    "id": 636,
+                    "name": "displazie de dezvoltare"
+                },
+                {
+                    "id": 641,
+                    "name": "Picior strâmb congenital"
+                },
+                {
+                    "id": 646,
+                    "name": "picior"
+                },
+                {
+                    "id": 651,
+                    "name": "picioare"
+                },
+                {
+                    "id": 656,
+                    "name": "ecografie"
+                },
+                {
+                    "id": 661,
+                    "name": "Fuziune labială"
+                },
+                {
+                    "id": 666,
+                    "name": "aderențe"
+                },
+                {
+                    "id": 671,
+                    "name": "fete"
+                },
+                {
+                    "id": 676,
+                    "name": "Ulcerații bucale"
+                },
+                {
+                    "id": 681,
+                    "name": "Gură"
+                },
+                {
+                    "id": 686,
+                    "name": "Ulcere"
+                },
+                {
+                    "id": 691,
+                    "name": "Herpes"
+                },
+                {
+                    "id": 696,
+                    "name": "infecție bucală"
+                },
+                {
+                    "id": 701,
+                    "name": "Boala obrazului pălmuit"
+                },
+                {
+                    "id": 706,
+                    "name": "erupție cutanată"
+                },
+                {
+                    "id": 711,
+                    "name": "febră"
+                },
+                {
+                    "id": 716,
+                    "name": "Mână"
+                },
+                {
+                    "id": 721,
+                    "name": "Impetigo"
+                },
+                {
+                    "id": 726,
+                    "name": "tăietură"
+                },
+                {
+                    "id": 731,
+                    "name": "zgârietură"
+                },
+                {
+                    "id": 736,
+                    "name": "piele"
+                },
+                {
+                    "id": 741,
+                    "name": "Erupție cutanată"
+                },
+                {
+                    "id": 746,
+                    "name": "Umflarea ganglionilor limfatici"
+                },
+                {
+                    "id": 751,
+                    "name": "Oreion"
+                },
+                {
+                    "id": 756,
+                    "name": "imunizare"
+                },
+                {
+                    "id": 761,
+                    "name": "Febră glandulară"
+                },
+                {
+                    "id": 766,
+                    "name": "Scarlatină"
+                },
+                {
+                    "id": 771,
+                    "name": "Tuse convulsivă"
+                },
+                {
+                    "id": 776,
+                    "name": "tuse"
+                },
+                {
+                    "id": 781,
+                    "name": "respirație"
+                },
+                {
+                    "id": 786,
+                    "name": "Rujeolă"
+                },
+                {
+                    "id": 791,
+                    "name": "Rubeolă"
+                },
+                {
+                    "id": 796,
+                    "name": "dureri de gât"
+                },
+                {
+                    "id": 801,
+                    "name": "Varicelă"
+                },
+                {
+                    "id": 806,
+                    "name": "Vulvovaginită"
+                },
+                {
+                    "id": 811,
+                    "name": "Infecție urinară"
+                },
+                {
+                    "id": 816,
+                    "name": "infecție"
+                },
+                {
+                    "id": 821,
+                    "name": "testicul"
+                },
+                {
+                    "id": 826,
+                    "name": "băiat"
+                },
+                {
+                    "id": 831,
+                    "name": "Circumcizie"
+                },
+                {
+                    "id": 836,
+                    "name": "Celiac"
+                },
+                {
+                    "id": 841,
+                    "name": "gluten"
+                },
+                {
+                    "id": 846,
+                    "name": "grâu"
+                },
+                {
+                    "id": 851,
+                    "name": "hrană"
+                },
+                {
+                    "id": 856,
+                    "name": "Diabet zaharat de tip 2"
+                },
+                {
+                    "id": 861,
+                    "name": "diabet"
+                },
+                {
+                    "id": 866,
+                    "name": "greutate"
+                },
+                {
+                    "id": 871,
+                    "name": "Diabet zaharat de tip 1"
+                },
+                {
+                    "id": 876,
+                    "name": "urinare frecventă"
+                },
+                {
+                    "id": 881,
+                    "name": "pierdere în greutate"
+                },
+                {
+                    "id": 886,
+                    "name": "Deshidratare"
+                },
+                {
+                    "id": 891,
+                    "name": "vomă"
+                },
+                {
+                    "id": 896,
+                    "name": "Greață"
+                },
+                {
+                    "id": 901,
+                    "name": "Apendicită"
+                },
+                {
+                    "id": 906,
+                    "name": "durere de burtă"
+                },
+                {
+                    "id": 911,
+                    "name": "burtică"
+                },
+                {
+                    "id": 916,
+                    "name": "apendice"
+                },
+                {
+                    "id": 921,
+                    "name": "acces de furie"
+                },
+                {
+                    "id": 926,
+                    "name": "Durere de stomac"
+                },
+                {
+                    "id": 931,
+                    "name": "stomac"
+                },
+                {
+                    "id": 936,
+                    "name": "cum să fii părinte"
+                },
+                {
+                    "id": 941,
+                    "name": "Intoxicație alimentară"
+                },
+                {
+                    "id": 946,
+                    "name": "Incontinență fecală"
+                },
+                {
+                    "id": 951,
+                    "name": "toaletă"
+                },
+                {
+                    "id": 956,
+                    "name": "caca"
+                },
+                {
+                    "id": 961,
+                    "name": "intestin"
+                },
+                {
+                    "id": 966,
+                    "name": "Eliminarea gazelor"
+                },
+                {
+                    "id": 971,
+                    "name": "flatulență"
+                },
+                {
+                    "id": 976,
+                    "name": "Constipație"
+                },
+                {
+                    "id": 981,
+                    "name": "dezvoltarea vorbirii"
+                },
+                {
+                    "id": 986,
+                    "name": "conversație"
+                },
+                {
+                    "id": 991,
+                    "name": "educație sexuală"
+                },
+                {
+                    "id": 996,
+                    "name": "îngrijire benefică"
+                },
+                {
+                    "id": 1001,
+                    "name": "comportament sexual"
+                },
+                {
+                    "id": 1006,
+                    "name": "autocontrol"
+                },
+                {
+                    "id": 1011,
+                    "name": "stima de sine"
+                },
+                {
+                    "id": 1016,
+                    "name": "identitate"
+                },
+                {
+                    "id": 1021,
+                    "name": "dragoste"
+                },
+                {
+                    "id": 1026,
+                    "name": "calmare"
+                },
+                {
+                    "id": 1031,
+                    "name": "tranziții"
+                },
+                {
+                    "id": 1036,
+                    "name": "bullying"
+                },
+                {
+                    "id": 1041,
+                    "name": "Grafice de creștere"
+                },
+                {
+                    "id": 1046,
+                    "name": "Dezvoltarea copilului"
+                },
+                {
+                    "id": 1051,
+                    "name": "dezvoltarea în copilăria timpurie"
+                },
+                {
+                    "id": 1056,
+                    "name": "dezvoltarea copiilor"
+                },
+                {
+                    "id": 1061,
+                    "name": "Servicii stomatologice"
+                },
+                {
+                    "id": 1066,
+                    "name": "Îngrijirea dinților"
+                },
+                {
+                    "id": 1071,
+                    "name": "Îngrijirea dinților"
+                },
+                {
+                    "id": 1076,
+                    "name": "Îngrijirea dinților și gingiilor"
+                },
+                {
+                    "id": 1081,
+                    "name": "Igienă dentară"
+                },
+                {
+                    "id": 1091,
+                    "name": "Primii dinți"
+                },
+                {
+                    "id": 1096,
+                    "name": "Enurezis"
+                },
+                {
+                    "id": 1101,
+                    "name": "Udarea patului"
+                },
+                {
+                    "id": 1106,
+                    "name": "enurezis"
+                },
+                {
+                    "id": 1111,
+                    "name": "Infecția urechii externe"
+                },
+                {
+                    "id": 1116,
+                    "name": "Infecția urechii externe"
+                },
+                {
+                    "id": 1121,
+                    "name": "Otită externă"
+                },
+                {
+                    "id": 1126,
+                    "name": "Urechea înotătorului"
+                },
+                {
+                    "id": 1131,
+                    "name": "Urechea înotătorului"
+                },
+                {
+                    "id": 1136,
+                    "name": "pregătirea"
+                },
+                {
+                    "id": 1141,
+                    "name": "Colică"
+                },
+                {
+                    "id": 1146,
+                    "name": "Cu colici"
+                },
+                {
+                    "id": 1151,
+                    "name": "bebeluș cu colici"
+                },
+                {
+                    "id": 1156,
+                    "name": "Copii cu colici"
+                },
+                {
+                    "id": 1161,
+                    "name": "Scutec"
+                },
+                {
+                    "id": 1166,
+                    "name": "Scutece"
+                },
+                {
+                    "id": 1171,
+                    "name": "Scutec"
+                },
+                {
+                    "id": 1176,
+                    "name": "Scutece"
+                },
+                {
+                    "id": 1181,
+                    "name": "Scutec - de unică folosință"
+                },
+                {
+                    "id": 1186,
+                    "name": "Scutece - de unică folosință"
+                },
+                {
+                    "id": 1191,
+                    "name": "Scutece de unică folosință"
+                },
+                {
+                    "id": 1196,
+                    "name": "Scutece de unică folosință"
+                },
+                {
+                    "id": 1201,
+                    "name": "Scutec - pânză"
+                },
+                {
+                    "id": 1206,
+                    "name": "Scutece - pânză"
+                },
+                {
+                    "id": 1211,
+                    "name": "Scutec din pânză"
+                },
+                {
+                    "id": 1216,
+                    "name": "Scutece din pânză"
+                },
+                {
+                    "id": 1221,
+                    "name": "Prima săptămână a nou-născutului"
+                },
+                {
+                    "id": 1226,
+                    "name": "Prima săptămână a bebelușului"
+                },
+                {
+                    "id": 1231,
+                    "name": "Prima săptămână"
+                },
+                {
+                    "id": 1236,
+                    "name": "Prima săptămână de viață"
+                },
+                {
+                    "id": 1241,
+                    "name": "Vitamina D"
+                },
+                {
+                    "id": 1246,
+                    "name": "Familie mixtă"
+                },
+                {
+                    "id": 1251,
+                    "name": "Familii mixte"
+                },
+                {
+                    "id": 1256,
+                    "name": "familii vitrege"
+                },
+                {
+                    "id": 1261,
+                    "name": "familii vitrege"
+                },
+                {
+                    "id": 1266,
+                    "name": "familii vitrege"
+                },
+                {
+                    "id": 1271,
+                    "name": "familie vitregă"
+                },
+                {
+                    "id": 1276,
+                    "name": "familie vitregă"
+                },
+                {
+                    "id": 1281,
+                    "name": "familie vitregă"
+                },
+                {
+                    "id": 1286,
+                    "name": "Bebeluș nou"
+                },
+                {
+                    "id": 1291,
+                    "name": "Frate nou/Soră nouă"
+                },
+                {
+                    "id": 1296,
+                    "name": "Frate nou"
+                },
+                {
+                    "id": 1301,
+                    "name": "soră nouă"
+                },
+                {
+                    "id": 1306,
+                    "name": "Naștere"
+                },
+                {
+                    "id": 1311,
+                    "name": "Nou-născut"
+                },
+                {
+                    "id": 1316,
+                    "name": "Nou-născuți"
+                },
+                {
+                    "id": 1321,
+                    "name": "Scor Apgar"
+                },
+                {
+                    "id": 1341,
+                    "name": "Baie"
+                },
+                {
+                    "id": 1346,
+                    "name": "Scăldare"
+                },
+                {
+                    "id": 1351,
+                    "name": "Îmbăiere"
+                },
+                {
+                    "id": 1356,
+                    "name": "Îmbăiere"
+                },
+                {
+                    "id": 1361,
+                    "name": "Carie dentară"
+                },
+                {
+                    "id": 1366,
+                    "name": "Carii dentare timpurii"
+                },
+                {
+                    "id": 1371,
+                    "name": "Carii dentare"
+                },
+                {
+                    "id": 1376,
+                    "name": "Carie dentară"
+                },
+                {
+                    "id": 1381,
+                    "name": "Dinți stricați"
+                },
+                {
+                    "id": 1386,
+                    "name": "Ținerea obiectelor în mâini"
+                },
+                {
+                    "id": 1391,
+                    "name": "îmbrățișare pentru alinare"
+                },
+                {
+                    "id": 1396,
+                    "name": "Masaj"
+                },
+                {
+                    "id": 1401,
+                    "name": "Masaj pentru sugari"
+                },
+                {
+                    "id": 1406,
+                    "name": "Masajul bebelușului"
+                },
+                {
+                    "id": 1411,
+                    "name": "Masarea bebelușului"
+                },
+                {
+                    "id": 1416,
+                    "name": "Medicație"
+                },
+                {
+                    "id": 1421,
+                    "name": "Medicament"
+                },
+                {
+                    "id": 1426,
+                    "name": "Medicamente"
+                },
+                {
+                    "id": 1431,
+                    "name": "Medicații"
+                },
+                {
+                    "id": 1436,
+                    "name": "Boală"
+                },
+                {
+                    "id": 1441,
+                    "name": "Boală gravă"
+                },
+                {
+                    "id": 1446,
+                    "name": "Boală"
+                },
+                {
+                    "id": 1451,
+                    "name": "Boală gravă"
+                },
+                {
+                    "id": 1456,
+                    "name": "bolnav"
+                },
+                {
+                    "id": 1461,
+                    "name": "Bolnav"
+                },
+                {
+                    "id": 1466,
+                    "name": "Temperatură ridicată"
+                },
+                {
+                    "id": 1471,
+                    "name": "Luarea temperaturii"
+                },
+                {
+                    "id": 1476,
+                    "name": "Temperatură"
+                },
+                {
+                    "id": 1491,
+                    "name": "Luarea temperaturii copilului"
+                },
+                {
+                    "id": 1496,
+                    "name": "Termometru"
+                },
+                {
+                    "id": 1501,
+                    "name": "Termometre"
+                },
+                {
+                    "id": 1506,
+                    "name": "Icter neonatal"
+                },
+                {
+                    "id": 1511,
+                    "name": "Icter la nou-născuți"
+                },
+                {
+                    "id": 1516,
+                    "name": "Icter la nou-născuți"
+                },
+                {
+                    "id": 1521,
+                    "name": "Cruste de lapte"
+                },
+                {
+                    "id": 1526,
+                    "name": "Plagiocefalie"
+                },
+                {
+                    "id": 1531,
+                    "name": "Cap plat"
+                },
+                {
+                    "id": 1536,
+                    "name": "Cap aplatizat"
+                },
+                {
+                    "id": 1541,
+                    "name": "Punct plat pe cap"
+                },
+                {
+                    "id": 1546,
+                    "name": "Alergii"
+                },
+                {
+                    "id": 1551,
+                    "name": "Alergie"
+                },
+                {
+                    "id": 1556,
+                    "name": "Alergic"
+                },
+                {
+                    "id": 1561,
+                    "name": "Reacție alergică"
+                },
+                {
+                    "id": 1566,
+                    "name": "Reacții anafilactice"
+                },
+                {
+                    "id": 1571,
+                    "name": "Anafilactic"
+                },
+                {
+                    "id": 1576,
+                    "name": "Anafilactic"
+                },
+                {
+                    "id": 1581,
+                    "name": "Intoleranță la lactoză"
+                },
+                {
+                    "id": 1586,
+                    "name": "Intoleranță la lactoză"
+                },
+                {
+                    "id": 1591,
+                    "name": "Lactoză"
+                },
+                {
+                    "id": 1596,
+                    "name": "Lactază"
+                },
+                {
+                    "id": 1601,
+                    "name": "Semne de oboseală"
+                },
+                {
+                    "id": 1606,
+                    "name": "Înfășare"
+                },
+                {
+                    "id": 1611,
+                    "name": "Înfășurare"
+                },
+                {
+                    "id": 1616,
+                    "name": "Înfășat"
+                },
+                {
+                    "id": 1621,
+                    "name": "Înfășare"
+                },
+                {
+                    "id": 1626,
+                    "name": "Înfășare"
+                },
+                {
+                    "id": 1631,
+                    "name": "Înfășare"
+                },
+                {
+                    "id": 1636,
+                    "name": "dormit împreună "
+                },
+                {
+                    "id": 1641,
+                    "name": "împărțirea patului cu bebelușul"
+                },
+                {
+                    "id": 1646,
+                    "name": "Împărțirea patului"
+                },
+                {
+                    "id": 1651,
+                    "name": "Unitate de terapie intensivă neonatală"
+                },
+                {
+                    "id": 1656,
+                    "name": "unitate de terapie intensivă neonatală NICU"
+                },
+                {
+                    "id": 1661,
+                    "name": "Bebeluși prematuri"
+                },
+                {
+                    "id": 1666,
+                    "name": "Prematuri"
+                },
+                {
+                    "id": 1671,
+                    "name": "Părinți"
+                },
+                {
+                    "id": 1676,
+                    "name": "Asistență"
+                },
+                {
+                    "id": 1681,
+                    "name": "Infecția urechii medii"
+                },
+                {
+                    "id": 1686,
+                    "name": "Infecția urechii interne"
+                },
+                {
+                    "id": 1691,
+                    "name": "Otită medie"
+                },
+                {
+                    "id": 1696,
+                    "name": "Alergie alimentară"
+                },
+                {
+                    "id": 1701,
+                    "name": "Alergii alimentare"
+                },
+                {
+                    "id": 1706,
+                    "name": "Intoleranță la mâncare"
+                },
+                {
+                    "id": 1711,
+                    "name": "Intoleranțe alimentare"
+                },
+                {
+                    "id": 1716,
+                    "name": "Sensibilitate alimentară"
+                },
+                {
+                    "id": 1721,
+                    "name": "Sensibilități alimentare"
+                },
+                {
+                    "id": 1726,
+                    "name": "Intoleranță la alimente"
+                },
+                {
+                    "id": 1731,
+                    "name": "Reflux"
+                },
+                {
+                    "id": 1736,
+                    "name": "Reflux gastroesofagian"
+                },
+                {
+                    "id": 1741,
+                    "name": "Reflux gastroesofagian"
+                },
+                {
+                    "id": 1746,
+                    "name": "Reflux gastroesofagian"
+                },
+                {
+                    "id": 1751,
+                    "name": "Boală de reflux gastroesofagian BRGE"
+                },
+                {
+                    "id": 1756,
+                    "name": "Boală de reflux gastroesofagian BRGE"
+                },
+                {
+                    "id": 1761,
+                    "name": "Somn"
+                },
+                {
+                    "id": 1766,
+                    "name": "Doarme"
+                },
+                {
+                    "id": 1771,
+                    "name": "Obiceiuri de somn"
+                },
+                {
+                    "id": 1776,
+                    "name": "Dinți"
+                },
+                {
+                    "id": 1781,
+                    "name": "Sănătate orală"
+                },
+                {
+                    "id": 1786,
+                    "name": "Sănătate dentară"
+                },
+                {
+                    "id": 1801,
+                    "name": "Creșterea dinților"
+                },
+                {
+                    "id": 1806,
+                    "name": "Instruire privind utilizarea toaletei"
+                },
+                {
+                    "id": 1811,
+                    "name": "Toaletare"
+                },
+                {
+                    "id": 1816,
+                    "name": "Rutine pentru copii mici"
+                },
+                {
+                    "id": 1821,
+                    "name": "Rutine pentru antepreșcolari"
+                },
+                {
+                    "id": 1826,
+                    "name": "Rutinele antepreșcolarilor"
+                },
+                {
+                    "id": 1836,
+                    "name": "Întrebări frecvente"
+                },
+                {
+                    "id": 1841,
+                    "name": "Întrebări frecvente"
+                },
+                {
+                    "id": 1846,
+                    "name": "Întrebări"
+                },
+                {
+                    "id": 1851,
+                    "name": "Întrebări frecvente"
+                },
+                {
+                    "id": 1856,
+                    "name": "Somn bun"
+                },
+                {
+                    "id": 1861,
+                    "name": "Un somn bun"
+                },
+                {
+                    "id": 1866,
+                    "name": "Somn odihnitor"
+                },
+                {
+                    "id": 1871,
+                    "name": "Calitatea somnului"
+                },
+                {
+                    "id": 1876,
+                    "name": "Rutina de somn"
+                },
+                {
+                    "id": 1881,
+                    "name": "Mediul de somn"
+                },
+                {
+                    "id": 1886,
+                    "name": "Unde dorm copiii"
+                },
+                {
+                    "id": 1891,
+                    "name": "Zgomotul și lumina în timpul somnului"
+                },
+                {
+                    "id": 1896,
+                    "name": "Rutinele preșcolarilor"
+                },
+                {
+                    "id": 1901,
+                    "name": "Rutine pentru preșcolari"
+                },
+                {
+                    "id": 1906,
+                    "name": "Rutinele preșcolarilor"
+                },
+                {
+                    "id": 1911,
+                    "name": "Rutine în perioada preșcolară"
+                },
+                {
+                    "id": 1916,
+                    "name": "Anemie"
+                },
+                {
+                    "id": 1921,
+                    "name": "Anemie"
+                },
+                {
+                    "id": 1926,
+                    "name": "Anemic"
+                },
+                {
+                    "id": 1931,
+                    "name": "Anemic"
+                },
+                {
+                    "id": 1936,
+                    "name": "Astm"
+                },
+                {
+                    "id": 1941,
+                    "name": "Astm"
+                },
+                {
+                    "id": 1946,
+                    "name": "Astm"
+                },
+                {
+                    "id": 1951,
+                    "name": "Alergie la acarieni"
+                },
+                {
+                    "id": 1956,
+                    "name": "Acarieni"
+                },
+                {
+                    "id": 1961,
+                    "name": "Alergie la iarbă"
+                },
+                {
+                    "id": 1966,
+                    "name": "Polen"
+                },
+                {
+                    "id": 1971,
+                    "name": "Alergie la animale de companie"
+                },
+                {
+                    "id": 1976,
+                    "name": "Alergie la latex"
+                },
+                {
+                    "id": 1981,
+                    "name": "Înțepături de insecte"
+                },
+                {
+                    "id": 1986,
+                    "name": "Alergie chimică"
+                },
+                {
+                    "id": 1991,
+                    "name": "Urticarie"
+                },
+                {
+                    "id": 1996,
+                    "name": "Urticarie"
+                },
+                {
+                    "id": 2001,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 2006,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 2011,
+                    "name": "Sângerări nazale"
+                },
+                {
+                    "id": 2016,
+                    "name": "Sângerări nazale"
+                },
+                {
+                    "id": 2021,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 2026,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 2031,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 2036,
+                    "name": "Sângerări nazale"
+                },
+                {
+                    "id": 2041,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 2046,
+                    "name": "Tuse"
+                },
+                {
+                    "id": 2051,
+                    "name": "Tuse"
+                },
+                {
+                    "id": 2056,
+                    "name": "Crup"
+                },
+                {
+                    "id": 2061,
+                    "name": "Crup"
+                },
+                {
+                    "id": 2066,
+                    "name": "Crup"
+                },
+                {
+                    "id": 2071,
+                    "name": "Stridor"
+                },
+                {
+                    "id": 2076,
+                    "name": "Răceală"
+                },
+                {
+                    "id": 2081,
+                    "name": "Infecție în gât"
+                },
+                {
+                    "id": 2086,
+                    "name": "Streptococ în gât"
+                },
+                {
+                    "id": 2091,
+                    "name": "Faringită"
+                },
+                {
+                    "id": 2096,
+                    "name": "Amigdalită"
+                },
+                {
+                    "id": 2101,
+                    "name": "Amigdalită"
+                },
+                {
+                    "id": 2106,
+                    "name": "Amigdale"
+                },
+                {
+                    "id": 2111,
+                    "name": "Infecția amigdalelor"
+                },
+                {
+                    "id": 2116,
+                    "name": "Sinuzită"
+                },
+                {
+                    "id": 2121,
+                    "name": "Rinosinuzită"
+                },
+                {
+                    "id": 2126,
+                    "name": "Rinosinuzită"
+                },
+                {
+                    "id": 2131,
+                    "name": "Infecția sinusurilor"
+                },
+                {
+                    "id": 2136,
+                    "name": "Gripă"
+                },
+                {
+                    "id": 2141,
+                    "name": "Gripă"
+                },
+                {
+                    "id": 2146,
+                    "name": "Pneumonie"
+                },
+                {
+                    "id": 2151,
+                    "name": "Fibroză chistică"
+                },
+                {
+                    "id": 2156,
+                    "name": "Fibroza chistică FC"
+                },
+                {
+                    "id": 2161,
+                    "name": "Milia"
+                },
+                {
+                    "id": 2166,
+                    "name": "Convulsie"
+                },
+                {
+                    "id": 2171,
+                    "name": "Convulsii"
+                },
+                {
+                    "id": 2176,
+                    "name": "Convulsie"
+                },
+                {
+                    "id": 2181,
+                    "name": "Criză"
+                },
+                {
+                    "id": 2186,
+                    "name": "Crize"
+                },
+                {
+                    "id": 2196,
+                    "name": "Convulsie febrilă"
+                },
+                {
+                    "id": 2201,
+                    "name": "Convulsie febrilă"
+                },
+                {
+                    "id": 2206,
+                    "name": "Convulsii febrile"
+                },
+                {
+                    "id": 2211,
+                    "name": "Tulburare de auz"
+                },
+                {
+                    "id": 2216,
+                    "name": "Pierderea auzului"
+                },
+                {
+                    "id": 2221,
+                    "name": "Surditate"
+                },
+                {
+                    "id": 2226,
+                    "name": "Surd"
+                },
+                {
+                    "id": 2231,
+                    "name": "Tulburare de vedere"
+                },
+                {
+                    "id": 2241,
+                    "name": "Cu deficiențe de vedere"
+                },
+                {
+                    "id": 2246,
+                    "name": "Orbire"
+                },
+                {
+                    "id": 2251,
+                    "name": "Orb"
+                },
+                {
+                    "id": 2256,
+                    "name": "Pierderea vederii"
+                },
+                {
+                    "id": 2261,
+                    "name": "Vedere slabă"
+                },
+                {
+                    "id": 2266,
+                    "name": "Microcefalie"
+                },
+                {
+                    "id": 2271,
+                    "name": "Hepatita C"
+                },
+                {
+                    "id": 2276,
+                    "name": "Tulburare din spectrul autist"
+                },
+                {
+                    "id": 2281,
+                    "name": "Tulburări din spectrul autist"
+                },
+                {
+                    "id": 2286,
+                    "name": "TSA Tulburare din spectrul autist"
+                },
+                {
+                    "id": 2291,
+                    "name": "autism"
+                },
+                {
+                    "id": 2296,
+                    "name": "autist"
+                },
+                {
+                    "id": 2301,
+                    "name": "Paralizie cerebrală"
+                },
+                {
+                    "id": 2306,
+                    "name": "Sindromul Down"
+                },
+                {
+                    "id": 2316,
+                    "name": "Sindromul Downs"
+                },
+                {
+                    "id": 2321,
+                    "name": "Downs"
+                },
+                {
+                    "id": 2326,
+                    "name": "Trisomie 21"
+                },
+                {
+                    "id": 2331,
+                    "name": "Mongoloidism"
+                },
+                {
+                    "id": 2336,
+                    "name": "Puncte de reper în dezvoltare"
+                },
+                {
+                    "id": 2341,
+                    "name": "Indicatori pentru dezvoltare"
+                },
+                {
+                    "id": 2346,
+                    "name": "puncte de reper"
+                },
+                {
+                    "id": 2351,
+                    "name": "indicatori"
+                },
+                {
+                    "id": 2356,
+                    "name": "repere"
+                },
+                {
+                    "id": 2361,
+                    "name": "etape de dezvoltare"
+                },
+                {
+                    "id": 2366,
+                    "name": "puncte de reper în dezvoltare"
+                },
+                {
+                    "id": 2371,
+                    "name": "indicatori de dezvoltare"
+                },
+                {
+                    "id": 2376,
+                    "name": "puncte de reper în dezvoltare"
+                },
+                {
+                    "id": 2381,
+                    "name": "Dezvoltarea bebelușului"
+                },
+                {
+                    "id": 2386,
+                    "name": "Stadiile dezvoltării"
+                },
+                {
+                    "id": 2391,
+                    "name": "Stadii de dezvoltare"
+                },
+                {
+                    "id": 2396,
+                    "name": "Dezvoltarea nou-născutului"
+                },
+                {
+                    "id": 2401,
+                    "name": "Dezvoltarea nou-născutului"
+                },
+                {
+                    "id": 2406,
+                    "name": "Dezvoltare"
+                },
+                {
+                    "id": 2411,
+                    "name": "Cum învață copiii"
+                },
+                {
+                    "id": 2416,
+                    "name": "Învățarea copiilor"
+                },
+                {
+                    "id": 2421,
+                    "name": "Învățarea în copilărie"
+                },
+                {
+                    "id": 2426,
+                    "name": "Joacă"
+                },
+                {
+                    "id": 2431,
+                    "name": "timp de joacă"
+                },
+                {
+                    "id": 2436,
+                    "name": "timp de joacă"
+                },
+                {
+                    "id": 2441,
+                    "name": "Mișcare"
+                },
+                {
+                    "id": 2446,
+                    "name": "Mișcare"
+                },
+                {
+                    "id": 2451,
+                    "name": "Mișcare"
+                },
+                {
+                    "id": 2456,
+                    "name": "Mișcări"
+                },
+                {
+                    "id": 2461,
+                    "name": "Mișcare fizică"
+                },
+                {
+                    "id": 2466,
+                    "name": "Mișcare fizică"
+                },
+                {
+                    "id": 2471,
+                    "name": "Dezvoltarea copiilor mici"
+                },
+                {
+                    "id": 2476,
+                    "name": "Dezvoltarea copiilor mici"
+                },
+                {
+                    "id": 2481,
+                    "name": "Dezvoltarea copiilor mici"
+                },
+                {
+                    "id": 2486,
+                    "name": "Dezvoltarea antepreșcoilarilor"
+                },
+                {
+                    "id": 2491,
+                    "name": "Creșterea copiilor"
+                },
+                {
+                    "id": 2496,
+                    "name": "Asociere"
+                },
+                {
+                    "id": 2501,
+                    "name": "Frați"
+                },
+                {
+                    "id": 2506,
+                    "name": "surori"
+                },
+                {
+                    "id": 2511,
+                    "name": "Dizabilitate - copil"
+                },
+                {
+                    "id": 2516,
+                    "name": "Copil cu dizabilități"
+                },
+                {
+                    "id": 2521,
+                    "name": "Copil cu dizabilități"
+                },
+                {
+                    "id": 2526,
+                    "name": "Copil cu dizabilități"
+                },
+                {
+                    "id": 2531,
+                    "name": "Copii cu dizabilități"
+                },
+                {
+                    "id": 2536,
+                    "name": "Copii cu dizabilități"
+                },
+                {
+                    "id": 2541,
+                    "name": "Comportament"
+                },
+                {
+                    "id": 2546,
+                    "name": "Gestionarea comportamentului"
+                },
+                {
+                    "id": 2551,
+                    "name": "Gestionarea comportamentelor"
+                },
+                {
+                    "id": 2556,
+                    "name": "Disciplină"
+                },
+                {
+                    "id": 2561,
+                    "name": "Laudă"
+                },
+                {
+                    "id": 2566,
+                    "name": "Dezvoltarea preșcolarilor"
+                },
+                {
+                    "id": 2571,
+                    "name": "Dezvoltarea preșcolarilor"
+                },
+                {
+                    "id": 2576,
+                    "name": "Preșcolari în curs de dezvoltare"
+                },
+                {
+                    "id": 2581,
+                    "name": "Dezvoltarea preșcolarilor"
+                },
+                {
+                    "id": 2586,
+                    "name": "Creativitate"
+                },
+                {
+                    "id": 2591,
+                    "name": "Creație"
+                },
+                {
+                    "id": 2596,
+                    "name": "Creativ"
+                },
+                {
+                    "id": 2601,
+                    "name": "Lapte matern"
+                },
+                {
+                    "id": 2606,
+                    "name": "lapte de sân"
+                },
+                {
+                    "id": 2621,
+                    "name": "Lapte de mămică"
+                },
+                {
+                    "id": 2636,
+                    "name": "Alcool și alte droguri"
+                },
+                {
+                    "id": 2641,
+                    "name": "Alcool și droguri"
+                },
+                {
+                    "id": 2646,
+                    "name": "Droguri și alcool"
+                },
+                {
+                    "id": 2651,
+                    "name": "Droguri"
+                },
+                {
+                    "id": 2656,
+                    "name": "Alcool"
+                },
+                {
+                    "id": 2661,
+                    "name": "Consum de droguri"
+                },
+                {
+                    "id": 2666,
+                    "name": "Abuz de medicamente"
+                },
+                {
+                    "id": 2671,
+                    "name": "Băutură"
+                },
+                {
+                    "id": 2676,
+                    "name": "Alăptare"
+                },
+                {
+                    "id": 2681,
+                    "name": "Alăptare"
+                },
+                {
+                    "id": 2686,
+                    "name": "Alăptare"
+                },
+                {
+                    "id": 2691,
+                    "name": "Alăptări"
+                },
+                {
+                    "id": 2696,
+                    "name": "Alăptări"
+                },
+                {
+                    "id": 2701,
+                    "name": "Alăptare"
+                },
+                {
+                    "id": 2706,
+                    "name": "Dietă"
+                },
+                {
+                    "id": 2711,
+                    "name": "Dietă sănătoasă"
+                },
+                {
+                    "id": 2716,
+                    "name": "Mâncat"
+                },
+                {
+                    "id": 2721,
+                    "name": "Fumat"
+                },
+                {
+                    "id": 2726,
+                    "name": "fum"
+                },
+                {
+                    "id": 2731,
+                    "name": "fumători"
+                },
+                {
+                    "id": 2736,
+                    "name": "tutun"
+                },
+                {
+                    "id": 2741,
+                    "name": "țigări"
+                },
+                {
+                    "id": 2746,
+                    "name": "Perierea dinților"
+                },
+                {
+                    "id": 2756,
+                    "name": "Curățarea dinților"
+                },
+                {
+                    "id": 2761,
+                    "name": "înțărcare"
+                },
+                {
+                    "id": 2766,
+                    "name": "oprirea alăptării"
+                },
+                {
+                    "id": 2771,
+                    "name": "înțărcare"
+                },
+                {
+                    "id": 2776,
+                    "name": "Înțărcare pe timp de noapte"
+                },
+                {
+                    "id": 2781,
+                    "name": "Înțărcare noaptea"
+                },
+                {
+                    "id": 2786,
+                    "name": "Înțărcare pe timp de noapte"
+                },
+                {
+                    "id": 2791,
+                    "name": "Înțărcare nocturnă"
+                },
+                {
+                    "id": 2796,
+                    "name": "Înțărcare pe timp de noapte"
+                },
+                {
+                    "id": 2801,
+                    "name": "Înțărcare nocturnă"
+                },
+                {
+                    "id": 2806,
+                    "name": "Hrănirea noaptea"
+                },
+                {
+                    "id": 2826,
+                    "name": "Hrănirile pe timp de noapte"
+                },
+                {
+                    "id": 2831,
+                    "name": "Hrănire pe timp de noapte"
+                },
+                {
+                    "id": 2836,
+                    "name": "Alimente solide"
+                },
+                {
+                    "id": 2841,
+                    "name": "Alimente solide"
+                },
+                {
+                    "id": 2851,
+                    "name": "introducerea alimentelor solide"
+                },
+                {
+                    "id": 2856,
+                    "name": "Vitamine"
+                },
+                {
+                    "id": 2861,
+                    "name": "Vitamină"
+                },
+                {
+                    "id": 2866,
+                    "name": "Minerale"
+                },
+                {
+                    "id": 2871,
+                    "name": "Mineral"
+                },
+                {
+                    "id": 2876,
+                    "name": "Nutrienți"
+                },
+                {
+                    "id": 2881,
+                    "name": "Nutrient"
+                },
+                {
+                    "id": 2886,
+                    "name": "Nutrienți esențiali"
+                },
+                {
+                    "id": 2891,
+                    "name": "Nutrienți alimentari"
+                },
+                {
+                    "id": 2896,
+                    "name": "Nutrienți în alimente"
+                },
+                {
+                    "id": 2901,
+                    "name": "Deficiență"
+                },
+                {
+                    "id": 2906,
+                    "name": "Fier"
+                },
+                {
+                    "id": 2911,
+                    "name": "Calciu"
+                },
+                {
+                    "id": 2916,
+                    "name": "Iod"
+                },
+                {
+                    "id": 2921,
+                    "name": "Potasiu"
+                },
+                {
+                    "id": 2926,
+                    "name": "Magneziu"
+                },
+                {
+                    "id": 2931,
+                    "name": "Zinc"
+                },
+                {
+                    "id": 2936,
+                    "name": "Cupru"
+                },
+                {
+                    "id": 2941,
+                    "name": "Vitamina A"
+                },
+                {
+                    "id": 2946,
+                    "name": "Vitamina B"
+                },
+                {
+                    "id": 2951,
+                    "name": "Vitamina C"
+                },
+                {
+                    "id": 2956,
+                    "name": "Vitamina E"
+                },
+                {
+                    "id": 2961,
+                    "name": "Carbohidrați"
+                },
+                {
+                    "id": 2966,
+                    "name": "Carbohidrați"
+                },
+                {
+                    "id": 2971,
+                    "name": "Alimente pe bază de carbohidrați"
+                },
+                {
+                    "id": 2981,
+                    "name": "Dietă cu conținut redus de carbohidrați"
+                },
+                {
+                    "id": 3006,
+                    "name": "Indice glicemic alimentar"
+                },
+                {
+                    "id": 3026,
+                    "name": "Indice glicemic scăzut"
+                },
+                {
+                    "id": 3036,
+                    "name": "Glicemie"
+                },
+                {
+                    "id": 3041,
+                    "name": "Glicemie"
+                },
+                {
+                    "id": 3046,
+                    "name": "Nivelul glicemiei"
+                },
+                {
+                    "id": 3051,
+                    "name": "Glucoză"
+                },
+                {
+                    "id": 3056,
+                    "name": "Glicemie"
+                },
+                {
+                    "id": 3061,
+                    "name": "Eticheta produsului alimentar"
+                },
+                {
+                    "id": 3086,
+                    "name": "Regulamente privind etichetarea produselor alimentare"
+                },
+                {
+                    "id": 3091,
+                    "name": "Etichetarea alimentelor"
+                },
+                {
+                    "id": 3096,
+                    "name": "Panou nutrițional"
+                },
+                {
+                    "id": 3106,
+                    "name": "Panou nutrițional"
+                },
+                {
+                    "id": 3126,
+                    "name": "Aditivi alimentari"
+                },
+                {
+                    "id": 3136,
+                    "name": "Aditivi în produsele alimentare"
+                },
+                {
+                    "id": 3141,
+                    "name": "Grupe de alimente"
+                },
+                {
+                    "id": 3146,
+                    "name": "Cinci grupe de alimente"
+                },
+                {
+                    "id": 3151,
+                    "name": "Grupuri alimentare sănătoase"
+                },
+                {
+                    "id": 3161,
+                    "name": "Lapte"
+                },
+                {
+                    "id": 3166,
+                    "name": "Lapte"
+                },
+                {
+                    "id": 3171,
+                    "name": "Lapte de vacă"
+                },
+                {
+                    "id": 3176,
+                    "name": "Lapte de vacă"
+                },
+                {
+                    "id": 3181,
+                    "name": "Lapte obișnuit"
+                },
+                {
+                    "id": 3186,
+                    "name": "Băuturi răcoritoare"
+                },
+                {
+                    "id": 3196,
+                    "name": "Băuturi carbogazoase"
+                },
+                {
+                    "id": 3201,
+                    "name": "Băuturi dulci"
+                },
+                {
+                    "id": 3206,
+                    "name": "Suc de fructe"
+                },
+                {
+                    "id": 3211,
+                    "name": "suc"
+                },
+                {
+                    "id": 3216,
+                    "name": "sucuri"
+                },
+                {
+                    "id": 3221,
+                    "name": "fruct"
+                },
+                {
+                    "id": 3226,
+                    "name": "băutură din fructe"
+                },
+                {
+                    "id": 3231,
+                    "name": "băuturi din fructe"
+                },
+                {
+                    "id": 3236,
+                    "name": "Băuturi energizante"
+                },
+                {
+                    "id": 3241,
+                    "name": "băutură energizantă"
+                },
+                {
+                    "id": 3246,
+                    "name": "băutură cu cofeină"
+                },
+                {
+                    "id": 3251,
+                    "name": "băuturi cu cofeină"
+                },
+                {
+                    "id": 3261,
+                    "name": "băuturi cu guarana"
+                },
+                {
+                    "id": 3271,
+                    "name": "băuturi pe bază de ginseng"
+                },
+                {
+                    "id": 3276,
+                    "name": "Băuturi sportive"
+                },
+                {
+                    "id": 3281,
+                    "name": "Băutură pentru sportivi"
+                },
+                {
+                    "id": 3286,
+                    "name": "Băutură metabolică"
+                },
+                {
+                    "id": 3291,
+                    "name": "Băuturi metabolice"
+                },
+                {
+                    "id": 3296,
+                    "name": "Băuturi izotonice"
+                },
+                {
+                    "id": 3301,
+                    "name": "Băutură izotonică"
+                },
+                {
+                    "id": 3306,
+                    "name": "Băuturi hipertonice"
+                },
+                {
+                    "id": 3311,
+                    "name": "Băutură hipertonică"
+                },
+                {
+                    "id": 3326,
+                    "name": "Băuturi cu electroliți"
+                },
+                {
+                    "id": 3336,
+                    "name": "Apă"
+                },
+                {
+                    "id": 3346,
+                    "name": "Legume"
+                },
+                {
+                    "id": 3351,
+                    "name": "Legume"
+                },
+                {
+                    "id": 3356,
+                    "name": "Legume"
+                },
+                {
+                    "id": 3361,
+                    "name": "Legumă"
+                },
+                {
+                    "id": 3366,
+                    "name": "Mese"
+                },
+                {
+                    "id": 3371,
+                    "name": "Masă"
+                },
+                {
+                    "id": 3376,
+                    "name": "Ore de masă"
+                },
+                {
+                    "id": 3381,
+                    "name": "Ora mesei"
+                },
+                {
+                    "id": 3386,
+                    "name": "Ora mesei"
+                },
+                {
+                    "id": 3391,
+                    "name": "Mese în familie"
+                },
+                {
+                    "id": 3396,
+                    "name": "Masă în familie"
+                },
+                {
+                    "id": 3401,
+                    "name": "Mâncat sănătos"
+                },
+                {
+                    "id": 3406,
+                    "name": "Mâncare sănătoasă"
+                },
+                {
+                    "id": 3411,
+                    "name": "Mese în oraș"
+                },
+                {
+                    "id": 3416,
+                    "name": "Micul dejun"
+                },
+                {
+                    "id": 3421,
+                    "name": "Mic dejun"
+                },
+                {
+                    "id": 3431,
+                    "name": "Gătit"
+                },
+                {
+                    "id": 3436,
+                    "name": "Gătit pentru copii"
+                },
+                {
+                    "id": 3441,
+                    "name": "Plante"
+                },
+                {
+                    "id": 3446,
+                    "name": "Alimente proaspete"
+                },
+                {
+                    "id": 3451,
+                    "name": "Alimente de mâncat cu mâna/ degetele"
+                },
+                {
+                    "id": 3456,
+                    "name": "Alimente de mâncat/ servit cu mâna/ degetele"
+                },
+                {
+                    "id": 3461,
+                    "name": "Rețetă"
+                },
+                {
+                    "id": 3466,
+                    "name": "Rețete"
+                },
+                {
+                    "id": 3471,
+                    "name": "Idei de alimentație"
+                },
+                {
+                    "id": 3476,
+                    "name": "Meniu"
+                },
+                {
+                    "id": 3481,
+                    "name": "Meniuri"
+                },
+                {
+                    "id": 3486,
+                    "name": "Mâncat nevos/ agitat"
+                },
+                {
+                    "id": 3491,
+                    "name": "Mâncători pretențioși"
+                },
+                {
+                    "id": 3501,
+                    "name": "Mâncat dezordonat"
+                },
+                {
+                    "id": 3506,
+                    "name": "Mâncător dezordonat"
+                },
+                {
+                    "id": 3516,
+                    "name": "Exerciții"
+                },
+                {
+                    "id": 3521,
+                    "name": "Activități fizice"
+                },
+                {
+                    "id": 3531,
+                    "name": "timp petrecut în fața ecranului"
+                },
+                {
+                    "id": 3536,
+                    "name": "Timp în fața televizorului"
+                },
+                {
+                    "id": 3541,
+                    "name": "Timp petrecut în fața computerului"
+                },
+                {
+                    "id": 3546,
+                    "name": "timp de vizionare"
+                },
+                {
+                    "id": 3551,
+                    "name": "naștere prematură"
+                },
+                {
+                    "id": 3556,
+                    "name": "naștere prematură"
+                },
+                {
+                    "id": 3561,
+                    "name": "Tată"
+                },
+                {
+                    "id": 3566,
+                    "name": "Tătici"
+                },
+                {
+                    "id": 3571,
+                    "name": "Tată"
+                },
+                {
+                    "id": 3576,
+                    "name": "Tați"
+                },
+                {
+                    "id": 3581,
+                    "name": "Părinte singur"
+                },
+                {
+                    "id": 3586,
+                    "name": "Părinți singuri"
+                },
+                {
+                    "id": 3591,
+                    "name": "Educație monoparentală"
+                },
+                {
+                    "id": 3596,
+                    "name": "Părinte singur"
+                },
+                {
+                    "id": 3601,
+                    "name": "Părinte unic"
+                },
+                {
+                    "id": 3606,
+                    "name": "Creșterea de un singur părinte"
+                },
+                {
+                    "id": 3611,
+                    "name": "Părinte singur"
+                },
+                {
+                    "id": 3616,
+                    "name": "Divorț"
+                },
+                {
+                    "id": 3621,
+                    "name": "Părinți divorțați"
+                },
+                {
+                    "id": 3626,
+                    "name": "Părinți divorțați"
+                },
+                {
+                    "id": 3631,
+                    "name": "Părinții divorțează"
+                },
+                {
+                    "id": 3636,
+                    "name": "Separare - părinți"
+                },
+                {
+                    "id": 3641,
+                    "name": "Separare"
+                },
+                {
+                    "id": 3646,
+                    "name": "Părinți separați"
+                },
+                {
+                    "id": 3651,
+                    "name": "Părinți separați"
+                },
+                {
+                    "id": 3656,
+                    "name": "Părinți separați"
+                },
+                {
+                    "id": 3661,
+                    "name": "Părinți separați"
+                },
+                {
+                    "id": 3666,
+                    "name": "FIV"
+                },
+                {
+                    "id": 3671,
+                    "name": "Tratament pentru infertilitate"
+                },
+                {
+                    "id": 3676,
+                    "name": "Creșterea nou-născuților"
+                },
+                {
+                    "id": 3681,
+                    "name": "Depresie postnatală"
+                },
+                {
+                    "id": 3686,
+                    "name": "Depresia post-natală"
+                },
+                {
+                    "id": 3691,
+                    "name": "Tristețe postpartum"
+                },
+                {
+                    "id": 3696,
+                    "name": "Dispneea paroxistică nocturnă"
+                },
+                {
+                    "id": 3701,
+                    "name": "Depresie perinatală"
+                },
+                {
+                    "id": 3706,
+                    "name": "Depresie prenatală"
+                },
+                {
+                    "id": 3711,
+                    "name": "Lăuză"
+                },
+                {
+                    "id": 3716,
+                    "name": "Lăuze"
+                },
+                {
+                    "id": 3721,
+                    "name": "Lăuză"
+                },
+                {
+                    "id": 3726,
+                    "name": "Lăuze"
+                },
+                {
+                    "id": 3731,
+                    "name": "Corp"
+                },
+                {
+                    "id": 3736,
+                    "name": "Sângerare vaginală"
+                },
+                {
+                    "id": 3741,
+                    "name": "Sâni"
+                },
+                {
+                    "id": 3746,
+                    "name": "Mameloane"
+                },
+                {
+                    "id": 3751,
+                    "name": "Perineu"
+                },
+                {
+                    "id": 3756,
+                    "name": "Dureri după naștere"
+                },
+                {
+                    "id": 3761,
+                    "name": "Păr"
+                },
+                {
+                    "id": 3766,
+                    "name": "Vergeturi"
+                },
+                {
+                    "id": 3771,
+                    "name": "Sex"
+                },
+                {
+                    "id": 3776,
+                    "name": "Relații sexuale"
+                },
+                {
+                    "id": 3781,
+                    "name": "Vorbire"
+                },
+                {
+                    "id": 3786,
+                    "name": "Discuții cu copiii"
+                },
+                {
+                    "id": 3791,
+                    "name": "Discuții cu copiii"
+                },
+                {
+                    "id": 3796,
+                    "name": "Comunicare"
+                },
+                {
+                    "id": 3801,
+                    "name": "Soluționarea problemelor"
+                },
+                {
+                    "id": 3806,
+                    "name": "Rezolvarea problemelor"
+                },
+                {
+                    "id": 3811,
+                    "name": "Soluționarea problemelor"
+                },
+                {
+                    "id": 3816,
+                    "name": "Gestionarea conflictelor"
+                },
+                {
+                    "id": 3821,
+                    "name": "Managementul conflictelor"
+                },
+                {
+                    "id": 3826,
+                    "name": "Furie"
+                },
+                {
+                    "id": 3831,
+                    "name": "Anxietate - părinte"
+                },
+                {
+                    "id": 3836,
+                    "name": "Anxietate - parentală"
+                },
+                {
+                    "id": 3841,
+                    "name": "Atacuri de anxietate - părinți"
+                },
+                {
+                    "id": 3846,
+                    "name": "Atacuri de anxietate - parentale"
+                },
+                {
+                    "id": 3851,
+                    "name": "Părinte neliniștit"
+                },
+                {
+                    "id": 3856,
+                    "name": "Părinți neliniștiți"
+                },
+                {
+                    "id": 3861,
+                    "name": "Anxietate parentală"
+                },
+                {
+                    "id": 3866,
+                    "name": "Anxietate"
+                },
+                {
+                    "id": 3871,
+                    "name": "Sentimente de neliniște"
+                },
+                {
+                    "id": 3876,
+                    "name": "Stare de anxietate"
+                },
+                {
+                    "id": 3881,
+                    "name": "Stres"
+                },
+                {
+                    "id": 3886,
+                    "name": "Stresat"
+                },
+                {
+                    "id": 3891,
+                    "name": "Relaxare"
+                },
+                {
+                    "id": 3896,
+                    "name": "relaxant"
+                },
+                {
+                    "id": 3901,
+                    "name": "relaxare"
+                },
+                {
+                    "id": 3906,
+                    "name": "exerciții de respirație"
+                },
+                {
+                    "id": 3911,
+                    "name": "tehnici de respirație"
+                },
+                {
+                    "id": 3916,
+                    "name": "mindfulness"
+                },
+                {
+                    "id": 3921,
+                    "name": "echilibru între familie și locul de muncă"
+                },
+                {
+                    "id": 3926,
+                    "name": "Echilibru între familie și muncă"
+                },
+                {
+                    "id": 3931,
+                    "name": "Echilibru între muncă și familie"
+                },
+                {
+                    "id": 3936,
+                    "name": "Echilibru între familie și muncă"
+                },
+                {
+                    "id": 3941,
+                    "name": "echilibrarea vieții profesionale cu cea familială"
+                },
+                {
+                    "id": 3946,
+                    "name": "Echilibru între muncă și copii"
+                },
+                {
+                    "id": 3951,
+                    "name": "Echilibru între muncă și viață"
+                },
+                {
+                    "id": 3956,
+                    "name": "Echilibru muncă-viață"
+                },
+                {
+                    "id": 3961,
+                    "name": "Revenirea la muncă"
+                },
+                {
+                    "id": 3966,
+                    "name": "Revenirea la locul de muncă"
+                },
+                {
+                    "id": 3971,
+                    "name": "Întoarcerea la muncă"
+                },
+                {
+                    "id": 3976,
+                    "name": "Îngrijirea copiilor"
+                },
+                {
+                    "id": 3981,
+                    "name": "Îngrijirea copiilor"
+                },
+                {
+                    "id": 3986,
+                    "name": "Îngrijitor de copii"
+                },
+                {
+                    "id": 3991,
+                    "name": "Îngrijitorii copiilor"
+                },
+                {
+                    "id": 3996,
+                    "name": "Educator pentru copii"
+                },
+                {
+                    "id": 4001,
+                    "name": "Educatori pentru copii"
+                },
+                {
+                    "id": 4006,
+                    "name": "Lucrător pentru îngrijirea copilului"
+                },
+                {
+                    "id": 4011,
+                    "name": "Îngrijitori de copii"
+                },
+                {
+                    "id": 4016,
+                    "name": "Începerea îngrijirii copilului"
+                },
+                {
+                    "id": 4021,
+                    "name": "Începerea îngrijirii copiilor"
+                },
+                {
+                    "id": 4026,
+                    "name": "Relocare"
+                },
+                {
+                    "id": 4031,
+                    "name": "Teama de baie"
+                },
+                {
+                    "id": 4036,
+                    "name": "Bilingvism"
+                },
+                {
+                    "id": 4041,
+                    "name": "Bilingv"
+                },
+                {
+                    "id": 4046,
+                    "name": "Vorbirea a două limbi"
+                },
+                {
+                    "id": 4051,
+                    "name": "Joc structurat"
+                },
+                {
+                    "id": 4056,
+                    "name": "Joc nestructurat"
+                },
+                {
+                    "id": 4061,
+                    "name": "Gândire"
+                },
+                {
+                    "id": 4066,
+                    "name": "Funcție cognitivă"
+                },
+                {
+                    "id": 4071,
+                    "name": "Cognitiv"
+                },
+                {
+                    "id": 4076,
+                    "name": "Dezvoltarea cognitivă"
+                },
+                {
+                    "id": 4081,
+                    "name": "Dezvoltarea intelectuală"
+                },
+                {
+                    "id": 4086,
+                    "name": "Dezvoltarea creierului"
+                },
+                {
+                    "id": 4091,
+                    "name": "Timp pe burtică"
+                },
+                {
+                    "id": 4096,
+                    "name": "Timp pe podea"
+                },
+                {
+                    "id": 4101,
+                    "name": "Bebeluș pe burtică"
+                },
+                {
+                    "id": 4106,
+                    "name": "Bebeluș pe burtă"
+                },
+                {
+                    "id": 4111,
+                    "name": "Jucării"
+                },
+                {
+                    "id": 4116,
+                    "name": "Jucărie"
+                },
+                {
+                    "id": 4121,
+                    "name": "Joaca cu jucăriile"
+                },
+                {
+                    "id": 4126,
+                    "name": "Jocuri"
+                },
+                {
+                    "id": 4131,
+                    "name": "Jucării de casă"
+                },
+                {
+                    "id": 4136,
+                    "name": "Jucării făcute în casă"
+                },
+                {
+                    "id": 4141,
+                    "name": "Matematică"
+                },
+                {
+                    "id": 4146,
+                    "name": "Numerație"
+                },
+                {
+                    "id": 4151,
+                    "name": "Numerotare"
+                },
+                {
+                    "id": 4156,
+                    "name": "Numere"
+                },
+                {
+                    "id": 4161,
+                    "name": "Învățarea cititului"
+                },
+                {
+                    "id": 4166,
+                    "name": "Lectură pentru copii"
+                },
+                {
+                    "id": 4171,
+                    "name": "Citirea poveștilor"
+                },
+                {
+                    "id": 4176,
+                    "name": "Spunerea poveștilor"
+                },
+                {
+                    "id": 4181,
+                    "name": "Spunerea poveștilor"
+                },
+                {
+                    "id": 4186,
+                    "name": "Spunerea poveștilor către copii"
+                },
+                {
+                    "id": 4191,
+                    "name": "Povestiri alături cu copii"
+                },
+                {
+                    "id": 4196,
+                    "name": "Povești"
+                },
+                {
+                    "id": 4201,
+                    "name": "Inventarea poveștilor"
+                },
+                {
+                    "id": 4206,
+                    "name": "Cărți"
+                },
+                {
+                    "id": 4211,
+                    "name": "Carte"
+                },
+                {
+                    "id": 4216,
+                    "name": "Citirea cărților"
+                },
+                {
+                    "id": 4221,
+                    "name": "Învățarea citirii cărților"
+                },
+                {
+                    "id": 4226,
+                    "name": "Copiii care citesc cărți"
+                },
+                {
+                    "id": 4231,
+                    "name": "Copiii învață să citească cărți"
+                },
+                {
+                    "id": 4236,
+                    "name": "Utilizarea tehnologiei"
+                },
+                {
+                    "id": 4241,
+                    "name": "Imaginație"
+                },
+                {
+                    "id": 4246,
+                    "name": "Imaginație"
+                },
+                {
+                    "id": 4251,
+                    "name": "Imaginație"
+                },
+                {
+                    "id": 4256,
+                    "name": "Dezvoltarea limbii"
+                },
+                {
+                    "id": 4261,
+                    "name": "Învățarea limbii"
+                },
+                {
+                    "id": 4266,
+                    "name": "Învățarea cuvintelor"
+                },
+                {
+                    "id": 4271,
+                    "name": "Învățarea competențelor lingvistice"
+                },
+                {
+                    "id": 4276,
+                    "name": "Dezvoltarea competențelor lingvistice"
+                },
+                {
+                    "id": 4281,
+                    "name": "Redarea sunetului"
+                },
+                {
+                    "id": 4286,
+                    "name": "Joc cu sunet"
+                },
+                {
+                    "id": 4291,
+                    "name": "Joc cu marionete"
+                },
+                {
+                    "id": 4296,
+                    "name": "Marionete"
+                },
+                {
+                    "id": 4301,
+                    "name": "Crearea marionetelor"
+                },
+                {
+                    "id": 4306,
+                    "name": "Cum se fac marionetele"
+                },
+                {
+                    "id": 4311,
+                    "name": "Fabricarea marionetelor"
+                },
+                {
+                    "id": 4316,
+                    "name": "Joc în aer liber"
+                },
+                {
+                    "id": 4321,
+                    "name": "Joacă în aer liber"
+                },
+                {
+                    "id": 4326,
+                    "name": "Joacă în aer liber"
+                },
+                {
+                    "id": 4331,
+                    "name": "Joaca în aer liber"
+                },
+                {
+                    "id": 4336,
+                    "name": "Joacă în aer liber"
+                },
+                {
+                    "id": 4341,
+                    "name": "Joc în natură"
+                },
+                {
+                    "id": 4346,
+                    "name": "Joaca în natură"
+                },
+                {
+                    "id": 4351,
+                    "name": "Plimbare în natură"
+                },
+                {
+                    "id": 4356,
+                    "name": "Joc cu mingea"
+                },
+                {
+                    "id": 4361,
+                    "name": "Joaca cu mingi"
+                },
+                {
+                    "id": 4366,
+                    "name": "Alfabetizare"
+                },
+                {
+                    "id": 4371,
+                    "name": "Dezvoltarea alfabetizării"
+                },
+                {
+                    "id": 4376,
+                    "name": "Învățarea alfabetizării"
+                },
+                {
+                    "id": 4381,
+                    "name": "Alfabetizat"
+                },
+                {
+                    "id": 4386,
+                    "name": "Alfabetizare"
+                },
+                {
+                    "id": 4391,
+                    "name": "Copiii care dezvoltă alfabetizare"
+                },
+                {
+                    "id": 4396,
+                    "name": "Poveste"
+                },
+                {
+                    "id": 4401,
+                    "name": "Dificultăți de alfabetizare"
+                },
+                {
+                    "id": 4406,
+                    "name": "Probleme de alfabetizare"
+                },
+                {
+                    "id": 4411,
+                    "name": "Plânset"
+                },
+                {
+                    "id": 4416,
+                    "name": "Bebeluș care plânge"
+                },
+                {
+                    "id": 4421,
+                    "name": "Bebeluși care plâng"
+                },
+                {
+                    "id": 4426,
+                    "name": "Copil care plânge"
+                },
+                {
+                    "id": 4431,
+                    "name": "Copii care plâng"
+                },
+                {
+                    "id": 4436,
+                    "name": "Legătura dintre părinte și copil"
+                },
+                {
+                    "id": 4441,
+                    "name": "Atașament"
+                },
+                {
+                    "id": 4446,
+                    "name": "Atașament pentru alăptare"
+                },
+                {
+                    "id": 4451,
+                    "name": "Atașament pentru alăptare"
+                },
+                {
+                    "id": 4456,
+                    "name": "Atașament pentru alăptare"
+                },
+                {
+                    "id": 4461,
+                    "name": "Atașament bun"
+                },
+                {
+                    "id": 4466,
+                    "name": "Atașament corect"
+                },
+                {
+                    "id": 4471,
+                    "name": "Învățarea bebelușului să se atașeze"
+                },
+                {
+                    "id": 4476,
+                    "name": "Învățarea copilului să se cupleze la sân"
+                },
+                {
+                    "id": 4481,
+                    "name": "Atașarea copilului la sân"
+                },
+                {
+                    "id": 4486,
+                    "name": "Conectare"
+                },
+                {
+                    "id": 4491,
+                    "name": "Legături"
+                },
+                {
+                    "id": 4496,
+                    "name": "Conectări"
+                },
+                {
+                    "id": 4501,
+                    "name": "Crearea conexiunilor"
+                },
+                {
+                    "id": 4506,
+                    "name": "Răsfățarea unui bebeluș"
+                },
+                {
+                    "id": 4511,
+                    "name": "Disciplinarea copiilor"
+                },
+                {
+                    "id": 4516,
+                    "name": "Disciplinarea copilului"
+                },
+                {
+                    "id": 4521,
+                    "name": "Încurajarea bunei conduite"
+                },
+                {
+                    "id": 4526,
+                    "name": "Învățarea copiilor să se comporte bine"
+                },
+                {
+                    "id": 4531,
+                    "name": "încurajarea unui comportament adecvat"
+                },
+                {
+                    "id": 4536,
+                    "name": "Plesnire"
+                },
+                {
+                    "id": 4541,
+                    "name": "Lovirea cu palma"
+                },
+                {
+                    "id": 4546,
+                    "name": "lovirea peste fund"
+                },
+                {
+                    "id": 4551,
+                    "name": "Pălmuire"
+                },
+                {
+                    "id": 4556,
+                    "name": "lovirea peste fund"
+                },
+                {
+                    "id": 4561,
+                    "name": "Plesnire"
+                },
+                {
+                    "id": 4566,
+                    "name": "Regulile familiei"
+                },
+                {
+                    "id": 4571,
+                    "name": "reguli"
+                },
+                {
+                    "id": 4576,
+                    "name": "Accese de furie"
+                },
+                {
+                    "id": 4581,
+                    "name": "Accesele de furie"
+                },
+                {
+                    "id": 4586,
+                    "name": "SIDS"
+                },
+                {
+                    "id": 4591,
+                    "name": "Sindromul morții subite a sugarului"
+                },
+                {
+                    "id": 4596,
+                    "name": "moarte infantilă"
+                },
+                {
+                    "id": 4601,
+                    "name": "sindromul morții subite la sugari"
+                },
+                {
+                    "id": 4606,
+                    "name": "moarte infantilă"
+                },
+                {
+                    "id": 4611,
+                    "name": "SUDI"
+                },
+                {
+                    "id": 4616,
+                    "name": "Accidente mortale în somn"
+                },
+                {
+                    "id": 4621,
+                    "name": "Accidente mortale în somn"
+                },
+                {
+                    "id": 4626,
+                    "name": "Moarte infantilă"
+                },
+                {
+                    "id": 4631,
+                    "name": "Moarte subită inexplicabilă la bebeluși"
+                },
+                {
+                    "id": 4636,
+                    "name": "Moartea subită inexplicabilă a sugarului"
+                },
+                {
+                    "id": 4641,
+                    "name": "SUID"
+                },
+                {
+                    "id": 4646,
+                    "name": "somn în siguranță"
+                },
+                {
+                    "id": 4656,
+                    "name": "Violență domestică"
+                },
+                {
+                    "id": 4661,
+                    "name": "Violență împotriva femeilor"
+                },
+                {
+                    "id": 4666,
+                    "name": "Violența față de parteneri"
+                },
+                {
+                    "id": 4671,
+                    "name": "Violența în familii"
+                },
+                {
+                    "id": 4676,
+                    "name": "Violență în familie"
+                },
+                {
+                    "id": 4681,
+                    "name": "Violență față de partener"
+                },
+                {
+                    "id": 4686,
+                    "name": "Abuz asupra copilului"
+                },
+                {
+                    "id": 4691,
+                    "name": "Lovirea de către părinte"
+                },
+                {
+                    "id": 4696,
+                    "name": "Abuz"
+                },
+                {
+                    "id": 4701,
+                    "name": "Lovirea copiilor"
+                },
+                {
+                    "id": 4706,
+                    "name": "Violență"
+                },
+                {
+                    "id": 4711,
+                    "name": "Protecție solară"
+                },
+                {
+                    "id": 4716,
+                    "name": "Siguranța la soare"
+                },
+                {
+                    "id": 4721,
+                    "name": "Protecție solară"
+                },
+                {
+                    "id": 4726,
+                    "name": "Protecție solară"
+                },
+                {
+                    "id": 4736,
+                    "name": "piatră de hotar"
+                },
+                {
+                    "id": 4741,
+                    "name": "Punct de reper în dezvoltare"
+                },
+                {
+                    "id": 4746,
+                    "name": "Dezvoltarea copilului"
+                },
+                {
+                    "id": 4751,
+                    "name": "Creșterea copilului"
+                },
+                {
+                    "id": 4761,
+                    "name": "atenție"
+                },
+                {
+                    "id": 4766,
+                    "name": "stimă de sine"
+                },
+                {
+                    "id": 4771,
+                    "name": "stres familial"
+                },
+                {
+                    "id": 4776,
+                    "name": "bunăstarea bebelușului"
+                },
+                {
+                    "id": 4781,
+                    "name": "baia bebelușului"
+                },
+                {
+                    "id": 4786,
+                    "name": "Ombilical"
+                },
+                {
+                    "id": 4791,
+                    "name": "Tăierea unghiilor bebelușului"
+                },
+                {
+                    "id": 4796,
+                    "name": "unghii"
+                },
+                {
+                    "id": 4801,
+                    "name": "consilier genetic"
+                },
+                {
+                    "id": 4806,
+                    "name": "anorexie"
+                },
+                {
+                    "id": 4811,
+                    "name": "eritem fesier"
+                },
+                {
+                    "id": 4816,
+                    "name": "genital"
+                },
+                {
+                    "id": 4821,
+                    "name": "activități la muzee"
+                },
+                {
+                    "id": 4826,
+                    "name": "activități în interior"
+                },
+                {
+                    "id": 4831,
+                    "name": "învățare și joacă"
+                },
+                {
+                    "id": 4836,
+                    "name": "dexteritate"
+                },
+                {
+                    "id": 4841,
+                    "name": "abilități de motricitate fină"
+                },
+                {
+                    "id": 4846,
+                    "name": "abilități de motricitate grosieră"
+                },
+                {
+                    "id": 4851,
+                    "name": "coordonarea mișcărilor"
+                },
+                {
+                    "id": 4856,
+                    "name": "evaluarea relațiilor spațiale dintre obiecte"
+                },
+                {
+                    "id": 4861,
+                    "name": "învățarea conceptului „rândul meu”"
+                },
+                {
+                    "id": 4866,
+                    "name": "dezvoltare socio-emoțională"
+                },
+                {
+                    "id": 4871,
+                    "name": "abilități motorii fine"
+                },
+                {
+                    "id": 4876,
+                    "name": "întinderea mâinilor în sus"
+                },
+                {
+                    "id": 4881,
+                    "name": "dezvoltare motorie"
+                },
+                {
+                    "id": 4886,
+                    "name": "lectură împreună cu copilul"
+                },
+                {
+                    "id": 4891,
+                    "name": "dezvoltare socio-emoțională"
+                },
+                {
+                    "id": 4896,
+                    "name": "frică de necunoscut"
+                },
+                {
+                    "id": 4901,
+                    "name": "anxietate de separare"
+                },
+                {
+                    "id": 4906,
+                    "name": "online"
+                },
+                {
+                    "id": 4911,
+                    "name": "digital"
+                },
+                {
+                    "id": 4916,
+                    "name": "râgâieli"
+                },
+                {
+                    "id": 4921,
+                    "name": "emoții"
+                },
+                {
+                    "id": 4926,
+                    "name": "cuvinte"
+                },
+                {
+                    "id": 4931,
+                    "name": "recomandări"
+                },
+                {
+                    "id": 4936,
+                    "name": "hrănirea sugarilor"
+                },
+                {
+                    "id": 4941,
+                    "name": "hrănirea copilului"
+                },
+                {
+                    "id": 4946,
+                    "name": "hrănire complementară"
+                },
+                {
+                    "id": 4956,
+                    "name": "Alimentare cu lapte matern"
+                },
+                {
+                    "id": 4961,
+                    "name": "cantitate de lapte matern"
+                },
+                {
+                    "id": 4966,
+                    "name": "suficient lapte matern"
+                },
+                {
+                    "id": 4971,
+                    "name": "mulgerea laptelui matern"
+                },
+                {
+                    "id": 4981,
+                    "name": "depozitarea laptelui matern"
+                },
+                {
+                    "id": 4986,
+                    "name": "probleme legate de alăptare"
+                },
+                {
+                    "id": 4991,
+                    "name": "durere la nivelul mamelonului"
+                },
+                {
+                    "id": 4996,
+                    "name": "durere la nivelul sânilor"
+                },
+                {
+                    "id": 5001,
+                    "name": "beneficii"
+                },
+                {
+                    "id": 5016,
+                    "name": "alăptare timpurie"
+                },
+                {
+                    "id": 5021,
+                    "name": "spălarea sânilor"
+                },
+                {
+                    "id": 5036,
+                    "name": "mamă"
+                },
+                {
+                    "id": 5041,
+                    "name": "boală gravă"
+                },
+                {
+                    "id": 5046,
+                    "name": "recuperare"
+                },
+                {
+                    "id": 5056,
+                    "name": "igienă alimentară"
+                },
+                {
+                    "id": 5066,
+                    "name": "Semn din naștere"
+                },
+                {
+                    "id": 5071,
+                    "name": "ochi"
+                },
+                {
+                    "id": 5076,
+                    "name": "urcior"
+                },
+                {
+                    "id": 5081,
+                    "name": "pleoapă"
+                },
+                {
+                    "id": 5086,
+                    "name": "susținere din partea partenerului"
+                },
+                {
+                    "id": 5091,
+                    "name": "timiditate"
+                },
+                {
+                    "id": 5096,
+                    "name": "părinte"
+                },
+                {
+                    "id": 5101,
+                    "name": "Recompensă"
+                },
+                {
+                    "id": 5106,
+                    "name": "Bronșiolită"
+                },
+                {
+                    "id": 5111,
+                    "name": "respirație dificilă"
+                },
+                {
+                    "id": 5116,
+                    "name": "tulburat"
+                },
+                {
+                    "id": 5121,
+                    "name": "pericol"
+                },
+                {
+                    "id": 5126,
+                    "name": "nociv"
+                },
+                {
+                    "id": 5131,
+                    "name": "rutină matinală"
+                },
+                {
+                    "id": 5136,
+                    "name": "instrument de gestionare a comportamentului"
+                },
+                {
+                    "id": 5141,
+                    "name": "planificare"
+                },
+                {
+                    "id": 5146,
+                    "name": "Temperament"
+                },
+                {
+                    "id": 5151,
+                    "name": "sfaturi pentru părinte"
+                },
+                {
+                    "id": 5156,
+                    "name": "gen"
+                },
+                {
+                    "id": 5161,
+                    "name": "Perspectiva de gen"
+                },
+                {
+                    "id": 5166,
+                    "name": "bâlbâială"
+                },
+                {
+                    "id": 5171,
+                    "name": "preșcolari"
+                },
+                {
+                    "id": 5176,
+                    "name": "comportament bun"
+                },
+                {
+                    "id": 5181,
+                    "name": "4-5"
+                },
+                {
+                    "id": 5186,
+                    "name": "3-4"
+                },
+                {
+                    "id": 5191,
+                    "name": "Bronșită"
+                },
+                {
+                    "id": 5196,
+                    "name": "vaccin pentavalent"
+                },
+                {
+                    "id": 5201,
+                    "name": "efecte adverse"
+                },
+                {
+                    "id": 5206,
+                    "name": "Hemophilus influenzae tip b"
+                },
+                {
+                    "id": 5211,
+                    "name": "Difteria"
+                },
+                {
+                    "id": 5216,
+                    "name": "Streptococcus pneumoniae"
+                },
+                {
+                    "id": 5221,
+                    "name": "Vaccin BCG"
+                },
+                {
+                    "id": 5226,
+                    "name": "protecție împotriva înțepăturilor de țânțari"
+                },
+                {
+                    "id": 5231,
+                    "name": "intervenție timpurie"
+                },
+                {
+                    "id": 5236,
+                    "name": "diagnostic de autism"
+                },
+                {
+                    "id": 5241,
+                    "name": "semne timpurii"
+                },
+                {
+                    "id": 5246,
+                    "name": "diagnostic"
+                },
+                {
+                    "id": 5251,
+                    "name": "intervenție"
+                },
+                {
+                    "id": 5256,
+                    "name": "abuz"
+                },
+                {
+                    "id": 5261,
+                    "name": "neglijență"
+                },
+                {
+                    "id": 5266,
+                    "name": "abuz sexual"
+                },
+                {
+                    "id": 5271,
+                    "name": "sindrom de alienare parentală"
+                },
+                {
+                    "id": 5276,
+                    "name": "divorțul părinților"
+                },
+                {
+                    "id": 5281,
+                    "name": "Instinct matern"
+                },
+                {
+                    "id": 5286,
+                    "name": "creștere"
+                },
+                {
+                    "id": 5296,
+                    "name": "parametri de creștere"
+                },
+                {
+                    "id": 5301,
+                    "name": "creșterea tipică a nou-născutului"
+                },
+                {
+                    "id": 5306,
+                    "name": "al treilea trimestru"
+                },
+                {
+                    "id": 5311,
+                    "name": "al patrulea trimestru"
+                },
+                {
+                    "id": 5321,
+                    "name": "înălțime"
+                },
+                {
+                    "id": 5326,
+                    "name": "sănătate mintală"
+                },
+                {
+                    "id": 5331,
+                    "name": "tulburări psihice"
+                },
+                {
+                    "id": 5336,
+                    "name": "bunăstarea copilului"
+                },
+                {
+                    "id": 5341,
+                    "name": "ședere"
+                },
+                {
+                    "id": 5346,
+                    "name": "timp sedentar în fața ecranului"
+                },
+                {
+                    "id": 5351,
+                    "name": "lumină"
+                },
+                {
+                    "id": 5356,
+                    "name": "moderat"
+                },
+                {
+                    "id": 5361,
+                    "name": "activitate fizică viguroasă"
+                },
+                {
+                    "id": 5366,
+                    "name": "6 luni"
+                },
+                {
+                    "id": 5371,
+                    "name": "hrănirea copilului mic"
+                },
+                {
+                    "id": 5376,
+                    "name": "9 luni"
+                },
+                {
+                    "id": 5381,
+                    "name": "10 luni"
+                },
+                {
+                    "id": 5386,
+                    "name": "11 luni"
+                },
+                {
+                    "id": 5391,
+                    "name": "Vaccin BCG"
+                },
+                {
+                    "id": 5396,
+                    "name": "tuberculoză"
+                },
+                {
+                    "id": 5401,
+                    "name": "abuz"
+                },
+                {
+                    "id": 5406,
+                    "name": "rutine zilnice"
+                },
+                {
+                    "id": 5411,
+                    "name": "imitații"
+                },
+                {
+                    "id": 5421,
+                    "name": "piele pe piele"
+                },
+                {
+                    "id": 5426,
+                    "name": "evaluarea dezvoltării"
+                },
+                {
+                    "id": 5431,
+                    "name": "Răniri"
+                },
+                {
+                    "id": 5436,
+                    "name": "căderi"
+                },
+                {
+                    "id": 5441,
+                    "name": "fracturi"
+                },
+                {
+                    "id": 5446,
+                    "name": "degerătură"
+                },
+                {
+                    "id": 5451,
+                    "name": "îngheț"
+                },
+                {
+                    "id": 5456,
+                    "name": "degerătură"
+                },
+                {
+                    "id": 5461,
+                    "name": "mușcătură"
+                },
+                {
+                    "id": 5466,
+                    "name": "arsuri"
+                },
+                {
+                    "id": 5471,
+                    "name": "intoxicare"
+                },
+                {
+                    "id": 5476,
+                    "name": "asfixiere"
+                },
+                {
+                    "id": 5481,
+                    "name": "înecare"
+                },
+                {
+                    "id": 5486,
+                    "name": "Farmacie"
+                },
+                {
+                    "id": 5491,
+                    "name": "îmbrăcarea bebelușului"
+                },
+                {
+                    "id": 5496,
+                    "name": "supraîncălzire"
+                },
+                {
+                    "id": 5501,
+                    "name": "bont ombilical"
+                },
+                {
+                    "id": 5506,
+                    "name": "conjunctivită"
+                },
+                {
+                    "id": 5511,
+                    "name": "igiena nazală"
+                },
+                {
+                    "id": 5516,
+                    "name": "spital"
+                },
+                {
+                    "id": 5521,
+                    "name": "igiena ochilor"
+                },
+                {
+                    "id": 5526,
+                    "name": "sfârcuri crăpate"
+                },
+                {
+                    "id": 5531,
+                    "name": "alăptarea la cerere"
+                },
+                {
+                    "id": 5536,
+                    "name": "suplimentare"
+                },
+                {
+                    "id": 5541,
+                    "name": "păstrarea laptelui matern"
+                },
+                {
+                    "id": 5546,
+                    "name": "muls"
+                },
+                {
+                    "id": 5551,
+                    "name": "mastită"
+                },
+                {
+                    "id": 5556,
+                    "name": "glandele mamare"
+                },
+                {
+                    "id": 5561,
+                    "name": "dietă variată"
+                },
+                {
+                    "id": 5566,
+                    "name": "alimente reprezentate"
+                },
+                {
+                    "id": 5571,
+                    "name": "supraponderal"
+                },
+                {
+                    "id": 5581,
+                    "name": "copil mulțumit"
+                },
+                {
+                    "id": 5591,
+                    "name": "creștere în greutate"
+                },
+                {
+                    "id": 5601,
+                    "name": "începerea mersului"
+                },
+                {
+                    "id": 5606,
+                    "name": "ședere independentă"
+                },
+                {
+                    "id": 5611,
+                    "name": "ședere cu sprijin"
+                },
+                {
+                    "id": 5616,
+                    "name": "mers constant"
+                },
+                {
+                    "id": 5621,
+                    "name": "rostogolire cu susținere"
+                },
+                {
+                    "id": 5636,
+                    "name": "ridicare cu sprijin pe mobilă"
+                },
+                {
+                    "id": 5641,
+                    "name": "ridicarea în picioare"
+                },
+                {
+                    "id": 5651,
+                    "name": "culegerea obiectelor mici"
+                },
+                {
+                    "id": 5661,
+                    "name": "inserție"
+                },
+                {
+                    "id": 5666,
+                    "name": "inserții"
+                },
+                {
+                    "id": 5671,
+                    "name": "desene"
+                },
+                {
+                    "id": 5676,
+                    "name": "extragere - introducere"
+                },
+                {
+                    "id": 5681,
+                    "name": "aruncare"
+                },
+                {
+                    "id": 5686,
+                    "name": "jocuri de aruncare"
+                },
+                {
+                    "id": 5691,
+                    "name": "primul cuvânt"
+                },
+                {
+                    "id": 5696,
+                    "name": "prima propoziție"
+                },
+                {
+                    "id": 5701,
+                    "name": "întinderea mâinilor în sus"
+                },
+                {
+                    "id": 5706,
+                    "name": "transportare"
+                },
+                {
+                    "id": 5711,
+                    "name": "trecerea dintr-o mână în alta"
+                },
+                {
+                    "id": 5716,
+                    "name": "vorbărie"
+                },
+                {
+                    "id": 5721,
+                    "name": "gângurit"
+                },
+                {
+                    "id": 5726,
+                    "name": "mers fără sprijin"
+                },
+                {
+                    "id": 5731,
+                    "name": "împingere"
+                },
+                {
+                    "id": 5736,
+                    "name": "ascundere"
+                },
+                {
+                    "id": 5741,
+                    "name": "de-a v-ați ascunselea"
+                },
+                {
+                    "id": 5746,
+                    "name": "cărți ilustrate"
+                },
+                {
+                    "id": 5751,
+                    "name": "scoaterea sunetelor"
+                },
+                {
+                    "id": 5756,
+                    "name": "sunete și voci"
+                },
+                {
+                    "id": 5761,
+                    "name": "primul zâmbet"
+                },
+                {
+                    "id": 5766,
+                    "name": "urmărirea ochilor"
+                },
+                {
+                    "id": 5771,
+                    "name": "râs"
+                },
+                {
+                    "id": 5776,
+                    "name": "Ascultare"
+                },
+                {
+                    "id": 5781,
+                    "name": "jocuri muzicale"
+                },
+                {
+                    "id": 5796,
+                    "name": "fantezie"
+                },
+                {
+                    "id": 5811,
+                    "name": "creație"
+                },
+                {
+                    "id": 5816,
+                    "name": "mușchi"
+                },
+                {
+                    "id": 5821,
+                    "name": "întărire"
+                },
+                {
+                    "id": 5826,
+                    "name": "musculatură"
+                },
+                {
+                    "id": 5831,
+                    "name": "forță musculară"
+                },
+                {
+                    "id": 5861,
+                    "name": "timp petrecut pe podea"
+                },
+                {
+                    "id": 5866,
+                    "name": "clasificare"
+                },
+                {
+                    "id": 5871,
+                    "name": "economisire"
+                },
+                {
+                    "id": 5876,
+                    "name": "plecare"
+                },
+                {
+                    "id": 5881,
+                    "name": "sortare"
+                },
+                {
+                    "id": 5886,
+                    "name": "jucării cu sunete"
+                },
+                {
+                    "id": 5891,
+                    "name": "jucării muzicale"
+                },
+                {
+                    "id": 5896,
+                    "name": "un joc condus de un copil"
+                },
+                {
+                    "id": 5901,
+                    "name": "un copil lider în joc"
+                },
+                {
+                    "id": 5906,
+                    "name": "jocuri cu rol (de-a...)"
+                },
+                {
+                    "id": 5911,
+                    "name": "primele cuvinte"
+                },
+                {
+                    "id": 5916,
+                    "name": "numărare"
+                },
+                {
+                    "id": 5926,
+                    "name": "jocuri cu numere"
+                },
+                {
+                    "id": 5931,
+                    "name": "număr"
+                },
+                {
+                    "id": 5936,
+                    "name": "înșirare"
+                },
+                {
+                    "id": 5941,
+                    "name": "jocuri în aer liber"
+                },
+                {
+                    "id": 5946,
+                    "name": "exerciții"
+                },
+                {
+                    "id": 5951,
+                    "name": "recuperare"
+                },
+                {
+                    "id": 5956,
+                    "name": "cunoaștere"
+                },
+                {
+                    "id": 5961,
+                    "name": "joc în paralel"
+                },
+                {
+                    "id": 5966,
+                    "name": "joc în comun"
+                },
+                {
+                    "id": 5976,
+                    "name": "copii la joacă"
+                },
+                {
+                    "id": 5986,
+                    "name": "jocuri de ascuns"
+                },
+                {
+                    "id": 5991,
+                    "name": "tata și copilul la joacă"
+                },
+                {
+                    "id": 5996,
+                    "name": "lectură cu un copil"
+                },
+                {
+                    "id": 6001,
+                    "name": "sărituri"
+                },
+                {
+                    "id": 6006,
+                    "name": "milia pe piele"
+                },
+                {
+                    "id": 6011,
+                    "name": "pete albe pe piele"
+                },
+                {
+                    "id": 6016,
+                    "name": "îngrijirea pielii"
+                },
+                {
+                    "id": 6021,
+                    "name": "îngrijirea capului"
+                },
+                {
+                    "id": 6026,
+                    "name": "îmbăiere peste braț"
+                },
+                {
+                    "id": 6031,
+                    "name": "baie în cadă"
+                },
+                {
+                    "id": 6036,
+                    "name": "îngrijirea unghiilor"
+                },
+                {
+                    "id": 6041,
+                    "name": "îngrijirea urechilor"
+                },
+                {
+                    "id": 6046,
+                    "name": "îngrijirea organelor genitale la fete"
+                },
+                {
+                    "id": 6051,
+                    "name": "îngrijirea organelor genitale la băieți"
+                },
+                {
+                    "id": 6056,
+                    "name": "îngrijirea ochilor"
+                },
+                {
+                    "id": 6061,
+                    "name": "Frecarea coapselor"
+                },
+                {
+                    "id": 6066,
+                    "name": "dermatită de scutec"
+                },
+                {
+                    "id": 6071,
+                    "name": "îngrijirea gurii"
+                },
+                {
+                    "id": 6076,
+                    "name": "pijamale"
+                },
+                {
+                    "id": 6106,
+                    "name": "îngrijire nazală"
+                },
+                {
+                    "id": 6131,
+                    "name": "Haine pentru bebeluși"
+                },
+                {
+                    "id": 6136,
+                    "name": "sterilizare"
+                },
+                {
+                    "id": 6141,
+                    "name": "accesorii pentru bebeluși"
+                },
+                {
+                    "id": 6146,
+                    "name": "Creșterea dinților"
+                },
+                {
+                    "id": 6151,
+                    "name": "igiena jucăriilor"
+                },
+                {
+                    "id": 6156,
+                    "name": "jucării"
+                },
+                {
+                    "id": 6161,
+                    "name": "pernă"
+                },
+                {
+                    "id": 6166,
+                    "name": "dormitul pe pernă"
+                },
+                {
+                    "id": 6171,
+                    "name": "cărucior"
+                },
+                {
+                    "id": 6176,
+                    "name": "cărucior pentru copii"
+                },
+                {
+                    "id": 6181,
+                    "name": "prima plimbare"
+                },
+                {
+                    "id": 6186,
+                    "name": "o plimbare"
+                },
+                {
+                    "id": 6196,
+                    "name": "La ce oră din zi iese copilul la plimbare?"
+                },
+                {
+                    "id": 6206,
+                    "name": "eșarfă și pălărie"
+                },
+                {
+                    "id": 6211,
+                    "name": "acoperit"
+                },
+                {
+                    "id": 6216,
+                    "name": "salopetă de iarnă"
+                },
+                {
+                    "id": 6221,
+                    "name": "vară"
+                },
+                {
+                    "id": 6226,
+                    "name": "plimbare de vară"
+                },
+                {
+                    "id": 6236,
+                    "name": "primăvară"
+                },
+                {
+                    "id": 6241,
+                    "name": "înțepătură de țânțar"
+                },
+                {
+                    "id": 6246,
+                    "name": "plajă"
+                },
+                {
+                    "id": 6251,
+                    "name": "Piscină"
+                },
+                {
+                    "id": 6256,
+                    "name": "călătorii"
+                },
+                {
+                    "id": 6261,
+                    "name": "echipament de călătorie"
+                },
+                {
+                    "id": 6266,
+                    "name": "Farmacie de voiaj"
+                },
+                {
+                    "id": 6271,
+                    "name": "creștere rapidă"
+                },
+                {
+                    "id": 6276,
+                    "name": "hormon de creștere"
+                },
+                {
+                    "id": 6281,
+                    "name": "gigantism"
+                },
+                {
+                    "id": 6286,
+                    "name": "prepararea hranei"
+                },
+                {
+                    "id": 6291,
+                    "name": "malnutriție infantilă"
+                },
+                {
+                    "id": 6296,
+                    "name": "malnutriție"
+                },
+                {
+                    "id": 6301,
+                    "name": "nu există creștere în greutate"
+                },
+                {
+                    "id": 6306,
+                    "name": "creștere în greutate defectuoasă"
+                },
+                {
+                    "id": 6326,
+                    "name": "dietă necorespunzătoare"
+                },
+                {
+                    "id": 6331,
+                    "name": "lipsa activității"
+                },
+                {
+                    "id": 6341,
+                    "name": "nocivitatea fumatului"
+                },
+                {
+                    "id": 6346,
+                    "name": "fum de tutun"
+                },
+                {
+                    "id": 6351,
+                    "name": "nocivitatea fumului de tutun"
+                },
+                {
+                    "id": 6356,
+                    "name": "nicotină"
+                },
+                {
+                    "id": 6361,
+                    "name": "cancerigen"
+                },
+                {
+                    "id": 6366,
+                    "name": "independență"
+                },
+                {
+                    "id": 110031,
+                    "name": "dezvoltarea copilului"
+                },
+                {
+                    "id": 111656,
+                    "name": "siguranța pătuțului"
+                },
+                {
+                    "id": 111661,
+                    "name": "programare la medic"
+                },
+                {
+                    "id": 111666,
+                    "name": "nou-născuți"
+                },
+                {
+                    "id": 111671,
+                    "name": "joacă"
+                },
+                {
+                    "id": 111676,
+                    "name": "dezvoltare"
+                },
+                {
+                    "id": 111681,
+                    "name": "abilități motorii"
+                },
+                {
+                    "id": 111686,
+                    "name": "interacțiune"
+                },
+                {
+                    "id": 111691,
+                    "name": "somn"
+                },
+                {
+                    "id": 111696,
+                    "name": "rutină"
+                },
+                {
+                    "id": 111701,
+                    "name": "calmare"
+                },
+                {
+                    "id": 111706,
+                    "name": "siguranța în timpul somnului"
+                },
+                {
+                    "id": 111711,
+                    "name": "nou-născuți"
+                },
+                {
+                    "id": 111716,
+                    "name": "imunizare"
+                },
+                {
+                    "id": 111721,
+                    "name": "vaccinare"
+                },
+                {
+                    "id": 111726,
+                    "name": "sănătatea copilului"
+                },
+                {
+                    "id": 111731,
+                    "name": "prevenirea bolilor"
+                },
+                {
+                    "id": 111736,
+                    "name": "alăptare"
+                },
+                {
+                    "id": 111741,
+                    "name": "protecție"
+                },
+                {
+                    "id": 111746,
+                    "name": "Activități de învățare"
+                },
+                {
+                    "id": 111751,
+                    "name": "Cântat"
+                },
+                {
+                    "id": 111756,
+                    "name": "A doua limbă"
+                },
+                {
+                    "id": 111761,
+                    "name": "antepreșcolari"
+                },
+                {
+                    "id": 111766,
+                    "name": "Joc"
+                },
+                {
+                    "id": 111771,
+                    "name": "Distracție"
+                },
+                {
+                    "id": 111776,
+                    "name": "Activitate fizică"
+                },
+                {
+                    "id": 111781,
+                    "name": "Vorbire"
+                },
+                {
+                    "id": 111786,
+                    "name": "dezvoltarea limbajului"
+                },
+                {
+                    "id": 111791,
+                    "name": "competențe lingvistice"
+                },
+                {
+                    "id": 111796,
+                    "name": "învățare"
+                },
+                {
+                    "id": 111801,
+                    "name": "predare"
+                },
+                {
+                    "id": 111806,
+                    "name": "îmbrăcare"
+                },
+                {
+                    "id": 111811,
+                    "name": "Iarnă"
+                },
+                {
+                    "id": 111816,
+                    "name": "idei de joc"
+                },
+                {
+                    "id": 111821,
+                    "name": "dezvoltarea abilităților/ deprinderilor"
+                },
+                {
+                    "id": 111826,
+                    "name": "obstacole"
+                },
+                {
+                    "id": 111831,
+                    "name": "dezvoltare fizică"
+                },
+                {
+                    "id": 111836,
+                    "name": "Citire"
+                },
+                {
+                    "id": 111841,
+                    "name": "timp cu familia"
+                },
+                {
+                    "id": 111846,
+                    "name": "abilități sociale"
+                },
+                {
+                    "id": 111851,
+                    "name": "dezvoltarea alfabetizării"
+                },
+                {
+                    "id": 111856,
+                    "name": "comunicare"
+                },
+                {
+                    "id": 111861,
+                    "name": "discuții cu bebelușul"
+                },
+                {
+                    "id": 111866,
+                    "name": "îngrijirea copilului la naștere"
+                },
+                {
+                    "id": 111871,
+                    "name": "inițierea alăptării"
+                },
+                {
+                    "id": 111876,
+                    "name": "hrănirea bebelușului la naștere"
+                },
+                {
+                    "id": 111881,
+                    "name": "poziții de alăptare"
+                },
+                {
+                    "id": 111886,
+                    "name": "ținerea copilului în brațe"
+                },
+                {
+                    "id": 111891,
+                    "name": "simptome"
+                },
+                {
+                    "id": 111896,
+                    "name": "copil bolnav"
+                },
+                {
+                    "id": 111901,
+                    "name": "COVID-19"
+                },
+                {
+                    "id": 111906,
+                    "name": "suspect de COVID-19"
+                },
+                {
+                    "id": 111911,
+                    "name": "confirmat cu COVID-19"
+                },
+                {
+                    "id": 111916,
+                    "name": "igienă"
+                },
+                {
+                    "id": 111921,
+                    "name": "formulă de lapte pentru sugari"
+                },
+                {
+                    "id": 111926,
+                    "name": "sigur, protejat"
+                },
+                {
+                    "id": 111931,
+                    "name": "siguranță"
+                },
+                {
+                    "id": 111936,
+                    "name": "vaccinuri"
+                },
+                {
+                    "id": 111941,
+                    "name": "întârzierea vaccinurilor"
+                },
+                {
+                    "id": 111946,
+                    "name": "protecție solară"
+                },
+                {
+                    "id": 111951,
+                    "name": "bebeluș"
+                },
+                {
+                    "id": 111956,
+                    "name": "grijă"
+                },
+                {
+                    "id": 111961,
+                    "name": "conectare"
+                },
+                {
+                    "id": 111966,
+                    "name": "stimulare"
+                },
+                {
+                    "id": 111971,
+                    "name": "plâns"
+                },
+                {
+                    "id": 111976,
+                    "name": "suprastimulare"
+                },
+                {
+                    "id": 111981,
+                    "name": "obosit"
+                },
+                {
+                    "id": 111986,
+                    "name": "icter"
+                },
+                {
+                    "id": 111991,
+                    "name": "lapte matern"
+                },
+                {
+                    "id": 111996,
+                    "name": "timp petrecut în fața ecranelor"
+                },
+                {
+                    "id": 112001,
+                    "name": "joc sigur"
+                },
+                {
+                    "id": 112006,
+                    "name": "depresie"
+                },
+                {
+                    "id": 112011,
+                    "name": "bărbați"
+                },
+                {
+                    "id": 112016,
+                    "name": "frecvența alăptării"
+                },
+                {
+                    "id": 112021,
+                    "name": "vârsta corectată"
+                },
+                {
+                    "id": 112026,
+                    "name": "vârstă ajustată"
+                },
+                {
+                    "id": 112031,
+                    "name": "bebeluș născut prematur"
+                },
+                {
+                    "id": 112036,
+                    "name": "tehnici de hrănire"
+                },
+                {
+                    "id": 112041,
+                    "name": "inflant"
+                },
+                {
+                    "id": 112046,
+                    "name": "lactație"
+                },
+                {
+                    "id": 112051,
+                    "name": "relactație"
+                },
+                {
+                    "id": 112056,
+                    "name": "nou-născuți"
+                },
+                {
+                    "id": 112061,
+                    "name": "sugar"
+                },
+                {
+                    "id": 112066,
+                    "name": "alăptare din nou"
+                },
+                {
+                    "id": 112071,
+                    "name": "diaree"
+                },
+                {
+                    "id": 112076,
+                    "name": "dizabilitate"
+                },
+                {
+                    "id": 112081,
+                    "name": "comportament"
+                },
+                {
+                    "id": 112086,
+                    "name": "dizabilități"
+                },
+                {
+                    "id": 112091,
+                    "name": "frați/surori"
+                },
+                {
+                    "id": 112096,
+                    "name": "sentimente"
+                },
+                {
+                    "id": 112101,
+                    "name": "relații"
+                },
+                {
+                    "id": 112106,
+                    "name": "familie"
+                },
+                {
+                    "id": 112111,
+                    "name": "întârzierea limbajului"
+                },
+                {
+                    "id": 112116,
+                    "name": "dezvoltare întârziată"
+                },
+                {
+                    "id": 112121,
+                    "name": "Hepatită"
+                },
+                {
+                    "id": 112126,
+                    "name": "controale medicale"
+                },
+                {
+                    "id": 112131,
+                    "name": "părinți receptivi"
+                },
+                {
+                    "id": 112136,
+                    "name": "păduchi"
+                },
+                {
+                    "id": 112141,
+                    "name": "Râie"
+                },
+                {
+                    "id": 112146,
+                    "name": "viermi"
+                },
+                {
+                    "id": 112151,
+                    "name": "nutriție"
+                },
+                {
+                    "id": 112156,
+                    "name": "obezitate"
+                },
+                {
+                    "id": 112161,
+                    "name": "Dureri de creștere"
+                },
+                {
+                    "id": 112166,
+                    "name": "Convulsii febrile"
+                },
+                {
+                    "id": 112171,
+                    "name": "Durere de cap"
+                },
+                {
+                    "id": 112176,
+                    "name": "Epilepsie"
+                },
+                {
+                    "id": 112181,
+                    "name": "convulsii"
+                },
+                {
+                    "id": 112186,
+                    "name": "Buză despicată"
+                },
+                {
+                    "id": 112191,
+                    "name": "palat despicat"
+                },
+                {
+                    "id": 112196,
+                    "name": "Despicătură"
+                },
+                {
+                    "id": 112201,
+                    "name": "buză"
+                },
+                {
+                    "id": 112206,
+                    "name": "hrănire"
+                },
+                {
+                    "id": 112211,
+                    "name": "logopedie"
+                },
+                {
+                    "id": 112216,
+                    "name": "Șold"
+                },
+                {
+                    "id": 112221,
+                    "name": "displazie de dezvoltare"
+                },
+                {
+                    "id": 112226,
+                    "name": "Picior strâmb congenital"
+                },
+                {
+                    "id": 112231,
+                    "name": "picior"
+                },
+                {
+                    "id": 112236,
+                    "name": "picioare"
+                },
+                {
+                    "id": 112241,
+                    "name": "ecografie"
+                },
+                {
+                    "id": 112246,
+                    "name": "Fuziune labială"
+                },
+                {
+                    "id": 112251,
+                    "name": "aderențe"
+                },
+                {
+                    "id": 112256,
+                    "name": "fete"
+                },
+                {
+                    "id": 112261,
+                    "name": "Ulcerații bucale"
+                },
+                {
+                    "id": 112266,
+                    "name": "Gură"
+                },
+                {
+                    "id": 112271,
+                    "name": "Ulcere"
+                },
+                {
+                    "id": 112276,
+                    "name": "Herpes"
+                },
+                {
+                    "id": 112281,
+                    "name": "infecție bucală"
+                },
+                {
+                    "id": 112286,
+                    "name": "Boala obrazului pălmuit"
+                },
+                {
+                    "id": 112291,
+                    "name": "erupție cutanată"
+                },
+                {
+                    "id": 112296,
+                    "name": "febră"
+                },
+                {
+                    "id": 112301,
+                    "name": "Mână"
+                },
+                {
+                    "id": 112306,
+                    "name": "Impetigo"
+                },
+                {
+                    "id": 112311,
+                    "name": "tăietură"
+                },
+                {
+                    "id": 112316,
+                    "name": "zgârietură"
+                },
+                {
+                    "id": 112321,
+                    "name": "piele"
+                },
+                {
+                    "id": 112326,
+                    "name": "Erupție cutanată"
+                },
+                {
+                    "id": 112331,
+                    "name": "Umflarea ganglionilor limfatici"
+                },
+                {
+                    "id": 112336,
+                    "name": "Oreion"
+                },
+                {
+                    "id": 112341,
+                    "name": "imunizare"
+                },
+                {
+                    "id": 112346,
+                    "name": "Febră glandulară"
+                },
+                {
+                    "id": 112351,
+                    "name": "Scarlatină"
+                },
+                {
+                    "id": 112356,
+                    "name": "Tuse convulsivă"
+                },
+                {
+                    "id": 112361,
+                    "name": "tuse"
+                },
+                {
+                    "id": 112366,
+                    "name": "respirație"
+                },
+                {
+                    "id": 112371,
+                    "name": "Rujeolă"
+                },
+                {
+                    "id": 112376,
+                    "name": "Rubeolă"
+                },
+                {
+                    "id": 112381,
+                    "name": "dureri de gât"
+                },
+                {
+                    "id": 112386,
+                    "name": "Varicelă"
+                },
+                {
+                    "id": 112391,
+                    "name": "Vulvovaginită"
+                },
+                {
+                    "id": 112396,
+                    "name": "Infecție urinară"
+                },
+                {
+                    "id": 112401,
+                    "name": "infecție"
+                },
+                {
+                    "id": 112406,
+                    "name": "testicul"
+                },
+                {
+                    "id": 112411,
+                    "name": "băiat"
+                },
+                {
+                    "id": 112416,
+                    "name": "Circumcizie"
+                },
+                {
+                    "id": 112421,
+                    "name": "Celiac"
+                },
+                {
+                    "id": 112426,
+                    "name": "gluten"
+                },
+                {
+                    "id": 112431,
+                    "name": "grâu"
+                },
+                {
+                    "id": 112436,
+                    "name": "hrană"
+                },
+                {
+                    "id": 112441,
+                    "name": "Diabet zaharat de tip 2"
+                },
+                {
+                    "id": 112446,
+                    "name": "diabet"
+                },
+                {
+                    "id": 112451,
+                    "name": "greutate"
+                },
+                {
+                    "id": 112456,
+                    "name": "Diabet zaharat de tip 1"
+                },
+                {
+                    "id": 112461,
+                    "name": "urinare frecventă"
+                },
+                {
+                    "id": 112466,
+                    "name": "pierdere în greutate"
+                },
+                {
+                    "id": 112471,
+                    "name": "Deshidratare"
+                },
+                {
+                    "id": 112476,
+                    "name": "vomă"
+                },
+                {
+                    "id": 112481,
+                    "name": "Greață"
+                },
+                {
+                    "id": 112486,
+                    "name": "Apendicită"
+                },
+                {
+                    "id": 112491,
+                    "name": "durere de burtă"
+                },
+                {
+                    "id": 112496,
+                    "name": "burtică"
+                },
+                {
+                    "id": 112501,
+                    "name": "apendice"
+                },
+                {
+                    "id": 112506,
+                    "name": "acces de furie"
+                },
+                {
+                    "id": 112511,
+                    "name": "Durere de stomac"
+                },
+                {
+                    "id": 112516,
+                    "name": "stomac"
+                },
+                {
+                    "id": 112521,
+                    "name": "cum să fii părinte"
+                },
+                {
+                    "id": 112526,
+                    "name": "Intoxicație alimentară"
+                },
+                {
+                    "id": 112531,
+                    "name": "Incontinență fecală"
+                },
+                {
+                    "id": 112536,
+                    "name": "toaletă"
+                },
+                {
+                    "id": 112541,
+                    "name": "caca"
+                },
+                {
+                    "id": 112546,
+                    "name": "intestin"
+                },
+                {
+                    "id": 112551,
+                    "name": "Eliminarea gazelor"
+                },
+                {
+                    "id": 112556,
+                    "name": "flatulență"
+                },
+                {
+                    "id": 112561,
+                    "name": "Constipație"
+                },
+                {
+                    "id": 112566,
+                    "name": "dezvoltarea vorbirii"
+                },
+                {
+                    "id": 112571,
+                    "name": "conversație"
+                },
+                {
+                    "id": 112576,
+                    "name": "educație sexuală"
+                },
+                {
+                    "id": 112581,
+                    "name": "îngrijire benefică"
+                },
+                {
+                    "id": 112586,
+                    "name": "comportament sexual"
+                },
+                {
+                    "id": 112591,
+                    "name": "autocontrol"
+                },
+                {
+                    "id": 112596,
+                    "name": "stima de sine"
+                },
+                {
+                    "id": 112601,
+                    "name": "identitate"
+                },
+                {
+                    "id": 112606,
+                    "name": "dragoste"
+                },
+                {
+                    "id": 112611,
+                    "name": "calmare"
+                },
+                {
+                    "id": 112616,
+                    "name": "tranziții"
+                },
+                {
+                    "id": 112621,
+                    "name": "bullying"
+                },
+                {
+                    "id": 112626,
+                    "name": "Grafice de creștere"
+                },
+                {
+                    "id": 112631,
+                    "name": "Dezvoltarea copilului"
+                },
+                {
+                    "id": 112636,
+                    "name": "dezvoltarea în copilăria timpurie"
+                },
+                {
+                    "id": 112641,
+                    "name": "dezvoltarea copiilor"
+                },
+                {
+                    "id": 112646,
+                    "name": "Servicii stomatologice"
+                },
+                {
+                    "id": 112651,
+                    "name": "Îngrijirea dinților"
+                },
+                {
+                    "id": 112656,
+                    "name": "Îngrijirea dinților"
+                },
+                {
+                    "id": 112661,
+                    "name": "Îngrijirea dinților și gingiilor"
+                },
+                {
+                    "id": 112666,
+                    "name": "Igienă dentară"
+                },
+                {
+                    "id": 112671,
+                    "name": "Primii dinți"
+                },
+                {
+                    "id": 112676,
+                    "name": "Enurezis"
+                },
+                {
+                    "id": 112681,
+                    "name": "Udarea patului"
+                },
+                {
+                    "id": 112686,
+                    "name": "enurezis"
+                },
+                {
+                    "id": 112691,
+                    "name": "Infecția urechii externe"
+                },
+                {
+                    "id": 112696,
+                    "name": "Infecția urechii externe"
+                },
+                {
+                    "id": 112701,
+                    "name": "Otită externă"
+                },
+                {
+                    "id": 112706,
+                    "name": "Urechea înotătorului"
+                },
+                {
+                    "id": 112711,
+                    "name": "Urechea înotătorului"
+                },
+                {
+                    "id": 112716,
+                    "name": "pregătirea"
+                },
+                {
+                    "id": 112721,
+                    "name": "Colică"
+                },
+                {
+                    "id": 112726,
+                    "name": "Cu colici"
+                },
+                {
+                    "id": 112731,
+                    "name": "bebeluș cu colici"
+                },
+                {
+                    "id": 112736,
+                    "name": "Copii cu colici"
+                },
+                {
+                    "id": 112741,
+                    "name": "Scutec"
+                },
+                {
+                    "id": 112746,
+                    "name": "Scutece"
+                },
+                {
+                    "id": 112751,
+                    "name": "Scutec"
+                },
+                {
+                    "id": 112756,
+                    "name": "Scutece"
+                },
+                {
+                    "id": 112761,
+                    "name": "Scutec - de unică folosință"
+                },
+                {
+                    "id": 112766,
+                    "name": "Scutece - de unică folosință"
+                },
+                {
+                    "id": 112771,
+                    "name": "Scutece de unică folosință"
+                },
+                {
+                    "id": 112776,
+                    "name": "Scutece de unică folosință"
+                },
+                {
+                    "id": 112781,
+                    "name": "Scutec - pânză"
+                },
+                {
+                    "id": 112786,
+                    "name": "Scutece - pânză"
+                },
+                {
+                    "id": 112791,
+                    "name": "Scutec din pânză"
+                },
+                {
+                    "id": 112796,
+                    "name": "Scutece din pânză"
+                },
+                {
+                    "id": 112801,
+                    "name": "Prima săptămână a nou-născutului"
+                },
+                {
+                    "id": 112806,
+                    "name": "Prima săptămână a bebelușului"
+                },
+                {
+                    "id": 112811,
+                    "name": "Prima săptămână"
+                },
+                {
+                    "id": 112816,
+                    "name": "Prima săptămână de viață"
+                },
+                {
+                    "id": 112821,
+                    "name": "Vitamina D"
+                },
+                {
+                    "id": 112826,
+                    "name": "Familie mixtă"
+                },
+                {
+                    "id": 112831,
+                    "name": "Familii mixte"
+                },
+                {
+                    "id": 112836,
+                    "name": "familii vitrege"
+                },
+                {
+                    "id": 112841,
+                    "name": "familii vitrege"
+                },
+                {
+                    "id": 112846,
+                    "name": "familii vitrege"
+                },
+                {
+                    "id": 112851,
+                    "name": "familie vitregă"
+                },
+                {
+                    "id": 112856,
+                    "name": "familie vitregă"
+                },
+                {
+                    "id": 112861,
+                    "name": "familie vitregă"
+                },
+                {
+                    "id": 112866,
+                    "name": "Bebeluș nou"
+                },
+                {
+                    "id": 112871,
+                    "name": "Frate nou/Soră nouă"
+                },
+                {
+                    "id": 112876,
+                    "name": "Frate nou"
+                },
+                {
+                    "id": 112881,
+                    "name": "soră nouă"
+                },
+                {
+                    "id": 112886,
+                    "name": "Naștere"
+                },
+                {
+                    "id": 112891,
+                    "name": "Nou-născut"
+                },
+                {
+                    "id": 112896,
+                    "name": "Nou-născuți"
+                },
+                {
+                    "id": 112901,
+                    "name": "Scor Apgar"
+                },
+                {
+                    "id": 112906,
+                    "name": "Baie"
+                },
+                {
+                    "id": 112911,
+                    "name": "Scăldare"
+                },
+                {
+                    "id": 112916,
+                    "name": "Îmbăiere"
+                },
+                {
+                    "id": 112921,
+                    "name": "Îmbăiere"
+                },
+                {
+                    "id": 112926,
+                    "name": "Carie dentară"
+                },
+                {
+                    "id": 112931,
+                    "name": "Carii dentare timpurii"
+                },
+                {
+                    "id": 112936,
+                    "name": "Carii dentare"
+                },
+                {
+                    "id": 112941,
+                    "name": "Carie dentară"
+                },
+                {
+                    "id": 112946,
+                    "name": "Dinți stricați"
+                },
+                {
+                    "id": 112951,
+                    "name": "Ținerea obiectelor în mâini"
+                },
+                {
+                    "id": 112956,
+                    "name": "îmbrățișare pentru alinare"
+                },
+                {
+                    "id": 112961,
+                    "name": "Masaj"
+                },
+                {
+                    "id": 112966,
+                    "name": "Masaj pentru sugari"
+                },
+                {
+                    "id": 112971,
+                    "name": "Masajul bebelușului"
+                },
+                {
+                    "id": 112976,
+                    "name": "Masarea bebelușului"
+                },
+                {
+                    "id": 112981,
+                    "name": "Medicație"
+                },
+                {
+                    "id": 112986,
+                    "name": "Medicament"
+                },
+                {
+                    "id": 112991,
+                    "name": "Medicamente"
+                },
+                {
+                    "id": 112996,
+                    "name": "Medicații"
+                },
+                {
+                    "id": 113001,
+                    "name": "Boală"
+                },
+                {
+                    "id": 113006,
+                    "name": "Boală gravă"
+                },
+                {
+                    "id": 113011,
+                    "name": "Boală"
+                },
+                {
+                    "id": 113016,
+                    "name": "Boală gravă"
+                },
+                {
+                    "id": 113021,
+                    "name": "bolnav"
+                },
+                {
+                    "id": 113026,
+                    "name": "Bolnav"
+                },
+                {
+                    "id": 113031,
+                    "name": "Temperatură ridicată"
+                },
+                {
+                    "id": 113036,
+                    "name": "Luarea temperaturii"
+                },
+                {
+                    "id": 113041,
+                    "name": "Temperatură"
+                },
+                {
+                    "id": 113046,
+                    "name": "Luarea temperaturii copilului"
+                },
+                {
+                    "id": 113051,
+                    "name": "Termometru"
+                },
+                {
+                    "id": 113056,
+                    "name": "Termometre"
+                },
+                {
+                    "id": 113061,
+                    "name": "Icter neonatal"
+                },
+                {
+                    "id": 113066,
+                    "name": "Icter la nou-născuți"
+                },
+                {
+                    "id": 113071,
+                    "name": "Icter la nou-născuți"
+                },
+                {
+                    "id": 113076,
+                    "name": "Cruste de lapte"
+                },
+                {
+                    "id": 113081,
+                    "name": "Plagiocefalie"
+                },
+                {
+                    "id": 113086,
+                    "name": "Cap plat"
+                },
+                {
+                    "id": 113091,
+                    "name": "Cap aplatizat"
+                },
+                {
+                    "id": 113096,
+                    "name": "Punct plat pe cap"
+                },
+                {
+                    "id": 113101,
+                    "name": "Alergii"
+                },
+                {
+                    "id": 113106,
+                    "name": "Alergie"
+                },
+                {
+                    "id": 113111,
+                    "name": "Alergic"
+                },
+                {
+                    "id": 113116,
+                    "name": "Reacție alergică"
+                },
+                {
+                    "id": 113121,
+                    "name": "Reacții anafilactice"
+                },
+                {
+                    "id": 113126,
+                    "name": "Anafilactic"
+                },
+                {
+                    "id": 113131,
+                    "name": "Anafilactic"
+                },
+                {
+                    "id": 113136,
+                    "name": "Intoleranță la lactoză"
+                },
+                {
+                    "id": 113141,
+                    "name": "Intoleranță la lactoză"
+                },
+                {
+                    "id": 113146,
+                    "name": "Lactoză"
+                },
+                {
+                    "id": 113151,
+                    "name": "Lactază"
+                },
+                {
+                    "id": 113156,
+                    "name": "Semne de oboseală"
+                },
+                {
+                    "id": 113161,
+                    "name": "Înfășare"
+                },
+                {
+                    "id": 113166,
+                    "name": "Înfășurare"
+                },
+                {
+                    "id": 113171,
+                    "name": "Înfășat"
+                },
+                {
+                    "id": 113176,
+                    "name": "Înfășare"
+                },
+                {
+                    "id": 113181,
+                    "name": "Înfășare"
+                },
+                {
+                    "id": 113186,
+                    "name": "Înfășare"
+                },
+                {
+                    "id": 113191,
+                    "name": "dormit împreună "
+                },
+                {
+                    "id": 113196,
+                    "name": "împărțirea patului cu bebelușul"
+                },
+                {
+                    "id": 113201,
+                    "name": "Împărțirea patului"
+                },
+                {
+                    "id": 113206,
+                    "name": "Unitate de terapie intensivă neonatală"
+                },
+                {
+                    "id": 113211,
+                    "name": "unitate de terapie intensivă neonatală NICU"
+                },
+                {
+                    "id": 113216,
+                    "name": "Bebeluși prematuri"
+                },
+                {
+                    "id": 113221,
+                    "name": "Prematuri"
+                },
+                {
+                    "id": 113226,
+                    "name": "Părinți"
+                },
+                {
+                    "id": 113231,
+                    "name": "Asistență"
+                },
+                {
+                    "id": 113236,
+                    "name": "Infecția urechii medii"
+                },
+                {
+                    "id": 113241,
+                    "name": "Infecția urechii interne"
+                },
+                {
+                    "id": 113246,
+                    "name": "Otită medie"
+                },
+                {
+                    "id": 113251,
+                    "name": "Alergie alimentară"
+                },
+                {
+                    "id": 113256,
+                    "name": "Alergii alimentare"
+                },
+                {
+                    "id": 113261,
+                    "name": "Intoleranță la mâncare"
+                },
+                {
+                    "id": 113266,
+                    "name": "Intoleranțe alimentare"
+                },
+                {
+                    "id": 113271,
+                    "name": "Sensibilitate alimentară"
+                },
+                {
+                    "id": 113276,
+                    "name": "Sensibilități alimentare"
+                },
+                {
+                    "id": 113281,
+                    "name": "Intoleranță la alimente"
+                },
+                {
+                    "id": 113286,
+                    "name": "Reflux"
+                },
+                {
+                    "id": 113291,
+                    "name": "Reflux gastroesofagian"
+                },
+                {
+                    "id": 113296,
+                    "name": "Reflux gastroesofagian"
+                },
+                {
+                    "id": 113301,
+                    "name": "Reflux gastroesofagian"
+                },
+                {
+                    "id": 113306,
+                    "name": "Boală de reflux gastroesofagian BRGE"
+                },
+                {
+                    "id": 113311,
+                    "name": "Boală de reflux gastroesofagian BRGE"
+                },
+                {
+                    "id": 113316,
+                    "name": "Somn"
+                },
+                {
+                    "id": 113321,
+                    "name": "Doarme"
+                },
+                {
+                    "id": 113326,
+                    "name": "Obiceiuri de somn"
+                },
+                {
+                    "id": 113331,
+                    "name": "Dinți"
+                },
+                {
+                    "id": 113336,
+                    "name": "Sănătate orală"
+                },
+                {
+                    "id": 113341,
+                    "name": "Sănătate dentară"
+                },
+                {
+                    "id": 113346,
+                    "name": "Creșterea dinților"
+                },
+                {
+                    "id": 113351,
+                    "name": "Instruire privind utilizarea toaletei"
+                },
+                {
+                    "id": 113356,
+                    "name": "Toaletare"
+                },
+                {
+                    "id": 113361,
+                    "name": "Rutine pentru copii mici"
+                },
+                {
+                    "id": 113366,
+                    "name": "Rutine pentru antepreșcolari"
+                },
+                {
+                    "id": 113371,
+                    "name": "Rutinele antepreșcolarilor"
+                },
+                {
+                    "id": 113376,
+                    "name": "Întrebări frecvente"
+                },
+                {
+                    "id": 113381,
+                    "name": "Întrebări frecvente"
+                },
+                {
+                    "id": 113386,
+                    "name": "Întrebări"
+                },
+                {
+                    "id": 113391,
+                    "name": "Întrebări frecvente"
+                },
+                {
+                    "id": 113396,
+                    "name": "Somn bun"
+                },
+                {
+                    "id": 113401,
+                    "name": "Un somn bun"
+                },
+                {
+                    "id": 113406,
+                    "name": "Somn odihnitor"
+                },
+                {
+                    "id": 113411,
+                    "name": "Calitatea somnului"
+                },
+                {
+                    "id": 113416,
+                    "name": "Rutina de somn"
+                },
+                {
+                    "id": 113421,
+                    "name": "Mediul de somn"
+                },
+                {
+                    "id": 113426,
+                    "name": "Unde dorm copiii"
+                },
+                {
+                    "id": 113431,
+                    "name": "Zgomotul și lumina în timpul somnului"
+                },
+                {
+                    "id": 113436,
+                    "name": "Rutinele preșcolarilor"
+                },
+                {
+                    "id": 113441,
+                    "name": "Rutine pentru preșcolari"
+                },
+                {
+                    "id": 113446,
+                    "name": "Rutinele preșcolarilor"
+                },
+                {
+                    "id": 113451,
+                    "name": "Rutine în perioada preșcolară"
+                },
+                {
+                    "id": 113456,
+                    "name": "Anemie"
+                },
+                {
+                    "id": 113461,
+                    "name": "Anemie"
+                },
+                {
+                    "id": 113466,
+                    "name": "Anemic"
+                },
+                {
+                    "id": 113471,
+                    "name": "Anemic"
+                },
+                {
+                    "id": 113476,
+                    "name": "Astm"
+                },
+                {
+                    "id": 113481,
+                    "name": "Astm"
+                },
+                {
+                    "id": 113486,
+                    "name": "Astm"
+                },
+                {
+                    "id": 113491,
+                    "name": "Alergie la acarieni"
+                },
+                {
+                    "id": 113496,
+                    "name": "Acarieni"
+                },
+                {
+                    "id": 113501,
+                    "name": "Alergie la iarbă"
+                },
+                {
+                    "id": 113506,
+                    "name": "Polen"
+                },
+                {
+                    "id": 113511,
+                    "name": "Alergie la animale de companie"
+                },
+                {
+                    "id": 113516,
+                    "name": "Alergie la latex"
+                },
+                {
+                    "id": 113521,
+                    "name": "Înțepături de insecte"
+                },
+                {
+                    "id": 113526,
+                    "name": "Alergie chimică"
+                },
+                {
+                    "id": 113531,
+                    "name": "Urticarie"
+                },
+                {
+                    "id": 113536,
+                    "name": "Urticarie"
+                },
+                {
+                    "id": 113541,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 113546,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 113551,
+                    "name": "Sângerări nazale"
+                },
+                {
+                    "id": 113556,
+                    "name": "Sângerări nazale"
+                },
+                {
+                    "id": 113561,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 113566,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 113571,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 113576,
+                    "name": "Sângerări nazale"
+                },
+                {
+                    "id": 113581,
+                    "name": "Sângerare nazală"
+                },
+                {
+                    "id": 113586,
+                    "name": "Tuse"
+                },
+                {
+                    "id": 113591,
+                    "name": "Tuse"
+                },
+                {
+                    "id": 113596,
+                    "name": "Crup"
+                },
+                {
+                    "id": 113601,
+                    "name": "Crup"
+                },
+                {
+                    "id": 113606,
+                    "name": "Crup"
+                },
+                {
+                    "id": 113611,
+                    "name": "Stridor"
+                },
+                {
+                    "id": 113616,
+                    "name": "Răceală"
+                },
+                {
+                    "id": 113621,
+                    "name": "Infecție în gât"
+                },
+                {
+                    "id": 113626,
+                    "name": "Streptococ în gât"
+                },
+                {
+                    "id": 113631,
+                    "name": "Faringită"
+                },
+                {
+                    "id": 113636,
+                    "name": "Amigdalită"
+                },
+                {
+                    "id": 113641,
+                    "name": "Amigdalită"
+                },
+                {
+                    "id": 113646,
+                    "name": "Amigdale"
+                },
+                {
+                    "id": 113651,
+                    "name": "Infecția amigdalelor"
+                },
+                {
+                    "id": 113656,
+                    "name": "Sinuzită"
+                },
+                {
+                    "id": 113661,
+                    "name": "Rinosinuzită"
+                },
+                {
+                    "id": 113666,
+                    "name": "Rinosinuzită"
+                },
+                {
+                    "id": 113671,
+                    "name": "Infecția sinusurilor"
+                },
+                {
+                    "id": 113676,
+                    "name": "Gripă"
+                },
+                {
+                    "id": 113681,
+                    "name": "Gripă"
+                },
+                {
+                    "id": 113686,
+                    "name": "Pneumonie"
+                },
+                {
+                    "id": 113691,
+                    "name": "Fibroză chistică"
+                },
+                {
+                    "id": 113696,
+                    "name": "Fibroza chistică FC"
+                },
+                {
+                    "id": 113701,
+                    "name": "Milia"
+                },
+                {
+                    "id": 113706,
+                    "name": "Convulsie"
+                },
+                {
+                    "id": 113711,
+                    "name": "Convulsii"
+                },
+                {
+                    "id": 113716,
+                    "name": "Convulsie"
+                },
+                {
+                    "id": 113721,
+                    "name": "Criză"
+                },
+                {
+                    "id": 113726,
+                    "name": "Crize"
+                },
+                {
+                    "id": 113731,
+                    "name": "Convulsie febrilă"
+                },
+                {
+                    "id": 113736,
+                    "name": "Convulsie febrilă"
+                },
+                {
+                    "id": 113741,
+                    "name": "Convulsii febrile"
+                },
+                {
+                    "id": 113746,
+                    "name": "Tulburare de auz"
+                },
+                {
+                    "id": 113751,
+                    "name": "Pierderea auzului"
+                },
+                {
+                    "id": 113756,
+                    "name": "Surditate"
+                },
+                {
+                    "id": 113761,
+                    "name": "Surd"
+                },
+                {
+                    "id": 113766,
+                    "name": "Tulburare de vedere"
+                },
+                {
+                    "id": 113771,
+                    "name": "Cu deficiențe de vedere"
+                },
+                {
+                    "id": 113776,
+                    "name": "Orbire"
+                },
+                {
+                    "id": 113781,
+                    "name": "Orb"
+                },
+                {
+                    "id": 113786,
+                    "name": "Pierderea vederii"
+                },
+                {
+                    "id": 113791,
+                    "name": "Vedere slabă"
+                },
+                {
+                    "id": 113796,
+                    "name": "Microcefalie"
+                },
+                {
+                    "id": 113801,
+                    "name": "Hepatita C"
+                },
+                {
+                    "id": 113806,
+                    "name": "Tulburare din spectrul autist"
+                },
+                {
+                    "id": 113811,
+                    "name": "Tulburări din spectrul autist"
+                },
+                {
+                    "id": 113816,
+                    "name": "TSA Tulburare din spectrul autist"
+                },
+                {
+                    "id": 113821,
+                    "name": "autism"
+                },
+                {
+                    "id": 113826,
+                    "name": "autist"
+                },
+                {
+                    "id": 113831,
+                    "name": "Paralizie cerebrală"
+                },
+                {
+                    "id": 113836,
+                    "name": "Sindromul Down"
+                },
+                {
+                    "id": 113841,
+                    "name": "Sindromul Downs"
+                },
+                {
+                    "id": 113846,
+                    "name": "Downs"
+                },
+                {
+                    "id": 113851,
+                    "name": "Trisomie 21"
+                },
+                {
+                    "id": 113856,
+                    "name": "Mongoloidism"
+                },
+                {
+                    "id": 113861,
+                    "name": "Puncte de reper în dezvoltare"
+                },
+                {
+                    "id": 113866,
+                    "name": "Indicatori pentru dezvoltare"
+                },
+                {
+                    "id": 113871,
+                    "name": "puncte de reper"
+                },
+                {
+                    "id": 113876,
+                    "name": "indicatori"
+                },
+                {
+                    "id": 113881,
+                    "name": "repere"
+                },
+                {
+                    "id": 113886,
+                    "name": "etape de dezvoltare"
+                },
+                {
+                    "id": 113891,
+                    "name": "puncte de reper în dezvoltare"
+                },
+                {
+                    "id": 113896,
+                    "name": "indicatori de dezvoltare"
+                },
+                {
+                    "id": 113901,
+                    "name": "puncte de reper în dezvoltare"
+                },
+                {
+                    "id": 113906,
+                    "name": "Dezvoltarea bebelușului"
+                },
+                {
+                    "id": 113911,
+                    "name": "Stadiile dezvoltării"
+                },
+                {
+                    "id": 113916,
+                    "name": "Stadii de dezvoltare"
+                },
+                {
+                    "id": 113921,
+                    "name": "Dezvoltarea nou-născutului"
+                },
+                {
+                    "id": 113926,
+                    "name": "Dezvoltarea nou-născutului"
+                },
+                {
+                    "id": 113931,
+                    "name": "Dezvoltare"
+                },
+                {
+                    "id": 113936,
+                    "name": "Cum învață copiii"
+                },
+                {
+                    "id": 113941,
+                    "name": "Învățarea copiilor"
+                },
+                {
+                    "id": 113946,
+                    "name": "Învățarea în copilărie"
+                },
+                {
+                    "id": 113951,
+                    "name": "Joacă"
+                },
+                {
+                    "id": 113956,
+                    "name": "timp de joacă"
+                },
+                {
+                    "id": 113961,
+                    "name": "timp de joacă"
+                },
+                {
+                    "id": 113966,
+                    "name": "Mișcare"
+                },
+                {
+                    "id": 113971,
+                    "name": "Mișcare"
+                },
+                {
+                    "id": 113976,
+                    "name": "Mișcare"
+                },
+                {
+                    "id": 113981,
+                    "name": "Mișcări"
+                },
+                {
+                    "id": 113986,
+                    "name": "Mișcare fizică"
+                },
+                {
+                    "id": 113991,
+                    "name": "Mișcare fizică"
+                },
+                {
+                    "id": 113996,
+                    "name": "Dezvoltarea copiilor mici"
+                },
+                {
+                    "id": 114001,
+                    "name": "Dezvoltarea copiilor mici"
+                },
+                {
+                    "id": 114006,
+                    "name": "Dezvoltarea copiilor mici"
+                },
+                {
+                    "id": 114011,
+                    "name": "Dezvoltarea antepreșcoilarilor"
+                },
+                {
+                    "id": 114016,
+                    "name": "Creșterea copiilor"
+                },
+                {
+                    "id": 114021,
+                    "name": "Asociere"
+                },
+                {
+                    "id": 114026,
+                    "name": "Frați"
+                },
+                {
+                    "id": 114031,
+                    "name": "surori"
+                },
+                {
+                    "id": 114036,
+                    "name": "Dizabilitate - copil"
+                },
+                {
+                    "id": 114041,
+                    "name": "Copil cu dizabilități"
+                },
+                {
+                    "id": 114046,
+                    "name": "Copil cu dizabilități"
+                },
+                {
+                    "id": 114051,
+                    "name": "Copil cu dizabilități"
+                },
+                {
+                    "id": 114056,
+                    "name": "Copii cu dizabilități"
+                },
+                {
+                    "id": 114061,
+                    "name": "Copii cu dizabilități"
+                },
+                {
+                    "id": 114066,
+                    "name": "Comportament"
+                },
+                {
+                    "id": 114071,
+                    "name": "Gestionarea comportamentului"
+                },
+                {
+                    "id": 114076,
+                    "name": "Gestionarea comportamentelor"
+                },
+                {
+                    "id": 114081,
+                    "name": "Disciplină"
+                },
+                {
+                    "id": 114086,
+                    "name": "Laudă"
+                },
+                {
+                    "id": 114091,
+                    "name": "Dezvoltarea preșcolarilor"
+                },
+                {
+                    "id": 114096,
+                    "name": "Dezvoltarea preșcolarilor"
+                },
+                {
+                    "id": 114101,
+                    "name": "Preșcolari în curs de dezvoltare"
+                },
+                {
+                    "id": 114106,
+                    "name": "Dezvoltarea preșcolarilor"
+                },
+                {
+                    "id": 114111,
+                    "name": "Creativitate"
+                },
+                {
+                    "id": 114116,
+                    "name": "Creație"
+                },
+                {
+                    "id": 114121,
+                    "name": "Creativ"
+                },
+                {
+                    "id": 114126,
+                    "name": "Lapte matern"
+                },
+                {
+                    "id": 114131,
+                    "name": "lapte de sân"
+                },
+                {
+                    "id": 114136,
+                    "name": "Lapte de mămică"
+                },
+                {
+                    "id": 114141,
+                    "name": "Alcool și alte droguri"
+                },
+                {
+                    "id": 114146,
+                    "name": "Alcool și droguri"
+                },
+                {
+                    "id": 114151,
+                    "name": "Droguri și alcool"
+                },
+                {
+                    "id": 114156,
+                    "name": "Droguri"
+                },
+                {
+                    "id": 114161,
+                    "name": "Alcool"
+                },
+                {
+                    "id": 114166,
+                    "name": "Consum de droguri"
+                },
+                {
+                    "id": 114171,
+                    "name": "Abuz de medicamente"
+                },
+                {
+                    "id": 114176,
+                    "name": "Băutură"
+                },
+                {
+                    "id": 114181,
+                    "name": "Alăptare"
+                },
+                {
+                    "id": 114186,
+                    "name": "Alăptare"
+                },
+                {
+                    "id": 114191,
+                    "name": "Alăptare"
+                },
+                {
+                    "id": 114196,
+                    "name": "Alăptări"
+                },
+                {
+                    "id": 114201,
+                    "name": "Alăptări"
+                },
+                {
+                    "id": 114206,
+                    "name": "Alăptare"
+                },
+                {
+                    "id": 114211,
+                    "name": "Dietă"
+                },
+                {
+                    "id": 114216,
+                    "name": "Dietă sănătoasă"
+                },
+                {
+                    "id": 114221,
+                    "name": "Mâncat"
+                },
+                {
+                    "id": 114226,
+                    "name": "Fumat"
+                },
+                {
+                    "id": 114231,
+                    "name": "fum"
+                },
+                {
+                    "id": 114236,
+                    "name": "fumători"
+                },
+                {
+                    "id": 114241,
+                    "name": "tutun"
+                },
+                {
+                    "id": 114246,
+                    "name": "țigări"
+                },
+                {
+                    "id": 114251,
+                    "name": "Perierea dinților"
+                },
+                {
+                    "id": 114256,
+                    "name": "Curățarea dinților"
+                },
+                {
+                    "id": 114261,
+                    "name": "înțărcare"
+                },
+                {
+                    "id": 114266,
+                    "name": "oprirea alăptării"
+                },
+                {
+                    "id": 114271,
+                    "name": "înțărcare"
+                },
+                {
+                    "id": 114276,
+                    "name": "Înțărcare pe timp de noapte"
+                },
+                {
+                    "id": 114281,
+                    "name": "Înțărcare noaptea"
+                },
+                {
+                    "id": 114286,
+                    "name": "Înțărcare pe timp de noapte"
+                },
+                {
+                    "id": 114291,
+                    "name": "Înțărcare nocturnă"
+                },
+                {
+                    "id": 114296,
+                    "name": "Înțărcare pe timp de noapte"
+                },
+                {
+                    "id": 114301,
+                    "name": "Înțărcare nocturnă"
+                },
+                {
+                    "id": 114306,
+                    "name": "Hrănirea noaptea"
+                },
+                {
+                    "id": 114311,
+                    "name": "Hrănirile pe timp de noapte"
+                },
+                {
+                    "id": 114316,
+                    "name": "Hrănire pe timp de noapte"
+                },
+                {
+                    "id": 114321,
+                    "name": "Alimente solide"
+                },
+                {
+                    "id": 114326,
+                    "name": "Alimente solide"
+                },
+                {
+                    "id": 114331,
+                    "name": "introducerea alimentelor solide"
+                },
+                {
+                    "id": 114336,
+                    "name": "Vitamine"
+                },
+                {
+                    "id": 114341,
+                    "name": "Vitamină"
+                },
+                {
+                    "id": 114346,
+                    "name": "Minerale"
+                },
+                {
+                    "id": 114351,
+                    "name": "Mineral"
+                },
+                {
+                    "id": 114356,
+                    "name": "Nutrienți"
+                },
+                {
+                    "id": 114361,
+                    "name": "Nutrient"
+                },
+                {
+                    "id": 114366,
+                    "name": "Nutrienți esențiali"
+                },
+                {
+                    "id": 114371,
+                    "name": "Nutrienți alimentari"
+                },
+                {
+                    "id": 114376,
+                    "name": "Nutrienți în alimente"
+                },
+                {
+                    "id": 114381,
+                    "name": "Deficiență"
+                },
+                {
+                    "id": 114386,
+                    "name": "Fier"
+                },
+                {
+                    "id": 114391,
+                    "name": "Calciu"
+                },
+                {
+                    "id": 114396,
+                    "name": "Iod"
+                },
+                {
+                    "id": 114401,
+                    "name": "Potasiu"
+                },
+                {
+                    "id": 114406,
+                    "name": "Magneziu"
+                },
+                {
+                    "id": 114411,
+                    "name": "Zinc"
+                },
+                {
+                    "id": 114416,
+                    "name": "Cupru"
+                },
+                {
+                    "id": 114421,
+                    "name": "Vitamina A"
+                },
+                {
+                    "id": 114426,
+                    "name": "Vitamina B"
+                },
+                {
+                    "id": 114431,
+                    "name": "Vitamina C"
+                },
+                {
+                    "id": 114436,
+                    "name": "Vitamina E"
+                },
+                {
+                    "id": 114441,
+                    "name": "Carbohidrați"
+                },
+                {
+                    "id": 114446,
+                    "name": "Carbohidrați"
+                },
+                {
+                    "id": 114451,
+                    "name": "Alimente pe bază de carbohidrați"
+                },
+                {
+                    "id": 114456,
+                    "name": "Dietă cu conținut redus de carbohidrați"
+                },
+                {
+                    "id": 114461,
+                    "name": "Indice glicemic alimentar"
+                },
+                {
+                    "id": 114466,
+                    "name": "Indice glicemic scăzut"
+                },
+                {
+                    "id": 114471,
+                    "name": "Glicemie"
+                },
+                {
+                    "id": 114476,
+                    "name": "Glicemie"
+                },
+                {
+                    "id": 114481,
+                    "name": "Nivelul glicemiei"
+                },
+                {
+                    "id": 114486,
+                    "name": "Glucoză"
+                },
+                {
+                    "id": 114491,
+                    "name": "Glicemie"
+                },
+                {
+                    "id": 114496,
+                    "name": "Eticheta produsului alimentar"
+                },
+                {
+                    "id": 114501,
+                    "name": "Regulamente privind etichetarea produselor alimentare"
+                },
+                {
+                    "id": 114506,
+                    "name": "Etichetarea alimentelor"
+                },
+                {
+                    "id": 114511,
+                    "name": "Panou nutrițional"
+                },
+                {
+                    "id": 114516,
+                    "name": "Panou nutrițional"
+                },
+                {
+                    "id": 114521,
+                    "name": "Aditivi alimentari"
+                },
+                {
+                    "id": 114526,
+                    "name": "Aditivi în produsele alimentare"
+                },
+                {
+                    "id": 114531,
+                    "name": "Grupe de alimente"
+                },
+                {
+                    "id": 114536,
+                    "name": "Cinci grupe de alimente"
+                },
+                {
+                    "id": 114541,
+                    "name": "Grupuri alimentare sănătoase"
+                },
+                {
+                    "id": 114546,
+                    "name": "Lapte"
+                },
+                {
+                    "id": 114551,
+                    "name": "Lapte"
+                },
+                {
+                    "id": 114556,
+                    "name": "Lapte de vacă"
+                },
+                {
+                    "id": 114561,
+                    "name": "Lapte de vacă"
+                },
+                {
+                    "id": 114566,
+                    "name": "Lapte obișnuit"
+                },
+                {
+                    "id": 114571,
+                    "name": "Băuturi răcoritoare"
+                },
+                {
+                    "id": 114576,
+                    "name": "Băuturi carbogazoase"
+                },
+                {
+                    "id": 114581,
+                    "name": "Băuturi dulci"
+                },
+                {
+                    "id": 114586,
+                    "name": "Suc de fructe"
+                },
+                {
+                    "id": 114591,
+                    "name": "suc"
+                },
+                {
+                    "id": 114596,
+                    "name": "sucuri"
+                },
+                {
+                    "id": 114601,
+                    "name": "fruct"
+                },
+                {
+                    "id": 114606,
+                    "name": "băutură din fructe"
+                },
+                {
+                    "id": 114611,
+                    "name": "băuturi din fructe"
+                },
+                {
+                    "id": 114616,
+                    "name": "Băuturi energizante"
+                },
+                {
+                    "id": 114621,
+                    "name": "băutură energizantă"
+                },
+                {
+                    "id": 114626,
+                    "name": "băutură cu cofeină"
+                },
+                {
+                    "id": 114631,
+                    "name": "băuturi cu cofeină"
+                },
+                {
+                    "id": 114636,
+                    "name": "băuturi cu guarana"
+                },
+                {
+                    "id": 114641,
+                    "name": "băuturi pe bază de ginseng"
+                },
+                {
+                    "id": 114646,
+                    "name": "Băuturi sportive"
+                },
+                {
+                    "id": 114651,
+                    "name": "Băutură pentru sportivi"
+                },
+                {
+                    "id": 114656,
+                    "name": "Băutură metabolică"
+                },
+                {
+                    "id": 114661,
+                    "name": "Băuturi metabolice"
+                },
+                {
+                    "id": 114666,
+                    "name": "Băuturi izotonice"
+                },
+                {
+                    "id": 114671,
+                    "name": "Băutură izotonică"
+                },
+                {
+                    "id": 114676,
+                    "name": "Băuturi hipertonice"
+                },
+                {
+                    "id": 114681,
+                    "name": "Băutură hipertonică"
+                },
+                {
+                    "id": 114686,
+                    "name": "Băuturi cu electroliți"
+                },
+                {
+                    "id": 114691,
+                    "name": "Apă"
+                },
+                {
+                    "id": 114696,
+                    "name": "Legume"
+                },
+                {
+                    "id": 114701,
+                    "name": "Legume"
+                },
+                {
+                    "id": 114706,
+                    "name": "Legume"
+                },
+                {
+                    "id": 114711,
+                    "name": "Legumă"
+                },
+                {
+                    "id": 114716,
+                    "name": "Mese"
+                },
+                {
+                    "id": 114721,
+                    "name": "Masă"
+                },
+                {
+                    "id": 114726,
+                    "name": "Ore de masă"
+                },
+                {
+                    "id": 114731,
+                    "name": "Ora mesei"
+                },
+                {
+                    "id": 114736,
+                    "name": "Ora mesei"
+                },
+                {
+                    "id": 114741,
+                    "name": "Mese în familie"
+                },
+                {
+                    "id": 114746,
+                    "name": "Masă în familie"
+                },
+                {
+                    "id": 114751,
+                    "name": "Mâncat sănătos"
+                },
+                {
+                    "id": 114756,
+                    "name": "Mâncare sănătoasă"
+                },
+                {
+                    "id": 114761,
+                    "name": "Mese în oraș"
+                },
+                {
+                    "id": 114766,
+                    "name": "Micul dejun"
+                },
+                {
+                    "id": 114771,
+                    "name": "Mic dejun"
+                },
+                {
+                    "id": 114776,
+                    "name": "Gătit"
+                },
+                {
+                    "id": 114781,
+                    "name": "Gătit pentru copii"
+                },
+                {
+                    "id": 114786,
+                    "name": "Plante"
+                },
+                {
+                    "id": 114791,
+                    "name": "Alimente proaspete"
+                },
+                {
+                    "id": 114796,
+                    "name": "Alimente de mâncat cu mâna/ degetele"
+                },
+                {
+                    "id": 114801,
+                    "name": "Alimente de mâncat/ servit cu mâna/ degetele"
+                },
+                {
+                    "id": 114806,
+                    "name": "Rețetă"
+                },
+                {
+                    "id": 114811,
+                    "name": "Rețete"
+                },
+                {
+                    "id": 114816,
+                    "name": "Idei de alimentație"
+                },
+                {
+                    "id": 114821,
+                    "name": "Meniu"
+                },
+                {
+                    "id": 114826,
+                    "name": "Meniuri"
+                },
+                {
+                    "id": 114831,
+                    "name": "Mâncat nevos/ agitat"
+                },
+                {
+                    "id": 114836,
+                    "name": "Mâncători pretențioși"
+                },
+                {
+                    "id": 114841,
+                    "name": "Mâncat dezordonat"
+                },
+                {
+                    "id": 114846,
+                    "name": "Mâncător dezordonat"
+                },
+                {
+                    "id": 114851,
+                    "name": "Exerciții"
+                },
+                {
+                    "id": 114856,
+                    "name": "Activități fizice"
+                },
+                {
+                    "id": 114861,
+                    "name": "timp petrecut în fața ecranului"
+                },
+                {
+                    "id": 114866,
+                    "name": "Timp în fața televizorului"
+                },
+                {
+                    "id": 114871,
+                    "name": "Timp petrecut în fața computerului"
+                },
+                {
+                    "id": 114876,
+                    "name": "timp de vizionare"
+                },
+                {
+                    "id": 114881,
+                    "name": "naștere prematură"
+                },
+                {
+                    "id": 114886,
+                    "name": "naștere prematură"
+                },
+                {
+                    "id": 114891,
+                    "name": "Tată"
+                },
+                {
+                    "id": 114896,
+                    "name": "Tătici"
+                },
+                {
+                    "id": 114901,
+                    "name": "Tată"
+                },
+                {
+                    "id": 114906,
+                    "name": "Tați"
+                },
+                {
+                    "id": 114911,
+                    "name": "Părinte singur"
+                },
+                {
+                    "id": 114916,
+                    "name": "Părinți singuri"
+                },
+                {
+                    "id": 114921,
+                    "name": "Educație monoparentală"
+                },
+                {
+                    "id": 114926,
+                    "name": "Părinte singur"
+                },
+                {
+                    "id": 114931,
+                    "name": "Părinte unic"
+                },
+                {
+                    "id": 114936,
+                    "name": "Creșterea de un singur părinte"
+                },
+                {
+                    "id": 114941,
+                    "name": "Părinte singur"
+                },
+                {
+                    "id": 114946,
+                    "name": "Divorț"
+                },
+                {
+                    "id": 114951,
+                    "name": "Părinți divorțați"
+                },
+                {
+                    "id": 114956,
+                    "name": "Părinți divorțați"
+                },
+                {
+                    "id": 114961,
+                    "name": "Părinții divorțează"
+                },
+                {
+                    "id": 114966,
+                    "name": "Separare - părinți"
+                },
+                {
+                    "id": 114971,
+                    "name": "Separare"
+                },
+                {
+                    "id": 114976,
+                    "name": "Părinți separați"
+                },
+                {
+                    "id": 114981,
+                    "name": "Părinți separați"
+                },
+                {
+                    "id": 114986,
+                    "name": "Părinți separați"
+                },
+                {
+                    "id": 114991,
+                    "name": "Părinți separați"
+                },
+                {
+                    "id": 114996,
+                    "name": "FIV"
+                },
+                {
+                    "id": 115001,
+                    "name": "Tratament pentru infertilitate"
+                },
+                {
+                    "id": 115006,
+                    "name": "Creșterea nou-născuților"
+                },
+                {
+                    "id": 115011,
+                    "name": "Depresie postnatală"
+                },
+                {
+                    "id": 115016,
+                    "name": "Depresia post-natală"
+                },
+                {
+                    "id": 115021,
+                    "name": "Tristețe postpartum"
+                },
+                {
+                    "id": 115026,
+                    "name": "Dispneea paroxistică nocturnă"
+                },
+                {
+                    "id": 115031,
+                    "name": "Depresie perinatală"
+                },
+                {
+                    "id": 115036,
+                    "name": "Depresie prenatală"
+                },
+                {
+                    "id": 115041,
+                    "name": "Lăuză"
+                },
+                {
+                    "id": 115046,
+                    "name": "Lăuze"
+                },
+                {
+                    "id": 115051,
+                    "name": "Lăuză"
+                },
+                {
+                    "id": 115056,
+                    "name": "Lăuze"
+                },
+                {
+                    "id": 115061,
+                    "name": "Corp"
+                },
+                {
+                    "id": 115066,
+                    "name": "Sângerare vaginală"
+                },
+                {
+                    "id": 115071,
+                    "name": "Sâni"
+                },
+                {
+                    "id": 115076,
+                    "name": "Mameloane"
+                },
+                {
+                    "id": 115081,
+                    "name": "Perineu"
+                },
+                {
+                    "id": 115086,
+                    "name": "Dureri după naștere"
+                },
+                {
+                    "id": 115091,
+                    "name": "Păr"
+                },
+                {
+                    "id": 115096,
+                    "name": "Vergeturi"
+                },
+                {
+                    "id": 115101,
+                    "name": "Sex"
+                },
+                {
+                    "id": 115106,
+                    "name": "Relații sexuale"
+                },
+                {
+                    "id": 115111,
+                    "name": "Vorbire"
+                },
+                {
+                    "id": 115116,
+                    "name": "Discuții cu copiii"
+                },
+                {
+                    "id": 115121,
+                    "name": "Discuții cu copiii"
+                },
+                {
+                    "id": 115126,
+                    "name": "Comunicare"
+                },
+                {
+                    "id": 115131,
+                    "name": "Soluționarea problemelor"
+                },
+                {
+                    "id": 115136,
+                    "name": "Rezolvarea problemelor"
+                },
+                {
+                    "id": 115141,
+                    "name": "Soluționarea problemelor"
+                },
+                {
+                    "id": 115146,
+                    "name": "Gestionarea conflictelor"
+                },
+                {
+                    "id": 115151,
+                    "name": "Managementul conflictelor"
+                },
+                {
+                    "id": 115156,
+                    "name": "Furie"
+                },
+                {
+                    "id": 115161,
+                    "name": "Anxietate - părinte"
+                },
+                {
+                    "id": 115166,
+                    "name": "Anxietate - parentală"
+                },
+                {
+                    "id": 115171,
+                    "name": "Atacuri de anxietate - părinți"
+                },
+                {
+                    "id": 115176,
+                    "name": "Atacuri de anxietate - parentale"
+                },
+                {
+                    "id": 115181,
+                    "name": "Părinte neliniștit"
+                },
+                {
+                    "id": 115186,
+                    "name": "Părinți neliniștiți"
+                },
+                {
+                    "id": 115191,
+                    "name": "Anxietate parentală"
+                },
+                {
+                    "id": 115196,
+                    "name": "Anxietate"
+                },
+                {
+                    "id": 115201,
+                    "name": "Sentimente de neliniște"
+                },
+                {
+                    "id": 115206,
+                    "name": "Stare de anxietate"
+                },
+                {
+                    "id": 115211,
+                    "name": "Stres"
+                },
+                {
+                    "id": 115216,
+                    "name": "Stresat"
+                },
+                {
+                    "id": 115221,
+                    "name": "Relaxare"
+                },
+                {
+                    "id": 115226,
+                    "name": "relaxant"
+                },
+                {
+                    "id": 115231,
+                    "name": "relaxare"
+                },
+                {
+                    "id": 115236,
+                    "name": "exerciții de respirație"
+                },
+                {
+                    "id": 115241,
+                    "name": "tehnici de respirație"
+                },
+                {
+                    "id": 115246,
+                    "name": "mindfulness"
+                },
+                {
+                    "id": 115251,
+                    "name": "echilibru între familie și locul de muncă"
+                },
+                {
+                    "id": 115256,
+                    "name": "Echilibru între familie și muncă"
+                },
+                {
+                    "id": 115261,
+                    "name": "Echilibru între muncă și familie"
+                },
+                {
+                    "id": 115266,
+                    "name": "Echilibru între familie și muncă"
+                },
+                {
+                    "id": 115271,
+                    "name": "echilibrarea vieții profesionale cu cea familială"
+                },
+                {
+                    "id": 115276,
+                    "name": "Echilibru între muncă și copii"
+                },
+                {
+                    "id": 115281,
+                    "name": "Echilibru între muncă și viață"
+                },
+                {
+                    "id": 115286,
+                    "name": "Echilibru muncă-viață"
+                },
+                {
+                    "id": 115291,
+                    "name": "Revenirea la muncă"
+                },
+                {
+                    "id": 115296,
+                    "name": "Revenirea la locul de muncă"
+                },
+                {
+                    "id": 115301,
+                    "name": "Întoarcerea la muncă"
+                },
+                {
+                    "id": 115306,
+                    "name": "Îngrijirea copiilor"
+                },
+                {
+                    "id": 115311,
+                    "name": "Îngrijirea copiilor"
+                },
+                {
+                    "id": 115316,
+                    "name": "Îngrijitor de copii"
+                },
+                {
+                    "id": 115321,
+                    "name": "Îngrijitorii copiilor"
+                },
+                {
+                    "id": 115326,
+                    "name": "Educator pentru copii"
+                },
+                {
+                    "id": 115331,
+                    "name": "Educatori pentru copii"
+                },
+                {
+                    "id": 115336,
+                    "name": "Lucrător pentru îngrijirea copilului"
+                },
+                {
+                    "id": 115341,
+                    "name": "Îngrijitori de copii"
+                },
+                {
+                    "id": 115346,
+                    "name": "Începerea îngrijirii copilului"
+                },
+                {
+                    "id": 115351,
+                    "name": "Începerea îngrijirii copiilor"
+                },
+                {
+                    "id": 115356,
+                    "name": "Relocare"
+                },
+                {
+                    "id": 115361,
+                    "name": "Teama de baie"
+                },
+                {
+                    "id": 115366,
+                    "name": "Bilingvism"
+                },
+                {
+                    "id": 115371,
+                    "name": "Bilingv"
+                },
+                {
+                    "id": 115376,
+                    "name": "Vorbirea a două limbi"
+                },
+                {
+                    "id": 115381,
+                    "name": "Joc structurat"
+                },
+                {
+                    "id": 115386,
+                    "name": "Joc nestructurat"
+                },
+                {
+                    "id": 115391,
+                    "name": "Gândire"
+                },
+                {
+                    "id": 115396,
+                    "name": "Funcție cognitivă"
+                },
+                {
+                    "id": 115401,
+                    "name": "Cognitiv"
+                },
+                {
+                    "id": 115406,
+                    "name": "Dezvoltarea cognitivă"
+                },
+                {
+                    "id": 115411,
+                    "name": "Dezvoltarea intelectuală"
+                },
+                {
+                    "id": 115416,
+                    "name": "Dezvoltarea creierului"
+                },
+                {
+                    "id": 115421,
+                    "name": "Timp pe burtică"
+                },
+                {
+                    "id": 115426,
+                    "name": "Timp pe podea"
+                },
+                {
+                    "id": 115431,
+                    "name": "Bebeluș pe burtică"
+                },
+                {
+                    "id": 115436,
+                    "name": "Bebeluș pe burtă"
+                },
+                {
+                    "id": 115441,
+                    "name": "Jucării"
+                },
+                {
+                    "id": 115446,
+                    "name": "Jucărie"
+                },
+                {
+                    "id": 115451,
+                    "name": "Joaca cu jucăriile"
+                },
+                {
+                    "id": 115456,
+                    "name": "Jocuri"
+                },
+                {
+                    "id": 115461,
+                    "name": "Jucării de casă"
+                },
+                {
+                    "id": 115466,
+                    "name": "Jucării făcute în casă"
+                },
+                {
+                    "id": 115471,
+                    "name": "Matematică"
+                },
+                {
+                    "id": 115476,
+                    "name": "Numerație"
+                },
+                {
+                    "id": 115481,
+                    "name": "Numerotare"
+                },
+                {
+                    "id": 115486,
+                    "name": "Numere"
+                },
+                {
+                    "id": 115491,
+                    "name": "Învățarea cititului"
+                },
+                {
+                    "id": 115496,
+                    "name": "Lectură pentru copii"
+                },
+                {
+                    "id": 115501,
+                    "name": "Citirea poveștilor"
+                },
+                {
+                    "id": 115506,
+                    "name": "Spunerea poveștilor"
+                },
+                {
+                    "id": 115511,
+                    "name": "Spunerea poveștilor"
+                },
+                {
+                    "id": 115516,
+                    "name": "Spunerea poveștilor către copii"
+                },
+                {
+                    "id": 115521,
+                    "name": "Povestiri alături cu copii"
+                },
+                {
+                    "id": 115526,
+                    "name": "Povești"
+                },
+                {
+                    "id": 115531,
+                    "name": "Inventarea poveștilor"
+                },
+                {
+                    "id": 115536,
+                    "name": "Cărți"
+                },
+                {
+                    "id": 115541,
+                    "name": "Carte"
+                },
+                {
+                    "id": 115546,
+                    "name": "Citirea cărților"
+                },
+                {
+                    "id": 115551,
+                    "name": "Învățarea citirii cărților"
+                },
+                {
+                    "id": 115556,
+                    "name": "Copiii care citesc cărți"
+                },
+                {
+                    "id": 115561,
+                    "name": "Copiii învață să citească cărți"
+                },
+                {
+                    "id": 115566,
+                    "name": "Utilizarea tehnologiei"
+                },
+                {
+                    "id": 115571,
+                    "name": "Imaginație"
+                },
+                {
+                    "id": 115576,
+                    "name": "Imaginație"
+                },
+                {
+                    "id": 115581,
+                    "name": "Imaginație"
+                },
+                {
+                    "id": 115586,
+                    "name": "Dezvoltarea limbii"
+                },
+                {
+                    "id": 115591,
+                    "name": "Învățarea limbii"
+                },
+                {
+                    "id": 115596,
+                    "name": "Învățarea cuvintelor"
+                },
+                {
+                    "id": 115601,
+                    "name": "Învățarea competențelor lingvistice"
+                },
+                {
+                    "id": 115606,
+                    "name": "Dezvoltarea competențelor lingvistice"
+                },
+                {
+                    "id": 115611,
+                    "name": "Redarea sunetului"
+                },
+                {
+                    "id": 115616,
+                    "name": "Joc cu sunet"
+                },
+                {
+                    "id": 115621,
+                    "name": "Joc cu marionete"
+                },
+                {
+                    "id": 115626,
+                    "name": "Marionete"
+                },
+                {
+                    "id": 115631,
+                    "name": "Crearea marionetelor"
+                },
+                {
+                    "id": 115636,
+                    "name": "Cum se fac marionetele"
+                },
+                {
+                    "id": 115641,
+                    "name": "Fabricarea marionetelor"
+                },
+                {
+                    "id": 115646,
+                    "name": "Joc în aer liber"
+                },
+                {
+                    "id": 115651,
+                    "name": "Joacă în aer liber"
+                },
+                {
+                    "id": 115656,
+                    "name": "Joacă în aer liber"
+                },
+                {
+                    "id": 115661,
+                    "name": "Joaca în aer liber"
+                },
+                {
+                    "id": 115666,
+                    "name": "Joacă în aer liber"
+                },
+                {
+                    "id": 115671,
+                    "name": "Joc în natură"
+                },
+                {
+                    "id": 115676,
+                    "name": "Joaca în natură"
+                },
+                {
+                    "id": 115681,
+                    "name": "Plimbare în natură"
+                },
+                {
+                    "id": 115686,
+                    "name": "Joc cu mingea"
+                },
+                {
+                    "id": 115691,
+                    "name": "Joaca cu mingi"
+                },
+                {
+                    "id": 115696,
+                    "name": "Alfabetizare"
+                },
+                {
+                    "id": 115701,
+                    "name": "Dezvoltarea alfabetizării"
+                },
+                {
+                    "id": 115706,
+                    "name": "Învățarea alfabetizării"
+                },
+                {
+                    "id": 115711,
+                    "name": "Alfabetizat"
+                },
+                {
+                    "id": 115716,
+                    "name": "Alfabetizare"
+                },
+                {
+                    "id": 115721,
+                    "name": "Copiii care dezvoltă alfabetizare"
+                },
+                {
+                    "id": 115726,
+                    "name": "Poveste"
+                },
+                {
+                    "id": 115731,
+                    "name": "Dificultăți de alfabetizare"
+                },
+                {
+                    "id": 115736,
+                    "name": "Probleme de alfabetizare"
+                },
+                {
+                    "id": 115741,
+                    "name": "Plânset"
+                },
+                {
+                    "id": 115746,
+                    "name": "Bebeluș care plânge"
+                },
+                {
+                    "id": 115751,
+                    "name": "Bebeluși care plâng"
+                },
+                {
+                    "id": 115756,
+                    "name": "Copil care plânge"
+                },
+                {
+                    "id": 115761,
+                    "name": "Copii care plâng"
+                },
+                {
+                    "id": 115766,
+                    "name": "Legătura dintre părinte și copil"
+                },
+                {
+                    "id": 115771,
+                    "name": "Atașament"
+                },
+                {
+                    "id": 115776,
+                    "name": "Atașament pentru alăptare"
+                },
+                {
+                    "id": 115781,
+                    "name": "Atașament pentru alăptare"
+                },
+                {
+                    "id": 115786,
+                    "name": "Atașament pentru alăptare"
+                },
+                {
+                    "id": 115791,
+                    "name": "Atașament bun"
+                },
+                {
+                    "id": 115796,
+                    "name": "Atașament corect"
+                },
+                {
+                    "id": 115801,
+                    "name": "Învățarea bebelușului să se atașeze"
+                },
+                {
+                    "id": 115806,
+                    "name": "Învățarea copilului să se cupleze la sân"
+                },
+                {
+                    "id": 115811,
+                    "name": "Atașarea copilului la sân"
+                },
+                {
+                    "id": 115816,
+                    "name": "Conectare"
+                },
+                {
+                    "id": 115821,
+                    "name": "Legături"
+                },
+                {
+                    "id": 115826,
+                    "name": "Conectări"
+                },
+                {
+                    "id": 115831,
+                    "name": "Crearea conexiunilor"
+                },
+                {
+                    "id": 115836,
+                    "name": "Răsfățarea unui bebeluș"
+                },
+                {
+                    "id": 115841,
+                    "name": "Disciplinarea copiilor"
+                },
+                {
+                    "id": 115846,
+                    "name": "Disciplinarea copilului"
+                },
+                {
+                    "id": 115851,
+                    "name": "Încurajarea bunei conduite"
+                },
+                {
+                    "id": 115856,
+                    "name": "Învățarea copiilor să se comporte bine"
+                },
+                {
+                    "id": 115861,
+                    "name": "încurajarea unui comportament adecvat"
+                },
+                {
+                    "id": 115866,
+                    "name": "Plesnire"
+                },
+                {
+                    "id": 115871,
+                    "name": "Lovirea cu palma"
+                },
+                {
+                    "id": 115876,
+                    "name": "lovirea peste fund"
+                },
+                {
+                    "id": 115881,
+                    "name": "Pălmuire"
+                },
+                {
+                    "id": 115886,
+                    "name": "lovirea peste fund"
+                },
+                {
+                    "id": 115891,
+                    "name": "Plesnire"
+                },
+                {
+                    "id": 115896,
+                    "name": "Regulile familiei"
+                },
+                {
+                    "id": 115901,
+                    "name": "reguli"
+                },
+                {
+                    "id": 115906,
+                    "name": "Accese de furie"
+                },
+                {
+                    "id": 115911,
+                    "name": "Accesele de furie"
+                },
+                {
+                    "id": 115916,
+                    "name": "SIDS"
+                },
+                {
+                    "id": 115921,
+                    "name": "Sindromul morții subite a sugarului"
+                },
+                {
+                    "id": 115926,
+                    "name": "moarte infantilă"
+                },
+                {
+                    "id": 115931,
+                    "name": "sindromul morții subite la sugari"
+                },
+                {
+                    "id": 115936,
+                    "name": "moarte infantilă"
+                },
+                {
+                    "id": 115941,
+                    "name": "SUDI"
+                },
+                {
+                    "id": 115946,
+                    "name": "Accidente mortale în somn"
+                },
+                {
+                    "id": 115951,
+                    "name": "Accidente mortale în somn"
+                },
+                {
+                    "id": 115956,
+                    "name": "Moarte infantilă"
+                },
+                {
+                    "id": 115961,
+                    "name": "Moarte subită inexplicabilă la bebeluși"
+                },
+                {
+                    "id": 115966,
+                    "name": "Moartea subită inexplicabilă a sugarului"
+                },
+                {
+                    "id": 115971,
+                    "name": "SUID"
+                },
+                {
+                    "id": 115976,
+                    "name": "somn în siguranță"
+                },
+                {
+                    "id": 115981,
+                    "name": "Violență domestică"
+                },
+                {
+                    "id": 115986,
+                    "name": "Violență împotriva femeilor"
+                },
+                {
+                    "id": 115991,
+                    "name": "Violența față de parteneri"
+                },
+                {
+                    "id": 115996,
+                    "name": "Violența în familii"
+                },
+                {
+                    "id": 116001,
+                    "name": "Violență în familie"
+                },
+                {
+                    "id": 116006,
+                    "name": "Violență față de partener"
+                },
+                {
+                    "id": 116011,
+                    "name": "Abuz asupra copilului"
+                },
+                {
+                    "id": 116016,
+                    "name": "Lovirea de către părinte"
+                },
+                {
+                    "id": 116021,
+                    "name": "Abuz"
+                },
+                {
+                    "id": 116026,
+                    "name": "Lovirea copiilor"
+                },
+                {
+                    "id": 116031,
+                    "name": "Violență"
+                },
+                {
+                    "id": 116036,
+                    "name": "Protecție solară"
+                },
+                {
+                    "id": 116041,
+                    "name": "Siguranța la soare"
+                },
+                {
+                    "id": 116046,
+                    "name": "Protecție solară"
+                },
+                {
+                    "id": 116051,
+                    "name": "Protecție solară"
+                },
+                {
+                    "id": 116056,
+                    "name": "piatră de hotar"
+                },
+                {
+                    "id": 116061,
+                    "name": "Punct de reper în dezvoltare"
+                },
+                {
+                    "id": 116066,
+                    "name": "Dezvoltarea copilului"
+                },
+                {
+                    "id": 116071,
+                    "name": "Creșterea copilului"
+                },
+                {
+                    "id": 116076,
+                    "name": "atenție"
+                },
+                {
+                    "id": 116081,
+                    "name": "stimă de sine"
+                },
+                {
+                    "id": 116086,
+                    "name": "stres familial"
+                },
+                {
+                    "id": 116091,
+                    "name": "bunăstarea bebelușului"
+                },
+                {
+                    "id": 116096,
+                    "name": "baia bebelușului"
+                },
+                {
+                    "id": 116101,
+                    "name": "Ombilical"
+                },
+                {
+                    "id": 116106,
+                    "name": "Tăierea unghiilor bebelușului"
+                },
+                {
+                    "id": 116111,
+                    "name": "unghii"
+                },
+                {
+                    "id": 116116,
+                    "name": "consilier genetic"
+                },
+                {
+                    "id": 116121,
+                    "name": "anorexie"
+                },
+                {
+                    "id": 116126,
+                    "name": "eritem fesier"
+                },
+                {
+                    "id": 116131,
+                    "name": "genital"
+                },
+                {
+                    "id": 116136,
+                    "name": "activități la muzee"
+                },
+                {
+                    "id": 116141,
+                    "name": "activități în interior"
+                },
+                {
+                    "id": 116146,
+                    "name": "învățare și joacă"
+                },
+                {
+                    "id": 116151,
+                    "name": "dexteritate"
+                },
+                {
+                    "id": 116156,
+                    "name": "abilități de motricitate fină"
+                },
+                {
+                    "id": 116161,
+                    "name": "abilități de motricitate grosieră"
+                },
+                {
+                    "id": 116166,
+                    "name": "coordonarea mișcărilor"
+                },
+                {
+                    "id": 116171,
+                    "name": "evaluarea relațiilor spațiale dintre obiecte"
+                },
+                {
+                    "id": 116176,
+                    "name": "învățarea conceptului „rândul meu”"
+                },
+                {
+                    "id": 116181,
+                    "name": "dezvoltare socio-emoțională"
+                },
+                {
+                    "id": 116186,
+                    "name": "abilități motorii fine"
+                },
+                {
+                    "id": 116191,
+                    "name": "întinderea mâinilor în sus"
+                },
+                {
+                    "id": 116196,
+                    "name": "dezvoltare motorie"
+                },
+                {
+                    "id": 116201,
+                    "name": "lectură împreună cu copilul"
+                },
+                {
+                    "id": 116206,
+                    "name": "dezvoltare socio-emoțională"
+                },
+                {
+                    "id": 116211,
+                    "name": "frică de necunoscut"
+                },
+                {
+                    "id": 116216,
+                    "name": "anxietate de separare"
+                },
+                {
+                    "id": 116221,
+                    "name": "online"
+                },
+                {
+                    "id": 116226,
+                    "name": "digital"
+                },
+                {
+                    "id": 116231,
+                    "name": "râgâieli"
+                },
+                {
+                    "id": 116236,
+                    "name": "emoții"
+                },
+                {
+                    "id": 116241,
+                    "name": "cuvinte"
+                },
+                {
+                    "id": 116246,
+                    "name": "recomandări"
+                },
+                {
+                    "id": 116251,
+                    "name": "hrănirea sugarilor"
+                },
+                {
+                    "id": 116256,
+                    "name": "hrănirea copilului"
+                },
+                {
+                    "id": 116261,
+                    "name": "hrănire complementară"
+                },
+                {
+                    "id": 116266,
+                    "name": "Alimentare cu lapte matern"
+                },
+                {
+                    "id": 116271,
+                    "name": "cantitate de lapte matern"
+                },
+                {
+                    "id": 116276,
+                    "name": "suficient lapte matern"
+                },
+                {
+                    "id": 116281,
+                    "name": "mulgerea laptelui matern"
+                },
+                {
+                    "id": 116286,
+                    "name": "depozitarea laptelui matern"
+                },
+                {
+                    "id": 116291,
+                    "name": "probleme legate de alăptare"
+                },
+                {
+                    "id": 116296,
+                    "name": "durere la nivelul mamelonului"
+                },
+                {
+                    "id": 116301,
+                    "name": "durere la nivelul sânilor"
+                },
+                {
+                    "id": 116306,
+                    "name": "beneficii"
+                },
+                {
+                    "id": 116311,
+                    "name": "alăptare timpurie"
+                },
+                {
+                    "id": 116316,
+                    "name": "spălarea sânilor"
+                },
+                {
+                    "id": 116321,
+                    "name": "mamă"
+                },
+                {
+                    "id": 116326,
+                    "name": "boală gravă"
+                },
+                {
+                    "id": 116331,
+                    "name": "recuperare"
+                },
+                {
+                    "id": 116336,
+                    "name": "igienă alimentară"
+                },
+                {
+                    "id": 116341,
+                    "name": "Semn din naștere"
+                },
+                {
+                    "id": 116346,
+                    "name": "ochi"
+                },
+                {
+                    "id": 116351,
+                    "name": "urcior"
+                },
+                {
+                    "id": 116356,
+                    "name": "pleoapă"
+                },
+                {
+                    "id": 116361,
+                    "name": "susținere din partea partenerului"
+                },
+                {
+                    "id": 116366,
+                    "name": "timiditate"
+                },
+                {
+                    "id": 116371,
+                    "name": "părinte"
+                },
+                {
+                    "id": 116376,
+                    "name": "Recompensă"
+                },
+                {
+                    "id": 116381,
+                    "name": "Bronșiolită"
+                },
+                {
+                    "id": 116386,
+                    "name": "respirație dificilă"
+                },
+                {
+                    "id": 116391,
+                    "name": "tulburat"
+                },
+                {
+                    "id": 116396,
+                    "name": "pericol"
+                },
+                {
+                    "id": 116401,
+                    "name": "nociv"
+                },
+                {
+                    "id": 116406,
+                    "name": "rutină matinală"
+                },
+                {
+                    "id": 116411,
+                    "name": "instrument de gestionare a comportamentului"
+                },
+                {
+                    "id": 116416,
+                    "name": "planificare"
+                },
+                {
+                    "id": 116421,
+                    "name": "Temperament"
+                },
+                {
+                    "id": 116426,
+                    "name": "sfaturi pentru părinte"
+                },
+                {
+                    "id": 116431,
+                    "name": "gen"
+                },
+                {
+                    "id": 116436,
+                    "name": "Perspectiva de gen"
+                },
+                {
+                    "id": 116441,
+                    "name": "bâlbâială"
+                },
+                {
+                    "id": 116446,
+                    "name": "preșcolari"
+                },
+                {
+                    "id": 116451,
+                    "name": "comportament bun"
+                },
+                {
+                    "id": 116456,
+                    "name": "4-5"
+                },
+                {
+                    "id": 116461,
+                    "name": "3-4"
+                },
+                {
+                    "id": 116466,
+                    "name": "Bronșită"
+                },
+                {
+                    "id": 116471,
+                    "name": "vaccin pentavalent"
+                },
+                {
+                    "id": 116476,
+                    "name": "efecte adverse"
+                },
+                {
+                    "id": 116481,
+                    "name": "Hemophilus influenzae tip b"
+                },
+                {
+                    "id": 116486,
+                    "name": "Difteria"
+                },
+                {
+                    "id": 116491,
+                    "name": "Streptococcus pneumoniae"
+                },
+                {
+                    "id": 116496,
+                    "name": "Vaccin BCG"
+                },
+                {
+                    "id": 116501,
+                    "name": "protecție împotriva înțepăturilor de țânțari"
+                },
+                {
+                    "id": 116506,
+                    "name": "intervenție timpurie"
+                },
+                {
+                    "id": 116511,
+                    "name": "diagnostic de autism"
+                },
+                {
+                    "id": 116516,
+                    "name": "semne timpurii"
+                },
+                {
+                    "id": 116521,
+                    "name": "diagnostic"
+                },
+                {
+                    "id": 116526,
+                    "name": "intervenție"
+                },
+                {
+                    "id": 116531,
+                    "name": "abuz"
+                },
+                {
+                    "id": 116536,
+                    "name": "neglijență"
+                },
+                {
+                    "id": 116541,
+                    "name": "abuz sexual"
+                },
+                {
+                    "id": 116546,
+                    "name": "sindrom de alienare parentală"
+                },
+                {
+                    "id": 116551,
+                    "name": "divorțul părinților"
+                },
+                {
+                    "id": 116556,
+                    "name": "Instinct matern"
+                },
+                {
+                    "id": 116561,
+                    "name": "creștere"
+                },
+                {
+                    "id": 116566,
+                    "name": "parametri de creștere"
+                },
+                {
+                    "id": 116571,
+                    "name": "creșterea tipică a nou-născutului"
+                },
+                {
+                    "id": 116576,
+                    "name": "al treilea trimestru"
+                },
+                {
+                    "id": 116581,
+                    "name": "al patrulea trimestru"
+                },
+                {
+                    "id": 116586,
+                    "name": "înălțime"
+                },
+                {
+                    "id": 116591,
+                    "name": "sănătate mintală"
+                },
+                {
+                    "id": 116596,
+                    "name": "tulburări psihice"
+                },
+                {
+                    "id": 116601,
+                    "name": "bunăstarea copilului"
+                },
+                {
+                    "id": 116606,
+                    "name": "ședere"
+                },
+                {
+                    "id": 116611,
+                    "name": "timp sedentar în fața ecranului"
+                },
+                {
+                    "id": 116616,
+                    "name": "lumină"
+                },
+                {
+                    "id": 116621,
+                    "name": "moderat"
+                },
+                {
+                    "id": 116626,
+                    "name": "activitate fizică viguroasă"
+                },
+                {
+                    "id": 116631,
+                    "name": "6 luni"
+                },
+                {
+                    "id": 116636,
+                    "name": "hrănirea copilului mic"
+                },
+                {
+                    "id": 116641,
+                    "name": "9 luni"
+                },
+                {
+                    "id": 116646,
+                    "name": "10 luni"
+                },
+                {
+                    "id": 116651,
+                    "name": "11 luni"
+                },
+                {
+                    "id": 116656,
+                    "name": "Vaccin BCG"
+                },
+                {
+                    "id": 116661,
+                    "name": "tuberculoză"
+                },
+                {
+                    "id": 116666,
+                    "name": "abuz"
+                },
+                {
+                    "id": 116671,
+                    "name": "rutine zilnice"
+                },
+                {
+                    "id": 116676,
+                    "name": "imitații"
+                },
+                {
+                    "id": 116681,
+                    "name": "piele pe piele"
+                },
+                {
+                    "id": 116686,
+                    "name": "evaluarea dezvoltării"
+                },
+                {
+                    "id": 116691,
+                    "name": "Răniri"
+                },
+                {
+                    "id": 116696,
+                    "name": "căderi"
+                },
+                {
+                    "id": 116701,
+                    "name": "fracturi"
+                },
+                {
+                    "id": 116706,
+                    "name": "degerătură"
+                },
+                {
+                    "id": 116711,
+                    "name": "îngheț"
+                },
+                {
+                    "id": 116716,
+                    "name": "degerătură"
+                },
+                {
+                    "id": 116721,
+                    "name": "mușcătură"
+                },
+                {
+                    "id": 116726,
+                    "name": "arsuri"
+                },
+                {
+                    "id": 116731,
+                    "name": "intoxicare"
+                },
+                {
+                    "id": 116736,
+                    "name": "asfixiere"
+                },
+                {
+                    "id": 116741,
+                    "name": "înecare"
+                },
+                {
+                    "id": 116746,
+                    "name": "Farmacie"
+                },
+                {
+                    "id": 116751,
+                    "name": "îmbrăcarea bebelușului"
+                },
+                {
+                    "id": 116756,
+                    "name": "supraîncălzire"
+                },
+                {
+                    "id": 116761,
+                    "name": "bont ombilical"
+                },
+                {
+                    "id": 116766,
+                    "name": "conjunctivită"
+                },
+                {
+                    "id": 116771,
+                    "name": "igiena nazală"
+                },
+                {
+                    "id": 116776,
+                    "name": "spital"
+                },
+                {
+                    "id": 116781,
+                    "name": "igiena ochilor"
+                },
+                {
+                    "id": 116786,
+                    "name": "sfârcuri crăpate"
+                },
+                {
+                    "id": 116791,
+                    "name": "alăptarea la cerere"
+                },
+                {
+                    "id": 116796,
+                    "name": "suplimentare"
+                },
+                {
+                    "id": 116801,
+                    "name": "păstrarea laptelui matern"
+                },
+                {
+                    "id": 116806,
+                    "name": "muls"
+                },
+                {
+                    "id": 116811,
+                    "name": "mastită"
+                },
+                {
+                    "id": 116816,
+                    "name": "glandele mamare"
+                },
+                {
+                    "id": 116821,
+                    "name": "dietă variată"
+                },
+                {
+                    "id": 116826,
+                    "name": "alimente reprezentate"
+                },
+                {
+                    "id": 116831,
+                    "name": "supraponderal"
+                },
+                {
+                    "id": 116836,
+                    "name": "copil mulțumit"
+                },
+                {
+                    "id": 116841,
+                    "name": "creștere în greutate"
+                },
+                {
+                    "id": 116846,
+                    "name": "începerea mersului"
+                },
+                {
+                    "id": 116851,
+                    "name": "ședere independentă"
+                },
+                {
+                    "id": 116856,
+                    "name": "ședere cu sprijin"
+                },
+                {
+                    "id": 116861,
+                    "name": "mers constant"
+                },
+                {
+                    "id": 116866,
+                    "name": "rostogolire cu susținere"
+                },
+                {
+                    "id": 116871,
+                    "name": "ridicare cu sprijin pe mobilă"
+                },
+                {
+                    "id": 116876,
+                    "name": "ridicarea în picioare"
+                },
+                {
+                    "id": 116881,
+                    "name": "culegerea obiectelor mici"
+                },
+                {
+                    "id": 116886,
+                    "name": "inserție"
+                },
+                {
+                    "id": 116891,
+                    "name": "inserții"
+                },
+                {
+                    "id": 116896,
+                    "name": "desene"
+                },
+                {
+                    "id": 116901,
+                    "name": "extragere - introducere"
+                },
+                {
+                    "id": 116906,
+                    "name": "aruncare"
+                },
+                {
+                    "id": 116911,
+                    "name": "jocuri de aruncare"
+                },
+                {
+                    "id": 116916,
+                    "name": "primul cuvânt"
+                },
+                {
+                    "id": 116921,
+                    "name": "prima propoziție"
+                },
+                {
+                    "id": 116926,
+                    "name": "întinderea mâinilor în sus"
+                },
+                {
+                    "id": 116931,
+                    "name": "transportare"
+                },
+                {
+                    "id": 116936,
+                    "name": "trecerea dintr-o mână în alta"
+                },
+                {
+                    "id": 116941,
+                    "name": "vorbărie"
+                },
+                {
+                    "id": 116946,
+                    "name": "gângurit"
+                },
+                {
+                    "id": 116951,
+                    "name": "mers fără sprijin"
+                },
+                {
+                    "id": 116956,
+                    "name": "împingere"
+                },
+                {
+                    "id": 116961,
+                    "name": "ascundere"
+                },
+                {
+                    "id": 116966,
+                    "name": "de-a v-ați ascunselea"
+                },
+                {
+                    "id": 116971,
+                    "name": "cărți ilustrate"
+                },
+                {
+                    "id": 116976,
+                    "name": "scoaterea sunetelor"
+                },
+                {
+                    "id": 116981,
+                    "name": "sunete și voci"
+                },
+                {
+                    "id": 116986,
+                    "name": "primul zâmbet"
+                },
+                {
+                    "id": 116991,
+                    "name": "urmărirea ochilor"
+                },
+                {
+                    "id": 116996,
+                    "name": "râs"
+                },
+                {
+                    "id": 117001,
+                    "name": "Ascultare"
+                },
+                {
+                    "id": 117006,
+                    "name": "jocuri muzicale"
+                },
+                {
+                    "id": 117011,
+                    "name": "fantezie"
+                },
+                {
+                    "id": 117016,
+                    "name": "creație"
+                },
+                {
+                    "id": 117021,
+                    "name": "mușchi"
+                },
+                {
+                    "id": 117026,
+                    "name": "întărire"
+                },
+                {
+                    "id": 117031,
+                    "name": "musculatură"
+                },
+                {
+                    "id": 117036,
+                    "name": "forță musculară"
+                },
+                {
+                    "id": 117041,
+                    "name": "timp petrecut pe podea"
+                },
+                {
+                    "id": 117046,
+                    "name": "clasificare"
+                },
+                {
+                    "id": 117051,
+                    "name": "economisire"
+                },
+                {
+                    "id": 117056,
+                    "name": "plecare"
+                },
+                {
+                    "id": 117061,
+                    "name": "sortare"
+                },
+                {
+                    "id": 117066,
+                    "name": "jucării cu sunete"
+                },
+                {
+                    "id": 117071,
+                    "name": "jucării muzicale"
+                },
+                {
+                    "id": 117076,
+                    "name": "un joc condus de un copil"
+                },
+                {
+                    "id": 117081,
+                    "name": "un copil lider în joc"
+                },
+                {
+                    "id": 117086,
+                    "name": "jocuri cu rol (de-a...)"
+                },
+                {
+                    "id": 117091,
+                    "name": "primele cuvinte"
+                },
+                {
+                    "id": 117096,
+                    "name": "numărare"
+                },
+                {
+                    "id": 117101,
+                    "name": "jocuri cu numere"
+                },
+                {
+                    "id": 117106,
+                    "name": "număr"
+                },
+                {
+                    "id": 117111,
+                    "name": "înșirare"
+                },
+                {
+                    "id": 117116,
+                    "name": "jocuri în aer liber"
+                },
+                {
+                    "id": 117121,
+                    "name": "exerciții"
+                },
+                {
+                    "id": 117126,
+                    "name": "recuperare"
+                },
+                {
+                    "id": 117131,
+                    "name": "cunoaștere"
+                },
+                {
+                    "id": 117136,
+                    "name": "joc în paralel"
+                },
+                {
+                    "id": 117141,
+                    "name": "joc în comun"
+                },
+                {
+                    "id": 117146,
+                    "name": "copii la joacă"
+                },
+                {
+                    "id": 117151,
+                    "name": "jocuri de ascuns"
+                },
+                {
+                    "id": 117156,
+                    "name": "tata și copilul la joacă"
+                },
+                {
+                    "id": 117161,
+                    "name": "lectură cu un copil"
+                },
+                {
+                    "id": 117166,
+                    "name": "sărituri"
+                },
+                {
+                    "id": 117171,
+                    "name": "milia pe piele"
+                },
+                {
+                    "id": 117176,
+                    "name": "pete albe pe piele"
+                },
+                {
+                    "id": 117181,
+                    "name": "îngrijirea pielii"
+                },
+                {
+                    "id": 117186,
+                    "name": "îngrijirea capului"
+                },
+                {
+                    "id": 117191,
+                    "name": "îmbăiere peste braț"
+                },
+                {
+                    "id": 117196,
+                    "name": "baie în cadă"
+                },
+                {
+                    "id": 117201,
+                    "name": "îngrijirea unghiilor"
+                },
+                {
+                    "id": 117206,
+                    "name": "îngrijirea urechilor"
+                },
+                {
+                    "id": 117211,
+                    "name": "îngrijirea organelor genitale la fete"
+                },
+                {
+                    "id": 117216,
+                    "name": "îngrijirea organelor genitale la băieți"
+                },
+                {
+                    "id": 117221,
+                    "name": "îngrijirea ochilor"
+                },
+                {
+                    "id": 117226,
+                    "name": "Frecarea coapselor"
+                },
+                {
+                    "id": 117231,
+                    "name": "dermatită de scutec"
+                },
+                {
+                    "id": 117236,
+                    "name": "îngrijirea gurii"
+                },
+                {
+                    "id": 117241,
+                    "name": "pijamale"
+                },
+                {
+                    "id": 117246,
+                    "name": "îngrijire nazală"
+                },
+                {
+                    "id": 117251,
+                    "name": "Haine pentru bebeluși"
+                },
+                {
+                    "id": 117256,
+                    "name": "sterilizare"
+                },
+                {
+                    "id": 117261,
+                    "name": "accesorii pentru bebeluși"
+                },
+                {
+                    "id": 117266,
+                    "name": "Creșterea dinților"
+                },
+                {
+                    "id": 117271,
+                    "name": "igiena jucăriilor"
+                },
+                {
+                    "id": 117276,
+                    "name": "jucării"
+                },
+                {
+                    "id": 117281,
+                    "name": "pernă"
+                },
+                {
+                    "id": 117286,
+                    "name": "dormitul pe pernă"
+                },
+                {
+                    "id": 117291,
+                    "name": "cărucior"
+                },
+                {
+                    "id": 117296,
+                    "name": "cărucior pentru copii"
+                },
+                {
+                    "id": 117301,
+                    "name": "prima plimbare"
+                },
+                {
+                    "id": 117306,
+                    "name": "o plimbare"
+                },
+                {
+                    "id": 117311,
+                    "name": "La ce oră din zi iese copilul la plimbare?"
+                },
+                {
+                    "id": 117316,
+                    "name": "eșarfă și pălărie"
+                },
+                {
+                    "id": 117321,
+                    "name": "acoperit"
+                },
+                {
+                    "id": 117326,
+                    "name": "salopetă de iarnă"
+                },
+                {
+                    "id": 117331,
+                    "name": "vară"
+                },
+                {
+                    "id": 117336,
+                    "name": "plimbare de vară"
+                },
+                {
+                    "id": 117341,
+                    "name": "primăvară"
+                },
+                {
+                    "id": 117346,
+                    "name": "înțepătură de țânțar"
+                },
+                {
+                    "id": 117351,
+                    "name": "plajă"
+                },
+                {
+                    "id": 117356,
+                    "name": "Piscină"
+                },
+                {
+                    "id": 117361,
+                    "name": "călătorii"
+                },
+                {
+                    "id": 117366,
+                    "name": "echipament de călătorie"
+                },
+                {
+                    "id": 117371,
+                    "name": "Farmacie de voiaj"
+                },
+                {
+                    "id": 117376,
+                    "name": "creștere rapidă"
+                },
+                {
+                    "id": 117381,
+                    "name": "hormon de creștere"
+                },
+                {
+                    "id": 117386,
+                    "name": "gigantism"
+                },
+                {
+                    "id": 117391,
+                    "name": "prepararea hranei"
+                },
+                {
+                    "id": 117396,
+                    "name": "malnutriție infantilă"
+                },
+                {
+                    "id": 117401,
+                    "name": "malnutriție"
+                },
+                {
+                    "id": 117406,
+                    "name": "nu există creștere în greutate"
+                },
+                {
+                    "id": 117411,
+                    "name": "creștere în greutate defectuoasă"
+                },
+                {
+                    "id": 117416,
+                    "name": "dietă necorespunzătoare"
+                },
+                {
+                    "id": 117421,
+                    "name": "lipsa activității"
+                },
+                {
+                    "id": 117426,
+                    "name": "nocivitatea fumatului"
+                },
+                {
+                    "id": 117431,
+                    "name": "fum de tutun"
+                },
+                {
+                    "id": 117436,
+                    "name": "nocivitatea fumului de tutun"
+                },
+                {
+                    "id": 117441,
+                    "name": "nicotină"
+                },
+                {
+                    "id": 117446,
+                    "name": "cancerigen"
+                },
+                {
+                    "id": 117451,
+                    "name": "independență"
+                },
+                {
+                    "id": 117456,
+                    "name": "dezvoltarea copilului"
+                }
+            ],
+            "parent_gender": [
+                {
+                    "id": 37,
+                    "name": "Masculin",
+                    "unique_name": "male"
+                },
+                {
+                    "id": 38,
+                    "name": "Feminin",
+                    "unique_name": "female"
+                },
+                {
+                    "id": 60,
+                    "name": "Ambele",
+                    "unique_name": "both"
+                }
+            ],
+            "relationship_to_parent": [
+                {
+                    "id": 109801,
+                    "name": "Mamă",
+                    "unique_name": "mother"
+                },
+                {
+                    "id": 109806,
+                    "name": "Tată",
+                    "unique_name": "father"
+                },
+                {
+                    "id": 109811,
+                    "name": "Alt îngrijitor",
+                    "unique_name": "other_caregiver"
+                },
+                {
+                    "id": 109816,
+                    "name": "Furnizor de servicii",
+                    "unique_name": "service_provider"
+                }
+            ],
+            "type_of_support": [
+                {
+                    "id": 59001,
+                    "name": "Ghidat de părinte"
+                },
+                {
+                    "id": 59006,
+                    "name": "Joc independent"
                 }
             ]
         },

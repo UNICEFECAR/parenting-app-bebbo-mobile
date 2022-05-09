@@ -1810,6 +1810,52 @@ export const vaccineData:any = {
             "updated_at": "Thu, 10/07/2021 - 16:22"
         }
     ],
+    "md-ro": [
+        {
+            "uuid": "6b016c1c-64fa-4e47-adbd-93e0a7255e65",
+            "id": 56261,
+            "type": "Vaccinations - Age Periods",
+            "title": "against tuberculosis",
+            "growth_period": 6466,
+            "pinned_article": 4676,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:40",
+            "updated_at": "Wed, 04/27/2022 - 16:44"
+        },
+        {
+            "uuid": "943d883c-5edc-49af-9226-6481bc63c8aa",
+            "id": 58766,
+            "type": "Vaccinations - Age Periods",
+            "title": "against rotavirus – the first dose",
+            "growth_period": 6476,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:40",
+            "updated_at": "Wed, 04/27/2022 - 16:44"
+        },
+        {
+            "uuid": "a16b5b86-446e-4823-bdd9-778da8165752",
+            "id": 58771,
+            "type": "Vaccinations - Age Periods",
+            "title": "against rotavirus – the second dose",
+            "growth_period": 6486,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:40",
+            "updated_at": "Wed, 04/27/2022 - 16:44"
+        },
+        {
+            "uuid": "f5800e27-68b2-43d4-9689-2f6e69ae9e93",
+            "id": 58776,
+            "type": "Vaccinations - Age Periods",
+            "title": "against rotavirus – the third dose",
+            "growth_period": 6501,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:40",
+            "updated_at": "Wed, 04/27/2022 - 16:44"
+        }
+    ],
     "me-cnr": [
         {
             "uuid": "7b26917b-4551-4e28-858b-c2abc883c560",
@@ -2122,6 +2168,52 @@ export const vaccineData:any = {
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 14:25",
             "updated_at": "Thu, 10/07/2021 - 17:23"
+        }
+    ],
+    "ro-ro": [
+        {
+            "uuid": "6b016c1c-64fa-4e47-adbd-93e0a7255e65",
+            "id": 56261,
+            "type": "Vaccinations - Age Periods",
+            "title": "against tuberculosis",
+            "growth_period": 6466,
+            "pinned_article": 4676,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:36",
+            "updated_at": "Wed, 04/27/2022 - 16:37"
+        },
+        {
+            "uuid": "943d883c-5edc-49af-9226-6481bc63c8aa",
+            "id": 58766,
+            "type": "Vaccinations - Age Periods",
+            "title": "against rotavirus – the first dose",
+            "growth_period": 6476,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:36",
+            "updated_at": "Wed, 04/27/2022 - 16:37"
+        },
+        {
+            "uuid": "a16b5b86-446e-4823-bdd9-778da8165752",
+            "id": 58771,
+            "type": "Vaccinations - Age Periods",
+            "title": "against rotavirus – the second dose",
+            "growth_period": 6486,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:36",
+            "updated_at": "Wed, 04/27/2022 - 16:37"
+        },
+        {
+            "uuid": "f5800e27-68b2-43d4-9689-2f6e69ae9e93",
+            "id": 58776,
+            "type": "Vaccinations - Age Periods",
+            "title": "against rotavirus – the third dose",
+            "growth_period": 6501,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:36",
+            "updated_at": "Wed, 04/27/2022 - 16:37"
         }
     ],
     "rs-sr":[
