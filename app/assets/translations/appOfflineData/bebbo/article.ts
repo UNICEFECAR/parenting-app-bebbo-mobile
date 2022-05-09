@@ -386,6 +386,49 @@ export const articledata:any = {
             "embedded_images": []
         }
     ],
+    "md-ro": [
+        {
+            "id": 331,
+            "type": "Article",
+            "title": "Atenția pozitivă și copilul dumneavoastră",
+            "created_at": "Tue, 04/26/2022 - 21:57",
+            "updated_at": "Tue, 04/26/2022 - 21:57",
+            "summary": "Atenția pozitivă este atunci când îi răspundeți copilului dumneavoastră cu căldură și interes. Aceasta îl ajută pe copil să se simtă în siguranță și apreciat. Aflați cum să profitați la maximum de momentele zilnice pentru a-i arăta copilului dumneavoastră o atenție pozitivă.",
+            "body": "<h2>Ce este atenția pozitivă?</h2><p>Atenția pozitivă este modalitatea prin care vă arătați încântarea față de copil și căldura în relația voastră:</p><ul><li>zâmbind la copilul dumneavoastră</li>\t<li>stabilirea contactului vizual și folosirea unor expresii faciale grijulii</li>\t<li>să fii blând și atent cu copilul tău din punct de vedere fizic</li>\t<li>folosirea cuvintelor pentru a sărbători și încuraja copilul dumneavoastră</li>\t<li>manifestând interes față de interesele, activitățile și realizările copilului dumneavoastră.</li></ul><h2>De ce este importantă atenția pozitivă</h2><p>Încă de la naștere, copiii au nevoie de experiențe și relații care să le arate că sunt ființe umane valoroase și capabile care aduc plăcere celorlalți. Atenția pozitivă, reacțiile și răspunsurile din partea adulților cheie îi ajută pe copii să își facă o imagine despre cât de valoroși sunt.</p><p><strong>Imaginea de sine a copilului</strong> dvs. se construiește în timp cu ajutorul mesajelor pozitive și pline de dragoste din partea dvs. și a altor persoane importante din viața lui/ei.</p><p><strong>Sentimentele de securitate și siguranță ale copilului dvs.</strong> provin din interacțiunile cu dvs. și cu celelalte persoane care au grijă de el/ea. Dacă îl liniștiți și îl sprijiniți pe copilul dumneavoastră atunci când este speriat, nesigur sau când se confruntă cu o situație nouă sau necunoscută, se va simți în siguranță.</p><h2>Cum să arăți atenție pozitivă: toate vârstele</h2><p>Indiferent de<strong>vârsta copilului</strong> dumneavoastră, există lucruri simple pe care le puteți face în fiecare zi pentru a-i transmite mesajul că este special și important. De exemplu:</p><ul><li>Uitați-vă la copilul dumneavoastră și zâmbiți-i.</li>\t<li>Arătați-vă interesul față de ceea ce face copilul dumneavoastră - rugați-l să vă povestească, dacă poate.</li>\t<li>Fiți atenți și ascultați cu atenție atunci când copilul dumneavoastră vă vorbește.</li>\t<li>Inventați câteva ritualuri speciale pe care să le împărtășiți împreună.</li></ul><p>Există, de asemenea, modalități prin care puteți acorda atenție pozitivă copiilor de diferite vârste.</p><h2>Nou-născuți și bebeluși: sfaturi de atenție pozitivă</h2><ul><li>Confortați-vă copilul atunci când plânge.</li>\t<li>Zâmbește și tu când copilul tău zâmbește.</li>\t<li>Răspundeți la sunetele pe care le scoate bebelușul dvs. spunând ceva în schimb.</li>\t<li>Discutați despre ce se întâmplă în jurul vostru.</li>\t<li>Observați ce îl interesează pe bebelușul dvs. și încurajați-l să exploreze - de exemplu, arătați-i cum să scuture un zornăitor colorat care i-a atras atenția.</li></ul><h2>Copii mici: sfaturi de atenție pozitivă</h2><ul><li>Spuneți-i copilului dumneavoastră exact ce vă place la ceea ce face. De exemplu, \"Îmi place când mă ajuți să ridic blocurile\". Folosiți un ton pozitiv al vocii pentru a corespunde laudei.</li>\t<li>Intrați în acest moment cu copilul dumneavoastră. Acest lucru ar putea fi la fel de simplu ca și cum v-ați ghemui pentru a privi împreună o omidă.</li>\t<li>Când vorbiți împreună, lăsați timp după ce vorbiți pentru ca copilul să vă poată răspunde, chiar dacă nu găsește întotdeauna cuvintele potrivite.</li></ul><h2>Preșcolari: sfaturi de atenție pozitivă</h2><p>Găsiți-vă timp pentru a face împreună cu copilul dumneavoastră activitățile sale preferate - de exemplu, puzzle, Lego, pictură și așa mai departe.</p><ul><li>Oferiți o mulțime de feedback cu privire la tipurile de comportament pe care doriți să le încurajați - de exemplu, \"Mulțumesc că ți-ai adus farfuria în bucătărie. Astfel, este mult mai rapid să facem ordine după prânz\".</li>\t<li>Nu uitați să zâmbiți și să vă uitați în ochii copilului dvs. atunci când îl întâmpinați dimineața - poate chiar să vă luați un moment pentru o îmbrățișare specială.</li></ul><p><strong>Când e greu să fii pozitiv</strong></p><p>Nu este realist sau chiar normal să fii mereu pozitiv. Iar copilul dvs. se va descurca foarte bine dacă ocazional sunteți indisponibil, neliniștit sau distrat.  Stresul de acasă, precum și pandemia, incertitudinea economică și alte evenimente creează momente dificile pentru dumneavoastră și copilul dumneavoastră.  Nu uitați să aveți grijă de dumneavoastră.</p><p><strong>Ceea ce se întâmplă în timp, nu fiecare incident în parte, este ceea ce face diferența.</strong> Dacă în timp, copilul dvs. primește mai ales atenție pozitivă din partea dvs., se va simți iubit și în siguranță.</p><p>Cu toate acestea, atunci când părinții nu sunt în mod constant în măsură să se concentreze asupra nevoilor copiilor lor, aceștia pot fi afectați în mod negativ în primii ani de viață și în viitor. Dacă multe dintre interacțiunile zilnice cu copilul dvs. sunt negative sau dacă vă este greu să vă simțiți sau să acționați pozitiv cu copilul dvs., merită să căutați ajutor de la furnizorul dvs. de servicii medicale sau de la alți profesioniști.</p>",
+            "category": 56,
+            "child_age": [
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                57,
+                58
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                4771,
+                4766,
+                4761
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/UNI11812.jpg?itok=-yXJiS6R",
+                "name": "© UNICEF/UNI11812/Pirozzi",
+                "alt": "Mother with her baby giving him positive attention."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0,
+            "embedded_images": []
+        }
+    ],
     "me-cnr": [
         {
             "id": 331,
@@ -481,6 +524,49 @@ export const articledata:any = {
             "updated_at": "Fri, 10/01/2021 - 09:38",
             "summary": "Vëmendje pozitive është kur i përgjigjeni fëmijës tuaj me ngrohtësi dhe duke treguar interes. Ndihmon fëmijën tuaj të ndihet i/e sigurt/ë dhe i/e vlerësuar. Zbuloni se si t’i shfrytëzoni sa më shumë momentet e përditshme për t’i treguar vëmendje pozitive fëmijës tuaj.",
             "body": "<h2>Çfarë është vëmendja pozitive?</h2><p>Vëmendja pozitive është mënyra sesi shfaqni kënaqësi tek fëmija juaj dhe ngrohtësi në marrëdhënien tuaj përmes:</p><ul><li>duke i buzëqeshur fëmijës tuaj</li>\t<li>duke mbajtur kontakt me sy dhe duke përdorur shprehjet faciale që tregojnë përkujdesje</li>\t<li>duke qenë fizikisht i/e butë dhe i/e kujdesshëm/e me fëmijën tuaj</li>\t<li>duke përdorur fjalë për të festuar dhe inkurajuar fëmijën tuaj</li>\t<li>duke treguar interes për interesat, aktivitetet dhe arritjet e fëmijës suaj.</li></ul><h2>Pse vëmendja pozitive është e rëndësishme</h2><p>Që nga lindja, fëmijët kanë nevojë për përvoja dhe marrëdhënie që u tregojnë atyre se janë qenie njerëzore të vlefshme, të aftë dhe që u sjellin kënaqësi të tjerëve. Vëmendja, reagimet dhe përgjigjet pozitive nga të rriturit kryesorë i ndihmojnë fëmijët të krijojnë një përshtypje sesa të vlerësuar janë.</p><p>Imazhi i fëmijës suaj ndërtohet me kalimin e kohës me mesazhe pozitive dhe të dashura nga ju apo njerëz të tjerë të rëndësishëm në jetën e tij/saj.</p><p>Ndjenjat e sigurisë dhe nbrojtjes te fëmija juaj formohen nga ndërveprimet e tij/saj me ju dhe njerëzit e tjerë që kujdesen për të. Nëse e siguroni dhe mbështesni fëmijën tuaj kur ai/ajo është i/e frikësuar, i/e pasigurt ose i/e ballafaquar me një situatë të re ose të panjohur, ai/ajo do të ndjejë siguri dhe mbrojtje.</p><h2>Si të tregoni vëmendje pozitive: për të gjitha moshat</h2><p>Pavarësisht nga mosha e fëmijës suaj, ka gjëra të thjeshta që mund të bëni çdo ditë për të dërguar mesazhin se fëmija juaj është i veçantë dhe i rëndësishëm. Për shembull:</p><ul><li>Shikoni fëmijën tuaj dhe buzëqeshni atij/asaj.</li>\t<li>Tregoni interes për atë që po bën fëmija juaj - kërkoni që ai/ajo t'ju tregojë për këtë nëse ai/ajo mundet.</li>\t<li>Kushtojini vëmendje dhe dëgjoni nga afër kur fëmija juaj flet me ju.</li>\t<li>Krijoni disa rituale të veçanta që mund t'i ndani së bashku.</li></ul><p>Ka edhe mënyra sesi mund t'i tregoni vëmendje pozitive fëmijëve të moshave të ndryshme.</p><h2>Të sapolindurit dhe foshnjat: këshilla për vëmendje pozitive</h2><ul><li>Ngushëlloni fëmijën tuaj kur ai/ajo qan.</li>\t<li>Buzëqeshni kur fëmija juaj buzëqesh.</li>\t<li>Përgjigjuni tingujve që bën fëmija juaj duke thënë diçka në këmbim.</li>\t<li>Bisedoni për atë që po ndodh rreth jush.</li>\t<li>Vini re se për çfarë interesohet foshnja juaj dhe nxiteni atë të eksplorojë - për shembull, tregojini fëmijës tuaj sesi të shkundë një zhurmë shumëngjyrëshe që i ka rënë në sy.</li></ul><h2>Fëmijët e vegjël: këshilla për vëmendje pozitive</h2><ul><li>Tregojini fëmijës tuaj atë që ju pëlqen në atë që ai/ajo po bën. Për shembull, 'Më pëlqen kur ti ndihmon të mbledhim blloqet'. Përdorni një ton pozitiv të zërit për të përputhur me lavdërimet.</li>\t<li>Ndjeni momentin me fëmijën tuaj. Kjo mund të jetë aq e thjeshtë sa të uleni me fëmijën për të parë së bashku një lodër që ai/ajo pëlqen.</li>\t<li>Kur flisni së bashku, lini kohë pasi të flisni, në mënyrë që fëmija juaj të përgjigjet, edhe nëse ai/ajo nuk mund të gjejë gjithmonë fjalët e duhura.</li></ul><h2>Parashkollorët: këshilla për vëmendje pozitive</h2><p>Merrni kohë për të bërë aktivitetet e preferuara të fëmijës tuaj me të - për shembull, bashkim pjesësh figure, Lego, pikturë etj.</p><ul><li>Jepni shumë reagime në lidhje me llojet e sjelljeve që dëshironi të inkurajoni - për shembull, 'Faleminderit që sollët pjatën tuaj në kuzhinë. Kjo e bën shumë më të shpejtë pastrimin pas drekës '.</li>\t<li>Mos harroni të buzëqeshni dhe të bëni kontakt me sy me fëmijën tuaj kur e përshëndetni atë në mëngjes - ndoshta edhe kushtoni një moment kohë për një përqafim të veçantë.</li></ul><p><strong>Kur është e vështirë të jesh pozitiv</strong></p><p>Nuk është realiste apo as normale të jesh pozitiv gjatë gjithë kohës. Dhe fëmija juaj do të përballojë mirë nëse herë pas here nuk jeni të disponueshëm, në ankth ose të hutuar.  Streset në shtëpi, si dhe pandemia, pasiguria ekonomike dhe ngjarje të tjera krijojnë kohë të vështira për ju dhe fëmijën tuaj.  Mos harroni të kujdeseni për veten.</p><p><strong>Është ajo që ndodh me kalimin e kohës, dhe jo çdo incident i veçantë, që bën ndryshimin.</strong> Nëse fëmija juaj merr vëmendje kryesisht pozitive nga ju me kalimin e kohës, ai/ajo do të ndihet i/e dashur dhe i/e sigurt/ë.</p><p>Sidoqoftë, kur prindërit nuk janë vazhdimisht në gjendje të përqëndrohen në nevojat e fëmijëve të tyre, fëmijët mund të ndikohen negativisht në vitet e para dhe në të ardhmen. Nëse shumë nga ndërveprimet tuaja të përditshme me fëmijën tuaj janë negative, ose nëse është e vështirë për ju të ndiheni dhe të veproni pozitivisht me fëmijën tuaj, ia vlen të kërkoni ndihmë nga një profesionist shëndetësor ose ndihmë tjetër profesionale.</p>",
+            "category": 56,
+            "child_age": [
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                57,
+                58
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                4771,
+                4766,
+                4761
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/UNI11812.jpg?itok=-yXJiS6R",
+                "name": "© UNICEF/UNI11812/Pirozzi",
+                "alt": "Mother with her baby giving him positive attention."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0,
+            "embedded_images": []
+        }
+    ],
+    "ro-ro": [
+        {
+            "id": 331,
+            "type": "Article",
+            "title": "Atenția pozitivă și copilul dumneavoastră",
+            "created_at": "Tue, 04/26/2022 - 21:56",
+            "updated_at": "Tue, 04/26/2022 - 21:56",
+            "summary": "Atenția pozitivă este atunci când îi răspundeți copilului dumneavoastră cu căldură și interes. Aceasta îl ajută pe copil să se simtă în siguranță și apreciat. Aflați cum să profitați la maximum de momentele zilnice pentru a-i arăta copilului dumneavoastră o atenție pozitivă.",
+            "body": "<h2>Ce este atenția pozitivă?</h2><p>Atenția pozitivă este modalitatea prin care vă arătați încântarea față de copil și căldura în relația voastră:</p><ul><li>zâmbind la copilul dumneavoastră</li>\t<li>stabilirea contactului vizual și folosirea unor expresii faciale grijulii</li>\t<li>să fii blând și atent cu copilul tău din punct de vedere fizic</li>\t<li>folosirea cuvintelor pentru a sărbători și încuraja copilul dumneavoastră</li>\t<li>manifestând interes față de interesele, activitățile și realizările copilului dumneavoastră.</li></ul><h2>De ce este importantă atenția pozitivă</h2><p>Încă de la naștere, copiii au nevoie de experiențe și relații care să le arate că sunt ființe umane valoroase și capabile care aduc plăcere celorlalți. Atenția pozitivă, reacțiile și răspunsurile din partea adulților cheie îi ajută pe copii să își facă o imagine despre cât de valoroși sunt.</p><p><strong>Imaginea de sine a copilului</strong> dvs. se construiește în timp cu ajutorul mesajelor pozitive și pline de dragoste din partea dvs. și a altor persoane importante din viața lui/ei.</p><p><strong>Sentimentele de securitate și siguranță ale copilului dvs.</strong> provin din interacțiunile cu dvs. și cu celelalte persoane care au grijă de el/ea. Dacă îl liniștiți și îl sprijiniți pe copilul dumneavoastră atunci când este speriat, nesigur sau când se confruntă cu o situație nouă sau necunoscută, se va simți în siguranță.</p><h2>Cum să arăți atenție pozitivă: toate vârstele</h2><p>Indiferent de<strong>vârsta copilului</strong> dumneavoastră, există lucruri simple pe care le puteți face în fiecare zi pentru a-i transmite mesajul că este special și important. De exemplu:</p><ul><li>Uitați-vă la copilul dumneavoastră și zâmbiți-i.</li>\t<li>Arătați-vă interesul față de ceea ce face copilul dumneavoastră - rugați-l să vă povestească, dacă poate.</li>\t<li>Fiți atenți și ascultați cu atenție atunci când copilul dumneavoastră vă vorbește.</li>\t<li>Inventați câteva ritualuri speciale pe care să le împărtășiți împreună.</li></ul><p>Există, de asemenea, modalități prin care puteți acorda atenție pozitivă copiilor de diferite vârste.</p><h2>Nou-născuți și bebeluși: sfaturi de atenție pozitivă</h2><ul><li>Confortați-vă copilul atunci când plânge.</li>\t<li>Zâmbește și tu când copilul tău zâmbește.</li>\t<li>Răspundeți la sunetele pe care le scoate bebelușul dvs. spunând ceva în schimb.</li>\t<li>Discutați despre ce se întâmplă în jurul vostru.</li>\t<li>Observați ce îl interesează pe bebelușul dvs. și încurajați-l să exploreze - de exemplu, arătați-i cum să scuture un zornăitor colorat care i-a atras atenția.</li></ul><h2>Copii mici: sfaturi de atenție pozitivă</h2><ul><li>Spuneți-i copilului dumneavoastră exact ce vă place la ceea ce face. De exemplu, \"Îmi place când mă ajuți să ridic blocurile\". Folosiți un ton pozitiv al vocii pentru a corespunde laudei.</li>\t<li>Intrați în acest moment cu copilul dumneavoastră. Acest lucru ar putea fi la fel de simplu ca și cum v-ați ghemui pentru a privi împreună o omidă.</li>\t<li>Când vorbiți împreună, lăsați timp după ce vorbiți pentru ca copilul să vă poată răspunde, chiar dacă nu găsește întotdeauna cuvintele potrivite.</li></ul><h2>Preșcolari: sfaturi de atenție pozitivă</h2><p>Găsiți-vă timp pentru a face împreună cu copilul dumneavoastră activitățile sale preferate - de exemplu, puzzle, Lego, pictură și așa mai departe.</p><ul><li>Oferiți o mulțime de feedback cu privire la tipurile de comportament pe care doriți să le încurajați - de exemplu, \"Mulțumesc că ți-ai adus farfuria în bucătărie. Astfel, este mult mai rapid să facem ordine după prânz\".</li>\t<li>Nu uitați să zâmbiți și să vă uitați în ochii copilului dvs. atunci când îl întâmpinați dimineața - poate chiar să vă luați un moment pentru o îmbrățișare specială.</li></ul><p><strong>Când e greu să fii pozitiv</strong></p><p>Nu este realist sau chiar normal să fii mereu pozitiv. Iar copilul dvs. se va descurca foarte bine dacă ocazional sunteți indisponibil, neliniștit sau distrat.  Stresul de acasă, precum și pandemia, incertitudinea economică și alte evenimente creează momente dificile pentru dumneavoastră și copilul dumneavoastră.  Nu uitați să aveți grijă de dumneavoastră.</p><p><strong>Ceea ce se întâmplă în timp, nu fiecare incident în parte, este ceea ce face diferența.</strong> Dacă în timp, copilul dvs. primește mai ales atenție pozitivă din partea dvs., se va simți iubit și în siguranță.</p><p>Cu toate acestea, atunci când părinții nu sunt în mod constant în măsură să se concentreze asupra nevoilor copiilor lor, aceștia pot fi afectați în mod negativ în primii ani de viață și în viitor. Dacă multe dintre interacțiunile zilnice cu copilul dvs. sunt negative sau dacă vă este greu să vă simțiți sau să acționați pozitiv cu copilul dvs., merită să căutați ajutor de la furnizorul dvs. de servicii medicale sau de la alți profesioniști.</p>",
             "category": 56,
             "child_age": [
                 43,
