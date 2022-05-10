@@ -15,6 +15,7 @@ import Icon, {
   TickView,
   TickView1,
   TickView2,
+  TickView4,
   TickView3
 } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
@@ -45,6 +46,7 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { getAllChildren, getAllConfigData, setActiveChild } from '../../services/childCRUD';
 import { formatDate } from '../../services/Utils';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -55,6 +57,7 @@ type Props = {
 const ChildProfile = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const [parentViewHeight, setParentViewheight] = useState(0);
+  const [profileLoading,setProfileLoading] = useState(false);
   const [profileViewHeight, setProfileViewheight] = useState(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
@@ -295,16 +298,28 @@ const ChildProfile = ({ navigation }: Props) => {
               {/* Premature Tag End Here */}
               <FDirRow>
                 <OuterIconRow>
-                  <OuterIconRight>
-                  <Pressable onPress={() => {
-                        setActiveChild(languageCode, data.uuid, dispatch, child_age);
+                <Pressable onPress={() => {
+                        setProfileLoading(true);
+                        setTimeout(async()=>{
+                         const setData=await setActiveChild(languageCode, data.uuid, dispatch, child_age,true);
+                         if(setData=="activeset"){
+                          setProfileLoading(false);
+                         }
+                        },0);
+                       
+                       
+                        
+                      
                       }}>
-                        <TickView2>
-                          <Icon name="ic_tick" size={11} color="#000000" />
-                        </TickView2>
-                      </Pressable>
+                  <OuterIconRight>
+                
+                        <TickView4>
+                          {/* <Icon name="ic_tick" size={11} color="#000000" /> */}
+                        </TickView4>
+                      
 
                   </OuterIconRight>
+                  </Pressable>
                   <OuterIconRight>
                   <Pressable onPress={() => {
                         data.index = index;
@@ -495,6 +510,7 @@ const ChildProfile = ({ navigation }: Props) => {
             </View>
           </AreaContainer>
         </FlexCol>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );

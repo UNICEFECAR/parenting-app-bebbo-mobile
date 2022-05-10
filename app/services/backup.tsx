@@ -125,7 +125,7 @@ class Backup {
                     childId = childId[0].value;
                     let activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
                     if(activeChildData.length>0){
-                        const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age);
+                        const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -138,7 +138,7 @@ class Backup {
                         return "Imported";
                     }
                     else{
-                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
+                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -152,7 +152,7 @@ class Backup {
                     }
                     }
                     else{
-                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
+                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -351,7 +351,7 @@ class Backup {
                             childId = childId[0].value;
                             let activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
                             if(activeChildData.length>0){
-                                const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age);
+                                const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age,false);
                                 //console.log(activeChildnew,"..activeset")
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
@@ -360,7 +360,7 @@ class Backup {
                                 return "Imported";
                             }
                             else{
-                                const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
+                                const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
                                 //console.log(activeChildnew,"..activeset")
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
@@ -370,7 +370,7 @@ class Backup {
                             }
                             }
                             else{
-                                const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
+                                const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
                                 //console.log(activeChildnew,"..activeset")
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
