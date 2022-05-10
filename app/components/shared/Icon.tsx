@@ -57,6 +57,13 @@ export const TickView2 = styled.View`
   margin:0 0px;
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
+export const TickView4 = styled.View`
+  background-color:white;
+  border:1px solid ${(props) => props.theme.colors.SECONDARY_COLOR};
+  padding: 9px;
+  margin:0 0px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+`;
 export const IconViewAlert = styled(TickView)`
   background-color: #FF0A0A;
   padding:0;
