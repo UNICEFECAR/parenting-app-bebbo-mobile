@@ -210,7 +210,7 @@ const HeaderBabyMenu = (props: any) => {
                       },0);
                     }}>     
                   <OuterIconRow>
-                    <OuterIconLeft style={{paddingLeft:50}}>
+                    <OuterIconLeft style={{paddingLeft:30}}>
                       <TickView4>
                         {/* <Icon name="ic_tick" size={12} color="#000000" /> */}
                       </TickView4>
