@@ -60,6 +60,7 @@ const Activities = ({ route, navigation }: Props) => {
   const flatListRef = React.useRef();
   let sectionListRef:any;
   const themeContext = useContext(ThemeContext);
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
@@ -439,6 +440,7 @@ const Activities = ({ route, navigation }: Props) => {
           title={t('actScreenheaderTitle')}
           headerColor={headerColor}
           textColor="#000"
+          setProfileLoading={setProfileLoading}
         />
         <FlexCol>
           <View style={{ backgroundColor: '#fff' }}>
@@ -536,6 +538,7 @@ const Activities = ({ route, navigation }: Props) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );
