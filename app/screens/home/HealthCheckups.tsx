@@ -7,6 +7,7 @@ import {
   ButtonText,
   ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { MainContainer } from '@components/shared/Container';
 import { Flex1,FlexCol } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
@@ -71,6 +72,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
   const hcuModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsHCUModalOpened),
     );
+    const [profileLoading,setProfileLoading] = React.useState(false);
    useFocusEffect(()=>{
     // console.log('vaccineModalOpened',vaccineModalOpened);
     // pass true to make modal visible every time & reload
@@ -220,6 +222,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
             title={t('hcHeader')}
             headerColor={headerColor}
             textColor="#000"
+            setProfileLoading={setProfileLoading}
           />
           <ScrollView style={{flex: 4}}>
             <MainContainer style={{backgroundColor: backgroundColor}}>
@@ -288,6 +291,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
             </ShiftFromTopBottom10>
           </ScrollView>
         </ToolsBgContainer>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );

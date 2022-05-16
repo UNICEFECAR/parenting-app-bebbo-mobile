@@ -197,7 +197,7 @@ const Home = ({ route, navigation }: Props) => {
   const growthEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.growthEnabled),
   );
-  const [profileLoading,setProfileLoading] = useState(false);
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const developmentEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.developmentEnabled),
   );

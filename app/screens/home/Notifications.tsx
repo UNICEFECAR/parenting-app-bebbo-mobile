@@ -4,6 +4,7 @@ import HeaderBabyMenu from '@components/HeaderBabyMenu';
 import HeaderNotiIcon from '@components/HeaderNotiIcon';
 import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonText } from '@components/shared/ButtonGlobal';
 import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
@@ -28,6 +29,7 @@ const Notifications = () => {
 //  console.log(JSON.stringify(allnotis), "allnotis--");
   const [allChildnotification, setAllChildNotification] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const themeContext = useContext(ThemeContext);
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
   // const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
@@ -443,7 +445,7 @@ const Notifications = () => {
                   </Pressable>
                 </OuterIconSpace>}
             </OuterIconRow>
-            <HeaderBabyMenu />
+            <HeaderBabyMenu setProfileLoading={setProfileLoading}/>
           </HeaderRowView>
           {isFutureDate(activeChild?.birthDate) ? <Heading4Center style={{marginTop:10}}>{t('noDataTxt')}</Heading4Center> :
             notifications.length > 0 ?
@@ -526,6 +528,7 @@ const Notifications = () => {
             ) : null}
 
         </View>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );

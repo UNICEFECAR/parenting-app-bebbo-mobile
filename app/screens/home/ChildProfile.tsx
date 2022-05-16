@@ -57,7 +57,7 @@ type Props = {
 const ChildProfile = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const [parentViewHeight, setParentViewheight] = useState(0);
-  const [profileLoading,setProfileLoading] = useState(false);
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const [profileViewHeight, setProfileViewheight] = useState(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
@@ -298,7 +298,7 @@ const ChildProfile = ({ navigation }: Props) => {
               {/* Premature Tag End Here */}
               <FDirRow>
                 <OuterIconRow>
-                <Pressable onPress={() => {
+                <Pressable style={{borderWidth:1,borderColor:'red',borderStyle:'solid'}} onPress={() => {
                         setProfileLoading(true);
                         setTimeout(async()=>{
                          const setData=await setActiveChild(languageCode, data.uuid, dispatch, child_age,true);
@@ -311,7 +311,7 @@ const ChildProfile = ({ navigation }: Props) => {
                         
                       
                       }}>
-                  <OuterIconRight>
+                  <OuterIconRight style={{paddingLeft:20}}>
                 
                         <TickView4>
                           {/* <Icon name="ic_tick" size={11} color="#000000" /> */}
