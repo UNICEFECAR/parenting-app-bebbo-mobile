@@ -19,6 +19,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type DashboardNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -52,6 +53,7 @@ const UserGuide = ({navigation}: Props) => {
   ];
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const [profileLoading,setProfileLoading] = React.useState(false);
   type Item = typeof data[0];
   const keyExtractor = (item: Item) => item.title;
   const [isDotsRequired, setIsDotsRequired] = useState(true);
@@ -119,6 +121,7 @@ const UserGuide = ({navigation}: Props) => {
               title={t('userGuideheaderTitle')}
               headerColor={headerColor}
               textColor="#FFF"
+              setProfileLoading={setProfileLoading}
             />
 
         <FlexCol>
@@ -137,6 +140,7 @@ const UserGuide = ({navigation}: Props) => {
             data={data}
           />
         </FlexCol>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );

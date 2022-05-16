@@ -670,6 +670,7 @@ const SettingScreen = (props: any) => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
+  const [profileLoading,setProfileLoading] = React.useState(false);
   useEffect(() => {
     const selectedCountry: any = localization.find(
       (country) => country.countryId === countryId,
@@ -778,6 +779,7 @@ const SettingScreen = (props: any) => {
           title={t('settingScreenheaderTitle')}
           headerColor={primaryColor}
           textColor="#FFF"
+          setProfileLoading={setProfileLoading}
         />
 
         <ScrollView style={{ flex: 1, backgroundColor: "#FFF" }}>
@@ -1329,7 +1331,7 @@ const SettingScreen = (props: any) => {
         </Modal>
         <AlertModal loading={isExportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('exportText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={handleExportAlertConfirm} onCancel={onExportCancel}></AlertModal>
         <AlertModal loading={isImportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={handleImportAlertConfirm} onCancel={onImportCancel}></AlertModal>
-
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );
