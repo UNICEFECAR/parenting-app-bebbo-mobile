@@ -311,7 +311,7 @@ const ChildProfile = ({ navigation }: Props) => {
                         
                       
                       }}>
-                  <OuterIconRight style={{paddingLeft:20}}>
+                  <OuterIconRight style={{paddingLeft:30,}}>
                 
                         <TickView4>
                           {/* <Icon name="ic_tick" size={11} color="#000000" /> */}
