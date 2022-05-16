@@ -298,7 +298,7 @@ const ChildProfile = ({ navigation }: Props) => {
               {/* Premature Tag End Here */}
               <FDirRow>
                 <OuterIconRow>
-                <Pressable style={{borderWidth:1,borderColor:'red',borderStyle:'solid'}} onPress={() => {
+                <Pressable onPress={() => {
                         setProfileLoading(true);
                         setTimeout(async()=>{
                          const setData=await setActiveChild(languageCode, data.uuid, dispatch, child_age,true);
