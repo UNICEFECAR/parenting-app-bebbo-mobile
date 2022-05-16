@@ -2,6 +2,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { FDirRow, FlexCol,FlexDirCol} from '@components/shared/FlexBoxStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1, Heading1Centerr, Heading3Center, Heading4Bold, Heading4Center, Heading4Regular, Heading5BoldW } from '@styles/typography';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -72,6 +73,7 @@ const faqsData = useAppSelector((state: any) =>
   const chatBotData = useAppSelector((state: any) =>
   state.childData.childDataSet.chatBotData != '' ? parseWithFunctions(state.childData.childDataSet.chatBotData) : state.childData.childDataSet.chatBotData
   );
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const surveryData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)
@@ -401,6 +403,7 @@ const faqsData = useAppSelector((state: any) =>
           title={t('supportScreenheaderTitle')}
           headerColor={headerColor}
           textColor="#FFF"
+          setProfileLoading={setProfileLoading}
         />
           <FlexCol>
           <ImageBackground 
@@ -493,6 +496,7 @@ const faqsData = useAppSelector((state: any) =>
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
+      <OverlayLoadingComponent loading={profileLoading}/>
     </>
   );
 };
