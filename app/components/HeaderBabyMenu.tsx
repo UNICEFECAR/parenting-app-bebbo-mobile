@@ -198,7 +198,7 @@ const HeaderBabyMenu = (props: any) => {
               </ShiftFromBottom5> */}
                 {/* Premature Tag End Here */}
                 <FDirRow>
-                <Pressable style={{paddingTop:7,paddingBottom:7,borderWidth:1,borderColor:'red',borderStyle:'solid'}}
+                <Pressable style={{paddingTop:7,paddingBottom:7}}
                     onPress={() => {
                       setModalVisible(false);
                       props.setProfileLoading(true);
@@ -210,7 +210,7 @@ const HeaderBabyMenu = (props: any) => {
                       },0);
                     }}>     
                   <OuterIconRow>
-                    <OuterIconLeft style={{paddingLeft:20}}>
+                    <OuterIconLeft style={{paddingLeft:50}}>
                       <TickView4>
                         {/* <Icon name="ic_tick" size={12} color="#000000" /> */}
                       </TickView4>
