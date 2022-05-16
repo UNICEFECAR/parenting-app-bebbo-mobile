@@ -42,6 +42,7 @@ const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isFavouriteArticle,setisFavouriteArticle] = useState(false);
   const [queryText,searchQueryText] = useState('');
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const flatListRef = useRef(null);
@@ -328,6 +329,7 @@ const searchList=async (queryText:any)=>{
             title={t('articleScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
+            setProfileLoading={setProfileLoading}
           />
           <FlexCol>
           <SearchBox>
@@ -469,7 +471,9 @@ const searchList=async (queryText:any)=>{
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal> */}
+       <OverlayLoadingComponent loading={profileLoading}/>
         </KeyboardAvoidingView>
+       
       </View>
               
     </>

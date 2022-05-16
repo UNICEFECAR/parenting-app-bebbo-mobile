@@ -1,4 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import TabScreenHeader from '@components/TabScreenHeader';
 import iframe from '@native-html/iframe-plugin';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -22,6 +23,7 @@ type Props = {
 };
 const Aboutus = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const {t, i18n} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const aboutusdata = useAppSelector(
@@ -55,6 +57,7 @@ const Aboutus = ({navigation}: Props) => {
               title={t('aboutUsScreenheaderTitle')}
               headerColor={headerColor}
               textColor="#FFF"
+              setProfileLoading={setProfileLoading}
             />
           </View>
 
@@ -107,6 +110,7 @@ const Aboutus = ({navigation}: Props) => {
               {/* <HTML source={{html: body}} baseFontStyle={{fontSize: 16}} /> */}
            
           </View>
+          <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );

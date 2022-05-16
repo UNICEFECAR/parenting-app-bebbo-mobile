@@ -160,17 +160,6 @@ const HeaderBabyMenu = (props: any) => {
             </ProfileActionView>
           </ProfileListViewSelected>
         ) : (
-          <Pressable style={{paddingTop:7,paddingBottom:7}}
-                    onPress={() => {
-                      setModalVisible(false);
-                      props.setProfileLoading(true);
-                      setTimeout(async()=>{
-                        const setData=await setActiveChild(languageCode, data.uuid, dispatch, child_age,true);
-                      if(setData=="activeset"){
-                        props.setProfileLoading(false);
-                       }
-                      },0);
-                    }}>
           <ProfileListView>
             <ProfileIconView>
               {data.photoUri != '' ? (
@@ -209,25 +198,30 @@ const HeaderBabyMenu = (props: any) => {
               </ShiftFromBottom5> */}
                 {/* Premature Tag End Here */}
                 <FDirRow>
-                {/* <Pressable style={{paddingTop:7,paddingBottom:7,}}
+                <Pressable style={{paddingTop:7,paddingBottom:7,borderWidth:1,borderColor:'red',borderStyle:'solid'}}
                     onPress={() => {
                       setModalVisible(false);
-                      setActiveChild(languageCode, data.uuid, dispatch, child_age);
-                    }}>
-                   */}
+                      props.setProfileLoading(true);
+                      setTimeout(async()=>{
+                      const setData=await setActiveChild(languageCode, data.uuid, dispatch, child_age,true);
+                      if(setData=="activeset"){
+                        props.setProfileLoading(false);
+                       }
+                      },0);
+                    }}>     
                   <OuterIconRow>
-                    <OuterIconLeft>
+                    <OuterIconLeft style={{paddingLeft:20}}>
                       <TickView4>
                         {/* <Icon name="ic_tick" size={12} color="#000000" /> */}
                       </TickView4>
                     </OuterIconLeft>
                   </OuterIconRow>
-                  {/* </Pressable> */}
+                  </Pressable>
                 </FDirRow>
               </FlexColEnd>
             </ProfileActionView>
           </ProfileListView>
-          </Pressable>
+          
         )}
       </View>
     );
