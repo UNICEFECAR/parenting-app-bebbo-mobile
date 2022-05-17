@@ -2,7 +2,8 @@ import Icon, {
   OuterIconLeft,
   OuterIconRow,
   TickView,
-  TickView2
+  TickView2,
+  TickView4
 } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
 import { useNavigation } from '@react-navigation/native';
@@ -197,17 +198,22 @@ const HeaderBabyMenu = (props: any) => {
               </ShiftFromBottom5> */}
                 {/* Premature Tag End Here */}
                 <FDirRow>
-                <Pressable style={{paddingTop:7,paddingBottom:7,}}
+                <Pressable style={{paddingTop:7,paddingBottom:7}}
                     onPress={() => {
                       setModalVisible(false);
-                      setActiveChild(languageCode, data.uuid, dispatch, child_age);
-                    }}>
-                  
+                      props.setProfileLoading(true);
+                      setTimeout(async()=>{
+                      const setData=await setActiveChild(languageCode, data.uuid, dispatch, child_age,true);
+                      if(setData=="activeset"){
+                        props.setProfileLoading(false);
+                       }
+                      },0);
+                    }}>     
                   <OuterIconRow>
-                    <OuterIconLeft>
-                      <TickView2>
-                        <Icon name="ic_tick" size={12} color="#000000" />
-                      </TickView2>
+                    <OuterIconLeft style={{paddingLeft:30}}>
+                      <TickView4>
+                        {/* <Icon name="ic_tick" size={12} color="#000000" /> */}
+                      </TickView4>
                     </OuterIconLeft>
                   </OuterIconRow>
                   </Pressable>
@@ -215,6 +221,7 @@ const HeaderBabyMenu = (props: any) => {
               </FlexColEnd>
             </ProfileActionView>
           </ProfileListView>
+          
         )}
       </View>
     );

@@ -16,6 +16,7 @@ import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -33,7 +34,7 @@ const Favourites = ({navigation, route}: Props) => {
   
   const backgroundBlue = themeContext.colors.SECONDARY_COLOR;
   const backgroundBlueTint = themeContext.colors.SECONDARY_TINTCOLOR;
-  
+  const [profileLoading,setProfileLoading] = React.useState(false);
 
   const [selectedIndex, setSelectedIndex] = React.useState<number>();
   const data = [
@@ -82,6 +83,7 @@ const Favourites = ({navigation, route}: Props) => {
           title={t('favScreenHeader')}
           headerColor={headerColor}
           textColor="#FFF"
+          setProfileLoading={setProfileLoading}
         />
 
         <TabBarContainer style={{backgroundColor:headerColor}}>
@@ -125,6 +127,7 @@ const Favourites = ({navigation, route}: Props) => {
         <Flex1>
           {renderItem(selectedIndex)}
         </Flex1>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );

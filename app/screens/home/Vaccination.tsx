@@ -34,6 +34,7 @@ import ModalPopupContainer, {
 import Icon from '@components/shared/Icon';
 import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type VaccinationNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -49,6 +50,7 @@ const Vaccination = ({navigation,route}: Props) => {
   const {t} = useTranslation();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const [modalVisible, setModalVisible] = React.useState(true);
+  const [profileLoading,setProfileLoading] =  React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
     let obj = {key: varkey, value: !modalVisible};
@@ -184,6 +186,7 @@ const Vaccination = ({navigation,route}: Props) => {
             title={t('drawerMenuvcTxt')}
             headerColor={headerColor}
             textColor="#000"
+            setProfileLoading={setProfileLoading}
           />
           <ScrollView style={{flex: 4}}>
             <MainContainer style={{backgroundColor: backgroundColor}}>
@@ -253,6 +256,7 @@ const Vaccination = ({navigation,route}: Props) => {
             </ShiftFromTopBottom10>
           </ScrollView>
         </ToolsBgContainer>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );
