@@ -143,7 +143,7 @@ export const addPrefixForAndroidPaths = (path: string): string => {
 //       }
 //   };
 // };
-export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, child_age: any) => {
+export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, child_age: any,activeset?:any) => {
 
   //console.log(child_age,"..child_age..");
   let userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
@@ -295,7 +295,9 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
   }
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
-  // return "activeset";
+  if(activeset==true){
+  return "activeset";
+  }
 }
 
 
@@ -615,7 +617,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     let userRelationToParentRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
-    setActiveChild(languageCode, data[0].uuid, dispatch, child_age);
+    setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
   }
   //child add from add sibling
   else if (param == 1) {
@@ -623,7 +625,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     if (currentActiveChildId?.length > 0) {
       currentActiveChildId = currentActiveChildId[0].value;
       if (currentActiveChildId == data[0].uuid) {
-        setActiveChild(languageCode, data[0].uuid, dispatch, child_age);
+        setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
       }
     }
     navigation.navigate('ChildSetupList');
@@ -687,7 +689,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
         if (currentActiveChildId?.length > 0) {
           currentActiveChildId = currentActiveChildId[0].value;
           if (currentActiveChildId == data[0].uuid) {
-            setActiveChild(languageCode, data[0].uuid, dispatch, child_age);
+            setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
           }
         }
         navigation.navigate('LoadingScreen', {
@@ -702,7 +704,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       if (currentActiveChildId?.length > 0) {
         currentActiveChildId = currentActiveChildId[0].value;
         if (currentActiveChildId == data[0].uuid) {
-          setActiveChild(languageCode, data[0].uuid, dispatch, child_age);
+          setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
         }
       }
       navigation.navigate('ChildProfileScreen');
@@ -954,7 +956,7 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
     if (currentActiveChildId?.length > 0) {
       currentActiveChildId = currentActiveChildId[0].value;
       if (currentActiveChildId == recordId) {
-        setActiveChild(languageCode, '', dispatch, child_age);
+        setActiveChild(languageCode, '', dispatch, child_age,false);
       }
     }
     if (Platform.OS === 'android') {

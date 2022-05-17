@@ -9,6 +9,7 @@ import DailyHomeNotification from '@components/homeScreen/DailyHomeNotification'
 import DailyReads from '@components/homeScreen/DailyReads';
 import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonModal,
   ButtonTertiary,
@@ -196,6 +197,7 @@ const Home = ({ route, navigation }: Props) => {
   const growthEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.growthEnabled),
   );
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const developmentEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.developmentEnabled),
   );
@@ -439,6 +441,7 @@ const Home = ({ route, navigation }: Props) => {
           title={t('homeScreenheaderTitle')}
           headerColor={headerColor}
           textColor="#FFF"
+          setProfileLoading={setProfileLoading}
         />
 
         {
@@ -573,6 +576,7 @@ const Home = ({ route, navigation }: Props) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </>
     </>
   );
