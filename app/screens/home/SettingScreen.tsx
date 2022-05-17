@@ -548,18 +548,19 @@ const SettingScreen = (props: any) => {
                 const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
                 const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
                 const message = item.type == 'vaccine' ? titlevcr : titlehcr;
-                LocalNotifications.schduleNotification(item.notificationDate,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis());
+                LocalNotifications.schduleNotification(new Date(item.notificationDate),t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis());
               }
             }
             if (isFutureDateTime(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
-            } else if (difftoToday == 0 || difftoToday == -0) {
-              if (vchcEnabledFlag == false) {
-                return { ...item, isDeleted: false };
-              } else {
-                return { ...item };
-              }
-            }
+            } 
+            // else if (difftoToday == 0 || difftoToday == -0) {
+            //   if (vchcEnabledFlag == false) {
+            //     return { ...item, isDeleted: false };
+            //   } else {
+            //     return { ...item };
+            //   }
+            // }
             else {
               return { ...item };
             }
