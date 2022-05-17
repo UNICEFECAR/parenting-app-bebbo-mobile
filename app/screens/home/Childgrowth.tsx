@@ -4,6 +4,7 @@ import ChartWeightForHeight from '@components/growth/ChartWeightForHeight';
 import GrowthIntroductory from '@components/growth/GrowthIntroductory';
 import LastChildMeasure from '@components/growth/LastChildMeasure';
 import BabyNotification from '@components/homeScreen/BabyNotification';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonContainer,
   ButtonPrimary,
@@ -72,6 +73,7 @@ const Childgrowth = ({navigation,route}: Props) => {
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const [modalVisible, setModalVisible] = React.useState(true);
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
     let obj = {key: varkey, value: !modalVisible};
@@ -215,6 +217,7 @@ const {width,height}= Dimensions.get('window');
             title={t('growthScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
+            setProfileLoading={setProfileLoading}
           />
           <ScrollView
             style={{
@@ -333,6 +336,7 @@ const {width,height}= Dimensions.get('window');
             </ShiftFromTop10>
           </ButtonContainer>
         </FlexCol>
+        <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );

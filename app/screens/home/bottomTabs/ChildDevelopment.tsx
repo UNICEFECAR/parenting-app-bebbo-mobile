@@ -38,6 +38,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../../services/Utils';
 import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED, GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -49,6 +50,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   const themeContext = useContext(ThemeContext);
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const ChildDevData = useAppSelector(
     (state: any) =>
       state.utilsData.ChildDevData != '' ? JSON.parse(state.utilsData.ChildDevData) : [],
@@ -486,6 +488,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
           title={t('developScreenheaderTitle')}
           headerColor={componentColors?.headerColor}
           textColor="#000"
+          setProfileLoading={setProfileLoading}
         />
         {currentSelectedChildId && componentColors != {} && currentSelectedChildId != 0 ?
           <View style={{backgroundColor:"#FFF"}}>
@@ -551,6 +554,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
+      <OverlayLoadingComponent loading={profileLoading}/>
       </View>
     </>
   );
