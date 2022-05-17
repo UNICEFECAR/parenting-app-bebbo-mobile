@@ -306,14 +306,14 @@ const ChildImportSetup = (props: any) => {
                           childId = childId[0].value;
                           let activeChildData = importResponse.filter((x:any)=>x.uuid == childId);
                           if(activeChildData.length>0){
-                              const activeChildnew=await setActiveChild(languageCode,childId, dispatch, child_age);
+                              const activeChildnew=await setActiveChild(languageCode,childId, dispatch, child_age,false);
                           }      
                           else{
-                            const activeChildnew=await setActiveChild(languageCode,'', dispatch, child_age); 
+                            const activeChildnew=await setActiveChild(languageCode,'', dispatch, child_age,false); 
                           }
                         }
                         else{
-                          const activeChildnew=await setActiveChild(languageCode,'', dispatch, child_age); 
+                          const activeChildnew=await setActiveChild(languageCode,'', dispatch, child_age,false); 
                         }  
                     //  console.log(item.uuid, "..data[0].uuid..");
                      // console.log(userRelationToParent,"..userRelationToParent")
