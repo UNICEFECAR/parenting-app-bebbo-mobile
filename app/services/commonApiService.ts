@@ -23,6 +23,7 @@ import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
+import LocalNotifications from './LocalNotifications';
 
 
 export const client =
@@ -431,6 +432,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
     const favverified = await userRealmCommon.verifyFavorites();
    // console.log("favverified---",favverified);
+    LocalNotifications.cancelAllReminderLocalNotification();
     dispatch(setDailyArticleGamesCategory({}));
     dispatch(setShowedDailyDataCategory({}));
     dispatch(setAllNotificationData([]));
