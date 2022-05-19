@@ -100,19 +100,19 @@ const PreviousVaccines = (props: any) => {
               <Heading2>{item.periodName}</Heading2>
               <Heading5>
                 {t('vaccinesTxt')}{':'}{item.vaccines.length} {' | '}
-                {t('vaccinesDoneTxt')}{':'}{doneVc ? doneVc.length : 0} {' | '} 
+                {t('vaccinesDoneTxt')}{':'}{doneVc ? doneVc.length : 0} {' | '}
                 {t('vaccinesPendingTxt')}{':'}{item.vaccines.length - (doneVc ? doneVc.length : 0)}
               </Heading5>
             </ToolsHeadingView>
+            <ToolsActionView>
+              <Icon
+                style={{ alignSelf: 'center' }}
+                name={isOpen ? 'ic_angle_up' : 'ic_angle_down'}
+                size={10}
+                color="#000"
+              />
+            </ToolsActionView>
           </ToolsHeadPress>
-          <ToolsActionView>
-            <Icon
-              style={{ alignSelf: 'center' }}
-              name={isOpen ? 'ic_angle_up' : 'ic_angle_down'}
-              size={10}
-              color="#000"
-            />
-          </ToolsActionView>
         </ToolsListContainer>
         {isOpen ? (
           <>
@@ -120,53 +120,53 @@ const PreviousVaccines = (props: any) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>
-                  <View style={{flex:6,flexDirection:"row"}}>
-                    <ToolsIconView>
-                      {v.isMeasured ? (
-                        <RadioActive
-                          style={{ backgroundColor: 'green', borderRadius: 50 }}>
-                          <Icon name="ic_tick" size={12} color="#FFF" />
-                        </RadioActive>
-                      ) : (
-                        <IconViewAlert>
-                          <Icon
-                            name="ic_incom"
-                            size={24}
-                            color="#FFF"
-                          />
-                        </IconViewAlert>
-                      )}
-                    </ToolsIconView>
-                    <ToolsHeadingView>
-                      <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
-                      
-                      {v?.pinned_article ?
-                        <Pressable onPress={() => gotoArticle(v.pinned_article)}>
-                          <ButtonTextSmLineL numberOfLines={2}>
-                            {t('vcArticleLink')}
-                          </ButtonTextSmLineL>
-                        </Pressable>
-                        : null}
-                    </ToolsHeadingView>
+                    <View style={{ flex: 6, flexDirection: "row" }}>
+                      <ToolsIconView>
+                        {v.isMeasured ? (
+                          <RadioActive
+                            style={{ backgroundColor: 'green', borderRadius: 50 }}>
+                            <Icon name="ic_tick" size={12} color="#FFF" />
+                          </RadioActive>
+                        ) : (
+                          <IconViewAlert>
+                            <Icon
+                              name="ic_incom"
+                              size={24}
+                              color="#FFF"
+                            />
+                          </IconViewAlert>
+                        )}
+                      </ToolsIconView>
+                      <ToolsHeadingView>
+                        <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
+
+                        {v?.pinned_article ?
+                          <Pressable onPress={() => gotoArticle(v.pinned_article)}>
+                            <ButtonTextSmLineL numberOfLines={2}>
+                              {t('vcArticleLink')}
+                            </ButtonTextSmLineL>
+                          </Pressable>
+                          : null}
+                      </ToolsHeadingView>
                     </View>
-                    <View  style={{flex:1,alignItems:"flex-end"}}>
-                    <ToolsIconView1>
-                    {v.isMeasured ? <Pressable onPress={() => 
-                      navigation.navigate('AddChildVaccination', {
-                        headerTitle: t('editVcTitle'),
-                        vcPeriod: item,
-                        editVaccineDate:v.measurementDate,
-                      })}>
+                    <View style={{ flex: 1, alignItems: "flex-end" }}>
+                      <ToolsIconView1>
+                        {v.isMeasured ? <Pressable onPress={() =>
+                          navigation.navigate('AddChildVaccination', {
+                            headerTitle: t('editVcTitle'),
+                            vcPeriod: item,
+                            editVaccineDate: v.measurementDate,
+                          })}>
                           {/* <ButtonTextSmLineL numberOfLines={2}>
                             {t('growthScreeneditText')}
                           </ButtonTextSmLineL> */}
-                          <ButtonTextSmLineL numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
-                      name="ic_edit"
-                      size={16}
-                      color="#000"
-                    /></ButtonTextSmLineL>
-                        </Pressable>: null}
-                    </ToolsIconView1>
+                          <ButtonTextSmLineL numberOfLines={2} style={{ textDecorationLine: "none" }}><Icon
+                            name="ic_edit"
+                            size={16}
+                            color="#000"
+                          /></ButtonTextSmLineL>
+                        </Pressable> : null}
+                      </ToolsIconView1>
                     </View>
                   </FDirRowStart>
                 </MainContainer>
