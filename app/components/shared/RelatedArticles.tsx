@@ -52,7 +52,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
       // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
       setrelatedArticleData([]);
       async function fetchData() {
-        // console.log("relartlength on start--",relartlength);
+        console.log("related_articles on start--",related_articles);
         if (relartlength > 0) {
           let relatedData: any = [];
           if (fromScreen == "ChildgrowthTab") {
@@ -73,7 +73,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
               return x.category == category && x.id !== currentId && i == -1
             }).slice(0, catartlength);
             // console.log(filteredArtData);
-            setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData, ...relatedData, ...filteredArtData]);
+            setrelatedArticleData((relatedArticleData: any) => [...relatedData, ...filteredArtData]);
           } else {
             setrelatedArticleData(relatedData);
           }
@@ -82,14 +82,15 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         // go not calclualte for growth screen
         else if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
           // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
+          let relatedData: any = [];
           const catartlength = maxRelatedArticleSize - relartlength;
           // console.log("relatedArticleData--",relatedArticleData);
           const filteredArtData = articleData.filter((x: any) => {
-            const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
+            const i = relatedData.findIndex((_item: any) => _item.id === x.id);
             return x.category == category && x.id !== currentId && i == -1
           }).slice(0, catartlength);
           // console.log(filteredArtData);
-          setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData, ...filteredArtData]);
+          setrelatedArticleData((relatedArticleData: any) => [...filteredArtData]);
         }
         // }
       }
