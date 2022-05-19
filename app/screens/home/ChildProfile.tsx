@@ -12,11 +12,9 @@ import Icon, {
   OuterIconLeft,
   OuterIconRight,
   OuterIconRow,
-  TickView,
   TickView1,
-  TickView2,
   TickView4,
-  TickView3
+  TickView7
 } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
 import PrematureTag from '@components/shared/PrematureTag';
@@ -228,9 +226,9 @@ const ChildProfile = ({ navigation }: Props) => {
               <FDirRow>
                 <OuterIconRow>
                   <OuterIconRight>
-                    <TickView3>
-                      <Icon name="ic_tick" size={11} color="#009B00" />
-                    </TickView3>
+                    <TickView7>
+                      <Icon name="ic_activate_tag" size={11} color="#009B00" />
+                    </TickView7>
 
                   </OuterIconRight>
                   <OuterIconRight>
