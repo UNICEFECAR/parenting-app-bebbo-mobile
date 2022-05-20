@@ -40,11 +40,26 @@ export const TickView = styled.View`
   padding: 4px;
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
+export const TickView6 = styled.View`
+  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  padding:4px 2px;
+  width:20px;
+  height:20px;
+  border-radius:20px;
+`;
 export const TickView3 = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   padding: 4px;
   margin-left:5px;
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+`;
+export const TickView7 = styled.View`
+  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  margin-left:5px;
+  padding:4px 2px;
+  width:20px;
+  height:20px;
+  border-radius:20px;
 `;
 export const TickView1 = styled.View`
   padding: 1px 5px;
