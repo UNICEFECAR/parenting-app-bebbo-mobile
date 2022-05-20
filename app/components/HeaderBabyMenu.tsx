@@ -1,7 +1,7 @@
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
-  TickView,
+  TickView6,
   TickView2,
   TickView4
 } from '@components/shared/Icon';
@@ -148,9 +148,9 @@ const HeaderBabyMenu = (props: any) => {
                 <FDirRow>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      <TickView>
-                        <Icon name="ic_tick" size={12} color="#009B00" />
-                      </TickView>
+                      <TickView6>
+                        <Icon name="ic_activate_tag" size={11} color="#009B00" />
+                      </TickView6>
                     </OuterIconLeft>
                   </OuterIconRow>
 
