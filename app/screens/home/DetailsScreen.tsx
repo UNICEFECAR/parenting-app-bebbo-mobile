@@ -40,6 +40,7 @@ import FastImage from 'react-native-fast-image';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../../database/schema/ActivitiesSchema';
 import { VideoArticleEntity, VideoArticleEntitySchema } from '../../database/schema/VideoArticleSchema';
 import iframe from '@native-html/iframe-plugin';
+import RelatedVideoArticles from '@components/shared/RelatedVideoArticles';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -225,9 +226,9 @@ const DetailsScreen = ({route, navigation}: any) => {
         // setCoverImage('');
         // setFilterArray([]);
       }
+
   }, [detailData]);
   
-  // console.log("detailDataToUse--",(detailDataToUse));
   const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -513,7 +514,12 @@ const DetailsScreen = ({route, navigation}: any) => {
                   
                   {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
                     <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-                  
+
+                      {/* add condition of if type is video article then  */}
+                      { detailDataToUse && detailDataToUse?.related_video_articles ? 
+                        <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                      : null}
+                    
                   <ArticleHeading>
                     <Heading2>{t('detailScreenArticleHeader')}</Heading2>
                   </ArticleHeading>
@@ -527,7 +533,11 @@ const DetailsScreen = ({route, navigation}: any) => {
                   
                   {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
                     <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-                  
+
+                    {/* add condition of if type is video article then  */}
+                    { detailDataToUse && detailDataToUse?.related_video_articles ? 
+                      <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                    : null}
                 </FlexCol>
               </>
             ) : null}

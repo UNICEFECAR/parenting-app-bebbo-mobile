@@ -442,6 +442,9 @@ const XKrs = {
               hcrNoti3: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}, molimo Vas unesite detalje  o pregledu",
               hcHasScheduled: "Zdravstveni pregled je zakazan",
               vcHasScheduled: "Vakcinacija je zakazana",
+
+              //24 May
+              relatedVideoArticle: "Related Video advice ",
        }
 }
 export default XKrs;

@@ -444,6 +444,11 @@ const ALsq = {
               hcrNoti3: "Takimi për kontrollin shëndetësor është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet për kontrollin shëndetësor",
               hcHasScheduled: "Kontrolli shëndëtesor është caktuar",
               vcHasScheduled: "Vaksinimi është caktuar",
+       
+              //24 May
+              relatedVideoArticle: "Related Video advice ",
+
+
        }
 }
 export default ALsq;

@@ -446,6 +446,9 @@ const TJru = {
                 hcHasScheduled: "Плановый осмотр запланирован",
                 vcHasScheduled: "Иммунизация запланирована",
 
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
+
         }
 }
 export default TJru;
