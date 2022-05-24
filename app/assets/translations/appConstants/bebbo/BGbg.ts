@@ -444,6 +444,10 @@ const BGbg = {
                 hcrNoti3: "Профилактичният преглед е насрочен за {{reminderDateTime}}, моля въведете данните за прегледа",
                 hcHasScheduled: "Профилактичният преглед е насрочен",
                 vcHasScheduled: "Ваксинацията е насрочена",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
+
         }
 }
 export default BGbg;

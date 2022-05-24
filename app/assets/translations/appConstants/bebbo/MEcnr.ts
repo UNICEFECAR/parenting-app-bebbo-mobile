@@ -445,6 +445,9 @@ const MEcnr = {
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
                 hcHasScheduled: "Zdravstveni pregled je zakazan",
                 vcHasScheduled: "Vakcinacija je zakazana",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 
 }

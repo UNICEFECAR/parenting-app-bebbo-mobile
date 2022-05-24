@@ -446,6 +446,9 @@ const MKmk = {
                 hcrNoti3: "Здравствен преглед закажан за {{reminderDateTime}}, Ве молиме внесете детали за прегледот.",
                 hcHasScheduled: "Прегледот е закажан",
                 vcHasScheduled: "Вакцинацијата е закажана",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default MKmk;
