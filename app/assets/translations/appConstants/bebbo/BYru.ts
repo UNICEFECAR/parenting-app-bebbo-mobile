@@ -444,6 +444,9 @@ const BYru = {
                 hcrNoti3: "Медосмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные о медосмотре",
                 hcHasScheduled: "Медицинский осмотр запланирован",
                 vcHasScheduled: "Вакцинация запланирована",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default BYru;

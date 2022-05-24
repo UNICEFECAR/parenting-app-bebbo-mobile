@@ -445,7 +445,10 @@ const ROro = {
                 vcrNoti3: "Vaccinarea a fost programată la{{reminderDateTime}}, vă rugăm să introduceți detaliile vaccinării",
                 hcrNoti3: "Controlul preventiv a fost programat pe data de {{reminderDateTime}}; vă rugăm să introduceți detaliile controlului medical preventiv",
                 hcHasScheduled: "Controlul preventiv este programat",
-                vcHasScheduled: "Vaccinarea este programată"
+                vcHasScheduled: "Vaccinarea este programată",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default ROro;

@@ -442,7 +442,10 @@ const TJtg = {
                 vcrNoti3: "Ваксинатсия ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи ваксина ворид намоед",
                 hcrNoti3: "Муоинаи тиббӣ ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи муоинаи тиббӣ ворид намоед",
                 hcHasScheduled: "Муоинаи тиббии навбатӣ ба нақша гирифта шудааст",
-                vcHasScheduled: "Иммунизатсия ба нақша гирифта шудааст"
+                vcHasScheduled: "Иммунизатсия ба нақша гирифта шудааст",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default TJtg;
