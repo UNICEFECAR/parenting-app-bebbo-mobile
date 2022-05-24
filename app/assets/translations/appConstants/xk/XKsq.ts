@@ -443,6 +443,9 @@ const XKsq = {
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
                 hcHasScheduled: "Kontrolla shëndetësore është caktuar",
                 vcHasScheduled: "Vaksinimi është caktuar",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default XKsq;

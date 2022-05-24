@@ -444,6 +444,9 @@ const KGru = {
                 hcrNoti3: "Медицинский осмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные медицинского осмотра",
                 hcHasScheduled: "Медицинские осмотры запланированы",
                 vcHasScheduled: "Вакцинация запланирована",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default KGru;

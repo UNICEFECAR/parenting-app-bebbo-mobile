@@ -445,6 +445,9 @@ const UZru = {
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
                 hcHasScheduled: "Медицинский осмотр запланирован",
                 vcHasScheduled: "Вакцинация запланирована",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default UZru;
