@@ -444,6 +444,9 @@ const BYbe = {
                 hcrNoti3: "Медагляд запланаваны на {{reminderDateTime}}, калі ласка, увядзіце даныя пра медагляд",
                 hcHasScheduled: "Медыцынскі агляд запланаваны",
                 vcHasScheduled: "Вакцынацыя запланавана",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default BYbe;

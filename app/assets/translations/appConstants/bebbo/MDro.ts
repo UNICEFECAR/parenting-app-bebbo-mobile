@@ -445,7 +445,10 @@ const MDro = {
                 vcrNoti3: "Vaccinarea a fost programată pentru {{reminderDateTime}}, vă rugăm să introduceți detaliile vaccinării",
                 hcrNoti3: "Vizita la medic a fost programată pentru {{reminderDateTime}}; vă rugăm să introduceți detaliile examenului medical",
                 hcHasScheduled: "Vizita la medic este programată",
-                vcHasScheduled: "Vaccinarea este programată"
+                vcHasScheduled: "Vaccinarea este programată",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default MDro;

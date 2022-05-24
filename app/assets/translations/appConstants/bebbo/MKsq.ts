@@ -445,6 +445,9 @@ const MKsq = {
                 hcrNoti3: "Takimi për kontrollin shëndetësor është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet për kontrollin shëndetësor",
                 hcHasScheduled: "Kontrolli shëndetësor është i caktuar",
                 vcHasScheduled: "Vaksinimi është i caktuar",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default MKsq;

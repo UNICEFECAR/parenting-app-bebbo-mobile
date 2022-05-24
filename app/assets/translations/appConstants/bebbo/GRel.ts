@@ -445,6 +445,9 @@ const GRel = {
                 hcrNoti3: "Ο ιατρικός έλεγχος προγραμματίστηκε για {{reminderDateTime}}, παρακαλώ καταχωρείστε τα δεδομένα του ιατρικού ελέγχου",
                 hcHasScheduled: "Ο ιατρικός έλεγχος προγραμματίστηκε",
                 vcHasScheduled: "Ο εμβολιασμός προγραμματίστηκε",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default GRel;
