@@ -444,6 +444,9 @@ const KGky = {
                 hcrNoti3: "Медициналык текшерүү {{reminderDateTime}} күнү пландаштырылган, медициналык текшерүүнүн чоо-жайын киргизиңиз",
                 hcHasScheduled: "Ден соолукту текшерүү пландаштырылган",
                 vcHasScheduled: "Эмдөө пландаштырылган",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default KGky;

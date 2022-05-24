@@ -448,6 +448,9 @@ const uk = {
                 hcrNoti3: "Медичне обстеження заплановано на{{reminderDateTime}}, будь ласка, введіть дані медичного обстеження",
                 hcHasScheduled: "Медичний огляд заплановано",
                 vcHasScheduled: "Щеплення заплановано",
+
+                //24 May
+                relatedVideoArticle: "Related Video advice ",
         }
 }
 export default uk;

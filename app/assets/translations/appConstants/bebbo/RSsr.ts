@@ -443,7 +443,10 @@ const RSsr = {
               vcrNoti3: "Vakcinacija je zakazana za {{reminderDateTime}}, molimo Vas unesite detalje o vakcinaciji",
               hcrNoti3: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}, molimo Vas unesite detalje  o pregledu",
               hcHasScheduled: "Pedijatrijski pregled je zakazan",
-                vcHasScheduled: "Vakcinacija je zakazana",
+              vcHasScheduled: "Vakcinacija je zakazana",
+
+              //24 May
+              relatedVideoArticle: "Related Video advice ",
        }
 
 }
