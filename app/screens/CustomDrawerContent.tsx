@@ -76,7 +76,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
   );
+  console.log("surveryData---",surveryData);
   const feedbackItem = surveryData.find(item => item.type == "feedback")
+  const userGuideItem = surveryData.find(item => item.type == "user_guide")
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
@@ -603,15 +605,21 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuabtTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => navigation.navigate('UserGuide')}>
-            <OuterIconRow>
-              <OuterIconLeft15>
-                <Icon name="ic_sb_userguide" size={25} color="#000" />
-              </OuterIconLeft15>
-            </OuterIconRow>
+          {userGuideItem && userGuideItem != {} && userGuideItem != '' && userGuideItem?.survey_feedback_link && userGuideItem?.survey_feedback_link != '' && userGuideItem?.survey_feedback_link != null ? 
+            <DrawerLinkView onPress={() => 
+              {
+                Linking.openURL(userGuideItem?.survey_feedback_link);
+                // navigation.navigate('UserGuide')
+              }}>
+              <OuterIconRow>
+                <OuterIconLeft15>
+                  <Icon name="ic_sb_userguide" size={25} color="#000" />
+                </OuterIconLeft15>
+              </OuterIconRow>
 
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuugTxt')}</Heading4>
-          </DrawerLinkView>
+              <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuugTxt')}</Heading4>
+            </DrawerLinkView>
+            : null}
           <DrawerLinkView onPress={() => navigation.navigate('SettingsScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
