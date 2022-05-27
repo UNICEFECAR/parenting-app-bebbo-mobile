@@ -410,7 +410,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             </HeaderTitleView>
           </FlexDirRow>
 
-          <ScrollView style={{flex: 4,backgroundColor:"#FFF"}}>
+          <ScrollView overScrollMode="never" style={{flex: 4,backgroundColor:"#FFF"}}>
             <View>
               {
               fromScreen ==="ChildDevelopment" || fromScreen === "Home" || (detailDataToUse && detailDataToUse.cover_video && detailDataToUse.cover_video.url!="" && detailDataToUse.cover_video.url!=undefined) ?
