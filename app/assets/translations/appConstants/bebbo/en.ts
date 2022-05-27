@@ -449,7 +449,7 @@ const en = {
                 vcHasScheduled: "Vaccination is scheduled",
 
                 //24 May
-                relatedVideoArticle: "Related Video advice ",
+                relatedVideoArticle: "Related Video advice",
 
         }
 }
