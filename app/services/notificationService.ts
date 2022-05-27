@@ -190,6 +190,11 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   const activityTaxonomyId = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? child?.taxonomyData.prematureTaxonomyId : child?.taxonomyData.id;
   //child.taxonomyData.id
   const lastchildgwperiod = childAgeObj.find(item => String(item.id) == String(gwperiodid));
+  let vcnotis: any[] = [];
+  let hcnotis: any[] = [];
+  let lastgwperiodid = gwperiodid, lastvcperiodid = vcperiodid, lasthcperiodid = hcperiodid;
+  let gwcdnotis: any[] = [];
+  if(lastchildgwperiod!=null && lastchildgwperiod!=undefined && lastchildgwperiod!=""){
   const lastchildgwperiodIndex = childAgeObj.findIndex(item => String(item.id) == String(gwperiodid));
   const currentchildgwperiod = childAgeObj.find(element => element.days_from > lastchildgwperiod.days_from && element.days_from <= childAgeInDaysForCD);
   const currentchildgwperiodIndex = childAgeObj.findIndex(element => element.days_from > lastchildgwperiod.days_from && element.days_to > childAgeInDaysForCD && element.days_from <= childAgeInDaysForCD);
@@ -199,10 +204,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   // Alert.alert(String(currentchildgwperiod.id), 'current child gw period');
   // console.log(currentchildgwperiodIndex + " currentchildgwperiodIndex");
   // Alert.alert(lastchildgwperiodIndex + "lastchildgwperiodIndex");
-  let lastgwperiodid = gwperiodid, lastvcperiodid = vcperiodid, lasthcperiodid = hcperiodid;
-  let gwcdnotis: any[] = [];
-  let vcnotis: any[] = [];
-  let hcnotis: any[] = [];
+ 
   //find next period and calculate for it and return for gw cd noti
   for (let i = lastchildgwperiodIndex + 1; i <= currentchildgwperiodIndex; i++) {
     const childDaysTo = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? prematurechildgwperiod.days_to : childAgeObj[i].days_to;
@@ -217,6 +219,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
     })
     // }
   }
+  }
   ///perform computation for hc,vc
   // get all notis between last period id to current running period
   let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
@@ -224,24 +227,28 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   );
   const lastvcperiod = vcNotis.findIndex(item => item.growth_period == vcperiodid)
   const currentvcperiod = vcNotis.findIndex(item => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
+  if(lastvcperiod!=null && lastvcperiod!=undefined && lastvcperiod!=""){
   vcNotis.forEach((element: any, index: number) => {
     if (index > lastvcperiod && index <= currentvcperiod) {
       lastvcperiodid = element.growth_period;
       vcnotis.push(element);
     }
   });
+}
   //console.log('NEWVCNOTIS', vcnotis, lastvcperiodid)
 
   let hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
   //console.log(hcNotis, "hcNotis")
   const lasthcperiod = hcNotis.findIndex(item => item.growth_period == hcperiodid)
   const currenthcperiod = hcNotis.findIndex(item => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
+  if(lasthcperiod!=null && lasthcperiod!=undefined && lasthcperiod!=""){
   hcNotis.forEach((element: any, index: number) => {
     if (index > lasthcperiod && index <= currenthcperiod) {
       lasthcperiodid = element.growth_period;
       hcnotis.push(element);
     }
   });
+  } 
   //console.log('NEWHCNOTIS', hcnotis, lasthcperiodid)
   if (vchcEnabledFlag == false) {
     vcnotis = [...vcnotis].map(item => {
@@ -298,6 +305,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   }
   //console.log(notis, "newCalcNotis")
   return notis
+
 }
 export const getChildNotification = (child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any, growthEnabledFlag: boolean, developmentEnabledFlag: boolean, vchcEnabledFlag: boolean) => {
   // console.log(child,"child","getChildNotification")
