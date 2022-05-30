@@ -340,7 +340,7 @@ const RSen = {
                 vaccineModalText: "Here you can register, track, and find out more about vaccines recommended by the WHO routine immunization calendar (not customized to a specific national calendar). Set reminders for vaccinations and receive notifications.",
                 hcModalText: "Here you can enter records, set reminders and receive notifications about your child’s health check-ups (not customized to a specific national calendar) and find out more about their content!",
                 tryText: "Try again... ",
-                deleteSuccess: "User deleted succesfully",
+                deleteSuccess: "Child profile is deleted",
                 deleteError: "User delete error. Please try again..",
                 reminderalertText: "Reminder date is before current date time",
                 noRecentGrowthMeasure: "Your child's measurement was taken a very long time ago. Please update your child growth measurement now to get an updated assessment. ",
@@ -446,7 +446,7 @@ const RSen = {
                 vcHasScheduled: "Vaccination is scheduled",
 
                 //24 May
-                relatedVideoArticle: "Related Video advice ",
+                relatedVideoArticle: "Related videos",
         }
 }
 export default RSen;
