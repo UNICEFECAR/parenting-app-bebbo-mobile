@@ -341,7 +341,7 @@ const MKsq = {
                 vaccineModalText: "Këtu mund të regjistroni, gjurmoni, dhe zbuloni më shumë për secilën vaksinë sipas kalendarit kombëtar të vaksinimit. Caktoni rikujtues për vaksinimet e fëmijës suaj dhe pranoni njoftime!",
                 hcModalText: "Këtu mund t'i regjistroni të dhënat, të caktoni rikujtues dhe të pranoni njoftime lidhur me kontrollet mjekësore të fëmijës suaj si dhe të zbuloni më shumë për përmbajtjen e tyre!",
                 tryText: "Provoni përsëri…",
-                deleteSuccess: "Përdoruesi është fshirë me sukses",
+                deleteSuccess: "Profili i fëmijës është fshirë",
                 deleteError: "Gabim gjatë fshirjes së përdoruesit. Ju lutem provoni përsëri.",
                 reminderalertText: "Data e rikujtimit është përpara datës aktuale.",
                 noRecentGrowthMeasure: "Matja e fëmijës suaj është bërë shumë kohë më parë. Ju lutem përditësoni matjet e fëmijës tani në mënyrë që të pranoni një vlerësim të përditësuar.",
@@ -445,6 +445,9 @@ const MKsq = {
                 hcrNoti3: "Takimi për kontrollin shëndetësor është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet për kontrollin shëndetësor",
                 hcHasScheduled: "Kontrolli shëndetësor është i caktuar",
                 vcHasScheduled: "Vaksinimi është i caktuar",
+
+                //24 May
+                relatedVideoArticle: "Video tjera",
         }
 }
 export default MKsq;
