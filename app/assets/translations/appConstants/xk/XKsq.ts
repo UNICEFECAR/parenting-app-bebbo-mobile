@@ -11,7 +11,7 @@ const XKsq = {
                 country: "Shteti",
                 language: "Gjuha",
                 walkthroughTextstitle0: "Mirë se erdhët Prindër!",
-                walkthroughTextssubtitle0: "Zbuloni Foleja, gjithçka që ju nevojitet si prindër për ta mbështetur zhvillimin e fëmijës tuaj",
+                walkthroughTextssubtitle0: "Zbuloni aplikacionin Foleja, gjithçka që ju nevojitet si prindër për ta mbështetur zhvillimin e fëmijës tuaj",
                 walkthroughTextstitle1: "Lojëra",
                 walkthroughTextssubtitle1: "për ta ndihmuar fëmijën tuaj që të mësojë gjëra të reja çdo ditë",
                 walkthroughTextstitle2: "Mjete",
@@ -341,7 +341,7 @@ const XKsq = {
                 vaccineModalText: "Këtu mund të regjistroni, gjurmoni, dhe zbuloni më shumë për secilën vaksinë sipas kalendarit kombëtar të vaksinimit. Caktoni rikujtues për vaksinimet e fëmijës suaj dhe pranoni njoftime!",
                 hcModalText: "Këtu mund t'i regjistroni të dhënat, të caktoni rikujtues dhe të pranoni njoftime lidhur me kontrollet mjekësore të fëmijës suaj si dhe të zbuloni më shumë për përmbajtjen e tyre!",
                 tryText: "Provoni përsëri…",
-                deleteSuccess: "Përdoruesi është fshirë me sukses",
+                deleteSuccess: "Profili i fëmijës është fshirë",
                 deleteError: "Gabim gjatë fshirjes së përdoruesit. Ju lutem provoni përsëri.",
                 reminderalertText: "Data e rikujtimit është përpara datës aktuale.",
                 noRecentGrowthMeasure: "Matja e fëmijës suaj është bërë shumë kohë më parë. Ju lutem përditësoni matjet e fëmijës tani në mënyrë që të pranoni një vlerësim të përditësuar.",
@@ -445,7 +445,7 @@ const XKsq = {
                 vcHasScheduled: "Vaksinimi është caktuar",
 
                 //24 May
-                relatedVideoArticle: "Related Video advice ",
+                relatedVideoArticle: "Video të ngjashme",
         }
 }
 export default XKsq;
