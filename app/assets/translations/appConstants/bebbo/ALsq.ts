@@ -165,8 +165,8 @@ const ALsq = {
               growthScreenenterDoctorRemarkTextPlaceHolder: "Vendosni sugjerimet ose komentet e mjekut",
               growthScreensaveMeasures: "Ruaj të dhënat",
               growthScreensaveMeasuresDetails: "Ruaj detajet",
-              growthScreenaddWeight: "Shto gjatësinë",
-              growthScreenaddHeight: "Shto peshën",
+              growthScreenaddWeight: "Shto peshën",
+              growthScreenaddHeight: "Shto gjatësinë",
               growthScreennewGrowthBottomText: "Matja e një fëmije në shtëpi është më pak e saktë sesa matja te mjeku, dhe mund të ndikojë në saktësinë e grafikut të rritjes.",
               growthScreenrelatedArticle: "Këshilla të ngjashme",
               noBorn: "Nuk ka lindur akoma",
@@ -340,7 +340,7 @@ const ALsq = {
               vaccineModalText: "Këtu mund të regjistroheni, gjurmoni dhe mësoni më shumë për secilën vaksinë sipas kalendarit kombëtar të imunizimit. Vendosni alarm rikujtues për vaksinimet e fëmijës tuaj dhe merrni njoftime!",
               hcModalText: "Këtu mund të vendosni të dhëna, të vendosni alarme ri-kujtues dhe të merrni njoftime për kontrollet shëndetësore të fëmijës tuaj, si dhe të mësoni më shumë për përmbajtjen e tyre!",
               tryText: "Provo përsëri",
-              deleteSuccess: "Përdoruesi u fshi me sukses",
+              deleteSuccess: "Profili i fëmijës është fshirë",
               deleteError: "Gabim në fshirjen e përdoruesit. Provo përsëri.",
               reminderalertText: "Data e alarmit ri-kujtues është para datës aktuale",
               noRecentGrowthMeasure: "Matja e fëmijës suaj është marrë shumë kohë më parë. Ju lutemi përditësoni matjen e rritjes së fëmijës tuaj tani për të marrë një vlerësim të përditësuar.",
@@ -446,7 +446,7 @@ const ALsq = {
               vcHasScheduled: "Vaksinimi është caktuar",
        
               //24 May
-              relatedVideoArticle: "Related Video advice ",
+              relatedVideoArticle: "Video të ngjashme",
 
 
        }
