@@ -340,7 +340,7 @@ const RSsr = {
               vaccineModalText: "Ovde možete uneti, pratiti i saznati više o svakoj vakcini prema nacionalnom kalendaru imunizacije. Postavite podsetnike za vakcinaciju vašeg deteta i primajte obaveštenja!",
               hcModalText: "Ovde možete uneti zapise, postaviti podsetnike i primati obaveštenja i saznati više o pedijatrijskim pregledima vašeg deteta!",
               tryText: "Pokušajte ponovo... ",
-              deleteSuccess: "Uspešno uklonjeno",
+              deleteSuccess: "Profil deteta je izbrisan",
               deleteError: "Greška prilikom brisanja. Molim vas, pokušajte ponovo..",
               reminderalertText: "Datum za podsetnik mora biti pre trenutnog datum",
               noRecentGrowthMeasure: "Mere su uzete veoma davno. Unesite najsvežije mere rasta vašeg deteta da biste obnovili procenu i grafikon.",
@@ -446,7 +446,7 @@ const RSsr = {
               vcHasScheduled: "Vakcinacija je zakazana",
 
               //24 May
-              relatedVideoArticle: "Related Video advice ",
+              relatedVideoArticle: "Povezani videi",
        }
 
 }
