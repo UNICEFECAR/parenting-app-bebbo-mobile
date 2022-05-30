@@ -340,7 +340,7 @@ const XKrs = {
               vaccineModalText: "Ovde možete uneti, pratiti i saznati više o svakoj vakcini prema nacionalnom kalendaru imunizacije. Postavite podsetnike za vakcinaciju vašeg deteta i primajte obaveštenja!",
               hcModalText: "Ovde možete uneti zapise, postaviti podsetnike i primati obaveštenja o pedijatrijskim pregledima vašeg deteta i saznati više o tome!",
               tryText: "Pokušajte ponovo... ",
-              deleteSuccess: "Uspešno uklonjeno",
+              deleteSuccess: "Profil deteta je izbrisan",
               deleteError: "Greška prilikom brisanja. Molim vas, pokušajte ponovo..",
               reminderalertText: "Datum za podsetnik je pre trenutnog datum",
               noRecentGrowthMeasure: "Mere su uzete veoma davno. Unesite najsvežije mere rasta vašeg deteta da biste obnovili procenu i grafikon. ",
@@ -442,6 +442,9 @@ const XKrs = {
               hcrNoti3: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}, molimo Vas unesite detalje  o pregledu",
               hcHasScheduled: "Zdravstveni pregled je zakazan",
               vcHasScheduled: "Vakcinacija je zakazana",
+
+              //24 May
+              relatedVideoArticle: "Povezani videi",
        }
 }
 export default XKrs;
