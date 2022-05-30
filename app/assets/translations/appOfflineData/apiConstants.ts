@@ -47,6 +47,8 @@ let today = new Date();
 today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
 export const restOfTheWorldCountryId = 126;
+export const videoArticleMandatory = 0;
+export const maxArticleSize = 5; 
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     // console.log(apiEndpoint,"in finalurl", apiUrlDevelop);
     // console.log("in finalurl", apiUrlDevelop);

@@ -341,7 +341,7 @@ const MEcnr = {
                 vaccineModalText: "Ovdje možete upisivati, pratiti i saznati više o svakoj vakcini iz nacionalnog kalendara imunizacije. Podesite podsjetnike za vakcinaciju Vašeg djeteta i dobijajte obavještenja!",
                 hcModalText: "Ovdje možete upisivati, podešavati podsjetnike i dobijati obavještenja o zdravstvenim pregledima Vašeg djeteta i saznati više o njihovom sadržaju.",
                 tryText: "Pokušajte ponovo... ",
-                deleteSuccess: "Korisnik je uspješno izbrisan",
+                deleteSuccess: "Profil djeteta je izbrisan",
                 deleteError: "Greška u brisanju korisnika. Molimo pokušajte ponovo...",
                 reminderalertText: "Datum podsjetnika podešen je na termin prije trenutnog datuma",
                 noRecentGrowthMeasure: "Mjere rasta Vašeg djeteta unijete su davno. Ažurirajte ih sada kako biste dobili novu procjenu.",
@@ -445,6 +445,9 @@ const MEcnr = {
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
                 hcHasScheduled: "Zdravstveni pregled je zakazan",
                 vcHasScheduled: "Vakcinacija je zakazana",
+
+                //24 May
+                relatedVideoArticle: "Povezani video-zapisi",
         }
 
 }
