@@ -41,7 +41,7 @@ import { ActivitiesEntity, ActivitiesEntitySchema } from '../../database/schema/
 import { VideoArticleEntity, VideoArticleEntitySchema } from '../../database/schema/VideoArticleSchema';
 import iframe from '@native-html/iframe-plugin';
 import RelatedVideoArticles from '@components/shared/RelatedVideoArticles';
-
+import { useIsFocused } from '@react-navigation/native';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -108,6 +108,7 @@ const DetailsScreen = ({route, navigation}: any) => {
       backHandler.remove();
     }
   }, []);
+  
   useEffect(() => {
       const functionOnLoad = async () => {
         if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
@@ -238,6 +239,8 @@ const DetailsScreen = ({route, navigation}: any) => {
     ? state.bandWidthData.lowbandWidth
     : false,
 );
+const videoIsFocused = useIsFocused();
+console.log(videoIsFocused,"..videoIsFocused");
   const [isImgLoaded, setIsImageLoaded] = useState(false);
   const [cover_image,setCoverImage]=useState();
   const [filterArray,setFilterArray] = useState([]);
@@ -414,7 +417,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             <View>
               {
               fromScreen ==="ChildDevelopment" || fromScreen === "Home" || (detailDataToUse && detailDataToUse.cover_video && detailDataToUse.cover_video.url!="" && detailDataToUse.cover_video.url!=undefined) ?
-              <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
+              videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>:null
               :
               detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
               (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>):
