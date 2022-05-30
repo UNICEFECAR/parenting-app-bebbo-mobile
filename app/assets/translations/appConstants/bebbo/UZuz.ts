@@ -340,7 +340,7 @@ const UZuz = {
               vaccineModalText: "Bu yerda milliy emlash taqvimiga muvofiq roʻyxatdan oʻtishingiz, kuzatib borishingiz va har bir emlash haqida koʻproq maʼlumot olishingiz mumkin. Farzandingizni emlatish eslatmasini yoqing va xabarnomalar olib turing!",
               hcModalText: "Bu yerda yozuvlar kiritishingiz, eslatmalarni yoqib qoʻyishingiz va farzandingizning tibbiy koʻriklari hamda koʻrik natijalari haqida xabarnomalar olib turishingiz mumkin!",
               tryText: "Qayta urinib koʻring...",
-              deleteSuccess: "Foydalanuvchi muvaffaqiyatli oʻchirildi",
+              deleteSuccess: "Bola profili oʻchirib tashlandi",
               deleteError: "Foydalanuvchini oʻchirishda xatolik yuz berdi. Iltimos, yana bir bor urinib koʻring...",
               reminderalertText: "Eslatma sanasi hozirgi sana vaqtidan oldin",
               noRecentGrowthMeasure: "Farzandingiz oʻlchamlari ancha oldin kiritilgan. Yangilangan natijani olish uchun farzangiz boʻy oʻlchamlarini hozir yangilang",
@@ -447,7 +447,7 @@ const UZuz = {
               vcHasScheduled: "Emlash rejalashtirildi",
 
               //24 May
-              relatedVideoArticle: "Related Video advice ",
+              relatedVideoArticle: "Tegishli videolar",
        }
 }
 export default UZuz;

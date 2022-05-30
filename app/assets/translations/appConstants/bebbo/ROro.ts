@@ -341,7 +341,7 @@ const ROro = {
                 vaccineModalText: "Aici puteți să vă înregistrați, să urmăriți și să aflați mai multe despre vaccinurile recomandate de calendarul de imunizare de rutină al OMS (care nu este personalizat în funcție de un anumit calendar național). Setați memento pentru vaccinări și primiți notificări.",
                 hcModalText: "Aici puteți introduce înregistrări, seta memento și primi notificări despre consultațiile preventive ale copilului dvs. (acestea nu sunt personalizate în funcție de un anumit calendar național) și puteți afla mai multe despre conținutul acestora!",
                 tryText: "Încercați din nou... ",
-                deleteSuccess: "Utilizator șters cu succes",
+                deleteSuccess: "Informațiile despre copil au fost șterse",
                 deleteError: "Eroare la ștergerea utilizatorului. Vă rugăm să încercați din nou...",
                 reminderalertText: "Data mementoului este înainte de data și ora curentă",
                 noRecentGrowthMeasure: "Măsurătoarea copilului dvs. a fost făcută cu foarte mult timp în urmă. Vă rugăm să actualizați măsurătoarea creșterii copilului acum pentru a obține o evaluare actualizată. ",
@@ -448,7 +448,7 @@ const ROro = {
                 vcHasScheduled: "Vaccinarea este programată",
 
                 //24 May
-                relatedVideoArticle: "Related Video advice ",
+                relatedVideoArticle: "Videoclipuri similare",
         }
 }
 export default ROro;
