@@ -1,4 +1,4 @@
-import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
+import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -181,6 +181,10 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
    else if (prevPage == 'Survey') {
     //dispatch action for before home page
     yield call(onHomeSurveyapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
+  }
+   else if (prevPage == 'VideoArticle') {
+    //dispatch action for before home page
+    yield call(onHomeVideoartapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
   }
 }
 

@@ -341,7 +341,7 @@ const en = {
                 vaccineModalText: "Here you can register, track, and find out more about vaccines recommended by the WHO routine immunization calendar (not customized to a specific national calendar). Set reminders for vaccinations and receive notifications.",
                 hcModalText: "Here you can enter records, set reminders and receive notifications about your child’s health check-ups (not customized to a specific national calendar) and find out more about their content!",
                 tryText: "Try again... ",
-                deleteSuccess: "User deleted succesfully",
+                deleteSuccess: "Child profile is deleted",
                 deleteError: "User delete error. Please try again..",
                 reminderalertText: "Reminder date is before current date time",
                 noRecentGrowthMeasure: "Your child's measurement was taken a very long time ago. Please update your child growth measurement now to get an updated assessment. ",
@@ -437,7 +437,6 @@ const en = {
                 restOfTheWorldOkTitle: "Ok",
                 restOfTheWorldAlertText: "By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and health check-ups are not customized to a specific national health program.",
 
-                //9/03/2022
                 remindersAlertTitle: "Reminder!",
                 vcDefinedReminderText: "Enter the date and time of the reminder",
                 hcDefinedReminderText: "Enter the date and time of the reminder",
@@ -448,6 +447,10 @@ const en = {
                 hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
                 hcHasScheduled: "Health-check is scheduled",
                 vcHasScheduled: "Vaccination is scheduled",
+
+                //24 May
+                relatedVideoArticle: "Related videos",
+
         }
 }
 export default en;
