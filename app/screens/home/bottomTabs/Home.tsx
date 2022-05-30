@@ -1,5 +1,6 @@
 import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
 import {  allApisObject, appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import { getDataToStore } from '@assets/translations/appOfflineData/getDataToStore';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
 import BabyNotification from '@components/homeScreen/BabyNotification';
@@ -26,6 +27,7 @@ import ModalPopupContainer, {
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
+import { VideoArticleData } from '@dynamicImportsClass/dynamicImports';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -53,8 +55,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
+import { VideoArticleEntity, VideoArticleEntitySchema } from '../../../database/schema/VideoArticleSchema';
 import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
-import { setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
+import { setAllVideoArticlesData, setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
 import { fetchAPI } from '../../../redux/sagaMiddleware/sagaActions';
 import { getAllChildren, isFutureDate } from '../../../services/childCRUD';
 import commonApiService from '../../../services/commonApiService';
@@ -62,6 +65,7 @@ import { getChildNotification, getChildReminderNotifications, getNextChildNotifi
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 import { getStatusBarHeight } from '../../../services/StatusBarHeight';
 import { addSpaceToHtml } from '../../../services/Utils';
+import VersionInfo from 'react-native-version-info';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -234,12 +238,17 @@ const Home = ({ route, navigation }: Props) => {
       saveinDB: false,
     }
   ];
+  const bebbodev = '1.4.4';
+  const bebboprod = '1.1.4';
+  const folejadev = '0.1.7';
+  const folejaprod = '1.0.1';
   useEffect(() => {
     // const uniqueId=getUniqueNameId(genders,'girl');
     // console.log(uniqueId,"..uniqueId");
     setModalVisible(false);
     async function fetchNetInfo() {
       console.log("userIsOnboarded----",userIsOnboarded);
+      console.log(VersionInfo.appVersion,"--appVersion",VersionInfo.buildVersion,VersionInfo.bundleIdentifier);
       // if(netInfoval.isConnected) {
         if (userIsOnboarded == false) {
           console.log("--in iffffff--");
@@ -257,9 +266,47 @@ const Home = ({ route, navigation }: Props) => {
               console.log(forceUpdateTime,"forceupdate apiresponse2",apiresponse);
           // }
         }else {
+          let isVideoArticleUpdateReq = await AsyncStorage.getItem('isVideoArticleUpdateReq');
           if(netInfoval.isConnected && showDownloadPopup)
           {
-
+            if(isVideoArticleUpdateReq == null || isVideoArticleUpdateReq == undefined || isVideoArticleUpdateReq == 'true') {
+              const apiJsonDatavideoart = [
+                {
+                  apiEndpoint: appConfig.videoArticles,
+                  method: 'get',
+                  postdata: {},
+                  saveinDB: true,
+                }
+              ];
+              console.log("in if isVideoArticleUpdateReq---",isVideoArticleUpdateReq)
+              if(VersionInfo.appVersion > bebbodev && VersionInfo.bundleIdentifier == 'com.datamatics.bebbo') {
+                dispatch(fetchAPI(apiJsonDatavideoart,'VideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatavideoart,netInfoval.isConnected));
+                AsyncStorage.setItem('isVideoArticleUpdateReq','false');
+              }
+              else if(VersionInfo.appVersion > bebboprod && VersionInfo.bundleIdentifier == 'org.unicef.ecar.bebbo') {
+                dispatch(fetchAPI(apiJsonDatavideoart,'VideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatavideoart,netInfoval.isConnected));
+                AsyncStorage.setItem('isVideoArticleUpdateReq','false');
+              }
+              else if(VersionInfo.appVersion > folejadev && VersionInfo.bundleIdentifier == 'com.datamatics.foleja') {
+                dispatch(fetchAPI(apiJsonDatavideoart,'VideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatavideoart,netInfoval.isConnected));
+                AsyncStorage.setItem('isVideoArticleUpdateReq','false');
+              }
+              else if(VersionInfo.appVersion > folejaprod && VersionInfo.bundleIdentifier == 'org.unicef.kosovo.foleja') {
+                dispatch(fetchAPI(apiJsonDatavideoart,'VideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatavideoart,netInfoval.isConnected));
+                AsyncStorage.setItem('isVideoArticleUpdateReq','false');
+              }
+            }
+          }else {
+            console.log("in else isVideoArticleUpdateReq---",isVideoArticleUpdateReq)
+            if(showDownloadPopup && (isVideoArticleUpdateReq == null || isVideoArticleUpdateReq == undefined || isVideoArticleUpdateReq == 'true')) {
+              let Entity: any;
+              const allVideoArticlesData = await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
+              console.log("allVideoArticlesData---",allVideoArticlesData);
+            }
+          }
+          
+          if(netInfoval.isConnected && showDownloadPopup)
+          {
             const apiJsonDatasurvey = [
               {
                 apiEndpoint: appConfig.surveys,

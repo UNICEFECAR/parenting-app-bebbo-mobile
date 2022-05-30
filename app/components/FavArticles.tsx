@@ -7,6 +7,7 @@ import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
 import { VideoArticleEntity, VideoArticleEntitySchema } from '../database/schema/VideoArticleSchema';
@@ -14,6 +15,7 @@ import LoadableImage from '../services/LoadableImage';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
 import { FlexCol } from './shared/FlexBoxStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
+import VideoPlayer from './VideoPlayer';
 
 const FavArticles = (props: any) => {
   const DATA:any[] = [
@@ -70,6 +72,7 @@ const FavArticles = (props: any) => {
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
   const [favAdvicesToShow,setfavAdvicesToShow] = useState([]);
+  const netInfoval = useNetInfoHook();
   const goToArticleDetail = (item:any) => {
     navigation.navigate('DetailsScreen',
     {
@@ -128,7 +131,11 @@ useFocusEffect(
     return(
         <ArticleListContainer>
           <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
-          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/> 
+          {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
+             <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer> 
+            : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
+          }
+          {/* <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>  */}
            <ArticleListContent>
              <ShiftFromTopBottom5>
            <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
