@@ -234,7 +234,7 @@ const localizationall = [
         displayName: 'Русский',
         languageCode: 'tj-ru',
         locale: 'TJru',
-        luxonLocale:'ru-RU',//need to be verified
+        luxonLocale:'ru-TJ',//need to be verified
         pluralShow:true
       },
     ],
@@ -272,7 +272,7 @@ const localizationall = [
         displayName: 'Русский',
         languageCode: 'uz-ru',
         locale: 'UZru',
-        luxonLocale:'ru-RU',//need to be verified
+        luxonLocale:'ru-UZ',//need to be verified
         pluralShow:true
       },
     ],
