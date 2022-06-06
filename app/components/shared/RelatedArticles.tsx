@@ -2,7 +2,7 @@ import { destinationFolder, maxRelatedArticleSize } from '@assets/translations/a
 import { useFocusEffect } from '@react-navigation/native';
 import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, StyleSheet, View,Text, ActivityIndicator  } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -158,7 +158,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         // setFilteredArticleData: setFilteredArticleData
       });
   };
-  const RenderRelatedArticleItem = React.memo(({item, index}) => {
+  const RenderRelatedArticleItem = ({item, index}) => {
    // console.log("RenderRelatedArticleItem article",item.id);
     return (
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
@@ -182,8 +182,9 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
           </View>
         </RelatedArticleContainer>
       </Pressable>
-    );
-  });
+    )
+  };
+  const memoizedValue = useMemo(() => RenderRelatedArticleItem, [RenderRelatedArticleItem,relatedArticleData]);
 
   return (
     <>
@@ -202,7 +203,8 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
               maxToRenderPerBatch={4} // Reduce number in each render batch
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
-              renderItem={({item, index}) => <RenderRelatedArticleItem item={item} index={index} />  }
+              renderItem={memoizedValue}
+              // renderItem={({item, index}) => <RenderRelatedArticleItem item={item} index={index} />  }
               keyExtractor={(item) => item.id}
             />
           </View>
