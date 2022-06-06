@@ -14,7 +14,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
@@ -70,29 +70,8 @@ const Articles = ({ route, navigation }: Props) => {
   const modalScreenText = 'articleModalText';
   const netInfoval = useNetInfoHook();
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
-  const RenderArticleItem = React.memo(({ item, index }) => {
-    //console.log("renderArticleItem-",index)
-    return (
-      <ArticleListContainer>
-        <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
-          {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
-             <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer> 
-            : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
-          }
-            {/* <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} /> */}
-          <ArticleListContent>
-            <ShiftFromTopBottom5>
-              <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
-            </ShiftFromTopBottom5>
-            <Heading3>{item.title}</Heading3>
-          </ArticleListContent>
-          <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteadvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} />
-        </Pressable>
-      </ArticleListContainer>
+  
 
-
-    )
-  });
   const  randomArrayShuffle = (array:any) => {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -186,7 +165,7 @@ const Articles = ({ route, navigation }: Props) => {
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
   let videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
-  console.log(articleDataOld.length,"videoarticleData length----", videoarticleData.length);
+  // console.log(articleDataOld.length,"videoarticleData length----", videoarticleData.length);
 
   let articleData = mergearr(articleDataOld,videoarticleData);
   // console.log(articleData.length,"articleDatanew---");
@@ -194,6 +173,27 @@ const Articles = ({ route, navigation }: Props) => {
   const [filterArray, setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
+  const RenderArticleItem = ({ item, index }) => {
+    return (
+    <ArticleListContainer>
+      <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
+        {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
+           <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer> 
+          : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
+        }
+          {/* <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} /> */}
+        <ArticleListContent>
+          <ShiftFromTopBottom5>
+            <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
+          </ShiftFromTopBottom5>
+          <Heading3>{item.title}</Heading3>
+        </ArticleListContent>
+        <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteadvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} />
+      </Pressable>
+    </ArticleListContainer>
+  )
+      };
+  const memoizedValue = useMemo(() => RenderArticleItem, [RenderArticleItem,filteredData]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -286,14 +286,14 @@ const Articles = ({ route, navigation }: Props) => {
       if (itemId.length > 0) {
         let newArticleData = articleDataOld.filter((x: any) => itemId.includes(x.category));
         let newvideoArticleData = videoarticleData.filter((x: any) => itemId.includes(x.category));
-        console.log(newArticleData.length,"--newArticleData--",newvideoArticleData.length);
+        // console.log(newArticleData.length,"--newArticleData-- 1",newvideoArticleData.length);
         if (queryText != "" && queryText != undefined && queryText != null) {
           newArticleData = newArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
           newvideoArticleData = newvideoArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
         }
         let combinedartarr = mergearr(newArticleData,newvideoArticleData);
 
-        console.log(combinedartarr.length,"combinedartarr length")
+        // console.log(combinedartarr.length,"combinedartarr length")
         setfilteredData(combinedartarr);
         // if(newArticleData.length == 0)
         // {
@@ -307,14 +307,14 @@ const Articles = ({ route, navigation }: Props) => {
         let videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
         let newvideoArticleData = videoarticleData != '' ? videoarticleData : [];
         let combinedartarr = [];
-        console.log(newArticleData.length,"--newArticleData--",newvideoArticleData.length);
+        // console.log(newArticleData.length,"--newArticleData-- 2",newvideoArticleData.length);
         // console.log(newArticleData.length,"..in else");
         if (queryText != "" && queryText != undefined && queryText != null) {
           newArticleData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
           newvideoArticleData = videoarticleDataAllCategory.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          console.log("newvideoArticleData in else---",newvideoArticleData);
+          // console.log("newvideoArticleData in else---",newvideoArticleData);
           combinedartarr = mergearr(newArticleData,newvideoArticleData);
-          console.log(combinedartarr.length,"combinedartarr length 2 in if");
+          // console.log(combinedartarr.length,"combinedartarr length 2 in if");
           setfilteredData(combinedartarr);
         }else {
           setfilteredData(newArticleData);
@@ -371,7 +371,7 @@ const Articles = ({ route, navigation }: Props) => {
       artData = articleDataall.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
       newvideoArticleData = videoarticleDataAllCategory.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
       combinedartarr = mergearr(artData,newvideoArticleData);
-      console.log(combinedartarr.length,"combinedartarr length 2 in if");
+      // console.log(combinedartarr.length,"combinedartarr length 2 in if");
     }
     else {
       artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
@@ -505,7 +505,8 @@ const Articles = ({ route, navigation }: Props) => {
                 maxToRenderPerBatch={4} // Reduce number in each render batch
                 updateCellsBatchingPeriod={100} // Increase time between renders
                 windowSize={7} // Reduce the window size
-                renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
+                // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
+                renderItem={memoizedValue}
                 keyExtractor={(item) => item.id.toString()}
               />
               : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
