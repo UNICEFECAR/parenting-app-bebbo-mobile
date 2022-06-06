@@ -76,7 +76,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
   );
-  console.log("surveryData---",surveryData);
+  // console.log("surveryData---",surveryData);
   const feedbackItem = surveryData.find(item => item.type == "feedback")
   const userGuideItem = surveryData.find(item => item.type == "user_guide")
   const [modalVisible, setModalVisible] = useState<boolean>(true);
