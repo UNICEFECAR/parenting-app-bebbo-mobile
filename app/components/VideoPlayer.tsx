@@ -91,6 +91,8 @@ const VideoPlayer = (props: any) => {
                     src="https://player.vimeo.com/video/${videoId}?autoplay=0&muted=0&loop=0&title=0&byline=0&portrait=0&controls=1"
                     style="position:absolute;top:0;left:0;width:90%;height:100%;padding:0 5%"
                     frameborder="0"
+                    allowfullscreen="allowfullscreen"
+                    mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"
                 ></iframe>
             </div>
             
@@ -158,6 +160,7 @@ const VideoPlayer = (props: any) => {
                             // }
                         }}
                         renderLoading={displaySpinner}
+                        allowsFullscreenVideo={true}
                     />
                     :
                     <>
