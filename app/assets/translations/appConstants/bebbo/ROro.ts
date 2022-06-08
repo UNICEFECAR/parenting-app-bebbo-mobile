@@ -93,7 +93,7 @@ const ROro = {
                 supportScreenheader2text: "Chatul nu este disponibil momentan",
                 homeScreenheaderTitle: "REMOVED_FACEBOOK_APP_ID1",
                 homeScreenchildBtnText: "Citiți mai mult ",
-                homeScreenchildInfoTitle: "Bine ați venit {{childName}} și {{parentName}}",
+                homeScreenchildInfoTitle: "Bine ați venit {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Materiale zilnice ",
                 homeScreentodayarticle: "Recomandarea de astăzi",
                 homeScreentodaygame: "Jocul de azi",

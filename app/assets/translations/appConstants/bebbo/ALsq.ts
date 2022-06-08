@@ -92,7 +92,7 @@ const ALsq = {
               supportScreenheader2text: "Bisedat në chat nuk janë të mundura për momentin",
               homeScreenheaderTitle: "REMOVED_FACEBOOK_APP_ID1",
               homeScreenchildBtnText: "Lexo më shumë",
-              homeScreenchildInfoTitle: "Mirë se erdhët {{childName}} dhe {{parentName}}",
+              homeScreenchildInfoTitle: "Mirë se erdhët {{childName}} {{parentName}}",
               homeScreendailyReadsTitle: "Leximet e përditshme",
               homeScreentodayarticle: "Këshilla e sotme",
               homeScreentodaygame: "Loja e ditës së sotme",

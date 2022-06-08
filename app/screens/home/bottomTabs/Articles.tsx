@@ -25,6 +25,7 @@ import { useAppDispatch, useAppSelector } from '../../../../App';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import LoadableImage from '../../../services/LoadableImage';
+import { randomArrayShuffle } from '../../../services/Utils';
 
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -71,18 +72,6 @@ const Articles = ({ route, navigation }: Props) => {
   const netInfoval = useNetInfoHook();
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
   
-
-  const  randomArrayShuffle = (array:any) => {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-    return array;
-  }
   const mergearr = (articlearrold: any[],videoartarrold: any[]) => {
     let combinedarr: any[] = [];
     let i = 0;
