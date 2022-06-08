@@ -92,7 +92,7 @@ const BYbe = {
                 supportScreenheader2text: "У дадзены момант чат недаступны",
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Чытаць далей",
-                homeScreenchildInfoTitle: "Рады вас вітаць, {{childName}} і {{parentName}}!",
+                homeScreenchildInfoTitle: "Рады вас вітаць, {{childName}} {{parentName}}!",
                 homeScreendailyReadsTitle: "Штодзённыя матэрыялы",
                 homeScreentodayarticle: "Парада дня",
                 homeScreentodaygame: "Гульня дня",
