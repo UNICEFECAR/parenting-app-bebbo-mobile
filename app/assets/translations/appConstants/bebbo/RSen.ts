@@ -92,7 +92,7 @@ const RSen = {
                 supportScreenheader2text: "Chat not available at the moment",
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Read more ",
-                homeScreenchildInfoTitle: "Welcome {{childName}} and {{parentName}}",
+                homeScreenchildInfoTitle: "Welcome {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Daily reads ",
                 homeScreentodayarticle: "Today's advice",
                 homeScreentodaygame: "Today's game",

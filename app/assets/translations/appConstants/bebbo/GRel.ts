@@ -92,7 +92,7 @@ const GRel = {
                 supportScreenheader2text: "Η συνομιλία δεν είναι διαθέσιμη αυτήν τη στιγμή",
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Διαβάστε περισσότερα",
-                homeScreenchildInfoTitle: "Καλώς ήρθατε {{childName}} και {{parentName}}",
+                homeScreenchildInfoTitle: "Καλώς ήρθατε {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Καθημερινές αναγνώσεις",
                 homeScreentodayarticle: "Η συμβουλή της ημέρας",
                 homeScreentodaygame: "Το σημερινό παιχνίδι",

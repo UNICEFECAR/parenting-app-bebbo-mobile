@@ -92,7 +92,7 @@ const UZru = {
                 supportScreenheader2text: "В настоящее время чат недоступен",
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Подробнее ",
-                homeScreenchildInfoTitle: "Добро пожаловать, {{childName}} и {{parentName}}",
+                homeScreenchildInfoTitle: "Добро пожаловать, {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Ежедневные материалы",
                 homeScreentodayarticle: "Совет дня",
                 homeScreentodaygame: "Игра дня",
