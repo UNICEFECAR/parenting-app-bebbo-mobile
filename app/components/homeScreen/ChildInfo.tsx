@@ -10,9 +10,10 @@ import { Heading2Center, Heading3Center, Heading4Centerr, Heading4Regular, Shift
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Image } from 'react-native';
-import { useAppSelector } from '../../../App';
-import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { getAllConfigData, getCurrentChildAgeInMonths } from '../../services/childCRUD';
 import HTML from 'react-native-render-html';
+import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
 
 const ChildInfo = (props: any) => {
   const {t} = useTranslation();
@@ -28,6 +29,8 @@ state.variableData?.variableData != ''
   ? JSON.parse(state.variableData?.variableData)
   : state.variableData?.variableData,
 );
+const dispatch = useAppDispatch();
+console.log(allConfigData,"allConfigData--",activeChild);
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -36,8 +39,12 @@ const userNameData =
     allConfigData?.length > 0
       ? allConfigData.filter((item) => item.key === 'userName')
       : [];
+const userRelationToParent =
+    allConfigData?.length > 0
+      ? allConfigData.filter((item) => item.key === 'userRelationToParent')
+      : [];
+      console.log("userRelationToParent----",userRelationToParent);
 const activeChildGender = activeChild.gender;
-// console.log("activeChildGender--",activeChildGender);
 const ChildDevData = useAppSelector(
   (state: any) =>
     state.utilsData.ChildDevData != '' ?JSON.parse(state.utilsData.ChildDevData):[],
@@ -49,6 +56,9 @@ const PinnedChildDevData = useAppSelector(
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   // console.log(activityTaxonomyId, "..activityTaxonomyId..");
+  useEffect(() => {
+    getAllConfigData(dispatch);
+  },[]);
   useEffect(() => {
     // console.log("selectedChildDevData changed--");
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(activityTaxonomyId))[0];
@@ -65,7 +75,17 @@ const PinnedChildDevData = useAppSelector(
       setSelectedPinnedArticleData(filteredPinnedData);
     }
   },[activeChild.uuid,activityTaxonomyId]);
-
+const showAndParentText = () => {
+  if(userRelationToParent?.length > 0 && 
+    (parseInt(userRelationToParent[0].value) == relationShipOtherCaregiverId || parseInt(userRelationToParent[0].value) == relationShipServiceProviderId)) {
+      // console.log("in if");
+      return false
+  }else {
+    // console.log("in else");
+    return true
+  }
+}
+console.log("showAndParentText---",showAndParentText());
 const goToVideoArticleDetails = () => {
   navigation.navigate('DetailsScreen', {
     fromScreen: 'Home',
@@ -81,7 +101,7 @@ const goToVideoArticleDetails = () => {
         
           <ShiftFromBottom10>
           <Heading2Center>
-            {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:t('childInfoBabyText'),parentName:userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')})} 
+            {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:t('childInfoBabyText'),parentName:userNameData?.length > 0 ? t('childInfoAndText') + ' ' + userNameData[0].value : showAndParentText() ? t('childInfoAndText') + ' ' + t('childInfoParentText') : ''})} 
             {/* if baby found use childInfoTitle */}
           </Heading2Center>
           </ShiftFromBottom10>

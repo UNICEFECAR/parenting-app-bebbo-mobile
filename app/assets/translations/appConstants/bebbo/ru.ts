@@ -93,7 +93,7 @@ const ru = {
                 supportScreenheader2text: "В настоящее время чат недоступен",
                 homeScreenheaderTitle: "Беббо",
                 homeScreenchildBtnText: "Читать далее ",
-                homeScreenchildInfoTitle: "Добро пожаловать, {{childName}} и {{parentName}}",
+                homeScreenchildInfoTitle: "Добро пожаловать, {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Ежедневные материалы",
                 homeScreentodayarticle: "Совет дня",
                 homeScreentodaygame: "Игра дня",
