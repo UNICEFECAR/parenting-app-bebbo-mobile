@@ -92,7 +92,7 @@ const TJtg = {
                 supportScreenheader2text: "Айни замон Паёмакҳо дастнорасанд",
                 homeScreenheaderTitle: "Беббо",
                 homeScreenchildBtnText: "Идомаи хониш",
-                homeScreenchildInfoTitle: "Салом {{childName}} ва {{parentName}}",
+                homeScreenchildInfoTitle: "Салом {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Маводҳои ҳаррӯза",
                 homeScreentodayarticle: "Тавсияи рӯз",
                 homeScreentodaygame: "Бозии рӯз",
