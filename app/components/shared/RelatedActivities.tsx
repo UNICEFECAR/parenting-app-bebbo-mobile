@@ -12,6 +12,7 @@ import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
 import downloadImages from '../../downloadImages/ImageStorage';
 import LoadableImage from '../../services/LoadableImage';
+import { randomArrayShuffle } from '../../services/Utils';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
 import ShareFavButtons from './ShareFavButtons';
 const ContainerView = styled.View`
@@ -36,10 +37,11 @@ const RelatedActivities = (props:RelatedActivityProps) => {
   const { selectedChildActivitiesData, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation,currentSelectedChildId } = props;
   // console.log("in related article ---",selectedChildActivitiesData);
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
-  const ActivitiesData = useAppSelector(
+  const ActivitiesDataold = useAppSelector(
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
+  const ActivitiesData = randomArrayShuffle(ActivitiesDataold)
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth
       ? state.bandWidthData.lowbandWidth
@@ -68,7 +70,8 @@ const RelatedActivities = (props:RelatedActivityProps) => {
           actualselectedChildActivitiesData = ActivitiesData.filter((x: any) => x.child_age.includes(selectedChildActivitiesData));
         }else if(typeof selectedChildActivitiesData == "object")
         {
-          actualselectedChildActivitiesData = selectedChildActivitiesData;
+          const selectedChildActivitiesDatanew = [...selectedChildActivitiesData];
+          actualselectedChildActivitiesData = randomArrayShuffle([...selectedChildActivitiesDatanew]);
         }
         // if(category!=5){
       // go not calclualte for growth screen
