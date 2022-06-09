@@ -21,6 +21,10 @@ export const RelatedArticleContainer = styled(ArticleListContainer)`
   width:300px;
   margin:10px 5px;
 `;
+export const RelatedArticleContainer2 = styled(ArticleListContainer)`
+  width:350px;
+  margin:10px 5px;
+`;
 
 export const SearchBox = styled.View`
   flex-direction:row

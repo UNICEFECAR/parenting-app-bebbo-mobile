@@ -14,6 +14,7 @@ import { setActiveChildData, setAllChildData } from '../redux/reducers/childSlic
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
+import LocalNotifications from './LocalNotifications';
 export const apiJsonDataGet = (childAge: any, parentGender: any,isDatetimeReq?:any, dateTimeObj?:any) => {
   const postData = {
     childGender: 'all',
@@ -677,6 +678,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
         DateTime.fromJSDate(new Date()).toMillis(),
         'uuid ="' + data[0].uuid + '"',
       );
+      LocalNotifications.cancelAllReminderLocalNotification();
       // console.log(deleteresult, "..deleteresult..")
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       // console.log(ageLimit, "..ageLimit..")

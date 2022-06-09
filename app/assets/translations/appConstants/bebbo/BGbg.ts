@@ -92,7 +92,7 @@ const BGbg = {
                 supportScreenheader2text: "Чатът не е достъпен в момента",
                 homeScreenheaderTitle: "Беббо",
                 homeScreenchildBtnText: "Прочетете повече",
-                homeScreenchildInfoTitle: "Добре дошли, {{childName}} и {{parentName}}",
+                homeScreenchildInfoTitle: "Добре дошли, {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Всекидневни материали за четене",
                 homeScreentodayarticle: "Съвет на деня",
                 homeScreentodaygame: "Игра на деня",
