@@ -92,7 +92,7 @@ const MKmk = {
                 supportScreenheader2text: "Во моментот не постои опција за разговор",
                 homeScreenheaderTitle: "REMOVED_FACEBOOK_APP_ID1",
                 homeScreenchildBtnText: "Прочитајте повеќе ",
-                homeScreenchildInfoTitle: "Добредојдовте {{childName}} и {{parentName}}",
+                homeScreenchildInfoTitle: "Добредојдовте {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Што да прочитате денес ",
                 homeScreentodayarticle: "Денешен совет",
                 homeScreentodaygame: "Игра за денес",

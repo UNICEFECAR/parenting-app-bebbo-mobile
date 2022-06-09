@@ -93,7 +93,7 @@ const en = {
                 supportScreenheader2text: "Chat not available at the moment",
                 homeScreenheaderTitle: "REMOVED_FACEBOOK_APP_ID1",
                 homeScreenchildBtnText: "Read more ",
-                homeScreenchildInfoTitle: "Welcome {{childName}} and {{parentName}}",
+                homeScreenchildInfoTitle: "Welcome {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Daily reads ",
                 homeScreentodayarticle: "Today's advice",
                 homeScreentodaygame: "Today's game",

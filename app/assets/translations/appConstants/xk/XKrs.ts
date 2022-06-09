@@ -92,7 +92,7 @@ const XKrs = {
               supportScreenheader2text: "Opcija Pitanja i odgovori trenutno nije dostupna",
               homeScreenheaderTitle: "REMOVED_FACEBOOK_APP_ID1",
               homeScreenchildBtnText: "Pročitajte više",
-              homeScreenchildInfoTitle: "Dobro došli(e), {{childName}} i {{parentName}}",
+              homeScreenchildInfoTitle: "Dobro došli(e), {{childName}} {{parentName}}",
               homeScreendailyReadsTitle: "Dnevni članci",
               homeScreentodayarticle: "Savet dana",
               homeScreentodaygame: "Igra dana",

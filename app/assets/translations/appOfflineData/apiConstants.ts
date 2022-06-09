@@ -32,6 +32,8 @@ export const maleData:any={
 };
 export const relationShipMotherId=109801;
 export const relationShipFatherId=109806;
+export const relationShipOtherCaregiverId=109811;
+export const relationShipServiceProviderId=109816;
 export const femaleData:any={
     "id": 38,
     "name": "Female",

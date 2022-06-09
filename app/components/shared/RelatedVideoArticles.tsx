@@ -12,7 +12,8 @@ import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { VideoArticleEntity, VideoArticleEntitySchema } from '../../database/schema/VideoArticleSchema';
 import downloadImages from '../../downloadImages/ImageStorage';
 import LoadableImage from '../../services/LoadableImage';
-import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
+import { randomArrayShuffle } from '../../services/Utils';
+import { ArticleHeading, ArticleListContent, RelatedArticleContainer, RelatedArticleContainer2 } from './ArticlesStyle';
 import ShareFavButtons from './ShareFavButtons';
 const ContainerView = styled.View`
   flex: 1;
@@ -52,7 +53,9 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
-  let videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+  const videoarticleDataold = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+  const videoarticleData = randomArrayShuffle(videoarticleDataold);
+  console.log(videoarticleData);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth
       ? state.bandWidthData.lowbandWidth
@@ -139,24 +142,26 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
         style={{ flexDirection: 'row' }}
       >
-        <RelatedArticleContainer style={{ backgroundColor: '#fff' }} key={index}>    
+      <RelatedArticleContainer2 style={{ backgroundColor: '#fff' }} key={index}>    
         {/* <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/> */}
-        <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
-          <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-            <View style={{ minHeight: 80, }}>
-              <ArticleListContent>
-                <ShiftFromTopBottom5>
-                  {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
-                  <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
-                </ShiftFromTopBottom5>
-                {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
-                <Heading3 numberOfLines={2}>{item.title}</Heading3>
-              </ArticleListContent>
-            </View>
-            <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
+        <View>
+          <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
+        </View>
+            <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+              <View style={{ minHeight: 80, }}>
+                <ArticleListContent>
+                  <ShiftFromTopBottom5>
+                    {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
+                    <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
+                  </ShiftFromTopBottom5>
+                  {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
+                  <Heading3 numberOfLines={2}>{item.title}</Heading3>
+                </ArticleListContent>
+              </View>
+              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
 
-          </View>
-        </RelatedArticleContainer>
+            </View>
+        </RelatedArticleContainer2>
       </Pressable>
     )
   };
