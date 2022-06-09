@@ -93,7 +93,7 @@ const uk = {
                 supportScreenheader2text: "Чат наразі недоступний",
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Читати далі ",
-                homeScreenchildInfoTitle: "Ласкаво просимо {{childName}} та {{parentName}}",
+                homeScreenchildInfoTitle: "Ласкаво просимо {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Щоденні новини ",
                 homeScreentodayarticle: "Порада на сьогодні",
                 homeScreentodaygame: "Гра на сьогодні",

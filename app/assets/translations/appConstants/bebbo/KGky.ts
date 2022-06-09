@@ -92,7 +92,7 @@ const KGky = {
                 supportScreenheader2text: "Баарлашуу учурда жеткиликсиз",
                 homeScreenheaderTitle: "Беббо",
                 homeScreenchildBtnText: "Андан ары окуу",
-                homeScreenchildInfoTitle: "Кош келиңиз {{childName}} жана {{parentName}}",
+                homeScreenchildInfoTitle: "Кош келиңиз {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Күнүмдүк материалдар",
                 homeScreentodayarticle: "Күндүн кеңеши",
                 homeScreentodaygame: "Күндүн оюну",

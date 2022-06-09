@@ -93,7 +93,7 @@ const MDro = {
                 supportScreenheader2text: "Chatul nu este disponibil momentan",
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Citiți mai mult ",
-                homeScreenchildInfoTitle: "Bine ați venit {{childName}} și {{parentName}}",
+                homeScreenchildInfoTitle: "Bine ați venit {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Materiale zilnice ",
                 homeScreentodayarticle: "Sfatul de astăzi",
                 homeScreentodaygame: "Jocul de azi",

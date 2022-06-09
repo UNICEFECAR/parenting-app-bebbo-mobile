@@ -92,7 +92,7 @@ const MKsq = {
                 supportScreenheader2text: "Bisedat në chat nuk mund të realizohen për momentin",
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Lexoni më shumë",
-                homeScreenchildInfoTitle: "Mirë se erdhët {{childName}} dhe {{parentName}}",
+                homeScreenchildInfoTitle: "Mirë se erdhët {{childName}} {{parentName}}",
                 homeScreendailyReadsTitle: "Leximet e përditshme",
                 homeScreentodayarticle: "Këshilla e sotme",
                 homeScreentodaygame: "Loja e ditës së sotme",
