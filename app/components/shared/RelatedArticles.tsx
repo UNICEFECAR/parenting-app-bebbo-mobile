@@ -12,6 +12,7 @@ import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
 import downloadImages from '../../downloadImages/ImageStorage';
 import LoadableImage from '../../services/LoadableImage';
+import { randomArrayShuffle } from '../../services/Utils';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
 import ShareFavButtons from './ShareFavButtons';
 const ContainerView = styled.View`
@@ -29,9 +30,10 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
   const { t } = useTranslation();
   let relartlength = related_articles ? related_articles.length : 0;
-  const articleData = useAppSelector(
+  const articleDataold = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
+  const articleData = randomArrayShuffle(articleDataold);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth
       ? state.bandWidthData.lowbandWidth
