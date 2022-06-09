@@ -322,7 +322,17 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
         }
     }
 }
-
+export const  randomArrayShuffle = (array:any) => {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
 /**
  * Get YouTube video ID from given url.
  */
