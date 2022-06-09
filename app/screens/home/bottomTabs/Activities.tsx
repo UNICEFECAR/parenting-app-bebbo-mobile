@@ -16,7 +16,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -43,6 +43,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
 import FastImage from 'react-native-fast-image';
+import { randomArrayShuffle } from '../../../services/Utils';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -82,10 +83,11 @@ const Activities = ({ route, navigation }: Props) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const ActivitiesData = useAppSelector(
+  const ActivitiesDataold = useAppSelector(
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
+  const ActivitiesData = randomArrayShuffle(ActivitiesDataold)
   const activityCategoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
@@ -283,10 +285,10 @@ const Activities = ({ route, navigation }: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       // console.log(activeChild,"..activeChild..")
-      // console.log("child dev usefocuseffect");
+      // console.log("randomArrayShuffle useeffect--");
       // || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)
-      setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) == -1)));
-      setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0  || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)));
+      setsuggestedGames((filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) == -1))));
+      setotherGames((filteredData.filter((x: any) => x.related_milestone.length == 0  || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1))));
       //console.log("filteredData inner---", filteredData);
     }, [filteredData,childMilestonedata])
   );
@@ -354,7 +356,7 @@ const Activities = ({ route, navigation }: Props) => {
       fromActivitiesScreen: true
     });
   }
-  const SuggestedActivities = React.memo(({ item, section, index }) => {
+  const SuggestedActivities = ({ item, section, index }) => {
     //console.log(section, "SuggestedActivities", item.id);
     let milestonedatadetail:any = [];
     if(section == 1) {
@@ -398,7 +400,7 @@ const Activities = ({ route, navigation }: Props) => {
         </ArticleListContainer>
      
     )
-  });
+  };
 
   const DATA = [
     {
@@ -412,7 +414,8 @@ const Activities = ({ route, navigation }: Props) => {
       data: otherGames
     }
   ];
-  
+  const memoizedValue = useMemo(() => SuggestedActivities, [SuggestedActivities,DATA]);
+
   const HeadingComponent = React.memo(({ section }) => {
     return (
       <ArticleHeading>
@@ -496,8 +499,8 @@ const Activities = ({ route, navigation }: Props) => {
               maxToRenderPerBatch={4} // Reduce number in each render batch
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
-              renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
-              // renderItem={({ section, item }) => renderItem(section.id, item) }
+              // renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
+              renderItem={memoizedValue}
               renderSectionHeader={({ section }) => (
                 section.data.length > 0 ?
                   <HeadingComponent section={section} />
