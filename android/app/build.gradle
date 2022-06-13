@@ -191,8 +191,8 @@ android {
             applicationId 'org.unicef.ecar.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 10
-            versionName "1.1.4"
+            versionCode 11
+            versionName "1.1.5"
             signingConfig signingConfigs.release
         }
         prodstaging {
@@ -209,8 +209,8 @@ android {
             applicationId 'org.unicef.kosovo.foleja'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 2
-            versionName "1.0.1"
+            versionCode 4
+            versionName "1.1.0"
             signingConfig signingConfigs.xk
         }
         xkstaging {
