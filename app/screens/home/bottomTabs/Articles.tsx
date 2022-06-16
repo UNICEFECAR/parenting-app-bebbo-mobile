@@ -11,7 +11,7 @@ import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useMemo, useRef, useState } from 'react';
@@ -162,12 +162,13 @@ const Articles = ({ route, navigation }: Props) => {
   const [filterArray, setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
+  const videoIsFocused = useIsFocused();
   const RenderArticleItem = ({ item, index }) => {
     return (
     <ArticleListContainer>
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
         {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
-           <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer> 
+           videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>:null
           : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
         }
           {/* <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} /> */}
