@@ -24,7 +24,7 @@ import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, AppState, I18nManager, Platform } from 'react-native';
+import { Alert, AppState, DeviceEventEmitter, I18nManager, Platform } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -237,8 +237,12 @@ export default () => {
       
     // }, 6000);
   }, []);
+  const handleEvent=(data:any)=>{
+    console.log("recieveenet",data)
+  }
   useEffect(() => {
-    
+    const eventListener = DeviceEventEmitter.addListener('notiTap',handleEvent); 
+    console.log(eventListener,"..eventListener..")
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       // console.log("msg----",remoteMessage);
       if(remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
