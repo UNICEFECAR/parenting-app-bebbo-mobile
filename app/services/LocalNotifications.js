@@ -9,6 +9,8 @@ class LocalNotifications {
       },
       onNotification: function (notification) {
         console.log('NOTIFICATION:', notification);
+        DeviceEventEmitter.emit('eventKey', {name:'John', age:23});
+
        // notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
       popInitialNotification: true,
