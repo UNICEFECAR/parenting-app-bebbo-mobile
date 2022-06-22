@@ -441,7 +441,7 @@ export const isFutureDateTime = (date: Date) => {
 };
 
 export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:boolean) => {
-   console.log(birthDate,"..birthDate..");
+  // console.log(birthDate,"..birthDate..");
   //birthDate=Platform.OS=='ios'?new Date(birthDate).toISOString():birthDate;
   // var d = new Date(birthDate).toString();
   // console.log(d,"..d..")
@@ -479,20 +479,14 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
   // }
   // console.log(birthDate,"..birthDate..")
   //const date1 = DateTime.fromISO(DateTime.local().toISODate());
-  // const date1 = DateTime.local();
-  const datenew = DateTime.local().toISODate({ format: 'basic' })
-  console.log("dsds",datenew);
-  const date1 = DateTime.fromISO(datenew);
-  console.log(date1,"..date1");
-  let dateData=new Date(birthDate).toISOString().split('T')[0];
-  console.log(dateData,"..dateData")
-  const date2 = DateTime.fromISO(dateData);
+  const date1 = DateTime.local();
+  const date2 = DateTime.fromISO(birthDate);
   //console.log(date2)
   const diff: any = date1.diff(date2, ["years", "months", "days"]);
-  // console.log(diff.toObject(),"..diffobject");
+  console.log(diff.toObject(),"..diffobject");
   var ageStr = "";
-  // console.log(diff.years,diff.months,diff.days);
-  if (diff.years <= 0 && diff.months <= 0 && (diff.days) <= 0) {
+  console.log(diff.years,diff.months,diff.days);
+  if (diff.years < 0 && diff.months < 0 && (diff.days) < 0) {
     ageStr = t('noBorn');
   } else {
     if (diff.years > 0) {
@@ -530,22 +524,14 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
 };
 
 export const getNotificationDateInString = (t: any, birthDate: string,pluralShow:boolean) => {
-  // const date1 = DateTime.local();
-  const datenew = DateTime.local().toISODate({ format: 'basic' })
-  console.log("dsds",datenew);
-  const date1 = DateTime.fromISO(datenew);
-  console.log(date1,"..date1")
+  const date1 = DateTime.local();
   //birthDate=Platform.OS=='ios'?new Date(birthDate).toString():birthDate;
-  // const date2 = DateTime.fromISO(birthDate);
-  let dateData=new Date(birthDate).toISOString().split('T')[0];
-  console.log(dateData,"..dateData")
-  const date2 = DateTime.fromISO(dateData);
-  console.log(date2,"..date2")
+  const date2 = DateTime.fromISO(birthDate);
   const diff: any = date1.diff(date2, ["years", "months", "days"]);
   // console.log(diff.toObject(),"..diffobject");
   var ageStr = "";
   // console.log(diff.years,diff.months,diff.days);
-  if (diff.years <= 0 && diff.months <= 0 && (diff.days) <= 0) {
+  if (diff.years < 0 && diff.months < 0 && (diff.days) < 0) {
     ageStr = t('noBorn');
   } else {
     if (diff.years > 0) {
