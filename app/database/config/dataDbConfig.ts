@@ -42,7 +42,7 @@ export const dataRealmConfig: Realm.Configuration ={
     StandardDevHeightForAgeSchema,
     FAQsSchema
   ],
-  schemaVersion: 5,
+  schemaVersion: 6,
   migration: (oldRealm, newRealm) => {
   // console.log("in migration data");
     if(oldRealm.schemaVersion < 1){
