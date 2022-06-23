@@ -27,7 +27,7 @@ import ModalPopupContainer, {
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { VideoArticleData } from '@dynamicImportsClass/dynamicImports';
+import { articledata, VideoArticleData } from '@dynamicImportsClass/dynamicImports';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -59,13 +59,15 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from '../../../database/
 import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
 import { setAllVideoArticlesData, setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
 import { fetchAPI } from '../../../redux/sagaMiddleware/sagaActions';
-import { getAllChildren, isFutureDate } from '../../../services/childCRUD';
+import { apiJsonDataGet, getAllChildren, isFutureDate } from '../../../services/childCRUD';
 import commonApiService from '../../../services/commonApiService';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../../../services/notificationService';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 import { getStatusBarHeight } from '../../../services/StatusBarHeight';
 import { addSpaceToHtml } from '../../../services/Utils';
 import VersionInfo from 'react-native-version-info';
+import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
+import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -135,6 +137,9 @@ const Home = ({ route, navigation }: Props) => {
   const incrementalSyncDT = useAppSelector((state: any) =>
     (state.utilsData.incrementalSyncDT),
   );
+  const bufferAgeBracket = useAppSelector((state: any) =>
+      state.childData.childDataSet.bufferAgeBracket
+    );
   let currentCount = 0;
   let { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets } = getAllPeriodicSyncData();
   const onBackPress = () => {
@@ -242,12 +247,16 @@ const Home = ({ route, navigation }: Props) => {
   const bebboprod = '1.1.4';
   const folejadev = '0.1.7';
   const folejaprod = '1.0.1';
+  const relbebbodev = '1.4.10';
+  const relbebboprod = '1.1.5';
+  const relfolejadev = '0.2.0';
+  const relfolejaprod = '1.1.0';
   useEffect(() => {
     // const uniqueId=getUniqueNameId(genders,'girl');
     // console.log(uniqueId,"..uniqueId");
     setModalVisible(false);
     async function fetchNetInfo() {
-      console.log("userIsOnboarded----",userIsOnboarded);
+      console.log(bufferAgeBracket,"---userIsOnboarded----",userIsOnboarded);
       console.log(VersionInfo.appVersion,"--appVersion",VersionInfo.buildVersion,VersionInfo.bundleIdentifier);
       // if(netInfoval.isConnected) {
         if (userIsOnboarded == false) {
@@ -267,6 +276,7 @@ const Home = ({ route, navigation }: Props) => {
           // }
         }else {
           let isVideoArticleUpdateReq = await AsyncStorage.getItem('isVideoArticleUpdateReq');
+          let isRelatedVideoArticleUpdateReq = await AsyncStorage.getItem('isRelatedVideoArticleUpdateReq');
           if(netInfoval.isConnected && showDownloadPopup)
           {
             if(isVideoArticleUpdateReq == null || isVideoArticleUpdateReq == undefined || isVideoArticleUpdateReq == 'true') {
@@ -296,12 +306,86 @@ const Home = ({ route, navigation }: Props) => {
                 AsyncStorage.setItem('isVideoArticleUpdateReq','false');
               }
             }
+
+            if(isRelatedVideoArticleUpdateReq == null || isRelatedVideoArticleUpdateReq == undefined || isRelatedVideoArticleUpdateReq == 'true') {
+              
+              const apiJsonDatarelatedvideoart = [
+                {
+                  apiEndpoint: appConfig.vaccinePinnedContent,
+                  method: 'get',
+                  postdata: {},
+                  saveinDB: true,
+                },
+                {
+                  apiEndpoint: appConfig.childGrowthPinnedContent,
+                  method: 'get',
+                  postdata: {},
+                  saveinDB: true,
+                },
+                {
+                  apiEndpoint: appConfig.healthcheckupPinnedContent,
+                  method: 'get',
+                  postdata: {},
+                  saveinDB: true,
+                },
+                {
+                  apiEndpoint: appConfig.faqPinnedContent,
+                  method: 'get',
+                  postdata: {},
+                  saveinDB: true,
+                },
+                {
+                  apiEndpoint: appConfig.faqUpdatedPinnedContent,
+                  method: 'get',
+                  postdata: {},
+                  saveinDB: true,
+                },
+                {
+                  apiEndpoint: appConfig.milestoneRelatedArticle,
+                  method: 'get',
+                  postdata: {},
+                  saveinDB: true,
+                },
+              ];
+              const apiJsonDataarticleall=apiJsonDataGet(String(bufferAgeBracket),"all");
+              if(apiJsonDataarticleall.length > 0) {
+                apiJsonDatarelatedvideoart.push(apiJsonDataarticleall[0])
+              }
+              console.log(apiJsonDatarelatedvideoart,"in if isRelatedVideoArticleUpdateReq---",isRelatedVideoArticleUpdateReq)
+              if(VersionInfo.appVersion > relbebbodev && VersionInfo.bundleIdentifier == 'com.datamatics.bebbo') {
+                console.log("in if");
+                dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
+                AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
+              }
+              else if(VersionInfo.appVersion > relbebboprod && VersionInfo.bundleIdentifier == 'org.unicef.ecar.bebbo') {
+                dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
+                AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
+              }
+              else if(VersionInfo.appVersion > relfolejadev && VersionInfo.bundleIdentifier == 'com.datamatics.foleja') {
+                dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
+                AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
+              }
+              else if(VersionInfo.appVersion > relfolejaprod && VersionInfo.bundleIdentifier == 'org.unicef.kosovo.foleja') {
+                dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
+                AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
+              }
+            }
           }else {
-            console.log("in else isVideoArticleUpdateReq---",isVideoArticleUpdateReq)
+            console.log(isRelatedVideoArticleUpdateReq,"in else isVideoArticleUpdateReq---",isVideoArticleUpdateReq)
             if(showDownloadPopup && (isVideoArticleUpdateReq == null || isVideoArticleUpdateReq == undefined || isVideoArticleUpdateReq == 'true')) {
               let Entity: any;
               const allVideoArticlesData = await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
               console.log("allVideoArticlesData---",allVideoArticlesData);
+            }
+            if(showDownloadPopup && (isRelatedVideoArticleUpdateReq == null || isRelatedVideoArticleUpdateReq == undefined || isRelatedVideoArticleUpdateReq == 'true')) {
+              let Entity: any;
+              const currentChildData = {
+                "gender": activeChild.gender,
+                "parent_gender": activeChild.parent_gender,
+                "taxonomyData": activeChild.taxonomyData
+              }
+              const allRelVideoArticlesData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+              console.log("allRelVideoArticlesData---",allRelVideoArticlesData);
             }
           }
           

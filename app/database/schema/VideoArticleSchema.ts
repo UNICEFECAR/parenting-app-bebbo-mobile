@@ -54,7 +54,7 @@ export type VideoArticleEntity = {
       // cover_video: {type: 'object', objectType: 'CoverVideo',optional: true} ,
       // cover_image: {type: 'object', objectType: 'CoverImage',optional: true} ,
       related_articles: { type: 'int[]' },
-      related_video_articles: { type: 'int[]',optional: true },
+      related_video_articles: { type: 'int[]',optional: true, default: [] },
       // generic: { type: 'string' },
       licensed: { type: 'int' },
       premature: { type: 'int' },
