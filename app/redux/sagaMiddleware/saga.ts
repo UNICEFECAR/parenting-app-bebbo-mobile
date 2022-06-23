@@ -182,7 +182,7 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
     //dispatch action for before home page
     yield call(onHomeSurveyapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
   }
-   else if (prevPage == 'VideoArticle') {
+   else if (prevPage == 'VideoArticle' || prevPage == 'RelatedVideoArticle') {
     //dispatch action for before home page
     yield call(onHomeVideoartapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
   }
