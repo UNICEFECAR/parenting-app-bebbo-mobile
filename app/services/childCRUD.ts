@@ -441,7 +441,7 @@ export const isFutureDateTime = (date: Date) => {
 };
 
 export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:boolean) => {
-  // console.log(birthDate,"..birthDate..");
+   console.log(birthDate,"..birthDate..");
   //birthDate=Platform.OS=='ios'?new Date(birthDate).toISOString():birthDate;
   // var d = new Date(birthDate).toString();
   // console.log(d,"..d..")
@@ -479,8 +479,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
   // }
   // console.log(birthDate,"..birthDate..")
   //const date1 = DateTime.fromISO(DateTime.local().toISODate());
-  const datenew = DateTime.local().toISODate();
-  const date1 =   DateTime.fromISO(datenew);
+  const date1 = DateTime.local();
   console.log(date1,"..date1");
   // const date2 = DateTime.fromISO(birthDate);
   let dateData=new Date(birthDate).toISOString().split('T')[0];
@@ -529,9 +528,8 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
 };
 
 export const getNotificationDateInString = (t: any, birthDate: string,pluralShow:boolean) => {
-  const datenew = DateTime.local().toISODate();
-  const date1 =   DateTime.fromISO(datenew);
-  console.log(date1,"..date1");
+  const date1 = DateTime.local();
+   console.log(date1,"..date1");
   //birthDate=Platform.OS=='ios'?new Date(birthDate).toString():birthDate;
   // const date2 = DateTime.fromISO(birthDate);
   let dateData=new Date(birthDate).toISOString().split('T')[0];
