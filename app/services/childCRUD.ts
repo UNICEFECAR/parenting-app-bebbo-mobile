@@ -441,7 +441,7 @@ export const isFutureDateTime = (date: Date) => {
 };
 
 export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:boolean) => {
-   console.log(birthDate,"..birthDate..");
+  //Alert.alert('birthDate',String(birthDate));
   //birthDate=Platform.OS=='ios'?new Date(birthDate).toISOString():birthDate;
   // var d = new Date(birthDate).toString();
   // console.log(d,"..d..")
@@ -528,6 +528,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
 };
 
 export const getNotificationDateInString = (t: any, birthDate: string,pluralShow:boolean) => {
+  //Alert.alert('birthDate',String(birthDate));
   const date1 = DateTime.local();
    console.log(date1,"..date1");
   //birthDate=Platform.OS=='ios'?new Date(birthDate).toString():birthDate;
