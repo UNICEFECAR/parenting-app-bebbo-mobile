@@ -1,4 +1,5 @@
-import { apiUrlDevelop } from "react-native-dotenv";
+// import { apiUrlDevelop } from "react-native-dotenv";
+export const apiUrlDevelop='https://staging.bebbo.app/api'
 import RNFS from 'react-native-fs';
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const buildForFoleja = 'foleja'; //'foleja'
