@@ -241,8 +241,8 @@ export default () => {
     console.log("recieveenet",data)
   }
   useEffect(() => {
-    const eventListener = DeviceEventEmitter.addListener('notiTap',handleEvent); 
-    console.log(eventListener,"..eventListener..")
+    // const eventListener = DeviceEventEmitter.addListener('notiTap',handleEvent); 
+    // console.log(eventListener,"..eventListener..")
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       // console.log("msg----",remoteMessage);
       if(remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
