@@ -385,7 +385,7 @@ console.log(videoIsFocused,"..videoIsFocused");
       });
     }
   }
-  
+  //console.log("detailDataToUse---",detailDataToUse);
   return (
     <>
     {detailDataToUse ?
@@ -519,9 +519,9 @@ console.log(videoIsFocused,"..videoIsFocused");
                     <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
 
                       {/* add condition of if type is video article then  */}
-                      { detailDataToUse && detailDataToUse?.related_video_articles ? 
-                        <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-                      : null}
+                      {/* { detailDataToUse && detailDataToUse?.related_video_articles ?  */}
+                        <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                      {/* : null} */}
                     
                   <ArticleHeading>
                     <Heading2>{t('detailScreenArticleHeader')}</Heading2>
@@ -538,9 +538,9 @@ console.log(videoIsFocused,"..videoIsFocused");
                     <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
 
                     {/* add condition of if type is video article then  */}
-                    { detailDataToUse && detailDataToUse?.related_video_articles ? 
-                      <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-                    : null}
+                    {/* { detailDataToUse && detailDataToUse?.related_video_articles ?  */}
+                      <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                    {/* : null} */}
                 </FlexCol>
               </>
             ) : null}
