@@ -569,7 +569,7 @@ export const onHomeVideoartapiSuccess = async (response: any, dispatch: any, nav
   });
   const results = await Promise.all(resolvedPromises);
   // deactivateKeepAwake();
- console.log("Videoarticle done--",results);
+ console.log("Videoarticle done--",prevPage);
 }
 export const downloadArticleImages = async() => {
   return new Promise(async (resolve, reject) => {
