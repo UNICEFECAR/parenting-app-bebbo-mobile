@@ -1,5 +1,6 @@
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { Alert } from 'react-native';
 class LocalNotifications {
   constructor() {
     PushNotification.configure({
@@ -8,8 +9,8 @@ class LocalNotifications {
         // console.log('TOKEN:', token);
       },
       onNotification: function (notification) {
-        console.log('NOTIFICATION:', notification);
-        DeviceEventEmitter.emit('eventKey', {name:'John', age:23});
+        //Alert.alert('NOTIFICATION:', 'NOTIFICATION Recieved:');
+       // DeviceEventEmitter.emit('eventKey', {name:'John', age:23});
 
        // notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
