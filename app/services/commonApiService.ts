@@ -20,7 +20,7 @@ import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setchatBotData, setDownloadedBufferAgeBracket } from '../redux/reducers/childSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
-import { setAllNotificationData } from '../redux/reducers/notificationSlice';
+import { setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 import LocalNotifications from './LocalNotifications';
@@ -440,6 +440,8 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: false}));
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
+    let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     if(prevPage == 'CountryLangChange') {
       const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
       let forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';

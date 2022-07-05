@@ -1,16 +1,19 @@
+import { beforeDays, threeeMonthDays, twoMonthDays } from '@assets/translations/appOfflineData/apiConstants';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading6w } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Alert, Pressable } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { setFavouriteAdvices, setFavouriteGames } from '../redux/reducers/childSlice';
-import { setAllNotificationData } from '../redux/reducers/notificationSlice';
+import { setAllLocalNotificationData, setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
-import { getAllChildren, isFutureDate } from '../services/childCRUD';
-import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
+import { getAllChildren, isFutureDate, isFutureDateTime } from '../services/childCRUD';
+import LocalNotifications from '../services/LocalNotifications';
+import { createAllLocalNotificatoins, getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
 import Icon from './shared/Icon';
 import { BubbleContainer, BubbleView, BubbleView1 } from './shared/NavigationDrawer';
 const headerHeight = 50;
@@ -19,6 +22,9 @@ const HeaderNotiIcon = (props: any) => {
   const textColor = props.textColor;
   const isVisibleIcon = props.isVisibleIcon;
   let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
+  let localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
+  let localNotificationGenerateType = useAppSelector((state: any) => state.notificationData.localNotificationGenerateType);
+
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -49,14 +55,26 @@ const HeaderNotiIcon = (props: any) => {
     (state: any) =>
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
+  const allchildList = useAppSelector((state: any) =>	
+    state.childData.childDataSet.allChild != ''	
+      ? JSON.parse(state.childData.childDataSet.allChild)	
+      : state.childData.childDataSet.allChild,	
+  );
   let allGrowthPeriods = taxonomy?.growth_period;
   let allVaccinePeriods = useAppSelector(
     (state: any) =>
       state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
+  const allVaccineData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.vaccineData),
+  );
+  const { t } = useTranslation();
   const [notifications, setNotifications] = useState<any[]>([]);
   useEffect(() => {
+    // console.log("in useeffect 1");
     if (generateNotificationsFlag == true) {
+      // console.log("in useeffect if 1");
       const fetchData = async () => {
         let childList = await getAllChildren(dispatch, childAge, 1);
         let allchildNotis: any[] = [];
@@ -166,7 +184,7 @@ const HeaderNotiIcon = (props: any) => {
           }
 
         })
-        // console.log(allchildNotis,"allchildNotis")
+        // console.log(JSON.stringify(allchildNotis),"allchildNotis--")
         dispatch(setAllNotificationData(allchildNotis))
         //generate notifications for all childs 
         //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
@@ -174,15 +192,20 @@ const HeaderNotiIcon = (props: any) => {
         //after generating notifications make it false
         let notiFlagObj = { key: 'generateNotifications', value: false };
         dispatch(setInfoModalOpened(notiFlagObj));
+
+        //createAllLocalNotificatoins(allchildList, childAge, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, t, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData, allVaccineData);
       }
       fetchData()
     }
 
   }, [generateNotificationsFlag]);
+  
+  
   useFocusEffect(
     React.useCallback(() => {
       // Your dismiss logic here 
-
+      // console.log("in useeffect 2");
+      // console.log("allnotis3----",JSON.stringify(allnotis));
       if (allnotis.length > 0) {
         const currentChildNotis = allnotis?.find((item) => item.childuuid == activeChild.uuid)
        // console.log(currentChildNotis, "allfilteredNotis")
@@ -255,7 +278,67 @@ const HeaderNotiIcon = (props: any) => {
 
     }, [activeChild.uuid, allnotis]),
   );
+  useEffect(() => {	
+    const fetchData = async () => {
+      // console.log("--localNotificationGenerateType change4",localNotificationGenerateType);
+      if(localNotificationGenerateType.generateFlag == true) {
+          // console.log(developmentEnabledFlag,"flag1--",growthEnabledFlag, "flag2--" ,vchcEnabledFlag);
+          // console.log(JSON.stringify(localNotifications),"--localNotifications change4");
 
+          const childList = await getAllChildren(dispatch, childAge, 1);
+          // console.log("childList in headernoti---",childList);
+          if(childList && childList.length > 0) {
+            if(localNotificationGenerateType.childuuid == 'all') {
+              let allChildNotis: any[] = [];
+              const resolvedPromises = childList.map(async (child:any)=> {
+                const noti = await createAllLocalNotificatoins(child, childAge, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, t, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData, allVaccineData,localNotifications);
+                // allChildNotis.push(noti);
+                return noti;
+              });
+              // console.log("resolvedPromises--",resolvedPromises);
+              const results = await Promise.all(resolvedPromises);
+              // console.log("results4---",results);
+              results.map((x:any)=>allChildNotis.push(x));
+              // console.log("in headernoti allChildNotis---",allChildNotis);
+              dispatch(setAllLocalNotificationData(allChildNotis));
+              let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+              dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+            }else {
+              let allChildNotis: any[] = [];
+              const currchildnoti = localNotifications.find((x:any) => x.key == localNotificationGenerateType.childuuid);
+              // console.log("currchildnoti2---",currchildnoti);
+              if(currchildnoti && currchildnoti != null && currchildnoti != undefined) {
+                //delete existing notifications
+                // create new ones and add in existing array
+                currchildnoti.data.map((n:any)=>{
+                  // console.log("n.notiid---",n.notiid);
+                  LocalNotifications.cancelReminderLocalNotification(n.notiid);
+                })
+              }
+              // else {
+                // create new one and add in existing array
+                const newchild = childList.find((z:any)=>z.uuid == localNotificationGenerateType.childuuid);
+                const newchildnoti = await createAllLocalNotificatoins(newchild, childAge, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, t, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData, allVaccineData,localNotifications);
+                // console.log("newchildnoti2---",newchildnoti);
+                localNotifications.map((y:any)=>{
+                  if(y.key != localNotificationGenerateType.childuuid) {
+                    allChildNotis.push(y);
+                  }
+                })
+                allChildNotis.push(newchildnoti);
+                // console.log("in headernoti allChildNotis 2nd else---",allChildNotis);
+                dispatch(setAllLocalNotificationData(allChildNotis));
+                let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+                dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+              // }
+            }
+            LocalNotifications.getAllScheduledLocalNotifications();
+          }
+          //make flag false at the end
+      }     
+    }	
+    fetchData()	
+  }, [localNotificationGenerateType]);
   useEffect(() => {
       const fetchData = async () => {
         const filterQuery = 'uuid == "'+activeChild.uuid+'"';

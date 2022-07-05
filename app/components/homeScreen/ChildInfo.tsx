@@ -30,7 +30,7 @@ state.variableData?.variableData != ''
   : state.variableData?.variableData,
 );
 const dispatch = useAppDispatch();
-console.log(allConfigData,"allConfigData--",activeChild);
+// console.log(allConfigData,"allConfigData--",activeChild);
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

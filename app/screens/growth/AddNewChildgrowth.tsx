@@ -93,6 +93,7 @@ import {
 import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import { formatStringDate } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
+import { setAllLocalNotificationGenerateType } from '../../redux/reducers/notificationSlice';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
@@ -343,6 +344,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
+          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
         navigation.goBack();
@@ -395,6 +398,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
+          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
         navigation.goBack();
@@ -461,6 +466,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
+          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
         const growthValuesForVaccineMeasured = {
@@ -486,6 +493,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
+          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
         navigation.goBack();
       } else {
@@ -512,6 +521,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
+          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
         navigation.goBack();
       }
@@ -545,6 +556,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
+          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
         navigation.goBack();
 
@@ -573,6 +586,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
+          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? 'doctor' : 'home' })
         }
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
