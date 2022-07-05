@@ -26,6 +26,19 @@ const migrations = {
       }  
   }
 }
+const migrationsnotification = {  
+  0: (state: any) => {    
+      return {      
+        ...state,      
+        localNotifications: [],
+        localNotificationGenerateType: {
+          generateFlag: true,
+          generateType: 'add',
+          childuuid: 'all'
+        }
+      }  
+  }
+}
 const migrationsutils = {  
   0: (state: any) => {    
       return {      
@@ -104,6 +117,9 @@ const variableConfig = {
 const notificationConfig = {
   key: 'notificationData',
   storage: createRealmPersistStorage(),
+  version: 0,
+  debug: true,
+  migrate: createMigrate(migrationsnotification, { debug: true })
 };
 const bandWidthConfig = {
   key: 'bandWidthData',
