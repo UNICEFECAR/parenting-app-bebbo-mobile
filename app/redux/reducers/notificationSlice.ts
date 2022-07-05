@@ -6,6 +6,12 @@ interface notiDataType {
   growthEnabled: boolean,
   developmentEnabled: boolean,
   vchcEnabled: boolean,
+  localNotifications: Array<any>,
+  localNotificationGenerateType: {
+    generateFlag: boolean,
+    generateType: string,
+    childuuid: string
+  }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: notiDataType = {
@@ -14,6 +20,12 @@ const initialState: notiDataType = {
   growthEnabled: true,
   developmentEnabled: true,
   vchcEnabled: true,
+  localNotifications:[],
+  localNotificationGenerateType: {
+    generateFlag: true,
+    generateType: 'add',
+    childuuid: 'all'
+  }
 };
 export const notificationSlice = createSlice({
   name: 'notificationData',
@@ -36,6 +48,18 @@ export const notificationSlice = createSlice({
       action: PayloadAction<any>,) => {
       state[action.payload.key] = action.payload.value;
     },
+    setAllLocalNotificationData: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      console.log(JSON.stringify(action.payload),"action.payload localNotifications---");
+      state.localNotifications = (action.payload);
+    },
+    setAllLocalNotificationGenerateType:( state:any,
+      action: PayloadAction<any>,)=>{
+        console.log(JSON.stringify(action.payload),"action.payload---");
+        state.localNotificationGenerateType = action.payload;
+      },
     // toggleNotificationDelete:(  state,
     //     action: PayloadAction<any>,)=>{
     //       state.notifications =(action.payload);
@@ -54,7 +78,7 @@ export const notificationSlice = createSlice({
   // },
 });
 
-export const { setAllNotificationData, toggleNotificationFlags } = notificationSlice.actions;
+export const { setAllNotificationData, toggleNotificationFlags, setAllLocalNotificationData,setAllLocalNotificationGenerateType } = notificationSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
