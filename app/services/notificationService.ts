@@ -2,6 +2,9 @@ import { beforeDays, maxPeriodDays, threeeMonthDays, twoMonthDays } from "@asset
 import { DateTime } from "luxon";
 import { getCurrentChildAgeInDays, isFutureDate, isFutureDateTime } from './childCRUD';
 import { v4 as uuidv4 } from 'uuid';
+import { TFunction } from "react-i18next";
+import LocalNotifications from "./LocalNotifications";
+import { Alert } from "react-native";
 
 export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any,) => {
   const childAgeInDays = getCurrentChildAgeInDays(
@@ -82,6 +85,8 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
     const diff = Math.round((childDaysTo - childDaysFrom) / twoMonthDays);
     // console.log(diff, item.days_from) //
     for (var i = 0; i < diff; i++) { 
+      const notificationDate = DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * twoMonthDays) + twoMonthDays ? childDaysTo : childDaysFrom + (i * twoMonthDays) + twoMonthDays, });
+      // check difference between today and notification date in days and if greater than or equal to twoMonthDays then isDeleted=false
       noti.push(
         {
           "days_from": childDaysFrom + (i * twoMonthDays),
@@ -89,7 +94,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
           "type": "cd",
           "title": ('cdNoti2'),
           "checkinField": "days_to",
-          "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * twoMonthDays) + twoMonthDays ? childDaysTo : childDaysFrom + (i * twoMonthDays) + twoMonthDays, }),
+          "notificationDate": notificationDate,
           "isRead": false,
           "isDeleted": false,
           "periodName": childTaxonomyData.name,
@@ -132,7 +137,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
     const diff = Math.round((childTaxonomyData.days_to - childTaxonomyData.days_from) / twoMonthDays);
     // console.log(diff, item.days_from) //
     for (var i = 0; i < diff; i++) {
-
+      // check difference between today and notification date in days and if greater than or equal to twoMonthDays then isDeleted=false
       const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from + (i * twoMonthDays), (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays)
       if (!isGrowthDataExist) {
         noti.push(
@@ -193,6 +198,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   let vcnotis: any[] = [];
   let hcnotis: any[] = [];
   let lastgwperiodid = gwperiodid, lastvcperiodid = vcperiodid, lasthcperiodid = hcperiodid;
+  console.log(lastgwperiodid,lastvcperiodid,"-lastgwperiodid",lasthcperiodid);
   let gwcdnotis: any[] = [];
   if(lastchildgwperiod!=null && lastchildgwperiod!=undefined && lastchildgwperiod!=""){
   const lastchildgwperiodIndex = childAgeObj.findIndex(item => String(item.id) == String(gwperiodid));
@@ -225,23 +231,25 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
     (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
   );
+  console.log("vcNotis --- ",vcNotis);
   const lastvcperiod = vcNotis.findIndex(item => item.growth_period == vcperiodid)
   const currentvcperiod = vcNotis.findIndex(item => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
-  if(lastvcperiod!=null && lastvcperiod!=undefined && lastvcperiod!=""){
+  if(lastvcperiod>=0){
   vcNotis.forEach((element: any, index: number) => {
     if (index > lastvcperiod && index <= currentvcperiod) {
       lastvcperiodid = element.growth_period;
       vcnotis.push(element);
     }
   });
+  console.log("vcnotis small--- ",vcnotis);
 }
   //console.log('NEWVCNOTIS', vcnotis, lastvcperiodid)
 
   let hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
-  //console.log(hcNotis, "hcNotis")
+  console.log(hcNotis, "hcNotis")
   const lasthcperiod = hcNotis.findIndex(item => item.growth_period == hcperiodid)
   const currenthcperiod = hcNotis.findIndex(item => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
-  if(lasthcperiod!=null && lasthcperiod!=undefined && lasthcperiod!=""){
+  if(lasthcperiod>=0){
   hcNotis.forEach((element: any, index: number) => {
     if (index > lasthcperiod && index <= currenthcperiod) {
       lasthcperiodid = element.growth_period;
@@ -339,13 +347,13 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
     if (!isFutureDate(child?.birthDate)) {
       // console.log("in here")
       let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child);
-    //  console.log(vcNotis, "vcNotis")
+     console.log(vcNotis, "vcNotis--")
       //sort by days_from => find days_from period id to
       let currentvcPeriodNoti = vcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
       // console.log(currentvcPeriodNoti, "currentvcPeriodNoti", currentvcPeriodNoti[0].growth_period);
 
       let hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
-      // console.log(hcNotis, "hcNotis")
+      console.log(hcNotis, "hcNotis--")
       let currenthcPeriodNoti = hcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
       // console.log(currenthcPeriodNoti, "currenthcPeriodNoti", currenthcPeriodNoti[0].growth_period);
 
@@ -421,6 +429,7 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
           lasthcperiodid: currenthcPeriodNoti.length>0 ? currenthcPeriodNoti[0].growth_period : 0, hcnotis: currenthcPeriodNoti,
         }
        // console.log(notis, "newCalcNotis")
+       console.log('notis',JSON.stringify(notis));
         // show current period's notifications if child was created after birth date (expecting child)
 
         return notis
@@ -929,3 +938,178 @@ export const getHCReminderNotis = (allHealthCheckupsData: any, allGrowthPeriods:
   return noti;
   // console.log(noti,"withopen_close")
 }
+const getVaccinesForPeriod = (allVaccineData:any,period: string) => {
+  const allvc = allVaccineData.filter((item) => item.growth_period == period);
+  let vc = ' ';
+  allvc.map((item: any, index: number) => {
+    if (index == allvc.length - 1) {
+      vc += `${item.title}.`
+    } else {
+      vc += `${item.title}, `
+    }
+  })
+  return vc;
+}
+const generatenotiId = (localNotifications:any,allNotis:any) => {
+  const rand = Math.floor(10000000 + Math.random() * 90000000);
+  const commonArr = localNotifications?.find((x: any) => x.data.some(item => item.notiid == String(rand)));
+  const commonArr2 = allNotis?.data?.find((item:any) => item.notiid == String(rand));
+  if(commonArr != null && commonArr != {} && commonArr != undefined) {
+    generatenotiId(localNotifications,allNotis);
+  }else if(commonArr2 != null && commonArr2 != {} && commonArr2 != undefined) {
+    generatenotiId(localNotifications,allNotis);
+  }else {
+    return rand;
+  }
+} 
+export const createAllLocalNotificatoins = (child: any, childAge: any,developmentEnabledFlag: boolean, growthEnabledFlag: boolean, vchcEnabledFlag: boolean,t: any,allVaccinePeriods:any, allGrowthPeriods:any, allHealthCheckupsData:any, allVaccineData: any,localNotifications:any) => {	
+  
+    console.log("child--",child);
+    let allNotis: any[] = [];
+    const childBirthDatePlanned=child?.taxonomyData.prematureTaxonomyId!=null && child?.taxonomyData.prematureTaxonomyId!="" && child?.taxonomyData.prematureTaxonomyId!=undefined? child.plannedTermDate:child.birthDate;
+    const activityTaxonomyId = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? child?.taxonomyData.prematureTaxonomyId : child?.taxonomyData.id;
+    const childAgeObj = childAge.sort(
+      (a: any, b: any) => a.days_from - b.days_from,
+    );
+    const filteredchildAgeObj = childAgeObj.filter((x:any) => x.id >= activityTaxonomyId);
+    // for CD 1st day of period and 5 days before period end
+    filteredchildAgeObj.map((agebracket:any)=> {
+      console.log("current agebracket--",agebracket);
+      if ((agebracket.days_to - agebracket.days_from) >= threeeMonthDays) {
+        // if(developmentEnabledFlag == true) {
+          if(developmentEnabledFlag == true){
+            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from });
+            console.log(notificationDate,"--notificationDate", typeof notificationDate);
+            if(isFutureDateTime(new Date(notificationDate))) 
+            {
+              const message = t('cdNoti1', { periodName: agebracket.name }); 
+              console.log("message1---", message);
+              const currNotiId = generatenotiId(localNotifications,allNotis)
+              allNotis.push({'type':'cd','notiid':currNotiId});
+              LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
+            }
+          }
+          const diff = Math.round((agebracket.days_to - agebracket.days_from) / twoMonthDays);
+          for (var i = 0; i < diff; i++) {
+            if(developmentEnabledFlag == true) {
+              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays, });
+              console.log(notificationDate2,"--notificationDate2", typeof notificationDate2);
+              if(isFutureDateTime(new Date(notificationDate2))) 
+              {
+                const message2 = t('cdNoti2', { periodName: agebracket.name });
+                console.log("message2---", message2);
+                const currNotiId = generatenotiId(localNotifications,allNotis)
+                allNotis.push({'type':'cd','notiid':currNotiId});
+                LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
+              }
+            }
+            //notification for growth
+            if(growthEnabledFlag == true) {
+              const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from + (i * twoMonthDays), (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays)
+              console.log("isGrowthDataExist---",isGrowthDataExist);
+              if (!isGrowthDataExist) {
+                const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays });
+                console.log(notificationDate3,"--notificationDate3", typeof notificationDate3);
+                if(isFutureDateTime(new Date(notificationDate3))) 
+                {
+                  const message3 = t('gwNoti1', { periodName: agebracket.name }); 
+                  console.log("message3---", message3);
+                  const currNotiId = generatenotiId(localNotifications,allNotis)
+                  allNotis.push({'type':'gw','notiid':currNotiId});
+                  LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
+                }
+              }
+            }
+
+          }
+        // } 
+      }else {
+        if(developmentEnabledFlag == true) { 
+          const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from });
+          console.log(notificationDate,"--notificationDate else", typeof notificationDate);
+          if(isFutureDateTime(new Date(notificationDate))) 
+          {
+            const message = t('cdNoti1', { periodName: agebracket.name }); 
+            console.log("message1---", message);
+            const currNotiId = generatenotiId(localNotifications,allNotis)
+            allNotis.push({'type':'cd','notiid':currNotiId});
+            LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
+          }
+          const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_to - beforeDays});
+          console.log(notificationDate2,"--notificationDate2 else", typeof notificationDate2);
+          if(isFutureDateTime(new Date(notificationDate2))) 
+          {
+            const message2 = t('cdNoti2', { periodName: agebracket.name });
+            console.log("message2---", message2); 
+            const currNotiId = generatenotiId(localNotifications,allNotis)
+            allNotis.push({'type':'cd','notiid':currNotiId});
+            LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
+          }
+        }
+        if(growthEnabledFlag == true) {
+          const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
+          console.log("isGrowthDataExist else---",isGrowthDataExist);
+          if (!isGrowthDataExist) {
+            const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to });
+            console.log(notificationDate3,"--notificationDate3 else", typeof notificationDate3);
+            if(isFutureDateTime(new Date(notificationDate3))) 
+            {
+              const message3 = t('gwNoti1', { periodName: agebracket.name }); 
+              console.log("message3---", message3);
+              const currNotiId = generatenotiId(localNotifications,allNotis)
+              allNotis.push({'type':'gw','notiid':currNotiId});
+              LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
+            }
+          }
+        }
+      }
+    })
+
+    if(vchcEnabledFlag == true) {
+      let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
+        (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
+      );
+
+      let hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
+      // console.log(vcNotis,"vcNotis and hcNotis---", hcNotis)
+
+      vcNotis.map((vc:any) => {
+        const notificationDate4 = DateTime.fromJSDate(new Date(new Date(vc.notificationDate).setHours(6,0,0,0)))
+        console.log(notificationDate4,"--notificationDate4", typeof notificationDate4);
+        if(isFutureDateTime(new Date(notificationDate4))) 
+        {
+          const message4 = t(vc.title, {
+            childName:
+                child.childName != null &&
+                child.childName != '' &&
+                child.childName != undefined
+                ? child.childName
+                : '', periodName: vc.periodName
+          }) + getVaccinesForPeriod(allVaccineData,vc.growth_period)
+          console.log("message4---", message4);
+          const currNotiId = generatenotiId(localNotifications,allNotis)
+          allNotis.push({'type':'vc','notiid':currNotiId});
+          LocalNotifications.schduleNotification(new Date(notificationDate4),t('remindersAlertTitle'),message4,currNotiId); 
+        }
+      })
+
+      hcNotis.map((hc:any) => {
+        const notificationDate5 = DateTime.fromJSDate(new Date(new Date(hc.notificationDate).setHours(6,0,0,0)))
+        console.log(notificationDate5,"--notificationDate5", typeof notificationDate5);
+        if(isFutureDateTime(new Date(notificationDate5))) 
+        {
+          const message5 = t(hc.title, { periodName: hc.periodName })
+          console.log("message5---", message5);
+          const currNotiId = generatenotiId(localNotifications,allNotis)
+          allNotis.push({'type':'hc','notiid':currNotiId});
+          LocalNotifications.schduleNotification(new Date(notificationDate5),t('remindersAlertTitle'),message5,currNotiId); 
+        }
+      })
+    }
+    // allChildNotis.push({'key':child.uuid,'data' : [...allNotis]}); 
+    // console.log("allChildNotis in----",allChildNotis);
+  // })
+
+    return {'key':child.uuid,'data' : [...allNotis]};
+}
+

@@ -72,7 +72,7 @@ import  {localization}  from '@dynamicImportsClass/dynamicImports';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
-import { setAllNotificationData, toggleNotificationFlags } from '../../redux/reducers/notificationSlice';
+import { setAllLocalNotificationGenerateType, setAllNotificationData, toggleNotificationFlags } from '../../redux/reducers/notificationSlice';
 import { backup } from '../../services/backup';
 import { getAllChildren, isFutureDate, isFutureDateTime } from '../../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
@@ -130,6 +130,8 @@ const SettingScreen = (props: any) => {
   const allDataDownloadFlag = useAppSelector((state: any) =>
   (state.utilsData.allDataDownloadFlag),
 );
+  let localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
+
   // console.log(toggleSwitchVal, "..toggleSwitchVal..");
   const { t, i18n } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
@@ -398,7 +400,7 @@ const SettingScreen = (props: any) => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   // let allnotifications = useAppSelector((state: any) => state.notificationData.notifications);
-  const toggleGrowthFutureNotiData = async () => {
+  const toggleGrowthFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from gwcdnotis where type = 'gw'
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
@@ -434,13 +436,28 @@ const SettingScreen = (props: any) => {
           })
         }
       }
+      localNotifications.map((y:any)=>{
+        // growthEnabledFlag == true checked because state update of growthEnabledFlag istaking time
+        if(growthEnabledFlag == true) {
+          const notiToDelete = y.data.filter((o:any)=>o.type=='gw');
+          notiToDelete.map((n:any)=>{
+            LocalNotifications.cancelReminderLocalNotification(n.notiid);
+          })
+        }
+        // else {
+          if(callCreateLocalNoti == true) {
+            let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+            dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+          }
+        // }
+      })
       // currentChildNotis.gwcdnotis = currentChildNotis.gwcdnotis;
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>toggleGrowthFutureNotiData");
     });
     dispatch(setAllNotificationData(allnotis));
   }
-  const togglecdFutureNotiData = async () => {
+  const togglecdFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from gwcdnotis where type = 'cd'
 
     let childList = await getAllChildren(dispatch, childAge, 1);
@@ -476,12 +493,27 @@ const SettingScreen = (props: any) => {
           })
         }
       }
+      localNotifications.map((y:any)=>{
+        // developmentEnabledFlag == true checked because state update of developmentEnabledFlag istaking time
+        if(developmentEnabledFlag == true) {
+          const notiToDelete = y.data.filter((o:any)=>o.type=='cd');
+          notiToDelete.map((n:any)=>{
+            LocalNotifications.cancelReminderLocalNotification(n.notiid);
+          })
+        }
+        // else {
+          if(callCreateLocalNoti == true) {
+            let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+            dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+          }
+        // }
+      })
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>togglecdFutureNotiData");
     });
     dispatch(setAllNotificationData(allnotis));
   }
-  const toggleVCHCVCRHCRFutureNotiData = async () => {
+  const toggleVCHCVCRHCRFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from reminderNotis,hcnotis,vchcnotis
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
@@ -566,6 +598,21 @@ const SettingScreen = (props: any) => {
             }
           })
         }
+        localNotifications.map((y:any)=>{
+          // vchcEnabledFlag == true checked because state update of vchcEnabledFlag istaking time
+          if(vchcEnabledFlag == true) {
+            const notiToDelete = y.data.filter((o:any)=>o.type=='vc' || o.type=='hc');
+            notiToDelete.map((n:any)=>{
+              LocalNotifications.cancelReminderLocalNotification(n.notiid);
+            })
+          }
+          // else {
+            if(callCreateLocalNoti == true) {
+              let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+              dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+            }
+          // }
+        })
       }
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>toggleVCHCVCRHCRFutureNotiData");
@@ -596,9 +643,11 @@ const SettingScreen = (props: any) => {
       analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
       analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
     }
-    toggleGrowthFutureNotiData();
-    togglecdFutureNotiData();
-    toggleVCHCVCRHCRFutureNotiData();
+    toggleGrowthFutureNotiData(false);
+    togglecdFutureNotiData(false);
+    toggleVCHCVCRHCRFutureNotiData(false);
+    let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
   }
   const toggleDataSaverSwitch = () => {
     dispatch(onNetworkStateChange(!toggleSwitchVal));
@@ -674,7 +723,7 @@ const SettingScreen = (props: any) => {
   const [profileLoading,setProfileLoading] = React.useState(false);
   useEffect(() => {
     const selectedCountry: any = localization.find(
-      (country) => country.countryId === countryId,
+      (country:any) => country.countryId === countryId,
     );
     setCountry(selectedCountry);
     const selectedLanguage: any = selectedCountry.languages.find(
@@ -812,7 +861,7 @@ const SettingScreen = (props: any) => {
                     onPress={() => {
                       let obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
-                      toggleGrowthFutureNotiData();
+                      toggleGrowthFutureNotiData(true);
                       if (vchcEnabledFlag == false && growthEnabledFlag == true && developmentEnabledFlag == false) {
                         setIsEnabled(false);
                       } else {
@@ -862,7 +911,7 @@ const SettingScreen = (props: any) => {
                     onPress={() => {
                       let obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
-                      togglecdFutureNotiData();
+                      togglecdFutureNotiData(true);
                       if (vchcEnabledFlag == false && growthEnabledFlag == false && developmentEnabledFlag == true) {
                         setIsEnabled(false);
                       } else {
@@ -912,7 +961,7 @@ const SettingScreen = (props: any) => {
                     onPress={() => {
                       let obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
-                      toggleVCHCVCRHCRFutureNotiData();
+                      toggleVCHCVCRHCRFutureNotiData(true);
                       if (vchcEnabledFlag == true && growthEnabledFlag == false && developmentEnabledFlag == false) {
                         setIsEnabled(false);
                       } else {
