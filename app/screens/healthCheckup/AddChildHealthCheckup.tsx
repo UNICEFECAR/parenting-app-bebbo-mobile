@@ -82,6 +82,7 @@ import {
   ChildEntitySchema
 } from '../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
+import { setAllLocalNotificationGenerateType } from '../../redux/reducers/notificationSlice';
 import {
   setInitialHeightValues,
   setInitialWeightValues
@@ -480,6 +481,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
+          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
         navigation.goBack();
@@ -510,6 +513,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
           if (createresult?.length > 0) {
             activeChild.measures = createresult;
             dispatch(setActiveChildData(activeChild));
+            let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+            dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           }
           navigation.goBack();
 
@@ -538,6 +543,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
           if (createresult?.length > 0) {
             activeChild.measures = createresult;
             dispatch(setActiveChildData(activeChild));
+            let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+            dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
             if (isMeasured) {
               analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' })
             }

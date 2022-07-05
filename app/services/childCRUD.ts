@@ -11,7 +11,7 @@ import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setActiveChildData, setAllChildData } from '../redux/reducers/childSlice';
-import { setAllNotificationData } from '../redux/reducers/notificationSlice';
+import { setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 import LocalNotifications from './LocalNotifications';
@@ -296,6 +296,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
   }
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
+  console.log("check local notification log1---");
   if(activeset==true){
   return "activeset";
   }
@@ -584,7 +585,7 @@ export const getNotificationDateInString = (t: any, birthDate: string,pluralShow
 };
 export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any, relationship?: any,userRelationToParent?:any) => {
   let oldBirthDate;
-  // console.log(editScreen, "..editScreen..")
+  console.log(editScreen, "..editScreen..",param);
   // console.log(param, "..param..")
   if (editScreen) {
     // console.log("..update child..", data);
@@ -629,6 +630,8 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
     setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
+    let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
   }
   //child add from add sibling
   else if (param == 1) {
@@ -651,6 +654,8 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     // console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..")
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
+    console.log("check local notification log2---",JSON.stringify(data));
+    
     // console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..");
 
     if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate) == false) {
@@ -683,12 +688,26 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
         'uuid ="' + data[0].uuid + '"',
       );
       // console.log(deleteresult, "..deleteresult..")
+      let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
+      if (oldChild?.length > 0) {
+        oldChild = oldChild.map(item => item)[0];
+      }
+      // console.log(JSON.stringify(oldChild),"oldChild---",oldChild);
+      oldChild.reminders.map((x:any) => {
+        let previousDTDefined;
+        const onlyDateDefined = new Date(x.reminderDateDefined);
+        previousDTDefined = onlyDateDefined.setHours(new Date(x.reminderTimeDefined).getHours());
+        previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(x.reminderTimeDefined).getMinutes()));
+        // console.log("editing dtdefined---",previousDTDefined);
+        LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
+      })
+
       let deleteresult1 = await userRealmCommon.deleteNestedReminders<ChildEntity>(
         ChildEntitySchema,
         DateTime.fromJSDate(new Date()).toMillis(),
         'uuid ="' + data[0].uuid + '"',
       );
-      LocalNotifications.cancelAllReminderLocalNotification();
+      // LocalNotifications.cancelAllReminderLocalNotification();
       // console.log(deleteresult, "..deleteresult..")
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       // console.log(ageLimit, "..ageLimit..")
@@ -722,6 +741,8 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       navigation.navigate('ChildProfileScreen');
     }
 
+    let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: data[0].uuid};
+    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
 
     //navigation.navigate('ChildProfileScreen');
   }
@@ -964,6 +985,7 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
   if (createresult == 'success') {
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
+    console.log("check local notification log3---");
     //console.log(index, "..index..");
     if (currentActiveChildId?.length > 0) {
       currentActiveChildId = currentActiveChildId[0].value;
