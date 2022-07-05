@@ -46,6 +46,7 @@ import {
   ShiftFromTopBottom20,
   ShiftFromTop10
 } from '../styles/typography';
+import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
 
@@ -327,6 +328,8 @@ const ChildImportSetup = (props: any) => {
                   });
                   let notiFlagObj = { key: 'generateNotifications', value: true };
                   dispatch(setInfoModalOpened(notiFlagObj));
+                  let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+                  dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
                   await Promise.all(resolvedPromises).then(async item => {
                     if(importResponse.length>0){
                       let childList = await getAllChildren(dispatch, child_age, 1);
