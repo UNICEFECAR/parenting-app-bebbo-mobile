@@ -375,7 +375,7 @@ const Home = ({ route, navigation }: Props) => {
             if(showDownloadPopup && (isVideoArticleUpdateReq == null || isVideoArticleUpdateReq == undefined || isVideoArticleUpdateReq == 'true')) {
               let Entity: any;
               const allVideoArticlesData = await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
-              console.log("allVideoArticlesData---",allVideoArticlesData);
+              // console.log("allVideoArticlesData---",allVideoArticlesData);
             }
             if(showDownloadPopup && (isRelatedVideoArticleUpdateReq == null || isRelatedVideoArticleUpdateReq == undefined || isRelatedVideoArticleUpdateReq == 'true')) {
               let Entity: any;
@@ -385,7 +385,7 @@ const Home = ({ route, navigation }: Props) => {
                 "taxonomyData": activeChild.taxonomyData
               }
               const allRelVideoArticlesData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
-              console.log("allRelVideoArticlesData---",allRelVideoArticlesData);
+              // console.log("allRelVideoArticlesData---",allRelVideoArticlesData);
             }
           }
           
