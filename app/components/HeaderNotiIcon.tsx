@@ -94,7 +94,7 @@ const HeaderNotiIcon = (props: any) => {
               //console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
             } else {
               const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, child, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
-            //  console.log(checkIfNewCalcRequired, "checkIfNewCalcRequired")
+            //  console.log(checkIfNewCalcRequired, "checkIfNewCalcRequired222")
               if (checkIfNewCalcRequired) {
               //  console.log("NEWCALCREQUIRED")
                // console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
@@ -102,7 +102,7 @@ const HeaderNotiIcon = (props: any) => {
                let reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis, vchcEnabledFlag);
                 const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods, growthEnabledFlag, developmentEnabledFlag, vchcEnabledFlag);
 
-                //console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
+                // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
 
                 ////  append new notifications for child 
                 let allgwcdnotis: any = [];
@@ -318,18 +318,30 @@ const HeaderNotiIcon = (props: any) => {
               // else {
                 // create new one and add in existing array
                 const newchild = childList.find((z:any)=>z.uuid == localNotificationGenerateType.childuuid);
-                const newchildnoti = await createAllLocalNotificatoins(newchild, childAge, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, t, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData, allVaccineData,localNotifications);
-                // console.log("newchildnoti2---",newchildnoti);
-                localNotifications.map((y:any)=>{
-                  if(y.key != localNotificationGenerateType.childuuid) {
-                    allChildNotis.push(y);
-                  }
-                })
-                allChildNotis.push(newchildnoti);
-                // console.log("in headernoti allChildNotis 2nd else---",allChildNotis);
-                dispatch(setAllLocalNotificationData(allChildNotis));
-                let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
-                dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+                console.log("newchild in edit--",newchild);
+                if(newchild && newchild != {}) {
+                  const newchildnoti = await createAllLocalNotificatoins(newchild, childAge, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, t, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData, allVaccineData,localNotifications);
+                  // console.log("newchildnoti2---",newchildnoti);
+                  localNotifications.map((y:any)=>{
+                    if(y.key != localNotificationGenerateType.childuuid) {
+                      allChildNotis.push(y);
+                    }
+                  })
+                  allChildNotis.push(newchildnoti);
+                  // console.log("in headernoti allChildNotis 2nd else---",allChildNotis);
+                  dispatch(setAllLocalNotificationData(allChildNotis));
+                  let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+                  dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+                }else {
+                  localNotifications.map((y:any)=>{
+                    if(y.key != localNotificationGenerateType.childuuid) {
+                      allChildNotis.push(y);
+                    }
+                  });
+                  dispatch(setAllLocalNotificationData(allChildNotis));
+                  let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+                  dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+                }
               // }
             }
             LocalNotifications.getAllScheduledLocalNotifications();
