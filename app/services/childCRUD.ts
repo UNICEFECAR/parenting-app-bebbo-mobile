@@ -481,16 +481,16 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
   // console.log(birthDate,"..birthDate..")
   //const date1 = DateTime.fromISO(DateTime.local().toISODate());
   const date1 = DateTime.local();
-  console.log(date1,"..date1");
+  // console.log(date1,"..date1");
   // const date2 = DateTime.fromISO(birthDate);
   let dateData=new Date(birthDate).toISOString().split('T')[0];
-  console.log(dateData,"..dateData")
+  // console.log(dateData,"..dateData")
   const date2 = DateTime.fromISO(dateData);
-  console.log(date2);
+  // console.log(date2);
   const diff: any = date1.diff(date2, ["years", "months", "days"]);
-  console.log(diff.toObject(),"..diffobject");
+  // console.log(diff.toObject(),"..diffobject");
   var ageStr = "";
-  console.log(diff.years,diff.months,diff.days);
+  // console.log(diff.years,diff.months,diff.days);
   if (diff.years < 0 && diff.months < 0 && (diff.days) < 0) {
     ageStr = t('noBorn');
   } else {
@@ -979,12 +979,29 @@ export const getAllChildren = async (dispatch: any, child_age: any, param: any) 
 
 export const deleteChild = async (languageCode: any, index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, child_age: any, t: any) => {
   //setActiveChild(data.uuid,dispatch,child_age);
+  // console.log(recordId,"delete child filterCondition---",filterCondition);
   let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+  let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterCondition);
+      if (oldChild?.length > 0) {
+        oldChild = oldChild.map(item => item)[0];
+      }
+      // console.log(JSON.stringify(oldChild),"oldChild---",oldChild);
+      oldChild.reminders.map((x:any) => {
+        let previousDTDefined;
+        const onlyDateDefined = new Date(x.reminderDateDefined);
+        previousDTDefined = onlyDateDefined.setHours(new Date(x.reminderTimeDefined).getHours());
+        previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(x.reminderTimeDefined).getMinutes()));
+        // console.log("editing dtdefined---",previousDTDefined);
+        LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
+      })
   let createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
   //console.log(createresult,"..createresult..");
   if (createresult == 'success') {
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
+    
+    let localnotiFlagObj = { generateFlag: true,generateType: 'delete',childuuid: recordId};
+    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     console.log("check local notification log3---");
     //console.log(index, "..index..");
     if (currentActiveChildId?.length > 0) {
