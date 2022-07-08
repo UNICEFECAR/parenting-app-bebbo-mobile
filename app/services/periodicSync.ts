@@ -33,7 +33,7 @@ export const getAllPeriodicSyncData = () => {
     const incrementalSyncDT = useAppSelector((state: any) =>
       (state.utilsData.incrementalSyncDT),
     );
-    console.log("buffer age bracket value is---",bufferAgeBracket);
+    // console.log("buffer age bracket value is---",bufferAgeBracket);
     const apiJsonDataFirstSync = [
         {
           apiEndpoint: appConfig.taxonomies,

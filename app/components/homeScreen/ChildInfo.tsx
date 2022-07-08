@@ -43,7 +43,7 @@ const userRelationToParent =
     allConfigData?.length > 0
       ? allConfigData.filter((item) => item.key === 'userRelationToParent')
       : [];
-      console.log("userRelationToParent----",userRelationToParent);
+      // console.log("userRelationToParent----",userRelationToParent);
 const activeChildGender = activeChild.gender;
 const ChildDevData = useAppSelector(
   (state: any) =>
@@ -85,7 +85,7 @@ const showAndParentText = () => {
     return true
   }
 }
-console.log("showAndParentText---",showAndParentText());
+// console.log("showAndParentText---",showAndParentText());
 const goToVideoArticleDetails = () => {
   navigation.navigate('DetailsScreen', {
     fromScreen: 'Home',
