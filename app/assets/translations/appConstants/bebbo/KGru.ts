@@ -354,10 +354,10 @@ const KGru = {
                 SyncOnLoadPopupText: "Вы хотите синхронизировать данные сейчас?",
                 SyncOnLoadCancelPopUpBtn: "Отмена",
                 SyncOnLoadRetryBtn: "Синхронизировать",
-                cdNoti1: "Следите за развитием вашего ребенка в течение периода {{periodName}}",
-                cdNoti2: "Узнайте, каких этапов развития достиг ваш ребенок за период {{periodName}}",
-                gwNoti1: "Обновление показателей роста за период {{periodName}}",
-                hcNoti1: "Запланируйте визит к врачу в период {{periodName}}",
+                cdNoti1: "{{childName}} вступает в {{periodName}} - отслеживайте развитие вашего ребенка",
+                cdNoti2: "Проверьте, какие этапы развития пройдены {{childName}} в период {{periodName}}",
+                gwNoti1: "{{childName}} растет - обновите показатели роста",
+                hcNoti1: "В этот период, {{periodName}}, {{childName}} необходимо пройти медосмотр. Запланируйте визит к врачу",
                 vcNoti1: "В период {{periodName}} {{childName}} получит вакцину:",
                 alertForExistingMeasuresTitle: "Данные измерения уже доступны для этой даты, пожалуйста выберите другую дату",
                 alertForNoTakenVaccinesSelectTitle: "Пожалуйста, выберите вакцину(ы)",
@@ -447,6 +447,7 @@ const KGru = {
 
                 //24 May
                 relatedVideoArticle: "Видео по теме",
+                upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
         }
 }
 export default KGru;

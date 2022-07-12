@@ -444,13 +444,14 @@ const SettingScreen = (props: any) => {
             LocalNotifications.cancelReminderLocalNotification(n.notiid);
           })
         }
+      })
+
         // else {
           if(callCreateLocalNoti == true) {
             let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
             dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           }
         // }
-      })
       // currentChildNotis.gwcdnotis = currentChildNotis.gwcdnotis;
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>toggleGrowthFutureNotiData");
@@ -501,13 +502,14 @@ const SettingScreen = (props: any) => {
             LocalNotifications.cancelReminderLocalNotification(n.notiid);
           })
         }
+      })
+
         // else {
           if(callCreateLocalNoti == true) {
             let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
             dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           }
         // }
-      })
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>togglecdFutureNotiData");
     });
@@ -606,13 +608,14 @@ const SettingScreen = (props: any) => {
               LocalNotifications.cancelReminderLocalNotification(n.notiid);
             })
           }
+        })
+
           // else {
             if(callCreateLocalNoti == true) {
               let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
               dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
             }
           // }
-        })
       }
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>toggleVCHCVCRHCRFutureNotiData");

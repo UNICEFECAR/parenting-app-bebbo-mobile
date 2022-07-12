@@ -355,10 +355,14 @@ const en = {
                 SyncOnLoadPopupText: "Do you wish to sync data now?",
                 SyncOnLoadCancelPopUpBtn: "Cancel",
                 SyncOnLoadRetryBtn: "Sync",
-                cdNoti1: "Track development of your child within the period of  {{periodName}}",
-                cdNoti2: "Check which milestones your child has reached within the period of - {{periodName}}",
-                gwNoti1: "Update growth measurements for the period of  {{periodName}}",
-                hcNoti1: "Schedule a visit to the doctor for the period: {{periodName}}",
+                cdNoti1: "{{childName}} has entered period of {{periodName}} - track your child's development",
+                cdNoti2: "Check what milestones {{childName}} has reached in the period of {{periodName}}",
+                gwNoti1: "{{childName}} is growing - update growth measures",
+                hcNoti1: "In this period, {{periodName}}, {{childName}} should have a health check up. Schedule a visit to the doctor",
+                // cdNoti1: "Track development of your child within the period of  {{periodName}}",
+                // cdNoti2: "Check which milestones your child has reached within the period of - {{periodName}}",
+                // gwNoti1: "Update growth measurements for the period of  {{periodName}}",
+                // hcNoti1: "Schedule a visit to the doctor for the period: {{periodName}}",
                 vcNoti1: "In the period, {{periodName}}, {{childName}} should receive vaccine:  ",
                 alertForExistingMeasuresTitle: "Measure data is already available for this date, please select another date",
                 alertForNoTakenVaccinesSelectTitle: "Please select vaccine(s)",
@@ -450,6 +454,7 @@ const en = {
 
                 //24 May
                 relatedVideoArticle: "Related videos",
+                upto6YearsMsg: "This app is designed for children up to 6 years of age",
 
         }
 }

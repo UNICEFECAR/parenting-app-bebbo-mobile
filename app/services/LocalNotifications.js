@@ -6,7 +6,7 @@ class LocalNotifications {
     PushNotification.configure({
       // (optional) Called when Token is generated (iOS and Android)
       onRegister: function (token) {
-        // console.log('TOKEN:', token);
+        console.log('TOKEN---:', token);
       },
       onNotification: function (notification) {
         //Alert.alert('NOTIFICATION:', 'NOTIFICATION Recieved:');
@@ -40,7 +40,7 @@ class LocalNotifications {
 
   schduleNotification(date,title,message,notiId) {
     let notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
-    console.log(notiId,"--notiId--",notificationid);
+    // console.log(notiId,"--notiId--",notificationid);
     PushNotification.localNotificationSchedule({
       channelId: 'reminders',
       id:notificationid,
@@ -61,7 +61,12 @@ class LocalNotifications {
   }
   getAllScheduledLocalNotifications() {
     PushNotification.getScheduledLocalNotifications((v)=> {
-      console.log("PushNotification.getScheduledLocalNotifications---",v);
+      console.log(v.length,"PushNotification.getScheduledLocalNotifications length---");
+    })
+  }
+  getDeliveredNotifications() {
+    PushNotification.getDeliveredNotifications((noti) => {
+      console.log('DELIVERED NOTIFICATION',noti.length);
     })
   }
 }

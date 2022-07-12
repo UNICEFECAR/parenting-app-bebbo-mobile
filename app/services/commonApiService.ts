@@ -20,7 +20,7 @@ import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setchatBotData, setDownloadedBufferAgeBracket } from '../redux/reducers/childSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
-import { setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
+import { setAllLocalNotificationData, setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 import LocalNotifications from './LocalNotifications';
@@ -437,6 +437,15 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setShowedDailyDataCategory({}));
     dispatch(setAllNotificationData([]));
     dispatch(setchatBotData([]));
+    const storedata = store.getState();
+    const localNotifications = storedata.notificationData.localNotifications;
+    console.log("clear all localNotification");
+    localNotifications.map((y:any)=>{
+        y.data.map((n:any)=>{
+          LocalNotifications.cancelReminderLocalNotification(n.notiid);
+        })
+    })
+    dispatch(setAllLocalNotificationData([]));
     dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: false}));
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));

@@ -291,6 +291,8 @@ export const measurementPlaces = (items:any)=>{
 export const maxCharForRemarks = 200;
 export const threeeMonthDays = 90;
 export const twoMonthDays = 60;
+export const oneMonthDays = 30;
+export const afterDays = 6;
 export const beforeDays = 5;
 export const maxPeriodDays = 2920;
 export const maxWeight = 28;
