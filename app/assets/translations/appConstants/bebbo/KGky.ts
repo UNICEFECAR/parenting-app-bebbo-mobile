@@ -354,10 +354,10 @@ const KGky = {
                 SyncOnLoadPopupText: "Дайындарды азыр шайкештештиргиңиз келеби?",
                 SyncOnLoadCancelPopUpBtn: "Жокко чыгаруу",
                 SyncOnLoadRetryBtn: "Шайкештештирүү",
-                cdNoti1: "Балаңыздын {{periodName}} аралыгында өнүгүүсүнө көз салыңыз",
-                cdNoti2: "{{periodName}} мезгил аралыгында балаңыз кандай өнүгүү этаптарына жеткенин билип алыңыз",
-                gwNoti1: "{{periodName}} мезгилинде өсүү көрсөткүчтөрүн жаңыртуу",
-                hcNoti1: "{{periodName}} мезгилинде дарыгерге жазылыңызууну пландаңыз",
+                cdNoti1: "Балаңыздын өнүгүүсүн байкаңыз, себеби {{childName}} {{periodName}} кирүүдө. ",
+                cdNoti2: "{{childName}} {{periodName}} аралыгында өнүгүүнүн кайсы этаптарынан өткөндүгүн текшериңиз",
+                gwNoti1: "{{childName}} өсүп жатат-өсүү көрсөткүчтөрүн жаңыртыңыз",
+                hcNoti1: "Бул мезгилде {{periodName}}, {{childName}} медициналык кароодон өтүү керек. Дарыгерге барууну пландаштырыңыз",
                 vcNoti1: "{{periodName}} мезгилинде {{childName}} төмөнкү вакцина алышы керек:",
                 alertForExistingMeasuresTitle: "Бул датага карата өлчөө дайындары мурунтан эле бар, башка күндү тандаңыз",
                 alertForNoTakenVaccinesSelectTitle: "Вакцинаны тандаңыз",
@@ -447,6 +447,7 @@ const KGky = {
 
                 //24 May
                 relatedVideoArticle: "Байланыштуу видео",
+                upto6YearsMsg: "Бул колдонмо 6 жашка чейинки балдарга арналган",
         }
 }
 export default KGky;

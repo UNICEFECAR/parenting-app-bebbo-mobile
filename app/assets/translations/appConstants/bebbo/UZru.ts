@@ -354,10 +354,10 @@ const UZru = {
                 SyncOnLoadPopupText: "Вы хотите синхронизировать данные сейчас?",
                 SyncOnLoadCancelPopUpBtn: "Отмена",
                 SyncOnLoadRetryBtn: "Синхронизировать",
-                cdNoti1: "Следите за развитием вашего ребенка в период {{periodName}}",
-                cdNoti2: "Узнайте, каких этапов достиг ваш ребенок за период - {{periodName}}",
-                gwNoti1: "Обновите показатели роста за период - {{periodName}}",
-                hcNoti1: "Назначьте визит к врачу на период: {{periodName}}",
+                cdNoti1: "{{childName}} вступает в {{periodName}} - отслеживайте развитие вашего ребенка",
+                cdNoti2: "Проверьте, какие этапы развития пройдены {{childName}} в период {{periodName}}",
+                gwNoti1: "{{childName}} растет - обновите данные о результатах измерений",
+                hcNoti1: "В этот период, {{periodName}}, {{childName}} необходимо пройти медосмотр. Запланируйте визит к врачу",
                 vcNoti1: "{{periodName}}, {{childName}} получит вакцину:",
                 alertForExistingMeasuresTitle: "Данные измерения уже доступны для этой даты, пожалуйста выберите другую дату",
                 alertForNoTakenVaccinesSelectTitle: "Пожалуйста, выберите вакцину(ны)",
@@ -448,6 +448,7 @@ const UZru = {
 
                 //24 May
                 relatedVideoArticle: "Похожие видео",
+                upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
         }
 }
 export default UZru;

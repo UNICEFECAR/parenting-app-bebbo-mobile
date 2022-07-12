@@ -355,10 +355,10 @@ const XKsq = {
                 SyncOnLoadPopupText: "A dëshironi t'i sinkronizoni të dhënat tani?",
                 SyncOnLoadCancelPopUpBtn: "Anulo",
                 SyncOnLoadRetryBtn: "Sinkronizo",
-                cdNoti1: "Gjurmo zhvillimin e fëmijës tënd - {{periodName}}",
-                cdNoti2: "Kontrollo cilat faza i ka arritur fëmija juaj për periudhën - {{periodName}}",
-                gwNoti1: "Përditëso matjet e rritjes për periudhën  {{periodName}}",
-                hcNoti1: "Cakto vizitë tek mjeku për periudhën: {{periodName}}",
+                cdNoti1: "{{childName}} ka hyrë në moshën e {{periodName}} - përcjellni zhvillimin e fëmijës tuaj",
+                cdNoti2: "Kontrolloni çfarë arritje  {{childName}} ka bërë fëmija në moshën e {{periodName}}",
+                gwNoti1: "{{childName}} po rritet - përditësoni të dhënat e rritjes",
+                hcNoti1: "Në këtë moshë, {{periodName}}, {{childName}} duhet të shkojë në kontroll shëndetësor. Caktoni një vizitë tek mjeku",
                 vcNoti1: "Në këtë periudhë, {{periodName}}, {{childName}} duhet ta marrë vaksinën: ",
                 alertForExistingMeasuresTitle: "Të dhënat e matjes tashmë janë në dispozicion për këtë datë, ju lutem përzgjedhni një datë tjetër",
                 alertForNoTakenVaccinesSelectTitle: "Ju lutem përzgjedhni vaksinën (at)",
@@ -446,6 +446,7 @@ const XKsq = {
 
                 //24 May
                 relatedVideoArticle: "Video të ngjashme",
+                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
         }
 }
 export default XKsq;
