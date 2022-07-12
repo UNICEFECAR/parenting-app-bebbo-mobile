@@ -354,10 +354,10 @@ const ALsq = {
               SyncOnLoadPopupText: "Dëshironi që të sinkronizoni/përditësoni të dhënat tani?",
               SyncOnLoadCancelPopUpBtn: "Anulo",
               SyncOnLoadRetryBtn: "Sinkronizo",
-              cdNoti1: "Ndiqni zhvillimin e fëmijës tuaj brenda periudhës së {{periodName}}",
-              cdNoti2: "Kontrolloni se cilët gurë kilometrik zhvillimor ka arritur fëmija juaj brenda periudhës - {{periodName}}",
-              gwNoti1: "Përditëso matjet e rritjes për periudhën e {{periodName}}",
-              hcNoti1: "Programoni një vizitë te mjeku për periudhën: {{periodName}}",
+              cdNoti1: "{{childName}} ka hyrë në periudhën e {{periodName}} - gjurmoni zhvillimin e fëmijës tuaj",
+              cdNoti2: "Kontrolloni se cilat piketa zhvillimore ka arritur {{childName}} në periudhën e {{periodName}}",
+              gwNoti1: "{{childName}} po rritet - përditëso masat e rritjes",
+              hcNoti1: "Në këtë periudhë, {{periodName}}, {{childName}} duhet të bëjë një kontroll shëndetësor. Programoni një vizitë te mjeku.",
               vcNoti1: "Në periudhën, {{periodName}}, {{childName}} duhet të marrë vaksinë:",
               alertForExistingMeasuresTitle: "Të dhënat e matjes janë tashmë të disponueshme për këtë datë, ju lutemi zgjidhni një datë tjetër",
               alertForNoTakenVaccinesSelectTitle: "Ju lutemi zgjidhni vaksinën (et).",
@@ -447,7 +447,7 @@ const ALsq = {
        
               //24 May
               relatedVideoArticle: "Video të ngjashme",
-
+              upto6YearsMsg: "Ky aplikacion është krijuar për fëmijët deri në moshën 6 vjeç.",
 
        }
 }

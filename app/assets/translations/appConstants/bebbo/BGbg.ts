@@ -354,10 +354,10 @@ const BGbg = {
                 SyncOnLoadPopupText: "Искате ли да синхронизирате данните сега?",
                 SyncOnLoadCancelPopUpBtn: "Отмяна",
                 SyncOnLoadRetryBtn: "Синхронизиране",
-                cdNoti1: "Проследете развитието на вашето дете в периода {{periodName}}",
-                cdNoti2: "Проверете постиженията на вашето дете през периода {{periodName}}",
-                gwNoti1: "Актуализирайте измервания на растежа през периода {{periodName}}",
-                hcNoti1: "Планирайте посещение при лекар за периода {{periodName}}",
+                cdNoti1: "{{childName}} е навлязъл/а в {{periodName}} - проследете развитието на Вашето дете",
+                cdNoti2: "Проверете постиженията на {{childName}} за възрастта {{periodName}}",
+                gwNoti1: "{{childName}} расте - актуализирайте данните за ръст и тегло",
+                hcNoti1: "През възрастта {{periodName}}, {{childName}} трябва да отиде на профилактичен преглед. Запишете си час при Вашия лекар.",
                 vcNoti1: "През периода {{periodName}}, {{childName}} трябва да получи ваксина:  ",
                 alertForExistingMeasuresTitle: "Данните за измерването вече са налични за тази дата, моля изберете друга дата",
                 alertForNoTakenVaccinesSelectTitle: "Моля изберете ваксина/и",
@@ -447,6 +447,7 @@ const BGbg = {
 
                 //24 May
                 relatedVideoArticle: "Свързани видеа",
+                upto6YearsMsg: "Това приложение е предназначено за деца на възраст до 6 години."
 
         }
 }
