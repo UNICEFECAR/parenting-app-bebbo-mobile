@@ -354,10 +354,10 @@ const XKrs = {
               SyncOnLoadPopupText: "Da li želite da sinhronizujete podatke sada?",
               SyncOnLoadCancelPopUpBtn: "Otkažite",
               SyncOnLoadRetryBtn: "Sinhronizujte",
-              cdNoti1: "Pratite razvoj vašeg deteta u periodu  {{periodName}}",
-              cdNoti2: "Proverite koje je razvojne prekretnice vaše dete dostiglo u periodu - {{periodName}}",
-              gwNoti1: "Osvežite mere rasta za period {{periodName}}",
-              hcNoti1: "Zakažite preventivni pedijatrijski pregled za period: {{periodName}}",
+              cdNoti1: "{{childName}} je u razvojnom periodu {{periodName}} - pratite razvoj vašeg deteta",
+              cdNoti2: "Proverite koje razvojne prekretnice je {{childnName}} ostvario/la u periodu {{periodName}}",
+              gwNoti1: "{{childName}} raste - osvežite mere rasta vašeg deteta",
+              hcNoti1: "U periodu {{periodName}}, {{childName}} treba da obavi preventivni pedijatrijski pregled. Zakažite posetu izabranom pedijatru",
               vcNoti1: "U ovom periodu, {{periodName}}, {{childName}} treba da primi vakcinu(e):  ",
               alertForExistingMeasuresTitle: "Mere sa ovim datumom su već unete, izaberite drugi datum",
               alertForNoTakenVaccinesSelectTitle: "Molimo vas izaberite vakcinu(e)",
@@ -445,6 +445,7 @@ const XKrs = {
 
               //24 May
               relatedVideoArticle: "Povezani videi",
+              upto6YearsMsg: "Ova aplikacija je namenjena deci uzrasta do 6 godina",
        }
 }
 export default XKrs;

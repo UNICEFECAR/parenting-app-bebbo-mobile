@@ -344,7 +344,7 @@ const HeaderNotiIcon = (props: any) => {
                 }
               // }
             }
-            LocalNotifications.getAllScheduledLocalNotifications();
+            // LocalNotifications.getAllScheduledLocalNotifications();
           }
           //make flag false at the end
       }     
@@ -352,6 +352,8 @@ const HeaderNotiIcon = (props: any) => {
     fetchData()	
   }, [localNotificationGenerateType]);
   useEffect(() => {
+    LocalNotifications.getAllScheduledLocalNotifications();
+    LocalNotifications.getDeliveredNotifications();
       const fetchData = async () => {
         const filterQuery = 'uuid == "'+activeChild.uuid+'"';
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
