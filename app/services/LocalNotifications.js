@@ -10,8 +10,7 @@ class LocalNotifications {
       },
       onNotification: function (notification) {
         //Alert.alert('NOTIFICATION:', 'NOTIFICATION Recieved:');
-       // DeviceEventEmitter.emit('eventKey', {name:'John', age:23});
-
+      
        // notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
       popInitialNotification: true,
@@ -23,7 +22,6 @@ class LocalNotifications {
         sound: false,
       },
     });
-
     PushNotification.createChannel(
       {
         channelId: 'reminders', // (required)
@@ -45,6 +43,7 @@ class LocalNotifications {
       channelId: 'reminders',
       id:notificationid,
       title: title,
+      userInfo: { screen: "HealthCheckupsTab" },
       message: message,
       date,
       number: 1
