@@ -734,10 +734,15 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
             if(isFutureDateTime(new Date(notificationDate))) 
             {
-              const message = t('cdNoti1', { periodName: agebracket.name }); 
+              const message = t('cdNoti1', { childName:
+                child.childName != null &&
+                child.childName != '' &&
+                child.childName != undefined
+                ? child.childName
+                : '', periodName: agebracket.name }); 
               const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'cd','notiid':currNotiId});
-              LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
+              // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
             }
           }
           const diff = Math.round((agebracket.days_to - agebracket.days_from) / twoMonthDays);
@@ -746,10 +751,15 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
               const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays, });
               if(isFutureDateTime(new Date(notificationDate2))) 
               {
-                const message2 = t('cdNoti2', { periodName: agebracket.name });
+                const message2 = t('cdNoti2', { childName:
+                  child.childName != null &&
+                  child.childName != '' &&
+                  child.childName != undefined
+                  ? child.childName
+                  : '', periodName: agebracket.name });
                 const currNotiId = generatenotiId(localNotifications,allNotis)
-                allNotis.push({'type':'cd','notiid':currNotiId});
-                LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
+                allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
+                // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
               }
             }
             //notification for growth
@@ -759,10 +769,15 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                 const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays });
                 if(isFutureDateTime(new Date(notificationDate3))) 
                 {
-                  const message3 = t('gwNoti1', { periodName: agebracket.name }); 
+                  const message3 = t('gwNoti1', { childName:
+                    child.childName != null &&
+                    child.childName != '' &&
+                    child.childName != undefined
+                    ? child.childName
+                    : '', periodName: agebracket.name }); 
                   const currNotiId = generatenotiId(localNotifications,allNotis)
-                  allNotis.push({'type':'gw','notiid':currNotiId});
-                  LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
+                  allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
+                  // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
                 }
               }
             }
@@ -774,10 +789,15 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
           if(isFutureDateTime(new Date(notificationDate))) 
           {
-            const message = t('cdNoti1', { periodName: agebracket.name }); 
+            const message = t('cdNoti1', { childName:
+              child.childName != null &&
+              child.childName != '' &&
+              child.childName != undefined
+              ? child.childName
+              : '', periodName: agebracket.name }); 
             const currNotiId = generatenotiId(localNotifications,allNotis)
-            allNotis.push({'type':'cd','notiid':currNotiId});
-            LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
+            allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
+            // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
           }
         }
         const diff = Math.round((agebracket.days_to - agebracket.days_from) / oneMonthDays);
@@ -786,10 +806,15 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to : agebracket.days_from + (i * oneMonthDays) + oneMonthDays, });
             if(isFutureDateTime(new Date(notificationDate2))) 
             {
-              const message2 = t('cdNoti2', { periodName: agebracket.name });
+              const message2 = t('cdNoti2', { childName:
+                child.childName != null &&
+                child.childName != '' &&
+                child.childName != undefined
+                ? child.childName
+                : '', periodName: agebracket.name });
               const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'cd','notiid':currNotiId});
-              LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
+              // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
             }
           }
           //notification for growth
@@ -799,10 +824,15 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
               const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to : agebracket.days_from + (i * oneMonthDays) + oneMonthDays });
               if(isFutureDateTime(new Date(notificationDate3))) 
               {
-                const message3 = t('gwNoti1', { periodName: agebracket.name }); 
+                const message3 = t('gwNoti1', { childName:
+                  child.childName != null &&
+                  child.childName != '' &&
+                  child.childName != undefined
+                  ? child.childName
+                  : '', periodName: agebracket.name }); 
                 const currNotiId = generatenotiId(localNotifications,allNotis)
-                allNotis.push({'type':'gw','notiid':currNotiId});
-                LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
+                allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
+                // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
               }
             }
           }
@@ -814,18 +844,28 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
           if(isFutureDateTime(new Date(notificationDate))) 
           {
-            const message = t('cdNoti1', { periodName: agebracket.name }); 
+            const message = t('cdNoti1', { childName:
+              child.childName != null &&
+              child.childName != '' &&
+              child.childName != undefined
+              ? child.childName
+              : '', periodName: agebracket.name }); 
             const currNotiId = generatenotiId(localNotifications,allNotis)
-            allNotis.push({'type':'cd','notiid':currNotiId});
-            LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
+            allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
+            // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
           }
           const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_to - beforeDays});
           if(isFutureDateTime(new Date(notificationDate2))) 
           {
-            const message2 = t('cdNoti2', { periodName: agebracket.name });
+            const message2 = t('cdNoti2', { childName:
+              child.childName != null &&
+              child.childName != '' &&
+              child.childName != undefined
+              ? child.childName
+              : '', periodName: agebracket.name });
             const currNotiId = generatenotiId(localNotifications,allNotis)
-            allNotis.push({'type':'cd','notiid':currNotiId});
-            LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
+            allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
+            // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
           }
         }
         if(growthEnabledFlag == true) {
@@ -834,10 +874,15 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to });
             if(isFutureDateTime(new Date(notificationDate3))) 
             {
-              const message3 = t('gwNoti1', { periodName: agebracket.name }); 
+              const message3 = t('gwNoti1', { childName:
+                child.childName != null &&
+                child.childName != '' &&
+                child.childName != undefined
+                ? child.childName
+                : '', periodName: agebracket.name }); 
               const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'gw','notiid':currNotiId});
-              LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
+              allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
+              // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
             }
           }
         }
@@ -864,8 +909,8 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                 : '', periodName: vc.periodName
           }) + getVaccinesForPeriod(allVaccineData,vc.growth_period)
           const currNotiId = generatenotiId(localNotifications,allNotis)
-          allNotis.push({'type':'vc','notiid':currNotiId});
-          LocalNotifications.schduleNotification(new Date(notificationDate4),t('remindersAlertTitle'),message4,currNotiId); 
+          allNotis.push({'type':'vc','notiid':currNotiId,'notiDate':notificationDate4,'notiMsg':message4});
+          // LocalNotifications.schduleNotification(new Date(notificationDate4),t('remindersAlertTitle'),message4,currNotiId); 
         }
       })
 
@@ -873,10 +918,15 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
         const notificationDate5 = DateTime.fromJSDate(new Date(new Date(hc.notificationDate).setHours(6,0,0,0)))
         if(isFutureDateTime(new Date(notificationDate5))) 
         {
-          const message5 = t(hc.title, { periodName: hc.periodName })
+          const message5 = t(hc.title, { childName:
+            child.childName != null &&
+            child.childName != '' &&
+            child.childName != undefined
+            ? child.childName
+            : '', periodName: hc.periodName })
           const currNotiId = generatenotiId(localNotifications,allNotis)
-          allNotis.push({'type':'hc','notiid':currNotiId});
-          LocalNotifications.schduleNotification(new Date(notificationDate5),t('remindersAlertTitle'),message5,currNotiId); 
+          allNotis.push({'type':'hc','notiid':currNotiId,'notiDate':notificationDate5,'notiMsg':message5});
+          // LocalNotifications.schduleNotification(new Date(notificationDate5),t('remindersAlertTitle'),message5,currNotiId); 
         }
       })
     }

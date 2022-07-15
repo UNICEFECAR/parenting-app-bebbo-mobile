@@ -31,13 +31,15 @@ const migrationsnotification = {
       return {      
         ...state,      
         localNotifications: [],
+        scheduledlocalNotifications: [],
         localNotificationGenerateType: {
           generateFlag: true,
           generateType: 'add',
           childuuid: 'all'
         }
       }  
-  }
+  },
+
 }
 const migrationsutils = {  
   0: (state: any) => {    
