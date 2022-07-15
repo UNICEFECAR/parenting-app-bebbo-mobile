@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { setFavouriteAdvices, setFavouriteGames } from '../redux/reducers/childSlice';
-import { setAllLocalNotificationData, setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
+import { setAllLocalNotificationData, setAllLocalNotificationGenerateType, setAllNotificationData, setAllScheduledLocalNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getAllChildren, isFutureDate, isFutureDateTime } from '../services/childCRUD';
 import LocalNotifications from '../services/LocalNotifications';
@@ -23,6 +23,7 @@ const HeaderNotiIcon = (props: any) => {
   const isVisibleIcon = props.isVisibleIcon;
   let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
   let localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
+  let scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
   let localNotificationGenerateType = useAppSelector((state: any) => state.notificationData.localNotificationGenerateType);
 
   const activeChild = useAppSelector((state: any) =>
@@ -281,7 +282,13 @@ const HeaderNotiIcon = (props: any) => {
   useEffect(() => {	
     const fetchData = async () => {
       // console.log("--localNotificationGenerateType change4",localNotificationGenerateType);
+      let currscheduledlocalNotifications = [...scheduledlocalNotifications];
       if(localNotificationGenerateType.generateFlag == true) {
+        if(localNotificationGenerateType.generateType == 'onAppStart') {
+           dispatch(setAllLocalNotificationData(localNotifications));
+              let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+              dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+        }else {
           // console.log(developmentEnabledFlag,"flag1--",growthEnabledFlag, "flag2--" ,vchcEnabledFlag);
           // console.log(JSON.stringify(localNotifications),"--localNotifications change4");
 
@@ -312,7 +319,12 @@ const HeaderNotiIcon = (props: any) => {
                 // create new ones and add in existing array
                 currchildnoti.data.map((n:any)=>{
                   // console.log("n.notiid---",n.notiid);
-                  LocalNotifications.cancelReminderLocalNotification(n.notiid);
+                  if((currscheduledlocalNotifications.findIndex((m:any)=> m.notiid == n.notiid)) > -1)
+                  {
+                    LocalNotifications.cancelReminderLocalNotification(n.notiid);
+                    currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m:any)=> m.notiid != n.notiid);
+                    console.log("removed noti---",currscheduledlocalNotifications);
+                  }
                 })
               }
               // else {
@@ -342,15 +354,57 @@ const HeaderNotiIcon = (props: any) => {
                   let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
                   dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
                 }
+                dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
               // }
             }
             // LocalNotifications.getAllScheduledLocalNotifications();
           }
           //make flag false at the end
+        }
       }     
     }	
     fetchData()	
   }, [localNotificationGenerateType]);
+
+  
+  useEffect(() => {
+    // const allNotiDates = findAllByKey(localNotifications,'notiDate');
+    console.log("localNotifications val changed2",localNotifications);
+    const fetchData2 = async () => {
+      let allnotiobj: any[]=[];
+      let currschedulednotiobj: any[]=[];
+      localNotifications.map((x:any)=>{
+        x.data.map((y:any) => {
+          allnotiobj.push(y)
+        })
+      });
+      console.log(allnotiobj)
+      const sortedallnotiobj:any =  allnotiobj.sort((a:any, b:any) => new Date(a.notiDate) - new Date(b.notiDate),);
+
+      // if(scheduledlocalNotifications && scheduledlocalNotifications.length > 0) {
+        let filteredschedulednoti =  scheduledlocalNotifications.filter((x:any)=>isFutureDateTime(new Date(x.notiDate)) == true);
+        sortedallnotiobj.map((x:any) => {
+          if(filteredschedulednoti && filteredschedulednoti.length < 6) {
+            if(isFutureDateTime(new Date(x.notiDate))) {
+              if((scheduledlocalNotifications.findIndex((y:any)=>y.notiDate == x.notiDate)) == -1) {
+                filteredschedulednoti.push({"notiid":x.notiid,"notiDate":x.notiDate});
+                LocalNotifications.schduleNotification(new Date(x.notiDate),t('remindersAlertTitle'),x.notiMsg,x.notiid,x.type);
+              }
+            }
+          }else {
+            return;
+          }
+        })
+        dispatch(setAllScheduledLocalNotificationData(filteredschedulednoti));
+        // if(isFutureDateTime(new Date(notificationDate)))
+      // }
+
+      // currschedulednotiobj = sortedallnotiobj.slice(0, 63);
+      // console.log("currschedulednotiobj--",currschedulednotiobj);
+    }
+    fetchData2()	
+  },[localNotifications]);
+
   useEffect(() => {
     LocalNotifications.getAllScheduledLocalNotifications();
     LocalNotifications.getDeliveredNotifications();

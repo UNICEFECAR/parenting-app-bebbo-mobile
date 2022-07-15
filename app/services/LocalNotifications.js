@@ -32,18 +32,18 @@ class LocalNotifications {
     );
 
     PushNotification.getScheduledLocalNotifications(rn => {
-      console.log('SN --- ', rn);
+      // console.log('SN --- ', rn);
     });
   }
 
-  schduleNotification(date,title,message,notiId) {
+  schduleNotification(date,title,message,notiId,notitype) {
     let notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
     // console.log(notiId,"--notiId--",notificationid);
     PushNotification.localNotificationSchedule({
       channelId: 'reminders',
       id:notificationid,
       title: title,
-      userInfo: { screen: "HealthCheckupsTab" },
+      userInfo: { notitype: notitype },
       message: message,
       date,
       number: 1
