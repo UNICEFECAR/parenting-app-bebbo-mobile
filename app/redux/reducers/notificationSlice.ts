@@ -7,6 +7,7 @@ interface notiDataType {
   developmentEnabled: boolean,
   vchcEnabled: boolean,
   localNotifications: Array<any>,
+  scheduledlocalNotifications: Array<any>,
   localNotificationGenerateType: {
     generateFlag: boolean,
     generateType: string,
@@ -21,6 +22,7 @@ const initialState: notiDataType = {
   developmentEnabled: true,
   vchcEnabled: true,
   localNotifications:[],
+  scheduledlocalNotifications:[],
   localNotificationGenerateType: {
     generateFlag: true,
     generateType: 'add',
@@ -55,6 +57,13 @@ export const notificationSlice = createSlice({
       console.log(JSON.stringify(action.payload),"action.payload localNotifications---");
       state.localNotifications = (action.payload);
     },
+    setAllScheduledLocalNotificationData: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      console.log(JSON.stringify(action.payload),"action.payload scheduledlocalNotifications---");
+      state.scheduledlocalNotifications = (action.payload);
+    },
     setAllLocalNotificationGenerateType:( state:any,
       action: PayloadAction<any>,)=>{
         console.log(JSON.stringify(action.payload),"action.payload---");
@@ -78,7 +87,7 @@ export const notificationSlice = createSlice({
   // },
 });
 
-export const { setAllNotificationData, toggleNotificationFlags, setAllLocalNotificationData,setAllLocalNotificationGenerateType } = notificationSlice.actions;
+export const { setAllNotificationData, toggleNotificationFlags, setAllLocalNotificationData,setAllLocalNotificationGenerateType, setAllScheduledLocalNotificationData } = notificationSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
