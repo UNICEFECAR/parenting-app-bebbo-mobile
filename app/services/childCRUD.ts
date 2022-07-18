@@ -652,9 +652,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     let startDate = new Date(oldBirthDate)
     let someDate = new Date(data[0].birthDate)
     // console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..")
-    let notiFlagObj = { key: 'generateNotifications', value: true };
-    dispatch(setInfoModalOpened(notiFlagObj));
-    console.log("check local notification log2---",JSON.stringify(data));
+    
     
     // console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..");
 
@@ -740,7 +738,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       }
       navigation.navigate('ChildProfileScreen');
     }
-
+    let notiFlagObj = { key: 'generateNotifications', value: true };
+    dispatch(setInfoModalOpened(notiFlagObj));
+    // console.log("check local notification log2---",JSON.stringify(data));
     let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: data[0].uuid};
     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
 

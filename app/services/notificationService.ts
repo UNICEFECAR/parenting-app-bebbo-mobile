@@ -64,7 +64,77 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
   //check gap between days_to and days_from
   const childBirthDatePlanned=child?.taxonomyData.prematureTaxonomyId!=null && child?.taxonomyData.prematureTaxonomyId!="" && child?.taxonomyData.prematureTaxonomyId!=undefined? child.plannedTermDate:child.birthDate;
   const activityTaxonomyId = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? child?.taxonomyData.prematureTaxonomyId : child?.taxonomyData.id;
-   if ((childDaysTo - childDaysFrom) >= threeeMonthDays) {
+
+  if((childDaysTo - childDaysFrom) <= oneMonthDays) {
+    noti.push(
+      {
+        "days_from": childDaysFrom,
+        "days_to":childDaysTo,
+        "type": "cd",
+        "title": ('cdNoti1'),
+        "checkinField": "days_from",
+        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysFrom + afterDays }),
+        "isRead": false,
+        "isDeleted": false,
+        "periodName": childTaxonomyData.name,
+        "growth_period": activityTaxonomyId
+      },
+      {
+        "days_from":childDaysFrom,
+        "days_to": childDaysTo - beforeDays,
+        "type": "cd",
+        "title": ('cdNoti2'),
+        "checkinField": "days_to",
+        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysTo - beforeDays }),
+        "isRead": false,
+        "isDeleted": false,
+        "periodName": childTaxonomyData.name,
+        "growth_period": activityTaxonomyId
+      },
+    )
+  }
+  else if((childDaysTo - childDaysFrom) <=twoMonthDays) {
+    noti.push(
+      {
+        "days_from": childDaysFrom,
+        "days_to": childDaysTo,
+        "type": "cd",
+        "title": ('cdNoti1'),
+        "checkinField": "days_from",
+        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysFrom + afterDays}),
+        "isRead": false,
+        "isDeleted": false,
+        "periodName": childTaxonomyData.name,
+        // "growth_period": childTaxonomyData.id,
+        "growth_period": activityTaxonomyId
+      })
+    const diff = Math.round((childDaysTo - childDaysFrom) / oneMonthDays);
+    for (var i = 0; i < diff; i++) { 
+      const notificationDate = DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * oneMonthDays) + oneMonthDays ? childDaysTo : childDaysFrom + (i * oneMonthDays) + oneMonthDays, });
+      // check difference between today and notification date in days and if greater than or equal to oneMonthDays then isDeleted=false
+      let numOfDays;
+      if(isFutureDateTime(notificationDate) == true) {
+        numOfDays = (DateTime.fromISO(notificationDate)).diff((DateTime.now()),'days').toObject().days
+      }else {
+        numOfDays = (DateTime.now()).diff((DateTime.fromISO(notificationDate)),'days').toObject().days
+      }
+      noti.push(
+        {
+          "days_from": childDaysFrom + (i * oneMonthDays),
+          "days_to": (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * oneMonthDays) + oneMonthDays ? childDaysTo : childDaysFrom + (i * oneMonthDays) + oneMonthDays,
+          "type": "cd",
+          "title": ('cdNoti2'),
+          "checkinField": "days_to",
+          "notificationDate": notificationDate,
+          "isRead": false,
+          "isDeleted": isNewChild == true ? numOfDays < oneMonthDays - beforeDays ? false : true : false,
+          "periodName": childTaxonomyData.name,
+          "growth_period": activityTaxonomyId
+        },
+      )
+    }
+  }
+  else {
     noti.push(
       {
         "days_from": childDaysFrom,
@@ -106,77 +176,8 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
       )
     }
   }
-  else if ((childDaysTo - childDaysFrom) >= twoMonthDays && (childDaysTo - childDaysFrom) < threeeMonthDays) {
-    noti.push(
-      {
-        "days_from": childDaysFrom,
-        "days_to": childDaysTo,
-        "type": "cd",
-        "title": ('cdNoti1'),
-        "checkinField": "days_from",
-        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysFrom + afterDays}),
-        "isRead": false,
-        "isDeleted": false,
-        "periodName": childTaxonomyData.name,
-        // "growth_period": childTaxonomyData.id,
-        "growth_period": activityTaxonomyId
-      })
-    const diff = Math.round((childDaysTo - childDaysFrom) / oneMonthDays);
-    for (var i = 0; i < diff; i++) { 
-      const notificationDate = DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * oneMonthDays) + oneMonthDays ? childDaysTo : childDaysFrom + (i * oneMonthDays) + oneMonthDays, });
-      // check difference between today and notification date in days and if greater than or equal to oneMonthDays then isDeleted=false
-      let numOfDays;
-      if(isFutureDateTime(notificationDate) == true) {
-        numOfDays = (DateTime.fromISO(notificationDate)).diff((DateTime.now()),'days').toObject().days
-      }else {
-        numOfDays = (DateTime.now()).diff((DateTime.fromISO(notificationDate)),'days').toObject().days
-      }
-      noti.push(
-        {
-          "days_from": childDaysFrom + (i * oneMonthDays),
-          "days_to": (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * oneMonthDays) + oneMonthDays ? childDaysTo : childDaysFrom + (i * oneMonthDays) + oneMonthDays,
-          "type": "cd",
-          "title": ('cdNoti2'),
-          "checkinField": "days_to",
-          "notificationDate": notificationDate,
-          "isRead": false,
-          "isDeleted": isNewChild == true ? numOfDays < oneMonthDays - beforeDays ? false : true : false,
-          "periodName": childTaxonomyData.name,
-          "growth_period": activityTaxonomyId
-        },
-      )
-    }
 
-  }
-  else {
-    noti.push(
-      {
-        "days_from": childDaysFrom,
-        "days_to":childDaysTo,
-        "type": "cd",
-        "title": ('cdNoti1'),
-        "checkinField": "days_from",
-        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysFrom + afterDays }),
-        "isRead": false,
-        "isDeleted": false,
-        "periodName": childTaxonomyData.name,
-        "growth_period": activityTaxonomyId
-      },
-      {
-        "days_from":childDaysFrom,
-        "days_to": childDaysTo - beforeDays,
-        "type": "cd",
-        "title": ('cdNoti2'),
-        "checkinField": "days_to",
-        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysTo - beforeDays }),
-        "isRead": false,
-        "isDeleted": false,
-        "periodName": childTaxonomyData.name,
-        "growth_period": activityTaxonomyId
-      },
-    )
-  }
-  if ((childTaxonomyData.days_to - childTaxonomyData.days_from) >= threeeMonthDays) {
+  if((childTaxonomyData.days_to - childTaxonomyData.days_from) >= threeeMonthDays){
     const diff = Math.round((childTaxonomyData.days_to - childTaxonomyData.days_from) / twoMonthDays);
     for (var i = 0; i < diff; i++) {
       const notificationDate = DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays });
@@ -206,41 +207,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
       }
      
     }
-
-  }
-  else if ((childTaxonomyData.days_to - childTaxonomyData.days_from) >= twoMonthDays && (childTaxonomyData.days_to - childTaxonomyData.days_from) < threeeMonthDays) {
-    const diff = Math.round((childTaxonomyData.days_to - childTaxonomyData.days_from) / oneMonthDays);
-    for (var i = 0; i < diff; i++) {
-      const notificationDate = DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * oneMonthDays) + oneMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * oneMonthDays) + oneMonthDays });
-      // check difference between today and notification date in days and if greater than or equal to oneMonthDays then isDeleted=false
-      const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from + (i * oneMonthDays), (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * oneMonthDays) + oneMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * oneMonthDays) + oneMonthDays)
-      if (!isGrowthDataExist) {
-        let numOfDays2;
-        if(isFutureDateTime(notificationDate) == true) {
-          numOfDays2 = (DateTime.fromISO(notificationDate)).diff((DateTime.now()),'days').toObject().days
-        }else {
-          numOfDays2 = (DateTime.now()).diff((DateTime.fromISO(notificationDate)),'days').toObject().days
-        }
-        noti.push(
-          {
-            "days_from": childTaxonomyData.days_from + (i * oneMonthDays),
-            "days_to": (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * oneMonthDays) + oneMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * oneMonthDays) + oneMonthDays,
-            "type": "gw",
-            "title": ('gwNoti1'),
-            "checkinField": "days_from",
-            "notificationDate": notificationDate,
-            "isRead": false,
-            "isDeleted": isNewChild == true ? numOfDays2 < oneMonthDays ? false : true : false,
-            "periodName": childTaxonomyData.name,
-            "growth_period": childTaxonomyData.id,
-          },
-        )
-      }
-     
-    }
-
-  }
-   else {
+  }else {
     const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from, childTaxonomyData.days_to)
     // if growth measure does not exist in that child age period, noti  should be added
     if (!isGrowthDataExist) {
@@ -258,7 +225,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
           "growth_period": childTaxonomyData.id,
         })
     }
-  }
+  }  
   return noti;
 }
 export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcperiodid: any, child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any, growthEnabledFlag: boolean, developmentEnabledFlag: boolean, vchcEnabledFlag: boolean) => {
@@ -729,7 +696,111 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
     const filteredchildAgeObj = childAgeObj.filter((x:any) => x.id >= activityTaxonomyId);
     // for CD 1st day of period and 5 days before period end
     filteredchildAgeObj.map((agebracket:any)=> {
-      if ((agebracket.days_to - agebracket.days_from) >= threeeMonthDays) {
+
+        if ((agebracket.days_to - agebracket.days_from) <= oneMonthDays) {
+          if(developmentEnabledFlag == true) { 
+            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
+            if(isFutureDateTime(new Date(notificationDate))) 
+            {
+              const message = t('cdNoti1', { childName:
+                child.childName != null &&
+                child.childName != '' &&
+                child.childName != undefined
+                ? child.childName
+                : '', periodName: agebracket.name }); 
+              const currNotiId = generatenotiId(localNotifications,allNotis)
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
+              // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
+            }
+            const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_to - beforeDays});
+            if(isFutureDateTime(new Date(notificationDate2))) 
+            {
+              const message2 = t('cdNoti2', { childName:
+                child.childName != null &&
+                child.childName != '' &&
+                child.childName != undefined
+                ? child.childName
+                : '', periodName: agebracket.name });
+              const currNotiId = generatenotiId(localNotifications,allNotis)
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
+              // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
+            }
+          }
+          if(growthEnabledFlag == true) {
+            const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
+            if (!isGrowthDataExist) {
+              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to });
+              if(isFutureDateTime(new Date(notificationDate3))) 
+              {
+                const message3 = t('gwNoti1', { childName:
+                  child.childName != null &&
+                  child.childName != '' &&
+                  child.childName != undefined
+                  ? child.childName
+                  : '', periodName: agebracket.name }); 
+                const currNotiId = generatenotiId(localNotifications,allNotis)
+                allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
+                // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
+              }
+            }
+          }
+        }
+        else if((agebracket.days_to - agebracket.days_from) <= twoMonthDays) {
+          if(developmentEnabledFlag == true){
+            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
+            if(isFutureDateTime(new Date(notificationDate))) 
+            {
+              const message = t('cdNoti1', { childName:
+                child.childName != null &&
+                child.childName != '' &&
+                child.childName != undefined
+                ? child.childName
+                : '', periodName: agebracket.name }); 
+              const currNotiId = generatenotiId(localNotifications,allNotis)
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
+              // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
+            }
+          }
+          //notification for growth
+          if(growthEnabledFlag == true) {
+            const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
+            if (!isGrowthDataExist) {
+              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to });
+              if(isFutureDateTime(new Date(notificationDate3))) 
+              {
+                const message3 = t('gwNoti1', { childName:
+                  child.childName != null &&
+                  child.childName != '' &&
+                  child.childName != undefined
+                  ? child.childName
+                  : '', periodName: agebracket.name }); 
+                const currNotiId = generatenotiId(localNotifications,allNotis)
+                allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
+                // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
+              }
+            }
+          }
+          const diff = Math.round((agebracket.days_to - agebracket.days_from) / oneMonthDays);
+          for (var i = 0; i < diff; i++) {
+            if(developmentEnabledFlag == true) {
+              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to : agebracket.days_from + (i * oneMonthDays) + oneMonthDays, });
+              if(isFutureDateTime(new Date(notificationDate2))) 
+              {
+                const message2 = t('cdNoti2', { childName:
+                  child.childName != null &&
+                  child.childName != '' &&
+                  child.childName != undefined
+                  ? child.childName
+                  : '', periodName: agebracket.name });
+                const currNotiId = generatenotiId(localNotifications,allNotis)
+                allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
+                // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
+              }
+            }
+
+          }
+        }
+        else {
           if(developmentEnabledFlag == true){
             const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
             if(isFutureDateTime(new Date(notificationDate))) 
@@ -783,110 +854,8 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             }
 
           }
-      }
-      else if ((agebracket.days_to - agebracket.days_from) >= twoMonthDays && (agebracket.days_to - agebracket.days_from) < threeeMonthDays) {
-        if(developmentEnabledFlag == true){
-          const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
-          if(isFutureDateTime(new Date(notificationDate))) 
-          {
-            const message = t('cdNoti1', { childName:
-              child.childName != null &&
-              child.childName != '' &&
-              child.childName != undefined
-              ? child.childName
-              : '', periodName: agebracket.name }); 
-            const currNotiId = generatenotiId(localNotifications,allNotis)
-            allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
-            // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
-          }
         }
-        const diff = Math.round((agebracket.days_to - agebracket.days_from) / oneMonthDays);
-        for (var i = 0; i < diff; i++) {
-          if(developmentEnabledFlag == true) {
-            const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to : agebracket.days_from + (i * oneMonthDays) + oneMonthDays, });
-            if(isFutureDateTime(new Date(notificationDate2))) 
-            {
-              const message2 = t('cdNoti2', { childName:
-                child.childName != null &&
-                child.childName != '' &&
-                child.childName != undefined
-                ? child.childName
-                : '', periodName: agebracket.name });
-              const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
-              // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
-            }
-          }
-          //notification for growth
-          if(growthEnabledFlag == true) {
-            const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from + (i * oneMonthDays), (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to : agebracket.days_from + (i * oneMonthDays) + oneMonthDays)
-            if (!isGrowthDataExist) {
-              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to : agebracket.days_from + (i * oneMonthDays) + oneMonthDays });
-              if(isFutureDateTime(new Date(notificationDate3))) 
-              {
-                const message3 = t('gwNoti1', { childName:
-                  child.childName != null &&
-                  child.childName != '' &&
-                  child.childName != undefined
-                  ? child.childName
-                  : '', periodName: agebracket.name }); 
-                const currNotiId = generatenotiId(localNotifications,allNotis)
-                allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
-                // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
-              }
-            }
-          }
-
-        }
-    }
-      else {
-        if(developmentEnabledFlag == true) { 
-          const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
-          if(isFutureDateTime(new Date(notificationDate))) 
-          {
-            const message = t('cdNoti1', { childName:
-              child.childName != null &&
-              child.childName != '' &&
-              child.childName != undefined
-              ? child.childName
-              : '', periodName: agebracket.name }); 
-            const currNotiId = generatenotiId(localNotifications,allNotis)
-            allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
-            // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
-          }
-          const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_to - beforeDays});
-          if(isFutureDateTime(new Date(notificationDate2))) 
-          {
-            const message2 = t('cdNoti2', { childName:
-              child.childName != null &&
-              child.childName != '' &&
-              child.childName != undefined
-              ? child.childName
-              : '', periodName: agebracket.name });
-            const currNotiId = generatenotiId(localNotifications,allNotis)
-            allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
-            // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
-          }
-        }
-        if(growthEnabledFlag == true) {
-          const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
-          if (!isGrowthDataExist) {
-            const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to });
-            if(isFutureDateTime(new Date(notificationDate3))) 
-            {
-              const message3 = t('gwNoti1', { childName:
-                child.childName != null &&
-                child.childName != '' &&
-                child.childName != undefined
-                ? child.childName
-                : '', periodName: agebracket.name }); 
-              const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
-              // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
-            }
-          }
-        }
-      }
+        
     })
 
     if(vchcEnabledFlag == true) {
