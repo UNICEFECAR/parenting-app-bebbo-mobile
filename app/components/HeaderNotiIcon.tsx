@@ -395,7 +395,7 @@ const HeaderNotiIcon = (props: any) => {
       // if(scheduledlocalNotifications && scheduledlocalNotifications.length > 0) {
         let filteredschedulednoti =  scheduledlocalNotifications.filter((x:any)=>isFutureDateTime(new Date(x.notiDate)) == true);
         sortedallnotiobj.map((x:any) => {
-          if(filteredschedulednoti && filteredschedulednoti.length < 6) {
+          if(filteredschedulednoti && filteredschedulednoti.length < 55) {
             if(isFutureDateTime(new Date(x.notiDate))) {
               if((scheduledlocalNotifications.findIndex((y:any)=>y.notiDate == x.notiDate)) == -1) {
                 filteredschedulednoti.push({"notiid":x.notiid,"notiDate":x.notiDate});
