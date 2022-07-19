@@ -355,10 +355,10 @@ const MKmk = {
                 SyncOnLoadPopupText: "Дали сакате да ги синхронизирате податоците?",
                 SyncOnLoadCancelPopUpBtn: "Откажете",
                 SyncOnLoadRetryBtn: "Синхронизира",
-                cdNoti1: "Следете го развојот на вашето дете за период  {{periodName}}",
-                cdNoti2: "Проверете кои развојни одредници ги постигнало вашето дете во овој период - {{periodName}}",
-                gwNoti1: "Ажурирајте ги податоците од мерење на висина за период  {{periodName}}",
-                hcNoti1: "Закажете преглед кај лекар за периодот: {{periodName}}",
+                cdNoti1: "{{childName}} наполни {{periodName}} - следете го развојот на вашето дете",
+                cdNoti2: "Проверете кои развојни одредници ги има постигнато {{childName}} во период {{periodName}}",
+                gwNoti1: "{{childName}} расте - ажурирајте ги висината и тежината",
+                hcNoti1: "Во овој период, {{periodName}}, {{childName}} треба да оди на контролен преглед. Закажете посета кај матичниот лекар или педијатар",
                 vcNoti1: "Во овој период {{periodName}}, {{childName}} треба да ја прими следната вакцина: ",
                 alertForExistingMeasuresTitle: "Податоците за мерење се веќе внесени за овој датум, ве молиме одберете нов датум",
                 alertForNoTakenVaccinesSelectTitle: "Одберете вакцина/вакцини",
@@ -449,6 +449,7 @@ const MKmk = {
 
                 //24 May
                 relatedVideoArticle: "Видеа со слична содржина",
+                upto6YearsMsg: "Апликацијата е дизајнирана за деца до 6 години",
         }
 }
 export default MKmk;
