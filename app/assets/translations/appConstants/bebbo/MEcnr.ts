@@ -355,10 +355,10 @@ const MEcnr = {
                 SyncOnLoadPopupText: "Želite li sada da sinhronizujete podatke?",
                 SyncOnLoadCancelPopUpBtn: "Poništi",
                 SyncOnLoadRetryBtn: "Sinhronizacija",
-                cdNoti1: "Pratite razvoj svog djeteta u uzrastu {{periodName}}",
-                cdNoti2: "Provjerite koje je prekretnice Vaše dijete dostiglo u uzrastu {{periodName}}",
-                gwNoti1: "Ažurirajte mjere rasta za uzrast {{periodName}}",
-                hcNoti1: "Zakažite posjetu ljekaru za uzrast: {{periodName}}",
+                cdNoti1: "{{childName}} je u uzrastu / razvojnom periodu {{periodName}} – pratite razvoj Vašeg djeteta",
+                cdNoti2: "Provjerite koje je razvojne prekretnice {{childName}} ostvario/ostvarila u uzrastu {{periodName}}",
+                gwNoti1: "{{childName}} raste – ažurirajte mjere rasta Vašeg djeteta",
+                hcNoti1: "U ovom periodu, {{periodName}}, {{childName}} treba da obavi preventivni pedijatrijski pregled. Zakažite posjetu izabranom pedijatru",
                 vcNoti1: "U ovom uzrastu, {{periodName}}, {{childName}} treba da primi vakcinu: ",
                 alertForExistingMeasuresTitle: "Podaci o mjerama već su unijeti za ovaj datum, odaberite drugi datum",
                 alertForNoTakenVaccinesSelectTitle: "Molimo odaberite vakcinu/vakcine",
@@ -448,6 +448,7 @@ const MEcnr = {
 
                 //24 May
                 relatedVideoArticle: "Povezani video-zapisi",
+                upto6YearsMsg: "Ova aplikacija je osmišljena za djecu uzrasta do 6 godina",
         }
 
 }

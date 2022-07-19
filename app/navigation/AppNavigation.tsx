@@ -45,7 +45,8 @@ import { ThemeContext } from 'styled-components';
 import messaging from '@react-native-firebase/messaging';
 import {AppEventsLogger, Settings} from 'react-native-fbsdk-next';
 import {PERMISSIONS, RESULTS, request, check} from 'react-native-permissions';
-import LocalNotifications from '../services/LocalNotifications';
+import PushNotification from 'react-native-push-notification';
+import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -237,12 +238,65 @@ export default () => {
       
     // }, 6000);
   }, []);
-  const handleEvent=(data:any)=>{
-    console.log("recieveenet",data)
+  const createLocalNotificationListeners = async () => {
+    try {
+      PushNotification.configure({
+  // this will listen to your local push notifications on clicked 
+        onNotification: (notification:any) => {
+          console.log(notification,"..11notification11..");
+          if(notification && notification.data && notification.data.notitype!='' && notification.data.notitype!=null && notification.data.notitype!=undefined && userIsOnboarded){
+            if(notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
+              navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
+            }
+            else if(notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
+              navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
+            }
+            else if(notification.data.notitype == 'cd') {
+              navigationRef.current?.navigate("Tools", { screen: 'ChildDevelopment' })
+            }
+            else if(notification.data.notitype == 'gw') {
+              navigationRef.current?.navigate("Tools", { screen: 'AddNewChildgrowth' })
+            }
+
+          }
+        },
+        popInitialNotification: true,
+        requestPermissions: true,
+      });
+      PushNotification.popInitialNotification((notification:any) => {
+        console.log(notification,"..22notification22..");
+        if(notification && notification.data && notification.data.notitype!='' && notification.data.notitype!=null && notification.data.notitype!=undefined && userIsOnboarded){
+          if(notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
+            navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
+          }
+          else if(notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
+            navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
+          }
+          else if(notification.data.notitype == 'cd') {
+            navigationRef.current?.navigate("Tools", { screen: 'ChildDevelopment' })
+          }
+          else if(notification.data.notitype == 'gw') {
+            navigationRef.current?.navigate("Tools", { screen: 'AddNewChildgrowth' })
+          }
+        }
+        // this will listen to your local push notifications on opening app from background state
+          
+      })
+    
+    } catch (e) {
+      // alert(e)
+     console.log("error")
+    }
   }
   useEffect(() => {
-    // const eventListener = DeviceEventEmitter.addListener('notiTap',handleEvent); 
-    // console.log(eventListener,"..eventListener..")
+   // let notiListener=null;
+   createLocalNotificationListeners();
+    // return () => {
+    //   notiListener=null;
+    // }
+    }, []);
+  useEffect(() => {
+    
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       // console.log("msg----",remoteMessage);
       if(remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
@@ -253,8 +307,6 @@ export default () => {
     });
     setTimeout(() => {
       SplashScreen.hide();
-      // console.log("acsd")
-      // LocalNotifications.schduleNotification(new Date(Date.now() + 5 * 1000),'Reminder!','title','350709887');
     }, 2000);
 
     return unsubscribe;
@@ -349,6 +401,17 @@ export default () => {
   useEffect(() => {
     console.log("linkedURL3---",linkedURL);
   }, [linkedURL]);
+ 
+  useEffect(() => {
+    let unsubscribe:any=null;
+    // async function createLocalNotification(){
+    //  unsubscribe  = createLocalNotificationListeners().then(r => console.log("local push notification listeners created"));
+    // }
+    // createLocalNotification();
+    // return () => {
+    // unsubscribe=null;
+    // }
+  }, []);
   useEffect(() => {
     if (userIsOnboarded == true) {
       // console.log("calculated");
@@ -362,6 +425,8 @@ export default () => {
       // }else {
         let obj = { key: 'showDownloadPopup', value: true };
         dispatch(setInfoModalOpened(obj));
+        let localnotiFlagObj = { generateFlag: true,generateType: 'onAppStart',childuuid: 'all'};
+        dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
       // }
       getAllChildren(dispatch, child_age, 0);
     }
