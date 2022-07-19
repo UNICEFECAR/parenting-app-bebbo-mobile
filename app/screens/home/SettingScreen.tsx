@@ -72,7 +72,7 @@ import  {localization}  from '@dynamicImportsClass/dynamicImports';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
-import { setAllLocalNotificationGenerateType, setAllNotificationData, toggleNotificationFlags } from '../../redux/reducers/notificationSlice';
+import { setAllLocalNotificationGenerateType, setAllNotificationData, setAllScheduledLocalNotificationData, toggleNotificationFlags } from '../../redux/reducers/notificationSlice';
 import { backup } from '../../services/backup';
 import { getAllChildren, isFutureDate, isFutureDateTime } from '../../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
@@ -131,6 +131,7 @@ const SettingScreen = (props: any) => {
   (state.utilsData.allDataDownloadFlag),
 );
   let localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
+  let scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
 
   // console.log(toggleSwitchVal, "..toggleSwitchVal..");
   const { t, i18n } = useTranslation();
@@ -402,6 +403,7 @@ const SettingScreen = (props: any) => {
   // let allnotifications = useAppSelector((state: any) => state.notificationData.notifications);
   const toggleGrowthFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from gwcdnotis where type = 'gw'
+    let currscheduledlocalNotifications = [...scheduledlocalNotifications];
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
@@ -441,25 +443,34 @@ const SettingScreen = (props: any) => {
         if(growthEnabledFlag == true) {
           const notiToDelete = y.data.filter((o:any)=>o.type=='gw');
           notiToDelete.map((n:any)=>{
-            LocalNotifications.cancelReminderLocalNotification(n.notiid);
+            // LocalNotifications.cancelReminderLocalNotification(n.notiid);
+            if((currscheduledlocalNotifications.findIndex((m:any)=> m.notiid == n.notiid)) > -1)
+            {
+              LocalNotifications.cancelReminderLocalNotification(n.notiid);
+              currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m:any)=> m.notiid != n.notiid);
+              console.log("removed noti1---",currscheduledlocalNotifications);
+            }
           })
         }
-        // else {
-          if(callCreateLocalNoti == true) {
-            let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
-            dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-          }
-        // }
       })
+
+        // else {
+          
+        // }
       // currentChildNotis.gwcdnotis = currentChildNotis.gwcdnotis;
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>toggleGrowthFutureNotiData");
     });
+    dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
+    if(callCreateLocalNoti == true) {
+      let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+    }
   }
   const togglecdFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from gwcdnotis where type = 'cd'
-
+    let currscheduledlocalNotifications = [...scheduledlocalNotifications];
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
@@ -498,23 +509,33 @@ const SettingScreen = (props: any) => {
         if(developmentEnabledFlag == true) {
           const notiToDelete = y.data.filter((o:any)=>o.type=='cd');
           notiToDelete.map((n:any)=>{
-            LocalNotifications.cancelReminderLocalNotification(n.notiid);
+            // LocalNotifications.cancelReminderLocalNotification(n.notiid);
+            if((currscheduledlocalNotifications.findIndex((m:any)=> m.notiid == n.notiid)) > -1)
+            {
+              LocalNotifications.cancelReminderLocalNotification(n.notiid);
+              currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m:any)=> m.notiid != n.notiid);
+              console.log("removed noti---",currscheduledlocalNotifications);
+            }
           })
         }
-        // else {
-          if(callCreateLocalNoti == true) {
-            let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
-            dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-          }
-        // }
       })
+
+        // else {
+          
+        // }
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>togglecdFutureNotiData");
     });
+    dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
+    if(callCreateLocalNoti == true) {
+      let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+    }
   }
   const toggleVCHCVCRHCRFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from reminderNotis,hcnotis,vchcnotis
+    let currscheduledlocalNotifications = [...scheduledlocalNotifications];
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
@@ -580,7 +601,7 @@ const SettingScreen = (props: any) => {
                 const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
                 const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
                 const message = item.type == 'vaccine' ? titlevcr : titlehcr;
-                LocalNotifications.schduleNotification(new Date(item.notificationDate),t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis());
+                LocalNotifications.schduleNotification(new Date(item.notificationDate),t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),item.type == 'vaccine' ? 'vcr' : 'hcr');
               }
             }
             if (isFutureDateTime(new Date(item.notificationDate))) {
@@ -603,21 +624,30 @@ const SettingScreen = (props: any) => {
           if(vchcEnabledFlag == true) {
             const notiToDelete = y.data.filter((o:any)=>o.type=='vc' || o.type=='hc');
             notiToDelete.map((n:any)=>{
-              LocalNotifications.cancelReminderLocalNotification(n.notiid);
+              // LocalNotifications.cancelReminderLocalNotification(n.notiid);
+              if((currscheduledlocalNotifications.findIndex((m:any)=> m.notiid == n.notiid)) > -1)
+              {
+                LocalNotifications.cancelReminderLocalNotification(n.notiid);
+                currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m:any)=> m.notiid != n.notiid);
+                console.log("removed noti---",currscheduledlocalNotifications);
+              }
             })
           }
-          // else {
-            if(callCreateLocalNoti == true) {
-              let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
-              dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-            }
-          // }
         })
+
+          // else {
+            
+          // }
       }
       allnotis[currentChildIndex] = currentChildNotis
       // console.log(allnotis, "allNotifications>toggleVCHCVCRHCRFutureNotiData");
     });
+    dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
+    if(callCreateLocalNoti == true) {
+      let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+    }
   }
   const toggleAllNotis = () => {
     if (isEnabled == true) {

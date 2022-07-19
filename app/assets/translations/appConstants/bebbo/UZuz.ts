@@ -354,10 +354,10 @@ const UZuz = {
               SyncOnLoadPopupText: "Maʼlumotlarni hozir sinxronlashni xohlaysizmi?",
               SyncOnLoadCancelPopUpBtn: "Bekor qilish",
               SyncOnLoadRetryBtn: "Sinxronlash",
-              cdNoti1: "{{periodName}} davrida farzandingizning rivojlanishini kuzatib boring",
-              cdNoti2: "{{periodName}} davrida farzandingiz qaysi bosqichlarga yetganini tekshiring",
-              gwNoti1: "{{periodName}} davri uchun oʻsish oʻlchamlarini kiriting",
-              hcNoti1: "{{periodName}} shifokor koʻrigidan oʻtishni rejalashtiring",
+              cdNoti1: "{{childName}} {{periodName}} davrga oʻtdi – farzandingizning rivojlanishini kuzatib boring",
+              cdNoti2: "{{childName}} {{periodName}} davrda qanday natijalarga erishganini tekshiring",
+              gwNoti1: "{{childName}} oʻsib boryapti – oʻsish koʻrsatkichlarini yangilang",
+              hcNoti1: "Bu davrda, {{periodName}}, {{childName}} tibbiy koʻrikdan oʻtishi kerak. Shifokor qabuliga borishni rejalashtiring",
               vcNoti1: "{{periodName}} {{childName}} quyidagi emlash(lar)ni olishi kerak:",
               alertForExistingMeasuresTitle: "Bu sana uchun oʻlchov maʼlumotlari allaqachon mavjud, boshqa sanani tanlang",
               alertForNoTakenVaccinesSelectTitle: "Emlashni tanlang",
@@ -448,6 +448,7 @@ const UZuz = {
 
               //24 May
               relatedVideoArticle: "Tegishli videolar",
+              upto6YearsMsg: "Bu ilova 6 yoshgacha boʻlgan bolalar uchun moʻljallangan",
        }
 }
 export default UZuz;

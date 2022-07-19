@@ -355,10 +355,10 @@ const ROro = {
                 SyncOnLoadPopupText: "Doriți să sincronizați datele acum?",
                 SyncOnLoadCancelPopUpBtn: "Anulare",
                 SyncOnLoadRetryBtn: "Sincronizare",
-                cdNoti1: "Urmăriți dezvoltarea copilului dvs. în perioada de  {{periodName}}",
-                cdNoti2: "Verificați achizițiile pe care le-a dobândit copilul dvs. în perioada de - {{periodName}}",
-                gwNoti1: "Actualizați măsurătorile de creștere pentru perioada de  {{periodName}}",
-                hcNoti1: "Programați o vizită la medic pentru perioada: {{periodName}}",
+                cdNoti1: "{{childName}} a intrat în perioada de {{periodName}} -urmărește dezvoltarea copilului tău",
+                cdNoti2: "Verifică ce etape de dezvoltare a atins {{childName}} în perioada {{periodName}}",
+                gwNoti1: "{{childName}} a crescut-actualizează măsurătorile din graficul de creștere",
+                hcNoti1: "În această perioadă, la {{periodName}}, {{childName}} ar trebui să meargă la o consultație preventivă. Programează o vizită la medic.",
                 vcNoti1: "În această perioadă, {{periodName}}, lui {{childName}} trebuie să i se administreze vaccinul:",
                 alertForExistingMeasuresTitle: "Datele măsurătorii sunt deja disponibile pentru această dată, vă rugăm să selectați o altă dată",
                 alertForNoTakenVaccinesSelectTitle: "Vă rugăm să selectați vaccinul(vaccinurile)",
@@ -449,6 +449,7 @@ const ROro = {
 
                 //24 May
                 relatedVideoArticle: "Videoclipuri similare",
+                upto6YearsMsg: "Această aplicație este concepută pentru copii cu vârsta de pănă la 6 ani.",
         }
 }
 export default ROro;
