@@ -307,6 +307,10 @@ const HeaderNotiIcon = (props: any) => {
               // console.log("results4---",results);
               results.map((x:any)=>allChildNotis.push(x));
               // console.log("in headernoti allChildNotis---",allChildNotis);
+              currscheduledlocalNotifications.map((m:any)=>{
+                LocalNotifications.cancelReminderLocalNotification(m.notiid);
+              })
+              dispatch(setAllScheduledLocalNotificationData([]));
               dispatch(setAllLocalNotificationData(allChildNotis));
               let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
               dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
@@ -341,20 +345,27 @@ const HeaderNotiIcon = (props: any) => {
                   })
                   allChildNotis.push(newchildnoti);
                   // console.log("in headernoti allChildNotis 2nd else---",allChildNotis);
-                  dispatch(setAllLocalNotificationData(allChildNotis));
-                  let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
-                  dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+                  // dispatch(setAllLocalNotificationData(allChildNotis));
+                  // let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+                  // dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
                 }else {
                   localNotifications.map((y:any)=>{
                     if(y.key != localNotificationGenerateType.childuuid) {
                       allChildNotis.push(y);
                     }
                   });
-                  dispatch(setAllLocalNotificationData(allChildNotis));
-                  let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
-                  dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+                  // dispatch(setAllLocalNotificationData(allChildNotis));
+                  // let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+                  // dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
                 }
-                dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
+                //cancelled all scheduled notifications as when new child added or edited the noti should come for all child.
+                currscheduledlocalNotifications.map((m:any)=>{
+                  LocalNotifications.cancelReminderLocalNotification(m.notiid);
+                })
+                dispatch(setAllScheduledLocalNotificationData([]));
+                dispatch(setAllLocalNotificationData(allChildNotis));
+                let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+                dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
               // }
             }
             // LocalNotifications.getAllScheduledLocalNotifications();
