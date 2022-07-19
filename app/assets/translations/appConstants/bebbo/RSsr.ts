@@ -394,7 +394,7 @@ const RSsr = {
               OnboardingImportButton: "Uvezite sada",
               ORkeyText: "Ili",
               addChildText: "Dodajte podatke o detetu",
-              notiTimeAgoTxt: "ranije {{ageStr}}",
+              notiTimeAgoTxt: "{{ageStr}} ranije",
               todayTxt: "sada",
               fiveYearsGreater: "Standardne vrednosti rasta dostupne su samo za decu od 0 do 5 godina i stoga grafikoni rasta nisu primenljivi za decu stariju od 5 godina",
               forceUpdatePopupTitle: "Informacija",

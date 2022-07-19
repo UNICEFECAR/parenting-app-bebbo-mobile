@@ -31,7 +31,7 @@ const XKsq = {
                 childSetupheader: "Ju lutemi, ndani pak kohë për ta personalizuar aplikacionin tuaj",
                 childSetupdobLabel: "Data e lindjes së fëmijës/data e parashikuar e lindjes",
                 childSetupdobSelector: "Vendoseni datën e lindjes/datën e parashikuar të lindjes",
-                childSetupdueLabel: "Data e saktë e lindjes",
+                childSetupdueLabel: "Data e planifikuar e lindjes",
                 childSetupdueSelector: "Vendoseni datën e saktë të lindjes",
                 childSetupprematureLabel: "Foshnjë e lindur para kohe",
                 childSetupprematureMessage: "Një foshnjë e lindur para 37 javëve të shtatzënisë konsiderohet si lindje e parakohshme ose lindje e hershme",
