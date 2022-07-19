@@ -355,10 +355,10 @@ const TJru = {
                 SyncOnLoadPopupText: "Хотите синхронизировать данные сейчас?",
                 SyncOnLoadCancelPopUpBtn: "Отмена",
                 SyncOnLoadRetryBtn: "Синхронизировать",
-                cdNoti1: "Отслеживать развитие ребенка {{periodName}}",
-                cdNoti2: "Проверьте, какие этапы развития ребенок прошел за этот период {{periodName}}",
-                gwNoti1: "Обновить данные о росте {{periodName}}",
-                hcNoti1: "Запланируйте визит к врачу {{periodName}}",
+                cdNoti1: "{{childName}} вступает в {{periodName}} - отслеживайте развитие вашего ребенка",
+                cdNoti2: "Проверьте, какие этапы развития пройдены {{childName}} в период {{periodName}}",
+                gwNoti1: "{{childName}} растет – обновите показатели роста и веса",
+                hcNoti1: "В период {{periodName}}, {{childName}} должен пройти плановый осмотр. Запланируйте визит к врачу",
                 vcNoti1: "В период {{periodName}} {{childName}} получит следующие вакцины:",
                 alertForExistingMeasuresTitle: "Для этой даты уже введены данные, пожалуйста, выберите другую",
                 alertForNoTakenVaccinesSelectTitle: "Пожалуйста, выберите вакцину",
@@ -448,6 +448,7 @@ const TJru = {
 
                 //24 May
                 relatedVideoArticle: "Соответствующее видео",
+                upto6YearsMsg: "Это приложение предназначено для детей до 6 лет",
 
         }
 }

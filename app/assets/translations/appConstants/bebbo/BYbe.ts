@@ -354,10 +354,10 @@ const BYbe = {
                 SyncOnLoadPopupText: "Хочаце сінхранізаваць даныя зараз?",
                 SyncOnLoadCancelPopUpBtn: "Адмена",
                 SyncOnLoadRetryBtn: "Сінхранізаваць",
-                cdNoti1: "Адсочваць развіццё дзіцяці ў перыяд {{periodName}}",
-                cdNoti2: "Праверце, якія этапы развіцця дзіця прайшло за перыяд {{periodName}}",
-                gwNoti1: "Абнавіць даныя аб росце ў перыяд {{periodName}}",
-                hcNoti1: "Заплануйце візіт да ўрача ў {{periodName}}",
+                cdNoti1: "{{childName}} уступае ў {{periodName}} - адсочвайце развіццё вашага дзіцяці",
+                cdNoti2: "Праверце, якія этапы развіцця пройдзены {{childName}}  у перыяд {{periodName}}",
+                gwNoti1: "{{childName}} расце - абнавіце даныя аб рэзультатах вымярэнняў",
+                hcNoti1: "У гэты перыяд, {{periodName}}, {{childName}} трэба прайсці медагляд. Заплануйце візіт да ўрача",
                 vcNoti1: "У перыяд {{periodName}} {{childName}} мусіць атрымаць наступныя вакцыны:",
                 alertForExistingMeasuresTitle: "Для гэтай даты ўжо ўведзены даныя, калі ласка, выберыце іншую",
                 alertForNoTakenVaccinesSelectTitle: "Калі ласка, выберыце вакцыну",
@@ -447,6 +447,7 @@ const BYbe = {
 
                 //24 May
                 relatedVideoArticle: "Відэа па тэме",
+                upto6YearsMsg: "Гэты дадатак прызначаны для дзяцей ва ўзросце да 6 гадоў",
         }
 }
 export default BYbe;

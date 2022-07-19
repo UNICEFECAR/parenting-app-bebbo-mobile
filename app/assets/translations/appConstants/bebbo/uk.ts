@@ -355,10 +355,10 @@ const uk = {
                 SyncOnLoadPopupText: "Бажаєте синхронізувати дані зараз?",
                 SyncOnLoadCancelPopUpBtn: "Скасувати",
                 SyncOnLoadRetryBtn: "Синхронізувати",
-                cdNoti1: "Відстежуйте розвиток вашої дитини в період  {{periodName}}",
-                cdNoti2: "Перевірте, яких етапів досягла ваша дитина протягом періоду - {{periodName}}",
-                gwNoti1: "Оновити вимірювання росту за період  {{periodName}}",
-                hcNoti1: "Запланувати візит до лікаря на період: {{periodName}}",
+                cdNoti1: "{{childName}} вже {{periodName}} - відстежуйте розвиток вашої дитини",
+                cdNoti2: "Перевірте, які досягнення у {{childName}} за {{periodName}} ",
+                gwNoti1: "{{childName}} росте - оновіть показники росту",
+                hcNoti1: "У цей період, {{periodName}}, {{childName}} має пройти перевірку здоров’я. Заплануйте візит до лікаря",
                 vcNoti1: "В найближчий період {{periodName}} {{childName}} повинен(-на) отримати вакцину:",
                 alertForExistingMeasuresTitle: "Дані вимірювання вже доступні для цієї дати. Виберіть іншу дату",
                 alertForNoTakenVaccinesSelectTitle: "Виберіть вакцину(и)",
@@ -451,6 +451,7 @@ const uk = {
 
                 //24 May
                 relatedVideoArticle: "Дитячий профіль видалено",
+                upto6YearsMsg: "Ця програма призначена для дітей віком до 6 років",
         }
 }
 export default uk;

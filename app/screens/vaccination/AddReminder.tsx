@@ -415,7 +415,7 @@ const AddReminder = ({ route, navigation }: any) => {
             }
             // console.log(finalReminderDateDefined,"---finalReminderDateDefined",measureTimeNewDefined);
             if(vchcEnabledFlag == true) {
-             LocalNotifications.schduleNotification(finalReminderDateDefined,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis());
+             LocalNotifications.schduleNotification(finalReminderDateDefined,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis(),reminderType == 'vaccine' ? 'vcr' : 'hcr');
             }
             dispatch(setActiveChildData(activeChild));
             let notiFlagObj = { key: 'generateNotifications', value: true };
