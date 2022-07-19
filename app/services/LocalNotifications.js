@@ -6,12 +6,11 @@ class LocalNotifications {
     PushNotification.configure({
       // (optional) Called when Token is generated (iOS and Android)
       onRegister: function (token) {
-        // console.log('TOKEN:', token);
+        console.log('TOKEN---:', token);
       },
       onNotification: function (notification) {
         //Alert.alert('NOTIFICATION:', 'NOTIFICATION Recieved:');
-       // DeviceEventEmitter.emit('eventKey', {name:'John', age:23});
-
+      
        // notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
       popInitialNotification: true,
@@ -23,7 +22,6 @@ class LocalNotifications {
         sound: false,
       },
     });
-
     PushNotification.createChannel(
       {
         channelId: 'reminders', // (required)
@@ -34,17 +32,18 @@ class LocalNotifications {
     );
 
     PushNotification.getScheduledLocalNotifications(rn => {
-      console.log('SN --- ', rn);
+      // console.log('SN --- ', rn);
     });
   }
 
-  schduleNotification(date,title,message,notiId) {
+  schduleNotification(date,title,message,notiId,notitype) {
     let notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
-    console.log(notiId,"--notiId--",notificationid);
+    // console.log(notiId,"--notiId--",notificationid);
     PushNotification.localNotificationSchedule({
       channelId: 'reminders',
       id:notificationid,
       title: title,
+      userInfo: { notitype: notitype },
       message: message,
       date,
       number: 1
@@ -61,7 +60,12 @@ class LocalNotifications {
   }
   getAllScheduledLocalNotifications() {
     PushNotification.getScheduledLocalNotifications((v)=> {
-      console.log("PushNotification.getScheduledLocalNotifications---",v);
+      console.log(v.length,"PushNotification.getScheduledLocalNotifications length---");
+    })
+  }
+  getDeliveredNotifications() {
+    PushNotification.getDeliveredNotifications((noti) => {
+      console.log('DELIVERED NOTIFICATION',noti.length);
     })
   }
 }

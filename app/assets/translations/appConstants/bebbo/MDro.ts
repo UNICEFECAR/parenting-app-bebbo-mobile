@@ -355,10 +355,10 @@ const MDro = {
                 SyncOnLoadPopupText: "Doriți să sincronizați datele acum?",
                 SyncOnLoadCancelPopUpBtn: "Anulare",
                 SyncOnLoadRetryBtn: "Sincronizare",
-                cdNoti1: "Urmăriți dezvoltarea copilului dvs. în perioada de  {{periodName}}",
-                cdNoti2: "Verificați abilitățile pe care le-a atins copilul dvs. în perioada de - {{periodName}}",
-                gwNoti1: "Actualizați măsurătorile de creștere pentru perioada de  {{periodName}}",
-                hcNoti1: "Programați o vizită la medic pentru perioada: {{periodName}}",
+                cdNoti1: "{{childName}} a ajuns la perioada de vârstă de {{periodName}} - urmărește progresele în dezvoltarea copilului tău",
+                cdNoti2: "Verifică progresele în dezvoltare pe care le-a atins {{childName}} către vârsta de {{periodName}}",
+                gwNoti1: "{{childName}} continuă să fie în creștere - actualizează înălțimea și greutatea copilului tău",
+                hcNoti1: "În această perioadă de vârstă, {{periodName}}, {{childName}} trebuie să fie consultat profilactic. Programați o vizită la medic sau a asistentei medicale de familie la domiciliu",
                 vcNoti1: "În această perioadă, {{periodName}}, lui {{childName}} trebuie să i se administreze vaccinul:",
                 alertForExistingMeasuresTitle: "Datele măsurătorii sunt deja disponibile pentru această dată, vă rugăm să selectați o altă dată",
                 alertForNoTakenVaccinesSelectTitle: "Vă rugăm să selectați vaccinul(vaccinurile)",
@@ -449,6 +449,7 @@ const MDro = {
 
                 //24 May
                 relatedVideoArticle: "Videoclipuri similare",
+                upto6YearsMsg: "Această aplicație este destinată copiilor cu vârsta până la 6 ani",
         }
 }
 export default MDro;

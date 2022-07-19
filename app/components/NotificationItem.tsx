@@ -165,8 +165,18 @@ const NotificationItem = (props: any) => {
               </NotifIcon>
               <NotifiContent>
                 {item.isRead == true ?
-                  <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
-                  <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
+                  <Heading4Regular>{t(item.title, { childName:
+                    activeChild.childName != null &&
+                      activeChild.childName != '' &&
+                      activeChild.childName != undefined
+                      ? activeChild.childName
+                      : '',periodName: item.periodName })}</Heading4Regular> :
+                  <Heading4Bold>{t(item.title, { childName:
+                    activeChild.childName != null &&
+                      activeChild.childName != '' &&
+                      activeChild.childName != undefined
+                      ? activeChild.childName
+                      : '',periodName: item.periodName })}</Heading4Bold>
                 }
 
 
@@ -282,8 +292,18 @@ const NotificationItem = (props: any) => {
               </NotifIcon>
               <NotifiContent>
                 {item.isRead == true ?
-                  <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
-                  <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
+                  <Heading4Regular>{t(item.title, { childName:
+                    activeChild.childName != null &&
+                      activeChild.childName != '' &&
+                      activeChild.childName != undefined
+                      ? activeChild.childName
+                      : '',periodName: item.periodName })}</Heading4Regular> :
+                  <Heading4Bold>{t(item.title, { childName:
+                    activeChild.childName != null &&
+                      activeChild.childName != '' &&
+                      activeChild.childName != undefined
+                      ? activeChild.childName
+                      : '',periodName: item.periodName })}</Heading4Bold>
                 }
                 <ShiftFromTop5>
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
@@ -522,8 +542,18 @@ const NotificationItem = (props: any) => {
                 </NotifIcon>
                 <NotifiContent>
                   {item.isRead == true ?
-                    <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
-                    <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
+                    <Heading4Regular>{t(item.title, { childName:
+                      activeChild.childName != null &&
+                        activeChild.childName != '' &&
+                        activeChild.childName != undefined
+                        ? activeChild.childName
+                        : '',periodName: item.periodName })}</Heading4Regular> :
+                    <Heading4Bold>{t(item.title, { childName:
+                      activeChild.childName != null &&
+                        activeChild.childName != '' &&
+                        activeChild.childName != undefined
+                        ? activeChild.childName
+                        : '',periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
                     <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
@@ -634,8 +664,18 @@ const NotificationItem = (props: any) => {
                 </NotifIcon>
                 <NotifiContent>
                   {item.isRead == true ?
-                    <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
-                    <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
+                    <Heading4Regular>{t(item.title, { childName:
+                      activeChild.childName != null &&
+                        activeChild.childName != '' &&
+                        activeChild.childName != undefined
+                        ? activeChild.childName
+                        : '',periodName: item.periodName })}</Heading4Regular> :
+                    <Heading4Bold>{t(item.title, { childName:
+                      activeChild.childName != null &&
+                        activeChild.childName != '' &&
+                        activeChild.childName != undefined
+                        ? activeChild.childName
+                        : '',periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
                     <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
