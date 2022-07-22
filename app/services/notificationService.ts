@@ -93,7 +93,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
       },
     )
   }
-  else if((childDaysTo - childDaysFrom) <=twoMonthDays) {
+  else if((childDaysTo - childDaysFrom) <=threeeMonthDays) {
     noti.push(
       {
         "days_from": childDaysFrom,
@@ -110,7 +110,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
       })
     const diff = Math.round((childDaysTo - childDaysFrom) / oneMonthDays);
     for (var i = 0; i < diff; i++) { 
-      const notificationDate = DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * oneMonthDays) + oneMonthDays ? childDaysTo : childDaysFrom + (i * oneMonthDays) + oneMonthDays, });
+      const notificationDate = DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * oneMonthDays) + oneMonthDays ? childDaysTo - beforeDays : (childDaysFrom + (i * oneMonthDays) + oneMonthDays - 1) - beforeDays, });
       // check difference between today and notification date in days and if greater than or equal to oneMonthDays then isDeleted=false
       let numOfDays;
       if(isFutureDateTime(notificationDate) == true) {
@@ -121,7 +121,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
       noti.push(
         {
           "days_from": childDaysFrom + (i * oneMonthDays),
-          "days_to": (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * oneMonthDays) + oneMonthDays ? childDaysTo : childDaysFrom + (i * oneMonthDays) + oneMonthDays,
+          "days_to": (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * oneMonthDays) + oneMonthDays ? childDaysTo - beforeDays : (childDaysFrom + (i * oneMonthDays) + oneMonthDays - 1) - beforeDays,
           "type": "cd",
           "title": ('cdNoti2'),
           "checkinField": "days_to",
@@ -152,7 +152,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
     const diff = Math.round((childDaysTo - childDaysFrom) / twoMonthDays);
     // console.log(diff, item.days_from) //
     for (var i = 0; i < diff; i++) { 
-      const notificationDate = DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * twoMonthDays) + twoMonthDays ? childDaysTo : childDaysFrom + (i * twoMonthDays) + twoMonthDays, });
+      const notificationDate = DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * twoMonthDays) + twoMonthDays ? childDaysTo - beforeDays : (childDaysFrom + (i * twoMonthDays) + twoMonthDays - 1) - beforeDays, });
       // check difference between today and notification date in days and if greater than or equal to twoMonthDays then isDeleted=false
       let numOfDays;
       if(isFutureDateTime(notificationDate) == true) {
@@ -163,7 +163,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
       noti.push(
         {
           "days_from": childDaysFrom + (i * twoMonthDays),
-          "days_to": (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * twoMonthDays) + twoMonthDays ? childDaysTo : childDaysFrom + (i * twoMonthDays) + twoMonthDays,
+          "days_to": (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * twoMonthDays) + twoMonthDays ? childDaysTo - beforeDays : (childDaysFrom + (i * twoMonthDays) + twoMonthDays - 1) - beforeDays,
           "type": "cd",
           "title": ('cdNoti2'),
           "checkinField": "days_to",
@@ -180,9 +180,9 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
   if((childTaxonomyData.days_to - childTaxonomyData.days_from) >= threeeMonthDays){
     const diff = Math.round((childTaxonomyData.days_to - childTaxonomyData.days_from) / twoMonthDays);
     for (var i = 0; i < diff; i++) {
-      const notificationDate = DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays });
+      const notificationDate = DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 1 });
       // check difference between today and notification date in days and if greater than or equal to twoMonthDays then isDeleted=false
-      const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from + (i * twoMonthDays), (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays)
+      const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from + (i * twoMonthDays), (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 1)
       if (!isGrowthDataExist) {
         let numOfDays2;
         if(isFutureDateTime(notificationDate) == true) {
@@ -193,7 +193,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
         noti.push(
           {
             "days_from": childTaxonomyData.days_from + (i * twoMonthDays),
-            "days_to": (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays,
+            "days_to": (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 1,
             "type": "gw",
             "title": ('gwNoti1'),
             "checkinField": "days_from",
@@ -745,7 +745,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             }
           }
         }
-        else if((agebracket.days_to - agebracket.days_from) <= twoMonthDays) {
+        else if((agebracket.days_to - agebracket.days_from) <= threeeMonthDays) {
           if(developmentEnabledFlag == true){
             const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
             if(isFutureDateTime(new Date(notificationDate))) 
@@ -783,7 +783,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           const diff = Math.round((agebracket.days_to - agebracket.days_from) / oneMonthDays);
           for (var i = 0; i < diff; i++) {
             if(developmentEnabledFlag == true) {
-              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to : agebracket.days_from + (i * oneMonthDays) + oneMonthDays, });
+              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to - beforeDays : (agebracket.days_from + (i * oneMonthDays) + oneMonthDays - 1) - beforeDays, });
               if(isFutureDateTime(new Date(notificationDate2))) 
               {
                 const message2 = t('cdNoti2', { childName:
@@ -819,7 +819,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           const diff = Math.round((agebracket.days_to - agebracket.days_from) / twoMonthDays);
           for (var i = 0; i < diff; i++) {
             if(developmentEnabledFlag == true) {
-              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays, });
+              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to - beforeDays : (agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 1) - beforeDays, });
               if(isFutureDateTime(new Date(notificationDate2))) 
               {
                 const message2 = t('cdNoti2', { childName:
@@ -835,9 +835,9 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             }
             //notification for growth
             if(growthEnabledFlag == true) {
-              const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from + (i * twoMonthDays), (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays)
+              const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from + (i * twoMonthDays), (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 1)
               if (!isGrowthDataExist) {
-                const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays });
+                const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 1 });
                 if(isFutureDateTime(new Date(notificationDate3))) 
                 {
                   const message3 = t('gwNoti1', { childName:
