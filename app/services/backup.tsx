@@ -115,8 +115,8 @@ class Backup {
             });
             let notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
-            let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
-                  dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+            // let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+            //       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
             await Promise.all(resolvedPromises).then(async item => {
                 let allChildren = await getAllChildren(dispatch, child_age,1);
                 let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
@@ -327,8 +327,8 @@ class Backup {
                     });
                     let notiFlagObj = { key: 'generateNotifications', value: true };
                     dispatch(setInfoModalOpened(notiFlagObj));
-                    let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
-                  dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+                //     let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+                //   dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
                     await Promise.all(resolvedPromises).then(async item => {
                        // console.log(userRealmCommon.realm?.schemaVersion, "..new userRealmCommon schema version.");
 

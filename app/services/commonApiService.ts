@@ -439,14 +439,14 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setchatBotData([]));
     const storedata = store.getState();
     const scheduledlocalNotifications = storedata.notificationData.scheduledlocalNotifications;
-    console.log("clear all localNotification");
-    scheduledlocalNotifications.map((y:any)=>{
-        // y.data.map((n:any)=>{
-          LocalNotifications.cancelReminderLocalNotification(y.notiid);
-        // })
-    })
-    // dispatch(setAllLocalNotificationData([]));
-    dispatch(setAllScheduledLocalNotificationData([]));
+    // console.log("clear all localNotification--",scheduledlocalNotifications);
+    // scheduledlocalNotifications.map((y:any)=>{
+    //     // y.data.map((n:any)=>{
+    //       LocalNotifications.cancelReminderLocalNotification(y.notiid);
+    //     // })
+    // })
+    // // dispatch(setAllLocalNotificationData([]));
+    // dispatch(setAllScheduledLocalNotificationData([]));
     dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: false}));
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
