@@ -267,7 +267,6 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               ):
               <DateTimePickerModal
               isVisible={isDobDatePickerVisible}
-              timeZoneOffsetInMinutes={0}
               mode="date"
               onConfirm={handleDobConfirm}
               date={plannedTermDate!=null ? plannedTermDate : new Date(DateTime.local().plus({ days: 1 }).toISODate())}

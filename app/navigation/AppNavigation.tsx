@@ -47,7 +47,7 @@ import {AppEventsLogger, Settings} from 'react-native-fbsdk-next';
 import {PERMISSIONS, RESULTS, request, check} from 'react-native-permissions';
 import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
-
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -243,42 +243,34 @@ export default () => {
       PushNotification.configure({
   // this will listen to your local push notifications on clicked 
         onNotification: (notification:any) => {
-          console.log(notification,"..11notification11..");
-          if(notification && notification.data && notification.data.notitype!='' && notification.data.notitype!=null && notification.data.notitype!=undefined && userIsOnboarded){
-            if(notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
-              navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
-            }
-            else if(notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
-              navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
-            }
-            else if(notification.data.notitype == 'cd') {
-              navigationRef.current?.navigate("Tools", { screen: 'ChildDevelopment' })
-            }
-            else if(notification.data.notitype == 'gw') {
-              navigationRef.current?.navigate("Tools", { screen: 'AddNewChildgrowth' })
-            }
+         // Alert.alert("..onNotification..");
+          // if(notification && notification.data && notification.data.notitype!='' && notification.data.notitype!=null && notification.data.notitype!=undefined && userIsOnboarded){
+          //  Alert.alert(notification.data.notitype,"..onNotification..")
+          //   if(notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
+          //     navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
+          //   }
+          //   else if(notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
+          //     navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
+          //   }
+          //   else if(notification.data.notitype == 'cd') {
+          //     navigationRef.current?.navigate("Tools", { screen: 'ChildDevelopment' })
+          //   }
+          //   else if(notification.data.notitype == 'gw') {
+          //     navigationRef.current?.navigate("Tools", { screen: 'AddNewChildgrowth' })
+          //   }
 
-          }
+          // }
+         handleNotification(notification);
+         if(Platform.OS=="ios"){
+         notification.finish(PushNotificationIOS.FetchResult.NoData);
+         }
         },
         popInitialNotification: true,
         requestPermissions: true,
       });
       PushNotification.popInitialNotification((notification:any) => {
-        console.log(notification,"..22notification22..");
-        if(notification && notification.data && notification.data.notitype!='' && notification.data.notitype!=null && notification.data.notitype!=undefined && userIsOnboarded){
-          if(notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
-            navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
-          }
-          else if(notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
-            navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
-          }
-          else if(notification.data.notitype == 'cd') {
-            navigationRef.current?.navigate("Tools", { screen: 'ChildDevelopment' })
-          }
-          else if(notification.data.notitype == 'gw') {
-            navigationRef.current?.navigate("Tools", { screen: 'AddNewChildgrowth' })
-          }
-        }
+        //Alert.alert("..popInitialNotification..");
+        handleNotification(notification);
         // this will listen to your local push notifications on opening app from background state
           
       })
@@ -287,6 +279,55 @@ export default () => {
       // alert(e)
      console.log("error")
     }
+  }
+  const handleNotification=(notification:any) =>{
+    var executed=false;
+     if(!executed){
+      executed=true;
+     if(notification && notification.data && notification.data.notitype!='' && notification.data.notitype!=null && notification.data.notitype!=undefined && userIsOnboarded){
+       //// **APP IS OPEN**
+        //Alert.alert(JSON.stringify(notification),"..notification.foreground true..");
+        if (notification.userInteraction == true) {
+               if(notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
+              navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
+            }
+            else if(notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
+              navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
+            }
+            else if(notification.data.notitype == 'cd') {
+              navigationRef.current?.navigate('ChildDevelopment')
+            }
+            else if(notification.data.notitype == 'gw') {
+              navigationRef.current?.navigate('AddNewChildgrowth', {
+                headerTitle: t('growthScreenaddNewBtntxt'),
+              });
+            }
+         }
+    } else { ///////**APP IS CLOSED!!!**
+        if (notification && notification.foreground == false) {
+          if(notification && notification.data && notification.data.notitype!='' && notification.data.notitype!=null && notification.data.notitype!=undefined && userIsOnboarded){
+          //Alert.alert(JSON.stringify(notification),"..notification.foreground false..");
+            //navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
+          if(notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
+            navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
+          }
+          else if(notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
+            navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
+          }
+          else if(notification.data.notitype == 'cd') {
+            navigationRef.current?.navigate('ChildDevelopment')
+          }
+          else if(notification.data.notitype == 'gw') {
+            navigationRef.current?.navigate('AddNewChildgrowth', {
+              headerTitle: t('growthScreenaddNewBtntxt'),
+            });
+          }
+          }
+          }
+    }
+    
+    }
+
   }
   useEffect(() => {
    // let notiListener=null;

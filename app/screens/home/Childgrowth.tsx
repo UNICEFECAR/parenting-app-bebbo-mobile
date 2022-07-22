@@ -245,7 +245,7 @@ const {width,height}= Dimensions.get('window');
                           activeChild.birthDate != undefined
                             ? getCurrentChildAgeInMonths(
                                 t,
-                                activeChild.birthDate,
+                                DateTime.fromJSDate(new Date(activeChild.birthDate)),
                                 pluralShow
                               )
                             : '',
