@@ -410,13 +410,13 @@ export default () => {
       //// **APP IS OPEN**
       //Alert.alert(JSON.stringify(notification),"..notification.foreground true..");
       if (notification && notification.userInteraction == true) {
-        ToastAndroid.showWithGravityAndOffset(
-          currentActiveChild + "," + screenName + "," + notification.userInteraction + "," + notification.data.notitype + "," + notification.data.uuid,
-          ToastAndroid.LONG,
-          ToastAndroid.BOTTOM,
-          25,
-          50
-        );
+        // ToastAndroid.showWithGravityAndOffset(
+        //   currentActiveChild + "," + screenName + "," + notification.userInteraction + "," + notification.data.notitype + "," + notification.data.uuid,
+        //   ToastAndroid.LONG,
+        //   ToastAndroid.BOTTOM,
+        //   25,
+        //   50
+        // );
 
         if (notification && notification.data && notification.data.notitype != '' && notification.data.notitype != null && notification.data.notitype != undefined && userIsOnboarded) {
           // if(activeChilduuid!=notification.data.uuid){
@@ -427,13 +427,13 @@ export default () => {
       } else { ///////**APP IS CLOSED!!!**
 
         if (notification && notification.foreground == false) {
-          ToastAndroid.showWithGravityAndOffset(
-            currentActiveChild + "," + screenName + "," + notification.foreground + "," + notification.data.notitype + "," + notification.data.uuid,
-            ToastAndroid.LONG,
-            ToastAndroid.BOTTOM,
-            25,
-            50
-          );
+          // ToastAndroid.showWithGravityAndOffset(
+          //   currentActiveChild + "," + screenName + "," + notification.foreground + "," + notification.data.notitype + "," + notification.data.uuid,
+          //   ToastAndroid.LONG,
+          //   ToastAndroid.BOTTOM,
+          //   25,
+          //   50
+          // );
           if (notification && notification.data && notification.data.notitype != '' && notification.data.notitype != null && notification.data.notitype != undefined && userIsOnboarded) {
             //Alert.alert(JSON.stringify(notification),"..notification.foreground false..");
             //navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
