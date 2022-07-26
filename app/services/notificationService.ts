@@ -73,7 +73,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
         "type": "cd",
         "title": ('cdNoti1'),
         "checkinField": "days_from",
-        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysFrom + afterDays }),
+        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysFrom == 0 ? childDaysFrom + afterDays + 1 : childDaysFrom + afterDays}),
         "isRead": false,
         "isDeleted": false,
         "periodName": childTaxonomyData.name,
@@ -180,9 +180,9 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
   if((childTaxonomyData.days_to - childTaxonomyData.days_from) >= threeeMonthDays){
     const diff = Math.round((childTaxonomyData.days_to - childTaxonomyData.days_from) / twoMonthDays);
     for (var i = 0; i < diff; i++) {
-      const notificationDate = DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 1 });
+      const notificationDate = DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (i == diff - 1) ? childTaxonomyData.days_to - 1 : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to - 1 : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 2 });
       // check difference between today and notification date in days and if greater than or equal to twoMonthDays then isDeleted=false
-      const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from + (i * twoMonthDays), (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 1)
+      const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from + (i * twoMonthDays), (i == diff - 1) ? childTaxonomyData.days_to - 1 : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to - 1 : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 2)
       if (!isGrowthDataExist) {
         let numOfDays2;
         if(isFutureDateTime(notificationDate) == true) {
@@ -193,7 +193,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
         noti.push(
           {
             "days_from": childTaxonomyData.days_from + (i * twoMonthDays),
-            "days_to": (i == diff - 1) ? childTaxonomyData.days_to : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 1,
+            "days_to": (i == diff - 1) ? childTaxonomyData.days_to - 1 : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to - 1 : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 2,
             "type": "gw",
             "title": ('gwNoti1'),
             "checkinField": "days_from",
@@ -208,7 +208,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
      
     }
   }else {
-    const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from, childTaxonomyData.days_to)
+    const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from, childTaxonomyData.days_to - 1)
     // if growth measure does not exist in that child age period, noti  should be added
     if (!isGrowthDataExist) {
       noti.push(
@@ -218,7 +218,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematur
           "type": "gw",
           "title": ('gwNoti1'),
           "checkinField": "days_to",
-          "notificationDate": DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: childTaxonomyData.days_to }),
+          "notificationDate": DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: childTaxonomyData.days_to - 1 }),
           "isRead": false,
           "isDeleted": false,
           "periodName": childTaxonomyData.name,
@@ -699,7 +699,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
 
         if ((agebracket.days_to - agebracket.days_from) <= oneMonthDays) {
           if(developmentEnabledFlag == true) { 
-            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
+            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from == 0 ? agebracket.days_from + afterDays + 1 : agebracket.days_from + afterDays });
             if(isFutureDateTime(new Date(notificationDate))) 
             {
               const message = t('cdNoti1', { childName:
@@ -729,7 +729,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           if(growthEnabledFlag == true) {
             const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
             if (!isGrowthDataExist) {
-              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to });
+              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to - 1});
               if(isFutureDateTime(new Date(notificationDate3))) 
               {
                 const message3 = t('gwNoti1', { childName:
@@ -765,7 +765,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           if(growthEnabledFlag == true) {
             const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
             if (!isGrowthDataExist) {
-              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to });
+              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to - 1 });
               if(isFutureDateTime(new Date(notificationDate3))) 
               {
                 const message3 = t('gwNoti1', { childName:
@@ -835,9 +835,9 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             }
             //notification for growth
             if(growthEnabledFlag == true) {
-              const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from + (i * twoMonthDays), (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 1)
+              const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from + (i * twoMonthDays), (i == diff - 1) ? agebracket.days_to - 1 : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to - 1: agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 2)
               if (!isGrowthDataExist) {
-                const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to : agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 1 });
+                const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - 1 : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to - 1 : agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 2 });
                 if(isFutureDateTime(new Date(notificationDate3))) 
                 {
                   const message3 = t('gwNoti1', { childName:
