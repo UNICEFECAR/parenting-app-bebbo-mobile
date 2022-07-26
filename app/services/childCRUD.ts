@@ -194,10 +194,11 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       // console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), 
+      analytics().setUserProperties({ 
+        ageid: String(child.taxonomyData.id), 
         is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", 
         relationship_with_child:userRelationToParent,
-      parent_gender: child.parent_gender
+        parent_gender: child.parent_gender
     }) // relationship_with_child:monther/father
       
 
