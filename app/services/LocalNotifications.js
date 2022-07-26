@@ -36,14 +36,15 @@ class LocalNotifications {
     });
   }
 
-  schduleNotification(date,title,message,notiId,notitype) {
+  schduleNotification(date,title,message,notiId,notitype,uuid) {
+    //console.log(uuid,"...uuid..")
     let notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
     // console.log(notiId,"--notiId--",notificationid);
     PushNotification.localNotificationSchedule({
       channelId: 'reminders',
       id:notificationid,
       title: title,
-      userInfo: { notitype: notitype },
+      userInfo: { notitype: notitype ,uuid:uuid},
       message: message,
       date,
       number: 1
