@@ -709,7 +709,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                 ? child.childName
                 : '', periodName: agebracket.name }); 
               const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message,'childUuid':child.uuid});
               // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
             }
             const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_to - beforeDays});
@@ -722,7 +722,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                 ? child.childName
                 : '', periodName: agebracket.name });
               const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2,'childUuid':child.uuid});
               // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
             }
           }
@@ -739,7 +739,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                   ? child.childName
                   : '', periodName: agebracket.name }); 
                 const currNotiId = generatenotiId(localNotifications,allNotis)
-                allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
+                allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3,'childUuid':child.uuid});
                 // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
               }
             }
@@ -757,7 +757,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                 ? child.childName
                 : '', periodName: agebracket.name }); 
               const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message,'childUuid':child.uuid});
               // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
             }
           }
@@ -775,7 +775,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                   ? child.childName
                   : '', periodName: agebracket.name }); 
                 const currNotiId = generatenotiId(localNotifications,allNotis)
-                allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
+                allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3,'childUuid':child.uuid});
                 // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
               }
             }
@@ -793,7 +793,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                   ? child.childName
                   : '', periodName: agebracket.name });
                 const currNotiId = generatenotiId(localNotifications,allNotis)
-                allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
+                allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2,'childUuid':child.uuid});
                 // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
               }
             }
@@ -812,7 +812,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                 ? child.childName
                 : '', periodName: agebracket.name }); 
               const currNotiId = generatenotiId(localNotifications,allNotis)
-              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
+              allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message,'childUuid':child.uuid});
               // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
             }
           }
@@ -829,7 +829,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                   ? child.childName
                   : '', periodName: agebracket.name });
                 const currNotiId = generatenotiId(localNotifications,allNotis)
-                allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2});
+                allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate2,'notiMsg':message2,'childUuid':child.uuid});
                 // LocalNotifications.schduleNotification(new Date(notificationDate2),t('remindersAlertTitle'),message2,currNotiId); 
               }
             }
@@ -847,7 +847,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                     ? child.childName
                     : '', periodName: agebracket.name }); 
                   const currNotiId = generatenotiId(localNotifications,allNotis)
-                  allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3});
+                  allNotis.push({'type':'gw','notiid':currNotiId,'notiDate':notificationDate3,'notiMsg':message3,'childUuid':child.uuid});
                   // LocalNotifications.schduleNotification(new Date(notificationDate3),t('remindersAlertTitle'),message3,currNotiId);
                 }
               }
@@ -878,7 +878,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
                 : '', periodName: vc.periodName
           }) + getVaccinesForPeriod(allVaccineData,vc.growth_period)
           const currNotiId = generatenotiId(localNotifications,allNotis)
-          allNotis.push({'type':'vc','notiid':currNotiId,'notiDate':notificationDate4,'notiMsg':message4});
+          allNotis.push({'type':'vc','notiid':currNotiId,'notiDate':notificationDate4,'notiMsg':message4,'childUuid':child.uuid});
           // LocalNotifications.schduleNotification(new Date(notificationDate4),t('remindersAlertTitle'),message4,currNotiId); 
         }
       })
@@ -894,7 +894,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             ? child.childName
             : '', periodName: hc.periodName })
           const currNotiId = generatenotiId(localNotifications,allNotis)
-          allNotis.push({'type':'hc','notiid':currNotiId,'notiDate':notificationDate5,'notiMsg':message5});
+          allNotis.push({'type':'hc','notiid':currNotiId,'notiDate':notificationDate5,'notiMsg':message5,'childUuid':child.uuid});
           // LocalNotifications.schduleNotification(new Date(notificationDate5),t('remindersAlertTitle'),message5,currNotiId); 
         }
       })
