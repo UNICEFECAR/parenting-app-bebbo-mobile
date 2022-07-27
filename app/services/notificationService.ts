@@ -699,7 +699,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
 
         if ((agebracket.days_to - agebracket.days_from) <= oneMonthDays) {
           if(developmentEnabledFlag == true) { 
-            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from == 0 ? agebracket.days_from + afterDays + 1 : agebracket.days_from + afterDays });
+            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19,0,0,0))).plus({ days: agebracket.days_from == 0 ? agebracket.days_from + afterDays + 1 : agebracket.days_from + afterDays });
             if(isFutureDateTime(new Date(notificationDate))) 
             {
               const message = t('cdNoti1', { childName:
@@ -712,7 +712,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
               allNotis.push({'type':'cd','notiid':currNotiId,'notiDate':notificationDate,'notiMsg':message});
               // LocalNotifications.schduleNotification(new Date(notificationDate),t('remindersAlertTitle'),message,currNotiId); 
             }
-            const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_to - beforeDays});
+            const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19,0,0,0))).plus({ days: agebracket.days_to - beforeDays});
             if(isFutureDateTime(new Date(notificationDate2))) 
             {
               const message2 = t('cdNoti2', { childName:
@@ -729,7 +729,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           if(growthEnabledFlag == true) {
             const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
             if (!isGrowthDataExist) {
-              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to - 1});
+              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(19,0,0,0))).plus({ days: agebracket.days_to - 1});
               if(isFutureDateTime(new Date(notificationDate3))) 
               {
                 const message3 = t('gwNoti1', { childName:
@@ -747,7 +747,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
         }
         else if((agebracket.days_to - agebracket.days_from) <= threeeMonthDays) {
           if(developmentEnabledFlag == true){
-            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
+            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19,0,0,0))).plus({ days: agebracket.days_from + afterDays });
             if(isFutureDateTime(new Date(notificationDate))) 
             {
               const message = t('cdNoti1', { childName:
@@ -765,7 +765,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           if(growthEnabledFlag == true) {
             const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from, agebracket.days_to)
             if (!isGrowthDataExist) {
-              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: agebracket.days_to - 1 });
+              const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(19,0,0,0))).plus({ days: agebracket.days_to - 1 });
               if(isFutureDateTime(new Date(notificationDate3))) 
               {
                 const message3 = t('gwNoti1', { childName:
@@ -783,7 +783,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           const diff = Math.round((agebracket.days_to - agebracket.days_from) / oneMonthDays);
           for (var i = 0; i < diff; i++) {
             if(developmentEnabledFlag == true) {
-              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to - beforeDays : (agebracket.days_from + (i * oneMonthDays) + oneMonthDays - 1) - beforeDays, });
+              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * oneMonthDays) + oneMonthDays ? agebracket.days_to - beforeDays : (agebracket.days_from + (i * oneMonthDays) + oneMonthDays - 1) - beforeDays, });
               if(isFutureDateTime(new Date(notificationDate2))) 
               {
                 const message2 = t('cdNoti2', { childName:
@@ -802,7 +802,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
         }
         else {
           if(developmentEnabledFlag == true){
-            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: agebracket.days_from + afterDays });
+            const notificationDate = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19,0,0,0))).plus({ days: agebracket.days_from + afterDays });
             if(isFutureDateTime(new Date(notificationDate))) 
             {
               const message = t('cdNoti1', { childName:
@@ -819,7 +819,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
           const diff = Math.round((agebracket.days_to - agebracket.days_from) / twoMonthDays);
           for (var i = 0; i < diff; i++) {
             if(developmentEnabledFlag == true) {
-              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to - beforeDays : (agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 1) - beforeDays, });
+              const notificationDate2 = DateTime.fromJSDate(new Date(new Date(childBirthDatePlanned).setHours(19,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - beforeDays : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to - beforeDays : (agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 1) - beforeDays, });
               if(isFutureDateTime(new Date(notificationDate2))) 
               {
                 const message2 = t('cdNoti2', { childName:
@@ -837,7 +837,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
             if(growthEnabledFlag == true) {
               const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, agebracket.days_from + (i * twoMonthDays), (i == diff - 1) ? agebracket.days_to - 1 : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to - 1: agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 2)
               if (!isGrowthDataExist) {
-                const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(6,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - 1 : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to - 1 : agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 2 });
+                const notificationDate3 = DateTime.fromJSDate(new Date(new Date(child.birthDate).setHours(19,0,0,0))).plus({ days: (i == diff - 1) ? agebracket.days_to - 1 : agebracket.days_to < agebracket.days_from + (i * twoMonthDays) + twoMonthDays ? agebracket.days_to - 1 : agebracket.days_from + (i * twoMonthDays) + twoMonthDays - 2 });
                 if(isFutureDateTime(new Date(notificationDate3))) 
                 {
                   const message3 = t('gwNoti1', { childName:
@@ -866,7 +866,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
       let hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
 
       vcNotis.map((vc:any) => {
-        const notificationDate4 = DateTime.fromJSDate(new Date(new Date(vc.notificationDate).setHours(6,0,0,0)))
+        const notificationDate4 = DateTime.fromJSDate(new Date(new Date(vc.notificationDate).setHours(19,0,0,0)))
         if(isFutureDateTime(new Date(notificationDate4))) 
         {
           const message4 = t(vc.title, {
@@ -884,7 +884,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any,developmen
       })
 
       hcNotis.map((hc:any) => {
-        const notificationDate5 = DateTime.fromJSDate(new Date(new Date(hc.notificationDate).setHours(6,0,0,0)))
+        const notificationDate5 = DateTime.fromJSDate(new Date(new Date(hc.notificationDate).setHours(19,0,0,0)))
         if(isFutureDateTime(new Date(notificationDate5))) 
         {
           const message5 = t(hc.title, { childName:
