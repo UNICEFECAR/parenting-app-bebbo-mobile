@@ -399,7 +399,7 @@ const HeaderNotiIcon = (props: any) => {
             if(isFutureDateTime(new Date(x.notiDate))) {
               if((scheduledlocalNotifications.findIndex((y:any)=>y.notiDate == x.notiDate)) == -1) {
                 filteredschedulednoti.push({"notiid":x.notiid,"notiDate":x.notiDate});
-                LocalNotifications.schduleNotification(new Date(x.notiDate),t('remindersAlertTitle'),x.notiMsg,x.notiid,x.type);
+                LocalNotifications.schduleNotification(new Date(x.notiDate),t('remindersAlertTitle'),x.notiMsg,x.notiid,x.type,x.childUuid);
               }
             }
           }else {

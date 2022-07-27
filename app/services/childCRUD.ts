@@ -194,10 +194,11 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       // console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), 
+      analytics().setUserProperties({ 
+        ageid: String(child.taxonomyData.id), 
         is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", 
         relationship_with_child:userRelationToParent,
-      parent_gender: child.parent_gender
+        parent_gender: child.parent_gender
     }) // relationship_with_child:monther/father
       
 
@@ -442,7 +443,7 @@ export const isFutureDateTime = (date: DateTime) => {
 };
 
 export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:boolean) => {
-  //Alert.alert('birthDate',String(birthDate));
+  console.log('birthDate',String(birthDate));
   //birthDate=Platform.OS=='ios'?new Date(birthDate).toISOString():birthDate;
   // var d = new Date(birthDate).toString();
   // console.log(d,"..d..")
@@ -478,17 +479,26 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
   // else{
   //   return 0 ;
   // }
-  // console.log(birthDate,"..birthDate..")
+ 
   //const date1 = DateTime.fromISO(DateTime.local().toISODate());
-  const date1 = DateTime.local();
-  // console.log(date1,"..date1");
-  // const date2 = DateTime.fromISO(birthDate);
-  let dateData=new Date(birthDate).toISOString().split('T')[0];
-  // console.log(dateData,"..dateData")
-  const date2 = DateTime.fromISO(dateData);
-  // console.log(date2);
-  const diff: any = date1.diff(date2, ["years", "months", "days"]);
-  // console.log(diff.toObject(),"..diffobject");
+  // const date1 = DateTime.local();
+  // // console.log(date1,"..date1");
+  // // const date2 = DateTime.fromISO(birthDate);
+  // let dateData=new Date(birthDate).toISOString().split('T')[0];
+  // // console.log(dateData,"..dateData")
+  // const date2 = DateTime.fromISO(dateData);
+  // // console.log(date2);
+  // const diff: any = date1.diff(date2, ["years", "months", "days"]);
+  // // console.log(diff.toObject(),"..diffobject");
+  // console.log(birthDate,"..birthDate..");
+  // console.log(DateTime.local().toISODate(),"DateTime.local().toISODate()",Platform.OS)
+  const date1 = DateTime.fromISO(DateTime.local().toISODate());
+  console.log(date1,"..date1..");
+  const date2 = DateTime.fromISO(String(birthDate).split('T')[0])
+  console.log(date2,"..date2..")
+  const diff: any = date1.diff(date2, ["years", "months", "days"])
+  
+  console.log(diff.toObject())
   var ageStr = "";
   // console.log(diff.years,diff.months,diff.days);
   if (diff.years < 0 && diff.months < 0 && (diff.days) < 0) {
@@ -530,16 +540,24 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
 
 export const getNotificationDateInString = (t: any, birthDate: string,pluralShow:boolean) => {
   //Alert.alert('birthDate',String(birthDate));
-  const date1 = DateTime.local();
-  //  console.log(date1,"..date1");
-  //birthDate=Platform.OS=='ios'?new Date(birthDate).toString():birthDate;
-  // const date2 = DateTime.fromISO(birthDate);
-  let dateData=new Date(birthDate).toISOString().split('T')[0];
-  // console.log(dateData,"..dateData")
-  const date2 = DateTime.fromISO(dateData);
-  // console.log(date2);
-  const diff: any = date1.diff(date2, ["years", "months", "days"]);
+  // const date1 = DateTime.local();
+  // //  console.log(date1,"..date1");
+  // //birthDate=Platform.OS=='ios'?new Date(birthDate).toString():birthDate;
+  // // const date2 = DateTime.fromISO(birthDate);
+  // let dateData=new Date(birthDate).toISOString().split('T')[0];
+  // // console.log(dateData,"..dateData")
+  // const date2 = DateTime.fromISO(dateData);
+  // // console.log(date2);
+  // const diff: any = date1.diff(date2, ["years", "months", "days"]);
   // console.log(diff.toObject(),"..diffobject");
+  console.log(birthDate,"..birthDate..");
+  console.log(DateTime.local().toISODate(),"DateTime.local().toISODate()")
+  const date1 = DateTime.fromISO(DateTime.local().toISODate());
+  console.log(date1,"..date1..")
+  const date2 = DateTime.fromISO(String(birthDate).split('T')[0])
+  console.log(date2,"..date2..")
+  const diff: any = date1.diff(date2, ["years", "months", "days"])
+  console.log(diff.toObject())
   var ageStr = "";
   // console.log(diff.years,diff.months,diff.days);
   if (diff.years < 0 && diff.months < 0 && (diff.days) < 0) {
