@@ -356,18 +356,30 @@ const Home = ({ route, navigation }: Props) => {
                 console.log("in if");
                 dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
                 AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
+                dispatch(setAllNotificationData([]));
+                let notiFlagObj = { key: 'generateNotifications', value: true };
+                dispatch(setInfoModalOpened(notiFlagObj));
               }
               else if(VersionInfo.appVersion > relbebboprod && VersionInfo.bundleIdentifier == 'org.unicef.ecar.bebbo') {
                 dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
                 AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
+                dispatch(setAllNotificationData([]));
+                let notiFlagObj = { key: 'generateNotifications', value: true };
+                dispatch(setInfoModalOpened(notiFlagObj));
               }
               else if(VersionInfo.appVersion > relfolejadev && VersionInfo.bundleIdentifier == 'com.datamatics.foleja') {
                 dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
                 AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
+                dispatch(setAllNotificationData([]));
+                let notiFlagObj = { key: 'generateNotifications', value: true };
+                dispatch(setInfoModalOpened(notiFlagObj));
               }
               else if(VersionInfo.appVersion > relfolejaprod && VersionInfo.bundleIdentifier == 'org.unicef.kosovo.foleja') {
                 dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
                 AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
+                dispatch(setAllNotificationData([]));
+                let notiFlagObj = { key: 'generateNotifications', value: true };
+                dispatch(setInfoModalOpened(notiFlagObj));
               }
             }
           }else {
