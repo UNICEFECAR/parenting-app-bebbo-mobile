@@ -254,6 +254,7 @@ export default () => {
           handleNotification(notification);
           if (Platform.OS == "ios") {
             notification.finish(PushNotificationIOS.FetchResult.NoData);
+           
           }
         },
         popInitialNotification: true,
@@ -399,11 +400,19 @@ export default () => {
   }
   const handleNotification = (notification: any) => {
     const screenName = navigationRef.current.getCurrentRoute().name;
-    console.log(screenName, "..screenName..")
-
+    console.log(screenName, "..screenName..");
+    
     var executed = false;
     if (!executed) {
       executed = true;
+      if(Platform.OS=="ios"){
+        PushNotificationIOS.getApplicationIconBadgeNumber((num)=>{ // get current number
+          console.log(num,"...num...")
+          if(num >= 1){
+              PushNotificationIOS.setApplicationIconBadgeNumber(0) //set number to 0
+          }
+         });
+      }
       // const routes =  navigationRef.current?.dangerouslyGetState()?.routes;
       //Alert.alert(usePreviousRouteName(), "in callSagaApi navigation history--");
 
@@ -450,6 +459,7 @@ export default () => {
     if( userIsOnboarded == true){
     createLocalNotificationListeners();
     }
+   
     // return () => {
     //   notiListener=null;
     // }
@@ -467,7 +477,7 @@ export default () => {
     setTimeout(() => {
       SplashScreen.hide();
     }, 2000);
-
+    
     return unsubscribe;
   }, []);
 
