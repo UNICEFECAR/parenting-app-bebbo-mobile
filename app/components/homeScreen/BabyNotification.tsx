@@ -27,6 +27,7 @@ import { TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
+import { DateTime } from 'luxon';
 const BabyNotification = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
@@ -86,7 +87,7 @@ const BabyNotification = () => {
                                 activeChild.birthDate != undefined
                                 ? getCurrentChildAgeInMonths(
                                   t,
-                                  activeChild.birthDate,
+                                  DateTime.fromJSDate(new Date(activeChild.birthDate)), 
                                   pluralShow
                                 )
                                 : '',
