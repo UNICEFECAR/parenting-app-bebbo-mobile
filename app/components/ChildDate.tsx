@@ -223,7 +223,6 @@ const ChildDate = (props: any) => {
                     doborExpectedDate != null ? doborExpectedDate : new Date()
                 }
                 onConfirm={handleDobConfirm}
-                timeZoneOffsetInMinutes={0}
                 onCancel={() => {
                   // Alert.alert('Modal has been closed.');
                   setDobDatePickerVisibility(false);
@@ -347,7 +346,6 @@ const ChildDate = (props: any) => {
                     {showdue && (
                      <DateTimePickerModal
                       isVisible={isDueDatePickerVisible}
-                      timeZoneOffsetInMinutes={0}
                       mode="date"
                       date={dueDate != null ? dueDate : new Date(
                         DateTime.fromJSDate(doborExpectedDate as Date)
