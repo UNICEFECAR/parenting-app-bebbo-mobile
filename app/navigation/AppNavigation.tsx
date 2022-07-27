@@ -293,7 +293,7 @@ export default () => {
             },
           })
         }
-        else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+        else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
           navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
         }
         else {
@@ -321,7 +321,7 @@ export default () => {
             },
           })
         }
-        else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+        else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
           navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
         }
         else {
@@ -345,7 +345,7 @@ export default () => {
             }
           })
         }
-        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
           navigationRef.current?.navigate('ChildDevelopment');
         }
         else {
@@ -370,7 +370,7 @@ export default () => {
             fromNotificationScreen: true,
           })
         }
-        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
           navigationRef.current?.navigate('AddNewChildgrowth', {
             headerTitle: t('growthScreenaddNewBtntxt'),
           });
