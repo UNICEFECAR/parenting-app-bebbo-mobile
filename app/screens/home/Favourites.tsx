@@ -1,37 +1,30 @@
-import styled from 'styled-components/native';
 import FavActivities from '@components/FavActivities';
 import FavArticles from '@components/FavArticles';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading4Centerw,Heading4Center, ShiftFromBottom10,ShiftFromBottom5 } from '@styles/typography';
+import { Heading4Center,ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { ThemeContext } from 'styled-components/native';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
 import { useFocusEffect } from '@react-navigation/native';
-import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
   navigation: NotificationsNavigationProp;
+  route:any;
 };
 
 const Favourites = ({navigation, route}: Props) => {
   const themeContext = useContext(ThemeContext);
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
-  const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
-  const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
-  
   const backgroundBlue = themeContext.colors.SECONDARY_COLOR;
   const backgroundBlueTint = themeContext.colors.SECONDARY_TINTCOLOR;
   const [profileLoading,setProfileLoading] = React.useState(false);
@@ -43,12 +36,6 @@ const Favourites = ({navigation, route}: Props) => {
   ];
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("child dev usefocuseffect");
-      // console.log("in favorites usefocuseffect 11", route.params);
-      // async function fetchData() {
-      //   const favverified = await userRealmCommon.verifyFavorites();
-      // }
-      // fetchData()
       if (route.params?.backClicked != 'yes') {
         setSelectedIndex(0);
       } else {
@@ -107,15 +94,6 @@ const Favourites = ({navigation, route}: Props) => {
                     },
                   ]}>
                   <Heading4Center numberOfLines={2}
-                  // style={[
-                  //   {
-                  //     color:
-                  //       itemindex == selectedIndex
-                  //         ? headerColorWhite
-                  //         : headerColorBlack,
-                      
-                  //   },
-                  // ]}
                   >{item.title}</Heading4Center>
                 </TabBarDefault>
                 </ShiftFromBottom5>

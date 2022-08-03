@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { View, Pressable, StyleSheet, Image } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { View } from "react-native";
 import { useTranslation } from 'react-i18next';
 import HTML from 'react-native-render-html';
 import { addSpaceToHtml } from '../../services/Utils';
-import { Heading1, Heading3Center, Heading4Bold, Heading4Center, Heading4Centerr, Heading4Regular, Heading4Centerw, SideSpacing15 } from '@styles/typography';
-import { FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
+import { Heading4Bold, Heading4Centerr, Heading4Regular, Heading4Centerw, SideSpacing15 } from '@styles/typography';
+import { FlexRow } from '@components/shared/FlexBoxStyle';
 import VectorImage from 'react-native-vector-image';
 import { ButtonLinkPressLeft, ButtonTextMdLineL } from '@components/shared/ButtonGlobal';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon, { IconML } from '@components/shared/Icon';
+import { IconML } from '@components/shared/Icon';
 import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContainer, UserBubbleTextContainer, OptionBubbleContainer, ActionBubbleContainer,ActionBubbleIcon, OptionBubblePressable, ActionBubblePressable } from '@components/shared/SupportChatStyle';
 import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from '../../../App';
@@ -55,7 +55,6 @@ const BotBubble = (props: any) => {
         </BotBubbleTextContainer>
         {loading == false && steps && steps.textToShow && steps.textToShow.answer_part_1 && steps.textToShow.answer_part_1 != '' ?
           <>
-            {/* <Heading4Regular style={[{flex: 7,textAlignVertical:'center'}]}>{steps.textToShow.answer_part_1}</Heading4Regular> */}
             <View style={{ padding: 15, paddingTop: 5, paddingBottom: 5 }}>
               <HTML
                 source={{ html: addSpaceToHtml(steps.textToShow.answer_part_1) }}
@@ -63,15 +62,6 @@ const BotBubble = (props: any) => {
                 ignoredStyles={['color', 'font-size', 'font-family']}
                 tagsStyles={{
                   p: { marginBottom: 0, marginTop: 0, textAlign: 'left' },
-                  // h1:{marginBottom:0,marginTop:10,textAlign:'left'},
-                  // h2:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  // h3:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  // h4:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  // h5:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  // h6:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  // span:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  // li:{textAlign:'left'},
-                  // br:{height:0},
                 }}
               />
             </View>

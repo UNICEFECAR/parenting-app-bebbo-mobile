@@ -1,6 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1 } from '@components/shared/FlexBoxStyle';
+import { Flex1, FDirRow } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { ToolsBgContainer, VacSummaryBox,VacSummaryPress } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -20,7 +20,7 @@ import {
 } from '@styles/typography';
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Modal, Pressable, SafeAreaView, ScrollView, View } from 'react-native';
+import { BackHandler, Modal, Pressable, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
@@ -33,20 +33,17 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import Icon from '@components/shared/Icon';
 import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
-import { FDirRow } from '@components/shared/FlexBoxStyle';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type VaccinationNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: VaccinationNavigationProp;
+  route:any;
 };
 const Vaccination = ({navigation,route}: Props) => {
-  // console.log(route.params?.fromNotificationScreen,"fromNotificationScreen")
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
-  const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
-  const [childageInDays, setChildageInDays] = React.useState<number>(0);
   const {t} = useTranslation();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const [modalVisible, setModalVisible] = React.useState(true);
@@ -66,10 +63,6 @@ const Vaccination = ({navigation,route}: Props) => {
     }
   }
   useEffect(() => {
-    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
-    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -83,7 +76,6 @@ const Vaccination = ({navigation,route}: Props) => {
       (state.utilsData.IsVaccineModalOpened),
     );
    useFocusEffect(()=>{
-    // console.log('vaccineModalOpened',vaccineModalOpened);
     // pass true to make modal visible every time & reload
     setModalVisible(vaccineModalOpened)
    })
@@ -98,7 +90,6 @@ const Vaccination = ({navigation,route}: Props) => {
     overDuePreviousVCcount,
     doneVCcount,
   } = getAllVaccinePeriods();
-  //console.log(totalUpcomingVaccines,"totalUpcomingVaccines");
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
@@ -118,7 +109,6 @@ const Vaccination = ({navigation,route}: Props) => {
         </View>
       );
     } else if (index === 1) {
-      // if (previousPeriods.length > 0) {
         return (
           <View>
             {previousPeriods.length > 0 ? previousPeriods.map((item, itemindex) => {
@@ -133,9 +123,6 @@ const Vaccination = ({navigation,route}: Props) => {
             }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
           </View>
         );
-      // }else{
-      //   return (<Text></Text>)
-      // }
     }
   };
   return (
@@ -145,11 +132,10 @@ const Vaccination = ({navigation,route}: Props) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
-          // setModalVisible(false);
+          console.log("in onRequestClose");
         }}
         onDismiss={() => {
-          // setModalVisible(false);
+          console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
