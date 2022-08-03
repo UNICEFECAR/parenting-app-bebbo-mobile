@@ -9,7 +9,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1,FlexCol } from '@components/shared/FlexBoxStyle';
+import { FlexCol } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { ToolsBgContainer } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -26,7 +26,6 @@ import {
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, Modal, Pressable, ScrollView, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
@@ -45,12 +44,12 @@ type HealthCheckupsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HealthCheckupsNavigationProp;
+  route: any;
 };
 const HealthCheckups = ({navigation,route}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
-  const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
   let {
     upcomingPeriods,
@@ -88,11 +87,9 @@ const HealthCheckups = ({navigation,route}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // console.log(reminders,"UpcomingHealthCheckup-reminders");
   const healthCheckupReminder = reminders.filter(
-    (item) => item.reminderType == 'healthCheckup',
+    (item:any) => item.reminderType == 'healthCheckup',
   )[0];
-  // console.log(healthCheckupReminder,"healthCheckupReminder",);
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
@@ -145,7 +142,6 @@ const HealthCheckups = ({navigation,route}: Props) => {
      return upcomingPeriods[0]
     }else{
      const prevPeriod = previousPeriods.find(item =>item.vaccination_opens <= childAgeIndays && item.vaccination_ends > childAgeIndays)
-    //  console.log(prevPeriod,"prevPeriod");
      return prevPeriod;
     }
 
@@ -161,10 +157,6 @@ const HealthCheckups = ({navigation,route}: Props) => {
     }
   }
   useEffect(() => {
-    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
-    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -181,11 +173,10 @@ const HealthCheckups = ({navigation,route}: Props) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
-          // setModalVisible(false);
+          console.log("in onRequestClose");
         }}
         onDismiss={() => {
-          // setModalVisible(false);
+          console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
