@@ -1,7 +1,7 @@
 
 
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { allApisObject, appConfig, backUpPath, buildFor, buildForFoleja, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { allApisObject, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -60,10 +60,10 @@ import {
 import { DateTime } from 'luxon';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Modal, PermissionsAndroid, Platform, Pressable, ScrollView, View } from 'react-native';
+import { Alert, Modal, Platform, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import DocumentPicker, { isInProgress } from 'react-native-document-picker';
-import RNFS, { stat } from 'react-native-fs';
+import RNFS from 'react-native-fs';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
@@ -78,7 +78,6 @@ import { getAllChildren, isFutureDate, isFutureDateTime } from '../../services/c
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 import * as ScopedStorage from "react-native-scoped-storage";
 import Share from 'react-native-share';
-import { downloadArticleImages } from '../../services/commonApiService';
 import LocalNotifications from '../../services/LocalNotifications';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -133,10 +132,8 @@ const SettingScreen = (props: any) => {
   let localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
   let scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
 
-  // console.log(toggleSwitchVal, "..toggleSwitchVal..");
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
-  const [isDataSaverEnabled, setIsDataSaverEnabled] = useState(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
@@ -163,77 +160,20 @@ const SettingScreen = (props: any) => {
   const importAllData = async () => {
     setIsImportRunning(true);
     const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
-    //console.log(importResponse, "..importResponse");
-    // this.setState({ isImportRunning: false, });
     setIsImportRunning(false);
     actionSheetRefImport.current?.setModalVisible(false);
-    // Alert.alert(t('importText'), t("dataConsistency"),
-    //   [
-    //     {
-    //       text: t("retryCancelPopUpBtn"),
-    //       onPress: () => {
-
-    //       },
-    //       style: "cancel"
-    //     },
-    //     {
-    //       text: t('continueCountryLang'), onPress: async () => {
-    //        // console.log(userRealmCommon.realm?.path, "..path")
-    //         // this.setState({ isImportRunning: true, });
-    //   setIsImportRunning(true);
-    //   const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
-    //  // console.log(importResponse, "..importResponse");
-    //   // this.setState({ isImportRunning: false, });
-    //   setIsImportRunning(false);
-    //       }
-    //     }
-    //   ]
-    // );
-    // actionSheetRefImport.current?.setModalVisible();
   }
 
   const exportFile = async () => {
     //need to add code.
-    // Alert.alert('Coming Soon');
     setIsExportRunning(true);
     const userRealmPath = userRealmCommon.realm?.path;
     if (!userRealmPath) return false;
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-     // export via create and share
-    // if(Platform.OS=="android"){
-    // let uri1: any = await ScopedStorage.getPersistedUriPermissions();
-    // }
-    // RNFS.writeFile(backUpPath, realmContent, 'base64')
-    // .then(async (success) => {
-    //   console.log("file://"+backUpPath,"..success..")
-    //   setIsExportRunning(false);
-    //   try {
-    //     const result = await Share.open({
-    //       title: 'Backup Saved',
-    //       url: "file://"+backUpPath,
-    //     })
-    //     .then((res) => {
-    //       console.log("exported res",res);
-    //       Alert.alert('', t('settingExportSuccess'));
-    //     })
-    //     .catch((err) => {
-    //      // Alert.alert('', t('settingExportSuccess'));
-    //     });
-    //   } catch (error) {
-    //     //Alert.alert('', t('settingExportError'));
-    //   }
-    //   // Alert.alert('', t('settingExportSuccess'));
-    // })
-    // .catch((err) => {
-    //   console.log(err, "..err")
-    //   //Alert.alert('', t('settingExportError'));
-    //   setIsExportRunning(false);
-    // });
     // export via file system
     if (Platform.OS === "android") {
        let file = await ScopedStorage.openDocumentTree(true);
        let uri: any = await ScopedStorage.getPersistedUriPermissions();
-      //  await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
       try{
       let fileDownload: any = await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
       let uri1: any = await ScopedStorage.getPersistedUriPermissions();
@@ -242,20 +182,6 @@ const SettingScreen = (props: any) => {
       if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
         Alert.alert('', t('settingExportSuccess'));
         setIsExportRunning(false);
-      //   try {
-      //   const result = await Share.open({
-      //     title: 'Backup Saved',
-      //     url: "file://"+backUpPath,
-      //   })
-      //   .then((res) => {
-      //     Alert.alert('', t('settingExportSuccess'));
-      //   })
-      //   .catch((err) => {
-      //    // Alert.alert('', t('settingExportSuccess'));
-      //   });
-      // } catch (error) {
-      //   //Alert.alert('', t('settingExportError'));
-      // }
       }
       else {
         Alert.alert('', t('settingExportError'));
@@ -265,30 +191,9 @@ const SettingScreen = (props: any) => {
     catch(e:any){
        console.log('', e.message);
        setIsExportRunning(false);
-      //Alert.alert('', e.message);
     }
     }
     else {
-      //const updatedrealmContent:any='data:application-octet-stream;base64,'+realmContent;
-      // const resData: any = await DocumentPicker.pickDirectory().then((res:any)=>{
-      //   console.log(resData,"..resData..");
-      //   //DocumentPicker.releaseSecureAccess(res.uri);
-      //   RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
-      //   .then((success) => {
-      //     setIsExportRunning(false);
-      //     actionSheetRef.current?.setModalVisible(false);
-      //     Alert.alert('', t('settingExportSuccess'));
-      //   })
-      //   .catch((err) => {
-      //     console.log(err, "..err")
-      //     Alert.alert('', t('settingExportError'));
-      //     setIsExportRunning(false);
-      //   });
-      // }).catch((e)=>{
-      //   setIsExportRunning(false);
-      //   handleError(e);
-      // });
-      
         RNFS.writeFile(tempbackUpPath, realmContent, 'base64').then(async (res:any)=>{
           console.log(res,"..res..")
           const shareOptions = {
@@ -321,7 +226,6 @@ const SettingScreen = (props: any) => {
         } else {
           Alert.alert('', t('settingExportError'));
         }
-          //Alert.alert('sharePdfBase64 Error =>', JSON.stringify(error));
         }
           }).catch((e)=>{
             setIsExportRunning(false);
@@ -346,31 +250,6 @@ const SettingScreen = (props: any) => {
     } else {
       Alert.alert('', t('settingExportSuccess'));
     };
-    // Alert.alert(t('exportText'), t("dataConsistency"),
-    //   [
-    //     {
-    //       text: t("retryCancelPopUpBtn"),
-    //       onPress: () => {
-
-    //       },
-    //       style: "cancel"
-    //     },
-    //     {
-    //       text: t('continueCountryLang'), onPress: async () => {
-    //         setIsExportRunning(true);
-    //         const exportIsSuccess = await backup.export();
-    //         setIsExportRunning(false);
-    //         if (!exportIsSuccess) {
-    //           Alert.alert('', t('settingExportError'))
-    //           // ToastAndroid.show(t('settingExportError'), 6000);
-    //         } else {
-    //           Alert.alert('', t('settingExportSuccess'));
-
-    //         };
-    //       }
-    //     }
-    //   ]
-    // );
     actionSheetRef.current?.setModalVisible(false);
   }
   const handleExportAlertConfirm = () => {
@@ -387,9 +266,6 @@ const SettingScreen = (props: any) => {
 
   };
   const toggleSwitch = () => {
-    // console.log(growthEnabledFlag, "..growthEnabledFlag")
-    // console.log(developmentEnabledFlag, "..developmentEnabledFlag")
-    // console.log(vchcEnabledFlag, "..vchcEnabledFlag")
     if (vchcEnabledFlag == true || growthEnabledFlag == true || developmentEnabledFlag == true) {
       setIsEnabled(true);
     } else {
@@ -400,14 +276,12 @@ const SettingScreen = (props: any) => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
-  // let allnotifications = useAppSelector((state: any) => state.notificationData.notifications);
   const toggleGrowthFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from gwcdnotis where type = 'gw'
     let currscheduledlocalNotifications = [...scheduledlocalNotifications];
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
-    // console.log(allnotis, "..childListallnotis..")
     childList?.map((child: any) => {
       let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
       let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
@@ -417,8 +291,6 @@ const SettingScreen = (props: any) => {
           currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
             if (item.type == 'gw') {
               const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
-              // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
-              // console.log(growthEnabledFlag,"growthEnabledFlag");
               // growthEnabledFlag == false checked because state update of growthEnabledFlag istaking time
               if (isFutureDate((item.notificationDate))) {
                 return { ...item, isDeleted: growthEnabledFlag == false ? false : true };
@@ -443,7 +315,6 @@ const SettingScreen = (props: any) => {
         if(growthEnabledFlag == true) {
           const notiToDelete = y.data.filter((o:any)=>o.type=='gw');
           notiToDelete.map((n:any)=>{
-            // LocalNotifications.cancelReminderLocalNotification(n.notiid);
             if((currscheduledlocalNotifications.findIndex((m:any)=> m.notiid == n.notiid)) > -1)
             {
               LocalNotifications.cancelReminderLocalNotification(n.notiid);
@@ -454,12 +325,7 @@ const SettingScreen = (props: any) => {
         }
       })
 
-        // else {
-          
-        // }
-      // currentChildNotis.gwcdnotis = currentChildNotis.gwcdnotis;
       allnotis[currentChildIndex] = currentChildNotis
-      // console.log(allnotis, "allNotifications>toggleGrowthFutureNotiData");
     });
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
@@ -474,7 +340,6 @@ const SettingScreen = (props: any) => {
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
-    // console.log(childList, "..childList..")
     childList?.map((child: any) => {
       let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
       let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
@@ -484,7 +349,6 @@ const SettingScreen = (props: any) => {
           currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
             if (item.type == 'cd') {
               const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
-              // console.log(developmentEnabledFlag,"developmentEnabledFlag");
               // developmentEnabledFlag == false checked because state update of developmentEnabledFlag istaking time
               if (isFutureDate(new Date(item.notificationDate))) {
                 return { ...item, isDeleted: developmentEnabledFlag == false ? false : true };
@@ -509,7 +373,6 @@ const SettingScreen = (props: any) => {
         if(developmentEnabledFlag == true) {
           const notiToDelete = y.data.filter((o:any)=>o.type=='cd');
           notiToDelete.map((n:any)=>{
-            // LocalNotifications.cancelReminderLocalNotification(n.notiid);
             if((currscheduledlocalNotifications.findIndex((m:any)=> m.notiid == n.notiid)) > -1)
             {
               LocalNotifications.cancelReminderLocalNotification(n.notiid);
@@ -520,11 +383,7 @@ const SettingScreen = (props: any) => {
         }
       })
 
-        // else {
-          
-        // }
       allnotis[currentChildIndex] = currentChildNotis
-      // console.log(allnotis, "allNotifications>togglecdFutureNotiData");
     });
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
@@ -539,7 +398,6 @@ const SettingScreen = (props: any) => {
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
-    // console.log(childList, "..childList..")
     childList?.map((child: any) => {
       let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
       let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
@@ -548,8 +406,6 @@ const SettingScreen = (props: any) => {
         if (currentChildNotis.vcnotis.length > 0) {
           currentChildNotis.vcnotis = [...currentChildNotis.vcnotis]?.map((item) => {
             const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
-            //  console.log(Number(difftoToday),"difftoToday,vcnotis");
-            // console.log(vchcEnabledFlag,"vchcEnabledFlag");
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
@@ -569,7 +425,6 @@ const SettingScreen = (props: any) => {
         if (notiExist.hcnotis.length > 0) {
           currentChildNotis.hcnotis = [...currentChildNotis.hcnotis]?.map((item) => {
             const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
-            // console.log(vchcEnabledFlag,"vchcEnabledFlag");
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
@@ -607,13 +462,6 @@ const SettingScreen = (props: any) => {
             if (isFutureDateTime(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
             } 
-            // else if (difftoToday == 0 || difftoToday == -0) {
-            //   if (vchcEnabledFlag == false) {
-            //     return { ...item, isDeleted: false };
-            //   } else {
-            //     return { ...item };
-            //   }
-            // }
             else {
               return { ...item };
             }
@@ -624,7 +472,6 @@ const SettingScreen = (props: any) => {
           if(vchcEnabledFlag == true) {
             const notiToDelete = y.data.filter((o:any)=>o.type=='vc' || o.type=='hc');
             notiToDelete.map((n:any)=>{
-              // LocalNotifications.cancelReminderLocalNotification(n.notiid);
               if((currscheduledlocalNotifications.findIndex((m:any)=> m.notiid == n.notiid)) > -1)
               {
                 LocalNotifications.cancelReminderLocalNotification(n.notiid);
@@ -634,13 +481,8 @@ const SettingScreen = (props: any) => {
             })
           }
         })
-
-          // else {
-            
-          // }
       }
       allnotis[currentChildIndex] = currentChildNotis
-      // console.log(allnotis, "allNotifications>toggleVCHCVCRHCRFutureNotiData");
     });
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
@@ -681,20 +523,6 @@ const SettingScreen = (props: any) => {
   }
   const toggleDataSaverSwitch = () => {
     dispatch(onNetworkStateChange(!toggleSwitchVal));
-    // console.log(isDataSaverEnabled,"..22isDataSaverEnabled");
-    // if(isDataSaverEnabled==false){
-    //   console.log(isDataSaverEnabled,"..22isDataSaverEnabled");
-    //   setIsDataSaverEnabled(true);
-    //   dispatch(onNetworkStateChange(true));
-    // }
-    // else{
-    //   console.log(isDataSaverEnabled,"..22333isDataSaverEnabled");
-    //   setIsDataSaverEnabled(false);
-    //   dispatch(onNetworkStateChange(false));
-    // }
-    // console.log(toggleSwitchVal,"..toggleSwitchVal on dispatch..")
-    // //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
-
   }
 
   const downloadUpdatedData = () => {
@@ -731,7 +559,6 @@ const SettingScreen = (props: any) => {
         },
         {
           text: t('downloadAllContinueBtn'), onPress: async () => {
-            // downloadArticleImages();
             props.navigation.navigate('LoadingScreen', {
               apiJsonData: allDataDownloadFlag == false ? allApisObject(false,incrementalSyncDT) : allApisObject(true,incrementalSyncDT),
               prevPage: 'DownloadAllData'
@@ -760,10 +587,7 @@ const SettingScreen = (props: any) => {
       (language: any) => language.languageCode === languageCode,
     );
     setlanguage(selectedLanguage);
-    // console.log(toggleSwitchVal, "..useeffect..");
     toggleSwitch();
-    // setIsDataSaverEnabled(toggleSwitchVal);
-    // console.log(selectedCountry,selectedLanguage);
   }, []);
   useFocusEffect(
     React.useCallback(() => {
@@ -772,8 +596,7 @@ const SettingScreen = (props: any) => {
   );
   const handleError = (err: any) => {
     console.log(err,"..err")
-    // setIsExportRunning(false);
-    // setIsImportRunning(false); 
+    
     if (DocumentPicker.isCancel(err)) {
       console.log('cancelled');
       // User cancelled the picker, exit any dialogs or menus and move on
@@ -805,7 +628,6 @@ const SettingScreen = (props: any) => {
         userRealmCommon.deleteAllAtOnce();
         const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
         console.log(importResponse, "..importResponse");
-      // this.setState({ isImportRunning: false, });
       }
       setIsImportRunning(false);
       actionSheetRefImport.current?.setModalVisible(false);
@@ -838,7 +660,6 @@ const SettingScreen = (props: any) => {
             userRealmCommon.deleteAllAtOnce();
             const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
             console.log(importResponse, "..importResponse");
-            // this.setState({ isImportRunning: false, });
             }
             setIsImportRunning(false);
             actionSheetRefImport.current?.setModalVisible(false);
@@ -846,9 +667,6 @@ const SettingScreen = (props: any) => {
         })
         .catch(handleError);
     }
- 
-    // // console.log(res, "..res..");
-
    
   }
   return (
@@ -902,9 +720,6 @@ const SettingScreen = (props: any) => {
                       } else {
                         analytics().logEvent(GROWTH_NOTIFICATION_OFF)
                       }
-                      // toggleSwitch();
-                      // analytics().logEvent(GROWTH_NOTIFICATION)
-                      // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
                       <View>
@@ -918,13 +733,6 @@ const SettingScreen = (props: any) => {
                       </View>
                     </CheckboxItem>
                   </FormOuterCheckbox>
-                  {/* <Switch
-                  trackColor={{false: trackFalseColor, true: trackTrueColor}}
-                  thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch}
-                  value={isEnabled}
-                /> */}
                   <ToggleLabelText1 >
                     <Heading4Regular>
                       {t('settingScreennotiType2')}
@@ -952,9 +760,7 @@ const SettingScreen = (props: any) => {
                       } else {
                         analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
                       }
-                      // toggleSwitch();
 
-                      // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
                       <View>
@@ -968,13 +774,6 @@ const SettingScreen = (props: any) => {
                       </View>
                     </CheckboxItem>
                   </FormOuterCheckbox>
-                  {/* <Switch
-                  trackColor={{false: trackFalseColor, true: trackTrueColor}}
-                  thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch}
-                  value={isEnabled}
-                /> */}
                   <ToggleLabelText1>
                     <Heading4Regular>
                       {t('settingScreennotiType3')}
@@ -1002,8 +801,6 @@ const SettingScreen = (props: any) => {
                       } else {
                         analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
                       }
-                      // toggleSwitch();
-                      // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
                       <View>
@@ -1017,13 +814,6 @@ const SettingScreen = (props: any) => {
                       </View>
                     </CheckboxItem>
                   </FormOuterCheckbox>
-                  {/* <Switch
-                  trackColor={{false: trackFalseColor, true: trackTrueColor}}
-                  thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch}
-                  value={isEnabled}
-                /> */}
                   <ToggleLabelText1>
                     <Heading4Regular>
                       {t('settingScreennotiType4')}
@@ -1105,17 +895,8 @@ const SettingScreen = (props: any) => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                {/* <Pressable disabled={!netInfoval.isConnected} onPress={() => {
-                  console.log("icon clicked");
-                  setModalVisible(true)
-                }}> */}
                 <IconAreaPress onPress={() => {
-                  // if (netInfoval && netInfoval.isConnected == true) {
                   setModalVisible(true)
-                  // }
-                  // else {
-                  //   Alert.alert('', t('noInternet'));
-                  // }
                 }}>
                   <Icon name="ic_edit" size={16} color="#000" />
                 </IconAreaPress>
@@ -1153,41 +934,14 @@ const SettingScreen = (props: any) => {
                 onPress={() => { exportAllData(); }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenexportBtnText')}</ButtonText>
               </ButtonPrimary>
-              {/* {isExportRunning && (
-                                        <ActivityIndicator animating={true} />
-                                    )} */}
 
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
               <ButtonPrimary disabled={isExportRunning || isImportRunning} onPress={() => {
-                // if (netInfoval && netInfoval.isConnected == true) {
-                //   actionSheetRefImport.current?.setModalVisible(true); 
-                // }
-                // else {
-                //   Alert.alert('', t('noInternet'));
-                // }
                 actionSheetRefImport.current?.setModalVisible(true);
               }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
-              {/* {isImportRunning && (
-              <ActivityIndicator animating={true}/>
-              )} */}
-              {/* <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
-                                    <UserRealmConsumer>
-                                        {(userRealmContext: UserRealmContextValue) => (
-                                            <RoundedButton
-                                                text={'Import Button New'}
-                                                iconName="file-import"
-                                                disabled={isExportRunning || isImportRunning}
-                                                onPress={() => { importAllData(userRealmContext) }}
-                                                style={{ flex: 1 }}
-                                            />
-                                        )}
-                                    </UserRealmConsumer>
-
-                                    
-                                </View> */}
             </ShiftFromTopBottom10>
             <OverlayLoadingComponent loading={(isExportRunning || isImportRunning) ? true : false} />
           </MainContainer>
@@ -1202,22 +956,13 @@ const SettingScreen = (props: any) => {
                   <SettingOptions>
                     <Pressable onPress={async () => {
                       console.log("icon clicked");
-                      //if(netInfoval && netInfoval.isConnected==true){
                       try {
                         if (Platform.OS === "android") {
                           console.log("1233");
-                          // const userResponse = await PermissionsAndroid.requestMultiple([
-                          //   PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-                          //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-                          // ]);
-                          // console.log(userResponse, "..userResponse..")
-                          // if (userResponse) {
+                          
                             console.log("You can write");
                             actionSheetRef.current?.setModalVisible(false);
                             exportFile();
-                          // } else {
-                          //   console.log("You can write");
-                          // }
                         }
                         else {
                           actionSheetRef.current?.setModalVisible(false);
@@ -1229,11 +974,6 @@ const SettingScreen = (props: any) => {
                       } catch (err) {
                         console.warn(err);
                       }
-
-                      // }
-                      // else{
-                      //   Alert.alert('',t('noInternet'));
-                      // }
                     }}>
                      <VectorImage source={require('@assets/svg/ic_file.svg')} />
                       <ShiftFromTopBottom5>
@@ -1245,10 +985,8 @@ const SettingScreen = (props: any) => {
                   </SettingOptions>
                   <SettingOptions>
                     <Pressable onPress={() => {
-                      //  console.log("icon clicked");
                       actionSheetRef.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
-                        // setExportAlertVisible(true);
                         Platform.OS=='ios'? setTimeout(()=>{
                           setExportAlertVisible(true);
                         },350) : setExportAlertVisible(true);
@@ -1289,14 +1027,7 @@ const SettingScreen = (props: any) => {
                           //import
                           if (Platform.OS === "android") {
                             console.log("1233");
-                            // const userResponse = await PermissionsAndroid.requestMultiple([
-                            //   PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-                            //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-                            // ]);
-                            // console.log(userResponse, "..userResponse..")
-                            // if (userResponse) {
                               importFromSettingsFile();
-                            //}
                           }
                           else {
                             importFromSettingsFile();
@@ -1312,12 +1043,6 @@ const SettingScreen = (props: any) => {
                         }
                       }, 350);
 
-                      //if(netInfoval && netInfoval.isConnected==true){
-                      // exportFile()
-                      // }
-                      // else{
-                      //   Alert.alert('',t('noInternet'));
-                      // }
                     }}>
                      
                       <VectorImage source={require('@assets/svg/ic_file.svg')} />
@@ -1330,7 +1055,6 @@ const SettingScreen = (props: any) => {
                   </SettingOptions>
                   <SettingOptions>
                     <Pressable onPress={() => {
-                      //  console.log("icon clicked");
                       actionSheetRefImport.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
 
@@ -1364,7 +1088,6 @@ const SettingScreen = (props: any) => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            // Alert.alert('Modal has been closed.');
             setModalVisible(false);
           }}
           onDismiss={() => {
@@ -1375,7 +1098,6 @@ const SettingScreen = (props: any) => {
               <PopupCloseContainer>
                 <PopupClose
                   onPress={() => {
-                    //  console.log('close');
                     setModalVisible(false);
                   }}>
                   <Icon name="ic_close" size={16} color="#000" />
@@ -1388,20 +1110,13 @@ const SettingScreen = (props: any) => {
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
-                  // disabled={netInfoval.isConnected}
                   onPress={() => {
-                    //console.log('close');
                     setModalVisible(false);
-                    // props.navigation.reset({
-                    //   index: 0,
-                    //   routes: [{name: 'Localization'}],
-                    // });
                     props.navigation.navigate('Localization',
                       {
                         screen: localization.length == 1 ? 'LanguageSelection' : 'CountrySelection',
                         params: { country: null, language: null }
                       });
-                    // props.navigation.navigate('Localization')
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
