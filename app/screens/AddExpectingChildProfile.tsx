@@ -1,15 +1,13 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonDelPress, ButtonPrimary, ButtonText, ButtonTextSmLineW } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
-  FormContainerFlex,
   FormDateAction,
   FormDateContainer,
   FormDateText,
   FormInputBox,
   FormInputGroup,
   LabelText,
-  TextAreaBox, TextBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import Icon, { IconML } from '@components/shared/Icon';
@@ -18,7 +16,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { formatStringDate } from '../services/Utils';
-import { Heading2w, Heading4Regularw, ShiftFromTop10 } from '@styles/typography';
+import { Heading2w, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -40,7 +38,6 @@ import {
 } from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import TextInputML from '@components/shared/TextInputML';
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -55,10 +52,7 @@ type Props = {
 
 const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   let childData = route.params.childData;
-  //console.log(childData, "..childData..")
   const editScreen = childData && childData.uuid != '' ? true : false;
-  //console.log(editScreen, "..editScreen..")
-  //const [dobDate, setdobDate] = useState();
   const [clicked, setClicked] = useState(false);
   const [showdob, setdobShow] = useState(false);
   const ondobChange = (event:any,selectedDate: any) => {
@@ -95,7 +89,6 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       : state.childData.childDataSet.allChild,
   );
   const handleDobConfirm = (event:any) => {
-    //console.log("A date has been picked: ", event);
     const date=event;
     ondobChange(event,date);
     setDobDatePickerVisibility(false);
@@ -110,7 +103,6 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   );
   useEffect(() => {
     const backAction = () => {
-     // console.log("11")
       navigation.goBack();
       return true;
     };
@@ -128,12 +120,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
     let insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '',childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '',null);
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    //console.log(childData,"..childData")
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string) => {
-    //console.log("..deleted..");
-    // deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
@@ -162,184 +151,121 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       ]);
     });
   };
-  return (
-    <>
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
-        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <HeaderRowView
-          style={{
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <HeaderIconView>
-            <HeaderIconPress
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <IconML name={'ic_back'} color="#FFF" size={15} />
-            </HeaderIconPress>
-          </HeaderIconView>
-          <HeaderTitleView>
-          <Heading2w numberOfLines={1}>
-              {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
-            </Heading2w>
-          </HeaderTitleView>
-          <HeaderActionView  style={{padding:0}}>
-            {childList?.length > 1 && childData && childData?.uuid != '' ? (
-              // <ButtonDelPress
-              //   onPress={() =>
-              //     deleteRecord(childData?.index, dispatch, childData?.uuid)
-              //   }>
-              //      <Icon name={'ic_trash'} color="#FFF" size={15} />
-              // </ButtonDelPress>
-              
-              <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
-                  deleteRecord(childData?.index, dispatch, childData?.uuid)
-                }>
-                      <Icon name={'ic_trash'} size={20} color="#FFF" />
-                  </Pressable>
-            ) : null}
-          </HeaderActionView>
-        </HeaderRowView>
-        {/* <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <View style={{ flex: 1, padding: 15 }}>
-            <Pressable
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <Icon name={'ic_back'} color="#FFF" size={15} />
-            </Pressable>
-          </View>
-          <View style={{ flex: 9, padding: 7 }}>
-          <HeaderRowView>
-          <Heading2w numberOfLines={1}>
-              {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
-            </Heading2w>
-            <HeaderActionView>
-            {childList?.length > 1 && childData && childData?.uuid != '' ? (
-              <ButtonDelPress
-                onPress={() =>
-                  deleteRecord(childData?.index, dispatch, childData?.uuid)
-                }>
-                <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
-              </ButtonDelPress>
-            ) : null}
-          </HeaderActionView>
-        </HeaderRowView>
-          </View>
-        </View> */}
-       
+  return <>
+    <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+      <HeaderRowView
+        style={{
+          backgroundColor: headerColor,
+          maxHeight: 50,
+        }}>
+        <HeaderIconView>
+          <HeaderIconPress
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <IconML name={'ic_back'} color="#FFF" size={15} />
+          </HeaderIconPress>
+        </HeaderIconView>
+        <HeaderTitleView>
+        <Heading2w numberOfLines={1}>
+            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
+          </Heading2w>
+        </HeaderTitleView>
+        <HeaderActionView  style={{padding:0}}>
+          {childList?.length > 1 && childData && childData?.uuid != '' ? (
+            <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+                deleteRecord(childData?.index, dispatch, childData?.uuid)
+              }>
+                    <Icon name={'ic_trash'} size={20} color="#FFF" />
+                </Pressable>
+          ) : null}
+        </HeaderActionView>
+      </HeaderRowView>     
 
-        <MainContainer>
-          <FormDateContainer>
-            <FormInputGroup onPress={showdobDatepicker}>
-              <LabelText> {t('expectChildDueDateTxt')}</LabelText>
-              <FormInputBox>
-                <FormDateText>
-                  {/* <Text> {plannedTermDate ? plannedTermDate.toDateString() : null}</Text> */}
-                  <Text>  {plannedTermDate ? formatStringDate(plannedTermDate,luxonLocale) : t('expectChildDueDateTxt')}</Text>
-                </FormDateText>
-                <FormDateAction>
-                  <Icon name="ic_calendar" size={20} color="#000" />
-                </FormDateAction>
-              </FormInputBox>
-            </FormInputGroup>
-          </FormDateContainer>
+      <MainContainer>
+        <FormDateContainer>
+          <FormInputGroup onPress={showdobDatepicker}>
+            <LabelText> {t('expectChildDueDateTxt')}</LabelText>
+            <FormInputBox>
+              <FormDateText>
+                <Text>  {plannedTermDate ? formatStringDate(plannedTermDate,luxonLocale) : t('expectChildDueDateTxt')}</Text>
+              </FormDateText>
+              <FormDateAction>
+                <Icon name="ic_calendar" size={20} color="#000" />
+              </FormDateAction>
+            </FormInputBox>
+          </FormInputGroup>
+        </FormDateContainer>
 
-          <View>
-            {showdob && (
-              Platform.OS != 'ios' ? (
-              <DateTimePicker
-                testID="dobdatePicker"
-                minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
-                maximumDate={new Date(dobMax)}
-                value={plannedTermDate!=null ? plannedTermDate : new Date()}
-                mode={'date'}
-                display="default"
-                onChange={ondobChange}
-              />
-              ):
-              <DateTimePickerModal
-              isVisible={isDobDatePickerVisible}
-              mode="date"
-              onConfirm={handleDobConfirm}
-              date={plannedTermDate!=null ? plannedTermDate : new Date(DateTime.local().plus({ days: 1 }).toISODate())}
-              onCancel={() => {
-                // Alert.alert('Modal has been closed.');
-                setDobDatePickerVisibility(false);
-              }}
+        <View>
+          {showdob && (
+            Platform.OS != 'ios' ? (
+            <DateTimePicker
+              testID="dobdatePicker"
               minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
               maximumDate={new Date(dobMax)}
-              />
-            )}
-          </View>
+              value={plannedTermDate!=null ? plannedTermDate : new Date()}
+              mode={'date'}
+              display="default"
+              onChange={ondobChange}
+            />
+            ):
+            <DateTimePickerModal
+            isVisible={isDobDatePickerVisible}
+            mode="date"
+            onConfirm={handleDobConfirm}
+            date={plannedTermDate!=null ? plannedTermDate : new Date(DateTime.local().plus({ days: 1 }).toISODate())}
+            onCancel={() => {
+              setDobDatePickerVisibility(false);
+            }}
+            minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
+            maximumDate={new Date(dobMax)}
+            />
+          )}
+        </View>
 
-          <FormContainer>
-            <LabelText>{t('expectPreferNametxt')}</LabelText>
-            <FormInputBox>
-              <TextInputML
-               style={{width:'100%'}}
-                autoCapitalize="none"
-                autoCorrect={false}
-                maxLength={30}
-                clearButtonMode="always"
-                onChangeText={(value) => { 
-                  // setName(value.replace(/\s/g, '')) 
-                  if (value.replace(/\s/g,"")=="") {
-                   // console.log("..11value")
-                    setName(value.replace(/\s/g, '')); 
-                   } else {
-                    //console.log("..22value")
-                    // if (/^[a-zA-Z ]*$/.test(value)) {
-                    // setName(value);
-                    // }
-                    setName(value.replace(regexpEmojiPresentation, ''));
-                   }
-                }}
-                // value={name.replace(/\s/g, '')}
-                value={name}
-                // onChangeText={queryText => handleSearch(queryText)}
-                placeholder={t('expectPreferNamePlacetxt')}
-                placeholderTextColor={"gray"}
-                allowFontScaling={false} 
-              />
-            </FormInputBox>
-          </FormContainer>
+        <FormContainer>
+          <LabelText>{t('expectPreferNametxt')}</LabelText>
+          <FormInputBox>
+            <TextInputML
+             style={{width:'100%'}}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={30}
+              clearButtonMode="always"
+              onChangeText={(value) => { 
+                if (value.replace(/\s/g,"")=="") {
+                  setName(value.replace(/\s/g, '')); 
+                 } else {
+                  setName(value.replace(regexpEmojiPresentation, ''));
+                 }
+              }}
+              value={name}
+              placeholder={t('expectPreferNamePlacetxt')}
+              placeholderTextColor={"gray"}
+              allowFontScaling={false} 
+            />
+          </FormInputBox>
+        </FormContainer>
 
-        </MainContainer>
-        <ShiftFromTop10>
-          <ButtonContainer>
-            <ButtonPrimary
-              disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked? true : false}
-              onPress={() => {
-                setClicked(true);
-                //navigation.navigate('ChildProfileScreen');
-                // if(plannedTermDate==null || plannedTermDate==undefined){
-                //   Alert.alert('Please enter due date');
-                // }
-                // else if(name==null || name==undefined || name==""){
-                //   Alert.alert('Please enter name');
-                // }
-                //else{
-                setTimeout(()=>{
-                  AddChild();
-                },0)
-                
-                // }
-              }}>
-              <ButtonText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
-            </ButtonPrimary>
-          </ButtonContainer>
-        </ShiftFromTop10>
-      </View>
-    </>
-  );
+      </MainContainer>
+      <ShiftFromTop10>
+        <ButtonContainer>
+          <ButtonPrimary
+            disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked? true : false}
+            onPress={() => {
+              setClicked(true);
+              setTimeout(()=>{
+                AddChild();
+              },0)
+            }}>
+            <ButtonText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
+          </ButtonPrimary>
+        </ButtonContainer>
+      </ShiftFromTop10>
+    </View>
+  </>;
 };
 
 export default AddExpectingChildProfile;

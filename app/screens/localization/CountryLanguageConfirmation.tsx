@@ -1,6 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-
   ButtonLinkText,
   ButtonPrimary,
   ButtonText,
@@ -31,13 +30,12 @@ import {
 } from '@styles/typography';
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { I18nManager, Platform, Text } from 'react-native';
+import { I18nManager, Platform } from 'react-native';
 import { BackHandler } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
-import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { onLocalizationSelect, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
 import {localization} from '@dynamicImportsClass/dynamicImports';
@@ -48,6 +46,7 @@ type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
 >;
 type Props = {
   navigation: CountryLanguageConfirmationNavigationProp;
+  route: any;
 };
 const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const {country, language} = route.params;
@@ -55,9 +54,6 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const userIsOnboarded = useAppSelector(
     (state: any) =>
       state.utilsData.userIsOnboarded
-  );
-  const countryId = useAppSelector(
-    (state: any) => state.selectedCountry.countryId,
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -71,8 +67,6 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const incrementalSyncDT = useAppSelector((state: any) =>
       (state.utilsData.incrementalSyncDT),
     );
-  //console.log(country,"---country",countryId);
-  //console.log(country, language);
   const apiJsonData = [
     {
       apiEndpoint: appConfig.sponsors,
@@ -99,7 +93,6 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
 
   useEffect(() => {
     console.log("confirm useeffect called");
-    // dispatch(setrestartOnLangChange('no'));
 
     return () => {
       dispatch(setrestartOnLangChange('no'));
@@ -108,14 +101,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      // Alert.alert("focuseffect--",JSON.stringify(countryId));
       const backAction = () => {
-        // if (userIsOnboarded == true) {
           i18n.changeLanguage(locale);
           navigation.goBack()
-        // }else {
-        //   navigation.goBack()
-        // }
         return true;
       };
     const backHandler = BackHandler.addEventListener(
@@ -138,12 +126,6 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
       {
         if(AppLayoutDirection == 'ltr') {
           //remove rtl on backhandler
-          // dispatch(setAppLayoutDirection('rtl'));
-          // dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
-          // dispatch(setAppLayoutDirectionParams({
-          //   country,
-          //   language,
-          // }));
           Platform.OS=='ios'? setTimeout(()=>{
           I18nManager.forceRTL(true);
           RNRestart.Restart();
@@ -160,7 +142,6 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
       }
     })
     console.log(language,"..language");
-    //Settings.defaultLocale = language.luxonLocale;
     if(userIsOnboarded == true && (language.languageCode == languageCode))
     {
       navigation.reset({
@@ -224,7 +205,6 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               <LocalizationAction>
                 <ButtonLinkText
                   onPress={() => {
-                    //console.log(language,"country--",country);
                     if(localization.length == 1) {
                       navigation.navigate('LanguageSelection',{country:country,languagenew:language})
                     }else {
