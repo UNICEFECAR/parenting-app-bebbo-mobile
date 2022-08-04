@@ -3,6 +3,8 @@ import GrowthChart, { chartTypes } from '@components/growth/GrowthChart';
 import { MainContainer } from '@components/shared/Container';
 import { FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,18 +18,20 @@ import {
   View
 } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 
+type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
+type Props = {
+  navigation: ChildSetupNavigationProp;
+  route:any;
+};
 export const ChartFullScreen = ({ route, navigation }: Props) => {
   const {activeChild, chartType, obj, standardDeviation} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const [windowWidth,setWindowWidth] = React.useState(Dimensions.get('window').width);
   const [windowHeight,setWindowHeight] = React.useState(Dimensions.get('window').height);
-  // console.log(activeChild, chartType, obj, standardDeviation);
-  // const navigation = useNavigation();
   const {t} = useTranslation();
   const chartHeading =
     chartType == chartTypes.weightForHeight
@@ -48,12 +52,7 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
       setTimeout(() => {
         setIsChartVisible(true);
       }, 2000);
-      BackHandler.addEventListener('hardwareBackPress', function () {
-        // setTimeout(()=>{
-        //   // Orientation.unlockAllOrientations();
-        //   Orientation.lockToPortrait();
-        // },1000)
-        
+      BackHandler.addEventListener('hardwareBackPress', function () {        
         closeFullScreen();
         /**
          * When true is returned the event will not be bubbled up
@@ -71,7 +70,6 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
           Orientation.lockToPortrait();
         },Platform.OS=='ios' ? 400:400)
         
-       
         /**
          * When true is returned the event will not be bubbled up
          * & no other back action will execute
@@ -88,45 +86,14 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
     return unsubscribe;
   }, [navigation]);
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //    Orientation.unlockAllOrientations();
-  //     Orientation.lockToLandscapeLeft();
-     
-  //   }, []),
-  // );
   const closeFullScreen = () => {
     navigation.goBack();
-    //Orientation.unlockAllOrientations();
     setTimeout(()=>{
-      // Orientation.unlockAllOrientations();
       Orientation.lockToPortrait();
     },Platform.OS=='ios' ? 500:0)
    
   };
-  // const [deviceOrientation, setDeviceOrientation] = useState(
-  //   Dimensions.get('window').width < Dimensions.get('window').height
-  //     ? 'portrait'
-  //     : 'landscape',
-  // );
-  // let windowWidth = Dimensions.get('window').width;
-  // let windowHeight = Dimensions.get('window').height;
-  // useEffect(() => {
-  //   const deviceOrientation = () => {
-  //     if (Dimensions.get('window').width < Dimensions.get('window').height) {
-  //       setDeviceOrientation('portrait');
-  //     } else {
-  //       setDeviceOrientation('landscape');
-  //     }
-  //   };
-  //   Dimensions.addEventListener('change', deviceOrientation);
-  //   return () => {
-  //     //cleanup work
-  //     Dimensions.removeEventListener('change', deviceOrientation);
-  //   };
-  // }, [deviceOrientation]);
-  // const windowWidth = Dimensions.get('window').width;
-  // const windowHeight = Dimensions.get('window').height;
+  
   return (
     <>
       <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -160,7 +127,6 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
                 ) : (
                   <ActivityIndicator size="large" color={headerColor} />
                 )}
-                {/* // standardDeviation={standardDeviation} */}
               </FlexCol>
             </MainContainer>
           </FlexCol>
