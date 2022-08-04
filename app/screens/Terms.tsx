@@ -11,11 +11,9 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Settings } from 'luxon';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, ScrollView, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -42,27 +40,14 @@ const Terms = ({navigation}: Props) => {
   const [toggleCheckBox2, setToggleCheckBox2] = useState(true);
   const isButtonDisabled = (toggleCheckBox==false || toggleCheckBox1==false)
   const [loading, setLoading] = useState(true);
-  // setLoading(true);
   const {t} = useTranslation();
-  // console.log("loading00",loading);
   const goToPrivacyPolicy = () => {
     navigation.navigate('PrivacyPolicy');
   };
-  // dispatch(setAllTermsData([{termsId:'1234',termsData:'terms page text'}]));
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     let Entity:any;
-  //     // Entity = Entity as TaxonomyEntity
-  //     console.log("basicpagesData--",basicData);
-  //     setLoading(false);
-  //   }
-  //   fetchData()
-  // },[languageCode]);
-  // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   useFocusEffect(
     React.useCallback(() => {
       setLoading(false);
@@ -76,7 +61,6 @@ const Terms = ({navigation}: Props) => {
     (state: any) =>
       state.utilsData.acceptTerms
      );
-  //console.log("termsdata--",termsdata);
   const apiJsonData = [
     {
       apiEndpoint: appConfig.videoArticles,
@@ -184,9 +168,6 @@ const Terms = ({navigation}: Props) => {
     // pinned for all 4 tools
   ];
   const acceptTerms = async () => {
-   
-    // let acceptTermsRes = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "acceptTerms","true");
-    // let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
     
        if(acceptTermsFlag == false)
        {
@@ -196,15 +177,6 @@ const Terms = ({navigation}: Props) => {
         apiJsonData: apiJsonData, 
         prevPage: 'Terms'
       });
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [
-    //     {
-    //       name: 'LoadingScreen',
-    //       params: {apiJsonData: apiJsonData, prevPage: 'Terms'},
-    //     },
-    //   ],
-    // });
   };
 
   return (
@@ -231,7 +203,6 @@ const Terms = ({navigation}: Props) => {
             />
             : null
           }
-
           <Fragment>
             <View style={{marginTop: 20, paddingRight: 40}}>
             <FormOuterCheckbox
@@ -285,41 +256,6 @@ const Terms = ({navigation}: Props) => {
             </CheckboxItem>
             <LabelText>{t('tNccheckbox3')}</LabelText>
           </FormOuterCheckbox>
-              {/* <CheckboxContainer>
-                <CheckBox
-                  disabled={false}
-                  value={toggleCheckBox}
-                  onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                  tintColors={{true:'#ffffff', false: '#FFF'}}
-                  boxType={'square'}
-                  tintColor={'#FFF'}
-                  onCheckColor={'#8CAEE4'}
-                  onFillColor={'#FFF'}
-                  onTintColor={'#FFF'}
-                />
-                <CheckboxItemText>{t('tNccheckbox1')}</CheckboxItemText>
-              </CheckboxContainer> */}
-
-              {/* <CheckboxContainer>
-                <CheckBox
-                  disabled={false}
-                  value={toggleCheckBox1}
-                  onValueChange={(newValue) => setToggleCheckBox1(newValue)}
-                  tintColors={{true: '#ffffff', false: '#d4d4d4'}}
-                />
-                <CheckboxItemText>{t('tNccheckbox2')}
-                 <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('tNcprivacyPolicy')}</CheckboxItemText>
-                 </CheckboxItemText>
-              </CheckboxContainer> */}
-              {/* <CheckboxContainer>
-                <CheckBox
-                  disabled={false}
-                  value={toggleCheckBox2}
-                  onValueChange={(newValue) => setToggleCheckBox2(newValue)}
-                  tintColors={{true: '#ffffff', false: '#d4d4d4'}}
-                />
-                <CheckboxItemText>{t('tNccheckbox3')}</CheckboxItemText>
-              </CheckboxContainer> */}
             </View>
           </Fragment>
         </ScrollView>
@@ -328,7 +264,6 @@ const Terms = ({navigation}: Props) => {
             disabled={isButtonDisabled}
             onPress={() => {
               acceptTerms();
-              // navigation.navigate('LoadingScreen')
             }}>
             <ButtonText>{t('tNcacceptbtn')}</ButtonText>
           </ButtonPrimary>
