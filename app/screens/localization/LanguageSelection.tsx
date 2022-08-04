@@ -6,21 +6,19 @@ import {
   ButtonviewNext,
   ButtonviewPrevious
 } from '@components/shared/ButtonView';
-import Icon, { IconML } from '@components/shared/Icon';
+import { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, FlatList, I18nManager, Platform, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
 import  {localization}  from '@dynamicImportsClass/dynamicImports';
 import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
@@ -31,6 +29,7 @@ type LanguageSelectionNavigationProp = StackNavigationProp<
 >;
 type Props = {
   navigation: LanguageSelectionNavigationProp;
+  route: any;
 };
 const LanguageSelection = ({route, navigation}: Props) => {
   const [language, setLanguage] = useState();
@@ -45,34 +44,24 @@ const LanguageSelection = ({route, navigation}: Props) => {
     country = route.params.country;
     languagenew = route.params.languagenew;
   }
-  //console.log(languagenew,"--languagenew--");
   const languages = country?.languages;
   const {t, i18n} = useTranslation();
   const dispatch = useAppDispatch();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const userIsOnboarded = useAppSelector(
-    (state: any) =>
-      state.utilsData.userIsOnboarded
-  );
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
   useEffect(() => {
-    // AsyncStorage.setItem('isDirectionChanged','No')
     let newLanguageId: any,selectedLanguage;
-    // if(userIsOnboarded == true){
       if(languagenew && languagenew != null){
         newLanguageId = languagenew.languageCode;
       }else {
         newLanguageId = languageCode;
       }
-    // }else {
-    //   newLanguageId = languageCode;
-    // }
     selectedLanguage = languages?.find(
-      (lang) => lang.languageCode === newLanguageId,
+      (lang:any) => lang.languageCode === newLanguageId,
     );
     setLanguage(selectedLanguage);
   }, []);
