@@ -46,16 +46,13 @@ import {
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, Modal, Platform, Pressable, ScrollView, Share, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../App';
-import { setAllNotificationData } from '../redux/reducers/notificationSlice';
-import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
+import { useAppSelector } from '../../App';
 import { getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
-import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
 import { formatDate,addSpaceToHtml } from '../services/Utils';
 const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
@@ -65,57 +62,18 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const generateNotificationsFlag = useAppSelector((state: any) =>
-    (state.utilsData.generateNotifications),
-  );
   let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
   const [notifications, setNotifications] = useState<any[]>([]);
-  // console.log(activeChild, "..draweractiveChild")
   const surveryData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
   );
-  // console.log("surveryData---",surveryData);
-  const feedbackItem = surveryData.find(item => item.type == "feedback")
-  const userGuideItem = surveryData.find(item => item.type == "user_guide")
+  const feedbackItem = surveryData.find((item:any) => item.type == "feedback")
+  const userGuideItem = surveryData.find((item:any) => item.type == "user_guide")
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
-  );
-  const locale = useAppSelector(
-    (state: any) => state.selectedCountry.locale,
-  );
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ''
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : state.childData.childDataSet.allChild,
-  );
-  let childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
-  let allHealthCheckupsData = useAppSelector(
-    (state: any) =>
-      state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
-  );
-  const taxonomy = useAppSelector(
-    (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
-  );
-  let allGrowthPeriods = taxonomy?.growth_period;
-  let allVaccinePeriods = useAppSelector(
-    (state: any) =>
-      state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
-  );
-  const growthEnabledFlag = useAppSelector((state: any) =>
-    (state.notificationData.growthEnabled),
-  );
-  const developmentEnabledFlag = useAppSelector((state: any) =>
-    (state.notificationData.developmentEnabled),
-  );
-  const vchcEnabledFlag = useAppSelector((state: any) =>
-    (state.notificationData.vchcEnabled),
   );
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices ? state.childData.childDataSet.favoriteadvices : []
@@ -124,14 +82,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
     state.childData.childDataSet.favoritegames ? state.childData.childDataSet.favoritegames : []
   );
   const [favoritescount, setfavoritescount] = useState<any[]>(0);
-  const dispatch = useAppDispatch();
-  // useEffect(() => {
-
-  // }, [])
-
-  // React.useCallback(() => {
-
-  // );
   const isOpen: boolean = useIsDrawerOpen();
   useFocusEffect(
     React.useCallback(() => {
@@ -147,7 +97,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
       }else {
         favgames = 0;
       }
-      //console.log(favadvices,"--favadvices--",favgames);
       setfavoritescount(favadvices + favgames);
     }
   }, [isOpen, activeChild.uuid, favoriteadvices,favoritegames]),
@@ -164,57 +113,37 @@ const CustomDrawerContent = ({ navigation }: any) => {
       // Your dismiss logic here 
 
       if (allnotis.length > 0) {
-        const currentChildNotis = allnotis?.find((item) => item.childuuid == activeChild.uuid)
-       // console.log(currentChildNotis, "allfilteredNotis")
-        //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
+        const currentChildNotis = allnotis?.find((item:any) => item.childuuid == activeChild.uuid)
         if (!isFutureDate(activeChild?.birthDate)) {
         if (currentChildNotis) {
           let currentChildallnoti: any = [];
           if (currentChildNotis.gwcdnotis) {
-            currentChildNotis.gwcdnotis.forEach((item) => {
+            currentChildNotis.gwcdnotis.forEach((item:any) => {
               currentChildallnoti.push(item)
             })
           }
-          // // notiExist.gwcdnotis?.forEach((item)=>{
-          // //   allgwnoti.push(item)
-          // // })
           if (currentChildNotis.hcnotis) {
-            currentChildNotis.hcnotis.forEach((item) => {
+            currentChildNotis.hcnotis.forEach((item:any) => {
               currentChildallnoti.push(item)
             })
           }
-          // // notiExist.vcnotis?.forEach((item)=>{
-          // //   allvcnotis.push(item)
-          // // })
           if (currentChildNotis.vcnotis) {
-            currentChildNotis.vcnotis.forEach((item) => {
+            currentChildNotis.vcnotis.forEach((item:any) => {
               currentChildallnoti.push(item)
             })
           }
           if (currentChildNotis.reminderNotis) {
-            currentChildNotis.reminderNotis.forEach((item) => {
+            currentChildNotis.reminderNotis.forEach((item:any) => {
               currentChildallnoti.push(item)
             })
           }
-          // console.log(allnotis)
-
-          // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
-          // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
           let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
-          //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
           let toDay = DateTime.fromJSDate(new Date()).toMillis();
 
 
           let combinedNotis = currentChildallnoti.sort(
             (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
-          ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
-        //  console.log(combinedNotis, "combinedNotis")
-          // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
-          // console.log(toRemove, "findcdNoti")
-          // combinedNotis = combinedNotis.filter(function (el) {
-          //   return !toRemove.includes(el);
-          // });
-          // delete item from combinedNotis item => { item.title == 'cdNoti2' && childAgeInDays >= item.days_to })
+          ).filter((item:any) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
           setNotifications(currentChildallnoti.length>0?combinedNotis:[])
         }
       }else{
@@ -224,7 +153,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
     }
   }, [isOpen, activeChild.uuid, allnotis]),
   );
-  // }, [isOpen, activeChild.uuid, allnotis]);
   const onShare = async () => {
     let localeData=(String(buildFor) != buildForBebbo)?languageCode:"";
     let messageData=t('appShareText')+shareText+localeData;
@@ -253,120 +181,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
   useFocusEffect(
     React.useCallback(() => {
       setModalVisible(false);
-      // if (generateNotificationsFlag == true) {
-      //   let allchildNotis: any[] = [];
-      //   // childList.map((child: any) => {
-      //   const notiExist = allnotis?.find((item) => String(item.childuuid) == String(activeChild.uuid))
-      //   console.log("notiExist", notiExist);
-      //   if (notiExist != undefined) {
-      //     // notiExist.gwcdnotis?.forEach((item) => {
-      //     //   allgwcdnotis.push(item)
-      //     // })
-      //     //remove reminder notis
-      //     // dispatch(setAllNotificationData(notiExist))
-      //     if (isFutureDate(activeChild?.birthDate)) {
-      //       // do not calculate for expecting child
-      //       //empty childNotis // find and remove child from notification slice
-      //       console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
-      //     } else {
-      //       const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, activeChild, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
-      //       if (checkIfNewCalcRequired) {
-      //         console.log("NEWCALCREQUIRED")
-      //         console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
-      //         const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
-
-      //         // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
-
-      //         ////  append new notifications for child 
-      //         let allgwcdnotis: any = [];
-      //         let allvcnotis: any = [];
-      //         let allhcnotis: any = [];
-      //         gwcdnotis.reverse().forEach((item) => {
-      //           allgwcdnotis.push(item)
-      //         })
-      //         if (notiExist.gwcdnotis) {
-      //           notiExist.gwcdnotis?.forEach((item) => {
-      //             allgwcdnotis.push(item)
-      //           })
-      //         }
-      //         vcnotis.reverse().forEach((item) => {
-      //           allvcnotis.push(item)
-      //         })
-      //         if (notiExist.vcnotis) {
-      //           notiExist.vcnotis?.forEach((item) => {
-      //             allvcnotis.push(item)
-      //           })
-      //         }
-      //         hcnotis.reverse().forEach((item) => {
-      //           allhcnotis.push(item)
-      //         })
-      //         if (notiExist.hcnotis) {
-      //           notiExist.hcnotis?.forEach((item) => {
-      //             allhcnotis.push(item)
-      //           })
-      //         }
-      //         let allreminderNotis: any = []
-      //         let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
-      //         // if (notiExist.reminderNotis) {
-      //         //   notiExist.reminderNotis?.forEach((item) => {
-      //         //     allreminderNotis.push(item)
-      //         //   })
-      //         // }
-      //         reminderNotis.reverse().forEach((item) => {
-      //           allreminderNotis.push(item)
-      //         })
-      //         console.log(allhcnotis, allvcnotis, allgwcdnotis, reminderNotis, "ONLYnewnoti");
-      //         allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
-
-      //       } else {
-      //         //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
-      //         //find and remove child from notification slice
-      //         //clear notification which are already generated, 
-      //         //generate for new notifications // append reminders
-      //         let allreminderNotis: any = []
-      //         let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
-      //         // if (notiExist.reminderNotis) {
-      //         //   notiExist.reminderNotis?.forEach((item) => {
-      //         //     allreminderNotis.push(item)
-      //         //   })
-      //         // }
-      //         reminderNotis.reverse().forEach((item) => {
-      //           allreminderNotis.push(item)
-      //         })
-      //         allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: allreminderNotis })
-      //       }
-      //     }
-      //   } else {
-      //     console.log("noti does not exist for child");
-      //     // create notification for that child first time
-      //     if (!isFutureDate(activeChild?.birthDate)) {
-      //       const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
-      //       console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
-      //       let reminderNotis = getChildReminderNotifications(activeChild,[],vchcEnabledFlag);
-      //       console.log(reminderNotis, "new reminderNotis")
-      //       console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
-      //       allchildNotis.push({ childuuid: activeChild.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
-      //     } else {
-      //       //for expecting child no notifications
-      //     }
-      //   }
-
-      //   const exceptActiveChildNotis =   [...allnotis].filter(item => String(item.childuuid) != String(activeChild.uuid));
-      //   // allnotis.filter((item) => String(item.childuuid) != String(activeChild.uuid))
-      //   exceptActiveChildNotis.forEach(element => {
-      //     allchildNotis.push(element)
-      //   });
-      //   // [...allchildNotis].filter(item => String(item.childuuid) != String(activeChild[0].uuid));
-      //   // })
-      //   console.log(allchildNotis,"allchildNotis=Drawer")
-      //   dispatch(setAllNotificationData(allchildNotis))
-      //   //generate notifications for all childs 
-      //   //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
-      //   //if already exist, then for each module get last period, and generate afterwards period's notifications
-      //   //after generating notifications make it false
-      //   let notiFlagObj = { key: 'generateNotifications', value: false };
-      //   dispatch(setInfoModalOpened(notiFlagObj));
-      // }
     }, [isOpen, activeChild.uuid, allnotis]),
   );
 
@@ -429,7 +243,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
           </Flex1>
          
           <DrawerLinkView
-            // onPress={() => navigation.navigate('Home')}
             onPress={() => navigation.navigate('Home', { screen: 'Home' })}>
             <OuterIconRow>
               <OuterIconLeft15>
@@ -457,10 +270,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </BubbleContainer>
               : null}
           </DrawerLinkView>
-
-
-
-
 
           <DrawerLinkView style={{ backgroundColor: accordvalue ? "#F7F6F4" : "#FFF" }} onPress={() => onChangeaccordvalue(!accordvalue)}>
             <OuterIconRow>
@@ -505,7 +314,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
                     },
                   });
                 }
-                  // navigation.navigate('Home', { screen: 'VaccinationTab' })
                 }>
                 <FDirRow>
                   <BgVaccination>
@@ -529,7 +337,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
                     },
                   });
                 }
-                  // navigation.navigate('Home', { screen: 'HealthCheckupsTab' })
                 }>
                 <FDirRow>
                   <BgHealth>
@@ -553,7 +360,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
                     },
                   });
                 }
-                  // navigation.navigate('Home', { screen: 'ChildgrowthTab' })
                 }>
                 <FDirRow>
                   <BgGrowth>
@@ -638,14 +444,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </OuterIconRow>
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenushareTxt')}</Heading4>
           </DrawerLinkView>
-          {/* <DrawerLinkView onPress={() => onShare1()}>
-            <OuterIconRow>
-              <OuterIconLeft15>
-                <Icon name="ic_sb_shareapp" size={25} color="#000" />
-              </OuterIconLeft15>
-            </OuterIconRow>
-            <Heading4 style={{ flexShrink: 1 }}>Share details</Heading4>
-          </DrawerLinkView> */}
           <DrawerLinkView onPress={() => { setModalVisible(true); }}>
             <OuterIconRow>
               <OuterIconLeft15>
@@ -667,7 +465,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review') 
               }
               else {
-                //itms-apps://itunes.apple.com/us/app/foleja/id1607980150?mt=8&action=write-review
                 Linking.openURL('itms://itunes.apple.com/xk/app/apple-store/id1607980150?action=write-review');
               }
             }
@@ -699,7 +496,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
         transparent={true}
         visible={modalVisible === true}
         onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
           setModalVisible(false);
         }}
         onDismiss={() => {
