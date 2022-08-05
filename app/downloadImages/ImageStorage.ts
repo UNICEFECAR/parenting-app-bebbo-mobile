@@ -1,10 +1,8 @@
 import RNFS from 'react-native-fs';
 import { ApiImageData } from './../types/types';
-// import {downloadImagesBatchSize, downloadImagesIntervalBetweenBatches,showLog} from "react-native-dotenv";
 const downloadImagesBatchSize= 50; // Works for 15
 const downloadImagesIntervalBetweenBatches= 200; // In milliseconds. Works for 3000
 const showLog=true;
- //   console.log(netInfo,"..netInfo..");
 const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
     let rval: boolean = false;
 
@@ -13,10 +11,8 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
         if (!(await RNFS.exists(args.destFolder))) {
             await RNFS.mkdir(args.destFolder);
         }
-        //console.log(RNFS.exists(args.destFolder + '/' + args.destFilename));
         if (await RNFS.exists(args.destFolder + '/' + args.destFilename)) {
             rval = true;
-           // console.log("Image already exists");
         }else {
             // Download image: https://bit.ly/2S5CeEu
             let { jobId, promise: downloadPromise } = RNFS.downloadFile({
@@ -27,29 +23,22 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
             });
 
             let downloadResult = await downloadPromise;
-          //  console.log(downloadResult,"..downloadResult..")
             if (downloadResult.statusCode === 200) {
                 if (await RNFS.exists(args.destFolder + '/' + args.destFilename)) {
                     rval = true;
 
                     if (showLog) {
-                       // console.log('IMAGE DOWNLOADED: ', args.destFilename);
                     }
                 }
             } else {
-            //  dataRealmStore.setVariable('lastDataSyncError', 'downloadImage failed, ' + downloadResult.statusCode);
-
                 if (showLog) {
                        // console.log(`IMAGE DOWNLOAD ERROR: url = ${args.srcUrl}, statusCode: ${downloadResult.statusCode}`);
                 }
             }
         }
     } catch (rejectError) {
-       // const netError = new UnknownError(rejectError);
-       // dataRealmStore.setVariable('lastDataSyncError', 'downloadImage failed, ' + netError.message);
 
        if (showLog) {
-           // console.log('IMAGE DOWNLOAD ERROR', rejectError, args.srcUrl);
        }
     }
 
@@ -61,18 +50,14 @@ export const deleteImageFile=(filename:any)=>{
   
     RNFS.exists(filepath)
     .then( (result) => {
-        //console.log("file exists: ", result);
   
         if(result){
           return RNFS.unlink(filepath)
             .then(() => {
-             // console.log('FILE DELETED');
               resolve('Success');
             })
-            // `unlink` will throw an error, if the item to unlink does not exist
             .catch((err) => {
               reject('Fail');
-             // console.log(err.message);
             });
         }
         else{
@@ -81,15 +66,12 @@ export const deleteImageFile=(filename:any)=>{
       })
       .catch((err) => {
         reject('Fail');
-       // console.log(err.message);
       });
     });
   }
 const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, args: ApiImageData }[] | null> =>{
-   // console.log(args,"..args..");
     let allResponses: any[] = [];
     const numberOfLoops: number = Math.ceil(args.length / downloadImagesBatchSize);
-   // console.log(downloadImagesBatchSize,"--numberOfLoops--",numberOfLoops);
     for (let loop = 0; loop < numberOfLoops; loop++) {
         // Get currentLoopImages
         const indexStart = loop * downloadImagesBatchSize;
@@ -101,7 +83,6 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, a
         currentLoopImages.forEach((downloadImageArgs) => {
             promises.push(downloadImage(downloadImageArgs));
         });
-       // console.log(currentLoopImages,"..currentLoopImages..");
 
         let loopResponses = await Promise.all<boolean>(promises);
 
@@ -120,9 +101,7 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, a
             })
         );
 
-        // Log
        if (showLog) {
-          //  console.log(`apiStore.downloadImages() batch ${loop + 1}: Downloaded ${numberOfSuccess} from ${currentLoopImages.length} images`,);
        }
 
         // Wait between batches

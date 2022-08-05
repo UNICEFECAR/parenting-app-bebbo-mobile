@@ -4,7 +4,6 @@ import CountryLanguageConfirmation from '@screens/localization/CountryLanguageCo
 import CountrySelection from '@screens/localization/CountrySelection';
 import LanguageSelection from '@screens/localization/LanguageSelection';
 import React from 'react';
-import { Platform } from 'react-native';
 import { useAppSelector } from '../../App';
 import { LocalizationStackParamList } from './types';
 
@@ -19,10 +18,8 @@ export default () => {
   const AppLayoutDirectionParams = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionParams,
   );
-  //console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
   return (
     <LocalizationStack.Navigator 
-      // initialRouteName="CountrySelection"
       initialRouteName= {restartOnLangChange != 'yes' ? localization.length == 1 ? "LanguageSelection" : "CountrySelection" : AppLayoutDirectionScreen}
     >
       <LocalizationStack.Screen

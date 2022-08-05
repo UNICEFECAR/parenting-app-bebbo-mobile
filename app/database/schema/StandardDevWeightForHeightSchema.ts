@@ -7,15 +7,12 @@ export type StandDevObjEntity = {
 }
 
 export type StandardDevWeightForHeightEntity = {
-    // id: number,
     child_age: number[],
     goodText: StandDevObjEntity,
     warrningSmallHeightText: StandDevObjEntity,
     emergencySmallHeightText: StandDevObjEntity,
     warrningBigHeightText: StandDevObjEntity,
-    emergencyBigHeightText: StandDevObjEntity,
-    // goodText: StandDevObjEntity,
-    
+    emergencyBigHeightText: StandDevObjEntity,    
   };
 
   export const StandDevObj: ObjectSchema = {
@@ -29,18 +26,13 @@ export type StandardDevWeightForHeightEntity = {
   }
   export const StandardDevWeightForHeightSchema: ObjectSchema = {
     name: 'StandardDevWeightForHeightEntity',
-    // primaryKey: 'id',
   
-    // API: https://bit.ly/3f7k9jq
     properties: {
-      // id: { type: 'int' },
       child_age: { type: 'int[]' },
       goodText: 'StandDevObj',
       warrningSmallHeightText: 'StandDevObj',
       emergencySmallHeightText: 'StandDevObj',
       warrningBigHeightText: 'StandDevObj',
-      emergencyBigHeightText: 'StandDevObj',
-      // goodText: 'StandDevObj',
-      
+      emergencyBigHeightText: 'StandDevObj',      
     }
   };
