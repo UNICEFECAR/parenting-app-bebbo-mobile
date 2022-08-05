@@ -1,5 +1,5 @@
 import analytics from '@react-native-firebase/analytics';
-import { NavigationContainer, useNavigationState } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddSiblingData from '@screens/AddSiblingData';
@@ -24,7 +24,7 @@ import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, AppState, DeviceEventEmitter, I18nManager, Platform, ToastAndroid } from 'react-native';
+import { Alert, AppState, Platform } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -35,7 +35,6 @@ import { getAllChildren, setActiveChild } from '../services/childCRUD';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
 import { restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
@@ -43,26 +42,15 @@ import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
 import messaging from '@react-native-firebase/messaging';
-import { AppEventsLogger, Settings } from 'react-native-fbsdk-next';
+import { Settings } from 'react-native-fbsdk-next';
 import { PERMISSIONS, RESULTS, request, check } from 'react-native-permissions';
 import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-// import {ThemeProvider} from 'styled-components/native';
-// import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default () => {
-  // const countryId = useAppSelector(
-  //   (state: any) => state.selectedCountry.countryId,
-  // );
-
-  // const childList = useAppSelector((state: any) =>
-  //   state.childData.childDataSet.allChild != ''
-  //     ? JSON.parse(state.childData.childDataSet.allChild)
-  //     : state.childData.childDataSet.allChild,
-  // );
   const [profileLoading, setProfileLoading] = React.useState(false);
   const userIsOnboarded = useAppSelector(
     (state: any) =>
@@ -87,19 +75,10 @@ export default () => {
   const AppLayoutDirectionScreen = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionScreen,
   );
-  // console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
-  // const languageCode = useAppSelector(
-  //   (state: any) => state.selectedCountry.languageCode,
-  // );
-  // console.log("userIsOnboarded appnav--", userIsOnboarded);
-  // console.log("userIsOnboarded appnav--", userIsOnboarded);
-  // const [isReady, setIsReady] = React.useState(false);
-  // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
   const [netState, setNetState] = React.useState('');
-  // console.log("callRealmListener--",callRealmListener);
   const dispatch = useAppDispatch();
   const netInfoval = useNetInfoHook();
   const activeChild = useAppSelector((state: any) =>
@@ -118,7 +97,6 @@ export default () => {
     callUrl(linkedURL);
   }, [linkedURL, resetURL, userIsOnboarded])
   const callUrl = (url: any) => {
-    // console.log(url, "..callurl initialUrl..");
     if (url) {
       const initialUrlnew: any = url;
       if (initialUrlnew === null) {
@@ -130,8 +108,6 @@ export default () => {
         console.log("rerenew2", userIsOnboarded);
         if (userIsOnboarded == true) {
           if (navigationRef) {
-            //   let obj = { key: 'showDownloadPopup', value: false };
-            // dispatch(setInfoModalOpened(obj));
             navigationRef.current?.navigate('DetailsScreen',
               {
                 fromScreen: "HomeArt",
@@ -139,7 +115,6 @@ export default () => {
                 backgroundColor: '',
                 detailData: initialUrlnewId1,
                 listCategoryArray: []
-                // setFilteredArticleData: setFilteredArticleData
               });
 
           }
@@ -152,8 +127,6 @@ export default () => {
         console.log("initialUrlnewId1 activity", initialUrlnewId1);
         if (userIsOnboarded == true) {
           if (navigationRef) {
-            //   let obj = { key: 'showDownloadPopup', value: false };
-            // dispatch(setInfoModalOpened(obj));
             navigationRef.current?.navigate('DetailsScreen',
               {
                 fromScreen: "HomeAct",
@@ -161,7 +134,6 @@ export default () => {
                 backgroundColor: backgroundColor,
                 detailData: initialUrlnewId1,
                 listCategoryArray: []
-                // setFilteredArticleData: setFilteredArticleData
               });
           }
         }
@@ -191,7 +163,6 @@ export default () => {
           }
           Settings.initializeSDK();
           Settings.setAdvertiserTrackingEnabled(true);
-          // Settings.FacebookAutoLogAppEventsEnabled(true);
         }
       } else {
         Settings.initializeSDK();
@@ -228,11 +199,9 @@ export default () => {
       console.log(enabled, "..enabled..", authStatus, "..authStatus..");
       if (enabled) {
         console.log(enabled, "..inif..");
-        // initPixel();
       }
       else {
         console.log(enabled, "..inelse..");
-        //initPixel();
       }
 
 
@@ -241,10 +210,6 @@ export default () => {
       requestUserPermission();
     }
 
-
-    // setTimeout(() => {
-
-    // }, 6000);
   }, []);
   const createLocalNotificationListeners = async () => {
     try {
@@ -267,17 +232,13 @@ export default () => {
       })
 
     } catch (e) {
-      // alert(e)
       console.log("error")
     }
   }
   const redirectLocation = (notification: any) => {
-    // const routeNameRef = React.useRef();
-    // const previousRouteName = routeNameRef.current;
     const screenName = navigationRef.current.getCurrentRoute().name;
     console.log(activeChild, "..activeChild..");
     console.log(notification.data.uuid, "..notification.data.uuid..");
-    //console.log(screenName,previousRouteName); 
 
     if (notification && notification.data && notification.data.notitype) {
       if (notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
@@ -308,9 +269,7 @@ export default () => {
 
       }
       else if (notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
-        // navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
         if (screenName == "NotificationsScreen") {
-          console.log("..NotificationsScreen..", screenName);
           navigationRef.current?.navigate('Home', {
             screen: 'Tools',
             params: {
@@ -336,9 +295,7 @@ export default () => {
 
       }
       else if (notification.data.notitype == 'cd') {
-        // navigationRef.current?.navigate('ChildDevelopment');
         if (screenName == "NotificationsScreen") {
-          console.log("..NotificationsScreen..", screenName);
           navigationRef.current?.navigate('Home', {
             screen: 'ChildDevelopment', params: {
               fromNotificationScreen: true,
@@ -349,22 +306,11 @@ export default () => {
           navigationRef.current?.navigate('ChildDevelopment');
         }
         else {
-          console.log("..nohomenew..", screenName);
           navigationRef.current?.navigate('Home', { screen: 'ChildDevelopment' })
         }
       }
       else if (notification.data.notitype == 'gw') {
         if (screenName == "NotificationsScreen") {
-          console.log("..NotificationsScreen..", screenName);
-          // navigationRef.current?.navigate('Home', {
-          //   screen: 'Tools',
-          //   params: {
-          //     screen: 'ChildgrowthTab',
-          //     params: {
-          //       fromNotificationScreen: true,
-          //     }
-          //   },
-          // })
           navigationRef.current?.navigate('AddNewChildgrowth', {
             headerTitle: t('growthScreenaddNewBtntxt'),
             fromNotificationScreen: true,
@@ -376,13 +322,6 @@ export default () => {
           });
         }
         else {
-          console.log("..nohomenew..", screenName)
-          // navigationRef.current?.navigate('Home', {
-          //   screen: 'Tools',
-          //   params: {
-          //     screen: 'ChildgrowthTab',
-          //   },
-          // });
           navigationRef.current?.navigate('AddNewChildgrowth', {
             headerTitle: t('growthScreenaddNewBtntxt'),
           });
@@ -400,7 +339,6 @@ export default () => {
   }
   const handleNotification = (notification: any) => {
     const screenName = navigationRef.current.getCurrentRoute().name;
-    console.log(screenName, "..screenName..");
     
     var executed = false;
     if (!executed) {
@@ -413,39 +351,16 @@ export default () => {
           }
          });
       }
-      // const routes =  navigationRef.current?.dangerouslyGetState()?.routes;
-      //Alert.alert(usePreviousRouteName(), "in callSagaApi navigation history--");
-
-      //// **APP IS OPEN**
-      //Alert.alert(JSON.stringify(notification),"..notification.foreground true..");
+      
       if (notification && notification.userInteraction == true) {
-        // ToastAndroid.showWithGravityAndOffset(
-        //   currentActiveChild + "," + screenName + "," + notification.userInteraction + "," + notification.data.notitype + "," + notification.data.uuid,
-        //   ToastAndroid.LONG,
-        //   ToastAndroid.BOTTOM,
-        //   25,
-        //   50
-        // );
-
         if (notification && notification.data && notification.data.notitype != '' && notification.data.notitype != null && notification.data.notitype != undefined && userIsOnboarded) {
-          // if(activeChilduuid!=notification.data.uuid){
 
-          // }
           redirectLocation(notification);
         }
       } else { ///////**APP IS CLOSED!!!**
 
         if (notification && notification.foreground == false) {
-          // ToastAndroid.showWithGravityAndOffset(
-          //   currentActiveChild + "," + screenName + "," + notification.foreground + "," + notification.data.notitype + "," + notification.data.uuid,
-          //   ToastAndroid.LONG,
-          //   ToastAndroid.BOTTOM,
-          //   25,
-          //   50
-          // );
           if (notification && notification.data && notification.data.notitype != '' && notification.data.notitype != null && notification.data.notitype != undefined && userIsOnboarded) {
-            //Alert.alert(JSON.stringify(notification),"..notification.foreground false..");
-            //navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
             redirectLocation(notification);
           }
         }
@@ -455,19 +370,13 @@ export default () => {
 
   }
   useEffect(() => {
-    // let notiListener=null;
     if( userIsOnboarded == true){
     createLocalNotificationListeners();
     }
-   
-    // return () => {
-    //   notiListener=null;
-    // }
   }, [userIsOnboarded]);
   useEffect(() => {
 
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      // console.log("msg----",remoteMessage);
       if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
         Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
           { text: t('forceUpdateOkBtn') }
@@ -482,51 +391,32 @@ export default () => {
   }, []);
 
   useMemo(() => {
-    // if (userIsOnboarded == true) {
     fetchNetInfo();
-    // } 
-
     async function fetchNetInfo() {
       if (netInfoval && netInfoval.isConnected != null) {
-        // Alert.alert(netInfoval.netValue.type, "--234navnetInfoval--");
-        // console.log("use effect net connected call");
-        // console.log(toggleSwitchVal, "..hometoggleSwitchVal")
         if (netInfoval.isConnected == true) {
           if (Platform.OS == 'android') {
             if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other" || netInfoval.netValue.type == "bluetooth" || netInfoval.netValue.type == "vpn")) {
-              // Alert.alert("66"+toggleSwitchVal+typeof(toggleSwitchVal));
               setNetState('Lowbandwidth');
 
             }
             else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "2g") {
-              // Alert.alert("55"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
 
               setNetState('Lowbandwidth');
 
             }
             else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "3g") {
-              // Alert.alert("44"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
               setNetState('Lowbandwidth');
 
 
             }
             else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "4g") {
-              // Alert.alert("44"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
               setNetState('Highbandwidth');
 
 
             }
-            // else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == null) {
-            //   //Alert.alert("33"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
-            //   setNetState('Lowbandwidth');
-
-
-            // }
             else {
-              // Alert.alert("11111");
-              //Alert.alert("11"+toggleSwitchVal+typeof(toggleSwitchVal));
               setNetState('Highbandwidth');
-
             }
           }
           else if (Platform.OS == 'ios') {
@@ -535,32 +425,24 @@ export default () => {
 
             }
             else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "2g") {
-              // Alert.alert("11",netInfoval.netValue.details.cellularGeneration);
               setNetState('Lowbandwidth');
 
             }
             else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "3g") {
-              // Alert.alert("33",netInfoval.netValue.details.cellularGeneration);
               setNetState('Lowbandwidth');
 
             }
             else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "4g") {
-              // Alert.alert("44"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
               setNetState('Highbandwidth');
 
             }
-            // else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == null) {
-            //   setNetState('Lowbandwidth');
-            // }
             else {
-              // Alert.alert("22",netInfoval.netValue.type);
               setNetState('Highbandwidth');
             }
           }
         }
         else {
           setNetState('NoConnection');
-          //  Alert.alert(t('noInternet'));
         }
 
       }
@@ -572,31 +454,11 @@ export default () => {
   }, [linkedURL]);
 
   useEffect(() => {
-    let unsubscribe: any = null;
-    // async function createLocalNotification(){
-    //  unsubscribe  = createLocalNotificationListeners().then(r => console.log("local push notification listeners created"));
-    // }
-    // createLocalNotification();
-    // return () => {
-    // unsubscribe=null;
-    // }
-  }, []);
-  useEffect(() => {
     if (userIsOnboarded == true) {
-      // console.log("calculated");
-      // console.log("calculated");
-      //call forceupdate api and check with asyncstorage
-      // dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
-      //if force update is being done the set showDownloadPopup to false
-      // if(linkedURL) {
-      //   let obj = { key: 'showDownloadPopup', value: false };
-      //   dispatch(setInfoModalOpened(obj));
-      // }else {
       let obj = { key: 'showDownloadPopup', value: true };
       dispatch(setInfoModalOpened(obj));
       let localnotiFlagObj = { generateFlag: true, generateType: 'onAppStart', childuuid: 'all' };
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-      // }
       getAllChildren(dispatch, child_age, 0);
     }
     dispatch(setchatBotData([]));
@@ -609,39 +471,28 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    //Alert.alert(netState,"..netState")
-
     async function fetchNetInfoSet() {
       if (netState == "Highbandwidth" && toggleSwitchVal == true) {
 
         let confirmation = await retryAlert1(0, 0);
-        // console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
-        //console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
         if (confirmation == "yes" && toggleSwitchVal == true) {
           dispatch(onNetworkStateChange(false));
         }
       }
       else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
         let confirmation = await retryAlert1(1, 1);
-        //console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
         if (confirmation == "yes" && toggleSwitchVal == false) {
-          //console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
           dispatch(onNetworkStateChange(true));
         }
       }
     }
-    // console.log(netState,"..netState")
     fetchNetInfoSet();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
-  // console.log(routeNameRef.current, "callRealmListener12--", I18nManager.isRTL);
 
   return (
-    // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
-      {/* <Text>{JSON.stringify(netInfoval.netValue)}Hiiiii</Text>
-      <Text>Bandwidth-{netState}</Text> */}
       <NavigationContainer
         ref={navigationRef}
         onReady={() => {
@@ -657,22 +508,9 @@ export default () => {
               screen_class: currentRouteName,
             });
             analytics().logEvent(currentRouteName + "_opened");
-            // console.log(currentRouteName,"currentRouteName")
-            // if(currentRouteName =="ChartFullScreen"){
-            //   Orientation.lockToLandscape();
-            // }else{
-            //   Orientation.lockToPortrait();
-            // }
-            //  await analytics().logEvent('product_view', {
-            //   id: '1234',
-            // });
           }
           routeNameRef.current = currentRouteName;
         }}
-      // initialState={initialState}
-      // onStateChange={(state) =>
-      //   AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-      // }
       >
         <RootStack.Navigator
           initialRouteName={
@@ -680,12 +518,8 @@ export default () => {
               userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
               : AppLayoutDirectionScreen
           }
-          // initialRouteName={
-          //   'Localization'
-          // }
           screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false }}
         >
-          {/* initialRouteName={'Localization'}> */}
           <RootStack.Screen
             name="Localization"
             component={LocalizationNavigation}
@@ -735,19 +569,6 @@ export default () => {
             name="HomeDrawerNavigator"
             options={{ headerShown: false }}
             component={HomeDrawerNavigator}
-          // initialParams={{navigation}}
-          // options={({navigation}) => ({
-          //   title: 'ParentBuddy',
-          //   headerLeft: () => (
-          //     <TouchableOpacity
-          //       onPress={() =>
-          //         navigation.dispatch(DrawerActions.toggleDrawer())
-          //       }>
-          //       <Text>Toggle</Text>
-          //     </TouchableOpacity>
-          //   ),
-          //   headerLeftContainerStyle: {paddingLeft: 10},
-          // })}
           />
           <RootStack.Screen
             name="EditChildProfile"
@@ -818,6 +639,5 @@ export default () => {
       </NavigationContainer>
       <OverlayLoadingComponent loading={profileLoading} />
     </SafeAreaProvider>
-    // </ThemeProvider>
   );
 };

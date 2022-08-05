@@ -43,7 +43,7 @@ import {
   ShiftFromTopBottom10,
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert, BackHandler, Modal,

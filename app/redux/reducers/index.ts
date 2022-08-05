@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {combineReducers} from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/lib/persistReducer';
 import {sagaSlice} from '../sagaMiddleware/sagaSlice';
@@ -12,7 +11,6 @@ import {notificationSlice} from './notificationSlice';
 import { createMigrate } from 'redux-persist';
 import { bandWidthSlice } from './bandwidthSlice';
 
-// import {createRealmPersistStorage} from '@bankify/redux-persist-realm';
 const migrations = {  
   0: (state: any) => {    
       return {      
@@ -91,8 +89,6 @@ const countryConfig = {
 const failedApiConfig = {
   key: 'onLoadFailedApis',
   storage: createRealmPersistStorage(),
-  // blacklist: ['countryTheme'],
-  // stateReconciler: autoMergeLevel2,
 };
 const utilConfig = {
   key: 'utilsData',
@@ -128,9 +124,7 @@ const bandWidthConfig = {
   storage: createRealmPersistStorage(),
 };
 const rootReducer = combineReducers({
-  // theme: themeSlice.reducer,
   selectedCountry: persistReducer(countryConfig, localizationSlice.reducer),
-  // sagaReducer:sagaSlice.reducer,
   failedOnloadApiObjReducer:persistReducer(failedApiConfig,sagaSlice.reducer),
   childData:persistReducer(childConfig,childSlice.reducer),
   utilsData:persistReducer(utilConfig,utilsSlice.reducer),

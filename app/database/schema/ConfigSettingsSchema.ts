@@ -6,14 +6,8 @@ export type ConfigSettingsEntity = {
     createdAt: Date;
     updatedAt: Date;
   };
-  
-  /**
-  * Realm schema for VariableEntity.
-  */
   export const ConfigSettingsSchema: ObjectSchema = {
-    name: 'ConfigSettings',
-  
-    // API: https://bit.ly/3f7k9jq
+    name: 'ConfigSettings',  
     properties: {
         key: { type:'string' },
         value: { type:'string' },
