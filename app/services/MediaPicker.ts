@@ -1,6 +1,6 @@
 import ImagePicker from "react-native-image-crop-picker";
 import { RESULTS, check, request, openSettings, openLimitedPhotoLibraryPicker } from "react-native-permissions";
-import { Alert, Linking, Platform } from "react-native";
+import { Alert, Platform } from "react-native";
 import { PICKER_TYPE, IMAGE_PICKER_OPTIONS, CAMERA_PERMISSION, GALLERY_PERMISSION } from "../types/types";
 import i18n from 'i18next';
 class MediaPicker {
@@ -81,9 +81,7 @@ class MediaPicker {
       pickerTypeGallery,
       galleryOptions,
     ] = args;
-    //this.pickImageFromCameraWithCropping(callback, cameraOptions);
-
-    switch (pickerTypeCamera) {
+     switch (pickerTypeCamera) {
       case PICKER_TYPE.CAMERA:
       case PICKER_TYPE.CAMERA_BINARY_DATA:
         this.pickImageFromCamera(callback, cameraOptions);
@@ -147,11 +145,7 @@ class MediaPicker {
    */
   pickImageFromCamera(callback:any, options:any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-
-    // clean all images
-    //this.cleanupImages();
     setTimeout(()=>{
-      //console.log("342334timeout")
     ImagePicker.openCamera({
       compressImageMaxWidth: options.compressImageMaxWidth,
       compressImageMaxHeight: options.compressImageMaxHeight,
@@ -163,7 +157,6 @@ class MediaPicker {
       .then((image) => {
         let path = this.getImageUriFromData(options.includeBase64, image);
         const imageData = { ...image, path };
-        //console.log("image Data", imageData);
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
@@ -179,12 +172,8 @@ class MediaPicker {
    */
   pickImageFromCameraWithCropping(callback:any, options:any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-
-    // clean all images
-    //this.cleanupImages();
     setTimeout(()=>{
-      //console.log("342334timeout",options)
-    ImagePicker.openCamera({
+     ImagePicker.openCamera({
       width: options.width,
       height: options.height,
       cropping: true,
@@ -197,7 +186,6 @@ class MediaPicker {
       .then((image) => {
         let path = this.getImageUriFromData(options.includeBase64, image);
         const imageData = { ...image, path };
-        //console.log("image Data", imageData);
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
@@ -213,11 +201,7 @@ class MediaPicker {
    */
   pickImageFromGallery(callback:any, options:any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-    //console.log(options,"..options..")
-    // clean all images
-    //this.cleanupImages();
     setTimeout(()=>{
-     // console.log("342334timeout")
     ImagePicker.openPicker({
       compressImageMaxWidth: options.compressImageMaxWidth,
       compressImageMaxHeight: options.compressImageMaxHeight,
@@ -229,7 +213,6 @@ class MediaPicker {
       .then((image) => {
         let path = this.getImageUriFromData(options.includeBase64, image);
         const imageData = { ...image, path };
-        //console.log("image Data", imageData);
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
@@ -245,14 +228,8 @@ class MediaPicker {
    */
   pickImageFromGalleryWithCropping(callback:any, options:any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-
-    // clean all images
-    //this.cleanupImages();
     setTimeout(()=>{
-     // console.log("11342334timeout")
     ImagePicker.openPicker({
-      // width: options.width,
-      // height: options.height,
       width: options.width,
       height: options.height,
       cropping: true,
@@ -265,7 +242,6 @@ class MediaPicker {
       .then((image) => {
         let path = this.getImageUriFromData(options.includeBase64, image);
         const imageData = { ...image, path };
-        //console.log("image Data", imageData);
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
@@ -281,10 +257,6 @@ class MediaPicker {
    */
   pickMultiple(callback:any, options:any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-
-    // clean all images
-    //this.cleanupImages();
-
     ImagePicker.openPicker({
       multiple: true,
       waitAnimationEnd: options.waitAnimationEnd,
@@ -299,12 +271,10 @@ class MediaPicker {
     })
       .then((images) => {
         let imageData = images.map((img) => {
-          //console.log("img.path", img.path);
           let uri =
             img.path || this.getImageUriFromData(options.includeBase64, img);
           return { ...img, uri };
         });
-        //console.log("image Data", JSON.stringify(imageData));
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
@@ -316,7 +286,6 @@ class MediaPicker {
   cleanupImages() {
     ImagePicker.clean()
       .then(() => {
-        //console.log("removed tmp images from tmp directory");
       })
       .catch((e) => this.handleError(e));
   }
@@ -328,11 +297,8 @@ class MediaPicker {
    * @param {*} image path to be clean
    */
   cleanupSingleImage(image:any) {
-   // console.log("will cleanup image", image);
-
-    ImagePicker.cleanSingle(image ? image.uri : null)
+     ImagePicker.cleanSingle(image ? image.uri : null)
       .then(() => {
-        //console.log(`removed tmp image ${image.uri} from tmp directory`);
       })
       .catch((e) => this.handleError(e));
   }
@@ -345,7 +311,6 @@ class MediaPicker {
    * @param {*} image
    */
   getImageUriFromData(includeBase64:any, image:any) {
-    //console.log("includeBase64", includeBase64);
     return includeBase64
       ? `data:${image.mime};base64,` + image.data
       : image.path;
@@ -354,7 +319,6 @@ class MediaPicker {
   handleError(error:any) {
     if (error.code && error.code === "E_PICKER_CANCELLED") return;
     let errorMsg = error.message ? error.message : error;
-    console.log(errorMsg,"..errorMsg")
     Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
   }
 
@@ -376,11 +340,9 @@ class MediaPicker {
         return cameraPermission;
       })
       .then((cameraPermission) => {
-        console.log(cameraPermission,"..cameraPermissioncameraPermission..")
         if (
           cameraPermission === RESULTS.GRANTED
         ) {
-          console.log("fgfggf")
           triggerFunc();
         }
         else if (
@@ -391,102 +353,37 @@ class MediaPicker {
       });
   }
   handlePermissionsGallery(triggerFunc:any) {
-    let cameraOncedOpened:any=false;
     request(GALLERY_PERMISSION).then(async (photoPermission) => {
-        console.log(photoPermission,"..photoPermissionphotoPermission..")
-    //  console.log(photoPermission,"..photoPermission")
-    //  console.log(triggerFunc,"..triggerFunc")
       if (
         photoPermission === RESULTS.GRANTED
       ) {
-      //  console.log(photoPermission,"..11photoPermission")
-        triggerFunc();
+         triggerFunc();
       }
       else if (
         photoPermission === RESULTS.LIMITED
       ){
-        let cameraOncedOpened:any=false;
         let options:any;
-        let callback:any;
          options = { ...IMAGE_PICKER_OPTIONS, ...options };
          if (Platform.OS === 'ios') {
-        setTimeout(()=>{
-          //console.log("222timeout limited");
-        openLimitedPhotoLibraryPicker().then(()=>{
-         // console.log("1222timeout limited");
+         setTimeout(()=>{
+         openLimitedPhotoLibraryPicker().then(()=>{
           triggerFunc();
         }).catch(() => {
-          //console.warn('Cannot open photo library picker');
-        });
+         });
       },350);
     }
-      // if (Platform.OS === 'ios') {
-      //   try {
-      //     setTimeout(openLimitedPhotoLibraryPicker().then(()=>{
-      //       triggerFunc();
-      //     }).catch(()=>{
-
-      //     }), 350);
-      //   } catch (e) {
-      //     console.log('openLimitedPhotoLibraryPicker', e);
-      //   }
-      // }
-      // setTimeout(()=>{
-      //   console.log("342334timeout");
-        
-      //   // ImagePicker.openPicker({
-      //   //   compressImageMaxWidth: options.compressImageMaxWidth,
-      //   //   compressImageMaxHeight: options.compressImageMaxHeight,
-      //   //   compressImageQuality: options.compressImageQuality,
-      //   //   mediaType: options.mediaType,
-      //   //   includeExif: options.includeExif,
-      //   //   includeBase64: options.includeBase64,
-      //   // })
-      //   //   .then((image) => {
-      //   //     let path = this.getImageUriFromData(options.includeBase64, image);
-      //   //     const imageData = { ...image, path };
-      //   //     //console.log("image Data", imageData);
-      //   //     triggerFunc();
-      //   //   })
-      //   //   .catch((e) => this.handleError(e));
-      //   },350);
-        
       }
       else if (
         photoPermission === RESULTS.DENIED ||  photoPermission === RESULTS.BLOCKED || photoPermission=== RESULTS.UNAVAILABLE
       ){
         Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
-       //openSettings().catch(() => console.warn('cannot open settings'));
       }
     });
   }
-  // checkPermission(triggerFunc:any, openSettings = undefined) {
-  //   // let permissionAsk = Platform.OS === 'ios' ? 'denied' : 'restricted';
-
-  //   Promise.all([
-  //     check(CAMERA_PERMISSION),
-  //     check(GALLERY_PERMISSION),
-  //     // …
-  //   ]).then(([cameraStatus, photoStatus]) => {
-  //     // Alert.alert(cameraStatus,"..cameraStatus..")
-  //     // Alert.alert(photoStatus,"..photoStatus..")
-  //     if (cameraStatus === RESULTS.DENIED || cameraStatus === RESULTS.BLOCKED || photoStatus === RESULTS.BLOCKED || photoStatus === RESULTS.DENIED) {
-  //       this.openSettingModal();
-  //     } else {
-  //       this.handlePermissions(triggerFunc);
-  //     }
-  //   });
-  // }
   checkPermissionCamera(triggerFunc:any, openSettings = undefined) {
-    // let permissionAsk = Platform.OS === 'ios' ? 'denied' : 'restricted';
-
     Promise.all([
       check(CAMERA_PERMISSION)
-      // …
     ]).then(([cameraStatus]) => {
-      console.log(cameraStatus,"..cameraStatus..")
-      // Alert.alert(cameraStatus,"..cameraStatus..")
-      // Alert.alert(photoStatus,"..photoStatus..")
       if (cameraStatus === RESULTS.BLOCKED) {
         this.openSettingModal();
       } else {
@@ -495,15 +392,10 @@ class MediaPicker {
     });
   }
   checkPermissionGallery(triggerFunc:any, openSettings = undefined) {
-    // let permissionAsk = Platform.OS === 'ios' ? 'denied' : 'restricted';
-
     Promise.all([
       check(GALLERY_PERMISSION),
-      // …
     ]).then(([photoStatus]) => {
-     console.log(photoStatus,"..photoStatus..")
-      // Alert.alert(photoStatus,"..photoStatus..")
-      if (photoStatus === RESULTS.BLOCKED) {
+       if (photoStatus === RESULTS.BLOCKED) {
         this.openSettingModal();
       } else {
         this.handlePermissionsGallery(triggerFunc);

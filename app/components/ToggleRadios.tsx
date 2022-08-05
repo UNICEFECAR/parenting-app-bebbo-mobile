@@ -1,4 +1,3 @@
-import { useFocusEffect } from '@react-navigation/core';
 import { Heading3, Heading3Regular } from '@styles/typography';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
@@ -13,11 +12,6 @@ const ToggleRadios = (props: any) => {
   useEffect(()=>{
       setCheckedItem(defaultValue);
   },[defaultValue])
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     setCheckedItem(defaultValue);
-  //   }, [defaultValue])
-  // );
   return (
     <>
     <RadioBoxContainer>

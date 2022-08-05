@@ -21,21 +21,14 @@ const FirstTimeModal = (props : any) => {
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
-                //console.log("onRequestClose clicked");
-            // Alert.alert('Modal has been closed.');
-            //   setModalVisible(!modalVisible);
             }}
             onDismiss={() => {
-               // console.log("onDismiss clicked");
-            //   setModalVisible(!modalVisible);
             }}>
             <PopupOverlay>
             <ModalPopupContainer>
                 <PopupCloseContainer>
                 <PopupClose
                     onPress={() => {
-                    // setModalVisible(!modalVisible);
-                   // console.log("close clicked");
                     setIsModalOpened(modalScreenKey);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />

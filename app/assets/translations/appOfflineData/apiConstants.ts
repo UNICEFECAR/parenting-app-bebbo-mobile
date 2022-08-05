@@ -114,8 +114,6 @@ export const appConfig = {
     archive:'archive',
 }
   export const allApisObject = (isDatetimeReq:any, dateTimeObj:any) => {
-    console.log(dateTimeObj['videoArticlesDatetime']);
-    console.log(isDatetimeReq,"---isDatetimeReq---",dateTimeObj);
     const allApiObject = [
       {
         apiEndpoint: appConfig.sponsors,

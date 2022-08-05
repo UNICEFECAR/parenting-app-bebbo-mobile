@@ -6,8 +6,6 @@ import { Heading2, Heading3Center, ShiftFromTop10 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import VectorImage from 'react-native-vector-image';
-
-
 const Tools = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();

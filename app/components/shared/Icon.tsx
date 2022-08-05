@@ -1,5 +1,4 @@
 import fontelloConfig from '@assets/iconConfig/config.json';
-import { I18nManager } from 'react-native';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import styled from 'styled-components/native';
 
@@ -8,16 +7,6 @@ const FontelloIcon = createIconSetFromFontello(fontelloConfig);
 export const IconML = styled(FontelloIcon)`
 transform: ${(props) => props.theme.isRTL ? 'scaleX(-1)' : 'scaleX(1)'}
 `;
-// styled(FontelloIcon).attrs(props => ({
-
-// style: {
-
-// transform: [{ rotate: I18nManager.isRTL ? '180deg' : '0deg' }],
-
-// },
-// transform: [{ rotate (${isRTL == true ? '180deg' : '0deg'} )}]
-
-// }));
 export const OuterIconRow = styled.View`
   flex-direction: row;
 `;

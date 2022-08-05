@@ -10,7 +10,6 @@ export const ButtonviewNext = styled.View`
 `;
 
 export const ButtonviewPrevious = styled(ButtonviewNext)`
-  /*background-color: ${(props) => props.theme.colors.SECONDARY_TINTCOLOR};*/
   opacity:0.5;
   justify-content: flex-start;
 `;
