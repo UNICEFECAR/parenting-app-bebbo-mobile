@@ -4,37 +4,26 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
-  uuid:string,
-  // measurementDate:number
+  uuid:string
 }
 const PlannedVaccines = (props: any) => {
   const {currentPeriodVaccines, onPlannedVaccineToggle, fromScreen,backgroundActiveColor} = props;
-  //console.log(currentPeriodVaccines,"currentPeriodVaccines")
   const {t} = useTranslation();
   const [checkedVaccines,setCheckedVaccines] = useState<VaccineItemProps[]>([]);
-  // let allCheckedVaccines: any[] = [];
-  const onToggleVaccine = (uuid, isVaccineItemChecked) => {
-    //console.log(uuid,isVaccineItemChecked);
+   const onToggleVaccine = (uuid:any, isVaccineItemChecked:any) => {
     if (isVaccineItemChecked) {
       const allCheckedVaccines = [...checkedVaccines,
          {  uuid: uuid,}
-          // measurementDate: DateTime.now().toMillis(),
         ];
       setCheckedVaccines(allCheckedVaccines);
-      // allCheckedVaccines.push({
-      //   uuid: id,
-      //   measurementDate: DateTime.now().toMillis(),
-      // });
       onPlannedVaccineToggle(allCheckedVaccines);
-      // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
     } else {
      const allCheckedVaccines = [...checkedVaccines].filter(
         (item) => item.uuid !== uuid,
       );
       setCheckedVaccines(allCheckedVaccines);
       onPlannedVaccineToggle(allCheckedVaccines);
-      // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
-    }
+     }
     
    
   };
@@ -50,7 +39,7 @@ const PlannedVaccines = (props: any) => {
     (vItem: any) => {
       return vItem.isMeasured == false
     },
-  )?.map((item, index) => {
+  )?.map((item: any, index: any) => {
             return (
               <VaccineItem
               fromScreen={fromScreen}

@@ -11,7 +11,6 @@ export const ArticleListContent = styled.View`
 `;
 export const ArticleListContainer = styled.View`
  margin:10px 15px;
-/* flex:1;*/
   background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   overflow:hidden;

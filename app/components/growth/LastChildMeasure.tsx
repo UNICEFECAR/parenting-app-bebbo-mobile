@@ -31,14 +31,12 @@ import { getCurrentChildAgeInYears } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
 
 const LastChildMeasure = (props: any) => {
-  // let {activeChild} = props;
   const {t} = useTranslation();
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  //console.log(activeChild,"LastChildMeasureactiveChild")
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
@@ -46,13 +44,7 @@ const LastChildMeasure = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
-  // const [childmeasures, setChildmeasures] = React.useState<any[]>(activeChild.measures);
- 
-  // const setNewChildMeasureUpdates = () => {
-    // let measures = activeChild.measures;
-      //filter measures by didChildGetVaccines
-
-    let measures:any=[];
+  let measures:any=[];
     if(activeChild?.measures.length>0){
      measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
     }
@@ -88,26 +80,13 @@ const LastChildMeasure = (props: any) => {
     childmeasures = childmeasures.sort(
       (a: any, b: any) => a.dateToMilis - b.dateToMilis,
     );
-    // console.log(childmeasures,"childmeasures");
-    // setChildmeasures(allMeasurements);
-    // activeChild.measures = allMeasurements;
-    // console.log(activeChild.measures, allMeasurements, 'NewMeasures');
-  // };
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     setNewChildMeasureUpdates();
-  //   }, [activeChild]),
-  // );
-
- let lastmeasurementDate =  DateTime.fromMillis(childmeasures[
+   let lastmeasurementDate =  DateTime.fromMillis(childmeasures[
     childmeasures.length - 1
   ]?.dateToMilis)
   let date = DateTime.fromISO(activeChild.birthDate);
-  // console.log(date,"DOB");
   let convertInDays = lastmeasurementDate.diff(date, "days").days;
   let days = 0;
   if (convertInDays !== undefined) {days = Math.round(convertInDays)};
-  //console.log(days,"daysfrom",activeChild?.taxonomyData?.days_from)
   return (
     <>
       <BannerContainer1>
@@ -116,7 +95,6 @@ const LastChildMeasure = (props: any) => {
           <View>
           <Heading3>{t('growthScreensubHeading')}</Heading3>
           <Heading5>
-            {/* {' '} */}
             {t('growthScreenlastMeasureText', {
               measureDate:childmeasures[
                     childmeasures.length - 1
@@ -186,29 +164,14 @@ const LastChildMeasure = (props: any) => {
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
                     editMeasurementDate: lastmeasure.dateToMilis,
-                  //   editGrowthItem:( {"uuid": lastmeasure.uuid,
-                  //   "weight": lastmeasure.weight,
-                  //   "height": lastmeasure.height,
-                  //   "measurementDate": lastmeasure.dateToMilis,
-                  //   "titleDateInMonth": lastmeasure.titleDateInMonth,
-                  //   "measurementPlace": lastmeasure.measurementPlace,
-                  //   "isChildMeasured":lastmeasure.isChildMeasured,
-                  //   "doctorComment": lastmeasure.doctorComment,
-                  //   "didChildGetVaccines":lastmeasure.didChildGetVaccines,
-                  //   "vaccineIds":lastmeasure.vaccineIds})
-                  })
+                   })
                 }}
                 >
-                {/* <FlexDirRowEnd>
-                  <ButtonTextMdLine> */}
                    <ButtonTextMdLine numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
                       name="ic_edit"
                       size={16}
                       color="#000"
                     /></ButtonTextMdLine>
-                   {/* <ButtonTextMdLine numberOfLines={2}>{t('growthScreeneditText')}</ButtonTextMdLine> */}
-                  {/* </ButtonTextMdLine>
-                </FlexDirRowEnd> */}
               </ButtonEditPress>
               </FlexDirRowEnd>
             </Flex1>
@@ -252,7 +215,6 @@ const LastChildMeasure = (props: any) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
           setModalVisible(false);
         }}
         onDismiss={() => {

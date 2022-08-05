@@ -51,26 +51,4 @@ export const HeaderActionBox = styled.Pressable`
   justify-content: center;
   
 `;
-
-// export const ProfileListViewSelected = styled(ProfileListView)`
-// background-color: ${props => props.theme.colors.SECONDARY_COLOR};
-
-// `
-// export const ProfileIconView = styled.View`
-// flex:1
-// `
-
-// export const ProfileTextView = styled.View`
-// flex:4;
-// flex-direction:column;
-// justify-content:center;
-// padding:0 5px;
-// `
-// export const ProfileActionView = styled.View`
-// flex:2;
-// flex-direction:row;
-// justify-content:flex-end;
-// align-items:center;
-// `
-
 export default HeaderContainerStyle;

@@ -21,9 +21,6 @@ export function useDeepLinkURL() {
       };
   
       getUrlAsync();
-    //   return () => {
-    //     setLinkedURL(null);
-    //   };
     }, []);
   
     // 2. If the app is already open, the app is foregrounded and a Linking event is fired

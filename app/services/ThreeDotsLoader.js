@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, StyleSheet, Animated, Easing } from 'react-native'
+import { View, StyleSheet, Animated } from 'react-native'
 
 const SIZE = 9
 const MARGIN = 3
-// const BG = 'rgb(172, 172, 172)'
 const BG = '#8CAEE4'
 const ACTIVE_BG = '#2B2F84'
 const dots = [1, 2, 3]

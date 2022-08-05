@@ -33,16 +33,14 @@ import {
 import Icon, { IconViewAlert } from '../shared/Icon';
 
 const PreviousHealthCheckup = (props: any) => {
-  const {item, headerColor, backgroundColor} = props;
-  // console.log(item, 'PreviousHealthCheckup');
+  const {item, backgroundColor} = props;
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOPen, setIsOPen] = useState<Boolean>(false);
   const themeContext = useContext(ThemeContext);
-  const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const gotoArticle = (pinned_articleID) => {
+  const gotoArticle = (pinned_articleID:any) => {
     if(pinned_articleID!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: 'HealthCheckupsTab',
@@ -56,7 +54,7 @@ const PreviousHealthCheckup = (props: any) => {
       (state: any) =>
         JSON.parse(state.utilsData.vaccineData),
     );
-  const getVaccineName = (vaccineID) => {
+  const getVaccineName = (vaccineID:any) => {
     return allVaccineData?.find((v) => v.uuid == vaccineID)?.title;
   }
   return (
@@ -82,21 +80,7 @@ const PreviousHealthCheckup = (props: any) => {
               
             /> 
             </IconViewAlert>
-              // <Icon name="ic_plus" size={20} color="#000" />
               )}
-            {/* <Icon
-              name="ic_incom"
-              size={20}
-              color="#FFF"
-              style={{backgroundColor: 'red', borderRadius: 50}}
-            /> */}
-          {/* //   () ? : item.givenVaccines.length > 0 ? ( 
-          //    <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
-          //       <Icon name="ic_tick" size={12} color="#FFF" />
-          //     </RadioActive>
-          //  ) : ( 
-          //    <Icon name="ic_plus" size={20} color="#000" />
-          //    )}  */}
           </ToolsIconView>
           <ToolsHeadPress
             onPress={() => {
@@ -121,8 +105,6 @@ const PreviousHealthCheckup = (props: any) => {
         {isOPen ? (
           <>
             <MainContainer>
-            {/* {item?.growthMeasures?.uuid  ? ( */}
-              {/* <Text>{item?.vaccination_opens},{item?.vaccination_ends}</Text> */}
                 <FDirRowStart>
                   <ToolsIconView>
                     <Icon name="ic_vaccination" size={20} color="#000" />
@@ -162,7 +144,6 @@ const PreviousHealthCheckup = (props: any) => {
                     </HealthDesc>: null}
                   </ToolsHeadingView>
                 </FDirRowStart>
-              {/* // ) : null} */}
               <FDirRowStart>
                 <ToolsIconView>
                   <Icon name="ic_growth" size={20} color="#000" />
@@ -204,9 +185,6 @@ const PreviousHealthCheckup = (props: any) => {
                 </ShiftFromTop15>
               ) : null}
             </MainContainer>
-
-            
-
             {item?.growthMeasures?.uuid ? (
             <ShiftFromTopBottom10>
               <Pressable
@@ -235,18 +213,9 @@ const PreviousHealthCheckup = (props: any) => {
              )} 
           </>
         ) : null}
-
       </ToolsListOuter>
       </FlexCol>
     </>
   );
 };
 export default PreviousHealthCheckup;
-
-// const styles = StyleSheet.create({
-//   item: {
-//     padding: 10,
-//     color: '#000',
-//     backgroundColor: '#FFF',
-//   },
-// });

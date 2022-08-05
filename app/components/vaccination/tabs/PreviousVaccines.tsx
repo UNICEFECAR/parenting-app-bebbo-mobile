@@ -1,7 +1,6 @@
 import {
   ButtonContainerAuto,
   ButtonText,
-  ButtonTextMdLine,
   ButtonTextSmLineL,
   ButtonVaccination
 } from '@components/shared/ButtonGlobal';
@@ -18,17 +17,10 @@ import {
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
-import {
-  Heading2,
-  Heading4Regular,
-  Heading5,
-  ShiftFromTopBottom10
-} from '@styles/typography';
-import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import { Heading2, Heading4Regular, Heading5 } from '@styles/typography';
+import React,{ useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
-import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
 import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate } from '../../../services/Utils';
@@ -36,13 +28,9 @@ import Icon, { IconViewAlert } from '../../shared/Icon';
 
 const PreviousVaccines = (props: any) => {
   const { item, headerColor, backgroundColor } = props;
-  // console.log(item);
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const [isOpen, setIsOpen] = useState<Boolean>(false);
-  const themeContext = useContext(ThemeContext);
-  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
-  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -51,7 +39,7 @@ const PreviousVaccines = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
-  const gotoArticle = (pinned_articleID) => {
+  const gotoArticle = (pinned_articleID: any) => {
     if (pinned_articleID != 0) {
       navigation.navigate('DetailsScreen', {
         fromScreen: 'VaccinationTab',
@@ -61,13 +49,9 @@ const PreviousVaccines = (props: any) => {
       });
     }
   };
-  const doneVc = item.vaccines.filter((item) => {
+  const doneVc = item.vaccines.filter((item:any) => {
     return item.isMeasured;
   })
-  // console.log(doneVc.length,"doneVc");
-  // .reduce((accumulator, current) => {
-  //   return accumulator + current;
-  // });
   return (
     <>
       <ToolsListOuter>
@@ -76,7 +60,7 @@ const PreviousVaccines = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item.vaccines.every((el) => {
+            {item.vaccines.every((el:any) => {
               return el.isMeasured == true;
             }) ? (
               <RadioActive style={{ backgroundColor: 'green', borderRadius: 50 }}>
@@ -116,7 +100,7 @@ const PreviousVaccines = (props: any) => {
         </ToolsListContainer>
         {isOpen ? (
           <>
-            {item.vaccines.map((v, i) => {
+            {item.vaccines.map((v:any, i:any) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>
@@ -157,9 +141,7 @@ const PreviousVaccines = (props: any) => {
                             vcPeriod: item,
                             editVaccineDate: v.measurementDate,
                           })}>
-                          {/* <ButtonTextSmLineL numberOfLines={2}>
-                            {t('growthScreeneditText')}
-                          </ButtonTextSmLineL> */}
+                        
                           <ButtonTextSmLineL numberOfLines={2} style={{ textDecorationLine: "none" }}><Icon
                             name="ic_edit"
                             size={16}
@@ -172,25 +154,7 @@ const PreviousVaccines = (props: any) => {
                 </MainContainer>
               );
             })}
-            {/* add condition for only few vaccines are given in below */}
-            {/* {(item.vaccines.some((el) => {
-              return el.isMeasured == true;
-            })) ? (
-              <ShiftFromTopBottom10>
-                <Pressable
-                  disabled={isFutureDate(activeChild?.birthDate)}
-                  onPress={() =>
-                    console.log(item)
-                    // navigation.navigate('AddChildVaccination', {
-                    //   headerTitle: t('editVcTitle'),
-                    //   vcPeriod: item,
-                    // })
-                  }>
-                  <ButtonTextMdLine numberOfLines={2}>{t('vcEditDataBtn')}</ButtonTextMdLine>
-                </Pressable>
-              </ShiftFromTopBottom10>
-            ) : null} */}
-            {/* remaining add condition for all vaccines were not given in below */}
+           
             {(item.vaccines.some((el) => {
               return el.isMeasured == false;
             })) ? (
@@ -214,11 +178,3 @@ const PreviousVaccines = (props: any) => {
   );
 };
 export default PreviousVaccines;
-
-// const styles = StyleSheet.create({
-//   item: {
-//     padding: 10,
-//     color: '#000',
-//     backgroundColor: '#FFF',
-//   },
-// });

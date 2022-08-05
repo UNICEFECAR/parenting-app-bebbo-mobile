@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { Dimensions, Platform, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import Svg from 'react-native-svg';
 import { VictoryAreaProps } from 'victory-area';
 import { TickLabelProps, VictoryAxisCommonProps } from 'victory-core';
@@ -48,64 +48,21 @@ export enum chartTypes {
   weightForHeight,
   heightForAge,
 }
-// export enum chartTypes {
-//     heightLength,
-//     lengthAge
-// }
-
 const GrowthChart = (props: any) => {
   let {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
-  // console.log(chartType, 'chartType0');
-  const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
-  // const labelX = props.chartType == chartTypes.heightForAge ? t('month') : t('growthScreencmText');
-  // const labelY = props.chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
+   const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
   const labelX = props.chartType == chartTypes.weightForHeight ? t('growthScreencmText'):t('month') ;
   const labelY = props.chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
-  // console.log(labelX, labelY);
-//   const [obj, setObj] = useState([]);
-// console.log(windowWidth,windowHeight,"<><><><><><><><>")
-
 const [deviceOrientation, setDeviceOrientation] = useState(
   windowWidth < windowHeight
     ? 'portrait'
     : 'landscape'
 );
 
-// const [deviceHeight, setDeviceHeight] = useState(
-//   Dimensions.get('window').width < Dimensions.get('window').height
-//     ? Dimensions.get('window').height
-//     : Dimensions.get('window').width
-// );
-// let windowWidth = Dimensions.get('window').width;
-// let windowHeight = Dimensions.get('window').height;
-// console.log(windowWidth,windowHeight,"window");
-// const [showFullscreen, setShowFullscreen] = React.useState(false);
-// let orientation: 'portrait' | 'landscape' =
-// windowHeight > windowWidth ?  'portrait':'landscape' ;
-// useFocusEffect(
-//   React.useCallback(() => {
-// useEffect(() => {
-//   const setDeviceHeightAsOrientation = () => {
-//     if (Dimensions.get('window').width < Dimensions.get('window').height) {
-//       setDeviceHeight(Dimensions.get('window').height);
-//     } else {
-//       setDeviceHeight(Dimensions.get('window').width);
-//     }
-//   };
-//   Dimensions.addEventListener('change', setDeviceHeightAsOrientation);
-//   return () => {
-//     //cleanup work
-//     Dimensions.removeEventListener('change', setDeviceHeightAsOrientation);
-//   };
-// // });
-// }, []);
-// );
-// useFocusEffect(
-//   React.useCallback(() => {
+
   useEffect(() => {
-//console.log(windowWidth,windowHeight,"<><><><><><><><>")
-    setDeviceOrientation( windowWidth < windowHeight
+   setDeviceOrientation( windowWidth < windowHeight
       ? 'portrait'
       : 'landscape')
   },[windowWidth,windowHeight]);
@@ -122,31 +79,23 @@ useEffect(() => {
     //cleanup work
     Dimensions.removeEventListener('change', deviceOrientation);
   };
-// });
 }, [deviceOrientation]);
-// );
 
-// console.log(deviceOrientation,"orientation");
 
     let growthMeasures = activeChild.measures.filter((item)=>item.isChildMeasured== true&& item.weight>0 && item.height>0);
-    // const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured == true);
   let convertedMeasures:any = convertMeasuresData(
     growthMeasures,
     childBirthDate
   );
-  //console.log(convertedMeasures,"convertedMeasures" , chartTypes.weightForHeight);
   /* Create line chart array fochartDatar type chart */
   let chartData: any[] = [];
   convertedMeasures.map((item) => {
-    //console.log(item.measurementDate,"..item.measurementDate..");
     chartData.push(
       chartType == chartTypes.weightForHeight
         ? {x: item.height, y: item.weight}
         : {x: item.measurementDate / 30, y: item.height},
     );
   });
-  //console.log(chartType,chartData, 'new convertedMeasures');
-// console.log(chartType, 'chartType1');
   let {topArea, bottomArea, middleArea} = bgObj;
   const ChartClick=Platform.OS=="android"?Svg:View;
 
@@ -170,7 +119,6 @@ useEffect(() => {
         <VictoryAxis
           style={victoryStyles.VictoryAxis}
           label={labelX}
-          // axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-52 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth-98: windowHeight-70}/>}
           axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-180 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth-75: windowHeight-70}/>}
         />
         {/* ********* AXIS VERTICAL ********* */}
@@ -290,7 +238,6 @@ useEffect(() => {
                       target: 'data',
                       mutation: (props: any) => {
                         const stroke = props.style && props.style.stroke;
-                        // return stroke === "orange" ? null : { style: { stroke: "orange", strokeWidth: 4, fill: 'white' } };
                         return props.index === selectedDataIndex
                           ? {
                               style: {
@@ -339,7 +286,6 @@ useEffect(() => {
         )}
       </View>
       </View>
-      {/* </Suspense> */}
     </>
    
   );
@@ -376,26 +322,20 @@ const styles = StyleSheet.create<GrowtChartStyles>({
 const victoryStyles: VictoryStyles = {
   VictoryAxis: {
     grid: {stroke: 'transparent'},
-    axis: {stroke: 'none'},
-    // axisLabel: { fontFamily: fontFamily, },
-    // tickLabels: { fontFamily: fontFamily }
+    axis: {stroke: 'none'}
   },
   VictoryAxisVertical: {
     grid: {stroke: 'transparent'},
     axis: {stroke: 'none'},
-    
     // @ts-ignore
-    axisLabel: {angle: 0},
-    // axisLabel: { angle: 0, fontFamily: fontFamily },
-    // tickLabels: { fontFamily: fontFamily }
+    axisLabel: {angle: 0}
   },
   VictoryLine: {
     data: {stroke: '#0C66FF', strokeWidth: 9, strokeLinecap: 'round'},
   },
   VictoryScatter: {
     data: {fill: 'white', stroke: '#ACACAC', strokeWidth: 3},
-    labels: {fill: 'red'},
-    // labels: { fill: "red", fontFamily: fontFamily },
+    labels: {fill: 'red'}
   },
   VictoryArea: {
     data: {fill: '#D8D8D8'},

@@ -5,14 +5,12 @@ import { ThemeContext } from 'styled-components/native';
 const OverlayLoadingComponent = (props: any) =>{
   const {loading} = props;
   const themeContext = useContext(ThemeContext);
- // console.log("loading---",loading);
-  return (
+   return (
     <Modal
       transparent={true}
       animationType={'none'}
       visible={loading}
       onRequestClose={() => {
-        // console.log('close modal');
       }}>
       <View style={styles.modalBackground}>
         <View style={styles.activityIndicatorWrapper}>

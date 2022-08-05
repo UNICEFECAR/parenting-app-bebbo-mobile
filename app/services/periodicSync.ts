@@ -1,10 +1,8 @@
 import { appConfig, firstPeriodicSyncDays, secondPeriodicSyncDays } from "@assets/translations/appOfflineData/apiConstants";
 import { DateTime } from "luxon";
-import { useAppDispatch, useAppSelector } from "../../App";
-import { setuserIsOnboarded, setSyncDate } from "../redux/reducers/utilsSlice";
+import {  useAppSelector } from "../../App";
 
 export const getAllPeriodicSyncData = () => {
-    const dispatch = useAppDispatch();
     const childList = useAppSelector((state: any) =>
       state.childData.childDataSet.allChild != ''
         ? JSON.parse(state.childData.childDataSet.allChild)
@@ -33,7 +31,6 @@ export const getAllPeriodicSyncData = () => {
     const incrementalSyncDT = useAppSelector((state: any) =>
       (state.utilsData.incrementalSyncDT),
     );
-    // console.log("buffer age bracket value is---",bufferAgeBracket);
     const apiJsonDataFirstSync = [
         {
           apiEndpoint: appConfig.taxonomies,
@@ -55,12 +52,6 @@ export const getAllPeriodicSyncData = () => {
           postdata: incrementalSyncDT['activitiesDatetime'] != '' ? {datetime: incrementalSyncDT['activitiesDatetime']} : {},
           saveinDB: true,
         },
-        // {
-        //   apiEndpoint: appConfig.milestones,
-        //   method: 'get',
-        //   postdata: {},
-        //   saveinDB: true,
-        // },
         {
           apiEndpoint: appConfig.vaccinePinnedContent,
           method: 'get',
@@ -141,12 +132,6 @@ export const getAllPeriodicSyncData = () => {
           postdata: {},
           saveinDB: true,
         },
-        // {
-        //   apiEndpoint: appConfig.surveys,
-        //   method: 'get',
-        //   postdata: {},
-        //   saveinDB: true,
-        // },
         {
           apiEndpoint: appConfig.milestones,
           method: 'get',
@@ -182,25 +167,17 @@ export const getAllPeriodicSyncData = () => {
     let currentDate = 0,downloadWeeklyData,downloadMonthlyData,downloadBufferData;
     let ageBrackets: any = [];
     if (userIsOnboarded == false) {
-        // dispatch(setuserIsOnboarded(true));
-        // currentDate = DateTime.now().toMillis();
-        // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
-        // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-        // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
-    }
+        }
     else{
-    //  console.log(bufferAgeBracket,"childList--",childList);
       childList.map((child: any) => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)),'days').toObject().days;
-        //console.log(childAgedays,"---child",child.taxonomyData);
         if(childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days)
         {
           const i = childAge.findIndex((_item:any) => _item.id === child.taxonomyData.id);
-          // if(i > -1 && i < childAge.length){
+          // i > -1 && i < childAge.length
             if(i > -1 && i < childAge.length-1){
             const nextchildAgeData = childAge[i+1];
-           // console.log("nextchildAgeData--",nextchildAgeData);
-            if(nextchildAgeData.age_bracket.length > 0){
+             if(nextchildAgeData.age_bracket.length > 0){
               nextchildAgeData.age_bracket.map((ages:any)=>{
                 ageBrackets.push(ages);
               })
@@ -208,20 +185,16 @@ export const getAllPeriodicSyncData = () => {
           }
         }
       })
-      //console.log("before--",ageBrackets);
       ageBrackets = [...new Set(ageBrackets)]; 
-      // console.log("unique--",ageBrackets);
       if(bufferAgeBracket){
         ageBrackets = ageBrackets.filter((val:any)=>!bufferAgeBracket.includes(val));
       }
-      //console.log("new ageBrackets--",ageBrackets);
       if(ageBrackets.length > 0){
         downloadBufferData = true;
       }else {
         downloadBufferData = false
       }
         const weeklydiffdays = (DateTime.now()).diff((DateTime.fromMillis(weeklyDownloadDate)),'days').toObject().days;
-        // console.log("weeklydiffdays--",weeklydiffdays);
         if(weeklydiffdays && weeklydiffdays > firstPeriodicSyncDays) {
             downloadWeeklyData = true;
             apiJsonDataFirstSync.map((value:any)=>{
@@ -235,7 +208,6 @@ export const getAllPeriodicSyncData = () => {
         }
 
         const monthlydiffdays = (DateTime.now()).diff((DateTime.fromMillis(monthlyDownloadDate)),'days').toObject().days;
-        // console.log("monthlydiffdays--",monthlydiffdays);
         if(monthlydiffdays && monthlydiffdays > secondPeriodicSyncDays) {
             downloadMonthlyData = true;
             apiJsonDataSecondSync.map((value:any)=>{
