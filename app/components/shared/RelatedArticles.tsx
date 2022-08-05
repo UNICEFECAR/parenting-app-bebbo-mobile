@@ -1,16 +1,15 @@
-import { destinationFolder, maxRelatedArticleSize } from '@assets/translations/appOfflineData/apiConstants';
+import { maxRelatedArticleSize } from '@assets/translations/appOfflineData/apiConstants';
 import { useFocusEffect } from '@react-navigation/native';
 import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Pressable, StyleSheet, View,Text, ActivityIndicator  } from 'react-native';
+import { FlatList, Pressable, StyleSheet, View, Text } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
-import downloadImages from '../../downloadImages/ImageStorage';
 import LoadableImage from '../../services/LoadableImage';
 import { randomArrayShuffle } from '../../services/Utils';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
@@ -19,15 +18,11 @@ const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  /* padding: 15px; */
   margin-top: 10px;
 `;
 
 const RelatedArticles = (props: RelatedArticlesProps) => {
-  // console.log(props);
   const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
-  // console.log(typeof related_articles);
-  // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
   const { t } = useTranslation();
   let relartlength = related_articles ? related_articles.length : 0;
   const articleDataold = useAppSelector(
@@ -46,15 +41,11 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
     state.childData.childDataSet.favoriteadvices
   );
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
- 
-  // let relatedArticleData: any[] = [];
   const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
     React.useCallback(() => {
-      // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
       setrelatedArticleData([]);
       async function fetchData() {
-        console.log("related_articles on start--",related_articles);
         if (relartlength > 0) {
           let relatedData: any = [];
           if (fromScreen == "ChildgrowthTab") {
@@ -63,105 +54,44 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
           } else {
             relatedData = articleData.filter((x: any) => JSON.parse(JSON.stringify(related_articles)).includes(x.id));
           }
-          // console.log("relatedData--",relatedData.length);
           relartlength = relatedData.length;
-          // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
-          if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
+           if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
             const catartlength = maxRelatedArticleSize - relartlength;
-            // console.log("catartlength--",catartlength);
-            // console.log("relatedArticleData--",relatedArticleData);
             const filteredArtData = articleData.filter((x: any) => {
               const i = relatedData.findIndex((_item: any) => _item.id === x.id);
               return x.category == category && x.id !== currentId && i == -1
             }).slice(0, catartlength);
-            // console.log(filteredArtData);
             setrelatedArticleData((relatedArticleData: any) => [...relatedData, ...filteredArtData]);
           } else {
             setrelatedArticleData(relatedData);
           }
         }
-        // if(category!=5){
         // go not calclualte for growth screen
         else if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
-          // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
-          let relatedData: any = [];
+         let relatedData: any = [];
           const catartlength = maxRelatedArticleSize - relartlength;
-          // console.log("relatedArticleData--",relatedArticleData);
           const filteredArtData = articleData.filter((x: any) => {
             const i = relatedData.findIndex((_item: any) => _item.id === x.id);
             return x.category == category && x.id !== currentId && i == -1
           }).slice(0, catartlength);
-          // console.log(filteredArtData);
           setrelatedArticleData((relatedArticleData: any) => [...filteredArtData]);
         }
-        // }
       }
       fetchData()
     }, [currentId,related_articles])
   );
-  // console.log("relatedArticleData--",JSON.stringify(relatedArticleData));
-  // const getSameCategoryArticle = () => {
-  //   if(relartlength < maxRelatedArticleSize) {
-  //     const catartlength = maxRelatedArticleSize - relartlength;
-
-  //     console.log("relatedArticleData--",relatedArticleData);
-  //     const filteredArtData = articleData.filter((x: any)=> {
-  //       const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
-  //       return x.category==category && x.id !==currentId && i == -1
-  //     }).slice(0,catartlength);
-  //     console.log(filteredArtData);
-  //     setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
-  //   }
-  // }
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     // console.log("details usefocuseffect")
-  //     // filterArray.length = 0;
-  //     const fetchData = async () => {
-  //       console.log("relatedArticleData lebgth--", relatedArticleData.length);
-  //       let imageArraynew: any = [];
-  //       if (relatedArticleData?.length > 0) {
-  //         relatedArticleData.map(async (item: any, index: number) => {
-  //           if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-  //             if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
-  //             }
-  //             else {
-  //               let imageArraynew: any = [];
-  //               imageArraynew.push({
-  //                 srcUrl: item['cover_image'].url,
-  //                 destFolder: destinationFolder,
-  //                 destFilename: item['cover_image'].url.split('/').pop()
-  //               })
-  //               const imagesDownloadResult = await downloadImages(imageArraynew);
-  //             }
-  //           }
-  //         });
-  //         // console.log(imageArraynew,"..imageArray..");
-
-  //         // console.log(imagesDownloadResult,"..imagesDownloadResult..");
-  //       }
-  //     }
-  //     fetchData();
-
-  //   }, [relatedArticleData])
-  // );
-  //console.log("relatedArticleData---",relatedArticleData);
   const goToArticleDetail = (item: any) => {
-    //console.log(item, fromScreen, headerColor, backgroundColor, listCategoryArray);
     navigation.push('DetailsScreen',
       {
-        // fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : (fromScreen == "MileStone" || fromScreen == "MileStoneActivity" ? "ChildDevelopment" : fromScreen)) :"Articles",
         fromScreen: fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) : "Articles",
         headerColor: headerColor,
         backgroundColor: backgroundColor,
         detailData: item,
         listCategoryArray: listCategoryArray ? listCategoryArray : [],
         currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
-        // setFilteredArticleData: setFilteredArticleData
       });
   };
   const RenderRelatedArticleItem = ({item, index}) => {
-   // console.log("RenderRelatedArticleItem article",item.id);
     return (
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
         style={{ flexDirection: 'row' }}
@@ -172,15 +102,12 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
             <View style={{ minHeight: 80, }}>
               <ArticleListContent>
                 <ShiftFromTopBottom5>
-                  {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
-                  <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
+                   <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
                 </ShiftFromTopBottom5>
-                {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
                 <Heading3 numberOfLines={2}>{item.title}</Heading3>
               </ArticleListContent>
             </View>
             <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
-
           </View>
         </RelatedArticleContainer>
       </Pressable>
@@ -199,14 +126,12 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
             <FlatList
               data={relatedArticleData}
               horizontal
-              // renderItem={({ item, index }) => renderDailyReadItem(item, index)}
               removeClippedSubviews={true} // Unmount components when outside of window 
               initialNumToRender={4} // Reduce initial render amount
               maxToRenderPerBatch={4} // Reduce number in each render batch
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
               renderItem={memoizedValue}
-              // renderItem={({item, index}) => <RenderRelatedArticleItem item={item} index={index} />  }
               keyExtractor={(item) => item.id}
             />
           </View>
@@ -220,37 +145,13 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
 export default RelatedArticles;
 
 const styles = StyleSheet.create({
-  // item: {
-
-  //  width: 300,
-
-  // },
-  // btn: {
-  //   width: 150,
-  //   padding: 5,
-  // },
-  // btntxt: {
-  //   color: '#000',
-  // },
-  // title: {
-  //   padding: 5,
-  // },
-  // header: {
-  //   fontSize: 10,
-  //   fontWeight: 'bold',
-  //   paddingHorizontal: 5,
-  //   paddingTop: 5,
-  //   color: '#000',
-  // },
   cardImage: {
     width: '100%',
     height: 120,
     flex: 1,
-    // position: 'relative',
     top: 0,
     left: 0,
     borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
-    // backgroundColor: 'red'
+    borderTopLeftRadius: 5
   },
 });

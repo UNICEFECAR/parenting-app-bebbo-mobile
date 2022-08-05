@@ -1,21 +1,9 @@
-import React,{ useEffect, useState } from "react";
-import { Dimensions, Image, Text, View } from "react-native";
+import React from "react";
+import { View } from "react-native";
 import FastImage from "react-native-fast-image";
 import LoadableImage from "./LoadableImage";
 
 const RenderImage = ({ uri,itemnew,toggleSwitchVal }:any) => {
-    console.log(itemnew,"..itemnew")
-    // const [ imageSize, setImageSize ] = useState<any>({})
-  
-    // useEffect(() => {
-    //   // Image.getSize(uri, (width, height) => {
-    //   //   setImageSize({
-    //   //     width,
-    //   //     height
-    //   //   })
-    //   // })
-    // }, [])
-  
     return (
        <><View 
        style={{

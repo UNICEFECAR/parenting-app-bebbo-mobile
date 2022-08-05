@@ -37,7 +37,6 @@ const BabyNotification = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // console.log(activeChild, "..activeChild.gender..")
   const bgColor = themeContext.colors.SECONDARY_COLOR;
   const pluralShow = useAppSelector(
     (state: any) => state.selectedCountry.pluralShow,
@@ -47,8 +46,6 @@ const BabyNotification = () => {
   };
   return (
     <>
-      {/* {(activeChild?.gender != '' && activeChild.photoUri != '' && activeChild.birthDate != '' && activeChild.childName != '')? ( */}
-      
       <>
         <BgSecondary>
           <MainContainer>
@@ -57,11 +54,9 @@ const BabyNotification = () => {
                 <FlexDirRow>
                 <OuterIconRow>
                   <OuterIconLeft>
-                    {/* <Icon name="ic_baby" size={36} color="#000" /> */}
                     {activeChild.photoUri != '' ? (
                       <ImageIcon
                         source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
-                      // style={{borderRadius: 20, width: 40, height: 40}}
                       ></ImageIcon>
                     ) : (
                       <Icon name="ic_baby" size={36} color="#000" />
@@ -125,16 +120,12 @@ const BabyNotification = () => {
               <Flex1 style={{padding:10}}>
             
                 <View style={{alignItems:"flex-end"}}>
-                {/* <ButtonTertiaryMd> */}
-                
                 <Icon
                       name="ic_edit"
                       size={20}
                       color="#000"
                     />
-                 
-                {/* </ButtonTertiaryMd> */}
-                </View>
+                 </View>
                 
               </Flex1>
               </TouchableHighlight>
@@ -142,7 +133,6 @@ const BabyNotification = () => {
           </MainContainer>
         </BgSecondary>
       </>
-       {/* ) : null}  */}
     </>
   );
 };

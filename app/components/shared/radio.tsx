@@ -13,8 +13,6 @@ export const RadioActive = styled(Radio)`
   text-align: center;
   justify-content:center;
   background-color: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
- /* border-width:1px;
-  border-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR}*/
 `;
 
 export const RadioItemText = styled.Text`

@@ -1,7 +1,7 @@
 import Icon from '@components/shared/Icon';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
-import { Keyboard, Pressable } from 'react-native';
+import React,{ useEffect, useState } from 'react';
+import { Keyboard } from 'react-native';
 import { HeaderIconView,HeaderBurgerPress } from './HeaderContainerStyle';
 const BurgerIcon = (props:any) => {
   const navigation = useNavigation();
@@ -30,7 +30,6 @@ const BurgerIcon = (props:any) => {
           navigation.dispatch(
           DrawerActions.toggleDrawer()
           )
-          //Keyboard.dismiss()
           }}>
         <Icon name="ic_navmenu" size={15} color={props.color || '#FFF'} />
       </HeaderBurgerPress>
