@@ -1,26 +1,20 @@
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import { Heading1Centerr, Heading1P, Heading3Center, Heading3Centerr, Heading4Centerr, Heading4RegularP } from '@styles/typography';
-import React, { useContext } from 'react';
-import {StyleSheet, View, Modal, ActivityIndicator, TouchableOpacity, Text} from 'react-native';
-import VectorImage from 'react-native-vector-image';
-import { ThemeContext } from 'styled-components/native';
-import { ButtonColTwo4,ButtonColTwo6, ButtonContainerTwoP, ButtonLinkPress, ButtonModal, ButtonText, ButtonTextLinew, ModalViewCustom, ViewModal } from './shared/ButtonGlobal';
-import { FDirRow, FlexCol } from './shared/FlexBoxStyle';
-import { ToolPress, ToolBoxText } from './shared/HomeScreenStyle';
-import Icon, { OuterIconRow, OuterIconLeft } from './shared/Icon';
-import { GoogleLogo } from './shared/LoadingStyle';
+import React from 'react';
+import { Heading1Centerr, Heading3Centerr } from '@styles/typography';
+import { StyleSheet, Modal } from 'react-native';
+import { ModalViewCustom } from './shared/ButtonGlobal';
+import { FDirRow } from './shared/FlexBoxStyle';
+import Icon from './shared/Icon';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from './shared/ModalPopupStyle';
 
 const AlertModal = (props: any) =>{
-  const {loading,title,message,cancelText,onCancel,onConfirm,disabledValue} = props;
+  const {loading,title,message,onCancel,onConfirm,disabledValue} = props;
   return (
     <Modal
       transparent={true}
       animationType={'none'}
       visible={loading}
-      onRequestClose={() => {
-        // console.log('close modal');
-      }}>
+      onRequestClose={() => {}}>
           <PopupOverlay>
           <ModalPopupContainer>
           <PopupCloseContainer>
@@ -40,11 +34,7 @@ const AlertModal = (props: any) =>{
               </ModalViewCustom>
               </ModalPopupContent>
               <FDirRow>
-              {/* <ButtonModal
-                onPress={onCancel}>
-                <ButtonText numberOfLines={2}>{cancelText}</ButtonText>
-              </ButtonModal> */}
-              <GoogleSigninButton
+            <GoogleSigninButton
   size={GoogleSigninButton.Size.Wide}
   color={GoogleSigninButton.Color.Light}
   onPress={onConfirm}
@@ -58,7 +48,7 @@ const AlertModal = (props: any) =>{
   );
 };
 
- 
+
 
 const styles = StyleSheet.create({
   modalBackground: {
@@ -80,6 +70,6 @@ const styles = StyleSheet.create({
   },
 });
 
- 
+
 
 export default AlertModal;

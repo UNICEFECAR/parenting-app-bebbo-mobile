@@ -35,10 +35,10 @@ type Props = {
 };
 export type ArticleCategoriesProps = {
   borderColor?: any,
-  filterOnCategory?: Function,
+  filterOnCategory?: any,
   filterArray?: any,
   fromPage?: any,
-  onFilterArrayChange?: Function
+  onFilterArrayChange?: any
 }
 const Articles = ({ route, navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);

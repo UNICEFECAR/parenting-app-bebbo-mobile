@@ -7,8 +7,6 @@ const PrematureTag = styled.View`
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 export default PrematureTag;
-
-
 export const PrematureTagActivity = styled(PrematureTag)`
   background:${props => props.theme.colors.ACTIVITIES_COLOR};
 `;
@@ -18,7 +16,3 @@ export const PrematureTagGrowth = styled(PrematureTag)`
 export const PrematureTagDevelopment = styled(PrematureTag)`
   background:${props => props.theme.colors.CHILDDEVELOPMENT_COLOR};
 `;
-
-// export const ArticleListContent = styled.View`
-  
-// `;

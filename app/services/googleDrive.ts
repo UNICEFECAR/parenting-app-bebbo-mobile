@@ -7,7 +7,7 @@ import {
   } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
 import { backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
-import { PermissionsAndroid, Platform } from "react-native";
+import { PermissionsAndroid } from "react-native";
 const _urlFiles = "https://www.googleapis.com/drive/v3";
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
 const gdrive = new GDrive();
@@ -25,10 +25,8 @@ import RNFS from 'react-native-fs';
             }
         )
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-           // console.log("You can write storage")
-        } else {
-           // console.log("Write Storage permission denied")
-        }
+         } else {
+         }
     } catch (err) {
         console.warn(err)
     }
@@ -48,9 +46,7 @@ async function requestReadStoragePermission() {
             }
         )
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-           // console.log("You can Read storage")
         } else {
-           // console.log("Read Storage permission denied")
         }
     } catch (err) {
         console.warn(err)
@@ -60,12 +56,10 @@ class GoogleDrive {
     private static instance: GoogleDrive;
     checkPermission = () => {
         PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then((writeGranted) => {
-            //console.log('writeGranted', writeGranted)
             if (!writeGranted) {
                 requestWriteStoragePermission()
             }
             PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then((readGranted) => {
-               // console.log('readGranted', readGranted)
                 if (!readGranted) {
                     requestReadStoragePermission()
                 }
@@ -90,15 +84,11 @@ class GoogleDrive {
      */
      public downloadFile=(fileId:any)=>{
         const options = this.configureGetOptions()
-        //console.log(fileId)
         if (!fileId) throw new Error('Didn\'t provide a valid file id.')
         return `${_urlFiles}/files/${fileId}?alt=media`
     }
      downloadAndReadFile = async (args:any) => {
-        // if(Platform.OS=="android"){
-        //     this.checkPermission();
-        // }
-        const fromUrl = this.downloadFile(args.fileId)
+         const fromUrl = this.downloadFile(args.fileId)
         let downloadFileOptions:any = {
             fromUrl: fromUrl,
             toFile: args.filePath,
@@ -107,17 +97,9 @@ class GoogleDrive {
             "Authorization": `Bearer ${gdrive.accessToken}`
         }, downloadFileOptions.headers);
 
-       // console.log('downloadFileOptions', downloadFileOptions)
         let fileresult= RNFS.downloadFile(downloadFileOptions);
         let downloadResult = await fileresult.promise;
         return downloadResult;
-        // RNFS.downloadFile(downloadFileOptions).promise.then((res: any) => {
-        //     console.log(res,"..res");
-        //     return "success";
-        // }).catch((err: any) => {
-        //     console.log('error', err)
-        //     return "2error";
-        // });
     }
     static getInstance(): GoogleDrive {
         if (!GoogleDrive.instance) {
@@ -131,11 +113,8 @@ class GoogleDrive {
         const tokens = await googleAuth.getTokens();
 
         if (tokens && tokens.accessToken) {
-            // GDrive.setAccessToken(tokens.accessToken);
-            // GDrive.accessToken =tokens.accessToken;
             gdrive.accessToken =tokens.accessToken;
-            // GDrive.init();
-            rval = tokens.accessToken;
+             rval = tokens.accessToken;
         }
         return rval;
     }
@@ -161,15 +140,6 @@ class GoogleDrive {
 
         try {
             // CREATE: https://bit.ly/3atW5DJ
-            // const response: Response = await gdrive.files.createFileMultipart(
-            //     args.content,
-            //     args.contentType,
-            //     {
-            //         parents: [args.parentFolderId],
-            //         name: args.name
-            //     },
-            //     args.isBase64,
-            // );
             const response: any  = (
                 await gdrive.files
                   .newMultipartUploader()
@@ -182,7 +152,6 @@ class GoogleDrive {
                   .setIsBase64(true)
                   .execute()
               ).id;
-          //  console.log(response,"..11response")
             if (response!="" && response!=null && response!=undefined) {
                 return response;
             } else {
@@ -221,7 +190,6 @@ class GoogleDrive {
                 return new Error(responseJson?.error?.message);
             }
         } catch (e) {
-         //   console.log(e);
             return new Error('Permissions not created');
         }
     }
@@ -233,20 +201,7 @@ class GoogleDrive {
             return new ErrorAccessTokenNotSet();
         }
         const response: Response = await gdrive.files.delete(fileId);
-       // console.log(response,"..response");
         return true;
-        // Delete file
-        // try {
-          
-            
-        //     if (response.status >= 200 && response.status < 300) {
-        //         return true;
-        //     } else {
-        //         return new Error('GDrive file was not deleted');
-        //     }
-        // } catch (e) {
-        //     return new Error('GDrive file was not deleted');
-        // }
     }
 
     /**
@@ -258,7 +213,6 @@ class GoogleDrive {
         // Set Google access token
        
        const isAccessTokenSet = await this.setAccessToken();
-       //console.log(isAccessTokenSet,"..isAccessTokenSet")
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }
@@ -281,16 +235,12 @@ class GoogleDrive {
                   }
                 )
               )
-           //   console.log(filenew,"..filenew..")
             if(filenew.result && filenew.result.id!='' && filenew.result.id!=null &&  filenew.result.id!=undefined){
             return filenew.result.id;
             }
               else{
                 return new Error('GDrive folder was not created');
               }
-            //   console.log("22idset..",file)
-            //   console.log(await gdrive.files.list());
-            //   return id;
             } catch (e) {
                 return new Error('GDrive folder was not created');
             }
@@ -316,7 +266,6 @@ class GoogleDrive {
         try {
             const response = await gdrive.files.get(
                 fileId,
-                // Fields: https://bit.ly/3eIpXzG
                 { 'fields': fields }, // query params
             );
 
@@ -395,12 +344,7 @@ class GoogleDrive {
         }
         // List files metadata
         try {
-            // LIST: https://bit.ly/2xGQw7T
-            // await gdrive.files.list({
-            //     q: "trashed=false and (name contains 'my.backup') and ('1CIjwbhxqlC98IyKw0OwdlQF_g-xzg6Dv' in parents)",
-            //     });
             const response: Response =await gdrive.files.list({
-                // Fields: https://bit.ly/3eIpXzG
                 fields: `files(${FILE_METADATA_FIELDS})`,
                 // fields: '*', // Use only during development!
 
@@ -411,8 +355,7 @@ class GoogleDrive {
                 // Order: https://bit.ly/34ZczTf
                 orderBy: args.orderBy,
             });
-           // console.log(response,"..old response..")
-            let results:any = await response;
+             let results:any = await response;
             if (results && results.files.length>0) {
                 return results.files;
             } else {
@@ -423,18 +366,7 @@ class GoogleDrive {
         }
       
     }
-    //   static _stringifyQueryParams(queryParams, prefix = "?", separator = "&", quoteIfString) {
-    //     const array = [];
-      
-    //     Object.keys(queryParams).forEach(key => array.push(
-    //        `${key}=${StaticUtils.safeQuoteIfString(queryParams[key], quoteIfString)}`));
-        
-    //     return new ArrayStringifier(array)
-    //        .setPrefix(prefix)
-    //        .setSeparator(separator)
-    //        .process();
-    //   }
-  
+    
     /**
      * Download GDrive file to given local path.
      */

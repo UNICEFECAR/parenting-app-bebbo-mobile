@@ -24,8 +24,3 @@ export const AgeSliderNav = styled.View`
   align-items:center;
  
    `;
-  
-
-// export const ArticleListContent = styled.View`
-  
-// `;
