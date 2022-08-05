@@ -6,11 +6,9 @@ import {
   View,
   ViewStyle
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('screen');
 const { height } = Dimensions.get('screen');
-//console.log(width, "ScreenWidth")
 type Props = {
   /**
    * Container style
@@ -120,7 +118,6 @@ interface State {
 
 class Ruler extends React.Component<Props, State> {
   scrollViewRef: React.RefObject<any>;
-  // textInputRef: React.RefObject<any>;
   rulerWidth: number;
   scrollListener: any;
   snapSegment: number;
@@ -128,7 +125,6 @@ class Ruler extends React.Component<Props, State> {
   static defaultProps: Props;
   constructor(props: Props) {
     super(props);
-
     this.state = {
       scrollX: new Animated.Value(0),
       value: 0,
@@ -137,63 +133,19 @@ class Ruler extends React.Component<Props, State> {
 
     // References
     this.scrollViewRef = React.createRef<any>();
-    // this.textInputRef = React.createRef<any>();
-
     // Calculations
     this.snapSegment = props.segmentWidth + props.segmentSpacing;
     this.spacerWidth = (props.width - props.segmentWidth) / 2;
     this.rulerWidth =
       props.width +
       (props.maximum - props.minimum) * this.snapSegment;
-   // console.log(this.rulerWidth, "rulerWidth");
-    // console.log(props.segmentWidth, "segmentWidth");
-    // console.log(props.segmentSpacing, "segmentSpacing");
-    // console.log(this.snapSegment, "snapSegment");
-    // console.log(props, "props")
+  
   }
-  // static getDerivedStateFromProps(props, state) {
-  //   console.log(props,state)
-  //   if(props.initialValue!=state.value){
-  //     return {
-  //       value: props.initialValue,
-  //       scrollX: (props.initialValue - props.minimum) * props.snapSegment,
-  //     };
-  //   }
-  //   else return null;
-  // }
-  // UNSAFE_componentWillReceiveProps(nextProps){
-  //   console.log(nextProps.initialValue)
-  //   if(nextProps.initialValue!=this.state.value){
-  //     this.setState({value:nextProps.initialValue})
-  //   }
-
-  // }
-  // shouldComponentUpdate(nextProps, nextState){
-  //   // console.log(nextProps,"nextProps")
-  //   // console.log(nextState,"nextState")
-
-  //   if(nextProps.initialValue != nextState.value)
-  //   {
-  //     // if (this.scrollViewRef && this.scrollViewRef.current) {
-  //       this.scrollViewRef.current?.scrollTo({
-  //         x: (nextProps.initialValue - nextProps.minimum) * this.snapSegment,
-  //         y: 0,
-  //         animated: true
-  //       });
-
-  //       nextProps.onChangeValue(nextProps.initialValue)
-  //     // }
-  //     this.setState({value:nextProps.initialValue})
-  //     return false
-  //   } else{
-  //     return false
-  //   }
-  // }
+  
 
   componentDidMount() {
     const { minimum, initialValue, onChangeValue } = this.props;
-   // console.log(initialValue,"initialValue");
-    if (this.scrollViewRef && this.scrollViewRef.current) {
+     if (this.scrollViewRef && this.scrollViewRef.current) {
      setTimeout(() => {
       this.scrollViewRef.current?.scrollTo({
         x: (initialValue - minimum) * this.snapSegment,
@@ -201,7 +153,6 @@ class Ruler extends React.Component<Props, State> {
         animated: true
       });
      });
-     
       this.setState({
         value: initialValue,
       });
@@ -210,33 +161,13 @@ class Ruler extends React.Component<Props, State> {
 
     // Create a listener
     this.scrollListener = this.state.scrollX.addListener(({ value }) => {
-     // console.log(value, "fromScroll", this.snapSegment, minimum,Math.round(value / this.snapSegment) + minimum);
       this.setState({
         value: Math.round(value / this.snapSegment) + minimum,
         scrollValue: value,
       });
       onChangeValue(Math.round(value / this.snapSegment) + minimum)
-     
-      // }
     });
   }
-  // moveTo() {
-  //   const prevValue = this.state.scrollValue;
-  //   const newValue = this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum);
-  //   console.log(prevValue, newValue,"fromMoveTo");
-  // //  console.log(this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum), "moveTo");
-  //   if(prevValue<newValue){
-    
-  //     setTimeout(() => {
-  //       console.log('in if moveto');
-  //     this.scrollViewRef.current.scrollTo({ x: newValue, y: 0, animated: false });
-  //     });
-  //     // this.scrollViewRef.current?.scrollTo({
-  //     //   x: (this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum)),
-  //     //   y: 0,
-  //     // });
-  //   }
-  // }
 
   componentWillUnmount() {
     // Remove the above listener
@@ -248,8 +179,6 @@ class Ruler extends React.Component<Props, State> {
 
   renderRuler(data: number[]) {
     const {
-      minimum,
-      maximum,
       segmentWidth,
       segmentSpacing,
       step,
@@ -262,7 +191,6 @@ class Ruler extends React.Component<Props, State> {
 
     // Create an array to make a ruler
 
-    // console.log(minimum,maximum,data);
     return (
       <View
         style={{
@@ -328,7 +256,6 @@ class Ruler extends React.Component<Props, State> {
       width,
       height,
       vertical,
-      onChangeValue,
     } = this.props;
     const data = [...Array(maximum - minimum + 1).keys()].map(
       (i) => i + minimum,
@@ -362,7 +289,6 @@ class Ruler extends React.Component<Props, State> {
             <View
               style={{
                 height: indicatorHeight,
-                // transform: [{ rotate: '180deg' }],
                 backgroundColor: indicatorColor,
                 width: segmentWidth,
               }}>
@@ -392,9 +318,7 @@ class Ruler extends React.Component<Props, State> {
           scrollEventThrottle={16}
           snapToInterval={Math.round(this.snapSegment)}
           onScroll={
-            // (event) => {
-            //   console.log(event.nativeEvent.contentOffset, "onScroll");
-            Animated.event(
+           Animated.event(
               [
                 {
                   nativeEvent: {
@@ -405,49 +329,11 @@ class Ruler extends React.Component<Props, State> {
               { useNativeDriver: false },
             )
           }
-          // }
-          // onScrollEndDrag={() => {
-
-          // }}
           onMomentumScrollEnd={() => {
             this.scrollViewRef.current?.scrollTo({
               x: (this.state.value * this.snapSegment)+ minimum,
               y: 0,
             });
-            // console.log(this.state.value,  "onMomentumScrollEnd");
-            // console.log(this.state.scrollX, "onMomentumScrollEnd");
-            // onChangeValue(this.state.value);
-            // x: (initialValue - minimum) * this.snapSegment,
-            // this.scrollViewRef.current?.scrollTo({
-            //   x: (this.state.value * this.snapSegment)+ minimum,
-            //   y: 0,
-            // });
-            // const new1 = this.state.value;
-            // const new2 =this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum);
-            // const new3 = (this.state.value * this.snapSegment)+ minimum;
-            // console.log(new1,new2,new3,"vals",this.state.scrollValue);
-            // this.moveTo();
-// console.log((this.state.value * this.snapSegment)+ minimum,this.state.value,"onMomentumScrollEnd",this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum));
-// console.log(this.state.value*(this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum)),"multiplied")
-            // if((this.state.scrollValue)<this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum)){
-            //   this.scrollViewRef.current?.scrollTo({
-            //     x: this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum),
-            //     y: 0,
-            //   });
-            // }
-      //       console.log((this.state.value * this.snapSegment)+ minimum);
-      //       console.log(this.snapSegment * Math.round(this.state.value / this.snapSegment) + minimum)
-      // console.log(this.state.value, "fromScroll1", this.snapSegment, minimum,Math.round(this.state.value / this.snapSegment) + minimum);
-
-            // if((this.state.value * this.snapSegment)+ minimum<this.state.value)
-            // {
-            //   this.scrollViewRef.current?.scrollTo({
-            //     x: this.snapSegment * Math.round(this.state.value / this.snapSegment) + minimum,
-            //     y: 0,
-            //   });
-            // }
-      // console.log(value, "fromScroll", this.snapSegment, minimum,Math.round(value / this.snapSegment) + minimum);
-
           }}>
           {this.renderRuler(data)}
         </Animated.ScrollView>

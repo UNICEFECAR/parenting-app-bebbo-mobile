@@ -5,13 +5,12 @@ import { MainContainer } from '@components/shared/Container';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect } from 'react';
-import { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, FlatList, ImageBackground, Platform, Pressable, Share, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import { ThemeContext } from 'styled-components/native';
@@ -37,10 +36,6 @@ const DailyReads = () => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
-  const categoryData = useAppSelector(
-    (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
-  );
-
   const articleData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category))
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -52,7 +47,6 @@ const DailyReads = () => {
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
-  // console.log(activityTaxonomyId, "..activityTaxonomyId..");
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
   const activityCategoryArray = useAppSelector(
     (state: any) =>
@@ -70,9 +64,6 @@ const DailyReads = () => {
   const showedDailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
-  // console.log(dailyDataCategoryall,"--dailyDataCategory--",showedDailyDataCategoryall);
-  // console.log("activeChild uuid---",activeChild.uuid);
-
   const [dataToShowInList, setDataToShowInList] = useState([]);
   const goToArticleDetail = (item: any) => {
     navigation.navigate('DetailsScreen', {
@@ -85,33 +76,23 @@ const DailyReads = () => {
   }
   const onShare = async (item:any) => {
     const isAdvice=item.hasOwnProperty('activity_category')?false:true;
-    console.log(isAdvice,"dfd",item)
-    console.log('locale',locale);
     const suburl=isAdvice?"/article/":"/activity/";
     const mainUrl=shareTextButton+languageCode+suburl+item.id;
-    console.log(mainUrl,"..mainUrl");
-   // const spacekeyData=Platform.OS=="android"?'\n':'\r\n';
-     try {
+      try {
        const result = await Share.share({
         message:item.title+'\n'+t('appShareText')+'\n'+mainUrl
        });
        if (result.action === Share.sharedAction) {
-         // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}
          if(isAdvice){
             analytics().logEvent(ADVICE_SHARED, {advise_id:item?.id});
          }else{
             analytics().logEvent(GAME_SHARED, {game_id:item?.id});
          }
-         if (result.activityType) {
-           // shared with activity type of result.activityType
-         } else {
-           // shared
-         }
+        
        } else if (result.action === Share.dismissedAction) {
          // dismissed
        }
      } catch (error: any) {
-       // Alert.alert(error.message);
        Alert.alert(t('generalError'));
      }
    };
@@ -121,10 +102,6 @@ const DailyReads = () => {
         <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
           <DailyBox>
             <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}>
-              {/* <ImageBackground source={{
-              uri: item.cover_image.url,
-            }} style={styles.cardImage}> */}
-
             </LoadableImage>
             <View>
               <DailyArtTitle>
@@ -172,26 +149,11 @@ const DailyReads = () => {
   });
 
   useEffect(() => {
-    //console.log(newCategoryArray,"..newCategoryArray11")
-    // console.log(ActivitiesData,"--ActivitiesData--",ActivitiesDataall);
+    
     let dailyDataCategory: any, showedDailyDataCategory: any;
-   //  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
-  //console.log(activityTaxonomyId, "..activityTaxonomyId..");
- 
-    //  activeChild?.taxonomyData.prematureTaxonomyId!=null? activeChild.plannedTermDate:childBirthDate,
-    //console.log(activeChild.uuid,"activeChild.uuid--");
-    // console.log(dailyDataCategoryall,"--dailyDataCategoryall 4--",showedDailyDataCategoryall);
-    //console.log(dailyDataCategory,"--showedDailyDataCategory 3--",showedDailyDataCategory);
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
       dailyDataCategory = { advice: 0, games: 0, currentadviceid: 0, currentgamesid: 0, currentDate: '', taxonomyid: activeChild.taxonomyData.id,prematureTaxonomyId:activityTaxonomyId };
-      // console.log(dailyDataCategory,"..dailyDataCategory")
     } else {
-      // if(dailyDataCategoryall[activeChild.uuid].taxonomyid == activeChild.taxonomyData.id)
-      // {
-      //   dailyDataCategory = dailyDataCategoryall[activeChild.uuid];
-      // }else {
-      //   dailyDataCategory  = {advice: 0 , games: 0, currentadviceid:0,currentgamesid:0,currentDate:'',taxonomyid:activeChild.taxonomyData.id};
-      // }
       let advid = dailyDataCategoryall[activeChild.uuid].advice;
       let currentadviceid = dailyDataCategoryall[activeChild.uuid].currentadviceid;
       let gamid = dailyDataCategoryall[activeChild.uuid].games;
@@ -199,8 +161,7 @@ const DailyReads = () => {
       if (dailyDataCategoryall[activeChild.uuid].taxonomyid != activeChild.taxonomyData.id) {
         advid = 0;
         currentadviceid = 0;
-        // dailyDataCategory = dailyDataCategoryall[activeChild.uuid];
-      }
+       }
       if (dailyDataCategoryall[activeChild.uuid].prematureTaxonomyId != activityTaxonomyId) {
         gamid = 0;
         currentgamesid = 0;
@@ -209,16 +170,9 @@ const DailyReads = () => {
       dailyDataCategory = { advice: advid, games: gamid, currentadviceid: currentadviceid, currentgamesid: currentgamesid, currentDate: newcurrentdate, taxonomyid: activeChild.taxonomyData.id, prematureTaxonomyId: activityTaxonomyId };
     }
     if (showedDailyDataCategoryall[activeChild.uuid] === undefined) {
-      // console.log("in ifff");
-      showedDailyDataCategory = { advice: [], games: [] };
+       showedDailyDataCategory = { advice: [], games: [] };
     } else {
-      // console.log("in elseee");
-      // if (dailyDataCategoryall[activeChild.uuid].taxonomyid == activeChild.taxonomyData.id) {
-      //   showedDailyDataCategory = showedDailyDataCategoryall[activeChild.uuid]
-      // } else {
-      //   showedDailyDataCategory = { advice: [], games: [] };
-      // }
-      let advicearr = showedDailyDataCategoryall[activeChild.uuid].advice;
+     let advicearr = showedDailyDataCategoryall[activeChild.uuid].advice;
       let gamesarr = showedDailyDataCategoryall[activeChild.uuid].games;
       if(dailyDataCategoryall[activeChild.uuid].taxonomyid != activeChild.taxonomyData.id)
       {
@@ -230,36 +184,22 @@ const DailyReads = () => {
       showedDailyDataCategory = {advice: advicearr , games: gamesarr};  
     }
     const nowDate = DateTime.now().toISODate();
-    console.log(dailyDataCategory.currentDate,'..hellolog',dailyDataCategory);
-    // Alert.alert(nowDate+'Modal has been closed.'+dailyDataCategory.currentDate);
     if (dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)) {
       const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => articleData.find((f: any) => f.category === i))
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id))
-      //console.log(activityCategoryArray,"activityCategoryArray");
-      //console.log(ActivitiesData,"ActivitiesData");
-      const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
-      // Alert.alert(JSON.stringify(articleCategoryArrayNew)+" - "+JSON.stringify(activityCategoryArrayNew));
-      // const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === 1);
+       const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
       const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
       let categoryArticleData = articleData.filter((x: any) => x.category == articleCategoryArrayNew[nextIndex]);
-      // let obj1 = categoryArticleData.filter( ( el:any ) => !showedDailyDataCategory.advice.includes( el.id ) );
-      let obj1 = categoryArticleData.filter((i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id));
+       let obj1 = categoryArticleData.filter((i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id));
       let advicearray: any = [];
-      //console.log(obj1,"--hello");
-      // advicearray = [...showedDailyDataCategory.advice];
-      if (obj1.length == 0) {
-        // advicearray = showedDailyDataCategory.advice.filter( ( el:any ) => !categoryArticleData.includes( el.id ) );
-        let abc = showedDailyDataCategory.advice.filter((i: any) => !categoryArticleData.find((f: any) => f.id === i));
+       if (obj1.length == 0) {
+         let abc = showedDailyDataCategory.advice.filter((i: any) => !categoryArticleData.find((f: any) => f.id === i));
         advicearray = [...abc]
       } else {
         advicearray = [...showedDailyDataCategory.advice]
       }
-      //console.log("advicearray---",advicearray);
       categoryArticleData = categoryArticleData.filter((i: any) => !advicearray.find((f: any) => f === i.id));
-      //console.log(categoryArticleData,"--arr1--",articleCategoryArrayNew[nextIndex]);
       const articleDataToShow = categoryArticleData[Math.floor(Math.random() * categoryArticleData.length)];
-      // Alert.alert(JSON.stringify(articleDataToShow)+"--articleDataToShow---"+articleDataToShow);
-
       const currentIndex2 = activityCategoryArrayNew.findIndex((_item: any) => _item.id === dailyDataCategory.games);
       const nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
       let categoryActivityData = ActivitiesData.filter((x: any) => x.activity_category == activityCategoryArrayNew[nextIndex2].id);
@@ -271,12 +211,9 @@ const DailyReads = () => {
       } else {
         gamesarray = [...showedDailyDataCategory.games]
       }
-      // console.log("gamesarray---",gamesarray);
       categoryActivityData = categoryActivityData.filter((i: any) => !gamesarray.find((f: any) => f === i.id));
-      //console.log(categoryActivityData,"--arr--",activityCategoryArrayNew[nextIndex2]);
       const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
-      // console.log("activityDataToShow---",activityDataToShow);
-      var data: any = [];
+      let data: any = [];
       if (articleDataToShow != null && articleDataToShow != undefined) {
         advicearray.push(articleDataToShow?.id);
         data.push(articleDataToShow);
@@ -285,13 +222,9 @@ const DailyReads = () => {
         gamesarray.push(activityDataToShow?.id);
         data.push(activityDataToShow);
       }
-      //console.log(gamesarray,"--updatedAdviceArr--",advicearray);
-      // Alert.alert(data.length+"data-"+activityDataToShow);
       setDataToShowInList(data);
-      // const i = dailyDataCategoryall.findIndex((_item: any) => Object.keys(_item)[0] === activeChild.uuid);
       let dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
       let showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
-      //console.log("before dailyDataCategorytoDispatch--",dailyDataCategorytoDispatch);
       dailyDataCategorytoDispatch[activeChild.uuid] = {
         advice: articleDataToShow && articleDataToShow != null ? articleCategoryArrayNew[nextIndex] : 0,
         games: activityDataToShow && activityDataToShow != null ? activityCategoryArrayNew[nextIndex2]?.id : 0,
@@ -302,15 +235,12 @@ const DailyReads = () => {
         prematureTaxonomyId:activityTaxonomyId
       };
       showedDailyDataCategorytoDispatch[activeChild.uuid] = { advice: advicearray, games: gamesarray }
-
-      //console.log(showedDailyDataCategorytoDispatch,"after dailyDataCategorytoDispatch--",dailyDataCategorytoDispatch);
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
       dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
-      //console.log(dataToShowInList);
     } else {
-      var data: any = [];
+      let data: any = [];
       const articleDataToShow = articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid).length > 0 ?
-        articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid)[0] : null;
+      articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid)[0] : null;
       const activityDataToShow = ActivitiesData.filter((x: any) => x.id == dailyDataCategory.currentgamesid).length > 0 ?
         ActivitiesData.filter((x: any) => x.id == dailyDataCategory.currentgamesid)[0] : null;
       if (articleDataToShow == null && activityDataToShow == null) {
@@ -323,8 +253,6 @@ const DailyReads = () => {
       if (activityDataToShow != null) {
         data.push(activityDataToShow);
       }
-      // console.log("articleData--",articleData.filter((x:any)=>x.id == dailyDataCategory.currentadviceid));
-      //console.log(articleDataToShow,activityDataToShow,"activityDataToShow data---",data);
       setDataToShowInList(data);
     }
   }, [activeChild.uuid,activityTaxonomyId]);
@@ -340,7 +268,6 @@ const DailyReads = () => {
               data={dataToShowInList}
               horizontal
               renderItem={({ item, index }) => <RenderDailyReadItem item={item} index={index} />}
-              // renderItem={({item, index}) => renderDailyReadItem(item, index)}
               keyExtractor={(item) => item?.id}
             />
           </View>
@@ -362,8 +289,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 160,
     flex: 1,
-    position: 'relative',
-    // backgroundColor: 'red'
+    position: 'relative'
   },
 
 

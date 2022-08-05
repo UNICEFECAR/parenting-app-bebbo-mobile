@@ -1,10 +1,10 @@
 import { ADVICE_SHARED, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARED } from '@assets/data/firebaseEvents';
-import { shareText, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
+import { shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
 import analytics from '@react-native-firebase/analytics';
 import { Heading4 } from '@styles/typography';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Platform, Share } from 'react-native';
+import { Alert, Share } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -32,62 +32,42 @@ const ShareFavButtons = React.memo((props: any) => {
     ? JSON.parse(state.childData.childDataSet.activeChild).uuid
     : [],
 );
-const locale = useAppSelector(
-  (state: any) => state.selectedCountry.locale,
-);
 const languageCode = useAppSelector(
   (state: any) => state.selectedCountry.languageCode,
 );
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const {backgroundColor,item,isAdvice, isFavourite, fromScreen} = props;
-  //  console.log("sharefav item ", item);
-  const onShare = async () => {
-  //  console.log('locale',locale);
+   const onShare = async () => {
    const suburl=isAdvice?"/article/":"/activity/";
    const mainUrl=shareTextButton+languageCode+suburl+item.id;
-   //const spacekeyData=Platform.OS=="android"?'\n':'\r\n';
-  //  console.log(mainUrl,"..mainUrl")
     try {
       const result = await Share.share({
         message:item.title+'\n'+t('appShareText')+'\n'+mainUrl
       });
       if (result.action === Share.sharedAction) {
-        // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}
         if(isAdvice){
            analytics().logEvent(ADVICE_SHARED, {advise_id:item?.id});
         }else{
            analytics().logEvent(GAME_SHARED, {game_id:item?.id});
         }
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
       } else if (result.action === Share.dismissedAction) {
         // dismissed
       }
     } catch (error: any) {
-      // Alert.alert(error.message);
       Alert.alert(t('generalError'));
     }
   };
   const onFavClick = async ()=>{
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
-    // console.log(filterQuery,"vshdvh---",isAdvice);
     if(isAdvice){
-    // console.log("filterQuery child dev--",filterQuery);
     const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-    // setisFavourite(!isFavourite);
-    // console.log(childData[0].favoriteadvices," childData[0].favoriteadvices");
     dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
-
-      analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
+    analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
     }else{
       const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      // setisFavourite(!isFavourite);
       dispatch(setFavouriteGames(childData[0].favoritegames));
       analytics().logEvent(FAVOURITE_GAME_ADDED, {game_id:item?.id});
     }
@@ -97,16 +77,13 @@ const languageCode = useAppSelector(
   const unFavHandler = async ()=>{
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
     if(isAdvice){
-      // console.log("filterQuery child dev--",filterQuery);
       const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      // setisFavourite(!isFavourite);
       dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
   
       }else{
         const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-        // setisFavourite(!isFavourite);
         dispatch(setFavouriteGames(childData[0].favoritegames));
       }
   }
@@ -124,8 +101,7 @@ const languageCode = useAppSelector(
           </FDirRow>
         </ShareFavPress>
 
-        { isFavourite ? (
-           fromScreen && fromScreen == 'Favourites' ? 
+        { isFavourite ? (fromScreen && fromScreen == 'Favourites' ? 
              (<ShareFavPress onPress={() => unFavHandler()} style={{alignItems:'flex-end'}}>
               <FDirRow>
                 <OuterIconRow>
