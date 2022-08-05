@@ -14,12 +14,9 @@ export type ChildGrowthEntity = {
     mandatory: string,
   };
 
-
   export const ChildGrowthSchema: ObjectSchema = {
     name: 'ChildGrowthEntity',
-    primaryKey: 'id',
-  
-    // API: https://bit.ly/3f7k9jq
+    primaryKey: 'id',  
     properties: {
       id: { type: 'int' },
       type: { type: 'string' },

@@ -1,5 +1,4 @@
 import { ObjectSchema } from "realm";
-// export type ChildGender = "boy" | "girl" | "";
 export type remiderType = "vaccine" | "healthCheckup";
 export const MeasuresEntitySchema = {
   name: "Measures",
@@ -60,7 +59,6 @@ export type ChildEntity = {
   updatedAt: Date;
   plannedTermDate?: Date | undefined;
   birthDate?: Date | undefined;
-  //relationship?: string;
   babyRating?: number;
   measures?: MeasuresEntity[],
   comment?: string;
@@ -74,15 +72,6 @@ export type ChildEntity = {
   favoritegames?: number[];
 };
 
-/**
-* Realm schema for ChildEntity.
-*/
-// add indexes if needed
-// An index significantly increases the speed of certain read operations at 
-//the cost of slightly slower write times and additional storage overhead. 
-//Indexes are particularly useful for equality comparison, such as querying for an object 
-//based on the value of a property.
-// It’s best to only add indexes when optimizing the read performance for specific situations.
 export const ChildEntitySchema: ObjectSchema = {
   name: "ChildEntity",
   primaryKey: "uuid",
