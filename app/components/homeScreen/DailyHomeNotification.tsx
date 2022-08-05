@@ -1,6 +1,6 @@
 import { BgPrimary } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1, FlexCol, FlexDirRowStart } from '@components/shared/FlexBoxStyle';
+import { Flex1, FlexDirRowStart } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading3Regularw, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
@@ -10,52 +10,25 @@ import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 const DailyHomeNotification = () => {
   const [notification, setNotification] = useState<any>();
   const dispatch = useAppDispatch();
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
-  );
-  // const records = useAppSelector((state: any) => state.utilsData.dailymessages);
-  // const utilsDatarecordConsts = useAppSelector((state: any) =>
-  //   state.utilsData != '' ? state.utilsData : state.utilsData,
-  // );
-  // console.log(utilsDatarecordConsts, 'utilsDatarecordConsts<>');
   const records = useAppSelector((state: any) =>
     state.utilsData.dailymessages != ''
       ? JSON.parse(state.utilsData.dailymessages)
       : state.utilsData.dailymessages,
   );
-  //console.log(records, '<<records>>');
   const currentNotification = useAppSelector((state: any) =>
   (state.utilsData.dailyMessageNotification),
 );
-  // const allConfigData = useAppSelector((state: any) =>
-  //   state.variableData?.variableData != ''
-  //     ? JSON.parse(state.variableData?.variableData)
-  //     : state.variableData?.variableData,
-  // );
-  // console.log(allConfigData, '..allConfigData..');
   const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number; }) => {
-    // await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
-    //   ConfigSettingsSchema,
-    //   'dailyNotification',
-    //   JSON.stringify(noti),
-    // );
-    // console.log('setNotiInDB', noti);
     dispatch(setInfoModalOpened({key:'dailyMessageNotification', value: JSON.stringify(noti)}));
-    // let dailymessage = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "dailyNotification", JSON.stringify(noti));
-    // console.log(dailymessage, 'dailymessageAdded');
-    // getAllConfigData(dispatch);
   };
 
   useEffect(() => {
-    //console.log(currentNotification, 'currentNotification<>');
     let currentDate = DateTime.local();
-    // let currentDate = DateTime.local().plus({days: 4});//for testing next day noti change
+    //for testing next day noti change
     if (currentNotification != null && currentNotification != undefined && currentNotification != '') {
-     // console.log(currentNotification, 'currentNotification<>');
       const currentNotificationVal = currentNotification!=''
         ? JSON.parse(currentNotification)
         : null;
-      // console.log('currentNotificationVal', currentNotificationVal);
       // CHECK IF DAILY MESSAGE VARIABLE NEEDS TO BE UPDATED
       if (records.length > 0) {
         if (
@@ -66,7 +39,6 @@ const DailyHomeNotification = () => {
           const currentMessageIndex = records.findIndex(
             (item: any) => item.id === currentNotificationVal.messageId,
           );
-          // console.log(currentMessageIndex, 'currentMessageIndex');
           // Set next daily message
           if(currentMessageIndex>-1 && records[currentMessageIndex + 1]){
             let newNotification = {
@@ -87,23 +59,16 @@ const DailyHomeNotification = () => {
               month: currentDate.month,
               year: currentDate.year,
             };
-            // console.log(firstNotification,"firstNotification");
+            // firstNotification
             let updateNotifcation = setNotiInDB(firstNotification);
             setNotification(firstNotification);
           }
-          
-          // console.log(updateNotifcation);
-          
-          // console.log(
-          //   'DAILY MESSAGE VARIABLE IS updated  Set next daily message',
-          //   newNotification,
-          // );
         } else {
-          // console.log('DAILY MESSAGE VARIABLE IS CurrentNotification', records);
+          //DAILY MESSAGE VARIABLE IS CurrentNotification
           setNotification(currentNotificationVal);
         }
       } else {
-        // console.log('DAILY MESSAGE VARIABLE WAS NEVER SET', records);
+       //DAILY MESSAGE VARIABLE WAS NEVER SET
         let firstNotification = {
           messageId: records.length>0 ? records[0].id : '',
           messageText: records.length>0? records[0].title : '',
@@ -111,11 +76,9 @@ const DailyHomeNotification = () => {
           month: currentDate.month,
           year: currentDate.year,
         };
-        // console.log(firstNotification,"firstNotification");
         let updateNotifcation = setNotiInDB(firstNotification);
         setNotification(firstNotification);
-        // console.log(updateNotifcation);
-      }
+     }
     }else{
       if (records.length > 0) {
       let firstNotification = {
@@ -125,7 +88,6 @@ const DailyHomeNotification = () => {
         month: currentDate.month,
         year: currentDate.year,
       };
-     // console.log(firstNotification,"firstNotification");
       let updateNotifcation = setNotiInDB(firstNotification);
       setNotification(firstNotification);
     }
@@ -135,7 +97,6 @@ const DailyHomeNotification = () => {
   return (
     <>
     {records.length > 0?
-      // <FlexCol>
         <BgPrimary>
           <MainContainer>
             <ShiftFromTopBottom10  style={{flex:1,flexDirection:'column'}}>
@@ -152,7 +113,6 @@ const DailyHomeNotification = () => {
             </ShiftFromTopBottom10>
           </MainContainer>
         </BgPrimary>
-        // </FlexCol>
        : null}
     </>
   );

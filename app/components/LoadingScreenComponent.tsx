@@ -1,11 +1,10 @@
-import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
+import { buildFor, buildForBebbo } from '@assets/translations/appOfflineData/apiConstants';
 import { bebbo_logo_shape } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
-import styled from 'styled-components/native';
 import { FlexDirCol } from './shared/FlexBoxStyle';
 import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
 
@@ -18,7 +17,6 @@ const LoadingScreenComponent = (props: any) => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
   const prevPage = props.prevPage;
- // console.log(sponsors, '..11sponsors..');
   return (
     <LoadingContainer>
       <MainView>
@@ -44,7 +42,6 @@ const LoadingScreenComponent = (props: any) => {
                     </View>
                     <View style={{
                           width:180,height:60,
-                          //backgroundColor:'#000',
                           alignContent:'center',
                           marginTop:20,
                           
@@ -68,7 +65,6 @@ const LoadingScreenComponent = (props: any) => {
                     </View>
                     <View style={{
                           width:180,height:60,
-                          // backgroundColor:'#000',
                           alignContent:'center',
                           marginTop:25,
                         }}>
@@ -90,9 +86,7 @@ const LoadingScreenComponent = (props: any) => {
                         }
                     </View>
                     <WrapView>
-                      {/* <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text> */}
                       <StaticLogo
-                        // source={require('../assets/loading/unicef_logo.png')}
                         source={
                             (prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection') && buildFor == buildForBebbo
                             ? require('')
