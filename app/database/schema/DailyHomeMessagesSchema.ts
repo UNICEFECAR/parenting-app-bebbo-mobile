@@ -8,12 +8,9 @@ export type DailyHomeMessagesEntity = {
     updated_at: string,
   };
 
-
   export const DailyHomeMessagesSchema: ObjectSchema = {
     name: 'DailyHomeMessagesEntity',
-    primaryKey: 'id',
-  
-    // API: https://bit.ly/3f7k9jq
+    primaryKey: 'id',  
     properties: {
       id: { type: 'int' },
       type: { type: 'string' },

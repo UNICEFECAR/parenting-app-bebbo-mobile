@@ -15,7 +15,6 @@ export type SurveysEntity = {
     name: 'SurveysEntity',
     primaryKey: 'id',
   
-    // API: https://bit.ly/3f7k9jq
     properties: {
       id: { type: 'int' },
       type: { type: 'string' },
