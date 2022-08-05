@@ -13,12 +13,9 @@ export type FAQsEntity = {
     mandatory: number,
   };
 
-
   export const FAQsSchema: ObjectSchema = {
     name: 'FAQsEntity',
-    primaryKey: 'id',
-  
-    // API: https://bit.ly/3f7k9jq
+    primaryKey: 'id',  
     properties: {
       id: { type: 'int' },
       type: { type: 'string' },
