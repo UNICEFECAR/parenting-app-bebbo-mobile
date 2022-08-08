@@ -15,3 +15,7 @@ export const SelectionView = styled.View`
 `;
 export const bgColor1='rgba(0,0,0,0.7)';
 export const bgcolorWhite='white';
+export const bgcolorWhite2='#fff';
+export const bgcolorBlack='black';
+export const bgcolorBlack2='#000';
+export const bgcolortransparent='transparent';
