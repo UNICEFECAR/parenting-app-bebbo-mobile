@@ -13,3 +13,5 @@ export const SelectionView = styled.View`
   
   flex: 1;
 `;
+export const bgColor1='rgba(0,0,0,0.7)';
+export const bgcolorWhite='white';
