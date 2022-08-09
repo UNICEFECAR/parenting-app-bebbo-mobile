@@ -323,7 +323,7 @@ const HeaderNotiIcon = (props: any) => {
       <Pressable onPress={() => navigation.navigate('NotificationsScreen')} style={styles.outerPressable}>
         <Icon name="ic_sb_notification" size={32} color={props.color} style={styles.iconStyle} />
         {notifications.length > 0 ?
-          <BubbleContainer style={styles.bubbleContiner}>
+          <BubbleContainer style={styles.bubbleContainer}>
             <BubbleView1>
               <Heading6w>{notifications.length}</Heading6w>
             </BubbleView1>
@@ -340,6 +340,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   iconStyle:{ position: 'relative' },
-  bubbleContiner:{ position: 'absolute', right: -12, top: -5, justifyContent: 'center', alignItems: 'center' }
+  bubbleContainer:{ position: 'absolute', right: -12, top: -5, justifyContent: 'center', alignItems: 'center' }
 });
 
