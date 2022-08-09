@@ -11,6 +11,7 @@ import {
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
+import { greenColor } from '@styles/style';
 import {
   Heading2, Heading4Regular,
   Paragraph,
@@ -21,7 +22,7 @@ import {
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import {
@@ -68,7 +69,7 @@ const PreviousHealthCheckup = (props: any) => {
           <ToolsIconView>
             {item?.growthMeasures?.measurementDate ?  (
             <RadioActive
-                  style={{backgroundColor: 'green', borderRadius: 50}}>
+                  style={styles.radioActive}>
                   <Icon name="ic_tick" size={12} color="#FFF" />
                 </RadioActive>
              ) : ( 
@@ -93,7 +94,7 @@ const PreviousHealthCheckup = (props: any) => {
             <ToolsActionView>
               <FlexDirRow>
                 <Icon
-                  style={{alignSelf: 'center'}}
+                  style={styles.iconStyle}
                   name={isOPen ? 'ic_angle_up' : 'ic_angle_down'}
                   size={10}
                   color="#000"
@@ -219,3 +220,7 @@ const PreviousHealthCheckup = (props: any) => {
   );
 };
 export default PreviousHealthCheckup;
+const styles=StyleSheet.create({
+  radioActive:{backgroundColor: greenColor, borderRadius: 50},
+  iconStyle:{alignSelf: 'center'}
+})

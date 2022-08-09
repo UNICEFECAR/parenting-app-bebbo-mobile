@@ -21,7 +21,7 @@ import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { appConfig, both_child_gender, both_parent_gender} from "./apiConstants";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, PinnedChildDevData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
 const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
         if (prevPage == "CountryLanguageSelection") {
             // try {
             let Entity: any;
@@ -144,7 +144,6 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any, queryText?: any) => {
     return new Promise(async (resolve, reject) => {
-        let databaselistener: any;
         let dataToStore: any;
         let offlineData: any;
         if (SchemaToUse.name == StandardDevWeightForHeightSchema.name) {
@@ -155,12 +154,6 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
         }
         else if (SchemaToUse.name == StandardDevHeightForAgeSchema.name) {
             offlineData = jsonData[languageCode] ? jsonData[languageCode][0].height_for_age : undefined;
-            if (offlineData == undefined || offlineData == "" || offlineData == {}) {
-                offlineData = [];
-            }
-        }
-        else if(SchemaToUse.name == FAQsSchema.name) {
-            offlineData = jsonData[languageCode];
             if (offlineData == undefined || offlineData == "" || offlineData == {}) {
                 offlineData = [];
             }

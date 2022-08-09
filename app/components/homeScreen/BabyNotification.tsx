@@ -1,20 +1,11 @@
 import { BgSecondary } from '@components/shared/BackgroundColors';
-import {
-  ButtonLinkPress,
-  ButtonTertiaryMd,
-  ButtonTextMd
-} from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import {
   FDirCol,
   FlexDirRow,
   FlexDirRowSpace,
   Flex1,
-  Flex2,
-  Flex3,
-  Flex4,
-  Flex5,
-  Flex6
+  Flex5
 } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
@@ -23,21 +14,18 @@ import { Heading3, Heading5 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableHighlight, View } from 'react-native';
-import { ThemeContext } from 'styled-components/native';
+import { StyleSheet, TouchableHighlight, View } from 'react-native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
 import { DateTime } from 'luxon';
 const BabyNotification = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
-  const themeContext = useContext(ThemeContext);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const bgColor = themeContext.colors.SECONDARY_COLOR;
   const pluralShow = useAppSelector(
     (state: any) => state.selectedCountry.pluralShow,
   );
@@ -64,8 +52,8 @@ const BabyNotification = () => {
                   </OuterIconLeft>
                 </OuterIconRow>
                 <View
-                  style={{ flexShrink: 1, paddingLeft: 4 }}>
-                  <FDirCol style={{ flexShrink: 1,paddingRight: 7,}}>
+                  style={styles.outerView}>
+                  <FDirCol style={styles.colStyle}>
                     <Heading3>
                       {
                         activeChild.birthDate != null && activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate) ?
@@ -117,9 +105,9 @@ const BabyNotification = () => {
                         })
                       }
                     }}>
-              <Flex1 style={{padding:10}}>
+              <Flex1 style={styles.padding10}>
             
-                <View style={{alignItems:"flex-end"}}>
+                <View style={styles.alignFlexEnd}>
                 <Icon
                       name="ic_edit"
                       size={20}
@@ -138,3 +126,10 @@ const BabyNotification = () => {
 };
 
 export default BabyNotification;
+const styles=StyleSheet.create({
+  outerView:{ flexShrink: 1, paddingLeft: 4 },
+  colStyle:{ flexShrink: 1,paddingRight: 7},
+  padding10:{padding:10},
+  alignFlexEnd:{alignItems:"flex-end"}
+
+})

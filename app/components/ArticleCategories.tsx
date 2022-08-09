@@ -25,7 +25,7 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
     return filterArray;
   };
   const chunk = (arr:any, size:any) =>
-  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (v:any, i:any) =>
     arr.slice(i * size, i * size + size)
   );
 const articleBrackets = chunk(articleCategoryobj, 2)
@@ -34,12 +34,12 @@ const articleBrackets = chunk(articleCategoryobj, 2)
       <ArticleFilter key={props.filterArray.length}>
         <FlexDirRow>
           {articleBrackets.map((articleCategoryInner:any[], i:number) => {
-            return (<View key={i} style={{flex: 1, flexDirection: 'column'}}>
+            return (<View key={i} style={styles.innerView}>
                 {
                  articleCategoryInner.map((item) => {
-                    return (<Pressable style={{flex:1,}} key={item.id} onPress={()=>{
+                    return (<Pressable style={styles.pressableView} key={item.id} onPress={()=>{
                       props.filterOnCategory(getFilterArray(item.id,props.filterArray))}}>
-                    <FilterBox style={[{backgroundColor:(props.filterArray.includes(item.id) ? "#FF8D6B" : "#fff")}]}  >
+                    <FilterBox style={props.filterArray.includes(item.id) ? styles.filterBoxbg1 : styles.filterBoxbg2}  >
                        <OuterIconRow>
                          <OuterIconLeft>
                               <Icon 
@@ -63,5 +63,13 @@ export default ArticleCategories;
 const styles = StyleSheet.create({
   iconStyle: {
     marginLeft: 10
-  }
+  },
+  innerView:{flex: 1, flexDirection: 'column'},
+  pressableView:{flex:1},
+  filterBoxbg1:{
+    backgroundColor:"#FF8D6B"
+    },
+    filterBoxbg2:{
+        backgroundColor:"#fff"
+    }
 });
