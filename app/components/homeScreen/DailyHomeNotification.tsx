@@ -5,6 +5,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading3Regularw, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 const DailyHomeNotification = () => {
@@ -48,7 +49,7 @@ const DailyHomeNotification = () => {
               month: currentDate.month,
               year: currentDate.year,
             };
-            let updateNotifcation = setNotiInDB(newNotification);
+            setNotiInDB(newNotification);
             setNotification(newNotification);
           }
           else{
@@ -60,7 +61,7 @@ const DailyHomeNotification = () => {
               year: currentDate.year,
             };
             // firstNotification
-            let updateNotifcation = setNotiInDB(firstNotification);
+            setNotiInDB(firstNotification);
             setNotification(firstNotification);
           }
         } else {
@@ -76,7 +77,7 @@ const DailyHomeNotification = () => {
           month: currentDate.month,
           year: currentDate.year,
         };
-        let updateNotifcation = setNotiInDB(firstNotification);
+        setNotiInDB(firstNotification);
         setNotification(firstNotification);
      }
     }else{
@@ -88,7 +89,7 @@ const DailyHomeNotification = () => {
         month: currentDate.month,
         year: currentDate.year,
       };
-      let updateNotifcation = setNotiInDB(firstNotification);
+      setNotiInDB(firstNotification);
       setNotification(firstNotification);
     }
     }
@@ -99,7 +100,7 @@ const DailyHomeNotification = () => {
     {records.length > 0?
         <BgPrimary>
           <MainContainer>
-            <ShiftFromTopBottom10  style={{flex:1,flexDirection:'column'}}>
+            <ShiftFromTopBottom10  style={styles.shiftFromBottom}>
               <FlexDirRowStart>
                 <OuterIconRow>
                   <OuterIconLeft>
@@ -119,3 +120,6 @@ const DailyHomeNotification = () => {
 };
 
 export default DailyHomeNotification;
+const styles=StyleSheet.create({
+  shiftFromBottom:{flex:1,flexDirection:'column'}
+})

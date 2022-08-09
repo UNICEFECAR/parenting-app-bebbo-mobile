@@ -23,6 +23,7 @@ export const ActivityFilter = styled(ArticleFilter)`
 
 export const FilterBox = styled.View`  
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+background-color:${props => props.filterArrayBg};
 margin:3px;
 flex-direction:row;
 align-items:center;
