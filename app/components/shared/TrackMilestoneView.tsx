@@ -2,10 +2,10 @@ import { useNavigation } from '@react-navigation/native';
 import { Heading3, ShiftFromBottom15 } from '@styles/typography';
 import  React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { ButtonDevelopmentMd, ButtonTextMd } from './ButtonGlobal';
-import { BannerContainer, MainContainer } from './Container';
+import { BannerContainerMilestone, MainContainer } from './Container';
 import { Flex1, Flex3, FlexDirRowStart } from './FlexBoxStyle';
 import Icon, { IconBox, OuterIconLeft, OuterIconRow } from './Icon';
 const TrackMilestoneView = (props:any) => {
@@ -17,8 +17,8 @@ const TrackMilestoneView = (props:any) => {
   return (
     <>
     <ShiftFromBottom15>
-    <MainContainer style={{flex:1}}>
-      <BannerContainer style={{backgroundColor: backgroundColor,}}>
+    <MainContainer style={styles.mainContainerFlex}>
+      <BannerContainerMilestone>
         <FlexDirRowStart>
         <Flex1>
           <OuterIconRow>
@@ -35,7 +35,7 @@ const TrackMilestoneView = (props:any) => {
            {t('trackMilestoneViewHeader')}
           </Heading3>
           </ShiftFromBottom15>
-          <Pressable style={{flexDirection: 'row'}}>
+          <Pressable style={styles.milestonePressable}>
             <ButtonDevelopmentMd
               onPress={() =>
                 navigation.navigate('Home', {
@@ -49,10 +49,18 @@ const TrackMilestoneView = (props:any) => {
           </Pressable>
         </Flex3>
         </FlexDirRowStart>
-      </BannerContainer> 
+      </BannerContainerMilestone> 
       </MainContainer>
       </ShiftFromBottom15>
     </>
   );
 };
 export default TrackMilestoneView;
+const styles = StyleSheet.create({
+  mainContainerFlex:{
+    flex:1
+  },
+  milestonePressable: {
+    flexDirection: 'row'
+  }
+})

@@ -84,14 +84,7 @@ const NotificationsCategories = (props: any) => {
     <>
     <View style={{backgroundColor: backgroundColor,}}>
       <View
-        style={{
-          padding: 10,
-          minHeight: 120,
-          maxWidth:280,
-          width:'100%',
-          marginLeft:'auto'
-          ,marginRight:'auto',
-        }}>
+        style={styles.containerView}>
         <FlexRow>
           <ButtonItem data={products[0]} setbutton={() => handleChange(0)} />
           <ButtonItem data={products[1]} setbutton={() => handleChange(1)} />
@@ -129,4 +122,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     textAlign: 'left'
   },
+  containerView: {
+    padding: 10,
+    minHeight: 120,
+    maxWidth:280,
+    width:'100%',
+    marginLeft:'auto'
+    ,marginRight:'auto',
+  }
 });

@@ -4,7 +4,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { ThemeContext } from 'styled-components/native';
+import styled, { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
@@ -15,8 +15,12 @@ import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle
 import { FlexCol } from './shared/FlexBoxStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
 import VideoPlayer from './VideoPlayer';
-
-const FavArticles = (props: any) => {
+const ContainerView = styled.View`
+  flex: 1;
+  flex-direction: row;
+  background-color: ${props => props.theme.colors.ARTICLES_TINTCOLOR};,
+`;
+const FavArticles = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -68,7 +72,7 @@ useFocusEffect(
     fetchData()
   },[favoriteadvices])
 );
-  const RenderArticleItem = React.memo(({item, index}) => {
+  const RenderArticleItem = React.memo(({item, index} : any) => {
     return(
         <ArticleListContainer>
           <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
@@ -91,19 +95,12 @@ useFocusEffect(
 });
   return (
     <>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          backgroundColor: artBackgroundColor,
-        }}>
+      <ContainerView>
          <FlexCol>
           {favAdvicesToShow.length> 0 ? 
                 <FlatList
                   ref={flatListRef}
                   data={favAdvicesToShow}
-                  onScroll={(e)=>{
-                  }}
                   nestedScrollEnabled={true}
                   removeClippedSubviews={true} // Unmount components when outside of window 
                   initialNumToRender={4} // Reduce initial render amount
@@ -115,7 +112,7 @@ useFocusEffect(
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
         </FlexCol>
-      </View>
+      </ContainerView>
     </>
   );
 };
@@ -124,10 +121,9 @@ export default FavArticles;
 const styles = StyleSheet.create({
   
   cardImage: {
+    alignSelf: 'center',
+    flex: 1,
     height: 200,
     width: '100%',
-    flex: 1,
-    alignSelf: 'center',
-    
   },
 });

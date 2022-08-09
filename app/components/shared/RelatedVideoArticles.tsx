@@ -4,7 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Pressable, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
@@ -72,7 +72,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
               const i = relatedData.findIndex((_item: any) => _item.id === x.id);
               return x.category == category && x.id !== currentId && i == -1
             }).slice(0, catartlength);
-            setrelatedArticleData((relatedArticleData: any) => [...relatedData, ...filteredArtData]);
+            setrelatedArticleData([...relatedData, ...filteredArtData]);
           } else {
             setrelatedArticleData(relatedData);
           }
@@ -88,7 +88,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
             const i = relatedData.findIndex((_item: any) => _item.id === x.id);
             return x.category == category && x.id !== currentId && i == -1
           }).slice(0, catartlength);
-          setrelatedArticleData((relatedArticleData: any) => [...filteredArtData]);
+          setrelatedArticleData([...filteredArtData]);
         }
       }
       fetchData()
@@ -109,14 +109,14 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
   const RenderRelatedArticleItem =({item, index}:any) => {
     return (
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
-        style={{ flexDirection: 'row' }}
+        style={styles.itemPressable}
       >
-      <RelatedArticleContainer2 style={{ backgroundColor: '#fff' }} key={index}>    
+      <RelatedArticleContainer2 key={index}>    
         <View>
           <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
         </View>
-            <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-              <View style={{ minHeight: 80, }}>
+            <View style={styles.imageView1}>
+              <View style={styles.imageView}>
                 <ArticleListContent>
                   <ShiftFromTopBottom5>
                      <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
@@ -141,7 +141,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
           <ArticleHeading>
             <Heading2>{t('relatedVideoArticle')}</Heading2>
           </ArticleHeading>
-          <View style={{ paddingLeft: 10, }}>
+          <View style={styles.listParentView}>
             <FlatList
               data={relatedArticleData}
               horizontal
@@ -162,5 +162,21 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
 };
 
 export default RelatedVideoArticles;
+const styles = StyleSheet.create({
+  itemPressable: {
+    flexDirection:'row'
+  },
+  imageView1: { 
+    flexDirection: 'column',
+    flex: 1,
+    justifyContent: 'space-between'
+  },
+  imageView: {
+    minHeight:80
+  },
+  listParentView : {
+    paddingLeft:10
+  }
+});
 
 

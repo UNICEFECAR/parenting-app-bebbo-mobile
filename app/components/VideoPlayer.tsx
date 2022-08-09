@@ -1,11 +1,10 @@
 import { videoTypeImage, videoTypeVimeo, videoTypeYoutube } from "@assets/translations/appOfflineData/apiConstants";
 import React, { useCallback, useState } from "react";
-import { ActivityIndicator, Dimensions, Image, View } from "react-native";
+import { ActivityIndicator, Dimensions, Image, StyleSheet, View } from "react-native";
 import WebView from "react-native-webview";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { getVimeoId, getYoutubeId } from "../services/Utils";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import { useAppSelector } from "../../App";
 
 const VideoPlayer = (props: any) => {
     const [playing, setPlaying] = useState(false);
@@ -21,7 +20,7 @@ const VideoPlayer = (props: any) => {
     const windowWidth = Dimensions.get('window').width;
     const displaySpinner=()=>{
         return (
-            <View style={{height:windowWidth*0.563,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
+            <View style={styles.spinner}><ActivityIndicator size="large" color="#000" style={{
             }}/></View>
         );
       }
@@ -96,32 +95,24 @@ const VideoPlayer = (props: any) => {
     return (
         <>
             {videoType == videoTypeImage || netInfoval.isConnected == false ?
-                ( <View style={{flex:1,flexDirection:'column',height:windowWidth*0.565,overflow:'hidden'}}><Image
+                ( <View style={styles.typeImageView}><Image
                     source={require('@assets/trash/defaultArticleImage.png')}
-                    style={{ width: '100%',height:windowWidth*0.565}}
+                    style={styles.typeImageImg}
                 /></View>) :
                 (<>{videoType == videoTypeVimeo ?
                     <WebView
                         startInLoadingState={true}
-                        containerStyle={{
-                            width: '100%',
-                            height: windowWidth*0.565,
-                            aspectRatio: 1.75,
-                            alignSelf: 'center',
-                        }}
+                        containerStyle={styles.containerStyle}
                         allowsInlineMediaPlayback={true}
                         originWhitelist={['*']}
                         source={{ html: getVimeoHtml() }}
-                        onMessage={(event) => {
-                           
-                        }}
                         renderLoading={displaySpinner}
                         allowsFullscreenVideo={true}
                     />
                     :
                     <>
-                    <View style={{flex:1,flexDirection:'column',height:windowWidth*0.563,overflow:'hidden'}}>
-                    {loading ? <View style={{height:windowWidth*0.565,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
+                    <View style={styles.youtubeContainerView}>
+                    {loading ? <View style={styles.youtubeLoadingView}><ActivityIndicator size="large" color="#000" style={{
                     }}/></View>: null}
                     <YoutubePlayer
                         videoId={videoId}
@@ -148,3 +139,39 @@ const VideoPlayer = (props: any) => {
     )
 }
 export default VideoPlayer
+const windowWidthstyle = Dimensions.get('window').width;
+const styles = StyleSheet.create({
+    spinner: {
+        height:windowWidthstyle*0.563,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    typeImageView:{
+        flex:1,
+        flexDirection:'column',
+        height:windowWidthstyle*0.565,
+        overflow:'hidden'
+    },
+    typeImageImg:{ 
+        width: '100%',
+        height:windowWidthstyle*0.565
+    },
+    containerStyle:{
+        width: '100%',
+        height: windowWidthstyle*0.565,
+        aspectRatio: 1.75,
+        alignSelf: 'center',
+    },
+    youtubeContainerView:{
+        flex:1,
+        flexDirection:'column',
+        height:windowWidthstyle*0.563,
+        overflow:'hidden'
+    },
+    youtubeLoadingView:{
+        height:windowWidthstyle*0.565,
+        alignItems:'center',
+        justifyContent:'center'
+    }
+})
+

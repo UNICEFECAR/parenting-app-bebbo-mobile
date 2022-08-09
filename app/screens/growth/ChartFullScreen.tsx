@@ -34,7 +34,7 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
   const [windowHeight,setWindowHeight] = React.useState(Dimensions.get('window').height);
   const {t} = useTranslation();
   const chartHeading =
-    chartType == chartTypes.weightForHeight
+    chartType == chartTypes.WeightForHeight
       ? {title: t('growthScreenweightForHeight')}
       : {title: t('growthScreenheightForAge')};
   const [isChartVisible, setIsChartVisible] = React.useState(false);

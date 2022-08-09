@@ -16,7 +16,8 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
-  Modal, Platform, Pressable, StyleSheet, View} from 'react-native';
+  Modal, Platform, Pressable, StyleSheet, View
+} from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
   getAllChildren,
@@ -31,7 +32,8 @@ import {
   ButtonLinkPress,
   ButtonPrimary,
   ButtonText,
-  ButtonTextLine} from './shared/ButtonGlobal';
+  ButtonTextLine
+} from './shared/ButtonGlobal';
 import { FDirRow, FlexColEnd } from './shared/FlexBoxStyle';
 import { HeaderActionBox, HeaderActionView } from './shared/HeaderContainerStyle';
 import {
@@ -42,8 +44,10 @@ import {
   ProfileSectionView,
   ProfileTextView
 } from './shared/ProfileListingStyle';
+import { bgcolorBlack2, bgcolortransparent, bgcolorWhite } from '@styles/style';
+
 const headerHeight = 50;
-const HeaderBabyMenu = (props: any) => {
+const HeaderBabyMenu = (props : any) => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const genders = useAppSelector(
@@ -73,13 +77,13 @@ const HeaderBabyMenu = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
-  const SortedchildList = [...childList].sort((a: any, b: any) => {
+  const SortedchildList = [...childList].sort((a: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
   const renderChildItem = (dispatch: any, data: any, index: number) => {
     const genderLocal =
       genders?.length > 0 && data.gender != ''
-        ? genders.find((genderset:any) => genderset.id === parseInt(data.gender)).name
+        ? genders.find((genderset: any) => genderset.id === parseInt(data.gender)).name
         : '';
     const genderName: string = genderLocal;
     return (
@@ -101,13 +105,13 @@ const HeaderBabyMenu = (props: any) => {
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>{data.childName}
-                {genderName!='' && genderName!=null && genderName!=undefined ?<Heading5 style={{fontWeight:'normal'}}>{', '+genderName}</Heading5>:null}
-              </Heading3>
+                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName}</Heading5> : null}
+                </Heading3>
               </ProfileSectionView>
               <Heading5>
                 {(data.birthDate != '' &&
                   data.birthDate != null &&
-                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate,luxonLocale) : '' }) : t('expectedChildDobLabel')}
+                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate, luxonLocale) : '' }) : t('expectedChildDobLabel')}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
@@ -139,42 +143,42 @@ const HeaderBabyMenu = (props: any) => {
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>{data.childName}
-                {genderName!='' && genderName!=null && genderName!=undefined ?<Heading5 style={{fontWeight:'normal'}}>{', '+genderName}</Heading5>:null}
-              </Heading3>
-           
+                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName}</Heading5> : null}
+                </Heading3>
+
               </ProfileSectionView>
               <Heading5>
                 {(data.birthDate != '' &&
                   data.birthDate != null &&
-                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate,luxonLocale) : '' }) : t('expectedChildDobLabel')}
+                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate, luxonLocale) : '' }) : t('expectedChildDobLabel')}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <FlexColEnd>
                 <FDirRow>
-                <Pressable style={{paddingTop:7,paddingBottom:7}}
+                  <Pressable style={styles.pressableProfile}
                     onPress={() => {
                       setModalVisible(false);
                       props.setProfileLoading(true);
-                      setTimeout(async()=>{
-                      const setData=await setActiveChild(languageCode, data.uuid, dispatch, child_age,true);
-                      if(setData=="activeset"){
-                        props.setProfileLoading(false);
-                       }
-                      },0);
-                    }}>     
-                  <OuterIconRow>
-                    <OuterIconLeft style={{paddingLeft:30}}>
-                      <TickView4>
-                      </TickView4>
-                    </OuterIconLeft>
-                  </OuterIconRow>
+                      setTimeout(async () => {
+                        const setData = await setActiveChild(languageCode, data.uuid, dispatch, child_age, true);
+                        if (setData == "activeset") {
+                          props.setProfileLoading(false);
+                        }
+                      }, 0);
+                    }}>
+                    <OuterIconRow>
+                      <OuterIconLeft style={styles.OuterIconLeftPadding}>
+                        <TickView4>
+                        </TickView4>
+                      </OuterIconLeft>
+                    </OuterIconRow>
                   </Pressable>
                 </FDirRow>
               </FlexColEnd>
             </ProfileActionView>
           </ProfileListView>
-          
+
         )}
       </View>
     );
@@ -193,80 +197,80 @@ const HeaderBabyMenu = (props: any) => {
           setModalVisible(false);
         }}>
 
-           <View
-            style={styles.modalView}
-           >
-            {SortedchildList.length > 0 ? (
-              <View style={{ height: 'auto',minHeight:100, maxHeight: 150, backgroundColor:'transparent',zIndex:9999,position:'relative',width:"100%"}}>
-                <FlatList
-                  nestedScrollEnabled={true}
-                  data={SortedchildList}
-                  renderItem={({ item, index }: any) =>
-                    // return a component using that data
-                    renderChildItem(dispatch, item, index)
-                  }
-                  keyExtractor={(item: { uuid: any }) => item.uuid}
-                />
-              </View>
-            ) : null}
+        <View
+          style={styles.modalView}
+        >
+          {SortedchildList.length > 0 ? (
+            <View style={styles.sortedChildListView}>
+              <FlatList
+                nestedScrollEnabled={true}
+                data={SortedchildList}
+                renderItem={({ item, index }: any) =>
+                  // return a component using that data
+                  renderChildItem(dispatch, item, index)
+                }
+                keyExtractor={(item: { uuid: any }) => item.uuid}
+              />
+            </View>
+          ) : null}
 
-            <ButtonContainer>
-              <ShiftFromBottom10>
-                <ButtonLinkPress
-                  onPress={() =>{
-                    setModalVisible(false);
-                    navigation.navigate('EditChildProfile', { childData: null })
-                  }
-                  }>
-                  <OuterIconRow>
-                    <OuterIconLeft>
-                      <Icon name="ic_plus" size={20} color="#000" />
-                    </OuterIconLeft>
-                    <ButtonTextLine numberOfLines={2}>
-                      {t('childSetupListaddSiblingBtn')}
-                    </ButtonTextLine>
-                  </OuterIconRow>
-                </ButtonLinkPress>
-              </ShiftFromBottom10>
-
-              <ButtonPrimary
+          <ButtonContainer>
+            <ShiftFromBottom10>
+              <ButtonLinkPress
                 onPress={() => {
                   setModalVisible(false);
-                  navigation.navigate('ChildProfileScreen')
-                  }}>
-                <ButtonText numberOfLines={2}>{t('manageProfileTxt')}</ButtonText>
-              </ButtonPrimary>
-            </ButtonContainer>
-          </View>
-        <View 
+                  navigation.navigate('EditChildProfile', { childData: null })
+                }
+                }>
+                <OuterIconRow>
+                  <OuterIconLeft>
+                    <Icon name="ic_plus" size={20} color="#000" />
+                  </OuterIconLeft>
+                  <ButtonTextLine numberOfLines={2}>
+                    {t('childSetupListaddSiblingBtn')}
+                  </ButtonTextLine>
+                </OuterIconRow>
+              </ButtonLinkPress>
+            </ShiftFromBottom10>
+
+            <ButtonPrimary
+              onPress={() => {
+                setModalVisible(false);
+                navigation.navigate('ChildProfileScreen')
+              }}>
+              <ButtonText numberOfLines={2}>{t('manageProfileTxt')}</ButtonText>
+            </ButtonPrimary>
+          </ButtonContainer>
+        </View>
+        <View
           style={styles.centeredView}>
-            <View style={{flex:1,backgroundColor:'transparent'}}>
-            <Pressable style={{backgroundColor:'transparent',zIndex:9999,height:headerHeight,position:'absolute',top:0,left:0,width:"100%"}}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                    if (modalVisible) {
-                      getAllChildren(dispatch,child_age,0);
-                      getAllConfigData(dispatch);
-                    }
-                }}>
+          <View style={styles.innerCenteredView}>
+            <Pressable style={styles.centeredPressable}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+                if (modalVisible) {
+                  getAllChildren(dispatch, child_age, 0);
+                  getAllConfigData(dispatch);
+                }
+              }}>
             </Pressable>
+          </View>
         </View>
-        </View>
-        <View style={{backgroundColor:'transparent',opacity:0.5,zIndex:2,position:'absolute',width:'100%',height:'100%'}} >
-        <Pressable style={{backgroundColor:'transparent',width:'100%',height:'100%',position:'relative'}} 
-        onPress={() => {
-          setModalVisible(false);
-        }}>
-        </Pressable>
+        <View style={styles.hbMenuView} >
+          <Pressable style={styles.hbPressable}
+            onPress={() => {
+              setModalVisible(false);
+            }}>
+          </Pressable>
         </View>
       </Modal>
 
       <HeaderActionView>
         <HeaderActionBox
           onPress={() => {
-           setModalVisible(!modalVisible);
+            setModalVisible(!modalVisible);
             if (modalVisible) {
-              getAllChildren(dispatch,child_age,0);
+              getAllChildren(dispatch, child_age, 0);
               getAllConfigData(dispatch);
             }
           }}>
@@ -284,40 +288,77 @@ const HeaderBabyMenu = (props: any) => {
 export default HeaderBabyMenu;
 const styles = StyleSheet.create({
   centeredView: {
-    width:'100%',
-    left:0,
-    height:'100%',
-    position:'relative',
-    zIndex:1,
+    height: '100%',
+    left: 0,
+    position: 'relative',
+    width: '100%',
+    zIndex: 1,
   },
-  mainModal:{
-   
+  mainModal: {
+
   },
   modalView: {
-    backgroundColor: 'white',
+    backgroundColor: bgcolorWhite,
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4,
     padding: 0,
-    borderColor: '#000',
+    borderColor: bgcolorBlack2,
     borderBottomWidth: 2,
-    position:'relative',
-    zIndex:3,
-       ...Platform.select({
-        ios: {
-          top:getStatusBarHeight(0)>20?headerHeight-2:35,
-          marginTop:getStatusBarHeight(0)>20?headerHeight-2:35
-        },
+    position: 'relative',
+    zIndex: 3,
+    ...Platform.select({
+      ios: {
+        top: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35,
+        marginTop: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35
+      },
       android: {
-        marginTop:headerHeight,
+        marginTop: headerHeight,
       },
     })
   },
-
-  modalText: {
-    textAlign: 'center',
-    borderBottomWidth: 2,
+  heading5Fontwg: {
+    fontWeight: 'normal'
   },
-  cardcontainer: {
-    flexGrow: 1,
+  pressableProfile: {
+    paddingTop: 7,
+    paddingBottom: 7
   },
+  OuterIconLeftPadding: {
+    paddingLeft: 30
+  },
+  sortedChildListView: {
+    height: 'auto', 
+    minHeight: 100, 
+    maxHeight: 150, 
+    backgroundColor: bgcolortransparent, 
+    zIndex: 9999, 
+    position: 'relative', 
+    width: "100%"
+  },
+  innerCenteredView: {
+    flex: 1, backgroundColor: bgcolortransparent
+  },
+  centeredPressable: {
+    backgroundColor: bgcolortransparent,
+    zIndex: 9999,
+    height: headerHeight,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: "100%"
+  },
+  hbMenuView: {
+    backgroundColor: bgcolortransparent, 
+    opacity: 0.5, 
+    zIndex: 2, 
+    position: 'absolute', 
+    width: '100%', 
+    height: '100%'
+  },
+  hbPressable: {
+    backgroundColor: bgcolortransparent, 
+    width: '100%', 
+    height: '100%', 
+    position: 'relative'
+  }
 });

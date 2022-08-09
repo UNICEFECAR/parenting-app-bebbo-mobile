@@ -45,15 +45,15 @@ export interface VictoryStyles {
   VictoryTooltip: VictoryTooltipProps;
 }
 export enum chartTypes {
-  weightForHeight,
-  heightForAge,
+  WeightForHeight,
+  HeightForAge,
 }
 const GrowthChart = (props: any) => {
   let {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
    const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
-  const labelX = props.chartType == chartTypes.weightForHeight ? t('growthScreencmText'):t('month') ;
-  const labelY = props.chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
+  const labelX = props.chartType == chartTypes.WeightForHeight ? t('growthScreencmText'):t('month') ;
+  const labelY = props.chartType == chartTypes.WeightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
 const [deviceOrientation, setDeviceOrientation] = useState(
   windowWidth < windowHeight
     ? 'portrait'
@@ -82,16 +82,16 @@ useEffect(() => {
 }, [deviceOrientation]);
 
 
-    let growthMeasures = activeChild.measures.filter((item)=>item.isChildMeasured== true&& item.weight>0 && item.height>0);
+    let growthMeasures = activeChild.measures.filter((item:any)=>item.isChildMeasured== true&& item.weight>0 && item.height>0);
   let convertedMeasures:any = convertMeasuresData(
     growthMeasures,
     childBirthDate
   );
   /* Create line chart array fochartDatar type chart */
   let chartData: any[] = [];
-  convertedMeasures.map((item) => {
+  convertedMeasures.map((item:any) => {
     chartData.push(
-      chartType == chartTypes.weightForHeight
+      chartType == chartTypes.WeightForHeight
         ? {x: item.height, y: item.weight}
         : {x: item.measurementDate / 30, y: item.height},
     );
