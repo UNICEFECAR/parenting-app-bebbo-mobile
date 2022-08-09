@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native';
 import React from 'react';
 import { useAppSelector } from '../../App';
 import ScrollingButtonMenu from '../services/ScrollingButtonMenu';
@@ -24,9 +23,3 @@ const AgeBrackets = (props: any) => {
   );
 };
 export default AgeBrackets;
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 12,
-  },
-});

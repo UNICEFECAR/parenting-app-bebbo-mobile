@@ -15,20 +15,18 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
             rval = true;
         }else {
             // Download image: https://bit.ly/2S5CeEu
-            let { jobId, promise: downloadPromise } = RNFS.downloadFile({
+            let { jobId,promise: downloadPromise } = RNFS.downloadFile({
                 fromUrl: args.srcUrl,
                 toFile: args.destFolder + `/${args.destFilename}`,
                 connectionTimeout: 150 * 1000, // milliseconds
                 readTimeout: 150 * 1000, // milliseconds
             });
-
+            console.log(jobId);
             let downloadResult = await downloadPromise;
             if (downloadResult.statusCode === 200) {
                 if (await RNFS.exists(args.destFolder + '/' + args.destFilename)) {
                     rval = true;
-
-                    if (showLog) {
-                    }
+                    
                 }
             } else {
                 if (showLog) {
@@ -38,8 +36,7 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
         }
     } catch (rejectError) {
 
-       if (showLog) {
-       }
+      
     }
 
     return rval;
@@ -57,6 +54,7 @@ export const deleteImageFile=(filename:any)=>{
               resolve('Success');
             })
             .catch((err) => {
+              console.log(err)
               reject('Fail');
             });
         }
@@ -65,6 +63,7 @@ export const deleteImageFile=(filename:any)=>{
         }
       })
       .catch((err) => {
+        console.log(err)
         reject('Fail');
       });
     });
@@ -90,7 +89,7 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, a
         const numberOfSuccess = loopResponses.reduce((acc: number, currentValue: boolean) => {
             if (currentValue) return acc + 1; else return acc;
         }, 0);
-
+         console.log(numberOfSuccess);
         // Add responses to allResponses
         allResponses = allResponses.concat(
             loopResponses.map((value, index) => {
@@ -101,8 +100,7 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, a
             })
         );
 
-       if (showLog) {
-       }
+       
 
         // Wait between batches
         await waitMilliseconds(downloadImagesIntervalBetweenBatches);
@@ -111,7 +109,7 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, a
     return allResponses;
 }
 const waitMilliseconds=(milliseconds: number): Promise<string>=>{
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => { resolve('success') }, milliseconds);
     });
 }

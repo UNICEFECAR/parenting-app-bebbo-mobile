@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Animated,
   Dimensions,
+  StyleSheet,
   Text,
   View,
   ViewStyle
@@ -160,7 +161,7 @@ class Ruler extends React.Component<Props, State> {
     }
 
     // Create a listener
-    this.scrollListener = this.state.scrollX.addListener(({ value }) => {
+    this.scrollListener = this.state.scrollX.addListener(({ value }:any) => {
       this.setState({
         value: Math.round(value / this.snapSegment) + minimum,
         scrollValue: value,
@@ -212,7 +213,7 @@ class Ruler extends React.Component<Props, State> {
 
             <View
               key={index}
-              style={{ flexDirection: 'column-reverse' }}>
+              style={styles.rulerView}>
               <View
                 style={{
                   backgroundColor: i % step === 0 ? stepColor : normalColor,
@@ -222,8 +223,8 @@ class Ruler extends React.Component<Props, State> {
                 }}
               />
               {i % step === Number(0.0) ? (
-                <View style={{ width: 40, marginLeft: -25 }}>
-                  <Text style={{ textAlign: 'center', fontSize: 11 }}>
+                <View style={styles.textOuterView}>
+                  <Text style={styles.textView}>
                     {Number(stepPreFix * i).toFixed(2)}
                   </Text>
                 </View>
@@ -285,7 +286,7 @@ class Ruler extends React.Component<Props, State> {
           pointerEvents="none">
 
           {/* Indicator */}
-          <View style={{ flexDirection: 'row' }}>
+          <View style={styles.indicatorOuterView}>
             <View
               style={{
                 height: indicatorHeight,
@@ -366,3 +367,9 @@ Ruler.defaultProps = {
 };
 
 export default Ruler;
+export const styles=StyleSheet.create({
+  textOuterView:{ width: 40, marginLeft: -25 },
+  textView:{ textAlign: 'center', fontSize: 11 },
+  rulerView:{ flexDirection: 'column-reverse' },
+  indicatorOuterView:{ flexDirection: 'row' }
+})

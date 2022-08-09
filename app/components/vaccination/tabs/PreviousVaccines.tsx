@@ -17,10 +17,11 @@ import {
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
+import { greenColor } from '@styles/style';
 import { Heading2, Heading4Regular, Heading5 } from '@styles/typography';
 import React,{ useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useAppSelector } from '../../../../App';
 import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate } from '../../../services/Utils';
@@ -63,7 +64,7 @@ const PreviousVaccines = (props: any) => {
             {item.vaccines.every((el:any) => {
               return el.isMeasured == true;
             }) ? (
-              <RadioActive style={{ backgroundColor: 'green', borderRadius: 50 }}>
+              <RadioActive style={styles.radioActive}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
@@ -90,7 +91,7 @@ const PreviousVaccines = (props: any) => {
             </ToolsHeadingView>
             <ToolsActionView>
               <Icon
-                style={{ alignSelf: 'center' }}
+                style={styles.alignCenter}
                 name={isOpen ? 'ic_angle_up' : 'ic_angle_down'}
                 size={10}
                 color="#000"
@@ -104,11 +105,11 @@ const PreviousVaccines = (props: any) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>
-                    <View style={{ flex: 6, flexDirection: "row" }}>
+                    <View style={styles.vaccineOuterView}>
                       <ToolsIconView>
                         {v.isMeasured ? (
                           <RadioActive
-                            style={{ backgroundColor: 'green', borderRadius: 50 }}>
+                            style={styles.radioActive}>
                             <Icon name="ic_tick" size={12} color="#FFF" />
                           </RadioActive>
                         ) : (
@@ -133,7 +134,7 @@ const PreviousVaccines = (props: any) => {
                           : null}
                       </ToolsHeadingView>
                     </View>
-                    <View style={{ flex: 1, alignItems: "flex-end" }}>
+                    <View style={styles.toolsIconOuterView}>
                       <ToolsIconView1>
                         {v.isMeasured ? <Pressable onPress={() =>
                           navigation.navigate('AddChildVaccination', {
@@ -142,7 +143,7 @@ const PreviousVaccines = (props: any) => {
                             editVaccineDate: v.measurementDate,
                           })}>
                         
-                          <ButtonTextSmLineL numberOfLines={2} style={{ textDecorationLine: "none" }}><Icon
+                          <ButtonTextSmLineL numberOfLines={2} style={styles.textNoLine}><Icon
                             name="ic_edit"
                             size={16}
                             color="#000"
@@ -155,7 +156,7 @@ const PreviousVaccines = (props: any) => {
               );
             })}
            
-            {(item.vaccines.some((el) => {
+            {(item.vaccines.some((el:any) => {
               return el.isMeasured == false;
             })) ? (
               <ButtonContainerAuto>
@@ -178,3 +179,10 @@ const PreviousVaccines = (props: any) => {
   );
 };
 export default PreviousVaccines;
+const styles=StyleSheet.create({
+ radioActive:{backgroundColor: greenColor, borderRadius: 50 },
+ alignCenter:{alignSelf: 'center' },
+ vaccineOuterView:{ flex: 6, flexDirection: "row" },
+ toolsIconOuterView:{ flex: 1, alignItems: "flex-end" },
+ textNoLine:{ textDecorationLine: "none" }
+})

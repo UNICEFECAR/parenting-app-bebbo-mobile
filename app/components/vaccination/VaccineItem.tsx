@@ -6,7 +6,7 @@ import { ToolsHeadView } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
 import { Heading4Regular } from '@styles/typography';
 import React, { useContext, useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle';
 const VaccineItem = (props: any) => {
@@ -45,7 +45,7 @@ const VaccineItem = (props: any) => {
                       <Icon name="ic_tick" size={12} color="#000" />
                     </CheckboxActive>
                   ) : (
-                    <Checkbox style={{borderWidth: 1}}></Checkbox>
+                    <Checkbox style={styles.checkboxStyle}></Checkbox>
                   )}
                 </View>
               </CheckboxItem>
@@ -72,3 +72,6 @@ const VaccineItem = (props: any) => {
   );
 };
 export default VaccineItem;
+const styles=StyleSheet.create({
+checkboxStyle:{borderWidth: 1}
+})

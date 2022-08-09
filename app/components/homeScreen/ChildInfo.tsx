@@ -16,10 +16,11 @@ import {
 } from '@styles/typography';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { getAllConfigData } from '../../services/childCRUD';
 import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
+const windowWidth = Dimensions.get('window').width;
 
 const ChildInfo = (props: any) => {
   const {t} = useTranslation();
@@ -36,15 +37,14 @@ state.variableData?.variableData != ''
   : state.variableData?.variableData,
 );
 const dispatch = useAppDispatch();
-const windowWidth = Dimensions.get('window').width;
 
 const userNameData =
     allConfigData?.length > 0
-      ? allConfigData.filter((item) => item.key === 'userName')
+      ? allConfigData.filter((item:any) => item.key === 'userName')
       : [];
 const userRelationToParent =
     allConfigData?.length > 0
-      ? allConfigData.filter((item) => item.key === 'userRelationToParent')
+      ? allConfigData.filter((item:any) => item.key === 'userRelationToParent')
       : [];
 const activeChildGender = activeChild.gender;
 const ChildDevData = useAppSelector(
@@ -55,7 +55,7 @@ const PinnedChildDevData = useAppSelector(
   (state: any) =>
     state.utilsData.PinnedChildDevData != '' ?JSON.parse(state.utilsData.PinnedChildDevData):[],
   );
-  const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
+  const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState<any>();
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   useEffect(() => {
     getAllConfigData(dispatch);
@@ -102,15 +102,15 @@ const goToVideoArticleDetails = () => {
           </ShiftFromBottom10>
           {selectedPinnedArticleData ?
           <>
-          <ShiftFromBottom10 style={{height:windowWidth*0.563-17}}>
+          <ShiftFromBottom10 style={styles.shiftFromBottom}>
              <VideoPlayer selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
           </ShiftFromBottom10>
-          <Heading3Center style={{flexShrink:1}} numberOfLines={2}>{selectedPinnedArticleData?.title}</Heading3Center>
+          <Heading3Center style={styles.flexShrink1}  numberOfLines={2}>{selectedPinnedArticleData?.title}</Heading3Center>
 
           <ShiftFromTopBottom10>
           
             {selectedPinnedArticleData && selectedPinnedArticleData?.summary ? 
-            <Heading4Centerr style={{flexShrink:1}} numberOfLines={2}>
+            <Heading4Centerr style={styles.flexShrink1} numberOfLines={2}>
               {selectedPinnedArticleData?.summary}
             </Heading4Centerr>
               : null}
@@ -135,3 +135,7 @@ const goToVideoArticleDetails = () => {
 };
 
 export default ChildInfo;
+const styles=StyleSheet.create({
+  flexShrink1:{flexShrink:1},
+  shiftFromBottom:{height:windowWidth*0.563-17}
+})

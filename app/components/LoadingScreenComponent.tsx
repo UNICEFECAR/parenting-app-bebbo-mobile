@@ -2,7 +2,7 @@ import { buildFor, buildForBebbo } from '@assets/translations/appOfflineData/api
 import { bebbo_logo_shape } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { FlexDirCol } from './shared/FlexBoxStyle';
@@ -24,35 +24,18 @@ const LoadingScreenComponent = (props: any) => {
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
           colors={item.colors}
-          style={{
-            flex: 1,
-          }}>
+          style={styles.linearGradient}>
           <View
-            style={{
-              flex: 4,
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              flexDirection: 'column',
-              marginTop:45,
-              
-            }}>
+            style={styles.outerView}>
               <FlexDirCol>
-                    <View style={{marginBottom:15}}>
+                    <View style={styles.vectorImageView}>
                       <VectorImage source={item.image} />
                     </View>
-                    <View style={{
-                          width:180,height:60,
-                          alignContent:'center',
-                          marginTop:20,
-                          
-                        }}>
+                    <View style={styles.partnerLogoView}>
                       {prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' ?
                             null :
                           <PartnerLogo 
-                          style={{
-                            flex: 1,
-                            resizeMode: 'contain'
-                          }}
+                          style={styles.partnerLogo}
                             source={
                               sponsors?.country_national_partner!=null
                                 ? {
@@ -63,18 +46,11 @@ const LoadingScreenComponent = (props: any) => {
                           />
                         }
                     </View>
-                    <View style={{
-                          width:180,height:60,
-                          alignContent:'center',
-                          marginTop:25,
-                        }}>
+                    <View style={styles.mainView}>
                         {prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' ?
                             null :
                           <SponsorLogo
-                          style={{
-                            flex: 1,
-                            resizeMode: 'contain'
-                          }}
+                          style={styles.sponsorLogo}
                             source={
                               sponsors?.country_sponsor_logo!=null
                                 ? {
@@ -97,19 +73,11 @@ const LoadingScreenComponent = (props: any) => {
           </View>
 
           <View
-            style={{
-              marginBottom: 15,
-              marginTop:25,
-              flex: 1,
-              flexDirection: 'column',
-              alignItems: 'center',
-              alignContent: 'center',
-              justifyContent: 'flex-end',
-            }}>
+            style={styles.innerView}>
             <Text>
               <ActivityIndicator size="large" color="#ffffff" />
             </Text>
-            <Text style={{textAlign: 'center'}}>
+            <Text style={styles.loadingText}>
               <LoadingText>{t('loadingText')}</LoadingText>
             </Text>
           </View>
@@ -119,3 +87,45 @@ const LoadingScreenComponent = (props: any) => {
   );
 };
 export default LoadingScreenComponent;
+const styles = StyleSheet.create({
+ outerView:{
+  flex: 4,
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  flexDirection: 'column',
+  marginTop:45,
+},
+innerView:
+  {
+    marginBottom: 15,
+    marginTop:25,
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'flex-end',
+  },
+  mainView:{
+    width:180,height:60,
+    alignContent:'center',
+    marginTop:25,
+  },
+  sponsorLogo:{
+    flex: 1,
+    resizeMode: 'contain'
+  },
+  linearGradient:{
+    flex: 1,
+  },
+  vectorImageView:{marginBottom:15},
+  partnerLogoView:{
+    width:180,height:60,
+    alignContent:'center',
+    marginTop:20  
+  },
+  partnerLogo:{
+    flex: 1,
+    resizeMode: 'contain'
+  },
+  loadingText:{textAlign: 'center'}
+});
