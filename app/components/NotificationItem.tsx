@@ -4,7 +4,7 @@ import { Heading4Bold, Heading4Regular, Heading5Bold, Heading6, ShiftFromTop10, 
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import {
   Menu,
   MenuOption,
@@ -202,7 +202,7 @@ const NotificationItem = (props: any) => {
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          <Checkbox style={styles.checkBoxStyle}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -211,14 +211,8 @@ const NotificationItem = (props: any) => {
                   <>
                     <Menu
                       renderer={renderers.ContextMenu}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                      onSelect={(value) =>{
-                      }}>
+                      style={styles.menuView}
+                      >
                       <MenuTrigger>
                         <Icon
                           
@@ -320,7 +314,7 @@ const NotificationItem = (props: any) => {
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          <Checkbox style={styles.checkBoxStyle}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -329,14 +323,8 @@ const NotificationItem = (props: any) => {
                   <>
                     <Menu
                       renderer={renderers.ContextMenu}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                      onSelect={(value) =>{
-                      }}>
+                      style={styles.menuView}
+                      >
                       <MenuTrigger>
                         <Icon
                           
@@ -443,7 +431,7 @@ const NotificationItem = (props: any) => {
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          <Checkbox style={styles.checkBoxStyle}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -452,17 +440,10 @@ const NotificationItem = (props: any) => {
                   <>
                     <Menu
                       renderer={renderers.ContextMenu}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                      onSelect={(value) =>{
-                      }}>
+                      style={styles.menuView}
+                      >
                       <MenuTrigger>
                         <Icon
-                          
                           name={'ic_kebabmenu'}
                           size={25}
                           color="#000"
@@ -562,7 +543,7 @@ const NotificationItem = (props: any) => {
                               <Icon name="ic_tick" size={12} color="#000" />
                             </CheckboxActive>
                           ) : (
-                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                            <Checkbox style={styles.checkBoxStyle}></Checkbox>
                           )}
                         </View>
                       </CheckboxItem>
@@ -571,17 +552,10 @@ const NotificationItem = (props: any) => {
                     <>
                       <Menu
                         renderer={renderers.ContextMenu}
-                        style={{
-                          width: 40,
-                          height: 40,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                        onSelect={(value) =>{
-                         }}>
+                        style={styles.menuView}
+                        >
                         <MenuTrigger>
                           <Icon
-                            
                             name={'ic_kebabmenu'}
                             size={25}
                             color="#000"
@@ -594,11 +568,9 @@ const NotificationItem = (props: any) => {
                               borderRadius: 10,
                               backgroundColor: primaryTintColor,
                             },
-
                             optionWrapper: {
                               padding: 15,
                             },
-
                           }}>
                           <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                             <Heading5Bold>{t('notiOption1')}</Heading5Bold>
@@ -679,7 +651,7 @@ const NotificationItem = (props: any) => {
                               <Icon name="ic_tick" size={12} color="#000" />
                             </CheckboxActive>
                           ) : (
-                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                            <Checkbox style={styles.checkBoxStyle}></Checkbox>
                           )}
                         </View>
                       </CheckboxItem>
@@ -688,17 +660,10 @@ const NotificationItem = (props: any) => {
                     <>
                       <Menu
                         renderer={renderers.ContextMenu}
-                        style={{
-                          width: 40,
-                          height: 40,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                        onSelect={(value) =>{
-                         }}>
+                        style={styles.menuView}
+                        >
                         <MenuTrigger>
                           <Icon
-                            
                             name={'ic_kebabmenu'}
                             size={25}
                             color="#000"
@@ -791,7 +756,7 @@ const NotificationItem = (props: any) => {
                         <Icon name="ic_tick" size={12} color="#000" />
                       </CheckboxActive>
                     ) : (
-                      <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                      <Checkbox style={styles.checkBoxStyle}></Checkbox>
                     )}
                   </View>
                 </CheckboxItem>
@@ -800,14 +765,8 @@ const NotificationItem = (props: any) => {
               <>
                 <Menu
                   renderer={renderers.ContextMenu}
-                  style={{
-                    width: 40,
-                    height: 40,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  onSelect={(value) =>{
-                   }}>
+                  style={styles.menuView}
+                  >
                   <MenuTrigger>
                     <Icon
                       
@@ -823,7 +782,6 @@ const NotificationItem = (props: any) => {
                         borderRadius: 10,
                         backgroundColor: primaryTintColor,
                       },
-
                       optionWrapper: {
                         padding: 15,
                       },
@@ -855,3 +813,14 @@ const NotificationItem = (props: any) => {
 };
 export default NotificationItem;
 
+const styles = StyleSheet.create({
+  checkBoxStyle: { 
+    borderWidth: 1 
+  },
+  menuView: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

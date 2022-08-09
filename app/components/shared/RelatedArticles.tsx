@@ -40,7 +40,6 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices
   );
-  const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
     React.useCallback(() => {
@@ -61,7 +60,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
               const i = relatedData.findIndex((_item: any) => _item.id === x.id);
               return x.category == category && x.id !== currentId && i == -1
             }).slice(0, catartlength);
-            setrelatedArticleData((relatedArticleData: any) => [...relatedData, ...filteredArtData]);
+            setrelatedArticleData([...relatedData, ...filteredArtData]);
           } else {
             setrelatedArticleData(relatedData);
           }
@@ -74,7 +73,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
             const i = relatedData.findIndex((_item: any) => _item.id === x.id);
             return x.category == category && x.id !== currentId && i == -1
           }).slice(0, catartlength);
-          setrelatedArticleData((relatedArticleData: any) => [...filteredArtData]);
+          setrelatedArticleData([...filteredArtData]);
         }
       }
       fetchData()
@@ -91,15 +90,15 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
       });
   };
-  const RenderRelatedArticleItem = ({item, index}) => {
+  const RenderRelatedArticleItem = ({item, index}:any) => {
     return (
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
-        style={{ flexDirection: 'row' }}
+        style={styles.itemPressable}
       >
-        <RelatedArticleContainer style={{ backgroundColor: '#fff' }} key={index}>    
+        <RelatedArticleContainer key={index}>    
         <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>
-          <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-            <View style={{ minHeight: 80, }}>
+          <View style={styles.imageView1}>
+            <View style={styles.imageView}>
               <ArticleListContent>
                 <ShiftFromTopBottom5>
                    <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
@@ -122,7 +121,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
           <ArticleHeading>
             <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
           </ArticleHeading>
-          <View style={{ paddingLeft: 10, }}>
+          <View style={styles.listParentView}>
             <FlatList
               data={relatedArticleData}
               horizontal
@@ -154,4 +153,18 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5
   },
+  itemPressable: {
+    flexDirection:'row'
+  },
+  imageView1: { 
+    flexDirection: 'column',
+    flex: 1,
+    justifyContent: 'space-between'
+  },
+  imageView: {
+    minHeight:80
+  },
+  listParentView : {
+    paddingLeft:10
+  }
 });

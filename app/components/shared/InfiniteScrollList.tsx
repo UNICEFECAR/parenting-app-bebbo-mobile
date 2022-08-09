@@ -1,20 +1,14 @@
-import { destinationFolder } from "@assets/translations/appOfflineData/apiConstants";
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import { FlatList, View, Text, ActivityIndicator } from "react-native";
-import downloadImages from "../../downloadImages/ImageStorage";
-import RNFS from 'react-native-fs';
+import React, { useState, useEffect, useRef } from "react";
+import { FlatList, View, ActivityIndicator, StyleSheet } from "react-native";
 const InfiniteScrollList = (props : any) => {
     const { filteredData , renderArticleItem, receivedLoadingArticle } = props;
     const [isLoading, setIsLoading] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
     const limit = 10;
     const totalDataCount = filteredData.length;
     const [page, setPage] = useState(1);
     const [clientData, setClientData] = useState([]);
     const [serverData, serverDataLoaded] = useState([]);
-    const [loadmore, setLoadmore] = useState(false);
     const [refresh, setRefresh] = useState(false);
-    const [pending_process, setPending_process] = useState(true);
     let onEndReachedCalledDuringMomentum = true;
     const flatListRef = useRef(null);
     useEffect(() => {
@@ -59,7 +53,6 @@ const InfiniteScrollList = (props : any) => {
     const handleLoadMore = () => {
         if(!onEndReachedCalledDuringMomentum)
         {
-            // loadmore && !pending_process
             if (clientData.length < totalDataCount) {
                 const pagenew=page+1;
                 setPage(page + 1);
@@ -89,7 +82,7 @@ const InfiniteScrollList = (props : any) => {
         )
     };  
     return (
-        <View style={{marginBottom:200}}>
+        <View style={styles.containerView}>
             <FlatList
             ref={flatListRef}
             extraData={page}
@@ -111,3 +104,8 @@ const InfiniteScrollList = (props : any) => {
 }
 
 export default InfiniteScrollList
+const styles = StyleSheet.create({
+    containerView: {
+        marginBottom:200
+    }
+})

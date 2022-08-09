@@ -4,7 +4,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { ThemeContext } from 'styled-components/native';
+import styled, { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../database/schema/ActivitiesSchema';
@@ -13,7 +13,12 @@ import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle
 import { FlexCol } from './shared/FlexBoxStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
 
-const FavActivities = (props: any) => {
+const ContainerView = styled.View`
+  flex: 1;
+  flex-direction: row;
+  background-color: ${props => props.theme.colors.ACTIVITIES_TINTCOLOR};,
+`;
+const FavActivities = () => {
   const navigation = useNavigation()
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -91,20 +96,12 @@ const favoritegames = useAppSelector((state: any) =>
   });
   return (
     <>
-       <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          backgroundColor: actBackgroundColor,
-        }}>
+       <ContainerView>
           <FlexCol>
        {favGamesToShow.length> 0 ? 
                  <FlatList
                   ref={flatListRef}
                   data={favGamesToShow}
-                  onScroll={(e:any)=>{
-                  
-                  }}
                   nestedScrollEnabled={true}
                   removeClippedSubviews={true} // Unmount components when outside of window 
                   initialNumToRender={4} // Reduce initial render amount
@@ -117,7 +114,7 @@ const favoritegames = useAppSelector((state: any) =>
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
 
           </FlexCol>
-        </View>
+        </ContainerView>
     </>
   );
 };
@@ -126,8 +123,8 @@ export default FavActivities;
 const styles = StyleSheet.create({
   cardImage: {
     height: 200,
-    width: '100%',
-    borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
-  },
+    borderTopRightRadius: 5,
+    width: '100%',
+  }
 });

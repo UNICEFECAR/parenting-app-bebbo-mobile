@@ -18,7 +18,6 @@ const GrowthIntroductory = (props: any) => {
   );
   const {t} = useTranslation();
   let defaultMessage = '';
-  let periodIntroductionText: string = '';
   const growthPeriod = () => {
     if (childAgeInDays !== null) {
       let ageInDays = 0;
