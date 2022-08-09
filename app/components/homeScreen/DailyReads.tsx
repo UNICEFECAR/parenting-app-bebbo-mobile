@@ -79,7 +79,7 @@ const DailyReads = () => {
     const suburl=isAdvice?"/article/":"/activity/";
     const mainUrl=shareTextButton+languageCode+suburl+item.id;
       try {
-       const result = await Share.share({
+        const result = await Share.share({
         message:item.title+'\n'+t('appShareText')+'\n'+mainUrl
        });
        if (result.action === Share.sharedAction) {
@@ -92,11 +92,11 @@ const DailyReads = () => {
        } else if (result.action === Share.dismissedAction) {
          // dismissed
        }
-     } catch (error: any) {
+     } catch (error) {
        Alert.alert(t('generalError'));
      }
    };
-  const RenderDailyReadItem = React.memo(({ item, index }) => {
+  const RenderDailyReadItem = React.memo(({ item, index }:any) => {
     return (
       <View>
         <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>

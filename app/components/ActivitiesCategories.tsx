@@ -12,7 +12,7 @@ type ActivityCategoriesProps = {
     filterOnCategory?: any,
     filterArray?: any,
     fromPage?: any,
-    onFilterArrayChange?: Function
+    onFilterArrayChange?: any
 }
 const ActivitiesCategories = (props: ActivityCategoriesProps) => {
     const activityCategoryData = useAppSelector(
@@ -30,31 +30,22 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
         return filterArray;
     };
     const chunk = (arr: any, size: any) =>
-        Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+        Array.from({ length: Math.ceil(arr.length / size) }, (v:any, i:any) =>
             arr.slice(i * size, i * size + size)
         );
     const activityBrackets = chunk(activityCategoryobj, 2)
     return (
         <>
-
-
             <ActivityFilter key={props.filterArray.length}>
-            <View style={{
-          padding: 10,
-          minHeight: 120,
-          width:'100%',
-          marginLeft:'auto'
-          ,marginRight:'auto',
-         
-        }}>
+            <View style={styles.viewStyle}>
                 <FlexDirRow>
                     {activityBrackets.map((activityCategoryInner: any[], i: number) => {
-                        return (<View key={i} style={{ flex: 1, flexDirection: 'column' }} >
+                        return (<View key={i} style={styles.innerView} >
                             {
                                 activityCategoryInner.map((item) => {
-                                    return (<Pressable style={{ flex: 1, }} key={item.id} onPress={async() => {
+                                    return (<Pressable style={styles.pressableView} key={item.id} onPress={async() => {
                                         props.filterOnCategory(getFilterArray(item.id, props.filterArray)) }}>
-                                        <FilterBox style={[{backgroundColor:(props.filterArray.includes(item.id) ? "#0FD87E" : "#fff")}]}>
+                                        <FilterBox style={props.filterArray.includes(item.id) ? styles.filterBoxbg1 : styles.filterBoxbg2}>
                                             <OuterIconRow>
                                                 <OuterIconLeft>
                                                     <Icon style={styles.iconStyle} name={item.image} size={20} color="#000" />
@@ -79,13 +70,24 @@ const styles = StyleSheet.create({
     iconStyle: {
         marginLeft: 10,
     },
-    item: {
-        backgroundColor: '#FFF',
-        borderRadius: 5,
-        margin: 5,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
+    viewStyle:{
+          padding: 10,
+          minHeight: 120,
+          width:'100%',
+          marginLeft:'auto',
+          marginRight:'auto',
+    },
+    innerView:{
+        flex: 1, 
+        flexDirection: 'column'
+    },
+    pressableView:{
+        flex: 1, 
+    },
+    filterBoxbg1:{
+    backgroundColor:"#0FD87E"
+    },
+    filterBoxbg2:{
+        backgroundColor:"#fff"
     }
 })

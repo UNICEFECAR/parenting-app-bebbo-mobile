@@ -13,6 +13,7 @@ import {
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
+import { greenColor } from '@styles/style';
 import {
   Heading2,
   Heading4,
@@ -26,14 +27,9 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
-import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
-import {
-  ChildEntity,
-  ChildEntitySchema
-} from '../../database/schema/ChildDataSchema';
 import { isFutureDate } from '../../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 import {
@@ -65,10 +61,10 @@ const UpcomingHealthCheckup = (props: any) => {
   let reminders = activeChild.reminders;
   let hcReminder: any;
   const healthCheckupReminders = reminders.filter(
-    (item) => item?.reminderType == 'healthCheckup',
+    (item:any) => item?.reminderType == 'healthCheckup',
   );
   if (healthCheckupReminders.length > 0) {
-    healthCheckupReminders.forEach((healthCheckupReminder) => {
+    healthCheckupReminders.forEach((healthCheckupReminder:any) => {
       let today = DateTime.fromJSDate(new Date());
       let reminderDate = new Date(DateTime.fromMillis(healthCheckupReminder?.reminderDate));
       const hours = new Date(healthCheckupReminder?.reminderTime).getHours()
@@ -96,7 +92,7 @@ const UpcomingHealthCheckup = (props: any) => {
     JSON.parse(state.utilsData.vaccineData),
   );
   const getVaccineName = (vaccineID:any) => {
-    return allVaccineData?.find((v) => v.uuid == vaccineID)?.title;
+    return allVaccineData?.find((v:any) => v.uuid == vaccineID)?.title;
   };
   useEffect(() => {
     currentPeriodId == item?.id ? setIsOpen(true) : setIsOpen(false);
@@ -111,7 +107,7 @@ const UpcomingHealthCheckup = (props: any) => {
           }}>
           <ToolsIconView>
             {item?.growthMeasures?.measurementDate ? (
-              <RadioActive style={{ backgroundColor: 'green' }}>
+              <RadioActive style={styles.radioActive}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
@@ -132,7 +128,7 @@ const UpcomingHealthCheckup = (props: any) => {
             <ToolsActionView>
               <FlexDirRow>
                 <Icon
-                  style={{ alignSelf: 'center' }}
+                  style={styles.iconStyle}
                   name={isOpen ? 'ic_angle_up' : 'ic_angle_down'}
                   size={10}
                   color="#000"
@@ -242,7 +238,7 @@ const UpcomingHealthCheckup = (props: any) => {
               <MainContainer>
                 {hcReminder ? (
                   <FDirRowStart>
-                     <View style={{flex:6,flexDirection:"row"}}>
+                     <View style={styles.dirView}>
                     <ToolsIconView>
                       <IconViewBg>
                         <Icon
@@ -266,7 +262,7 @@ const UpcomingHealthCheckup = (props: any) => {
                         </Heading4>
                       </ToolsHeadingView>
                       </View>
-                      <View  style={{flex:1,alignItems:"flex-end"}}>
+                      <View  style={styles.pressableOuterView}>
                       <Pressable
                           disabled={isFutureDate(activeChild?.birthDate)}
                           onPress={() => {
@@ -283,7 +279,7 @@ const UpcomingHealthCheckup = (props: any) => {
                           }}>
                       <ToolsIconView1>
                        
-                          <ButtonTextSmLine numberOfLines={2} style={{textDecorationLine:"none"}}>
+                          <ButtonTextSmLine numberOfLines={2} style={styles.textDecoration}>
                           <Icon name="ic_edit" size={16} color="#000" />
                           </ButtonTextSmLine>
                        
@@ -345,3 +341,10 @@ const UpcomingHealthCheckup = (props: any) => {
   );
 };
 export default UpcomingHealthCheckup;
+const styles=StyleSheet.create({
+  radioActive:{ backgroundColor: greenColor },
+  iconStyle:{ alignSelf: 'center' },
+  dirView:{flex:6,flexDirection:"row"},
+  pressableOuterView:{flex:1,alignItems:"flex-end"},
+  textDecoration:{textDecorationLine:"none"}
+})
