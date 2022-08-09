@@ -12,8 +12,8 @@ export const userRealmConfig: Realm.Configuration = {
   schemaVersion: 3,
   migration: (oldRealm, newRealm) => {
     //realm old version was 0 and new version is 1.
-    const oldObjects = oldRealm.objects('ChildEntity');
-    const newObjects = newRealm.objects('ChildEntity');
+    // const oldObjects = oldRealm.objects('ChildEntity');
+    // const newObjects = newRealm.objects('ChildEntity');
     if (oldRealm.schemaVersion < 1) {
       migrateuserRealm(oldRealm, newRealm);
     }

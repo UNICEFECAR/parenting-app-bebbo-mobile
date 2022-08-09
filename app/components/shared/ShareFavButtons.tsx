@@ -54,19 +54,19 @@ const languageCode = useAppSelector(
       } else if (result.action === Share.dismissedAction) {
         // dismissed
       }
-    } catch (error: any) {
+    } catch (error) {
       Alert.alert(t('generalError'));
     }
   };
   const onFavClick = async ()=>{
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
     if(isAdvice){
-    const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
+    await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
     dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
     analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
     }else{
-      const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
+      await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
       dispatch(setFavouriteGames(childData[0].favoritegames));
       analytics().logEvent(FAVOURITE_GAME_ADDED, {game_id:item?.id});
@@ -77,12 +77,12 @@ const languageCode = useAppSelector(
   const unFavHandler = async ()=>{
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
     if(isAdvice){
-      const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
+      await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
       dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
   
       }else{
-        const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
+        await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
         dispatch(setFavouriteGames(childData[0].favoritegames));
       }

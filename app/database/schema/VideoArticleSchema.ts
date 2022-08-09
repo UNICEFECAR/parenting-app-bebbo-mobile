@@ -1,4 +1,4 @@
-import { CoverImageEntity, CoverVideoEntity,CoverImage,CoverVideo} from './ArticleSchema';
+import { CoverImageEntity, CoverVideoEntity} from './ArticleSchema';
 import {ObjectSchema} from 'realm';
 
 export type VideoArticleEntity = {

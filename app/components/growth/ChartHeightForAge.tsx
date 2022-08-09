@@ -1,12 +1,11 @@
 import { boy_child_gender, girl_child_gender, weight_growth_type } from '@assets/translations/appOfflineData/apiConstants';
-import { FlexCol, FlexRowEnd } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexColChart, FlexRowEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading2, Heading3Regular, Heading4, ShiftFromTopBottom15 } from '@styles/typography';
+import { Heading3Regular, Heading4, ShiftFromTopBottom15 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Dimensions, Pressable, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
@@ -14,12 +13,11 @@ import { getInterpretationHeightForAge } from '../../services/interpretationServ
 import GrowthChart, { chartTypes } from './GrowthChart';
 
 const ChartHeightForAge = (props: any) => {
-  const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const navigation = useNavigation();
-  const fullScreenChart = (chartType, obj) => {
+  const fullScreenChart = (chartType:any, obj:any) => {
     navigation.navigate('ChartFullScreen', {
       activeChild,
       chartType,
@@ -97,8 +95,8 @@ useEffect(() => {
       <FlexCol>
         <FlexRowEnd>
           <Pressable
-            style={{padding: 7, marginTop: 5}}
-            onPress={() => fullScreenChart(chartTypes.heightForAge, obj)}>
+            style={styles.fullScreenPressable}
+            onPress={() => fullScreenChart(chartTypes.HeightForAge, obj)}>
             <Icon name="ic_fullscreen" size={16} />
           </Pressable>
         </FlexRowEnd>
@@ -107,13 +105,13 @@ useEffect(() => {
         {isChartVisible && deviceOrientation=='portrait' ? (
           <GrowthChart
             activeChild={activeChild}
-            chartType={chartTypes.heightForAge}
+            chartType={chartTypes.HeightForAge}
             bgObj={obj}
             windowWidth={windowWidth}
             windowHeight={windowHeight}
           />
         ) : (
-          <View style={{marginTop:50}}>
+          <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={headerColor} />
           </View>
         )}
@@ -132,25 +130,29 @@ useEffect(() => {
         </ShiftFromTopBottom15>
       </FlexCol>
       {(props.days >= activeChild.taxonomyData.days_from) ?
-          <FlexCol
-            style={{
-              backgroundColor: backgroundColor,
-              marginLeft: -20,
-              marginRight: -20,
-            }}>
+          <FlexColChart>
             <RelatedArticles
               fromScreen={'ChildgrowthTab'}
               related_articles={item?.interpretationText?.articleID}
               category={5}
-              currentId={chartTypes.heightForAge}
+              currentId={chartTypes.HeightForAge}
               headerColor={headerColor}
               backgroundColor={backgroundColor}
               navigation={navigation}
             />
-          </FlexCol>
+          </FlexColChart>
           : null 
         }
     </FlexCol>
   );
 };
 export default ChartHeightForAge;
+const styles = StyleSheet.create({
+  fullScreenPressable:{
+    padding: 7,
+    marginTop: 5
+  },
+  loadingContainer: {
+    marginTop:50
+  }
+})

@@ -10,6 +10,7 @@ import {
 } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { bgcolorWhite2 } from '@styles/style';
 import {
   Heading2,
   Heading3,
@@ -20,7 +21,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -133,7 +134,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
                   })
                 }}>
                 <FlexDirRowEnd>
-                  <ButtonTextMdLine numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                  <ButtonTextMdLine numberOfLines={2} style={styles.btnTextDeco}><Icon
                       name="ic_edit"
                       size={16}
                       color="#000"
@@ -155,18 +156,27 @@ const ActiveChildMeasureTimeline = (props: any) => {
         lineColor="#000"
         showTime={false}
         lineWidth={1}
-        descriptionStyle={{color: 'gray'}}
+        descriptionStyle={styles.grayColor}
         renderDetail={renderDetail}
         innerCircle={'icon'}
         iconDefault={<Icon name={'ic_tick'} color="#000" size={10} />}
-        eventDetailStyle={{
-          backgroundColor: '#FFF',
-          marginBottom: 10,
-          padding: 15,
-          borderRadius: 4,
-        }}
+        eventDetailStyle={styles.evntDetailStyle}
       />
     </>
   );
 };
 export default ActiveChildMeasureTimeline;
+const styles = StyleSheet.create({
+  btnTextDeco: {
+    textDecorationLine:"none"
+  },
+  grayColor: {
+    color: 'gray'
+  },
+  evntDetailStyle: {
+    backgroundColor: bgcolorWhite2,
+    marginBottom: 10,
+    padding: 15,
+    borderRadius: 4,
+  }
+})
