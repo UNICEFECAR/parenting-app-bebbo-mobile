@@ -3,7 +3,7 @@ import { Heading6w } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import {  useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
@@ -280,8 +280,7 @@ const HeaderNotiIcon = (props: any) => {
   useEffect(() => {
     const fetchData2 = async () => {
       let allnotiobj: any[]=[];
-      let currschedulednotiobj: any[]=[];
-      localNotifications.map((x:any)=>{
+       localNotifications.map((x:any)=>{
         x.data.map((y:any) => {
           allnotiobj.push(y)
         })
@@ -321,10 +320,10 @@ const HeaderNotiIcon = (props: any) => {
     <>
     {
     props.isVisibleIcon?
-      <Pressable onPress={() => navigation.navigate('NotificationsScreen')} style={{ flexDirection: 'row' }}>
-        <Icon name="ic_sb_notification" size={32} color={props.color} style={{ position: 'relative' }} />
+      <Pressable onPress={() => navigation.navigate('NotificationsScreen')} style={styles.outerPressable}>
+        <Icon name="ic_sb_notification" size={32} color={props.color} style={styles.iconStyle} />
         {notifications.length > 0 ?
-          <BubbleContainer style={{ position: 'absolute', right: -12, top: -5, justifyContent: 'center', alignItems: 'center' }}>
+          <BubbleContainer style={styles.bubbleContiner}>
             <BubbleView1>
               <Heading6w>{notifications.length}</Heading6w>
             </BubbleView1>
@@ -336,4 +335,11 @@ const HeaderNotiIcon = (props: any) => {
   );
 };
 export default HeaderNotiIcon;
+const styles = StyleSheet.create({
+  outerPressable:{
+    flexDirection: 'row'
+  },
+  iconStyle:{ position: 'relative' },
+  bubbleContiner:{ position: 'absolute', right: -12, top: -5, justifyContent: 'center', alignItems: 'center' }
+});
 
