@@ -23,14 +23,14 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { getCurrentChildAgeInYears } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
 
-const LastChildMeasure = (props: any) => {
+const LastChildMeasure = () => {
   const {t} = useTranslation();
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -40,7 +40,6 @@ const LastChildMeasure = (props: any) => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
@@ -50,7 +49,6 @@ const LastChildMeasure = (props: any) => {
     }
 
     let measurementDate: DateTime = DateTime.local();
-    const timeNow = DateTime.local();
     let childmeasures = measures.map((item: MeasuresEntity) => {
       if (item.measurementDate) {
         measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
@@ -86,7 +84,7 @@ const LastChildMeasure = (props: any) => {
   let date = DateTime.fromISO(activeChild.birthDate);
   let convertInDays = lastmeasurementDate.diff(date, "days").days;
   let days = 0;
-  if (convertInDays !== undefined) {days = Math.round(convertInDays)};
+  if (convertInDays !== undefined) {days = Math.round(convertInDays)}
   return (
     <>
       <BannerContainer1>
@@ -167,7 +165,7 @@ const LastChildMeasure = (props: any) => {
                    })
                 }}
                 >
-                   <ButtonTextMdLine numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                   <ButtonTextMdLine numberOfLines={2} style={styles.buttonTextDecoration}><Icon
                       name="ic_edit"
                       size={16}
                       color="#000"
@@ -188,7 +186,7 @@ const LastChildMeasure = (props: any) => {
                               /></IconViewAlert>
                         </OuterIconLeft>
                       </OuterIconRow>
-                      <Heading4 style={{flexShrink:1}}>{t('noRecentGrowthMeasure')}</Heading4>
+                      <Heading4 style={styles.headingFlexShrink}>{t('noRecentGrowthMeasure')}</Heading4>
           </FDirRowStart>
           </ShiftFromTop20>
           :null}
@@ -204,7 +202,7 @@ const LastChildMeasure = (props: any) => {
                               /></IconViewAlert>
                         </OuterIconLeft>
                       </OuterIconRow>
-                      <Heading4 style={{flexShrink:1}}>{t('fiveYearsGreater')}</Heading4>
+                      <Heading4 style={styles.headingFlexShrink}>{t('fiveYearsGreater')}</Heading4>
           </FDirRowStart>
           </ShiftFromTop20>
           :null}
@@ -242,3 +240,11 @@ const LastChildMeasure = (props: any) => {
   );
 };
 export default LastChildMeasure;
+const styles = StyleSheet.create({
+  buttonTextDecoration : {
+    textDecorationLine:"none"
+  },
+  headingFlexShrink : {
+    flexShrink:1
+  }
+})

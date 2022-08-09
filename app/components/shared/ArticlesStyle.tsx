@@ -19,10 +19,12 @@ export const ArticleListContainer = styled.View`
 export const RelatedArticleContainer = styled(ArticleListContainer)`
   width:300px;
   margin:10px 5px;
+  background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 export const RelatedArticleContainer2 = styled(ArticleListContainer)`
   width:350px;
   margin:10px 5px;
+  background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const SearchBox = styled.View`

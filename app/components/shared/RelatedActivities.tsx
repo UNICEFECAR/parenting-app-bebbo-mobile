@@ -95,12 +95,11 @@ const RelatedActivities = (props:RelatedActivityProps) => {
   const RenderActivityItem = React.memo(({item, index}:any) => {
    return(
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}
-      style={{flexDirection:'row'}}
+      style={styles.itemPressable}
       >
-        <RelatedArticleContainer style={{backgroundColor:'#fff'}}  key={index}>
-        
+        <RelatedArticleContainer key={index}>
           <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>
-          <View style={{minHeight:90,}}>
+          <View style={styles.imageView}>
           <ArticleListContent>
           <ShiftFromTopBottom5>
           <Heading6Bold>{ activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name }</Heading6Bold>
@@ -121,7 +120,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
           <ArticleHeading>
           <Heading2>{t('developScreenrelatedAct')}</Heading2>
           </ArticleHeading>
-          <View style={{paddingLeft:10,}}>
+          <View style={styles.listParentView}>
           <FlatList
             data={relatedArticleData}
             horizontal
@@ -153,4 +152,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5
   },
+  itemPressable: {
+    flexDirection:'row'
+  },
+  imageView: {
+    minHeight:90
+  },
+  listParentView : {
+    paddingLeft:10
+  }
 });

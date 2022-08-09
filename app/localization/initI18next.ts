@@ -11,7 +11,6 @@ import i18n, {
   import { localization, AVAILABLE_LANGUAGES } from '@dynamicImportsClass/dynamicImports';
   
   console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
-  const newArr: any[] = [];
   const localisationnew = [...localization];
   const findAllByKey:any = (obj: object | null, keyToFind: string) => {
     return Object.entries(obj)
@@ -45,16 +44,12 @@ import i18n, {
       AsyncStorage.getItem('APP_LANG', (err, lng) => {
         // Error fetching stored data or no language was stored
         if (err || !lng) {
-          if (err) {
-          } else {
-            
-          }
           
           const bestLng = RNLocalize.findBestAvailableLanguage(AVALAILABLE_LANG_CODES);
          const langCodeNew = findLangCode(bestLng?.languageTag);
          let lang2 = langCodeNew ?langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
-         const country = localization.find(x => x.languages.some(item => item.locale === lang2));
-        const language = localization.reduce((prev, product):any => prev || product.languages.find(item => item.locale === lang2), undefined);
+         const country = localization.find((x:any) => x.languages.some((item:any) => item.locale === lang2));
+        const language = localization.reduce((prev: any, product: any) => prev || product.languages.find(item => item.locale === lang2), undefined);
         store.dispatch(onLocalizationSelect({country,language}))
           callback(langCodeNew ?? localization[localization.length-1]?.languages[0]?.locale);
           return;
@@ -75,7 +70,7 @@ import i18n, {
     .use({
       type: 'postProcessor',
       name: 'trimwhitespace',
-      process: function (value: any, key: any, options: any, translator: any) {
+      process: function (value: any) {
         return trimwhiteSpace(value);
       }
     })
