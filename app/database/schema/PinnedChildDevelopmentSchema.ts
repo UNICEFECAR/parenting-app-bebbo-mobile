@@ -1,5 +1,5 @@
 import {ObjectSchema} from 'realm';
-import { CoverVideoEntity, CoverImageEntity, CoverVideo, CoverImage } from './ArticleSchema';
+import { CoverVideoEntity, CoverImageEntity } from './ArticleSchema';
 
 export type PinnedChildDevelopmentEntity = {
     id: number,

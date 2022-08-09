@@ -23,7 +23,7 @@ export type MeasuresEntity = {
   weight: string,
   height: string,
   measurementDate: number,
-  titleDateInMonth: string
+  titleDateInMonth: string,
   didChildGetVaccines: boolean,
   vaccineIds: string,
   doctorComment: string,
@@ -42,7 +42,7 @@ export const ReminderEntitySchema = {
   }
 }
 export type ReminderEntity = {
-  uuid: string
+  uuid: string,
   reminderType: remiderType,
   reminderDate: number,
   reminderTime: number,
