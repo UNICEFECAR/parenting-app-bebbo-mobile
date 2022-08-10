@@ -21,3 +21,4 @@ export const bgcolorBlack2='#000';
 export const bgcolortransparent='transparent';
 export const overlaymodalBackground = '#00000040';
 export const greenColor = 'green';
+export const ACTIVITIES_COLOR= '#0FD87E';
