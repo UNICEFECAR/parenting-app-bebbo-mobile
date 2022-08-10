@@ -33,7 +33,14 @@ import ModalPopupContainer, {
   PopupOverlay
 } from './shared/ModalPopupStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
+import { greyCode } from '@styles/style';
+const styles = StyleSheet.create({
+  disabledCheckBox: {
+    backgroundColor: greyCode,
+    opacity: 0.5,
+  },
+  formDateText:{flex:1,flexDirection:"row"}
+});
 const ChildDate = (props: any) => {
   const {dobMax,prevScreen} = props;
   let birthDate: any,
@@ -42,6 +49,10 @@ const ChildDate = (props: any) => {
   const {childData} = props;
   const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
   const [isDueDatePickerVisible, setDueDatePickerVisibility] = useState(false);
+  const [dueDate, setdueDate] = useState<Date | null>(null);
+  const [showdue, setdueShow] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState(false);
+ 
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
@@ -83,15 +94,17 @@ const ChildDate = (props: any) => {
       }
     }, []),
   );
-  const handleDobConfirm = (event:any) => {
-    const date=event;
-    ondobChange(event,date);
-    setDobDatePickerVisibility(false);
-  };
-  const handleDueConfirm = (event:any) => {
-    const date=event;
-    ondueDateChange(event,date);
-    setDueDatePickerVisibility(false);
+  
+  const ondueDateChange = (event:any,selectedDate: any) => {
+    const currentDate = selectedDate;
+    setdueShow(Platform.OS === 'ios');
+    setdueDate(currentDate);
+    props.sendData({
+      birthDate: doborExpectedDate,
+      plannedTermDate: currentDate,
+      isPremature: toggleCheckBox,
+      isExpected: isExpected,
+    });
   };
   const ondobChange = (event:any,selectedDate: any) => {
     if(new Date(selectedDate) < new Date(dobMin)){
@@ -122,26 +135,24 @@ const ChildDate = (props: any) => {
       });
     }
   };
+  const handleDobConfirm = (event:any) => {
+    const date=event;
+    ondobChange(event,date);
+    setDobDatePickerVisibility(false);
+  };
+  const handleDueConfirm = (event:any) => {
+    const date=event;
+    ondueDateChange(event,date);
+    setDueDatePickerVisibility(false);
+  };
+ 
   const showdobDatepicker = () => {
     setdobShow(true);
     if(Platform.OS == 'ios'){
     setDobDatePickerVisibility(true);
     }
   };
-  const [modalVisible, setModalVisible] = useState(false);
-  const [dueDate, setdueDate] = useState<Date | null>(null);
-  const [showdue, setdueShow] = useState<Boolean>(false);
-  const ondueDateChange = (event:any,selectedDate: any) => {
-    const currentDate = selectedDate;
-    setdueShow(Platform.OS === 'ios');
-    setdueDate(currentDate);
-    props.sendData({
-      birthDate: doborExpectedDate,
-      plannedTermDate: currentDate,
-      isPremature: toggleCheckBox,
-      isExpected: isExpected,
-    });
-  };
+ 
   const showdueDatepicker = () => {
     setdueShow(true);
     if(Platform.OS == 'ios'){
@@ -259,7 +270,7 @@ const ChildDate = (props: any) => {
                 <FormInputGroup onPress={showdueDatepicker}>
                   <LabelText>{t('childSetupdueLabel')}</LabelText>
                   <FormInputBox>
-                    <FormDateText  style={{flex:1,flexDirection:"row"}}>
+                    <FormDateText  style={styles.formDateText}>
                       <Text>
                         {' '}
                         {dueDate
@@ -301,7 +312,7 @@ const ChildDate = (props: any) => {
                 <FormInputGroup onPress={showdueDatepicker}>
                 <LabelText>{t('childSetupdueLabel')}</LabelText>
                 <FormInputBox>
-                  <FormDateText style={{flex:1,flexDirection:"row"}}>
+                  <FormDateText style={styles.formDateText}>
                     <Text>
                       {' '}
                       {dueDate
@@ -381,9 +392,3 @@ const ChildDate = (props: any) => {
   );
 };
 export default ChildDate;
-const styles = StyleSheet.create({
-  disabledCheckBox: {
-    backgroundColor: '#ccc',
-    opacity: 0.5,
-  },
-});

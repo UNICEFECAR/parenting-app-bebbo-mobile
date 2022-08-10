@@ -22,6 +22,7 @@
     "react-native/no-inline-styles":2,
     "react-native/no-color-literals":2,
     "react-native/no-raw-text": "off",
+    "react/display-name": "off",
     "@typescript-eslint/type-annotation-spacing":"off",
     "no-irregular-whitespace": "off",
     "@typescript-eslint/camelcase": "off",

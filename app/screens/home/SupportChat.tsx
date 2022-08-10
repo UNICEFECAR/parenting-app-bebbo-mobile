@@ -20,6 +20,7 @@ import { addSpaceToHtml } from '../../services/Utils';
 import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
 import analytics from '@react-native-firebase/analytics';
 import { CHATBOT_CATEGORY_SELECTED, CHATBOT_FAQ_SELECTED, CHATBOT_SUBCATEGORY_SELECTED, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
+import { imageBg } from '@styles/style';
 
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -33,16 +34,15 @@ const explorecatstep = 1;
 const exploresubcatstep = 2;
 const delayOfSteps = 2000;
 const delayOfConcurrentSteps = 2500;
+const styles = StyleSheet.create({
+  flex1:{flex:1},
+  imageBg:{backgroundColor:imageBg,flex:1,height:'100%',width:'100%'}
+});
 const SupportChat = ({ navigation }: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
   const dispatch = useAppDispatch();
-  const activeChild = useAppSelector((state: any) =>
-  state.childData.childDataSet.activeChild != ''
-    ? JSON.parse(state.childData.childDataSet.activeChild)
-    : [],
-);
 const allConfigData = useAppSelector((state: any) =>
 state.variableData?.variableData != ''
   ? JSON.parse(state.variableData?.variableData)
@@ -68,7 +68,7 @@ const faqsData = useAppSelector((state: any) =>
       }
       return v;
     });
-  };
+  }
   const chatBotData = useAppSelector((state: any) =>
   state.childData.childDataSet.chatBotData != '' ? parseWithFunctions(state.childData.childDataSet.chatBotData) : state.childData.childDataSet.chatBotData
   );
@@ -85,12 +85,38 @@ const faqsData = useAppSelector((state: any) =>
   const noDataStep = () => {
 
   }
+  const updateChatBotData = (updatedData:any) => {
+    setsteps(updatedData);
+    dispatch(setchatBotData(updatedData));
+  }
+  const showdynamicdelay=(stepobj: any[],index: number) => {
+    setTimeout(() => {
+      let localsteps = [...stepobj]
+      localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
+      localsteps[index+1].delay = delayOfSteps;
+      localsteps[index+1].showNextStep = true;
+      updateChatBotData(localsteps);
+    },delayOfSteps);
+  }
+  const dynamicStepSelection = (stepIndex: any,optionIndex: any,steps2: any) => {
+    let localsteps = [...steps2];
+    localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
+    const nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
+    const index = localsteps.reduce((acc: any, el: any, i: any) => (
+        el.id === nextstepid ? i : acc
+    ), -1);
+    localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
+    localsteps[index].delay = delayOfSteps;
+    localsteps[index].showNextStep = true;
+    updateChatBotData(localsteps);
+  }
+  
   const categorySelection = (stepIndex: any,optionIndex: any,steps2: any) => {
     let localsteps = [...steps2];
     //changing answer value from null to option value
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
     //changing showNextStep to true of the nextStep id
-    let nextstepid = localsteps[stepIndex].nextStep;
+    const nextstepid = localsteps[stepIndex].nextStep;
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
         el.id === nextstepid ? i : acc
     ), -1);
@@ -139,27 +165,6 @@ const faqsData = useAppSelector((state: any) =>
     }
   }
 
-  const showdynamicdelay=(stepobj: any[],index: number) => {
-    setTimeout(() => {
-      let localsteps = [...stepobj]
-      localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
-      localsteps[index+1].delay = delayOfSteps;
-      localsteps[index+1].showNextStep = true;
-      updateChatBotData(localsteps);
-    },delayOfSteps);
-  }
-  const dynamicStepSelection = (stepIndex: any,optionIndex: any,steps2: any) => {
-    let localsteps = [...steps2];
-    localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
-    let nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
-    const index = localsteps.reduce((acc: any, el: any, i: any) => (
-        el.id === nextstepid ? i : acc
-    ), -1);
-    localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
-    localsteps[index].delay = delayOfSteps;
-    localsteps[index].showNextStep = true;
-    updateChatBotData(localsteps);
-  }
   
   const category = taxonomy.chatbot_category.map((x:any,i:any)=> {
     return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
@@ -206,7 +211,7 @@ const faqsData = useAppSelector((state: any) =>
     setModalVisible(true);
     let localsteps = [...steps2];
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
-    let nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
+    const nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
         el.id === nextstepid ? i : acc
     ), -1);
@@ -327,10 +332,7 @@ const faqsData = useAppSelector((state: any) =>
     },
   ];
   
-  const updateChatBotData = (updatedData:any) => {
-    setsteps(updatedData);
-    dispatch(setchatBotData(updatedData));
-  }
+ 
   useEffect(() => {
     setTimeout(() => {
       if(flatListRef && flatListRef.current && steps.length >0)  {
@@ -350,7 +352,7 @@ const faqsData = useAppSelector((state: any) =>
     }else {
       setsteps((stepsjson));
       setTimeout(() => {
-        let localstepsjson = [...stepsjson];
+        const localstepsjson = [...stepsjson];
         localstepsjson[1].showNextStep = true;
         setsteps(localstepsjson);
       },delayOfConcurrentSteps); 
@@ -362,14 +364,14 @@ const faqsData = useAppSelector((state: any) =>
     }
     fetchData()        
   }, []);
-  const scrollToIndexFailed = (error) => {
+  const scrollToIndexFailed = (error:any) => {
       const offset = error.averageItemLength * error.index;
       flatListRef?.current?.scrollToOffset({offset});
       setTimeout(() => flatListRef?.current?.scrollToIndex({ index: error.index }), 10); // You may choose to skip this line if the above typically works well because your average item height is accurate.
   }
   return (
     <>
-     <View style={{flex:1,backgroundColor:headerColor}}>
+     <View style={[styles.flex1,{backgroundColor:headerColor}]}>
      <FocusAwareStatusBar
         animated={true}
         backgroundColor={headerColor}
@@ -383,7 +385,7 @@ const faqsData = useAppSelector((state: any) =>
           <FlexCol>
           <ImageBackground 
             source={Platform.OS === 'android' ? require('@assets/svg/img-bg-chatbot.png') : require('@assets/svg/img-bg-chatbot-ios.png')} 
-            resizeMode="repeat" style={{flex:1,width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
+            resizeMode="repeat" style={styles.imageBg}>
               <ChatContainer>
                 {steps.length> 0 ? 
                     <FlatList
@@ -403,8 +405,8 @@ const faqsData = useAppSelector((state: any) =>
                       maxToRenderPerBatch={75} // Reduce number in each render batch
                       updateCellsBatchingPeriod={100} // Increase time between renders
                       windowSize={90} // Reduce the window size
-                      renderItem={({item, index}) => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} noDataStep={noDataStep} />  }
-                      keyExtractor={(item,index) => index.toString()}
+                      renderItem={({item, index}:any) => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} noDataStep={noDataStep} />  }
+                      keyExtractor={(item:any,index:any) => index.toString()}
                       onScrollToIndexFailed={scrollToIndexFailed}
                       />
                     : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
@@ -470,116 +472,3 @@ const faqsData = useAppSelector((state: any) =>
 
 export default SupportChat;
 
-const styles = StyleSheet.create({
-  botStyle : {
-    flex:1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor:'#fff',
-    padding:10,
-    margin:5,
-    marginBottom:10,
-    marginRight:50,
-    borderTopLeftRadius:4,
-    borderTopRightRadius:4,
-    borderBottomRightRadius:4,
-    borderBottomLeftRadius:4,
-    paddingTop:17,
-    paddingBottom:17,
-  },
-  userStyle : {
-    flex:1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    backgroundColor:'#2B2F84',
-    padding:10,
-    margin:5,
-    marginBottom:10,
-    marginLeft:50,
-    borderTopLeftRadius:4,
-    borderTopRightRadius:4,
-    borderBottomRightRadius:4,
-    borderBottomLeftRadius:4,
-    paddingTop:17,
-    paddingBottom:17,
-    // width:'80%',
-    // maxWidth:80,
-    // minHeight:30
-  },
-  optionStyle : {
-    flex:1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    backgroundColor:'#fff',
-    padding:10,
-    margin:5,
-    marginBottom:10,
-    borderWidth:2,
-    borderColor:'#2B2F84',
-    marginLeft:50,
-    borderTopLeftRadius:4,
-    borderTopRightRadius:4,
-    borderBottomRightRadius:4,
-    borderBottomLeftRadius:4,
-    paddingTop:17,
-    paddingBottom:17,
-  },
-  actionStyle : {
-    flex:1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    backgroundColor:'#F7F6F4',
-    padding:10,
-    margin:5,
-    marginBottom:10,
-    borderWidth:2,
-    borderColor:'#000',
-    marginLeft:50,
-    borderTopLeftRadius:4,
-    borderTopRightRadius:4,
-    borderBottomRightRadius:4,
-    borderBottomLeftRadius:4,
-    paddingTop:17,
-    paddingBottom:17,
-  },
-  textStyle : {
-    flex:1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor:'#fff',
-    padding:10,
-    margin:5,
-    marginTop:0,
-    marginBottom:10,
-    marginRight:50,
-    borderTopLeftRadius:4,
-    borderTopRightRadius:4,
-    borderBottomRightRadius:4,
-    borderBottomLeftRadius:4,
-    paddingTop:17,
-    paddingBottom:17,
-  },
-  imageContainer: {
-    marginTop: 6,
-    marginRight: 6,
-    marginBottom: 10,
-    marginLeft: 6,
-    paddingTop: 2,
-    paddingRight: 2,
-    paddingBottom: 2,
-    paddingLeft: 2,
-    backgroundColor: '#fff',
-    borderTopRightRadius: 21,
-    borderTopLeftRadius: 21,
-    borderBottomRightRadius: 21,
-    borderBottomLeftRadius: 0,
-    borderWidth: 1,
-    borderColor: '#ddd'
-  },
-  imageStyle: {
-    height: 40,
-    width: 40,
-    borderRadius: 21,
-  }
-});
