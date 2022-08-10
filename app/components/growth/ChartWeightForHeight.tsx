@@ -11,11 +11,30 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
+const styles = StyleSheet.create({
+  flexColChart:{
+              marginLeft: -20,
+              marginRight: -20,
+  },
+  fullScreenPressable:{
+    marginTop: 5,
+    padding: 7
+  },
+  loadingContainer: {
+    marginTop:50
+  }
+})
+
 const ChartWeightForHeight = (props: any) => {
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const activeChild = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild)
+    : [],
+);
   const fullScreenChart = (chartType: any, obj: any) => {
     navigation.navigate('ChartFullScreen', {
       activeChild,
@@ -24,11 +43,7 @@ const ChartWeightForHeight = (props: any) => {
     });
   };
   const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
-  let activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
-  );
+ 
   let obj: any;
   let standardDeviation: any;
   if (activeChild?.gender == boy_child_gender || activeChild?.gender == '') {
@@ -47,7 +62,7 @@ const ChartWeightForHeight = (props: any) => {
     obj = formatHeightData(genderGirlData,'weight');
   }
   const childTaxonomyData = activeChild.taxonomyData;
-  const sortedMeasurements = activeChild.measures.filter((item: { isChildMeasured: boolean; weight: number; height: number; })=>item.isChildMeasured== true&& item.weight>0 && item.height>0).sort(
+  const sortedMeasurements = activeChild.measures.filter((item: { isChildMeasured: boolean; weight: number; height: number })=>item.isChildMeasured== true&& item.weight>0 && item.height>0).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
@@ -64,8 +79,8 @@ const ChartWeightForHeight = (props: any) => {
       }, 2000);
     }, []),
   );
-  let windowWidth = Dimensions.get('window').width;
-  let windowHeight = Dimensions.get('window').height;
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
   const [deviceOrientation, setDeviceOrientation] = useState(
     Dimensions.get('window').width < Dimensions.get('window').height
       ? 'portrait'
@@ -127,11 +142,9 @@ const ChartWeightForHeight = (props: any) => {
       {(props.days< activeChild.taxonomyData.days_from) ? 
         null :
           <FlexColChart
-            style={{
-              backgroundColor: backgroundColor,
-              marginLeft: -20,
-              marginRight: -20,
-            }}>
+            style={[styles.flexColChart,{
+              backgroundColor: backgroundColor
+            }]}>
             <RelatedArticles
               fromScreen={'ChildgrowthTab'}
               related_articles={item?.interpretationText?.articleID}
@@ -148,12 +161,3 @@ const ChartWeightForHeight = (props: any) => {
   );
 };
 export default ChartWeightForHeight;
-const styles = StyleSheet.create({
-  fullScreenPressable:{
-    padding: 7,
-    marginTop: 5
-  },
-  loadingContainer: {
-    marginTop:50
-  }
-})

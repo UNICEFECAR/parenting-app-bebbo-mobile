@@ -1,9 +1,42 @@
 import Icon from '@components/shared/Icon';
+import { bgcolorWhite2 } from '@styles/style';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { FlexRow } from './shared/FlexBoxStyle';
+const styles = StyleSheet.create({
+  containerView: {
+    marginLeft:'auto',
+    marginRight:'auto',
+    maxWidth:280,
+    minHeight: 120,
+    padding: 10
+    ,width:'100%',
+  },
+  iconStyle: {
+    flex: 1,
+    marginLeft: 10,
+    textAlign: 'left'
+  },
+  item: {
+    alignItems: 'center',
+    borderRadius: 5,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    margin: 5,
+  },
+  title: {
+    flex: 2,
+    fontSize: 10,
+    fontWeight: 'bold',
+    justifyContent: 'flex-start',
+    margin: 0,
+    textAlign: 'left',
+    width: 120
+  }
+});
 const ButtonItem = (props: any) => {
   return (
     <Pressable
@@ -13,7 +46,7 @@ const ButtonItem = (props: any) => {
       style={[
         styles.item,
         {
-          backgroundColor: props.data.isActivated ? props.data.activatedColor : '#FFF',
+          backgroundColor: props.data.isActivated ? props.data.activatedColor : bgcolorWhite2,
         },
       ]}>
       <Icon
@@ -71,7 +104,7 @@ const NotificationsCategories = (props: any) => {
   const [products, setProducts] = useState(allbuttons);
 
   const handleChange = (id: number) => {
-    let updated = products.map((item) => {
+    const updated = products.map((item) => {
       if (id === item.id) {
         return {...item, isActivated: !item.isActivated};
       }
@@ -99,35 +132,4 @@ const NotificationsCategories = (props: any) => {
   );
 };
 export default NotificationsCategories;
-const styles = StyleSheet.create({
-  item: {
-    borderRadius: 5,
-    margin: 5,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  iconStyle: {
-    flex: 1,
-    marginLeft: 10,
-    textAlign: 'left'
-  },
-  title: {
-    fontSize: 10,
-    margin: 0,
-    flex: 2,
-    width: 120,
-    fontWeight: 'bold',
-    justifyContent: 'flex-start',
-    textAlign: 'left'
-  },
-  containerView: {
-    padding: 10,
-    minHeight: 120,
-    maxWidth:280,
-    width:'100%',
-    marginLeft:'auto'
-    ,marginRight:'auto',
-  }
-});
+

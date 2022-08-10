@@ -15,11 +15,18 @@ import LocalNotifications from '../services/LocalNotifications';
 import { createAllLocalNotificatoins, getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
 import Icon from './shared/Icon';
 import { BubbleContainer, BubbleView1 } from './shared/NavigationDrawer';
+const styles = StyleSheet.create({
+  bubbleContainer:{ alignItems: 'center', justifyContent: 'center', position: 'absolute', right: -12, top: -5 },
+  iconStyle:{ position: 'relative' },
+  outerPressable:{
+    flexDirection: 'row'
+  }
+});
 const HeaderNotiIcon = (props: any) => {
-  let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
-  let localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
-  let scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
-  let localNotificationGenerateType = useAppSelector((state: any) => state.notificationData.localNotificationGenerateType);
+  const allnotis = useAppSelector((state: any) => state.notificationData.notifications);
+  const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
+  const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
+  const localNotificationGenerateType = useAppSelector((state: any) => state.notificationData.localNotificationGenerateType);
 
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -27,14 +34,14 @@ const HeaderNotiIcon = (props: any) => {
       : [],
   );
   const dispatch = useAppDispatch();
-  let childAge = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const generateNotificationsFlag = useAppSelector((state: any) =>
     (state.utilsData.generateNotifications),
   );
-  let allHealthCheckupsData = useAppSelector(
+  const allHealthCheckupsData = useAppSelector(
     (state: any) =>
       state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
   );
@@ -51,8 +58,8 @@ const HeaderNotiIcon = (props: any) => {
     (state: any) =>
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
-  let allGrowthPeriods = taxonomy?.growth_period;
-  let allVaccinePeriods = useAppSelector(
+  const allGrowthPeriods = taxonomy?.growth_period;
+  const allVaccinePeriods = useAppSelector(
     (state: any) =>
       state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
@@ -335,11 +342,5 @@ const HeaderNotiIcon = (props: any) => {
   );
 };
 export default HeaderNotiIcon;
-const styles = StyleSheet.create({
-  outerPressable:{
-    flexDirection: 'row'
-  },
-  iconStyle:{ position: 'relative' },
-  bubbleContainer:{ position: 'absolute', right: -12, top: -5, justifyContent: 'center', alignItems: 'center' }
-});
+
 
