@@ -2,8 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import  { IconML } from '@components/shared/Icon';
+import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
 
 export const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
+const styles = StyleSheet.create({
+    scroll: {flex: 9},
+    scrollArea: {
+        alignItems:'center',
+        flexDirection: 'row',
+        paddingBottom: 15,
+        paddingTop: 15
+    },
+    scrollContainer: {},
+    tabItem: {
+        borderRadius:4,
+        color:bgcolorBlack2,
+        marginRight:8,
+        padding:12,
+        paddingLeft: 15,
+        paddingRight: 15,
+    },
+    tabItemFocused: {
+        borderWidth: 0,
+    },
+    tabItemText: {
+        color: bgcolorBlack2,
+        fontSize: 14,
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        lineHeight: 20,
+        textAlign: 'center',
+    },
+    tabItemTextFocused: {
+        color: bgcolorWhite2,
+    },
+    touchableFlex: {
+        padding:11
+    }
+});
 
 export default class ScrollingButtonMenu extends React.Component {
 
@@ -41,13 +77,13 @@ export default class ScrollingButtonMenu extends React.Component {
     }
 
     _scrollTo() {
-        const {index,scrollindex, dataSourceCords2} = this.state;
+        const {index,scrollindex} = this.state;
         if(index != scrollindex)
         {
             const screen1 = screenWidth / 2;
             const elementOffset = this.dataSourceCords[index];
             if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
-                let x = elementOffset.x - (screen1 - (elementOffset.width / 2));
+                const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
                 this.scroll.scrollTo({
                     y: 0,
                     x: x,
@@ -66,13 +102,13 @@ export default class ScrollingButtonMenu extends React.Component {
         {
             newindex = items[0 + 2].id;
         }else {
-            let innerindex = ((items.findIndex(x => x.id == scrollindexarrow) + 2) < items.length) ? (items.findIndex(x => x.id == scrollindexarrow) + 2) : (items.length - 1)
+            const innerindex = ((items.findIndex(x => x.id == scrollindexarrow) + 2) < items.length) ? (items.findIndex(x => x.id == scrollindexarrow) + 2) : (items.length - 1)
             newindex = items[innerindex].id
         }
         const screen1 = screenWidth / 2;
         const elementOffset = this.dataSourceCords[newindex];
         if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
-            let x = elementOffset.x - (screen1 - (elementOffset.width / 2));
+            const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
             this.scroll.scrollTo({
                 y: 0,
                 x: x,
@@ -88,13 +124,13 @@ export default class ScrollingButtonMenu extends React.Component {
         {
             newindex = items[0].id;
         }else {
-            let innerindex = ((items.findIndex(x => x.id == scrollindexarrow) - 2) >= 0) ? (items.findIndex(x => x.id == scrollindexarrow) - 2) : (0)
+            const innerindex = ((items.findIndex(x => x.id == scrollindexarrow) - 2) >= 0) ? (items.findIndex(x => x.id == scrollindexarrow) - 2) : (0)
             newindex = items[innerindex].id
         }
         const screen1 = screenWidth / 2;
         const elementOffset = this.dataSourceCords[newindex];
         if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
-            let x = elementOffset.x - (screen1 - (elementOffset.width / 2));
+            const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
             this.scroll.scrollTo({
                 y: 0,
                 x: x,
@@ -112,7 +148,7 @@ export default class ScrollingButtonMenu extends React.Component {
                 styles.scrollArea,
                 containerStyle,
             ]}>
-            <TouchableOpacity style={{padding:11}} onPress={() => this.leftArrow(items)}>
+            <TouchableOpacity style={styles.touchableFlex} onPress={() => this.leftArrow(items)}>
             <IconML name="ic_angle_left" size={16} color="#000" />
             </TouchableOpacity>
                 <ScrollView
@@ -163,7 +199,7 @@ export default class ScrollingButtonMenu extends React.Component {
                         ))
                     }
                 </ScrollView>
-            <TouchableOpacity style={{padding:11}} onPress={() => this.rightArrow(items)}>
+            <TouchableOpacity style={styles.touchableFlex} onPress={() => this.rightArrow(items)}>
                 <IconML name="ic_angle_right" size={16} color="#000" />
             </TouchableOpacity>
             </View>
@@ -201,42 +237,9 @@ ScrollingButtonMenu.defaultProps = {
     activeBackgroundColor: '#1e1e1e',
     selected: '',
     onPress: () => {
-
+        console.log("pressed");
     },
     selectedOpacity: 0.7,
     containerStyle: {},
     keyboardShouldPersistTaps: 'always',
 };
-
-const styles = StyleSheet.create({
-    scrollArea: {
-        paddingTop: 15,
-        paddingBottom: 15,
-        flexDirection: 'row',
-        alignItems:'center'
-    },
-    scroll: {flex: 9},
-    scrollContainer: {},
-    tabItem: {
-        color:'#000',
-        borderRadius:4,
-        padding:12,
-        paddingLeft: 15,
-        paddingRight: 15,
-        marginRight:8,
-    },
-    tabItemText: {
-        color: '#000000',
-        fontSize: 14,
-        fontWeight: 'bold',
-        fontStyle: 'normal',
-        textAlign: 'center',
-        lineHeight: 20,
-    },
-    tabItemFocused: {
-        borderWidth: 0,
-    },
-    tabItemTextFocused: {
-        color: '#fff',
-    },
-});
