@@ -20,130 +20,9 @@ import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { appConfig, both_child_gender, both_parent_gender} from "./apiConstants";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, PinnedChildDevData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
-const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
-    return new Promise(async (resolve) => {
-        if (prevPage == "CountryLanguageSelection") {
-            // try {
-            let Entity: any;
-            const basicData = await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
-            const taxonomyData = await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
-            resolve("success");
-        }
-        else if (prevPage == "AddEditChild") {
-            let Entity: any;
-            const currentChildData = {
-                "gender": activeChild.gender,
-                "parent_gender": activeChild.parent_gender,
-                "taxonomyData": activeChild.taxonomyData
-            }
-            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
-            resolve("nocall");
-        }
-        else if (prevPage == "Terms") {
-            let Entity: any;
-            const alldailyNotiData = await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
-            const allstanDevWFHData = await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
-            const allstanDevHFAData = await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
-            const allVaccinesData = await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
-            const allHealthCheckupsData = await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
-            const allChildDevlopmentData = await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
-            const allPinnedChildDevlopmentData = await getDataToStore(languageCode, dispatch, PinnedChildDevelopmentSchema, Entity as PinnedChildDevelopmentEntity, PinnedChildDevData, setAllPinnedChildDevData);
-            const allMileStonesData = await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
-            const allVideoArticlesData = await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
-            const allActivitiesData = await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
-            const allSurveyData = await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
-            const allFaqsData = await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
-
-            resolve("nocall");
-        } else if (prevPage == "ChilSetup") {
-            let Entity: any;
-            const currentChildData = {
-                "gender": activeChild.gender,
-                "parent_gender": activeChild.parent_gender,
-                "taxonomyData": activeChild.taxonomyData
-            }
-            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
-            resolve("nocall");
-        } else {
-            resolve("fail");
-        }
-    });
-
-
-}
-
-export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
-    return new Promise(async (resolve, reject) => {
-        let Entity: any;
-        if (apiEndpoint == appConfig.basicPages) {
-            const basicData = await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.taxonomies) {
-            const taxonomyData = await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.dailyMessages) {
-            const alldailyNotiData = await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.standardDeviation) {
-            const allstanDevWFHData = await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
-            const allstanDevHFAData = await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.vaccinations) {
-            const allVaccinesData = await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.healthCheckupData) {
-            const allHealthCheckupsData = await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.childDevelopmentData) {
-            const allChildDevlopmentData = await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.childdevBoyPinnedContent || apiEndpoint == appConfig.childdevGirlPinnedContent) {
-            const allPinnedChildDevlopmentData = await getDataToStore(languageCode, dispatch, PinnedChildDevelopmentSchema, Entity as PinnedChildDevelopmentEntity, PinnedChildDevData, setAllPinnedChildDevData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.milestones) {
-            const allMileStonesData = await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.videoArticles) {
-            const allVideoArticlesData = await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.activities) {
-            const allActivitiesData = await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.surveys) {
-            const allSurveyData = await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.faqs) {
-            const allFaqsData = await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
-            resolve("success");
-        }
-        else if (apiEndpoint == appConfig.articles) {
-            const currentChildData = {
-                "gender": activeChild.gender,
-                "parent_gender": activeChild.parent_gender,
-                "taxonomyData": activeChild.taxonomyData
-            }
-            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
-            resolve("success");
-        } else {
-            resolve("fail");
-        }
-    });
-}
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any, queryText?: any) => {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
         let dataToStore: any;
         let offlineData: any;
         if (SchemaToUse.name == StandardDevWeightForHeightSchema.name) {
@@ -164,7 +43,7 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
                 offlineData = [];
             }
         }
-        let databaseData2 = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse, sortBy);
+        const databaseData2 = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse, sortBy);
         if (SchemaToUse.name == ArticleEntitySchema.name) {
             if (currentChildData && currentChildData != "") {
                 let filterQuery = '';
@@ -185,7 +64,7 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
                     filterQuery += '&& (child_gender==' + parseInt(currentChildData.gender) + ' || child_gender == ' + both_child_gender + ' || child_gender == ' + String(both_child_gender) + '  || child_gender == 0)';
                 }
                // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
-                let databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse, filterQuery);
+                const databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse, filterQuery);
                 dataToStore = databaseData;
             } else {
                 dataToStore = databaseData2;
@@ -203,4 +82,125 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
         }
     });
 }
+const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
+    return new Promise(async (resolve) => {
+        if (prevPage == "CountryLanguageSelection") {
+            // try {
+            let Entity: any;
+            await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
+            await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
+            resolve("success");
+        }
+        else if (prevPage == "AddEditChild") {
+            let Entity: any;
+            const currentChildData = {
+                "gender": activeChild.gender,
+                "parent_gender": activeChild.parent_gender,
+                "taxonomyData": activeChild.taxonomyData
+            }
+            await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            resolve("nocall");
+        }
+        else if (prevPage == "Terms") {
+            let Entity: any;
+            await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
+            await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
+            await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
+            await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
+            await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
+            await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
+            await getDataToStore(languageCode, dispatch, PinnedChildDevelopmentSchema, Entity as PinnedChildDevelopmentEntity, PinnedChildDevData, setAllPinnedChildDevData);
+            await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
+            await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
+            await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
+            await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
+            await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
+            resolve("nocall");
+        } else if (prevPage == "ChilSetup") {
+            let Entity: any;
+            const currentChildData = {
+                "gender": activeChild.gender,
+                "parent_gender": activeChild.parent_gender,
+                "taxonomyData": activeChild.taxonomyData
+            }
+            await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            resolve("nocall");
+        } else {
+            resolve("fail");
+        }
+    });
+
+
+}
+
+export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
+    return new Promise(async (resolve) => {
+        let Entity: any;
+        if (apiEndpoint == appConfig.basicPages) {
+            await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.taxonomies) {
+            await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.dailyMessages) {
+            await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.standardDeviation) {
+            await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
+            await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.vaccinations) {
+            await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.healthCheckupData) {
+            await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.childDevelopmentData) {
+            await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.childdevBoyPinnedContent || apiEndpoint == appConfig.childdevGirlPinnedContent) {
+            await getDataToStore(languageCode, dispatch, PinnedChildDevelopmentSchema, Entity as PinnedChildDevelopmentEntity, PinnedChildDevData, setAllPinnedChildDevData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.milestones) {
+            await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.videoArticles) {
+            await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.activities) {
+            await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.surveys) {
+            await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.faqs) {
+            await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.articles) {
+            const currentChildData = {
+                "gender": activeChild.gender,
+                "parent_gender": activeChild.parent_gender,
+                "taxonomyData": activeChild.taxonomyData
+            }
+            await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            resolve("success");
+        } else {
+            resolve("fail");
+        }
+    });
+}
+
 export default getAllDataToStore;
