@@ -26,6 +26,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { bebbo_logo_shape } from '@dynamicImportsClass/dynamicImports';
+import { bgcolorWhite2 } from '@styles/style';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -34,6 +35,43 @@ type Walkthrough1NavigationProp = StackNavigationProp<
 type Props = {
   navigation: Walkthrough1NavigationProp;
 };
+const styles = StyleSheet.create({
+  dot: {
+    borderRadius: 5,
+    height: 10,
+    marginHorizontal: 4,
+    width: 10,
+  },
+  flex1:{flex: 1},
+  paginationContainer: {
+    bottom: 16,
+    left: 16,
+    position: 'absolute',
+    right: 16,
+  },
+   paginationDots: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 16,
+    justifyContent: 'center',
+    margin: 16,
+  },
+   title: {
+    fontWeight: 'bold',
+    padding: 5,
+    textAlign: 'center',
+  },
+  titleText: {
+    color: bgcolorWhite2,
+    fontFamily: 'roboto-bold',
+    fontSize: 42,
+    lineHeight:45,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  vectorImage:{height: 130, width: 130},
+  walkButton:{flex:1,flexDirection:'column',justifyContent:'flex-end'}
+});
 
 
 const Walkthrough = ({navigation}: Props) => {
@@ -75,7 +113,7 @@ const Walkthrough = ({navigation}: Props) => {
       <>
         <WalkthroughContainer>
           <LinearGradient
-            style={{flex: 1}}
+            style={styles.flex1}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}
             colors={item.colors}>
@@ -87,21 +125,21 @@ const Walkthrough = ({navigation}: Props) => {
                   <WalkthroughImagebox>
                     <VectorImage
                       source={item.image}
-                      style={{width: 130, height: 130}}
+                      style={styles.vectorImage}
                     />
                   </WalkthroughImagebox>
                 ) : index == 2 ? (
                   <WalkthroughImagebox>
                     <VectorImage
                       source={item.image}
-                      style={{width: 130, height: 130}}
+                      style={styles.vectorImage}
                     />
                   </WalkthroughImagebox>
                 ) : (
                   <WalkthroughImagebox>
                     <VectorImage
                       source={item.image}
-                      style={{width: 130, height: 130}}
+                      style={styles.vectorImage}
                     />
                   </WalkthroughImagebox>
                 )}
@@ -123,17 +161,17 @@ const Walkthrough = ({navigation}: Props) => {
     );
   };
 
-  const getDotStyle = (colorString: string) => {
-    return isDotsRequired
-      ? {backgroundColor: colorString}
-      : {backgroundColor: 'transparent'};
-  };
+  
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.SECONDARY_COLOR;
   const [showPrevbtn, setShowPrevbtn] = useState(false);
   const [isDotsRequired, setIsDotsRequired] = useState(true);
   const [statubarColor, setstatubarColor] = useState(headerColor);
-  
+  const getDotStyle = (colorString: string) => {
+    return isDotsRequired
+      ? {backgroundColor: colorString}
+      : {backgroundColor: 'transparent'};
+  };
   const onSlideChange = (index: number) => {
     index == 3 ? setShowPrevbtn(true) : setShowPrevbtn(false);
     index == 3 ? setIsDotsRequired(false) : setIsDotsRequired(true);
@@ -192,7 +230,7 @@ const _renderPagination = (activeIndex: number) => {
             ))}
         </View>):null}
         {activeIndex == 3 ? (
-                  <WalkBtn style={{flex:1,flexDirection:'column',justifyContent:'flex-end'}}>
+                  <WalkBtn style={styles.walkButton}>
                   <ButtonContainerTwo>
                     <ButtonColTwo>
                       <ButtonArticlesTint onPress={goBackSlide}>
@@ -218,7 +256,7 @@ const _renderPagination = (activeIndex: number) => {
       <FocusAwareStatusBar animated={true} backgroundColor={statubarColor} />
       <AppIntroSlider
         keyExtractor={keyExtractor}
-        renderItem={({item, index}) => renderItem(item, index)}
+        renderItem={({item, index}:any) => renderItem(item, index)}
         dotClickEnabled
         activeDotStyle={getDotStyle('black')}
         dotStyle={getDotStyle('white')}
@@ -237,74 +275,3 @@ const _renderPagination = (activeIndex: number) => {
 };
 
 export default Walkthrough;
-const styles = StyleSheet.create({
-  titleText: {
-    color: '#fff',
-    fontSize: 42,
-    textAlign: 'center',
-    fontFamily: 'roboto-bold',
-    marginBottom: 20,
-    lineHeight:45,
-  },
-  slide: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'blue',
-  },
-  image: {
-    width: 320,
-    height: 320,
-    marginVertical: 32,
-  },
-  text: {
-    color: 'rgba(255, 255, 255, 0.8)',
-    textAlign: 'center',
-  },
-  title1: {
-    fontSize: 22,
-    color: 'white',
-    textAlign: 'center',
-  },
-  paginationContainer: {
-    position: 'absolute',
-    bottom: 16,
-    left: 16,
-    right: 16,
-  },
-  paginationDots: {
-    height: 16,
-    margin: 16,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    marginHorizontal: 4,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginHorizontal: 24,
-  },
-  button: {
-    flex: 1,
-    paddingVertical: 20,
-    marginHorizontal: 8,
-    borderRadius: 24,
-    backgroundColor: '#1cb278',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  title: {
-    padding: 5,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    
-  },
-});
