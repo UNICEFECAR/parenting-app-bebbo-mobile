@@ -19,11 +19,65 @@ import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import { bgcolorWhite, bgcolorWhite2, buttonBg } from '@styles/style';
 type DashboardNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: DashboardNavigationProp;
 };
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: buttonBg,
+    borderRadius: 24,
+    flex: 1,
+    marginHorizontal: 8,
+    paddingVertical: 20,
+  },
+
+  buttonContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 24,
+  },
+
+  buttonText: {
+    color: bgcolorWhite,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  dot: {
+    borderRadius: 5,
+    height: 10,
+    marginHorizontal: 4,
+    width: 10,
+  },
+  flex1:{flex: 1},
+  paginationContainer: {
+    bottom: 16,
+    left: 16,
+    position: 'absolute',
+    right: 16,
+  },
+  paginationDots: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 16,
+    justifyContent: 'center',
+    margin: 16,
+  },
+  title: {
+    fontWeight: 'bold',
+    padding: 5,
+    textAlign: 'center',
+  },
+  titleText: {
+    color: bgcolorWhite2,
+    fontFamily: 'roboto-bold',
+    fontSize: 48,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  vectorImage:{height: 130, width: 130}
+});
 
 const UserGuide = ({navigation}: Props) => {
   const {t} = useTranslation();
@@ -66,7 +120,7 @@ const UserGuide = ({navigation}: Props) => {
       <>
         <WalkthroughContainer>
           <LinearGradient
-            style={{flex: 1}}
+            style={styles.flex1}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}
             colors={item.colors}>
@@ -76,21 +130,21 @@ const UserGuide = ({navigation}: Props) => {
                   <WalkthroughImagebox>
                     <VectorImage
                       source={item.image}
-                      style={{width: 130, height: 130}}
+                      style={styles.vectorImage}
                     />
                   </WalkthroughImagebox>
                 ) : index == 1 ? (
                   <WalkthroughImagebox>
                     <VectorImage
                       source={item.image}
-                      style={{width: 130, height: 130}}
+                      style={styles.vectorImage}
                     />
                   </WalkthroughImagebox>
                 ) : (
                   <WalkthroughImagebox>
                     <VectorImage
                       source={item.image}
-                      style={{width: 130, height: 130}}
+                      style={styles.vectorImage}
                     />
                   </WalkthroughImagebox>
                 )}
@@ -113,7 +167,7 @@ const UserGuide = ({navigation}: Props) => {
   };
   return (
     <>
-      <View style={{flex:1,backgroundColor:headerColor}}>
+      <View style={[styles.flex1,{backgroundColor:headerColor}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
        
         <TabScreenHeader
@@ -127,7 +181,7 @@ const UserGuide = ({navigation}: Props) => {
           <AppIntroSlider
             keyExtractor={keyExtractor}
             // renderItem={renderItem}
-            renderItem={({item, index}) => renderItem(item, index)}
+            renderItem={({item, index}:any) => renderItem(item, index)}
             // bottomButton
             dotClickEnabled
             showDoneButton={false}
@@ -146,54 +200,3 @@ const UserGuide = ({navigation}: Props) => {
 };
 
 export default UserGuide;
-const styles = StyleSheet.create({
-  titleText: {
-    color: '#fff',
-    fontSize: 48,
-    textAlign: 'center',
-    fontFamily: 'roboto-bold',
-    marginBottom: 20,
-  },
-
-  title: {
-    padding: 5,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-
-  paginationContainer: {
-    position: 'absolute',
-    bottom: 16,
-    left: 16,
-    right: 16,
-  },
-  paginationDots: {
-    height: 16,
-    margin: 16,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    marginHorizontal: 4,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginHorizontal: 24,
-  },
-  button: {
-    flex: 1,
-    paddingVertical: 20,
-    marginHorizontal: 8,
-    borderRadius: 24,
-    backgroundColor: '#1cb278',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-});

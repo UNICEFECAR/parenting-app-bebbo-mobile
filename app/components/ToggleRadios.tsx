@@ -5,7 +5,13 @@ import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FDirRow } from './shared/FlexBoxStyle';
 import Icon from './shared/Icon';
 import { RadioBoxContainer, RadioInnerBox, RadioOuter } from './shared/radio';
-
+const styles=StyleSheet.create({
+  checkbox:{borderRadius: 50, borderWidth: 1},
+  checkboxItem:{borderRadius: 50},
+  heading3:{flexShrink:1},
+  lastView:{flexDirection:'row',flex:1}
+  })
+  
 const ToggleRadios = (props: any) => {
   const {options,tickColor,tickbgColor,defaultValue} = props;
   const [checkedItem, setCheckedItem] = useState(defaultValue?defaultValue:null);
@@ -29,7 +35,7 @@ const ToggleRadios = (props: any) => {
                   <CheckboxItem>
                     <View>
                     {(checkedItem?.title && checkedItem.title == item.title) ? (
-                        <CheckboxActive style={{borderRadius: 50,backgroundColor:tickbgColor}}>
+                        <CheckboxActive style={[styles.checkboxItem,{backgroundColor:tickbgColor}]}>
                           <Icon name="ic_tick" size={12} color={tickColor} />
                         </CheckboxActive>
                       ) : (
@@ -56,8 +62,3 @@ const ToggleRadios = (props: any) => {
   );
 };
 export default ToggleRadios;
-const styles=StyleSheet.create({
-heading3:{flexShrink:1},
-checkbox:{borderWidth: 1, borderRadius: 50},
-lastView:{flexDirection:'row',flex:1}
-})

@@ -2,6 +2,25 @@ import { bgcolorWhite2, overlaymodalBackground } from '@styles/style';
 import React, { useContext } from 'react';
 import {StyleSheet, View, Modal, ActivityIndicator} from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+const styles = StyleSheet.create({
+  activityIndicatorWrapper: {
+    alignItems: 'center',
+    backgroundColor: bgcolorWhite2,
+    borderRadius: 10,
+    display: 'flex',
+    height: 100,
+    justifyContent: 'space-around',
+    width: 100,
+  },
+  modalBackground: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    backgroundColor: overlaymodalBackground,
+  }
+ 
+});
 
 const OverlayLoadingComponent = (props: any) =>{
   const {loading} = props;
@@ -12,6 +31,7 @@ const OverlayLoadingComponent = (props: any) =>{
       animationType={'none'}
       visible={loading}
       onRequestClose={() => {
+        console.log("request to close called");
       }}>
       <View style={styles.modalBackground}>
         <View style={styles.activityIndicatorWrapper}>
@@ -24,25 +44,6 @@ const OverlayLoadingComponent = (props: any) =>{
 
  
 
-const styles = StyleSheet.create({
-  activityIndicatorWrapper: {
-    backgroundColor: bgcolorWhite2,
-    borderRadius: 10,
-    height: 100,
-    width: 100,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  modalBackground: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    backgroundColor: overlaymodalBackground,
-  }
- 
-});
 
  
 

@@ -17,15 +17,35 @@ const ContainerView = styled.View`
   margin-top: 10px;
 `;
 type RelatedActivityProps = {
-  selectedChildActivitiesData?:any,
-  currentId?:any,
-  headerColor?:any,
-  backgroundColor?:any,
-  listCategoryArray?:any,
-  navigation?:any,
-  fromScreen?:any,
-  currentSelectedChildId?:any
+  selectedChildActivitiesData?:any;
+  currentId?:any;
+  headerColor?:any;
+  backgroundColor?:any;
+  listCategoryArray?:any;
+  navigation?:any;
+  fromScreen?:any;
+  currentSelectedChildId?:any;
 }
+const styles = StyleSheet.create({
+  cardImage: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    flex: 1,
+    height: 120,
+    left: 0,
+    top: 0,
+    width: '100%'
+  },
+  imageView: {
+    minHeight:90
+  },
+  itemPressable: {
+    flexDirection:'row'
+  },
+  listParentView : {
+    paddingLeft:10
+  }
+});
 const RelatedActivities = (props:RelatedActivityProps) => {
   const { selectedChildActivitiesData, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation,currentSelectedChildId } = props;
   const ActivitiesDataold = useAppSelector(
@@ -49,11 +69,9 @@ const RelatedActivities = (props:RelatedActivityProps) => {
  
   
   const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
-  useEffect(() => {
-      
+  useEffect(() => {    
       setrelatedArticleData([]);
-      async function fetchData() {
-        
+      async function fetchData() {        
         let actualselectedChildActivitiesData;
         if(typeof selectedChildActivitiesData == "number")
         {
@@ -129,8 +147,8 @@ const RelatedActivities = (props:RelatedActivityProps) => {
               maxToRenderPerBatch={4} // Reduce number in each render batch
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
-            renderItem={({item, index}) => <RenderActivityItem item={item} index={index} />  }
-            keyExtractor={(item) => item.id}
+              renderItem={({item, index}:any) => <RenderActivityItem item={item} index={index} />  }
+              keyExtractor={(item:any) => item.id}
           />
           </View>
         </ContainerView>
@@ -142,23 +160,4 @@ const RelatedActivities = (props:RelatedActivityProps) => {
 
 export default RelatedActivities;
 
-const styles = StyleSheet.create({
-  cardImage: {
-    width: '100%',
-    height: 120,
-    flex: 1,
-    top: 0,
-    left: 0,
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5
-  },
-  itemPressable: {
-    flexDirection:'row'
-  },
-  imageView: {
-    minHeight:90
-  },
-  listParentView : {
-    paddingLeft:10
-  }
-});
+

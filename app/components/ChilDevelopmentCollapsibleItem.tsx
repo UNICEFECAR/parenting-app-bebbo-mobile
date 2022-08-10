@@ -30,7 +30,26 @@ import { addSpaceToHtml, removeParams } from '../services/Utils';
 import { PopupCloseVideo, PopupCloseContainer } from '@components/shared/ModalPopupStyle';
 import { isFutureDate } from '../services/childCRUD';
 import { bgColor1 } from '@styles/style';
-
+const styles = StyleSheet.create({
+  alignItemsStart:{ alignItems: 'flex-start' },
+  checkboxStyle:{ borderWidth: 1 },
+  heading4Regular:{ flex: 7, textAlignVertical: 'center' },
+  htmlFontSize:{ fontSize: 14 },
+  iconStyle:{ alignSelf: 'center', flex: 1, textAlign: 'right' },
+  imageStyle:{ borderRadius: 5, flex: 1, height: 50, marginRight: 10, width: '100%' },
+  innerPressable:{ flex: 1, height: 50, marginRight: 10, width: '100%' },
+  innerView:{ flex: 1, flexDirection: 'row' },
+  outerView:{
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  padding0:{padding:0},
+  popupCloseContainer:{ height: Dimensions.get('window').height, position: 'absolute', top: 0, width: Dimensions.get('window').width, zIndex: -1, },
+  popupCloseVideo:{alignItems: 'flex-start', height: Dimensions.get('window').height, justifyContent: 'flex-end', padding: 17, width: Dimensions.get('window').width},
+  popupView:{ alignItems: 'center', backgroundColor: bgColor1, flexDirection: 'row', height: Dimensions.get('window').height, justifyContent: 'center', width: Dimensions.get('window').width },
+  pressableView:{flexDirection: 'row',flex: 1}
+});
 const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
   const { item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent, currentSelectedChildId } = props;
   const navigation = useNavigation();
@@ -53,8 +72,8 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const [selVideoArticleData, setselVideoArticleData] = useState();
-  const [selActivitiesData, setselActivitiesData] = useState();
+  const [selVideoArticleData, setselVideoArticleData] = useState<any>();
+  const [selActivitiesData, setselActivitiesData] = useState<any>();
   const [selVideoImage, setselVideoImage] = useState('');
   const [selActivityImage, setselActivityImage] = useState('');
   useEffect(() => {
@@ -71,8 +90,8 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
       const currActivityData = ActivitiesData.filter((x: any) => x.id == item?.related_activities[0])[0];
       setselActivitiesData(currActivityData);
       if (currActivityData && currActivityData?.cover_image && currActivityData?.cover_image?.url != "") {
-        let imageName = removeParams(currActivityData?.cover_image?.url.split('/').pop());
-        let imageArray = [];
+        const imageName = removeParams(currActivityData?.cover_image?.url.split('/').pop());
+        const imageArray = [];
         imageArray.push({
           srcUrl: currActivityData?.cover_image?.url,
           destFolder: RNFS.DocumentDirectoryPath + '/content',
@@ -86,8 +105,8 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
         }
       }
       if (currVideoArtData && currVideoArtData?.cover_image && currVideoArtData?.cover_image?.url != "") {
-        let imageName = removeParams(currVideoArtData?.cover_image?.url.split('/').pop());
-        let imageArray = [];
+        const imageName = removeParams(currVideoArtData?.cover_image?.url.split('/').pop());
+        const imageArray = [];
         imageArray.push({
           srcUrl: currVideoArtData?.cover_image?.url,
           destFolder: RNFS.DocumentDirectoryPath + '/content',
@@ -295,23 +314,3 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
   );
 });
 export default ChilDevelopmentCollapsibleItem;
-const styles = StyleSheet.create({
-  outerView:{
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  innerView:{ flex: 1, flexDirection: 'row' },
-  checkboxStyle:{ borderWidth: 1 },
-  heading4Regular:{ flex: 7, textAlignVertical: 'center' },
-  pressableView:{flexDirection: 'row',flex: 1},
-  iconStyle:{ flex: 1, textAlign: 'right', alignSelf: 'center' },
-  innerPressable:{ flex: 1, width: '100%', height: 50, marginRight: 10 },
-  imageStyle:{ flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight: 10 },
-  htmlFontSize:{ fontSize: 14 },
-  padding0:{padding:0},
-  popupView:{ width: Dimensions.get('window').width, height: Dimensions.get('window').height, backgroundColor: bgColor1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-  popupCloseContainer:{ width: Dimensions.get('window').width, height: Dimensions.get('window').height, position: 'absolute', zIndex: -1, top: 0, },
-  popupCloseVideo:{width: Dimensions.get('window').width, height: Dimensions.get('window').height, alignItems: 'flex-start', justifyContent: 'flex-end', padding: 17},
-  alignItemsStart:{ alignItems: 'flex-start' }
-});

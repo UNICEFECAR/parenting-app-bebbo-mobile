@@ -8,6 +8,9 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
+const styles=StyleSheet.create({
+  shiftFromBottom:{flex:1,flexDirection:'column'}
+})
 const DailyHomeNotification = () => {
   const [notification, setNotification] = useState<any>();
   const dispatch = useAppDispatch();
@@ -24,7 +27,7 @@ const DailyHomeNotification = () => {
   };
 
   useEffect(() => {
-    let currentDate = DateTime.local();
+    const currentDate = DateTime.local();
     //for testing next day noti change
     if (currentNotification != null && currentNotification != undefined && currentNotification != '') {
       const currentNotificationVal = currentNotification!=''
@@ -42,7 +45,7 @@ const DailyHomeNotification = () => {
           );
           // Set next daily message
           if(currentMessageIndex>-1 && records[currentMessageIndex + 1]){
-            let newNotification = {
+            const newNotification = {
               messageId: records[currentMessageIndex + 1].id,
               messageText: records[currentMessageIndex + 1].title,
               day: currentDate.day,
@@ -53,7 +56,7 @@ const DailyHomeNotification = () => {
             setNotification(newNotification);
           }
           else{
-            let firstNotification = {
+            const firstNotification = {
               messageId: records.length>0 ? records[0].id : '',
               messageText: records.length>0? records[0].title : '',
               day: currentDate.day,
@@ -70,7 +73,7 @@ const DailyHomeNotification = () => {
         }
       } else {
        //DAILY MESSAGE VARIABLE WAS NEVER SET
-        let firstNotification = {
+        const firstNotification = {
           messageId: records.length>0 ? records[0].id : '',
           messageText: records.length>0? records[0].title : '',
           day: currentDate.day,
@@ -82,7 +85,7 @@ const DailyHomeNotification = () => {
      }
     }else{
       if (records.length > 0) {
-      let firstNotification = {
+      const firstNotification = {
         messageId: records ? records[0].id : '',
         messageText: records ? records[0].title : '',
         day: currentDate.day,
@@ -120,6 +123,4 @@ const DailyHomeNotification = () => {
 };
 
 export default DailyHomeNotification;
-const styles=StyleSheet.create({
-  shiftFromBottom:{flex:1,flexDirection:'column'}
-})
+

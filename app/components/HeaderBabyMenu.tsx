@@ -47,6 +47,82 @@ import {
 import { bgcolorBlack2, bgcolortransparent, bgcolorWhite } from '@styles/style';
 
 const headerHeight = 50;
+const styles = StyleSheet.create({
+  OuterIconLeftPadding: {
+    paddingLeft: 30
+  },
+  centeredPressable: {
+    backgroundColor: bgcolortransparent,
+    height: headerHeight,
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: "100%",
+    zIndex: 9999
+  },
+  centeredView: {
+    height: '100%',
+    left: 0,
+    position: 'relative',
+    width: '100%',
+    zIndex: 1,
+  },
+  hbMenuView: {
+    backgroundColor: bgcolortransparent, 
+    height: '100%', 
+    opacity: 0.5, 
+    position: 'absolute', 
+    width: '100%', 
+    zIndex: 2
+  },
+  hbPressable: {
+    backgroundColor: bgcolortransparent, 
+    height: '100%', 
+    position: 'relative', 
+    width: '100%'
+  },
+  heading5Fontwg: {
+    fontWeight: 'normal'
+  },
+  innerCenteredView: {
+    backgroundColor: bgcolortransparent, flex: 1
+  },
+  mainModal: {
+
+  },
+  modalView: {
+    backgroundColor: bgcolorWhite,
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
+    borderBottomWidth: 2,
+    borderColor: bgcolorBlack2,
+    padding: 0,
+    position: 'relative',
+    zIndex: 3,
+    ...Platform.select({
+      ios: {
+        top: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35,
+        marginTop: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35
+      },
+      android: {
+        marginTop: headerHeight,
+      },
+    })
+  },
+  pressableProfile: {
+    paddingBottom: 7,
+    paddingTop: 7
+  },
+  sortedChildListView: {
+    backgroundColor: bgcolortransparent, 
+    height: 'auto', 
+    maxHeight: 150, 
+    minHeight: 100, 
+    position: 'relative', 
+    width: "100%", 
+    zIndex: 9999
+  }
+});
 const HeaderBabyMenu = (props : any) => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
@@ -286,79 +362,4 @@ const HeaderBabyMenu = (props : any) => {
   );
 };
 export default HeaderBabyMenu;
-const styles = StyleSheet.create({
-  centeredView: {
-    height: '100%',
-    left: 0,
-    position: 'relative',
-    width: '100%',
-    zIndex: 1,
-  },
-  mainModal: {
 
-  },
-  modalView: {
-    backgroundColor: bgcolorWhite,
-    borderBottomLeftRadius: 4,
-    borderBottomRightRadius: 4,
-    padding: 0,
-    borderColor: bgcolorBlack2,
-    borderBottomWidth: 2,
-    position: 'relative',
-    zIndex: 3,
-    ...Platform.select({
-      ios: {
-        top: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35,
-        marginTop: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35
-      },
-      android: {
-        marginTop: headerHeight,
-      },
-    })
-  },
-  heading5Fontwg: {
-    fontWeight: 'normal'
-  },
-  pressableProfile: {
-    paddingTop: 7,
-    paddingBottom: 7
-  },
-  OuterIconLeftPadding: {
-    paddingLeft: 30
-  },
-  sortedChildListView: {
-    height: 'auto', 
-    minHeight: 100, 
-    maxHeight: 150, 
-    backgroundColor: bgcolortransparent, 
-    zIndex: 9999, 
-    position: 'relative', 
-    width: "100%"
-  },
-  innerCenteredView: {
-    flex: 1, backgroundColor: bgcolortransparent
-  },
-  centeredPressable: {
-    backgroundColor: bgcolortransparent,
-    zIndex: 9999,
-    height: headerHeight,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: "100%"
-  },
-  hbMenuView: {
-    backgroundColor: bgcolortransparent, 
-    opacity: 0.5, 
-    zIndex: 2, 
-    position: 'absolute', 
-    width: '100%', 
-    height: '100%'
-  },
-  hbPressable: {
-    backgroundColor: bgcolortransparent, 
-    width: '100%', 
-    height: '100%', 
-    position: 'relative'
-  }
-});

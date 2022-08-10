@@ -22,7 +22,17 @@ import { FormOuterCheckbox } from './shared/ChildSetupStyle';
 import Divider, { DividerN, DividerContainer } from './shared/Divider';
 import { FlexDirRowStart } from './shared/FlexBoxStyle';
 import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from './shared/NotificationStyle';
-
+const styles = StyleSheet.create({
+  checkBoxStyle: { 
+    borderWidth: 1 
+  },
+  menuView: {
+    alignItems: 'center',
+    height: 40,
+    justifyContent: 'center',
+    width: 40,
+  },
+});
 
 const NotificationItem = (props: any) => {
   const { item, onItemReadMarked, onItemDeleteMarked, isDeleteEnabled, activeChild } = props;
@@ -36,6 +46,7 @@ const NotificationItem = (props: any) => {
   const pluralShow = useAppSelector(
     (state: any) => state.selectedCountry.pluralShow,
   );
+  const { t } = useTranslation();
   const geticonname = (type: string) => {
      return type == 'gw'
       ? 'ic_growth'
@@ -47,6 +58,12 @@ const NotificationItem = (props: any) => {
             ? 'ic_doctor_chk_up'
             : 'ic_growth';
   };
+  const markAsRead = (item: any) => {
+    onItemReadMarked(item);
+  }
+  const markAsDelete = (item: any) => {
+    onItemDeleteMarked(item);
+  }
   const getButtonname = (type: string) => {
     return type == 'gw'
       ? t('growthScreenaddNewBtntxt')
@@ -104,17 +121,12 @@ const NotificationItem = (props: any) => {
                 },
               }) : '';
   };
-  const markAsRead = (item: any) => {
-    onItemReadMarked(item);
-  }
-  const markAsDelete = (item: any) => {
-    onItemDeleteMarked(item);
-  }
+
   const growthColor = themeContext.colors.CHILDGROWTH_COLOR;
   const vaccinationColor = themeContext.colors.VACCINATION_COLOR;
   const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
-  const { t } = useTranslation();
+  
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
   useEffect(() => {
     setToggleCheckBox(false);
@@ -135,9 +147,9 @@ const NotificationItem = (props: any) => {
     })
     return vc;
   }
-  let toDay = DateTime.fromJSDate(new Date()).toMillis();
-  let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
-  let notiDate = DateTime.fromJSDate(new Date(item.notificationDate)).toMillis();
+  const toDay = DateTime.fromJSDate(new Date()).toMillis();
+  const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+  const notiDate = DateTime.fromJSDate(new Date(item.notificationDate)).toMillis();
   const renderGrowthNotifcation = () => {
     return (
       //
@@ -813,14 +825,4 @@ const NotificationItem = (props: any) => {
 };
 export default NotificationItem;
 
-const styles = StyleSheet.create({
-  checkBoxStyle: { 
-    borderWidth: 1 
-  },
-  menuView: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+
