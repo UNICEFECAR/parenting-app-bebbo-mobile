@@ -42,12 +42,40 @@ export const girl_child_gender=41;
 export const boy_child_gender=40;
 export const weight_growth_type=32786;
 export const height_growth_type=6461;
-let today = new Date();
+const today = new Date();
 today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
 export const restOfTheWorldCountryId = 126;
 export const videoArticleMandatory = 0;
 export const maxArticleSize = 5; 
+export const appConfig = {
+  articles: 'articles',
+  videoArticles: 'video-articles',
+  dailyMessages: 'daily-homescreen-messages',
+  basicPages: 'basic-pages',
+  sponsors:'sponsors',
+  taxonomies:'taxonomies',
+  standardDeviation:'standard_deviation',
+  milestones:'milestones',
+  activities:'activities',
+  surveys:'surveys',
+  childDevelopmentData:'child-development-data',
+  childGrowthData:'child-growth-data',
+  vaccinations:'vaccinations',
+  healthCheckupData:'health-checkup-data',
+  pinnedContent:'pinned-contents',
+  vaccinePinnedContent:'pinnedvaccinations',
+  childdevGirlPinnedContent:'child_development/'+girl_child_gender,
+  childdevBoyPinnedContent:'child_development/'+boy_child_gender,
+  childGrowthPinnedContent:'child_growth',
+  healthcheckupPinnedContent:'health_check_ups',
+  faqPinnedContent:'faq',
+  faqUpdatedPinnedContent:'updatedfaq',
+  milestoneRelatedArticle:'milestonerelatedarticle',
+  checkUpdate:'check-update',
+  faqs:'faqs',
+  archive:'archive',
+}
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     if(apiEndpoint==appConfig.sponsors){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
@@ -85,34 +113,7 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
 }
 
-export const appConfig = {
-    articles: 'articles',
-    videoArticles: 'video-articles',
-    dailyMessages: 'daily-homescreen-messages',
-    basicPages: 'basic-pages',
-    sponsors:'sponsors',
-    taxonomies:'taxonomies',
-    standardDeviation:'standard_deviation',
-    milestones:'milestones',
-    activities:'activities',
-    surveys:'surveys',
-    childDevelopmentData:'child-development-data',
-    childGrowthData:'child-growth-data',
-    vaccinations:'vaccinations',
-    healthCheckupData:'health-checkup-data',
-    pinnedContent:'pinned-contents',
-    vaccinePinnedContent:'pinnedvaccinations',
-    childdevGirlPinnedContent:'child_development/'+girl_child_gender,
-    childdevBoyPinnedContent:'child_development/'+boy_child_gender,
-    childGrowthPinnedContent:'child_growth',
-    healthcheckupPinnedContent:'health_check_ups',
-    faqPinnedContent:'faq',
-    faqUpdatedPinnedContent:'updatedfaq',
-    milestoneRelatedArticle:'milestonerelatedarticle',
-    checkUpdate:'check-update',
-    faqs:'faqs',
-    archive:'archive',
-}
+
   export const allApisObject = (isDatetimeReq:any, dateTimeObj:any) => {
     const allApiObject = [
       {
