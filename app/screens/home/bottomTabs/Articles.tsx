@@ -13,6 +13,7 @@ import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { articlesTintcolor } from '@styles/style';
 import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -30,15 +31,34 @@ import { randomArrayShuffle } from '../../../services/Utils';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
-  navigation: ArticlesNavigationProp,
-  route: any
+  navigation: ArticlesNavigationProp;
+  route: any;
 };
+const styles = StyleSheet.create({
+  cardImage: {
+    alignSelf: 'center',
+    flex: 1,
+    height: 200,
+    width: '100%',
+
+  },
+  containerView: {
+    backgroundColor: articlesTintcolor,
+    flex: 1
+  },
+  flex1View: { 
+    flex: 1
+  },
+  pressablePadding: { 
+    padding: 13
+  }
+});
 export type ArticleCategoriesProps = {
-  borderColor?: any,
-  filterOnCategory?: any,
-  filterArray?: any,
-  fromPage?: any,
-  onFilterArrayChange?: any
+  borderColor?: any;
+  filterOnCategory?: any;
+  filterArray?: any;
+  fromPage?: any;
+  onFilterArrayChange?: any;
 }
 const Articles = ({ route, navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -48,7 +68,7 @@ const Articles = ({ route, navigation }: Props) => {
   const flatListRef = useRef(null);
   const setIsModalOpened = async (varkey: any) => {
     if (modalVisible == true) {
-      let obj = { key: varkey, value: false };
+      const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
       setModalVisible(false);
     }
@@ -72,8 +92,8 @@ const Articles = ({ route, navigation }: Props) => {
     let combinedarr: any[] = [];
     let i = 0;
     let j = 0;
-    let articlearr = randomArrayShuffle(articlearrold)
-    let videoartarr = randomArrayShuffle(videoartarrold)
+    const articlearr = randomArrayShuffle(articlearrold)
+    const videoartarr = randomArrayShuffle(videoartarrold)
     if(articlearr.length == 0) {
       combinedarr = [...videoartarr];
     }
@@ -83,18 +103,18 @@ const Articles = ({ route, navigation }: Props) => {
         i++;
         if (index == articlearr.length - 1) {
           if (j < videoartarr.length) {
-            let dd = videoartarr.splice(j);
+            const dd = videoartarr.splice(j);
             dd.map((y:any) => combinedarr.push(y));
           }
         }
       } else {
         i = 1;
-        if (videoartarr[j]) { combinedarr.push(videoartarr[j]) };
+        if (videoartarr[j]) { combinedarr.push(videoartarr[j]) }
         combinedarr.push(x);
         j++;
         if (index == articlearr.length - 1) {
           if (j < videoartarr.length) {
-            let dd = videoartarr.splice(j);
+            const dd = videoartarr.splice(j);
             dd.map((y:any) => combinedarr.push(y));
           }
         }
@@ -109,16 +129,6 @@ const Articles = ({ route, navigation }: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const goToArticleDetail = (item: typeof filteredData[0]) => {
-    navigation.navigate('DetailsScreen',
-      {
-        fromScreen: "Articles",
-        headerColor: headerColor,
-        backgroundColor: backgroundColor,
-        detailData: item,
-        listCategoryArray: filterArray
-      });
-  };
   const { t } = useTranslation();
   //code for getting article dynamic data starts here.
   // let filterArray: string[] = [];
@@ -138,13 +148,13 @@ const Articles = ({ route, navigation }: Props) => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  let articleDataOld = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
+  const articleDataOld = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
 
   const VideoArticlesDataall = useAppSelector(
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
-  let videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
 
   let articleData = mergearr(articleDataOld,videoarticleData);
   const [filteredData, setfilteredData] = useState([]);
@@ -152,7 +162,17 @@ const Articles = ({ route, navigation }: Props) => {
   const [loadingArticle, setLoadingArticle] = useState(true);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const videoIsFocused = useIsFocused();
-  const RenderArticleItem = ({ item, index }) => {
+  const goToArticleDetail = (item: typeof filteredData[0]) => {
+    navigation.navigate('DetailsScreen',
+      {
+        fromScreen: "Articles",
+        headerColor: headerColor,
+        backgroundColor: backgroundColor,
+        detailData: item,
+        listCategoryArray: filterArray
+      });
+  };
+  const RenderArticleItem = ({ item, index }:any) => {
     return (
     <ArticleListContainer>
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
@@ -172,7 +192,49 @@ const Articles = ({ route, navigation }: Props) => {
   )
       };
   const memoizedValue = useMemo(() => RenderArticleItem, [RenderArticleItem,filteredData]);
+  const toTop = () => {
+    // use current
+    flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
+  }
+  const setFilteredArticleData = (itemId: any) => {
+    
+    if (articleData != null && articleData != undefined && articleData.length > 0) {
+      setLoadingArticle(true);
+      if (itemId.length > 0) {
+        let newArticleData = articleDataOld.filter((x: any) => itemId.includes(x.category));
+        let newvideoArticleData = videoarticleData.filter((x: any) => itemId.includes(x.category));
+        if (queryText != "" && queryText != undefined && queryText != null) {
+          newArticleData = newArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+          newvideoArticleData = newvideoArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+        }
+        const combinedartarr = mergearr(newArticleData,newvideoArticleData);
 
+        setfilteredData(combinedartarr);
+        
+        setLoadingArticle(false);
+        toTop();
+      } else {
+        let newArticleData = articleData != '' ? articleData : [];
+        const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+        let newvideoArticleData = videoarticleData != '' ? videoarticleData : [];
+        let combinedartarr = [];
+        if (queryText != "" && queryText != undefined && queryText != null) {
+          newArticleData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+          newvideoArticleData = videoarticleDataAllCategory.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+          combinedartarr = mergearr(newArticleData,newvideoArticleData);
+          setfilteredData(combinedartarr);
+        }else {
+          setfilteredData(newArticleData);
+        }
+
+        setLoadingArticle(false);
+        toTop();
+      }
+    } else {
+      setLoadingArticle(false);
+      setfilteredData([]);
+    }
+  }
   useFocusEffect(
     React.useCallback(() => {
       async function fetchData() {
@@ -214,49 +276,8 @@ const Articles = ({ route, navigation }: Props) => {
     }, [])
   );
   
-  const toTop = () => {
-    // use current
-    flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
-  }
-  const setFilteredArticleData = (itemId: any) => {
-    
-    if (articleData != '' && articleData != null && articleData != undefined && articleData.length > 0) {
-      setLoadingArticle(true);
-      if (itemId.length > 0) {
-        let newArticleData = articleDataOld.filter((x: any) => itemId.includes(x.category));
-        let newvideoArticleData = videoarticleData.filter((x: any) => itemId.includes(x.category));
-        if (queryText != "" && queryText != undefined && queryText != null) {
-          newArticleData = newArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          newvideoArticleData = newvideoArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-        }
-        let combinedartarr = mergearr(newArticleData,newvideoArticleData);
-
-        setfilteredData(combinedartarr);
-        
-        setLoadingArticle(false);
-        toTop();
-      } else {
-        let newArticleData = articleData != '' ? articleData : [];
-        let videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
-        let newvideoArticleData = videoarticleData != '' ? videoarticleData : [];
-        let combinedartarr = [];
-        if (queryText != "" && queryText != undefined && queryText != null) {
-          newArticleData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          newvideoArticleData = videoarticleDataAllCategory.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          combinedartarr = mergearr(newArticleData,newvideoArticleData);
-          setfilteredData(combinedartarr);
-        }else {
-          setfilteredData(newArticleData);
-        }
-
-        setLoadingArticle(false);
-        toTop();
-      }
-    } else {
-      setLoadingArticle(false);
-      setfilteredData([]);
-    }
-  }
+  
+  
 
   const onFilterArrayChange = (newFilterArray: any) => {
    
@@ -269,7 +290,7 @@ const Articles = ({ route, navigation }: Props) => {
     let artData: any;
     let newvideoArticleData: any;
     let combinedartarr = [];
-    let videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+    const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
 
     if (queryText != "" && queryText != undefined && queryText != null) {
       artData = articleDataall.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
@@ -290,12 +311,12 @@ const Articles = ({ route, navigation }: Props) => {
   return (
     <>
       <OverlayLoadingComponent loading={loadingArticle} />
-      <View style={{ flex: 1, backgroundColor: backgroundColor }}>
+      <View style={styles.containerView}>
         <KeyboardAvoidingView
           // behavior={Platform.OS === "ios" ? "padding" : "height"}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           keyboardVerticalOffset={(Platform.OS === 'android') ? -200 : 0}
-          style={{ flex: 1 }}
+          style={styles.flex1View}
         >
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
           <TabScreenHeader
@@ -319,7 +340,8 @@ const Articles = ({ route, navigation }: Props) => {
                 }}
                 value={queryText}
                 onSubmitEditing={async (event) => {
-                  const data = await searchList(queryText);
+                  console.log("event-",event);
+                  await searchList(queryText);
                 }}
                 multiline={false}
                 // placeholder="Search for Keywords"
@@ -348,9 +370,9 @@ const Articles = ({ route, navigation }: Props) => {
               }
               <OuterIconRow>
 
-                <Pressable style={{ padding: 13 }} onPress={async (e) => {
+                <Pressable style={styles.pressablePadding} onPress={async (e) => {
                   e.preventDefault();
-                  const data = await searchList(queryText);
+                  await searchList(queryText);
                   Keyboard.dismiss();
 
                 }}>
@@ -405,13 +427,3 @@ const Articles = ({ route, navigation }: Props) => {
 };
 
 export default Articles;
-const styles = StyleSheet.create({
-
-  cardImage: {
-    height: 200,
-    width: '100%',
-    flex: 1,
-    alignSelf: 'center',
-
-  },
-});
