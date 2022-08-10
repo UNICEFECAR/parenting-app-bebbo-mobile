@@ -29,26 +29,32 @@ import {
   ButtonVaccination
 } from '../../shared/ButtonGlobal';
 import Icon, { IconViewAlert, IconViewBg } from '../../shared/Icon';
-
+const styles=StyleSheet.create({
+  alignCenter:{alignSelf: 'center' },
+  radioActive:{backgroundColor: greenColor, borderRadius: 50 },
+  textNoLine:{ textDecorationLine: "none" },
+  toolsIconOuterView:{ alignItems: "flex-end", flex: 1 },
+  vaccineOuterView:{ flex: 6, flexDirection: "row" }
+ })
 const UpcomingVaccines = (props: any) => {
   const {item, headerColor, backgroundColor, currentPeriodId} =props;
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  let reminders = activeChild.reminders;
+  const reminders = activeChild.reminders;
   let vcReminder: any;
   const vaccineReminders = reminders.filter(
     (item:any) => item?.reminderType == 'vaccine',
   );
   if (vaccineReminders.length>0) {
     vaccineReminders.forEach((vaccineReminder:any)=>{
-      let today = DateTime.fromJSDate(new Date());
-      let reminderDate = new Date(DateTime.fromMillis(vaccineReminder?.reminderDate));
+      const today = DateTime.fromJSDate(new Date());
+      const reminderDate = new Date(DateTime.fromMillis(vaccineReminder?.reminderDate));
       const hours = new Date(vaccineReminder?.reminderTime).getHours()
       const mins = new Date(vaccineReminder?.reminderTime).getMinutes()
       reminderDate.setHours(hours);
@@ -288,10 +294,3 @@ const UpcomingVaccines = (props: any) => {
   );
 };
 export default UpcomingVaccines;
-const styles=StyleSheet.create({
-  radioActive:{backgroundColor: greenColor, borderRadius: 50 },
-  alignCenter:{alignSelf: 'center' },
-  vaccineOuterView:{ flex: 6, flexDirection: "row" },
-  toolsIconOuterView:{ flex: 1, alignItems: "flex-end" },
-  textNoLine:{ textDecorationLine: "none" }
- })

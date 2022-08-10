@@ -11,12 +11,25 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationHeightForAge } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
-
+const styles = StyleSheet.create({
+  fullScreenPressable:{
+    marginTop: 5,
+    padding: 7
+  },
+  loadingContainer: {
+    marginTop:50
+  }
+})
 const ChartHeightForAge = (props: any) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const navigation = useNavigation();
+  const activeChild = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild)
+    : [],
+);
   const fullScreenChart = (chartType:any, obj:any) => {
     navigation.navigate('ChartFullScreen', {
       activeChild,
@@ -25,11 +38,8 @@ const ChartHeightForAge = (props: any) => {
     });
   };
   const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
-  let activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
-  );
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
   let obj: any;
   let standardDeviation: any;
    // if (activeChild?.gender == '40' || activeChild?.gender == '') {
@@ -69,8 +79,7 @@ const ChartHeightForAge = (props: any) => {
       }, 2000);
     }, []),
   );
-  let windowWidth = Dimensions.get('window').width;
-let windowHeight = Dimensions.get('window').height;
+ 
 const [deviceOrientation, setDeviceOrientation] = useState(
   Dimensions.get('window').width < Dimensions.get('window').height
     ? 'portrait'
@@ -119,7 +128,6 @@ useEffect(() => {
         <ShiftFromTopBottom15>
           {item && (props.days >= activeChild.taxonomyData.days_from) ? (
             <>
-             {/* {item?.interpretationText?.name && item?.interpretationText?.text ? <Heading2>{t('growthScreensumHeading')}</Heading2> : null}  */}
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
                 <Heading3Regular>{item?.interpretationText?.text}</Heading3Regular>
@@ -147,12 +155,3 @@ useEffect(() => {
   );
 };
 export default ChartHeightForAge;
-const styles = StyleSheet.create({
-  fullScreenPressable:{
-    padding: 7,
-    marginTop: 5
-  },
-  loadingContainer: {
-    marginTop:50
-  }
-})

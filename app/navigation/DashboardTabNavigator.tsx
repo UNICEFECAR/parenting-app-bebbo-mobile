@@ -21,6 +21,14 @@ import {
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { DashboardBottomTabParamList } from './types';
+const styles = StyleSheet.create({
+  bottomtabIconStyle:{alignContent: 'center'},
+  centeredView: {
+    flex: 1,
+    justifyContent: 'flex-end'
+  }
+});
+
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
 const secondStack = createStackNavigator<any>();
@@ -63,6 +71,7 @@ export default () => {
           <TouchableOpacity
 
             onPress={() => {
+              console.log("pressed")
 
             }}
             activeOpacity={1}>
@@ -127,7 +136,7 @@ export default () => {
         <DashboardBottomTab.Screen name="Home" component={Home}
           options={{
             tabBarLabel: t('tabbarLabel1'),
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color, size }:any) => (
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
             unmountOnBlur: true,
@@ -135,7 +144,7 @@ export default () => {
         <DashboardBottomTab.Screen name="Activities" component={Activities} initialParams={{ categoryArray: [], currentSelectedChildId: 0, backClicked: 'no' }}
           options={{
             tabBarLabel: t('tabbarLabel2'),
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color, size }:any) => (
               <Icon name="ic_activities" color={color} size={size} />
             ),
           }} />
@@ -144,8 +153,8 @@ export default () => {
           name="Tools"
           options={{
             tabBarLabel: t('tabbarLabel3'),
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="ic_sb_tools" color={color} size={size} style={{ alignContent: 'center', }} />
+            tabBarIcon: ({ color, size }:any) => (
+              <Icon name="ic_sb_tools" color={color} size={size} style={styles.bottomtabIconStyle} />
             ),
             unmountOnBlur: true,
           }}
@@ -159,7 +168,7 @@ export default () => {
         <DashboardBottomTab.Screen name="Articles" component={Articles} initialParams={{ categoryArray: [], backClicked: 'no' }}
           options={{
             tabBarLabel: t('tabbarLabel4'),
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color, size }:any) => (
               <Icon name="ic_articles" color={color} size={size} />
             ),
             unmountOnBlur: true,
@@ -167,7 +176,7 @@ export default () => {
         <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment} initialParams={{ currentSelectedChildId: 0 }}
           options={{
             tabBarLabel: t('tabbarLabel5'),
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({ color, size }:any) => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),
             unmountOnBlur: true,
@@ -176,10 +185,3 @@ export default () => {
     </>
   );
 };
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'flex-end',
-
-  },
-});

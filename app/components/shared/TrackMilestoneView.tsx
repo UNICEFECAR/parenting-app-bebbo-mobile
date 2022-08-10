@@ -8,12 +8,19 @@ import { ButtonDevelopmentMd, ButtonTextMd } from './ButtonGlobal';
 import { BannerContainerMilestone, MainContainer } from './Container';
 import { Flex1, Flex3, FlexDirRowStart } from './FlexBoxStyle';
 import Icon, { IconBox, OuterIconLeft, OuterIconRow } from './Icon';
+const styles = StyleSheet.create({
+  mainContainerFlex:{
+    flex:1
+  },
+  milestonePressable: {
+    flexDirection: 'row'
+  }
+})
 const TrackMilestoneView = (props:any) => {
   const {currentSelectedChildId} = props;
   const navigation = useNavigation();
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
-  const backgroundColor = themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
   return (
     <>
     <ShiftFromBottom15>
@@ -56,11 +63,3 @@ const TrackMilestoneView = (props:any) => {
   );
 };
 export default TrackMilestoneView;
-const styles = StyleSheet.create({
-  mainContainerFlex:{
-    flex:1
-  },
-  milestonePressable: {
-    flexDirection: 'row'
-  }
-})

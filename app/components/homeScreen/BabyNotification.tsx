@@ -17,6 +17,13 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, TouchableHighlight, View } from 'react-native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
+const styles=StyleSheet.create({
+  alignFlexEnd:{alignItems:"flex-end"},
+  colStyle:{ flexShrink: 1,paddingRight: 7},
+  outerView:{ flexShrink: 1, paddingLeft: 4 },
+  padding10:{padding:10}
+
+})
 import { DateTime } from 'luxon';
 const BabyNotification = () => {
   const navigation = useNavigation();
@@ -126,10 +133,3 @@ const BabyNotification = () => {
 };
 
 export default BabyNotification;
-const styles=StyleSheet.create({
-  outerView:{ flexShrink: 1, paddingLeft: 4 },
-  colStyle:{ flexShrink: 1,paddingRight: 7},
-  padding10:{padding:10},
-  alignFlexEnd:{alignItems:"flex-end"}
-
-})
