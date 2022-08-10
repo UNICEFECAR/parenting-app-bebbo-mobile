@@ -16,8 +16,18 @@ import ShareFavButtons from './shared/ShareFavButtons';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: row;
-  background-color: ${props => props.theme.colors.ACTIVITIES_TINTCOLOR};,
+  background-color: ${(props): string => props.theme.colors.ACTIVITIES_TINTCOLOR};,
 `;
+
+const styles = StyleSheet.create({
+  cardImage: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    height: 200,
+    width: '100%',
+  }
+});
+
 const FavActivities = () => {
   const navigation = useNavigation()
   const {t} = useTranslation();
@@ -108,7 +118,7 @@ const favoritegames = useAppSelector((state: any) =>
                   maxToRenderPerBatch={4} // Reduce number in each render batch
                   updateCellsBatchingPeriod={100} // Increase time between renders
                   windowSize={7} // Reduce the window size
-                  renderItem={({item, index}) => <SuggestedActivities item={item} index={index} /> }
+                  renderItem={({item, index}:any) => <SuggestedActivities item={item} index={index} /> }
                   keyExtractor={(item:any) => item.id.toString()}
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
@@ -119,12 +129,3 @@ const favoritegames = useAppSelector((state: any) =>
   );
 };
 export default FavActivities;
-
-const styles = StyleSheet.create({
-  cardImage: {
-    height: 200,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    width: '100%',
-  }
-});

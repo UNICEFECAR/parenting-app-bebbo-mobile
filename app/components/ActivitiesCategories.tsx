@@ -7,7 +7,7 @@ import { ActivityFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
 import analytics from '@react-native-firebase/analytics';
 import { GAME_CATEGORY_SELECTED } from '@assets/data/firebaseEvents';
-import { ACTIVITIES_COLOR, bgcolorWhite2 } from '@styles/style';
+import { activitiesColor, bgcolorWhite2 } from '@styles/style';
 type ActivityCategoriesProps = {
     borderColor?: any;
     filterOnCategory?: any;
@@ -17,7 +17,7 @@ type ActivityCategoriesProps = {
 }
 const styles = StyleSheet.create({
     filterBoxbg1:{
-    backgroundColor:ACTIVITIES_COLOR
+    backgroundColor:activitiesColor
     },
     filterBoxbg2:{
     backgroundColor:bgcolorWhite2

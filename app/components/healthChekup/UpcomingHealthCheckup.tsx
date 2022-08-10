@@ -41,16 +41,22 @@ import {
   ButtonTextSmLineL
 } from '../shared/ButtonGlobal';
 import Icon, { IconViewBg } from '../shared/Icon';
-
+const styles=StyleSheet.create({
+  dirView:{flex:6,flexDirection:"row"},
+  iconStyle:{ alignSelf: 'center' },
+  pressableOuterView:{alignItems:"flex-end",flex:1},
+  radioActive:{ backgroundColor: greenColor },
+  textDecoration:{textDecorationLine:"none"}
+})
 const UpcomingHealthCheckup = (props: any) => {
   const { item, childAgeIndays, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const [isOpen, setIsOpen] = useState<Boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const themeContext = useContext(ThemeContext);
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
@@ -58,15 +64,15 @@ const UpcomingHealthCheckup = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
-  let reminders = activeChild.reminders;
+  const reminders = activeChild.reminders;
   let hcReminder: any;
   const healthCheckupReminders = reminders.filter(
     (item:any) => item?.reminderType == 'healthCheckup',
   );
   if (healthCheckupReminders.length > 0) {
     healthCheckupReminders.forEach((healthCheckupReminder:any) => {
-      let today = DateTime.fromJSDate(new Date());
-      let reminderDate = new Date(DateTime.fromMillis(healthCheckupReminder?.reminderDate));
+      const today = DateTime.fromJSDate(new Date());
+      const reminderDate = new Date(DateTime.fromMillis(healthCheckupReminder?.reminderDate));
       const hours = new Date(healthCheckupReminder?.reminderTime).getHours()
       const mins = new Date(healthCheckupReminder?.reminderTime).getMinutes()
       reminderDate.setHours(hours);
@@ -314,7 +320,9 @@ const UpcomingHealthCheckup = (props: any) => {
                 <ShiftFromTopBottom10>
                   <Pressable
                     onPress={
-                      () => { }
+                      () => { 
+                        console.log("pressable called")
+                      }
                     }>
                     <ButtonTextMdLine numberOfLines={2}>{t('hcEditBtn')}</ButtonTextMdLine>
                   </Pressable>
@@ -341,10 +349,3 @@ const UpcomingHealthCheckup = (props: any) => {
   );
 };
 export default UpcomingHealthCheckup;
-const styles=StyleSheet.create({
-  radioActive:{ backgroundColor: greenColor },
-  iconStyle:{ alignSelf: 'center' },
-  dirView:{flex:6,flexDirection:"row"},
-  pressableOuterView:{flex:1,alignItems:"flex-end"},
-  textDecoration:{textDecorationLine:"none"}
-})

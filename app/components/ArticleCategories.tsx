@@ -8,6 +8,20 @@ import { FlexDirRow } from './shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from './shared/Icon';
 import { ADVICE_CATEGORY_SELECTED } from '@assets/data/firebaseEvents';
 import analytics from '@react-native-firebase/analytics';
+import { articleColor, bgcolorWhite2 } from '@styles/style';
+const styles = StyleSheet.create({
+  filterBoxbg1:{
+    backgroundColor:articleColor
+    },
+  filterBoxbg2:{
+        backgroundColor:bgcolorWhite2
+    },
+  iconStyle: {
+    marginLeft: 10
+  },
+  innerView:{flex: 1, flexDirection: 'column'},
+    pressableView:{flex:1}
+});
 const ArticleCategories = (props: ArticleCategoriesProps) => {
   const categoryData = useAppSelector(
     (state: any) =>
@@ -60,16 +74,3 @@ const articleBrackets = chunk(articleCategoryobj, 2)
   );
 };
 export default ArticleCategories;
-const styles = StyleSheet.create({
-  iconStyle: {
-    marginLeft: 10
-  },
-  innerView:{flex: 1, flexDirection: 'column'},
-  pressableView:{flex:1},
-  filterBoxbg1:{
-    backgroundColor:"#FF8D6B"
-    },
-    filterBoxbg2:{
-        backgroundColor:"#fff"
-    }
-});

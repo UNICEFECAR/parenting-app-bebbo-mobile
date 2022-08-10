@@ -10,7 +10,7 @@ import {
 } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { bgcolorWhite2 } from '@styles/style';
+import { bgcolorWhite2, grayCode } from '@styles/style';
 import {
   Heading2,
   Heading3,
@@ -27,6 +27,20 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { formatStringDate } from '../../services/Utils';
+const styles = StyleSheet.create({
+  btnTextDeco: {
+    textDecorationLine:"none"
+  },
+  evntDetailStyle: {
+    backgroundColor: bgcolorWhite2,
+    borderRadius: 4,
+    marginBottom: 10,
+    padding: 15,
+  },
+  grayColor: {
+    color: grayCode
+  }
+})
 const ActiveChildMeasureTimeline = (props: any) => {
   const {activeChild} = props;
   const navigation = useNavigation();
@@ -38,17 +52,17 @@ const ActiveChildMeasureTimeline = (props: any) => {
     (state: any) => state.selectedCountry.luxonLocale,
   );
   const setNewChildMeasureUpdates = () => {
-    let measures = activeChild.measures.filter((item)=>item.isChildMeasured== true && item.weight>0 && item.height>0);
+    const measures = activeChild.measures.filter((item:any)=>item.isChildMeasured== true && item.weight>0 && item.height>0);
     let measurementDate: DateTime = DateTime.local();
     let allMeasurements = measures.map((item: MeasuresEntity) => {
       if (item.measurementDate) {
         measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
       }
 
-      let month: number = 0;
+      let month: any = 0;
 
       if (activeChild?.birthDate) {
-        let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+        const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
         month = Math.round(measurementDate.diff(birthDay, 'month').months);
       }
 
@@ -91,7 +105,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
         
       }
     };
-    let title = (
+    const title = (
       <FDirRow>
         <Heading3>
           {renderTitle(
@@ -166,17 +180,4 @@ const ActiveChildMeasureTimeline = (props: any) => {
   );
 };
 export default ActiveChildMeasureTimeline;
-const styles = StyleSheet.create({
-  btnTextDeco: {
-    textDecorationLine:"none"
-  },
-  grayColor: {
-    color: 'gray'
-  },
-  evntDetailStyle: {
-    backgroundColor: bgcolorWhite2,
-    marginBottom: 10,
-    padding: 15,
-    borderRadius: 4,
-  }
-})
+

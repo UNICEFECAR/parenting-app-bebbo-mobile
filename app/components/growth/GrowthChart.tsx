@@ -1,3 +1,4 @@
+import { chartInnerViewBg, outerViewbg } from '@styles/style';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Platform, StyleSheet, Text, View, ViewStyle } from 'react-native';
@@ -34,6 +35,10 @@ export interface GrowtChartStyles {
   chartLegend: ViewStyle;
   chartLegendItem: ViewStyle;
   chartHeader: ViewStyle;
+  mainView: ViewStyle;
+  chartInnerView: ViewStyle;
+  textFont: ViewStyle;
+  outerView: ViewStyle;
 }
 export interface VictoryStyles {
   VictoryAxis: VictoryAxisCommonProps['style'];
@@ -48,8 +53,83 @@ export enum chartTypes {
   WeightForHeight,
   HeightForAge,
 }
+const styles = StyleSheet.create<GrowtChartStyles>({
+  chartHeader: {
+    flexDirection: 'row',
+    paddingLeft: 20,
+    paddingTop: 20,
+  },
+  chartInnerView:{
+    backgroundColor: chartInnerViewBg,
+    height: 12,
+    margin: 10,
+    width: 27,
+  },
+  chartLegend: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  chartLegendItem: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    
+  },
+  contentWrapper: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    
+  },
+  mainView:{alignItems:'center',flexDirection:'column'},
+  outerView:{
+    backgroundColor: outerViewbg,
+    height: 12,
+    margin: 10,
+    width: 27,
+  },
+  textFont:{fontSize: 11, opacity: 0.5}
+});
+const victoryStyles: VictoryStyles = {
+  VictoryAxis: {
+    grid: {stroke: 'transparent'},
+    axis: {stroke: 'none'}
+  },
+  VictoryAxisVertical: {
+    grid: {stroke: 'transparent'},
+    axis: {stroke: 'none'},
+    axisLabel: {angle: 0}
+  },
+  VictoryLine: {
+    data: {stroke: '#0C66FF', strokeWidth: 9, strokeLinecap: 'round'},
+  },
+  VictoryScatter: {
+    data: {fill: 'white', stroke: '#ACACAC', strokeWidth: 3},
+    labels: {fill: 'red'}
+  },
+  VictoryArea: {
+    data: {fill: '#D8D8D8'},
+  },
+
+  VictoryTooltip: {
+    flyoutStyle: {
+      stroke: 'none',
+      fill: '#262626',
+      opacity: 85,
+    },
+    style: {
+      padding: 15,
+      fill: 'white',
+    },
+  },
+};
 const GrowthChart = (props: any) => {
-  let {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
+  const {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
    const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
   const labelX = props.chartType == chartTypes.WeightForHeight ? t('growthScreencmText'):t('month') ;
@@ -82,8 +162,8 @@ useEffect(() => {
 }, [deviceOrientation]);
 
 
-    let growthMeasures = activeChild.measures.filter((item:any)=>item.isChildMeasured== true&& item.weight>0 && item.height>0);
-  let convertedMeasures:any = convertMeasuresData(
+    const growthMeasures = activeChild.measures.filter((item:any)=>item.isChildMeasured== true&& item.weight>0 && item.height>0);
+   const convertedMeasures:any = convertMeasuresData(
     growthMeasures,
     childBirthDate
   );
@@ -96,12 +176,12 @@ useEffect(() => {
         : {x: item.measurementDate / 30, y: item.height},
     );
   });
-  let {topArea, bottomArea, middleArea} = bgObj;
+  const {topArea, bottomArea, middleArea} = bgObj;
   const ChartClick=Platform.OS=="android"?Svg:View;
 
   return (
     <>
-   <View style={{flexDirection:'column',alignItems:'center'}}>
+   <View style={styles.mainView}>
    <ChartClick width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
         height={deviceOrientation === 'portrait' ?
         windowWidth - 60
@@ -237,8 +317,7 @@ useEffect(() => {
                       eventKey: 'all',
                       target: 'data',
                       mutation: (props: any) => {
-                        const stroke = props.style && props.style.stroke;
-                        return props.index === selectedDataIndex
+                         return props.index === selectedDataIndex
                           ? {
                               style: {
                                 fill: 'white',
@@ -260,26 +339,16 @@ useEffect(() => {
       <View style={styles.chartLegend}>
         <View style={styles.chartLegendItem}>
           <View
-            style={{
-              width: 27,
-              height: 12,
-              backgroundColor: '#D8D8D8',
-              margin: 10,
-            }}></View>
-          <Text style={{fontSize: 11, opacity: 0.5}}>
+            style={styles.chartInnerView}></View>
+          <Text style={styles.textFont}>
             {t('growthChartLegendSilverLabel')}
           </Text>
         </View>
         {deviceOrientation != 'portrait' && (
           <View style={styles.chartLegendItem}>
             <View
-              style={{
-                width: 27,
-                height: 12,
-                backgroundColor: '#F9C49E',
-                margin: 10,
-              }}></View>
-            <Text style={{fontSize: 11, opacity: 0.5}}>
+              style={styles.outerView}></View>
+            <Text style={styles.textFont}>
               {t('growthChartLegendOrangeLabel')}
             </Text>
           </View>
@@ -291,65 +360,4 @@ useEffect(() => {
   );
 };
 export default GrowthChart;
-const styles = StyleSheet.create<GrowtChartStyles>({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    
-  },
-  chartHeader: {
-    flexDirection: 'row',
-    paddingLeft: 20,
-    paddingTop: 20,
-  },
-  contentWrapper: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    
-  },
-  chartLegend: {
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'center',
-  },
-  chartLegendItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    
-  },
-});
-const victoryStyles: VictoryStyles = {
-  VictoryAxis: {
-    grid: {stroke: 'transparent'},
-    axis: {stroke: 'none'}
-  },
-  VictoryAxisVertical: {
-    grid: {stroke: 'transparent'},
-    axis: {stroke: 'none'},
-    // @ts-ignore
-    axisLabel: {angle: 0}
-  },
-  VictoryLine: {
-    data: {stroke: '#0C66FF', strokeWidth: 9, strokeLinecap: 'round'},
-  },
-  VictoryScatter: {
-    data: {fill: 'white', stroke: '#ACACAC', strokeWidth: 3},
-    labels: {fill: 'red'}
-  },
-  VictoryArea: {
-    data: {fill: '#D8D8D8'},
-  },
 
-  VictoryTooltip: {
-    flyoutStyle: {
-      stroke: 'none',
-      fill: '#262626',
-      opacity: 85,
-    },
-    style: {
-      padding: 15,
-      fill: 'white',
-    },
-  },
-};

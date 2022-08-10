@@ -9,6 +9,10 @@ import React, { useContext, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle';
+const styles=StyleSheet.create({
+  checkboxStyle:{borderWidth: 1}
+  })
+  
 const VaccineItem = (props: any) => {
   const {item, onToggleVaccine, fromScreen,backgroundActiveColor} = props;
   const themeContext = useContext(ThemeContext);
@@ -72,6 +76,3 @@ const VaccineItem = (props: any) => {
   );
 };
 export default VaccineItem;
-const styles=StyleSheet.create({
-checkboxStyle:{borderWidth: 1}
-})

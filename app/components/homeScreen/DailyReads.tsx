@@ -19,6 +19,18 @@ import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../
 import LoadableImage from '../../services/LoadableImage';
 import analytics from '@react-native-firebase/analytics';
 
+const styles = StyleSheet.create({
+  cardImage: {
+    flex: 1,
+    height: 160,
+    position: 'relative',
+    width: '100%'
+  },
+  flatlistOuterView:{ marginLeft: -7, marginRight: -7 },
+  linearGradient: {
+    flex: 1,
+  }
+});
 const DailyReads = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -74,29 +86,29 @@ const DailyReads = () => {
       selectedChildActivitiesData: ActivitiesData
     });
   }
-  const onShare = async (item:any) => {
-    const isAdvice=item.hasOwnProperty('activity_category')?false:true;
-    const suburl=isAdvice?"/article/":"/activity/";
-    const mainUrl=shareTextButton+languageCode+suburl+item.id;
-      try {
-        const result = await Share.share({
-        message:item.title+'\n'+t('appShareText')+'\n'+mainUrl
-       });
-       if (result.action === Share.sharedAction) {
-         if(isAdvice){
-            analytics().logEvent(ADVICE_SHARED, {advise_id:item?.id});
-         }else{
-            analytics().logEvent(GAME_SHARED, {game_id:item?.id});
-         }
-        
-       } else if (result.action === Share.dismissedAction) {
-         // dismissed
-       }
-     } catch (error) {
-       Alert.alert(t('generalError'));
-     }
-   };
-  const RenderDailyReadItem = React.memo(({ item, index }:any) => {
+  const onShare = async (item: any) => {
+    const isAdvice = item.hasOwnProperty('activity_category') ? false : true;
+    const suburl = isAdvice ? "/article/" : "/activity/";
+    const mainUrl = shareTextButton + languageCode + suburl + item.id;
+    try {
+      const result = await Share.share({
+        message: item.title + '\n' + t('appShareText') + '\n' + mainUrl
+      });
+      if (result.action === Share.sharedAction) {
+        if (isAdvice) {
+          analytics().logEvent(ADVICE_SHARED, { advise_id: item?.id });
+        } else {
+          analytics().logEvent(GAME_SHARED, { game_id: item?.id });
+        }
+
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      Alert.alert(t('generalError'));
+    }
+  };
+  const RenderDailyReadItem = React.memo(({ item, index }: any) => {
     return (
       <View>
         <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
@@ -121,15 +133,15 @@ const DailyReads = () => {
             </DailyTag>
             {/*Parent Share , View Details*/}
             <DailyAction>
-            <Pressable onPress={() => { onShare(item)}}>
-              <FDirRow>
-                <OuterIconRow>
+              <Pressable onPress={() => { onShare(item) }}>
+                <FDirRow>
+                  <OuterIconRow>
                     <OuterIconLeft>
-                    <Icon name="ic_sb_shareapp" size={24} color="#000" />
+                      <Icon name="ic_sb_shareapp" size={24} color="#000" />
                     </OuterIconLeft>
                   </OuterIconRow>
-                <Heading4>{t('homeScreenshareText')}</Heading4>
-              </FDirRow>
+                  <Heading4>{t('homeScreenshareText')}</Heading4>
+                </FDirRow>
               </Pressable>
               <Pressable onPress={() => { goToArticleDetail(item) }}>
                 <FDirRow>
@@ -149,10 +161,10 @@ const DailyReads = () => {
   });
 
   useEffect(() => {
-    
+
     let dailyDataCategory: any, showedDailyDataCategory: any;
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
-      dailyDataCategory = { advice: 0, games: 0, currentadviceid: 0, currentgamesid: 0, currentDate: '', taxonomyid: activeChild.taxonomyData.id,prematureTaxonomyId:activityTaxonomyId };
+      dailyDataCategory = { advice: 0, games: 0, currentadviceid: 0, currentgamesid: 0, currentDate: '', taxonomyid: activeChild.taxonomyData.id, prematureTaxonomyId: activityTaxonomyId };
     } else {
       let advid = dailyDataCategoryall[activeChild.uuid].advice;
       let currentadviceid = dailyDataCategoryall[activeChild.uuid].currentadviceid;
@@ -161,39 +173,38 @@ const DailyReads = () => {
       if (dailyDataCategoryall[activeChild.uuid].taxonomyid != activeChild.taxonomyData.id) {
         advid = 0;
         currentadviceid = 0;
-       }
+      }
       if (dailyDataCategoryall[activeChild.uuid].prematureTaxonomyId != activityTaxonomyId) {
         gamid = 0;
         currentgamesid = 0;
       }
-      let newcurrentdate = gamid == 0 || advid == 0 ? '' : dailyDataCategoryall[activeChild.uuid].currentDate;
+      const newcurrentdate = gamid == 0 || advid == 0 ? '' : dailyDataCategoryall[activeChild.uuid].currentDate;
       dailyDataCategory = { advice: advid, games: gamid, currentadviceid: currentadviceid, currentgamesid: currentgamesid, currentDate: newcurrentdate, taxonomyid: activeChild.taxonomyData.id, prematureTaxonomyId: activityTaxonomyId };
     }
     if (showedDailyDataCategoryall[activeChild.uuid] === undefined) {
-       showedDailyDataCategory = { advice: [], games: [] };
+      showedDailyDataCategory = { advice: [], games: [] };
     } else {
-     let advicearr = showedDailyDataCategoryall[activeChild.uuid].advice;
+      let advicearr = showedDailyDataCategoryall[activeChild.uuid].advice;
       let gamesarr = showedDailyDataCategoryall[activeChild.uuid].games;
-      if(dailyDataCategoryall[activeChild.uuid].taxonomyid != activeChild.taxonomyData.id)
-      {
-      advicearr = [];
+      if (dailyDataCategoryall[activeChild.uuid].taxonomyid != activeChild.taxonomyData.id) {
+        advicearr = [];
       }
-      if(dailyDataCategoryall[activeChild.uuid].prematureTaxonomyId != activityTaxonomyId) {
-      gamesarr = [];
+      if (dailyDataCategoryall[activeChild.uuid].prematureTaxonomyId != activityTaxonomyId) {
+        gamesarr = [];
       }
-      showedDailyDataCategory = {advice: advicearr , games: gamesarr};  
+      showedDailyDataCategory = { advice: advicearr, games: gamesarr };
     }
     const nowDate = DateTime.now().toISODate();
     if (dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)) {
       const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => articleData.find((f: any) => f.category === i))
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id))
-       const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
+      const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
       const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
       let categoryArticleData = articleData.filter((x: any) => x.category == articleCategoryArrayNew[nextIndex]);
-       let obj1 = categoryArticleData.filter((i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id));
+      const obj1 = categoryArticleData.filter((i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id));
       let advicearray: any = [];
-       if (obj1.length == 0) {
-         let abc = showedDailyDataCategory.advice.filter((i: any) => !categoryArticleData.find((f: any) => f.id === i));
+      if (obj1.length == 0) {
+        const abc = showedDailyDataCategory.advice.filter((i: any) => !categoryArticleData.find((f: any) => f.id === i));
         advicearray = [...abc]
       } else {
         advicearray = [...showedDailyDataCategory.advice]
@@ -203,10 +214,10 @@ const DailyReads = () => {
       const currentIndex2 = activityCategoryArrayNew.findIndex((_item: any) => _item.id === dailyDataCategory.games);
       const nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
       let categoryActivityData = ActivitiesData.filter((x: any) => x.activity_category == activityCategoryArrayNew[nextIndex2].id);
-      let obj2 = categoryActivityData.filter((i: any) => !showedDailyDataCategory.games.find((f: any) => f === i.id));
+      const obj2 = categoryActivityData.filter((i: any) => !showedDailyDataCategory.games.find((f: any) => f === i.id));
       let gamesarray: any = [];
       if (obj2.length == 0) {
-        let abc = showedDailyDataCategory.games.filter((i: any) => !categoryActivityData.find((f: any) => f.id === i));
+        const abc = showedDailyDataCategory.games.filter((i: any) => !categoryActivityData.find((f: any) => f.id === i));
         gamesarray = [...abc]
       } else {
         gamesarray = [...showedDailyDataCategory.games]
@@ -232,7 +243,7 @@ const DailyReads = () => {
         currentgamesid: activityDataToShow && activityDataToShow != null ? activityDataToShow?.id : 0,
         currentDate: DateTime.now().toISODate(),
         taxonomyid: activeChild.taxonomyData.id,
-        prematureTaxonomyId:activityTaxonomyId
+        prematureTaxonomyId: activityTaxonomyId
       };
       showedDailyDataCategorytoDispatch[activeChild.uuid] = { advice: advicearray, games: gamesarray }
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
@@ -240,7 +251,7 @@ const DailyReads = () => {
     } else {
       let data: any = [];
       const articleDataToShow = articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid).length > 0 ?
-      articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid)[0] : null;
+        articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid)[0] : null;
       const activityDataToShow = ActivitiesData.filter((x: any) => x.id == dailyDataCategory.currentgamesid).length > 0 ?
         ActivitiesData.filter((x: any) => x.id == dailyDataCategory.currentgamesid)[0] : null;
       if (articleDataToShow == null && activityDataToShow == null) {
@@ -255,7 +266,7 @@ const DailyReads = () => {
       }
       setDataToShowInList(data);
     }
-  }, [activeChild.uuid,activityTaxonomyId]);
+  }, [activeChild.uuid, activityTaxonomyId]);
   return (
     <>
       <BgSecondaryTint>
@@ -263,12 +274,12 @@ const DailyReads = () => {
           <ShiftFromTopBottom10>
             <Heading2>{t('homeScreendailyReadsTitle')}</Heading2>
           </ShiftFromTopBottom10>
-          <View style={{ marginLeft: -7, marginRight: -7 }}>
+          <View style={styles.flatlistOuterView}>
             <FlatList
               data={dataToShowInList}
               horizontal
-              renderItem={({ item, index }) => <RenderDailyReadItem item={item} index={index} />}
-              keyExtractor={(item) => item?.id}
+              renderItem={({ item, index }:any) => <RenderDailyReadItem item={item} index={index} />}
+              keyExtractor={(item:any) => item?.id}
             />
           </View>
         </MainContainer>
@@ -278,20 +289,3 @@ const DailyReads = () => {
 };
 
 export default DailyReads;
-
-const styles = StyleSheet.create({
-
-
-  linearGradient: {
-    flex: 1,
-  },
-  cardImage: {
-    width: '100%',
-    height: 160,
-    flex: 1,
-    position: 'relative'
-  },
-
-
-
-});

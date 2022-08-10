@@ -13,7 +13,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2, ShiftFromTop10
 } from '@styles/typography';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -32,7 +32,7 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const {t} = useTranslation();
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
