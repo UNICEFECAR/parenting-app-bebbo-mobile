@@ -296,6 +296,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
             setModalVisible(!modalVisible);
           }}
           onDismiss={() => {
+            console.log("dismissed")
           }}>
           <View style={styles.popupView}>
             <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
