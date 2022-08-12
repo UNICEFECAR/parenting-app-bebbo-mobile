@@ -138,9 +138,7 @@ const SettingScreen = (props: any) => {
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
+  
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -453,8 +451,8 @@ const SettingScreen = (props: any) => {
               console.log(item,'---isfuture date4 ---',isFutureDateTime(new Date(item.notificationDate)));
               if(item.subtype == 'reminder' && isFutureDateTime(new Date(item.notificationDate)))
               {
-                const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
-                const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
+                const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)});
+                const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)});
                 const message = item.type == 'vaccine' ? titlevcr : titlehcr;
                 LocalNotifications.schduleNotification(new Date(item.notificationDate),t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),item.type == 'vaccine' ? 'vcr' : 'hcr',child.uuid);
               }
@@ -858,7 +856,7 @@ const SettingScreen = (props: any) => {
             <Heading4>{t('settingScreendownldSubHeaderText')}</Heading4>
             <Heading6>
               {t('settingScreendownldlast', {
-                downloadDate: formatStringDate(new Date(lastUpdatedDate), luxonLocale),
+                downloadDate: formatStringDate(new Date(lastUpdatedDate)),
               })}
             </Heading6>
             <ShiftFromTop10>

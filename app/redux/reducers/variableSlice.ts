@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-interface variableDataType {
+interface VariableDataType {
     variableData:string;
 }
-const initialState: variableDataType = {
+const initialState: VariableDataType = {
   variableData:''
 };
 export const variableSlice = createSlice({

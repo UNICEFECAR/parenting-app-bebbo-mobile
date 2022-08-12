@@ -65,6 +65,7 @@ function createRealmAccess(path = Realm.defaultPath) {
           },
         });
       } catch (error) {
+        console.log("error")
         throw error;
       }
     }

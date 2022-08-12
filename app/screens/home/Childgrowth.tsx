@@ -79,9 +79,7 @@ const Childgrowth = ({navigation}: Props) => {
   const growthModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsGrowthModalOpened),
     );
-    const luxonLocale = useAppSelector(
-      (state: any) => state.selectedCountry.luxonLocale,
-    );
+    
     const pluralShow = useAppSelector(
       (state: any) => state.selectedCountry.pluralShow,
     );
@@ -119,7 +117,7 @@ const Childgrowth = ({navigation}: Props) => {
           uuid:item.uuid,
           weight: item.weight ? parseFloat(item.weight) : 0,
           height: item.height ? parseFloat(item.height) : 0,
-          measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
+          measurementDate: formatStringDate(item?.measurementDate),
           dateToMilis: measurementDate.toMillis(),
           isChildMeasured:item.isChildMeasured,
           titleDateInMonth: month,

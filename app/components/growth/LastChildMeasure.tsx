@@ -45,9 +45,6 @@ const LastChildMeasure = () => {
   );
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   let measures:any=[];
     if(activeChild?.measures.length>0){
      measures = activeChild.measures.filter((item:any) => item.isChildMeasured == true);
@@ -69,7 +66,7 @@ const LastChildMeasure = () => {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
-        measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
+        measurementDate: formatStringDate(item?.measurementDate),
         dateToMilis: measurementDate.toMillis(),
         isChildMeasured:item.isChildMeasured,
         titleDateInMonth: month,

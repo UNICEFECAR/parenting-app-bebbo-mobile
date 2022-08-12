@@ -72,9 +72,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const feedbackItem = surveryData.find((item:any) => item.type == "feedback")
   const userGuideItem = surveryData.find((item:any) => item.type == "user_guide")
   const [modalVisible, setModalVisible] = useState<boolean>(true);
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices ? state.childData.childDataSet.favoriteadvices : []
   );
@@ -227,7 +224,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                                 activeChild.birthDate != '' &&
                                   activeChild.birthDate != null &&
                                   activeChild.birthDate != undefined
-                                  ? formatDate(activeChild.birthDate, luxonLocale)
+                                  ? formatDate(activeChild.birthDate)
                                   : '',
                             }) : t('expectedChildDobLabel')}
                         </Heading5>

@@ -1,5 +1,4 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {RootState} from '../../redux/store';
 
 interface CounterState {
   value: number;
@@ -28,6 +27,6 @@ export const themeSlice = createSlice({
 });
 
 export const {increment, decrement, incrementByAmount} = themeSlice.actions;
-export const selectCount = (state: RootState) => state.theme.value;
+export const selectCount = (state: any) => state.theme.value;
 
 export default themeSlice.reducer;

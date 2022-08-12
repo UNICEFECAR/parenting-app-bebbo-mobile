@@ -1,7 +1,7 @@
 import {localization} from '@dynamicImportsClass/dynamicImports';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface selectedLocalizationType {
+interface SelectedLocalizationType {
   countryId: number;
   languageCode: string;
   luxonLocale:string;
@@ -11,9 +11,9 @@ interface selectedLocalizationType {
   restartOnLangChange:string;
   AppLayoutDirection:string;
   AppLayoutDirectionScreen:string;
-  AppLayoutDirectionParams:Object;
+  AppLayoutDirectionParams:any;
 }
-const initialState: selectedLocalizationType = {
+const initialState: SelectedLocalizationType = {
   countryId: localization[localization.length-1].countryId, //126
   languageCode: localization[localization.length-1].languages[0].languageCode, //'en'
   luxonLocale: localization[localization.length-1].languages[0].luxonLocale, //'en'
