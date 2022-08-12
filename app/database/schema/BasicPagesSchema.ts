@@ -1,15 +1,15 @@
 import { ObjectSchema } from "realm";
 
   export type BasicPagesEntity = {
-    id: number,
-    type: string,
-    title: string,
-    created_at: string,
-    updated_at: string,
-    body: string,
-    mandatory: number,
-    unique_name:string,
-    embedded_images?: string[]
+    id: number;
+    type: string;
+    title: string;
+    created_at: string;
+    updated_at: string;
+    body: string;
+    mandatory: number;
+    unique_name:string;
+    embedded_images?: string[];
   };
   export const BasicPagesSchema: ObjectSchema = {
     name: 'BasicPagesEntity',

@@ -179,7 +179,7 @@ const ChildProfile = ({ navigation }: Props) => {
             <Heading5>
               {(data.birthDate != '' &&
                 data.birthDate != null &&
-                data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate, luxonLocale) : '' }) : t('expectedChildDobLabel')}
+                data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
             </Heading5>
           </ProfileTextView>
 
@@ -238,7 +238,7 @@ const ChildProfile = ({ navigation }: Props) => {
                   <Heading5>
                     {(data.birthDate != '' &&
                       data.birthDate != null &&
-                      data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate, luxonLocale) : '' }) : t('expectedChildDobLabel')}
+                      data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
                   </Heading5>
 
                 </ProfileTextView>

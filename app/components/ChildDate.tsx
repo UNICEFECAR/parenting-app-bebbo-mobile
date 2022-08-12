@@ -169,7 +169,7 @@ const ChildDate = (props: any) => {
             <FlexFDirRowSpace>
                 <Text>
                   {doborExpectedDate
-                    ? formatStringDate(doborExpectedDate,luxonLocale)
+                    ? formatStringDate(doborExpectedDate)
                     : prevScreen=='EditScreen'?  t('childSetupdobText'):t('childSetupdobSelector')}
                 </Text>
                 {showdob && (
@@ -199,7 +199,7 @@ const ChildDate = (props: any) => {
           <FlexFDirRowSpace>
               <Text>
                 {doborExpectedDate
-                  ? formatStringDate(doborExpectedDate,luxonLocale)
+                  ? formatStringDate(doborExpectedDate)
                  : prevScreen=='EditScreen'?t('childSetupdobText'):t('childSetupdobSelector')}
               </Text>
               {showdob && (
@@ -274,7 +274,7 @@ const ChildDate = (props: any) => {
                       <Text>
                         {' '}
                         {dueDate
-                          ? formatStringDate(dueDate,luxonLocale)
+                          ? formatStringDate(dueDate)
                           : t('childSetupdueSelector')}
                       </Text>
                       {showdue && (
@@ -316,7 +316,7 @@ const ChildDate = (props: any) => {
                     <Text>
                       {' '}
                       {dueDate
-                        ? formatStringDate(dueDate,luxonLocale)
+                        ? formatStringDate(dueDate)
                         : t('childSetupdueSelector')}
                     </Text>
                     {showdue && (

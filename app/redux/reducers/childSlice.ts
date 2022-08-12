@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-interface childDataType {
+interface ChildDataType {
   childDataSet: { 
     allChild: string;
     activeChild:string;
@@ -7,9 +7,9 @@ interface childDataType {
     favoriteadvices:Array<any>;
     favoritegames:Array<any>;
     chatBotData:string;
-  }
+  };
 }
-const initialState: childDataType = {
+const initialState: ChildDataType = {
   childDataSet: { 
     allChild: '',
     activeChild:'',

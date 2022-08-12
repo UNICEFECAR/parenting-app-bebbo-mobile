@@ -16,7 +16,7 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from '../database/schema/PinnedChildDevelopmentSchema';
 import { VideoArticleEntity, VideoArticleEntitySchema } from '../database/schema/VideoArticleSchema';
 import downloadImages from '../downloadImages/ImageStorage';
-import { commonApiInterface } from "../interface/interface";
+import { CommonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setchatBotData, setDownloadedBufferAgeBracket } from '../redux/reducers/childSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
@@ -29,7 +29,7 @@ import LocalNotifications from './LocalNotifications';
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
 
-const commonApiService: commonApiInterface = async (apiEndpoint: string, methodname: any, postdata: object) => {
+const commonApiService: CommonApiInterface = async (apiEndpoint: string, methodname: any, postdata: object) => {
   const storedata = store.getState();
   
   const selectedCountry = storedata.selectedCountry.countryId;

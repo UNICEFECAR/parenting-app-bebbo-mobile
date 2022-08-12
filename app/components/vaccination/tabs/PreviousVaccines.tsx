@@ -43,9 +43,6 @@ const PreviousVaccines = (props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const gotoArticle = (pinned_articleID: any) => {
     if (pinned_articleID != 0) {
       navigation.navigate('DetailsScreen', {
@@ -129,7 +126,7 @@ const PreviousVaccines = (props: any) => {
                         )}
                       </ToolsIconView>
                       <ToolsHeadingView>
-                        <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
+                        <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate) : null}</Heading4Regular>
 
                         {v?.pinned_article ?
                           <Pressable onPress={() => gotoArticle(v.pinned_article)}>
