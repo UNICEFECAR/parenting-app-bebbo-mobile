@@ -12,10 +12,11 @@ import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { primaryColor } from '@styles/style';
 import { dobMax } from '@types/types';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -32,7 +33,19 @@ type Props = {
   route: any;
   navigation: ChildSetupNavigationProp;
 };
-
+const styles = StyleSheet.create({
+  containerView: {
+    backgroundColor:primaryColor,
+    flex:1
+  },
+  scrollViewStyle: { 
+    padding: 0,
+    paddingTop: 0
+  },
+  textInputStyle: { 
+    width: '100%'
+  }
+})
 const AddSiblingData = ({ route, navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -54,10 +67,9 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
   
-  genders = genders.map((v) => ({...v, title: v.name})).filter(function (e, i, a) {
+  genders = genders.map((v:any) => ({...v, title: v.name})).filter(function (e: any) {
     return e.id!=both_child_gender;
   });
-  let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isPremature, setIsPremature] = useState<string>('false');
@@ -66,7 +78,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const sendData = (data: any) => { // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
-    var myString: string = String(data.isPremature);
+    const myString = String(data.isPremature);
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
@@ -80,31 +92,31 @@ const AddSiblingData = ({ route, navigation }: Props) => {
       sendData(childData);
       setName(childData.childName);
     }
-    setDefaultGenderValue(childData && childData.uuid? genders.find((item) => item.id == childData?.gender): {title: ''})
+    setDefaultGenderValue(childData && childData.uuid? genders.find((item:any) => item.id == childData?.gender): {title: ''})
     }, [])
   );
-  const AddChild=async ()=>{
-    let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    let newNameIndex:any=0;
-    let defaultName =name;
-    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender,createdAt) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender,createdAt)
-    let childSet: Array<any> = [];
-    childSet.push(insertData);
-    addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null,null);
-}
+  
 const [gender, setGender] = React.useState(
   childData != null ? childData.gender : 0,
 );
 const getCheckedItem = (checkedItem: typeof genders[0]) => {
   setGender(checkedItem.id);
 };
+const AddChild=async ()=>{
+  await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  const defaultName =name;
+  const insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender,createdAt) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender,createdAt)
+  const childSet: Array<any> = [];
+  childSet.push(insertData);
+  addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null,null);
+}
 const themeContext = useContext(ThemeContext);
 const headerColor = themeContext.colors.PRIMARY_COLOR;
   return <>
-    <View style={{flex:1,backgroundColor:headerColor}}>
+    <View style={styles.containerView}>
 
    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-   <ScrollView contentContainerStyle={{ padding: 0, paddingTop: 0 }}>
+   <ScrollView contentContainerStyle={styles.scrollViewStyle}>
     <OnboardingContainer>
       <View>
         <OnboardingHeading>
@@ -125,7 +137,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                 <LabelText>{t('childNameTxt')}</LabelText>
                 <FormInputBox>
                   <TextInputML
-                    style={{ width: '100%' }}
+                    style={styles.textInputStyle}
                     autoCapitalize="none"
                     autoCorrect={false}
                     maxLength={30}

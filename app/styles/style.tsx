@@ -27,3 +27,4 @@ export const imageBg='#dbe9f6';
 export const buttonBg="#1cb278";
 export const articlesTintcolor= '#FFD2C4';
 export const activitiesTintcolor= '#CFF7E5';
+export const primaryColor= '#2B2F84';
