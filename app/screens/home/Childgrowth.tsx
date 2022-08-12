@@ -43,7 +43,7 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Modal, Pressable, ScrollView, View } from 'react-native';
+import { Dimensions, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -53,12 +53,31 @@ import Icon from '@components/shared/Icon';
 import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { formatStringDate } from '../../services/Utils';
+import { bgcolorWhite2 } from '@styles/style';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: ChildgrowthNavigationProp;
   AddNewChildgrowth: any;
 };
+const styles= StyleSheet.create({
+  flex1:{flex:1},
+  marginTop15:{marginTop: 15},
+  maxHeight:{
+    maxHeight: 50,
+  },
+  scrollView:{
+    flex: 9,
+    maxHeight: '100%'
+  },
+  vectorImageView:{
+    alignItems: 'center',
+    backgroundColor: bgcolorWhite2,
+    borderRadius: 4,
+    margin: 15,
+    padding: 15,
+  }
+})
 const Childgrowth = ({navigation}: Props) => {
   const {t} = useTranslation();
   const data = [
@@ -136,7 +155,7 @@ const Childgrowth = ({navigation}: Props) => {
         ]?.dateToMilis)
         const date = DateTime.fromISO(activeChild.birthDate);
         const convertInDays = lastmeasurementDate.diff(date, "days").days;
-        if (convertInDays !== undefined) {days = Math.round(convertInDays)};
+        if (convertInDays !== undefined) {days = Math.round(convertInDays)}
       }
     //Code for Growth text hiding condition ends here
 const {width,height}= Dimensions.get('window');
@@ -144,13 +163,7 @@ const {width,height}= Dimensions.get('window');
     return (
       <>
         <View
-          style={{
-            backgroundColor: '#FFF',
-            borderRadius: 4,
-            alignItems: 'center',
-            margin: 15,
-            padding: 15,
-          }}>
+          style={styles.vectorImageView}>
           <VectorImage source={require('@assets/svg/chart.svg')} />
         </View>
       </>
@@ -196,7 +209,7 @@ const {width,height}= Dimensions.get('window');
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={{backgroundColor:headerColor,width:width,height:height,flex:1}}>
+      <View style={[styles.flex1,{backgroundColor:headerColor,width:width,height:height}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
           <TabScreenHeader
@@ -206,17 +219,15 @@ const {width,height}= Dimensions.get('window');
             setProfileLoading={setProfileLoading}
           />
           <ScrollView
-            style={{
-              flex: 9,
-              backgroundColor: backgroundColor,
-              maxHeight: '100%',
-            }}>
+            style={[styles.scrollView,{
+              backgroundColor: backgroundColor        
+            }]}>
            {(activeChild?.gender == '') ?  <BabyNotification /> : null}
             {measures.length == 0 ? (
               <>
                 <FlexDirCol>
                   <ShiftFromBottom5>
-                    <Heading3 style={{marginTop: 15}}>                  
+                    <Heading3 style={styles.marginTop15}>                  
                       { activeChild.birthDate != null && activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate) ? 
                       t('babyNotificationbyAge', {
                         childName:
@@ -263,14 +274,12 @@ const {width,height}= Dimensions.get('window');
                   <BgContainer>
                     <FlexCol>
                     <TabBarContainerBrd
-                      style={{
-                        maxHeight: 50,
-                      }}>
+                      style={styles.maxHeight}>
                       {data.map((item, itemindex) => {
                         return (
                           <Pressable
                             key={itemindex}
-                            style={{flex: 1}}
+                            style={styles.flex1}
                             onPress={() => {
                               setSelectedIndex(itemindex);
                             }}>
