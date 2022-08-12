@@ -28,7 +28,7 @@ import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import analytics from '@react-native-firebase/analytics';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View, ScrollView, BackHandler } from 'react-native';
+import { Pressable, Text, View, ScrollView, BackHandler, StyleSheet } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -49,7 +49,25 @@ import {
   ShiftFromTop10,
 } from '../styles/typography';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
+import { primaryColor } from '@styles/style';
 
+const styles = StyleSheet.create({
+  containerView: {
+    backgroundColor:primaryColor,
+    flex:1
+  },
+  headingStyle1: { 
+    fontWeight: "bold",
+    textAlign: 'center'
+  },
+  headingStyle2: { 
+    textAlign: 'center'
+  },
+  scrollViewStyle: { 
+    padding: 0,
+    paddingTop: 0
+  }
+})
 const ChildImportSetup = (props: any) => {
   let { importResponse } = props.route.params;
   const { t } = useTranslation();
@@ -60,7 +78,7 @@ const ChildImportSetup = (props: any) => {
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  let genders = useAppSelector(
+  const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
@@ -75,7 +93,7 @@ const ChildImportSetup = (props: any) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
-  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any, i: any, a: any) {
+  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != both_parent_gender;
   });
   const relationship_to_parent = useAppSelector(
@@ -124,9 +142,9 @@ const ChildImportSetup = (props: any) => {
   return (
     <>
 
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={styles.containerView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <ScrollView contentContainerStyle={{ padding: 0, paddingTop: 0 }}>
+        <ScrollView contentContainerStyle={styles.scrollViewStyle}>
           <OnboardingContainer>
 
             <ChildContentArea>
@@ -134,11 +152,11 @@ const ChildImportSetup = (props: any) => {
 
                 <View>
                   <ShiftFromTop50>
-                    <Heading1Centerw style={{ textAlign: 'center', fontWeight: "bold" }}>{t('successOnboardingImport')}</Heading1Centerw>
+                    <Heading1Centerw style={styles.headingStyle1}>{t('successOnboardingImport')}</Heading1Centerw>
                   </ShiftFromTop50>
                   <ShiftFromTop10><Text></Text></ShiftFromTop10>
                   <ShiftFromTopBottom20>
-                    <Heading3Centerw style={{ textAlign: 'center' }}>{t('updateImportText')}</Heading3Centerw>
+                    <Heading3Centerw style={styles.headingStyle2}>{t('updateImportText')}</Heading3Centerw>
                   </ShiftFromTopBottom20>
                   <FormInputGroup
                     onPress={() => {
@@ -233,46 +251,46 @@ const ChildImportSetup = (props: any) => {
                   const resolvedPromises = importResponse.map(async (item: any) => {
                     if (item.birthDate != null && item.birthDate != undefined) {
                       const itemnew = await getChild(item, genders);
-                      let childData: any = [];
+                      const childData: any = [];
                       childData.push(itemnew);
-                      let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
-                      let relationshipnew: any = relationship;
-                      if (typeof relationshipnew === 'string' || relationshipnew instanceof String) {
-                        relationshipnew = relationship;
-                      }
-                      else {
-                        relationshipnew = String(relationship);
-                      }
+                      await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                      // let relationshipnew: any = relationship;
+                      // if (typeof relationshipnew === 'string' || relationshipnew instanceof String) {
+                      //   relationshipnew = relationship;
+                      // }
+                      // else {
+                      //   relationshipnew = String(relationship);
+                      // }
                       let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-                      let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
-                      let userRelationToParentRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
-                      let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
+                      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
+                      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
+                      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
                       if (counter == 0) {
                         if (childId?.length > 0) {
                           childId = childId[0].value;
                           const activeChildData = importResponse.filter((x: any) => x.uuid == childId);
                           if (activeChildData.length > 0) {
-                            const activeChildnew = await setActiveChild(languageCode, childId, dispatch, child_age, false);
+                            await setActiveChild(languageCode, childId, dispatch, child_age, false);
                           }
                           else {
-                            const activeChildnew = await setActiveChild(languageCode, '', dispatch, child_age, false);
+                            await setActiveChild(languageCode, '', dispatch, child_age, false);
                           }
                         }
                         else {
-                          const activeChildnew = await setActiveChild(languageCode, '', dispatch, child_age, false);
+                          await setActiveChild(languageCode, '', dispatch, child_age, false);
                         }
                         counter++;
                       }
 
                     }
                   });
-                  let notiFlagObj = { key: 'generateNotifications', value: true };
+                  const notiFlagObj = { key: 'generateNotifications', value: true };
                   dispatch(setInfoModalOpened(notiFlagObj));
-                  let localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
+                  const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
                   dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
                   await Promise.all(resolvedPromises).then(async item => {
                     if (importResponse.length > 0) {
-                      let childList = await getAllChildren(dispatch, child_age, 1);
+                      const childList = await getAllChildren(dispatch, child_age, 1);
                       const Ages = await getAge(childList, child_age);
                       let apiJsonData;
                       if (Ages?.length > 0) {
