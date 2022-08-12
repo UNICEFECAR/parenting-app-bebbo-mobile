@@ -1,12 +1,11 @@
 import { Heading4Regular, ShiftFromBottom20 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInDays } from '../../services/childCRUD';
 
 const GrowthIntroductory = (props: any) => {
-  let {activeChild} = props;
+  const {activeChild} = props;
   const taxonomy = useAppSelector((state: any) =>
     state.utilsData.taxonomy?.allTaxonomyData != ''
       ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData)
@@ -16,7 +15,6 @@ const GrowthIntroductory = (props: any) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  const {t} = useTranslation();
   const growthPeriod = () => {
     if (childAgeInDays !== null) {
       let ageInDays = 0;
