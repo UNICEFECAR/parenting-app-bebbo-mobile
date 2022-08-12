@@ -21,7 +21,7 @@ import {
   ShiftFromTop20
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import { useAppSelector } from '../../../App';

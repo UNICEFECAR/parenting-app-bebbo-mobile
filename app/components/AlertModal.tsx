@@ -14,7 +14,9 @@ const AlertModal = (props: any) =>{
       transparent={true}
       animationType={'none'}
       visible={loading}
-      onRequestClose={() => {}}>
+      onRequestClose={() => {
+        console.log("on request closed")
+      }}>
           <PopupOverlay>
           <ModalPopupContainer>
           <PopupCloseContainer>
