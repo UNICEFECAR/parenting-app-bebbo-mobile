@@ -307,7 +307,7 @@ const SettingScreen = (props: any) => {
               // growthEnabledFlag == false checked because state update of growthEnabledFlag istaking time
               if (isFutureDate((item.notificationDate))) {
                 return { ...item, isDeleted: growthEnabledFlag == false ? false : true };
-              } else if (difftoToday == 0 || difftoToday == -0) {
+              } else if (difftoToday == 0) {
                 if (growthEnabledFlag == false) {
                   return { ...item, isDeleted: false };
                 } else {
@@ -365,7 +365,7 @@ const SettingScreen = (props: any) => {
               // developmentEnabledFlag == false checked because state update of developmentEnabledFlag istaking time
               if (isFutureDate(new Date(item.notificationDate))) {
                 return { ...item, isDeleted: developmentEnabledFlag == false ? false : true };
-              } else if (difftoToday == 0 || difftoToday == -0) {
+              } else if (difftoToday == 0) {
                 if (developmentEnabledFlag == false) {
                   return { ...item, isDeleted: false };
                 } else {
@@ -424,7 +424,7 @@ const SettingScreen = (props: any) => {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
             }
 
-            else if (difftoToday == 0 || difftoToday == -0) {
+            else if (difftoToday == 0) {
               if (vchcEnabledFlag == false) {
                 return { ...item, isDeleted: false };
               } else {
@@ -441,7 +441,7 @@ const SettingScreen = (props: any) => {
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
-            } else if (difftoToday == 0 || difftoToday == -0) {
+            } else if (difftoToday == 0) {
               if (vchcEnabledFlag == false) {
                 return { ...item, isDeleted: false };
               } else {
