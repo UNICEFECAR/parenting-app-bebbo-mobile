@@ -21,8 +21,8 @@ import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { appConfig, both_child_gender, both_parent_gender} from "./apiConstants";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, PinnedChildDevData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
 
-export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any, queryText?: any) => {
-    return new Promise(async (resolve) => {
+export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any):Promise<any> => {
+    // return new Promise((resolve) => {
         let dataToStore: any;
         let offlineData: any;
         if (SchemaToUse.name == StandardDevWeightForHeightSchema.name) {
@@ -75,21 +75,21 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
         }
         if (dataToStore?.length > 0) {
             dispatch(setAllHardcodedData(dataToStore));
-            resolve(dataToStore);
+            return dataToStore;
         } else {
             dispatch(setAllHardcodedData(JSON.stringify(offlineData)));
-            resolve(offlineData);
+            return offlineData;
         }
-    });
+    // });
 }
-const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
-    return new Promise(async (resolve) => {
+const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any):Promise<any> => {
+    // return new Promise(async (resolve) => {
         if (prevPage == "CountryLanguageSelection") {
             // try {
             let Entity: any;
             await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
             await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
-            resolve("success");
+            return "success";
         }
         else if (prevPage == "AddEditChild") {
             let Entity: any;
@@ -99,7 +99,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
                 "taxonomyData": activeChild.taxonomyData
             }
             await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
-            resolve("nocall");
+            return "success";
         }
         else if (prevPage == "Terms") {
             let Entity: any;
@@ -115,7 +115,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
             await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
             await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
             await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
-            resolve("nocall");
+            return "success";
         } else if (prevPage == "ChilSetup") {
             let Entity: any;
             const currentChildData = {
@@ -124,70 +124,70 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
                 "taxonomyData": activeChild.taxonomyData
             }
             await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
-            resolve("nocall");
+            return "success";
         } else {
-            resolve("fail");
+            return "fail";
         }
-    });
+    // });
 
 
 }
 
-export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
-    return new Promise(async (resolve) => {
+export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode: string, dispatch: any, _prevPage: string, activeChild?: any):Promise<any> => {
+    // return new Promise(async (resolve) => {
         let Entity: any;
         if (apiEndpoint == appConfig.basicPages) {
             await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.taxonomies) {
             await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.dailyMessages) {
             await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.standardDeviation) {
             await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
             await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.vaccinations) {
             await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.healthCheckupData) {
             await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.childDevelopmentData) {
             await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.childdevBoyPinnedContent || apiEndpoint == appConfig.childdevGirlPinnedContent) {
             await getDataToStore(languageCode, dispatch, PinnedChildDevelopmentSchema, Entity as PinnedChildDevelopmentEntity, PinnedChildDevData, setAllPinnedChildDevData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.milestones) {
             await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.videoArticles) {
             await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.activities) {
             await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.surveys) {
             await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.faqs) {
             await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
-            resolve("success");
+            return "success";
         }
         else if (apiEndpoint == appConfig.articles) {
             const currentChildData = {
@@ -196,11 +196,11 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
                 "taxonomyData": activeChild.taxonomyData
             }
             await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
-            resolve("success");
+            return "success";
         } else {
-            resolve("fail");
+            return "success";
         }
-    });
+    // });
 }
 
 export default getAllDataToStore;
