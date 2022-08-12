@@ -54,13 +54,13 @@ const LanguageSelection = ({route, navigation}: Props) => {
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
   useEffect(() => {
-    let newLanguageId: any,selectedLanguage;
+    let newLanguageId: any;
       if(languagenew && languagenew != null){
         newLanguageId = languagenew.languageCode;
       }else {
         newLanguageId = languageCode;
       }
-    selectedLanguage = languages?.find(
+    const selectedLanguage = languages?.find(
       (lang:any) => lang.languageCode === newLanguageId,
     );
     setLanguage(selectedLanguage);
