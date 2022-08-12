@@ -73,7 +73,7 @@ const Childgrowth = ({navigation}: Props) => {
   const [profileLoading,setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
-    let obj = {key: varkey, value: !modalVisible};
+    const obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
   const growthModalOpened = useAppSelector((state: any) =>
@@ -107,10 +107,10 @@ const Childgrowth = ({navigation}: Props) => {
           measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
         }
 
-        let month: number = 0;
+        let month: any = 0;
 
         if (activeChild?.birthDate) {
-          let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+          const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
           month = Math.round(measurementDate.diff(birthDay, 'month').months);
         }
         return {
@@ -131,11 +131,11 @@ const Childgrowth = ({navigation}: Props) => {
       childmeasures = childmeasures.sort(
         (a: any, b: any) => a.dateToMilis - b.dateToMilis,
       );
-        let lastmeasurementDate =  DateTime.fromMillis(childmeasures[
+        const lastmeasurementDate =  DateTime.fromMillis(childmeasures[
           childmeasures.length - 1
         ]?.dateToMilis)
-        let date = DateTime.fromISO(activeChild.birthDate);
-        let convertInDays = lastmeasurementDate.diff(date, "days").days;
+        const date = DateTime.fromISO(activeChild.birthDate);
+        const convertInDays = lastmeasurementDate.diff(date, "days").days;
         if (convertInDays !== undefined) {days = Math.round(convertInDays)};
       }
     //Code for Growth text hiding condition ends here

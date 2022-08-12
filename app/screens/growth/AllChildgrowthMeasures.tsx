@@ -15,7 +15,7 @@ import {
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { isFutureDate } from '../../services/childCRUD';
@@ -26,7 +26,15 @@ type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
-
+const styles=StyleSheet.create({
+  flex1:{flex:1},
+  flexCol:{padding: 20,
+    paddingLeft: 5,
+    maxHeight: '100%',
+    flex: 9},
+  maxHeight:{maxHeight: 50},
+  overflowHidden:{overflow:'hidden'}
+})
 const AllChildgrowthMeasures = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -39,13 +47,12 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
   );
   return (
     <>
-      <View style={{flex: 1, backgroundColor: headerColor}}>
+      <View style={[styles.flex1,{backgroundColor: headerColor}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
             <HeaderRowView
-          style={{
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
+          style={[styles.maxHeight,{
+            backgroundColor: headerColor
+          }]}>
           <HeaderIconView>
           <HeaderIconPress
                 onPress={() => {
@@ -61,13 +68,9 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
         </HeaderRowView>
         <FlexCol>
           <View
-            style={{
-              flex: 9,
-              backgroundColor: backgroundColor,
-              padding: 20,
-              paddingLeft: 5,
-              maxHeight: '100%',
-            }}>
+            style={[styles.flexCol,{
+              backgroundColor: backgroundColor         
+            }]}>
               <ActiveChildMeasureTimeline activeChild={activeChild}/>
             </View>
             <ButtonContainer style={{backgroundColor: backgroundColor}}>
