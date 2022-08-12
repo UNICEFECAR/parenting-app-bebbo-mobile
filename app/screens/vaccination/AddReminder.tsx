@@ -70,7 +70,7 @@ type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ChildSetupNavigationProp;
-  route: any
+  route: any;
 };
 const AddReminder = ({ route, navigation }: Props) => {
   const { t } = useTranslation();
@@ -87,7 +87,7 @@ const AddReminder = ({ route, navigation }: Props) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderDate : null,
   );
-  const [showmeasure, setmeasureShow] = useState<Boolean>(false);
+  const [showmeasure, setmeasureShow] = useState<boolean>(false);
   const [clicked, setClicked] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [measureTime, setmeasureTime] = useState<DateTime>(
@@ -96,23 +96,23 @@ const AddReminder = ({ route, navigation }: Props) => {
   const [minmeasureTime, setminmeasureTime] = useState<any>(
     editReminderItem ? new Date(editReminderItem.reminderDate) : new Date(),
   );
-  const [showmeasureTime, setmeasureShowTime] = useState<Boolean>(false);
-  const [dateTouched, setDateTouched] = useState<Boolean>(false);
-  const [timeTouched, setTimeTouched] = useState<Boolean>(false);
+  const [showmeasureTime, setmeasureShowTime] = useState<boolean>(false);
+  const [dateTouched, setDateTouched] = useState<boolean>(false);
+  const [timeTouched, setTimeTouched] = useState<boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const [isMeasureTimePickerVisible, setMeasureTimePickerVisibility] = useState(false);
 
   const [measureDateDefined, setmeasureDateDefined] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderDateDefined : null,
   );
-  const [showmeasureDefined, setmeasureShowDefined] = useState<Boolean>(false);
+  const [showmeasureDefined, setmeasureShowDefined] = useState<boolean>(false);
   const [measureTimeDefined, setmeasureTimeDefined] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderTimeDefined : null,
   );
  
-  const [showmeasureTimeDefined, setmeasureShowTimeDefined] = useState<Boolean>(false);
-  const [dateTouchedDefined, setDateTouchedDefined] = useState<Boolean>(false);
-  const [timeTouchedDefined, setTimeTouchedDefined] = useState<Boolean>(false);
+  const [showmeasureTimeDefined, setmeasureShowTimeDefined] = useState<boolean>(false);
+  const [dateTouchedDefined, setDateTouchedDefined] = useState<boolean>(false);
+  const [timeTouchedDefined, setTimeTouchedDefined] = useState<boolean>(false);
   const [isMeasureDatePickerVisibleDefined, setMeasureDatePickerVisibilityDefined] = useState(false);
   const [isMeasureTimePickerVisibleDefined, setMeasureTimePickerVisibilityDefined] = useState(false);
   const dispatch = useAppDispatch();
