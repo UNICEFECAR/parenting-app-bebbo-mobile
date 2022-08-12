@@ -130,11 +130,6 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
       : [],
   );
   const dispatch = useAppDispatch();
-  const child_age = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ''
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : [],
-  );
  
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     setmeasureDateShow(false);
