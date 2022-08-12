@@ -4,7 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
-import { BackHandler, Dimensions } from 'react-native';
+import { BackHandler } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
@@ -36,7 +36,6 @@ type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
 >;
-const window = Dimensions.get('window');
 type Props = {
   route: any;
   navigation: ChildSetupNavigationProp;
@@ -80,46 +79,14 @@ const LoadingScreen = ({ route, navigation }: Props) => {
   );
   const netInfoval = useNetInfoHook();
   const [netflag, setnetflag] = useState(false);
-  useFocusEffect(
-    React.useCallback(() => {
-      console.log(incrementalSyncDT, "incrementalSyncDT in useeffect laoding---", netflag);
-      if (netInfoval.isConnected != null && netflag == false) {
-        let enableImageDownload = false;
-        if (toggleSwitchVal == false && netInfoval.isConnected == true) {
-          enableImageDownload = true
-        } else {
-          enableImageDownload = false
-        }
-        console.log("keep awake activated");
-        setnetflag(true);
-        callSagaApi(enableImageDownload);
-      }
-      return () => {
-        // console.log("loading screen left");
-      };
-    }, [netInfoval.isConnected])
-  );
-  useEffect(() => {
-    const backAction = () => {
-      return true;
-    };
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction,
-    );
-
-    return () => {
-      backHandler.remove();
-    }
-  }, []);
   const getAgeWithAgeBrackets = async (prevPage: any) => {
-    let alldataarr: any[] = [], deltadataarr: any[] = [];
+    const alldataarr: any[] = [], deltadataarr: any[] = [];
     if (allDataDownloadFlag == true && prevPage != "CountryLangChange") {
       bufferAgeBracket.map((x: any) => deltadataarr.push(x));
     }
     else {
       const Ages = await getAge(childList, child_age);
-      let ageBrackets: any = [];
+      const ageBrackets: any = [];
       childList.map((child: any) => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
         if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
@@ -195,7 +162,7 @@ const LoadingScreen = ({ route, navigation }: Props) => {
       }
       console.log(apiJsonData, "--apiJsonDataarticle---", apiJsonDataarticleall, "---apiJsonDataarticleall---", apiJsonDataarticledelta);
       if (prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
-
+        console.log("do nothing");
       } else {
         //check download all flag on second downlaodd all click
         if (prevPage == "CountryLangChange" || (prevPage == "DownloadAllData" && allDataDownloadFlag == false)) {
@@ -205,10 +172,10 @@ const LoadingScreen = ({ route, navigation }: Props) => {
           const resolvedPromises = schemaarray.map(async schema => {
             await dataRealmCommon.deleteOneByOne(schema);
           })
-          const results = await Promise.all(resolvedPromises);
+          await Promise.all(resolvedPromises);
         }
       }
-      let payload = { errorArr: [], fromPage: 'OnLoad' }
+      const payload = { errorArr: [], fromPage: 'OnLoad' }
       dispatch(receiveAPIFailure(payload));
       dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
@@ -235,9 +202,6 @@ const LoadingScreen = ({ route, navigation }: Props) => {
         if (Ages.deltadataarr?.length > 0) {
           deltaageBracktes = [...new Set([...deltaageBracktes, ...Ages.deltadataarr])]
         }
-      }
-      if (downloadMonthlyData == true) {
-        
       }
       allAgeBrackets = [...new Set(allAgeBrackets)];
       let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
@@ -271,7 +235,7 @@ const LoadingScreen = ({ route, navigation }: Props) => {
         apiJsonDataarticle = apiJsonDataGet("all", "all")
       }
       //Article delete fun if not pinned have to create with ArticleEntitySchema after cvariable success dispatch
-      const deleteArticles = await deleteArticleNotPinned();
+      await deleteArticleNotPinned();
       dispatch(setDownloadedBufferAgeBracket([]))
       dispatch(fetchAPI(apiJsonDataarticle, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonDataarticle, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
@@ -279,6 +243,37 @@ const LoadingScreen = ({ route, navigation }: Props) => {
       dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
   }
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log(incrementalSyncDT, "incrementalSyncDT in useeffect laoding---", netflag);
+      if (netInfoval.isConnected != null && netflag == false) {
+        let enableImageDownload = false;
+        if (toggleSwitchVal == false && netInfoval.isConnected == true) {
+          enableImageDownload = true
+        } else {
+          enableImageDownload = false
+        }
+        console.log("keep awake activated");
+        setnetflag(true);
+        callSagaApi(enableImageDownload);
+      }
+      
+    }, [netInfoval.isConnected])
+  );
+  useEffect(() => {
+    const backAction = () => {
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+
+    return () => {
+      backHandler.remove();
+    }
+  }, []);
+  
 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.SECONDARY_COLOR;
