@@ -22,7 +22,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1Center, Heading2, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Modal, View } from 'react-native';
+import { Dimensions, Modal, StyleSheet, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -31,7 +31,13 @@ type Props = {
   navigation: ChildSetupNavigationProp;
   route:any;
 };
-
+const styles=StyleSheet.create({
+  borderRadius4:{borderRadius: 4},
+  elevation3:{ elevation: 3 },
+  flex1:{flex:1},
+  maxHeight:{maxHeight: 50},
+  overflowHidden:{overflow:'hidden'}
+})
 const AddNewChildWeight = ({ navigation, route }: Props) => {
   const { t } = useTranslation();
   const [headerColor, setHeaderColor] = useState();
@@ -44,7 +50,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
   const [weight1, setweight1] = useState<any>(0.0);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
-    let obj = { key: varkey, value: !modalVisible };
+    const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
   const [prevRoute, setPrevRoute] = useState<any>();
@@ -60,10 +66,10 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
       setTintColor(route.params?.backgroundColor);
     }
     if (route.params?.weightValue) {
-      route.params?.weightValue.weight != NaN
+      !isNaN(route.params?.weightValue.weight)
         ? setweight(route.params?.weightValue.weight)
         : setweight(0);
-      route.params?.weightValue.weight1 != NaN
+      !isNaN(route.params?.weightValue.weight1)
         ? setweight1(route.params?.weightValue.weight1)
         : setweight1(0.0);
     }
@@ -83,7 +89,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
   });
   const getWeightValue = () => {
     const w =
-      (weight != NaN ? weight : 0) + (weight1 != NaN ? 0.01 * weight1 : 0);
+      (!isNaN(weight) ? weight : 0) + (!isNaN(weight1) ? 0.01 * weight1 : 0);
     return w.toFixed(2);
   };
   return (
@@ -127,13 +133,12 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={[styles.flex1,{backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
-          style={{
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
+          style={[styles.maxHeight,{
+            backgroundColor: headerColor
+          }]}>
           <HeaderIconView>
             <HeaderIconPress
               onPress={() => {
@@ -149,15 +154,15 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
         </HeaderRowView>
         <FlexCol>
           <MainContainer>
-            <View style={{ backgroundColor: tintColor, borderRadius: 4 }}>
-              <View style={{ overflow: 'hidden' }}>
+            <View style={[styles.borderRadius4,{ backgroundColor: tintColor }]}>
+              <View style={styles.overflowHidden}>
                 <ShiftFromTopBottom20>
                   <Heading1Center>
                     {getWeightValue()} {t('growthScreenkgText')}
                   </Heading1Center>
                 </ShiftFromTopBottom20>
                 <Ruler
-                  style={{ elevation: 3 }}
+                  style={styles.elevation3}
                   width={width - screenPadding * 2}
                   height={100}
                   vertical={false}
@@ -181,7 +186,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
                 />
                 {/* <View style={{marginBottom: 20}}></View> */}
                 <Ruler
-                  style={{ elevation: 3 }}
+                  style={styles.elevation3}
                   width={width - screenPadding - screenPadding}
                   height={100}
                   vertical={false}

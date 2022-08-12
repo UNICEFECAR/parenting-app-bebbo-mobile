@@ -43,7 +43,7 @@ type NotificationsNavigationProp =
 type Props = {
   navigation: NotificationsNavigationProp;
 };
-const ChildProfile = ({ navigation }: Props) => {
+const ChildProfile = ({ navigation }: any) => {
   const { t } = useTranslation();
   const [parentViewHeight, setParentViewheight] = useState(0);
   const [profileLoading,setProfileLoading] = React.useState(false);
@@ -59,12 +59,16 @@ const ChildProfile = ({ navigation }: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
+  const child_age = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch, child_age, 0);
       getAllConfigData(dispatch);
       setTimeout(() => {
-        navigation.dispatch(state => {
+        navigation.dispatch((state:any) => {
           // Remove the home route from the stack
           const routes = state.routes.filter(r => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
 
@@ -115,10 +119,7 @@ const ChildProfile = ({ navigation }: Props) => {
   }
 
   const currentActiveChild = activeChild.uuid;
-  const child_age = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
+ 
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
       ? JSON.parse(state.variableData?.variableData)
@@ -145,8 +146,8 @@ const ChildProfile = ({ navigation }: Props) => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
 
-  let relationshipValue = relationshipData.length > 0 && userParentalRoleData.length > 0 ? relationshipData.find((o: any) => String(o.id) === userParentalRoleData[0].value) : '';
-  let relationshipToParent = relationship_to_parent.length > 0 && userRelationToParent.length > 0 ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
+  const relationshipValue = relationshipData.length > 0 && userParentalRoleData.length > 0 ? relationshipData.find((o: any) => String(o.id) === userParentalRoleData[0].value) : '';
+  const relationshipToParent = relationship_to_parent.length > 0 && userRelationToParent.length > 0 ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
   const windowHeight = Dimensions.get('window').height;
 
   const SortedchildList = [...childList].sort((a: any, b: any) => {

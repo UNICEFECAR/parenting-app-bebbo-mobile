@@ -17,12 +17,19 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1Center, Heading2, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Modal, View } from 'react-native';
+import { Dimensions, Modal, StyleSheet, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
-
+const styles=StyleSheet.create({
+  borderRadius4:{borderRadius: 4},
+  elevation3:{ elevation: 3 },
+  flex1:{flex:1},
+  marginBottom20:{marginBottom: 20},
+  maxHeight:{maxHeight: 50},
+  overflowHidden:{overflow:'hidden'}
+})
 type Props = {
   navigation: ChildSetupNavigationProp;
   route:any;
@@ -40,12 +47,13 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
   const [height1, setheight1] = useState<number>(0.0);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
-    let obj = { key: varkey, value: !modalVisible };
+    const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
   const heightModalOpened = useAppSelector((state: any) =>
     (state.utilsData.IsHeightModalOpened),
   );
+ 
   useFocusEffect(() => {
     // pass true to make modal visible every time & reload
     setModalVisible(heightModalOpened)
@@ -62,14 +70,14 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
       setTintColor(route.params?.backgroundColor);
     }
     if (route.params?.heightValue) {
-      (route.params?.heightValue.height != NaN) ? setheight(route.params?.heightValue.height) : setheight(0);
-      (route.params?.heightValue.height1 != NaN) ? setheight1(route.params?.heightValue.height1) : setheight1(0.0);
+      (!isNaN(route.params?.heightValue.height)) ? setheight(route.params?.heightValue.height) : setheight(0);
+      (!isNaN(route.params?.heightValue.height1)) ? setheight1(route.params?.heightValue.height1) : setheight1(0.0);
     }
   }, [route.params?.prevRoute, route.params?.headerColor, route.params?.backgroundColor, route.params?.heightValue]);
 
   const getHeightValue = () => {
     const h =
-      (height != NaN ? height : 0) + (height1 != NaN ? 0.01 * height1 : 0);
+      (!isNaN(height) ? height : 0) + (!isNaN(height1) ? 0.01 * height1 : 0);
     return h.toFixed(2);
   };
   return (
@@ -112,13 +120,12 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={[styles.flex1,{ backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
-          style={{
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
+          style={[styles.maxHeight,{
+            backgroundColor: headerColor
+          }]}>
           <HeaderIconView>
             <HeaderIconPress
               onPress={() => {
@@ -134,15 +141,15 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
         </HeaderRowView>
         <FlexCol>
           <MainContainer>
-            <View style={{ backgroundColor: tintColor, borderRadius: 4 }}>
-              <View style={{ overflow: 'hidden' }}>
+            <View style={[styles.borderRadius4,{ backgroundColor: tintColor}]}>
+              <View style={styles.overflowHidden}>
                 <ShiftFromTopBottom20>
                   <Heading1Center>
                     {getHeightValue()} {t('growthScreencmText')}
                   </Heading1Center>
                 </ShiftFromTopBottom20>
                 <Ruler
-                  style={{ elevation: 3 }}
+                  style={styles.elevation3}
                   width={width - (screenPadding * 2)}
                   height={100}
                   vertical={false}
@@ -164,9 +171,9 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
                   normalHeight={20}
                   backgroundColor={'#FFF'}
                 />
-                <View style={{ marginBottom: 20 }}></View>
+                <View style={styles.marginBottom20}></View>
                 <Ruler
-                  style={{ elevation: 3 }}
+                  style={styles.elevation3}
                   width={width - screenPadding - screenPadding}
                   height={100}
                   vertical={false}
