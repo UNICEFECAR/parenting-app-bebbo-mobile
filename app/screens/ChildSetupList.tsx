@@ -62,9 +62,6 @@ const ChildSetupList = ({ navigation }: Props) => {
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
@@ -105,7 +102,7 @@ const ChildSetupList = ({ navigation }: Props) => {
       <ChildListingBox key={index}>
         <ChildColArea1>
           <ChildListTitle >{data.childName}{(gender != '' && gender != 0 && gender != undefined) ? <Text style={{ fontSize: 12, fontWeight: 'normal' }}>, {gender}</Text> : null}</ChildListTitle>
-          <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate, luxonLocale) : '' }) : t('expectedChildDobLabel')}</Heading5>
+          <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}</Heading5>
         </ChildColArea1>
         <ChildColArea2>
           {

@@ -134,9 +134,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
+  
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [showDelete, setShowDelete] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -477,7 +475,7 @@ useEffect(() => {
                       {' '}
                       {measureDate
                         ?
-                        formatStringDate(measureDate, luxonLocale)
+                        formatStringDate(measureDate)
                         : t('vcScreenenterDateText')}
                     </Text>
                     {showmeasureDate && (
@@ -505,7 +503,7 @@ useEffect(() => {
                       {' '}
                       {measureDate
                         ?
-                        formatStringDate(measureDate, luxonLocale)
+                        formatStringDate(measureDate)
                         : t('vcScreenenterDateText')}
                     </Text>
                     <DateTimePickerModal

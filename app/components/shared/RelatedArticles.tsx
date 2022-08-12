@@ -4,7 +4,7 @@ import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Pressable, StyleSheet, View, Text } from 'react-native';
+import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -20,7 +20,31 @@ const ContainerView = styled.View`
   justify-content: space-between;
   margin-top: 10px;
 `;
-
+const styles = StyleSheet.create({
+  cardImage: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    flex: 1,
+    height: 120,
+    left: 0,
+    top: 0,
+    width: '100%'
+  },
+  imageView: {
+    minHeight:80
+  },
+  imageView1: { 
+    flexDirection: 'column',
+    flex: 1,
+    justifyContent: 'space-between'
+  },
+  itemPressable: {
+    flexDirection:'row'
+  },
+  listParentView : {
+    paddingLeft:10
+  }
+});
 const RelatedArticles = (props: RelatedArticlesProps) => {
   const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
   const { t } = useTranslation();
@@ -67,7 +91,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         }
         // go not calclualte for growth screen
         else if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
-         let relatedData: any = [];
+         const relatedData: any = [];
           const catartlength = maxRelatedArticleSize - relartlength;
           const filteredArtData = articleData.filter((x: any) => {
             const i = relatedData.findIndex((_item: any) => _item.id === x.id);
@@ -143,28 +167,4 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
 
 export default RelatedArticles;
 
-const styles = StyleSheet.create({
-  cardImage: {
-    width: '100%',
-    height: 120,
-    flex: 1,
-    top: 0,
-    left: 0,
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5
-  },
-  itemPressable: {
-    flexDirection:'row'
-  },
-  imageView1: { 
-    flexDirection: 'column',
-    flex: 1,
-    justifyContent: 'space-between'
-  },
-  imageView: {
-    minHeight:80
-  },
-  listParentView : {
-    paddingLeft:10
-  }
-});
+

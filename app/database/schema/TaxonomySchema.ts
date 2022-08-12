@@ -1,9 +1,9 @@
 import { ObjectSchema } from "realm";
 
 export type TaxonomyEntity = {
-    langCode: string,
-    allData?: string,
-    standardDevData?: string,
+    langCode: string;
+    allData?: string;
+    standardDevData?: string;
   };
 
   export const TaxonomySchema: ObjectSchema = {
