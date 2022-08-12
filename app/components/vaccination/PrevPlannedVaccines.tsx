@@ -9,7 +9,7 @@ type VaccineItemProps = {
 };
 const PrevPlannedVaccines = (props: any) => {
   const {onPrevPlannedVaccineToggle,isEditScreen, currentPeriodVaccines,takenVaccine, fromScreen,backgroundActiveColor} = props;
-  let {previousPeriods} = getAllVaccinePeriods();
+  const {previousPeriods} = getAllVaccinePeriods();
   //remove first period which is the current period
   let allPreviousPendingVaccines: any[] = [];
   previousPeriods.forEach((period) => {
