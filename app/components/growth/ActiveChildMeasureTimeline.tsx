@@ -48,9 +48,6 @@ const ActiveChildMeasureTimeline = (props: any) => {
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const {t} = useTranslation();
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const setNewChildMeasureUpdates = () => {
     const measures = activeChild.measures.filter((item:any)=>item.isChildMeasured== true && item.weight>0 && item.height>0);
     let measurementDate: DateTime = DateTime.local();
