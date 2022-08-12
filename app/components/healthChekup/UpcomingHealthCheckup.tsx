@@ -61,9 +61,6 @@ const UpcomingHealthCheckup = (props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const reminders = activeChild.reminders;
   let hcReminder: any;
   const healthCheckupReminders = reminders.filter(
@@ -259,11 +256,11 @@ const UpcomingHealthCheckup = (props: any) => {
                         <Heading4Regular>{t('hcHasScheduled')}</Heading4Regular>
                         <Heading4>
                           {
-                            formatStringDate(hcReminder?.reminderDate, luxonLocale)
+                            formatStringDate(hcReminder?.reminderDate)
                           }
                           {','}
                           {
-                            formatStringTime(hcReminder?.reminderTime, luxonLocale)
+                            formatStringTime(hcReminder?.reminderTime)
                           }
                         </Heading4>
                       </ToolsHeadingView>

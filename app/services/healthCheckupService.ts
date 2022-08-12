@@ -10,9 +10,6 @@ export const getAllHealthCheckupPeriods = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const taxonomy = useAppSelector(
     (state: any) =>
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
@@ -46,7 +43,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
       uuid: item.uuid,
       weight: item.weight ? parseFloat(item.weight) : 0,
       height: item.height ? parseFloat(item.height) : 0,
-      measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
+      measurementDate: formatStringDate(item?.measurementDate),
       dateToMilis: item.measurementDate,
       childAgeInDaysForMeasure: Math.round(
         DateTime.fromJSDate(new Date(item.measurementDate)).diff(birthDay, 'days').days,

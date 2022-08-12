@@ -1,11 +1,11 @@
 import { ObjectSchema } from "realm";
 
 export type DailyHomeMessagesEntity = {
-    id: number,
-    type: string,
-    title: string,
-    created_at: string,
-    updated_at: string,
+    id: number;
+    type: string;
+    title: string;
+    created_at: string;
+    updated_at: string;
   };
 
   export const DailyHomeMessagesSchema: ObjectSchema = {

@@ -175,9 +175,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
+ 
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const handleMeasureConfirm = (event: any) => {
     const date = event;
@@ -604,7 +602,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                           {' '}
                           {measureDate
                             ?
-                            formatStringDate(measureDate, luxonLocale)
+                            formatStringDate(measureDate)
                             : t('vcScreenenterDateText')}
                         </Text>
                         {showmeasureDate && (
@@ -632,7 +630,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                           {' '}
                           {measureDate
                             ?
-                            formatStringDate(measureDate, luxonLocale)
+                            formatStringDate(measureDate)
                             : t('vcScreenenterDateText')}
                         </Text>
                         <DateTimePickerModal

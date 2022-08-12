@@ -12,7 +12,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import { Action, ThunkAction } from '@reduxjs/toolkit';
 import React from 'react';
 import {
-  ActivityIndicator, Text,
+  ActivityIndicator, StyleSheet, Text,
   View
 } from 'react-native';
 import ErrorBoundary from 'react-native-error-boundary';
@@ -49,6 +49,9 @@ enableScreens();
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+const styles=StyleSheet.create({
+  flex1:{ flex: 1 }
+})
 const CustomFallback = (props: { error: Error; resetError: Function }) => {
   crashlytics().recordError(props.error);
   return (
@@ -79,7 +82,7 @@ const App = () => {
             <PersistGate
               loading={<><ActivityIndicator size="large" color="#0000ff" /></>}
               persistor={persistor}>
-              <SafeAreaProvider style={{ flex: 1 }}>
+              <SafeAreaProvider style={styles.flex1}>
                 <AppNavigation />
               </SafeAreaProvider>
             </PersistGate>

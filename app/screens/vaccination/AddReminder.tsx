@@ -121,9 +121,6 @@ const AddReminder = ({ route, navigation }: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const vchcEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.vchcEnabled),
   );
@@ -334,15 +331,15 @@ const AddReminder = ({ route, navigation }: Props) => {
                 : measureTimeNewDefined
               : measureTimeNewDefined,
           };
-          let createresult = await userRealmCommon.updateChildReminders<ChildEntity>(
+          const createresult = await userRealmCommon.updateChildReminders<ChildEntity>(
             ChildEntitySchema,
             reminderValues,
             'uuid ="' + activeChild.uuid + '"',
           );
           if (createresult?.length > 0) {
             activeChild.reminders = createresult;
-            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate, luxonLocale) + "," + formatStringTime(measureTimeNew, luxonLocale)});
-            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate, luxonLocale) + "," + formatStringTime(measureTimeNew, luxonLocale)});
+            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTime(measureTimeNew)});
+            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTime(measureTimeNew)});
             const message = reminderType == 'vaccine' ? titlevcr : titlehcr;
             if(editReminderItem) {
               let previousDTDefined;
@@ -430,7 +427,7 @@ useEffect(() => {
                   <Text>
                     {measureDate
                       ?
-                      formatStringDate(measureDate, luxonLocale)
+                      formatStringDate(measureDate)
                       : t('vcReminderDate')}
                   </Text>
                   {showmeasure && (
@@ -457,7 +454,7 @@ useEffect(() => {
                   <Text>
                     {measureDate
                       ?
-                      formatStringDate(measureDate, luxonLocale)
+                      formatStringDate(measureDate)
                       : t('vcReminderDate')}
                   </Text>
                   <DateTimePickerModal
@@ -487,7 +484,7 @@ useEffect(() => {
                     <Text>
                       {measureTime
                         ?
-                        formatStringTime(measureTime, luxonLocale)
+                        formatStringTime(measureTime)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTime && (
@@ -520,7 +517,7 @@ useEffect(() => {
                     <Text>
                       {measureTime
                         ?
-                        formatStringTime(measureTime, luxonLocale)
+                        formatStringTime(measureTime)
                         : t('vcReminderTime')}
                     </Text>
                     <DateTimePickerModal
@@ -561,7 +558,7 @@ useEffect(() => {
                   <Text>
                     {measureDateDefined
                       ?
-                      formatStringDate(measureDateDefined, luxonLocale)
+                      formatStringDate(measureDateDefined)
                       : t('vcReminderDate')}
                   </Text>
                   {showmeasureDefined && (
@@ -588,7 +585,7 @@ useEffect(() => {
                   <Text>
                     {measureDateDefined
                       ?
-                      formatStringDate(measureDateDefined, luxonLocale)
+                      formatStringDate(measureDateDefined)
                       : t('vcReminderDate')}
                   </Text>
                   <DateTimePickerModal
@@ -618,7 +615,7 @@ useEffect(() => {
                     <Text>
                       {measureTimeDefined
                         ?
-                        formatStringTime(measureTimeDefined, luxonLocale)
+                        formatStringTime(measureTimeDefined)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTimeDefined && (
@@ -652,7 +649,7 @@ useEffect(() => {
                     <Text>
                       {measureTimeDefined
                         ?
-                        formatStringTime(measureTimeDefined, luxonLocale)
+                        formatStringTime(measureTimeDefined)
                         : t('vcReminderTime')}
                     </Text>
                     <DateTimePickerModal

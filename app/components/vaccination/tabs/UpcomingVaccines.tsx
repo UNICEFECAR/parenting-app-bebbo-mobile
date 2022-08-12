@@ -65,9 +65,6 @@ const UpcomingVaccines = (props: any) => {
     })
     
   }
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   useEffect(() => {
     currentPeriodId == item?.periodID ? setIsOpen(true) : setIsOpen(false);
     // open first collapsible in upcoming vaccine period
@@ -161,7 +158,7 @@ const UpcomingVaccines = (props: any) => {
                         {v.isMeasured ? ' - ' : null}{' '}
                         {v.isMeasured
                           ? 
-                           formatStringDate(v.measurementDate,luxonLocale)
+                           formatStringDate(v.measurementDate)
                           : null}
                       </Heading4Regular>
                       {v?.pinned_article ? (
@@ -214,11 +211,11 @@ const UpcomingVaccines = (props: any) => {
                         <Heading4Regular>{t('vcHasScheduled')}</Heading4Regular>
                         <Heading4>
                           {
-                          formatStringDate(vcReminder?.reminderDate,luxonLocale)
+                          formatStringDate(vcReminder?.reminderDate)
                           }
                           {','}
                           {
-                             formatStringTime(vcReminder?.reminderTime,luxonLocale)
+                             formatStringTime(vcReminder?.reminderTime)
                           }
                         </Heading4>
                       </ToolsHeadingView>

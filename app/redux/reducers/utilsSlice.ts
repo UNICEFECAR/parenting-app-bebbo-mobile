@@ -1,7 +1,7 @@
 import { basicPagesUniqueName } from '@assets/translations/appOfflineData/apiConstants';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface hardcodedDataType {
+interface HardcodedDataType {
   acceptTerms:boolean;
   userIsOnboarded:boolean;
   taxonomy: { 
@@ -92,7 +92,7 @@ interface hardcodedDataType {
   };
   allDataDownloadFlag:boolean;
 }
-const initialState: hardcodedDataType = {
+const initialState: HardcodedDataType = {
   acceptTerms:false,
   userIsOnboarded:false,
   taxonomy: { 

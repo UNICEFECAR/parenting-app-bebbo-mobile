@@ -21,8 +21,10 @@ const FirstTimeModal = (props : any) => {
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
+                console.log("request to close modal")
             }}
             onDismiss={() => {
+                console.log("request to close modal")
             }}>
             <PopupOverlay>
             <ModalPopupContainer>

@@ -1,16 +1,16 @@
 import { ObjectSchema } from "realm";
 
 export type FAQsEntity = {
-    id: number,
-    type: string,
-    question: string,
-    created_at: string,
-    updated_at: string,
-    answer_part_1: string,
-    answer_part_2: string,
-    chatbot_subcategory: number,
-    related_article: number,
-    mandatory: number,
+    id: number;
+    type: string;
+    question: string;
+    created_at: string;
+    updated_at: string;
+    answer_part_1: string;
+    answer_part_2: string;
+    chatbot_subcategory: number;
+    related_article: number;
+    mandatory: number;
   };
 
   export const FAQsSchema: ObjectSchema = {
