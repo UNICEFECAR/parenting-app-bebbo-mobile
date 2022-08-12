@@ -27,7 +27,7 @@ class UserRealmCommon extends Component {
     }
 
     public async openRealm(): Promise<Realm | null> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (this.realm) {
                 resolve(this.realm);
             } else {
@@ -63,44 +63,44 @@ class UserRealmCommon extends Component {
 
         return rval;
     }
-    public async deleteAllAtOnce(): Promise<void> {
-        return new Promise(async (resolve, reject) => {
+    public async deleteAllAtOnce(): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     realm?.write(() => {
                         realm.deleteAll();
-                        resolve();
+                        return 'success';
                     });
                 }
                 else {
-                    reject();
+                    return 'fail';
                 }
             } catch (e) {
-                reject(e);
+                return e;
             }
-        });
+        // });
 
     }
-    public async getObjectLength<Entity>(entitySchema: ObjectSchema): Promise<Number> {
-        return new Promise(async (resolve, reject) => {
+    public async getObjectLength<Entity>(entitySchema: ObjectSchema): Promise<number> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     const objLength = realm?.objects<Entity>(entitySchema.name).length;
-                    resolve(objLength);
+                    return objLength;
                 }
                 else {
-                    reject();
+                    return 0;
                 }
             } catch (e) {
-                reject();
+                return 0;
             }
-        });
+        // });
     }
 
-    public async create<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<Entity[]> {
-        return new Promise(async (resolve, reject) => {
+    public async create<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -109,19 +109,19 @@ class UserRealmCommon extends Component {
                             realm?.create<Entity>(entitySchema.name, record, "modified");
                         })
 
-                        resolve(records);
+                        return records;
                     });
                 }
                 else {
-                    reject();
+                    return [];
                 }
             } catch (e) {
-                reject();
+                return [];
             }
-        });
+        // });
     }
-    public async updatePhotoUri<Entity>(entitySchema: ObjectSchema, photoUri: any, condition: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async updatePhotoUri<Entity>(entitySchema: ObjectSchema, photoUri: any, condition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -129,49 +129,49 @@ class UserRealmCommon extends Component {
                     realm?.write(() => {
                         obj[0].photoUri = photoUri;
                     });
-                    resolve('success');
+                    return 'success';
                 }
                 else {
-                    reject('Fail');
+                    return 'Fail';
                 }
             } catch (e) {
-                reject('Fail');
+                return 'Fail';
             }
-        });
+        // });
     }
-    public async deleteChildReminders<Entity>(entitySchema: ObjectSchema, reminder: any, condition: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async deleteChildReminders<Entity>(entitySchema: ObjectSchema, reminder: any, condition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         if (obj[0].reminders.length > 0) {
-                            let updateItemIndex = obj[0].reminders.findIndex(item => {
+                            const updateItemIndex = obj[0].reminders.findIndex((item: any) => {
                                 return item.uuid == reminder.uuid
                             });
                             obj[0].reminders.splice(updateItemIndex, 1);
                         }
                     });
-                    resolve(obj[0].reminders);
+                    return obj[0].reminders;
                 }
                 else {
-                    reject('Fail');
+                    return [];
                 }
             } catch (e) {
-                reject('Fail');
+                return [];
             }
-        });
+        // });
     }
-    public async updateChildReminders<Entity>(entitySchema: ObjectSchema, reminder: any, condition: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async updateChildReminders<Entity>(entitySchema: ObjectSchema, reminder: any, condition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         if (obj[0].reminders.length > 0) {
-                            let updateItemIndex = obj[0].reminders.findIndex(item => {
+                            const updateItemIndex = obj[0].reminders.findIndex((item:any) => {
                                 return item.uuid == reminder.uuid
                             });
                             if (updateItemIndex != -1) {
@@ -183,49 +183,49 @@ class UserRealmCommon extends Component {
                             obj[0].reminders.push(reminder);
                         }
                     });
-                    resolve(obj[0].reminders);
+                    return obj[0].reminders;
                 }
                 else {
-                    reject('Fail');
+                    return [];
                 }
             } catch (e) {
-                reject('Fail');
+                return [];
             }
-        });
+        // });
     }
-    public async deleteChildMeasures<Entity>(entitySchema: ObjectSchema, measure: any, condition: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async deleteChildMeasures<Entity>(entitySchema: ObjectSchema, measure: any, condition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         if (obj[0].measures.length > 0) {
-                            let updateItemIndex = obj[0].measures.findIndex(item => {
+                            const updateItemIndex = obj[0].measures.findIndex((item:any) => {
                                 return item.uuid == measure.uuid
                             });
                             obj[0].measures.splice(updateItemIndex, 1);
                         }
                     });
-                    resolve(obj[0].measures);
+                    return obj[0].measures;
                 }
                 else {
-                    reject('Fail');
+                    return [];
                 }
             } catch (e) {
-                reject('Fail');
+                return [];
             }
-        });
+        // });
     }
-    public async updateChildMeasures<Entity>(entitySchema: ObjectSchema, measures: any, condition: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async updateChildMeasures<Entity>(entitySchema: ObjectSchema, measures: any, condition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         if (obj[0].measures.length > 0) {
-                            let updateItemIndex = obj[0].measures.findIndex(item => {
+                            const updateItemIndex = obj[0].measures.findIndex((item:any) => {
                                 return item.uuid == measures.uuid
                             });
                             if (updateItemIndex != -1) {
@@ -237,18 +237,18 @@ class UserRealmCommon extends Component {
                             obj[0].measures.push(measures);
                         }
                     });
-                    resolve(obj[0].measures);
+                    return obj[0].measures ;
                 }
                 else {
-                    reject('Fail');
+                    return [];
                 }
             } catch (e) {
-                reject('Fail');
+                return [];
             }
-        });
+        // });
     }
-    public async updateChild<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<Entity[]> {
-        return new Promise(async (resolve, reject) => {
+    public async updateChild<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -257,26 +257,26 @@ class UserRealmCommon extends Component {
                             record.updatedAt = new Date();
                             realm?.create<Entity>(entitySchema.name, record, "modified");
                         })
-                        resolve(records);
+                        return records;
                     });
                 }
                 else {
-                    reject();
+                    return [];
                 }
             } catch (e) {
-                reject();
+                return [];
             }
-        });
+        // });
     }
-    public async updateChildMilestones<Entity>(entitySchema: ObjectSchema, milestoneId: any, condition: any): Promise<Entity[]> {
-        return new Promise(async (resolve, reject) => {
+    public async updateChildMilestones<Entity>(entitySchema: ObjectSchema, milestoneId: any, condition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         if (obj[0].checkedMilestones.length > 0) {
-                            let updateItemIndex = obj[0].checkedMilestones.findIndex(item => {
+                            const updateItemIndex = obj[0].checkedMilestones.findIndex((item:any) => {
                                 return item == milestoneId
                             });
                             if (updateItemIndex == -1) {
@@ -288,26 +288,26 @@ class UserRealmCommon extends Component {
                             obj[0].checkedMilestones.push(milestoneId);
                         }
                     });
-                    resolve('success');
+                    return 'success';
                 }
                 else {
-                    reject();
+                    return 'else';
                 }
             } catch (e) {
-                reject();
+                return 'catch';
             }
-        });
+        // });
     }
-    public async updateFavorites<Entity>(entitySchema: ObjectSchema, favoriteid: any, favoritetype: any, condition: any): Promise<Entity[]> {
-        return new Promise(async (resolve, reject) => {
+    public async updateFavorites<Entity>(entitySchema: ObjectSchema, favoriteid: any, favoritetype: any, condition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         if (favoritetype == 'advices') {
                             if (obj[0].favoriteadvices.length > 0) {
-                                let updateItemIndex = obj[0].favoriteadvices.findIndex(item => {
+                                const updateItemIndex = obj[0].favoriteadvices.findIndex((item:any) => {
                                     return item == favoriteid
                                 });
                                 if (updateItemIndex == -1) {
@@ -320,7 +320,7 @@ class UserRealmCommon extends Component {
                             }
                         } else if (favoritetype == 'games') {
                             if (obj[0].favoritegames.length > 0) {
-                                let updateItemIndex = obj[0].favoritegames.findIndex(item => {
+                                const updateItemIndex = obj[0].favoritegames.findIndex((item:any) => {
                                     return item == favoriteid
                                 });
                                 if (updateItemIndex == -1) {
@@ -334,38 +334,38 @@ class UserRealmCommon extends Component {
                         }
 
                     });
-                    resolve('success');
+                    return 'success';
                 }
                 else {
-                    reject();
+                    return 'else';
                 }
             } catch (e) {
-                reject();
+                return 'catch';
             }
-        });
+        // });
     }
-    public async verifyFavorites(): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async verifyFavorites(): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 const realmdata = await dataRealmCommon.openRealm();
                 if (realm && realmdata) {
-                    let obj: any = realm?.objects<ChildEntity>(ChildEntitySchema.name);
+                    const obj: any = realm?.objects<ChildEntity>(ChildEntitySchema.name);
                     realm?.write(() => {
                         if (obj.length > 0) {
                             obj.map((child: any) => {
-                                let favoriteadvices = child.favoriteadvices;
+                                const favoriteadvices = child.favoriteadvices;
                                 let favoritegames = child.favoritegames;
                                 favoritegames = [...favoritegames, 1234];
                                 if (favoriteadvices.length > 0) {
                                     const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
-                                    let artobj: any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
+                                    const artobj: any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
                                     const finaladvicesobj = favoriteadvices.filter((i: any) => artobj.find((f: any) => f.id === i));
                                     child.favoriteadvices = finaladvicesobj;
                                 }
                                 if (favoritegames.length > 0) {
                                     const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
-                                    let actobj: any = realmdata?.objects<ActivitiesEntity>(ActivitiesEntitySchema.name).filtered(filterQuery);
+                                    const actobj: any = realmdata?.objects<ActivitiesEntity>(ActivitiesEntitySchema.name).filtered(filterQuery);
                                     const finalgamesobj = favoritegames.filter((i: any) => actobj.find((f: any) => f.id === i))
                                     child.favoritegames = finalgamesobj
                                 }
@@ -373,51 +373,51 @@ class UserRealmCommon extends Component {
                             })
                         }
                     });
-                    resolve('success');
+                    return 'success';
                 }
                 else {
-                    reject();
+                    return 'else';
                 }
             } catch (e) {
-                reject();
+                return 'catch';
             }
-        });
+        // });
     }
     public async getData<Entity>(entitySchema: ObjectSchema): Promise<any> {
-        return new Promise(async (resolve, reject) => {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     const obj = realm?.objects<Entity>(entitySchema.name);
-                    resolve(obj);
+                    return obj;
                 }
                 else {
-                    reject();
+                    return [];
                 }
             } catch (e) {
-                reject();
+                return [];
             }
-        });
+        // });
     }
     public async getFilteredData<Entity>(entitySchema: ObjectSchema, filterData: any): Promise<any> {
-        return new Promise(async (resolve, reject) => {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     const obj = realm?.objects<Entity>(entitySchema.name).filtered(filterData);
-                    resolve(obj);
+                    return obj;
                 }
                 else {
-                    reject();
+                    return [];
                 }
             } catch (e) {
-                reject();
+                return [];
             }
-        });
+        // });
     }
 
-    public async delete(Schema: string, record: any, filterCondition: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async delete(Schema: string, _record: any, filterCondition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -430,19 +430,19 @@ class UserRealmCommon extends Component {
                                 realm.objects(Schema).filtered(filterCondition)
                             );
                         }
-                        resolve('success');
+                        return 'success';
                     });
                 }
                 else {
-                    reject('error');
+                    return 'error';
                 }
             } catch (e: any) {
-                reject('error');
+                return 'error';
             }
-        });
+        // });
     }
     public async deleteAll(entitySchema: ObjectSchema): Promise<void> {
-        return new Promise(async (resolve, reject) => {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -450,46 +450,46 @@ class UserRealmCommon extends Component {
 
                     realm?.write(() => {
                         realm?.delete(allRecords);
-                        resolve();
+                        return ;
                     });
                 }
                 else {
-                    reject();
+                    return ;
                 }
             } catch (e) {
-                reject(e);
+                return ;
             }
-        });
+        // });
     }
     public async deleteBy(entitySchema: ObjectSchema, Condition: any): Promise<void> {
-        return new Promise(async (resolve, reject) => {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     const allRecords = realm?.objects(entitySchema.name).filtered(Condition);
                     realm?.write(() => {
                         realm?.delete(allRecords);
-                        resolve();
+                        return ;
                     });
                 }
                 else {
-                    reject();
+                    return ;
                 }
             } catch (e) {
-                reject(e);
+                return ;
             }
-        });
+        // });
     }
-    public async deleteNestedMeasures<Entity>(entitySchema: ObjectSchema, param: any, condition: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async deleteNestedMeasures<Entity>(entitySchema: ObjectSchema, param: any, condition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         if (obj[0].measures.length > 0) {
                             obj[0].measures.map((itemnew: any) => {
-                                let updateItemIndex = obj[0].measures.findIndex((item, index) => {
+                                const updateItemIndex = obj[0].measures.findIndex((item: any, index: any) => {
                                     const measuredays = getDiffinDays(param, item.measurementDate);
                                     return measuredays < 0;
                                 });
@@ -500,27 +500,27 @@ class UserRealmCommon extends Component {
                             })
                         }
                     });
-                    resolve(obj[0].measures);
+                    return obj[0].measures;
                 }
                 else {
-                    reject('Fail');
+                    return [];
                 }
             } catch (e) {
-                reject('Fail');
+                return [];
             }
-        });
+        // });
     }
     public async deleteNestedReminders<Entity>(entitySchema: ObjectSchema, param: any, condition: any): Promise<any> {
-        return new Promise(async (resolve, reject) => {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         if (obj[0].reminders.length > 0) {
-                            let updateItemIndex = obj[0].reminders.findIndex(async item => {
-                                let reminderDate: any = DateTime.fromMillis(item.reminderDate);
-                                let newreminderDate: any = new Date(reminderDate);
+                            const updateItemIndex = obj[0].reminders.findIndex(async (item: any) => {
+                                const reminderDate: any = DateTime.fromMillis(item.reminderDate);
+                                const newreminderDate: any = new Date(reminderDate);
                                 const hours = new Date(item.reminderTime).getHours()
                                 const mins = new Date(item.reminderTime).getMinutes()
                                 newreminderDate.setHours(hours);
@@ -530,15 +530,15 @@ class UserRealmCommon extends Component {
                             obj[0].reminders.splice(updateItemIndex, 1);
                         }
                     });
-                    resolve(obj[0].reminders);
+                    return obj[0].reminders;
                 }
                 else {
-                    reject('Fail');
+                    return [];
                 }
             } catch (e) {
-                reject('Fail');
+                return [];
             }
-        });
+        // });
     }
 }
 

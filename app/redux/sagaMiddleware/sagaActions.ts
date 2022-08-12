@@ -1,20 +1,13 @@
-import { ActionCreator, AnyAction, Dispatch } from "@reduxjs/toolkit";
+import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 
 export const FETCH_API = 'api/FETCH_API';
 export const INSERT_IN_DB = 'api/INSERT_IN_DB';
 export const INSERT_IN_STORE = 'api/INSERT_IN_STORE';
 
-export interface apijsonArray {
-  apiEndpoint: string, method: string, postdata: any, saveinDB?: boolean
+export interface ApiJsonArray {
+  apiEndpoint: string; method: string; postdata: any; saveinDB?: boolean;
 }
-
-const setLoginState: ActionCreator<any> = (typeset: string, data: any) => {
-  return {
-    type: typeset,
-    payload: data
-  }
-};
-export const fetchAPI = (apiJsonData: Array<apijsonArray>, prevPage?: string, dispatch?: Dispatch<AnyAction> | undefined, navigation?: any, languageCode?: string, activeChild?: any, oldErrorObj?: Array<apijsonArray>, netInfovalisConnected?: boolean | null, forceupdatetime?: any, downloadWeeklyData?: any, downloadMonthlyData?: any, enableImageDownload?: any) => ({
+export const fetchAPI = (apiJsonData: Array<ApiJsonArray>, prevPage?: string, dispatch?: Dispatch<AnyAction> | undefined, navigation?: any, languageCode?: string, activeChild?: any, oldErrorObj?: Array<ApiJsonArray>, netInfovalisConnected?: boolean | null, forceupdatetime?: any, downloadWeeklyData?: any, downloadMonthlyData?: any, enableImageDownload?: any) => ({
   type: FETCH_API,
   payload: apiJsonData,
   prevPage: prevPage,
@@ -30,12 +23,12 @@ export const fetchAPI = (apiJsonData: Array<apijsonArray>, prevPage?: string, di
   enableImageDownload: enableImageDownload,
 });
 
-export const insertInDB = (apiJsonData: Array<apijsonArray>, dispatch?: Dispatch<AnyAction> | undefined) => ({
+export const insertInDB = (apiJsonData: Array<ApiJsonArray>, dispatch?: Dispatch<AnyAction> | undefined) => ({
   type: INSERT_IN_DB,
   payload: apiJsonData,
   dispatch: dispatch
 });
-export const insertInStore = (apiJsonData: Array<apijsonArray>, dispatch?: Dispatch<AnyAction> | undefined, languageCode?: string) => ({
+export const insertInStore = (apiJsonData: Array<ApiJsonArray>, dispatch?: Dispatch<AnyAction> | undefined, languageCode?: string) => ({
   type: INSERT_IN_STORE,
   payload: apiJsonData,
   dispatch: dispatch,

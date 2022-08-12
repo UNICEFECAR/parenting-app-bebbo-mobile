@@ -1,5 +1,5 @@
 import getAllDataToStore from "@assets/translations/appOfflineData/getDataToStore";
-import { all, call, takeEvery } from "redux-saga/effects";
+import { call, takeEvery } from "redux-saga/effects";
 import { INSERT_IN_STORE } from "./sagaActions";
 
 function* onInsertInStore(response:any) {
