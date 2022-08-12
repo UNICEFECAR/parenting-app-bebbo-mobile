@@ -91,7 +91,7 @@ const Childgrowth = ({navigation}: Props) => {
     setModalVisible(growthModalOpened)
    })
   
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],

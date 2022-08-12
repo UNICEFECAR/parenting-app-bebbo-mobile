@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
   }
 });
 const HeaderBabyMenu = (props : any) => {
+  const {setProfileLoading}=props;
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const genders = useAppSelector(
@@ -235,11 +236,11 @@ const HeaderBabyMenu = (props : any) => {
                   <Pressable style={styles.pressableProfile}
                     onPress={() => {
                       setModalVisible(false);
-                      props.setProfileLoading(true);
+                      setProfileLoading(true);
                       setTimeout(async () => {
                         const setData = await setActiveChild(languageCode, data.uuid, dispatch, child_age, true);
                         if (setData == "activeset") {
-                          props.setProfileLoading(false);
+                        setProfileLoading(false);
                         }
                       }, 0);
                     }}>

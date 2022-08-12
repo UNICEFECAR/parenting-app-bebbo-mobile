@@ -168,7 +168,7 @@ useEffect(() => {
     childBirthDate
   );
   /* Create line chart array fochartDatar type chart */
-  let chartData: any[] = [];
+  const chartData: any[] = [];
   convertedMeasures.map((item:any) => {
     chartData.push(
       chartType == chartTypes.WeightForHeight
@@ -288,6 +288,7 @@ useEffect(() => {
                         if (props.active === true) {
                           activeState = null;
                         }
+                        console.log(activeState,"..activeState..")
                         if (stroke === 'orange') {
                           st = '#ACACAC';
                         } else {

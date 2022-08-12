@@ -12,7 +12,7 @@ import { ImageIcon } from '@components/shared/Image';
 import { useNavigation } from '@react-navigation/native';
 import { Heading3, Heading5 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, TouchableHighlight, View } from 'react-native';
 import { useAppSelector } from '../../../App';
