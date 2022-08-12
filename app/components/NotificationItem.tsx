@@ -40,9 +40,6 @@ const NotificationItem = (props: any) => {
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
   const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const pluralShow = useAppSelector(
     (state: any) => state.selectedCountry.pluralShow,
   );
@@ -187,7 +184,7 @@ const NotificationItem = (props: any) => {
 
 
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                  <Heading6>  {formatStringDate(item.notificationDate)} - {
                     getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -298,7 +295,7 @@ const NotificationItem = (props: any) => {
                       : '',periodName: item.periodName })}</Heading4Bold>
                 }
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                  <Heading6>  {formatStringDate(item.notificationDate)} - {
                     getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -416,7 +413,7 @@ const NotificationItem = (props: any) => {
                 }
 
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                  <Heading6>  {formatStringDate(item.notificationDate)} - {
                     getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -528,7 +525,7 @@ const NotificationItem = (props: any) => {
                         : '',periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
-                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                    <Heading6>  {formatStringDate(item.notificationDate)} - {
                       getNotificationDateInString(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -636,7 +633,7 @@ const NotificationItem = (props: any) => {
                         : '',periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
-                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                    <Heading6>  {formatStringDate(item.notificationDate)} - {
                       getNotificationDateInString(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -733,15 +730,15 @@ const NotificationItem = (props: any) => {
           <NotifiContent>
             {item.isRead == true ?
               <Heading4Regular>{t(item.title, {
-                reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)
+                reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)
               })}</Heading4Regular> :
               <Heading4Bold>{t(item.title, {
-                reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)
+                reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)
               })}</Heading4Bold>
             }
 
             <ShiftFromTop5>
-              <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+              <Heading6>  {formatStringDate(item.notificationDate)} - {
                 getNotificationDateInString(
                   t,
                   DateTime.fromJSDate(new Date(item.notificationDate)),

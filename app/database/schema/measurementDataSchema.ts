@@ -3,10 +3,10 @@ export type MeasurementEntity = {
     id: string;
     weight: string;
     height: string;
-    measurementPlace: string,
+    measurementPlace: string;
     measurementDate: Date;
-    isChildMeasured: Boolean;
-    didChildGetVaccines?: Boolean;
+    isChildMeasured: boolean;
+    didChildGetVaccines?: boolean;
     vaccineIds?: string[];
     doctorComment?: string;
   };

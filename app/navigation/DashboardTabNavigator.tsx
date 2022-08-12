@@ -49,7 +49,7 @@ export default () => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.SECONDARY_COLOR;
   const navigation = useNavigation();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <Modal
@@ -158,7 +158,7 @@ export default () => {
             ),
             unmountOnBlur: true,
           }}
-          listeners={({ }) => ({
+          listeners={() => ({
             tabPress: (e) => {
               setModalVisible(true);
               e.preventDefault();

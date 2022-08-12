@@ -100,22 +100,18 @@ type Props = {
 const AddNewChildgrowth = ({ route, navigation }: any) => {
   const { t } = useTranslation();
   const { editMeasurementDate } = route.params;
-  const [showDelete, setShowDelete] = useState<Boolean>(false);
+  const [showDelete, setShowDelete] = useState<boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
-  const handleMeasureConfirm = (event: any) => {
-    const date = event;
-    onmeasureDateChange(event, date);
-    setMeasureDatePickerVisibility(false);
-  };
+  const [showmeasureDate, setmeasureDateShow] = useState<boolean>(false);
+  const [dateTouched, setDateTouched] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editMeasurementDate ? editMeasurementDate : null,
   );
-  const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
-  const [dateTouched, setDateTouched] = useState<Boolean>(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  
   const measurePlaces = measurementPlaces([
     t('growthScreendoctorMeasurePlace'),
     t('growthScreenhomeMeasurePlace'),
@@ -125,24 +121,21 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
   const [remarkTxt, handleDoctorRemark] = useState<string>('');
   const [measurePlace, setMeasurePlace] = useState<number>();
   const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(null);
-  useEffect(() => {
-    // find growthmeasures for date, if exist show growthmeasures with delete enabled.
-    if (editMeasurementDate) {
-      setShowDelete(true)
-      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
-      setmeasureDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
-      setWeightValue(existingMeasure?.weight)
-      setHeightValue(existingMeasure?.height)
-      handleDoctorRemark(existingMeasure?.doctorComment)
-      setDefaultMeasurePlace(measurePlaces[existingMeasure.measurementPlace])
-      setMeasurePlace(existingMeasure.measurementPlace)
-    }
-  }, [editMeasurementDate])
-
-
-
-
-  //set initvalue here for edit
+  const getCheckedGrowthPlace = (checkedItem: any) => {
+    setMeasurePlace(checkedItem.id);
+  };
+  const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const dispatch = useAppDispatch();
+  const child_age = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ''
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : [],
+  );
+ 
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     setmeasureDateShow(false);
     if (selectedDate) {
@@ -211,23 +204,32 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
 
     }
   };
-  const getCheckedGrowthPlace = (checkedItem: any) => {
-    setMeasurePlace(checkedItem.id);
+  const handleMeasureConfirm = (event: any) => {
+    const date = event;
+    onmeasureDateChange(event, date);
+    setMeasureDatePickerVisibility(false);
   };
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
-  );
-  const dispatch = useAppDispatch();
-  const child_age = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ''
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : [],
-  );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
+ 
+  useEffect(() => {
+    // find growthmeasures for date, if exist show growthmeasures with delete enabled.
+    if (editMeasurementDate) {
+      setShowDelete(true)
+      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
+      setmeasureDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
+      setWeightValue(existingMeasure?.weight)
+      setHeightValue(existingMeasure?.height)
+      handleDoctorRemark(existingMeasure?.doctorComment)
+      setDefaultMeasurePlace(measurePlaces[existingMeasure.measurementPlace])
+      setMeasurePlace(existingMeasure.measurementPlace)
+    }
+  }, [editMeasurementDate])
+
+
+
+
+  //set initvalue here for edit
+  
+  
   
   const isFormFilled = () => {
     if (measureDate) {
@@ -299,7 +301,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: "",
           measurementPlace: existingMeasure.measurementPlace,
         };
-        let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        const updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
@@ -307,7 +309,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
-          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
@@ -316,7 +318,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
       } else {
         // delete measure
         //delete measure obj
-        let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+        const deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
           ChildEntitySchema,
           existingMeasure,
           'uuid ="' + activeChild.uuid + '"',
@@ -347,7 +349,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: "",
           measurementPlace: existingMeasure.measurementPlace,
         };
-        let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        const updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
@@ -355,7 +357,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
-          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
@@ -364,7 +366,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
       } else {
         // delete measure
         //delete measure obj
-        let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+        const deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
           ChildEntitySchema,
           existingMeasure,
           'uuid ="' + activeChild.uuid + '"',
@@ -407,7 +409,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: remarkTxt,
           measurementPlace: measurePlace,
         };
-        let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        const updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
@@ -415,7 +417,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
-          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
@@ -431,7 +433,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: existingMeasure.doctorComment,
           measurementPlace: existingMeasure.measurementPlace,
         };
-        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        const createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValuesForVaccineMeasured,
           'uuid ="' + activeChild.uuid + '"',
@@ -439,7 +441,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
         navigation.goBack();
@@ -456,7 +458,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: remarkTxt,
           measurementPlace: measurePlace,
         };
-        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        const createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
@@ -464,7 +466,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
         navigation.goBack();
@@ -487,7 +489,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: remarkTxt,
           measurementPlace: measurePlace,
         };
-        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        const createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
@@ -495,7 +497,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
         navigation.goBack();
@@ -515,7 +517,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: remarkTxt,
           measurementPlace: measurePlace,
         };
-        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        const createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
@@ -523,7 +525,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? 'doctor' : 'home' })
         }
@@ -595,7 +597,7 @@ useEffect(() => {
                         {' '}
                         {measureDate
                           ?
-                          formatStringDate(measureDate, luxonLocale)
+                          formatStringDate(measureDate)
                           : t('growthScreenenterDateMeasurementText')}
                       </Text>
                       {showmeasureDate && (
@@ -623,7 +625,7 @@ useEffect(() => {
                         {' '}
                         {measureDate
                           ?
-                          formatStringDate(measureDate, luxonLocale)
+                          formatStringDate(measureDate)
                           : t('growthScreenenterDateMeasurementText')}
                       </Text>
                       

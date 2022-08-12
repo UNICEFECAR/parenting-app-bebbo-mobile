@@ -1,13 +1,13 @@
 import { ObjectSchema } from "realm";
 
 export type HealthCheckUpsEntity = {
-    id: number,
-    type: string,
-    title: string,
-    growth_period: number,
-    pinned_article: number,
-    created_at: string,
-    updated_at: string,
+    id: number;
+    type: string;
+    title: string;
+    growth_period: number;
+    pinned_article: number;
+    created_at: string;
+    updated_at: string;
   };
 
 

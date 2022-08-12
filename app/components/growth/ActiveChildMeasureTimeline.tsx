@@ -70,7 +70,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
-        measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
+        measurementDate: formatStringDate(item?.measurementDate),
         dateToMilis: measurementDate.toMillis(),
         isChildMeasured:item.isChildMeasured,
         titleDateInMonth: month,

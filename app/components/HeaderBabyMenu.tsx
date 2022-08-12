@@ -151,9 +151,6 @@ const HeaderBabyMenu = (props : any) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const SortedchildList = [...childList].sort((a: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
@@ -188,7 +185,7 @@ const HeaderBabyMenu = (props : any) => {
               <Heading5>
                 {(data.birthDate != '' &&
                   data.birthDate != null &&
-                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate, luxonLocale) : '' }) : t('expectedChildDobLabel')}
+                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
@@ -227,7 +224,7 @@ const HeaderBabyMenu = (props : any) => {
               <Heading5>
                 {(data.birthDate != '' &&
                   data.birthDate != null &&
-                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate, luxonLocale) : '' }) : t('expectedChildDobLabel')}
+                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
