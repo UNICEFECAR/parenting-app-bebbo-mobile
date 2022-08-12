@@ -104,9 +104,6 @@ const ChildProfile = ({ navigation }: Props) => {
       backHandler.remove();
     }
   }, []);
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const isFutureDate = (date: Date) => {
     return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
   };

@@ -64,9 +64,6 @@ const ChildDate = (props: any) => {
   const [doborExpectedDate, setdoborExpectedDate] = useState<Date | null>(null);
   const [showdob, setdobShow] = useState<boolean>(false);
   const [disablePrematureCheck, setdisablePrematureCheck] =useState<boolean>(false);
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   useFocusEffect(
     React.useCallback(() => {
      
