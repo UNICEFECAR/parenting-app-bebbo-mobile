@@ -21,8 +21,8 @@ const DailyHomeNotification = () => {
   );
   const currentNotification = useAppSelector((state: any) =>
   (state.utilsData.dailyMessageNotification),
-);
-  const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number; }) => {
+  );
+  const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number }) => {
     dispatch(setInfoModalOpened({key:'dailyMessageNotification', value: JSON.stringify(noti)}));
   };
 

@@ -17,20 +17,17 @@ const GrowthIntroductory = (props: any) => {
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
   const {t} = useTranslation();
-  let defaultMessage = '';
   const growthPeriod = () => {
     if (childAgeInDays !== null) {
       let ageInDays = 0;
 
       if (childAgeInDays >= 1885) {
         ageInDays = 1885;
-        defaultMessage = t('defaultPeriodInterpretationText');
       } else {
         ageInDays = Math.round(childAgeInDays);
-        defaultMessage = '';
       }
       const body = growthIntroductoryData?.filter(
-        (item) =>
+        (item:any) =>
           ageInDays >= Number(item.days_from) &&
           ageInDays <= Number(item.days_to),
       )[0].body;

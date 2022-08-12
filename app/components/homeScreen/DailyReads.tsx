@@ -67,9 +67,6 @@ const DailyReads = () => {
   const dailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.dailyDataCategory,
   );
-  const locale = useAppSelector(
-    (state: any) => state.selectedCountry.locale,
-  );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -77,17 +74,18 @@ const DailyReads = () => {
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
   const [dataToShowInList, setDataToShowInList] = useState([]);
-  const goToArticleDetail = (item: any) => {
+  const goToArticleDetail = (item:any) => {
+    console.log(Object.prototype.hasOwnProperty.call(item,'activity_category'),"..ds")
     navigation.navigate('DetailsScreen', {
-      fromScreen: item.hasOwnProperty('activity_category') ? 'HomeAct' : 'HomeArt',
-      headerColor: item.hasOwnProperty('activity_category') ? actHeaderColor : artHeaderColor,
-      backgroundColor: item.hasOwnProperty('activity_category') ? actBackgroundColor : artBackgroundColor,
+      fromScreen:  Object.prototype.hasOwnProperty.call(item,'activity_category') ? 'HomeAct' : 'HomeArt',
+      headerColor: Object.prototype.hasOwnProperty.call(item,'activity_category') ? actHeaderColor : artHeaderColor,
+      backgroundColor: Object.prototype.hasOwnProperty.call(item,'activity_category') ? actBackgroundColor : artBackgroundColor,
       detailData: item,
       selectedChildActivitiesData: ActivitiesData
     });
   }
   const onShare = async (item: any) => {
-    const isAdvice = item.hasOwnProperty('activity_category') ? false : true;
+    const isAdvice = Object.prototype.hasOwnProperty.call(item,'activity_category') ? false : true;
     const suburl = isAdvice ? "/article/" : "/activity/";
     const mainUrl = shareTextButton + languageCode + suburl + item.id;
     try {
@@ -224,7 +222,7 @@ const DailyReads = () => {
       }
       categoryActivityData = categoryActivityData.filter((i: any) => !gamesarray.find((f: any) => f === i.id));
       const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
-      let data: any = [];
+      const data: any = [];
       if (articleDataToShow != null && articleDataToShow != undefined) {
         advicearray.push(articleDataToShow?.id);
         data.push(articleDataToShow);
@@ -234,8 +232,8 @@ const DailyReads = () => {
         data.push(activityDataToShow);
       }
       setDataToShowInList(data);
-      let dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
-      let showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
+      const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
+      const showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
       dailyDataCategorytoDispatch[activeChild.uuid] = {
         advice: articleDataToShow && articleDataToShow != null ? articleCategoryArrayNew[nextIndex] : 0,
         games: activityDataToShow && activityDataToShow != null ? activityCategoryArrayNew[nextIndex2]?.id : 0,
@@ -249,7 +247,7 @@ const DailyReads = () => {
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
       dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
     } else {
-      let data: any = [];
+      const data: any = [];
       const articleDataToShow = articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid).length > 0 ?
         articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid)[0] : null;
       const activityDataToShow = ActivitiesData.filter((x: any) => x.id == dailyDataCategory.currentgamesid).length > 0 ?

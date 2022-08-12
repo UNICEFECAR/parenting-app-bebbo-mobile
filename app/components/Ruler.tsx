@@ -358,7 +358,9 @@ Ruler.defaultProps = {
   vertical: false,
   width,
   height: height * 0.23,
-  onChangeValue: () => { },
+  onChangeValue: () => { 
+    console.log("ruler value change")
+  },
   minimum: 0,
   maximum: 100,
   segmentWidth: 2,
