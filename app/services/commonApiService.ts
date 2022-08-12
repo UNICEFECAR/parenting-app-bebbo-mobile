@@ -32,11 +32,10 @@ export const client =
 const commonApiService: commonApiInterface = async (apiEndpoint: string, methodname: any, postdata: object) => {
   const storedata = store.getState();
   
-  let selectedLang, selectedCountry;
-  selectedCountry = storedata.selectedCountry.countryId;
-  selectedLang = storedata.selectedCountry.languageCode;
-  let newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
-   let responseData: any = {};
+  const selectedCountry = storedata.selectedCountry.countryId;
+  const selectedLang = storedata.selectedCountry.languageCode;
+  const newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
+  const responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
   return await axiosService({
     method: methodname,
@@ -44,7 +43,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
     params: postdata
   })
     .then((response: any) => {
-       responseData.data = response.data,
+       responseData.data = response.data
         responseData.status = response.status
       return responseData;
      })
@@ -109,14 +108,6 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
     if(response.data && response.data.status && response.data.status == 200)
     {
       
-       const sponsorObj = response.data.data.map((val: any) => {
-        if(val['country_flag'] && val['country_flag'] != null && val['country_flag'].url != "")
-        {
-          return ({ country_flag: { srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name } })
-        }else {
-          return null;
-        }
-      })
       const partnerObj = response.data.data.map((val: any) => {
         if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
         {
@@ -133,7 +124,7 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
           return null;
         }
       })
-      let sponsarsObj:any={};
+      const sponsarsObj:any={};
       if(logoObj && logoObj != null && logoObj[0])
       {
         const ImageArray = [];
@@ -168,11 +159,13 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
     }
   }
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
+  console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
   navigation.navigate('Walkthrough');
 }
-export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string) => {
+export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string) => {
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
-  let allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
+  const allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
    if (allJsonData?.length>0) {
     navigation.navigate('ChildSetupList');
   }
@@ -188,12 +181,13 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
     if(artobj && artobj != {}){
       const storedata = store.getState();
       const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
-      const artarray = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number)
+      const artarray = artobj.postdata.childAge == 'all' ? childagearray.map((x:any)=>x.id) : artobj.postdata.childAge.split(',').map(Number)
       dispatch(setDownloadedBufferAgeBracket(artarray))
     }
   }
   //setDownloadedBufferAgeBracket save data from apiJsonData
  const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
+ console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
   navigation.reset({
     index: 0,
     routes: [
@@ -203,235 +197,14 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
     ],
   });
 }
-export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any) => {
-  const resolvedPromises =  oldErrorObj.map(async (x:any) => {
-      if(x.apiEndpoint == appConfig.sponsors){
-        const sponsorresp = response.filter((y:any)=>y.apiEndpoint == appConfig.sponsors);
-        const sponsorrespnew = sponsorresp ? sponsorresp[0] : [];
-        if(sponsorrespnew && sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
-        {
-          const sponsorObj = sponsorrespnew.data.data.map((val: any) => {
-            if(val['country_flag'] && val['country_flag'] != null && val['country_flag'].url != "")
-            {
-              return ({ country_flag: { srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name } })
-            }else {
-              return null;
-            }
-          })
-          const partnerObj = sponsorrespnew.data.data.map((val: any) => {
-            if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
-            {
-              return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
-            }else {
-              return null;
-            }
-          })
-          const logoObj = sponsorrespnew.data.data.map((val: any) => {
-            if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
-            {
-              return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
-            }else {
-              return null;
-            }
-          })
-      let sponsarsObj:any={};
-      if(logoObj && logoObj != null && logoObj[0])
-      {
-        const ImageArray = [];
-        ImageArray.push(logoObj[0].country_national_partner)
-        const imagesDownloadResult = await downloadImages(ImageArray);
-        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
-          sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
-        }
-        else{
-          sponsarsObj.country_national_partner=null;
-        }
-      }
-      else{
-        sponsarsObj.country_national_partner=null;
-      }
-      if(partnerObj && partnerObj != null && partnerObj[0])
-      {
-        const ImageArray = [];
-        ImageArray.push(partnerObj[0].country_sponsor_logo)
-        const imagesDownloadResult = await downloadImages(ImageArray);
-        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
-          sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
-        }
-        else{
-          sponsarsObj.country_sponsor_logo=null;
-        }
-      }
-      else{
-         sponsarsObj.country_sponsor_logo=null;
-       }
-          dispatch(setSponsorStore(sponsarsObj));
-          return sponsarsObj;
-        }else {
-          return "success";
-        }
-      }else {
-        const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
-        return allDatatoStore;
-      }
-  })
-  const forceUpdateData = [
-    {
-      apiEndpoint: appConfig.checkUpdate,
-      method: 'get',
-      postdata: {},
-      saveinDB: false,
-    }
-  ];
-  const results = await Promise.all(resolvedPromises);
-  dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
-  //delete all notifications from slice for all child
-   const currentDate = DateTime.now().toMillis();
-  if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate" || prevPage == "DownloadAllData") {
-    dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-    dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
-    if(prevPage == 'ForceUpdate'){
-      AsyncStorage.setItem('forceUpdateTime',forceupdatetime);
-    }
-  }
-  if(prevPage == "PeriodicSync") {
-    if(downloadWeeklyData == true)
-    {
-      dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-    }
-    if(downloadMonthlyData == true)
-    {
-      dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
-    }
-  }
-  
-  if(prevPage == 'DownloadAllData' || prevPage == 'ImportScreen' || prevPage == 'CountryLangChange'){
-    const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
-    if(artresp && artresp != {})
-    {
-      const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
-      if(artobj && artobj != {}){
-        const storedata = store.getState();
-        const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
-        const artarray = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number)
-        console.log(artarray,"---childagearray--",childagearray);
-        dispatch(setDownloadedBufferAgeBracket(artarray))
-      }
-    }
-  }
-
-
-  if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
-    const favverified = await userRealmCommon.verifyFavorites();
-    LocalNotifications.cancelAllReminderLocalNotification();
-    dispatch(setDailyArticleGamesCategory({}));
-    dispatch(setShowedDailyDataCategory({}));
-    dispatch(setAllNotificationData([]));
-    dispatch(setchatBotData([]));
-    const storedata = store.getState();
-    const scheduledlocalNotifications = storedata.notificationData.scheduledlocalNotifications;
-    dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: false}));
-    let notiFlagObj = { key: 'generateNotifications', value: true };
-    dispatch(setInfoModalOpened(notiFlagObj));
-    let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
-    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-    if(prevPage == 'CountryLangChange') {
-      const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
-      let forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';
-      AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
-    }
-  }
-  const storedata = store.getState();
-  const errorObj = storedata.failedOnloadApiObjReducer.errorObj;
-  if(prevPage == 'DownloadUpdate' && errorObj?.length == 0) {
-    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
-      [
-        { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
-            navigation.reset({
-              index: 0,
-              routes: [
-                {
-                  name: 'HomeDrawerNavigator',
-                },
-              ],
-            });
-          }
-        }
-      ]
-    );
-  }
-  else if(prevPage == 'DownloadAllData' && errorObj?.length == 0) {
-    if(enableImageDownload){
-      const allImagesucc = await downloadArticleImages();
-        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
-        [
-          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
-              dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
-              navigation.reset({
-                index: 0,
-                routes: [
-                  {
-                    name: 'HomeDrawerNavigator',
-                  },
-                ],
-              });
-            }
-          }
-        ]
-      );
-    }else {
-        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
-        [
-          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
-            dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
-              navigation.reset({
-                index: 0,
-                routes: [
-                  {
-                    name: 'HomeDrawerNavigator',
-                  },
-                ],
-              });
-            }
-          }
-        ]
-      );
-    }
-        
-  }
-  else {
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: 'HomeDrawerNavigator',
-        },
-      ],
-    });
-  }
-}
-export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
-  const resolvedPromises =  oldErrorObj.map(async (x:any) => {
-      const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
-      return allDatatoStore;
-  });
-  const results = await Promise.all(resolvedPromises);
-}
-export const onHomeVideoartapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
-  const resolvedPromises =  oldErrorObj.map(async (x:any) => {
-      const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
-      return allDatatoStore;
-  });
-  const results = await Promise.all(resolvedPromises);
-}
 export const downloadArticleImages = async() => {
-  return new Promise(async (resolve, reject) => {
-      let databaseData = await dataRealmCommon.getData<ArticleEntity>(ArticleEntitySchema);
-      let databaseDataact = await dataRealmCommon.getData<ActivitiesEntity>(ActivitiesEntitySchema);
-      let databaseDatabasicpg = await dataRealmCommon.getData<BasicPagesEntity>(BasicPagesSchema);
-      let databaseDatapinnedCD = await dataRealmCommon.getData<PinnedChildDevelopmentEntity>(PinnedChildDevelopmentSchema);
-      let databaseDatavideoart = await dataRealmCommon.getData<VideoArticleEntity>(VideoArticleEntitySchema);
-      let imageArray: any[] = [];
+  // return new Promise(async (resolve, reject) => {
+      const databaseData = await dataRealmCommon.getData<ArticleEntity>(ArticleEntitySchema);
+      const databaseDataact = await dataRealmCommon.getData<ActivitiesEntity>(ActivitiesEntitySchema);
+      const databaseDatabasicpg = await dataRealmCommon.getData<BasicPagesEntity>(BasicPagesSchema);
+      const databaseDatapinnedCD = await dataRealmCommon.getData<PinnedChildDevelopmentEntity>(PinnedChildDevelopmentSchema);
+      const databaseDatavideoart = await dataRealmCommon.getData<VideoArticleEntity>(VideoArticleEntitySchema);
+      const imageArray: any[] = [];
       databaseData.map((x:any)=>{
         if(x.embedded_images && x.embedded_images.length > 0) {
           x.embedded_images.map((y:any)=>{
@@ -494,16 +267,223 @@ export const downloadArticleImages = async() => {
       })
       
        FastImage.preload(imageArray,()=>{
+        console.log("images preloaded");
        },
       ()=>{
-        resolve('complete');
+        return 'complete';
       })
-
-       
-  });
+  // });
 }
-export const onApiFail = (error: any) => {
+export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any) => {
+  const resolvedPromises =  oldErrorObj.map(async (x:any) => {
+      if(x.apiEndpoint == appConfig.sponsors){
+        const sponsorresp = response.filter((y:any)=>y.apiEndpoint == appConfig.sponsors);
+        const sponsorrespnew = sponsorresp ? sponsorresp[0] : [];
+        if(sponsorrespnew && sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
+        {
+          const partnerObj = sponsorrespnew.data.data.map((val: any) => {
+            if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
+            {
+              return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
+            }else {
+              return null;
+            }
+          })
+          const logoObj = sponsorrespnew.data.data.map((val: any) => {
+            if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
+            {
+              return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
+            }else {
+              return null;
+            }
+          })
+      const sponsarsObj:any={};
+      if(logoObj && logoObj != null && logoObj[0])
+      {
+        const ImageArray = [];
+        ImageArray.push(logoObj[0].country_national_partner)
+        const imagesDownloadResult = await downloadImages(ImageArray);
+        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+          sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+        }
+        else{
+          sponsarsObj.country_national_partner=null;
+        }
+      }
+      else{
+        sponsarsObj.country_national_partner=null;
+      }
+      if(partnerObj && partnerObj != null && partnerObj[0])
+      {
+        const ImageArray = [];
+        ImageArray.push(partnerObj[0].country_sponsor_logo)
+        const imagesDownloadResult = await downloadImages(ImageArray);
+        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+          sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+        }
+        else{
+          sponsarsObj.country_sponsor_logo=null;
+        }
+      }
+      else{
+         sponsarsObj.country_sponsor_logo=null;
+       }
+          dispatch(setSponsorStore(sponsarsObj));
+          return sponsarsObj;
+        }else {
+          return "success";
+        }
+      }else {
+        const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
+        return allDatatoStore;
+      }
+  })
+  const forceUpdateData = [
+    {
+      apiEndpoint: appConfig.checkUpdate,
+      method: 'get',
+      postdata: {},
+      saveinDB: false,
+    }
+  ];
+  await Promise.all(resolvedPromises);
+  dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
+  //delete all notifications from slice for all child
+   const currentDate = DateTime.now().toMillis();
+  if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate" || prevPage == "DownloadAllData") {
+    dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+    if(prevPage == 'ForceUpdate'){
+      AsyncStorage.setItem('forceUpdateTime',forceupdatetime);
+    }
+  }
+  if(prevPage == "PeriodicSync") {
+    if(downloadWeeklyData == true)
+    {
+      dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    }
+    if(downloadMonthlyData == true)
+    {
+      dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+    }
+  }
+  
+  if(prevPage == 'DownloadAllData' || prevPage == 'ImportScreen' || prevPage == 'CountryLangChange'){
+    const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
+    if(artresp && artresp != {})
+    {
+      const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
+      if(artobj && artobj != {}){
+        const storedata = store.getState();
+        const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
+        const artarray = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number)
+        console.log(artarray,"---childagearray--",childagearray);
+        dispatch(setDownloadedBufferAgeBracket(artarray))
+      }
+    }
+  }
 
+
+  if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
+    await userRealmCommon.verifyFavorites();
+    LocalNotifications.cancelAllReminderLocalNotification();
+    dispatch(setDailyArticleGamesCategory({}));
+    dispatch(setShowedDailyDataCategory({}));
+    dispatch(setAllNotificationData([]));
+    dispatch(setchatBotData([]));
+    dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: false}));
+    const notiFlagObj = { key: 'generateNotifications', value: true };
+    dispatch(setInfoModalOpened(notiFlagObj));
+    const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+    if(prevPage == 'CountryLangChange') {
+      const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
+      const forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';
+      AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
+    }
+  }
+  const storedata = store.getState();
+  const errorObj = storedata.failedOnloadApiObjReducer.errorObj;
+  if(prevPage == 'DownloadUpdate' && errorObj?.length == 0) {
+    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
+      [
+        { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: 'HomeDrawerNavigator',
+                },
+              ],
+            });
+          }
+        }
+      ]
+    );
+  }
+  else if(prevPage == 'DownloadAllData' && errorObj?.length == 0) {
+    if(enableImageDownload){
+      await downloadArticleImages();
+        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
+        [
+          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
+              dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
+              navigation.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: 'HomeDrawerNavigator',
+                  },
+                ],
+              });
+            }
+          }
+        ]
+      );
+    }else {
+        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
+        [
+          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
+            dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
+              navigation.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: 'HomeDrawerNavigator',
+                  },
+                ],
+              });
+            }
+          }
+        ]
+      );
+    }
+        
+  }
+  else {
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'HomeDrawerNavigator',
+        },
+      ],
+    });
+  }
+}
+export const onHomeSurveyapiSuccess = async (_response: any, dispatch: any, _navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
+  const resolvedPromises =  oldErrorObj.map(async (x:any) => {
+      const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
+      return allDatatoStore;
+  });
+  await Promise.all(resolvedPromises);
+}
+export const onHomeVideoartapiSuccess = async (_response: any, dispatch: any, _navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
+  const resolvedPromises =  oldErrorObj.map(async (x:any) => {
+      const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
+      return allDatatoStore;
+  });
+  await Promise.all(resolvedPromises);
 }
 export const retryAlert = () => {
   return new Promise((resolve, reject) => {
@@ -520,7 +500,7 @@ export const retryAlert = () => {
   });
 }
 export const cancelRetryAlert = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     Alert.alert(i18n.t('cancelRetryPopupTitle'), i18n.t('cancelPopupText'),
       [
         { text: i18n.t('cancelPopUpBtn'), onPress: () => resolve("cancelRetry success") }
@@ -558,7 +538,7 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
   });
 }
 export const deleteArticleNotPinned= async () => {
-  let createresult = await dataRealmCommon.delete(ArticleEntitySchema.name, "isarticle_pinned!='1'");
+  const createresult = await dataRealmCommon.delete(ArticleEntitySchema.name, "isarticle_pinned!='1'");
   return createresult;
 }
 export default commonApiService;
