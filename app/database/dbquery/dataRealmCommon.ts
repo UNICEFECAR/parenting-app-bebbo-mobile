@@ -23,7 +23,7 @@ class DataRealmCommon {
     }
 
     public async openRealm(): Promise<Realm | null> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (this.realm) {
                 resolve(this.realm);
             } else {
@@ -39,6 +39,7 @@ class DataRealmCommon {
                         resolve(realm);
                     })
                     .catch(error => {
+                        console.log(error);
                         resolve(null);
                     });
             }
@@ -61,25 +62,25 @@ class DataRealmCommon {
         return rval;
     }
 
-    public async getObjectLength<Entity>(entitySchema: ObjectSchema): Promise<Number> {
-        return new Promise(async (resolve, reject) => {
+    public async getObjectLength<Entity>(entitySchema: ObjectSchema): Promise<number> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     const objLength = realm?.objects<Entity>(entitySchema.name).length;
-                    resolve(objLength);
+                    return objLength;
                 }
                 else {
-                    reject();
+                    return 0;
                 }
             } catch (e) {
-                reject();
+                return 0;
             }
-        });
+        // });
     }
 
-    public async create<Entity>(entitySchema: ObjectSchema, records: Entity[], articleRelation?: String): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async create<Entity>(entitySchema: ObjectSchema, records: Entity[], _articleRelation?: string): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -90,20 +91,20 @@ class DataRealmCommon {
                             })
                         }
 
-                        resolve("success");
+                        return "success";
                     });
                 }
                 else {
-                    reject();
+                    return "fail";
                 }
             } catch (e) {
-                console.error("data insert err", e.message);
-                reject();
+                console.error("data insert err", e);
+                return "fail";
             }
-        });
+        // });
     }
-    public async createArticles<Entity>(entitySchema: ObjectSchema, records: Entity[], articleRelation: String): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async createArticles<Entity>(entitySchema: ObjectSchema, records: Entity[], articleRelation: string): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -130,20 +131,20 @@ class DataRealmCommon {
                                 }
                             })
                         }
-                        resolve("success");
+                        return "success";
                     });
                 }
                 else {
-                    reject();
+                    return "fail";
                 }
             } catch (e) {
-                console.error("data insert err", e.message);
-                reject();
+                console.error("data insert err", e);
+                return "fail";
             }
-        });
+        // });
     }
-    public async createStandardDev<Entity>(records: Entity[]): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async createStandardDev<Entity>(records: Entity[]): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -161,20 +162,20 @@ class DataRealmCommon {
                             })
                         }
 
-                        resolve("success");
+                        return "success";
                     });
                 }
                 else {
-                    reject();
+                    return "fail";
                 }
             } catch (e) {
-                console.error("data insert err", e.message);
-                reject();
+                console.error("data insert err", e);
+                return "fail";
             }
-        });
+        // });
     }
-    public async updateSettings<Entity>(entitySchema: ObjectSchema, key: string, value: string): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async updateSettings<Entity>(_entitySchema: ObjectSchema, key: string, value: string): Promise<string> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -185,7 +186,7 @@ class DataRealmCommon {
                         realm?.write(() => {
                             variablesWithKey[0].value = value;
                             variablesWithKey[0].updatedAt = new Date();
-                            resolve("success");
+                            return "success";
                         });
                     }
                     else {
@@ -196,62 +197,62 @@ class DataRealmCommon {
                                 createdAt: new Date(),
                                 updatedAt: new Date(),
                             });
-                            resolve("success");
+                            return "success";
                         });
                     }
-                    resolve("success");
+                    return "success";
 
                 }
                 else {
-                    reject();
+                    return "fail";
                 }
             } catch (e) {
-                console.error("data insert err", e.message);
-                reject();
+                console.error("data insert err", e);
+                return "fail";
             }
-        });
+        // });
     }
     public async getData<Entity>(entitySchema: ObjectSchema, sortedOrder?: any): Promise<any> {
-        return new Promise(async (resolve, reject) => {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     if (sortedOrder != null && sortedOrder != "" && sortedOrder != undefined) {
                         const obj = realm?.objects<Entity>(entitySchema.name).sorted(sortedOrder);
-                        resolve(obj);
+                        return obj;
                     }
                     else {
                         const obj = realm?.objects<Entity>(entitySchema.name);
-                        resolve(obj);
+                        return obj;
                     }
                 }
                 else {
-                    reject();
+                    return [];
                 }
             } catch (e) {
-                reject();
+                return [];
             }
-        });
+        // });
     }
     public async getFilteredData<Entity>(entitySchema: ObjectSchema, filterData: any): Promise<any> {
-        return new Promise(async (resolve, reject) => {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     const obj = realm?.objects<Entity>(entitySchema.name).filtered(filterData);
-                    resolve(obj);
+                    return obj;
                 }
                 else {
-                    reject();
+                    return [];
                 }
             } catch (e) {
-                reject();
+                return [];
             }
-        });
+        // });
     }
 
-    public async deleteDeltaData(Schemavideo: string, Schemaarticle: string, Schemaactivities: string, Schemafaqs: string, records: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async deleteDeltaData(Schemavideo: string, Schemaarticle: string, Schemaactivities: string, Schemafaqs: string, records: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -304,19 +305,19 @@ class DataRealmCommon {
                                 );
                             }
                         }
-                        resolve('success');
+                        return 'success';
                     });
                 }
                 else {
-                    reject('error');
+                    return "error";
                 }
             } catch (e: any) {
-                reject('error');
+                return "error";
             }
-        });
+        // });
     }
-    public async delete(Schema: string, filterCondition: any): Promise<String> {
-        return new Promise(async (resolve, reject) => {
+    public async delete(Schema: string, filterCondition: any): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -329,38 +330,38 @@ class DataRealmCommon {
                                 realm.objects(Schema).filtered(filterCondition)
                             );
                         }
-                        resolve('success');
+                        return 'success';
                     });
                 }
                 else {
-                    reject('error');
+                    return "error";
                 }
             } catch (e: any) {
-                reject('error');
+                return "error";
             }
-        });
+        // });
     }
-    public async deleteAllAtOnce(): Promise<void> {
-        return new Promise(async (resolve, reject) => {
+    public async deleteAllAtOnce(): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     realm?.write(() => {
                         realm.deleteAll();
-                        resolve();
+                        return 'success';
                     });
                 }
                 else {
-                    reject();
+                    return 'fail';
                 }
             } catch (e) {
-                reject(e);
+                return 'error';
             }
-        });
+        // });
 
     }
-    public async deleteOneByOne(entitySchema: ObjectSchema): Promise<void> {
-        return new Promise(async (resolve, reject) => {
+    public async deleteOneByOne(entitySchema: ObjectSchema): Promise<any> {
+        // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -368,16 +369,16 @@ class DataRealmCommon {
 
                     realm?.write(() => {
                         realm?.delete(allRecords);
-                        resolve();
+                        return 'success';
                     });
                 }
                 else {
-                    reject();
+                    return 'fail';
                 }
             } catch (e) {
-                reject(e);
+                return 'fail';
             }
-        });
+        // });
     }
 }
 export const dataRealmCommon = DataRealmCommon.getInstance();
