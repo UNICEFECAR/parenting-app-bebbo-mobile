@@ -62,7 +62,8 @@ const CountrySelection = (props: any) => {
   
   useEffect(() => {
     if(isVisible) {
-      let newCountryId: any,selectedCountry;
+      let newCountryId: any;
+      let selectedCountry;
       if(userIsOnboarded == true){
         if(props.route.params.country && props.route.params.country != null){
           newCountryId = props.route.params.country.countryId;
@@ -77,10 +78,10 @@ const CountrySelection = (props: any) => {
       );
       const fetchData = async () => {
         if (userIsOnboarded == false) {
-          let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
+          await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
           dataRealmCommon.deleteAllAtOnce();
           dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
-          let payload = {errorArr:[],fromPage:'OnLoad'}
+          const payload = {errorArr:[],fromPage:'OnLoad'}
           dispatch(receiveAPIFailure(payload));
         }
       }

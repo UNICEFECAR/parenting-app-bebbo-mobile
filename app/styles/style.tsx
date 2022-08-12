@@ -28,3 +28,6 @@ export const buttonBg="#1cb278";
 export const articlesTintcolor= '#FFD2C4';
 export const activitiesTintcolor= '#CFF7E5';
 export const primaryColor= '#2B2F84';
+export const secondaryColor= '#00AEEF';
+export const lightShadeColor= '#F7F6F4';
+export const vaccinationColor= '#00A8A8';
