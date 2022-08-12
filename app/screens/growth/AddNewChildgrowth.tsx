@@ -64,6 +64,7 @@ import {
   Modal,
   Platform,
   Pressable,
+  StyleSheet,
   Text,
   View
 } from 'react-native';
@@ -96,7 +97,13 @@ type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
-
+const styles=StyleSheet.create({
+  flex1:{flex:1},
+  maxHeight:{maxHeight: 50},
+  padding0:{padding:0},
+  pressableView:{paddingLeft:10,paddingRight:10},
+  textInputMl:{flex:1,padding:10,textAlignVertical: 'top'}
+})
 const AddNewChildgrowth = ({ route, navigation }: any) => {
   const { t } = useTranslation();
   const { editMeasurementDate } = route.params;
@@ -544,14 +551,13 @@ useEffect(() => {
 }, []);
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={[styles.flex1,{backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ScrollView nestedScrollEnabled={true}  keyboardShouldPersistTaps={'always'}>
           <HeaderRowView
-            style={{
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
+            style={[styles.maxHeight,{
+              backgroundColor: headerColor
+            }]}>
             <HeaderIconView>
               <HeaderIconPress
                 onPress={() => {
@@ -564,8 +570,8 @@ useEffect(() => {
               <Heading2 numberOfLines={1}>{showDelete ? t('growthScreeneditNewBtntxt') : t('growthScreenaddNewBtntxt')}</Heading2>
             </HeaderTitleView>
             {showDelete ? (
-              <HeaderActionView style={{padding:0}}>
-              <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+              <HeaderActionView style={styles.padding0}>
+              <Pressable  style={styles.pressableView}  onPress={() =>
                  setModalVisible(true)
                 }>
                 <Icon name={'ic_trash'} size={20} color="#000" />
@@ -716,7 +722,7 @@ useEffect(() => {
                 </FormInputText>
                 
                   <TextAreaBox>
-                    <TextInputML style={{flex:1,textAlignVertical: 'top',padding:10}}
+                    <TextInputML style={styles.textInputMl}
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={maxCharForRemarks}
@@ -743,7 +749,9 @@ useEffect(() => {
               disabled={isFormFilled()}
               onPress={(e) => {
                 e.stopPropagation();
-                saveChildMeasures().then(() => { });
+                saveChildMeasures().then(() => { 
+                  console.log("saveChildMeasures")
+                });
               }}>
               <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonTertiary>
@@ -801,7 +809,7 @@ useEffect(() => {
         </ScrollView>
       </View>
     </>
-    
+
   );
 };
 
