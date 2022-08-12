@@ -66,7 +66,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
   const relationshipToParent = relationship_to_parent.length > 0 && userRelationToParentEdit != "" ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParentEdit) : '';
-  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any, i: any, a: any) {
+  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != both_parent_gender;
   });
   const actionSheetRef = createRef<any>();

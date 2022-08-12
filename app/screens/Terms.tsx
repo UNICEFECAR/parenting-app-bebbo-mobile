@@ -13,7 +13,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -21,6 +21,7 @@ import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
 import { Heading1w } from '../styles/typography';
 import { addSpaceToHtml } from '../services/Utils';
+import { bgcolorWhite2, primaryColor } from '@styles/style';
 
 
 type TermsNavigationProp = StackNavigationProp<
@@ -31,6 +32,28 @@ type TermsNavigationProp = StackNavigationProp<
 type Props = {
   navigation: TermsNavigationProp;
 };
+const styles=StyleSheet.create({
+  checkboxStyle: {
+    fontWeight:'bold',
+    textDecorationLine:'underline',
+    textDecorationStyle:'solid'
+  },
+  containerView: {
+    backgroundColor:primaryColor,
+    flex:1
+  },
+  containerView2: {
+    marginTop: 20, 
+    paddingRight: 40
+  },
+  htmlStyle: {
+    color: bgcolorWhite2,
+    fontSize: 16
+  },
+  scrollViewStyle: {
+    padding: 0
+  }
+})
 const Terms = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
@@ -181,7 +204,7 @@ const Terms = ({navigation}: Props) => {
 
   return (
     <>
-     <View style={{flex:1,backgroundColor:headerColor}}>
+     <View style={styles.containerView}>
      <FocusAwareStatusBar
         animated={true}
         backgroundColor={headerColor}
@@ -191,11 +214,11 @@ const Terms = ({navigation}: Props) => {
         <OnboardingHeading>
           <Heading1w>{t('tNcheader')}</Heading1w>
         </OnboardingHeading>
-        <ScrollView contentContainerStyle={{padding: 0}}>
+        <ScrollView contentContainerStyle={styles.scrollViewStyle}>
           { termsdata != "" ?
             <HTML
               source={{html: addSpaceToHtml(termsdata)}}
-              baseFontStyle={{fontSize: 16, color: '#ffffff'}}
+              baseFontStyle={styles.htmlStyle}
               ignoredStyles={['color', 'font-size', 'font-family']}
               tagsStyles={{
               p: { marginBottom: 15, marginTop: 0,textAlign:'left'},h1: { marginBottom: 0, marginTop: 10,textAlign:'left'},h2: { marginBottom: 15, marginTop: 0,textAlign:'left'},h3: { marginBottom: 15, marginTop: 0,textAlign:'left' },h4: { marginBottom: 15, marginTop: 0,textAlign:'left'},h5: { marginBottom: 15, marginTop: 0,textAlign:'left'},h6: { marginBottom: 15, marginTop: 0,textAlign:'left'},span: { marginBottom: 15, marginTop: 0,textAlign:'left'},br: { height: 0 },
@@ -204,7 +227,7 @@ const Terms = ({navigation}: Props) => {
             : null
           }
           <Fragment>
-            <View style={{marginTop: 20, paddingRight: 40}}>
+            <View style={styles.containerView2}>
             <FormOuterCheckbox
             onPress={() => {
               setToggleCheckBox(!toggleCheckBox);
@@ -237,7 +260,7 @@ const Terms = ({navigation}: Props) => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold', textDecorationStyle:'solid',textDecorationLine:'underline'}}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
+            <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={styles.checkboxStyle}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
           </FormOuterCheckbox>
           <FormOuterCheckbox
             onPress={() => {
