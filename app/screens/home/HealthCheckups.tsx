@@ -77,12 +77,12 @@ const HealthCheckups = ({navigation,route}: Props) => {
     // pass true to make modal visible every time & reload
     setModalVisible(hcuModalOpened)
    })
-  let reminders = useAppSelector((state: any) =>
+  const reminders = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild).reminders
       : [],
   );
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],

@@ -72,8 +72,8 @@ const HeaderNotiIcon = (props: any) => {
   useEffect(() => {
       if (generateNotificationsFlag == true) {
       const fetchData = async () => {
-        let childList = await getAllChildren(dispatch, childAge, 1);
-        let allchildNotis: any[] = [];
+        const childList = await getAllChildren(dispatch, childAge, 1);
+        const allchildNotis: any[] = [];
          childList?.map((child: any) => {
           const notiExist = allnotis.find((item:any) => String(item.childuuid) == String(child.uuid))
           if (notiExist != undefined) {
@@ -84,12 +84,12 @@ const HeaderNotiIcon = (props: any) => {
             } else {
               const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, child, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
               if (checkIfNewCalcRequired) {
-               let reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis, vchcEnabledFlag);
+               const reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis, vchcEnabledFlag);
                 const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods, growthEnabledFlag, developmentEnabledFlag, vchcEnabledFlag);
                 ////  append new notifications for child 
-                let allgwcdnotis: any = [];
-                let allvcnotis: any = [];
-                let allhcnotis: any = [];
+                const allgwcdnotis: any = [];
+                const allvcnotis: any = [];
+                const allhcnotis: any = [];
                 gwcdnotis.reverse().forEach((item:any) => {
                   allgwcdnotis.push(item)
                 })
@@ -114,7 +114,7 @@ const HeaderNotiIcon = (props: any) => {
                     allhcnotis.push(item)
                   })
                 }
-                let allreminderNotis: any = []
+                const allreminderNotis: any = []
                 reminderNotis.reverse().forEach((item:any) => {
                   allreminderNotis.push(item)
                 })
@@ -127,8 +127,8 @@ const HeaderNotiIcon = (props: any) => {
                 //find and remove child from notification slice
                 //clear notification which are already generated, 
                 //generate for new notifications
-                let allreminderNotis: any = []
-                let reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis, vchcEnabledFlag);
+                const allreminderNotis: any = []
+                const reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis, vchcEnabledFlag);
                 reminderNotis.reverse().forEach((item) => {
                   allreminderNotis.push(item)
                 })
@@ -139,7 +139,7 @@ const HeaderNotiIcon = (props: any) => {
             // create notification for that child first time
             if (!isFutureDate(child?.birthDate)) {
               const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis }:any= getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods, growthEnabledFlag, developmentEnabledFlag, vchcEnabledFlag);
-              let reminderNotis = getChildReminderNotifications(child, [], vchcEnabledFlag);
+              const reminderNotis = getChildReminderNotifications(child, [], vchcEnabledFlag);
               allchildNotis.push({ childuuid: child.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
             } else {
               //for expecting child no notifications
@@ -152,7 +152,7 @@ const HeaderNotiIcon = (props: any) => {
         //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
         //if already exist, then for each module get last period, and generate afterwards period's notifications
         //after generating notifications make it false
-        let notiFlagObj = { key: 'generateNotifications', value: false };
+        const notiFlagObj = { key: 'generateNotifications', value: false };
         dispatch(setInfoModalOpened(notiFlagObj));
        }
       fetchData()
@@ -169,7 +169,7 @@ const HeaderNotiIcon = (props: any) => {
        //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
         if (!isFutureDate(activeChild?.birthDate)) {
           if (currentChildNotis) {
-            let currentChildallnoti: any = [];
+            const currentChildallnoti: any = [];
             if (currentChildNotis.gwcdnotis) {
               currentChildNotis.gwcdnotis.forEach((item:any) => {
                 currentChildallnoti.push(item)
@@ -190,10 +190,10 @@ const HeaderNotiIcon = (props: any) => {
                 currentChildallnoti.push(item)
               })
             }
-            let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+            const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
             //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
-            let toDay = DateTime.fromJSDate(new Date()).toMillis();
-            let combinedNotis = currentChildallnoti.sort(
+            const toDay = DateTime.fromJSDate(new Date()).toMillis();
+            const combinedNotis = currentChildallnoti.sort(
               (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
             ).filter((item:any) => {
                return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) 
@@ -214,13 +214,13 @@ const HeaderNotiIcon = (props: any) => {
       if(localNotificationGenerateType.generateFlag == true) {
         if(localNotificationGenerateType.generateType == 'onAppStart') {
            dispatch(setAllLocalNotificationData(localNotifications));
-              let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+              const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
               dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }else {
           const childList = await getAllChildren(dispatch, childAge, 1);
           if(childList && childList.length > 0) {
             if(localNotificationGenerateType.childuuid == 'all') {
-              let allChildNotis: any[] = [];
+              const allChildNotis: any[] = [];
               const resolvedPromises = childList.map(async (child:any)=> {
                 const noti = await createAllLocalNotificatoins(child, childAge, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, t, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData, allVaccineData,localNotifications);
                return noti;
@@ -232,10 +232,10 @@ const HeaderNotiIcon = (props: any) => {
               })
               dispatch(setAllScheduledLocalNotificationData([]));
               dispatch(setAllLocalNotificationData(allChildNotis));
-              let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+              const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
               dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
             }else {
-              let allChildNotis: any[] = [];
+              const allChildNotis: any[] = [];
               const currchildnoti = localNotifications.find((x:any) => x.key == localNotificationGenerateType.childuuid);
                if(currchildnoti && currchildnoti != null && currchildnoti != undefined) {
                 //delete existing notifications
@@ -272,7 +272,7 @@ const HeaderNotiIcon = (props: any) => {
                 })
                 dispatch(setAllScheduledLocalNotificationData([]));
                 dispatch(setAllLocalNotificationData(allChildNotis));
-                let localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+                const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
                 dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
             }
           }
@@ -286,14 +286,14 @@ const HeaderNotiIcon = (props: any) => {
   
   useEffect(() => {
     const fetchData2 = async () => {
-      let allnotiobj: any[]=[];
+      const allnotiobj: any[]=[];
        localNotifications.map((x:any)=>{
         x.data.map((y:any) => {
           allnotiobj.push(y)
         })
       });
       const sortedallnotiobj:any =  allnotiobj.sort((a:any, b:any) => new Date(a.notiDate) - new Date(b.notiDate),);
-      let filteredschedulednoti =  scheduledlocalNotifications.filter((x:any)=>isFutureDateTime(new Date(x.notiDate)) == true);
+      const filteredschedulednoti =  scheduledlocalNotifications.filter((x:any)=>isFutureDateTime(new Date(x.notiDate)) == true);
       sortedallnotiobj.map((x:any) => {
           if(filteredschedulednoti && filteredschedulednoti.length < 55) {
             if(isFutureDateTime(new Date(x.notiDate))) {

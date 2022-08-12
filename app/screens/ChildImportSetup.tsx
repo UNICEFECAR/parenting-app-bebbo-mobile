@@ -250,7 +250,7 @@ const ChildImportSetup = (props: any) => {
                       if (counter == 0) {
                         if (childId?.length > 0) {
                           childId = childId[0].value;
-                          let activeChildData = importResponse.filter((x: any) => x.uuid == childId);
+                          const activeChildData = importResponse.filter((x: any) => x.uuid == childId);
                           if (activeChildData.length > 0) {
                             const activeChildnew = await setActiveChild(languageCode, childId, dispatch, child_age, false);
                           }
