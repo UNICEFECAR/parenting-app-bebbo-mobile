@@ -32,7 +32,7 @@ type Props = {
   route: any;
 };
 const LanguageSelection = ({route, navigation}: Props) => {
-  const [language, setLanguage] = useState();
+  const [language, setLanguage] = useState<any>();
   console.log("in lang file ---",route.params);
   let country:any,languagenew: any;
   if(buildFor == buildForREMOVED_FACEBOOK_APP_ID1 && (route.params == null || route.params == undefined || route.params?.country == null)) {
@@ -186,7 +186,9 @@ const LanguageSelection = ({route, navigation}: Props) => {
               </ButtonviewNext>
             ) : <ButtonviewPrevious>
             <ButtonviewClick
-              onPress={() =>{}
+              onPress={() =>{
+                console.log("pressed")
+              }
               }>
               <IconML name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>

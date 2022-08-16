@@ -93,7 +93,7 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
     if (childBirthDay) {
         const date = DateTime.fromISO(childBirthDay);
         const convertInDays = measurementDate.diff(date, "days").days;
-        if (convertInDays !== undefined) {days = Math.round(convertInDays)};
+        if (convertInDays !== undefined) {days = Math.round(convertInDays)}
     }
    
     const filteredData = chartData.find((data:any) => data.name == days);
