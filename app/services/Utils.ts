@@ -22,11 +22,11 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
 export const addApiDataInRealm = async (response: any) => {
-    return new Promise(async (resolve, reject) => {
-       let EntitySchema = <ObjectSchema>{};
-        let EntitySchema2 = <ObjectSchema>{};
-        let EntitySchema3 = <ObjectSchema>{};
-        let EntitySchema4 = <ObjectSchema>{};
+    // return new Promise(async (resolve, reject) => {
+       let EntitySchema:ObjectSchema = {name: "",properties: {}};
+        let EntitySchema2:ObjectSchema = {name: "",properties: {}};
+        let EntitySchema3:ObjectSchema = {name: "",properties: {}};
+        let EntitySchema4:ObjectSchema = {name: "",properties: {}};
         let Entity: any;
         let insertData = [];
         let pinnedArticle = "";
@@ -130,52 +130,52 @@ export const addApiDataInRealm = async (response: any) => {
         if (EntitySchema == ArticleEntitySchema || EntitySchema == PinnedChildDevelopmentSchema) {
            try {
                 await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData, pinnedArticle);
-                resolve("successinsert");
+                return "successinsert";
             } catch (e) {
                 const errorArr = [];
                 errorArr.push(response.payload);
                 const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
                 response.dispatch(receiveAPIFailure(payload));
-                reject();
+                return '';
             }
         } 
         else if (EntitySchema == VideoArticleEntitySchema && response.payload.apiEndpoint == appConfig.archive) {
             try {
                 await dataRealmCommon.deleteDeltaData(EntitySchema.name,EntitySchema2.name,EntitySchema3.name,EntitySchema4.name, insertData);
-                resolve("successinsert");
+                return "successinsert";
             } catch (e) {
                 const errorArr = [];
                 errorArr.push(response.payload);
                 const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
                 response.dispatch(receiveAPIFailure(payload));
-                reject();
+                return '';
             }
         } 
         else if (EntitySchema == StandardDevWeightForHeightSchema) {
             try {
                 await dataRealmCommon.createStandardDev<typeof Entity>(insertData);
-                resolve("successinsert");
+                return "successinsert";
             } catch (e) {
                 const errorArr = [];
                 errorArr.push(response.payload);
                 const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
                 response.dispatch(receiveAPIFailure(payload));
-                reject();
+                return '';
             }
         } else {
             try {
                 await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
-                resolve("successinsert");
+                return "successinsert";
             } catch (e) {
                 const errorArr = [];
                 errorArr.push(response.payload);
                 const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
                 response.dispatch(receiveAPIFailure(payload));
-                reject();
+                return '';
             }
         }
         
-    });
+    // });
 }
 export const addSpaceToHtml=(htmlInput:any)=>{
 	if(htmlInput !== null && htmlInput !== undefined){
@@ -325,7 +325,6 @@ export const getVimeoId = (url: string): string => {
 
     return rval;
 }
-const isAnyKeyValueFalse = (o: { [x: string]: any }) => !!Object.keys(o).find(k => !o[k]);
 const formatImportedMeasures = (measures: any) => {
    //imported from old app
     if (measures == "" || measures == [] || measures == null) {
@@ -343,7 +342,7 @@ const formatImportedMeasures = (measures: any) => {
                     measure.vaccineIds = ""
                 else {
                     const allmeausreVaccineIds: any[] = [];
-                    measure.vaccineIds.forEach((element: any, index: any) => {
+                    measure.vaccineIds.forEach((element: any) => {
                         // added for testing 
                         allmeausreVaccineIds.push({ uuid: element })
                     });
