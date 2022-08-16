@@ -61,7 +61,7 @@ class Backup {
         }
         // Delete backupFileId
         if (backupFileId) {
-            const deleteset = await googleDrive.deleteFile(backupFileId);
+            await googleDrive.deleteFile(backupFileId);
         }
         // Create file on gdrive
         const response = await googleDrive.createFileMultipart({
@@ -98,6 +98,7 @@ class Backup {
             const notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
             await Promise.all(resolvedPromises).then(async item => {
+                console.log("importfromfile--",item);
                 const allChildren = await getAllChildren(dispatch, child_age,1);
                 let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                 this.closeImportedRealm();
@@ -107,7 +108,7 @@ class Backup {
                     childId = childId[0].value;
                     const activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
                     if(activeChildData.length>0){
-                        const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age,false);
+                        await setActiveChild(langCode,childId, dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -120,7 +121,7 @@ class Backup {
                         return "Imported";
                     }
                     else{
-                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
+                        await setActiveChild(langCode, '', dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -134,7 +135,7 @@ class Backup {
                     }
                     }
                     else{
-                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
+                        await setActiveChild(langCode, '', dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -152,6 +153,7 @@ class Backup {
                     return new Error('No Data');
                 }
             }).catch(error => {
+                console.log("error-",error);
                 return new Error('No Import Succeded');
             })
 
@@ -159,6 +161,7 @@ class Backup {
         }
     }
     public async import1(navigation: any, langCode: any, dispatch: any, child_age: any, genders: any): Promise<any> {
+        console.log("import1-",navigation,langCode,dispatch, child_age, genders);
         const tokens = await googleAuth.getTokens();
 
         // Sign in if neccessary
@@ -266,6 +269,7 @@ class Backup {
                     const notiFlagObj = { key: 'generateNotifications', value: true };
                     dispatch(setInfoModalOpened(notiFlagObj));
                     await Promise.all(resolvedPromises).then(async item => {
+                        console.log("item-",item);
                         const allChildren = await getAllChildren(dispatch, child_age,1);
                         let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                         this.closeImportedRealm();
@@ -309,6 +313,7 @@ class Backup {
                             return new Error('No Data');
                         }
                     }).catch(error => {
+                        console.log("error-",error);
                         return new Error('No Import Succeded');
                     })
 

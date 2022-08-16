@@ -425,13 +425,6 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   //new child add from 
   if (param == 0) {
     navigation.navigate('ChildSetupList');
-    let relationshipnew = relationship;
-    if (typeof relationship === 'string' || relationship instanceof String) {
-      relationshipnew = relationship
-    }
-    else {
-      relationshipnew = String(relationship);
-    }
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);

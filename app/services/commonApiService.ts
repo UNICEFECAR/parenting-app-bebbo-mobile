@@ -509,7 +509,7 @@ export const cancelRetryAlert = () => {
   });
 }
 export const retryAlert1 = (bandwidth: any,toggle: any) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if(bandwidth==1){
       bandwidth=i18n.t('lowBandwidth');
     }
