@@ -54,10 +54,10 @@ function createRealmAccess(path = Realm.defaultPath) {
           schemaVersion: 1,
           path,
           migration: (oldRealm, newRealm) => {
+            console.log(newRealm)
             if (oldRealm.schemaVersion < 1) {
               const oldItems = oldRealm.objects(ITEM_SCHEMA.name);
-              const newItems = oldRealm.objects(ITEM_SCHEMA.name);
-              
+              const newItems = oldRealm.objects(ITEM_SCHEMA.name);   
               for (let i = 0; i < oldItems.length; i++) {
                 newItems[i].fragments = fragmentString(oldItems[i].content);
               }

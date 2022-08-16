@@ -30,19 +30,33 @@ import {
 import { CHILDREN_PATH } from '@types/types';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Dimensions, Pressable, ScrollView, Text, View } from 'react-native';
+import { BackHandler, Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { getAllChildren, getAllConfigData, setActiveChild } from '../../services/childCRUD';
 import { formatDate } from '../../services/Utils';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import { bgcolorWhite2 } from '@styles/style';
 
-type NotificationsNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-
-type Props = {
-  navigation: NotificationsNavigationProp;
-};
+const styles= StyleSheet.create({
+  alignItemsStart:{ alignItems: 'flex-start' },
+  areaContainerInnerView:{ flexDirection: 'column' },
+  autoHeight:{height: 'auto'},
+  buttonLinkPress:{justifyContent:"flex-end",width:50},
+  flex1:{flex:1},
+  flexCol:{ backgroundColor: bgcolorWhite2 },
+  flexShrink1:{ flexShrink: 1 },
+  fontText:{ fontSize: 12, fontWeight: 'normal' },
+  headingText1:{ fontSize: 12, fontWeight: 'normal' },
+  imageIcon:{ borderRadius: 20, height: 40, width: 40 },
+  marginLeft15:{ marginLeft: 15 },
+  maxHeight50:{maxHeight:50},
+  paddingLeft30:{paddingLeft:30},
+  profileActionView:{alignItems:"center",height:"100%",justifyContent:"center"},
+  profileListDefault:{flexDirection: 'column', flex: 1},
+  profileTextView:{ paddingRight: 5 },
+  textDecorationNone:{ textDecorationLine: "none"}
+})
 const ChildProfile = ({ navigation }: any) => {
   const { t } = useTranslation();
   const [parentViewHeight, setParentViewheight] = useState(0);
@@ -70,7 +84,7 @@ const ChildProfile = ({ navigation }: any) => {
       setTimeout(() => {
         navigation.dispatch((state:any) => {
           // Remove the home route from the stack
-          const routes = state.routes.filter(r => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
+          const routes = state.routes.filter((r:any) => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
 
           return CommonActions.reset({
             ...state,
@@ -164,14 +178,14 @@ const ChildProfile = ({ navigation }: any) => {
           <ProfileIconView>
             {
               data.photoUri != '' ?
-                <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={{ borderRadius: 20, width: 40, height: 40 }}>
+                <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
                 </ImageIcon> : <Icon name="ic_baby" size={30} color="#000" />
             }
           </ProfileIconView>
-          <ProfileTextView style={{ paddingRight: 5 }}>
+          <ProfileTextView style={styles.profileTextView}>
             <ProfileSectionView>
-              <Heading3 style={{ flexShrink: 1 }}>{data.childName}{genderName != '' && genderName != null && genderName != undefined ?
-                <Text style={{ fontSize: 12, fontWeight: 'normal' }}>{', ' + genderName}</Text> : null}
+              <Heading3 style={styles.flexShrink1}>{data.childName}{genderName != '' && genderName != null && genderName != undefined ?
+                <Text style={styles.headingText1}>{', ' + genderName}</Text> : null}
               </Heading3>
             </ProfileSectionView>
             <Heading5>
@@ -181,7 +195,7 @@ const ChildProfile = ({ navigation }: any) => {
             </Heading5>
           </ProfileTextView>
 
-          <ProfileActionView  style={{height:"100%",alignItems:"center",justifyContent:"center"}}>
+          <ProfileActionView  style={styles.profileActionView}>
             <FlexColEnd>
               <FDirRow>
                 <OuterIconRow>
@@ -215,21 +229,21 @@ const ChildProfile = ({ navigation }: any) => {
       ) : (
 
         <ProfileListDefault
-          style={{
+          style={[styles.profileListDefault,{
             backgroundColor: secopndaryTintColor,
-            flexDirection: 'column', flex: 1,
-          }}>
+           
+          }]}>
           <ProfileListInner>
             <ProfileIconView>
               {
                 data.photoUri != '' ?
-                  <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={{ borderRadius: 20, width: 40, height: 40 }}>
+                  <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
                   </ImageIcon> : <Icon name="ic_baby" size={30} color="#000" />
               }
             </ProfileIconView>
             <ProfileTextView>
-                  <ProfileSectionView style={{ alignItems: 'flex-start' }}>
-                    <Heading3>{data.childName}{genderName != '' && genderName != null && genderName != undefined ? <Text style={{ fontSize: 12, fontWeight: 'normal' }}>{', ' + genderName}</Text> : null}
+                  <ProfileSectionView style={styles.alignItemsStart}>
+                    <Heading3>{data.childName}{genderName != '' && genderName != null && genderName != undefined ? <Text style={styles.fontText}>{', ' + genderName}</Text> : null}
                     </Heading3>
 
                   </ProfileSectionView>
@@ -240,7 +254,7 @@ const ChildProfile = ({ navigation }: any) => {
                   </Heading5>
 
                 </ProfileTextView>
-                <ProfileActionView  style={{flex:1,height:"100%",alignItems:"center",justifyContent:"center"}}>
+                <ProfileActionView  style={styles.profileActionView}>
             <FlexColEnd>
               <FDirRow>
                 <OuterIconRow>
@@ -254,7 +268,7 @@ const ChildProfile = ({ navigation }: any) => {
                         },0);
                       
                       }}>
-                  <OuterIconRight style={{paddingLeft:30,}}>
+                  <OuterIconRight style={styles.paddingLeft30}>
                 
                         <TickView4>
                           {/* <Icon name="ic_tick" size={11} color="#000000" /> */}
@@ -290,15 +304,15 @@ const ChildProfile = ({ navigation }: any) => {
 
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={[styles.flex1,{backgroundColor: headerColor }]}>
 
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <HeaderRowView
-          style={{
+          style={[styles.maxHeight50,{
             backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
+            
+          }]}>
           <HeaderIconView>
             <HeaderIconPress
               onPress={(e) => {
@@ -312,13 +326,13 @@ const ChildProfile = ({ navigation }: any) => {
             <Heading2w numberOfLines={1}>{t('childProfileHeader')}</Heading2w>
           </HeaderTitleView>
         </HeaderRowView>
-        <FlexCol style={{ backgroundColor: "#FFF" }}>
+        <FlexCol style={styles.flexCol}>
           <AreaContainer>
-            <View style={{ flexDirection: 'column' }}>
-              <ScrollView style={{ maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140, height: 'auto' }} nestedScrollEnabled={true}>
+            <View style={styles.areaContainerInnerView}>
+              <ScrollView style={[styles.autoHeight,{ maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
-                    const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find(genderset => genderset.id == parseInt(item.gender)).name : '';
+                    const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset:any) => genderset.id == parseInt(item.gender)).name : '';
                     return renderChildProfile(dispatch, item, index, genderLocal);
                   })
                   : null}
@@ -365,7 +379,7 @@ const ChildProfile = ({ navigation }: any) => {
                   </ProfileTextView>
                   <ProfileActionView>
                     <ButtonLinkPress
-                      style={{width:50,justifyContent:"flex-end"}}
+                      style={styles.buttonLinkPress}
                       onPress={() => {
                         navigation.navigate('EditParentDetails', {
                           userParentalRoleData:
@@ -379,7 +393,7 @@ const ChildProfile = ({ navigation }: any) => {
                             : '',
                         });
                       }}>
-                      <Text numberOfLines={2} style={{ textDecorationLine: "none"}}> <Icon
+                      <Text numberOfLines={2} style={styles.textDecorationNone}> <Icon
                         name="ic_edit"
                         size={16}
                         color="#000"
@@ -400,7 +414,7 @@ const ChildProfile = ({ navigation }: any) => {
                       </ParentLabel>
                       <ParentData>
 
-                        <Text style={{ marginLeft: 15 }}>
+                        <Text style={styles.marginLeft15}>
                           {userRelationToParent?.length > 0 ? relationshipToParent.name : ''}
                         </Text>
 
@@ -411,7 +425,7 @@ const ChildProfile = ({ navigation }: any) => {
                         <Text>{t('parentGender')}</Text>
                       </ParentLabel>
                       <ParentData>
-                        <Text style={{ marginLeft: 15 }}>
+                        <Text style={styles.marginLeft15}>
                           {
                             userParentalRoleData?.length > 0
                               ? relationshipValue.name
@@ -426,7 +440,7 @@ const ChildProfile = ({ navigation }: any) => {
                         <Text>{t('parentNameLabel')}</Text>
                       </ParentLabel>
                       <ParentData>
-                        <Text style={{ marginLeft: 15 }}>
+                        <Text style={styles.marginLeft15}>
                           {userNameData?.length > 0 ? userNameData[0].value : ''}
                         </Text>
 

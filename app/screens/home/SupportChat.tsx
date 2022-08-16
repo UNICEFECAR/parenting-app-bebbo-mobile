@@ -22,7 +22,7 @@ import analytics from '@react-native-firebase/analytics';
 import { CHATBOT_CATEGORY_SELECTED, CHATBOT_FAQ_SELECTED, CHATBOT_SUBCATEGORY_SELECTED, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
 import { imageBg } from '@styles/style';
 
-type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
+type SupportChatNavigationProp = StackNavigationProp<any>;
 type Props = {
   navigation: SupportChatNavigationProp;
 };
@@ -81,9 +81,9 @@ const faqsData = useAppSelector((state: any) =>
   const feedbackItem = surveryData.find((item:any) => item.type == "feedback")
   const [steps,setsteps] = useState<any>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const flatListRef = useRef(null);
+  const flatListRef = useRef<any>(null);
   const noDataStep = () => {
-
+  console.log("noDataStep")
   }
   const updateChatBotData = (updatedData:any) => {
     setsteps(updatedData);
