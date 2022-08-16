@@ -115,7 +115,7 @@ const NotificationsCategories = (props: any) => {
   };
   return (
     <>
-    <View style={{backgroundColor: backgroundColor,}}>
+    <View style={{backgroundColor: backgroundColor}}>
       <View
         style={styles.containerView}>
         <FlexRow>

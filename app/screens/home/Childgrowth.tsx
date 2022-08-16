@@ -21,9 +21,7 @@ import {
   TabBarDefault
 } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading3,
   Heading3Centerr,
@@ -54,12 +52,7 @@ import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { formatStringDate } from '../../services/Utils';
 import { bgcolorWhite2 } from '@styles/style';
-type ChildgrowthNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-type Props = {
-  navigation: ChildgrowthNavigationProp;
-  AddNewChildgrowth: any;
-};
+
 const styles= StyleSheet.create({
   flex1:{flex:1},
   marginTop15:{marginTop: 15},
@@ -78,7 +71,7 @@ const styles= StyleSheet.create({
     padding: 15,
   }
 })
-const Childgrowth = ({navigation}: Props) => {
+const Childgrowth = ({navigation}: any) => {
   const {t} = useTranslation();
   const data = [
     {title: t('growthScreenweightForHeight')},
