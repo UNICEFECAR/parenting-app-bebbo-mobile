@@ -53,7 +53,7 @@ export type ReminderEntity = {
 export type ChildEntity = {
   uuid: string;
   childName: string;
-  gender: number;
+  gender: number|string;
   photoUri?: string;
   createdAt: Date;
   updatedAt: Date;
