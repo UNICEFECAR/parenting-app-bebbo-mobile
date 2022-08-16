@@ -63,8 +63,7 @@ const CountrySelection = (props: any) => {
   useEffect(() => {
     if(isVisible) {
       let newCountryId: any;
-      let selectedCountry;
-      if(userIsOnboarded == true){
+       if(userIsOnboarded == true){
         if(props.route.params.country && props.route.params.country != null){
           newCountryId = props.route.params.country.countryId;
         }else {
@@ -73,7 +72,7 @@ const CountrySelection = (props: any) => {
       }else {
         newCountryId = countryId;
       }
-      selectedCountry = localization.find(
+      const selectedCountry = localization.find(
         (country:any) => country.countryId === newCountryId,
       );
       const fetchData = async () => {
@@ -129,7 +128,9 @@ const CountrySelection = (props: any) => {
           </ButtonSection>
         ) : (
           <ButtonviewPrevious>
-            <ButtonviewClick onPress={() => { }}>
+            <ButtonviewClick onPress={() => {
+              console.log("pressed")
+             }}>
               <IconML name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>
           </ButtonviewPrevious>
