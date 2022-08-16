@@ -25,26 +25,6 @@ import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
-type CountrySelectionNavigationProp = StackNavigationProp<
-  LocalizationStackParamList,
-  'LanguageSelection'
->;
-
-type Props = {
-  navigation: CountrySelectionNavigationProp;
-};
-
-type localizationType = {
-  name: string;
-  displayName: string;
-  countryId: number;
-  languages: {
-    name: string;
-    displayName: string;
-    languageCode: string;
-    locale: string;
-  };
-};
 const CountrySelection = (props: any) => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -116,7 +96,6 @@ const CountrySelection = (props: any) => {
             <ShiftFromTopBottom10>
               <ButtonviewNext>
                 <ButtonviewClick
-                  style={{}}
                   onPress={() => {
                       props.navigation.navigate('LanguageSelection', { country:country,languagenew: props.route.params && props.route.params.language ? props.route.params.language : null})
                     }

@@ -224,9 +224,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                         <OuterIconLeft15>
                           {activeChild.photoUri != '' ? (
                             <ImageIcon
-                              source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
-                            // style={{borderRadius: 20, width: 40, height: 40}}
-                            ></ImageIcon>
+                              source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
                           ) : (
                             <Icon name="ic_baby" size={25} color='#000' />
                           )}

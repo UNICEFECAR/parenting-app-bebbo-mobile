@@ -347,9 +347,6 @@ const Articles = ({ route, navigation }: Props) => {
                 // placeholder="Search for Keywords"
                 placeholder={t('articleScreensearchPlaceHolder')}
                 placeholderTextColor={"gray"}
-                style={{
-
-                }}
                 allowFontScaling={false}
               />
               {
