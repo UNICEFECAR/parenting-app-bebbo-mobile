@@ -180,7 +180,7 @@ export const addApiDataInRealm = async (response: any) => {
 export const addSpaceToHtml=(htmlInput:any)=>{
 	if(htmlInput !== null && htmlInput !== undefined){
 		let html = htmlInput;
-      	html = html.replace(/<[/]strong> /g, " </strong>");
+        html = html.replace(/<[/]strong> /g, " </strong>");
         html = html.replace(/<[/]em> /g, " </em>");
 		html = html.replace(/<[/]i> /g, " </i>");
 		html = html.replace(/<[/]s> /g, " </s>");
@@ -402,12 +402,13 @@ const formatImportedReminders = async (reminders: any) => {
             //import from old app's exported files
             const importedReminders = JSON.parse(reminders);
             importedReminders.forEach((reminder: any) => {
+                const reminderUUID=(reminder.uuid);
                 reminder.reminderDate = Number(reminder.date);
                 reminder.reminderTime = Number(reminder.time);
                 reminder.reminderDateDefined = Number(reminder.date);
                 reminder.reminderTimeDefined = Number(reminder.time)-60000;
                 reminder.reminderType = "healthCheckup";
-                reminder.uuid = (reminder.uuid);
+                reminder.uuid = reminderUUID;
                 delete reminder.date;
                 delete reminder.time;
             });

@@ -244,8 +244,9 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                   const existingMeasuredVaccines = (existingMeasure?.vaccineIds && existingMeasure?.vaccineIds != '' && existingMeasure?.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure?.vaccineIds)) : [];
                   if (existingMeasuredVaccines?.length > 0) {
                     existingMeasuredVaccines?.forEach((element:any) => {
+                      const elementUUID=element.uuid;
                       element['id'] = allVaccinePeriods.find((item:any) => item.uuid == element?.uuid)?.id
-                      element['uuid'] = element.uuid
+                      element['uuid'] = elementUUID
                       element['title'] = allVaccinePeriods.find((item:any) => item.uuid == element?.uuid)?.title
                       element['isMeasured'] = true
                       element['pinned_article'] = allVaccinePeriods.find((item:any) => item.uuid == element?.uuid)?.pinned_article

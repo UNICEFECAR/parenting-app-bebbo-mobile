@@ -237,7 +237,6 @@ useEffect(() => {
         )}
 
         {/********** SCATTER ********* */}
-        {/* @ts-ignore */}
         <VictoryScatter
           data={chartData}
           size={9}
