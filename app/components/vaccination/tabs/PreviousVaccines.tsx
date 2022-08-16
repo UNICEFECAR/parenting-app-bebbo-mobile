@@ -61,7 +61,7 @@ const PreviousVaccines = (props: any) => {
       <ToolsListOuter>
         <ToolsListContainer
           style={{
-            backgroundColor: backgroundColor,
+            backgroundColor: backgroundColor
           }}>
           <ToolsIconView>
             {item.vaccines.every((el:any) => {
