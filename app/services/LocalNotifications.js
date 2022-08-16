@@ -4,8 +4,10 @@ class LocalNotifications {
     PushNotification.configure({
       // (optional) Called when Token is generated (iOS and Android)
       onRegister: function (token) {
+        console.log("token",token);
       },
       onNotification: function (notification) {
+        console.log("onNotification-",notification);
       },
       popInitialNotification: true,
       requestPermissions: true,
@@ -22,15 +24,11 @@ class LocalNotifications {
         channelName: 'Task reminder notifications', // (required)
         channelDescription: 'Reminder for any tasks',
       },
-      () => {},
     );
-
-    PushNotification.getScheduledLocalNotifications(rn => {
-    });
   }
 
   schduleNotification(date,title,message,notiId,notitype,uuid) {
-    let notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
+    const notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
     PushNotification.localNotificationSchedule({
       channelId: 'reminders',
       id:notificationid,
@@ -42,7 +40,7 @@ class LocalNotifications {
     });
   }
   cancelReminderLocalNotification(notiId) {
-    let notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
+    const notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
     PushNotification.cancelLocalNotification(notificationid);
   }
   cancelAllReminderLocalNotification() {
