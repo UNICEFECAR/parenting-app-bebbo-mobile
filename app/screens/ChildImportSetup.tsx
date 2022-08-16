@@ -254,13 +254,6 @@ const ChildImportSetup = (props: any) => {
                       const childData: any = [];
                       childData.push(itemnew);
                       await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
-                      // let relationshipnew: any = relationship;
-                      // if (typeof relationshipnew === 'string' || relationshipnew instanceof String) {
-                      //   relationshipnew = relationship;
-                      // }
-                      // else {
-                      //   relationshipnew = String(relationship);
-                      // }
                       let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
                       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
@@ -289,6 +282,7 @@ const ChildImportSetup = (props: any) => {
                   const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
                   dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
                   await Promise.all(resolvedPromises).then(async item => {
+                    console.log("item--",item);
                     if (importResponse.length > 0) {
                       const childList = await getAllChildren(dispatch, child_age, 1);
                       const Ages = await getAge(childList, child_age);

@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Animated } from 'react-native'
+import PropTypes from 'prop-types';
 
 const SIZE = 9
 const MARGIN = 3
@@ -105,4 +106,14 @@ class Dot extends React.Component {
       <Animated.View style={[style, {transform: [{ scale: this.scale }]}]}/>
     )
   }
+}
+
+Dot.propTypes = {
+    active: PropTypes.any,
+    size: PropTypes.any,
+    background: PropTypes.any,
+    activeBackground: PropTypes.any,
+    dotMargin: PropTypes.any,
+    animationDuration: PropTypes.any,
+    animationScale: PropTypes.any,
 }

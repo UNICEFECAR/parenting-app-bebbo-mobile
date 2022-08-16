@@ -85,7 +85,6 @@ export default () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const currentActiveChild = activeChild.uuid;
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;

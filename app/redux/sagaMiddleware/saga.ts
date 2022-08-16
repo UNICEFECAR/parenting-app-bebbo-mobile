@@ -67,7 +67,7 @@ else if (prevPage == 'CountryLanguageSelection') {
 
 function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: any, languageCode: string,activeChild: any, oldErrorObj: any,netInfovalisConnected:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any):any {
   try {
-    const confirm = yield call(retryAlert);
+    yield call(retryAlert);
     const failedApiObj = errorArr;
     let onLoadApiArray;
     const apiJsonData = payload;
@@ -84,7 +84,7 @@ function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: an
   } catch (e) {
     //code of what to fo if user selected cancel.
     try {
-      const cancelclicked = yield call(cancelRetryAlert);
+      yield call(cancelRetryAlert);
       yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode,activeChild, oldErrorObj,netInfovalisConnected,forceupdatetime,downloadWeeklyData,downloadMonthlyData,enableImageDownload);
     }catch (e) {
       yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfovalisConnected,forceupdatetime,downloadWeeklyData,downloadMonthlyData,enableImageDownload);

@@ -187,6 +187,7 @@ const Walkthrough = ({navigation}: Props) => {
   };
 useFocusEffect(
   React.useCallback(() => {
+    console.log("showPrevbtn--",showPrevbtn);
     setTimeout(() => {
       navigation.dispatch(state => {
         // Remove the home route from the stack
