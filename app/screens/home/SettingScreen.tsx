@@ -458,7 +458,6 @@ const SettingScreen = (props: any) => {
             LocalNotifications.cancelAllReminderLocalNotification();
           }
           currentChildNotis.reminderNotis = [...currentChildNotis.reminderNotis]?.map((item) => {
-            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
             console.log(vchcEnabledFlag,"----vchcEnabledFlag");
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if(vchcEnabledFlag == false) {
