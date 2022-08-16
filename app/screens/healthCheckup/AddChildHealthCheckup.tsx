@@ -88,7 +88,6 @@ import {
 import { getAllHealthCheckupPeriods } from '../../services/healthCheckupService';
 import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import { formatStringDate } from '../../services/Utils';
-type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 const styles=StyleSheet.create({
   flex1:{flex:1},
   flex9:{flex:9},
@@ -99,10 +98,6 @@ const styles=StyleSheet.create({
   textInputMl:{ flex: 1, padding: 10, textAlignVertical: 'top' }
 
 })
-type Props = {
-  navigation: ChildSetupNavigationProp;
-  route: any;
-};
 const AddChildHealthCheckup = ({ route, navigation }: any) => {
   const { t } = useTranslation();
   const { vcPeriod, editMeasurementDate } = route.params;

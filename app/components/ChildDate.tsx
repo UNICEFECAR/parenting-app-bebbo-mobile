@@ -7,7 +7,6 @@ import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Platform, StyleSheet, Text, View } from 'react-native';
-import { useAppSelector } from '../../App';
 import { formatStringDate } from '../services/Utils';
 import Checkbox, {
   CheckboxActive,
