@@ -131,7 +131,7 @@ const BotBubble = (props: any) => {
   )
 }
 const UserBubble = (props: any) => {
-  const { message, steps } = props
+  const { message } = props
   return (
     <UserBubbleContainer>
       <UserBubbleTextContainer>
@@ -141,7 +141,7 @@ const UserBubble = (props: any) => {
   )
 }
 const OptionBubble = (props: any) => {
-  const { optionval, optionindex, stepindex, steps, categorySelection, dynamicStepSelection, backToHomeScreen, showFeedbackLink, noDataStep } = props
+  const { optionval, optionindex, stepindex, steps } = props
   return (
     <>
 
@@ -160,7 +160,7 @@ const OptionBubble = (props: any) => {
   )
 }
 const ActionBubble = (props: any) => {
-  const { actionval, actionindex, stepindex, steps, stepsjson, backToStep, backToHomeScreen } = props
+  const { actionval, actionindex, stepindex, steps, stepsjson } = props
   return (
     <>
 

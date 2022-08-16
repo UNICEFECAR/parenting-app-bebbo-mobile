@@ -1,7 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { FDirRow, FlexCol} from '@components/shared/FlexBoxStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1Centerr, Heading4Center } from '@styles/typography';
@@ -128,6 +127,7 @@ const faqsData = useAppSelector((state: any) =>
       analytics().logEvent(CHATBOT_CATEGORY_SELECTED+"_"+localsteps[stepIndex].options[optionIndex].value);
       const subcat = taxonomy.chatbot_subcategory.filter((x:any)=>x.parent_category_id == localsteps[stepIndex].options[optionIndex].value);
       const subcat2 = subcat.map((x: any,i: any) => {
+        console.log(i)
         return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
       });
       localsteps[index].options = subcat2;
@@ -136,6 +136,7 @@ const faqsData = useAppSelector((state: any) =>
       analytics().logEvent(CHATBOT_SUBCATEGORY_SELECTED+"_"+localsteps[stepIndex].options[optionIndex].value);
       const faqsoption = faqsData ? faqsData.filter((x:any)=>x.chatbot_subcategory == localsteps[stepIndex].options[optionIndex].value) : [];
       const faqsoption2 = faqsoption.map((x: any,i: any) => {
+        console.log(i)
         return {...x,label : x.question,value : x.id,nextStepFunc : categorySelection}
       });
       if(faqsoption2.length <=0) {
@@ -167,9 +168,11 @@ const faqsData = useAppSelector((state: any) =>
 
   
   const category = taxonomy.chatbot_category.map((x:any,i:any)=> {
+    console.log(i)
     return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
   });
   const backToStep = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
+    console.log(stepsjson2,"..stepsjson2..");
     let localsteps = [...steps2];
     let localstepsjson = [...steps2];
     //changing answer value from null to action value

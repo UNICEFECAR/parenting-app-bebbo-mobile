@@ -18,7 +18,7 @@ import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@st
 import React, { useContext, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
+  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, View
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ThemeContext } from 'styled-components/native';
@@ -60,12 +60,12 @@ export type ArticleCategoriesProps = {
   fromPage?: any;
   onFilterArrayChange?: any;
 }
-const Articles = ({ route, navigation }: Props) => {
+const Articles = ({ route, navigation }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState('');
   const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
-  const flatListRef = useRef(null);
+  const flatListRef = useRef<any>(null);
   const setIsModalOpened = async (varkey: any) => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
@@ -156,13 +156,13 @@ const Articles = ({ route, navigation }: Props) => {
   );
   const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
 
-  let articleData = mergearr(articleDataOld,videoarticleData);
-  const [filteredData, setfilteredData] = useState([]);
+  let articleData:any = mergearr(articleDataOld,videoarticleData);
+  const [filteredData, setfilteredData] = useState<any>([]);
   const [filterArray, setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const videoIsFocused = useIsFocused();
-  const goToArticleDetail = (item: typeof filteredData[0]) => {
+  const goToArticleDetail = (item: any) => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Articles",

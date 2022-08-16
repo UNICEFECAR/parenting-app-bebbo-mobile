@@ -19,9 +19,7 @@ import {
   ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
   ProfileLinkRow, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2w,
   Heading3,
@@ -57,7 +55,7 @@ const styles= StyleSheet.create({
   profileTextView:{ paddingRight: 5 },
   textDecorationNone:{ textDecorationLine: "none"}
 })
-const ChildProfile = ({ navigation }: any) => {
+const ChildProfile = ({ navigation }) => {
   const { t } = useTranslation();
   const [parentViewHeight, setParentViewheight] = useState(0);
   const [profileLoading,setProfileLoading] = React.useState(false);
@@ -165,6 +163,7 @@ const ChildProfile = ({ navigation }: any) => {
   const windowHeight = Dimensions.get('window').height;
 
   const SortedchildList = [...childList].sort((a: any, b: any) => {
+    console.log(b);
     if (a.uuid == currentActiveChild) return -1;
   });
   const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string) => (

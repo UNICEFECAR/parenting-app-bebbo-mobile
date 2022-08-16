@@ -9,7 +9,7 @@ import { FDirCol, FlexCol, FDirRow, Flex1, FlexDirRowSpace, FlexDirRowSpaceStart
 import Icon, { OuterIconLeft, OuterIconRow, IconViewSuccess, IconViewAlert, IconAreaPress } from '@components/shared/Icon';
 import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
+import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
