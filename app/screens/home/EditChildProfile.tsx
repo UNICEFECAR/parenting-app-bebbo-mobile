@@ -128,6 +128,7 @@ const EditChildProfile = ({ route, navigation }: any) => {
   );
 
   genders = genders.map((v:any) => ({ ...v, title: v.name })).filter(function (e: { id: number }, i: any, a: any) {
+    console.log(i,a);
     return e.id != both_child_gender;
   });
 
@@ -220,6 +221,7 @@ const EditChildProfile = ({ route, navigation }: any) => {
       });
   };
   const handleImageOptionClick = async (item:any,index: number) => {
+    console.log(index)
     if (item.id == 0) {
       Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
         {
@@ -295,6 +297,7 @@ const EditChildProfile = ({ route, navigation }: any) => {
     // Set destPath
     const destPath = `${CHILDREN_PATH}/${newFilename}`;
     setDestPath(destPath);
+    console.log(destPath);
     // Delete image if it exists
     if (await exists(destPath)) {
       await unlink(destPath);

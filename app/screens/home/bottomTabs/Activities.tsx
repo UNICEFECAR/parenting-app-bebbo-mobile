@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     paddingTop:15
   }
 });
-const Activities = ({ route, navigation }: Props) => {
+const Activities = ({ route, navigation }: any) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   let sectionListRef:any;
@@ -275,7 +275,7 @@ const Activities = ({ route, navigation }: Props) => {
     }, [filteredData,childMilestonedata])
   );
   
-  const goToActivityDetail = (item: typeof filteredData[0]) => {
+  const goToActivityDetail = (item: any) => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Activities",
