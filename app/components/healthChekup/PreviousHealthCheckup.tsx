@@ -67,7 +67,7 @@ const PreviousHealthCheckup = (props: any) => {
       <ToolsListOuter>
         <ToolsListContainer
           style={{
-            backgroundColor: backgroundColor,
+            backgroundColor: backgroundColor
           }}>
           <ToolsIconView>
             {item?.growthMeasures?.measurementDate ?  (
