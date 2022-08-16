@@ -10,9 +10,7 @@ import {
 import { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
-import { LocalizationStackParamList } from '@navigation/types';
 import { useIsFocused } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
