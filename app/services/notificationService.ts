@@ -28,7 +28,8 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
       }
     })
     groupsForPeriods.map((item: any, index: number) => {
-      item.vaccination_opens = item.vaccination_opens;
+      const vaccination_opens=item.vaccination_opens;
+      item.vaccination_opens = vaccination_opens;
       item.vaccination_closes = (index == groupsForPeriods.length - 1) ? maxPeriodDays : groupsForPeriods[index + 1].vaccination_opens;
     })
     groupsForPeriods.forEach((item: any) => {
@@ -251,7 +252,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any, prematu
       // check difference between today and notification date in days and if greater than or equal to twoMonthDays then isDeleted=false
       const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from + (i * twoMonthDays), (i == diff - 1) ? childTaxonomyData.days_to - 1 : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to - 1 : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays - 2)
       if (!isGrowthDataExist) {
-        let numOfDays2;
+        let numOfDays2:any;
         if (isFutureDateTime(notificationDate) == true) {
           numOfDays2 = (DateTime.fromISO(notificationDate)).diff((DateTime.now()), 'days').toObject().days
         } else {
