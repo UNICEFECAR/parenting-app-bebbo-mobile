@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   width100:{ width: '100%' }
 });
 
-const EditChildProfile = ({ route, navigation }: Props) => {
+const EditChildProfile = ({ route, navigation }: any) => {
   const childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -209,11 +209,13 @@ const EditChildProfile = ({ route, navigation }: Props) => {
 
     deleteImageFile(capturedPhoto)
       .then(async (data: any) => {
+        console.log(data);
         MediaPicker.cleanupImages();
         setphotoUri('');
         setCapturedImage('');
       })
       .catch((error: any) => {
+        console.log(error);
         Alert.alert(t('tryText'));
       });
   };
