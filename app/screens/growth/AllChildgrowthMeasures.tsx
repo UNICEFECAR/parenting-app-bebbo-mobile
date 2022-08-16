@@ -8,8 +8,6 @@ import {
 import { FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import { IconML } from '@components/shared/Icon';
-import { RootStackParamList } from '@navigation/types';
-import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2, ShiftFromTop10
 } from '@styles/typography';
@@ -20,12 +18,6 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { isFutureDate } from '../../services/childCRUD';
 
-
-type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
-
-type Props = {
-  navigation: ChildSetupNavigationProp;
-};
 const styles=StyleSheet.create({
   flex1:{flex:1},
   flexCol:{padding: 20,
@@ -35,7 +27,7 @@ const styles=StyleSheet.create({
   maxHeight:{maxHeight: 50},
   overflowHidden:{overflow:'hidden'}
 })
-const AllChildgrowthMeasures = ({navigation}: Props) => {
+const AllChildgrowthMeasures = ({navigation}: any) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;

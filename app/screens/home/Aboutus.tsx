@@ -2,11 +2,10 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import TabScreenHeader from '@components/TabScreenHeader';
 import iframe from '@native-html/iframe-plugin';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import HTML from 'react-native-render-html';
 import WebView from 'react-native-webview';
@@ -14,13 +13,22 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import RenderImage from '../../services/RenderImage';
 import { addSpaceToHtml } from '../../services/Utils';
-type NotificationsNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
+const styles=StyleSheet.create({
+flex1:{flex: 1},
+fontStyle:{ color: bgcolorBlack2, fontSize: 16 },
+headerView:{
+  flexDirection: 'row',
+  maxHeight: 50
+},
+innerView:{
+  backgroundColor: bgcolorWhite2,
+  flexDirection: 'column',
+  paddingBottom: 15
+},
+scrollView:{ paddingBottom: 100, paddingHorizontal: 10, paddingTop: 20 }
 
-type Props = {
-  navigation: NotificationsNavigationProp;
-};
-const Aboutus = ({navigation }: Props) => {
+})
+const Aboutus = () => {
   const themeContext = useContext(ThemeContext);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const { t } = useTranslation();
@@ -35,21 +43,13 @@ const Aboutus = ({navigation }: Props) => {
   );
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={[styles.flex1,{ backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <View
-          style={{
-            flexDirection: 'column',
-            paddingBottom: 15,
-            // flex: 1, bottom padding is coming blue due to this
-            backgroundColor: "#FFF",
-          }}>
+          style={styles.innerView}>
           <View
-            style={{
-              flexDirection: 'row',
-              maxHeight: 50,
-            }}>
+            style={styles.headerView}>
             <TabScreenHeader
               title={t('aboutUsScreenheaderTitle')}
               headerColor={headerColor}
@@ -58,11 +58,11 @@ const Aboutus = ({navigation }: Props) => {
             />
           </View>
 
-          <ScrollView contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 10, paddingTop: 20 }}>
+          <ScrollView contentContainerStyle={styles.scrollView}>
             {aboutusdata != "" ?
               <HTML
                 source={{ html: addSpaceToHtml(aboutusdata) }}
-                baseFontStyle={{ fontSize: 16, color: '#000' }}
+                baseFontStyle={styles.fontStyle}
                 ignoredStyles={['color', 'font-size', 'font-family']}
                 tagsStyles={{
                   p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
