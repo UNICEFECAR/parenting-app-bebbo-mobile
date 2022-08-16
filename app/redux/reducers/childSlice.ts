@@ -26,7 +26,7 @@ function stringifyWithFunctions(object: any) {
     }
     return val;
   });
-};
+}
 export const childSlice = createSlice({
   name: 'childData',
   initialState,

@@ -82,7 +82,7 @@ const Aboutus = ({navigation }: Props) => {
                     const imagePath: any = attribs.src;
                     console.log(imagePath, "..imagePath");
                     if (imagePath != "" && imagePath != null && imagePath != undefined) {
-                      let itemnew: any = {
+                      const itemnew: any = {
                         cover_image: {
                           url: imagePath
                         }
