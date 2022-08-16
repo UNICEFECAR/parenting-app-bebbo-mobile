@@ -1,5 +1,3 @@
-// @ts-ignore
-
 import {
     GDrive,
     MimeTypes,
