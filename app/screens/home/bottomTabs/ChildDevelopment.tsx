@@ -9,10 +9,8 @@ import { FDirCol, FlexCol, FDirRow, Flex1, FlexDirRowSpace, FlexDirRowSpaceStart
 import Icon, { OuterIconLeft, OuterIconRow, IconViewSuccess, IconViewAlert, IconAreaPress } from '@components/shared/Icon';
 import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import analytics from '@react-native-firebase/analytics';
@@ -22,6 +20,7 @@ import {
   Modal,
   Platform,
   Pressable,
+  StyleSheet,
   Text, View
 } from 'react-native';
 import HTML from 'react-native-render-html';
@@ -37,13 +36,15 @@ import { addSpaceToHtml } from '../../../services/Utils';
 import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED } from '@assets/data/firebaseEvents';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-type ChildDevelopmentNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-type Props = {
-  route: any,
-  navigation: ChildDevelopmentNavigationProp;
-};
-const ChildDevelopment = ({ route, navigation }: Props) => {
+import { bgcolorWhite2 } from '@styles/style';
+const styles=StyleSheet.create({
+bgWhite:{backgroundColor:bgcolorWhite2},
+flex1:{flex:1},
+font14:{ fontSize: 14 },
+font18:{ fontSize: 18 },
+fullWidth:{ width: '100%' }
+})
+const ChildDevelopment = ({ route, navigation }: any) => {
 
   const themeContext = useContext(ThemeContext);
   const { t } = useTranslation();
@@ -86,21 +87,21 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   const modalScreenText = 'childDevModalText';
   const [modalVisible, setModalVisible] = useState(false);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
-  const [selectedChildDevData, setSelectedChildDevData] = useState();
-  const [selectedChildMilestoneData, setselectedChildMilestoneData] = useState();
+  const [selectedChildDevData, setSelectedChildDevData] = useState<any>();
+  const [selectedChildMilestoneData, setselectedChildMilestoneData] = useState<any>();
   const [selectedPinnedArticleData, setSelectedPinnedArticleData] = useState();
   const [milestonePercent, setMilestonePercent] = useState(0);
-  const [componentColors, setComponentColors] = useState({});
+  const [componentColors, setComponentColors] = useState<any>({});
   const [showNoData, setshowNoData] = useState(false);
   const [listLoading, setListLoading] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
-  const flatListRef = React.useRef()
+  const flatListRef = useRef<any>();
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
 
   const setIsModalOpened = async (varkey: any) => {
     //console.log("modalVisible--", modalVisible);
     if (modalVisible == true) {
-      let obj = { key: varkey, value: false };
+      const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
       setModalVisible(false);
     }
@@ -146,14 +147,14 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     setSelectedChildDevData(filteredData);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, 'uuid == "' + activeChild.uuid + '"');
     let milestonefilteredData = await MileStonesData.filter((x: any) => x.child_age.includes(item.id));
-    milestonefilteredData = milestonefilteredData.map(item => ({ ...item, toggleCheck: false }))
+    milestonefilteredData = milestonefilteredData.map((item:any) => ({ ...item, toggleCheck: false }))
     childData[0].checkedMilestones.filter((x: any) => {
       const i = milestonefilteredData.findIndex((_item: any) => _item.id === x);
       if (i > -1) {
         milestonefilteredData[i]['toggleCheck'] = true;
       }
     })
-    const sortednewArray = milestonefilteredData.sort((x, y) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
+    const sortednewArray = milestonefilteredData.sort((x:any, y:any) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
     setselectedChildMilestoneData([...sortednewArray]);
     setTimeout(() => {
       setshowNoData(true);
@@ -195,6 +196,15 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
       setListLoading(false);
     })
     },[]));
+    const calculateMileStone = () => {
+      const arrlength = selectedChildMilestoneData?.length;
+      let abc = 0;
+      if (arrlength > 0) {
+        abc = (selectedChildMilestoneData.filter((x: any) => x.toggleCheck == true)).length;
+      }
+      const percent = Math.round((abc / arrlength) * 100);
+      setMilestonePercent(percent);
+    }
   useEffect(() => {
     setshowNoData(false);
     if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
@@ -213,11 +223,11 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     React.useCallback(() => {
       if (activeChild?.gender == "" || activeChild?.gender == 0 || activeChild?.gender == 40 || activeChild?.gender == 59) //for boy,other and blank
       {
-        let filteredPinnedData = PinnedChildDevData.filter((x: any) => x.id == selectedChildDevData?.boy_video_article)[0];
+        const filteredPinnedData = PinnedChildDevData.filter((x: any) => x.id == selectedChildDevData?.boy_video_article)[0];
         setSelectedPinnedArticleData(filteredPinnedData);
       } else if (activeChild?.gender == "41") //for girl
       {
-        let filteredPinnedData = PinnedChildDevData.filter((x: any) => x.id == selectedChildDevData?.girl_video_article)[0];
+        const filteredPinnedData = PinnedChildDevData.filter((x: any) => x.id == selectedChildDevData?.girl_video_article)[0];
         setSelectedPinnedArticleData(filteredPinnedData);
       }
     }, [selectedChildDevData])
@@ -233,7 +243,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     }
     const i = selectedChildMilestoneData.findIndex((_item: any) => _item.id === item.id);
     if (i > -1) {
-      let abc = selectedChildMilestoneData[i];
+      const abc = selectedChildMilestoneData[i];
       abc['toggleCheck'] = togglevalue;
       const newArray = [
         ...selectedChildMilestoneData.slice(0, i),
@@ -245,20 +255,6 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
       setselectedChildMilestoneData([...sortednewArray]);
     }
   }
-  const calculateMileStone = () => {
-    const arrlength = selectedChildMilestoneData?.length;
-    let abc = 0;
-    if (arrlength > 0) {
-      abc = (selectedChildMilestoneData.filter((x: any) => x.toggleCheck == true)).length;
-    }
-    const percent = Math.round((abc / arrlength) * 100);
-    setMilestonePercent(percent);
-  }
-  const RenderItem = React.memo(({ item, index }) => {
-    return (
-      <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />
-    );
-  });
   const ContentThatGoesBelowTheFlatList = () => {
     return (
       <>
@@ -272,7 +268,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                     selectedChildDevData?.milestone ?
                       <HTML
                         source={{ html: addSpaceToHtml(selectedChildDevData?.milestone)}}
-                        baseFontStyle={{ fontSize: 14 }}
+                        baseFontStyle={styles.font14}
                         ignoredStyles={['color', 'font-size', 'font-family']}
                         tagsStyles={{
                           p:{textAlign:'left',marginBottom:15},
@@ -307,8 +303,8 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                      {
                     Platform.OS=="ios" ?
                     listLoading==true?
-            <VideoPlayer style={{ width: '100%' }} selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>:null
-            :<VideoPlayer style={{ width: '100%' }} selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
+            <VideoPlayer style={styles.fullWidth} selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>:null
+            :<VideoPlayer style={styles.fullWidth} selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
                     }
           </Container>
           : null
@@ -395,7 +391,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                     shadowColor="#fff"
                     bgColor={componentColors?.backgroundColor}
                   >
-                    <Text style={{ fontSize: 18 }}>{milestonePercent}{'%'}</Text>
+                    <Text style={styles.font18}>{milestonePercent}{'%'}</Text>
                   </ProgressCircle>
                 </FlexDirRowSpace>
               </DevelopmentStatus>
@@ -414,7 +410,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   };
   return (
     <>
-      <View style={{flex:1,backgroundColor:componentColors?.headerColor}}>
+      <View style={[styles.flex1,{backgroundColor:componentColors?.headerColor}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={componentColors?.headerColor} />
         <TabScreenHeader
           title={t('developScreenheaderTitle')}
@@ -423,7 +419,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
           setProfileLoading={setProfileLoading}
         />
         {currentSelectedChildId && componentColors != {} && currentSelectedChildId != 0 ?
-          <View style={{backgroundColor:"#FFF"}}>
+          <View style={styles.bgWhite}>
           <AgeBrackets
             itemColor={componentColors?.headerColorBlack}
             activatedItemColor={componentColors?.headerColor}
@@ -443,9 +439,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
             <FlatList
               ref={flatListRef}
               data={selectedChildMilestoneData}
-              // renderItem={({item, index}) => renderItem(item)}
-              // renderItem={({item, index}) => <RenderItem item={item} index={index} />  }
-              renderItem={({ item, index }) => <ChilDevelopmentCollapsibleItem key={item.id} activeChilduuidnew={activeChild.uuid} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
+              renderItem={({ item, index }:any) => <ChilDevelopmentCollapsibleItem key={item.id} activeChilduuidnew={activeChild.uuid} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
               keyExtractor={(item) => item.id.toString()}
               nestedScrollEnabled={true}
               ListHeaderComponent={ContentThatGoesAboveTheFlatList}
