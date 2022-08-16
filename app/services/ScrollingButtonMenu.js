@@ -55,7 +55,7 @@ export default class ScrollingButtonMenu extends React.Component {
             dataSourceCords2:[]
         };
     }
-     componentDidUpdate(prevProps) {
+     componentDidUpdate() {
         const {selected} = this.props;
         if (this.props.selected != this.state.index) {
             this.setState({index: selected}, () => {

@@ -9,7 +9,9 @@ import {
 class GoogleAuth {
     private static instance: GoogleAuth;
 
-    private constructor() { }
+    private constructor() {
+        console.log("in constructor");
+     }
 
     static getInstance(): GoogleAuth {
         if (!GoogleAuth.instance) {
@@ -35,17 +37,18 @@ class GoogleAuth {
             await GoogleSignin.hasPlayServices();
             user = await GoogleSignin.signIn();
         } catch (error) {
+            console.log("error-",error)
          }
 
         return user;
     }
 
     public async isSignedIn() {
-        let isSignedIn: boolean = false;
+        let isSignedIn = false;
 
         try {
             isSignedIn = await GoogleSignin.isSignedIn();
-        } catch (error) { }
+        } catch (error) {console.log("error-",error) }
 
         return isSignedIn;
     }
@@ -55,7 +58,7 @@ class GoogleAuth {
 
         try {
             currentUser = await GoogleSignin.getCurrentUser();
-        } catch (error) { }
+        } catch (error) {console.log("error-",error) }
 
         return currentUser;
     }
@@ -64,21 +67,21 @@ class GoogleAuth {
      * Don't save tokens anywhere, always request new tokens so they are refreshed.
      */
     public async getTokens() {
-        let tokens: { idToken: string, accessToken: string } | null = null;
+        let tokens: { idToken: string; accessToken: string } | null = null;
 
         try {
             tokens = await GoogleSignin.getTokens();
-        } catch (error) { }
+        } catch (error) {console.log("error-",error) }
 
         return tokens;
     }
 
     public async signOut() {
-        let signOut: null = null;
+        let signOut = null;
 
         try {
             signOut = await GoogleSignin.signOut();
-        } catch (error) { }
+        } catch (error) {console.log("error-",error) }
 
         return signOut;
     }

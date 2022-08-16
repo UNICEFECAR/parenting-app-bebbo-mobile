@@ -25,7 +25,9 @@ import RNFS from 'react-native-fs';
             }
         )
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            console.log("storage permission granted")
          } else {
+            console.log("storage permission not granted")
          }
     } catch (err) {
         console.warn(err)
@@ -46,10 +48,19 @@ async function requestReadStoragePermission() {
             }
         )
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            console.log("read storage permission granted")
         } else {
+            console.log("read storage permission not granted")
         }
     } catch (err) {
         console.warn(err)
+    }
+}
+class ErrorAccessTokenNotSet extends Error {
+    static defaultMessage = 'You need to log in';
+
+    public constructor(message: string = ErrorAccessTokenNotSet.defaultMessage) {
+        super(message);
     }
 }
 class GoogleDrive {
@@ -67,7 +78,7 @@ class GoogleDrive {
         })
     }
     private constructor() {
-        
+        console.log("constructor");
        
      }
      public configureGetOptions(){
@@ -83,13 +94,13 @@ class GoogleDrive {
      * create download url based on id
      */
      public downloadFile=(fileId:any)=>{
-        const options = this.configureGetOptions()
+        this.configureGetOptions()
         if (!fileId) throw new Error('Didn\'t provide a valid file id.')
         return `${_urlFiles}/files/${fileId}?alt=media`
     }
      downloadAndReadFile = async (args:any) => {
          const fromUrl = this.downloadFile(args.fileId)
-        let downloadFileOptions:any = {
+        const downloadFileOptions:any = {
             fromUrl: fromUrl,
             toFile: args.filePath,
         }
@@ -97,8 +108,8 @@ class GoogleDrive {
             "Authorization": `Bearer ${gdrive.accessToken}`
         }, downloadFileOptions.headers);
 
-        let fileresult= RNFS.downloadFile(downloadFileOptions);
-        let downloadResult = await fileresult.promise;
+        const fileresult= RNFS.downloadFile(downloadFileOptions);
+        const downloadResult = await fileresult.promise;
         return downloadResult;
     }
     static getInstance(): GoogleDrive {
@@ -182,7 +193,7 @@ class GoogleDrive {
                 queryParams
             );
 
-            let responseJson = await response.json();
+            const responseJson = await response.json();
 
             if (response.status === 200) {
                 return responseJson;
@@ -200,7 +211,7 @@ class GoogleDrive {
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }
-        const response: Response = await gdrive.files.delete(fileId);
+        await gdrive.files.delete(fileId);
         return true;
     }
 
@@ -211,7 +222,7 @@ class GoogleDrive {
      */
     public async safeCreateFolder(args: SafeCreateFolderArgs): Promise<string | Error> {
         // Set Google access token
-       
+       console.log("args-",args);
        const isAccessTokenSet = await this.setAccessToken();
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
@@ -355,7 +366,7 @@ class GoogleDrive {
                 // Order: https://bit.ly/34ZczTf
                 orderBy: args.orderBy,
             });
-             let results:any = await response;
+             const results:any = await response;
             if (results && results.files.length>0) {
                 return results.files;
             } else {
@@ -372,13 +383,7 @@ class GoogleDrive {
      */
 }
 
-class ErrorAccessTokenNotSet extends Error {
-    static defaultMessage = 'You need to log in';
 
-    public constructor(message: string = ErrorAccessTokenNotSet.defaultMessage) {
-        super(message);
-    }
-}
 
 interface CreateFileMultipartArgs {
     name: string;
