@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   width100:{ width: '100%' }
 });
 
-const EditChildProfile = ({ route, navigation }: any) => {
+const EditChildProfile = ({ route, navigation }: Props) => {
   const childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
