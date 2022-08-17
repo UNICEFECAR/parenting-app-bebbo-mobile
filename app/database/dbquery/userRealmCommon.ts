@@ -416,30 +416,37 @@ class UserRealmCommon extends Component {
         // });
     }
 
-    public async delete(Schema: string, _record: any, filterCondition: any): Promise<any> {
-        // return new Promise(async (resolve, reject) => {
+    public async delete(Schema:string,record: any,filterCondition:any): Promise<any> {
+       // return new Promise(async (resolve, reject) => {
+            let result:any='';
             try {
                 const realm = await this.openRealm();
-                if (realm) {
+                if(realm)
+                {
                     realm?.write(() => {
                         if (
                             realm.objects(Schema).filtered(filterCondition)
-                                .length > 0
-                        ) {
+                              .length > 0
+                          ) {
+                            //let collectionPages = Object.assign([], realm.objects(Schema));
                             realm.delete(
-                                realm.objects(Schema).filtered(filterCondition)
+                              realm.objects(Schema).filtered(filterCondition)
                             );
                         }
-                        return 'success';
+                        // realm?.delete(realm.objectForPrimaryKey(Schema, record));
                     });
+                    result='success';
+                    return result;
                 }
                 else {
-                    return 'error';
-                }
-            } catch (e: any) {
-                return 'error';
+                    result='error';
+                    return result;
+                }  
+            } catch (e:any) {
+                    result='error';
+                    return result;
             }
-        // });
+       // });
     }
     public async deleteAll(entitySchema: ObjectSchema): Promise<void> {
         // return new Promise(async (resolve, reject) => {
