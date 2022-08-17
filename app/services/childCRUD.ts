@@ -607,6 +607,7 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
         LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
       })
   const createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
+  console.log(createresult,"..createresult..")
   if (createresult == 'success') {
     const notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
