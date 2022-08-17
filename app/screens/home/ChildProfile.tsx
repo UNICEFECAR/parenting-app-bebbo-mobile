@@ -35,6 +35,7 @@ import { getAllChildren, getAllConfigData, setActiveChild } from '../../services
 import { formatDate } from '../../services/Utils';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { bgcolorWhite2 } from '@styles/style';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const styles= StyleSheet.create({
   alignItemsStart:{ alignItems: 'flex-start' },
@@ -55,7 +56,13 @@ const styles= StyleSheet.create({
   profileTextView:{ paddingRight: 5 },
   textDecorationNone:{ textDecorationLine: "none"}
 })
-const ChildProfile = ({ navigation }) => {
+type NotificationsNavigationProp =
+  StackNavigationProp<any>;
+
+type Props = {
+  navigation: NotificationsNavigationProp;
+};
+const ChildProfile = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const [parentViewHeight, setParentViewheight] = useState(0);
   const [profileLoading,setProfileLoading] = React.useState(false);
@@ -166,7 +173,7 @@ const ChildProfile = ({ navigation }) => {
     console.log(b);
     if (a.uuid == currentActiveChild) return -1;
   });
-  const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string) => (
+  const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string,navigationCustom:any) => (
     <View key={data.uuid}>
       {currentActiveChild != '' &&
         currentActiveChild != null &&
@@ -208,10 +215,10 @@ const ChildProfile = ({ navigation }) => {
                     <Pressable onPress={() => {
                       data.index = index;
                       if (isFutureDate(data.birthDate)) {
-                        navigation.navigate('AddExpectingChildProfile', { childData: data });
+                        navigationCustom.navigate('AddExpectingChildProfile', { childData: data });
                       }
                       else {
-                        navigation.navigate('EditChildProfile', { childData: data });
+                        navigationCustom.navigate('EditChildProfile', { childData: data });
                       }
                     }}>
                       <TickView1>
@@ -280,16 +287,18 @@ const ChildProfile = ({ navigation }) => {
                   <Pressable onPress={() => {
                         data.index = index;
                         if (isFutureDate(data.birthDate)) {
-                          navigation.navigate('AddExpectingChildProfile', { childData: data });
+                          navigationCustom.navigate('AddExpectingChildProfile', { childData: data });
                         }
                         else {
-                          navigation.navigate('EditChildProfile', { childData: data });
+                          navigationCustom.navigate('EditChildProfile', { childData: data });
+                          
                         }
                       }}>
                         <TickView1>
                           <Icon name="ic_edit" size={16} color="#000" />
                         </TickView1>
                       </Pressable>
+                      
                   </OuterIconRight>
                 </OuterIconRow>
               </FDirRow>
@@ -332,7 +341,7 @@ const ChildProfile = ({ navigation }) => {
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
                     const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset:any) => genderset.id == parseInt(item.gender)).name : '';
-                    return renderChildProfile(dispatch, item, index, genderLocal);
+                    return renderChildProfile(dispatch, item, index, genderLocal,navigation);
                   })
                   : null}
               </ScrollView>
