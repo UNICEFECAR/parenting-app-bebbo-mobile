@@ -410,6 +410,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   console.log(editScreen, "..editScreen..",param);
    if (editScreen) {
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
+    console.log(oldChild,"..oldChild..");
     if (oldChild?.length > 0) {
       oldChild = oldChild.map((item:any) => item)[0];
       oldBirthDate = oldChild.birthDate;
@@ -447,6 +448,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   //child add from edit/add expecting
   else {
     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+    console.log(currentActiveChildId,"..currentActiveChildId..");
     const ageLimit = [];
     const startDate = new Date(oldBirthDate)
     const someDate = new Date(data[0].birthDate)
