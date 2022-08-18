@@ -56,7 +56,8 @@ const CountrySelection = (props: any) => {
       const fetchData = async () => {
         if (userIsOnboarded == false) {
           await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
-          dataRealmCommon.deleteAllAtOnce();
+          const data=await dataRealmCommon.deleteAllAtOnce();
+          console.log(data,"..newdata..");
           dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
           const payload = {errorArr:[],fromPage:'OnLoad'}
           dispatch(receiveAPIFailure(payload));
