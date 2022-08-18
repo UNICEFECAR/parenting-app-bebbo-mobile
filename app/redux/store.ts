@@ -2,7 +2,8 @@ import {configureStore} from '@reduxjs/toolkit';
 import rootReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagaMiddleware/saga';
-const {createLogger} = require('redux-logger');
+import { createLogger } from 'redux-logger';
+
 const loggerMiddleware = createLogger({
   collapsed: true,
   duration: true,
