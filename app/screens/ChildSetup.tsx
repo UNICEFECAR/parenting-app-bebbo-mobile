@@ -198,7 +198,7 @@ const ChildSetup = ({ navigation }: Props) => {
          setIsImportRunning(true);
          if (oldChildrenData.length > 0) {
            await userRealmCommon.openRealm();
-           userRealmCommon.deleteAllAtOnce();
+           await userRealmCommon.deleteAllAtOnce();
            setIsImportRunning(false);
            setLoading(false);
            navigation.navigate('ChildImportSetup', {
@@ -242,7 +242,7 @@ const ChildSetup = ({ navigation }: Props) => {
       setIsImportRunning(true);
       if (oldChildrenData.length > 0) {
         await userRealmCommon.openRealm();
-        userRealmCommon.deleteAllAtOnce();
+        await userRealmCommon.deleteAllAtOnce();
         setIsImportRunning(false);
         setLoading(false);
         navigation.navigate('ChildImportSetup', {

@@ -202,7 +202,7 @@ class Backup {
             this.importedrealm = await new Realm({ path: 'user1.realm' });
             if (this.importedrealm) {
                 await userRealmCommon.openRealm();
-                userRealmCommon.deleteAllAtOnce();
+                await userRealmCommon.deleteAllAtOnce();
                  this.closeImportedRealm();
                 this.importedrealm = await new Realm({ path: 'user1.realm' });
                 const oldChildrenData = this.importedrealm.objects('ChildEntity');
@@ -253,7 +253,7 @@ class Backup {
             this.importedrealm = await new Realm({ path: 'user1.realm' });
             if (this.importedrealm) {
                 await userRealmCommon.openRealm();
-                userRealmCommon.deleteAllAtOnce();
+                await userRealmCommon.deleteAllAtOnce();
                 this.closeImportedRealm();
                 this.importedrealm = await new Realm({ path: 'user1.realm' });
                 const oldChildrenData = this.importedrealm.objects('ChildEntity');
