@@ -395,6 +395,7 @@ const faqsData = useAppSelector((state: any) =>
                       ref={flatListRef}
                       data={steps}
                       onScroll={(e)=>{
+                        console.log(e)
                         // if(keyboardStatus==true){
                         //   Keyboard.dismiss();
                         // }
