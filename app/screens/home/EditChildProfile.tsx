@@ -343,6 +343,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
         insertData.photoUri = await setPhoto(insertData.uuid);
       }
     }
+    console.log(insertData,"...insertData")
     childSet.push(insertData);
     setLoading(false);
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
@@ -530,7 +531,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                 console.log("24455e655",validated)
                 if (validated == true) {
                   setTimeout(()=>{
-                    setLoading(false);
+                    //setLoading(false);
                     AddChild();
                   },0)
                 }

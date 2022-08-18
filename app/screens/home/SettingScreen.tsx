@@ -629,7 +629,7 @@ const SettingScreen = (props: any) => {
       setIsImportRunning(true);
       if(oldChildrenData.length>0){
         await userRealmCommon.openRealm();
-        userRealmCommon.deleteAllAtOnce();
+        await userRealmCommon.deleteAllAtOnce();
         const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
         console.log(importResponse, "..importResponse");
       }
@@ -661,7 +661,7 @@ const SettingScreen = (props: any) => {
             setIsImportRunning(true);
             if(oldChildrenData.length>0){
             await userRealmCommon.openRealm();
-            userRealmCommon.deleteAllAtOnce();
+            await userRealmCommon.deleteAllAtOnce();
             const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
             console.log(importResponse, "..importResponse");
             }
