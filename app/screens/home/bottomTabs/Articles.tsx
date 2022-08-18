@@ -393,6 +393,7 @@ const Articles = ({ route, navigation }: any) => {
                 ref={flatListRef}
                 data={filteredData}
                 onScroll={(e) => {
+                  console.log(e)
                   if (keyboardStatus == true) {
                     Keyboard.dismiss();
                   }
