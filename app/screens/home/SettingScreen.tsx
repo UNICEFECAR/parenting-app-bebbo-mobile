@@ -241,6 +241,7 @@ const SettingScreen = (props: any) => {
         }
         }
           }).catch((e)=>{
+            console.log(e)
             setIsExportRunning(false);
             Alert.alert('', t('settingExportError'));
           });

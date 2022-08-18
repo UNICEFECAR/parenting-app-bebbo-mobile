@@ -110,6 +110,8 @@ const UserGuide = ({navigation}: Props) => {
   type Item = typeof data[0];
   const keyExtractor = (item: Item) => item.title;
   const [isDotsRequired, setIsDotsRequired] = useState(true);
+  console.log(navigation)
+ 
   const getDotStyle = (colorString: string) => {
     return isDotsRequired
       ? {backgroundColor: colorString}
