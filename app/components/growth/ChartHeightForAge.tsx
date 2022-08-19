@@ -11,6 +11,8 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationHeightForAge } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
+import standardDevData1 from '@assets/translations/appOfflineData/standardDeviation.json';
+export const standardDevDataLoad=standardDevData1;
 const styles = StyleSheet.create({
   fullScreenPressable:{
     marginTop: 5,
@@ -37,7 +39,10 @@ const ChartHeightForAge = (props: any) => {
       obj,
     });
   };
-  const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  //const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
+  const standardDevData = standardDevDataLoad;
+ // console.log(standardDevData,"..standardDevData..")
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   let obj: any;
