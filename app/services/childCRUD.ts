@@ -3,9 +3,10 @@ import { appConfig, boy_child_gender } from '@assets/translations/appOfflineData
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
-import { Alert, Platform, ToastAndroid } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { store } from '../../App';
+import { ToastAndroidLocal } from '../android/sharedAndroid.android';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
@@ -624,10 +625,10 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
       }
     }
     if (Platform.OS === 'android') {
-      ToastAndroid.showWithGravityAndOffset(
+      ToastAndroidLocal.showWithGravityAndOffset(
         t('deleteSuccess'),
-        ToastAndroid.LONG,
-        ToastAndroid.BOTTOM,
+        ToastAndroidLocal.LONG,
+        ToastAndroidLocal.BOTTOM,
         25,
         50
       );
@@ -639,10 +640,10 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
   }
   else {
     if (Platform.OS === 'android') {
-      ToastAndroid.showWithGravityAndOffset(
+      ToastAndroidLocal.showWithGravityAndOffset(
         t('deleteError'),
-        ToastAndroid.LONG,
-        ToastAndroid.BOTTOM,
+        ToastAndroidLocal.LONG,
+        ToastAndroidLocal.BOTTOM,
         25,
         50
       );

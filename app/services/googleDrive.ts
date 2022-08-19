@@ -5,24 +5,25 @@ import {
   } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
 import { backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
-import { PermissionsAndroid } from "react-native";
+
 const _urlFiles = "https://www.googleapis.com/drive/v3";
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
 const gdrive = new GDrive();
 import RNFS from 'react-native-fs';
+import { PermissionsAndroidLocal } from "../android/sharedAndroid.android";
 /**
  * Access Google drive API.
  */
  async function requestWriteStoragePermission() {
     try {
-        const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        const granted = await PermissionsAndroidLocal.request(
+            PermissionsAndroidLocal.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
             {
                 'title': 'Write your android storage Permission',
                 'message': 'Write your android storage to save your data'
             }
         )
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        if (granted === PermissionsAndroidLocal.RESULTS.GRANTED) {
             console.log("storage permission granted")
          } else {
             console.log("storage permission not granted")
@@ -38,14 +39,14 @@ import RNFS from 'react-native-fs';
  */
 async function requestReadStoragePermission() {
     try {
-        const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        const granted = await PermissionsAndroidLocal.request(
+            PermissionsAndroidLocal.PERMISSIONS.READ_EXTERNAL_STORAGE,
             {
                 'title': 'Read your android storage Permission',
                 'message': 'Read your android storage to save your data'
             }
         )
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        if (granted === PermissionsAndroidLocal.RESULTS.GRANTED) {
             console.log("read storage permission granted")
         } else {
             console.log("read storage permission not granted")
@@ -64,11 +65,11 @@ class ErrorAccessTokenNotSet extends Error {
 class GoogleDrive {
     private static instance: GoogleDrive;
     checkPermission = () => {
-        PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then((writeGranted) => {
+        PermissionsAndroidLocal.check(PermissionsAndroidLocal.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then((writeGranted:any) => {
             if (!writeGranted) {
                 requestWriteStoragePermission()
             }
-            PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then((readGranted) => {
+            PermissionsAndroidLocal.check(PermissionsAndroidLocal.PERMISSIONS.READ_EXTERNAL_STORAGE).then((readGranted:any) => {
                 if (!readGranted) {
                     requestReadStoragePermission()
                 }
