@@ -43,7 +43,7 @@ import {
   Alert,
   BackHandler, Linking, Modal,
   Platform,
-  ScrollView, StyleSheet, ToastAndroid
+  ScrollView, StyleSheet
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
@@ -61,6 +61,7 @@ import VersionInfo from 'react-native-version-info';
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 import { bgcolorWhite2 } from '@styles/style';
+import { ToastAndroidLocal } from '../../../android/sharedAndroid.android';
 
 
 const styles=StyleSheet.create({
@@ -116,7 +117,7 @@ const Home = ({ route, navigation }: any) => {
     if (currentCount === 0) {
       currentCount++;
       if (Platform.OS === 'android') {
-        ToastAndroid.show(t('backPressText'), 6000);
+        ToastAndroidLocal.show(t('backPressText'), 6000);
         setTimeout(() => {
           currentCount = 0;
         }, 2000);
