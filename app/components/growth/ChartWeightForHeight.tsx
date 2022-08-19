@@ -11,6 +11,8 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
+import standardDevData1 from '@assets/translations/appOfflineData/standardDeviation.json';
+export const standardDevDataLoad=standardDevData1;
 const styles = StyleSheet.create({
   flexColChart:{
               marginLeft: -20,
@@ -42,21 +44,23 @@ const ChartWeightForHeight = (props: any) => {
       obj,
     });
   };
-  const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
- 
+  //const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
+  
+  const standardDevData = standardDevDataLoad;
+  //console.log(standardDevData,"..standardDevData..")
   let obj: any;
   let standardDeviation: any;
   if (activeChild?.gender == boy_child_gender || activeChild?.gender == '') {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == height_growth_type && item.child_gender == boy_child_gender,
+      (item:any) => item.growth_type == height_growth_type && item.child_gender == boy_child_gender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'weight');
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item) => item.growth_type == height_growth_type && item.child_gender == girl_child_gender,
+      (item:any) => item.growth_type == height_growth_type && item.child_gender == girl_child_gender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'weight');
