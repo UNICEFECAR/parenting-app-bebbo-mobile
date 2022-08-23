@@ -2,9 +2,9 @@ import { useAppSelector } from './../../App';
 import { MeasurementEntity } from './../database/schema/measurementDataSchema';
 import { DateTime } from 'luxon';
 export interface InterpretationText {
-    text: string,
-    name: string,
-    articleID: number[]
+    text: string;
+    name: string;
+    articleID: number[];
 }
 export const getInterpretationWeightForHeight = (standardDeviation: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity) => {
     let childAgeId:any;
@@ -26,35 +26,35 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
      if (lastMeasurements !== undefined && lastMeasurements.weight) {
         weight = Number(lastMeasurements.weight).toFixed(1);
         height = (Number(lastMeasurements.height) % 1 !== 0) ? Number(lastMeasurements.height).toFixed(1) :Number(lastMeasurements.height);
-    };
+    }
     const allinterpretationData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.weight_for_height),
     );
-    let filteredDataForHeight = standardDeviation.find((data:any) => data.name == height);
-    let interpretationData = allinterpretationData?.find((item:any) => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
+    const filteredDataForHeight = standardDeviation.find((data:any) => data.name == height);
+    const interpretationData = allinterpretationData?.find((item:any) => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
     if (filteredDataForHeight) {
         if (weight >= filteredDataForHeight?.sd2neg && weight <= filteredDataForHeight.sd2) {
             interpretationText = interpretationData?.goodText;
             goodMeasure = true;
-        };
+        }
 
         if (weight <= filteredDataForHeight.sd2neg && weight >= filteredDataForHeight.sd3neg) {
             interpretationText = interpretationData?.warrningSmallHeightText;
-        };
+        }
 
         if (weight < filteredDataForHeight.sd3neg) {
             interpretationText = interpretationData?.emergencySmallHeightText;
-        };
+        }
 
         if (weight >= filteredDataForHeight.sd2 && weight <= filteredDataForHeight.sd3) {
             interpretationText = interpretationData?.warrningBigHeightText;
-        };
+        }
 
         if (weight > filteredDataForHeight.sd3) {
             interpretationText = interpretationData?.emergencyBigHeightText;
-        };
-    };
+        }
+    }
 
     if (interpretationText && interpretationText.name === "") {
         goodMeasure = undefined
@@ -79,11 +79,11 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
         articleID: []
     };
     let goodMeasure: boolean | undefined = false;
-    let chartData: any = standardDeviation;
-    let length: number = 0;
+    const chartData: any = standardDeviation;
+    let length = 0;
     if (lastMeasurements !== undefined && lastMeasurements.weight && lastMeasurements.height) {
         length = parseFloat(lastMeasurements.height);
-    };
+    }
     const childBirthDay = childBirthDate;
     let measurementDate: DateTime = DateTime.local();
     if (lastMeasurements !== undefined && lastMeasurements.measurementDate) {
@@ -91,33 +91,33 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
     }
     let days = 0;
     if (childBirthDay) {
-        let date = DateTime.fromISO(childBirthDay);
-        let convertInDays = measurementDate.diff(date, "days").days;
-        if (convertInDays !== undefined) {days = Math.round(convertInDays)};
-    };
+        const date = DateTime.fromISO(childBirthDay);
+        const convertInDays = measurementDate.diff(date, "days").days;
+        if (convertInDays !== undefined) {days = Math.round(convertInDays)}
+    }
    
-    let filteredData = chartData.find((data:any) => data.name == days);
+    const filteredData = chartData.find((data:any) => data.name == days);
     const allinterpretationData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.height_for_age),
     );
-    let interpretationData = allinterpretationData?.find((item:any) => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
+    const interpretationData = allinterpretationData?.find((item:any) => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
      if (filteredData !== undefined) {
         if (length >= filteredData.sd2neg && length <= filteredData.sd3) {
             interpretationText = interpretationData?.goodText;
             goodMeasure = true;
-        };
+        }
         if (length < filteredData.sd2neg && length > filteredData.sd3neg) {
             interpretationText = interpretationData?.warrningSmallLengthText;
-        };
+        }
 
         if (length < filteredData.sd3neg) {
             interpretationText = interpretationData?.emergencySmallLengthText;
-        };
+        }
         if (length > filteredData.sd3) {
             interpretationText = interpretationData?.warrningBigLengthText;
-        };
-    };
+        }
+    }
     if (interpretationText && interpretationText.name === "") {
         goodMeasure = undefined
     }

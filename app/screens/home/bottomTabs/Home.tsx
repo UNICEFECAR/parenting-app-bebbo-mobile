@@ -28,11 +28,9 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { articledata, VideoArticleData } from '@dynamicImportsClass/dynamicImports';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import analytics from '@react-native-firebase/analytics';
-import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1Centerr, Heading3Centerr, Heading3Regular, Heading4Center, ShiftFromTop20,
   ShiftFromTopBottom10,
@@ -45,7 +43,7 @@ import {
   Alert,
   BackHandler, Linking, Modal,
   Platform,
-  ScrollView, ToastAndroid
+  ScrollView, StyleSheet
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
@@ -62,14 +60,15 @@ import { addSpaceToHtml } from '../../../services/Utils';
 import VersionInfo from 'react-native-version-info';
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
+import { bgcolorWhite2 } from '@styles/style';
+import { ToastAndroidLocal } from '../../../android/sharedAndroid.android';
 
-type HomeNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-type Props = {
-  route: any;
-  navigation: HomeNavigationProp;
-};
-const Home = ({ route, navigation }: Props) => {
+
+const styles=StyleSheet.create({
+  flexShrink1:{flexShrink:1},
+  scrollView:{ backgroundColor: bgcolorWhite2, flex: 5 }
+})
+const Home = ({ route, navigation }: any) => {
   const { t } = useTranslation();
   // console.log(route.params,"home params")
   const themeContext = useContext(ThemeContext);
@@ -103,7 +102,7 @@ const Home = ({ route, navigation }: Props) => {
   const netInfoval = useNetInfoHook();
   const surveyItem = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
-      ? JSON.parse(state.utilsData.surveryData)?.find(item => item.type == "survey")
+      ? JSON.parse(state.utilsData.surveryData)?.find((item:any) => item.type == "survey")
       : state.utilsData.surveryData,
   );
   const incrementalSyncDT = useAppSelector((state: any) =>
@@ -113,12 +112,12 @@ const Home = ({ route, navigation }: Props) => {
       state.childData.childDataSet.bufferAgeBracket
     );
   let currentCount = 0;
-  let { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets } = getAllPeriodicSyncData();
+  const { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets } = getAllPeriodicSyncData();
   const onBackPress = () => {
     if (currentCount === 0) {
       currentCount++;
       if (Platform.OS === 'android') {
-        ToastAndroid.show(t('backPressText'), 6000);
+        ToastAndroidLocal.show(t('backPressText'), 6000);
         setTimeout(() => {
           currentCount = 0;
         }, 2000);
@@ -147,42 +146,70 @@ const Home = ({ route, navigation }: Props) => {
       navigation.removeListener('gestureEnd', onBackPress);
       backHandler.remove()};
   }, []);
-  let childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
-  // console.log(childAge, "homechildAge")
-  let allHealthCheckupsData = useAppSelector(
-    (state: any) =>
-      state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
-  );
-  const taxonomy = useAppSelector(
-    (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
-  );
-  
-  const growthEnabledFlag = useAppSelector((state: any) =>
-    (state.notificationData.growthEnabled),
-  );
   const [profileLoading,setProfileLoading] = React.useState(false);
-  const developmentEnabledFlag = useAppSelector((state: any) =>
-    (state.notificationData.developmentEnabled),
-  );
-  const vchcEnabledFlag = useAppSelector((state: any) =>
-    (state.notificationData.vchcEnabled),
-  );
-  let allGrowthPeriods = taxonomy?.growth_period;
-  let allVaccinePeriods = useAppSelector(
-    (state: any) =>
-      state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
-  );
   
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
+  const forceUpdateApis = (forceupdatetime: any) => {
+    navigation.navigate('LoadingScreen', {
+      apiJsonData: allApisObject(true,incrementalSyncDT),
+      prevPage: 'ForceUpdate',
+      forceupdatetime: forceupdatetime
+    });
+  }
+  const downloadApis = () => {
+    navigation.navigate('LoadingScreen', {
+      apiJsonData: apiJsonData,
+      prevPage: 'PeriodicSync',
+      downloadWeeklyData: downloadWeeklyData,
+      downloadMonthlyData: downloadMonthlyData,
+      downloadBufferData: downloadBufferData,
+      ageBrackets: ageBrackets,
+    });
+  }
+  const callFailedApis = () => {
+    if (errorObj && errorObj.length > 0) {
+      navigation.navigate('LoadingScreen', {
+        apiJsonData: errorObj,
+        prevPage: 'Home'
+      });
+    }
+  }
+  const onNoForceUpdate = () => {
+    if (netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
+      setTimeout(() => {
+      Alert.alert(t('SyncOnLoadPopupTitle'), t('SyncOnLoadPopupText'),
+        [
+          {
+            text: t('SyncOnLoadCancelPopUpBtn'),
+            onPress: () => { dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false })) },
+            style: "cancel"
+          },
+          { text: t('SyncOnLoadRetryBtn'), onPress: () => downloadApis() }
+        ]
+      );
+    }, 2500);
+    }
+    else if (netInfoval.isConnected && showDownloadPopup && errorObj.length > 0) {
+      setTimeout(() => {
+      Alert.alert(t('downloadOnLoadPopupTitle'), t('downloadOnLoadPopupText'),
+        [
+          {
+            text: t('downloadOnLoadCancelPopUpBtn'),
+            onPress: () => { dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false })) },
+            style: "cancel"
+          },
+          { text: t('downloadOnLoadRetryBtn'), onPress: () => callFailedApis() }
+        ]
+      );
+      },2500);
+    }
+  }
+ 
+
   const forceUpdateData = [
     {
       apiEndpoint: appConfig.checkUpdate,
@@ -211,15 +238,15 @@ const Home = ({ route, navigation }: Props) => {
           dispatch(setSyncDate({ key: 'userOnboardedDate', value: currentDate }));
           dispatch(setSyncDate({ key: 'weeklyDownloadDate', value: currentDate }));
           dispatch(setSyncDate({ key: 'monthlyDownloadDate', value: currentDate }));
-          let obj = { key: 'showDownloadPopup', value: false };
+          const obj = { key: 'showDownloadPopup', value: false };
           dispatch(setInfoModalOpened(obj));
               const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
-              let forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';
+              const forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';
               AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
               console.log(forceUpdateTime,"forceupdate apiresponse2",apiresponse);
         }else {
-          let isVideoArticleUpdateReq = await AsyncStorage.getItem('isVideoArticleUpdateReq');
-          let isRelatedVideoArticleUpdateReq = await AsyncStorage.getItem('isRelatedVideoArticleUpdateReq');
+          const isVideoArticleUpdateReq = await AsyncStorage.getItem('isVideoArticleUpdateReq');
+          const isRelatedVideoArticleUpdateReq = await AsyncStorage.getItem('isRelatedVideoArticleUpdateReq');
           if(netInfoval.isConnected && showDownloadPopup)
           {
             if(isVideoArticleUpdateReq == null || isVideoArticleUpdateReq == undefined || isVideoArticleUpdateReq == 'true') {
@@ -300,28 +327,28 @@ const Home = ({ route, navigation }: Props) => {
                 dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
                 AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
                 dispatch(setAllNotificationData([]));
-                let notiFlagObj = { key: 'generateNotifications', value: true };
+                const notiFlagObj = { key: 'generateNotifications', value: true };
                 dispatch(setInfoModalOpened(notiFlagObj));
               }
               else if(VersionInfo.appVersion > relbebboprod && VersionInfo.bundleIdentifier == 'org.unicef.ecar.bebbo') {
                 dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
                 AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
                 dispatch(setAllNotificationData([]));
-                let notiFlagObj = { key: 'generateNotifications', value: true };
+                const notiFlagObj = { key: 'generateNotifications', value: true };
                 dispatch(setInfoModalOpened(notiFlagObj));
               }
               else if(VersionInfo.appVersion > relfolejadev && VersionInfo.bundleIdentifier == 'com.datamatics.foleja') {
                 dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
                 AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
                 dispatch(setAllNotificationData([]));
-                let notiFlagObj = { key: 'generateNotifications', value: true };
+                const notiFlagObj = { key: 'generateNotifications', value: true };
                 dispatch(setInfoModalOpened(notiFlagObj));
               }
               else if(VersionInfo.appVersion > relfolejaprod && VersionInfo.bundleIdentifier == 'org.unicef.kosovo.foleja') {
                 dispatch(fetchAPI(apiJsonDatarelatedvideoart,'RelatedVideoArticle',dispatch,navigation,languageCode,activeChild,apiJsonDatarelatedvideoart,netInfoval.isConnected));
                 AsyncStorage.setItem('isRelatedVideoArticleUpdateReq','false');
                 dispatch(setAllNotificationData([]));
-                let notiFlagObj = { key: 'generateNotifications', value: true };
+                const notiFlagObj = { key: 'generateNotifications', value: true };
                 dispatch(setInfoModalOpened(notiFlagObj));
               }
             }
@@ -329,7 +356,7 @@ const Home = ({ route, navigation }: Props) => {
             console.log(isRelatedVideoArticleUpdateReq,"in else isVideoArticleUpdateReq---",isVideoArticleUpdateReq)
             if(showDownloadPopup && (isVideoArticleUpdateReq == null || isVideoArticleUpdateReq == undefined || isVideoArticleUpdateReq == 'true')) {
               let Entity: any;
-              const allVideoArticlesData = await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
+              await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
             }
             if(showDownloadPopup && (isRelatedVideoArticleUpdateReq == null || isRelatedVideoArticleUpdateReq == undefined || isRelatedVideoArticleUpdateReq == 'true')) {
               let Entity: any;
@@ -338,7 +365,7 @@ const Home = ({ route, navigation }: Props) => {
                 "parent_gender": activeChild.parent_gender,
                 "taxonomyData": activeChild.taxonomyData
               }
-              const allRelVideoArticlesData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+              await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             }
           }
           
@@ -353,7 +380,7 @@ const Home = ({ route, navigation }: Props) => {
               }
             ];
             dispatch(fetchAPI(apiJsonDatasurvey,'Survey',dispatch,navigation,languageCode,activeChild,apiJsonDatasurvey,netInfoval.isConnected));
-            let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
+            const forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
             if(forceUpdateTime == null || forceUpdateTime == undefined) {
               dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
               Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
@@ -403,62 +430,7 @@ const Home = ({ route, navigation }: Props) => {
     }
     fetchNetInfo()
   }, [netInfoval.isConnected]);
-  const onNoForceUpdate = () => {
-    if (netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
-      let flagtext = 'downloadBufferData ' + downloadBufferData + ' downloadWeeklyData ' + downloadWeeklyData + ' downloadMonthlyData ' + downloadMonthlyData;
-      setTimeout(() => {
-      Alert.alert(t('SyncOnLoadPopupTitle'), t('SyncOnLoadPopupText'),
-        [
-          {
-            text: t('SyncOnLoadCancelPopUpBtn'),
-            onPress: () => { dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false })) },
-            style: "cancel"
-          },
-          { text: t('SyncOnLoadRetryBtn'), onPress: () => downloadApis() }
-        ]
-      );
-    }, 2500);
-    }
-    else if (netInfoval.isConnected && showDownloadPopup && errorObj.length > 0) {
-      setTimeout(() => {
-      Alert.alert(t('downloadOnLoadPopupTitle'), t('downloadOnLoadPopupText'),
-        [
-          {
-            text: t('downloadOnLoadCancelPopUpBtn'),
-            onPress: () => { dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false })) },
-            style: "cancel"
-          },
-          { text: t('downloadOnLoadRetryBtn'), onPress: () => callFailedApis() }
-        ]
-      );
-      },2500);
-    }
-  }
-  const forceUpdateApis = (forceupdatetime: any) => {
-    navigation.navigate('LoadingScreen', {
-      apiJsonData: allApisObject(true,incrementalSyncDT),
-      prevPage: 'ForceUpdate',
-      forceupdatetime: forceupdatetime
-    });
-  }
-  const downloadApis = () => {
-    navigation.navigate('LoadingScreen', {
-      apiJsonData: apiJsonData,
-      prevPage: 'PeriodicSync',
-      downloadWeeklyData: downloadWeeklyData,
-      downloadMonthlyData: downloadMonthlyData,
-      downloadBufferData: downloadBufferData,
-      ageBrackets: ageBrackets,
-    });
-  }
-  const callFailedApis = () => {
-    if (errorObj && errorObj.length > 0) {
-      navigation.navigate('LoadingScreen', {
-        apiJsonData: errorObj,
-        prevPage: 'Home'
-      });
-    }
-  }
+
   const ondobChange = (event: any, selectedDate: any) => {
     setShow(Platform.OS === 'ios');
     setdate1(selectedDate);
@@ -485,9 +457,9 @@ const Home = ({ route, navigation }: Props) => {
 
         {
           (netInfoval && netInfoval.isConnected == false) ?
-            <OfflineBar><Heading3Centerr style={{}}>{t('noInternet')}</Heading3Centerr></OfflineBar> : null
+            <OfflineBar><Heading3Centerr>{t('noInternet')}</Heading3Centerr></OfflineBar> : null
         }
-        <ScrollView style={{ flex: 5, backgroundColor: '#FFF' }}>
+        <ScrollView style={styles.scrollView}>
           <FlexCol>
             <BabyNotification />
             <ChildInfo
@@ -538,7 +510,7 @@ const Home = ({ route, navigation }: Props) => {
                           <Icon name="ic_survey" size={24} color="#000" />
                         </OuterIconLeft>
                       </OuterIconRow>
-                      <Heading3Regular style={{flexShrink:1}}>
+                      <Heading3Regular style={styles.flexShrink1}>
                         {t('homeScreenexpText')}
                       </Heading3Regular>
                     </FlexDirRow>

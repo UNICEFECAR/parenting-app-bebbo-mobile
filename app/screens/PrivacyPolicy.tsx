@@ -7,10 +7,11 @@ import iframe from '@native-html/iframe-plugin';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { bgcolorWhite2, primaryColor } from '@styles/style';
 import { Heading1w, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Dimensions, Pressable, ScrollView, View } from 'react-native';
+import { BackHandler, Dimensions, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import WebView from 'react-native-webview';
 import { ThemeContext } from 'styled-components/native';
@@ -24,6 +25,19 @@ type PrivacyPolicyNavigationProp = StackNavigationProp<
 type Props = {
   navigation: PrivacyPolicyNavigationProp;
 };
+const styles = StyleSheet.create({
+  containerView: {
+    backgroundColor:primaryColor,
+    flex:1
+  },
+  htmlStyle: {
+    color: bgcolorWhite2,
+    fontSize: 16
+  },
+  scrollViewStyle: {
+    padding: 0
+  }
+})
 const PrivacyPolicy = ({navigation}: Props) => {
   const {t} = useTranslation();
   const privacydata = useAppSelector(
@@ -56,7 +70,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-    <View style={{flex:1,backgroundColor:headerColor}}>
+    <View style={styles.containerView}>
     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingHeading>
@@ -72,11 +86,11 @@ const PrivacyPolicy = ({navigation}: Props) => {
             </ShiftFromTop5>
           </ChildAddTop>
         </OnboardingHeading>
-        <ScrollView contentContainerStyle={{padding: 0}}>
+        <ScrollView contentContainerStyle={styles.scrollViewStyle}>
           { privacydata != "" ? 
             <HTML
               source={{html: addSpaceToHtml(privacydata)}}
-              baseFontStyle={{fontSize: 16, color: '#ffffff'}}
+              baseFontStyle={styles.htmlStyle}
               ignoredStyles={['color', 'font-size', 'font-family']}
               tagsStyles={{
                 p: { marginBottom: 15, marginTop: 0,textAlign:'left' },
@@ -97,7 +111,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
                   const imagePath:any = attribs.src;
                   console.log(imagePath,"..imagePath");
                   if(imagePath!="" && imagePath!=null && imagePath!=undefined){
-                  let itemnew:any={
+                  const itemnew:any={
                     cover_image:{
                       url:imagePath
                     }

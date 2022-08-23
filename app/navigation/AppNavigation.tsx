@@ -49,7 +49,6 @@ import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificat
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 const RootStack = createStackNavigator<RootStackParamList>();
-const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default () => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const userIsOnboarded = useAppSelector(
@@ -86,16 +85,13 @@ export default () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const currentActiveChild = activeChild.uuid;
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
-  useEffect(() => {
-    // ... handle deep link
-    callUrl(linkedURL);
-  }, [linkedURL, resetURL, userIsOnboarded])
+  const navigationRef = React.useRef<any>();
+
   const callUrl = (url: any) => {
     if (url) {
       const initialUrlnew: any = url;
@@ -103,7 +99,7 @@ export default () => {
         return;
       }
       if (initialUrlnew && initialUrlnew.includes('/article/')) {
-        let initialUrlnewId: any = initialUrlnew.split("/").pop();
+        const initialUrlnewId: any = initialUrlnew.split("/").pop();
         const initialUrlnewId1: any = parseInt(initialUrlnewId);
         console.log("rerenew2", userIsOnboarded);
         if (userIsOnboarded == true) {
@@ -122,7 +118,7 @@ export default () => {
 
       }
       else if (initialUrlnew && initialUrlnew.includes('/activity/')) {
-        let initialUrlnewId: any = initialUrlnew.split("/").pop();
+        const initialUrlnewId: any = initialUrlnew.split("/").pop();
         const initialUrlnewId1: any = parseInt(initialUrlnewId);
         console.log("initialUrlnewId1 activity", initialUrlnewId1);
         if (userIsOnboarded == true) {
@@ -141,6 +137,11 @@ export default () => {
       resetURL();
     }
   }
+  useEffect(() => {
+    // ... handle deep link
+    callUrl(linkedURL);
+  }, [linkedURL, resetURL, userIsOnboarded])
+ 
 
   useEffect(() => {
     const initPixel = async () => {
@@ -157,6 +158,7 @@ export default () => {
               });
             }
           } catch (error) {
+            console.log(error,"error");
             throw error;
           } finally {
             Settings.initializeSDK();
@@ -211,30 +213,6 @@ export default () => {
     }
 
   }, []);
-  const createLocalNotificationListeners = async () => {
-    try {
-      PushNotification.configure({
-        // this will listen to your local push notifications on clicked 
-        onNotification: (notification: any) => {
-          handleNotification(notification);
-          if (Platform.OS == "ios") {
-            notification.finish(PushNotificationIOS.FetchResult.NoData);
-           
-          }
-        },
-        popInitialNotification: true,
-        requestPermissions: true,
-      });
-      PushNotification.popInitialNotification((notification: any) => {
-        handleNotification(notification);
-        // this will listen to your local push notifications on opening app from background state
-
-      })
-
-    } catch (e) {
-      console.log("error")
-    }
-  }
   const redirectLocation = (notification: any) => {
     const screenName = navigationRef.current.getCurrentRoute().name;
     console.log(activeChild, "..activeChild..");
@@ -337,10 +315,8 @@ export default () => {
     }, 0);
 
   }
-  const handleNotification = (notification: any) => {
-    const screenName = navigationRef.current.getCurrentRoute().name;
-    
-    var executed = false;
+  const handleNotification = (notification: any) => {  
+    let executed = false;
     if (!executed) {
       executed = true;
       if(Platform.OS=="ios"){
@@ -369,6 +345,32 @@ export default () => {
     }
 
   }
+  const createLocalNotificationListeners = async () => {
+    try {
+      PushNotification.configure({
+        // this will listen to your local push notifications on clicked 
+        onNotification: (notification: any) => {
+          handleNotification(notification);
+          if (Platform.OS == "ios") {
+            notification.finish(PushNotificationIOS.FetchResult.NoData);
+           
+          }
+        },
+        popInitialNotification: true,
+        requestPermissions: true,
+      });
+      PushNotification.popInitialNotification((notification: any) => {
+        handleNotification(notification);
+        // this will listen to your local push notifications on opening app from background state
+
+      })
+
+    } catch (e) {
+      console.log("error")
+    }
+  }
+ 
+  
   useEffect(() => {
     if( userIsOnboarded == true){
     createLocalNotificationListeners();
@@ -391,7 +393,6 @@ export default () => {
   }, []);
 
   useMemo(() => {
-    fetchNetInfo();
     async function fetchNetInfo() {
       if (netInfoval && netInfoval.isConnected != null) {
         if (netInfoval.isConnected == true) {
@@ -447,6 +448,7 @@ export default () => {
 
       }
     }
+    fetchNetInfo();
     return {};
   }, [netInfoval.isConnected, netInfoval.netType, netInfoval.netValue?.details?.cellularGeneration]);
   useEffect(() => {
@@ -455,9 +457,9 @@ export default () => {
 
   useEffect(() => {
     if (userIsOnboarded == true) {
-      let obj = { key: 'showDownloadPopup', value: true };
+      const obj = { key: 'showDownloadPopup', value: true };
       dispatch(setInfoModalOpened(obj));
-      let localnotiFlagObj = { generateFlag: true, generateType: 'onAppStart', childuuid: 'all' };
+      const localnotiFlagObj = { generateFlag: true, generateType: 'onAppStart', childuuid: 'all' };
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
       getAllChildren(dispatch, child_age, 0);
     }
@@ -465,7 +467,7 @@ export default () => {
     if (countryId == 1) {
       dispatch(oncountrtIdChange(restOfTheWorldCountryId));
     }
-    let notiFlagObj = { key: 'generateNotifications', value: true };
+    const notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
     //add notification condition in else if required 1st time as well
   }, []);
@@ -474,13 +476,13 @@ export default () => {
     async function fetchNetInfoSet() {
       if (netState == "Highbandwidth" && toggleSwitchVal == true) {
 
-        let confirmation = await retryAlert1(0, 0);
+        const confirmation = await retryAlert1(0, 0);
         if (confirmation == "yes" && toggleSwitchVal == true) {
           dispatch(onNetworkStateChange(false));
         }
       }
       else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
-        let confirmation = await retryAlert1(1, 1);
+        const confirmation = await retryAlert1(1, 1);
         if (confirmation == "yes" && toggleSwitchVal == false) {
           dispatch(onNetworkStateChange(true));
         }
@@ -489,8 +491,7 @@ export default () => {
     fetchNetInfoSet();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
-  const navigationRef = React.useRef<any>();
-
+ 
   return (
     <SafeAreaProvider>
       <NavigationContainer

@@ -21,31 +21,33 @@ import {
   ShiftFromTop20
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
-import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { getCurrentChildAgeInYears } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
-
+const styles = StyleSheet.create({
+  buttonTextDecoration : {
+    textDecorationLine:"none"
+  },
+  headingFlexShrink : {
+    flexShrink:1
+  }
+})
 const LastChildMeasure = () => {
   const {t} = useTranslation();
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-  const themeContext = useContext(ThemeContext);
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   let measures:any=[];
     if(activeChild?.measures.length>0){
-     measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
+     measures = activeChild.measures.filter((item:any) => item.isChildMeasured == true);
     }
 
     let measurementDate: DateTime = DateTime.local();
@@ -54,17 +56,17 @@ const LastChildMeasure = () => {
         measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
       }
 
-      let month: number = 0;
+      let month: any = 0;
 
       if (activeChild?.birthDate) {
-        let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+        const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
         month = Math.round(measurementDate.diff(birthDay, 'month').months);
       }
       return {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
-        measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
+        measurementDate: formatStringDate(item?.measurementDate),
         dateToMilis: measurementDate.toMillis(),
         isChildMeasured:item.isChildMeasured,
         titleDateInMonth: month,
@@ -78,11 +80,11 @@ const LastChildMeasure = () => {
     childmeasures = childmeasures.sort(
       (a: any, b: any) => a.dateToMilis - b.dateToMilis,
     );
-   let lastmeasurementDate =  DateTime.fromMillis(childmeasures[
+   const lastmeasurementDate =  DateTime.fromMillis(childmeasures[
     childmeasures.length - 1
   ]?.dateToMilis)
-  let date = DateTime.fromISO(activeChild.birthDate);
-  let convertInDays = lastmeasurementDate.diff(date, "days").days;
+  const date = DateTime.fromISO(activeChild.birthDate);
+  const convertInDays = lastmeasurementDate.diff(date, "days").days;
   let days = 0;
   if (convertInDays !== undefined) {days = Math.round(convertInDays)}
   return (
@@ -240,11 +242,4 @@ const LastChildMeasure = () => {
   );
 };
 export default LastChildMeasure;
-const styles = StyleSheet.create({
-  buttonTextDecoration : {
-    textDecorationLine:"none"
-  },
-  headingFlexShrink : {
-    flexShrink:1
-  }
-})
+

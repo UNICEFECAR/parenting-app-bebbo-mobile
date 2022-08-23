@@ -21,9 +21,7 @@ import {
   TabBarDefault
 } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading3,
   Heading3Centerr,
@@ -43,7 +41,7 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Modal, Pressable, ScrollView, View } from 'react-native';
+import { Dimensions, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -53,13 +51,27 @@ import Icon from '@components/shared/Icon';
 import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { formatStringDate } from '../../services/Utils';
-type ChildgrowthNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-type Props = {
-  navigation: ChildgrowthNavigationProp;
-  AddNewChildgrowth: any;
-};
-const Childgrowth = ({navigation}: Props) => {
+import { bgcolorWhite2 } from '@styles/style';
+
+const styles= StyleSheet.create({
+  flex1:{flex:1},
+  marginTop15:{marginTop: 15},
+  maxHeight:{
+    maxHeight: 50,
+  },
+  scrollView:{
+    flex: 9,
+    maxHeight: '100%'
+  },
+  vectorImageView:{
+    alignItems: 'center',
+    backgroundColor: bgcolorWhite2,
+    borderRadius: 4,
+    margin: 15,
+    padding: 15,
+  }
+})
+const Childgrowth = ({navigation}: any) => {
   const {t} = useTranslation();
   const data = [
     {title: t('growthScreenweightForHeight')},
@@ -73,15 +85,13 @@ const Childgrowth = ({navigation}: Props) => {
   const [profileLoading,setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
-    let obj = {key: varkey, value: !modalVisible};
+    const obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
   const growthModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsGrowthModalOpened),
     );
-    const luxonLocale = useAppSelector(
-      (state: any) => state.selectedCountry.luxonLocale,
-    );
+    
     const pluralShow = useAppSelector(
       (state: any) => state.selectedCountry.pluralShow,
     );
@@ -91,7 +101,7 @@ const Childgrowth = ({navigation}: Props) => {
     setModalVisible(growthModalOpened)
    })
   
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
@@ -109,17 +119,17 @@ const Childgrowth = ({navigation}: Props) => {
           measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
         }
 
-        let month: number = 0;
+        let month: any = 0;
 
         if (activeChild?.birthDate) {
-          let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+          const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
           month = Math.round(measurementDate.diff(birthDay, 'month').months);
         }
         return {
           uuid:item.uuid,
           weight: item.weight ? parseFloat(item.weight) : 0,
           height: item.height ? parseFloat(item.height) : 0,
-          measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
+          measurementDate: formatStringDate(item?.measurementDate),
           dateToMilis: measurementDate.toMillis(),
           isChildMeasured:item.isChildMeasured,
           titleDateInMonth: month,
@@ -133,12 +143,12 @@ const Childgrowth = ({navigation}: Props) => {
       childmeasures = childmeasures.sort(
         (a: any, b: any) => a.dateToMilis - b.dateToMilis,
       );
-        let lastmeasurementDate =  DateTime.fromMillis(childmeasures[
+        const lastmeasurementDate =  DateTime.fromMillis(childmeasures[
           childmeasures.length - 1
         ]?.dateToMilis)
-        let date = DateTime.fromISO(activeChild.birthDate);
-        let convertInDays = lastmeasurementDate.diff(date, "days").days;
-        if (convertInDays !== undefined) {days = Math.round(convertInDays)};
+        const date = DateTime.fromISO(activeChild.birthDate);
+        const convertInDays = lastmeasurementDate.diff(date, "days").days;
+        if (convertInDays !== undefined) {days = Math.round(convertInDays)}
       }
     //Code for Growth text hiding condition ends here
 const {width,height}= Dimensions.get('window');
@@ -146,13 +156,7 @@ const {width,height}= Dimensions.get('window');
     return (
       <>
         <View
-          style={{
-            backgroundColor: '#FFF',
-            borderRadius: 4,
-            alignItems: 'center',
-            margin: 15,
-            padding: 15,
-          }}>
+          style={styles.vectorImageView}>
           <VectorImage source={require('@assets/svg/chart.svg')} />
         </View>
       </>
@@ -198,7 +202,7 @@ const {width,height}= Dimensions.get('window');
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={{backgroundColor:headerColor,width:width,height:height,flex:1}}>
+      <View style={[styles.flex1,{backgroundColor:headerColor,width:width,height:height}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
           <TabScreenHeader
@@ -208,17 +212,15 @@ const {width,height}= Dimensions.get('window');
             setProfileLoading={setProfileLoading}
           />
           <ScrollView
-            style={{
-              flex: 9,
-              backgroundColor: backgroundColor,
-              maxHeight: '100%',
-            }}>
+            style={[styles.scrollView,{
+              backgroundColor: backgroundColor        
+            }]}>
            {(activeChild?.gender == '') ?  <BabyNotification /> : null}
             {measures.length == 0 ? (
               <>
                 <FlexDirCol>
                   <ShiftFromBottom5>
-                    <Heading3 style={{marginTop: 15}}>                  
+                    <Heading3 style={styles.marginTop15}>                  
                       { activeChild.birthDate != null && activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate) ? 
                       t('babyNotificationbyAge', {
                         childName:
@@ -265,14 +267,12 @@ const {width,height}= Dimensions.get('window');
                   <BgContainer>
                     <FlexCol>
                     <TabBarContainerBrd
-                      style={{
-                        maxHeight: 50,
-                      }}>
+                      style={styles.maxHeight}>
                       {data.map((item, itemindex) => {
                         return (
                           <Pressable
                             key={itemindex}
-                            style={{flex: 1}}
+                            style={styles.flex1}
                             onPress={() => {
                               setSelectedIndex(itemindex);
                             }}>

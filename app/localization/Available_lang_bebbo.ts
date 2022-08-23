@@ -37,8 +37,6 @@ const AVAILABLE_LANGUAGES = {
     uk,
     UZru,
     UZuz,
-    // XKsq,
-    // XKrs,
     RSen,
     BYbe,
     BYru,

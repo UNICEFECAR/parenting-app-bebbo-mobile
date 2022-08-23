@@ -8,20 +8,20 @@ export const getAllVaccinePeriods = () => {
       : [],
   );
   //filter measures by didChildGetVaccines
-  const vaccineMeasures = activeChild?.measures.filter((item) => item.didChildGetVaccines == true);
-  let measuredVaccines: any[] = [];
-  vaccineMeasures.forEach((measure, index) => {
+  const vaccineMeasures = activeChild?.measures.filter((item:any) => item.didChildGetVaccines == true);
+  const measuredVaccines: any[] = [];
+  vaccineMeasures.forEach((measure:any) => {
     const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? JSON.parse(measure.vaccineIds) : [];
     if (vaccinesForAmeasure) {
-      vaccinesForAmeasure.forEach((vaccine, innerindex) => {
+      vaccinesForAmeasure.forEach((vaccine:any) => {
         measuredVaccines.push({ uuid: vaccine.uuid, measurementDate: measure.measurementDate });
       });
     }
   });
-  const vaccineMeasuredInfo = (vaccine) => {
+  const vaccineMeasuredInfo = (vaccine:any) => {
     return (measuredVaccines.find(item => String(item.uuid) == String(vaccine.uuid)))
   }
-  let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+  const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
@@ -30,19 +30,19 @@ export const getAllVaccinePeriods = () => {
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
   const allGrowthPeriods = taxonomy.growth_period
-  const getVaccineInfo = (periodID) => {
-    return allGrowthPeriods.find(item => item.id == periodID);
+  const getVaccineInfo = (periodID:any) => {
+    return allGrowthPeriods.find((item:any) => item.id == periodID);
   }
-  let allVaccinePeriods = useAppSelector(
+  const allVaccinePeriods = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
-  var group_to_growthPeriod = allVaccinePeriods.reduce(function (obj, item) {
+  const group_to_growthPeriod = allVaccinePeriods.reduce(function (obj:any, item:any) {
      obj[item.growth_period] = obj[item.growth_period] || [];
     obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
     return obj;
   }, {});
-  let groupsForPeriods: any = Object.keys(group_to_growthPeriod).map(function (key) {
+  const groupsForPeriods: any = Object.keys(group_to_growthPeriod).map(function (key) {
     return { periodID: key, vaccines: group_to_growthPeriod[key] };
   });
   groupsForPeriods.forEach((item: any) => {
@@ -57,7 +57,7 @@ export const getAllVaccinePeriods = () => {
       vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
     })
   })
-  let sortedGroupsForPeriods = [...groupsForPeriods].sort(
+  const sortedGroupsForPeriods = [...groupsForPeriods].sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
   );
   const isUpComingPeriod = (vaccination_opens: number) => {
@@ -73,7 +73,7 @@ export const getAllVaccinePeriods = () => {
   let upcomingPeriods = sortedGroupsForPeriods.filter(
     (period: any) => period.vaccination_opens > childAgeIndays,
   );
-  let previousPeriods = sortedGroupsForPeriods
+  const previousPeriods = sortedGroupsForPeriods
     .filter((period: any) => period.vaccination_opens <= childAgeIndays)
     .reverse();
   // logic to add current period to upcomingPeriods and remove it from previousPeriods

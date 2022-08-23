@@ -5,10 +5,46 @@ import WebView from "react-native-webview";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { getVimeoId, getYoutubeId } from "../services/Utils";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
+const windowWidthstyle = Dimensions.get('window').width;
+const styles = StyleSheet.create({
+    containerStyle:{
+        alignSelf: 'center',
+        aspectRatio: 1.75,
+        height: windowWidthstyle*0.565,
+        width: '100%',
+    },
+    spinner: {
+        alignItems:'center',
+        height:windowWidthstyle*0.563,
+        justifyContent:'center'
+    },
+    typeImageImg:{ 
+        height:windowWidthstyle*0.565,
+        width: '100%'
+    },
+    typeImageView:{
+        flex:1,
+        flexDirection:'column',
+        height:windowWidthstyle*0.565,
+        overflow:'hidden'
+    },
+    youtubeContainerView:{
+        flex:1,
+        flexDirection:'column',
+        height:windowWidthstyle*0.563,
+        overflow:'hidden'
+    },
+    youtubeLoadingView:{
+        alignItems:'center',
+        height:windowWidthstyle*0.565,
+        justifyContent:'center'
+    }
+})
 
 const VideoPlayer = (props: any) => {
     const [playing, setPlaying] = useState(false);
     const [loading, setLoading] = useState(true);
+    let videoId: string;
     let videoType = videoTypeImage;
     const onReady = useCallback(() => {
       setLoading(false);
@@ -25,7 +61,6 @@ const VideoPlayer = (props: any) => {
         );
       }
     const netInfoval = useNetInfoHook();
-    let videoId: string;
     if(props.selectedPinnedArticleData && props.selectedPinnedArticleData != {})
     {
         videoType = props.selectedPinnedArticleData.cover_video && props.selectedPinnedArticleData.cover_video?.site && props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == videoTypeVimeo ? videoTypeVimeo : videoTypeYoutube) : videoTypeImage
@@ -120,7 +155,6 @@ const VideoPlayer = (props: any) => {
                         height={windowWidth*0.563}
                         onReady={onReady}
                         onError={onError}
-                      // @ts-ignore
                         webViewProps={{
                              allowsInlineMediaPlayback: true,
                             allowsFullscreenVideo: true,
@@ -139,39 +173,4 @@ const VideoPlayer = (props: any) => {
     )
 }
 export default VideoPlayer
-const windowWidthstyle = Dimensions.get('window').width;
-const styles = StyleSheet.create({
-    spinner: {
-        height:windowWidthstyle*0.563,
-        alignItems:'center',
-        justifyContent:'center'
-    },
-    typeImageView:{
-        flex:1,
-        flexDirection:'column',
-        height:windowWidthstyle*0.565,
-        overflow:'hidden'
-    },
-    typeImageImg:{ 
-        width: '100%',
-        height:windowWidthstyle*0.565
-    },
-    containerStyle:{
-        width: '100%',
-        height: windowWidthstyle*0.565,
-        aspectRatio: 1.75,
-        alignSelf: 'center',
-    },
-    youtubeContainerView:{
-        flex:1,
-        flexDirection:'column',
-        height:windowWidthstyle*0.563,
-        overflow:'hidden'
-    },
-    youtubeLoadingView:{
-        height:windowWidthstyle*0.565,
-        alignItems:'center',
-        justifyContent:'center'
-    }
-})
 

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
-  uuid:string
+  uuid:string;
 }
 const PlannedVaccines = (props: any) => {
   const {currentPeriodVaccines, onPlannedVaccineToggle, fromScreen,backgroundActiveColor} = props;

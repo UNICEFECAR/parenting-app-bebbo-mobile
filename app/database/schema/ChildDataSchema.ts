@@ -18,16 +18,16 @@ export const MeasuresEntitySchema = {
   }
 }
 export type MeasuresEntity = {
-  uuid: string,
-  isChildMeasured: boolean,
-  weight: string,
-  height: string,
-  measurementDate: number,
-  titleDateInMonth: string,
-  didChildGetVaccines: boolean,
-  vaccineIds: string,
-  doctorComment: string,
-  measurementPlace: number
+  uuid: string;
+  isChildMeasured: boolean;
+  weight: string;
+  height: string;
+  measurementDate: number;
+  titleDateInMonth: string;
+  didChildGetVaccines: boolean;
+  vaccineIds: string;
+  doctorComment: string;
+  measurementPlace: number;
 }
 export const ReminderEntitySchema = {
   name: "Reminder",
@@ -42,32 +42,32 @@ export const ReminderEntitySchema = {
   }
 }
 export type ReminderEntity = {
-  uuid: string,
-  reminderType: remiderType,
-  reminderDate: number,
-  reminderTime: number,
-  reminderDateDefined: number,
-  reminderTimeDefined: number,
+  uuid: string;
+  reminderType: remiderType;
+  reminderDate: number;
+  reminderTime: number;
+  reminderDateDefined: number;
+  reminderTimeDefined: number;
 }
 
 export type ChildEntity = {
   uuid: string;
   childName: string;
-  gender: number,
+  gender: number|string;
   photoUri?: string;
   createdAt: Date;
   updatedAt: Date;
   plannedTermDate?: Date | undefined;
   birthDate?: Date | undefined;
   babyRating?: number;
-  measures?: MeasuresEntity[],
+  measures?: MeasuresEntity[];
   comment?: string;
   checkedMilestones?: number[];
-  reminders?: ReminderEntity[],
+  reminders?: ReminderEntity[];
   measurementPlace: string;
   isPremature?: string;
   isExpected?: string;
-  isMigrated?: Boolean;
+  isMigrated?: boolean;
   favoriteadvices?: number[];
   favoritegames?: number[];
 };

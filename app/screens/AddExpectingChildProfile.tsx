@@ -46,20 +46,25 @@ type ChildSetupNavigationProp = StackNavigationProp<
 >;
 
 type Props = {
-  route: any,
+  route: any;
   navigation: ChildSetupNavigationProp;
 };
+const styles=StyleSheet.create({
+  flex1:{flex: 1},
+  headerActionView:{padding:0},
+  headerRowView:{
+    maxHeight: 50
+  },
+  pressableView:{paddingLeft:10,paddingRight:10},
+  textInputML:{width:'100%'}
 
+})
 const AddExpectingChildProfile = ({ route, navigation }: Props) => {
-  let childData = route.params.childData;
+  const childData = route.params.childData;
   const editScreen = childData && childData.uuid != '' ? true : false;
   const [clicked, setClicked] = useState(false);
   const [showdob, setdobShow] = useState(false);
-  const ondobChange = (event:any,selectedDate: any) => {
-    const currentDate = selectedDate || plannedTermDate;
-    setdobShow(Platform.OS === 'ios');
-    setPlannedTermDate(currentDate);
-  };
+  
   const child_age = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -71,15 +76,17 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date | null>(null);
   const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const ondobChange = (event:any,selectedDate: any) => {
+    const currentDate = selectedDate || plannedTermDate;
+    setdobShow(Platform.OS === 'ios');
+    setPlannedTermDate(currentDate);
+  };
   const showdobDatepicker = () => {
     setdobShow(true);
     if(Platform.OS == 'ios'){
       setDobDatePickerVisibility(true);
     }
   };
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -117,8 +124,8 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
     }
   }, []);
   const AddChild = async () => {
-    let insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '',childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '',null);
-    let childSet: Array<any> = [];
+    const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '',childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '',null);
+    const childSet: Array<any> = [];
     childSet.push(insertData);
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   }
@@ -152,13 +159,10 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
     });
   };
   return <>
-    <View style={{ flex: 1, backgroundColor: headerColor }}>
+    <View style={[styles.flex1,{ backgroundColor: headerColor }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
-        style={{
-          backgroundColor: headerColor,
-          maxHeight: 50,
-        }}>
+        style={[styles.headerRowView,{backgroundColor: headerColor}]}>
         <HeaderIconView>
           <HeaderIconPress
             onPress={() => {
@@ -172,9 +176,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
             {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
           </Heading2w>
         </HeaderTitleView>
-        <HeaderActionView  style={{padding:0}}>
+        <HeaderActionView  style={styles.headerActionView}>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
-            <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+            <Pressable  style={styles.pressableView}  onPress={() =>
                 deleteRecord(childData?.index, dispatch, childData?.uuid)
               }>
                     <Icon name={'ic_trash'} size={20} color="#FFF" />
@@ -189,7 +193,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
             <LabelText> {t('expectChildDueDateTxt')}</LabelText>
             <FormInputBox>
               <FormDateText>
-                <Text>  {plannedTermDate ? formatStringDate(plannedTermDate,luxonLocale) : t('expectChildDueDateTxt')}</Text>
+                <Text>  {plannedTermDate ? formatStringDate(plannedTermDate) : t('expectChildDueDateTxt')}</Text>
               </FormDateText>
               <FormDateAction>
                 <Icon name="ic_calendar" size={20} color="#000" />
@@ -229,7 +233,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
           <LabelText>{t('expectPreferNametxt')}</LabelText>
           <FormInputBox>
             <TextInputML
-             style={{width:'100%'}}
+             style={styles.textInputML}
               autoCapitalize="none"
               autoCorrect={false}
               maxLength={30}
@@ -269,17 +273,3 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
 };
 
 export default AddExpectingChildProfile;
-const styles = StyleSheet.create({
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: '#20232a',
-    borderRadius: 6,
-    backgroundColor: '#FFF',
-    color: '#20232a',
-    textAlign: 'left',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-});

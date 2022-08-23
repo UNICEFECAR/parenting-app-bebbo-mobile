@@ -1,20 +1,25 @@
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import LoadableImage from "./LoadableImage";
 
-const RenderImage = ({ uri,itemnew,toggleSwitchVal }:any) => {
-    return (
-       <><View 
-       style={{
-          width: '100%',
-          height: 200
-          }}
-     ><LoadableImage style={{ 
-      height: '100%',
-      width: '100%'
-    }} item={itemnew} toggleSwitchVal={toggleSwitchVal}  resizeMode={FastImage.resizeMode.contain}/></View></>
-        
-    )
+const styles = StyleSheet.create({
+  containerView: {
+    height: 200,
+    width: '100%'
+  },
+  loadableImageStyle:{
+    height: '100%',
+    width: '100%'
   }
-  export default RenderImage;
+})
+const RenderImage = ({ uri, itemnew, toggleSwitchVal }: any) => {
+  console.log("uri--", uri);
+  return (
+    <><View
+      style={styles.containerView}
+    ><LoadableImage style={styles.loadableImageStyle} item={itemnew} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.contain} /></View></>
+
+  )
+}
+export default RenderImage;
