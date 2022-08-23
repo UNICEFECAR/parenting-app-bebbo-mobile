@@ -1,0 +1,38 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+  "ecmaFeatures": {
+    "jsx": true
+  }
+},
+  "env": {
+    "browser": true,
+    "react-native/react-native": true
+  },
+  "plugins": ["react", "react-native"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "react-native/no-unused-styles": 2,
+    "react-native/split-platform-components": 2,
+    "react-native/no-inline-styles":2,
+    "react-native/no-color-literals":2,
+    "react-native/no-raw-text": "off",
+    "@typescript-eslint/type-annotation-spacing":"off",
+    "no-irregular-whitespace": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react-native/sort-styles": [
+      "error",
+      "asc",
+       {
+         "ignoreClassNames": false,
+         "ignoreStyleProperties": false
+       }
+     ]
+  }
+}

@@ -1,10 +1,9 @@
-import Realm, { ObjectSchema } from "realm";
+import Realm from "realm";
 import { migrateConfigSettings } from "../migration/init";
 import { ActivitiesEntitySchema } from "../schema/ActivitiesSchema";
 import { ArticleEntitySchema, CoverImage, CoverVideo } from "../schema/ArticleSchema";
 import { BasicPagesSchema } from "../schema/BasicPagesSchema";
 import { ChildDevelopmentSchema } from "../schema/ChildDevelopmentSchema";
-import { ChildGrowthSchema } from "../schema/ChildGrowthSchema";
 import { ConfigSettingsSchema } from "../schema/ConfigSettingsSchema";
 import { DailyHomeMessagesSchema } from "../schema/DailyHomeMessagesSchema";
 import { FAQsSchema } from "../schema/FAQsSchema";
@@ -18,7 +17,7 @@ import { TaxonomySchema } from "../schema/TaxonomySchema";
 import { VaccinationSchema } from "../schema/VaccinationSchema";
 import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
 
-export const dataRealmConfig: Realm.Configuration ={
+export const dataRealmConfig: Realm.Configuration = {
   path: 'data.realm',
   schema: [
     ConfigSettingsSchema,
@@ -34,7 +33,6 @@ export const dataRealmConfig: Realm.Configuration ={
     ChildDevelopmentSchema,
     VaccinationSchema,
     HealthCheckUpsSchema,
-    // ChildGrowthSchema,
     SurveysSchema,
     ActivitiesEntitySchema,
     StandardDevWeightForHeightSchema,
@@ -44,24 +42,11 @@ export const dataRealmConfig: Realm.Configuration ={
   ],
   schemaVersion: 6,
   migration: (oldRealm, newRealm) => {
-  // console.log("in migration data");
-    if(oldRealm.schemaVersion < 1){
-      const oldObjects = oldRealm.objects('VariableEntity');
-      const newObjects = newRealm.objects(ConfigSettingsSchema.name);
-      // console.log("oldobj---",oldObjects);
-      // console.log("newObjects---",newObjects);
-      // console.log("oldRealm schema---",oldRealm.schema);
-      // console.log("newRealm schema---",newRealm.schema);
+    if (oldRealm.schemaVersion < 1) {
+      // const oldObjects = oldRealm.objects('VariableEntity');
+      // const newObjects = newRealm.objects(ConfigSettingsSchema.name);
+      migrateConfigSettings(oldRealm, newRealm);
+    }
 
-      // console.log("MeasurementEntity obj---",Array.from(newRealm.objects('MeasurementEntity')));
-       migrateConfigSettings(oldRealm,newRealm);
-      // loop through all objects and set the _id property in the new schema
-      // for (const objectIndex in oldObjects) {
-      //   const oldObject = oldObjects[objectIndex];
-      //   const newObject = newObjects[objectIndex];
-      //   newObject._id = oldObject._id.toHexString();
-      // }
-  }
-    
   }
 };

@@ -1,33 +1,27 @@
 import { ActionCreator, AnyAction, Dispatch } from "@reduxjs/toolkit";
-// import { Dispatch } from "react";
 
 export const FETCH_API = 'api/FETCH_API';
-// export const RECEIVE_ONLOAD_API_SUCCESS = 'api/RECEIVE_ONLOAD_API_SUCCESS';
-// export const RECEIVE_ONLOAD_API_FAILURE = 'api/RECEIVE_ONLOAD_API_FAILURE';
-
 export const INSERT_IN_DB = 'api/INSERT_IN_DB';
-
 export const INSERT_IN_STORE = 'api/INSERT_IN_STORE';
 
-export interface apijsonArray{
-  apiEndpoint:string,method:string,postdata:any,saveinDB?:boolean
+export interface apijsonArray {
+  apiEndpoint: string, method: string, postdata: any, saveinDB?: boolean
 }
 
-const setLoginState: ActionCreator<any> = (typeset: string,data:any) => {
+const setLoginState: ActionCreator<any> = (typeset: string, data: any) => {
   return {
-  type:typeset,
-  payload:data
+    type: typeset,
+    payload: data
   }
-  };
-  // const dispatchnew: Dispatch<any>;
-export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispatch?: Dispatch<AnyAction> | undefined,navigation?:any,languageCode?:string,activeChild?:any,oldErrorObj?:Array<apijsonArray>,netInfovalisConnected?:boolean|null,forceupdatetime?: any,downloadWeeklyData?:any, downloadMonthlyData?:any, enableImageDownload?:any) => ({
+};
+export const fetchAPI = (apiJsonData: Array<apijsonArray>, prevPage?: string, dispatch?: Dispatch<AnyAction> | undefined, navigation?: any, languageCode?: string, activeChild?: any, oldErrorObj?: Array<apijsonArray>, netInfovalisConnected?: boolean | null, forceupdatetime?: any, downloadWeeklyData?: any, downloadMonthlyData?: any, enableImageDownload?: any) => ({
   type: FETCH_API,
-  payload:apiJsonData,
-  prevPage:prevPage,
-  dispatch:dispatch,
-  navigation:navigation,
-  languageCode:languageCode,
-  activeChild:activeChild,
+  payload: apiJsonData,
+  prevPage: prevPage,
+  dispatch: dispatch,
+  navigation: navigation,
+  languageCode: languageCode,
+  activeChild: activeChild,
   oldErrorObj: oldErrorObj,
   netInfovalisConnected: netInfovalisConnected,
   forceupdatetime: forceupdatetime,
@@ -36,25 +30,14 @@ export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispat
   enableImageDownload: enableImageDownload,
 });
 
-export const insertInDB = (apiJsonData:Array<apijsonArray>,dispatch?: Dispatch<AnyAction> | undefined) => ({
+export const insertInDB = (apiJsonData: Array<apijsonArray>, dispatch?: Dispatch<AnyAction> | undefined) => ({
   type: INSERT_IN_DB,
-  payload:apiJsonData,
-  dispatch:dispatch
+  payload: apiJsonData,
+  dispatch: dispatch
 });
-export const insertInStore = (apiJsonData:Array<apijsonArray>,dispatch?: Dispatch<AnyAction> | undefined, languageCode?:string) => ({
+export const insertInStore = (apiJsonData: Array<apijsonArray>, dispatch?: Dispatch<AnyAction> | undefined, languageCode?: string) => ({
   type: INSERT_IN_STORE,
-  payload:apiJsonData,
-  dispatch:dispatch,
-  languageCode:languageCode
+  payload: apiJsonData,
+  dispatch: dispatch,
+  languageCode: languageCode
 });
-
-
-// export const receiveAPISuccess = (data: any) => ({
-//   type: RECEIVE_API_SUCCESS,
-//   data,
-// });
-
-// export const receiveAPIFailure = (error: any) => ({
-//   type: RECEIVE_API_FAILURE,
-//   error,
-// });

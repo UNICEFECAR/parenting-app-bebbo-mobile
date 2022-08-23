@@ -1,62 +1,21 @@
 import { BgContainer } from '@components/shared/Container';
-import { Heading4 } from '@styles/typography';
-import { DateTime } from 'luxon';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 import VaccineItem from './VaccineItem';
-// type VaccineItemProps = {
-//   uuid:number,
-//   // measurementDate:number
-// }
 const TakenVaccines = (props: any) => {
   const {onTakenVaccineToggle, fromScreen,backgroundActiveColor} = props;
   let {takenVaccines} = props;
-  //console.log(takenVaccines,"takenVaccines")
-
-  const {t} = useTranslation();
-  const [checkedVaccines,setCheckedVaccines] = useState<any[]>(takenVaccines);
-  // let allCheckedVaccines: any[] = [];
-  const onToggleVaccine = (id, isVaccineItemChecked) => {
-    //console.log(id,isVaccineItemChecked,"onToggleVaccine");
-    if (isVaccineItemChecked) {
-      // const allCheckedVaccines = [...checkedVaccines, {
-      //     uuid: id,
-      //     // measurementDate: DateTime.now().toMillis(),
-      //   }];
-      // takenVaccines.map(x => (x.uuid == id ? { ...x, isMeasured: true } : x));
-     // console.log(takenVaccines,"inTrue");
-      // takenVaccines.forEach((vcItem)=>{
-      //   vcItem.isMeasured = vcItem.uuid == id ?  true : false;
-      // })
-      let updatedItem =  takenVaccines.find(el => el.uuid === id)
+   const onToggleVaccine = (id: any, isVaccineItemChecked: any) => {
+     if (isVaccineItemChecked) {
+     let updatedItem =  takenVaccines.find((el: any) => el.uuid === id)
       updatedItem.isMeasured= true;
-      takenVaccines[takenVaccines.findIndex(el => el.uuid === id)]=updatedItem;
-      //console.log(updatedItem,"updatedItem")
-      setCheckedVaccines(takenVaccines);
-      // allCheckedVaccines.push({
-      //   uuid: id,
-      //   measurementDate: DateTime.now().toMillis(),
-      // });
+      takenVaccines[takenVaccines.findIndex((el: any) => el.uuid === id)]=updatedItem;
       onTakenVaccineToggle(takenVaccines);
-      // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
     } else {
-      //console.log(checkedVaccines,"checkedVaccines");
-      takenVaccines.map(x => (x.uuid == id ? { ...x, isMeasured: false } : x));
-      //console.log(takenVaccines,"inFalse");
-      let updatedItem =  takenVaccines.find(el => el.uuid === id)
-      //console.log(updatedItem);
+      takenVaccines.map((x:any) => (x.uuid == id ? { ...x, isMeasured: false } : x));
+      let updatedItem =  takenVaccines.find((el: any) => el.uuid === id)
       updatedItem['isMeasured']= false;
-      takenVaccines[takenVaccines.findIndex(el => el.uuid === id)]=updatedItem;
-      //console.log(updatedItem,"updatedItem")
-      // takenVaccines.forEach((vcItem)=>{
-      //   vcItem.isMeasured = vcItem.uuid == id ?  false : true;
-      // })
-      // takenVaccines = takenVaccines?.find(
-      //   (item) => item.uuid == String(id),
-      // )?.isMeasured = false;
-      setCheckedVaccines(takenVaccines);
+      takenVaccines[takenVaccines.findIndex((el: any) => el.uuid === id)]=updatedItem;
       onTakenVaccineToggle(takenVaccines);
-      //console.log(takenVaccines,checkedVaccines,"allCheckedVaccines")
     }
     
    
@@ -64,7 +23,7 @@ const TakenVaccines = (props: any) => {
   return (
     <>
         <BgContainer>
-          {takenVaccines?.map((item, index) => {
+          {takenVaccines?.map((item:any, index:any) => {
             return (
               <VaccineItem
               fromScreen={fromScreen}

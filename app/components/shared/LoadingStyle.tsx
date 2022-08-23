@@ -20,8 +20,6 @@ export const WrapView = styled.View`
 `;
 export const PartnerLogo = styled.Image`
 flex:1
- /* align-items: center;
-  resize-mode: contain; */
 `;
 export const SponsorLogo = styled.Image`
 flex:1;
@@ -30,13 +28,11 @@ flex:1;
 export const StaticLogo = styled.Image`
   width: 115px;
   height: 60px;
- /* margin-top:20px;*/
  
 `;
 export const GoogleLogo = styled.Image`
   width: 32px;
   height: 32px;
- /* margin-top:20px;*/
  
 `;
 export const LoadingText = styled.Text`

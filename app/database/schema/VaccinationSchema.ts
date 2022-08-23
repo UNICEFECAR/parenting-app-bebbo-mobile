@@ -15,9 +15,7 @@ export type VaccinationEntity = {
   export const VaccinationSchema: ObjectSchema = {
     name: 'VaccinationEntity',
     primaryKey: 'id',
-  
-    // API: https://bit.ly/3f7k9jq
-    properties: {
+      properties: {
       id: { type: 'int' },
       type: { type: 'string' },
       title: { type: 'string' },

@@ -4,7 +4,6 @@ const FormPrematureContainer = styled.View`
   height: 40px;
   flex-direction: row;
   align-items: center;
- /* margin-bottom: 20px;*/
 `;
 
 export const FormInfoLabel = styled.View`

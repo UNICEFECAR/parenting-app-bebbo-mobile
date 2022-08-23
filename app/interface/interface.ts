@@ -8,6 +8,6 @@ export interface Child {
     name: string,
     photo: string | null,
     gender: string,
-    isCurrentActive: boolean
+    isCurrentActive: boolean,
     id: string
 }

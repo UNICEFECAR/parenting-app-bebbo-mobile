@@ -34,6 +34,11 @@ flex-direction:row;
 flex:1;
 `;
 
+export const FlexColChart = styled(FlexCol)`
+background-color: ${props => props.theme.colors.CHILDGROWTH_TINTCOLOR};
+marginLeft: -20px;
+marginRight: -20px;
+`;
 export const FlexColEnd = styled(FlexCol)`
 alignItems:flex-end
 `;
