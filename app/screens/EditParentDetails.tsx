@@ -40,10 +40,17 @@ type ChildSetupNavigationProp = StackNavigationProp<
 >;
 
 type Props = {
-  route: any,
+  route: any;
   navigation: ChildSetupNavigationProp;
 };
+const styles=StyleSheet.create({
+  flex1:{flex: 1},
+  headerRowView:{
+    maxHeight: 50
+  },
+  textInputML:{width:'100%'}
 
+})
 const EditParentDetails = ({ route, navigation }: Props) => {
   const { userParentalRoleData, userRelationToParentEdit, parentEditName } = route.params;
   const [relationship, setRelationship] = useState(userParentalRoleData ? userParentalRoleData : "");
@@ -58,8 +65,8 @@ const EditParentDetails = ({ route, navigation }: Props) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
-  let relationshipToParent = relationship_to_parent.length > 0 && userRelationToParentEdit != "" ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParentEdit) : '';
-  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any, i: any, a: any) {
+  const relationshipToParent = relationship_to_parent.length > 0 && userRelationToParentEdit != "" ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParentEdit) : '';
+  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != both_parent_gender;
   });
   const actionSheetRef = createRef<any>();
@@ -98,16 +105,16 @@ const EditParentDetails = ({ route, navigation }: Props) => {
       : [],
   );
   const saveParentData = async (relationship: any, parentName: any, userRelationToParent: any) => {
-    let relationshipnew: any = relationship;
+    const relationshipnew: any = relationship;
     if (typeof relationshipnew === 'string' || relationshipnew instanceof String) {
       relationship = relationshipnew
     }
     else {
       relationship = String(relationshipnew);
     }
-    let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
-    let userRelationToParentRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
-    let userNames = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
+     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
+     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
+     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
     userRelationToParent = userRelationToParent.length > 0 ? userRelationToParent[0].value : '';
     updateActiveChild(activeChild, "parent_gender", relationship, dispatch, String(userRelationToParent));
     navigation.navigate('ChildProfileScreen');
@@ -123,13 +130,10 @@ const EditParentDetails = ({ route, navigation }: Props) => {
     }
   };
   return <>
-    <View style={{ flex: 1, backgroundColor: headerColor }}>
+    <View style={[styles.flex1,{ backgroundColor: headerColor }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
-        style={{
-          backgroundColor: headerColor,
-          maxHeight: 50,
-        }}>
+        style={[styles.headerRowView,{backgroundColor: headerColor}]}>
         <HeaderIconView>
           <HeaderIconPress
             onPress={() => {
@@ -223,7 +227,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
           <FormInputBox>
             <TextInputML
               autoCapitalize="none"
-              style={{ width: '100%' }}
+              style={styles.textInputML}
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
@@ -258,17 +262,4 @@ const EditParentDetails = ({ route, navigation }: Props) => {
 };
 
 export default EditParentDetails;
-const styles = StyleSheet.create({
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: '#20232a',
-    borderRadius: 6,
-    backgroundColor: '#FFF',
-    color: '#20232a',
-    textAlign: 'left',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-});
+

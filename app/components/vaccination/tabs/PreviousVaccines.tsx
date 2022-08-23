@@ -26,19 +26,22 @@ import { useAppSelector } from '../../../../App';
 import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate } from '../../../services/Utils';
 import Icon, { IconViewAlert } from '../../shared/Icon';
-
+const styles=StyleSheet.create({
+  alignCenter:{alignSelf: 'center' },
+  radioActive:{backgroundColor: greenColor, borderRadius: 50 },
+  textNoLine:{ textDecorationLine: "none" },
+  toolsIconOuterView:{ alignItems: "flex-end", flex: 1 },
+  vaccineOuterView:{ flex: 6, flexDirection: "row" }
+ })
 const PreviousVaccines = (props: any) => {
   const { item, headerColor, backgroundColor } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
-  );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
   );
   const gotoArticle = (pinned_articleID: any) => {
     if (pinned_articleID != 0) {
@@ -58,7 +61,7 @@ const PreviousVaccines = (props: any) => {
       <ToolsListOuter>
         <ToolsListContainer
           style={{
-            backgroundColor: backgroundColor,
+            backgroundColor: backgroundColor
           }}>
           <ToolsIconView>
             {item.vaccines.every((el:any) => {
@@ -123,7 +126,7 @@ const PreviousVaccines = (props: any) => {
                         )}
                       </ToolsIconView>
                       <ToolsHeadingView>
-                        <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
+                        <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate) : null}</Heading4Regular>
 
                         {v?.pinned_article ?
                           <Pressable onPress={() => gotoArticle(v.pinned_article)}>
@@ -179,10 +182,3 @@ const PreviousVaccines = (props: any) => {
   );
 };
 export default PreviousVaccines;
-const styles=StyleSheet.create({
- radioActive:{backgroundColor: greenColor, borderRadius: 50 },
- alignCenter:{alignSelf: 'center' },
- vaccineOuterView:{ flex: 6, flexDirection: "row" },
- toolsIconOuterView:{ flex: 1, alignItems: "flex-end" },
- textNoLine:{ textDecorationLine: "none" }
-})

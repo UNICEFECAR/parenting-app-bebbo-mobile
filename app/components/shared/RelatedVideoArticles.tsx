@@ -18,17 +18,33 @@ const ContainerView = styled.View`
   justify-content: space-between;
   margin-top: 10px;
 `;
+const styles = StyleSheet.create({
+  imageView: {
+    minHeight:80
+  },
+  imageView1: { 
+    flexDirection: 'column',
+    flex: 1,
+    justifyContent: 'space-between'
+  },
+  itemPressable: {
+    flexDirection:'row'
+  },
+  listParentView : {
+    paddingLeft:10
+  }
+});
 export type RelatedVideoArticlesProps = {
-  related_articles?:any,
-  related_video_articles?:any,
-  category?:any,
-  currentId?:any,
-  headerColor?:any,
-  backgroundColor?:any,
-  listCategoryArray?:any,
-  navigation?:any,
-  fromScreen?:any,
-  currentSelectedChildId?:any
+  related_articles?:any;
+  related_video_articles?:any;
+  category?:any;
+  currentId?:any;
+  headerColor?:any;
+  backgroundColor?:any;
+  listCategoryArray?:any;
+  navigation?:any;
+  fromScreen?:any;
+  currentSelectedChildId?:any;
 }
 const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
   const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
@@ -81,7 +97,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
         // go not calclualte for growth screen
         else if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
           
-          let relatedData: any = [];
+          const relatedData: any = [];
           const catartlength = maxRelatedArticleSize - relartlength;
           
           const filteredArtData = videoarticleData.filter((x: any) => {
@@ -162,21 +178,6 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
 };
 
 export default RelatedVideoArticles;
-const styles = StyleSheet.create({
-  itemPressable: {
-    flexDirection:'row'
-  },
-  imageView1: { 
-    flexDirection: 'column',
-    flex: 1,
-    justifyContent: 'space-between'
-  },
-  imageView: {
-    minHeight:80
-  },
-  listParentView : {
-    paddingLeft:10
-  }
-});
+
 
 

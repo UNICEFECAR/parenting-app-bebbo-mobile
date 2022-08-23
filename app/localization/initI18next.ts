@@ -13,17 +13,19 @@ import i18n, {
   console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
   const localisationnew = [...localization];
   const findAllByKey:any = (obj: object | null, keyToFind: string) => {
-    return Object.entries(obj)
+    if(obj){
+     return Object.entries(obj)
       .reduce((acc, [key, value]) => (key === keyToFind)
         ? acc.concat(value)
         : (typeof value === 'object')
         ? acc.concat(findAllByKey(value, keyToFind))
         : acc
       , [])
+    }
   }
 
   const findLangCode = (languageTag: string | undefined) => {
-    const obj = localisationnew.reduce((prev, product):any => prev || product.languages.find(item => item.luxonLocale === languageTag && item.locale != 'RSen'), undefined);
+    const obj = localisationnew.reduce((prev, product):any => prev || product.languages.find((item:any) => item.luxonLocale === languageTag && item.locale != 'RSen'), undefined);
     const obj2 = obj ? obj.locale : obj;
     return obj2;
   }
@@ -47,9 +49,9 @@ import i18n, {
           
           const bestLng = RNLocalize.findBestAvailableLanguage(AVALAILABLE_LANG_CODES);
          const langCodeNew = findLangCode(bestLng?.languageTag);
-         let lang2 = langCodeNew ?langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
+         const lang2 = langCodeNew ?langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
          const country = localization.find((x:any) => x.languages.some((item:any) => item.locale === lang2));
-        const language = localization.reduce((prev: any, product: any) => prev || product.languages.find(item => item.locale === lang2), undefined);
+        const language = localization.reduce((prev: any, product: any) => prev || product.languages.find((item:any) => item.locale === lang2), undefined);
         store.dispatch(onLocalizationSelect({country,language}))
           callback(langCodeNew ?? localization[localization.length-1]?.languages[0]?.locale);
           return;

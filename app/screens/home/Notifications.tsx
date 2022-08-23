@@ -1,4 +1,3 @@
-
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import HeaderBabyMenu from '@components/HeaderBabyMenu';
 import HeaderNotiIcon from '@components/HeaderNotiIcon';
@@ -9,22 +8,32 @@ import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonText } from '@components/shared/ButtonGlobal';
 import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { bgcolorWhite2 } from '@styles/style';
 import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, AppState, BackHandler, FlatList, Pressable, View } from 'react-native';
+import { ActivityIndicator, AppState, BackHandler, FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setAllNotificationData } from '../../redux/reducers/notificationSlice';
 import { getCurrentChildAgeInDays, isFutureDate } from '../../services/childCRUD';
-type NotificationsNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
+const styles=StyleSheet.create(
+  {
+    buttonContainerTwo:{backgroundColor:bgcolorWhite2},
+    flex1:{flex:1},
+    flex2:{ flex: 2},
+    flex7:{ flex: 7},
+    mainOuterView:{ flex:1,flexDirection: 'column', backgroundColor:bgcolorWhite2},
+    marginTop10:{marginTop:10},
+    maxHeight50:{maxHeight: 50},
+    notiCategoriesView:{ flex:1, marginVertical: 0, paddingBottom: 10 },
+    paddingBottom8:{paddingBottom:'8%'}
+  }
+)
 const Notifications = () => {
-  let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
+  const allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
   const [allChildnotification, setAllChildNotification] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [profileLoading,setProfileLoading] = React.useState(false);
@@ -63,58 +72,39 @@ const Notifications = () => {
       backHandler.remove()};
   }, []);
   const appState = useRef(AppState.currentState);
-  useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
-    return () => {
-      AppState.removeEventListener('change', handleAppStateChange);
-    };
-  }, []);
-  const handleAppStateChange = (nextAppState:any) => {
-    if (appState != nextAppState) {
-      if (appState.current.match(/inactive|background/) 
-            && nextAppState === 'active') {
-        if (allChildnotification.length > 0) {
-          const currentChildNotis = allChildnotification.find((item) => item.childuuid == activeChild.uuid)
-          calculateNotis(currentChildNotis)
-        }
-
-      }
-      appState.current = nextAppState;
-    }
-  };
   const calculateNotis = (currentChildNotis: any) => {
     if (currentChildNotis!= undefined) {
-      let currentChildallnoti: any = [];
+      const currentChildallnoti: any = [];
       if (currentChildNotis.gwcdnotis) {
         currentChildNotis.gwcdnotis.forEach((item:any) => {
-          let newItem = { ...item }
+          const newItem = { ...item }
           newItem['isChecked'] = false;
           currentChildallnoti.push(newItem)
         })
       }
       if (currentChildNotis.hcnotis) {
         currentChildNotis.hcnotis.forEach((item:any) => {
-          let newItem = { ...item }
+          const newItem = { ...item }
           newItem['isChecked'] = false;
           currentChildallnoti.push(newItem)
         })
       }
       if (currentChildNotis.vcnotis) {
         currentChildNotis.vcnotis.forEach((item:any) => {
-          let newItem = { ...item }
+          const newItem = { ...item }
           newItem['isChecked'] = false;
           currentChildallnoti.push(newItem)
         })
       }
       if (currentChildNotis.reminderNotis) {
         currentChildNotis.reminderNotis.forEach((item:any) => {
-          let newItem = { ...item }
+          const newItem = { ...item }
           newItem['isChecked'] = false;
           currentChildallnoti.push(newItem)
         })
       }
-      let toDay = DateTime.fromJSDate(new Date()).toMillis();
-      let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+      const toDay = DateTime.fromJSDate(new Date()).toMillis();
+      const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
       const combinedNotis = currentChildallnoti.sort(
         (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
       ).reverse()
@@ -128,6 +118,27 @@ const Notifications = () => {
       setIsLoading(false)
     }
   }
+  const handleAppStateChange = (nextAppState:any) => {
+    if (appState != nextAppState) {
+      if (appState.current.match(/inactive|background/) 
+            && nextAppState === 'active') {
+        if (allChildnotification.length > 0) {
+          const currentChildNotis = allChildnotification.find((item) => item.childuuid == activeChild.uuid)
+          calculateNotis(currentChildNotis)
+        }
+
+      }
+      appState.current = nextAppState;
+    }
+  };
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
+  
+ 
   useFocusEffect(
     React.useCallback(() => {
       setIsLoading(true);
@@ -172,40 +183,40 @@ const Notifications = () => {
 
   }
   const onItemReadMarked = async (notiItem: any) => {
-    let allNotifications = [...allChildnotification];
-    let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
-    let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
+    const allNotifications = [...allChildnotification];
+    const currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
+    const currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
     if (notiItem.type == 'gw' || notiItem.type == 'cd') {
       const notitoUpdateIndex = currentChildNotis.gwcdnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-      let newItem: any = { ...notiItem };
+      const newItem: any = { ...notiItem };
       newItem.isRead = (newItem.isRead == true) ? false : true;
       delete newItem.isChecked;
-      let allgwcdnotis = [...currentChildNotis.gwcdnotis]
+      const allgwcdnotis = [...currentChildNotis.gwcdnotis]
       allgwcdnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.gwcdnotis = allgwcdnotis
     } else if (notiItem.type == 'vc') {
       const notitoUpdateIndex = currentChildNotis.vcnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-      let newItem: any = { ...notiItem };
+      const newItem: any = { ...notiItem };
       newItem.isRead = (newItem.isRead == true) ? false : true;
       delete newItem.isChecked;
-      let allvcnotis = [...currentChildNotis.vcnotis]
+      const allvcnotis = [...currentChildNotis.vcnotis]
       allvcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.vcnotis = allvcnotis
     } else if (notiItem.type == 'hc') {
       const notitoUpdateIndex = currentChildNotis.hcnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-      let newItem: any = { ...notiItem };
+      const newItem: any = { ...notiItem };
       newItem.isRead = (newItem.isRead == true) ? false : true;
       delete newItem.isChecked;
-      let allhcnotis = [...currentChildNotis.hcnotis]
+      const allhcnotis = [...currentChildNotis.hcnotis]
       allhcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.hcnotis = allhcnotis
     } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
       if (currentChildNotis.reminderNotis) {
         const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type) && (item.subtype == notiItem.subtype) && (item.subtypeid == notiItem.subtypeid));
-        let newItem: any = { ...notiItem };
+        const newItem: any = { ...notiItem };
         newItem.isRead = (newItem.isRead == true) ? false : true;
         delete newItem.isChecked;
-        let allremindenotis = [...currentChildNotis.reminderNotis]
+        const allremindenotis = [...currentChildNotis.reminderNotis]
         allremindenotis[notitoUpdateIndex] = newItem;
         currentChildNotis.reminderNotis = allremindenotis
       }
@@ -218,15 +229,15 @@ const Notifications = () => {
     return currentChildNotis
   }
   const onItemDeleteMarked = (notiItem: any) => {
-    let allNotifications = [...allChildnotification];
-    let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
-    let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
+    const allNotifications = [...allChildnotification];
+    const currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
+    const currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
     if (notiItem.type == 'gw' || notiItem.type == 'cd') {
       const notitoUpdateIndex = currentChildNotis.gwcdnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-      let newItem: any = { ...notiItem };
+      const newItem: any = { ...notiItem };
       newItem.isDeleted = newItem.isDeleted == true ? false : true;
       delete newItem.isChecked;
-      let allgwcdnotis = [...currentChildNotis.gwcdnotis]
+      const allgwcdnotis = [...currentChildNotis.gwcdnotis]
       allgwcdnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.gwcdnotis = allgwcdnotis;
       allNotifications[currentChildIndex] = currentChildNotis
@@ -235,10 +246,10 @@ const Notifications = () => {
       calculateNotis(currentChildNotis);
     } else if (notiItem.type == 'vc') {
       const notitoUpdateIndex = currentChildNotis.vcnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-      let newItem: any = { ...notiItem };
+      const newItem: any = { ...notiItem };
       newItem.isDeleted = newItem.isDeleted == true ? false : true;
       delete newItem.isChecked;
-      let allvcnotis = [...currentChildNotis.vcnotis]
+      const allvcnotis = [...currentChildNotis.vcnotis]
       allvcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.vcnotis = allvcnotis;
       allNotifications[currentChildIndex] = currentChildNotis
@@ -247,10 +258,10 @@ const Notifications = () => {
       calculateNotis(currentChildNotis);
     } else if (notiItem.type == 'hc') {
       const notitoUpdateIndex = currentChildNotis.hcnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-      let newItem: any = { ...notiItem };
+      const newItem: any = { ...notiItem };
       newItem.isDeleted = newItem.isDeleted == true ? false : true;
       delete newItem.isChecked;
-      let allhcnotis = [...currentChildNotis.hcnotis]
+      const allhcnotis = [...currentChildNotis.hcnotis]
       allhcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.hcnotis = allhcnotis
       allNotifications[currentChildIndex] = currentChildNotis
@@ -260,14 +271,14 @@ const Notifications = () => {
     } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
       if (currentChildNotis.reminderNotis) {
         const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type) && (item.subtype == notiItem.subtype) && (item.subtypeid == notiItem.subtypeid));
-        let newItem: any = { ...notiItem };
+        const newItem: any = { ...notiItem };
         newItem.isDeleted = true;
         delete newItem.isChecked;
-        let allremindenotis = [...currentChildNotis.reminderNotis]
+        const allremindenotis = [...currentChildNotis.reminderNotis]
         allremindenotis[notitoUpdateIndex] = newItem;
         currentChildNotis.reminderNotis = allremindenotis;
         allNotifications[currentChildIndex] = currentChildNotis
-       console.log(allNotifications, "AFTERDELETE allNotifications");
+        console.log(allNotifications, "AFTERDELETE allNotifications");
         setAllChildNotification(allNotifications);
         dispatch(setAllNotificationData(allNotifications));
         calculateNotis(currentChildNotis);
@@ -277,41 +288,41 @@ const Notifications = () => {
   }
   const deleteSelectedNotifications = async () => {
 
-    let allNotifications = [...allChildnotification];
-    let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
-    let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
+    const allNotifications = [...allChildnotification];
+    const currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
+    const currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
     checkedNotifications.map(async (notiItem) => {
       if (notiItem.type == 'gw' || notiItem.type == 'cd') {
         const notitoUpdateIndex = currentChildNotis.gwcdnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-        let newItem: any = { ...notiItem };
+        const newItem: any = { ...notiItem };
         newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
         delete newItem.isChecked;
-        let allgwcdnotis = [...currentChildNotis.gwcdnotis]
+        const allgwcdnotis = [...currentChildNotis.gwcdnotis]
         allgwcdnotis[notitoUpdateIndex] = newItem;
         currentChildNotis.gwcdnotis = allgwcdnotis
       } else if (notiItem.type == 'vc') {
         const notitoUpdateIndex = currentChildNotis.vcnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-        let newItem: any = { ...notiItem };
+        const newItem: any = { ...notiItem };
         newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
         delete newItem.isChecked;
-        let allvcnotis = [...currentChildNotis.vcnotis]
+        const allvcnotis = [...currentChildNotis.vcnotis]
         allvcnotis[notitoUpdateIndex] = newItem;
         currentChildNotis.vcnotis = allvcnotis
       } else if (notiItem.type == 'hc') {
         const notitoUpdateIndex = currentChildNotis.hcnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-        let newItem: any = { ...notiItem };
+        const newItem: any = { ...notiItem };
         newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
         delete newItem.isChecked;
-        let allhcnotis = [...currentChildNotis.hcnotis]
+        const allhcnotis = [...currentChildNotis.hcnotis]
         allhcnotis[notitoUpdateIndex] = newItem;
         currentChildNotis.hcnotis = allhcnotis
       } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
         if (currentChildNotis.reminderNotis) {
           const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type)  && (item.subtype == notiItem.subtype) && (item.subtypeid == notiItem.subtypeid));          
-          let newItem: any = { ...notiItem };
+          const newItem: any = { ...notiItem };
           newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
           delete newItem.isChecked;
-          let allremindenotis = [...currentChildNotis.reminderNotis]
+          const allremindenotis = [...currentChildNotis.reminderNotis]
           allremindenotis[notitoUpdateIndex] = newItem;
           currentChildNotis.reminderNotis = allremindenotis;
         }
@@ -326,18 +337,17 @@ const Notifications = () => {
   }
   return (
     <>
-      <View style={{flex:1,backgroundColor:primaryColor}}>
+      <View style={[styles.flex1,{backgroundColor:primaryColor}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
-        <View style={{ flex:1,flexDirection: 'column', backgroundColor:'#FFF'}}>
+        <View style={styles.mainOuterView}>
           <HeaderRowView
-            style={{
-              backgroundColor: primaryColor,
-              maxHeight: 50,
-            }}>
+            style={[styles.maxHeight50,{
+              backgroundColor: primaryColor
+            }]}>
 
             <BurgerIcon />
 
-            <HeaderTitleView style={{ flex: 2 }}>
+            <HeaderTitleView style={styles.flex2}>
               <Heading2w>{t('notiScreenheaderTitle')}</Heading2w>
             </HeaderTitleView>
 
@@ -357,18 +367,18 @@ const Notifications = () => {
             </OuterIconRow>
             <HeaderBabyMenu setProfileLoading={setProfileLoading}/>
           </HeaderRowView>
-          {isFutureDate(activeChild?.birthDate) ? <Heading4Center style={{marginTop:10}}>{t('noDataTxt')}</Heading4Center> :
+          {isFutureDate(activeChild?.birthDate) ? <Heading4Center style={styles.marginTop10}>{t('noDataTxt')}</Heading4Center> :
             notifications.length > 0 ?
-              <View style={{ flex: 7, }}>
+              <View style={styles.flex7}>
                 <NotificationsCategories onchange={onCategorychange} />
-                <View style={{ flex:1, marginVertical: 0, paddingBottom: 10 }}>
+                <View style={styles.notiCategoriesView}>
                   {
                     notifications?.length>0?
                     selectedCategories.length==0 || (selectedCategories.length>0 && notifications.filter((item) => selectedCategories.includes(item.type)).length>0)?
                     <FlatList
                     ref={flatListRefNoti}
                     data={selectedCategories.length == 0 ? notifications:notifications.filter((item) => selectedCategories.includes(item.type))}
-                    contentContainerStyle={{paddingBottom:'8%'}}
+                    contentContainerStyle={styles.paddingBottom8}
                     onScroll={(e)=>{
                       console.log("e--",e);
                     }}
@@ -400,7 +410,7 @@ const Notifications = () => {
           {
             isDeleteEnabled ? (
               <>
-                <ButtonContainerTwo style={{backgroundColor:"#fff"}}>
+                <ButtonContainerTwo style={styles.buttonContainerTwo}>
                   <ButtonColTwo>
                     <ButtonSecondaryTint onPress={() => { setIsDeleteEnabled(!isDeleteEnabled); setCheckedNotifications([]) }}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>

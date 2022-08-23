@@ -1,10 +1,7 @@
 
 import { appConfig } from "@assets/translations/appOfflineData/apiConstants";
 import { createSlice } from "@reduxjs/toolkit";
-import { WritableDraft } from "immer/dist/internal";
 
-// interface ArrayObj { data: any, apiEndpoint: any, status: any };
-// let errorarray: WritableDraft<[]> = [];
 export const sagaSlice = createSlice({
   name: 'sagaReducer',
   initialState: {
@@ -25,7 +22,7 @@ export const sagaSlice = createSlice({
         }
       } else {
         action.payload.errorArr.map((value: any) => {
-          const i = state.errorObj.findIndex(_item => _item.apiEndpoint === value.apiEndpoint);
+          const i = state.errorObj.findIndex((_item:any) => _item.apiEndpoint === value.apiEndpoint);
           if (i == -1) {
             state.errorObj.push(value)
           }

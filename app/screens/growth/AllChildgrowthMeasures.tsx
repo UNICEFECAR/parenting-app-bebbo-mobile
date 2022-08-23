@@ -8,44 +8,43 @@ import {
 import { FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import { IconML } from '@components/shared/Icon';
-import { RootStackParamList } from '@navigation/types';
-import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2, ShiftFromTop10
 } from '@styles/typography';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { isFutureDate } from '../../services/childCRUD';
 
-
-type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
-
-type Props = {
-  navigation: ChildSetupNavigationProp;
-};
-
-const AllChildgrowthMeasures = ({navigation}: Props) => {
+const styles=StyleSheet.create({
+  flex1:{flex:1},
+  flexCol:{padding: 20,
+    paddingLeft: 5,
+    maxHeight: '100%',
+    flex: 9},
+  maxHeight:{maxHeight: 50},
+  overflowHidden:{overflow:'hidden'}
+})
+const AllChildgrowthMeasures = ({navigation}: any) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const {t} = useTranslation();
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
   return (
     <>
-      <View style={{flex: 1, backgroundColor: headerColor}}>
+      <View style={[styles.flex1,{backgroundColor: headerColor}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
             <HeaderRowView
-          style={{
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
+          style={[styles.maxHeight,{
+            backgroundColor: headerColor
+          }]}>
           <HeaderIconView>
           <HeaderIconPress
                 onPress={() => {
@@ -61,13 +60,9 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
         </HeaderRowView>
         <FlexCol>
           <View
-            style={{
-              flex: 9,
-              backgroundColor: backgroundColor,
-              padding: 20,
-              paddingLeft: 5,
-              maxHeight: '100%',
-            }}>
+            style={[styles.flexCol,{
+              backgroundColor: backgroundColor         
+            }]}>
               <ActiveChildMeasureTimeline activeChild={activeChild}/>
             </View>
             <ButtonContainer style={{backgroundColor: backgroundColor}}>

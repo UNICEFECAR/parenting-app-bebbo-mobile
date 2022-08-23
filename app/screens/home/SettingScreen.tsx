@@ -60,7 +60,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Modal, Platform, Pressable, ScrollView, View } from 'react-native';
+import { Alert, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
@@ -79,6 +79,7 @@ import { formatStringDate, formatStringTime } from '../../services/Utils';
 import * as ScopedStorage from "react-native-scoped-storage";
 import Share from 'react-native-share';
 import LocalNotifications from '../../services/LocalNotifications';
+import { bgcolorWhite2 } from '@styles/style';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -95,6 +96,11 @@ type localizationType = {
     locale: string;
   };
 };
+const styles=StyleSheet.create({
+bgColorWhite:{ backgroundColor:bgcolorWhite2},
+borderWidth1:{ borderWidth: 1 },
+flex1:{flex:1}
+})
 const SettingScreen = (props: any) => {
   const themeContext = useContext(ThemeContext);
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
@@ -129,8 +135,8 @@ const SettingScreen = (props: any) => {
   const allDataDownloadFlag = useAppSelector((state: any) =>
   (state.utilsData.allDataDownloadFlag),
 );
-  let localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
-  let scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
+  const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
+  const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
 
   const { t } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
@@ -138,9 +144,15 @@ const SettingScreen = (props: any) => {
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isExportAlertVisible, setExportAlertVisible] = useState(false);
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
+  const [modalVisible, setModalVisible] = useState(false);
+  const [country, setCountry] = useState<any>('');
+  const [language, setlanguage] = useState<any>('');
+  const actionSheetRef = createRef<any>();
+  const actionSheetRefImport = createRef<any>();
+  const countryId = useAppSelector(
+    (state: any) => state.selectedCountry.countryId,
   );
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -159,7 +171,7 @@ const SettingScreen = (props: any) => {
 
   const importAllData = async () => {
     setIsImportRunning(true);
-    const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
+    await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
     setIsImportRunning(false);
     actionSheetRefImport.current?.setModalVisible(false);
   }
@@ -172,11 +184,12 @@ const SettingScreen = (props: any) => {
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
     // export via file system
     if (Platform.OS === "android") {
-       let file = await ScopedStorage.openDocumentTree(true);
-       let uri: any = await ScopedStorage.getPersistedUriPermissions();
+       const file = await ScopedStorage.openDocumentTree(true);
+       const uri: any = await ScopedStorage.getPersistedUriPermissions();
+       console.log(uri,"..uri");
       try{
-      let fileDownload: any = await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
-      let uri1: any = await ScopedStorage.getPersistedUriPermissions();
+      const fileDownload: any = await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
+      const uri1: any = await ScopedStorage.getPersistedUriPermissions();
       console.log(uri1, "..uri..");
       console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
       if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
@@ -228,6 +241,7 @@ const SettingScreen = (props: any) => {
         }
         }
           }).catch((e)=>{
+            console.log(e)
             setIsExportRunning(false);
             Alert.alert('', t('settingExportError'));
           });
@@ -249,7 +263,7 @@ const SettingScreen = (props: any) => {
       Alert.alert('', t('settingExportError'));
     } else {
       Alert.alert('', t('settingExportSuccess'));
-    };
+    }
     actionSheetRef.current?.setModalVisible(false);
   }
   const handleExportAlertConfirm = () => {
@@ -272,20 +286,20 @@ const SettingScreen = (props: any) => {
       setIsEnabled(false);
     }
   }
-  let childAge = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const toggleGrowthFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from gwcdnotis where type = 'gw'
     let currscheduledlocalNotifications = [...scheduledlocalNotifications];
-    let childList = await getAllChildren(dispatch, childAge, 1);
+    const childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
-    let allnotis = [...storedata.notificationData.notifications];
+    const allnotis = [...storedata.notificationData.notifications];
     childList?.map((child: any) => {
-      let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
-      let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
-      let notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
+      const currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
+      const currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
+      const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
       if (notiExist) {
         if (currentChildNotis.gwcdnotis.length > 0) {
           currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
@@ -294,7 +308,7 @@ const SettingScreen = (props: any) => {
               // growthEnabledFlag == false checked because state update of growthEnabledFlag istaking time
               if (isFutureDate((item.notificationDate))) {
                 return { ...item, isDeleted: growthEnabledFlag == false ? false : true };
-              } else if (difftoToday == 0 || difftoToday == -0) {
+              } else if (difftoToday == 0) {
                 if (growthEnabledFlag == false) {
                   return { ...item, isDeleted: false };
                 } else {
@@ -330,19 +344,19 @@ const SettingScreen = (props: any) => {
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
     if(callCreateLocalNoti == true) {
-      let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+      const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
   const togglecdFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from gwcdnotis where type = 'cd'
     let currscheduledlocalNotifications = [...scheduledlocalNotifications];
-    let childList = await getAllChildren(dispatch, childAge, 1);
+    const childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
-    let allnotis = [...storedata.notificationData.notifications];
+    const allnotis = [...storedata.notificationData.notifications];
     childList?.map((child: any) => {
-      let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
-      let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
+      const currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
+      const currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
       const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
       if (notiExist) {
         if (currentChildNotis.gwcdnotis.length > 0) {
@@ -352,7 +366,7 @@ const SettingScreen = (props: any) => {
               // developmentEnabledFlag == false checked because state update of developmentEnabledFlag istaking time
               if (isFutureDate(new Date(item.notificationDate))) {
                 return { ...item, isDeleted: developmentEnabledFlag == false ? false : true };
-              } else if (difftoToday == 0 || difftoToday == -0) {
+              } else if (difftoToday == 0) {
                 if (developmentEnabledFlag == false) {
                   return { ...item, isDeleted: false };
                 } else {
@@ -388,19 +402,19 @@ const SettingScreen = (props: any) => {
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
     if(callCreateLocalNoti == true) {
-      let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+      const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
   const toggleVCHCVCRHCRFutureNotiData = async (callCreateLocalNoti:boolean) => {
     //toggle isDeleted flag from reminderNotis,hcnotis,vchcnotis
     let currscheduledlocalNotifications = [...scheduledlocalNotifications];
-    let childList = await getAllChildren(dispatch, childAge, 1);
+    const childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
-    let allnotis = [...storedata.notificationData.notifications];
+    const allnotis = [...storedata.notificationData.notifications];
     childList?.map((child: any) => {
-      let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
-      let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
+      const currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
+      const currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
       const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
       if (notiExist) {
         if (currentChildNotis.vcnotis.length > 0) {
@@ -411,7 +425,7 @@ const SettingScreen = (props: any) => {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
             }
 
-            else if (difftoToday == 0 || difftoToday == -0) {
+            else if (difftoToday == 0) {
               if (vchcEnabledFlag == false) {
                 return { ...item, isDeleted: false };
               } else {
@@ -428,7 +442,7 @@ const SettingScreen = (props: any) => {
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
-            } else if (difftoToday == 0 || difftoToday == -0) {
+            } else if (difftoToday == 0) {
               if (vchcEnabledFlag == false) {
                 return { ...item, isDeleted: false };
               } else {
@@ -445,7 +459,6 @@ const SettingScreen = (props: any) => {
             LocalNotifications.cancelAllReminderLocalNotification();
           }
           currentChildNotis.reminderNotis = [...currentChildNotis.reminderNotis]?.map((item) => {
-            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
             console.log(vchcEnabledFlag,"----vchcEnabledFlag");
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if(vchcEnabledFlag == false) {
@@ -453,8 +466,8 @@ const SettingScreen = (props: any) => {
               console.log(item,'---isfuture date4 ---',isFutureDateTime(new Date(item.notificationDate)));
               if(item.subtype == 'reminder' && isFutureDateTime(new Date(item.notificationDate)))
               {
-                const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
-                const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
+                const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)});
+                const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)});
                 const message = item.type == 'vaccine' ? titlevcr : titlehcr;
                 LocalNotifications.schduleNotification(new Date(item.notificationDate),t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),item.type == 'vaccine' ? 'vcr' : 'hcr',child.uuid);
               }
@@ -487,28 +500,28 @@ const SettingScreen = (props: any) => {
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
     if(callCreateLocalNoti == true) {
-      let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+      const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
   const toggleAllNotis = () => {
     if (isEnabled == true) {
-      let obj = { key: 'growthEnabled', value: false };
+      const obj = { key: 'growthEnabled', value: false };
       dispatch(toggleNotificationFlags(obj));
-      let obj1 = { key: 'developmentEnabled', value: false };
+      const obj1 = { key: 'developmentEnabled', value: false };
       dispatch(toggleNotificationFlags(obj1));
-      let obj2 = { key: 'vchcEnabled', value: false };
+      const obj2 = { key: 'vchcEnabled', value: false };
       dispatch(toggleNotificationFlags(obj2));
       setIsEnabled(false);
       analytics().logEvent(GROWTH_NOTIFICATION_OFF)
       analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
       analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
     } else {
-      let obj = { key: 'growthEnabled', value: true };
+      const obj = { key: 'growthEnabled', value: true };
       dispatch(toggleNotificationFlags(obj));
-      let obj1 = { key: 'developmentEnabled', value: true };
+      const obj1 = { key: 'developmentEnabled', value: true };
       dispatch(toggleNotificationFlags(obj1));
-      let obj2 = { key: 'vchcEnabled', value: true };
+      const obj2 = { key: 'vchcEnabled', value: true };
       dispatch(toggleNotificationFlags(obj2));
       setIsEnabled(true);
       analytics().logEvent(GROWTH_NOTIFICATION_ON)
@@ -518,7 +531,7 @@ const SettingScreen = (props: any) => {
     toggleGrowthFutureNotiData(false);
     togglecdFutureNotiData(false);
     toggleVCHCVCRHCRFutureNotiData(false);
-    let localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
   }
   const toggleDataSaverSwitch = () => {
@@ -531,7 +544,7 @@ const SettingScreen = (props: any) => {
         {
           text: t('downloadUpdateCancelPopUpBtn'),
           onPress: () => {
-
+          console.log("on pressed")
           },
           style: "cancel"
         },
@@ -553,7 +566,7 @@ const SettingScreen = (props: any) => {
         {
           text: t('downloadAllCancelPopUpBtn'),
           onPress: () => {
-
+            console.log("on pressed")
           },
           style: "cancel"
         },
@@ -569,15 +582,7 @@ const SettingScreen = (props: any) => {
     );
   }
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [country, setCountry] = useState<any>('');
-  const [language, setlanguage] = useState<any>('');
-  const actionSheetRef = createRef<any>();
-  const actionSheetRefImport = createRef<any>();
-  const countryId = useAppSelector(
-    (state: any) => state.selectedCountry.countryId,
-  );
-  const [profileLoading,setProfileLoading] = React.useState(false);
+ 
   useEffect(() => {
     const selectedCountry: any = localization.find(
       (country:any) => country.countryId === countryId,
@@ -625,7 +630,7 @@ const SettingScreen = (props: any) => {
       setIsImportRunning(true);
       if(oldChildrenData.length>0){
         await userRealmCommon.openRealm();
-        userRealmCommon.deleteAllAtOnce();
+        await userRealmCommon.deleteAllAtOnce();
         const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
         console.log(importResponse, "..importResponse");
       }
@@ -657,7 +662,7 @@ const SettingScreen = (props: any) => {
             setIsImportRunning(true);
             if(oldChildrenData.length>0){
             await userRealmCommon.openRealm();
-            userRealmCommon.deleteAllAtOnce();
+            await userRealmCommon.deleteAllAtOnce();
             const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
             console.log(importResponse, "..importResponse");
             }
@@ -671,7 +676,7 @@ const SettingScreen = (props: any) => {
   }
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: primaryColor }}>
+      <View style={[styles.flex1,{backgroundColor: primaryColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <TabScreenHeader
           title={t('settingScreenheaderTitle')}
@@ -680,7 +685,7 @@ const SettingScreen = (props: any) => {
           setProfileLoading={setProfileLoading}
         />
 
-        <ScrollView style={{ flex: 1, backgroundColor: "#FFF" }}>
+        <ScrollView style={[styles.flex1,styles.bgColorWhite]}>
           <MainContainer>
             <SettingHeading>
               <Heading1>{t('settingScreennotiHeaderText')}</Heading1>
@@ -707,7 +712,7 @@ const SettingScreen = (props: any) => {
                 <FDirRowStart>
                   <FormOuterCheckbox
                     onPress={() => {
-                      let obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
+                      const obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
                       toggleGrowthFutureNotiData(true);
                       if (vchcEnabledFlag == false && growthEnabledFlag == true && developmentEnabledFlag == false) {
@@ -728,7 +733,7 @@ const SettingScreen = (props: any) => {
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          <Checkbox style={styles.borderWidth1}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -747,7 +752,7 @@ const SettingScreen = (props: any) => {
                 <FDirRowStart>
                   <FormOuterCheckbox
                     onPress={() => {
-                      let obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
+                      const obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
                       togglecdFutureNotiData(true);
                       if (vchcEnabledFlag == false && growthEnabledFlag == false && developmentEnabledFlag == true) {
@@ -769,7 +774,7 @@ const SettingScreen = (props: any) => {
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          <Checkbox style={styles.borderWidth1}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -788,7 +793,7 @@ const SettingScreen = (props: any) => {
                 <FDirRowStart>
                   <FormOuterCheckbox
                     onPress={() => {
-                      let obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
+                      const obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
                       toggleVCHCVCRHCRFutureNotiData(true);
                       if (vchcEnabledFlag == true && growthEnabledFlag == false && developmentEnabledFlag == false) {
@@ -809,7 +814,7 @@ const SettingScreen = (props: any) => {
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          <Checkbox style={styles.borderWidth1}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -858,7 +863,7 @@ const SettingScreen = (props: any) => {
             <Heading4>{t('settingScreendownldSubHeaderText')}</Heading4>
             <Heading6>
               {t('settingScreendownldlast', {
-                downloadDate: formatStringDate(new Date(lastUpdatedDate), luxonLocale),
+                downloadDate: formatStringDate(new Date(lastUpdatedDate)),
               })}
             </Heading6>
             <ShiftFromTop10>

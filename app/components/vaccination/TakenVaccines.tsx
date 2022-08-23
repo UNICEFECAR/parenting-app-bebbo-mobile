@@ -3,16 +3,16 @@ import React from 'react';
 import VaccineItem from './VaccineItem';
 const TakenVaccines = (props: any) => {
   const {onTakenVaccineToggle, fromScreen,backgroundActiveColor} = props;
-  let {takenVaccines} = props;
+  const {takenVaccines} = props;
    const onToggleVaccine = (id: any, isVaccineItemChecked: any) => {
      if (isVaccineItemChecked) {
-     let updatedItem =  takenVaccines.find((el: any) => el.uuid === id)
+     const updatedItem =  takenVaccines.find((el: any) => el.uuid === id)
       updatedItem.isMeasured= true;
       takenVaccines[takenVaccines.findIndex((el: any) => el.uuid === id)]=updatedItem;
       onTakenVaccineToggle(takenVaccines);
     } else {
       takenVaccines.map((x:any) => (x.uuid == id ? { ...x, isMeasured: false } : x));
-      let updatedItem =  takenVaccines.find((el: any) => el.uuid === id)
+      const updatedItem =  takenVaccines.find((el: any) => el.uuid === id)
       updatedItem['isMeasured']= false;
       takenVaccines[takenVaccines.findIndex((el: any) => el.uuid === id)]=updatedItem;
       onTakenVaccineToggle(takenVaccines);

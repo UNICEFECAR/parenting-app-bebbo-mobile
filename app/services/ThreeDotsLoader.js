@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Animated } from 'react-native'
+import PropTypes from 'prop-types';
 
 const SIZE = 9
 const MARGIN = 3
@@ -9,6 +10,13 @@ const dots = [1, 2, 3]
 const INTERVAL = 300
 const ANIMATION_DURATION = 400
 const ANIMATION_SCALE = 1.4
+const styles = StyleSheet.create({
+  main: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+})
 export default class ThreeDotsLoader extends React.Component {
   state = {
     active: 1
@@ -100,10 +108,12 @@ class Dot extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  main: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
+Dot.propTypes = {
+    active: PropTypes.any,
+    size: PropTypes.any,
+    background: PropTypes.any,
+    activeBackground: PropTypes.any,
+    dotMargin: PropTypes.any,
+    animationDuration: PropTypes.any,
+    animationScale: PropTypes.any,
+}

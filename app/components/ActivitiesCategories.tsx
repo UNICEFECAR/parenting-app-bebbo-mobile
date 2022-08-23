@@ -7,13 +7,39 @@ import { ActivityFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
 import analytics from '@react-native-firebase/analytics';
 import { GAME_CATEGORY_SELECTED } from '@assets/data/firebaseEvents';
+import { activitiesColor, bgcolorWhite2 } from '@styles/style';
 type ActivityCategoriesProps = {
-    borderColor?: any,
-    filterOnCategory?: any,
-    filterArray?: any,
-    fromPage?: any,
-    onFilterArrayChange?: any
+    borderColor?: any;
+    filterOnCategory?: any;
+    filterArray?: any;
+    fromPage?: any;
+    onFilterArrayChange?: any;
 }
+const styles = StyleSheet.create({
+    filterBoxbg1:{
+    backgroundColor:activitiesColor
+    },
+    filterBoxbg2:{
+    backgroundColor:bgcolorWhite2
+    },
+    iconStyle: {
+        marginLeft: 10,
+    },
+    innerView:{
+        flex: 1, 
+        flexDirection: 'column'
+    },
+    pressableView:{
+        flex: 1, 
+    },
+    viewStyle:{
+          marginLeft:'auto',
+          marginRight:'auto',
+          minHeight: 120,
+          padding: 10,
+          width:'100%',
+    }
+})
 const ActivitiesCategories = (props: ActivityCategoriesProps) => {
     const activityCategoryData = useAppSelector(
         (state: any) =>
@@ -66,28 +92,3 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
     );
 };
 export default ActivitiesCategories;
-const styles = StyleSheet.create({
-    iconStyle: {
-        marginLeft: 10,
-    },
-    viewStyle:{
-          padding: 10,
-          minHeight: 120,
-          width:'100%',
-          marginLeft:'auto',
-          marginRight:'auto',
-    },
-    innerView:{
-        flex: 1, 
-        flexDirection: 'column'
-    },
-    pressableView:{
-        flex: 1, 
-    },
-    filterBoxbg1:{
-    backgroundColor:"#0FD87E"
-    },
-    filterBoxbg2:{
-        backgroundColor:"#fff"
-    }
-})
