@@ -1,5 +1,3 @@
-// @ts-ignore
-
 import {
     GDrive,
     MimeTypes,
@@ -7,25 +5,28 @@ import {
   } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
 import { backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
-import { PermissionsAndroid } from "react-native";
+
 const _urlFiles = "https://www.googleapis.com/drive/v3";
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
 const gdrive = new GDrive();
 import RNFS from 'react-native-fs';
+import { PermissionsAndroidLocal } from "../android/sharedAndroid.android";
 /**
  * Access Google drive API.
  */
  async function requestWriteStoragePermission() {
     try {
-        const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        const granted = await PermissionsAndroidLocal.request(
+            PermissionsAndroidLocal.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
             {
                 'title': 'Write your android storage Permission',
                 'message': 'Write your android storage to save your data'
             }
         )
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        if (granted === PermissionsAndroidLocal.RESULTS.GRANTED) {
+            console.log("storage permission granted")
          } else {
+            console.log("storage permission not granted")
          }
     } catch (err) {
         console.warn(err)
@@ -38,28 +39,37 @@ import RNFS from 'react-native-fs';
  */
 async function requestReadStoragePermission() {
     try {
-        const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        const granted = await PermissionsAndroidLocal.request(
+            PermissionsAndroidLocal.PERMISSIONS.READ_EXTERNAL_STORAGE,
             {
                 'title': 'Read your android storage Permission',
                 'message': 'Read your android storage to save your data'
             }
         )
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        if (granted === PermissionsAndroidLocal.RESULTS.GRANTED) {
+            console.log("read storage permission granted")
         } else {
+            console.log("read storage permission not granted")
         }
     } catch (err) {
         console.warn(err)
     }
 }
+class ErrorAccessTokenNotSet extends Error {
+    static defaultMessage = 'You need to log in';
+
+    public constructor(message: string = ErrorAccessTokenNotSet.defaultMessage) {
+        super(message);
+    }
+}
 class GoogleDrive {
     private static instance: GoogleDrive;
     checkPermission = () => {
-        PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then((writeGranted) => {
+        PermissionsAndroidLocal.check(PermissionsAndroidLocal.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then((writeGranted:any) => {
             if (!writeGranted) {
                 requestWriteStoragePermission()
             }
-            PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then((readGranted) => {
+            PermissionsAndroidLocal.check(PermissionsAndroidLocal.PERMISSIONS.READ_EXTERNAL_STORAGE).then((readGranted:any) => {
                 if (!readGranted) {
                     requestReadStoragePermission()
                 }
@@ -67,7 +77,7 @@ class GoogleDrive {
         })
     }
     private constructor() {
-        
+        console.log("constructor");
        
      }
      public configureGetOptions(){
@@ -83,13 +93,13 @@ class GoogleDrive {
      * create download url based on id
      */
      public downloadFile=(fileId:any)=>{
-        const options = this.configureGetOptions()
+        this.configureGetOptions()
         if (!fileId) throw new Error('Didn\'t provide a valid file id.')
         return `${_urlFiles}/files/${fileId}?alt=media`
     }
      downloadAndReadFile = async (args:any) => {
          const fromUrl = this.downloadFile(args.fileId)
-        let downloadFileOptions:any = {
+        const downloadFileOptions:any = {
             fromUrl: fromUrl,
             toFile: args.filePath,
         }
@@ -97,8 +107,8 @@ class GoogleDrive {
             "Authorization": `Bearer ${gdrive.accessToken}`
         }, downloadFileOptions.headers);
 
-        let fileresult= RNFS.downloadFile(downloadFileOptions);
-        let downloadResult = await fileresult.promise;
+        const fileresult= RNFS.downloadFile(downloadFileOptions);
+        const downloadResult = await fileresult.promise;
         return downloadResult;
     }
     static getInstance(): GoogleDrive {
@@ -182,7 +192,7 @@ class GoogleDrive {
                 queryParams
             );
 
-            let responseJson = await response.json();
+            const responseJson = await response.json();
 
             if (response.status === 200) {
                 return responseJson;
@@ -200,7 +210,7 @@ class GoogleDrive {
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }
-        const response: Response = await gdrive.files.delete(fileId);
+        await gdrive.files.delete(fileId);
         return true;
     }
 
@@ -211,7 +221,7 @@ class GoogleDrive {
      */
     public async safeCreateFolder(args: SafeCreateFolderArgs): Promise<string | Error> {
         // Set Google access token
-       
+       console.log("args-",args);
        const isAccessTokenSet = await this.setAccessToken();
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
@@ -355,7 +365,7 @@ class GoogleDrive {
                 // Order: https://bit.ly/34ZczTf
                 orderBy: args.orderBy,
             });
-             let results:any = await response;
+             const results:any = await response;
             if (results && results.files.length>0) {
                 return results.files;
             } else {
@@ -372,13 +382,7 @@ class GoogleDrive {
      */
 }
 
-class ErrorAccessTokenNotSet extends Error {
-    static defaultMessage = 'You need to log in';
 
-    public constructor(message: string = ErrorAccessTokenNotSet.defaultMessage) {
-        super(message);
-    }
-}
 
 interface CreateFileMultipartArgs {
     name: string;

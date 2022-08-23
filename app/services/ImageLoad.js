@@ -165,7 +165,6 @@ export const createImageProgress = ImageComponent =>
         renderIndicator,
         source,
         style,
-        threshold,
         imageStyle,
         ...props
       } = this.props;

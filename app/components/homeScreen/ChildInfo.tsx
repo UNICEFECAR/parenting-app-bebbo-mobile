@@ -21,7 +21,10 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import { getAllConfigData } from '../../services/childCRUD';
 import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
 const windowWidth = Dimensions.get('window').width;
-
+const styles=StyleSheet.create({
+  flexShrink1:{flexShrink:1},
+  shiftFromBottom:{height:windowWidth*0.563-17}
+})
 const ChildInfo = (props: any) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
@@ -66,11 +69,11 @@ const PinnedChildDevData = useAppSelector(
     const selectedChildDevData = filteredData;
     if(activeChildGender == "" || activeChildGender == 0 || activeChildGender == 40 || activeChildGender == 59) //for boy,other and blank
     {
-      let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.boy_video_article)[0];
+      const filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.boy_video_article)[0];
       setSelectedPinnedArticleData(filteredPinnedData);
     }else if(activeChildGender =="41") //for girl
     {
-      let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
+      const filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
       setSelectedPinnedArticleData(filteredPinnedData);
     }
   },[activeChild.uuid,activityTaxonomyId]);
@@ -135,7 +138,4 @@ const goToVideoArticleDetails = () => {
 };
 
 export default ChildInfo;
-const styles=StyleSheet.create({
-  flexShrink1:{flexShrink:1},
-  shiftFromBottom:{height:windowWidth*0.563-17}
-})
+

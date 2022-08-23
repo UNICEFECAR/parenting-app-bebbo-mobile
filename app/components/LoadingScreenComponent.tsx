@@ -12,7 +12,48 @@ const item = {
   image:bebbo_logo_shape,
   colors: ['#2B2F84', '#1F50A0',  '#00AEEF'],
 };
-
+const styles = StyleSheet.create({
+  innerView:
+   {
+     alignContent: 'center',
+     alignItems: 'center',
+     flex: 1,
+     flexDirection: 'column',
+     justifyContent: 'flex-end',
+     marginBottom: 15,
+     marginTop:25,
+   },
+ linearGradient:{
+     flex: 1,
+   },
+   loadingText:{textAlign: 'center'},
+   mainView:{
+     alignContent:'center',height:60,
+     marginTop:25,
+     width:180,
+   },
+   outerView:{
+   alignItems: 'center',
+   flex: 4,
+   flexDirection: 'column',
+   justifyContent: 'flex-start',
+   marginTop:45,
+ },
+   partnerLogo:{
+     flex: 1,
+     resizeMode: 'contain'
+   },
+   partnerLogoView:{
+     alignContent:'center',height:60,
+     marginTop:20,
+     width:180  
+   },
+   sponsorLogo:{
+     flex: 1,
+     resizeMode: 'contain'
+   },
+   vectorImageView:{marginBottom:15}
+ });
 const LoadingScreenComponent = (props: any) => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
@@ -87,45 +128,3 @@ const LoadingScreenComponent = (props: any) => {
   );
 };
 export default LoadingScreenComponent;
-const styles = StyleSheet.create({
- outerView:{
-  flex: 4,
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  flexDirection: 'column',
-  marginTop:45,
-},
-innerView:
-  {
-    marginBottom: 15,
-    marginTop:25,
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'flex-end',
-  },
-  mainView:{
-    width:180,height:60,
-    alignContent:'center',
-    marginTop:25,
-  },
-  sponsorLogo:{
-    flex: 1,
-    resizeMode: 'contain'
-  },
-  linearGradient:{
-    flex: 1,
-  },
-  vectorImageView:{marginBottom:15},
-  partnerLogoView:{
-    width:180,height:60,
-    alignContent:'center',
-    marginTop:20  
-  },
-  partnerLogo:{
-    flex: 1,
-    resizeMode: 'contain'
-  },
-  loadingText:{textAlign: 'center'}
-});

@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-interface notiDataType {
-  notifications: Array<any>,
-  growthEnabled: boolean,
-  developmentEnabled: boolean,
-  vchcEnabled: boolean,
-  localNotifications: Array<any>,
-  scheduledlocalNotifications: Array<any>,
+interface NotiDataType {
+  notifications: Array<any>;
+  growthEnabled: boolean;
+  developmentEnabled: boolean;
+  vchcEnabled: boolean;
+  localNotifications: Array<any>;
+  scheduledlocalNotifications: Array<any>;
   localNotificationGenerateType: {
-    generateFlag: boolean,
-    generateType: string,
-    childuuid: string
-  }
+    generateFlag: boolean;
+    generateType: string;
+    childuuid: string;
+  };
 }
-const initialState: notiDataType = {
+const initialState: NotiDataType = {
   notifications: [],
   growthEnabled: true,
   developmentEnabled: true,

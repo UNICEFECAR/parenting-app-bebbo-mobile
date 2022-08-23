@@ -18,10 +18,6 @@ export const getAllPeriodicSyncData = () => {
     const userIsOnboarded = useAppSelector(
         (state: any) => state.utilsData.userIsOnboarded,
     );
-    
-    const userOnboardedDate = useAppSelector(
-        (state: any) => state.utilsData.userOnboardedDate,
-    );
     const weeklyDownloadDate = useAppSelector(
         (state: any) => state.utilsData.weeklyDownloadDate,
     );
@@ -163,10 +159,11 @@ export const getAllPeriodicSyncData = () => {
             saveinDB: true,
         }
       ];
-      let apiJsonData:any[] = [];
-    let currentDate = 0,downloadWeeklyData,downloadMonthlyData,downloadBufferData;
+      const apiJsonData:any[] = [];
+    let downloadWeeklyData,downloadMonthlyData,downloadBufferData;
     let ageBrackets: any = [];
     if (userIsOnboarded == false) {
+      console.log("Don't sync");
         }
     else{
       childList.map((child: any) => {

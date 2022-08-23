@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-interface articleDataType {
+interface ArticleDataType {
   article: {
     articles: string;
-  },
-  dailyDataCategory:Object,
-  showedDailyDataCategory:Object
+  };
+  dailyDataCategory:any;
+  showedDailyDataCategory:any;
 }
-const initialState: articleDataType = {
+const initialState: ArticleDataType = {
   article: { 
     articles: '',
   },
