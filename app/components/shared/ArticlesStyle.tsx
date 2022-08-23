@@ -11,7 +11,6 @@ export const ArticleListContent = styled.View`
 `;
 export const ArticleListContainer = styled.View`
  margin:10px 15px;
-/* flex:1;*/
   background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   overflow:hidden;
@@ -20,10 +19,12 @@ export const ArticleListContainer = styled.View`
 export const RelatedArticleContainer = styled(ArticleListContainer)`
   width:300px;
   margin:10px 5px;
+  background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 export const RelatedArticleContainer2 = styled(ArticleListContainer)`
   width:350px;
   margin:10px 5px;
+  background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const SearchBox = styled.View`

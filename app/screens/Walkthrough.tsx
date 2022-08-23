@@ -1,33 +1,26 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-  ButtonArticles,
   ButtonArticlesTint,
   ButtonColTwo,
   ButtonContainerTwo,
-  ButtonSecondary,
-  ButtonSecondaryTint,
   ButtonTertiary,
-  ButtonText
+  ButtonText,
 } from '@components/shared/ButtonGlobal';
 import WalkthroughContainer, {
-  ButtonTertiary1,
-  ButtonTertiary2,
   Slide,
   WalkBtn,
-  WalkthroughButton,
   WalkthroughContentArea,
   WalkthroughImagebox,
   WalkthroughImageContainer,
   WalkthroughSubtext,
-  WalkthroughTitle
+  WalkthroughTitle,
 } from '@components/shared/WalkthroughStyle';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
@@ -121,25 +114,7 @@ const Walkthrough = ({navigation}: Props) => {
                 <WalkthroughSubtext
                   style={[styles.title, {color: item.textcolor}]}>
                   {item.subtitle}
-                </WalkthroughSubtext>
-
-                {/* {index == 3 ? (
-                  <WalkBtn style={{flex:1,flexDirection:'column',justifyContent:'flex-end'}}>
-                  <ButtonContainerTwo>
-                    <ButtonColTwo>
-                      <ButtonArticlesTint onPress={goBackSlide}>
-                        <ButtonText>{t('walkthroughButtonBack')}</ButtonText>
-                      </ButtonArticlesTint>
-                    </ButtonColTwo>
-
-                    <ButtonColTwo>
-                      <ButtonTertiary onPress={onDone}>
-                        <ButtonText>{t('walkthroughButtonNext')}</ButtonText>
-                      </ButtonTertiary>
-                    </ButtonColTwo>
-                  </ButtonContainerTwo>
-                  </WalkBtn>
-                ) : null} */}
+                </WalkthroughSubtext>                
               </WalkthroughContentArea>
             </Slide>
           </LinearGradient>
@@ -148,24 +123,6 @@ const Walkthrough = ({navigation}: Props) => {
     );
   };
 
-  const renderDoneButton = () => {
-    return (
-      <WalkthroughButton>
-        <ButtonTertiary1>
-          <ButtonText numberOfLines={2}>{t('walkthroughButtonNext')}</ButtonText>
-        </ButtonTertiary1>
-      </WalkthroughButton>
-    );
-  };
-  const renderPrevButton = () => {
-    return (
-      <WalkthroughButton>
-        <ButtonTertiary2>
-          <ButtonText numberOfLines={2}>{t('walkthroughButtonBack')}</ButtonText>
-        </ButtonTertiary2>
-      </WalkthroughButton>
-    );
-  };
   const getDotStyle = (colorString: string) => {
     return isDotsRequired
       ? {backgroundColor: colorString}
@@ -178,7 +135,6 @@ const Walkthrough = ({navigation}: Props) => {
   const [statubarColor, setstatubarColor] = useState(headerColor);
   
   const onSlideChange = (index: number) => {
-    // console.log(index," --index----",lastIndex);
     index == 3 ? setShowPrevbtn(true) : setShowPrevbtn(false);
     index == 3 ? setIsDotsRequired(false) : setIsDotsRequired(true);
     index == 0
@@ -210,12 +166,7 @@ useFocusEffect(
   const onDone = () => {
     // User finished the introduction. Show real app through
     // navigation or simply by controlling state
-    // this.setState({ showRealApp: true });
     navigation.navigate('Terms');
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{name: 'Terms'}],
-    // });
   };
 const goBackSlide = ()=>{
   slider?.goToSlide(2, true);
@@ -262,7 +213,6 @@ const _renderPagination = (activeIndex: number) => {
   );
 };
   const keyExtractor = (item: Item) => item.title;
-  
   return (
     <>
       <FocusAwareStatusBar animated={true} backgroundColor={statubarColor} />
@@ -281,8 +231,6 @@ const _renderPagination = (activeIndex: number) => {
         onSlideChange={onSlideChange}
         renderPagination={_renderPagination}
         ref={(ref) => (slider = ref!)}
-        // renderDoneButton={renderDoneButton}
-        // renderPrevButton={renderPrevButton}
       />
     </>
   );
@@ -355,7 +303,6 @@ const styles = StyleSheet.create({
   },
   title: {
     padding: 5,
-    // width: 100,
     fontWeight: 'bold',
     textAlign: 'center',
     

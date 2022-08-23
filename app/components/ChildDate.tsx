@@ -3,10 +3,10 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromTop15 } from '@styles/typography';
 import { dobMin, maxDue, minDue } from '@types/types';
-import { DateTime, Settings } from 'luxon';
+import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Platform, StyleSheet, Text, View } from 'react-native';
 import { useAppSelector } from '../../App';
 import { formatStringDate } from '../services/Utils';
 import Checkbox, {
@@ -25,7 +25,7 @@ import {
 import FormPrematureContainer, {
   FormInfoLabel,FormInfoPress
 } from './shared/FormPrematureContainer';
-import { FlexDirRowSpace,FlexFDirRowSpace } from './shared/FlexBoxStyle';
+import { FlexFDirRowSpace } from './shared/FlexBoxStyle';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -36,7 +36,6 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const ChildDate = (props: any) => {
   const {dobMax,prevScreen} = props;
-  const [dateFormat, setDateFormat] = useState('day month year');
   let birthDate: any,
     isPremature: any,
     plannedTermDate: any = null;
@@ -48,14 +47,12 @@ const ChildDate = (props: any) => {
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
-
-  //console.log(birthDate,"..birthDate..");
   const {t} = useTranslation();
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [isExpected, setIsExpected] = useState(false);
   const [doborExpectedDate, setdoborExpectedDate] = useState<Date | null>(null);
-  const [showdob, setdobShow] = useState<Boolean>(false);
-  const [disablePrematureCheck, setdisablePrematureCheck] =useState<Boolean>(false);
+  const [showdob, setdobShow] = useState<boolean>(false);
+  const [disablePrematureCheck, setdisablePrematureCheck] =useState<boolean>(false);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
@@ -65,7 +62,6 @@ const ChildDate = (props: any) => {
      if (birthDate == '' || birthDate == null || birthDate == undefined) {
         setdisablePrematureCheck(true);
       }
-     // console.log(childData, '..childData..');
       if (childData != null) {
         birthDate = childData.birthDate;
         isPremature = childData.isPremature;
@@ -80,25 +76,19 @@ const ChildDate = (props: any) => {
         setToggleCheckBox(
           isPremature != null ? JSON.parse(isPremature) : false,
         );
-        // if(new Date(birthDate) < new Date(dobMin)){
-        //   birthDate = new Date(dobMin);
-        // }
-        setdoborExpectedDate(
+       setdoborExpectedDate(
           birthDate != null ? new Date(birthDate) : new Date(),
         );
         setdueDate(plannedTermDate != null ? new Date(plannedTermDate) : null);
-        // console.log(disablePrematureCheck,"..disablePrematureCheck..");
       }
     }, []),
   );
   const handleDobConfirm = (event:any) => {
-    console.log("A date has been picked: ", event);
     const date=event;
     ondobChange(event,date);
     setDobDatePickerVisibility(false);
   };
   const handleDueConfirm = (event:any) => {
-   // console.log("A date has been picked: ", event);
     const date=event;
     ondueDateChange(event,date);
     setDueDatePickerVisibility(false);
@@ -133,7 +123,6 @@ const ChildDate = (props: any) => {
     }
   };
   const showdobDatepicker = () => {
-    //console.log(birthDate,"..birthDate..");
     setdobShow(true);
     if(Platform.OS == 'ios'){
     setDobDatePickerVisibility(true);
@@ -144,7 +133,6 @@ const ChildDate = (props: any) => {
   const [showdue, setdueShow] = useState<Boolean>(false);
   const ondueDateChange = (event:any,selectedDate: any) => {
     const currentDate = selectedDate;
-    //console.log(currentDate,"..currentDate..")
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
     props.sendData({
@@ -204,18 +192,6 @@ const ChildDate = (props: any) => {
                  : prevScreen=='EditScreen'?t('childSetupdobText'):t('childSetupdobSelector')}
               </Text>
               {showdob && (
-                // <DateTimePicker
-                //   testID="dobdatePicker"
-                //   dateFormat={'day month year'}
-                //   minimumDate={new Date(dobMin)}
-                //   maximumDate={new Date(dobMax)}
-                //   value={
-                //     doborExpectedDate != null ? doborExpectedDate : new Date()
-                //   }
-                //   mode={'date'}
-                //   display="default"
-                //   onChange={ondobChange}
-                // />
                 <DateTimePickerModal
                 isVisible={isDobDatePickerVisible}
                 mode="date"
@@ -224,8 +200,7 @@ const ChildDate = (props: any) => {
                 }
                 onConfirm={handleDobConfirm}
                 onCancel={() => {
-                  // Alert.alert('Modal has been closed.');
-                  setDobDatePickerVisibility(false);
+                   setDobDatePickerVisibility(false);
                 }}
                 minimumDate={new Date(dobMin)}
                 maximumDate={new Date(dobMax)}
@@ -241,18 +216,8 @@ const ChildDate = (props: any) => {
 
         <FormPrematureContainer>
           <FormOuterCheckbox
-            // disabled={disablePrematureCheck}
             onPress={() => {
-              //console.log(disablePrematureCheck,"..click disablePrematureCheck...")
-              // if(!disablePrematureCheck){
-
-              // }
-              // else{
-              //   console.log(dueDate,"..dueDate..");
-              //   // props.sendData({ birthDate: doborExpectedDate, dueDate: dueDate, isPremature: toggleCheckBox });
-
-              // }
-              if (!disablePrematureCheck) {
+             if (!disablePrematureCheck) {
                 props.sendData({
                   birthDate: doborExpectedDate,
                   plannedTermDate: null,
@@ -354,7 +319,6 @@ const ChildDate = (props: any) => {
                       )}
                       onConfirm={handleDueConfirm}
                       onCancel={() => {
-                        // Alert.alert('Modal has been closed.');
                         setDueDatePickerVisibility(false);
                       }}
                       minimumDate={
@@ -390,7 +354,6 @@ const ChildDate = (props: any) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
           setModalVisible(false);
         }}
         onDismiss={() => {
@@ -407,10 +370,8 @@ const ChildDate = (props: any) => {
               </PopupClose>
             </PopupCloseContainer>
             <ModalPopupContent>
-              
               <Heading4Centerr>
                 {t('childSetupprematureMessage')}
-                {/* {prevScreen=="Onboarding" ? t('childSetupprematureMessage'):t('childSetupprematureMessageNext')} */}
               </Heading4Centerr>
             </ModalPopupContent>
           </ModalPopupContainer>

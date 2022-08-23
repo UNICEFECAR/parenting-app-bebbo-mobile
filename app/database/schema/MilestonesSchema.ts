@@ -1,6 +1,5 @@
 
 import { ObjectSchema } from "realm";
-
 export type MilestonesEntity = {
     id: number,
     type: string,
@@ -12,16 +11,12 @@ export type MilestonesEntity = {
     related_activities: number[],
     related_video_articles: number[],
     related_articles: number[],
-    
     mandatory: number,
   };
-
 
   export const MilestonesSchema: ObjectSchema = {
     name: 'MilestonesEntity',
     primaryKey: 'id',
-  
-    // API: https://bit.ly/3f7k9jq
     properties: {
       id: { type: 'int' },
       type: { type: 'string' },

@@ -116,12 +116,6 @@ export const ParentData = styled.View`
 flex:1;
 align-items:flex-start;
 `;
-
-export const ParentColView = styled.View`
- 
- 
-`;
-
 export const ParentListView = styled.View`
 padding:10px 11px 3px;
 align-items:center;

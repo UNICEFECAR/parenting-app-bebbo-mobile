@@ -2,7 +2,7 @@ import getAllDataToStore, { getAllDataOnRetryToStore } from '@assets/translation
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'i18next';
 import { DateTime } from 'luxon';
-import { Alert, Image } from "react-native";
+import { Alert } from "react-native";
 import FastImage from 'react-native-fast-image';
 import RNFS from 'react-native-fs';
 import { store } from "../../App";
@@ -20,7 +20,7 @@ import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setchatBotData, setDownloadedBufferAgeBracket } from '../redux/reducers/childSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
-import { setAllLocalNotificationData, setAllLocalNotificationGenerateType, setAllNotificationData, setAllScheduledLocalNotificationData } from '../redux/reducers/notificationSlice';
+import {  setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 import LocalNotifications from './LocalNotifications';
@@ -30,17 +30,13 @@ export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
 
 const commonApiService: commonApiInterface = async (apiEndpoint: string, methodname: any, postdata: object) => {
-  //  console.log("apinameapiname")
-  //  console.log(apiname,methodname,postdata);
   const storedata = store.getState();
-  //console.log("store val--", storedata)
-
+  
   let selectedLang, selectedCountry;
   selectedCountry = storedata.selectedCountry.countryId;
   selectedLang = storedata.selectedCountry.languageCode;
   let newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
- // console.log("newurl--", newurl);
-  let responseData: any = {};
+   let responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
   return await axiosService({
     method: methodname,
@@ -48,24 +44,14 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
     params: postdata
   })
     .then((response: any) => {
-      //console.log("successsssss");
-      //  console.log(response.data);
-      responseData.data = response.data,
+       responseData.data = response.data,
         responseData.status = response.status
       return responseData;
-      // return response;
-    })
+     })
     .catch((err: any) => {
-     //console.log("errcodeee");
-     console.log('err--',err);
       responseData.data = err?.message
       responseData.status = err?.response?.status;
       return responseData;
-      // if (err.code == 'ECONNABORTED' || err.message == 'Network Error') {
-      //  return null;
-      // } else {
-      //    return null;
-      // }
     });
 }
 export const updateIncrementalSyncDT = async(response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
@@ -76,7 +62,6 @@ export const updateIncrementalSyncDT = async(response: any, dispatch: any, navig
   const faqsresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqs);
   const faqupdatedpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqUpdatedPinnedContent);
   const archiveresp = response.find((y:any)=>y.apiEndpoint == appConfig.archive);
-// console.log(faqupdatedpinnedresp,"faqupdatedpinnedresp---",articleresp);
   if(articleresp && articleresp != {} && articleresp.data) {
     if(prevPage != "AddEditChild") {
       dispatch(setIncrementalSyncDT({key: 'articlesDatetime', value: articleresp.data.datetime}));
@@ -102,10 +87,6 @@ export const updateIncrementalSyncDT = async(response: any, dispatch: any, navig
   }
 }
 export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any,oldErrorObj:any) => {
-//  response = response[0];
- //console.log(response,"..resonse..");
-//  deactivateKeepAwake();
-console.log(oldErrorObj,"in commonapi onAddEditChildSuccess ---", response);
 const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
 if(artresp && artresp != {})
 {
@@ -113,36 +94,22 @@ if(artresp && artresp != {})
   if(artobj && artobj != {}){
     const storedata = store.getState();
     const bufferAgeBracket = storedata.childData.childDataSet.bufferAgeBracket;
-    // console.log("keep awake deactivated--",bufferAgeBracket);
-    // console.log("storedata.utilsData.taxonomy.allTaxonomyData--",storedata.utilsData.taxonomy.allTaxonomyData);
-    const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
+     const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
     const agesarr = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number);
     const mergedarray = [...new Set([...agesarr,...bufferAgeBracket])];
-    // console.log("mergedarray---",mergedarray);
-    dispatch(setDownloadedBufferAgeBracket(mergedarray))
+     dispatch(setDownloadedBufferAgeBracket(mergedarray))
   }
 }
 
  navigation.navigate('ChildProfileScreen');
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
-  // async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
-  //console.log(response, "..response..");
-  //console.log(dispatch, "..dispatch..");
-  // const sponsorobj = [...response.data.data];
-  // const filteredArray=response.data.data[0].find((item:any)=>{
-  //   item['country_flag'] && item['country_sponsor_logo'] && item['country_national_partner']
-  // })
-  // console.log(filteredArray,"..filteredArray..");
-
   if (response && response[0] && response[0].apiEndpoint == appConfig.sponsors) {
     response = response[0];
     if(response.data && response.data.status && response.data.status == 200)
     {
       
-      // let obj=[];
-      // type:val.type,title:val.title,id:val.id,
-      const sponsorObj = response.data.data.map((val: any) => {
+       const sponsorObj = response.data.data.map((val: any) => {
         if(val['country_flag'] && val['country_flag'] != null && val['country_flag'].url != "")
         {
           return ({ country_flag: { srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name } })
@@ -197,49 +164,16 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
       else{
          sponsarsObj.country_sponsor_logo=null;
        }
-      // if(sponsorObj && sponsorObj != null && sponsorObj[0])
-      // {
-      //   const ImageArray = [];
-      //   ImageArray.push(sponsorObj[0].country_flag)
-      //   const imagesDownloadResult = await downloadImages(ImageArray);
-      //   if(imagesDownloadResult && imagesDownloadResult[0].success==true){
-      //     sponsarsObj.country_flag='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
-      //   }
-      //   else{
-      //     sponsarsObj.country_flag=null;
-      //   }
-      // }
-      // else{
-      //   sponsarsObj.country_flag=null;
-      // }
-
-    
-     // console.log(sponsarsObj, "..sponsarsObj..");
       dispatch(setSponsorStore(sponsarsObj));
     }
-    // const country= new CountryLanguageConfirmation();
-    // country.dispatchSponsors();
   }
- // console.log("in commonapi sponsor ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
-  // deactivateKeepAwake();
-  // console.log(allDatatoStore,"--allDatatoStore");
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{name: 'Walkthrough'}],
-    // });
-    navigation.navigate('Walkthrough');
+  navigation.navigate('Walkthrough');
 }
 export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string) => {
-  // navigation.navigate('ChildSetup');
-  //let userEnteredChildData = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
-  //console.log(userEnteredChildData, "..userEnteredChildData..");
-  // console.log("in onOnLoadApiSuccess");
-  // console.log("in commonapi onOnLoadApiSuccess ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   let allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-  // deactivateKeepAwake();
-  if (allJsonData?.length>0) {
+   if (allJsonData?.length>0) {
     navigation.navigate('ChildSetupList');
   }
   else {
@@ -247,30 +181,19 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
   }
 }
 export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any,oldErrorObj:any) => {
-  // navigation.navigate('HomeDrawerNavigator');
-  console.log(oldErrorObj,"in commonapi onChildSetuppiSuccess ---", response);
   const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
   if(artresp && artresp != {})
   {
     const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
     if(artobj && artobj != {}){
       const storedata = store.getState();
-      console.log("storedata.utilsData.taxonomy.allTaxonomyData--",storedata.utilsData.taxonomy.allTaxonomyData);
       const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
-      console.log("childagearray--",childagearray);
       const artarray = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number)
       dispatch(setDownloadedBufferAgeBracket(artarray))
     }
   }
   //setDownloadedBufferAgeBracket save data from apiJsonData
-  // if(prevPage== "AddEditChild") {
-  //   //append agebrakcet into existing
-  // }else {
-  //   //just replace with new agebracket
-  // }
-  const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
-  // console.log(allDatatoStore,"..allDatatoStore..")
-  // deactivateKeepAwake();
+ const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
   navigation.reset({
     index: 0,
     routes: [
@@ -279,26 +202,14 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
       },
     ],
   });
-  // navigation.navigate('Home',
-  //   {
-  //     screen:"Home",
-  //     params:{prevPage:prevPage},
-  //   });
 }
 export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any) => {
-  // navigation.navigate('HomeDrawerNavigator');
-  console.log(prevPage,"--prevPage in onHomeapiSuccess---",response);
-  // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
-  // console.log(allDatatoStore,"..allDatatoStore..")
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
       if(x.apiEndpoint == appConfig.sponsors){
         const sponsorresp = response.filter((y:any)=>y.apiEndpoint == appConfig.sponsors);
         const sponsorrespnew = sponsorresp ? sponsorresp[0] : [];
         if(sponsorrespnew && sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
         {
-          // const ImageArray = [];
-          // let obj=[];
-          // type:val.type,title:val.title,id:val.id,
           const sponsorObj = sponsorrespnew.data.data.map((val: any) => {
             if(val['country_flag'] && val['country_flag'] != null && val['country_flag'].url != "")
             {
@@ -354,21 +265,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       else{
          sponsarsObj.country_sponsor_logo=null;
        }
-          // if(logoObj && logoObj != null && logoObj[0])
-          // {
-          //   ImageArray.push(logoObj[0].country_national_partner)
-          // }
-          // if(partnerObj && partnerObj != null && partnerObj[0])
-          // {
-          //   ImageArray.push(partnerObj[0].country_sponsor_logo)
-          // }
-          // if(sponsorObj && sponsorObj != null && sponsorObj[0])
-          // {
-          //   ImageArray.push(sponsorObj[0].country_flag)
-          // }
-
-          //const imagesDownloadResult = await downloadImages(ImageArray);
-        // console.log(imagesDownloadResult, "..image result..");
           dispatch(setSponsorStore(sponsarsObj));
           return sponsarsObj;
         }else {
@@ -388,13 +284,9 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     }
   ];
   const results = await Promise.all(resolvedPromises);
-  //console.log("done--",results);
-  // navigation.setParams({fromPage:'Loading'});
   dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
   //delete all notifications from slice for all child
-  // console.log("CLEARNOTIFICATIONS_LANGUAGECHANGE")
-  // console.log(setAllNotificationData([]))
-  const currentDate = DateTime.now().toMillis();
+   const currentDate = DateTime.now().toMillis();
   if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate" || prevPage == "DownloadAllData") {
     dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
     dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
@@ -431,7 +323,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
 
   if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
     const favverified = await userRealmCommon.verifyFavorites();
-   // console.log("favverified---",favverified);
     LocalNotifications.cancelAllReminderLocalNotification();
     dispatch(setDailyArticleGamesCategory({}));
     dispatch(setShowedDailyDataCategory({}));
@@ -439,14 +330,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setchatBotData([]));
     const storedata = store.getState();
     const scheduledlocalNotifications = storedata.notificationData.scheduledlocalNotifications;
-    // console.log("clear all localNotification--",scheduledlocalNotifications);
-    // scheduledlocalNotifications.map((y:any)=>{
-    //     // y.data.map((n:any)=>{
-    //       LocalNotifications.cancelReminderLocalNotification(y.notiid);
-    //     // })
-    // })
-    // // dispatch(setAllLocalNotificationData([]));
-    // dispatch(setAllScheduledLocalNotificationData([]));
     dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: false}));
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
@@ -458,20 +341,8 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
     }
   }
-  // deactivateKeepAwake();
   const storedata = store.getState();
   const errorObj = storedata.failedOnloadApiObjReducer.errorObj;
-  // console.log("keep awake deactivated--",storedata.failedOnloadApiObjReducer.errorObj);
-  // let msgtext = '';
-  // response.map((x:any)=> {
-  //     msgtext += x.apiEndpoint+" count "
-  //     if(x.data != null && x.data != undefined && x.data?.data != null && x.data?.data != undefined){
-  //       msgtext += Object.keys(x.data.data).length+`\n`;
-  //     }else {
-  //       msgtext +=  x.data.message+`\n`;
-  //     }
-  // });
-  // console.log("after---",msgtext);
   if(prevPage == 'DownloadUpdate' && errorObj?.length == 0) {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
       [
@@ -481,7 +352,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
               routes: [
                 {
                   name: 'HomeDrawerNavigator',
-                  // params: {prevPage}
                 },
               ],
             });
@@ -502,7 +372,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
                 routes: [
                   {
                     name: 'HomeDrawerNavigator',
-                    // params: {prevPage}
                   },
                 ],
               });
@@ -520,7 +389,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
                 routes: [
                   {
                     name: 'HomeDrawerNavigator',
-                    // params: {prevPage}
                   },
                 ],
               });
@@ -532,56 +400,29 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         
   }
   else {
-    // Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
-    //   [
-    //     { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
-    //         navigation.reset({
-    //           index: 0,
-    //           routes: [
-    //             {
-    //               name: 'HomeDrawerNavigator',
-    //               // params: {prevPage}
-    //             },
-    //           ],
-    //         });
-    //       }
-    //     }
-    //   ]
-    // );
     navigation.reset({
       index: 0,
       routes: [
         {
           name: 'HomeDrawerNavigator',
-          // params: {prevPage}
         },
       ],
     });
   }
 }
 export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
- // console.log(response,"--oldErrorObj survey---",oldErrorObj);
-  // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
-  // console.log(allDatatoStore,"..allDatatoStore..")
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
       const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
       return allDatatoStore;
   });
   const results = await Promise.all(resolvedPromises);
-  // deactivateKeepAwake();
- // console.log("survey done--",results);
 }
 export const onHomeVideoartapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
- // console.log(response,"--oldErrorObj survey---",oldErrorObj);
-  // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
-  // console.log(allDatatoStore,"..allDatatoStore..")
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
       const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
       return allDatatoStore;
   });
   const results = await Promise.all(resolvedPromises);
-  // deactivateKeepAwake();
- console.log("Videoarticle done--",prevPage);
 }
 export const downloadArticleImages = async() => {
   return new Promise(async (resolve, reject) => {
@@ -598,8 +439,7 @@ export const downloadArticleImages = async() => {
               imageArray.push({uri:y})
             }
           });
-          //console.log("hgdj23--",imageArray);
-        }
+         }
         if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
           imageArray.push({uri:x.cover_image.url})
         }
@@ -611,7 +451,6 @@ export const downloadArticleImages = async() => {
               imageArray.push({uri:y})
             }
           });
-          // console.log("hgdj23--",imageArray);
         }
         if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
           imageArray.push({uri:x.cover_image.url})
@@ -624,7 +463,6 @@ export const downloadArticleImages = async() => {
               imageArray.push({uri:y})
             }
           });
-          //console.log("hgdj23--",imageArray);
         }
         if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
           imageArray.push({uri:x.cover_image.url})
@@ -637,7 +475,6 @@ export const downloadArticleImages = async() => {
               imageArray.push({uri:y})
             }
           });
-          // console.log("hgdj23--",imageArray);
         }
         if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
           imageArray.push({uri:x.cover_image.url})
@@ -650,48 +487,22 @@ export const downloadArticleImages = async() => {
               imageArray.push({uri:y})
             }
           });
-          // console.log("hgdj23--",imageArray);
         }
         if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
           imageArray.push({uri:x.cover_image.url})
         }
       })
       
-      // console.log(imageArray.length,"Imagearray212--",imageArray);
-      FastImage.preload(imageArray,()=>{
-        // console.log("in progress");
-        //return 'success';
-      },
+       FastImage.preload(imageArray,()=>{
+       },
       ()=>{
-        // console.log("after complete")
         resolve('complete');
       })
 
-    //   console.log("Imagearray212--",imageArray);
-    //   var i: number,j, temporary, chunk = 10;
-    //   const promises = [];
-    //   for (i = 0,j = imageArray.length; i < j; i += chunk) {
-    //     promises.push(new Promise((resolve) => {
-    //         temporary = imageArray.slice(i, i + chunk);
-    //         // do whatever
-    //         FastImage.preload(temporary,()=>{
-    //           console.log("in progress");
-    //           //return 'success';
-    //         },
-    //         ()=>{
-    //           console.log("after complete")
-    //           resolve('complete');
-    //         })
-    //       }))
-    //   }
-
-    // const results = await Promise.all(promises);
-    // console.log("promise all complete--",results);
-      
+       
   });
 }
 export const onApiFail = (error: any) => {
- // console.log(error, "..error..");
 
 }
 export const retryAlert = () => {
@@ -733,7 +544,6 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
     }
     //"Do you want to switch"+toggle+"data saver mode?"
     setTimeout(() => {
-   // Alert.alert(bandwidth, i18n.t('dataSaver',{toggle:toggle}),
     Alert.alert(bandwidth,toggle,
       [
         {
@@ -750,6 +560,5 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
 export const deleteArticleNotPinned= async () => {
   let createresult = await dataRealmCommon.delete(ArticleEntitySchema.name, "isarticle_pinned!='1'");
   return createresult;
-  // let createresult = await userRealmCommon.delete(ArticleEntitySchema, recordId, filterCondition);
 }
 export default commonApiService;

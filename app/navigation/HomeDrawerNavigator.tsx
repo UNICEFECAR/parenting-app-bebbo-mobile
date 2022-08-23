@@ -1,7 +1,6 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawerContent from '@screens/CustomDrawerContent';
 import Aboutus from '@screens/home/Aboutus';
-import ChildProfile from '@screens/home/ChildProfile';
 import Favourites from '@screens/home/Favourites';
 import Notifications from '@screens/home/Notifications';
 import SettingScreen from '@screens/home/SettingScreen';
@@ -35,37 +34,15 @@ export default () => {
         name="AboutusScreen"
         component={Aboutus}
       />
-      {/* <HomeDrawerNavigator.Screen
-        name="ChildProfileScreen"
-        component={ChildProfile}
-      /> */}
       <HomeDrawerNavigator.Screen name="SupportChat" component={SupportChat}/>
-      {/* <HomeDrawerNavigator.Screen
-        name="ChildgrowthScreen"
-        component={Childgrowth}
-      />
-      <HomeDrawerNavigator.Screen
-        name="ChildDevelopmentScreen"
-        component={ChildDevelopment}
-      />
-      <HomeDrawerNavigator.Screen
-        name="VaccinationScreen"
-        component={Vaccination}
-      />
-      <HomeDrawerNavigator.Screen
-        name="HealthCheckupsScreen"
-        component={HealthCheckups}
-      /> */}
       <HomeDrawerNavigator.Screen
         name="SettingsScreen"
         component={SettingScreen}
-
       />      
       <HomeDrawerNavigator.Screen name="UserGuide" component={UserGuide}/>
       <HomeDrawerNavigator.Screen name="Favourites" component={Favourites}
         initialParams={{tabIndex: 0,backClicked:'no'}}
       />
-
     </HomeDrawerNavigator.Navigator>
   );
 };
