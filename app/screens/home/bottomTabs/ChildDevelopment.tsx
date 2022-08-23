@@ -4,8 +4,8 @@ import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsib
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import Container, { BannerContainer, MainContainer } from '@components/shared/Container';
-import { DevelopmentContent, DevelopmentPercent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
-import { FDirCol, FlexCol, FDirRow, Flex1, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
+import { DevelopmentContent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
+import { FDirCol, FlexCol, FDirRow, Flex1, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow, IconViewSuccess, IconViewAlert, IconAreaPress } from '@components/shared/Icon';
 import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -19,7 +19,6 @@ import analytics from '@react-native-firebase/analytics';
 import {
   BackHandler,
   FlatList,
-  Image,
   Modal,
   Platform,
   Pressable,
@@ -34,9 +33,8 @@ import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDa
 import ProgressCircle from 'react-native-progress-circle'
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../../services/Utils';
-import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED, GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
+import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED } from '@assets/data/firebaseEvents';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type ChildDevelopmentNavigationProp =
@@ -59,7 +57,6 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     (state: any) =>
       state.utilsData.PinnedChildDevData != '' ? JSON.parse(state.utilsData.PinnedChildDevData) : [],
   );
-  // console.log("PinnedChildDevData--",PinnedChildDevData);
   const MileStonesData = useAppSelector(
     (state: any) =>
       state.utilsData.MileStonesData != '' ? JSON.parse(state.utilsData.MileStonesData) : [],
@@ -72,7 +69,6 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
-  // console.log("ActivitiesData--",ActivitiesData);
   const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -113,7 +109,6 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   useEffect(() => {
     //console.log("in childdev focuseffect", childDevModalOpened);
     setModalVisible(childDevModalOpened);
-    // dispatch(setInfoModalOpened({key: modalScreenKey, value: true}));
 
     setComponentColors({
       headerColor: themeContext.colors.CHILDDEVELOPMENT_COLOR,
@@ -124,13 +119,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     });
 
     return () => {
-     // console.log("in unmount dev-", route.params?.currentSelectedChildId);
-      // if(route.params?.currentSelectedChildId)
-      // {
       navigation.setParams({ currentSelectedChildId: 0,fromActivitiesScreen: false })
-     // console.log(route.params?.currentSelectedChildId, "--after unmount");
-      // route.params?.currentSelectedChildId = 0;
-      // }
     }
   }, []);
 
@@ -148,35 +137,23 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS=="android" ? true:false, offset: 0 })
   }
   const showSelectedBracketData = async (item: any) => {
-   // console.log("in showSelectedBracketData--", item);
     toTop();
     analytics().logEvent(CHILD_DEVELOPMENT_AGEGROUP_SELECTED, { age_id: item.id });
 
     setCurrentSelectedChildId(item.id);
-    // setCurrentSelectedChildId2(item.id);
     let filteredData = ChildDevData.filter((x: any) => x.child_age.includes(item.id))[0];
     filteredData = { ...filteredData, name: item.name };
-    // console.log(filteredData);
     setSelectedChildDevData(filteredData);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, 'uuid == "' + activeChild.uuid + '"');
-    // console.log(MileStonesData,"childData in dev--",childData[0].checkedMilestones);
     let milestonefilteredData = await MileStonesData.filter((x: any) => x.child_age.includes(item.id));
     milestonefilteredData = milestonefilteredData.map(item => ({ ...item, toggleCheck: false }))
-    // console.log("milestonefilteredData----",milestonefilteredData);
     childData[0].checkedMilestones.filter((x: any) => {
-      // console.log(x);
       const i = milestonefilteredData.findIndex((_item: any) => _item.id === x);
       if (i > -1) {
         milestonefilteredData[i]['toggleCheck'] = true;
-        // milestonefilteredData[i] = {...milestonefilteredData[i],toggleCheck:true}
       }
-      // else {
-      //   milestonefilteredData[i]['toggleCheck'] = false;
-      // }
     })
-    // console.log("after milestonefilteredData----",milestonefilteredData);
     const sortednewArray = milestonefilteredData.sort((x, y) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
-    // console.log("sortednewArray--",sortednewArray);
     setselectedChildMilestoneData([...sortednewArray]);
     setTimeout(() => {
       setshowNoData(true);
@@ -188,7 +165,6 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
       return true;
     }
     else if(route.params?.fromActivitiesScreen==true){
-      // console.log("currentSelectedChildId in child dev--",route.params?.currentSelectedChildId);
       navigation.navigate('Activities',
       {
         currentSelectedChildId: route.params?.currentSelectedChildId,
@@ -202,10 +178,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     }
   }
   useEffect(() => {
-    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
-    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+    
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -217,46 +190,29 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   }, []);
   useFocusEffect(
     React.useCallback(() => {
-    // console.log("child dev usefocuseffect");
-    //console.log("in childdev useeffect", route.params?.currentSelectedChildId);
     setListLoading(true);
     return(()=>{
       setListLoading(false);
     })
     },[]));
   useEffect(() => {
-    // console.log("child dev usefocuseffect");
-    // console.log("in childdev useeffect", route.params?.currentSelectedChildId);
     setshowNoData(false);
     if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
-      // console.log(route.params?.categoryArray);
       const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
-      // console.log("firstChildDevData---",firstChildDevData);
       showSelectedBracketData(firstChildDevData[0]);
     }
     else {
    //   if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
         const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
         showSelectedBracketData(firstChildDevData[0]);
-      // }
-      // else{
-      //   const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
-      //   showSelectedBracketData(firstChildDevData[0]);
-      // }
-      // console.log("firstChildDevData---",firstChildDevData);
-    
     }
-    // const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
-    // // console.log("firstChildDevData---",firstChildDevData);
-    // showSelectedBracketData(firstChildDevData[0]);
+    
   }, [activeChild?.uuid, route.params?.currentSelectedChildId,activityTaxonomyId]
   );
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("selectedChildDevData changed--");
       if (activeChild?.gender == "" || activeChild?.gender == 0 || activeChild?.gender == 40 || activeChild?.gender == 59) //for boy,other and blank
       {
-        // let pinnedVideoartId = selectedChildDevData.boy_video_article;
         let filteredPinnedData = PinnedChildDevData.filter((x: any) => x.id == selectedChildDevData?.boy_video_article)[0];
         setSelectedPinnedArticleData(filteredPinnedData);
       } else if (activeChild?.gender == "41") //for girl
@@ -268,12 +224,10 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("selectedChildMilestoneData changed--");
       calculateMileStone();
     }, [selectedChildMilestoneData])
   );
   const sendMileStoneDatatoParent = (item: any, togglevalue: any) => {
-    // console.log("sendMileStoneDatatoParent--",item,togglevalue);
     if (togglevalue == true) {
       analytics().logEvent(CHILD_MILESTONE_TRACKED, { age_id: currentSelectedChildId });
     }
@@ -288,25 +242,18 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
       ]
       const sortednewArray = newArray.sort((x, y) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
 
-      // console.log(sortednewArray,"newArray---",newArray);
       setselectedChildMilestoneData([...sortednewArray]);
-      // userArray.sort((a,b) => a.disabled - b.disabled)
-      // milestonefilteredData[i] = {...milestonefilteredData[i],toggleCheck:true}
     }
   }
   const calculateMileStone = () => {
-    // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
     const arrlength = selectedChildMilestoneData?.length;
     let abc = 0;
     if (arrlength > 0) {
       abc = (selectedChildMilestoneData.filter((x: any) => x.toggleCheck == true)).length;
     }
-    // console.log(arrlength,"---abc--",abc);
     const percent = Math.round((abc / arrlength) * 100);
-    // console.log(percent,"--percent");
     setMilestonePercent(percent);
   }
-  // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
   const RenderItem = React.memo(({ item, index }) => {
     return (
       <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />
@@ -321,8 +268,6 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
               <BannerContainer>
                 <Heading5Bold>{t('developScreentipsText')}</Heading5Bold>
                 <ShiftFromTop10>
-                  {/* <Text>
-              {selectedChildDevData?.milestone}</Text> */}
                   {
                     selectedChildDevData?.milestone ?
                       <HTML
@@ -352,24 +297,13 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     );
   };
   const ContentThatGoesAboveTheFlatList = () => {
-
-    //console.log(selectedChildDevData, "---selectedChildDevData");
-   // console.log(selectedChildMilestoneData, "---selectedChildMilestoneData");
+    
     return (
       <>
 
-        {/* <AgeBrackets
-            itemColor={backgroundColor}
-            activatedItemColor={headerColor}
-            currentSelectedChildId={currentSelectedChildId}
-            showSelectedBracketData={showSelectedBracketData}
-          /> */}
+        
        { selectedChildDevData && Object.keys(selectedChildDevData).length != 0 && selectedChildDevData != "" ?
           <Container>
-            {/* <Image
-                source={require('@assets/trash/card2.jpeg')}
-                style={{width: '100%'}}
-              /> */}
                      {
                     Platform.OS=="ios" ?
                     listLoading==true?
@@ -452,9 +386,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                       }
                     </ShiftFromTop5>
                   </DevelopmentContent>
-                  {/* <DevelopmentPercent>
-                  <Heading3>25%</Heading3>
-              </DevelopmentPercent> */}
+                  
                   <ProgressCircle
                     percent={milestonePercent}
                     radius={35}
@@ -521,9 +453,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
             />
           </View>
         </FlexCol>
-        {/* {selectedChildMilestoneData && selectedChildMilestoneData?.length > 0 ?
-              : <Heading4Center>{t('noDataTxt')}</Heading4Center> 
-            } */}
+        
         <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
         <Modal
         animationType="none"
