@@ -20,7 +20,7 @@ import {
 } from '@styles/typography';
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Modal, Pressable, ScrollView, View } from 'react-native';
+import { BackHandler, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
@@ -40,6 +40,18 @@ type Props = {
   navigation: VaccinationNavigationProp;
   route:any;
 };
+const stylesLocal=StyleSheet.create({
+  flex1:{flex: 1},
+  flex4:{flex: 4},
+  maxHeight50:{
+    maxHeight: 50,
+  },
+  vacSummaryMainView:{
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  }
+})
 const Vaccination = ({navigation,route}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.VACCINATION_COLOR;
@@ -50,7 +62,7 @@ const Vaccination = ({navigation,route}: Props) => {
   const [profileLoading,setProfileLoading] =  React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
-    let obj = {key: varkey, value: !modalVisible};
+    const obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
   const onBackPress = () => {
@@ -80,11 +92,9 @@ const Vaccination = ({navigation,route}: Props) => {
     setModalVisible(vaccineModalOpened)
    })
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
-  let {
+  const {
     upcomingPeriods,
     previousPeriods,
-    sortedGroupsForPeriods,
-    totalPreviousVaccines,
     totalUpcomingVaccines,
     currentPeriod,
     overDuePreviousVCcount,
@@ -165,7 +175,7 @@ const Vaccination = ({navigation,route}: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={{flex: 1,backgroundColor:headerColor}}>
+      <View style={[stylesLocal.flex1,{backgroundColor:headerColor}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ToolsBgContainer>
           <TabScreenHeader
@@ -174,17 +184,13 @@ const Vaccination = ({navigation,route}: Props) => {
             textColor="#000"
             setProfileLoading={setProfileLoading}
           />
-          <ScrollView style={{flex: 4}}>
+          <ScrollView style={stylesLocal.flex4}>
             <MainContainer style={{backgroundColor: backgroundColor}}>
               <ShiftFromTopBottom5>
                 <Heading3>{t('vcSummaryHeader')}</Heading3>
               </ShiftFromTopBottom5>
               <View
-                style={{
-                  flex: 1,
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                }}>
+                style={stylesLocal.vacSummaryMainView}>
                 <VacSummaryPress onPress={() => setSelectedIndex(0)}>
                   <VacSummaryBox>
                     <Heading2>
@@ -211,14 +217,12 @@ const Vaccination = ({navigation,route}: Props) => {
               </View>
             </MainContainer>
             <TabBarContainer
-              style={{
-                maxHeight: 50,
-              }}>
+              style={stylesLocal.maxHeight50}>
               {data.map((item, itemindex) => {
                 return (
                   <Pressable
                     key={itemindex}
-                    style={{flex: 1}}
+                    style={stylesLocal.flex1}
                     onPress={() => {
                       setSelectedIndex(itemindex);
                     }}>

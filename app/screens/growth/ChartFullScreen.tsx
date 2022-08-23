@@ -5,6 +5,7 @@ import { FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { bgcolorWhite, bgcolorWhite2 } from '@styles/style';
 import { Heading2 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +16,7 @@ import {
   Platform,
   Pressable,
   ScrollView,
+  StyleSheet,
   View
 } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
@@ -26,8 +28,16 @@ type Props = {
   navigation: ChildSetupNavigationProp;
   route:any;
 };
+const styles=StyleSheet.create({
+mainContainer:{
+  backgroundColor: bgcolorWhite,
+  flexDirection: 'column'
+},
+mainView:{backgroundColor:bgcolorWhite2, flex: 1},
+padding12:{padding: 12}
+})
 export const ChartFullScreen = ({ route, navigation }: Props) => {
-  const {activeChild, chartType, obj, standardDeviation} = route.params;
+  const {activeChild, chartType, obj} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const [windowWidth,setWindowWidth] = React.useState(Dimensions.get('window').width);
@@ -40,7 +50,13 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
   const [isChartVisible, setIsChartVisible] = React.useState(false);
 
 
-
+  const closeFullScreen = () => {
+    navigation.goBack();
+    setTimeout(()=>{
+      Orientation.lockToPortrait();
+    },Platform.OS=='ios' ? 500:0)
+   
+  };
   React.useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
       // The screen is focused
@@ -86,30 +102,21 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
     return unsubscribe;
   }, [navigation]);
 
-  const closeFullScreen = () => {
-    navigation.goBack();
-    setTimeout(()=>{
-      Orientation.lockToPortrait();
-    },Platform.OS=='ios' ? 500:0)
-   
-  };
+ 
   
   return (
     <>
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <View style={styles.mainView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <ScrollView>
           <FlexCol>
             <MainContainer
-              style={{
-                backgroundColor: 'white',
-                flexDirection: 'column',
-              }}>
+              style={styles.mainContainer}>
               <FlexFDirRowSpace>
                 <Heading2>{chartHeading.title}</Heading2>
                 <Pressable
-                  style={{padding: 12}}
+                  style={styles.padding12}
                   onPress={() => closeFullScreen()}>
                   <Icon name="ic_close" size={20} />
                 </Pressable>

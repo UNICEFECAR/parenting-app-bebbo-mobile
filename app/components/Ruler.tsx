@@ -1,3 +1,4 @@
+import { bgcolortransparent } from '@styles/style';
 import React from 'react';
 import {
   Animated,
@@ -106,7 +107,7 @@ type Props = {
    * On value change
    */
   onChangeValue: Function;
-  initialValue: number
+  initialValue: number;
 };
 interface State {
   value: number;
@@ -116,7 +117,31 @@ interface State {
   };
   scrollValue: number;
 }
-
+export const styles=StyleSheet.create({
+  flexEndScrollView:{justifyContent: 'flex-end'},
+  indicatorOuterView:{ flexDirection: 'row' },
+  indicatorViewSet:{  
+    borderLeftColor:bgcolortransparent,
+    borderLeftWidth: 15,
+    borderRightColor: bgcolortransparent,
+    borderRightWidth: 15,
+    borderTopWidth: 20,
+    marginLeft: -14,
+    marginTop: 0
+  },
+  mainViewOuter:{
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  numberView:{alignItems: 'center',
+  justifyContent: 'center',
+  position: 'absolute'},
+  renderOuterView:{position: 'relative'},
+  rulerView:{ flexDirection: 'column-reverse' },
+  textOuterView:{ marginLeft: -25, width: 40 },
+  textView:{ fontSize: 11, textAlign: 'center' }
+})
 class Ruler extends React.Component<Props, State> {
   scrollViewRef: React.RefObject<any>;
   rulerWidth: number;
@@ -194,12 +219,9 @@ class Ruler extends React.Component<Props, State> {
 
     return (
       <View
-        style={{
-          width: this.rulerWidth,
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-end',
-        }}>
+        style={[styles.mainViewOuter,{
+          width: this.rulerWidth
+        }]}>
         {/* Spacer */}
         <View
           style={{
@@ -265,24 +287,21 @@ class Ruler extends React.Component<Props, State> {
       <View
         style={[
           style,
+          styles.renderOuterView,
           {
             width,
             height,
             backgroundColor,
-            position: 'relative',
             transform: vertical ? [{ rotate: '90deg' }] : undefined,
           },
         ]}>
         {/* Number && Unit */}
         <View
-          style={{
+          style={[styles.numberView,{
             width: indicatorWidth,
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
             bottom: indicatorBottom,
             left: (width - indicatorWidth) / 2,
-          }}
+          }]}
           pointerEvents="none">
 
           {/* Indicator */}
@@ -294,25 +313,17 @@ class Ruler extends React.Component<Props, State> {
                 width: segmentWidth,
               }}>
               <View
-                style={{
-                  marginTop: 0,
-                  marginLeft: -14,
-                  borderLeftWidth: 15,
-                  borderRightWidth: 15,
-                  borderTopWidth: 20,
-                  borderLeftColor: 'transparent',
-                  borderRightColor: 'transparent',
+                style={[styles.indicatorViewSet,{
+                  
                   borderTopColor: indicatorColor,
-                }}></View>
+                }]}></View>
             </View>
           </View>
         </View>
         <Animated.ScrollView
           ref={this.scrollViewRef}
           horizontal
-          contentContainerStyle={{
-            justifyContent: 'flex-end',
-          }}
+          contentContainerStyle={styles.flexEndScrollView}
           scrollToOverflowEnabled={true}
           bounces={false}
           showsHorizontalScrollIndicator={false}
@@ -347,7 +358,9 @@ Ruler.defaultProps = {
   vertical: false,
   width,
   height: height * 0.23,
-  onChangeValue: () => { },
+  onChangeValue: () => { 
+    console.log("ruler value change")
+  },
   minimum: 0,
   maximum: 100,
   segmentWidth: 2,
@@ -367,9 +380,3 @@ Ruler.defaultProps = {
 };
 
 export default Ruler;
-export const styles=StyleSheet.create({
-  textOuterView:{ width: 40, marginLeft: -25 },
-  textView:{ textAlign: 'center', fontSize: 11 },
-  rulerView:{ flexDirection: 'column-reverse' },
-  indicatorOuterView:{ flexDirection: 'row' }
-})

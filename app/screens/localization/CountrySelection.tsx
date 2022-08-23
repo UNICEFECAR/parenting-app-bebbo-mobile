@@ -10,9 +10,7 @@ import {
 import { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
-import { LocalizationStackParamList } from '@navigation/types';
 import { useIsFocused } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
@@ -25,26 +23,6 @@ import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
-type CountrySelectionNavigationProp = StackNavigationProp<
-  LocalizationStackParamList,
-  'LanguageSelection'
->;
-
-type Props = {
-  navigation: CountrySelectionNavigationProp;
-};
-
-type localizationType = {
-  name: string;
-  displayName: string;
-  countryId: number;
-  languages: {
-    name: string;
-    displayName: string;
-    languageCode: string;
-    locale: string;
-  };
-};
 const CountrySelection = (props: any) => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -62,8 +40,8 @@ const CountrySelection = (props: any) => {
   
   useEffect(() => {
     if(isVisible) {
-      let newCountryId: any,selectedCountry;
-      if(userIsOnboarded == true){
+      let newCountryId: any;
+       if(userIsOnboarded == true){
         if(props.route.params.country && props.route.params.country != null){
           newCountryId = props.route.params.country.countryId;
         }else {
@@ -72,15 +50,16 @@ const CountrySelection = (props: any) => {
       }else {
         newCountryId = countryId;
       }
-      selectedCountry = localization.find(
+      const selectedCountry = localization.find(
         (country:any) => country.countryId === newCountryId,
       );
       const fetchData = async () => {
         if (userIsOnboarded == false) {
-          let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
-          dataRealmCommon.deleteAllAtOnce();
+          await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
+          const data=await dataRealmCommon.deleteAllAtOnce();
+          console.log(data,"..newdata..");
           dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
-          let payload = {errorArr:[],fromPage:'OnLoad'}
+          const payload = {errorArr:[],fromPage:'OnLoad'}
           dispatch(receiveAPIFailure(payload));
         }
       }
@@ -116,7 +95,6 @@ const CountrySelection = (props: any) => {
             <ShiftFromTopBottom10>
               <ButtonviewNext>
                 <ButtonviewClick
-                  style={{}}
                   onPress={() => {
                       props.navigation.navigate('LanguageSelection', { country:country,languagenew: props.route.params && props.route.params.language ? props.route.params.language : null})
                     }
@@ -128,7 +106,9 @@ const CountrySelection = (props: any) => {
           </ButtonSection>
         ) : (
           <ButtonviewPrevious>
-            <ButtonviewClick onPress={() => { }}>
+            <ButtonviewClick onPress={() => {
+              console.log("pressed")
+             }}>
               <IconML name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>
           </ButtonviewPrevious>

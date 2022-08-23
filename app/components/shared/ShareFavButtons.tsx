@@ -4,7 +4,7 @@ import analytics from '@react-native-firebase/analytics';
 import { Heading4 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Share } from 'react-native';
+import { Alert, Share, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -24,7 +24,10 @@ export const ShareFavPress = styled.Pressable`
 
 padding:12px 0px;
 `;
-
+const styles=StyleSheet.create({
+alignItemsFlexEnd:{alignItems:"flex-end"},
+flexShrink1:{flexShrink:1}
+});
 const ShareFavButtons = React.memo((props: any) => {
 
   const activeChilduuid = useAppSelector((state: any) =>
@@ -97,42 +100,42 @@ const languageCode = useAppSelector(
                 <Icon name="ic_sb_shareapp" size={25} color="#000" />
               </OuterIconLeft>
             </OuterIconRow>
-            <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenshareText')}</Heading4>
+            <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('actScreenshareText')}</Heading4>
           </FDirRow>
         </ShareFavPress>
 
         { isFavourite ? (fromScreen && fromScreen == 'Favourites' ? 
-             (<ShareFavPress onPress={() => unFavHandler()} style={{alignItems:'flex-end'}}>
+             (<ShareFavPress onPress={() => unFavHandler()} style={styles.alignItemsFlexEnd}>
               <FDirRow>
                 <OuterIconRow>
                   <OuterIconLeft>
                     <Icon name="ic_trash" size={25} color="#000" />
                   </OuterIconLeft>
                 </OuterIconRow>
-                <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('favScreenremoveText')}</Heading4>
+                <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('favScreenremoveText')}</Heading4>
               </FDirRow>
             </ShareFavPress>) :
-             (<ShareFavPress onPress={() => unFavHandler()} style={{alignItems:'flex-end'}}>
+             (<ShareFavPress onPress={() => unFavHandler()} style={styles.alignItemsFlexEnd}>
                 <FDirRow>
                   <OuterIconRow>
                     <OuterIconLeft>
                       <Icon name="ic_favorites_filled" size={20} color="#000" />
                     </OuterIconLeft>
                   </OuterIconRow>
-                  <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
+                  <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
                 </FDirRow>
               </ShareFavPress>)
         )
          : (
           fromScreen && fromScreen == 'Favourites' ? null :
-            (<ShareFavPress onPress={() =>onFavClick()} style={{alignItems:'flex-end'}}>
+            (<ShareFavPress onPress={() =>onFavClick()} style={styles.alignItemsFlexEnd}>
               <FDirRow>
                 <OuterIconRow>
                   <OuterIconLeft>
                     <Icon name="ic_sb_favorites" size={25} color="#000" />
                   </OuterIconLeft>
                 </OuterIconRow>
-                <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenaddtoFavText')}</Heading4>
+                <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('actScreenaddtoFavText')}</Heading4>
               </FDirRow>
             </ShareFavPress>)
          )

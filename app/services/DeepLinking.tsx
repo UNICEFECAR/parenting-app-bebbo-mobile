@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Linking } from "react-native";
 
 export function useDeepLinkURL() {

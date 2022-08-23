@@ -22,7 +22,17 @@ import { FormOuterCheckbox } from './shared/ChildSetupStyle';
 import Divider, { DividerN, DividerContainer } from './shared/Divider';
 import { FlexDirRowStart } from './shared/FlexBoxStyle';
 import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from './shared/NotificationStyle';
-
+const styles = StyleSheet.create({
+  checkBoxStyle: { 
+    borderWidth: 1 
+  },
+  menuView: {
+    alignItems: 'center',
+    height: 40,
+    justifyContent: 'center',
+    width: 40,
+  },
+});
 
 const NotificationItem = (props: any) => {
   const { item, onItemReadMarked, onItemDeleteMarked, isDeleteEnabled, activeChild } = props;
@@ -30,12 +40,10 @@ const NotificationItem = (props: any) => {
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
   const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const pluralShow = useAppSelector(
     (state: any) => state.selectedCountry.pluralShow,
   );
+  const { t } = useTranslation();
   const geticonname = (type: string) => {
      return type == 'gw'
       ? 'ic_growth'
@@ -47,6 +55,12 @@ const NotificationItem = (props: any) => {
             ? 'ic_doctor_chk_up'
             : 'ic_growth';
   };
+  const markAsRead = (item: any) => {
+    onItemReadMarked(item);
+  }
+  const markAsDelete = (item: any) => {
+    onItemDeleteMarked(item);
+  }
   const getButtonname = (type: string) => {
     return type == 'gw'
       ? t('growthScreenaddNewBtntxt')
@@ -104,17 +118,12 @@ const NotificationItem = (props: any) => {
                 },
               }) : '';
   };
-  const markAsRead = (item: any) => {
-    onItemReadMarked(item);
-  }
-  const markAsDelete = (item: any) => {
-    onItemDeleteMarked(item);
-  }
+
   const growthColor = themeContext.colors.CHILDGROWTH_COLOR;
   const vaccinationColor = themeContext.colors.VACCINATION_COLOR;
   const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
-  const { t } = useTranslation();
+  
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
   useEffect(() => {
     setToggleCheckBox(false);
@@ -135,9 +144,9 @@ const NotificationItem = (props: any) => {
     })
     return vc;
   }
-  let toDay = DateTime.fromJSDate(new Date()).toMillis();
-  let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
-  let notiDate = DateTime.fromJSDate(new Date(item.notificationDate)).toMillis();
+  const toDay = DateTime.fromJSDate(new Date()).toMillis();
+  const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+  const notiDate = DateTime.fromJSDate(new Date(item.notificationDate)).toMillis();
   const renderGrowthNotifcation = () => {
     return (
       //
@@ -175,7 +184,7 @@ const NotificationItem = (props: any) => {
 
 
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                  <Heading6>  {formatStringDate(item.notificationDate)} - {
                     getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -286,7 +295,7 @@ const NotificationItem = (props: any) => {
                       : '',periodName: item.periodName })}</Heading4Bold>
                 }
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                  <Heading6>  {formatStringDate(item.notificationDate)} - {
                     getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -404,7 +413,7 @@ const NotificationItem = (props: any) => {
                 }
 
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                  <Heading6>  {formatStringDate(item.notificationDate)} - {
                     getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -516,7 +525,7 @@ const NotificationItem = (props: any) => {
                         : '',periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
-                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                    <Heading6>  {formatStringDate(item.notificationDate)} - {
                       getNotificationDateInString(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -624,7 +633,7 @@ const NotificationItem = (props: any) => {
                         : '',periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
-                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+                    <Heading6>  {formatStringDate(item.notificationDate)} - {
                       getNotificationDateInString(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -721,15 +730,15 @@ const NotificationItem = (props: any) => {
           <NotifiContent>
             {item.isRead == true ?
               <Heading4Regular>{t(item.title, {
-                reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)
+                reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)
               })}</Heading4Regular> :
               <Heading4Bold>{t(item.title, {
-                reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)
+                reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)
               })}</Heading4Bold>
             }
 
             <ShiftFromTop5>
-              <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
+              <Heading6>  {formatStringDate(item.notificationDate)} - {
                 getNotificationDateInString(
                   t,
                   DateTime.fromJSDate(new Date(item.notificationDate)),
@@ -813,14 +822,4 @@ const NotificationItem = (props: any) => {
 };
 export default NotificationItem;
 
-const styles = StyleSheet.create({
-  checkBoxStyle: { 
-    borderWidth: 1 
-  },
-  menuView: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+
