@@ -32,7 +32,7 @@ type Props = {
   route: any;
 };
 const LanguageSelection = ({route, navigation}: Props) => {
-  const [language, setLanguage] = useState();
+  const [language, setLanguage] = useState<any>();
   console.log("in lang file ---",route.params);
   let country:any,languagenew: any;
   if(buildFor == buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
@@ -54,13 +54,13 @@ const LanguageSelection = ({route, navigation}: Props) => {
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
   useEffect(() => {
-    let newLanguageId: any,selectedLanguage;
+    let newLanguageId: any;
       if(languagenew && languagenew != null){
         newLanguageId = languagenew.languageCode;
       }else {
         newLanguageId = languageCode;
       }
-    selectedLanguage = languages?.find(
+    const selectedLanguage = languages?.find(
       (lang:any) => lang.languageCode === newLanguageId,
     );
     setLanguage(selectedLanguage);
@@ -186,7 +186,9 @@ const LanguageSelection = ({route, navigation}: Props) => {
               </ButtonviewNext>
             ) : <ButtonviewPrevious>
             <ButtonviewClick
-              onPress={() =>{}
+              onPress={() =>{
+                console.log("pressed")
+              }
               }>
               <IconML name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>

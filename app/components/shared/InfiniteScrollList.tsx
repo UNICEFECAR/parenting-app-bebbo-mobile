@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FlatList, View, ActivityIndicator, StyleSheet } from "react-native";
+const styles = StyleSheet.create({
+    containerView: {
+        marginBottom:200
+    }
+})
 const InfiniteScrollList = (props : any) => {
     const { filteredData , renderArticleItem, receivedLoadingArticle } = props;
     const [isLoading, setIsLoading] = useState(false);
@@ -11,22 +16,11 @@ const InfiniteScrollList = (props : any) => {
     const [refresh, setRefresh] = useState(false);
     let onEndReachedCalledDuringMomentum = true;
     const flatListRef = useRef(null);
-    useEffect(() => {
-        setClientData([]);
-        if(page > 1)
-        {
-            setPage(1);
-            requestData(1);
-        }else {
-            requestData(page);
-        }
-    },[filteredData])
-
     const requestData = async (thePage: number) => {
         if(totalDataCount > 0)
         {
             setIsLoading(true);
-            let data = filteredData.slice((thePage - 1) * limit, thePage * limit);
+            const data = filteredData.slice((thePage - 1) * limit, thePage * limit);
             serverDataLoaded(data);
             if(data?.length>0){
                 setIsLoading(false);
@@ -38,6 +32,21 @@ const InfiniteScrollList = (props : any) => {
             receivedLoadingArticle(false);
             setIsLoading(false);
         }
+    }
+    useEffect(() => {
+        setClientData([]);
+        if(page > 1)
+        {
+            setPage(1);
+            requestData(1);
+        }else {
+            requestData(page);
+        }
+    },[filteredData])
+
+    const toTop = () => {
+        // use current
+        flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
     }
     useEffect(() => {
             setRefresh(false);
@@ -61,10 +70,7 @@ const InfiniteScrollList = (props : any) => {
             onEndReachedCalledDuringMomentum = true;
         }
     };
-    const toTop = () => {
-        // use current
-        flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
-    }
+   
     const onRefresh = () => {
             setRefresh(true);
             if(page != 1)
@@ -93,7 +99,7 @@ const InfiniteScrollList = (props : any) => {
             onRefresh={() => onRefresh()}
             refreshing={refresh}
             renderItem={renderArticleItem}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item:any) => item.id.toString()}
             onMomentumScrollBegin={() => {
               onEndReachedCalledDuringMomentum = false;
             }}
@@ -104,8 +110,3 @@ const InfiniteScrollList = (props : any) => {
 }
 
 export default InfiniteScrollList
-const styles = StyleSheet.create({
-    containerView: {
-        marginBottom:200
-    }
-})

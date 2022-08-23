@@ -16,20 +16,20 @@ export const CoverImage: ObjectSchema = {
   }
 }
 export type ActivitiesEntity = {
-    id: number,
-    type: string,
-    title: string,
-    created_at: string,
-    updated_at: string,
-    body: string,
-    activity_category: number,
-    equipment: number,
-    type_of_support: number,
-    child_age: number[],
-    cover_image?: CoverImageEntity,
-    related_milestone: number[],
-    mandatory: number,
-    embedded_images?: string[]
+    id: number;
+    type: string;
+    title: string;
+    created_at: string;
+    updated_at: string;
+    body: string;
+    activity_category: number;
+    equipment: number;
+    type_of_support: number;
+    child_age: number[];
+    cover_image?: CoverImageEntity;
+    related_milestone: number[];
+    mandatory: number;
+    embedded_images?: string[];
   };
 
 

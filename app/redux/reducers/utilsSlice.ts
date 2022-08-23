@@ -1,98 +1,98 @@
 import { basicPagesUniqueName } from '@assets/translations/appOfflineData/apiConstants';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface hardcodedDataType {
-  acceptTerms:boolean,
-  userIsOnboarded:boolean,
+interface HardcodedDataType {
+  acceptTerms:boolean;
+  userIsOnboarded:boolean;
   taxonomy: { 
     allTaxonomyData: string;
     languageCode: string;
-  },
+  };
   aboutus:{
     id:number;
     title:string;
     body:string;
     unique_name:string;
-  },
+  };
   terms:{
     id:number;
     title:string;
     body:string;
     unique_name:string;
-  },
+  };
   privacypolicy:{
     id:number;
     title:string;
     body:string;
     unique_name:string;
-  },
-  weight_for_height:string,
-  height_for_age:string,
-  IsWeightModalOpened:boolean,
-  IsHeightModalOpened:boolean,
-  IsArticleModalOpened:boolean,
-  IsActivityModalOpened:boolean,
-  IsChildDevModalOpened:boolean,
-  IsGrowthModalOpened:boolean,
-  IsVaccineModalOpened:boolean,
-  IsHCUModalOpened:boolean,
-  showDownloadPopup:boolean,
-  generateNotifications:boolean,
-  dailyMessageNotification:string,
-  dailymessages:string,
+  };
+  weight_for_height:string;
+  height_for_age:string;
+  IsWeightModalOpened:boolean;
+  IsHeightModalOpened:boolean;
+  IsArticleModalOpened:boolean;
+  IsActivityModalOpened:boolean;
+  IsChildDevModalOpened:boolean;
+  IsGrowthModalOpened:boolean;
+  IsVaccineModalOpened:boolean;
+  IsHCUModalOpened:boolean;
+  showDownloadPopup:boolean;
+  generateNotifications:boolean;
+  dailyMessageNotification:string;
+  dailymessages:string;
   vaccineData:{
-    id: number,
-    uuid: string,
-    type: string,
-    title: string,
-    pinned_article: number,
-    growth_period: number,
-    created_at: string,
-    updated_at: string
-  }
+    id: number;
+    uuid: string;
+    type: string;
+    title: string;
+    pinned_article: number;
+    growth_period: number;
+    created_at: string;
+    updated_at: string;
+  };
   healthCheckupsData:{
-    id: number,
-    type: string,
-    title: string,
-    pinned_article: number,
-    growth_period: number,
-    created_at: string,
-    updated_at: string
-  },
+    id: number;
+    type: string;
+    title: string;
+    pinned_article: number;
+    growth_period: number;
+    created_at: string;
+    updated_at: string;
+  };
   ChildDevData:{
-    id: number,
-    type: string,
-    title: string,
-    child_age: number[],
-    boy_video_article: number,
-    girl_video_article: number,
-    milestone: string,
-    created_at: string,
-    updated_at: string,
-    mandatory: number
-  },
-  PinnedChildDevData:string,
-  MileStonesData:string,
-  VideoArticlesData:string,
-  ActivitiesData:string,
-  surveryData:string,
-  faqsData:string,
-  userOnboardedDate:number,
-  weeklyDownloadDate:number,
-  monthlyDownloadDate:number,
-  bufferDataDownloadFlag:boolean,
+    id: number;
+    type: string;
+    title: string;
+    child_age: number[];
+    boy_video_article: number;
+    girl_video_article: number;
+    milestone: string;
+    created_at: string;
+    updated_at: string;
+    mandatory: number;
+  };
+  PinnedChildDevData:string;
+  MileStonesData:string;
+  VideoArticlesData:string;
+  ActivitiesData:string;
+  surveryData:string;
+  faqsData:string;
+  userOnboardedDate:number;
+  weeklyDownloadDate:number;
+  monthlyDownloadDate:number;
+  bufferDataDownloadFlag:boolean;
   incrementalSyncDT:{
-    articlesDatetime: string,
-    videoArticlesDatetime: string,
-    activitiesDatetime: string,
-    faqPinnedContentDatetime: string,
-    faqsDatetime: string,
-    faqUpdatedPinnedContentDatetime: string,
-    archiveDatetime: string,
-  },
-  allDataDownloadFlag:boolean
+    articlesDatetime: string;
+    videoArticlesDatetime: string;
+    activitiesDatetime: string;
+    faqPinnedContentDatetime: string;
+    faqsDatetime: string;
+    faqUpdatedPinnedContentDatetime: string;
+    archiveDatetime: string;
+  };
+  allDataDownloadFlag:boolean;
 }
-const initialState: hardcodedDataType = {
+const initialState: HardcodedDataType = {
   acceptTerms:false,
   userIsOnboarded:false,
   taxonomy: { 
@@ -189,26 +189,26 @@ export const utilsSlice = createSlice({
   initialState,
   reducers: {
     setAcceptTerms:(  state,
-      action: PayloadAction<any>,)=>{
+      action: PayloadAction<any>,):any=>{
           state.acceptTerms = action.payload;
     },
     setuserIsOnboarded:(  state,
-      action: PayloadAction<any>,)=>{
+      action: PayloadAction<any>,):any=>{
           state.userIsOnboarded = action.payload;
     },
     setSyncDate:( state:any,
-      action: PayloadAction<any>,)=>{
+      action: PayloadAction<any>,):any=>{
         state[action.payload.key]=action.payload.value;
     },
     setDailyMessagesData:(  state,
-      action: PayloadAction<any>,)=>{
+      action: PayloadAction<any>,):any=>{
         (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
         state.dailymessages = action.payload;
     },
     setAllTaxonomyData: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
       if(action.payload[0])
       {
@@ -219,7 +219,7 @@ export const utilsSlice = createSlice({
     setAllTermsData: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
      (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
      action.payload.map((x:any)=> {
         if(x.unique_name == basicPagesUniqueName.aboutus)
@@ -246,87 +246,87 @@ export const utilsSlice = createSlice({
       
     },
     setInfoModalOpened:( state:any,
-      action: PayloadAction<any>,)=>{
+      action: PayloadAction<any>,):any=>{
         state[action.payload.key]=action.payload.value;
       },
     setIncrementalSyncDT:( state:any,
-      action: PayloadAction<any>,)=>{
+      action: PayloadAction<any>,):any=>{
         state.incrementalSyncDT[action.payload.key]=action.payload.value;
       },
       setStandardDevWFHData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.weight_for_height = action.payload;
       },
       setStandardDevHFAData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.height_for_age = action.payload;
       },
       setAllVaccineData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.vaccineData = action.payload;
       },
       setAllHealthCheckupsData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.healthCheckupsData = action.payload;
       },
       setAllChildDevData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.ChildDevData = action.payload;
       },
       setAllPinnedChildDevData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.PinnedChildDevData = action.payload;
       },
       setAllMileStonesData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.MileStonesData = action.payload;
       },
       setAllVideoArticlesData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.VideoArticlesData = action.payload;
       },
       setAllActivitiesData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.ActivitiesData = action.payload;
       },
       setAllSurveyData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.surveryData = action.payload;
       },
       setAllFaqsData: (
         state,
         action: PayloadAction<any>,
-      ) => {
+      ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.faqsData = action.payload;
       },

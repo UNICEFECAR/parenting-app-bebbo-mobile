@@ -40,6 +40,7 @@ import {
 import analytics from '@react-native-firebase/analytics';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { useFocusEffect } from '@react-navigation/native';
+import { bgcolorWhite2, lightShadeColor, secondaryColor } from '@styles/style';
 import {
   Heading1Centerr,
   Heading3, Heading4, Heading4Center, Heading5
@@ -48,12 +49,43 @@ import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Linking, Modal, Platform, Pressable, ScrollView, Share, View } from 'react-native';
+import { Alert, Linking, Modal, Platform, Pressable, ScrollView, Share, StyleSheet, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
-import { getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
+import { isFutureDate } from '../services/childCRUD';
 import { formatDate,addSpaceToHtml } from '../services/Utils';
+
+const styles = StyleSheet.create({
+  containerView: {
+    backgroundColor:secondaryColor,
+    flex:1
+  },
+  headingFlexShrink: { 
+    flexShrink: 1
+  },
+  iconStyle: { 
+    alignSelf: 'center',
+    flex: 1,
+    textAlign: 'right' 
+  },
+  scrollViewStyle: {
+    backgroundColor:bgcolorWhite2,
+    flex:1
+  },
+  textStyle: { 
+    fontSize: 12,
+    fontWeight: 'normal'
+  },
+  touchableLeft: { 
+    marginLeft: 2,
+    padding: 8 
+  },
+  touchableRight: { 
+    marginRight: 2,
+    padding: 8 
+  }
+})
 const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
@@ -62,7 +94,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
+  const allnotis = useAppSelector((state: any) => state.notificationData.notifications);
   const [notifications, setNotifications] = useState<any[]>([]);
   const surveryData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
@@ -72,16 +104,13 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const feedbackItem = surveryData.find((item:any) => item.type == "feedback")
   const userGuideItem = surveryData.find((item:any) => item.type == "user_guide")
   const [modalVisible, setModalVisible] = useState<boolean>(true);
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices ? state.childData.childDataSet.favoriteadvices : []
   );
   const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames ? state.childData.childDataSet.favoritegames : []
   );
-  const [favoritescount, setfavoritescount] = useState<any[]>(0);
+  const [favoritescount, setfavoritescount] = useState(0);
   const isOpen: boolean = useIsDrawerOpen();
   useFocusEffect(
     React.useCallback(() => {
@@ -101,9 +130,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
     }
   }, [isOpen, activeChild.uuid, favoriteadvices,favoritegames]),
   );
-  const childAgeInDays = getCurrentChildAgeInDays(
-    DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
-  );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -116,7 +142,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
         const currentChildNotis = allnotis?.find((item:any) => item.childuuid == activeChild.uuid)
         if (!isFutureDate(activeChild?.birthDate)) {
         if (currentChildNotis) {
-          let currentChildallnoti: any = [];
+          const currentChildallnoti: any = [];
           if (currentChildNotis.gwcdnotis) {
             currentChildNotis.gwcdnotis.forEach((item:any) => {
               currentChildallnoti.push(item)
@@ -137,11 +163,11 @@ const CustomDrawerContent = ({ navigation }: any) => {
               currentChildallnoti.push(item)
             })
           }
-          let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
-          let toDay = DateTime.fromJSDate(new Date()).toMillis();
+          const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+          const toDay = DateTime.fromJSDate(new Date()).toMillis();
 
 
-          let combinedNotis = currentChildallnoti.sort(
+          const combinedNotis = currentChildallnoti.sort(
             (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
           ).filter((item:any) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
           setNotifications(currentChildallnoti.length>0?combinedNotis:[])
@@ -154,8 +180,8 @@ const CustomDrawerContent = ({ navigation }: any) => {
   }, [isOpen, activeChild.uuid, allnotis]),
   );
   const onShare = async () => {
-    let localeData=(String(buildFor) != buildForBebbo)?languageCode:"";
-    let messageData=t('appShareText')+shareText+localeData;
+    const localeData=(String(buildFor) != buildForBebbo)?languageCode:"";
+    const messageData=t('appShareText')+shareText+localeData;
     console.log(messageData,"..messageData..");
     try {
       const result = await Share.share({
@@ -165,13 +191,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
       });
       if (result.action === Share.sharedAction) {
         analytics().logEvent(APP_SHARE);
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
       }
     } catch (error: any) {
       Alert.alert(t('generalError'));
@@ -189,8 +208,8 @@ const CustomDrawerContent = ({ navigation }: any) => {
   return (
     <>
      <FocusAwareStatusBar animated={true} backgroundColor={Platform.OS=='ios' ?headerColor:null}/>
-      <View style={{flex:1,backgroundColor:headerColor}}>
-        <ScrollView style={{flex:1,backgroundColor:"#FFF"}}>
+      <View style={styles.containerView}>
+        <ScrollView style={styles.scrollViewStyle}>
           <Flex1>
             <Pressable
               onPress={() => navigation.navigate('ChildProfileScreen')}
@@ -205,9 +224,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                         <OuterIconLeft15>
                           {activeChild.photoUri != '' ? (
                             <ImageIcon
-                              source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
-                            // style={{borderRadius: 20, width: 40, height: 40}}
-                            ></ImageIcon>
+                              source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
                           ) : (
                             <Icon name="ic_baby" size={25} color='#000' />
                           )}
@@ -227,7 +244,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                                 activeChild.birthDate != '' &&
                                   activeChild.birthDate != null &&
                                   activeChild.birthDate != undefined
-                                  ? formatDate(activeChild.birthDate, luxonLocale)
+                                  ? formatDate(activeChild.birthDate)
                                   : '',
                             }) : t('expectedChildDobLabel')}
                         </Heading5>
@@ -250,7 +267,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuhomeTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuhomeTxt')}</Heading4>
           </DrawerLinkView>
 
 
@@ -262,7 +279,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenunotiTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenunotiTxt')}</Heading4>
             {notifications.length > 0 ? <BubbleContainer>
               <BubbleView>
                 <Heading5>{notifications.length}</Heading5>
@@ -271,15 +288,15 @@ const CustomDrawerContent = ({ navigation }: any) => {
               : null}
           </DrawerLinkView>
 
-          <DrawerLinkView style={{ backgroundColor: accordvalue ? "#F7F6F4" : "#FFF" }} onPress={() => onChangeaccordvalue(!accordvalue)}>
+          <DrawerLinkView style={{ backgroundColor: accordvalue ? lightShadeColor : bgcolorWhite2 }} onPress={() => onChangeaccordvalue(!accordvalue)}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_tools" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenutoolsTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenutoolsTxt')}</Heading4>
             <Icon
-              style={{ flex: 1, textAlign: 'right', alignSelf: 'center' }}
+              style={styles.iconStyle}
               name={accordvalue ? 'ic_angle_up' : 'ic_angle_down'}
               size={10}
               color="#000"
@@ -301,7 +318,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenucdTxt')}</Heading4>
+                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenucdTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -324,7 +341,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuvcTxt')}</Heading4>
+                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuvcTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -347,7 +364,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuhcTxt')}</Heading4>
+                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuhcTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -370,7 +387,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenucgTxt')}</Heading4>
+                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenucgTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -383,7 +400,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuchatTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuchatTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('Favourites',{tabIndex: 0,backClicked:'no'})}>
             <OuterIconRow>
@@ -392,7 +409,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenufavTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenufavTxt')}</Heading4>
             { favoritescount > 0 ?
               <BubbleContainer>
                 <BubbleView>
@@ -409,7 +426,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuabtTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuabtTxt')}</Heading4>
           </DrawerLinkView>
           {userGuideItem && userGuideItem != {} && userGuideItem != '' && userGuideItem?.survey_feedback_link && userGuideItem?.survey_feedback_link != '' && userGuideItem?.survey_feedback_link != null ? 
             <DrawerLinkView onPress={() => 
@@ -423,7 +440,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </OuterIconLeft15>
               </OuterIconRow>
 
-              <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuugTxt')}</Heading4>
+              <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuugTxt')}</Heading4>
             </DrawerLinkView>
             : null}
           <DrawerLinkView onPress={() => navigation.navigate('SettingsScreen')}>
@@ -433,7 +450,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenusetTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenusetTxt')}</Heading4>
           </DrawerLinkView>
 
           <DrawerLinkView onPress={() => onShare()}>
@@ -442,7 +459,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_shareapp" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenushareTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenushareTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => { setModalVisible(true); }}>
             <OuterIconRow>
@@ -450,7 +467,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_feedback" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenufeedbackTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenufeedbackTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => {
             if(Platform.OS === 'android') {
@@ -475,7 +492,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_loveapp" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenurateTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenurateTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView
             onPress={() => {
@@ -486,7 +503,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_privacy" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuPrivacyTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuPrivacyTxt')}</Heading4>
           </DrawerLinkView>
         
         </ScrollView>

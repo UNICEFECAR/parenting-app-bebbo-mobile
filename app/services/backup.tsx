@@ -5,7 +5,6 @@ import { userRealmCommon } from "../database/dbquery/userRealmCommon";
 import { backupGDriveFileName, backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
-import { Child } from "../interface/interface";
 import { getAllChildren, setActiveChild } from "./childCRUD";
 import Realm from 'realm';
 import { getChild } from "./Utils";
@@ -17,7 +16,9 @@ import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
 class Backup {
     private static instance: Backup;
     importedrealm?: Realm;
-    private constructor() { }
+    private constructor(){ 
+     console.log("initialized")
+    }
     static getInstance(): Backup {
         if (!Backup.instance) {
             Backup.instance = new Backup();
@@ -42,7 +43,7 @@ class Backup {
         // Get realmContent
         const realmContent = await RNFS.readFile(userRealmPath, 'base64');
         // Get backupFolderId
-        let backupFolderId = await googleDrive.safeCreateFolder({
+        const backupFolderId = await googleDrive.safeCreateFolder({
             name: backupGDriveFolderName,
             parentFolderId: 'root'
         });
@@ -60,7 +61,7 @@ class Backup {
         }
         // Delete backupFileId
         if (backupFileId) {
-            const deleteset = await googleDrive.deleteFile(backupFileId);
+            await googleDrive.deleteFile(backupFileId);
         }
         // Create file on gdrive
         const response = await googleDrive.createFileMultipart({
@@ -87,27 +88,27 @@ class Backup {
             const resolvedPromises = oldChildrenData.map(async (item: any) => {
                 if(item.birthDate!=null && item.birthDate!=undefined){
                 const itemnew = await getChild(item, genders);
-                let childData: any = [];
+                const childData: any = [];
                 childData.push(itemnew);
                 console.log(childData, "..childData..");
-                let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                const createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
                 console.log(createresult, "..createresult");
                 }
             });
-            let notiFlagObj = { key: 'generateNotifications', value: true };
+            const notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
             await Promise.all(resolvedPromises).then(async item => {
-                let allChildren = await getAllChildren(dispatch, child_age,1);
+                console.log("importfromfile--",item);
+                const allChildren = await getAllChildren(dispatch, child_age,1);
                 let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-                let allChildrenList: Child[] = [];
                 this.closeImportedRealm();
                     
                 if (allChildren.length > 0) {
                     if (childId?.length > 0) {
                     childId = childId[0].value;
-                    let activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
+                    const activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
                     if(activeChildData.length>0){
-                        const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age,false);
+                        await setActiveChild(langCode,childId, dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -115,11 +116,12 @@ class Backup {
                         try {
                             Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
                         } catch (error) {
+                            console.log("error");
                         }
                         return "Imported";
                     }
                     else{
-                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
+                        await setActiveChild(langCode, '', dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -127,12 +129,13 @@ class Backup {
                         try {
                             Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
                         } catch (error) {
+                            console.log("error");
                         }
                         return "Imported";
                     }
                     }
                     else{
-                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
+                        await setActiveChild(langCode, '', dispatch, child_age,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -140,6 +143,7 @@ class Backup {
                         try {
                             Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
                         } catch (error) {
+                            console.log("error");
                         }
                         return "Imported";
                         
@@ -149,6 +153,7 @@ class Backup {
                     return new Error('No Data');
                 }
             }).catch(error => {
+                console.log("error-",error);
                 return new Error('No Import Succeded');
             })
 
@@ -156,6 +161,7 @@ class Backup {
         }
     }
     public async import1(navigation: any, langCode: any, dispatch: any, child_age: any, genders: any): Promise<any> {
+        console.log("import1-",navigation,langCode,dispatch, child_age, genders);
         const tokens = await googleAuth.getTokens();
 
         // Sign in if neccessary
@@ -165,7 +171,7 @@ class Backup {
         }
 
         // Get backupFolderId
-        let backupFolderId = await googleDrive.safeCreateFolder({
+        const backupFolderId = await googleDrive.safeCreateFolder({
             name: backupGDriveFolderName,
             parentFolderId: 'root'
         });
@@ -196,7 +202,7 @@ class Backup {
             this.importedrealm = await new Realm({ path: 'user1.realm' });
             if (this.importedrealm) {
                 await userRealmCommon.openRealm();
-                userRealmCommon.deleteAllAtOnce();
+                await userRealmCommon.deleteAllAtOnce();
                  this.closeImportedRealm();
                 this.importedrealm = await new Realm({ path: 'user1.realm' });
                 const oldChildrenData = this.importedrealm.objects('ChildEntity');
@@ -216,7 +222,7 @@ class Backup {
         }
 
         // Get backupFolderId
-        let backupFolderId = await googleDrive.safeCreateFolder({
+        const backupFolderId = await googleDrive.safeCreateFolder({
             name: backupGDriveFolderName,
             parentFolderId: 'root'
         });
@@ -247,7 +253,7 @@ class Backup {
             this.importedrealm = await new Realm({ path: 'user1.realm' });
             if (this.importedrealm) {
                 await userRealmCommon.openRealm();
-                userRealmCommon.deleteAllAtOnce();
+                await userRealmCommon.deleteAllAtOnce();
                 this.closeImportedRealm();
                 this.importedrealm = await new Realm({ path: 'user1.realm' });
                 const oldChildrenData = this.importedrealm.objects('ChildEntity');
@@ -255,28 +261,29 @@ class Backup {
                     const resolvedPromises = oldChildrenData.map(async (item: any) => {
                         if(item.birthDate!=null && item.birthDate!=undefined){
                         const itemnew = await getChild(item, genders);
-                        let childData: any = [];
+                        const childData: any = [];
                         childData.push(itemnew);
-                        let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                        await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
                         }
                     });
-                    let notiFlagObj = { key: 'generateNotifications', value: true };
+                    const notiFlagObj = { key: 'generateNotifications', value: true };
                     dispatch(setInfoModalOpened(notiFlagObj));
                     await Promise.all(resolvedPromises).then(async item => {
-                        let allChildren = await getAllChildren(dispatch, child_age,1);
+                        console.log("item-",item);
+                        const allChildren = await getAllChildren(dispatch, child_age,1);
                         let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-                        let allChildrenList: Child[] = [];
                         this.closeImportedRealm();
                             try {
                                 Realm.deleteFile({ path: 'user1.realm' });
                             } catch (error) {
+                                console.log("error");
                             }
                         if (allChildren.length > 0) {
                             if (childId?.length > 0) {
                             childId = childId[0].value;
-                            let activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
+                            const activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
                             if(activeChildData.length>0){
-                                const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age,false);
+                                 await setActiveChild(langCode,childId, dispatch, child_age,false);
                                  navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -284,7 +291,7 @@ class Backup {
                                 return "Imported";
                             }
                             else{
-                                const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
+                                await setActiveChild(langCode, '', dispatch, child_age,false);
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -293,7 +300,7 @@ class Backup {
                             }
                             }
                             else{
-                                const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age,false);
+                                 await setActiveChild(langCode, '', dispatch, child_age,false);
                                  navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -306,6 +313,7 @@ class Backup {
                             return new Error('No Data');
                         }
                     }).catch(error => {
+                        console.log("error-",error);
                         return new Error('No Import Succeded');
                     })
 
