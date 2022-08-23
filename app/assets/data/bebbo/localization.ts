@@ -81,27 +81,6 @@ const localizationall = [
       // },
     ],
   },
-  // {
-  //   name: 'Kosovo',
-  //   countryId: 21,
-  //   displayName: 'Kosovo (Kosova)',
-  //   languages: [
-  //     {
-  //       name: 'Albanian',
-  //       displayName: 'Shqip',
-  //       languageCode: 'xk-sq',
-  //       locale: 'XKsq',
-  //       luxonLocale:'sq-XK'
-  //     },
-  //     {
-  //       name: 'Serbian',
-  //       displayName: 'Srpski',
-  //       languageCode: 'xk-rs',
-  //       locale: 'XKrs',
-  //       luxonLocale:'sr-Latn-XK'
-  //     },
-  //   ],
-  // },
   {
     name: 'Kyrgyzstan',
     countryId: 26,
@@ -134,7 +113,7 @@ const localizationall = [
         name: 'Romanian',
         displayName: 'Română',
         languageCode: 'md-ro',
-        locale: 'MDro', //verify
+        locale: 'MDro', 
         luxonLocale:'ro-MD',
         pluralShow:false
       },
@@ -150,7 +129,7 @@ const localizationall = [
         displayName: 'Crnogorski',
         languageCode: 'me-cnr',
         locale: 'MEcnr',
-        luxonLocale:'me-cnr',//need to be verified
+        luxonLocale:'me-cnr',
         pluralShow:true
       },
     ],
@@ -211,7 +190,7 @@ const localizationall = [
         displayName: 'English',
         languageCode: 'rs-en',
         locale: 'RSen',
-        luxonLocale:'en-US',//need to be verified
+        luxonLocale:'en-US',
         pluralShow:false
       },
     ],
@@ -226,7 +205,7 @@ const localizationall = [
         displayName: 'Тоҷикӣ',
         languageCode: 'tj-tg',
         locale: 'TJtg',
-        luxonLocale:'tg-TJ',//need to be verified
+        luxonLocale:'tg-TJ',
         pluralShow:true
       },
       {
@@ -234,7 +213,7 @@ const localizationall = [
         displayName: 'Русский',
         languageCode: 'tj-ru',
         locale: 'TJru',
-        luxonLocale:'ru-TJ',//need to be verified
+        luxonLocale:'ru-TJ',
         pluralShow:true
       },
     ],
@@ -272,7 +251,7 @@ const localizationall = [
         displayName: 'Русский',
         languageCode: 'uz-ru',
         locale: 'UZru',
-        luxonLocale:'ru-UZ',//need to be verified
+        luxonLocale:'ru-UZ',
         pluralShow:true
       },
     ],

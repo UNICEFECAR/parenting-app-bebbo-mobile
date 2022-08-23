@@ -34,6 +34,9 @@ border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   background-color:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
+export const BannerContainerMilestone = styled(BannerContainer)`
+  background-color:${(props) => props.theme.colors.CHILDDEVELOPMENT_TINTCOLOR};
+`;
 export const BannerContainer1 = styled(BannerContainer)`
   padding:15px 15px;
   margin-bottom:20px;

@@ -6,12 +6,10 @@ import { getAllVaccinePeriods } from '../../services/vacccineService';
 import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
   uuid: string;
-  // measurementDate: number;
 };
 const PrevPlannedVaccines = (props: any) => {
   const {onPrevPlannedVaccineToggle,isEditScreen, currentPeriodVaccines,takenVaccine, fromScreen,backgroundActiveColor} = props;
   let {previousPeriods} = getAllVaccinePeriods();
-  // previousPeriods.shift();
   //remove first period which is the current period
   let allPreviousPendingVaccines: any[] = [];
   previousPeriods.forEach((period) => {
@@ -21,104 +19,49 @@ const PrevPlannedVaccines = (props: any) => {
       }
     });
   });
-  //console.log("curr",currentPeriodVaccines)
-  // allPreviousPendingVaccines.push(...currentPeriodVaccines);
-  //console.log("prev",allPreviousPendingVaccines);
   if(isEditScreen== true){
           if(takenVaccine.length>0){
             allPreviousPendingVaccines = allPreviousPendingVaccines.filter((vItem)=>{
-              return !currentPeriodVaccines?.find((element) => {
+              return !currentPeriodVaccines?.find((element: any) => {
                         return element.uuid == vItem.uuid && element.isMeasured ==false;
                       });
             })
            
           }else{
             allPreviousPendingVaccines.push([...currentPeriodVaccines].filter((item)=>{
-                return item.isMeasured ==false;
+                return item.isMeasured==false;
               }));
           }
 
         }else{
           allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
               (vItem: any) => {
-                return !currentPeriodVaccines?.find((element) => {
+                return !currentPeriodVaccines?.find((element:any) => {
                           return element.uuid == vItem.uuid
                         });
         });
         }
 
- 
-  // allPreviousPendingVaccines = currentPeriodVaccines.filter((item)=>{
-  //   return item.isMeasured ==false;
-  // });
-  // allPreviousPendingVaccines.push([...currentPeriodVaccines].filter((item)=>{
-  //   return item.isMeasured ==false;
-  // }));
- 
-  // allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
-  //   (vItem: any) => {
-  //     if(isEditScreen== true){
-  //       if(takenVaccine.length>0){
-  //          //remove all current period vaccines which are measured
-  //         return !currentPeriodVaccines?.find((element) => {
-  //           return element.uuid == vItem.uuid && element.isMeasured == true;
-  //         });
-  //         }else{
-  //            //remove all current period vaccines which are not measured
-  //           return !currentPeriodVaccines?.find((element) => {
-  //             return element.uuid == vItem.uuid && element.isMeasured == false;
-  //           });
-  //         }
-  //     }else{
-  //       // remove all current period vaccines which are not measured, because its already in planned vaccines
-  //       return !currentPeriodVaccines?.find((element) => {
-  //         return element.uuid == vItem.uuid
-  //       });
-  //     }
-      
-  //   },
-  // ).filter(
-  //   (vItem: any) => {
-  //      //remove all taken(measured) vaccines
-  //     return !takenVaccine?.find((element) => {
-  //       return element.uuid == vItem.uuid;
-  //     });
-  //   },
-  // );
-// }
-  // console.log(allPreviousPendingVaccines);
-  // let allCheckedVaccines: any[] = [];
   const [checkedVaccines, setCheckedVaccines] = useState<VaccineItemProps[]>(
     [],
   );
 
-  const onToggleVaccine = (uuid, isVaccineItemChecked) => {
-    // console.log(id,isVaccineItemChecked);
+  const onToggleVaccine = (uuid:any, isVaccineItemChecked:any) => {
     if (isVaccineItemChecked) {
       const allCheckedVaccines = [
         ...checkedVaccines,
         {  uuid: uuid,}
-          // measurementDate: DateTime.now().toMillis(),
       ];
       setCheckedVaccines(allCheckedVaccines);
       onPrevPlannedVaccineToggle(allCheckedVaccines);
-      // allCheckedVaccines.push({
-      //   uuid: uuid,
-      //   measurementDate: DateTime.now().toMillis(),
-      // });
-    } else {
+     } else {
       const allCheckedVaccines = [...checkedVaccines].filter(
         (item) => item.uuid !== uuid,
       );
       setCheckedVaccines(allCheckedVaccines);
       onPrevPlannedVaccineToggle(allCheckedVaccines);
-      // allCheckedVaccines = allCheckedVaccines.filter(
-      //   (item) => item.uuid !== uuid,
-      // );
     }
-    // onPrevPlannedVaccineToggle(allCheckedVaccines);
-    // console.log(allCheckedVaccines)
-  };
+    };
   const {t} = useTranslation();
   return (
     <>

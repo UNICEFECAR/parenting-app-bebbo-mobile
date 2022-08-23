@@ -17,8 +17,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1Center, Heading2, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Modal, Pressable, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Dimensions, Modal, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 
@@ -26,6 +25,7 @@ type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ChildSetupNavigationProp;
+  route:any;
 };
 
 const AddNewChildHeight = ({ navigation, route }: Props) => {
@@ -47,36 +47,29 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
     (state.utilsData.IsHeightModalOpened),
   );
   useFocusEffect(() => {
-    // console.log('heightModalOpened',heightModalOpened);
     // pass true to make modal visible every time & reload
     setModalVisible(heightModalOpened)
   })
   const [prevRoute, setPrevRoute] = useState<any>();
   React.useEffect(() => {
     if (route.params?.prevRoute) {
-      // console.log(route.params?.prevRoute);
       setPrevRoute(route.params?.prevRoute);
     }
     if (route.params?.headerColor) {
-      // console.log(route.params?.headerColor);
       setHeaderColor(route.params?.headerColor);
     }
     if (route.params?.backgroundColor) {
-      // console.log(route.params?.backgroundColor);
       setTintColor(route.params?.backgroundColor);
     }
     if (route.params?.heightValue) {
-      //console.log(route.params?.heightValue);
       (route.params?.heightValue.height != NaN) ? setheight(route.params?.heightValue.height) : setheight(0);
       (route.params?.heightValue.height1 != NaN) ? setheight1(route.params?.heightValue.height1) : setheight1(0.0);
-      // setInitialValues(route.params?.weightValue)
     }
   }, [route.params?.prevRoute, route.params?.headerColor, route.params?.backgroundColor, route.params?.heightValue]);
 
   const getHeightValue = () => {
     const h =
       (height != NaN ? height : 0) + (height1 != NaN ? 0.01 * height1 : 0);
-    // console.log(h);
     return h.toFixed(2);
   };
   return (
@@ -86,11 +79,10 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
-          //setModalVisible(false);
+          console.log("in onRequestClose");
         }}
         onDismiss={() => {
-          //setModalVisible(false);
+          console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
@@ -155,7 +147,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
                   height={100}
                   vertical={false}
                   initialValue={route.params?.heightValue.height}
-                  onChangeValue={(value) => setheight(value)}
+                  onChangeValue={(value: any) => setheight(value)}
                   minimum={0}
                   maximum={125}
                   segmentWidth={2}
@@ -179,7 +171,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
                   height={100}
                   vertical={false}
                   initialValue={route.params?.heightValue.height1}
-                  onChangeValue={(value) => setheight1(value)}
+                  onChangeValue={(value:any) => setheight1(value)}
                   minimum={0}
                   maximum={100}
                   segmentWidth={2}
@@ -209,8 +201,6 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
                   params: { height: getHeightValue() },
                   merge: true,
                 });
-                // route.params.onReturn({height:(heightVal + 0.01 * height1).toFixed(2)});
-                // navigation.goBack();
               }}>
               <ButtonText numberOfLines={2}>{t('growthScreensaveMeasuresDetails')}</ButtonText>
             </ButtonTertiary>

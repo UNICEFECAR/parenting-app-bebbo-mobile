@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { FlexRow, FlexDirRow } from './shared/FlexBoxStyle';
+import { FlexRow } from './shared/FlexBoxStyle';
 const ButtonItem = (props: any) => {
   return (
     <Pressable
@@ -84,15 +84,7 @@ const NotificationsCategories = (props: any) => {
     <>
     <View style={{backgroundColor: backgroundColor,}}>
       <View
-        style={{
-          padding: 10,
-          
-          minHeight: 120,
-          maxWidth:280,
-          width:'100%',
-          marginLeft:'auto'
-          ,marginRight:'auto',
-        }}>
+        style={styles.containerView}>
         <FlexRow>
           <ButtonItem data={products[0]} setbutton={() => handleChange(0)} />
           <ButtonItem data={products[1]} setbutton={() => handleChange(1)} />
@@ -109,10 +101,8 @@ const NotificationsCategories = (props: any) => {
 export default NotificationsCategories;
 const styles = StyleSheet.create({
   item: {
-    // backgroundColor: '#FFF',
     borderRadius: 5,
     margin: 5,
-    // padding: 10,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -121,13 +111,10 @@ const styles = StyleSheet.create({
   iconStyle: {
     flex: 1,
     marginLeft: 10,
-    // justifyContent:'flex-start',
-    // backgroundColor:'red',
     textAlign: 'left'
   },
   title: {
     fontSize: 10,
-    // padding: 5,
     margin: 0,
     flex: 2,
     width: 120,
@@ -135,4 +122,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     textAlign: 'left'
   },
+  containerView: {
+    padding: 10,
+    minHeight: 120,
+    maxWidth:280,
+    width:'100%',
+    marginLeft:'auto'
+    ,marginRight:'auto',
+  }
 });

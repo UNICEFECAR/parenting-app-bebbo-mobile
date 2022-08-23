@@ -6,7 +6,7 @@ import { ArticleListContainer, ArticleListContent, SearchBox, SearchInput } from
 import { DividerArt } from '@components/shared/Divider';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { FlexCol } from '@components/shared/FlexBoxStyle';
-import Icon, { IconClearBox, IconClearPress, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconClearPress, OuterIconRow } from '@components/shared/Icon';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import VideoPlayer from '@components/VideoPlayer';
@@ -20,14 +20,13 @@ import {
   FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import styled, { ThemeContext } from 'styled-components/native';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import LoadableImage from '../../../services/LoadableImage';
 import { randomArrayShuffle } from '../../../services/Utils';
 
-// import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
@@ -36,18 +35,16 @@ type Props = {
 };
 export type ArticleCategoriesProps = {
   borderColor?: any,
-  filterOnCategory?: Function,
+  filterOnCategory?: any,
   filterArray?: any,
   fromPage?: any,
-  onFilterArrayChange?: Function
+  onFilterArrayChange?: any
 }
 const Articles = ({ route, navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [isFavouriteArticle, setisFavouriteArticle] = useState(false);
   const [queryText, searchQueryText] = useState('');
   const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
-  const renderIndicator = (progress: any, indeterminate: any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const flatListRef = useRef(null);
   const setIsModalOpened = async (varkey: any) => {
     if (modalVisible == true) {
@@ -70,7 +67,6 @@ const Articles = ({ route, navigation }: Props) => {
   const modalScreenKey = 'IsArticleModalOpened';
   const modalScreenText = 'articleModalText';
   const netInfoval = useNetInfoHook();
-  // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
   
   const mergearr = (articlearrold: any[],videoartarrold: any[]) => {
     let combinedarr: any[] = [];
@@ -81,7 +77,7 @@ const Articles = ({ route, navigation }: Props) => {
     if(articlearr.length == 0) {
       combinedarr = [...videoartarr];
     }
-    articlearr.map((x, index) => {
+    articlearr.map((x: any, index: number) => {
       if (i < maxArticleSize) {
         combinedarr.push(x);
         i++;
@@ -105,11 +101,9 @@ const Articles = ({ route, navigation }: Props) => {
       }
     });
     
-    // console.log(combinedarr.length,"--combinedarr---", combinedarr)
     return combinedarr;
   }
   useFocusEffect(() => {
-    //console.log("in article focuseffect without callback",articleModalOpened);
     setModalVisible(articleModalOpened);
   })
   const themeContext = useContext(ThemeContext);
@@ -123,7 +117,6 @@ const Articles = ({ route, navigation }: Props) => {
         backgroundColor: backgroundColor,
         detailData: item,
         listCategoryArray: filterArray
-        // setFilteredArticleData: setFilteredArticleData
       });
   };
   const { t } = useTranslation();
@@ -134,7 +127,6 @@ const Articles = ({ route, navigation }: Props) => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  // console.log("categoryData--",categoryData);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -146,7 +138,6 @@ const Articles = ({ route, navigation }: Props) => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  //console.log(articleDataall,"..articleDataall..");
   let articleDataOld = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
 
   const VideoArticlesDataall = useAppSelector(
@@ -154,10 +145,8 @@ const Articles = ({ route, navigation }: Props) => {
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
   let videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
-  // console.log(articleDataOld.length,"videoarticleData length----", videoarticleData.length);
 
   let articleData = mergearr(articleDataOld,videoarticleData);
-  // console.log(articleData.length,"articleDatanew---");
   const [filteredData, setfilteredData] = useState([]);
   const [filterArray, setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
@@ -171,7 +160,6 @@ const Articles = ({ route, navigation }: Props) => {
            videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>:null
           : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
         }
-          {/* <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} /> */}
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
@@ -187,11 +175,8 @@ const Articles = ({ route, navigation }: Props) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      //console.log(filteredData,"routes changed--",route);
       async function fetchData() {
-        let Entity: any;
         if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
-          // console.log(route.params?.categoryArray);
           setFilterArray(route.params?.categoryArray);
           setFilteredArticleData(route.params?.categoryArray);
         }
@@ -212,17 +197,13 @@ const Articles = ({ route, navigation }: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("article useFocusEffect called--",articleModalOpened);
-      //setLoading(true);
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
       });
       const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
         setKeyboardStatus(false);
       });
-      // fetchData()
       return () => {
-        // console.log("in article unmount");
         {
           navigation.setParams({ categoryArray: [] })
           showSubscription.remove();
@@ -232,136 +213,68 @@ const Articles = ({ route, navigation }: Props) => {
       }
     }, [])
   );
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
-  //     async function fetchData() {
-  //     // if(filteredData?.length>0){
-  //     // filteredData.map(async (item: any, index: number) => {
-  //     //     if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-  //     //             if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
-  //     //             }
-  //     //             else{
-  //     //     let imageArray:any=[];
-  //     //     imageArray.push({
-  //     //         srcUrl: item['cover_image'].url, 
-  //     //         destFolder: destinationFolder, 
-  //     //         destFilename: item['cover_image'].url.split('/').pop()
-  //     //     })
-  //     //     console.log(imageArray,"..imageArray..");
-  //     //     const imagesDownloadResult = await downloadImages(imageArray);
-  //     //     console.log(imagesDownloadResult,"..imagesDownloadResult..");
-  //     //     }
-  //     //     }
-  //     //     });
-  //     // }else {
-  //     // }
-  //   }
-  //     fetchData()
-  //   }, [filteredData])
-  // );
+  
   const toTop = () => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
   }
   const setFilteredArticleData = (itemId: any) => {
-    //  console.log(itemId,"articleData in filtered 333",articleData.length,articleData);
-    // if(route.params?.backClicked == 'yes')
-    // {
-    //   navigation.setParams({backClicked:'no'})
-    // }
+    
     if (articleData != '' && articleData != null && articleData != undefined && articleData.length > 0) {
-      //  console.log("in inf")
       setLoadingArticle(true);
       if (itemId.length > 0) {
         let newArticleData = articleDataOld.filter((x: any) => itemId.includes(x.category));
         let newvideoArticleData = videoarticleData.filter((x: any) => itemId.includes(x.category));
-        // console.log(newArticleData.length,"--newArticleData-- 1",newvideoArticleData.length);
         if (queryText != "" && queryText != undefined && queryText != null) {
           newArticleData = newArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
           newvideoArticleData = newvideoArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
         }
         let combinedartarr = mergearr(newArticleData,newvideoArticleData);
 
-        // console.log(combinedartarr.length,"combinedartarr length")
         setfilteredData(combinedartarr);
-        // if(newArticleData.length == 0)
-        // {
-        //   setLoadingArticle(false);
-        // }
+        
         setLoadingArticle(false);
         toTop();
-        // setTimeout(function(){setLoading(false)}, 700);
       } else {
         let newArticleData = articleData != '' ? articleData : [];
         let videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
         let newvideoArticleData = videoarticleData != '' ? videoarticleData : [];
         let combinedartarr = [];
-        // console.log(newArticleData.length,"--newArticleData-- 2",newvideoArticleData.length);
-        // console.log(newArticleData.length,"..in else");
         if (queryText != "" && queryText != undefined && queryText != null) {
           newArticleData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
           newvideoArticleData = videoarticleDataAllCategory.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          // console.log("newvideoArticleData in else---",newvideoArticleData);
           combinedartarr = mergearr(newArticleData,newvideoArticleData);
-          // console.log(combinedartarr.length,"combinedartarr length 2 in if");
           setfilteredData(combinedartarr);
         }else {
           setfilteredData(newArticleData);
         }
 
-
-        // if(newArticleData.length == 0)
-        // {
-        //   setLoadingArticle(false);
-        // }
-
         setLoadingArticle(false);
         toTop();
-        // setTimeout(function(){setLoading(false)}, 700);
       }
     } else {
-      //console.log("in else")
       setLoadingArticle(false);
       setfilteredData([]);
     }
   }
 
-  // console.log(filteredData.length,"---length");
   const onFilterArrayChange = (newFilterArray: any) => {
-    // console.log("on filterarray change",newFilterArray);
-    // filterArray = [...newFilterArray];
-
+   
     setFilterArray(newFilterArray)
-    // console.log("on filterarray change after",filterArray)
-  }
-  const receivedLoadingArticle = (value) => {
-    // console.log("receivedLoadingArticle--",value);
-    setLoadingArticle(value);
   }
   //code for getting article dynamic data ends here.
   const searchList = async (queryText: any) => {
-    // console.log(queryText,"..queryText")
     setLoadingArticle(true);
-    // const currentChildData = {
-    //   "gender":activeChild.gender,
-    //   "parent_gender":activeChild.parent_gender,
-    //   "taxonomyData":activeChild.taxonomyData
-    // }
-    //console.log(currentChildData,"..currentChildData..");
-    // console.log(route.params?.categoryArray,"..route.params?.categoryArray..")
-    let Entity: any;
+    
     let artData: any;
     let newvideoArticleData: any;
     let combinedartarr = [];
-    let videoarticleDataspeccat = [];
     let videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
 
     if (queryText != "" && queryText != undefined && queryText != null) {
       artData = articleDataall.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
       newvideoArticleData = videoarticleDataAllCategory.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
       combinedartarr = mergearr(artData,newvideoArticleData);
-      // console.log(combinedartarr.length,"combinedartarr length 2 in if");
     }
     else {
       artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
@@ -369,22 +282,9 @@ const Articles = ({ route, navigation }: Props) => {
       combinedartarr = mergearr(artData,newvideoArticleData);
       // mergearr
     }
-    // const artData:any = await getDataToStore(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,"",currentChildData,queryText);
-    // artData.map((item)=>{
-    //   console.log(item,"..search item")
-    // });
-    // console.log(artData.length,"..artData length")
+    
     articleData = [...combinedartarr];
-    //console.log(articleData.length,"after search..articleData..",filterArray);
-    //setLoadingArticle(false);
-    // const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-    // if(artData.length<=0){
-    //   // setFilterArray([]);
-    //   setFilteredArticleData([]);
-    // }
-    // else{
-
-    // }
+    
     setFilteredArticleData(filterArray);
   }
   return (
@@ -412,7 +312,6 @@ const Articles = ({ route, navigation }: Props) => {
                 clearButtonMode="always"
                 onChangeText={(queryText: any) => {
                   if (queryText.replace(/\s/g, "") == "") {
-                    // console.log("..11value")
                     searchQueryText(queryText.replace(/\s/g, ''));
                   } else {
                     searchQueryText(queryText);
@@ -420,12 +319,7 @@ const Articles = ({ route, navigation }: Props) => {
                 }}
                 value={queryText}
                 onSubmitEditing={async (event) => {
-                  // if (queryText != "" && queryText != null && queryText != undefined) {
                   const data = await searchList(queryText);
-                  // }
-                  // else{
-
-                  // }
                 }}
                 multiline={false}
                 // placeholder="Search for Keywords"
@@ -472,13 +366,10 @@ const Articles = ({ route, navigation }: Props) => {
 
 
             </SearchBox>
-            {/* <FlexCol> */}
             <DividerArt></DividerArt>
             <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
             <DividerArt></DividerArt>
-            {/* </FlexCol> */}
             {filteredData.length > 0 ?
-              // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
               <FlatList
                 ref={flatListRef}
                 data={filteredData}
@@ -500,51 +391,10 @@ const Articles = ({ route, navigation }: Props) => {
                 keyExtractor={(item) => item.id.toString()}
               />
               : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
-            {/* {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
-                return renderArticleItem(item, index);
-              }) : setFilteredArticleData([])} */}
+            
           </FlexCol>
           <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
-          {/* <Modal
-        animationType="none"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}
-        onDismiss={() => {
-          setModalVisible(!modalVisible);
-        }}>
-        <PopupOverlay>
-          <ModalPopupContainer>
-            <PopupCloseContainer>
-              <PopupClose
-                onPress={() => {
-                  // setModalVisible(!modalVisible);
-                  setIsModalOpened('IsArticleModalOpened');
-                }}>
-                <Icon name="ic_close" size={16} color="#000" />
-              </PopupClose>
-            </PopupCloseContainer>
-            <ModalPopupContent>
-              <Heading4Centerr>
-                {t('articleModalText')}
-              </Heading4Centerr>
-              </ModalPopupContent>
-              
-              <FDirRow>
-              <ButtonModal
-                onPress={() => {
-                  setIsModalOpened('IsArticleModalOpened');
-                }}>
-                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
-              </ButtonModal>
-              </FDirRow>
-
-          </ModalPopupContainer>
-        </PopupOverlay>
-      </Modal> */}
+          
           <OverlayLoadingComponent loading={profileLoading} />
         </KeyboardAvoidingView>
 
