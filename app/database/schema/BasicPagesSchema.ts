@@ -11,13 +11,10 @@ import { ObjectSchema } from "realm";
     unique_name:string,
     embedded_images?: string[]
   };
-
-
   export const BasicPagesSchema: ObjectSchema = {
     name: 'BasicPagesEntity',
     primaryKey: 'id',
   
-    // API: https://bit.ly/3f7k9jq
     properties: {
       id: { type: 'int' },
       type: { type: 'string' },

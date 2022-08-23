@@ -1,8 +1,4 @@
 import {ObjectSchema} from 'realm';
-// import  userRealmCommon  from '../dbquery/userRealmCommon';
-// import { getUserRealm } from '../config/dbConfig'
-// console.log("userRealmCommon out--",userRealm);
-// const userRealm = getUserRealm();
 export type MeasurementEntity = {
     id: string;
     weight: string;
@@ -18,8 +14,6 @@ export type MeasurementEntity = {
   export const MeasurementEntitySchema: ObjectSchema = {
     name: 'MeasurementEntity',
     primaryKey: 'id',
-  
-    // API: https://bit.ly/3f7k9jq
     properties: {
         id: { type: 'string' },
         weight: { type: 'string' },

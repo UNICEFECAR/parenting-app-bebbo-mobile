@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Icon, { IconML } from '@components/shared/Icon';
+import  { IconML } from '@components/shared/Icon';
 
 export const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
@@ -11,8 +11,6 @@ export default class ScrollingButtonMenu extends React.Component {
         super(props);
 
         this.scroll = React.createRef();
-        // this.dataSourceCords = JSON.parse(window.localStorage.getItem('dataSourceCords'))  || [];
-        // this.dataSourceCords = this.getasyncData();
         this.dataSourceCords = [];
         this.state = {
             index: '',
@@ -21,41 +19,11 @@ export default class ScrollingButtonMenu extends React.Component {
             dataSourceCords2:[]
         };
     }
-    // getasyncData = async () => {
-    //     let userId = '';
-    //     try {
-    //       userId = await AsyncStorage.getItem('dataSourceCords');
-    //       console.log("in getasyncData",userId);
-    //       if(userId != [] && userId != "")
-    //       {
-    //         userId = JSON.parse(userId);
-    //       }else {
-    //         userId = [];
-    //       }
-    //     } catch (error) {
-    //       // Error retrieving data
-    //       console.log(error.message);
-    //     }
-    //     return userId;
-    //   }
-    //   savesyncData = async dataSourceCords => {
-    //     try {
-    //         console.log("in save--",dataSourceCords);
-    //       await AsyncStorage.setItem('dataSourceCords', dataSourceCords);
-    //     } catch (error) {
-    //       // Error retrieving data
-    //       console.log(error.message);
-    //     }
-    //   };
-    componentDidUpdate(prevProps) {
+     componentDidUpdate(prevProps) {
         const {selected} = this.props;
         if (this.props.selected != this.state.index) {
             this.setState({index: selected}, () => {
-                // console.log("in componentDidUpdate",selected);
-                // if(this.dataSourceCords.length > 0)
-                //     {
                         this._scrollTo();
-                    // }
             });
         }
     }
@@ -65,11 +33,8 @@ export default class ScrollingButtonMenu extends React.Component {
         if (selected) {
             this.setState({index: selected}, () => {
                 setTimeout(() => {
-                    // console.log(this.dataSourceCords,"in componentDidMount",this.state.index);
-                    // if(this.dataSourceCords.length > 0)
-                    // {
                         this._scrollTo();
-                    // }
+                
                 }, 0);
             });
         }
@@ -77,14 +42,10 @@ export default class ScrollingButtonMenu extends React.Component {
 
     _scrollTo() {
         const {index,scrollindex, dataSourceCords2} = this.state;
-        // console.log(dataSourceCords2[index],"scrolltoindex--",index);
-        // console.log("this.dataSourceCords--",this.dataSourceCords);
-        //console.log(index,"--scrollindex--",scrollindex);
         if(index != scrollindex)
         {
             const screen1 = screenWidth / 2;
             const elementOffset = this.dataSourceCords[index];
-           // console.log(this.dataSourceCords,"elementOffset--",elementOffset);
             if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
                 let x = elementOffset.x - (screen1 - (elementOffset.width / 2));
                 this.scroll.scrollTo({
@@ -152,8 +113,7 @@ export default class ScrollingButtonMenu extends React.Component {
                 containerStyle,
             ]}>
             <TouchableOpacity style={{padding:11}} onPress={() => this.leftArrow(items)}>
-                {/* <Text>L</Text> */}
-                <IconML name="ic_angle_left" size={16} color="#000" />
+            <IconML name="ic_angle_left" size={16} color="#000" />
             </TouchableOpacity>
                 <ScrollView
                     horizontal={true}
@@ -177,29 +137,17 @@ export default class ScrollingButtonMenu extends React.Component {
                                 ]}
                                 key={(route.id ? route.id : i).toString()}
                                 onPress={() => this.setState({index: route.id}, () => setTimeout(() => {
-                                    // console.log("in onpress",route.id);
                                         this._scrollTo();
                                         return this.props.onPress(route);
                                     }, 0),
                                 )}
                                 onLayout={(event) => {
-                                    // console.log("event--",event);
                                     const layout = event.nativeEvent.layout;
-                                    // console.log(this.dataSourceCords,"--layout--",layout);
                                     if(layout){
                                         this.dataSourceCords[route.id] = layout;
-                                        // this.setState({dataSourceCords2:this.dataSourceCords});
-                                        this.setState({dataSourceCords2: this.dataSourceCords}, () => setTimeout(() => {
-                                            // console.log("in onpress",route.id);
-                                                this._scrollTo();
-                                                // return this.props.onPress(route);
+                                         this.setState({dataSourceCords2: this.dataSourceCords}, () => setTimeout(() => {
+                                                 this._scrollTo();
                                         }, 0),)
-                                        // if(this.dataSourceCords)
-                                        // {
-                                        //     // this.savesyncData(JSON.stringify(this.dataSourceCords))
-                                        // }
-                                        // window.localStorage.setItem('dataSourceCords', JSON.stringify(state));
-                                        // this._scrollTo();
                                     }
                                 }}
                                 activeOpacity={selectedOpacity}
@@ -271,9 +219,6 @@ const styles = StyleSheet.create({
     scrollContainer: {},
     tabItem: {
         color:'#000',
-        /*borderColor: '#858585',
-        borderStyle: 'solid',
-        borderWidth: 1,*/
         borderRadius:4,
         padding:12,
         paddingLeft: 15,
@@ -282,7 +227,6 @@ const styles = StyleSheet.create({
     },
     tabItemText: {
         color: '#000000',
-        // fontFamily: 'AvenirNext-Medium',
         fontSize: 14,
         fontWeight: 'bold',
         fontStyle: 'normal',

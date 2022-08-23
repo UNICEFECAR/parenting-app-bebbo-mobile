@@ -14,7 +14,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
@@ -158,7 +157,6 @@ const styles = StyleSheet.create({
 
   title: {
     padding: 5,
-    // width: 100,
     fontWeight: 'bold',
     textAlign: 'center',
   },

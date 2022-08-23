@@ -10,6 +10,7 @@ import {
 } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { bgcolorWhite2 } from '@styles/style';
 import {
   Heading2,
   Heading3,
@@ -20,7 +21,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -39,7 +40,6 @@ const ActiveChildMeasureTimeline = (props: any) => {
   const setNewChildMeasureUpdates = () => {
     let measures = activeChild.measures.filter((item)=>item.isChildMeasured== true && item.weight>0 && item.height>0);
     let measurementDate: DateTime = DateTime.local();
-    const timeNow = DateTime.local();
     let allMeasurements = measures.map((item: MeasuresEntity) => {
       if (item.measurementDate) {
         measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
@@ -71,8 +71,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
       (a: any, b: any) => a.dateToMilis - b.dateToMilis,
     );
     setChildmeasures(allMeasurements.reverse());
-    // activeChild.measures = allMeasurements;
-    // console.log(activeChild.measures, allMeasurements, 'NewMeasures');
+   
   };
   useFocusEffect(
     React.useCallback(() => {
@@ -80,19 +79,14 @@ const ActiveChildMeasureTimeline = (props: any) => {
     }, [activeChild]),
   );
 
-  const renderDetail = (rowData, sectionID, rowID) => {
-    // console.log(sectionID,rowID);
-    // console.log(toFormat("DD MMM YYYY"))
-    // console.log(DateTime.fromISO(rowData.measurementDate).toFormat('dd MMM yyyy'))
+  const renderDetail = (rowData:any, sectionID:any) => {
     const renderTitle = (key: number, titleDateInMonth: number) => {
       // if (key === 0) {
       if (titleDateInMonth === 0) {
         return t('onBirthDay');
       } else {
-       //return `${titleDateInMonth} ${t('month')}`;
        const monthText =  (titleDateInMonth>1)?(titleDateInMonth >=5? t('months5tag'):t('monthstag')):t('monthtag')
        return titleDateInMonth.toString() + ' ' + monthText;
-        // return ageStr+= diff.years + (diff.years>1 ? (diff.years>=5 ? ' '+t('years5tag'):' '+t('yearstag')):' '+t('yeartag'));
         
         
       }
@@ -134,30 +128,13 @@ const ActiveChildMeasureTimeline = (props: any) => {
             <Flex1>
               <Pressable
                 onPress={() => {
-                  // console.log(rowData);
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
-                    editMeasurementDate: rowData.dateToMilis,
-                    // editGrowthItem: ( {
-                    //   "uuid": rowData.uuid,
-                    // "weight": rowData.weight,
-                    // "height": rowData.height,
-                    // "measurementDate": rowData.dateToMilis,
-                    // "titleDateInMonth": rowData.titleDateInMonth,
-                    // "isChildMeasured":rowData.isChildMeasured,
-                    // "measurementPlace": rowData.measurementPlace,
-                    // "doctorComment": rowData.doctorComment,
-                    // "didChildGetVaccines":rowData.didChildGetVaccines,
-                    // "vaccineIds":rowData.vaccineIds
-                  // })
-                  
+                    editMeasurementDate: rowData.dateToMilis
                   })
                 }}>
                 <FlexDirRowEnd>
-                  {/* <ButtonTextMdLine numberOfLines={2}>
-                    {t('growthScreeneditText')}
-                  </ButtonTextMdLine> */}
-                  <ButtonTextMdLine numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                  <ButtonTextMdLine numberOfLines={2} style={styles.btnTextDeco}><Icon
                       name="ic_edit"
                       size={16}
                       color="#000"
@@ -179,18 +156,27 @@ const ActiveChildMeasureTimeline = (props: any) => {
         lineColor="#000"
         showTime={false}
         lineWidth={1}
-        descriptionStyle={{color: 'gray'}}
+        descriptionStyle={styles.grayColor}
         renderDetail={renderDetail}
         innerCircle={'icon'}
         iconDefault={<Icon name={'ic_tick'} color="#000" size={10} />}
-        eventDetailStyle={{
-          backgroundColor: '#FFF',
-          marginBottom: 10,
-          padding: 15,
-          borderRadius: 4,
-        }}
+        eventDetailStyle={styles.evntDetailStyle}
       />
     </>
   );
 };
 export default ActiveChildMeasureTimeline;
+const styles = StyleSheet.create({
+  btnTextDeco: {
+    textDecorationLine:"none"
+  },
+  grayColor: {
+    color: 'gray'
+  },
+  evntDetailStyle: {
+    backgroundColor: bgcolorWhite2,
+    marginBottom: 10,
+    padding: 15,
+    borderRadius: 4,
+  }
+})

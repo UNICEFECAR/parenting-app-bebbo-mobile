@@ -1,4 +1,4 @@
-import { FormOuterCheckbox, LabelText, LabelTextVac } from '@components/shared/ChildSetupStyle';
+import { FormOuterCheckbox, LabelText } from '@components/shared/ChildSetupStyle';
 import { VacItemContainer } from '@components/shared/Container';
 import { Flex1, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconRight, OuterIconRow } from '@components/shared/Icon';
@@ -6,17 +6,16 @@ import { ToolsHeadView } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
 import { Heading4Regular } from '@styles/typography';
 import React, { useContext, useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle';
 const VaccineItem = (props: any) => {
   const {item, onToggleVaccine, fromScreen,backgroundActiveColor} = props;
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
-  // const bgColor = themeContext.colors.VACCINATION_COLOR;
   const headerColor = themeContext.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const gotoArticle = (pinned_articleID) => {
+  const gotoArticle = (pinned_articleID:any) => {
     if(pinned_articleID!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: fromScreen,
@@ -27,7 +26,7 @@ const VaccineItem = (props: any) => {
   }
   };
 
-  const {title, id,uuid, isMeasured, pinned_article} = item;
+  const {title, uuid, isMeasured, pinned_article} = item;
   const [toggleCheckBox, setToggleCheckBox] = useState(isMeasured);
   return (
     <>
@@ -46,7 +45,7 @@ const VaccineItem = (props: any) => {
                       <Icon name="ic_tick" size={12} color="#000" />
                     </CheckboxActive>
                   ) : (
-                    <Checkbox style={{borderWidth: 1}}></Checkbox>
+                    <Checkbox style={styles.checkboxStyle}></Checkbox>
                   )}
                 </View>
               </CheckboxItem>
@@ -73,3 +72,6 @@ const VaccineItem = (props: any) => {
   );
 };
 export default VaccineItem;
+const styles=StyleSheet.create({
+checkboxStyle:{borderWidth: 1}
+})

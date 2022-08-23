@@ -5,32 +5,19 @@ import {
   ToolsActionView,
   ToolsHeadingView,
   ToolsHeadPress,
-  ToolsHeadView,
   ToolsIconView,
   ToolsIconView1,
   ToolsListContainer,
-  ToolsListOuter
+  ToolsListOuter,
 } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
-import {
-  Heading2,
-  Heading4,
-  Heading4Regular,
-  Heading5,
-  ShiftFromTopBottom10
-} from '@styles/typography';
+import { greenColor } from '@styles/style';
+import { Heading2, Heading4, Heading4Regular, Heading5 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect, useState } from 'react';
+import  React,{ useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
-import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../../../App';
-import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
-import {
-  ChildEntity,
-  ChildEntitySchema
-} from '../../../database/schema/ChildDataSchema';
-import { setActiveChildData } from '../../../redux/reducers/childSlice';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { useAppSelector } from '../../../../App';
 import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../../../services/Utils';
 import {
@@ -44,94 +31,42 @@ import {
 import Icon, { IconViewAlert, IconViewBg } from '../../shared/Icon';
 
 const UpcomingVaccines = (props: any) => {
-  const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
-    props;
-  // console.log(item);
+  const {item, headerColor, backgroundColor, currentPeriodId} =props;
   const {t} = useTranslation();
   const navigation = useNavigation();
-  const [isOpen, setIsOpen] = useState<Boolean>(false);
-  const themeContext = useContext(ThemeContext);
-  const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
-  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
-  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const deleteReminder = async (hcuuid) => {
-    const languageCode = useAppSelector(
-      (state: any) => state.selectedCountry.languageCode,
-    );
-    const dispatch = useAppDispatch();
-    const child_age = useAppSelector((state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != ''
-        ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-        : [],
-    );
-  
-    let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
-      ChildEntitySchema,
-      hcuuid,
-      'uuid ="' + activeChild.uuid + '"',
-    );
-    // console.log(createresult,"ReminderDeleted");
-    if(createresult?.length>0){
-      activeChild.reminders=createresult;
-      dispatch(setActiveChildData(activeChild));
-      }
-    // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
-  };
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
   let reminders = activeChild.reminders;
-  // console.log(reminders,"UpcomingHealthCheckup-reminders");
-  let vcReminder;
+  let vcReminder: any;
   const vaccineReminders = reminders.filter(
-    (item) => item?.reminderType == 'vaccine',
+    (item:any) => item?.reminderType == 'vaccine',
   );
   if (vaccineReminders.length>0) {
-    vaccineReminders.forEach((vaccineReminder)=>{
+    vaccineReminders.forEach((vaccineReminder:any)=>{
       let today = DateTime.fromJSDate(new Date());
-      // let reminderDate = new Date(DateTime.fromMillis(vaccineReminder?.reminderDate));
       let reminderDate = new Date(DateTime.fromMillis(vaccineReminder?.reminderDate));
-      
-      // let reminderTime = DateTime.fromMillis(vaccineReminder?.reminderTime);
       const hours = new Date(vaccineReminder?.reminderTime).getHours()
       const mins = new Date(vaccineReminder?.reminderTime).getMinutes()
       reminderDate.setHours(hours);
       reminderDate.setMinutes(mins);
-      
-      // let days = DateTime.fromJSDate(reminderDate).diff(today, 'days').toObject().days;
-      // console.log(days,"days")
       if (today.toMillis()<DateTime.fromJSDate(new Date(reminderDate)).toMillis()) {
-        //console.log('vaccineReminder',vaccineReminder);
-        vcReminder = vaccineReminder
+      vcReminder = vaccineReminder
       }
     })
     
   }
-  // if (vaccineReminder) {
-  //   let today = DateTime.fromJSDate(new Date());
-  //   let reminderDate = DateTime.fromMillis(vaccineReminder?.reminderDate);
-
-  //   let days = reminderDate.diff(today, 'days').toObject().days;
-  //   console.log(Math.round(days), 'Days');
-  //   if (Math.round(days) < 0) {
-  //     deleteReminder(vaccineReminder.uuid);
-  //   }
-  // }
- 
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
   useEffect(() => {
     currentPeriodId == item?.periodID ? setIsOpen(true) : setIsOpen(false);
-    const yeas = item?.vaccines.some((el) => {
-      return el.isMeasured == true;
-    });
-   // console.log(yeas, 'isMeasuredyeas');
     // open first collapsible in upcoming vaccine period
   }, []);
-  const gotoArticle = (pinned_articleID) => {
+  const gotoArticle = (pinned_articleID:any) => {
     if(pinned_articleID!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: 'VaccinationTab',
@@ -141,11 +76,10 @@ const UpcomingVaccines = (props: any) => {
     });
   }
   };
-  const doneVc = item?.vaccines.filter((item) => {
+  const doneVc = item?.vaccines.filter((item:any) => {
     return item?.isMeasured;
   });
-  // console.log(doneVc.length,"doneVc");
-  return (
+   return (
     <>
       <ToolsListOuter>
         <ToolsListContainer
@@ -153,10 +87,10 @@ const UpcomingVaccines = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item?.vaccines.every((el) => {
+            {item?.vaccines.every((el:any) => {
               return el.isMeasured == true;
             }) ? (
-              <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
+              <RadioActive style={styles.radioActive}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
@@ -184,7 +118,7 @@ const UpcomingVaccines = (props: any) => {
             </ToolsHeadingView>
             <ToolsActionView>
               <Icon
-                style={{alignSelf: 'center'}}
+                style={styles.alignCenter}
                 name={isOpen ? 'ic_angle_up' : 'ic_angle_down'}
                 size={10}
                 color="#000"
@@ -194,15 +128,15 @@ const UpcomingVaccines = (props: any) => {
         </ToolsListContainer>
         {isOpen ? (
           <>
-            {item?.vaccines.map((v, i) => {
+            {item?.vaccines.map((v:any, i:any) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>     
-                    <View style={{flex:6,flexDirection:"row"}}>
+                    <View style={styles.vaccineOuterView}>
                     <ToolsIconView>
                       {v.isMeasured ? (
                         <RadioActive
-                          style={{backgroundColor: 'green', borderRadius: 50}}>
+                          style={styles.radioActive}>
                           <Icon name="ic_tick" size={12} color="#FFF" />
                         </RadioActive>
                       ) : (
@@ -221,10 +155,7 @@ const UpcomingVaccines = (props: any) => {
                         {v.isMeasured ? ' - ' : null}{' '}
                         {v.isMeasured
                           ? 
-                          // DateTime.fromJSDate(
-                          //     new Date(v.measurementDate),
-                          //   ).toFormat('dd/MM/yyyy')
-                          formatStringDate(v.measurementDate,luxonLocale)
+                           formatStringDate(v.measurementDate,luxonLocale)
                           : null}
                       </Heading4Regular>
                       {v?.pinned_article ? (
@@ -237,17 +168,14 @@ const UpcomingVaccines = (props: any) => {
                       ) : null}
                     </ToolsHeadingView>
                     </View>
-                    <View  style={{flex:1,alignItems:"flex-end"}}>
+                    <View  style={styles.toolsIconOuterView}>
                     {v.isMeasured ? <Pressable onPress={() =>navigation.navigate('AddChildVaccination', {
                         headerTitle: t('editVcTitle'),
                         vcPeriod: item,
                         editVaccineDate:v.measurementDate,
                       })}>
                     <ToolsIconView1>
-                          {/* <ButtonTextSmLineL numberOfLines={2}>
-                            {t('growthScreeneditText')}
-                          </ButtonTextSmLineL> */}
-                           <ButtonTextSmLineL numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                           <ButtonTextSmLineL numberOfLines={2} style={styles.textNoLine}><Icon
                       name="ic_edit"
                       size={16}
                       color="#000"
@@ -265,8 +193,7 @@ const UpcomingVaccines = (props: any) => {
               <MainContainer>
                 {vcReminder ? (
                   <FDirRowStart>
-                     <View style={{flex:6,flexDirection:"row"}}>
-                    {/* <ToolsHeadView> */}
+                     <View style={styles.vaccineOuterView}>
                     <ToolsIconView>
                     <IconViewBg>
                       <Icon
@@ -281,24 +208,17 @@ const UpcomingVaccines = (props: any) => {
                         <Heading4Regular>{t('vcHasScheduled')}</Heading4Regular>
                         <Heading4>
                           {
-                          // DateTime.fromJSDate(
-                          //   new Date(vaccineReminder?.reminderDate),
-                          // ).toFormat('dd MMM yyyy')
                           formatStringDate(vcReminder?.reminderDate,luxonLocale)
                           }
                           {','}
                           {
                              formatStringTime(vcReminder?.reminderTime,luxonLocale)
-                          // DateTime.fromJSDate(
-                          //   new Date(vaccineReminder?.reminderTime),
-                          // ).toFormat('hh:mm a')
                           }
                         </Heading4>
                       </ToolsHeadingView>
                     
-                    {/* </ToolsHeadView> */}
                     </View>
-                    <View  style={{flex:1,alignItems:"flex-end"}}>
+                    <View  style={styles.toolsIconOuterView}>
                     <Pressable
                           onPress={() => {
                             navigation.navigate('AddReminder', {
@@ -313,7 +233,7 @@ const UpcomingVaccines = (props: any) => {
                             });
                           }}>
                       <ToolsIconView1>
-                          <ButtonTextSmLine numberOfLines={2} style={{textDecorationLine:"none"}}>
+                          <ButtonTextSmLine numberOfLines={2} style={styles.textNoLine}>
                           <Icon name="ic_edit" size={16} color="#000" />
                           </ButtonTextSmLine>
                       </ToolsIconView1>
@@ -342,28 +262,8 @@ const UpcomingVaccines = (props: any) => {
                 {/* Set Reminder Link */}
               </MainContainer>
             ) : null}
-            {/* add condition for only few vaccines are given in below */}
-            {/* {currentPeriodId == item?.periodID &&
-            item?.vaccines.some((el) => {
-              return el.isMeasured == true;
-            }) ? (
-              <ShiftFromTopBottom10>
-                <Pressable
-                  disabled={isFutureDate(activeChild?.birthDate)}
-                  onPress={
-                    () => console.log(item)
-                    // navigation.navigate('AddChildVaccination', {
-                    //   headerTitle: t('editVcTitle'),
-                    //   vcPeriod: item,
-                    // })
-                  }>
-                  <ButtonTextMdLine numberOfLines={2}>{t('vcEditDataBtn')}</ButtonTextMdLine>
-                </Pressable>
-              </ShiftFromTopBottom10>
-            ) : null} */}
-            {/* remaining add condition for all vaccines were not given in below */}
             {currentPeriodId == item?.periodID &&
-            item?.vaccines.some((el) => {
+            item?.vaccines.some((el:any) => {
               return el.isMeasured == false;
             }) ? (
               <ButtonContainerAuto>
@@ -388,10 +288,10 @@ const UpcomingVaccines = (props: any) => {
   );
 };
 export default UpcomingVaccines;
-
-// const styles = StyleSheet.create({
-//   item: {
-//     padding: 10,
-
-//   },
-// });
+const styles=StyleSheet.create({
+  radioActive:{backgroundColor: greenColor, borderRadius: 50 },
+  alignCenter:{alignSelf: 'center' },
+  vaccineOuterView:{ flex: 6, flexDirection: "row" },
+  toolsIconOuterView:{ flex: 1, alignItems: "flex-end" },
+  textNoLine:{ textDecorationLine: "none" }
+ })

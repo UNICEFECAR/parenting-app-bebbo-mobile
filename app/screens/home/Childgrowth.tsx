@@ -8,13 +8,14 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonContainer,
   ButtonPrimary,
-  ButtonText
+  ButtonText,
+  ButtonModal
 } from '@components/shared/ButtonGlobal';
 import {
   BgContainer,
   MainContainer,
 } from '@components/shared/Container';
-import { FlexCol, FlexDirCol } from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexCol, FlexDirCol } from '@components/shared/FlexBoxStyle';
 import {
   TabBarContainerBrd,
   TabBarDefault
@@ -49,9 +50,6 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import { getCurrentChildAgeInMonths, isFutureDate } from '../../services/childCRUD';
 import Icon from '@components/shared/Icon';
-import { ButtonModal } from '@components/shared/ButtonGlobal';
-import { FDirRow } from '@components/shared/FlexBoxStyle';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { formatStringDate } from '../../services/Utils';
@@ -61,7 +59,7 @@ type Props = {
   navigation: ChildgrowthNavigationProp;
   AddNewChildgrowth: any;
 };
-const Childgrowth = ({navigation,route}: Props) => {
+const Childgrowth = ({navigation}: Props) => {
   const {t} = useTranslation();
   const data = [
     {title: t('growthScreenweightForHeight')},
@@ -71,7 +69,6 @@ const Childgrowth = ({navigation,route}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-  const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading,setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
@@ -99,17 +96,14 @@ const Childgrowth = ({navigation,route}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // console.log(activeChild,"..activeChild..")
-  // const measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
   let measures:any=[];
   let days = 0;
   if(activeChild?.measures.length>0){
-     measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
+     measures = activeChild.measures.filter((item: any) => item.isChildMeasured == true);
     }
 //Code for Growth text hiding condition starts here
   if(measures.length > 0){
       let measurementDate: DateTime = DateTime.local();
-      const timeNow = DateTime.local();
       let childmeasures = measures.map((item: MeasuresEntity) => {
         if (item.measurementDate) {
           measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
@@ -143,15 +137,10 @@ const Childgrowth = ({navigation,route}: Props) => {
           childmeasures.length - 1
         ]?.dateToMilis)
         let date = DateTime.fromISO(activeChild.birthDate);
-        // console.log(date,"DOB");
         let convertInDays = lastmeasurementDate.diff(date, "days").days;
         if (convertInDays !== undefined) {days = Math.round(convertInDays)};
       }
     //Code for Growth text hiding condition ends here
-  // const standardDevData = useAppSelector((state: any) =>
-  //   JSON.parse(state.utilsData.taxonomy.standardDevData),
-  // );
-  // console.log(standardDevData,"statestandardDevData")
 const {width,height}= Dimensions.get('window');
   const renderDummyChart = () => {
     return (
@@ -176,11 +165,10 @@ const {width,height}= Dimensions.get('window');
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
-          // setModalVisible(false);
+          console.log("in onRequestClose");
         }}
         onDismiss={() => {
-          // setModalVisible(false);
+          console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
@@ -252,7 +240,6 @@ const {width,height}= Dimensions.get('window');
                       }):t('expectedChildDobLabel')
                       }
 
-                      {/* {t('growthScreengrowthDataTitle', {childAge: 3})} */}
                     </Heading3>
                   </ShiftFromBottom5>
 

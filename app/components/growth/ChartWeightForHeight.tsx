@@ -1,44 +1,28 @@
 import { boy_child_gender, girl_child_gender, height_growth_type } from '@assets/translations/appOfflineData/apiConstants';
-import { FlexCol, FlexColEnd } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexColChart, FlexColEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading2, Heading3Regular, Heading4, ShiftFromTop10,ShiftFromTopBottom15 } from '@styles/typography';
+import { Heading3Regular, Heading4,ShiftFromTopBottom15 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Dimensions, Pressable, View } from 'react-native';
-import HTML from 'react-native-render-html';
+import { ActivityIndicator, Dimensions, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
-import { addSpaceToHtml } from '../../services/Utils';
 const ChartWeightForHeight = (props: any) => {
   const navigation = useNavigation();
-  const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-  // let genders = useAppSelector(
-  //   (state: any) =>
-  //   state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
-  // );
-  // let growth_type= useAppSelector(
-  //   (state: any) =>
-  //   state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).growth_type:[],
-  // );
-  const fullScreenChart = (chartType, obj) => {
-    // console.log((activeChild,chartType,obj,standardDeviation));
+  const fullScreenChart = (chartType: any, obj: any) => {
     navigation.navigate('ChartFullScreen', {
       activeChild,
       chartType,
       obj,
     });
   };
-  // const standardDevData = useAppSelector((state: any) =>
-  //   JSON.parse(state.utilsData.taxonomy.standardDevData),
-  // );
   const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -47,11 +31,8 @@ const ChartWeightForHeight = (props: any) => {
   );
   let obj: any;
   let standardDeviation: any;
-  console.log("props in height for age chart23----",props.days);
-  console.log("props in height for age taxonomy----",activeChild?.taxonomyData?.days_from);
   if (activeChild?.gender == boy_child_gender || activeChild?.gender == '') {
     //boy or no gender added
-    // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
     const genderBoyData = standardDevData?.filter(
       (item) => item.growth_type == height_growth_type && item.child_gender == boy_child_gender,
     );
@@ -59,7 +40,6 @@ const ChartWeightForHeight = (props: any) => {
     obj = formatHeightData(genderBoyData,'weight');
   } else {
     //girl
-    // standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
     const genderGirlData = standardDevData?.filter(
       (item) => item.growth_type == height_growth_type && item.child_gender == girl_child_gender,
     );
@@ -67,8 +47,7 @@ const ChartWeightForHeight = (props: any) => {
     obj = formatHeightData(genderGirlData,'weight');
   }
   const childTaxonomyData = activeChild.taxonomyData;
-  // const sortedMeasurements2 = activeChild.measures.filter((item)=>item.isChildMeasured== true&& item.weight>0 && item.height>0);
-  const sortedMeasurements = activeChild.measures.filter((item)=>item.isChildMeasured== true&& item.weight>0 && item.height>0).sort(
+  const sortedMeasurements = activeChild.measures.filter((item: { isChildMeasured: boolean; weight: number; height: number; })=>item.isChildMeasured== true&& item.weight>0 && item.height>0).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
@@ -77,7 +56,6 @@ const ChartWeightForHeight = (props: any) => {
     childTaxonomyData,
     lastMeasurements,
   );
-  //console.log(item);
   const [isChartVisible, setIsChartVisible] = React.useState(false);
   useFocusEffect(
     React.useCallback(() => {
@@ -106,15 +84,14 @@ const ChartWeightForHeight = (props: any) => {
       //cleanup work
       Dimensions.removeEventListener('change', deviceOrientation);
     };
-  // });
   }, [deviceOrientation]);
   return (
     <FlexCol>
       <FlexCol>
         <FlexColEnd>
           <Pressable
-            style={{padding: 7, marginTop: 5}}
-            onPress={() => fullScreenChart(chartTypes.weightForHeight, obj)}>
+            style={styles.fullScreenPressable}
+            onPress={() => fullScreenChart(chartTypes.WeightForHeight, obj)}>
             <Icon name="ic_fullscreen" size={16} />
           </Pressable>
         </FlexColEnd>
@@ -124,40 +101,22 @@ const ChartWeightForHeight = (props: any) => {
         {isChartVisible && deviceOrientation=='portrait' ? (
           <GrowthChart
             activeChild={activeChild}
-            chartType={chartTypes.weightForHeight}
+            chartType={chartTypes.WeightForHeight}
             bgObj={obj}
             windowWidth={windowWidth}
             windowHeight={windowHeight}
-            // standardDeviation={standardDeviation}
           />
         ) : (
-          <View style={{marginTop:50}}>
+          <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={headerColor} />
           </View>
         )}
         <ShiftFromTopBottom15>
           {item && (props.days >= activeChild.taxonomyData.days_from) ? (
             <>
-              {/* {(item?.interpretationText?.name && item?.interpretationText?.text) ?<Heading2>{t('growthScreensumHeading')}</Heading2> : null}  */}
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
                 <>
-                {/* <HTML
-                  source={{html: addSpaceToHtml(item?.interpretationText?.text)}}
-                  baseFontStyle={{fontSize: 16}}
-                  ignoredStyles={['color', 'font-size', 'font-family']}
-                  tagsStyles={{
-                    p:{textAlign:'left',},
-                    h1:{textAlign:'left'},
-                    h2:{textAlign:'left'},
-                    h3:{textAlign:'left'},
-                    h4:{textAlign:'left'},
-                    h5:{textAlign:'left'},
-                    h6:{textAlign:'left'},
-                    span:{textAlign:'left'},
-                    li:{textAlign:'left'},
-                  }}
-                /> */}
                 <Heading3Regular>{item?.interpretationText?.text}</Heading3Regular>
                 </>
               ) : null}
@@ -167,7 +126,7 @@ const ChartWeightForHeight = (props: any) => {
       </FlexCol>
       {(props.days< activeChild.taxonomyData.days_from) ? 
         null :
-          <FlexCol
+          <FlexColChart
             style={{
               backgroundColor: backgroundColor,
               marginLeft: -20,
@@ -177,15 +136,24 @@ const ChartWeightForHeight = (props: any) => {
               fromScreen={'ChildgrowthTab'}
               related_articles={item?.interpretationText?.articleID}
               category={5}
-              currentId={chartTypes.weightForHeight}
+              currentId={chartTypes.WeightForHeight}
               headerColor={headerColor}
               backgroundColor={backgroundColor}
               navigation={navigation}
             />
-          </FlexCol>
+          </FlexColChart>
           
           }
     </FlexCol>
   );
 };
 export default ChartWeightForHeight;
+const styles = StyleSheet.create({
+  fullScreenPressable:{
+    padding: 7,
+    marginTop: 5
+  },
+  loadingContainer: {
+    marginTop:50
+  }
+})

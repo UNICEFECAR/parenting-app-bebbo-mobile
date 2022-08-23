@@ -20,34 +20,22 @@ import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { appConfig, both_child_gender, both_parent_gender} from "./apiConstants";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, PinnedChildDevData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
-// const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
-  //  console.log(prevPage, "..prevPage..")
-    return new Promise(async (resolve, reject) => {
-        // if(apiEndpoint == appConfig.basicPages || apiEndpoint == appConfig.activities || apiEndpoint == appConfig.milestones)
-        // console.log("getAllDataToStore--");
+    return new Promise(async (resolve) => {
         if (prevPage == "CountryLanguageSelection") {
             // try {
             let Entity: any;
             const basicData = await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
             const taxonomyData = await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
-            //taxonomy
-            //sponsor
-            // console.log("success");
             resolve("success");
-            // } catch (e) {
-            //     reject();
-            // }
         }
         else if (prevPage == "AddEditChild") {
             let Entity: any;
-           // console.log(activeChild, "..currentChildData..")
             const currentChildData = {
                 "gender": activeChild.gender,
                 "parent_gender": activeChild.parent_gender,
                 "taxonomyData": activeChild.taxonomyData
             }
-            //console.log(currentChildData, "..currentChildData..")
             const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("nocall");
         }
@@ -156,39 +144,23 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any, queryText?: any) => {
     return new Promise(async (resolve, reject) => {
-       // console.log(currentChildData, "..currentChildData..")
-        // console.log("getDataToStore--",SchemaToUse);
-        let databaselistener: any;
         let dataToStore: any;
         let offlineData: any;
         if (SchemaToUse.name == StandardDevWeightForHeightSchema.name) {
             offlineData = jsonData[languageCode] ? jsonData[languageCode][0].weight_for_height : undefined;
-            // console.log(offlineData);
-            if (offlineData == undefined || offlineData == "" || offlineData == {}) {
-                // offlineData = jsonData['en'][0].weight_for_height;
+             if (offlineData == undefined || offlineData == "" || offlineData == {}) {
                 offlineData = [];
             }
         }
         else if (SchemaToUse.name == StandardDevHeightForAgeSchema.name) {
             offlineData = jsonData[languageCode] ? jsonData[languageCode][0].height_for_age : undefined;
-            // console.log(offlineData);
-            if (offlineData == undefined || offlineData == "" || offlineData == {}) {
-                // offlineData = jsonData['en'][0].height_for_age;
-                offlineData = [];
-            }
-        }
-        else if(SchemaToUse.name == FAQsSchema.name) {
-            offlineData = jsonData[languageCode];
-            console.log('FAQsSchema--',offlineData);
             if (offlineData == undefined || offlineData == "" || offlineData == {}) {
                 offlineData = [];
             }
         }
         else {
             offlineData = jsonData[languageCode];
-            // console.log(offlineData);
             if (offlineData == undefined || offlineData == "" || offlineData == {}) {
-                // offlineData = jsonData['en'];
                 offlineData = [];
             }
         }
@@ -212,15 +184,8 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
                 if (currentChildData.gender != "" && currentChildData.gender != 0 && currentChildData.gender != "0") {
                     filterQuery += '&& (child_gender==' + parseInt(currentChildData.gender) + ' || child_gender == ' + both_child_gender + ' || child_gender == ' + String(both_child_gender) + '  || child_gender == 0)';
                 }
-                // console.log(queryText,"..queryText");
-                // if (queryText != "" && queryText != null && queryText != undefined) {
-                //     filterQuery += ' && title CONTAINS[c]"' + queryText + '" || summary CONTAINS[c] "' + queryText + '" || body CONTAINS[c] "' + queryText + '"';
-                // }
-                // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
-                //const filterQuery='((child_age == 43 || child_age == 0) && (parent_gender == 60 || parent_gender == both) && (child_gender == 59 || child_gender == both)'
-                //console.log(filterQuery, "..11filterQuery..");
+               // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
                 let databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse, filterQuery);
-                //console.log(databaseData.length);
                 dataToStore = databaseData;
             } else {
                 dataToStore = databaseData2;
@@ -229,21 +194,13 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
         else {
             dataToStore = databaseData2;
         }
-        // databaseData2.removeAllListeners();
-        // databaselistener = databaseData2.addListener(() => {
-        // console.log("listener called");
         if (dataToStore?.length > 0) {
-            // console.log("in if  getDataToStore");
             dispatch(setAllHardcodedData(dataToStore));
             resolve(dataToStore);
         } else {
-            // console.log("in else  getDataToStore");
             dispatch(setAllHardcodedData(JSON.stringify(offlineData)));
             resolve(offlineData);
         }
-        // });
     });
 }
-
-
 export default getAllDataToStore;

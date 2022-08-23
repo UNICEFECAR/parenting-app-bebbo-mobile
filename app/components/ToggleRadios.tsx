@@ -1,7 +1,6 @@
-import { useFocusEffect } from '@react-navigation/core';
 import { Heading3, Heading3Regular } from '@styles/typography';
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FDirRow } from './shared/FlexBoxStyle';
 import Icon from './shared/Icon';
@@ -13,11 +12,6 @@ const ToggleRadios = (props: any) => {
   useEffect(()=>{
       setCheckedItem(defaultValue);
   },[defaultValue])
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     setCheckedItem(defaultValue);
-  //   }, [defaultValue])
-  // );
   return (
     <>
     <RadioBoxContainer>
@@ -40,16 +34,16 @@ const ToggleRadios = (props: any) => {
                         </CheckboxActive>
                       ) : (
                         <Checkbox
-                          style={{borderWidth: 1, borderRadius: 50}}></Checkbox>
+                          style={styles.checkbox}></Checkbox>
                       )}
                     </View>
                   </CheckboxItem>
                   
-                  <View style={{flexDirection:'row',flex:1}}>
+                  <View style={styles.lastView}>
                   {(checkedItem?.title && checkedItem.title == item.title) ? (
-                      <Heading3 style={{flexShrink:1}} numberOfLines={2}>{item.title} </Heading3>
+                      <Heading3 style={styles.heading3} numberOfLines={2}>{item.title} </Heading3>
                     ) : (
-                      <Heading3Regular style={{flexShrink:1}} numberOfLines={2}>{item.title} </Heading3Regular>
+                      <Heading3Regular style={styles.heading3} numberOfLines={2}>{item.title} </Heading3Regular>
                     )}
                   </View>
                 </RadioInnerBox>
@@ -62,3 +56,8 @@ const ToggleRadios = (props: any) => {
   );
 };
 export default ToggleRadios;
+const styles=StyleSheet.create({
+heading3:{flexShrink:1},
+checkbox:{borderWidth: 1, borderRadius: 50},
+lastView:{flexDirection:'row',flex:1}
+})

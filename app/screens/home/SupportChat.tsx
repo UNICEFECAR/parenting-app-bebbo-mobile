@@ -1,19 +1,18 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { FDirRow, FlexCol,FlexDirCol} from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexCol} from '@components/shared/FlexBoxStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading1Centerr, Heading3Center, Heading4Bold, Heading4Center, Heading4Regular, Heading5BoldW } from '@styles/typography';
+import { Heading1Centerr, Heading4Center } from '@styles/typography';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, ImageBackground, Linking, Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ImageBackground, Linking, Modal, Platform, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setchatBotData } from '../../redux/reducers/childSlice';
 import ChatBot from './ChatBot';
-import ChatContainer, { ChatBgImage } from '@components/shared/SupportChatStyle';
-import VectorImage from 'react-native-vector-image';
+import ChatContainer from '@components/shared/SupportChatStyle';
 import ModalPopupContainer, { ModalPopupContent, PopupClose, PopupCloseContainer, PopupOverlay } from '@components/shared/ModalPopupStyle';
 import Icon from '@components/shared/Icon';
 import HTML from 'react-native-render-html';
@@ -62,7 +61,7 @@ const faqsData = useAppSelector((state: any) =>
       ? JSON.parse(state.utilsData.faqsData)
       : state.utilsData.faqsData,
   );
-  function parseWithFunctions(obj) {
+  function parseWithFunctions(obj: any) {
     return JSON.parse(obj, (k, v) => {
       if (typeof v === 'string' && k == 'nextStepFunc') {
         return eval(v);
@@ -87,15 +86,11 @@ const faqsData = useAppSelector((state: any) =>
 
   }
   const categorySelection = (stepIndex: any,optionIndex: any,steps2: any) => {
-    // let localsteps = deepCopy(steps2);
     let localsteps = [...steps2];
-    // let localsteps = steps2.map(a => ({...a,...a.options,...a.actions}));
-    // let localsteps = Object.assign([],steps2);
     //changing answer value from null to option value
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
     //changing showNextStep to true of the nextStep id
     let nextstepid = localsteps[stepIndex].nextStep;
-    // let index = localsteps.findIndex(el => el.id == nextstepid);
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
         el.id === nextstepid ? i : acc
     ), -1);
@@ -128,7 +123,6 @@ const faqsData = useAppSelector((state: any) =>
       
     }else if(nextstepid == expertAdviceId) {
       localsteps[index].textToShow = localsteps[stepIndex].options[optionIndex];
-     // localsteps[index+1].showNextStep = true;
       const indexForText = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === explorecatstep ? i : acc
       ), -1);
@@ -145,7 +139,7 @@ const faqsData = useAppSelector((state: any) =>
     }
   }
 
-  const showdynamicdelay=(stepobj,index) => {
+  const showdynamicdelay=(stepobj: any[],index: number) => {
     setTimeout(() => {
       let localsteps = [...stepobj]
       localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
@@ -156,7 +150,6 @@ const faqsData = useAppSelector((state: any) =>
   }
   const dynamicStepSelection = (stepIndex: any,optionIndex: any,steps2: any) => {
     let localsteps = [...steps2];
-    // let localsteps = deepCopy(steps2);
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
     let nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
@@ -166,26 +159,20 @@ const faqsData = useAppSelector((state: any) =>
     localsteps[index].delay = delayOfSteps;
     localsteps[index].showNextStep = true;
     updateChatBotData(localsteps);
-    // AsyncStorage.setItem('chatBotData',JSON.stringify(steps));
   }
   
   const category = taxonomy.chatbot_category.map((x:any,i:any)=> {
     return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
-    // return {...x,label : x.name,value : i,trigger : '3'}
   });
   const backToStep = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
     let localsteps = [...steps2];
     let localstepsjson = [...steps2];
-    // let localsteps = deepCopy(steps2);
-    // let localstepsjson = deepCopy(stepsjson2);
     //changing answer value from null to action value
     localsteps[stepIndex].answer = localsteps[stepIndex].actions[actionIndex];
     //get steptogoto index and get all item from json from that index till end.
-    // let index = stepsjson.findIndex(el => el.id == steptogoto);
     const index = localstepsjson.reduce((acc: any, el: any, i: any) => (
       el.id === steptogoto ? i : acc
   ), -1);
-    // localstepsjson[index].showNextStep = true;
     //loop through object need to update later
     localstepsjson = localstepsjson.slice(index,localstepsjson.length);
     localstepsjson = localstepsjson.map(item=>({ ...item, showNextStep: false,answer:null,delay:0 }));
@@ -194,11 +181,6 @@ const faqsData = useAppSelector((state: any) =>
     localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
     const updatedsteps = [...localsteps,...localstepsjson]
     updateChatBotData(updatedsteps);
-    // if(steptogoto == 0) {
-    //   // updatedjson.map(x=>x.answer = null);
-    //   console.log(steps,"--updatedjson---",stepsjson);
-    //   // console.log("afteradding all again2--",[...steps,...updatedjson]);
-    // }
   }
   const backToHomeScreen = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
     //navigate to home screen.
@@ -223,7 +205,6 @@ const faqsData = useAppSelector((state: any) =>
   const showFeedbackLink = (stepIndex: any,optionIndex: any,steps2: any) => {
     setModalVisible(true);
     let localsteps = [...steps2];
-    // let localsteps = deepCopy(steps2);
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
     let nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
@@ -348,13 +329,7 @@ const faqsData = useAppSelector((state: any) =>
   
   const updateChatBotData = (updatedData:any) => {
     setsteps(updatedData);
-
     dispatch(setchatBotData(updatedData));
-    // setTimeout(() => {
-    //   if(flatListRef && flatListRef.current && steps.length >0)  {
-    //     flatListRef.current.scrollToIndex({ animated: true, index: steps.length-1, viewPosition:1 });
-    //   }
-    // },500);
   }
   useEffect(() => {
     setTimeout(() => {
@@ -410,9 +385,7 @@ const faqsData = useAppSelector((state: any) =>
             source={Platform.OS === 'android' ? require('@assets/svg/img-bg-chatbot.png') : require('@assets/svg/img-bg-chatbot-ios.png')} 
             resizeMode="repeat" style={{flex:1,width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
               <ChatContainer>
-              {/* <ChatBot steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}/> */}
                 {steps.length> 0 ? 
-                    // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
                     <FlatList
                       ref={flatListRef}
                       data={steps}
@@ -438,11 +411,6 @@ const faqsData = useAppSelector((state: any) =>
 
                 </ChatContainer>
                 </ImageBackground>
-                {/* <ChatBgImage> */}
-                  {/* <VectorImage source={require('@assets/svg/ic_development_color.svg')} style={{width: '100%', height: '100%'}}/> */}
-                  {/* <VectorImage source={require('@assets/svg/img-bg-chatbot.svg')} style={{width: '100%', height: '100%'}} /> */}
-                  {/* <Image source={require('@assets/svg/img-bg-chatbot.png')} style={{flex:1,resizeMode:'cover'}} /> */}
-                {/* </ChatBgImage> */}
           </FlexCol>
       </View>
 
@@ -451,7 +419,6 @@ const faqsData = useAppSelector((state: any) =>
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
           setModalVisible(false);
         }}
         onDismiss={() => {
@@ -520,10 +487,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:4,
     paddingTop:17,
     paddingBottom:17,
-    // marginTop:10
-    // width:'80%',
-    // maxWidth:80,
-    // minHeight:30
   },
   userStyle : {
     flex:1,
@@ -561,9 +524,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:4,
     paddingTop:17,
     paddingBottom:17,
-    // width:'80%',
-    // maxWidth:80,
-    // minHeight:30
   },
   actionStyle : {
     flex:1,
@@ -582,9 +542,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:4,
     paddingTop:17,
     paddingBottom:17,
-    // width:'80%',
-    // maxWidth:80,
-    // minHeight:30
   },
   textStyle : {
     flex:1,
@@ -602,9 +559,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:4,
     paddingTop:17,
     paddingBottom:17,
-    // width:'80%',
-    // maxWidth:80,
-    // minHeight:30
   },
   imageContainer: {
     marginTop: 6,
@@ -629,55 +583,3 @@ const styles = StyleSheet.create({
     borderRadius: 21,
   }
 });
-// const styles = StyleSheet.create({
-//   rootContainer: {
-//     paddingTop:20
-//   },
-//   footerkeyboardstyle: {
-//     display: 'none'
-//   },
-//   avatarStyle:{
-
-//   },
-//   avatarWrapperStyle:{
-//     backgroundColor: 'transparent',
-//     borderWidth:0
-//   },
-//   bubbleStyle:{
-//     flex: 1, 
-//     flexDirection: 'row',
-//     backgroundColor:'#f7f7f7',
-//     fontFamily:'roboto-bold',
-//     borderTopLeftRadius:4,
-//     borderTopRightRadius:4,
-//     borderBottomRightRadius:4,
-//     borderBottomLeftRadius:4,
-//     minWidth:'82%',
-//     paddingTop:17,
-//     paddingBottom:17,
-//     marginBottom:15
-//   },
-//   optionStyle: {
-//     width:'80%',
-//     backgroundColor:'#fff',
-//     borderTopLeftRadius:4,
-//     borderTopRightRadius:4,
-//     borderBottomRightRadius:4,
-//     borderBottomLeftRadius:4,
-//     borderWidth:1,
-//     borderColor:'#2B2F84',
-//     marginLeft:50
-//   },
-//   optionElementStyle:{
-//     backgroundColor:'#fff',    
-//   },
-//   userBubbleStyle: {
-//     flex: 1, 
-//     flexDirection: 'row',
-//     backgroundColor:'#2B2F84',
-//     borderTopLeftRadius:4,
-//     borderTopRightRadius:4,
-//     borderBottomRightRadius:4,
-//     borderBottomLeftRadius:4
-//   }
-// });

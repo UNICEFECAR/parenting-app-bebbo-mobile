@@ -13,10 +13,8 @@ const headerHeight = 50;
 const TabScreenHeader = (props: any) => {
   const headerColor = props.headerColor;
   const textColor = props.textColor;
- 
   return (
     <>
-      
       <HeaderRowView
         style={{
           backgroundColor: headerColor,

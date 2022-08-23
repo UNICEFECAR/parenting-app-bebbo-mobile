@@ -7,13 +7,13 @@ import {
   ToolsActionView,
   ToolsHeadingView,
   ToolsHeadPress,
-  ToolsHeadView,
   ToolsIconView,
   ToolsIconView1,
   ToolsListContainer,
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
+import { greenColor } from '@styles/style';
 import {
   Heading2,
   Heading4,
@@ -27,15 +27,9 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../../App';
-import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
-import {
-  ChildEntity,
-  ChildEntitySchema
-} from '../../database/schema/ChildDataSchema';
-import { setActiveChildData } from '../../redux/reducers/childSlice';
+import { useAppSelector } from '../../../App';
 import { isFutureDate } from '../../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 import {
@@ -49,41 +43,13 @@ import {
 import Icon, { IconViewBg } from '../shared/Icon';
 
 const UpcomingHealthCheckup = (props: any) => {
-  const { item, currentIndex, childAgeIndays, headerColor, backgroundColor, currentPeriodId } =
-    props;
-  // console.log(item, "UpcomingHealthCheckup")
-  // console.log(childAgeIndays,item.vaccination_opens,item.vaccination_ends,item.title)
-  // console.log(currentPeriodId,"currentPeriodId");
+  const { item, childAgeIndays, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState<Boolean>(false);
   const themeContext = useContext(ThemeContext);
-  const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const deleteReminder = async (hcuuid) => {
-    const languageCode = useAppSelector(
-      (state: any) => state.selectedCountry.languageCode,
-    );
-    const dispatch = useAppDispatch();
-
-    const child_age = useAppSelector((state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != ''
-        ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-        : [],
-    );
-    let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
-      ChildEntitySchema,
-      hcuuid,
-      'uuid ="' + activeChild.uuid + '"',
-    );
-    // console.log(createresult,"ReminderDeleted");
-    if (createresult?.length > 0) {
-      activeChild.reminders = createresult;
-      dispatch(setActiveChildData(activeChild));
-    }
-    // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
-  };
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -93,36 +59,25 @@ const UpcomingHealthCheckup = (props: any) => {
     (state: any) => state.selectedCountry.luxonLocale,
   );
   let reminders = activeChild.reminders;
-  // console.log(reminders,"UpcomingHealthCheckup-reminders");
   let hcReminder: any;
   const healthCheckupReminders = reminders.filter(
-    (item) => item?.reminderType == 'healthCheckup',
+    (item:any) => item?.reminderType == 'healthCheckup',
   );
   if (healthCheckupReminders.length > 0) {
-    healthCheckupReminders.forEach((healthCheckupReminder) => {
+    healthCheckupReminders.forEach((healthCheckupReminder:any) => {
       let today = DateTime.fromJSDate(new Date());
-      // let reminderDate = new Date(DateTime.fromMillis(healthCheckupReminder?.reminderDate));
       let reminderDate = new Date(DateTime.fromMillis(healthCheckupReminder?.reminderDate));
-
-      // let reminderTime = DateTime.fromMillis(healthCheckupReminder?.reminderTime);
       const hours = new Date(healthCheckupReminder?.reminderTime).getHours()
       const mins = new Date(healthCheckupReminder?.reminderTime).getMinutes()
       reminderDate.setHours(hours);
       reminderDate.setMinutes(mins);
-
-      // let days = DateTime.fromJSDate(reminderDate).diff(today, 'days').toObject().days;
-      // console.log(days,"days")
       if (today.toMillis() < DateTime.fromJSDate(new Date(reminderDate)).toMillis()) {
-        //console.log('healthCheckupReminder', healthCheckupReminder);
-        hcReminder = healthCheckupReminder
+         hcReminder = healthCheckupReminder
       }
     })
 
   }
-
-  // console.log(healthCheckupReminder,"healthCheckupReminder",);
-
-  const gotoArticle = (pinned_articleID) => {
+  const gotoArticle = (pinned_articleID:any) => {
     if (pinned_articleID != 0) {
       navigation.navigate('DetailsScreen', {
         fromScreen: 'HealthCheckupsTab',
@@ -136,8 +91,8 @@ const UpcomingHealthCheckup = (props: any) => {
   const allVaccineData = useAppSelector((state: any) =>
     JSON.parse(state.utilsData.vaccineData),
   );
-  const getVaccineName = (vaccineID) => {
-    return allVaccineData?.find((v) => v.uuid == vaccineID)?.title;
+  const getVaccineName = (vaccineID:any) => {
+    return allVaccineData?.find((v:any) => v.uuid == vaccineID)?.title;
   };
   useEffect(() => {
     currentPeriodId == item?.id ? setIsOpen(true) : setIsOpen(false);
@@ -152,17 +107,11 @@ const UpcomingHealthCheckup = (props: any) => {
           }}>
           <ToolsIconView>
             {item?.growthMeasures?.measurementDate ? (
-              <RadioActive style={{ backgroundColor: 'green' }}>
+              <RadioActive style={styles.radioActive}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
               <Icon name="ic_plus" size={20} color="#000" />
-              // <IconViewAlert>
-              // <Icon
-              //   name="ic_incom"
-              //   size={24}
-              //   color="#FFF"
-              // /></IconViewAlert>
             )}
           </ToolsIconView>
           <ToolsHeadPress
@@ -179,7 +128,7 @@ const UpcomingHealthCheckup = (props: any) => {
             <ToolsActionView>
               <FlexDirRow>
                 <Icon
-                  style={{ alignSelf: 'center' }}
+                  style={styles.iconStyle}
                   name={isOpen ? 'ic_angle_up' : 'ic_angle_down'}
                   size={10}
                   color="#000"
@@ -289,7 +238,7 @@ const UpcomingHealthCheckup = (props: any) => {
               <MainContainer>
                 {hcReminder ? (
                   <FDirRowStart>
-                     <View style={{flex:6,flexDirection:"row"}}>
+                     <View style={styles.dirView}>
                     <ToolsIconView>
                       <IconViewBg>
                         <Icon
@@ -300,27 +249,20 @@ const UpcomingHealthCheckup = (props: any) => {
                         />
                       </IconViewBg>
                     </ToolsIconView>
-                    {/* <ToolsHeadView> */}
                       <ToolsHeadingView>
                         <Heading4Regular>{t('hcHasScheduled')}</Heading4Regular>
                         <Heading4>
                           {
-                            // DateTime.fromJSDate(
-                            //   new Date(healthCheckupReminder?.reminderDate),
-                            // ).toFormat('dd MMM yyyy')
                             formatStringDate(hcReminder?.reminderDate, luxonLocale)
                           }
                           {','}
                           {
-                            // DateTime.fromJSDate(
-                            //   new Date(healthCheckupReminder?.reminderTime),
-                            // ).toFormat('hh:mm a')
                             formatStringTime(hcReminder?.reminderTime, luxonLocale)
                           }
                         </Heading4>
                       </ToolsHeadingView>
                       </View>
-                      <View  style={{flex:1,alignItems:"flex-end"}}>
+                      <View  style={styles.pressableOuterView}>
                       <Pressable
                           disabled={isFutureDate(activeChild?.birthDate)}
                           onPress={() => {
@@ -337,14 +279,13 @@ const UpcomingHealthCheckup = (props: any) => {
                           }}>
                       <ToolsIconView1>
                        
-                          <ButtonTextSmLine numberOfLines={2} style={{textDecorationLine:"none"}}>
+                          <ButtonTextSmLine numberOfLines={2} style={styles.textDecoration}>
                           <Icon name="ic_edit" size={16} color="#000" />
                           </ButtonTextSmLine>
                        
                       </ToolsIconView1>
                       </Pressable>
                       </View>
-                    {/* </ToolsHeadView> */}
                   </FDirRowStart>
                 ) : isFutureDate(activeChild?.birthDate) ? null : (
                   <Pressable
@@ -368,18 +309,12 @@ const UpcomingHealthCheckup = (props: any) => {
                 {/* Set Reminder Link */}
               </MainContainer>
             ) : null}
-            {/* <Text>{item?.vaccination_opens},{item?.vaccination_ends},{childAgeIndays}</Text> */}
-            {/* // perios's open and end contains curent child age in daays */}
             {item?.vaccination_opens <= childAgeIndays && item?.vaccination_ends > childAgeIndays ? (
               item?.growthMeasures?.uuid ? (
                 <ShiftFromTopBottom10>
                   <Pressable
                     onPress={
                       () => { }
-                      // navigation.navigate('AddChildHealthCheckup', {
-                      //   headerTitle: t('hcEditHeaderTitle'),
-                      //   // vcPeriod: item,
-                      // })
                     }>
                     <ButtonTextMdLine numberOfLines={2}>{t('hcEditBtn')}</ButtonTextMdLine>
                   </Pressable>
@@ -406,11 +341,10 @@ const UpcomingHealthCheckup = (props: any) => {
   );
 };
 export default UpcomingHealthCheckup;
-
-// const styles = StyleSheet.create({
-//   item: {
-//     padding: 10,
-//     color: '#000',
-//     backgroundColor: '#FFF',
-//   },
-// });
+const styles=StyleSheet.create({
+  radioActive:{ backgroundColor: greenColor },
+  iconStyle:{ alignSelf: 'center' },
+  dirView:{flex:6,flexDirection:"row"},
+  pressableOuterView:{flex:1,alignItems:"flex-end"},
+  textDecoration:{textDecorationLine:"none"}
+})

@@ -1,11 +1,9 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonLinkPress, ButtonTextMdLineL,
-  ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
-import { MainContainer, AreaContainer } from '@components/shared/Container';
-import { VerticalDivider } from '@components/shared/Divider';
-import { FDirRow, FlexColEnd, FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
+import { AreaContainer } from '@components/shared/Container';
+import { FDirRow, FlexColEnd, FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderRowView, HeaderTitleView, HeaderIconPress } from '@components/shared/HeaderContainerStyle';
 import Icon, {
   IconML,
@@ -17,10 +15,9 @@ import Icon, {
   TickView7
 } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
-import PrematureTag from '@components/shared/PrematureTag';
 import {
   ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
-  ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
+  ProfileLinkRow, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
@@ -29,19 +26,13 @@ import {
   Heading2w,
   Heading3,
   Heading5,
-  Heading5Bold,
-  Heading6,
-  ShiftFromBottom5,
-  Heading5BoldW
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, Dimensions, Pressable, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { getAllChildren, getAllConfigData, setActiveChild } from '../../services/childCRUD';
 import { formatDate } from '../../services/Utils';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -59,7 +50,6 @@ const ChildProfile = ({ navigation }: Props) => {
   const [profileViewHeight, setProfileViewheight] = useState(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
   const genders = useAppSelector(
     (state: any) =>
@@ -120,17 +110,11 @@ const ChildProfile = ({ navigation }: Props) => {
   const isFutureDate = (date: Date) => {
     return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
   };
-  const onLayout = event => {
-    // if (this.state.dimensions) return // layout was already called
-    let { width, height } = event.nativeEvent.layout;
+  const onLayout = (event: any) => {
     setParentViewheight(event.nativeEvent.layout.height);
-    // this.setState({dimensions: {width, height}})
   }
-  const onLayout1 = event => {
-    // if (this.state.dimensions) return // layout was already called
-    let { width, height } = event.nativeEvent.layout;
+  const onLayout1 = (event:any) => {
     setProfileViewheight(event.nativeEvent.layout.height);
-    // this.setState({dimensions: {width, height}})
   }
 
   const currentActiveChild = activeChild.uuid;
@@ -145,11 +129,11 @@ const ChildProfile = ({ navigation }: Props) => {
   );
   const userParentalRoleData =
     allConfigData?.length > 0
-      ? allConfigData.filter((item) => item.key === 'userParentalRole')
+      ? allConfigData.filter((item:any) => item.key === 'userParentalRole')
       : [];
   const userNameData =
     allConfigData?.length > 0
-      ? allConfigData.filter((item) => item.key === 'userName')
+      ? allConfigData.filter((item:any) => item.key === 'userName')
       : [];
   const relationship_to_parent = useAppSelector(
     (state: any) =>
@@ -157,34 +141,21 @@ const ChildProfile = ({ navigation }: Props) => {
   );
   const userRelationToParent =
     allConfigData?.length > 0
-      ? allConfigData.filter((item) => item.key === 'userRelationToParent')
+      ? allConfigData.filter((item:any) => item.key === 'userRelationToParent')
       : [];
   const relationshipData = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
 
-  //console.log(relationshipData, "..relationshipData..")
   let relationshipValue = relationshipData.length > 0 && userParentalRoleData.length > 0 ? relationshipData.find((o: any) => String(o.id) === userParentalRoleData[0].value) : '';
   let relationshipToParent = relationship_to_parent.length > 0 && userRelationToParent.length > 0 ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
-  //console.log(relationshipValue, "..relationshipValue..")
-  //console.log(relationshipToParent, "..relationshipToParent..")
-  // const currentActiveChildId =
-  //   allConfigData?.length > 0
-  //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
-  //     : [];
-  //console.log(allConfigData,"..userParentalRole..")
-  // const currentActiveChild =
-  //   currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
-  // //console.log(currentActiveChild,"..currentActiveChild..");
-  const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
   const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string) => (
-    //console.log(genderName, "...ggnme"),
     <View key={data.uuid}>
       {currentActiveChild != '' &&
         currentActiveChild != null &&
@@ -214,15 +185,6 @@ const ChildProfile = ({ navigation }: Props) => {
 
           <ProfileActionView  style={{height:"100%",alignItems:"center",justifyContent:"center"}}>
             <FlexColEnd>
-              {/* Premature Tag Insert Here */}
-              {/* <ShiftFromBottom5>
-          <PrematureTag>
-          <Heading5BoldW>
-          {t('developScreenprematureText')}
-          </Heading5BoldW>
-          </PrematureTag>
-          </ShiftFromBottom5> */}
-              {/* Premature Tag End Here */}
               <FDirRow>
                 <OuterIconRow>
                   <OuterIconRight>
@@ -233,9 +195,7 @@ const ChildProfile = ({ navigation }: Props) => {
                   </OuterIconRight>
                   <OuterIconRight>
                     <Pressable onPress={() => {
-                     // console.log("..2222..");
                       data.index = index;
-                      //console.log(isFutureDate(data.birthDate), "..isFutureDate(data.birthDate)..");
                       if (isFutureDate(data.birthDate)) {
                         navigation.navigate('AddExpectingChildProfile', { childData: data });
                       }
@@ -250,7 +210,6 @@ const ChildProfile = ({ navigation }: Props) => {
                   </OuterIconRight>
                 </OuterIconRow>
 
-                {/* <Heading5Bold style={{flexShrink:1}}>{t('childActivatedtxt')}</Heading5Bold> */}
               </FDirRow>
             </FlexColEnd>
           </ProfileActionView>
@@ -285,15 +244,6 @@ const ChildProfile = ({ navigation }: Props) => {
                 </ProfileTextView>
                 <ProfileActionView  style={{flex:1,height:"100%",alignItems:"center",justifyContent:"center"}}>
             <FlexColEnd>
-              {/* Premature Tag Insert Here */}
-              {/* <ShiftFromBottom5>
-          <PrematureTag>
-          <Heading5BoldW>
-          {t('developScreenprematureText')}
-          </Heading5BoldW>
-          </PrematureTag>
-          </ShiftFromBottom5> */}
-              {/* Premature Tag End Here */}
               <FDirRow>
                 <OuterIconRow>
                 <Pressable onPress={() => {
@@ -304,9 +254,6 @@ const ChildProfile = ({ navigation }: Props) => {
                           setProfileLoading(false);
                          }
                         },0);
-                       
-                       
-                        
                       
                       }}>
                   <OuterIconRight style={{paddingLeft:30,}}>
@@ -321,7 +268,6 @@ const ChildProfile = ({ navigation }: Props) => {
                   <OuterIconRight>
                   <Pressable onPress={() => {
                         data.index = index;
-                       // console.log(isFutureDate(data.birthDate), "..isFutureDate(data.birthDate)..");
                         if (isFutureDate(data.birthDate)) {
                           navigation.navigate('AddExpectingChildProfile', { childData: data });
                         }
@@ -335,8 +281,6 @@ const ChildProfile = ({ navigation }: Props) => {
                       </Pressable>
                   </OuterIconRight>
                 </OuterIconRow>
-
-                {/* <Heading5Bold style={{flexShrink:1}}>{t('childActivatedtxt')}</Heading5Bold> */}
               </FDirRow>
             </FlexColEnd>
           </ProfileActionView>
@@ -376,10 +320,7 @@ const ChildProfile = ({ navigation }: Props) => {
               <ScrollView style={{ maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140, height: 'auto' }} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
-                  //  console.log(item, "..item..");
-                    // console.log(genders,"..genders..");
                     const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find(genderset => genderset.id == parseInt(item.gender)).name : '';
-                   // console.log(genderLocal, "..genderLocal..")
                     return renderChildProfile(dispatch, item, index, genderLocal);
                   })
                   : null}
@@ -497,14 +438,6 @@ const ChildProfile = ({ navigation }: Props) => {
                   </ParentRowView>
                 </ProfileContentView>
               </ParentListView>
-              {/* <View style={{flexDirection: 'row'}}>
-                  <View style={{padding: 10}}>
-                    <Text>Name</Text>
-                  </View>
-                  <View style={{padding: 10}}>
-                    <Text>{userNameData?.length>0?userNameData[0].value:''}</Text>
-                  </View>
-                </View> */}
             </View>
           </AreaContainer>
         </FlexCol>
