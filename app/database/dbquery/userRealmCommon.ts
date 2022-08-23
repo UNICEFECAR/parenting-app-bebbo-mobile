@@ -1,18 +1,13 @@
-import { AnyAction } from '@reduxjs/toolkit';
 import { DateTime } from 'luxon';
 
 import { Component } from 'react';
-import Realm, { ObjectSchema, Collection } from 'realm';
+import Realm, { ObjectSchema } from 'realm';
 import { getDiffinDays } from '../../services/childCRUD';
 import { userRealmConfig } from '../config/dbConfig';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../schema/ActivitiesSchema';
 import { ArticleEntity, ArticleEntitySchema } from '../schema/ArticleSchema';
 import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
-import { ConfigSettingsEntity, ConfigSettingsSchema } from '../schema/ConfigSettingsSchema';
 import { dataRealmCommon } from './dataRealmCommon';
-// import { dispatchchildstore2 } from './userRealmListener';
-// import userRealm from '../config/dbConfig'
-// export const userRealmInstance = getUserRealm();
 const deleteRealmFilesBeforeOpen = false;
 
 class UserRealmCommon extends Component {
@@ -21,9 +16,7 @@ class UserRealmCommon extends Component {
 
     private constructor(props: any) {
         super(props);
-      //  console.log("constructor called");
         this.openRealm();
-        
     }
 
     static getInstance(): UserRealmCommon {
@@ -35,24 +28,17 @@ class UserRealmCommon extends Component {
 
     public async openRealm(): Promise<Realm | null> {
         return new Promise((resolve, reject) => {
-          //  console.log("in openrealm");
             if (this.realm) {
-            //     this.closeRealm();
-            // }
-                // this.realm.addListener('change', this.onRealmChange);
                 resolve(this.realm);
             } else {
                 // Delete realm file
                 if (deleteRealmFilesBeforeOpen) {
                     Realm.deleteFile(userRealmConfig);
                 }
-
                 // Open realm file
                 Realm.open(userRealmConfig)
                     .then(realm => {
-                       // console.log("open realm");
                         this.realm = realm;
-                     //   this.realm.addListener('change', this.onRealmChange);
                         resolve(realm);
                     })
                     .catch(error => {
@@ -61,12 +47,8 @@ class UserRealmCommon extends Component {
             }
         });
     }
-    // private onRealmChange() {
-    //      this.forceUpdate();
-    // }
     public closeRealm() {
         if (this.realm) {
-           // console.log("closed");
             this.realm.close();
             delete this.realm;
         }
@@ -86,10 +68,10 @@ class UserRealmCommon extends Component {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                realm?.write(() => {
-                  realm.deleteAll();
-                  resolve();
-                });
+                    realm?.write(() => {
+                        realm.deleteAll();
+                        resolve();
+                    });
                 }
                 else {
                     reject();
@@ -98,16 +80,14 @@ class UserRealmCommon extends Component {
                 reject(e);
             }
         });
-    
+
     }
     public async getObjectLength<Entity>(entitySchema: ObjectSchema): Promise<Number> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     const objLength = realm?.objects<Entity>(entitySchema.name).length;
-                 //   console.log("in try",objLength);
                     resolve(objLength);
                 }
                 else {
@@ -119,19 +99,16 @@ class UserRealmCommon extends Component {
         });
     }
 
-    public async create<Entity>(entitySchema: ObjectSchema, records:Entity[]): Promise<Entity[]> {
+    public async create<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<Entity[]> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                   // console.log("in try--",records);
+                if (realm) {
                     realm.write(() => {
                         records.forEach(record => {
-                          //  console.log("record",record);
-                            realm?.create<Entity>(entitySchema.name, record,"modified");
+                            realm?.create<Entity>(entitySchema.name, record, "modified");
                         })
-                            
+
                         resolve(records);
                     });
                 }
@@ -139,213 +116,147 @@ class UserRealmCommon extends Component {
                     reject();
                 }
             } catch (e) {
-               // console.log("realm error-",e);
                 reject();
             }
         });
     }
-    public async updatePhotoUri<Entity>(entitySchema: ObjectSchema,photoUri:any,condition:any): Promise<String> {
+    public async updatePhotoUri<Entity>(entitySchema: ObjectSchema, photoUri: any, condition: any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    const obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                   // console.log(obj[0].uuid,"..uuid..")
+                if (realm) {
+                    const obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
                         obj[0].photoUri = photoUri;
                     });
-                   resolve('success');
-                // console.log("Language is: "+ obj[0].photoUri );
+                    resolve('success');
                 }
                 else {
                     reject('Fail');
                 }
             } catch (e) {
-               // console.log("realm error-",e);
-               reject('Fail');
+                reject('Fail');
             }
         });
     }
-    public async deleteChildReminders<Entity>(entitySchema: ObjectSchema,reminder:any,condition:any): Promise<String> {
+    public async deleteChildReminders<Entity>(entitySchema: ObjectSchema, reminder: any, condition: any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    //console.log(obj[0],"obj0");
+                if (realm) {
+                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
-                        //console.log(obj[0].reminders.length,"length")
-                    if(obj[0].reminders.length>0){
-                        let updateItemIndex = obj[0].reminders.findIndex(item=>{
-                            //console.log(reminder.uuid,"reminder.uuid",item.uuid)
-                            return item.uuid==reminder.uuid
-                          });
-                          //console.log(updateItemIndex,"updateItemIndex")
-                          obj[0].reminders.splice(updateItemIndex, 1);
-                        //   console.log(updateItemIndex)
-                        //console.log(obj[0].reminders,"obj[0].reminders1")
-                        // obj[0].reminders.map((item)=>{
-                        //  console.log(item,"inside reminders")   
-                        // })
-                          
-                    }
+                        if (obj[0].reminders.length > 0) {
+                            let updateItemIndex = obj[0].reminders.findIndex(item => {
+                                return item.uuid == reminder.uuid
+                            });
+                            obj[0].reminders.splice(updateItemIndex, 1);
+                        }
                     });
-                    // obj[0].reminders.map((item)=>{
-                    //     console.log(item,"inside reminders11")   
-                    //    })
-                   //console.log(obj[0].reminders,"obj[0].reminders2")
-                   resolve(obj[0].reminders);
+                    resolve(obj[0].reminders);
                 }
                 else {
                     reject('Fail');
                 }
             } catch (e) {
-               //console.log("realm error-",e.message);
-               reject('Fail');
+                reject('Fail');
             }
         });
     }
-    public async updateChildReminders<Entity>(entitySchema: ObjectSchema,reminder:any,condition:any): Promise<String> {
+    public async updateChildReminders<Entity>(entitySchema: ObjectSchema, reminder: any, condition: any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                if (realm) {
+                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
-                    if(obj[0].reminders.length>0){
-                        let updateItemIndex = obj[0].reminders.findIndex(item=>{
-                            return item.uuid==reminder.uuid
-                          });
-                         // console.log(updateItemIndex,"reminderupdateIndex")
-                          if(updateItemIndex!=-1){
-                            obj[0].reminders[updateItemIndex]= reminder
-                          }else{
+                        if (obj[0].reminders.length > 0) {
+                            let updateItemIndex = obj[0].reminders.findIndex(item => {
+                                return item.uuid == reminder.uuid
+                            });
+                            if (updateItemIndex != -1) {
+                                obj[0].reminders[updateItemIndex] = reminder
+                            } else {
+                                obj[0].reminders.push(reminder);
+                            }
+                        } else {
                             obj[0].reminders.push(reminder);
-                          }
-                    }else{
-                        obj[0].reminders.push(reminder);
-                    }
+                        }
                     });
-                   resolve(obj[0].reminders);
+                    resolve(obj[0].reminders);
                 }
                 else {
                     reject('Fail');
                 }
             } catch (e) {
-               //console.log("realm error-",e.message);
-               reject('Fail');
+                reject('Fail');
             }
         });
     }
-    public async deleteChildMeasures<Entity>(entitySchema: ObjectSchema,measure:any,condition:any): Promise<String> {
+    public async deleteChildMeasures<Entity>(entitySchema: ObjectSchema, measure: any, condition: any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    //console.log(obj[0],"obj0");
+                if (realm) {
+                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
-                    //console.log(obj[0].measures.length,"length")
-                    if(obj[0].measures.length>0){
-                        let updateItemIndex = obj[0].measures.findIndex(item=>{
-                            //console.log(measure.uuid,"measure.uuid",item.uuid)
-                            return item.uuid==measure.uuid
-                          });
-                          //console.log(updateItemIndex,"updateItemIndex")
-                          obj[0].measures.splice(updateItemIndex, 1);
-                        //   console.log(updateItemIndex)
-                        //console.log(obj[0].measures,"obj[0].measures1")
-                        // obj[0].reminders.map((item)=>{
-                        //  console.log(item,"inside reminders")   
-                        // })
-                          
-                    }
+                        if (obj[0].measures.length > 0) {
+                            let updateItemIndex = obj[0].measures.findIndex(item => {
+                                return item.uuid == measure.uuid
+                            });
+                            obj[0].measures.splice(updateItemIndex, 1);
+                        }
                     });
-                    // obj[0].reminders.map((item)=>{
-                    //     console.log(item,"inside reminders11")   
-                    //    })
-                   // console.log(obj[0].measures,"obj[0].measures2")
-                   resolve(obj[0].measures);
+                    resolve(obj[0].measures);
                 }
                 else {
                     reject('Fail');
                 }
             } catch (e) {
-              // console.log("realm error-",e.message);
-               reject('Fail');
+                reject('Fail');
             }
         });
     }
-    public async updateChildMeasures<Entity>(entitySchema: ObjectSchema,measures:any,condition:any): Promise<String> {
+    public async updateChildMeasures<Entity>(entitySchema: ObjectSchema, measures: any, condition: any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    // console.log(realm);
-                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                  // console.log(obj,obj[0]);
-                  // console.log(typeof obj[0].measures)
+                if (realm) {
+                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
-                    if(obj[0].measures.length>0){
-                        let updateItemIndex = obj[0].measures.findIndex(item=>{
-                            return item.uuid==measures.uuid
-                          });
-                        //   console.log(updateItemIndex)
-                          if(updateItemIndex!=-1){
-                            obj[0].measures[updateItemIndex]= measures
-                          }else{
+                        if (obj[0].measures.length > 0) {
+                            let updateItemIndex = obj[0].measures.findIndex(item => {
+                                return item.uuid == measures.uuid
+                            });
+                            if (updateItemIndex != -1) {
+                                obj[0].measures[updateItemIndex] = measures
+                            } else {
+                                obj[0].measures.push(measures);
+                            }
+                        } else {
                             obj[0].measures.push(measures);
-                          }
-                    }else{
-                        obj[0].measures.push(measures);
-                    }
-                       
-                        // const abc = obj[0].measures.push(measures);
-                        // obj[0].measures = [...abc]
-                        //obj[0].measures = [...obj[0].measures,measures];
-                        
-                       
+                        }
                     });
-                   resolve(obj[0].measures);
-                // console.log("Language is: "+ obj[0].photoUri );
+                    resolve(obj[0].measures);
                 }
                 else {
                     reject('Fail');
                 }
             } catch (e) {
-              // console.log("realm error-",e.message);
-               reject('Fail');
+                reject('Fail');
             }
         });
     }
-    public async updateChild<Entity>(entitySchema: ObjectSchema,records:Entity[]): Promise<Entity[]> {
+    public async updateChild<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<Entity[]> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                   // console.log("in try--",records);
+                if (realm) {
                     realm.write(() => {
-                        records.forEach((record:any) => {
-                           //  console.log("record",record);
-                             record.updatedAt=new Date();
-                             realm?.create<Entity>(entitySchema.name, record,"modified");
-                         })
-                             
-                        // if (
-                        //     realm.objects(entitySchema.name).filtered(filteredCondition)
-                        //       .length > 0
-                        //   ) {
-                        //     //let collectionPages = Object.assign([], realm.objects(Schema));
-                        //     realm.create(
-                        //       realm.objects(entitySchema.name).filtered(filteredCondition),record,"modified"
-                        //     );
-                        // }
+                        records.forEach((record: any) => {
+                            record.updatedAt = new Date();
+                            realm?.create<Entity>(entitySchema.name, record, "modified");
+                        })
                         resolve(records);
                     });
                 }
@@ -353,105 +264,82 @@ class UserRealmCommon extends Component {
                     reject();
                 }
             } catch (e) {
-               // console.log("realm error-",e);
                 reject();
             }
         });
     }
-    public async updateChildMilestones<Entity>(entitySchema: ObjectSchema,milestoneId:any,condition:any): Promise<Entity[]> {
+    public async updateChildMilestones<Entity>(entitySchema: ObjectSchema, milestoneId: any, condition: any): Promise<Entity[]> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    // console.log(obj,obj[0]);
-                    // console.log(obj[0].checkedMilestones)
-                        realm?.write(() => {
-                            // obj[0].checkedMilestones = [];
-                        if(obj[0].checkedMilestones.length>0){
-                            let updateItemIndex = obj[0].checkedMilestones.findIndex(item=>{
-                                return item==milestoneId
+                if (realm) {
+                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    realm?.write(() => {
+                        if (obj[0].checkedMilestones.length > 0) {
+                            let updateItemIndex = obj[0].checkedMilestones.findIndex(item => {
+                                return item == milestoneId
                             });
-                            // console.log(updateItemIndex)
-                            if(updateItemIndex==-1){
+                            if (updateItemIndex == -1) {
                                 obj[0].checkedMilestones.push(milestoneId);
-                            }else{
-                                obj[0].checkedMilestones.splice(updateItemIndex,1);
+                            } else {
+                                obj[0].checkedMilestones.splice(updateItemIndex, 1);
                             }
-                        }else{
+                        } else {
                             obj[0].checkedMilestones.push(milestoneId);
                         }
-
-                        // console.log(obj[0],"after change");
-                        
-                            // const abc = obj[0].measures.push(measures);
-                            // obj[0].measures = [...abc]
-                            //obj[0].measures = [...obj[0].measures,measures];
-                            
-                        
-                        });
-                   resolve('success');
+                    });
+                    resolve('success');
                 }
                 else {
                     reject();
                 }
             } catch (e) {
-               // console.log("realm error-",e);
                 reject();
             }
         });
     }
-    public async updateFavorites<Entity>(entitySchema: ObjectSchema,favoriteid:any,favoritetype:any,condition:any): Promise<Entity[]> {
+    public async updateFavorites<Entity>(entitySchema: ObjectSchema, favoriteid: any, favoritetype: any, condition: any): Promise<Entity[]> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                        realm?.write(() => {
-                            if(favoritetype == 'advices')
-                            {
-                                if(obj[0].favoriteadvices.length>0){
-                                    let updateItemIndex = obj[0].favoriteadvices.findIndex(item=>{
-                                        return item==favoriteid
-                                    });
-                                    // console.log(updateItemIndex)
-                                    if(updateItemIndex==-1){
-                                        obj[0].favoriteadvices.push(favoriteid);
-                                    }else{
-                                        obj[0].favoriteadvices.splice(updateItemIndex,1);
-                                    }
-                                }else{
+                if (realm) {
+                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    realm?.write(() => {
+                        if (favoritetype == 'advices') {
+                            if (obj[0].favoriteadvices.length > 0) {
+                                let updateItemIndex = obj[0].favoriteadvices.findIndex(item => {
+                                    return item == favoriteid
+                                });
+                                if (updateItemIndex == -1) {
                                     obj[0].favoriteadvices.push(favoriteid);
+                                } else {
+                                    obj[0].favoriteadvices.splice(updateItemIndex, 1);
                                 }
-                            } else if(favoritetype == 'games')
-                            {
-                                if(obj[0].favoritegames.length>0){
-                                    let updateItemIndex = obj[0].favoritegames.findIndex(item=>{
-                                        return item==favoriteid
-                                    });
-                                    // console.log(updateItemIndex)
-                                    if(updateItemIndex==-1){
-                                        obj[0].favoritegames.push(favoriteid);
-                                    }else{
-                                        obj[0].favoritegames.splice(updateItemIndex,1);
-                                    }
-                                }else{
-                                    obj[0].favoritegames.push(favoriteid);
-                                }
+                            } else {
+                                obj[0].favoriteadvices.push(favoriteid);
                             }
-                                
+                        } else if (favoritetype == 'games') {
+                            if (obj[0].favoritegames.length > 0) {
+                                let updateItemIndex = obj[0].favoritegames.findIndex(item => {
+                                    return item == favoriteid
+                                });
+                                if (updateItemIndex == -1) {
+                                    obj[0].favoritegames.push(favoriteid);
+                                } else {
+                                    obj[0].favoritegames.splice(updateItemIndex, 1);
+                                }
+                            } else {
+                                obj[0].favoritegames.push(favoriteid);
+                            }
+                        }
 
-                        // console.log(obj[0],"after change");
-                        });
-                   resolve('success');
+                    });
+                    resolve('success');
                 }
                 else {
                     reject();
                 }
             } catch (e) {
-               // console.log("realm error-",e);
                 reject();
             }
         });
@@ -461,44 +349,36 @@ class UserRealmCommon extends Component {
             try {
                 const realm = await this.openRealm();
                 const realmdata = await dataRealmCommon.openRealm();
-                if(realm && realmdata)
-                {
-                    let obj:any = realm?.objects<ChildEntity>(ChildEntitySchema.name);
-                  //  console.log("child data in realmcommon",obj);
+                if (realm && realmdata) {
+                    let obj: any = realm?.objects<ChildEntity>(ChildEntitySchema.name);
                     realm?.write(() => {
-                        if(obj.length > 0){
+                        if (obj.length > 0) {
                             obj.map((child: any) => {
                                 let favoriteadvices = child.favoriteadvices;
                                 let favoritegames = child.favoritegames;
-                                favoritegames = [...favoritegames,1234];
-                                if(favoriteadvices.length > 0)
-                                {
+                                favoritegames = [...favoritegames, 1234];
+                                if (favoriteadvices.length > 0) {
                                     const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
-                                    let artobj:any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
-                                    const finaladvicesobj = favoriteadvices.filter((i:any) => artobj.find((f:any)=>f.id === i));
+                                    let artobj: any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
+                                    const finaladvicesobj = favoriteadvices.filter((i: any) => artobj.find((f: any) => f.id === i));
                                     child.favoriteadvices = finaladvicesobj;
-                                    //console.log(favoriteadvices,"artobj--",finaladvicesobj,"artobj---",artobj);
                                 }
-                                if(favoritegames.length > 0)
-                                {
+                                if (favoritegames.length > 0) {
                                     const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
-                                    let actobj:any = realmdata?.objects<ActivitiesEntity>(ActivitiesEntitySchema.name).filtered(filterQuery);
-                                    const finalgamesobj = favoritegames.filter((i:any) => actobj.find((f:any)=>f.id === i))
+                                    let actobj: any = realmdata?.objects<ActivitiesEntity>(ActivitiesEntitySchema.name).filtered(filterQuery);
+                                    const finalgamesobj = favoritegames.filter((i: any) => actobj.find((f: any) => f.id === i))
                                     child.favoritegames = finalgamesobj
-                                    //console.log(favoritegames,"actobj--",finalgamesobj,"actobj---",JSON.stringify(child.favoritegames));
                                 }
-                                
+
                             })
                         }
-                       // console.log(obj,"after change");
                     });
-                   resolve('success');
+                    resolve('success');
                 }
                 else {
                     reject();
                 }
             } catch (e) {
-               // console.log("realm error-",e);
                 reject();
             }
         });
@@ -507,19 +387,14 @@ class UserRealmCommon extends Component {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     const obj = realm?.objects<Entity>(entitySchema.name);
-                    //console.log("in try",obj);
                     resolve(obj);
-                    //console.log("---",realm.schema);
                 }
                 else {
-                    //console.log("in 21error");
                     reject();
                 }
             } catch (e) {
-                //console.log("in error",e);
                 reject();
             }
         });
@@ -527,104 +402,50 @@ class UserRealmCommon extends Component {
     public async getFilteredData<Entity>(entitySchema: ObjectSchema, filterData: any): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
-
-                //write a function
-
                 const realm = await this.openRealm();
                 if (realm) {
-                    // const obj2 = realm?.objects<Entity>(entitySchema.name)?.filtered('');
-                    // console.log(obj2,"--obj2");
                     const obj = realm?.objects<Entity>(entitySchema.name).filtered(filterData);
-                     //console.log("filtered obj--",obj.length);
                     resolve(obj);
                 }
                 else {
                     reject();
                 }
             } catch (e) {
-                // console.log(e.message,"--e catch");
                 reject();
             }
         });
     }
-  
-    public async delete(Schema:string,record: any,filterCondition:any): Promise<String> {
+
+    public async delete(Schema: string, record: any, filterCondition: any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     realm?.write(() => {
                         if (
                             realm.objects(Schema).filtered(filterCondition)
-                              .length > 0
-                          ) {
-                            //let collectionPages = Object.assign([], realm.objects(Schema));
+                                .length > 0
+                        ) {
                             realm.delete(
-                              realm.objects(Schema).filtered(filterCondition)
+                                realm.objects(Schema).filtered(filterCondition)
                             );
                         }
-                        // realm?.delete(realm.objectForPrimaryKey(Schema, record));
                         resolve('success');
                     });
                 }
                 else {
                     reject('error');
-                }  
-            } catch (e:any) {
-               // console.log(e.message,"..error in delete..");
+                }
+            } catch (e: any) {
                 reject('error');
             }
         });
     }
-    // public async getAllChildren(context?: UserRealmContextValue): Promise<Child[]> {
-    //     let allChildren = context ?
-    //         context.realm?.objects<ChildEntity>(ChildEntitySchema.name).map(child => child) :
-    //         userRealmStore.realm?.objects<ChildEntity>(ChildEntitySchema.name).map(child => child);
-    //         let currentChild:any=null;
-    //     // let currentChild = this.getCurrentChild()?.uuid;
-    //     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-    //     if (currentActiveChildId?.length > 0) {
-    //         currentChild = currentActiveChildId[0].value;
-    //     }
-    //     let allChildrenList: Child[] = [];
-    
-    //     if (allChildren) {
-    
-    //         allChildrenList = allChildren?.map(child => {
-    //             let birthDay = child.birthDate ?
-    //                 DateTime.fromJSDate(child.birthDate).toFormat("dd'.'MM'.'yyyy") : "";
-    
-    //             let imgUrl = child.photoUri ? utils.addPrefixForAndroidPaths(`${RNFS.DocumentDirectoryPath}/${child.photoUri}`) : null;
-    //             let isCurrentActive = false;
-    
-    //             if (currentChild) {
-    //                 if (currentChild === child.uuid) {
-    //                     isCurrentActive = true;
-    //                 }
-    //             };
-    
-    //             return {
-    //                 childId: child.uuid,
-    //                 birthDay: birthDay,
-    //                 name: child.name,
-    //                 photo: imgUrl,
-    //                 gender: child.gender,
-    //                 isCurrentActive: isCurrentActive,
-    //                 id: child.uuid,
-    //             };
-    //         });
-    //     };
-    
-    
-    //     return allChildrenList;
-    // };
     public async deleteAll(entitySchema: ObjectSchema): Promise<void> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     const allRecords = realm?.objects(entitySchema.name);
 
                     realm?.write(() => {
@@ -634,20 +455,18 @@ class UserRealmCommon extends Component {
                 }
                 else {
                     reject();
-                }  
+                }
             } catch (e) {
                 reject(e);
             }
         });
     }
-    public async deleteBy(entitySchema: ObjectSchema,Condition:any): Promise<void> {
+    public async deleteBy(entitySchema: ObjectSchema, Condition: any): Promise<void> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     const allRecords = realm?.objects(entitySchema.name).filtered(Condition);
-                    //console.log(allRecords,"..allRecords..")
                     realm?.write(() => {
                         realm?.delete(allRecords);
                         resolve();
@@ -655,41 +474,31 @@ class UserRealmCommon extends Component {
                 }
                 else {
                     reject();
-                }  
+                }
             } catch (e) {
                 reject(e);
             }
         });
     }
-    public async deleteNestedMeasures<Entity>(entitySchema: ObjectSchema,param:any,condition:any): Promise<String>{
+    public async deleteNestedMeasures<Entity>(entitySchema: ObjectSchema, param: any, condition: any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    // const patient = realm?.objects('Patient').filtered("patient_id = $0", fromId);
-
-                    //console.log(obj[0],"obj0");
+                if (realm) {
+                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
-                    //console.log(obj[0].measures,"length")
-                    if(obj[0].measures.length>0){
-                        obj[0].measures.map((itemnew:any)=>{
-                            //console.log(itemnew,"..itemnew")
-                         let updateItemIndex = obj[0].measures.findIndex((item,index)=>{
-                            //console.log("measure.uuid",item);
-                            const measuredays=getDiffinDays(param,item.measurementDate);
-                            //console.log(measuredays,"..measuredays")
-                            return measuredays<0;
-                          });
-                           //console.log(updateItemIndex,"..measureupdateItemIndex")
-                           if(updateItemIndex>=0){
-                           obj[0].measures.splice(updateItemIndex, 1);
-                           }
-                           
-                        })
-                        //console.log(obj[0].measures,"..obj[0].measures")
-                       }
+                        if (obj[0].measures.length > 0) {
+                            obj[0].measures.map((itemnew: any) => {
+                                let updateItemIndex = obj[0].measures.findIndex((item, index) => {
+                                    const measuredays = getDiffinDays(param, item.measurementDate);
+                                    return measuredays < 0;
+                                });
+                                if (updateItemIndex >= 0) {
+                                    obj[0].measures.splice(updateItemIndex, 1);
+                                }
+
+                            })
+                        }
                     });
                     resolve(obj[0].measures);
                 }
@@ -697,36 +506,29 @@ class UserRealmCommon extends Component {
                     reject('Fail');
                 }
             } catch (e) {
-               //console.log("realm error-",e.message);
-               reject('Fail');
+                reject('Fail');
             }
         });
     }
-    public async deleteNestedReminders<Entity>(entitySchema: ObjectSchema,param:any,condition:any): Promise<any>{
+    public async deleteNestedReminders<Entity>(entitySchema: ObjectSchema, param: any, condition: any): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
-                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    //console.log(obj[0],"obj0");
+                if (realm) {
+                    let obj: any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     realm?.write(() => {
-                    //console.log(obj[0].reminders,"length")
-                      if(obj[0].reminders.length>0){
-                        let updateItemIndex = obj[0].reminders.findIndex(async item=>{
-                            let reminderDate:any = DateTime.fromMillis(item.reminderDate);
-                            let newreminderDate:any=new Date(reminderDate);
-                            // let reminderTime = DateTime.fromMillis(vaccineReminder?.reminderTime);
-                            const hours = new Date(item.reminderTime).getHours()
-                            const mins = new Date(item.reminderTime).getMinutes()
-                            newreminderDate.setHours(hours);
-                            newreminderDate.setMinutes(mins);
-                            //console.log(newreminderDate,"..newreminderDate")
-                            return DateTime.fromJSDate(new Date(newreminderDate)).toMillis()<param;
-                         });
-                         //console.log(updateItemIndex,"..updateItemIndex")
-                         obj[0].reminders.splice(updateItemIndex, 1);
-                      }
+                        if (obj[0].reminders.length > 0) {
+                            let updateItemIndex = obj[0].reminders.findIndex(async item => {
+                                let reminderDate: any = DateTime.fromMillis(item.reminderDate);
+                                let newreminderDate: any = new Date(reminderDate);
+                                const hours = new Date(item.reminderTime).getHours()
+                                const mins = new Date(item.reminderTime).getMinutes()
+                                newreminderDate.setHours(hours);
+                                newreminderDate.setMinutes(mins);
+                                return DateTime.fromJSDate(new Date(newreminderDate)).toMillis() < param;
+                            });
+                            obj[0].reminders.splice(updateItemIndex, 1);
+                        }
                     });
                     resolve(obj[0].reminders);
                 }
@@ -734,13 +536,10 @@ class UserRealmCommon extends Component {
                     reject('Fail');
                 }
             } catch (e) {
-               //console.log("realm error-",e.message);
-               reject('Fail');
+                reject('Fail');
             }
         });
     }
 }
 
 export const userRealmCommon = UserRealmCommon.getInstance();
-
-// export default userRealmCommon;

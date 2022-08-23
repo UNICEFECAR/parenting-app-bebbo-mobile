@@ -3,7 +3,7 @@ import React from 'react';
 import { Pressable, View } from 'react-native';
 import Radio, { RadioActive, RadioItem, RadioItemText } from './shared/radio';
 
-const CountryItem = ({item, currentItem, setCountry}) => {
+const CountryItem = ({item, currentItem, setCountry}:any) => {
   const isActive: boolean = item === currentItem ? true : false;
   return (
     <>

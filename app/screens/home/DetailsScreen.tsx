@@ -1,39 +1,33 @@
-import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
 import ActivitiesCategories from '@components/ActivitiesCategories';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleDetailsContainer, ArticleHeading } from '@components/shared/ArticlesStyle';
 import { BgActivityTint } from '@components/shared/BackgroundColors';
-import { MainContainer } from '@components/shared/Container';
 import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderTitleView,HeaderIconPress } from '@components/shared/HeaderContainerStyle';
-import Icon, { IconML } from '@components/shared/Icon';
+import { IconML } from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
 import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect, useScrollToTop } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3Regular, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler, Dimensions, Image  } from 'react-native';
+import { Alert, ScrollView, View,Text, BackHandler, Dimensions  } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
-import downloadImages from '../../downloadImages/ImageStorage';
 import RelatedActivities from '@components/shared/RelatedActivities';
 import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from '@native-html/table-plugin';
 import WebView from "react-native-webview";
 import LoadableImage from '../../services/LoadableImage';
 import { DefaultImage } from '@components/shared/Image';
 import analytics from '@react-native-firebase/analytics';
-import crashlytics from '@react-native-firebase/crashlytics';
 import { ADVICE_CATEGORY_SELECTED, ADVICE_DETAILS_OPENED, GAME_CATEGORY_SELECTED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../services/Utils';
 import RenderImage from '../../services/RenderImage';
 import FastImage from 'react-native-fast-image';
@@ -59,7 +53,6 @@ export type RelatedArticlesProps = {
   fromScreen?:any,
   currentSelectedChildId?:any
 }
-// const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
   console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
@@ -80,14 +73,8 @@ const DetailsScreen = ({route, navigation}: any) => {
     state.childData.childDataSet.favoritegames
   );
 
-  // console.log(typeof detailData,"--typeof");
-  // console.log("detailData--",JSON.stringify(detailData));
-  // console.log("fromScreen--",fromScreen);
   const [detailDataToUse,setDetailDataToUse] = useState({});
-  // let detailDataToUse: any;
-  // detailDataToUse = detailData;
-  // setDetailDataToUse(detailData);
-  // fromScreen === 'Activities'
+  
   const adviceval = fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
   useEffect(() => {
     const backAction = () => {
@@ -114,9 +101,7 @@ const DetailsScreen = ({route, navigation}: any) => {
         if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
         {
           console.log(detailData,"..detailData..")
-          // const articleData = useAppSelector(
-          //   (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
-          // );
+          
           if(typeof detailData == "number")
           {
             const articleData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,'id == "'+detailData+'"');
@@ -164,12 +149,8 @@ const DetailsScreen = ({route, navigation}: any) => {
                analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
             }
           }
-          // detailDataToUse = articleData[0]
-          // detailDataToUse = articleData.filter((x:any)=>x.id == detailData) ? articleData.filter((x:any)=>x.id == detailData)[0] : [];
-          // console.log(detailData,"detailData",detailDataToUse);
+          
         }else {
-          // console.log(detailData,"fromScreen--",fromScreen);
-          // detailDataToUse = detailData;
         if(fromScreen == "HomeAct"){
           if(typeof detailData == "number")
           {
@@ -218,14 +199,11 @@ const DetailsScreen = ({route, navigation}: any) => {
                analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
             }
         }
-          // console.log("detailData--",(detailDataToUse));
         }
       }
       functionOnLoad();
       return () => {
-        // setDetailDataToUse({});
-        // setCoverImage('');
-        // setFilterArray([]);
+        console.log("in return")
       }
 
   }, [detailData]);
@@ -241,48 +219,8 @@ const DetailsScreen = ({route, navigation}: any) => {
 );
 const videoIsFocused = useIsFocused();
 console.log(videoIsFocused,"..videoIsFocused");
-  const [isImgLoaded, setIsImageLoaded] = useState(false);
-  const [cover_image,setCoverImage]=useState();
   const [filterArray,setFilterArray] = useState([]);
-  const [showImageLoader,setImageLoader] = useState(false);
-  const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   let fromPage = 'Details';
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     // console.log("details usefocuseffect")
-  //     // filterArray.length = 0;
-  //     const fetchData = async () => {
-  //       console.log("322Image already exists","file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop());
-  //       console.log(await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop()));
-  //        if (await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop())) {
-  //         console.log("Image already exists11");
-  //         console.log("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())
-  //         //setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
-  //         setImageLoader(false);
-  //       }else {
-  //          console.log("11Image already exists");
-  //       // 
-  //       //  console.log(imageArray,"..imageArray..");
-  //       let imageArray= [];
-  //       imageArray.push({
-  //          srcUrl: detailDataToUse?.cover_image?.url, 
-  //          destFolder: destinationFolder, 
-  //          destFilename: detailDataToUse?.cover_image?.url.split('/').pop()
-  //      })
-  //        const imagesDownloadResult = await downloadImages(imageArray);
-  //       //  console.log(imagesDownloadResult,"..imagesDownloadResult..");
-  //        //setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
-  //        setImageLoader(false);
-  //       }
-  //     }
-  //     if (detailDataToUse?.cover_image != "" && detailDataToUse?.cover_image!= null && detailDataToUse?.cover_image != undefined && detailDataToUse?.cover_image?.url != "" && detailDataToUse?.cover_image?.url != null && detailDataToUse?.cover_image?.url != undefined) {
-  //       console.log(detailDataToUse)
-  //       fetchData();
-  //     }
-     
-  //   },[detailDataToUse?.cover_image?.url])
-  // );
-    
   const setNewFilteredArticleData = (itemId:any) => {
     navigation.navigate({
       name: fromScreen,
@@ -290,23 +228,10 @@ console.log(videoIsFocused,"..videoIsFocused");
       merge: true,
     });
   }
-  // const setNewFilteredActivityData = (itemId:any) => {
-  //   navigation.navigate({
-  //     name: fromScreen,
-  //     params: {activityCategoryArray:itemId},
-  //     merge: true,
-  //   });
-  // }
+  
   const onFilterArrayChange = (newFilterArray: any) => {
-    // console.log("on filterarray change",newFilterArray);
-    // filterArray = [...newFilterArray];
     setFilterArray(newFilterArray)
-    // console.log("on filterarray change after",filterArray)
   }
-  // const bodydata = "<table>\n<tbody>\n<tr>\n<td style='text-align:left'>\n<p>Planned daily activities for a child should be adjusted to his/her age but also to individual needs. In addition to nutrition, one must think about time for play and physical activity, sleep and periods when the child is sitting but engaged in activities such as: talking to family members, listening to stories, sitting in front of a screen, riding in a car, eating.</p>\n<p><strong>Children aged three and over </strong></p>\n<ul>\n<li>In this age a child should also spend at least 180 minutes throughout the day in a variety of types of physical activities, of which at least <strong><em>60 minutes is moderate to vigorous intensity</em></strong> physical activity.</li>\n<li>The position of relative rest is not recommended to last longer than 1 hour. Use this time for conversation, sightseeing, reading, storytelling. One hour is also the longest screen time for a child with your mandatory supervision of the content watched.</li>\n<li>Sleep time required goes from 10 to 13 hours including both daytime and night time sleep, and periods of night wake-up times. You should not shorten the child`s sleep time because it may be associated with disorders: growth disorder, obesity, emotional regulation disorder, etc.</li>\n</ul>\n<p><strong><em>Light-intensity physical activity </em></strong>includes activities with energy cost 1.5 to 4.0 times the energy expenditure at rest for the child: bathing, slow walking, or other incidental activities; they do not result in the child getting hot.</p>\n<p><strong><em>Moderate- to vigorous-intensity physical activity </em></strong>includes activities 4–7 times energy expenditure at rest for the child: brisk walking, cycling, running and playing ball games, jumping, swimming, dancing etc. during which the child gets hot and breathless.</p>\n</td>\n</tr>\n</tbody>\n</table>\n";
-  // const ref = React.useRef(null);
-  // useScrollToTop(ref);
-  // console.log("bodydata--",bodydata);
   const cssRules =
   cssRulesFromSpecs({
     ...defaultTableStylesSpecs,
@@ -316,26 +241,10 @@ console.log(videoIsFocused,"..videoIsFocused");
     trEvenBackground: 'transparent',
     // fontFamily: '"Open Sans"' // beware to quote font family name!
   });
-
-  const htmlProps = {
-    WebView,
-    renderers: {
-      table
-    },
-    ignoredTags: IGNORED_TAGS,
-    renderersProps: {
-      table: {
-        cssRules
-        // Put the table config here (previously,
-        // the first argument of makeTableRenderer)
-      }
-    }
-  };
   const onHeaderBack =()=>{
     console.log("onHeaderBack called");
     if(fromScreen == "ChildDevelopment")
     {
-      // console.log("detail screen----",currentSelectedChildId);
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: {currentSelectedChildId:currentSelectedChildId},
@@ -344,7 +253,6 @@ console.log(videoIsFocused,"..videoIsFocused");
     }
     else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
     {
-      // console.log("detail screen----",currentSelectedChildId);
       navigation.navigate({
         name: "ChildDevelopment",
         params: {currentSelectedChildId:currentSelectedChildId},
@@ -353,7 +261,6 @@ console.log(videoIsFocused,"..videoIsFocused");
     }
     else if(fromScreen == "Activities")
     {
-      //console.log("detail screen----",currentSelectedChildId);
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId,backClicked:'yes'},
@@ -385,7 +292,6 @@ console.log(videoIsFocused,"..videoIsFocused");
       });
     }
   }
-  //console.log("detailDataToUse---",detailDataToUse);
   return (
     <>
     {detailDataToUse ?
@@ -401,12 +307,6 @@ console.log(videoIsFocused,"..videoIsFocused");
                 onPress={onHeaderBack}>
                 <IconML name={'ic_back'} color="#000" size={15} />
               </HeaderIconPress>
-              {/* <HeaderIconPress
-                onPress={()=>{
-                  crashlytics().crash();
-                }}>
-                <IconML name={'ic_back'} color="#000" size={15} />
-              </HeaderIconPress> */}
             </HeaderIconView>
             <HeaderTitleView>
             <Heading2 numberOfLines={1}>{detailDataToUse?.title}</Heading2>
@@ -440,25 +340,6 @@ console.log(videoIsFocused,"..videoIsFocused");
             <Heading3Regular style={{marginBottom:10}}>{detailDataToUse.summary}</Heading3Regular> 
             : null }
             {detailDataToUse && detailDataToUse.body ?
-              // <HTML
-              //   source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
-              //   // source={{html: bodydata}} {...htmlProps}
-              //   baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
-              //   ignoredStyles={['color', 'font-size', 'font-family']}
-              //   tagsStyles={{
-              //     img: {maxWidth:Dimensions.get('window').width},
-              //     p:{marginBottom:15,marginTop:0,textAlign:'left'},
-              //     h1:{marginBottom:0,marginTop:10,textAlign:'left'},
-              //     h2:{marginBottom:15,marginTop:0,textAlign:'left'},
-              //     h3:{marginBottom:15,marginTop:0,textAlign:'left'},
-              //     h4:{marginBottom:15,marginTop:0,textAlign:'left'},
-              //     h5:{marginBottom:15,marginTop:0,textAlign:'left'},
-              //     h6:{marginBottom:15,marginTop:0,textAlign:'left'},
-              //     span:{marginBottom:15,marginTop:0,textAlign:'left'},
-              //     li:{textAlign:'left'},
-              //     br:{height:0},
-              //   }}
-              // />
               <HTML
               source={{html: addSpaceToHtml(detailDataToUse.body)}} key={detailDataToUse.id} 
                 // source={{html: bodydata}} {...htmlProps}
@@ -515,13 +396,9 @@ console.log(videoIsFocused,"..videoIsFocused");
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
-                  {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
                     <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
 
-                      {/* add condition of if type is video article then  */}
-                      {/* { detailDataToUse && detailDataToUse?.related_video_articles ?  */}
                         <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-                      {/* : null} */}
                     
                   <ArticleHeading>
                     <Heading2>{t('detailScreenArticleHeader')}</Heading2>
@@ -534,13 +411,9 @@ console.log(videoIsFocused,"..videoIsFocused");
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
-                  {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
                     <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
 
-                    {/* add condition of if type is video article then  */}
-                    {/* { detailDataToUse && detailDataToUse?.related_video_articles ?  */}
                       <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-                    {/* : null} */}
                 </FlexCol>
               </>
             ) : null}
@@ -568,14 +441,6 @@ console.log(videoIsFocused,"..videoIsFocused");
               <View style={{backgroundColor: newBackgroundColor}}>
                 <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
               </View>
-              {/* <BgActivityTint>
-                <ArticleHeading>
-                  <Heading2>{t('detailScreenActivityHeader')}</Heading2>
-                </ArticleHeading>
-                <ActivitiesCategories
-                  borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}
-                />
-                </BgActivityTint> */}
               </>
             ) : null}
             {

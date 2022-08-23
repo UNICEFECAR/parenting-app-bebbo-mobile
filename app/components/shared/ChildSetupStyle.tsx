@@ -21,7 +21,6 @@ export const ChildRelationList = styled.Pressable`
 `;
 
 export const FormOuterCheckbox = styled.Pressable`
-  /*margin-top: 10px;*/
   align-items: flex-start;
   flex-direction: row;
 `;
@@ -127,9 +126,6 @@ export const FormInputBox = styled.View`
 
 `;
 export const FormDateText = styled.View`
-  /*flex: 4;*/
-  /*justify-content: flex-start;
-  flex-direction: row;*/
    
 `;
 export const FormDateText1 = styled.View`
@@ -137,9 +133,6 @@ export const FormDateText1 = styled.View`
    
 `;
 export const FormDateAction = styled.View`
- /* flex: 1;
-  justify-content: center;
-  flex-direction: row;*/
   margin-left:5px;
 `;
 export const FormInputGroup = styled.Pressable`
@@ -153,7 +146,7 @@ export const FormInputText = styled(LabelText)`
   margin-bottom: 10px;
 `;
 export const TextAreaBox = styled.View`
-  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
 height:75px;
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
@@ -169,7 +162,6 @@ position:relative;
 z-index:11;
 justify-content:center;
 align-items:center;
-
 margin:15px 0
 `;
 export const OrHeadingView = styled.View`

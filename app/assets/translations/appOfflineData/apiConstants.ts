@@ -10,8 +10,6 @@ export const articleCategory = '4,1,55,56,3,2';
 export const articleCategoryArray = [4,1,55,56,3,2];
 export const regexpEmojiPresentation = /[^\p{L} ]/gu;    
 export const luxonDefaultLocale="en-US";                   
-// export const articleCategory = '"parenting_corner","nutrition_and_breastfeeding","play_and_learning","responsive_parenting","safety_and_protection","health_and_wellbeing"';
-// export const articleCategoryArray = ["parenting_corner","nutrition_and_breastfeeding","play_and_learning","responsive_parenting","safety_and_protection","health_and_wellbeing"];
 export const videoTypeVimeo = "vimeo";
 export const videoTypeYoutube = "youtube";
 export const videoTypeImage = "novideo";
@@ -23,7 +21,6 @@ export const tempbackUpPath = RNFS.TemporaryDirectoryPath + 'my.backup';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const shareText=(String(buildFor) != buildForBebbo)?'\nhttps://www.bebbo.app/foleja/share/':'\nhttps://www.bebbo.app/share/';
-//export const shareTextButton='https://bebbo.app/share/';
 export const shareTextButton=(String(buildFor) != buildForBebbo)?'https://www.bebbo.app/foleja/share/':'https://www.bebbo.app/share/';
 export const maleData:any={
     "id": 37,
@@ -45,24 +42,48 @@ export const girl_child_gender=41;
 export const boy_child_gender=40;
 export const weight_growth_type=32786;
 export const height_growth_type=6461;
-let today = new Date();
+const today = new Date();
 today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
 export const restOfTheWorldCountryId = 126;
 export const videoArticleMandatory = 0;
 export const maxArticleSize = 5; 
+export const appConfig = {
+  articles: 'articles',
+  videoArticles: 'video-articles',
+  dailyMessages: 'daily-homescreen-messages',
+  basicPages: 'basic-pages',
+  sponsors:'sponsors',
+  taxonomies:'taxonomies',
+  standardDeviation:'standard_deviation',
+  milestones:'milestones',
+  activities:'activities',
+  surveys:'surveys',
+  childDevelopmentData:'child-development-data',
+  childGrowthData:'child-growth-data',
+  vaccinations:'vaccinations',
+  healthCheckupData:'health-checkup-data',
+  pinnedContent:'pinned-contents',
+  vaccinePinnedContent:'pinnedvaccinations',
+  childdevGirlPinnedContent:'child_development/'+girl_child_gender,
+  childdevBoyPinnedContent:'child_development/'+boy_child_gender,
+  childGrowthPinnedContent:'child_growth',
+  healthcheckupPinnedContent:'health_check_ups',
+  faqPinnedContent:'faq',
+  faqUpdatedPinnedContent:'updatedfaq',
+  milestoneRelatedArticle:'milestonerelatedarticle',
+  checkUpdate:'check-update',
+  faqs:'faqs',
+  archive:'archive',
+}
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
-    // console.log(apiEndpoint,"in finalurl", apiUrlDevelop);
-    // console.log("in finalurl", apiUrlDevelop);
     if(apiEndpoint==appConfig.sponsors){
-       // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
     } 
     if(apiEndpoint==appConfig.taxonomies){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
     }
     if(apiEndpoint==appConfig.checkUpdate){
-        // return 'https://staging.bebbo.app/api'+ '/'+apiEndpoint+'/6';
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
     }
     if(apiEndpoint==appConfig.vaccinePinnedContent){
@@ -90,42 +111,10 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
       return apiUrlDevelop+ '/updated-pinned-contents/'+selectedLang+'/faq';
   }
     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
-    // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
-}
-
-export const appConfig = {
-    articles: 'articles',
-    videoArticles: 'video-articles',
-    dailyMessages: 'daily-homescreen-messages',
-    basicPages: 'basic-pages',
-    sponsors:'sponsors',
-    taxonomies:'taxonomies',
-    standardDeviation:'standard_deviation',
-    milestones:'milestones',
-    activities:'activities',
-    surveys:'surveys',
-    childDevelopmentData:'child-development-data',
-    childGrowthData:'child-growth-data',
-    vaccinations:'vaccinations',
-    healthCheckupData:'health-checkup-data',
-    pinnedContent:'pinned-contents',
-    vaccinePinnedContent:'pinnedvaccinations',
-    childdevGirlPinnedContent:'child_development/'+girl_child_gender,
-    childdevBoyPinnedContent:'child_development/'+boy_child_gender,
-    childGrowthPinnedContent:'child_growth',
-    healthcheckupPinnedContent:'health_check_ups',
-    faqPinnedContent:'faq',
-    faqUpdatedPinnedContent:'updatedfaq',
-    milestoneRelatedArticle:'milestonerelatedarticle',
-    checkUpdate:'check-update',
-    faqs:'faqs',
-    archive:'archive',
 }
 
 
   export const allApisObject = (isDatetimeReq:any, dateTimeObj:any) => {
-    console.log(dateTimeObj['videoArticlesDatetime']);
-    console.log(isDatetimeReq,"---isDatetimeReq---",dateTimeObj);
     const allApiObject = [
       {
         apiEndpoint: appConfig.sponsors,
