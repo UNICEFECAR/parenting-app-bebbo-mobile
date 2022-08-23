@@ -13,7 +13,6 @@ import { FlexCol } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { ToolsBgContainer } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
@@ -25,7 +24,7 @@ import {
 } from '@styles/typography';
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Modal, Pressable, ScrollView, View } from 'react-native';
+import { BackHandler, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
@@ -40,24 +39,27 @@ import Icon from '@components/shared/Icon';
 import { ButtonModal } from '@components/shared/ButtonGlobal';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import { isFutureDate } from '../../services/childCRUD';
+const styles=StyleSheet.create({
+  flex1:{flex: 1},
+  flex4:{flex:4},
+  previousPeriodsView:{flex:1,flexDirection:'column'}
+})
 type HealthCheckupsNavigationProp =
-  StackNavigationProp<HomeDrawerNavigatorStackParamList>;
+  StackNavigationProp<any>;
 type Props = {
   navigation: HealthCheckupsNavigationProp;
   route: any;
 };
+
 const HealthCheckups = ({navigation,route}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
   const {t} = useTranslation();
-  let {
+  const {
     upcomingPeriods,
     previousPeriods,
     childAgeIndays,
-    sortedGroupsForPeriods,
-    totalPreviousVaccines,
-    totalUpcomingVaccines,
     currentPeriod,
   } = getAllHealthCheckupPeriods();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
@@ -65,7 +67,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
   const [modalVisible, setModalVisible] = React.useState(true);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
-    let obj = {key: varkey, value: !modalVisible};
+    const obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
   const hcuModalOpened = useAppSelector((state: any) =>
@@ -77,12 +79,12 @@ const HealthCheckups = ({navigation,route}: Props) => {
     // pass true to make modal visible every time & reload
     setModalVisible(hcuModalOpened)
    })
-  let reminders = useAppSelector((state: any) =>
+  const reminders = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild).reminders
       : [],
   );
-  let activeChild = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
@@ -118,7 +120,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
           {previousPeriods.length > 0 ? (
             previousPeriods?.map((item, itemindex) => {
               return (
-                <View style={{flex:1,flexDirection:'column'}} key={itemindex}>
+                <View style={styles.previousPeriodsView} key={itemindex}>
                 <PreviousHealthCheckup
                   item={item}
                   key={itemindex}
@@ -206,7 +208,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={{flex: 1,backgroundColor:headerColor}}>
+      <View style={[styles.flex1,{backgroundColor:headerColor}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ToolsBgContainer>
           <TabScreenHeader
@@ -215,7 +217,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
             textColor="#000"
             setProfileLoading={setProfileLoading}
           />
-          <ScrollView style={{flex: 4}}>
+          <ScrollView style={styles.flex4}>
             <MainContainer style={{backgroundColor: backgroundColor}}>
               <ShiftFromBottom20>
                 <Heading2Center>{t('hcSummaryHeader')}</Heading2Center>
@@ -258,7 +260,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
                 return (
                   <Pressable
                     key={itemindex}
-                    style={{flex: 1}}
+                    style={styles.flex1}
                     onPress={() => {
                       setSelectedIndex(itemindex);
                     }}>

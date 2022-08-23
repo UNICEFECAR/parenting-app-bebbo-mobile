@@ -10,14 +10,11 @@ export const getAllHealthCheckupPeriods = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const taxonomy = useAppSelector(
     (state: any) =>
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
-  let allGrowthPeriods = taxonomy.growth_period;
+  const allGrowthPeriods = taxonomy.growth_period;
     // filter by measurementPlace  is Doctors and sort by measurementDate
     // getall doctor's place measures
   const allMeasures = activeChild?.measures.filter((item:any)=>(item.measurementPlace==0)).sort(
@@ -27,7 +24,7 @@ export const getAllHealthCheckupPeriods = () => {
   const vcMeasures = activeChild?.measures.filter((item:any)=>(item.measurementPlace==1 && item.didChildGetVaccines==true)).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
-  let allVaccinePeriods = useAppSelector(
+  const allVaccinePeriods = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
@@ -39,14 +36,14 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
   });
 }
   // sorting measures by date
-  let allMeasurements = [...allMeasures,...vcMeasures].map((item: MeasuresEntity) => {
-    let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+  const allMeasurements = [...allMeasures,...vcMeasures].map((item: MeasuresEntity) => {
+    const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
     const filteredVaccinesForLocale = (item.vaccineIds || item.vaccineIds != '') ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(item.vaccineIds)):[]
     return {
       uuid: item.uuid,
       weight: item.weight ? parseFloat(item.weight) : 0,
       height: item.height ? parseFloat(item.height) : 0,
-      measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
+      measurementDate: formatStringDate(item?.measurementDate),
       dateToMilis: item.measurementDate,
       childAgeInDaysForMeasure: Math.round(
         DateTime.fromJSDate(new Date(item.measurementDate)).diff(birthDay, 'days').days,
@@ -61,12 +58,12 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
     };
   })
   const vaccineMeasures = activeChild.measures.filter((item:any) => item.didChildGetVaccines == true);
-  let measuredVaccines: any[] = [];
-  vaccineMeasures.forEach((measure:any, index:any) => {
+  const measuredVaccines: any[] = [];
+  vaccineMeasures.forEach((measure:any) => {
     // remove uuids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
     const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(measure.vaccineIds)) : [];
     if (vaccinesForAmeasure) {
-      vaccinesForAmeasure.forEach((vaccine:any, innerindex:any) => {
+      vaccinesForAmeasure.forEach((vaccine:any) => {
         measuredVaccines.push(vaccine);
       });
     }
@@ -76,12 +73,12 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
     return (measuredVaccines.find(item => String(item.uuid) == String(uuid)))
   }
 
-  let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+  const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
   const getVaccinesForHCPeriod = (growthPeriodID:any) => {
-    let vaccinesforHC = allVaccinePeriods.filter((item:any) => item.growth_period == growthPeriodID);
+    const vaccinesforHC = allVaccinePeriods.filter((item:any) => item.growth_period == growthPeriodID);
     vaccinesforHC?.forEach((vaccine:any) => {
       const vaccineMeasured = vaccineMeasuredInfo(vaccine.uuid);
       vaccine.isMeasured = vaccineMeasured ? true : false;
@@ -90,15 +87,16 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
 
     return vaccinesforHC;
   }
-  let allHealthCheckupsData = useAppSelector(
+  const allHealthCheckupsData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.healthCheckupsData),
   );
-  let additionalMeasures: any[] = [];
+  const additionalMeasures: any[] = [];
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number) => {
+    console.log("currentIndex--",currentIndex)
     const { t } = useTranslation();
     if (hcItem) {
-      const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))
+      const measure = allMeasurements.filter((measure:any) => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))
       let regularMeasure: any = {};
       if (measure.length > 1) {
        for (let i = 0; i <= measure.length - 2; i++) {
@@ -137,7 +135,6 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
     const item = allGrowthPeriods.find((item:any) => Number(item.id) == Number(hcItem.growth_period));
     if (item) {
       hcItem.vaccination_opens = item?.vaccination_opens;
-      // delete hcItem?.vaccination_ends;
     }
   })
 
@@ -156,13 +153,13 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
     hcItem.growthMeasures = measuresForHCPeriod;
   });
 
-  let sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures].sort(
+  const sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures].sort(
     (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ?1:-1,
   );
   let upcomingPeriods = sortedGroupsForPeriods.filter(
     (period: any) => period?.vaccination_opens > childAgeIndays,
   );
-  let previousPeriods = sortedGroupsForPeriods
+  const previousPeriods = sortedGroupsForPeriods
     .filter((period: any) => period?.vaccination_opens <= childAgeIndays)
     .reverse();
    // logic to add current period to upcomingPeriods and remove it from previousPeriods
@@ -196,7 +193,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
       return item.vaccines.length;
     }).reduce((accumulator, current) => {
       return accumulator + current;
-    });;
+    });
   }
   return { upcomingPeriods, previousPeriods,childAgeIndays, sortedGroupsForPeriods, totalUpcomingVaccines, totalPreviousVaccines, currentPeriod };
 }

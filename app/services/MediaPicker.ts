@@ -14,9 +14,9 @@ class MediaPicker {
    * @param {*} pickerTypeGallery
    * @param {*} galleryOptions
    */
-  
+
   showCameraImagePicker(
-    callback:any,
+    callback: any,
     pickerTypeGallery = PICKER_TYPE.GALLERY_WITH_CROPPING,
     pickerTypeCamera = PICKER_TYPE.CAMERA_WITH_CROPPING,
     galleryOptions = {},
@@ -33,7 +33,7 @@ class MediaPicker {
     });
   }
   showGalleryImagePicker(
-    callback:any,
+    callback: any,
     pickerTypeGallery = PICKER_TYPE.GALLERY_WITH_CROPPING,
     pickerTypeCamera = PICKER_TYPE.CAMERA_WITH_CROPPING,
     galleryOptions = {},
@@ -49,14 +49,14 @@ class MediaPicker {
       );
     });
   }
-  showCameraPickerOptions(...args:any) {
+  showCameraPickerOptions(...args: any) {
     this.pickCameraOptions(...args);
   }
-  showGalleryPickerOptions(...args:any) {
+  showGalleryPickerOptions(...args: any) {
     this.pickGalleryOptions(...args);
   }
   pickCameraOptionsWithPermission(
-    callback:any,
+    callback: any,
     pickerTypeGallery = PICKER_TYPE.GALLERY,
     pickerTypeCamera = PICKER_TYPE.CAMERA,
     galleryOptions = {},
@@ -73,15 +73,15 @@ class MediaPicker {
     });
   }
 
-  pickCameraOptions(...args:any) {
-    let [
+  pickCameraOptions(...args: any) {
+    const [
       callback,
       pickerTypeCamera,
       cameraOptions,
       pickerTypeGallery,
       galleryOptions,
     ] = args;
-     switch (pickerTypeCamera) {
+    switch (pickerTypeCamera) {
       case PICKER_TYPE.CAMERA:
       case PICKER_TYPE.CAMERA_BINARY_DATA:
         this.pickImageFromCamera(callback, cameraOptions);
@@ -94,7 +94,7 @@ class MediaPicker {
   }
 
   pickGalleryOptionsWithPermission(
-    callback:any,
+    callback: any,
     pickerTypeGallery = PICKER_TYPE.GALLERY,
     pickerTypeCamera = PICKER_TYPE.CAMERA,
     galleryOptions = {},
@@ -111,8 +111,8 @@ class MediaPicker {
     });
   }
 
-  pickGalleryOptions(...args:any) {
-    let [
+  pickGalleryOptions(...args: any) {
+    const [
       callback,
       pickerTypeCamera,
       cameraOptions,
@@ -143,24 +143,24 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickImageFromCamera(callback:any, options:any) {
+  pickImageFromCamera(callback: any, options: any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-    setTimeout(()=>{
-    ImagePicker.openCamera({
-      compressImageMaxWidth: options.compressImageMaxWidth,
-      compressImageMaxHeight: options.compressImageMaxHeight,
-      compressImageQuality: options.compressImageQuality,
-      mediaType: options.mediaType,
-      includeExif: options.includeExif,
-      includeBase64: options.includeBase64,
-    })
-      .then((image) => {
-        let path = this.getImageUriFromData(options.includeBase64, image);
-        const imageData = { ...image, path };
-        callback && callback(imageData);
+    setTimeout(() => {
+      ImagePicker.openCamera({
+        compressImageMaxWidth: options.compressImageMaxWidth,
+        compressImageMaxHeight: options.compressImageMaxHeight,
+        compressImageQuality: options.compressImageQuality,
+        mediaType: options.mediaType,
+        includeExif: options.includeExif,
+        includeBase64: options.includeBase64,
       })
-      .catch((e) => this.handleError(e));
-    },350);
+        .then((image) => {
+          const path = this.getImageUriFromData(options.includeBase64, image);
+          const imageData = { ...image, path };
+          callback && callback(imageData);
+        })
+        .catch((e) => this.handleError(e));
+    }, 350);
   }
 
   /**
@@ -170,26 +170,26 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickImageFromCameraWithCropping(callback:any, options:any) {
+  pickImageFromCameraWithCropping(callback: any, options: any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-    setTimeout(()=>{
-     ImagePicker.openCamera({
-      width: options.width,
-      height: options.height,
-      cropping: true,
-      cropperCircleOverlay: options.cropperCircleOverlay,
-      enableRotationGesture: options.enableRotationGesture,
-      mediaType: options.mediaType,
-      includeExif: options.includeExif,
-      includeBase64: options.includeBase64,
-    })
-      .then((image) => {
-        let path = this.getImageUriFromData(options.includeBase64, image);
-        const imageData = { ...image, path };
-        callback && callback(imageData);
+    setTimeout(() => {
+      ImagePicker.openCamera({
+        width: options.width,
+        height: options.height,
+        cropping: true,
+        cropperCircleOverlay: options.cropperCircleOverlay,
+        enableRotationGesture: options.enableRotationGesture,
+        mediaType: options.mediaType,
+        includeExif: options.includeExif,
+        includeBase64: options.includeBase64,
       })
-      .catch((e) => this.handleError(e));
-    },350);
+        .then((image) => {
+          const path = this.getImageUriFromData(options.includeBase64, image);
+          const imageData = { ...image, path };
+          callback && callback(imageData);
+        })
+        .catch((e) => this.handleError(e));
+    }, 350);
   }
 
   /**
@@ -199,24 +199,24 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickImageFromGallery(callback:any, options:any) {
+  pickImageFromGallery(callback: any, options: any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-    setTimeout(()=>{
-    ImagePicker.openPicker({
-      compressImageMaxWidth: options.compressImageMaxWidth,
-      compressImageMaxHeight: options.compressImageMaxHeight,
-      compressImageQuality: options.compressImageQuality,
-      mediaType: options.mediaType,
-      includeExif: options.includeExif,
-      includeBase64: options.includeBase64,
-    })
-      .then((image) => {
-        let path = this.getImageUriFromData(options.includeBase64, image);
-        const imageData = { ...image, path };
-        callback && callback(imageData);
+    setTimeout(() => {
+      ImagePicker.openPicker({
+        compressImageMaxWidth: options.compressImageMaxWidth,
+        compressImageMaxHeight: options.compressImageMaxHeight,
+        compressImageQuality: options.compressImageQuality,
+        mediaType: options.mediaType,
+        includeExif: options.includeExif,
+        includeBase64: options.includeBase64,
       })
-      .catch((e) => this.handleError(e));
-    },350);
+        .then((image) => {
+          const path = this.getImageUriFromData(options.includeBase64, image);
+          const imageData = { ...image, path };
+          callback && callback(imageData);
+        })
+        .catch((e) => this.handleError(e));
+    }, 350);
   }
 
   /**
@@ -226,26 +226,26 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickImageFromGalleryWithCropping(callback:any, options:any) {
+  pickImageFromGalleryWithCropping(callback: any, options: any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-    setTimeout(()=>{
-    ImagePicker.openPicker({
-      width: options.width,
-      height: options.height,
-      cropping: true,
-      cropperCircleOverlay: options.cropperCircleOverlay,
-      enableRotationGesture: options.enableRotationGesture,
-      mediaType: options.mediaType,
-      includeExif: options.includeExif,
-      includeBase64: options.includeBase64,
-    })
-      .then((image) => {
-        let path = this.getImageUriFromData(options.includeBase64, image);
-        const imageData = { ...image, path };
-        callback && callback(imageData);
+    setTimeout(() => {
+      ImagePicker.openPicker({
+        width: options.width,
+        height: options.height,
+        cropping: true,
+        cropperCircleOverlay: options.cropperCircleOverlay,
+        enableRotationGesture: options.enableRotationGesture,
+        mediaType: options.mediaType,
+        includeExif: options.includeExif,
+        includeBase64: options.includeBase64,
       })
-      .catch((e) => this.handleError(e));
-    },350);
+        .then((image) => {
+          const path = this.getImageUriFromData(options.includeBase64, image);
+          const imageData = { ...image, path };
+          callback && callback(imageData);
+        })
+        .catch((e) => this.handleError(e));
+    }, 350);
   }
 
   /**
@@ -255,7 +255,7 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickMultiple(callback:any, options:any) {
+  pickMultiple(callback: any, options: any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
     ImagePicker.openPicker({
       multiple: true,
@@ -270,8 +270,8 @@ class MediaPicker {
       maxFiles: options.maxFiles || 10,
     })
       .then((images) => {
-        let imageData = images.map((img) => {
-          let uri =
+        const imageData = images.map((img) => {
+          const uri =
             img.path || this.getImageUriFromData(options.includeBase64, img);
           return { ...img, uri };
         });
@@ -286,6 +286,7 @@ class MediaPicker {
   cleanupImages() {
     ImagePicker.clean()
       .then(() => {
+        console.log("cleaned all images");
       })
       .catch((e) => this.handleError(e));
   }
@@ -296,9 +297,10 @@ class MediaPicker {
    *
    * @param {*} image path to be clean
    */
-  cleanupSingleImage(image:any) {
-     ImagePicker.cleanSingle(image ? image.uri : null)
+  cleanupSingleImage(image: any) {
+    ImagePicker.cleanSingle(image ? image.uri : null)
       .then(() => {
+        console.log("cleaned single image")
       })
       .catch((e) => this.handleError(e));
   }
@@ -310,15 +312,14 @@ class MediaPicker {
    * @param {*} includeBase64
    * @param {*} image
    */
-  getImageUriFromData(includeBase64:any, image:any) {
+  getImageUriFromData(includeBase64: any, image: any) {
     return includeBase64
       ? `data:${image.mime};base64,` + image.data
       : image.path;
   }
 
-  handleError(error:any) {
+  handleError(error: any) {
     if (error.code && error.code === "E_PICKER_CANCELLED") return;
-    let errorMsg = error.message ? error.message : error;
     Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
   }
 
@@ -334,7 +335,7 @@ class MediaPicker {
     );
   }
 
-  handlePermissionsCamera(triggerFunc:any) {
+  handlePermissionsCamera(triggerFunc: any) {
     request(CAMERA_PERMISSION)
       .then((cameraPermission) => {
         return cameraPermission;
@@ -347,40 +348,40 @@ class MediaPicker {
         }
         else if (
           cameraPermission === RESULTS.DENIED || cameraPermission === RESULTS.BLOCKED || cameraPermission === RESULTS.UNAVAILABLE
-        ){
+        ) {
           Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
         }
       });
   }
-  handlePermissionsGallery(triggerFunc:any) {
+  handlePermissionsGallery(triggerFunc: any) {
     request(GALLERY_PERMISSION).then(async (photoPermission) => {
       if (
         photoPermission === RESULTS.GRANTED
       ) {
-         triggerFunc();
+        triggerFunc();
       }
       else if (
         photoPermission === RESULTS.LIMITED
-      ){
-        let options:any;
-         options = { ...IMAGE_PICKER_OPTIONS, ...options };
-         if (Platform.OS === 'ios') {
-         setTimeout(()=>{
-         openLimitedPhotoLibraryPicker().then(()=>{
-          triggerFunc();
-        }).catch(() => {
-         });
-      },350);
-    }
+      ) {
+        if (Platform.OS === 'ios') {
+          setTimeout(() => {
+            openLimitedPhotoLibraryPicker().then(() => {
+              triggerFunc();
+            }).catch(() => {
+              console.log("permission catch");
+            });
+          }, 350);
+        }
       }
       else if (
-        photoPermission === RESULTS.DENIED ||  photoPermission === RESULTS.BLOCKED || photoPermission=== RESULTS.UNAVAILABLE
-      ){
+        photoPermission === RESULTS.DENIED || photoPermission === RESULTS.BLOCKED || photoPermission === RESULTS.UNAVAILABLE
+      ) {
         Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
       }
     });
   }
-  checkPermissionCamera(triggerFunc:any, openSettings = undefined) {
+  checkPermissionCamera(triggerFunc: any, openSettings = undefined) {
+    console.log("checkPermissionGallery-",openSettings);
     Promise.all([
       check(CAMERA_PERMISSION)
     ]).then(([cameraStatus]) => {
@@ -391,11 +392,12 @@ class MediaPicker {
       }
     });
   }
-  checkPermissionGallery(triggerFunc:any, openSettings = undefined) {
+  checkPermissionGallery(triggerFunc: any, openSettings = undefined) {
+    console.log("checkPermissionGallery-",openSettings);
     Promise.all([
       check(GALLERY_PERMISSION),
     ]).then(([photoStatus]) => {
-       if (photoStatus === RESULTS.BLOCKED) {
+      if (photoStatus === RESULTS.BLOCKED) {
         this.openSettingModal();
       } else {
         this.handlePermissionsGallery(triggerFunc);

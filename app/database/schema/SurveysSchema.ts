@@ -1,13 +1,13 @@
 import { ObjectSchema } from "realm";
 
 export type SurveysEntity = {
-    id: number,
-    type: string,
-    title: string,
-    body: string,
-    survey_feedback_link: string,
-    created_at: string,
-    updated_at: string,
+    id: number;
+    type: string;
+    title: string;
+    body: string;
+    survey_feedback_link: string;
+    created_at: string;
+    updated_at: string;
   };
 
 

@@ -49,6 +49,7 @@ import {
   Alert, BackHandler, Modal,
   Platform,
   Pressable,
+  StyleSheet,
   Text,
   View
 } from 'react-native';
@@ -70,8 +71,27 @@ type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ChildSetupNavigationProp;
-  route: any
+  route: any;
 };
+const styles= StyleSheet.create({
+  containerView: {
+    flex: 1,
+  },
+  headerActionStyle: {
+    padding:0
+  },
+  headerRowHeight: {
+    maxHeight: 50
+  },
+  pressableStyle: {
+    paddingLeft:10,
+    paddingRight:10
+  },
+  scrollViewStyle: { 
+    flex: 7,
+    padding: 15
+  },
+})
 const AddReminder = ({ route, navigation }: Props) => {
   const { t } = useTranslation();
   const {
@@ -87,32 +107,32 @@ const AddReminder = ({ route, navigation }: Props) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderDate : null,
   );
-  const [showmeasure, setmeasureShow] = useState<Boolean>(false);
+  const [showmeasure, setmeasureShow] = useState<boolean>(false);
   const [clicked, setClicked] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [measureTime, setmeasureTime] = useState<DateTime>(
+  const [measureTime, setmeasureTime] = useState<any>(
     editReminderItem ? editReminderItem.reminderTime : null,
   );
   const [minmeasureTime, setminmeasureTime] = useState<any>(
     editReminderItem ? new Date(editReminderItem.reminderDate) : new Date(),
   );
-  const [showmeasureTime, setmeasureShowTime] = useState<Boolean>(false);
-  const [dateTouched, setDateTouched] = useState<Boolean>(false);
-  const [timeTouched, setTimeTouched] = useState<Boolean>(false);
+  const [showmeasureTime, setmeasureShowTime] = useState<boolean>(false);
+  const [dateTouched, setDateTouched] = useState<boolean>(false);
+  const [timeTouched, setTimeTouched] = useState<boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const [isMeasureTimePickerVisible, setMeasureTimePickerVisibility] = useState(false);
 
   const [measureDateDefined, setmeasureDateDefined] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderDateDefined : null,
   );
-  const [showmeasureDefined, setmeasureShowDefined] = useState<Boolean>(false);
-  const [measureTimeDefined, setmeasureTimeDefined] = useState<DateTime>(
+  const [showmeasureDefined, setmeasureShowDefined] = useState<boolean>(false);
+  const [measureTimeDefined, setmeasureTimeDefined] = useState<any>(
     editReminderItem ? editReminderItem.reminderTimeDefined : null,
   );
  
-  const [showmeasureTimeDefined, setmeasureShowTimeDefined] = useState<Boolean>(false);
-  const [dateTouchedDefined, setDateTouchedDefined] = useState<Boolean>(false);
-  const [timeTouchedDefined, setTimeTouchedDefined] = useState<Boolean>(false);
+  const [showmeasureTimeDefined, setmeasureShowTimeDefined] = useState<boolean>(false);
+  const [dateTouchedDefined, setDateTouchedDefined] = useState<boolean>(false);
+  const [timeTouchedDefined, setTimeTouchedDefined] = useState<boolean>(false);
   const [isMeasureDatePickerVisibleDefined, setMeasureDatePickerVisibilityDefined] = useState(false);
   const [isMeasureTimePickerVisibleDefined, setMeasureTimePickerVisibilityDefined] = useState(false);
   const dispatch = useAppDispatch();
@@ -120,9 +140,6 @@ const AddReminder = ({ route, navigation }: Props) => {
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
-  );
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
   );
   const vchcEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.vchcEnabled),
@@ -157,10 +174,6 @@ const AddReminder = ({ route, navigation }: Props) => {
       if (new Date(selectedDate).toDateString() == new Date().toDateString()) {
         setmeasureTimeDefined(new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0))
       }
-      else {
-        const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
-      }
-
     }
 
   };
@@ -186,17 +199,6 @@ const AddReminder = ({ route, navigation }: Props) => {
     onmeasureChangeDefined(event, date);
     setMeasureDatePickerVisibilityDefined(false);
   };
-  const handleMeasureTimeConfirm = (event: any) => {
-    const time = event;
-    onmeasureTimeChange(event, time);
-    setMeasureTimePickerVisibility(false);
-  };
-  const handleMeasureTimeConfirmDefined = (event: any) => {
-    const time = event;
-    onmeasureTimeChangeDefined(event, time);
-    setMeasureTimePickerVisibilityDefined(false);
-  };
-
   const onmeasureTimeChange = (event: any, selectedTime: any) => {
     const currentTime = selectedTime || measureTime;
     setmeasureShowTime(false);
@@ -212,6 +214,16 @@ const AddReminder = ({ route, navigation }: Props) => {
       setmeasureTimeDefined(DateTime.fromJSDate(currentTime));
       setTimeTouchedDefined(true);
     }
+  };
+  const handleMeasureTimeConfirm = (event: any) => {
+    const time = event;
+    onmeasureTimeChange(event, time);
+    setMeasureTimePickerVisibility(false);
+  };
+  const handleMeasureTimeConfirmDefined = (event: any) => {
+    const time = event;
+    onmeasureTimeChangeDefined(event, time);
+    setMeasureTimePickerVisibilityDefined(false);
   };
   const showmeasureTimepicker = () => {
     setmeasureShowTime(true);
@@ -233,10 +245,10 @@ const AddReminder = ({ route, navigation }: Props) => {
     }
   };
   const deleteReminder = async () => {
-    let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(
+    await userRealmCommon.getData<ChildEntity>(
       ChildEntitySchema,
     );
-    let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
+    const createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
       ChildEntitySchema,
       editReminderItem,
       'uuid ="' + activeChild.uuid + '"',
@@ -250,7 +262,7 @@ const AddReminder = ({ route, navigation }: Props) => {
         LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
       }
       activeChild.reminders = createresult;
-      let notiFlagObj = { key: 'generateNotifications', value: true };
+      const notiFlagObj = { key: 'generateNotifications', value: true };
       dispatch(setInfoModalOpened(notiFlagObj));
       dispatch(setActiveChildData(activeChild));
     }
@@ -282,7 +294,7 @@ const AddReminder = ({ route, navigation }: Props) => {
         ? measureTimeNew
         : measureTimeNew
       : measureTimeNew).getMinutes()
-    let finalReminderDate = new Date(editReminderItem
+    const finalReminderDate = new Date(editReminderItem
       ? dateTouched
         ? measureDate?.toMillis()
         : measureDate
@@ -300,7 +312,7 @@ const AddReminder = ({ route, navigation }: Props) => {
         ? measureTimeNewDefined
         : measureTimeNewDefined
       : measureTimeNewDefined).getMinutes()
-    let finalReminderDateDefined = new Date(editReminderItem
+    const finalReminderDateDefined = new Date(editReminderItem
       ? dateTouchedDefined
         ? measureDateDefined?.toMillis()
         : measureDateDefined
@@ -334,15 +346,15 @@ const AddReminder = ({ route, navigation }: Props) => {
                 : measureTimeNewDefined
               : measureTimeNewDefined,
           };
-          let createresult = await userRealmCommon.updateChildReminders<ChildEntity>(
+          const createresult = await userRealmCommon.updateChildReminders<ChildEntity>(
             ChildEntitySchema,
             reminderValues,
             'uuid ="' + activeChild.uuid + '"',
           );
           if (createresult?.length > 0) {
             activeChild.reminders = createresult;
-            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate, luxonLocale) + "," + formatStringTime(measureTimeNew, luxonLocale)});
-            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate, luxonLocale) + "," + formatStringTime(measureTimeNew, luxonLocale)});
+            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTime(measureTimeNew)});
+            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTime(measureTimeNew)});
             const message = reminderType == 'vaccine' ? titlevcr : titlehcr;
             if(editReminderItem) {
               let previousDTDefined;
@@ -356,7 +368,7 @@ const AddReminder = ({ route, navigation }: Props) => {
              LocalNotifications.schduleNotification(finalReminderDateDefined,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis(),reminderType == 'vaccine' ? 'vcr' : 'hcr',activeChild.uuid);
             }
             dispatch(setActiveChildData(activeChild));
-            let notiFlagObj = { key: 'generateNotifications', value: true };
+            const notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
             navigation.goBack();
             if (reminderType == 'vaccine') {
@@ -390,13 +402,10 @@ useEffect(() => {
 }, []);
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={[styles.containerView,{backgroundColor: headerColor}]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
-          style={{
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
+          style={[styles.headerRowHeight,{backgroundColor: headerColor}]}>
           <HeaderIconView>
             <HeaderIconPress
               onPress={() => {
@@ -409,8 +418,8 @@ useEffect(() => {
             <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
           </HeaderTitleView>
           {editReminderItem ? (
-               <HeaderActionView style={{padding:0}}>
-               <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+               <HeaderActionView style={styles.headerActionStyle}>
+               <Pressable  style={styles.pressableStyle}  onPress={() =>
                    setModalVisible(true)
                  }>
                  <Icon name={'ic_trash'} size={20} color="#000" />
@@ -419,7 +428,7 @@ useEffect(() => {
           ) : null}
         </HeaderRowView>
 
-        <ScrollView style={{ padding: 15, flex: 7 }}>
+        <ScrollView style={styles.scrollViewStyle}>
           <ShiftFromBottom10>
           <Heading4Regular>{titleTxt}</Heading4Regular>
           </ShiftFromBottom10>
@@ -430,7 +439,7 @@ useEffect(() => {
                   <Text>
                     {measureDate
                       ?
-                      formatStringDate(measureDate, luxonLocale)
+                      formatStringDate(measureDate)
                       : t('vcReminderDate')}
                   </Text>
                   {showmeasure && (
@@ -457,7 +466,7 @@ useEffect(() => {
                   <Text>
                     {measureDate
                       ?
-                      formatStringDate(measureDate, luxonLocale)
+                      formatStringDate(measureDate)
                       : t('vcReminderDate')}
                   </Text>
                   <DateTimePickerModal
@@ -487,7 +496,7 @@ useEffect(() => {
                     <Text>
                       {measureTime
                         ?
-                        formatStringTime(measureTime, luxonLocale)
+                        formatStringTime(measureTime)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTime && (
@@ -520,7 +529,7 @@ useEffect(() => {
                     <Text>
                       {measureTime
                         ?
-                        formatStringTime(measureTime, luxonLocale)
+                        formatStringTime(measureTime)
                         : t('vcReminderTime')}
                     </Text>
                     <DateTimePickerModal
@@ -561,7 +570,7 @@ useEffect(() => {
                   <Text>
                     {measureDateDefined
                       ?
-                      formatStringDate(measureDateDefined, luxonLocale)
+                      formatStringDate(measureDateDefined)
                       : t('vcReminderDate')}
                   </Text>
                   {showmeasureDefined && (
@@ -588,7 +597,7 @@ useEffect(() => {
                   <Text>
                     {measureDateDefined
                       ?
-                      formatStringDate(measureDateDefined, luxonLocale)
+                      formatStringDate(measureDateDefined)
                       : t('vcReminderDate')}
                   </Text>
                   <DateTimePickerModal
@@ -618,7 +627,7 @@ useEffect(() => {
                     <Text>
                       {measureTimeDefined
                         ?
-                        formatStringTime(measureTimeDefined, luxonLocale)
+                        formatStringTime(measureTimeDefined)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTimeDefined && (
@@ -652,7 +661,7 @@ useEffect(() => {
                     <Text>
                       {measureTimeDefined
                         ?
-                        formatStringTime(measureTimeDefined, luxonLocale)
+                        formatStringTime(measureTimeDefined)
                         : t('vcReminderTime')}
                     </Text>
                     <DateTimePickerModal
@@ -689,6 +698,7 @@ useEffect(() => {
                 setClicked(true);
                 setTimeout(()=>{
                   saveReminder().then(() => {
+                    console.log("in then");
                   });
                 },0)
               }}>

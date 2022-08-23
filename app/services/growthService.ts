@@ -3,15 +3,15 @@ import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../database/schema/ChildDataSchema';
 
 
-export interface singleAreaDataFormat {
-  x?: number | null,
-  y: number | null,
-  y0: number | null,
+export interface SingleAreaDataFormat {
+  x?: number | null;
+  y: number | null;
+  y0: number | null;
 }
-export interface chartAreaDataFormat {
-  topArea: singleAreaDataFormat[],
-  middleArea: singleAreaDataFormat[],
-  bottomArea: singleAreaDataFormat[],
+export interface ChartAreaDataFormat {
+  topArea: SingleAreaDataFormat[];
+  middleArea: SingleAreaDataFormat[];
+  bottomArea: SingleAreaDataFormat[];
 }
 
 
@@ -19,7 +19,7 @@ export const setInitialWeightValues = (weightValue: any) => {
   if (weightValue + ''.indexOf('.') === -1) {
     return { weight: weightValue, weight1: 0 };
   } else {
-    let w = (weightValue + '').split('.');
+    const w = (weightValue + '').split('.');
     if (weightValue && String(w[1]).length == 1) {
      return { weight: Number(w[0]), weight1: Number(w[1]) * 10 };
     } else {
@@ -34,7 +34,7 @@ export const setInitialHeightValues = (heightValue: any) => {
    if (heightValue + ''.indexOf('.') === -1) {
     return { height: heightValue, height1: 0 };
   } else {
-    let w = (heightValue + '').split('.');
+    const w = (heightValue + '').split('.');
     if (heightValue && String(w[1]).length == 1) {
       return { height: Number(w[0]), height1: Number(w[1]) * 10 };
     } else {
@@ -51,16 +51,16 @@ export const convertMeasuresData = (
   measures: MeasuresEntity[],
   childBirthDay: Date,
 ) => {
-  let measurementDateInDays: number = 0;
+  let measurementDateInDays = 0;
 
-  let measuresData: any[] = [];
+  const measuresData: any[] = [];
 
   measures.forEach((item) => {
     if (item.measurementDate) {
-      let childAge = DateTime.fromJSDate(new Date(childBirthDay));
-      let date = DateTime.fromMillis(item.measurementDate);
+      const childAge = DateTime.fromJSDate(new Date(childBirthDay));
+      const date = DateTime.fromMillis(item.measurementDate);
 
-      let days = date.diff(childAge, 'days').toObject().days;
+      const days = date.diff(childAge, 'days').toObject().days;
 
       measurementDateInDays = days ? Math.round(days) : 0;
     }
@@ -77,18 +77,16 @@ export const convertMeasuresData = (
   return measuresData;
 };
 export const formatDaysData = (data: any) => {
-  let obj: chartAreaDataFormat;
-
-  let topArea: singleAreaDataFormat[] = [];
-  let middleArea: singleAreaDataFormat[] = [];
-  let bottomArea: singleAreaDataFormat[] = [];
+  const topArea: SingleAreaDataFormat[] = [];
+  const middleArea: SingleAreaDataFormat[] = [];
+  const bottomArea: SingleAreaDataFormat[] = [];
    data.map((item:any) => {
     topArea.push({ x: Number(item.name) / 30, y: item.sd3, y0: item.sd4 });
     middleArea.push({ x: Number(item.name) / 30, y: item.sd3neg, y0: item.sd3 });
     bottomArea.push({ x: Number(item.name) / 30, y: item.sd3neg, y0: item.sd4neg });
   })
 
-  obj = {
+  const obj: ChartAreaDataFormat = {
     topArea: topArea,
     middleArea: middleArea,
     bottomArea: bottomArea,
@@ -97,14 +95,11 @@ export const formatDaysData = (data: any) => {
   return obj;
 }
 export const formatHeightData = (data: any,param:any) => {
-  let obj: chartAreaDataFormat;
-  let topArea: singleAreaDataFormat[] = [];
-  let middleArea: singleAreaDataFormat[] = [];
-  let bottomArea: singleAreaDataFormat[] = [];
+  const topArea: SingleAreaDataFormat[] = [];
+  const middleArea: SingleAreaDataFormat[] = [];
+  const bottomArea: SingleAreaDataFormat[] = [];
   if(param=='height'){
     data.map((item:any) => {
-      // if (Number(item.name) >= 45 && Number(item.name) <= 87) {
-      // if (Number(item.name) > 87.0) {
       topArea.push({ x: Number(item.name)/30, y: item.sd3, y0: item.sd4 });
       middleArea.push({ x: Number(item.name)/30, y: item.sd3neg, y0: item.sd3 });
       bottomArea.push({ x: Number(item.name)/30, y: item.sd3neg, y0: item.sd4neg });
@@ -112,15 +107,13 @@ export const formatHeightData = (data: any,param:any) => {
   }
   else{
     data.map((item:any) => {
-      // if (Number(item.name) >= 45 && Number(item.name) <= 87) {
-      // if (Number(item.name) > 87.0) {
       topArea.push({ x: Number(item.name), y: item.sd3, y0: item.sd4 });
       middleArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd3 });
       bottomArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd4neg });
     })
   }
   
-  obj = {
+  const obj: ChartAreaDataFormat = {
     topArea: topArea,
     middleArea: middleArea,
     bottomArea: bottomArea,

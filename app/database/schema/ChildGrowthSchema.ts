@@ -1,17 +1,17 @@
 import { ObjectSchema } from "realm";
 
 export type ChildGrowthEntity = {
-    id: number,
-    type: string,
-    title: string,
-    body: string,
-    growth_type: string,
-    standard_deviation: string,
-    child_age: string[],
-    pinned_article: string,
-    created_at: string,
-    updated_at: string,
-    mandatory: string,
+    id: number;
+    type: string;
+    title: string;
+    body: string;
+    growth_type: string;
+    standard_deviation: string;
+    child_age: string[];
+    pinned_article: string;
+    created_at: string;
+    updated_at: string;
+    mandatory: string;
   };
 
   export const ChildGrowthSchema: ObjectSchema = {

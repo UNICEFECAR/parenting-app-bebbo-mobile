@@ -1,18 +1,18 @@
 import { ObjectSchema } from "realm";
 
 export type StandDevObjEntity = {
-  articleID:number[],
+  articleID:number[];
   name:string;
   text:string;
 }
 
 export type StandardDevWeightForHeightEntity = {
-    child_age: number[],
-    goodText: StandDevObjEntity,
-    warrningSmallHeightText: StandDevObjEntity,
-    emergencySmallHeightText: StandDevObjEntity,
-    warrningBigHeightText: StandDevObjEntity,
-    emergencyBigHeightText: StandDevObjEntity,    
+    child_age: number[];
+    goodText: StandDevObjEntity;
+    warrningSmallHeightText: StandDevObjEntity;
+    emergencySmallHeightText: StandDevObjEntity;
+    warrningBigHeightText: StandDevObjEntity;
+    emergencyBigHeightText: StandDevObjEntity;
   };
 
   export const StandDevObj: ObjectSchema = {

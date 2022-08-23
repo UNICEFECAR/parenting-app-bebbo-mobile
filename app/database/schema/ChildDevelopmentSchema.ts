@@ -1,16 +1,16 @@
 import { ObjectSchema } from "realm";
 
 export type ChildDevelopmentEntity = {
-    id: number,
-    type: string,
-    title: string,
-    child_age: number[],
-    boy_video_article: number,
-    girl_video_article: number,
-    milestone: string,
-    created_at: string,
-    updated_at: string,
-    mandatory: number,
+    id: number;
+    type: string;
+    title: string;
+    child_age: number[];
+    boy_video_article: number;
+    girl_video_article: number;
+    milestone: string;
+    created_at: string;
+    updated_at: string;
+    mandatory: number;
   };
 
 

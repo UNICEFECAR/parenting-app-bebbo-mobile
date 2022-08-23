@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useTranslation } from 'react-i18next';
 import HTML from 'react-native-render-html';
 import { addSpaceToHtml } from '../../services/Utils';
@@ -14,7 +14,19 @@ import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from '../../../App';
 import ThreeDotsLoader from '../../services/ThreeDotsLoader';
 import { img_logo_chatbot_new } from '@dynamicImportsClass/dynamicImports';
-
+const styles=StyleSheet.create({
+  flex1:{flex:1},
+  flexShrink1:{ flexShrink: 1 },
+  font14:{ fontSize: 14 },
+  htmlView:{ padding: 15, paddingTop: 5, paddingBottom: 5 },
+  htmlView2:{ padding: 15, paddingTop: 15, paddingBottom: 5 },
+  linearGradient:{ alignItems: 'center', borderRadius: 100, flex: 1, height: 36, justifyContent: 'center', width: 36 },
+  marginTop0:{marginTop:0},
+  marginTop40:{marginTop:40},
+  paddingTop0:{paddingTop:0},
+  paddingTop10:{paddingTop:10},
+  vectorImage:{ borderRadius: 100, height: 20, resizeMode: 'contain', width: 20 },
+})
 const BotBubble = (props: any) => {
   const { message, steps,stepindex,loading } = props;
   const { t } = useTranslation();
@@ -35,11 +47,11 @@ const BotBubble = (props: any) => {
     <FlexRow>
       <BotImage>
         <LinearGradient
-          style={{ flex: 1, borderRadius: 100, width: 36, height: 36, alignItems: 'center', justifyContent: 'center' }}
+          style={styles.linearGradient}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           colors={['#2B2F84', '#1F50A0', '#00AEEF']}>
-          <VectorImage style={{ width: 20, height: 20, borderRadius: 100, resizeMode: 'contain' }} source={img_logo_chatbot_new} />
+          <VectorImage style={styles.vectorImage} source={img_logo_chatbot_new} />
         </LinearGradient>
       </BotImage>
       <BotBubbleContainer>
@@ -55,10 +67,10 @@ const BotBubble = (props: any) => {
         </BotBubbleTextContainer>
         {loading == false && steps && steps.textToShow && steps.textToShow.answer_part_1 && steps.textToShow.answer_part_1 != '' ?
           <>
-            <View style={{ padding: 15, paddingTop: 5, paddingBottom: 5 }}>
+            <View style={styles.htmlView}>
               <HTML
                 source={{ html: addSpaceToHtml(steps.textToShow.answer_part_1) }}
-                baseFontStyle={{ fontSize: 14 }}
+                baseFontStyle={styles.font14}
                 ignoredStyles={['color', 'font-size', 'font-family']}
                 tagsStyles={{
                   p: { marginBottom: 0, marginTop: 0, textAlign: 'left' },
@@ -79,10 +91,10 @@ const BotBubble = (props: any) => {
               </SideSpacing15>
               : null}
             {answer2visible == true ?
-              <View style={{ padding: 15, paddingTop: 15, paddingBottom: 5 }}>
+              <View style={styles.htmlView2}>
                 <HTML
                   source={{ html: addSpaceToHtml(steps.textToShow.answer_part_2) }}
-                  baseFontStyle={{ fontSize: 14 }}
+                  baseFontStyle={styles.font14}
                   ignoredStyles={['color', 'font-size', 'font-family']}
                   tagsStyles={{
                     p: { marginBottom: 0, marginTop: 0, textAlign: 'left' },
@@ -119,7 +131,7 @@ const BotBubble = (props: any) => {
   )
 }
 const UserBubble = (props: any) => {
-  const { message, steps } = props
+  const { message } = props
   return (
     <UserBubbleContainer>
       <UserBubbleTextContainer>
@@ -129,7 +141,7 @@ const UserBubble = (props: any) => {
   )
 }
 const OptionBubble = (props: any) => {
-  const { optionval, optionindex, stepindex, steps, categorySelection, dynamicStepSelection, backToHomeScreen, showFeedbackLink, noDataStep } = props
+  const { optionval, optionindex, stepindex, steps } = props
   return (
     <>
 
@@ -148,11 +160,11 @@ const OptionBubble = (props: any) => {
   )
 }
 const ActionBubble = (props: any) => {
-  const { actionval, actionindex, stepindex, steps, stepsjson, backToStep, backToHomeScreen } = props
+  const { actionval, actionindex, stepindex, steps, stepsjson } = props
   return (
     <>
 
-      <ActionBubbleContainer style={{ marginTop: actionindex == 0 ? 40 : 0 }}>
+      <ActionBubbleContainer style={actionindex == 0 ? styles.marginTop40 : styles.marginTop0}>
         <ActionBubblePressable
           onPress={() => {
             actionval?.nextStepFunc(stepindex, actionindex, actionval.nextStepval, steps[stepindex].id, steps, stepsjson)
@@ -160,7 +172,7 @@ const ActionBubble = (props: any) => {
           <ActionBubbleIcon>
             <IconML name="ic_back" size={16} color="#000" />
           </ActionBubbleIcon>
-          <Heading4Regular style={{ flexShrink: 1 }}>
+          <Heading4Regular style={styles.flexShrink1}>
             {actionval?.label}
           </Heading4Regular>
         </ActionBubblePressable>
@@ -180,7 +192,7 @@ const ChatBot = (props: any) => {
     },item.delay);       
   }, [item.showNextStep]);
   return (
-    <View style={{ flex: 1,paddingTop:index == 0 ? 10 : 0 }} key={index}>
+    <View style={[styles.flex1,(index == 0 ? styles.paddingTop10 : styles.paddingTop0)]} key={index}>
       {item.showNextStep == true ?
         <>
           <BotBubble key={'b' + item.id + '-' + index} message={item.message} steps={item} stepindex={index} loading={loading}/>

@@ -2,7 +2,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Pressable, StyleSheet, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
@@ -18,8 +18,19 @@ import VideoPlayer from './VideoPlayer';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: row;
-  background-color: ${props => props.theme.colors.ARTICLES_TINTCOLOR};,
+  background-color: ${(props): string => props.theme.colors.ARTICLES_TINTCOLOR};,
 `;
+
+const styles = StyleSheet.create({
+  
+  cardImage: {
+    alignSelf: 'center',
+    flex: 1,
+    height: 200,
+    width: '100%',
+  },
+});
+
 const FavArticles = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();
@@ -58,9 +69,9 @@ useFocusEffect(
     async function fetchData() {
       if(favoriteadvices.length > 0){
         const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
-        let favData1 = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
-       let favData2 = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema, filterQuery);
-       let favData = [...new Set([...favData1,...favData2])];
+        const favData1 = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
+       const favData2 = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema, filterQuery);
+       let favData:any = [...new Set([...favData1,...favData2])];
         if(favData.length == 0){
           favData = articleDataall.filter((x: any) => (favoriteadvices.findIndex((y:any)=>y == x.id)) > -1);
         }
@@ -107,7 +118,7 @@ useFocusEffect(
                   maxToRenderPerBatch={4} // Reduce number in each render batch
                   updateCellsBatchingPeriod={100} // Increase time between renders
                   windowSize={7} // Reduce the window size
-                  renderItem={({item, index}) => <RenderArticleItem item={item} index={index} />  }
+                  renderItem={({item, index}:any) => <RenderArticleItem item={item} index={index} />  }
                   keyExtractor={(item:any) => item.id.toString()}
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
@@ -117,13 +128,3 @@ useFocusEffect(
   );
 };
 export default FavArticles;
-
-const styles = StyleSheet.create({
-  
-  cardImage: {
-    alignSelf: 'center',
-    flex: 1,
-    height: 200,
-    width: '100%',
-  },
-});

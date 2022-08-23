@@ -23,9 +23,10 @@ import { RootStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { primaryColor } from '@styles/style';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, BackHandler, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -45,6 +46,24 @@ type ChildSetupNavigationProp = StackNavigationProp<
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
+const styles = StyleSheet.create({
+  containerView: {
+    backgroundColor:primaryColor,
+    flex:1
+  },
+  textStyle: { 
+    fontSize: 12,
+    fontWeight: 'normal'
+  },
+  touchableLeft: { 
+    marginLeft: 2,
+    padding: 8 
+  },
+  touchableRight: { 
+    marginRight: 2,
+    padding: 8 
+  }
+})
 const ChildSetupList = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -62,9 +81,6 @@ const ChildSetupList = ({ navigation }: Props) => {
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const luxonLocale = useAppSelector(
-    (state: any) => state.selectedCountry.luxonLocale,
-  );
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
@@ -98,19 +114,41 @@ const ChildSetupList = ({ navigation }: Props) => {
       }
     }, [])
   );
+  const deleteRecord = (index: number, dispatch: any, uuid: string) => {
+    return new Promise((resolve, reject) => {
+      Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'),
+        [
+          {
+            text: t('removeOption1'),
+            onPress: () => resolve("error"),
+            style: "cancel"
+          },
+          {
+            text: t('growthScreendelText'), onPress: async () => {
+              await deleteChild(languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, child_age, t);
+              getAllChildren(dispatch, child_age, 0);
+            }
+          }
+        ]
+      );
+    });
 
+  }
+  const editRecord = (data: any) => {
+    navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListeditSiblingBtn'), childData: data });
+  }
   const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any) => {
 
     return (
       <ChildListingBox key={index}>
         <ChildColArea1>
-          <ChildListTitle >{data.childName}{(gender != '' && gender != 0 && gender != undefined) ? <Text style={{ fontSize: 12, fontWeight: 'normal' }}>, {gender}</Text> : null}</ChildListTitle>
-          <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate, luxonLocale) : '' }) : t('expectedChildDobLabel')}</Heading5>
+          <ChildListTitle >{data.childName}{(gender != '' && gender != 0 && gender != undefined) ? <Text style={styles.textStyle}>, {gender}</Text> : null}</ChildListTitle>
+          <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}</Heading5>
         </ChildColArea1>
         <ChildColArea2>
           {
             childList.length > 1 ? (
-              <TouchableHighlight style={{ padding: 8, marginRight: 2 }} underlayColor="transparent" onPress={() => deleteRecord(index, dispatch, data.uuid)}>
+              <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={() => deleteRecord(index, dispatch, data.uuid)}>
                 <ChildListAction>
                   <Icon
                     name="ic_trash"
@@ -121,7 +159,7 @@ const ChildSetupList = ({ navigation }: Props) => {
               </TouchableHighlight>
             ) : null
           }
-          <TouchableHighlight style={{ padding: 8, marginLeft: 2 }} underlayColor="transparent" onPress={() => editRecord(data)}>
+          <TouchableHighlight style={styles.touchableLeft} underlayColor="transparent" onPress={() => editRecord(data)}>
             <ChildListAction>
               <Icon
                 name="ic_edit"
@@ -135,29 +173,7 @@ const ChildSetupList = ({ navigation }: Props) => {
       </ChildListingBox>
     );
   };
-  const deleteRecord = (index: number, dispatch: any, uuid: string) => {
-    return new Promise((resolve, reject) => {
-      Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'),
-        [
-          {
-            text: t('removeOption1'),
-            onPress: () => resolve("error"),
-            style: "cancel"
-          },
-          {
-            text: t('growthScreendelText'), onPress: async () => {
-              const deletedata = await deleteChild(languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, child_age, t);
-              getAllChildren(dispatch, child_age, 0);
-            }
-          }
-        ]
-      );
-    });
-
-  }
-  const editRecord = (data: any) => {
-    navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListeditSiblingBtn'), childData: data });
-  }
+  
 
 
   const childSetup = async () => {
@@ -183,7 +199,7 @@ const ChildSetupList = ({ navigation }: Props) => {
 
   return (
     <>
-      <View style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={styles.containerView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <OnboardingContainer>
           <OverlayLoadingComponent loading={loading} />

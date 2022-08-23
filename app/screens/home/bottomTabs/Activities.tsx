@@ -37,14 +37,50 @@ import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
 import FastImage from 'react-native-fast-image';
 import { randomArrayShuffle } from '../../../services/Utils';
+import { activitiesTintcolor, bgcolorWhite2 } from '@styles/style';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
-  route: any
+  route: any;
   navigation: ActivitiesNavigationProp;
 };
-
-const Activities = ({ route, navigation }: Props) => {
+const styles = StyleSheet.create({
+  activityHeadingView: {
+    flexDirection:'row'
+  },
+  ageBracketView: { 
+    backgroundColor: bgcolorWhite2 
+  },
+  cardImage: {
+    alignSelf: 'center',
+    flex: 1,
+    height: 200,
+    width: '100%',
+  },
+  containerView: {
+    backgroundColor:activitiesTintcolor,
+    flex:1
+  },
+  customHeading3: {
+    flex:1,
+    paddingLeft:5,
+    paddingRight:5
+  },
+  headingBoldStyle: {
+    justifyContent:"center",
+    paddingBottom:15,
+    paddingTop:17
+  },
+  pressableHeading: {
+    flex:1,
+    maxWidth:'40%'
+  },
+  pressableMilestone: {
+    paddingBottom:15,
+    paddingTop:15
+  }
+});
+const Activities = ({ route, navigation }: any) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   let sectionListRef:any;
@@ -106,7 +142,7 @@ const Activities = ({ route, navigation }: Props) => {
   const [childMilestonedata,setchildMilestonedata] = useState([]);
   const setIsModalOpened = async (varkey: any) => {
     if (modalVisible == true) {
-      let obj = { key: varkey, value: false };
+      const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
       setModalVisible(false);
     }
@@ -114,7 +150,6 @@ const Activities = ({ route, navigation }: Props) => {
   useFocusEffect(() => {
     setModalVisible(activityModalOpened);
   })
-
   const toTop = () => {
     // use current
     // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
@@ -127,6 +162,34 @@ const Activities = ({ route, navigation }: Props) => {
       }
     );
     }
+  }
+  const setFilteredActivityData = (itemId: any) => {
+  
+    if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != []) {
+      if (itemId.length > 0) {
+        const newArticleData = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
+        setfilteredData(newArticleData);
+        setLoading(false);
+        setTimeout(() => {
+          setshowNoData(true);
+        }, 200);
+      } else {
+        const newArticleData = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
+        setfilteredData(newArticleData);
+        setLoading(false);
+        setTimeout(() => {
+          setshowNoData(true);
+        }, 200);
+      }
+    }
+    else {
+      setfilteredData([]);
+      setLoading(false);
+      setTimeout(() => {
+        setshowNoData(true);
+      }, 200);
+    }
+    toTop();
   }
   useFocusEffect(
     React.useCallback(() => {
@@ -157,7 +220,7 @@ const Activities = ({ route, navigation }: Props) => {
     analytics().logEvent(GAME_AGEGROUP_SELECTED, { age_id: item.id });
    
     setCurrentSelectedChildId(item.id);
-    let filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
+    const filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
     setSelectedChildActivitiesData(filteredData);
      }
   useFocusEffect(
@@ -211,35 +274,8 @@ const Activities = ({ route, navigation }: Props) => {
       setotherGames((filteredData.filter((x: any) => x.related_milestone.length == 0  || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1))));
     }, [filteredData,childMilestonedata])
   );
-  const setFilteredActivityData = (itemId: any) => {
   
-    if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != []) {
-      if (itemId.length > 0) {
-        const newArticleData = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
-        setfilteredData(newArticleData);
-        setLoading(false);
-        setTimeout(() => {
-          setshowNoData(true);
-        }, 200);
-      } else {
-        const newArticleData = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
-        setfilteredData(newArticleData);
-        setLoading(false);
-        setTimeout(() => {
-          setshowNoData(true);
-        }, 200);
-      }
-    }
-    else {
-      setfilteredData([]);
-      setLoading(false);
-      setTimeout(() => {
-        setshowNoData(true);
-      }, 200);
-    }
-    toTop();
-  }
-  const goToActivityDetail = (item: typeof filteredData[0]) => {
+  const goToActivityDetail = (item: any) => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Activities",
@@ -263,7 +299,7 @@ const Activities = ({ route, navigation }: Props) => {
       fromActivitiesScreen: true
     });
   }
-  const SuggestedActivities = ({ item, section, index }) => {
+  const SuggestedActivities = ({ item, section, index }:any) => {
     let milestonedatadetail:any = [];
     if(section == 1) {
       const relatedmilestoneid = item.related_milestone.length > 0 ? item.related_milestone[0] : 0;
@@ -282,12 +318,12 @@ const Activities = ({ route, navigation }: Props) => {
             <MainActivityBox>
             <ActivityBox>
             <Flex4>
-              <Heading6Bold  style={{paddingTop:17,paddingBottom:15,justifyContent:"center"}}>
+              <Heading6Bold  style={styles.headingBoldStyle}>
                 {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
               </Heading6Bold>
             </Flex4>
             <Flex2>
-              <Pressable onPress={() => gotoMilestone()} style={{paddingTop:15,paddingBottom:15}}>
+              <Pressable onPress={() => gotoMilestone()} style={styles.pressableMilestone}>
                 <ButtonTextSmLine numberOfLines={2}>
                   {t('actScreentrack')} {t('actScreenmilestones')}
                 </ButtonTextSmLine>
@@ -321,13 +357,14 @@ const Activities = ({ route, navigation }: Props) => {
   ];
   const memoizedValue = useMemo(() => SuggestedActivities, [SuggestedActivities,DATA]);
 
-  const HeadingComponent = React.memo(({ section }) => {
+  const HeadingComponent = React.memo(({ section }:any) => {
+    const maxWidthpercent = section?.id == 1 && activeChild.isPremature === 'true' ? '60%' : '90%';
     return (
       <ArticleHeading>
-        <View style={{flexDirection:'row'}}>
-          <Heading3 numberOfLines={1} style={{flex:1,maxWidth:section?.id == 1 && activeChild.isPremature === 'true' ? '60%' : '90%',paddingLeft:5,paddingRight:5}}>{section.title}</Heading3>
+        <View style={styles.activityHeadingView}>
+          <Heading3 numberOfLines={1} style={[styles.customHeading3,{maxWidth:maxWidthpercent}]}>{section.title}</Heading3>
           {section?.id == 1 && activeChild.isPremature === 'true' ? (
-            <Pressable style={{flex:1,maxWidth:'40%'}} onPress={() => setModalVisible1(true)}>
+            <Pressable style={styles.pressableHeading} onPress={() => setModalVisible1(true)}>
               <PrematureTagActivity>
                 <Heading5Bold numberOfLines={1}>{t('actScreenprematureText')}</Heading5Bold>
               </PrematureTagActivity>
@@ -341,7 +378,7 @@ const Activities = ({ route, navigation }: Props) => {
   return (
     <>
       <OverlayLoadingComponent loading={loading} />
-      <View style={{flex:1,backgroundColor:backgroundColor}}>
+      <View style={styles.containerView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         {/* <ScrollView nestedScrollEnabled={true}> */}
         <TabScreenHeader
@@ -351,7 +388,7 @@ const Activities = ({ route, navigation }: Props) => {
           setProfileLoading={setProfileLoading}
         />
         <FlexCol>
-          <View style={{ backgroundColor: '#fff' }}>
+          <View style={styles.ageBracketView}>
             <AgeBrackets
               itemColor={headerColorBlack}
               activatedItemColor={headerColor}
@@ -380,7 +417,7 @@ const Activities = ({ route, navigation }: Props) => {
               sections={DATA}
               // ref={flatListRef}
               ref={ref => (sectionListRef = ref)}
-              keyExtractor={(item, index) => String(item?.id) + String(index)}
+              keyExtractor={(item: any, index: any) => String(item?.id) + String(index)}
               stickySectionHeadersEnabled={false}
               // initialNumToRender={4}
               // renderItem={({ item, title }) => <Item item={item} title={title}/>}
@@ -437,12 +474,3 @@ const Activities = ({ route, navigation }: Props) => {
 };
 
 export default Activities;
-
-const styles = StyleSheet.create({
-  cardImage: {
-    height: 200,
-    width: '100%',
-    flex: 1,
-    alignSelf: 'center',
-  },
-});

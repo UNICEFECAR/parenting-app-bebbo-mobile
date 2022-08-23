@@ -29,7 +29,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View, ScrollView, Alert, Platform } from 'react-native';
+import { Pressable, Text, View, ScrollView, Alert, Platform, StyleSheet } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -59,14 +59,34 @@ import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from 'react-native-fs';
 import TextInputML from '@components/shared/TextInputML';
+import { primaryColor } from '@styles/style';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetupList'
 >;
 
 type Props = {
-  navigation: ChildSetupNavigationProp,
+  navigation: ChildSetupNavigationProp;
 };
+const styles = StyleSheet.create({
+  containerView: {
+    backgroundColor:primaryColor,
+    flex:1
+  },
+  flex2Style: { 
+    alignItems:'flex-start'
+  },
+  flexRow1: { 
+    marginTop:10
+  },
+  scrollViewStyle: { 
+    padding: 0,
+    paddingTop: 0
+  },
+  textInputStyle: { 
+    width: '100%'
+  }
+})
 const ChildSetup = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
@@ -100,11 +120,10 @@ const ChildSetup = ({ navigation }: Props) => {
   const actionSheetRef = createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
-  let initialData: any = {};
   const sendData = (data: any) => { // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
-    let myString: string = String(data.isPremature);
+    const myString = String(data.isPremature);
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
@@ -113,10 +132,10 @@ const ChildSetup = ({ navigation }: Props) => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
 
-  genders = genders.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any, i: any, a: any) {
+  genders = genders.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != both_child_gender;
   });
-  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any, i: any, a: any) {
+  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != both_parent_gender;
   });
   const onImportCancel = () => {
@@ -167,10 +186,11 @@ const ChildSetup = ({ navigation }: Props) => {
       const dataset=await ScopedStorage.openDocument(true,'base64');
       console.log(dataset,"..dataset");
       if (dataset && dataset.data!="" && dataset.data!=null && dataset.data!=undefined) {
-         const exportedFileContentRealm:any = await RNFS.writeFile(tempRealmFile,dataset.data,"base64");
+         await RNFS.writeFile(tempRealmFile,dataset.data,"base64");
          const importedrealm = await new Realm({ path: 'user1.realm'});
          console.log(importedrealm,"...importedrealm");
          const user1Path = importedrealm.path;
+         console.log(user1Path, "..user1Path");
          const oldChildrenData = importedrealm.objects('ChildEntity');
          console.log(oldChildrenData,"..newoldChildrenData..")
          setImportAlertVisible(false);
@@ -178,7 +198,7 @@ const ChildSetup = ({ navigation }: Props) => {
          setIsImportRunning(true);
          if (oldChildrenData.length > 0) {
            await userRealmCommon.openRealm();
-           userRealmCommon.deleteAllAtOnce();
+           await userRealmCommon.deleteAllAtOnce();
            setIsImportRunning(false);
            setLoading(false);
            navigation.navigate('ChildImportSetup', {
@@ -222,7 +242,7 @@ const ChildSetup = ({ navigation }: Props) => {
       setIsImportRunning(true);
       if (oldChildrenData.length > 0) {
         await userRealmCommon.openRealm();
-        userRealmCommon.deleteAllAtOnce();
+        await userRealmCommon.deleteAllAtOnce();
         setIsImportRunning(false);
         setLoading(false);
         navigation.navigate('ChildImportSetup', {
@@ -268,10 +288,10 @@ const ChildSetup = ({ navigation }: Props) => {
 
 
   const AddChild = async () => {
-    let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    let defaultName = name;
-    let insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
-    let childSet: Array<any> = [];
+    await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    const defaultName = name;
+    const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    const childSet: Array<any> = [];
     childSet.push(insertData);
     addChild(languageCode, false, 0, childSet, dispatch, navigation, child_age, relationship, userRelationToParent);
   }
@@ -279,9 +299,9 @@ const ChildSetup = ({ navigation }: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return <>
-    <View style={{ flex: 1, backgroundColor: headerColor }}>
+    <View style={styles.containerView}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-      <ScrollView contentContainerStyle={{ padding: 0, paddingTop: 0 }}>
+      <ScrollView contentContainerStyle={styles.scrollViewStyle}>
         <OnboardingContainer>
           <OverlayLoadingComponent loading={loading} />
           <OnboardingHeading>
@@ -294,8 +314,8 @@ const ChildSetup = ({ navigation }: Props) => {
           </OnboardingHeading>
 
           <FlexCol>
-              <FlexRow style={{marginTop:10}}>
-                <Flex2 style={{alignItems:'flex-start'}}>
+              <FlexRow style={styles.flexRow1}>
+                <Flex2 style={styles.flex2Style}>
                 <Heading4Regularw>{t('importOnboardingText')}</Heading4Regularw>
               </Flex2>
               <Flex1>
@@ -331,7 +351,7 @@ const ChildSetup = ({ navigation }: Props) => {
               <LabelText>{t('childNameTxt')}</LabelText>
               <FormInputBox>
                 <TextInputML
-                  style={{ width: '100%' }}
+                  style={styles.textInputStyle}
                   autoCapitalize="none"
                   autoCorrect={false}
                   maxLength={30}

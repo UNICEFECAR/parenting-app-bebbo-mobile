@@ -7,7 +7,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading4Center,ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
@@ -20,7 +20,9 @@ type Props = {
   navigation: NotificationsNavigationProp;
   route:any;
 };
-
+const styles=StyleSheet.create({
+  flex1:{flex: 1}
+})
 const Favourites = ({navigation, route}: Props) => {
   const themeContext = useContext(ThemeContext);
   const {t} = useTranslation();
@@ -64,7 +66,7 @@ const Favourites = ({navigation, route}: Props) => {
   };
   return (
     <>
-      <View style={{flex: 1}}>
+      <View style={styles.flex1}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <TabScreenHeader
           title={t('favScreenHeader')}
@@ -78,7 +80,7 @@ const Favourites = ({navigation, route}: Props) => {
             return (
               <Pressable
                 key={itemindex}
-                style={{flex: 1}}
+                style={styles.flex1}
                 onPress={() => {
                   setSelectedIndex(itemindex);
                 }}>
@@ -103,7 +105,7 @@ const Favourites = ({navigation, route}: Props) => {
         </TabBarContainer>
        
         <Flex1>
-          {renderItem(selectedIndex)}
+          {renderItem(Number(selectedIndex))}
         </Flex1>
         <OverlayLoadingComponent loading={profileLoading}/>
       </View>

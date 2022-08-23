@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface networkType {
-  lowbandWidth:boolean
+interface NetworkType {
+  lowbandWidth:boolean;
 }
-const initialState: networkType = {
+const initialState: NetworkType = {
   lowbandWidth:false
 };
 

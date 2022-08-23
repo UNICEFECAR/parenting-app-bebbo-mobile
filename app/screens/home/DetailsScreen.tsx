@@ -15,7 +15,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3Regular, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, ScrollView, View,Text, BackHandler, Dimensions  } from 'react-native';
+import { Alert, ScrollView, View, BackHandler, Dimensions, StyleSheet  } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -36,22 +36,31 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from '../../database/sch
 import iframe from '@native-html/iframe-plugin';
 import RelatedVideoArticles from '@components/shared/RelatedVideoArticles';
 import { useIsFocused } from '@react-navigation/native';
+import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
   navigation: DetailsScreenNavigationProp;
 };
+const styles = StyleSheet.create({
+  defaultImage:{height: 200, width: '100%'},
+  flex1:{flex: 1},
+  htmlCode:{color: bgcolorBlack2, fontSize: 16,margin:0,padding:0},
+  marginBottom10:{marginBottom:10},
+  maxHeight50:{maxHeight:50},
+  scrollView:{backgroundColor:bgcolorWhite2,flex: 4}
+});
 export type RelatedArticlesProps = {
-  related_articles?:any,
-  category?:any,
-  currentId?:any,
-  headerColor?:any,
-  backgroundColor?:any,
-  listCategoryArray?:any,
-  navigation?:any,
-  fromScreen?:any,
-  currentSelectedChildId?:any
+  related_articles?:any;
+  category?:any;
+  currentId?:any;
+  headerColor?:any;
+  backgroundColor?:any;
+  listCategoryArray?:any;
+  navigation?:any;
+  fromScreen?:any;
+  currentSelectedChildId?:any;
 }
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
@@ -72,10 +81,62 @@ const DetailsScreen = ({route, navigation}: any) => {
   const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
-
-  const [detailDataToUse,setDetailDataToUse] = useState({});
+  const {t} = useTranslation();
+ 
+  const [detailDataToUse,setDetailDataToUse] = useState<any>({});
   
   const adviceval = fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
+  const onHeaderBack =()=>{
+    console.log("onHeaderBack called");
+    if(fromScreen == "ChildDevelopment")
+    {
+      navigation.navigate({
+        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+        params: {currentSelectedChildId:currentSelectedChildId},
+        merge: true,
+      });
+    }
+    else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
+    {
+      navigation.navigate({
+        name: "ChildDevelopment",
+        params: {currentSelectedChildId:currentSelectedChildId},
+        merge: true,
+      });
+    }
+    else if(fromScreen == "Activities")
+    {
+      navigation.navigate({
+        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+        params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId,backClicked:'yes'},
+        merge: true,
+      });
+    }
+    else if(fromScreen == "HomeAct" || fromScreen == "HomeArt")
+    {
+      navigation.navigate({
+        name: fromScreen == "HomeAct" || fromScreen == "HomeArt" ? "Home" : fromScreen,
+        params: {categoryArray:listCategoryArray,backClicked:'yes'},
+        merge: true,
+      });
+    }
+    else if(fromScreen == "FavActivities" || fromScreen == "FavArticles")
+    {
+      navigation.navigate({
+        name: fromScreen == "FavActivities" || fromScreen == "FavArticles" ? "Favourites" : fromScreen,
+        params: {tabIndex:fromScreen == "FavArticles" ? 0 : 1,backClicked:'yes'},
+        merge: true,
+      });
+    }
+    else {
+      // navigation.goBack();
+      navigation.navigate({
+        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+        params: {categoryArray:listCategoryArray,backClicked:'yes'},
+        merge: true,
+      });
+    }
+  }
   useEffect(() => {
     const backAction = () => {
       //console.log("dwferfef")
@@ -208,7 +269,6 @@ const DetailsScreen = ({route, navigation}: any) => {
 
   }, [detailData]);
   
-  const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
@@ -220,7 +280,7 @@ const DetailsScreen = ({route, navigation}: any) => {
 const videoIsFocused = useIsFocused();
 console.log(videoIsFocused,"..videoIsFocused");
   const [filterArray,setFilterArray] = useState([]);
-  let fromPage = 'Details';
+  const fromPage = 'Details';
   const setNewFilteredArticleData = (itemId:any) => {
     navigation.navigate({
       name: fromScreen,
@@ -241,67 +301,17 @@ console.log(videoIsFocused,"..videoIsFocused");
     trEvenBackground: 'transparent',
     // fontFamily: '"Open Sans"' // beware to quote font family name!
   });
-  const onHeaderBack =()=>{
-    console.log("onHeaderBack called");
-    if(fromScreen == "ChildDevelopment")
-    {
-      navigation.navigate({
-        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        params: {currentSelectedChildId:currentSelectedChildId},
-        merge: true,
-      });
-    }
-    else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
-    {
-      navigation.navigate({
-        name: "ChildDevelopment",
-        params: {currentSelectedChildId:currentSelectedChildId},
-        merge: true,
-      });
-    }
-    else if(fromScreen == "Activities")
-    {
-      navigation.navigate({
-        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId,backClicked:'yes'},
-        merge: true,
-      });
-    }
-    else if(fromScreen == "HomeAct" || fromScreen == "HomeArt")
-    {
-      navigation.navigate({
-        name: fromScreen == "HomeAct" || fromScreen == "HomeArt" ? "Home" : fromScreen,
-        params: {categoryArray:listCategoryArray,backClicked:'yes'},
-        merge: true,
-      });
-    }
-    else if(fromScreen == "FavActivities" || fromScreen == "FavArticles")
-    {
-      navigation.navigate({
-        name: fromScreen == "FavActivities" || fromScreen == "FavArticles" ? "Favourites" : fromScreen,
-        params: {tabIndex:fromScreen == "FavArticles" ? 0 : 1,backClicked:'yes'},
-        merge: true,
-      });
-    }
-    else {
-      // navigation.goBack();
-      navigation.navigate({
-        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        params: {categoryArray:listCategoryArray,backClicked:'yes'},
-        merge: true,
-      });
-    }
-  }
+ 
   return (
     <>
     {detailDataToUse ?
-         <View style={{flex:1,backgroundColor:newHeaderColor}}>
+         <View style={[styles.flex1,{backgroundColor:newHeaderColor}]}>
           <FocusAwareStatusBar animated={true} backgroundColor={newHeaderColor} />
           <FlexDirRow
-            style={{
-              backgroundColor: newHeaderColor,
-              maxHeight: 50,
-            }}>
+            style={[styles.maxHeight50,{
+              backgroundColor: newHeaderColor
+             
+            }]}>
             <HeaderIconView>
               <HeaderIconPress
                 onPress={onHeaderBack}>
@@ -313,16 +323,16 @@ console.log(videoIsFocused,"..videoIsFocused");
             </HeaderTitleView>
           </FlexDirRow>
 
-          <ScrollView overScrollMode="never" style={{flex: 4,backgroundColor:"#FFF"}}>
+          <ScrollView overScrollMode="never" style={styles.scrollView}>
             <View>
               {
               fromScreen ==="ChildDevelopment" || fromScreen === "Home" || (detailDataToUse && detailDataToUse.cover_video && detailDataToUse.cover_video.url!="" && detailDataToUse.cover_video.url!=undefined) ?
               videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>:null
               :
               detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
-              (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>):
+              (<LoadableImage style={styles.defaultImage}  item={detailDataToUse} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>):
               <DefaultImage
-              style={{width: '100%', height: 200}} 
+              style={styles.defaultImage} 
               source={require('@assets/trash/defaultArticleImage.png')}/>   
               }
             </View>
@@ -335,15 +345,15 @@ console.log(videoIsFocused,"..videoIsFocused");
               <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailDataToUse.category)[0].name }</Heading6Bold>
               : null }
             </ShiftFromBottom5>
-            <Heading2 style={{marginBottom:10}}>{detailDataToUse?.title}</Heading2>
+            <Heading2 style={styles.marginBottom10}>{detailDataToUse?.title}</Heading2>
             {detailDataToUse && detailDataToUse?.summary ?
-            <Heading3Regular style={{marginBottom:10}}>{detailDataToUse.summary}</Heading3Regular> 
+            <Heading3Regular style={styles.marginBottom10}>{detailDataToUse.summary}</Heading3Regular> 
             : null }
             {detailDataToUse && detailDataToUse.body ?
               <HTML
               source={{html: addSpaceToHtml(detailDataToUse.body)}} key={detailDataToUse.id} 
                 // source={{html: bodydata}} {...htmlProps}
-                baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
+                baseFontStyle={styles.htmlCode}
                 ignoredStyles={['color', 'font-size', 'font-family']}
                 tagsStyles={{
                   img: {maxWidth:Dimensions.get('window').width},
@@ -366,7 +376,7 @@ console.log(videoIsFocused,"..videoIsFocused");
               const imagePath:any = attribs.src;
               console.log(imagePath,"..imagePath");
               if(imagePath!="" && imagePath!=null && imagePath!=undefined){
-              let itemnew:any={
+              const itemnew:any={
                 cover_image:{
                   url:imagePath
                 }

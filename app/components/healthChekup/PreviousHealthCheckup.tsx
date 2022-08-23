@@ -32,12 +32,15 @@ import {
   ButtonTextMdLine, ButtonTextSmLineL
 } from '../shared/ButtonGlobal';
 import Icon, { IconViewAlert } from '../shared/Icon';
-
+const styles=StyleSheet.create({
+  iconStyle:{alignSelf: 'center'},
+  radioActive:{backgroundColor: greenColor, borderRadius: 50}
+})
 const PreviousHealthCheckup = (props: any) => {
   const {item, backgroundColor} = props;
   const {t} = useTranslation();
   const navigation = useNavigation();
-  const [isOPen, setIsOPen] = useState<Boolean>(false);
+  const [isOPen, setIsOPen] = useState<boolean>(false);
   const themeContext = useContext(ThemeContext);
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
@@ -52,19 +55,19 @@ const PreviousHealthCheckup = (props: any) => {
   }
   };
   const allVaccineData = useAppSelector(
-      (state: any) =>
-        JSON.parse(state.utilsData.vaccineData),
-    );
-  const getVaccineName = (vaccineID:any) => {
-    return allVaccineData?.find((v) => v.uuid == vaccineID)?.title;
-  }
+    (state: any) =>
+      JSON.parse(state.utilsData.vaccineData),
+  );
+ const getVaccineName = (vaccineID:any) => {
+  return allVaccineData?.find((v:any) => v.uuid == vaccineID)?.title;
+}
   return (
     <>
      <FlexCol>
       <ToolsListOuter>
         <ToolsListContainer
           style={{
-            backgroundColor: backgroundColor,
+            backgroundColor: backgroundColor
           }}>
           <ToolsIconView>
             {item?.growthMeasures?.measurementDate ?  (
@@ -220,7 +223,4 @@ const PreviousHealthCheckup = (props: any) => {
   );
 };
 export default PreviousHealthCheckup;
-const styles=StyleSheet.create({
-  radioActive:{backgroundColor: greenColor, borderRadius: 50},
-  iconStyle:{alignSelf: 'center'}
-})
+
