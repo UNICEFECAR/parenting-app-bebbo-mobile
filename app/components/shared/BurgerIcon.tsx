@@ -3,7 +3,7 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import React,{ useEffect, useState } from 'react';
 import { Keyboard } from 'react-native';
 import { HeaderIconView,HeaderBurgerPress } from './HeaderContainerStyle';
-const BurgerIcon = (props:any) => {
+const BurgerIcon = (props:any):any => {
   const navigation = useNavigation();
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
 
@@ -15,7 +15,7 @@ const BurgerIcon = (props:any) => {
       setKeyboardStatus(false);
     });
 
-    return () => {
+    return ():any => {
       showSubscription.remove();
       hideSubscription.remove();
     };
@@ -23,7 +23,7 @@ const BurgerIcon = (props:any) => {
   return (
     <HeaderIconView>
       <HeaderBurgerPress
-        onPress={() => {
+        onPress={():any => {
           if(keyboardStatus==true){
             Keyboard.dismiss();
           }

@@ -23,14 +23,14 @@ class GoogleAuth {
     /**
      * Must be called before any other method.
      */
-    public configure() {
+    public configure():any {
         GoogleSignin.configure({
             scopes: ['https://www.googleapis.com/auth/drive'], // what API you want to access on behalf of the user, default is email and profile
       });
         
     }
 
-    public async signIn() {
+    public async signIn():Promise<any> {
         let user: User | null = null;
 
         try {
@@ -43,7 +43,7 @@ class GoogleAuth {
         return user;
     }
 
-    public async isSignedIn() {
+    public async isSignedIn():Promise<any> {
         let isSignedIn = false;
 
         try {
@@ -53,7 +53,7 @@ class GoogleAuth {
         return isSignedIn;
     }
 
-    public async getCurrentUser() {
+    public async getCurrentUser():Promise<any> {
         let currentUser: User | null = null;
 
         try {
@@ -66,7 +66,7 @@ class GoogleAuth {
     /**
      * Don't save tokens anywhere, always request new tokens so they are refreshed.
      */
-    public async getTokens() {
+    public async getTokens():Promise<any> {
         let tokens: { idToken: string; accessToken: string } | null = null;
 
         try {
@@ -76,7 +76,7 @@ class GoogleAuth {
         return tokens;
     }
 
-    public async signOut() {
+    public async signOut():Promise<any> {
         let signOut = null;
 
         try {

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
   }
 });
-const DailyReads = () => {
+const DailyReads = ():any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
@@ -74,7 +74,7 @@ const DailyReads = () => {
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
   const [dataToShowInList, setDataToShowInList] = useState([]);
-  const goToArticleDetail = (item:any) => {
+  const goToArticleDetail = (item:any):any => {
     console.log(Object.prototype.hasOwnProperty.call(item,'activity_category'),"..ds")
     navigation.navigate('DetailsScreen', {
       fromScreen:  Object.prototype.hasOwnProperty.call(item,'activity_category') ? 'HomeAct' : 'HomeArt',
@@ -84,7 +84,7 @@ const DailyReads = () => {
       selectedChildActivitiesData: ActivitiesData
     });
   }
-  const onShare = async (item: any) => {
+  const onShare = async (item: any):Promise<any> => {
     const isAdvice = Object.prototype.hasOwnProperty.call(item,'activity_category') ? false : true;
     const suburl = isAdvice ? "/article/" : "/activity/";
     const mainUrl = shareTextButton + languageCode + suburl + item.id;
@@ -109,7 +109,7 @@ const DailyReads = () => {
   const RenderDailyReadItem = React.memo(({ item, index }: any) => {
     return (
       <View>
-        <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
+        <Pressable onPress={():any => { goToArticleDetail(item) }} key={index}>
           <DailyBox>
             <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}>
             </LoadableImage>
@@ -131,7 +131,7 @@ const DailyReads = () => {
             </DailyTag>
             {/*Parent Share , View Details*/}
             <DailyAction>
-              <Pressable onPress={() => { onShare(item) }}>
+              <Pressable onPress={():any => { onShare(item) }}>
                 <FDirRow>
                   <OuterIconRow>
                     <OuterIconLeft>
@@ -141,7 +141,7 @@ const DailyReads = () => {
                   <Heading4>{t('homeScreenshareText')}</Heading4>
                 </FDirRow>
               </Pressable>
-              <Pressable onPress={() => { goToArticleDetail(item) }}>
+              <Pressable onPress={():any => { goToArticleDetail(item) }}>
                 <FDirRow>
                   <OuterIconRow>
                     <OuterIconLeft>
@@ -276,8 +276,8 @@ const DailyReads = () => {
             <FlatList
               data={dataToShowInList}
               horizontal
-              renderItem={({ item, index }:any) => <RenderDailyReadItem item={item} index={index} />}
-              keyExtractor={(item:any) => item?.id}
+              renderItem={({ item, index }:any):any => <RenderDailyReadItem item={item} index={index} />}
+              keyExtractor={(item:any):any => item?.id}
             />
           </View>
         </MainContainer>

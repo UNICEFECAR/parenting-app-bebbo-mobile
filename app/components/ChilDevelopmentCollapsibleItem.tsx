@@ -82,7 +82,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
     } else {
       setToggleCheckBox(false);
     }
-    const fetchData = async () => {
+    const fetchData = async ():Promise<any> => {
       setselVideoImage('');
       setselActivityImage('')
       const currVideoArtData = VideoArticlesData.filter((x: any) => x.id == item?.related_video_articles[0])[0];
@@ -123,13 +123,13 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
     }
     fetchData()
   }, [item]);
-  const milestoneCheckUncheck = async () => {
+  const milestoneCheckUncheck = async ():Promise<any> => {
     const filterQuery = 'uuid == "' + activeChilduuid + '"';
     setToggleCheckBox(!toggleCheckBox);
     sendMileStoneDatatoParent(item, !toggleCheckBox);
     await userRealmCommon.updateChildMilestones<ChildEntity>(ChildEntitySchema, item?.id, filterQuery);
   }
-  const gotoArticle = (articleId: any[]) => {
+  const gotoArticle = (articleId: any[]):any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "MileStone",
@@ -139,7 +139,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
         currentSelectedChildId: currentSelectedChildId
       });
   }
-  const gotoActivity = (activityData: any) => {
+  const gotoActivity = (activityData: any):any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "MileStoneActivity", //ChildDevelopment
@@ -150,7 +150,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
         currentSelectedChildId: currentSelectedChildId
       });
   }
-  const openVideo = () => {
+  const openVideo = ():any => {
     setModalVisible(!modalVisible)
   }
   return (
@@ -162,7 +162,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
               style={styles.outerView}>
               <Pressable
                 disabled={isFutureDate(activeChild?.birthDate)}
-                onPress={() => {
+                onPress={():any => {
                   milestoneCheckUncheck();
                 }}>
                 <CheckboxItem>
@@ -180,7 +180,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
             </View>
             <Pressable
               style={styles.pressableView}
-              onPress={() => {
+              onPress={():any => {
                 setIsOPen(!isOPen);
               }}>
               <Heading4Regular style={styles.heading4Regular}>
@@ -204,7 +204,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
                 <FDirRow style={styles.alignItemsStart}>
                   {selVideoArticleData && selVideoArticleData?.cover_video && selVideoArticleData?.cover_video?.url != "" ?
                     <>
-                      <Pressable style={styles.innerPressable} onPress={() => openVideo()}>
+                      <Pressable style={styles.innerPressable} onPress={():any => openVideo()}>
                         <Image
                           source={selVideoImage != "" ? { uri: selVideoImage } : require('@assets/trash/defaultArticleImage.png')}
                           style={styles.imageStyle}
@@ -238,7 +238,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
                     </ShiftFromBottom5>
                     {/* uncomment this for related article */}
                     {item && item.related_articles && item.related_articles.length > 0 ?
-                      <Pressable onPress={() => gotoArticle(item.related_articles)}>
+                      <Pressable onPress={():any => gotoArticle(item.related_articles)}>
                         <ButtonTextSmLineL numberOfLines={2}>
                           {t('developScreenrelatedArticleText')}
                         </ButtonTextSmLineL>
@@ -272,7 +272,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
                           </Heading4Regular>
                         </ShiftFromBottom5>
                         {selActivitiesData ?
-                          <Pressable onPress={() => gotoActivity(selActivitiesData)}>
+                          <Pressable onPress={():any => gotoActivity(selActivitiesData)}>
                             <ButtonTextMdLineL numberOfLines={2}>
                               {t('developScreenviewDetails')}
                             </ButtonTextMdLineL>
@@ -292,17 +292,17 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
           animationType="none"
           transparent={true}
           visible={modalVisible}
-          onRequestClose={() => {
+          onRequestClose={():any => {
             setModalVisible(!modalVisible);
           }}
-          onDismiss={() => {
+          onDismiss={():any => {
             console.log("dismissed")
           }}>
           <View style={styles.popupView}>
             <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
             <PopupCloseContainer style={styles.popupCloseContainer}>
               <PopupCloseVideo style={styles.popupCloseVideo}
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(!modalVisible);
                 }}>
                 <Icon name="ic_close" size={20} color="#fff" />

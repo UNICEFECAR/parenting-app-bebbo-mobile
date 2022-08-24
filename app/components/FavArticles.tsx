@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const FavArticles = () => {
+const FavArticles = ():any => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -55,7 +55,7 @@ const FavArticles = () => {
   );
   const [favAdvicesToShow,setfavAdvicesToShow] = useState([]);
   const netInfoval = useNetInfoHook();
-  const goToArticleDetail = (item:any) => {
+  const goToArticleDetail = (item:any):any => {
     navigation.navigate('DetailsScreen',
     {
       fromScreen:"FavArticles",
@@ -66,7 +66,7 @@ const FavArticles = () => {
   };
 useFocusEffect(
   React.useCallback(() => {
-    async function fetchData() {
+    async function fetchData():Promise<any> {
       if(favoriteadvices.length > 0){
         const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
         const favData1 = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
@@ -86,7 +86,7 @@ useFocusEffect(
   const RenderArticleItem = React.memo(({item, index} : any) => {
     return(
         <ArticleListContainer>
-          <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
+          <Pressable onPress={():any => { goToArticleDetail(item)}} key={index}>
           {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
              <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer> 
             : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
@@ -118,8 +118,8 @@ useFocusEffect(
                   maxToRenderPerBatch={4} // Reduce number in each render batch
                   updateCellsBatchingPeriod={100} // Increase time between renders
                   windowSize={7} // Reduce the window size
-                  renderItem={({item, index}:any) => <RenderArticleItem item={item} index={index} />  }
-                  keyExtractor={(item:any) => item.id.toString()}
+                  renderItem={({item, index}:any):any => <RenderArticleItem item={item} index={index} />  }
+                  keyExtractor={(item:any):any => item.id.toString()}
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
         </FlexCol>

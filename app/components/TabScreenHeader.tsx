@@ -10,7 +10,7 @@ import {
   HeaderTitleView
 } from './shared/HeaderContainerStyle';
 const headerHeight = 50;
-const TabScreenHeader = (props: any) => {
+const TabScreenHeader = (props: any):any => {
   const headerColor = props.headerColor;
   const textColor = props.textColor;
   return (

@@ -11,7 +11,7 @@ import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 const styles=StyleSheet.create({
   shiftFromBottom:{flex:1,flexDirection:'column'}
 })
-const DailyHomeNotification = () => {
+const DailyHomeNotification = ():any => {
   const [notification, setNotification] = useState<any>();
   const dispatch = useAppDispatch();
   const records = useAppSelector((state: any) =>
@@ -22,7 +22,7 @@ const DailyHomeNotification = () => {
   const currentNotification = useAppSelector((state: any) =>
   (state.utilsData.dailyMessageNotification),
   );
-  const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number }) => {
+  const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number }):Promise<any> => {
     dispatch(setInfoModalOpened({key:'dailyMessageNotification', value: JSON.stringify(noti)}));
   };
 

@@ -27,7 +27,7 @@ const styles=StyleSheet.create({
   maxHeight:{maxHeight: 50},
   overflowHidden:{overflow:'hidden'}
 })
-const AllChildgrowthMeasures = ({navigation}: any) => {
+const AllChildgrowthMeasures = ({navigation}: any):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
@@ -47,7 +47,7 @@ const AllChildgrowthMeasures = ({navigation}: any) => {
           }]}>
           <HeaderIconView>
           <HeaderIconPress
-                onPress={() => {
+                onPress={():any => {
                   navigation.goBack();
                 }}>
                 <IconML name={'ic_back'} color="#000" size={15} />
@@ -70,7 +70,7 @@ const AllChildgrowthMeasures = ({navigation}: any) => {
                 <ButtonPrimary
                   disabled={isFutureDate(activeChild?.birthDate)}
                   style={{backgroundColor: headerColor}}
-                  onPress={() => {
+                  onPress={():any => {
                     navigation.navigate('AddNewChildgrowth', {
                       headerTitle: t('growthScreenaddNewBtntxt'),
                     });

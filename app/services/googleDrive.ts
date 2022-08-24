@@ -14,7 +14,7 @@ import { PermissionsAndroidLocal } from "../android/sharedAndroid.android";
 /**
  * Access Google drive API.
  */
- async function requestWriteStoragePermission() {
+ async function requestWriteStoragePermission():Promise<any> {
     try {
         const granted = await PermissionsAndroidLocal.request(
             PermissionsAndroidLocal.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
@@ -37,7 +37,7 @@ import { PermissionsAndroidLocal } from "../android/sharedAndroid.android";
 /**
  * * require read storage permission
  */
-async function requestReadStoragePermission() {
+async function requestReadStoragePermission():Promise<any> {
     try {
         const granted = await PermissionsAndroidLocal.request(
             PermissionsAndroidLocal.PERMISSIONS.READ_EXTERNAL_STORAGE,
@@ -64,7 +64,7 @@ class ErrorAccessTokenNotSet extends Error {
 }
 class GoogleDrive {
     private static instance: GoogleDrive;
-    checkPermission = () => {
+    checkPermission = ():any => {
         PermissionsAndroidLocal.check(PermissionsAndroidLocal.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then((writeGranted:any) => {
             if (!writeGranted) {
                 requestWriteStoragePermission()
@@ -80,7 +80,7 @@ class GoogleDrive {
         console.log("constructor");
        
      }
-     public configureGetOptions(){
+     public configureGetOptions():any{
         const headers = new Headers()
         headers.append('Authorization', `Bearer ${gdrive.apiToken}`)
         return {
@@ -92,12 +92,12 @@ class GoogleDrive {
     /**
      * create download url based on id
      */
-     public downloadFile=(fileId:any)=>{
+     public downloadFile=(fileId:any):any=>{
         this.configureGetOptions()
         if (!fileId) throw new Error('Didn\'t provide a valid file id.')
         return `${_urlFiles}/files/${fileId}?alt=media`
     }
-     downloadAndReadFile = async (args:any) => {
+     downloadAndReadFile = async (args:any):Promise<any> => {
          const fromUrl = this.downloadFile(args.fileId)
         const downloadFileOptions:any = {
             fromUrl: fromUrl,
@@ -118,7 +118,7 @@ class GoogleDrive {
         return GoogleDrive.instance;
     }
 
-    private async setAccessToken() {
+    private async setAccessToken():Promise<any> {
         let rval: any = false;
         const tokens = await googleAuth.getTokens();
 

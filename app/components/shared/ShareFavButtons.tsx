@@ -41,7 +41,7 @@ const languageCode = useAppSelector(
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const {backgroundColor,item,isAdvice, isFavourite, fromScreen} = props;
-   const onShare = async () => {
+   const onShare = async ():Promise<any> => {
    const suburl=isAdvice?"/article/":"/activity/";
    const mainUrl=shareTextButton+languageCode+suburl+item.id;
     try {
@@ -61,7 +61,7 @@ const languageCode = useAppSelector(
       Alert.alert(t('generalError'));
     }
   };
-  const onFavClick = async ()=>{
+  const onFavClick = async ():Promise<any>=>{
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
     if(isAdvice){
     await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
@@ -77,7 +77,7 @@ const languageCode = useAppSelector(
 
     
   }
-  const unFavHandler = async ()=>{
+  const unFavHandler = async ():Promise<any>=>{
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
     if(isAdvice){
       await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
@@ -93,7 +93,7 @@ const languageCode = useAppSelector(
   return (
     <>
       <ShareFavBox style={{backgroundColor: backgroundColor}}>
-        <ShareFavPress onPress={() => onShare()} >
+        <ShareFavPress onPress={():any => onShare()} >
           <FDirRow>
             <OuterIconRow>
               <OuterIconLeft>
@@ -105,7 +105,7 @@ const languageCode = useAppSelector(
         </ShareFavPress>
 
         { isFavourite ? (fromScreen && fromScreen == 'Favourites' ? 
-             (<ShareFavPress onPress={() => unFavHandler()} style={styles.alignItemsFlexEnd}>
+             (<ShareFavPress onPress={():any => unFavHandler()} style={styles.alignItemsFlexEnd}>
               <FDirRow>
                 <OuterIconRow>
                   <OuterIconLeft>
@@ -115,7 +115,7 @@ const languageCode = useAppSelector(
                 <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('favScreenremoveText')}</Heading4>
               </FDirRow>
             </ShareFavPress>) :
-             (<ShareFavPress onPress={() => unFavHandler()} style={styles.alignItemsFlexEnd}>
+             (<ShareFavPress onPress={():any => unFavHandler()} style={styles.alignItemsFlexEnd}>
                 <FDirRow>
                   <OuterIconRow>
                     <OuterIconLeft>
@@ -128,7 +128,7 @@ const languageCode = useAppSelector(
         )
          : (
           fromScreen && fromScreen == 'Favourites' ? null :
-            (<ShareFavPress onPress={() =>onFavClick()} style={styles.alignItemsFlexEnd}>
+            (<ShareFavPress onPress={():any =>onFavClick()} style={styles.alignItemsFlexEnd}>
               <FDirRow>
                 <OuterIconRow>
                   <OuterIconLeft>

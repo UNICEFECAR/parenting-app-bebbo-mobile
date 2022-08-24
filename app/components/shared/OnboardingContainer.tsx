@@ -5,7 +5,7 @@ const OnboardingContainer = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${props => props.theme.colors.PRIMARY_COLOR};
+  background-color: ${(props):any => props.theme.colors.PRIMARY_COLOR};
   padding: 0 25px;
 `;
 
@@ -16,7 +16,7 @@ export const OnboardingconfirmationHead = styled.View`
   justify-content: center;
   align-items:center;
   align-content:center;
-  background-color: ${props => props.theme.colors.PRIMARY_COLOR};
+  background-color: ${(props):any => props.theme.colors.PRIMARY_COLOR};
   padding:0 10px;
   text-align:center;
 `;
@@ -44,7 +44,7 @@ export const LocalizationRow = styled.View`
   min-height:52px;  
   margin-top:0px;
   margin-bottom: 30px;
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 `;
 
 export const LocalizationCol = styled.View`
