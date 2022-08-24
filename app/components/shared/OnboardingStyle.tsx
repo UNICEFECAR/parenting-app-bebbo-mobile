@@ -8,10 +8,10 @@ const Title = styled.Text`
   flex: 1;
   font-weight: bold;
   margin-left: 15px;
-  color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
-const OnboardingStyle = (props: any) => {
+const OnboardingStyle = (props: any):any => {
   return (
     <OnboardingHeading>
       <Icon name={props.iconname} size={30} color="#FFF" />

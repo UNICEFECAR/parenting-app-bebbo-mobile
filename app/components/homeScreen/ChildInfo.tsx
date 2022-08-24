@@ -25,7 +25,7 @@ const styles=StyleSheet.create({
   flexShrink1:{flexShrink:1},
   shiftFromBottom:{height:windowWidth*0.563-17}
 })
-const ChildInfo = (props: any) => {
+const ChildInfo = (props: any):any => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const { headerColor, backgroundColor} = props;
@@ -77,7 +77,7 @@ const PinnedChildDevData = useAppSelector(
       setSelectedPinnedArticleData(filteredPinnedData);
     }
   },[activeChild.uuid,activityTaxonomyId]);
-const showAndParentText = () => {
+const showAndParentText = ():any => {
   if(userRelationToParent?.length > 0 && 
     (parseInt(userRelationToParent[0].value) == relationShipOtherCaregiverId || parseInt(userRelationToParent[0].value) == relationShipServiceProviderId)) {
       return false
@@ -85,7 +85,7 @@ const showAndParentText = () => {
     return true
   }
 }
-const goToVideoArticleDetails = () => {
+const goToVideoArticleDetails = ():any => {
   navigation.navigate('DetailsScreen', {
     fromScreen: 'Home',
     headerColor: headerColor,

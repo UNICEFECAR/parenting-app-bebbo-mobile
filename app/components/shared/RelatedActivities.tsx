@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     paddingLeft:10
   }
 });
-const RelatedActivities = (props:RelatedActivityProps) => {
+const RelatedActivities = (props:RelatedActivityProps):any => {
   const { selectedChildActivitiesData, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation,currentSelectedChildId } = props;
   const ActivitiesDataold = useAppSelector(
     (state: any) =>
@@ -71,7 +71,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
   const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
   useEffect(() => {    
       setrelatedArticleData([]);
-      async function fetchData() {        
+      async function fetchData():Promise<any> {        
         let actualselectedChildActivitiesData;
         if(typeof selectedChildActivitiesData == "number")
         {
@@ -98,7 +98,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
     }, [currentId]
   );
   
-  const goToArticleDetail = (item:typeof relatedArticleData[0]) => {
+  const goToArticleDetail = (item:typeof relatedArticleData[0]):any => {
     navigation.push('DetailsScreen',
     {
       fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) :"Articles",
@@ -112,7 +112,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
   };
   const RenderActivityItem = React.memo(({item, index}:any) => {
    return(
-      <Pressable onPress={() => { goToArticleDetail(item)}} key={index}
+      <Pressable onPress={():any => { goToArticleDetail(item)}} key={index}
       style={styles.itemPressable}
       >
         <RelatedArticleContainer key={index}>
@@ -147,8 +147,8 @@ const RelatedActivities = (props:RelatedActivityProps) => {
               maxToRenderPerBatch={4} // Reduce number in each render batch
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
-              renderItem={({item, index}:any) => <RenderActivityItem item={item} index={index} />  }
-              keyExtractor={(item:any) => item.id}
+              renderItem={({item, index}:any):any => <RenderActivityItem item={item} index={index} />  }
+              keyExtractor={(item:any):any => item.id}
           />
           </View>
         </ContainerView>

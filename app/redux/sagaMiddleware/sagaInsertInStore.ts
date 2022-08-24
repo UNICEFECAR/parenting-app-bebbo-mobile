@@ -2,7 +2,7 @@ import getAllDataToStore from "@assets/translations/appOfflineData/getDataToStor
 import { call, takeEvery } from "redux-saga/effects";
 import { INSERT_IN_STORE } from "./sagaActions";
 
-function* onInsertInStore(response:any) {
+function* onInsertInStore(response:any):any {
     try{
         yield call(getAllDataToStore, response.languageCode,response.dispatch,response.payload.apiEndpoint)
       }
@@ -11,7 +11,7 @@ function* onInsertInStore(response:any) {
       }
 }
 
-export function* InsertInStoreSaga() {
+export function* InsertInStoreSaga():any {
     yield takeEvery(INSERT_IN_STORE, onInsertInStore);
   }
 

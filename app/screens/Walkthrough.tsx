@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 });
 
 
-const Walkthrough = ({navigation}: Props) => {
+const Walkthrough = ({navigation}: Props):any => {
   const {t} = useTranslation();
   let slider = useRef<any>(null);
   const data = [
@@ -108,7 +108,7 @@ const Walkthrough = ({navigation}: Props) => {
     },
   ];
   type Item = typeof data[0];
-  const renderItem = (item: typeof data[0], index: number) => {
+  const renderItem = (item: typeof data[0], index: number):any => {
     return (
       <>
         <WalkthroughContainer>
@@ -167,12 +167,12 @@ const Walkthrough = ({navigation}: Props) => {
   const [showPrevbtn, setShowPrevbtn] = useState(false);
   const [isDotsRequired, setIsDotsRequired] = useState(true);
   const [statubarColor, setstatubarColor] = useState(headerColor);
-  const getDotStyle = (colorString: string) => {
+  const getDotStyle = (colorString: string):any => {
     return isDotsRequired
       ? {backgroundColor: colorString}
       : {backgroundColor: 'transparent'};
   };
-  const onSlideChange = (index: number) => {
+  const onSlideChange = (index: number):any => {
     index == 3 ? setShowPrevbtn(true) : setShowPrevbtn(false);
     index == 3 ? setIsDotsRequired(false) : setIsDotsRequired(true);
     index == 0
@@ -202,15 +202,15 @@ useFocusEffect(
     },500);
   },[])
 );
-  const onDone = () => {
+  const onDone = ():any => {
     // User finished the introduction. Show real app through
     // navigation or simply by controlling state
     navigation.navigate('Terms');
   };
-const goBackSlide = ()=>{
+const goBackSlide = ():any=>{
   slider?.goToSlide(2, true);
 }
-const _renderPagination = (activeIndex: number) => {
+const _renderPagination = (activeIndex: number):any => {
   return (
     <View style={styles.paginationContainer}>
       <View>
@@ -226,7 +226,7 @@ const _renderPagination = (activeIndex: number) => {
                     ? getDotStyle('black')
                     :getDotStyle('white'),
                 ]}
-                onPress={() => slider?.goToSlide(i, true)}
+                onPress={():any => slider?.goToSlide(i, true)}
               />
             ))}
         </View>):null}
@@ -251,13 +251,13 @@ const _renderPagination = (activeIndex: number) => {
     </View>
   );
 };
-  const keyExtractor = (item: Item) => item.title;
+  const keyExtractor = (item: Item):any => item.title;
   return (
     <>
       <FocusAwareStatusBar animated={true} backgroundColor={statubarColor} />
       <AppIntroSlider
         keyExtractor={keyExtractor}
-        renderItem={({item, index}:any) => renderItem(item, index)}
+        renderItem={({item, index}:any):any => renderItem(item, index)}
         dotClickEnabled
         activeDotStyle={getDotStyle('black')}
         dotStyle={getDotStyle('white')}
@@ -269,7 +269,7 @@ const _renderPagination = (activeIndex: number) => {
         onDone={onDone}
         onSlideChange={onSlideChange}
         renderPagination={_renderPagination}
-        ref={(ref) => (slider = ref!)}
+        ref={(ref):any => (slider = ref!)}
       />
     </>
   );
