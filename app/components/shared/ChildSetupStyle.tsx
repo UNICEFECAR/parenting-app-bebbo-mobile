@@ -43,7 +43,7 @@ export const ChildContentArea = styled.View`
 `;
 
 export const LabelTextVac = styled.Text`
-  color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
   font-size: 16px;
 `;
 export const LabelText = styled(LabelTextVac)`
@@ -62,8 +62,8 @@ export const ChildListingArea = styled.View`
 `;
 
 export const ChildListingBox = styled.View`
-  background-color: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  background-color: ${(props):any => props.theme.colors.PRIMARY_TINTCOLOR};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
   padding: 10px;
   flex-direction: row;
   margin-bottom: 15px;
@@ -117,8 +117,8 @@ margin-top:0;
 `;
 export const FormInputBox = styled.View`
   flex-direction: row;
-  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  background-color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
   align-items:center;
   justify-content:space-between;
   height:52px;
@@ -140,15 +140,15 @@ export const FormInputGroup = styled.Pressable`
   padding:5px 0px;
 `;
 export const FormInputText = styled(LabelText)`
-  color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
+  color: ${(props):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-size: 16px;
   font-weight:bold;
   margin-bottom: 10px;
 `;
 export const TextAreaBox = styled.View`
-background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+background-color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 height:75px;
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 `;
 export const TextBox = styled(TextAreaBox)`
 height:52px;
@@ -167,7 +167,7 @@ margin:15px 0
 export const OrHeadingView = styled.View`
 padding:5px 0;
 min-width:50px;
-background-color:${(props) => props.theme.colors.PRIMARY_COLOR};
+background-color:${(props):any => props.theme.colors.PRIMARY_COLOR};
 `;
 
 

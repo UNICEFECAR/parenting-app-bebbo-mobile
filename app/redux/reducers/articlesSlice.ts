@@ -20,19 +20,19 @@ export const articlesSlice = createSlice({
     setAllArticleData: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       (typeof action.payload == 'object') ? state.article.articles = JSON.stringify(action.payload) : state.article.articles = action.payload;
     },
     setDailyArticleGamesCategory: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
         state.dailyDataCategory = action.payload;
     },
     setShowedDailyDataCategory: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
         state.showedDailyDataCategory = action.payload;
     }
   },

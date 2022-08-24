@@ -36,7 +36,7 @@ function* apiCall(data: ApiJsonArray,dispatch: any):any {
     return null;
   }
 }
-function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any,oldErrorObj:any,netInfovalisConnected:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any) {
+function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any,oldErrorObj:any,netInfovalisConnected:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any):any {
   const payload = {errorArr:errorArr,fromPage:prevPage}
     yield put(receiveAPIFailure(payload))
 // }
@@ -91,7 +91,7 @@ function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: an
     }
   }
 }
-function* onFetchAPI(value: any) {
+function* onFetchAPI(value: any):any {
   const payload = value.payload;
   const prevPage = value.prevPage;
   const dispatch = value.dispatch;
@@ -132,10 +132,10 @@ function* onFetchAPI(value: any) {
   }
 }
 
-export function* fetchAPISaga() {
+export function* fetchAPISaga():any {
   yield takeEvery(FETCH_API, onFetchAPI);
 }
-export default function* rootSaga() {
+export default function* rootSaga():any {
   yield all([fetchAPISaga(), InsertInDBSaga()]);
 }
 

@@ -68,7 +68,7 @@ const styles=StyleSheet.create({
   flexShrink1:{flexShrink:1},
   scrollView:{ backgroundColor: bgcolorWhite2, flex: 5 }
 })
-const Home = ({ route, navigation }: any) => {
+const Home = ({ route, navigation }: any):any => {
   const { t } = useTranslation();
   // console.log(route.params,"home params")
   const themeContext = useContext(ThemeContext);
@@ -113,7 +113,7 @@ const Home = ({ route, navigation }: any) => {
     );
   let currentCount = 0;
   const { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets } = getAllPeriodicSyncData();
-  const onBackPress = () => {
+  const onBackPress = ():any => {
     if (currentCount === 0) {
       currentCount++;
       if (Platform.OS === 'android') {
@@ -142,7 +142,7 @@ const Home = ({ route, navigation }: any) => {
       onBackPress,
     );
     navigation.addListener('gestureEnd', onBackPress);
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', onBackPress);
       backHandler.remove()};
   }, []);
@@ -153,14 +153,14 @@ const Home = ({ route, navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const forceUpdateApis = (forceupdatetime: any) => {
+  const forceUpdateApis = (forceupdatetime: any):any => {
     navigation.navigate('LoadingScreen', {
       apiJsonData: allApisObject(true,incrementalSyncDT),
       prevPage: 'ForceUpdate',
       forceupdatetime: forceupdatetime
     });
   }
-  const downloadApis = () => {
+  const downloadApis = ():any => {
     navigation.navigate('LoadingScreen', {
       apiJsonData: apiJsonData,
       prevPage: 'PeriodicSync',
@@ -170,7 +170,7 @@ const Home = ({ route, navigation }: any) => {
       ageBrackets: ageBrackets,
     });
   }
-  const callFailedApis = () => {
+  const callFailedApis = ():any => {
     if (errorObj && errorObj.length > 0) {
       navigation.navigate('LoadingScreen', {
         apiJsonData: errorObj,
@@ -178,17 +178,17 @@ const Home = ({ route, navigation }: any) => {
       });
     }
   }
-  const onNoForceUpdate = () => {
+  const onNoForceUpdate = ():any => {
     if (netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
       setTimeout(() => {
       Alert.alert(t('SyncOnLoadPopupTitle'), t('SyncOnLoadPopupText'),
         [
           {
             text: t('SyncOnLoadCancelPopUpBtn'),
-            onPress: () => { dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false })) },
+            onPress: ():any => { dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false })) },
             style: "cancel"
           },
-          { text: t('SyncOnLoadRetryBtn'), onPress: () => downloadApis() }
+          { text: t('SyncOnLoadRetryBtn'), onPress: ():any => downloadApis() }
         ]
       );
     }, 2500);
@@ -199,10 +199,10 @@ const Home = ({ route, navigation }: any) => {
         [
           {
             text: t('downloadOnLoadCancelPopUpBtn'),
-            onPress: () => { dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false })) },
+            onPress: ():any => { dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false })) },
             style: "cancel"
           },
-          { text: t('downloadOnLoadRetryBtn'), onPress: () => callFailedApis() }
+          { text: t('downloadOnLoadRetryBtn'), onPress: ():any => callFailedApis() }
         ]
       );
       },2500);
@@ -228,7 +228,7 @@ const Home = ({ route, navigation }: any) => {
   const relfolejaprod = '1.1.0';
   useEffect(() => {
     setModalVisible(false);
-    async function fetchNetInfo() {
+    async function fetchNetInfo():Promise<any> {
       console.log(bufferAgeBracket,"---userIsOnboarded----",userIsOnboarded);
       console.log(VersionInfo.appVersion,"--appVersion",VersionInfo.buildVersion,VersionInfo.bundleIdentifier);
         if (userIsOnboarded == false) {
@@ -385,7 +385,7 @@ const Home = ({ route, navigation }: any) => {
               dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
               Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
                   [
-                    { text: t('forceUpdateOkBtn'), onPress: () => {
+                    { text: t('forceUpdateOkBtn'), onPress: ():any => {
                         
                         navigation.navigate('LoadingScreen', {
                           apiJsonData: allApisObject(false,incrementalSyncDT), 
@@ -406,9 +406,8 @@ const Home = ({ route, navigation }: any) => {
                   if(parseInt(apiresponse.data.updated_at) > parseInt(forceUpdateTime)){
                     Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
                       [
-                        { text: t('forceUpdateOkBtn'), onPress: () => {
+                        { text: t('forceUpdateOkBtn'), onPress: ():any => {
                             dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
-                            //AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
                             forceUpdateApis(apiresponse.data.updated_at)
                           } 
                         }
@@ -431,12 +430,12 @@ const Home = ({ route, navigation }: any) => {
     fetchNetInfo()
   }, [netInfoval.isConnected]);
 
-  const ondobChange = (event: any, selectedDate: any) => {
+  const ondobChange = (event: any, selectedDate: any):any => {
     setShow(Platform.OS === 'ios');
     setdate1(selectedDate);
     dispatch(setSyncDate({ key: 'weeklyDownloadDate', value: DateTime.fromJSDate(new Date(selectedDate)).toMillis() }));
   }
-  const ondobChange2 = (event: any, selectedDate: any) => {
+  const ondobChange2 = (event: any, selectedDate: any):any => {
     setShow2(Platform.OS === 'ios');
     setdate2(selectedDate);
 
@@ -517,7 +516,7 @@ const Home = ({ route, navigation }: any) => {
                     <ShiftFromTop20>
                       <SideSpacing25>
                         <ButtonTertiary
-                          onPress={() => {
+                          onPress={():any => {
                             setModalVisible(true);
                           }}>
                           <ButtonText numberOfLines={2}>{t('homeScreenexpBtnText')}</ButtonText>
@@ -535,17 +534,17 @@ const Home = ({ route, navigation }: any) => {
           animationType="none"
           transparent={true}
           visible={modalVisible === true}
-          onRequestClose={() => {
+          onRequestClose={():any => {
             setModalVisible(false);
           }}
-          onDismiss={() => {
+          onDismiss={():any => {
             setModalVisible(false);
           }}>
           <PopupOverlay>
             <ModalPopupContainer>
               <PopupCloseContainer>
                 <PopupClose
-                  onPress={() => {
+                  onPress={():any => {
                     setModalVisible(false);
                   }}>
                   <Icon name="ic_close" size={16} color="#000" />
@@ -567,7 +566,7 @@ const Home = ({ route, navigation }: any) => {
                   </ModalPopupContent>
                   <FDirRow>
                     <ButtonModal
-                      onPress={() => {
+                      onPress={():any => {
                         setModalVisible(false);
 
                         analytics().logEvent(SURVEY_SUBMIT)

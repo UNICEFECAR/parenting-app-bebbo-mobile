@@ -11,25 +11,25 @@ export const ArticleListContent = styled.View`
 `;
 export const ArticleListContainer = styled.View`
  margin:10px 15px;
-  background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  background:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
   overflow:hidden;
   
 `;
 export const RelatedArticleContainer = styled(ArticleListContainer)`
   width:300px;
   margin:10px 5px;
-  background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background-color:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 export const RelatedArticleContainer2 = styled(ArticleListContainer)`
   width:350px;
   margin:10px 5px;
-  background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background-color:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const SearchBox = styled.View`
   flex-direction:row
-  background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
   align-items:center;
   padding:0;
   height:50px;
@@ -38,7 +38,7 @@ export const SearchBox = styled.View`
 export const SearchInput = styled.TextInput`
   flex:1;
   padding:0 15px;
-  text-align:${(props) => props.theme.isRTL ? 'right' : 'left'};
+  text-align:${(props):any => props.theme.isRTL ? 'right' : 'left'};
 `;
 
 export const MainActivityBox = styled.View`
