@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 })
-const TrackMilestoneView = (props:any) => {
+const TrackMilestoneView = (props:any):any => {
   const {currentSelectedChildId} = props;
   const navigation = useNavigation();
   const {t} = useTranslation();
@@ -42,7 +42,7 @@ const TrackMilestoneView = (props:any) => {
           </ShiftFromBottom15>
           <Pressable style={styles.milestonePressable}>
             <ButtonDevelopmentMd
-              onPress={() =>
+              onPress={():any =>
                 navigation.navigate('Home', {
                   screen: 'ChildDevelopment',
                   params: {currentSelectedChildId:currentSelectedChildId ? currentSelectedChildId : 0},

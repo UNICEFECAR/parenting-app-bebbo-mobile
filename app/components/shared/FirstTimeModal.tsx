@@ -12,7 +12,7 @@ import { FDirRow } from "./FlexBoxStyle";
 import { ButtonModal, ButtonText } from "./ButtonGlobal";
 import { useTranslation } from "react-i18next";
 
-const FirstTimeModal = (props : any) => {
+const FirstTimeModal = (props : any):any => {
     const {modalVisible, setIsModalOpened, modalScreenKey, modalScreenText} = props;
     const { t } = useTranslation();
     return (
@@ -20,17 +20,17 @@ const FirstTimeModal = (props : any) => {
             animationType="none"
             transparent={true}
             visible={modalVisible}
-            onRequestClose={() => {
+            onRequestClose={():any => {
                 console.log("request to close modal")
             }}
-            onDismiss={() => {
+            onDismiss={():any => {
                 console.log("request to close modal")
             }}>
             <PopupOverlay>
             <ModalPopupContainer>
                 <PopupCloseContainer>
                 <PopupClose
-                    onPress={() => {
+                    onPress={():any => {
                     setIsModalOpened(modalScreenKey);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />
@@ -44,7 +44,7 @@ const FirstTimeModal = (props : any) => {
                 
                 <FDirRow>
                 <ButtonModal
-                    onPress={() => {
+                    onPress={():any => {
                     setIsModalOpened(modalScreenKey);
                     }}>
                     <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>

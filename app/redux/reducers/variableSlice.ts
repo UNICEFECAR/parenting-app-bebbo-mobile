@@ -13,7 +13,7 @@ export const variableSlice = createSlice({
     getVariableData: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       state.variableData=JSON.stringify(action.payload);
     }
   },

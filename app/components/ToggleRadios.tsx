@@ -12,7 +12,7 @@ const styles=StyleSheet.create({
   lastView:{flexDirection:'row',flex:1}
   })
   
-const ToggleRadios = (props: any) => {
+const ToggleRadios = (props: any):any => {
   const {options,tickColor,tickbgColor,defaultValue} = props;
   const [checkedItem, setCheckedItem] = useState(defaultValue?defaultValue:null);
   useEffect(()=>{
@@ -28,7 +28,7 @@ const ToggleRadios = (props: any) => {
               <RadioOuter key={index}
                 >
                 <RadioInnerBox
-                  onPress={() => {
+                  onPress={():any => {
                     setCheckedItem(item);
                     props.getCheckedItem(item);
                   }}>

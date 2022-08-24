@@ -35,7 +35,7 @@ type Props = {
   route:any;
 };
 
-const AddNewChildHeight = ({ navigation, route }: Props) => {
+const AddNewChildHeight = ({ navigation, route }: Props):any => {
   const { t } = useTranslation();
   const [headerColor, setHeaderColor] = useState();
   const [tintColor, setTintColor] = useState();
@@ -46,7 +46,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
   const [height, setheight] = useState<number>(0);
   const [height1, setheight1] = useState<number>(0.0);
   const dispatch = useAppDispatch();
-  const setIsModalOpened = async (varkey: any) => {
+  const setIsModalOpened = async (varkey: any):Promise<any> => {
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -75,7 +75,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
     }
   }, [route.params?.prevRoute, route.params?.headerColor, route.params?.backgroundColor, route.params?.heightValue]);
 
-  const getHeightValue = () => {
+  const getHeightValue = ():any => {
     const h =
       (!isNaN(height) ? height : 0) + (!isNaN(height1) ? 0.01 * height1 : 0);
     return h.toFixed(2);
@@ -86,17 +86,17 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           console.log("in onRequestClose");
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                   setIsModalOpened('IsHeightModalOpened');
                 }}>
@@ -110,7 +110,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
             </ModalPopupContent>
             <FDirRow>
               <ButtonModal
-                onPress={() => {
+                onPress={():any => {
                   setIsModalOpened('IsHeightModalOpened');
                 }}>
                 <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
@@ -128,7 +128,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
           }]}>
           <HeaderIconView>
             <HeaderIconPress
-              onPress={() => {
+              onPress={():any => {
                 navigation.goBack();
               }}>
               <IconML name={'ic_back'} color="#000" size={15} />
@@ -154,7 +154,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
                   height={100}
                   vertical={false}
                   initialValue={route.params?.heightValue.height}
-                  onChangeValue={(value: any) => setheight(value)}
+                  onChangeValue={(value: any):any => setheight(value)}
                   minimum={0}
                   maximum={125}
                   segmentWidth={2}
@@ -178,7 +178,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
                   height={100}
                   vertical={false}
                   initialValue={route.params?.heightValue.height1}
-                  onChangeValue={(value:any) => setheight1(value)}
+                  onChangeValue={(value:any):any => setheight1(value)}
                   minimum={0}
                   maximum={100}
                   segmentWidth={2}
@@ -202,7 +202,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
           <ButtonContainer>
             <ButtonTertiary
               disabled={getHeightValue()<=0?true:false}
-              onPress={() => {
+              onPress={():any => {
                 navigation.navigate({
                   name: prevRoute,
                   params: { height: getHeightValue() },

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const FavActivities = () => {
+const FavActivities = ():any => {
   const navigation = useNavigation()
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -59,7 +59,7 @@ const favoritegames = useAppSelector((state: any) =>
   const [favGamesToShow,setfavGamesToShow] = useState([]);
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId));
-  const goToActivityDetail = (item: any) => {
+  const goToActivityDetail = (item: any):any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "FavActivities",
@@ -72,7 +72,7 @@ const favoritegames = useAppSelector((state: any) =>
   };
   useFocusEffect(
     React.useCallback(() => {
-      async function fetchData() {
+      async function fetchData():Promise<any> {
         if(favoritegames.length > 0){
           const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
           let favData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema, filterQuery);
@@ -90,7 +90,7 @@ const favoritegames = useAppSelector((state: any) =>
   const SuggestedActivities = React.memo(({ item, index }:any) => {
      return (
         <ArticleListContainer>
-           <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
+           <Pressable onPress={():any => { goToActivityDetail(item) }} key={index}>
           <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>
           <ArticleListContent>
             <ShiftFromTopBottom5>
@@ -118,8 +118,8 @@ const favoritegames = useAppSelector((state: any) =>
                   maxToRenderPerBatch={4} // Reduce number in each render batch
                   updateCellsBatchingPeriod={100} // Increase time between renders
                   windowSize={7} // Reduce the window size
-                  renderItem={({item, index}:any) => <SuggestedActivities item={item} index={index} /> }
-                  keyExtractor={(item:any) => item.id.toString()}
+                  renderItem={({item, index}:any):any => <SuggestedActivities item={item} index={index} /> }
+                  keyExtractor={(item:any):any => item.id.toString()}
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
 

@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 
-export const getAllVaccinePeriods = () => {
+export const getAllVaccinePeriods = ():any => {
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -18,7 +18,7 @@ export const getAllVaccinePeriods = () => {
       });
     }
   });
-  const vaccineMeasuredInfo = (vaccine:any) => {
+  const vaccineMeasuredInfo = (vaccine:any):any => {
     return (measuredVaccines.find(item => String(item.uuid) == String(vaccine.uuid)))
   }
   const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
@@ -30,7 +30,7 @@ export const getAllVaccinePeriods = () => {
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
   const allGrowthPeriods = taxonomy.growth_period
-  const getVaccineInfo = (periodID:any) => {
+  const getVaccineInfo = (periodID:any):any => {
     return allGrowthPeriods.find((item:any) => item.id == periodID);
   }
   const allVaccinePeriods = useAppSelector(
@@ -60,10 +60,10 @@ export const getAllVaccinePeriods = () => {
   const sortedGroupsForPeriods = [...groupsForPeriods].sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
   );
-  const isUpComingPeriod = (vaccination_opens: number) => {
+  const isUpComingPeriod = (vaccination_opens: number):any => {
     return vaccination_opens > childAgeIndays ? true : false;
   };
-  const isPreviousPeriod = (vaccination_opens: number) => {
+  const isPreviousPeriod = (vaccination_opens: number):any => {
     return vaccination_opens <= childAgeIndays ? true : false;
   };
   sortedGroupsForPeriods.forEach((period) => {

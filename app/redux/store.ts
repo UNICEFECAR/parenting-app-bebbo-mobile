@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production' ){
 }
 allMiddlewares.push(sagaMiddleware);
 
-export default function configureAppStore() {
+export default function configureAppStore():any {
   const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>

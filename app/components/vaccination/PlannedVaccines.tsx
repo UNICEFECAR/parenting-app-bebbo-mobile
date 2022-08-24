@@ -6,11 +6,11 @@ import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
   uuid:string;
 }
-const PlannedVaccines = (props: any) => {
+const PlannedVaccines = (props: any):any => {
   const {currentPeriodVaccines, onPlannedVaccineToggle, fromScreen,backgroundActiveColor} = props;
   const {t} = useTranslation();
   const [checkedVaccines,setCheckedVaccines] = useState<VaccineItemProps[]>([]);
-   const onToggleVaccine = (uuid:any, isVaccineItemChecked:any) => {
+   const onToggleVaccine = (uuid:any, isVaccineItemChecked:any):any => {
     if (isVaccineItemChecked) {
       const allCheckedVaccines = [...checkedVaccines,
          {  uuid: uuid,}

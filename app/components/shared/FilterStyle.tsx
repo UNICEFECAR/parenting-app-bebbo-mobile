@@ -9,8 +9,8 @@ export const ArticleFilter = styled.View`
   
   padding:10px 10px;
   min-height:120px;
-  border-bottom-color:${props => props.theme.colors.ARTICLES_COLOR};
-  border-top-color:${props => props.theme.colors.ARTICLES_COLOR};
+  border-bottom-color:${(props):any => props.theme.colors.ARTICLES_COLOR};
+  border-top-color:${(props):any => props.theme.colors.ARTICLES_COLOR};
   /*border-bottom-width:1px;
   border-Top-width:1px;*/
   margin-bottom:5px;
@@ -22,7 +22,7 @@ export const ActivityFilter = styled(ArticleFilter)`
 `;
 
 export const FilterBox = styled.View`  
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 margin:3px;
 flex-direction:row;
 align-items:center;
@@ -35,7 +35,7 @@ export const FilterText = styled.Text`
 font-size:10px;
 flex:1;
 font-weight:bold;
-color:${props => props.theme.colors.PRIMARY_TEXTCOLOR};
+color:${(props):any => props.theme.colors.PRIMARY_TEXTCOLOR};
 flex-shrink:1;
 text-align:left;
 `;

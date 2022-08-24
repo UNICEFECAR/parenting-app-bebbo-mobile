@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flexShrink:1
   }
 })
-const LastChildMeasure = () => {
+const LastChildMeasure = ():any => {
   const {t} = useTranslation();
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -109,14 +109,14 @@ const LastChildMeasure = () => {
           <FlexColEnd>
           
           {activeChild.isPremature === 'true' ? (
-          <Pressable onPress={() => setModalVisible(true)}>
+          <Pressable onPress={():any => setModalVisible(true)}>
             <PrematureTagGrowth>
               <Heading5Bold>{t('growthScreenprematureText')}</Heading5Bold>
             </PrematureTagGrowth>
             </Pressable>
           ) : null}
           <Pressable
-            onPress={(e) => {
+            onPress={(e):any => {
               e.stopPropagation();
               navigation.navigate('AllChildgrowthMeasures');
             }}>
@@ -159,7 +159,7 @@ const LastChildMeasure = () => {
             <Flex1>
               <FlexDirRowEnd>
               <ButtonEditPress
-                onPress={() => {
+                onPress={():any => {
                   const lastmeasure =  childmeasures[childmeasures.length - 1];
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
@@ -214,17 +214,17 @@ const LastChildMeasure = () => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           setModalVisible(false);
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           setModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />

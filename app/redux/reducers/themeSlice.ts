@@ -14,19 +14,19 @@ export const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    increment: (state) => {
+    increment: (state):any => {
       state.value += 1;
     },
-    decrement: (state) => {
+    decrement: (state):any => {
       state.value -= 1;
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
+    incrementByAmount: (state, action: PayloadAction<number>):any => {
       state.value += action.payload;
     },
   },
 });
 
 export const {increment, decrement, incrementByAmount} = themeSlice.actions;
-export const selectCount = (state: any) => state.theme.value;
+export const selectCount = (state: any):any => state.theme.value;
 
 export default themeSlice.reducer;

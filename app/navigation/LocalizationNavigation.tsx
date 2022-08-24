@@ -8,7 +8,7 @@ import { useAppSelector } from '../../App';
 import { LocalizationStackParamList } from './types';
 
 const LocalizationStack = createStackNavigator<LocalizationStackParamList>();
-export default () => {
+export default ():any => {
   const restartOnLangChange = useAppSelector(
     (state: any) => state.selectedCountry.restartOnLangChange,
   );

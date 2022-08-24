@@ -104,7 +104,7 @@ const styles=StyleSheet.create({
   pressableView:{paddingLeft:10,paddingRight:10},
   textInputMl:{flex:1,padding:10,textAlignVertical: 'top'}
 })
-const AddNewChildgrowth = ({ route, navigation }: any) => {
+const AddNewChildgrowth = ({ route, navigation }: any):any => {
   const { t } = useTranslation();
   const { editMeasurementDate } = route.params;
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -128,7 +128,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
   const [remarkTxt, handleDoctorRemark] = useState<string>('');
   const [measurePlace, setMeasurePlace] = useState<number>();
   const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(null);
-  const getCheckedGrowthPlace = (checkedItem: any) => {
+  const getCheckedGrowthPlace = (checkedItem: any):any => {
     setMeasurePlace(checkedItem.id);
   };
   const activeChild = useAppSelector((state: any) =>
@@ -138,7 +138,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
   );
   const dispatch = useAppDispatch();
  
-  const onmeasureDateChange = (event: any, selectedDate: any) => {
+  const onmeasureDateChange = (event: any, selectedDate: any):any => {
     setmeasureDateShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
@@ -153,7 +153,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
             [
               {
                 text: t('alertForModifyMeasuresOk'),
-                onPress: () => {
+                onPress: ():any => {
                   setmeasureDate(editMeasurementDate)
                 },
                 style: "cancel",
@@ -182,7 +182,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
             [
               {
                 text: t('alertForModifyMeasuresOk'),
-                onPress: () => {
+                onPress: ():any => {
                   const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   setWeightValue(existingMeasure.weight)
                   setHeightValue(existingMeasure.height)
@@ -206,7 +206,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
 
     }
   };
-  const handleMeasureConfirm = (event: any) => {
+  const handleMeasureConfirm = (event: any):any => {
     const date = event;
     onmeasureDateChange(event, date);
     setMeasureDatePickerVisibility(false);
@@ -226,14 +226,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
     }
   }, [editMeasurementDate])
 
-
-
-
-  //set initvalue here for edit
-  
-  
-  
-  const isFormFilled = () => {
+  //set initvalue here for edit  
+  const isFormFilled = ():any => {
     if (measureDate) {
       if (measurePlace != null) {
         if (measurePlace == 0) {
@@ -271,7 +265,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
       setHeightValue(route.params?.height);
     }
   }, [route.params?.weight, route.params?.height]);
-  const deleteGrowth = async () => {
+  const deleteGrowth = async ():Promise<any> => {
     // delete measure at measurementdate got from param
     const measurementDateParam = editMeasurementDate
       ? dateTouched
@@ -383,7 +377,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
     }
 
   }
-  const saveChildMeasures = async () => {
+  const saveChildMeasures = async ():Promise<any> => {
 
     const measurementDateParam = editMeasurementDate
       ? dateTouched
@@ -535,7 +529,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
       }
     }
   };
-  const onBackPress = () => {
+  const onBackPress = ():any => {
     navigation.goBack();  
     return true;
 }
@@ -545,7 +539,7 @@ useEffect(() => {
     onBackPress,
   );
   navigation.addListener('gestureEnd', onBackPress);
-  return () => {
+  return ():any => {
     navigation.removeListener('gestureEnd', onBackPress);
     backHandler.remove()};
 }, []);
@@ -560,7 +554,7 @@ useEffect(() => {
             }]}>
             <HeaderIconView>
               <HeaderIconPress
-                onPress={() => {
+                onPress={():any => {
                   navigation.goBack();
                 }}>
                 <IconML name={'ic_back'} color="#000" size={15} />
@@ -571,7 +565,7 @@ useEffect(() => {
             </HeaderTitleView>
             {showDelete ? (
               <HeaderActionView style={styles.padding0}>
-              <Pressable  style={styles.pressableView}  onPress={() =>
+              <Pressable  style={styles.pressableView}  onPress={():any =>
                  setModalVisible(true)
                 }>
                 <Icon name={'ic_trash'} size={20} color="#000" />
@@ -582,7 +576,7 @@ useEffect(() => {
           <FlexCol>
           <KeyboardAwareScrollView  bounces={false} keyboardShouldPersistTaps={'always'}>
             <MainContainer>
-              <FormInputGroup onPress={() => {
+              <FormInputGroup onPress={():any => {
                 setmeasureDateShow(true);
                 if (Platform.OS == 'ios') {
                   setMeasureDatePickerVisibility(true);
@@ -635,7 +629,7 @@ useEffect(() => {
                         mode="date"
                         onConfirm={handleMeasureConfirm}
                         date={editMeasurementDate ? new Date(editMeasurementDate) : new Date()}
-                        onCancel={() => {
+                        onCancel={():any => {
                           setMeasureDatePickerVisibility(false);
                         }}
                         maximumDate={new Date()}
@@ -673,7 +667,7 @@ useEffect(() => {
                   <FDirRow>
                     <RadioOuter>
                       <RadioInnerBox
-                        onPress={() => {
+                        onPress={():any => {
                           navigation.navigate('AddNewChildWeight', {
                             prevRoute: 'AddNewChildgrowth',
                             headerColor,
@@ -693,7 +687,7 @@ useEffect(() => {
                     </RadioOuter>
                     <RadioOuter>
                       <RadioInnerBox
-                        onPress={() => {
+                        onPress={():any => {
                           navigation.navigate('AddNewChildHeight', {
                             prevRoute: 'AddNewChildgrowth',
                             headerColor,
@@ -729,7 +723,7 @@ useEffect(() => {
                       clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}
-                      onChangeText={(text) => handleDoctorRemark(text)}
+                      onChangeText={(text):any => handleDoctorRemark(text)}
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
@@ -747,7 +741,7 @@ useEffect(() => {
             <ButtonContainer>
             <ButtonTertiary
               disabled={isFormFilled()}
-              onPress={(e) => {
+              onPress={(e):any => {
                 e.stopPropagation();
                 saveChildMeasures().then(() => { 
                   console.log("saveChildMeasures")
@@ -763,17 +757,17 @@ useEffect(() => {
             animationType="none"
             transparent={true}
             visible={modalVisible}
-            onRequestClose={() => {
+            onRequestClose={():any => {
               setModalVisible(false);
             }}
-            onDismiss={() => {
+            onDismiss={():any => {
               setModalVisible(false);
             }}>
             <PopupOverlay>
               <ModalPopupContainer>
                 <PopupCloseContainer>
                   <PopupClose
-                    onPress={() => {
+                    onPress={():any => {
                       setModalVisible(false);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />
@@ -787,7 +781,7 @@ useEffect(() => {
                 <ButtonContainerTwo>
                   <ButtonColTwo>
                     <ButtonSecondaryTint
-                      onPress={() => {
+                      onPress={():any => {
                         setModalVisible(false);
                       }}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
@@ -796,7 +790,7 @@ useEffect(() => {
 
                   <ButtonColTwo>
                     <ButtonPrimary
-                      onPress={() => {
+                      onPress={():any => {
                         deleteGrowth();
                       }}>
                       <ButtonText>{t('growthDeleteOption2')}</ButtonText>

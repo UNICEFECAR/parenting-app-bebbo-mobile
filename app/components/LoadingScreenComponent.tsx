@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
    },
    vectorImageView:{marginBottom:15}
  });
-const LoadingScreenComponent = (props: any) => {
+const LoadingScreenComponent = (props: any):any => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
   const prevPage = props.prevPage;

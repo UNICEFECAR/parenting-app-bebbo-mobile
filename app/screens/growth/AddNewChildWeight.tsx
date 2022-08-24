@@ -38,7 +38,7 @@ const styles=StyleSheet.create({
   maxHeight:{maxHeight: 50},
   overflowHidden:{overflow:'hidden'}
 })
-const AddNewChildWeight = ({ navigation, route }: Props) => {
+const AddNewChildWeight = ({ navigation, route }: Props):any => {
   const { t } = useTranslation();
   const [headerColor, setHeaderColor] = useState();
   const [tintColor, setTintColor] = useState();
@@ -49,7 +49,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
   const [weight, setweight] = useState<any>(0);
   const [weight1, setweight1] = useState<any>(0.0);
   const dispatch = useAppDispatch();
-  const setIsModalOpened = async (varkey: any) => {
+  const setIsModalOpened = async (varkey: any):any => {
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -87,7 +87,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
     // pass true to make modal visible every time & reload
     setModalVisible(weightModalOpened);
   });
-  const getWeightValue = () => {
+  const getWeightValue = ():any => {
     const w =
       (!isNaN(weight) ? weight : 0) + (!isNaN(weight1) ? 0.01 * weight1 : 0);
     return w.toFixed(2);
@@ -98,17 +98,17 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           console.log("in onRequestClose");
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                   setIsModalOpened('IsWeightModalOpened');
                 }}>
@@ -123,7 +123,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
             </ModalPopupContent>
             <FDirRow>
               <ButtonModal
-                onPress={() => {
+                onPress={():any => {
                   setIsModalOpened('IsWeightModalOpened');
                 }}>
                 <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
@@ -141,7 +141,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
           }]}>
           <HeaderIconView>
             <HeaderIconPress
-              onPress={() => {
+              onPress={():any => {
                 navigation.goBack();
               }}>
               <IconML name={'ic_back'} color="#000" size={15} />
@@ -167,7 +167,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
                   height={100}
                   vertical={false}
                   initialValue={route.params?.weightValue.weight} //set value on edit
-                  onChangeValue={(value:any) => setweight(value)}
+                  onChangeValue={(value:any):any => setweight(value)}
                   minimum={0}
                   maximum={28}
                   segmentWidth={2}
@@ -190,7 +190,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
                   height={100}
                   vertical={false}
                   initialValue={route.params?.weightValue.weight1}
-                  onChangeValue={(value:any) => setweight1(value)}
+                  onChangeValue={(value:any):any => setweight1(value)}
                   minimum={0}
                   maximum={100}
                   segmentWidth={2}
@@ -213,7 +213,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
           <ButtonContainer>
             <ButtonTertiary
              disabled={getWeightValue()<=0?true:false}
-              onPress={() => {
+              onPress={():any => {
                 navigation.navigate({
                   name: prevRoute,
                   params: { weight: getWeightValue() },

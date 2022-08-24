@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   vectorImage:{height: 130, width: 130}
 });
 
-const UserGuide = ({navigation}: Props) => {
+const UserGuide = ():any => {
   const {t} = useTranslation();
   const data = [
     {
@@ -108,16 +108,14 @@ const UserGuide = ({navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const [profileLoading,setProfileLoading] = React.useState(false);
   type Item = typeof data[0];
-  const keyExtractor = (item: Item) => item.title;
+  const keyExtractor = (item: Item):any => item.title;
   const [isDotsRequired, setIsDotsRequired] = useState(true);
-  console.log(navigation)
- 
-  const getDotStyle = (colorString: string) => {
+  const getDotStyle = (colorString: string):any => {
     return isDotsRequired
       ? {backgroundColor: colorString}
       : {backgroundColor: 'transparent'};
   };
-  const renderItem = (item: typeof data[0], index: number) => {
+  const renderItem = (item: typeof data[0], index: number):any => {
     return (
       <>
         <WalkthroughContainer>
@@ -183,7 +181,7 @@ const UserGuide = ({navigation}: Props) => {
           <AppIntroSlider
             keyExtractor={keyExtractor}
             // renderItem={renderItem}
-            renderItem={({item, index}:any) => renderItem(item, index)}
+            renderItem={({item, index}:any):any => renderItem(item, index)}
             // bottomButton
             dotClickEnabled
             showDoneButton={false}

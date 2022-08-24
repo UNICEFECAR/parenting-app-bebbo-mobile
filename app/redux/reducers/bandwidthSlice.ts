@@ -11,7 +11,7 @@ export const bandWidthSlice = createSlice({
   name: 'bandWidthData',
   initialState,
   reducers: {
-    onNetworkStateChange: (state, action: PayloadAction<any>) => {
+    onNetworkStateChange: (state, action: PayloadAction<any>):any => {
          state.lowbandWidth=action.payload;      
     }
   }

@@ -128,7 +128,7 @@ const victoryStyles: VictoryStyles = {
     },
   },
 };
-const GrowthChart = (props: any) => {
+const GrowthChart = (props: any):any => {
   const {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
    const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
@@ -147,7 +147,7 @@ const [deviceOrientation, setDeviceOrientation] = useState(
       : 'landscape')
   },[windowWidth,windowHeight]);
 useEffect(() => {
-  const deviceOrientation = () => {
+  const deviceOrientation = ():any => {
     if (windowWidth < windowHeight) {
       setDeviceOrientation('portrait');
     } else {
@@ -155,7 +155,7 @@ useEffect(() => {
     }
   };
   Dimensions.addEventListener('change', deviceOrientation);
-  return () => {
+  return ():any => {
     //cleanup work
     Dimensions.removeEventListener('change', deviceOrientation);
   };
@@ -248,7 +248,7 @@ useEffect(() => {
               flyoutStyle={victoryStyles.VictoryTooltip.flyoutStyle}
             />
           }
-          labels={(props) =>
+          labels={(props):any =>
             props.datum.y +
             ' ' +
             labelY +
@@ -261,13 +261,13 @@ useEffect(() => {
             {
               target: 'data',
               eventHandlers: {
-                onPressIn: (evt: any, pressedProps: any) => {
+                onPressIn: (evt: any, pressedProps: any):any => {
                   const selectedDataIndex = pressedProps.index;
                   return [
                     {
                       eventKey: 'all',
                       target: 'labels',
-                      mutation: (props: any) => {
+                      mutation: (props: any):any => {
                         let activeState: boolean | null = true;
                         if (props.active === true) {
                           activeState = null;
@@ -280,7 +280,7 @@ useEffect(() => {
                     {
                       eventKey: 'all',
                       target: 'data',
-                      mutation: (props: any) => {
+                      mutation: (props: any):any => {
                         const stroke = props.style && props.style.stroke;
                         let st;
                         let activeState: boolean | null = true;
@@ -301,13 +301,13 @@ useEffect(() => {
                     },
                   ];
                 },
-                onPressOut: (evt: any, pressedProps: any) => {
+                onPressOut: (evt: any, pressedProps: any):any => {
                   const selectedDataIndex = pressedProps.index;
                   return [
                     {
                       eventKey: 'all',
                       target: 'labels',
-                      mutation: (props: any) => {
+                      mutation: (props: any):any => {
                         return props.index === selectedDataIndex
                           ? {active: props.active}
                           : null;
@@ -316,7 +316,7 @@ useEffect(() => {
                     {
                       eventKey: 'all',
                       target: 'data',
-                      mutation: (props: any) => {
+                      mutation: (props: any):any => {
                          return props.index === selectedDataIndex
                           ? {
                               style: {

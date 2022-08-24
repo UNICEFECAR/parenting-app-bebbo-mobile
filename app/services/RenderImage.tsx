@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 })
-const RenderImage = ({ uri, itemnew, toggleSwitchVal }: any) => {
+const RenderImage = ({ uri, itemnew, toggleSwitchVal }: any):any => {
   console.log("uri--", uri);
   return (
     <><View
