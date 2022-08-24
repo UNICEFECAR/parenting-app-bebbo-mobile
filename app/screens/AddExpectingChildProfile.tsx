@@ -59,7 +59,7 @@ const styles=StyleSheet.create({
   textInputML:{width:'100%'}
 
 })
-const AddExpectingChildProfile = ({ route, navigation }: Props) => {
+const AddExpectingChildProfile = ({ route, navigation }: Props):any => {
   const childData = route.params.childData;
   const editScreen = childData && childData.uuid != '' ? true : false;
   const [clicked, setClicked] = useState(false);
@@ -76,12 +76,12 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date | null>(null);
   const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const ondobChange = (event:any,selectedDate: any) => {
+  const ondobChange = (event:any,selectedDate: any):any => {
     const currentDate = selectedDate || plannedTermDate;
     setdobShow(Platform.OS === 'ios');
     setPlannedTermDate(currentDate);
   };
-  const showdobDatepicker = () => {
+  const showdobDatepicker = ():any => {
     setdobShow(true);
     if(Platform.OS == 'ios'){
       setDobDatePickerVisibility(true);
@@ -95,7 +95,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
-  const handleDobConfirm = (event:any) => {
+  const handleDobConfirm = (event:any):any => {
     const date=event;
     ondobChange(event,date);
     setDobDatePickerVisibility(false);
@@ -109,7 +109,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
     }, [])
   );
   useEffect(() => {
-    const backAction = () => {
+    const backAction = ():any => {
       navigation.goBack();
       return true;
     };
@@ -118,28 +118,28 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       backAction,
     );
     navigation.addListener('gestureEnd', backAction);
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
   }, []);
-  const AddChild = async () => {
+  const AddChild = async ():Promise<any> => {
     const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '',childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '',null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   }
-  const deleteRecord = (index: number, dispatch: any, uuid: string) => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string):any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
           text: t('removeOption1'),
-          onPress: () => resolve('error'),
+          onPress: ():any => resolve('error'),
           style: 'cancel',
         },
         {
           text: t('removeOption2'),
-          onPress: () => {
+          onPress: ():any => {
             deleteChild(
               languageCode,
               index,
@@ -165,7 +165,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
         style={[styles.headerRowView,{backgroundColor: headerColor}]}>
         <HeaderIconView>
           <HeaderIconPress
-            onPress={() => {
+            onPress={():any => {
               navigation.goBack();
             }}>
             <IconML name={'ic_back'} color="#FFF" size={15} />
@@ -178,7 +178,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
         </HeaderTitleView>
         <HeaderActionView  style={styles.headerActionView}>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
-            <Pressable  style={styles.pressableView}  onPress={() =>
+            <Pressable  style={styles.pressableView}  onPress={():any =>
                 deleteRecord(childData?.index, dispatch, childData?.uuid)
               }>
                     <Icon name={'ic_trash'} size={20} color="#FFF" />
@@ -220,7 +220,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
             mode="date"
             onConfirm={handleDobConfirm}
             date={plannedTermDate!=null ? plannedTermDate : new Date(DateTime.local().plus({ days: 1 }).toISODate())}
-            onCancel={() => {
+            onCancel={():any => {
               setDobDatePickerVisibility(false);
             }}
             minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
@@ -238,7 +238,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
-              onChangeText={(value) => { 
+              onChangeText={(value):any => { 
                 if (value.replace(/\s/g,"")=="") {
                   setName(value.replace(/\s/g, '')); 
                  } else {
@@ -258,7 +258,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
         <ButtonContainer>
           <ButtonPrimary
             disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked? true : false}
-            onPress={() => {
+            onPress={():any => {
               setClicked(true);
               setTimeout(()=>{
                 AddChild();

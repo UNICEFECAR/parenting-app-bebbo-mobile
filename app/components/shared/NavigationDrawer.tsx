@@ -40,8 +40,8 @@ width:26px;height:26px;
 justify-content:center;
 align-items:center;
 padding:2px;
-background-color:${props => props.theme.colors.SECONDARY_COLOR};
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+background-color:${(props):any => props.theme.colors.SECONDARY_COLOR};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
 
 export const BubbleView1 = styled(BubbleView)`

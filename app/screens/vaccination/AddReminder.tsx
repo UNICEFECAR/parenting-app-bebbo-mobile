@@ -92,7 +92,7 @@ const styles= StyleSheet.create({
     padding: 15
   },
 })
-const AddReminder = ({ route, navigation }: Props) => {
+const AddReminder = ({ route, navigation }: Props):any => {
   const { t } = useTranslation();
   const {
     headerTitle,
@@ -147,7 +147,7 @@ const AddReminder = ({ route, navigation }: Props) => {
 
   //if measureDate is luxon today, then set measureTime to hours,minutes,seconds
   
-  const onmeasureChange = (event: any, selectedDate: any) => {
+  const onmeasureChange = (event: any, selectedDate: any):any => {
     const currentDate = selectedDate || measureDate;
     setmeasureShow(false);
     if (selectedDate) {
@@ -165,7 +165,7 @@ const AddReminder = ({ route, navigation }: Props) => {
     }
 
   };
-  const onmeasureChangeDefined = (event: any, selectedDate: any) => {
+  const onmeasureChangeDefined = (event: any, selectedDate: any):any => {
     const currentDate = selectedDate || measureDateDefined;
     setmeasureShowDefined(false);
     if (selectedDate) {
@@ -177,29 +177,29 @@ const AddReminder = ({ route, navigation }: Props) => {
     }
 
   };
-  const showmeasureDatepicker = () => {
+  const showmeasureDatepicker = ():any => {
     setmeasureShow(true);
     if (Platform.OS == 'ios') {
       setMeasureDatePickerVisibility(true);
     }
   };
-  const showmeasureDatepickerDefined = () => {
+  const showmeasureDatepickerDefined = ():any => {
     setmeasureShowDefined(true);
     if (Platform.OS == 'ios') {
       setMeasureDatePickerVisibilityDefined(true);
     }
   };
-  const handleMeasureDateConfirm = (event: any) => {
+  const handleMeasureDateConfirm = (event: any):any => {
     const date = event;
     onmeasureChange(event, date);
     setMeasureDatePickerVisibility(false);
   };
-  const handleMeasureDateConfirmDefined = (event: any) => {
+  const handleMeasureDateConfirmDefined = (event: any):any => {
     const date = event;
     onmeasureChangeDefined(event, date);
     setMeasureDatePickerVisibilityDefined(false);
   };
-  const onmeasureTimeChange = (event: any, selectedTime: any) => {
+  const onmeasureTimeChange = (event: any, selectedTime: any):any => {
     const currentTime = selectedTime || measureTime;
     setmeasureShowTime(false);
     if (selectedTime) {
@@ -207,7 +207,7 @@ const AddReminder = ({ route, navigation }: Props) => {
       setTimeTouched(true);
     }
   };
-  const onmeasureTimeChangeDefined = (event: any, selectedTime: any) => {
+  const onmeasureTimeChangeDefined = (event: any, selectedTime: any):any => {
     const currentTime = selectedTime || measureTimeDefined;
     setmeasureShowTimeDefined(false);
     if (selectedTime) {
@@ -215,36 +215,36 @@ const AddReminder = ({ route, navigation }: Props) => {
       setTimeTouchedDefined(true);
     }
   };
-  const handleMeasureTimeConfirm = (event: any) => {
+  const handleMeasureTimeConfirm = (event: any):any => {
     const time = event;
     onmeasureTimeChange(event, time);
     setMeasureTimePickerVisibility(false);
   };
-  const handleMeasureTimeConfirmDefined = (event: any) => {
+  const handleMeasureTimeConfirmDefined = (event: any):any => {
     const time = event;
     onmeasureTimeChangeDefined(event, time);
     setMeasureTimePickerVisibilityDefined(false);
   };
-  const showmeasureTimepicker = () => {
+  const showmeasureTimepicker = ():any => {
     setmeasureShowTime(true);
     if (Platform.OS == 'ios') {
       setMeasureTimePickerVisibility(true);
     }
   };
-  const showmeasureTimepickerDefined = () => {
+  const showmeasureTimepickerDefined = ():any => {
     setmeasureShowTimeDefined(true);
     if (Platform.OS == 'ios') {
       setMeasureTimePickerVisibilityDefined(true);
     }
   };
-  const isFormDisabled = () => {
+  const isFormDisabled = ():any => {
     if (measureDate && measureTime && measureDateDefined && measureTimeDefined && !clicked) {
       return false;
     } else {
       return true;
     }
   };
-  const deleteReminder = async () => {
+  const deleteReminder = async ():Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(
       ChildEntitySchema,
     );
@@ -267,7 +267,7 @@ const AddReminder = ({ route, navigation }: Props) => {
       dispatch(setActiveChildData(activeChild));
     }
   };
-  const saveReminder = async () => {
+  const saveReminder = async ():Promise<any> => {
     // check if reminderdate and time are less than current time show error alert
     // else allow saving
 
@@ -386,7 +386,7 @@ const AddReminder = ({ route, navigation }: Props) => {
       Alert.alert('', t('reminderalertText')); 
     }
   };
-const onBackPress = () => {
+const onBackPress = ():any => {
     navigation.goBack();  
     return true;
 }
@@ -396,7 +396,7 @@ useEffect(() => {
     onBackPress,
   );
   navigation.addListener('gestureEnd', onBackPress);
-  return () => {
+  return ():any => {
     navigation.removeListener('gestureEnd', onBackPress);
     backHandler.remove()};
 }, []);
@@ -408,7 +408,7 @@ useEffect(() => {
           style={[styles.headerRowHeight,{backgroundColor: headerColor}]}>
           <HeaderIconView>
             <HeaderIconPress
-              onPress={() => {
+              onPress={():any => {
                 navigation.goBack();
               }}>
               <IconML name={'ic_back'} color="#000" size={15} />
@@ -419,7 +419,7 @@ useEffect(() => {
           </HeaderTitleView>
           {editReminderItem ? (
                <HeaderActionView style={styles.headerActionStyle}>
-               <Pressable  style={styles.pressableStyle}  onPress={() =>
+               <Pressable  style={styles.pressableStyle}  onPress={():any =>
                    setModalVisible(true)
                  }>
                  <Icon name={'ic_trash'} size={20} color="#000" />
@@ -474,7 +474,7 @@ useEffect(() => {
                     mode="date"
                     onConfirm={handleMeasureDateConfirm}
                     date={editReminderItem ? new Date(measureDate) : new Date()}
-                    onCancel={() => {
+                    onCancel={():any => {
                       setMeasureDatePickerVisibility(false);
                     }}
                     minimumDate={new Date()}
@@ -537,7 +537,7 @@ useEffect(() => {
                       mode="time"
                       onConfirm={handleMeasureTimeConfirm}
                       date={editReminderItem ? new Date(measureTime) : new Date()}
-                      onCancel={() => {
+                      onCancel={():any => {
                         setMeasureTimePickerVisibility(false);
                       }}
                       minimumDate={minmeasureTime}
@@ -605,7 +605,7 @@ useEffect(() => {
                     mode="date"
                     onConfirm={handleMeasureDateConfirmDefined}
                     date={editReminderItem ? new Date(measureDateDefined) : new Date()}
-                    onCancel={() => {
+                    onCancel={():any => {
                       setMeasureDatePickerVisibilityDefined(false);
                     }}
                     minimumDate={new Date()}
@@ -669,7 +669,7 @@ useEffect(() => {
                       mode="time"
                       onConfirm={handleMeasureTimeConfirmDefined}
                       date={editReminderItem ? new Date(measureTimeDefined) : new Date()}
-                      onCancel={() => {
+                      onCancel={():any => {
                         setMeasureTimePickerVisibilityDefined(false);
                       }}
                       minimumDate={new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
@@ -694,7 +694,7 @@ useEffect(() => {
           <ShiftFromTop30>
             <ButtonTertiary
               disabled={isFormDisabled()}
-              onPress={() => {
+              onPress={():any => {
                 setClicked(true);
                 setTimeout(()=>{
                   saveReminder().then(() => {
@@ -709,17 +709,17 @@ useEffect(() => {
             animationType="none"
             transparent={true}
             visible={modalVisible}
-            onRequestClose={() => {
+            onRequestClose={():any => {
               setModalVisible(false);
             }}
-            onDismiss={() => {
+            onDismiss={():any => {
               setModalVisible(false);
             }}>
             <PopupOverlay>
               <ModalPopupContainer>
                 <PopupCloseContainer>
                   <PopupClose
-                    onPress={() => {
+                    onPress={():any => {
                       setModalVisible(false);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />
@@ -731,14 +731,14 @@ useEffect(() => {
                 <ButtonContainerTwo>
                   <ButtonColTwo>
                     <ButtonSecondaryTint
-                      onPress={() => setModalVisible(false)}>
+                      onPress={():any => setModalVisible(false)}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                     </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
                     <ButtonSecondary
-                      onPress={() => {
+                      onPress={():any => {
                         deleteReminder().then(() => {
                           setModalVisible(false);
                           navigation.goBack();
