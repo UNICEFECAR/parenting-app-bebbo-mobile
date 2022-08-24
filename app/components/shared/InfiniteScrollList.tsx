@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         marginBottom:200
     }
 })
-const InfiniteScrollList = (props : any) => {
+const InfiniteScrollList = (props : any):any => {
     const { filteredData , renderArticleItem, receivedLoadingArticle } = props;
     const [isLoading, setIsLoading] = useState(false);
     const limit = 10;
@@ -16,7 +16,7 @@ const InfiniteScrollList = (props : any) => {
     const [refresh, setRefresh] = useState(false);
     let onEndReachedCalledDuringMomentum = true;
     const flatListRef = useRef(null);
-    const requestData = async (thePage: number) => {
+    const requestData = async (thePage: number):Promise<any> => {
         if(totalDataCount > 0)
         {
             setIsLoading(true);
@@ -44,7 +44,7 @@ const InfiniteScrollList = (props : any) => {
         }
     },[filteredData])
 
-    const toTop = () => {
+    const toTop = ():any => {
         // use current
         flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
     }
@@ -59,7 +59,7 @@ const InfiniteScrollList = (props : any) => {
             }
             receivedLoadingArticle(false);
     }, [serverData]);
-    const handleLoadMore = () => {
+    const handleLoadMore = ():any => {
         if(!onEndReachedCalledDuringMomentum)
         {
             if (clientData.length < totalDataCount) {
@@ -71,7 +71,7 @@ const InfiniteScrollList = (props : any) => {
         }
     };
    
-    const onRefresh = () => {
+    const onRefresh = ():any => {
             setRefresh(true);
             if(page != 1)
             {
@@ -82,7 +82,7 @@ const InfiniteScrollList = (props : any) => {
                 setRefresh(false);
             }
     };
-    const renderFooter = () => {
+    const renderFooter = ():any => {
          return(
             isLoading ? <ActivityIndicator size="large" /> : null
         )
@@ -96,11 +96,11 @@ const InfiniteScrollList = (props : any) => {
             initialNumToRender={limit}
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.3}
-            onRefresh={() => onRefresh()}
+            onRefresh={():any => onRefresh()}
             refreshing={refresh}
             renderItem={renderArticleItem}
-            keyExtractor={(item:any) => item.id.toString()}
-            onMomentumScrollBegin={() => {
+            keyExtractor={(item:any):any => item.id.toString()}
+            onMomentumScrollBegin={():any => {
               onEndReachedCalledDuringMomentum = false;
             }}
             ListFooterComponent={renderFooter}

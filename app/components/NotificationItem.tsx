@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const NotificationItem = (props: any) => {
+const NotificationItem = (props: any):any => {
   const { item, onItemReadMarked, onItemDeleteMarked, isDeleteEnabled, activeChild } = props;
   const themeContext = useContext(ThemeContext);
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
@@ -44,7 +44,7 @@ const NotificationItem = (props: any) => {
     (state: any) => state.selectedCountry.pluralShow,
   );
   const { t } = useTranslation();
-  const geticonname = (type: string) => {
+  const geticonname = (type: string):any => {
      return type == 'gw'
       ? 'ic_growth'
       : type == 'cd'
@@ -55,13 +55,13 @@ const NotificationItem = (props: any) => {
             ? 'ic_doctor_chk_up'
             : 'ic_growth';
   };
-  const markAsRead = (item: any) => {
+  const markAsRead = (item: any):any => {
     onItemReadMarked(item);
   }
-  const markAsDelete = (item: any) => {
+  const markAsDelete = (item: any):any => {
     onItemDeleteMarked(item);
   }
-  const getButtonname = (type: string) => {
+  const getButtonname = (type: string):any => {
     return type == 'gw'
       ? t('growthScreenaddNewBtntxt')
       : type == 'cd'
@@ -72,7 +72,7 @@ const NotificationItem = (props: any) => {
             ? t('hcReminderbtn')
             : type == 'hcr' ? t('hcNewBtn') : '';
   };
-  const gotoPage = (item: any) => {
+  const gotoPage = (item: any):any => {
     if(item.isRead==false){
       markAsRead(item);
     }
@@ -132,7 +132,7 @@ const NotificationItem = (props: any) => {
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
-  const getVaccinesForPeriod = (period: string) => {
+  const getVaccinesForPeriod = (period: string):any => {
     const allvc = allVaccineData.filter((item:any) => item.growth_period == period);
     let vc = ' ';
     allvc.map((item: any, index: number) => {
@@ -147,7 +147,7 @@ const NotificationItem = (props: any) => {
   const toDay = DateTime.fromJSDate(new Date()).toMillis();
   const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
   const notiDate = DateTime.fromJSDate(new Date(item.notificationDate)).toMillis();
-  const renderGrowthNotifcation = () => {
+  const renderGrowthNotifcation = ():any => {
     return (
       //
       (toDay >= notiDate && childBirthDate <= notiDate) ? item.isDeleted ? null :
@@ -192,7 +192,7 @@ const NotificationItem = (props: any) => {
                     )}</Heading6>
                 </ShiftFromTop5>
                 <ShiftFromTop10>
-                  <Pressable onPress={() => gotoPage(item)}>
+                  <Pressable onPress={():any => gotoPage(item)}>
                     <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                   </Pressable></ShiftFromTop10>
               </NotifiContent>
@@ -200,7 +200,7 @@ const NotificationItem = (props: any) => {
               <NotifAction>
                 {(isDeleteEnabled === true) ? (
                   <FormOuterCheckbox
-                    onPress={() => {
+                    onPress={():any => {
                       setToggleCheckBox(!toggleCheckBox);
                       props.onItemChecked(item, !toggleCheckBox)
                     }}>
@@ -243,11 +243,11 @@ const NotificationItem = (props: any) => {
                           },
 
                         }}>
-                        <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                        <MenuOption value={1} onSelect={():any => markAsDelete(item)}>
                           <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                         </MenuOption>
                         <DividerN></DividerN>
-                        <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                        <MenuOption value={2} onSelect={():any => markAsRead(item)}>
                           <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                         </MenuOption>
                       </MenuOptions>
@@ -262,7 +262,7 @@ const NotificationItem = (props: any) => {
           <DividerContainer><Divider></Divider></DividerContainer>
         </>) : null)
   }
-  const renderHCNotifcation = () => {
+  const renderHCNotifcation = ():any => {
     return (
       (toDay >= notiDate && childBirthDate <= notiDate) ? (item.isDeleted ? null :
         <>
@@ -304,7 +304,7 @@ const NotificationItem = (props: any) => {
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
-                  <Pressable onPress={() => gotoPage(item)}>
+                  <Pressable onPress={():any => gotoPage(item)}>
                     <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                   </Pressable></ShiftFromTop10>
               </NotifiContent>
@@ -312,7 +312,7 @@ const NotificationItem = (props: any) => {
               <NotifAction>
                 {(isDeleteEnabled === true) ? (
                   <FormOuterCheckbox
-                    onPress={() => {
+                    onPress={():any => {
                       setToggleCheckBox(!toggleCheckBox);
                       props.onItemChecked(item, !toggleCheckBox)
                     }}>
@@ -356,11 +356,11 @@ const NotificationItem = (props: any) => {
                           },
 
                         }}>
-                        <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                        <MenuOption value={1} onSelect={():any => markAsDelete(item)}>
                           <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                         </MenuOption>
                         <DividerN></DividerN>
-                        <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                        <MenuOption value={2} onSelect={():any => markAsRead(item)}>
                           <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                         </MenuOption>
                       </MenuOptions>
@@ -375,7 +375,7 @@ const NotificationItem = (props: any) => {
           <DividerContainer><Divider></Divider></DividerContainer>
         </>) : null)
   }
-  const renderVCNotifcation = () => {
+  const renderVCNotifcation = ():any => {
     return (
       (toDay >= notiDate && childBirthDate <= notiDate) ? (item.isDeleted ? null :
         <>
@@ -421,7 +421,7 @@ const NotificationItem = (props: any) => {
                     )}</Heading6>
                 </ShiftFromTop5>
                 <ShiftFromTop10>
-                  <Pressable onPress={() => gotoPage(item)}>
+                  <Pressable onPress={():any => gotoPage(item)}>
                     <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                   </Pressable></ShiftFromTop10>
               </NotifiContent>
@@ -429,7 +429,7 @@ const NotificationItem = (props: any) => {
               <NotifAction>
                 {(isDeleteEnabled === true) ? (
                   <FormOuterCheckbox
-                    onPress={() => {
+                    onPress={():any => {
                       setToggleCheckBox(!toggleCheckBox);
                       props.onItemChecked(item, !toggleCheckBox)
                     }}>
@@ -471,11 +471,11 @@ const NotificationItem = (props: any) => {
                           },
 
                         }}>
-                        <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                        <MenuOption value={1} onSelect={():any => markAsDelete(item)}>
                           <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                         </MenuOption>
                         <DividerN></DividerN>
-                        <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                        <MenuOption value={2} onSelect={():any => markAsRead(item)}>
                           <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                         </MenuOption>
                       </MenuOptions>
@@ -491,7 +491,7 @@ const NotificationItem = (props: any) => {
         </>) : null)
   }
 
-  const renderCDNotifcation = () => {
+  const renderCDNotifcation = ():any => {
     if (item.title == 'cdNoti1') {
       return (
         (toDay >= notiDate && childBirthDate <= notiDate) ? item.isDeleted ? null :
@@ -533,7 +533,7 @@ const NotificationItem = (props: any) => {
                       )}</Heading6>
                    </ShiftFromTop5>
                   <ShiftFromTop10>
-                    <Pressable onPress={() => gotoPage(item)}>
+                    <Pressable onPress={():any => gotoPage(item)}>
                       <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                     </Pressable></ShiftFromTop10>
                 </NotifiContent>
@@ -541,7 +541,7 @@ const NotificationItem = (props: any) => {
                 <NotifAction>
                   {(isDeleteEnabled === true) ? (
                     <FormOuterCheckbox
-                      onPress={() => {
+                      onPress={():any => {
                         setToggleCheckBox(!toggleCheckBox);
                         props.onItemChecked(item, !toggleCheckBox)
                       }}>
@@ -581,11 +581,11 @@ const NotificationItem = (props: any) => {
                               padding: 15,
                             },
                           }}>
-                          <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                          <MenuOption value={1} onSelect={():any => markAsDelete(item)}>
                             <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                           </MenuOption>
                           <DividerN></DividerN>
-                          <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                          <MenuOption value={2} onSelect={():any => markAsRead(item)}>
                             <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                           </MenuOption>
                         </MenuOptions>
@@ -641,7 +641,7 @@ const NotificationItem = (props: any) => {
                       )}</Heading6>
                   </ShiftFromTop5>
                   <ShiftFromTop10>
-                    <Pressable onPress={() => gotoPage(item)}>
+                    <Pressable onPress={():any => gotoPage(item)}>
                       <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                     </Pressable></ShiftFromTop10>
                 </NotifiContent>
@@ -649,7 +649,7 @@ const NotificationItem = (props: any) => {
                 <NotifAction>
                   {(isDeleteEnabled === true) ? (
                     <FormOuterCheckbox
-                      onPress={() => {
+                      onPress={():any => {
                         setToggleCheckBox(!toggleCheckBox);
                         props.onItemChecked(item, !toggleCheckBox)
                       }}>
@@ -691,11 +691,11 @@ const NotificationItem = (props: any) => {
                             },
 
                           }}>
-                          <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                          <MenuOption value={1} onSelect={():any => markAsDelete(item)}>
                             <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                           </MenuOption>
                           <DividerN></DividerN>
-                          <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                          <MenuOption value={2} onSelect={():any => markAsRead(item)}>
                             <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                           </MenuOption>
                         </MenuOptions>
@@ -712,7 +712,7 @@ const NotificationItem = (props: any) => {
     }
   }
 
-  const renderVCReminderNotifcation = () => {
+  const renderVCReminderNotifcation = ():any => {
      return (toDay >= notiDate ? item.isDeleted ? null : <>
       <NotificationListContainer>
         <FlexDirRowStart>
@@ -746,7 +746,7 @@ const NotificationItem = (props: any) => {
                 )}</Heading6>
             </ShiftFromTop5>
             <ShiftFromTop10>
-              <Pressable onPress={() => gotoPage(item)}>
+              <Pressable onPress={():any => gotoPage(item)}>
                 <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
               </Pressable></ShiftFromTop10>
           </NotifiContent>
@@ -754,7 +754,7 @@ const NotificationItem = (props: any) => {
           <NotifAction>
             {(isDeleteEnabled === true) ? (
               <FormOuterCheckbox
-                onPress={() => {
+                onPress={():any => {
                   setToggleCheckBox(!toggleCheckBox);
                   props.onItemChecked(item, !toggleCheckBox)
                 }}>
@@ -796,11 +796,11 @@ const NotificationItem = (props: any) => {
                       },
 
                     }}>
-                    <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                    <MenuOption value={1} onSelect={():any => markAsDelete(item)}>
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
                     <DividerN></DividerN>
-                    <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                    <MenuOption value={2} onSelect={():any => markAsRead(item)}>
                       <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                     </MenuOption>
                   </MenuOptions>

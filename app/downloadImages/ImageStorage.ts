@@ -46,7 +46,7 @@ const waitMilliseconds=(milliseconds: number): Promise<string>=>{
         setTimeout(() => { resolve('success') }, milliseconds);
     });
 }
-export const deleteImageFile=(filename:any)=>{
+export const deleteImageFile=(filename:any):any=>{
     return new Promise(function(resolve:any, reject:any){
     const filepath = filename;
   

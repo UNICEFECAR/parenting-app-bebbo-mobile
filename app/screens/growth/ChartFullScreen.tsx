@@ -36,7 +36,7 @@ mainContainer:{
 mainView:{backgroundColor:bgcolorWhite2, flex: 1},
 padding12:{padding: 12}
 })
-export const ChartFullScreen = ({ route, navigation }: Props) => {
+export const ChartFullScreen = ({ route, navigation }: Props):any => {
   const {activeChild, chartType, obj} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -50,7 +50,7 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
   const [isChartVisible, setIsChartVisible] = React.useState(false);
 
 
-  const closeFullScreen = () => {
+  const closeFullScreen = ():any => {
     navigation.goBack();
     setTimeout(()=>{
       Orientation.lockToPortrait();
@@ -117,7 +117,7 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
                 <Heading2>{chartHeading.title}</Heading2>
                 <Pressable
                   style={styles.padding12}
-                  onPress={() => closeFullScreen()}>
+                  onPress={():any => closeFullScreen()}>
                   <Icon name="ic_close" size={20} />
                 </Pressable>
               </FlexFDirRowSpace>

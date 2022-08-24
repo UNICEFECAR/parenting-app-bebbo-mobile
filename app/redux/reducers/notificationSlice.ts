@@ -32,29 +32,29 @@ export const notificationSlice = createSlice({
     setAllNotificationData: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       state.notifications = (action.payload);
     },
     toggleNotificationFlags: (state: any,
-      action: PayloadAction<any>,) => {
+      action: PayloadAction<any>,):any => {
       state[action.payload.key] = action.payload.value;
     },
     setAllLocalNotificationData: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       console.log(JSON.stringify(action.payload),"action.payload localNotifications---");
       state.localNotifications = (action.payload);
     },
     setAllScheduledLocalNotificationData: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       console.log(JSON.stringify(action.payload),"action.payload scheduledlocalNotifications---");
       state.scheduledlocalNotifications = (action.payload);
     },
     setAllLocalNotificationGenerateType:( state:any,
-      action: PayloadAction<any>,)=>{
+      action: PayloadAction<any>,):any=>{
         console.log(JSON.stringify(action.payload),"action.payload---");
         state.localNotificationGenerateType = action.payload;
       },

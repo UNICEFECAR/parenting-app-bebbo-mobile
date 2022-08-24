@@ -71,7 +71,7 @@ const styles= StyleSheet.create({
     padding: 15,
   }
 })
-const Childgrowth = ({navigation}: any) => {
+const Childgrowth = ({navigation}: any):any => {
   const {t} = useTranslation();
   const data = [
     {title: t('growthScreenweightForHeight')},
@@ -84,7 +84,7 @@ const Childgrowth = ({navigation}: any) => {
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading,setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
-  const setIsModalOpened = async (varkey: any) => {
+  const setIsModalOpened = async (varkey: any):Promise<any> => {
     const obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
@@ -152,7 +152,7 @@ const Childgrowth = ({navigation}: any) => {
       }
     //Code for Growth text hiding condition ends here
 const {width,height}= Dimensions.get('window');
-  const renderDummyChart = () => {
+  const renderDummyChart = ():any => {
     return (
       <>
         <View
@@ -168,17 +168,17 @@ const {width,height}= Dimensions.get('window');
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           console.log("in onRequestClose");
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                   setIsModalOpened('IsGrowthModalOpened');
                 }}>
@@ -192,7 +192,7 @@ const {width,height}= Dimensions.get('window');
               </ModalPopupContent>
               <FDirRow>
               <ButtonModal
-                onPress={() => {
+                onPress={():any => {
                   setIsModalOpened('IsGrowthModalOpened');
                 }}>
                 <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
@@ -273,7 +273,7 @@ const {width,height}= Dimensions.get('window');
                           <Pressable
                             key={itemindex}
                             style={styles.flex1}
-                            onPress={() => {
+                            onPress={():any => {
                               setSelectedIndex(itemindex);
                             }}>
                             <TabBarDefault
@@ -313,7 +313,7 @@ const {width,height}= Dimensions.get('window');
               <ButtonPrimary
                 disabled={isFutureDate(activeChild?.birthDate)}
                 style={{backgroundColor: headerColor}}
-                onPress={() => {
+                onPress={():any => {
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreenaddNewBtntxt'),
                   });

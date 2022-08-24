@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 const AgeSliderContainer = styled.View`
-  background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
   padding:5px 5px;
   min-height:70px;
   flex-direction:row;
@@ -16,7 +16,7 @@ export const AgeSliderNav = styled.View`
 
   export const AgeSliderBox = styled.View`
   padding:12px 10px;
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
   min-width:95px;
   text-align:center;
   margin: 0 5px;

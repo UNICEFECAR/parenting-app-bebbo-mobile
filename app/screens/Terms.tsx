@@ -54,7 +54,7 @@ const styles=StyleSheet.create({
     padding: 0
   }
 })
-const Terms = ({navigation}: Props) => {
+const Terms = ({navigation}: Props):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
  
@@ -64,7 +64,7 @@ const Terms = ({navigation}: Props) => {
   const isButtonDisabled = (toggleCheckBox==false || toggleCheckBox1==false)
   const [loading, setLoading] = useState(true);
   const {t} = useTranslation();
-  const goToPrivacyPolicy = () => {
+  const goToPrivacyPolicy = ():any => {
     navigation.navigate('PrivacyPolicy');
   };
   const languageCode = useAppSelector(
@@ -190,7 +190,7 @@ const Terms = ({navigation}: Props) => {
     // survey,child dev,vaccine,healthcheckup,growth,activities,
     // pinned for all 4 tools
   ];
-  const acceptTerms = async () => {
+  const acceptTerms = async ():any => {
     
        if(acceptTermsFlag == false)
        {
@@ -229,7 +229,7 @@ const Terms = ({navigation}: Props) => {
           <Fragment>
             <View style={styles.containerView2}>
             <FormOuterCheckbox
-            onPress={() => {
+            onPress={():any => {
               setToggleCheckBox(!toggleCheckBox);
             }}>
             <CheckboxItem>
@@ -246,7 +246,7 @@ const Terms = ({navigation}: Props) => {
             <LabelText>{t('tNccheckbox1')}</LabelText>
           </FormOuterCheckbox>
           <FormOuterCheckbox
-            onPress={() => {
+            onPress={():any => {
               setToggleCheckBox1(!toggleCheckBox1);
             }}>
             <CheckboxItem >
@@ -263,7 +263,7 @@ const Terms = ({navigation}: Props) => {
             <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={styles.checkboxStyle}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
           </FormOuterCheckbox>
           <FormOuterCheckbox
-            onPress={() => {
+            onPress={():any => {
               setToggleCheckBox2(!toggleCheckBox2);
             }}>
             <CheckboxItem>
@@ -285,7 +285,7 @@ const Terms = ({navigation}: Props) => {
         <ButtonRow>
           <ButtonPrimary
             disabled={isButtonDisabled}
-            onPress={() => {
+            onPress={():any => {
               acceptTerms();
             }}>
             <ButtonText>{t('tNcacceptbtn')}</ButtonText>

@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     zIndex: 9999
   }
 });
-const HeaderBabyMenu = (props : any) => {
+const HeaderBabyMenu = (props : any):any => {
   const {setProfileLoading}=props;
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
@@ -154,7 +154,7 @@ const HeaderBabyMenu = (props : any) => {
   const SortedchildList = [...childList].sort((a: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
-  const renderChildItem = (dispatch: any, data: any, index: number) => {
+  const renderChildItem = (dispatch: any, data: any, index: number):any => {
     const genderLocal =
       genders?.length > 0 && data.gender != ''
         ? genders.find((genderset: any) => genderset.id === parseInt(data.gender)).name
@@ -231,7 +231,7 @@ const HeaderBabyMenu = (props : any) => {
               <FlexColEnd>
                 <FDirRow>
                   <Pressable style={styles.pressableProfile}
-                    onPress={() => {
+                    onPress={():any => {
                       setModalVisible(false);
                       setProfileLoading(true);
                       setTimeout(async () => {
@@ -264,10 +264,10 @@ const HeaderBabyMenu = (props : any) => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           setModalVisible(false);
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           setModalVisible(false);
         }}>
 
@@ -279,11 +279,11 @@ const HeaderBabyMenu = (props : any) => {
               <FlatList
                 nestedScrollEnabled={true}
                 data={SortedchildList}
-                renderItem={({ item, index }: any) =>
+                renderItem={({ item, index }: any):any =>
                   // return a component using that data
                   renderChildItem(dispatch, item, index)
                 }
-                keyExtractor={(item: { uuid: any }) => item.uuid}
+                keyExtractor={(item: { uuid: any }):any => item.uuid}
               />
             </View>
           ) : null}
@@ -291,7 +291,7 @@ const HeaderBabyMenu = (props : any) => {
           <ButtonContainer>
             <ShiftFromBottom10>
               <ButtonLinkPress
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                   navigation.navigate('EditChildProfile', { childData: null })
                 }
@@ -308,7 +308,7 @@ const HeaderBabyMenu = (props : any) => {
             </ShiftFromBottom10>
 
             <ButtonPrimary
-              onPress={() => {
+              onPress={():any => {
                 setModalVisible(false);
                 navigation.navigate('ChildProfileScreen')
               }}>
@@ -320,7 +320,7 @@ const HeaderBabyMenu = (props : any) => {
           style={styles.centeredView}>
           <View style={styles.innerCenteredView}>
             <Pressable style={styles.centeredPressable}
-              onPress={() => {
+              onPress={():any => {
                 setModalVisible(!modalVisible);
                 if (modalVisible) {
                   getAllChildren(dispatch, child_age, 0);
@@ -332,7 +332,7 @@ const HeaderBabyMenu = (props : any) => {
         </View>
         <View style={styles.hbMenuView} >
           <Pressable style={styles.hbPressable}
-            onPress={() => {
+            onPress={():any => {
               setModalVisible(false);
             }}>
           </Pressable>
@@ -341,7 +341,7 @@ const HeaderBabyMenu = (props : any) => {
 
       <HeaderActionView>
         <HeaderActionBox
-          onPress={() => {
+          onPress={():any => {
             setModalVisible(!modalVisible);
             if (modalVisible) {
               getAllChildren(dispatch, child_age, 0);

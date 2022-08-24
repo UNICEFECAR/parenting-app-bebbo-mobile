@@ -7,7 +7,7 @@ import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
   uuid: string;
 };
-const PrevPlannedVaccines = (props: any) => {
+const PrevPlannedVaccines = (props: any):any => {
   const {onPrevPlannedVaccineToggle,isEditScreen, currentPeriodVaccines,takenVaccine, fromScreen,backgroundActiveColor} = props;
   const {previousPeriods} = getAllVaccinePeriods();
   //remove first period which is the current period
@@ -46,7 +46,7 @@ const PrevPlannedVaccines = (props: any) => {
     [],
   );
 
-  const onToggleVaccine = (uuid:any, isVaccineItemChecked:any) => {
+  const onToggleVaccine = (uuid:any, isVaccineItemChecked:any):any => {
     if (isVaccineItemChecked) {
       const allCheckedVaccines = [
         ...checkedVaccines,

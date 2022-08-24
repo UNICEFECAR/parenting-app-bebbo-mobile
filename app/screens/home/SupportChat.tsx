@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   flex1:{flex:1},
   imageBg:{backgroundColor:imageBg,flex:1,height:'100%',width:'100%'}
 });
-const SupportChat = ({ navigation }: Props) => {
+const SupportChat = ({ navigation }: Props):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
   const {t} = useTranslation();
@@ -60,7 +60,7 @@ const faqsData = useAppSelector((state: any) =>
       ? JSON.parse(state.utilsData.faqsData)
       : state.utilsData.faqsData,
   );
-  function parseWithFunctions(obj: any) {
+  function parseWithFunctions(obj: any):any {
     return JSON.parse(obj, (k, v) => {
       if (typeof v === 'string' && k == 'nextStepFunc') {
         return eval(v);
@@ -81,14 +81,14 @@ const faqsData = useAppSelector((state: any) =>
   const [steps,setsteps] = useState<any>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const flatListRef = useRef<any>(null);
-  const noDataStep = () => {
+  const noDataStep = ():any => {
   console.log("noDataStep")
   }
-  const updateChatBotData = (updatedData:any) => {
+  const updateChatBotData = (updatedData:any):any => {
     setsteps(updatedData);
     dispatch(setchatBotData(updatedData));
   }
-  const showdynamicdelay=(stepobj: any[],index: number) => {
+  const showdynamicdelay=(stepobj: any[],index: number):any => {
     setTimeout(() => {
       let localsteps = [...stepobj]
       localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
@@ -97,7 +97,7 @@ const faqsData = useAppSelector((state: any) =>
       updateChatBotData(localsteps);
     },delayOfSteps);
   }
-  const dynamicStepSelection = (stepIndex: any,optionIndex: any,steps2: any) => {
+  const dynamicStepSelection = (stepIndex: any,optionIndex: any,steps2: any):any => {
     let localsteps = [...steps2];
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
     const nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
@@ -110,7 +110,7 @@ const faqsData = useAppSelector((state: any) =>
     updateChatBotData(localsteps);
   }
   
-  const categorySelection = (stepIndex: any,optionIndex: any,steps2: any) => {
+  const categorySelection = (stepIndex: any,optionIndex: any,steps2: any):any => {
     let localsteps = [...steps2];
     //changing answer value from null to option value
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
@@ -171,7 +171,7 @@ const faqsData = useAppSelector((state: any) =>
     console.log(i)
     return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
   });
-  const backToStep = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
+  const backToStep = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any):any => {
     console.log(stepsjson2,"..stepsjson2..");
     let localsteps = [...steps2];
     let localstepsjson = [...steps2];
@@ -190,7 +190,7 @@ const faqsData = useAppSelector((state: any) =>
     const updatedsteps = [...localsteps,...localstepsjson]
     updateChatBotData(updatedsteps);
   }
-  const backToHomeScreen = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
+  const backToHomeScreen = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any):any => {
     //navigate to home screen.
     //ask if history needs to be cleared.
     let localsteps = [...steps2];
@@ -210,7 +210,7 @@ const faqsData = useAppSelector((state: any) =>
       ],
     });
   }
-  const showFeedbackLink = (stepIndex: any,optionIndex: any,steps2: any) => {
+  const showFeedbackLink = (stepIndex: any,optionIndex: any,steps2: any):any => {
     setModalVisible(true);
     let localsteps = [...steps2];
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
@@ -349,7 +349,7 @@ const faqsData = useAppSelector((state: any) =>
     },delayOfConcurrentSteps);       
   }, [steps]);
   
-  const setOnloadChatBotData = (chatBotData:any,stepsjson:any) => {
+  const setOnloadChatBotData = (chatBotData:any,stepsjson:any):any => {
     if(chatBotData && chatBotData.length > 0) {
       setsteps((chatBotData));
     }else {
@@ -362,12 +362,12 @@ const faqsData = useAppSelector((state: any) =>
     }
   }
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData():Promise<any> {
       setOnloadChatBotData(chatBotData,stepsjson);
     }
     fetchData()        
   }, []);
-  const scrollToIndexFailed = (error:any) => {
+  const scrollToIndexFailed = (error:any):any => {
       const offset = error.averageItemLength * error.index;
       flatListRef?.current?.scrollToOffset({offset});
       setTimeout(() => flatListRef?.current?.scrollToIndex({ index: error.index }), 10); // You may choose to skip this line if the above typically works well because your average item height is accurate.
@@ -394,11 +394,8 @@ const faqsData = useAppSelector((state: any) =>
                     <FlatList
                       ref={flatListRef}
                       data={steps}
-                      onScroll={(e)=>{
-                        console.log(e)
-                        // if(keyboardStatus==true){
-                        //   Keyboard.dismiss();
-                        // }
+                      onScroll={(e):any=>{
+                        console.log("e-",e);
                       }}
                       nestedScrollEnabled={true}
                       initialScrollIndex={steps.length - 1}
@@ -409,8 +406,8 @@ const faqsData = useAppSelector((state: any) =>
                       maxToRenderPerBatch={75} // Reduce number in each render batch
                       updateCellsBatchingPeriod={100} // Increase time between renders
                       windowSize={90} // Reduce the window size
-                      renderItem={({item, index}:any) => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} noDataStep={noDataStep} />  }
-                      keyExtractor={(item:any,index:any) => index.toString()}
+                      renderItem={({item, index}:any):any => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} noDataStep={noDataStep} />  }
+                      keyExtractor={(item:any,index:any):any => index.toString()}
                       onScrollToIndexFailed={scrollToIndexFailed}
                       />
                     : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
@@ -424,17 +421,17 @@ const faqsData = useAppSelector((state: any) =>
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           setModalVisible(false);
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           setModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />
@@ -456,7 +453,7 @@ const faqsData = useAppSelector((state: any) =>
               </ModalPopupContent>
                 <FDirRow>
                   <ButtonModal
-                    onPress={() => {
+                    onPress={():any => {
                       setModalVisible(false);
                       analytics().logEvent(FEEDBACK_SUBMIT)
                       Linking.openURL(feedbackItem?.survey_feedback_link)

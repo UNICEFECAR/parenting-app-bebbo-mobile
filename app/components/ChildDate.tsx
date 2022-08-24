@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   formDateText:{flex:1,flexDirection:"row"}
 });
-const ChildDate = (props: any) => {
+const ChildDate = (props: any):any => {
   const {dobMax,prevScreen} = props;
   let birthDate: any,
     isPremature: any,
@@ -52,7 +52,7 @@ const ChildDate = (props: any) => {
   const [showdue, setdueShow] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
  
-  const isFutureDate = (date: Date) => {
+  const isFutureDate = (date: Date):any => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
@@ -91,7 +91,7 @@ const ChildDate = (props: any) => {
     }, []),
   );
   
-  const ondueDateChange = (event:any,selectedDate: any) => {
+  const ondueDateChange = (event:any,selectedDate: any):any => {
     const currentDate = selectedDate;
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
@@ -102,7 +102,7 @@ const ChildDate = (props: any) => {
       isExpected: isExpected,
     });
   };
-  const ondobChange = (event:any,selectedDate: any) => {
+  const ondobChange = (event:any,selectedDate: any):any => {
     if(new Date(selectedDate) < new Date(dobMin)){
       selectedDate = new Date(dobMin);
     }
@@ -131,25 +131,25 @@ const ChildDate = (props: any) => {
       });
     }
   };
-  const handleDobConfirm = (event:any) => {
+  const handleDobConfirm = (event:any):any => {
     const date=event;
     ondobChange(event,date);
     setDobDatePickerVisibility(false);
   };
-  const handleDueConfirm = (event:any) => {
+  const handleDueConfirm = (event:any):any => {
     const date=event;
     ondueDateChange(event,date);
     setDueDatePickerVisibility(false);
   };
  
-  const showdobDatepicker = () => {
+  const showdobDatepicker = ():any => {
     setdobShow(true);
     if(Platform.OS == 'ios'){
     setDobDatePickerVisibility(true);
     }
   };
  
-  const showdueDatepicker = () => {
+  const showdueDatepicker = ():any => {
     setdueShow(true);
     if(Platform.OS == 'ios'){
       setDueDatePickerVisibility(true);
@@ -206,7 +206,7 @@ const ChildDate = (props: any) => {
                     doborExpectedDate != null ? doborExpectedDate : new Date()
                 }
                 onConfirm={handleDobConfirm}
-                onCancel={() => {
+                onCancel={():any => {
                    setDobDatePickerVisibility(false);
                 }}
                 minimumDate={new Date(dobMin)}
@@ -223,7 +223,7 @@ const ChildDate = (props: any) => {
 
         <FormPrematureContainer>
           <FormOuterCheckbox
-            onPress={() => {
+            onPress={():any => {
              if (!disablePrematureCheck) {
                 props.sendData({
                   birthDate: doborExpectedDate,
@@ -253,7 +253,7 @@ const ChildDate = (props: any) => {
           </FormOuterCheckbox>
 
           <FormInfoLabel>
-            <FormInfoPress onPress={() => setModalVisible(true)}>
+            <FormInfoPress onPress={():any => setModalVisible(true)}>
               <Icon name="ic_info" size={15} color="#FFF" />
             </FormInfoPress>
           </FormInfoLabel>
@@ -325,7 +325,7 @@ const ChildDate = (props: any) => {
                           .toISODate(),
                       )}
                       onConfirm={handleDueConfirm}
-                      onCancel={() => {
+                      onCancel={():any => {
                         setDueDatePickerVisibility(false);
                       }}
                       minimumDate={
@@ -360,17 +360,17 @@ const ChildDate = (props: any) => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           setModalVisible(false);
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           setModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />

@@ -2,8 +2,8 @@ import styled from 'styled-components/native';
 const Checkbox = styled.View`
   width: 20px;
   height: 20px;
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
-  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+  background-color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 export const FormOuterCheckbox = styled.Pressable`
   margin-top: 10px;
@@ -16,20 +16,20 @@ export const CheckboxActive = styled(Checkbox)`
   flex-direction: row;
   justify-content: center;
   text-align: center;
-  background-color: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
+  background-color: ${(props):any => props.theme.colors.PRIMARY_TINTCOLOR};
 `;
 
 export const CheckboxDevActive = styled(CheckboxActive)`
-  background-color: ${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
+  background-color: ${(props):any => props.theme.colors.CHILDDEVELOPMENT_COLOR};
 `;
 export const CheckboxGroActive = styled(CheckboxActive)`
-  background-color: ${(props) => props.theme.colors.CHILDGROWTH_COLOR};
+  background-color: ${(props):any => props.theme.colors.CHILDGROWTH_COLOR};
 `;
 export const CheckboxVacActive = styled(CheckboxActive)`
-  background-color: ${(props) => props.theme.colors.VACCINATION_COLOR};
+  background-color: ${(props):any => props.theme.colors.VACCINATION_COLOR};
 `;
 export const CheckboxChkActive = styled(CheckboxActive)`
-  background-color: ${(props) => props.theme.colors.HEALTHCHECKUP_COLOR};
+  background-color: ${(props):any => props.theme.colors.HEALTHCHECKUP_COLOR};
 `;
 
 

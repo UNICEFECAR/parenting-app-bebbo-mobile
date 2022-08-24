@@ -7,7 +7,7 @@ export default Container;
 
 
 export const SafeAreaContainer = styled.SafeAreaView`
-background-color:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+background-color:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 flex:1
 `;
 
@@ -29,13 +29,13 @@ export const VacItemContainer = styled.View`
 `;
 
 export const BannerContainer = styled.View`
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
   padding:20px 15px;
-  background-color:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background-color:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const BannerContainerMilestone = styled(BannerContainer)`
-  background-color:${(props) => props.theme.colors.CHILDDEVELOPMENT_TINTCOLOR};
+  background-color:${(props):any => props.theme.colors.CHILDDEVELOPMENT_TINTCOLOR};
 `;
 export const BannerContainer1 = styled(BannerContainer)`
   padding:15px 15px;
@@ -44,7 +44,7 @@ export const BannerContainer1 = styled(BannerContainer)`
 
 
 export const BgContainer = styled.View`
-  background-color:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  background-color:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 
 `;

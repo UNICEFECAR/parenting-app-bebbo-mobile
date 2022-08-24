@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 8 
   }
 })
-const ChildSetupList = ({ navigation }: Props) => {
+const ChildSetupList = ({ navigation }: Props):any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
@@ -100,7 +100,7 @@ const ChildSetupList = ({ navigation }: Props) => {
           });
         });
       }, 500);
-      const backAction = () => {
+      const backAction = ():any => {
         return true;
       };
       const backHandler = BackHandler.addEventListener(
@@ -108,23 +108,23 @@ const ChildSetupList = ({ navigation }: Props) => {
         backAction,
       );
       navigation.addListener('gestureEnd', backAction);
-      return () => {
+      return ():any => {
         navigation.removeListener('gestureEnd', backAction);
         backHandler.remove();
       }
     }, [])
   );
-  const deleteRecord = (index: number, dispatch: any, uuid: string) => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string):any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'),
         [
           {
             text: t('removeOption1'),
-            onPress: () => resolve("error"),
+            onPress: ():any => resolve("error"),
             style: "cancel"
           },
           {
-            text: t('growthScreendelText'), onPress: async () => {
+            text: t('growthScreendelText'), onPress: async ():Promise<any> => {
               await deleteChild(languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, child_age, t);
               getAllChildren(dispatch, child_age, 0);
             }
@@ -134,10 +134,10 @@ const ChildSetupList = ({ navigation }: Props) => {
     });
 
   }
-  const editRecord = (data: any) => {
+  const editRecord = (data: any):any => {
     navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListeditSiblingBtn'), childData: data });
   }
-  const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any) => {
+  const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any):any => {
 
     return (
       <ChildListingBox key={index}>
@@ -148,7 +148,7 @@ const ChildSetupList = ({ navigation }: Props) => {
         <ChildColArea2>
           {
             childList.length > 1 ? (
-              <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={() => deleteRecord(index, dispatch, data.uuid)}>
+              <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={():any => deleteRecord(index, dispatch, data.uuid)}>
                 <ChildListAction>
                   <Icon
                     name="ic_trash"
@@ -159,7 +159,7 @@ const ChildSetupList = ({ navigation }: Props) => {
               </TouchableHighlight>
             ) : null
           }
-          <TouchableHighlight style={styles.touchableLeft} underlayColor="transparent" onPress={() => editRecord(data)}>
+          <TouchableHighlight style={styles.touchableLeft} underlayColor="transparent" onPress={():any => editRecord(data)}>
             <ChildListAction>
               <Icon
                 name="ic_edit"
@@ -176,7 +176,7 @@ const ChildSetupList = ({ navigation }: Props) => {
   
 
 
-  const childSetup = async () => {
+  const childSetup = async ():Promise<any> => {
     const Ages = await getAge(childList, child_age);
     let apiJsonData;
     if (Ages?.length > 0) {
@@ -238,7 +238,7 @@ const ChildSetupList = ({ navigation }: Props) => {
 
             <ShiftFromBottom10>
               <ButtonLinkPress
-                onPress={() => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
+                onPress={():any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
                 <OuterIconRow>
                   <OuterIconLeft>
                     <Icon name="ic_plus" size={20} color="#FFF" />
@@ -249,7 +249,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             </ShiftFromBottom10>
 
             <ButtonPrimary
-              onPress={(e) => {
+              onPress={(e):any => {
                 e.stopPropagation();
                 setLoading(true);
                 setTimeout(() => {

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const ChartWeightForHeight = (props: any) => {
+const ChartWeightForHeight = (props: any):any => {
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -37,7 +37,7 @@ const ChartWeightForHeight = (props: any) => {
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
 );
-  const fullScreenChart = (chartType: any, obj: any) => {
+  const fullScreenChart = (chartType: any, obj: any):any => {
     navigation.navigate('ChartFullScreen', {
       activeChild,
       chartType,
@@ -91,7 +91,7 @@ const ChartWeightForHeight = (props: any) => {
       : 'landscape'
   );
   useEffect(() => {
-    const deviceOrientation = () => {
+    const deviceOrientation = ():any => {
       if (Dimensions.get('window').width < Dimensions.get('window').height) {
         setDeviceOrientation('portrait');
       } else {
@@ -99,7 +99,7 @@ const ChartWeightForHeight = (props: any) => {
       }
     };
     Dimensions.addEventListener('change', deviceOrientation);
-    return () => {
+    return ():any => {
       //cleanup work
       Dimensions.removeEventListener('change', deviceOrientation);
     };
@@ -110,7 +110,7 @@ const ChartWeightForHeight = (props: any) => {
         <FlexColEnd>
           <Pressable
             style={styles.fullScreenPressable}
-            onPress={() => fullScreenChart(chartTypes.WeightForHeight, obj)}>
+            onPress={():any => fullScreenChart(chartTypes.WeightForHeight, obj)}>
             <Icon name="ic_fullscreen" size={16} />
           </Pressable>
         </FlexColEnd>

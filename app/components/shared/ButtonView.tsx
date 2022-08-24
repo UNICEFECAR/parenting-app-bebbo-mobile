@@ -4,9 +4,9 @@ export const ButtonviewNext = styled.View`
   height: 50px;
   
   align-content: center;
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
   text-align: center;
-  background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
+  background-color: ${(props):any => props.theme.colors.SECONDARY_COLOR};
 `;
 
 export const ButtonviewPrevious = styled(ButtonviewNext)`

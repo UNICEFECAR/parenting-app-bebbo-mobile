@@ -77,7 +77,7 @@ class Backup {
         return true;
     }
 
-    public closeImportedRealm() {
+    public closeImportedRealm():any {
         if (this.importedrealm) {
             this.importedrealm.close();
             delete this.importedrealm;
