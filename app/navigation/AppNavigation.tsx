@@ -447,11 +447,13 @@ export default () => {
   }
   useEffect(() => {
     // let notiListener=null;
+    if( userIsOnboarded == true){
     createLocalNotificationListeners();
+    }
     // return () => {
     //   notiListener=null;
     // }
-  }, []);
+  }, [userIsOnboarded]);
   useEffect(() => {
 
     const unsubscribe = messaging().onMessage(async remoteMessage => {
