@@ -4,7 +4,7 @@ import React from 'react';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInDays } from '../../services/childCRUD';
 
-const GrowthIntroductory = (props: any) => {
+const GrowthIntroductory = (props: any):any => {
   const {activeChild} = props;
   const taxonomy = useAppSelector((state: any) =>
     state.utilsData.taxonomy?.allTaxonomyData != ''
@@ -15,7 +15,7 @@ const GrowthIntroductory = (props: any) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  const growthPeriod = () => {
+  const growthPeriod = ():any => {
     if (childAgeInDays !== null) {
       let ageInDays = 0;
 

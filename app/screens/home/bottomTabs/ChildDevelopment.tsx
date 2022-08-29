@@ -44,7 +44,7 @@ font14:{ fontSize: 14 },
 font18:{ fontSize: 18 },
 fullWidth:{ width: '100%' }
 })
-const ChildDevelopment = ({ route, navigation }: any) => {
+const ChildDevelopment = ({ route, navigation }: any):any => {
 
   const themeContext = useContext(ThemeContext);
   const { t } = useTranslation();
@@ -79,7 +79,6 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // let headerColor,backgroundColor,artHeaderColor,artBackgroundColor,headerColorBlack;
   const childDevModalOpened = useAppSelector((state: any) =>
     (state.utilsData.IsChildDevModalOpened),
   );
@@ -98,17 +97,14 @@ const ChildDevelopment = ({ route, navigation }: any) => {
   const flatListRef = useRef<any>();
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
 
-  const setIsModalOpened = async (varkey: any) => {
-    //console.log("modalVisible--", modalVisible);
+  const setIsModalOpened = async (varkey: any):Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
       setModalVisible(false);
     }
   };
-  // let selectedChildDevData:any;
   useEffect(() => {
-    //console.log("in childdev focuseffect", childDevModalOpened);
     setModalVisible(childDevModalOpened);
 
     setComponentColors({
@@ -119,12 +115,12 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       headerColorBlack: themeContext.colors.PRIMARY_TEXTCOLOR
     });
 
-    return () => {
+    return ():any => {
       navigation.setParams({ currentSelectedChildId: 0,fromActivitiesScreen: false })
     }
   }, []);
 
-  const onPressInfo = () => {
+  const onPressInfo = ():any => {
     navigation.navigate('DetailsScreen', {
       fromScreen: 'ChildDevelopment',
       headerColor: componentColors?.artHeaderColor,
@@ -133,11 +129,11 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       currentSelectedChildId: currentSelectedChildId
     });
   };
-  const toTop = () => {
+  const toTop = ():any => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS=="android" ? true:false, offset: 0 })
   }
-  const showSelectedBracketData = async (item: any) => {
+  const showSelectedBracketData = async (item: any):Promise<any> => {
     toTop();
     analytics().logEvent(CHILD_DEVELOPMENT_AGEGROUP_SELECTED, { age_id: item.id });
 
@@ -160,7 +156,7 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       setshowNoData(true);
     }, 500);
   }
-  const onBackPress = () => {
+  const onBackPress = ():any => {
     if(route.params?.fromNotificationScreen==true){
       navigation.navigate('NotificationsScreen');
       return true;
@@ -185,18 +181,18 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       onBackPress,
     );
     navigation.addListener('gestureEnd', onBackPress);
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', onBackPress);
       backHandler.remove()};
   }, []);
   useFocusEffect(
     React.useCallback(() => {
     setListLoading(true);
-    return(()=>{
+    return(():any=>{
       setListLoading(false);
     })
     },[]));
-    const calculateMileStone = () => {
+    const calculateMileStone = ():any => {
       const arrlength = selectedChildMilestoneData?.length;
       let abc = 0;
       if (arrlength > 0) {
@@ -212,7 +208,6 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       showSelectedBracketData(firstChildDevData[0]);
     }
     else {
-   //   if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
         const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
         showSelectedBracketData(firstChildDevData[0]);
     }
@@ -237,7 +232,7 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       calculateMileStone();
     }, [selectedChildMilestoneData])
   );
-  const sendMileStoneDatatoParent = (item: any, togglevalue: any) => {
+  const sendMileStoneDatatoParent = (item: any, togglevalue: any):any => {
     if (togglevalue == true) {
       analytics().logEvent(CHILD_MILESTONE_TRACKED, { age_id: currentSelectedChildId });
     }
@@ -255,7 +250,7 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       setselectedChildMilestoneData([...sortednewArray]);
     }
   }
-  const ContentThatGoesBelowTheFlatList = () => {
+  const ContentThatGoesBelowTheFlatList = ():any => {
     return (
       <>
         <ShiftFromTop20>
@@ -292,7 +287,7 @@ const ChildDevelopment = ({ route, navigation }: any) => {
       </>
     );
   };
-  const ContentThatGoesAboveTheFlatList = () => {
+  const ContentThatGoesAboveTheFlatList = ():any => {
     
     return (
       <>
@@ -316,7 +311,7 @@ const ChildDevelopment = ({ route, navigation }: any) => {
                 <Heading3>{selectedChildDevData?.name} </Heading3>
 
                 {activeChild.isPremature === 'true' ? (
-                   <Pressable onPress={() => setModalVisible1(true)}>
+                   <Pressable onPress={():any => setModalVisible1(true)}>
                   <PrematureTagDevelopment>
                     <Heading5Bold>
                       {t('developScreenprematureText')}
@@ -439,8 +434,8 @@ const ChildDevelopment = ({ route, navigation }: any) => {
             <FlatList
               ref={flatListRef}
               data={selectedChildMilestoneData}
-              renderItem={({ item, index }:any) => <ChilDevelopmentCollapsibleItem key={item.id} activeChilduuidnew={activeChild.uuid} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
-              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }:any):any => <ChilDevelopmentCollapsibleItem key={item.id} activeChilduuidnew={activeChild.uuid} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
+              keyExtractor={(item):any => item.id.toString()}
               nestedScrollEnabled={true}
               ListHeaderComponent={ContentThatGoesAboveTheFlatList}
               ListFooterComponent={ContentThatGoesBelowTheFlatList}
@@ -453,18 +448,17 @@ const ChildDevelopment = ({ route, navigation }: any) => {
         animationType="none"
         transparent={true}
         visible={modalVisible1}
-        onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
+        onRequestClose={():any => {
           setModalVisible1(false);
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           setModalVisible1(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible1(false);
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />

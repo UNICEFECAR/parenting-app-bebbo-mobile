@@ -46,7 +46,7 @@ export type RelatedVideoArticlesProps = {
   fromScreen?:any;
   currentSelectedChildId?:any;
 }
-const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
+const RelatedVideoArticles = (props: RelatedVideoArticlesProps):any => {
   const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
   const { t } = useTranslation();
   let relartlength = related_articles ? related_articles.length : 0;
@@ -72,7 +72,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
   useFocusEffect(
     React.useCallback(() => {
       setrelatedArticleData([]);
-      async function fetchData() {
+      async function fetchData():Promise<any> {
         if (relartlength > 0) {
           let relatedData: any = [];
           if (fromScreen == "ChildgrowthTab") {
@@ -111,7 +111,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
     }, [currentId,related_articles])
   );
   
-  const goToArticleDetail = (item: any) => {
+  const goToArticleDetail = (item: any):any => {
     navigation.push('DetailsScreen',
       {
         fromScreen: fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) : "Articles",
@@ -122,9 +122,9 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
         currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
       });
   };
-  const RenderRelatedArticleItem =({item, index}:any) => {
+  const RenderRelatedArticleItem =({item, index}:any):any => {
     return (
-      <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
+      <Pressable onPress={():any => { goToArticleDetail(item) }} key={index}
         style={styles.itemPressable}
       >
       <RelatedArticleContainer2 key={index}>    
@@ -167,7 +167,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps) => {
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
               renderItem={memoizedValue}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item):any => item.id}
             />
           </View>
         </ContainerView>

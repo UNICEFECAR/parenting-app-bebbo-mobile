@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 });
-const HeaderNotiIcon = (props: any) => {
+const HeaderNotiIcon = (props: any):any => {
   const allnotis = useAppSelector((state: any) => state.notificationData.notifications);
   const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
   const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
@@ -71,7 +71,7 @@ const HeaderNotiIcon = (props: any) => {
   const [notifications, setNotifications] = useState<any[]>([]);
   useEffect(() => {
       if (generateNotificationsFlag == true) {
-      const fetchData = async () => {
+      const fetchData = async ():Promise<any> => {
         const childList = await getAllChildren(dispatch, childAge, 1);
         const allchildNotis: any[] = [];
          childList?.map((child: any) => {
@@ -209,7 +209,7 @@ const HeaderNotiIcon = (props: any) => {
     }, [activeChild.uuid, allnotis]),
   );
   useEffect(() => {	
-    const fetchData = async () => {
+    const fetchData = async ():Promise<any> => {
       let currscheduledlocalNotifications = [...scheduledlocalNotifications];
       if(localNotificationGenerateType.generateFlag == true) {
         if(localNotificationGenerateType.generateType == 'onAppStart') {
@@ -285,7 +285,7 @@ const HeaderNotiIcon = (props: any) => {
 
   
   useEffect(() => {
-    const fetchData2 = async () => {
+    const fetchData2 = async ():Promise<any> => {
       const allnotiobj: any[]=[];
        localNotifications.map((x:any)=>{
         x.data.map((y:any) => {
@@ -314,7 +314,7 @@ const HeaderNotiIcon = (props: any) => {
   useEffect(() => {
     LocalNotifications.getAllScheduledLocalNotifications();
     LocalNotifications.getDeliveredNotifications();
-      const fetchData = async () => {
+      const fetchData = async ():Promise<any> => {
         const filterQuery = 'uuid == "'+activeChild.uuid+'"';
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
         dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
@@ -327,7 +327,7 @@ const HeaderNotiIcon = (props: any) => {
     <>
     {
     props.isVisibleIcon?
-      <Pressable onPress={() => navigation.navigate('NotificationsScreen')} style={styles.outerPressable}>
+      <Pressable onPress={():any => navigation.navigate('NotificationsScreen')} style={styles.outerPressable}>
         <Icon name="ic_sb_notification" size={32} color={props.color} style={styles.iconStyle} />
         {notifications.length > 0 ?
           <BubbleContainer style={styles.bubbleContainer}>

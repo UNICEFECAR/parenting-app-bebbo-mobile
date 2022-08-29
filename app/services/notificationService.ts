@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { getCurrentChildAgeInDays, isFutureDate, isFutureDateTime } from './childCRUD';
 import { v4 as uuidv4 } from 'uuid';
 
-export const getVCPeriods = (allVaccinePeriods: any) => {
+export const getVCPeriods = (allVaccinePeriods: any):any => {
   const group_to_growthPeriod = allVaccinePeriods.reduce(function (obj: any, item: any) {
     obj[item.growth_period] = obj[item.growth_period] || [];
     obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
@@ -15,7 +15,7 @@ export const getVCPeriods = (allVaccinePeriods: any) => {
 
   return groupsForPeriods
 }
-export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child: any) => {
+export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child: any):any => {
   if (allVaccinePeriods.length > 0 && allGrowthPeriods.length > 0) {
     const noti: any[] = [];
     const groupsForPeriods = getVCPeriods(allVaccinePeriods);
@@ -52,7 +52,7 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
     return sortednoti;
   }
 }
-export const getHCReminderNotis = (allHealthCheckupsData: any, allGrowthPeriods: any, child: any) => {
+export const getHCReminderNotis = (allHealthCheckupsData: any, allGrowthPeriods: any, child: any):any => {
   const noti: any[] = [];
   allHealthCheckupsData.map((hcItem: any) => {
     // hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
@@ -87,7 +87,7 @@ export const getHCReminderNotis = (allHealthCheckupsData: any, allGrowthPeriods:
   });
   return noti;
 }
-export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any,) => {
+export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any,):any => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
@@ -114,7 +114,7 @@ export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, a
   }
 }
 
-const IsGrowthMeasuresForPeriodExist = (child: any, days_from: any, days_to: any) => {
+const IsGrowthMeasuresForPeriodExist = (child: any, days_from: any, days_to: any):any => {
   if (child.measures.length > 0) {
 
     return child.measures.some((measure: any) => {
@@ -127,7 +127,7 @@ const IsGrowthMeasuresForPeriodExist = (child: any, days_from: any, days_to: any
     });
   }
 }
-export const getCDGWNotisForChild = (childTaxonomyData: any, child: any, prematureTaxonomy: any, childDaysTo: any, childDaysFrom: any, isNewChild: boolean) => {
+export const getCDGWNotisForChild = (childTaxonomyData: any, child: any, prematureTaxonomy: any, childDaysTo: any, childDaysFrom: any, isNewChild: boolean):any => {
   // all notis between item.days_from  and item.days_to of a period
   const noti = [];
   // noti.push(//at the begginning of the period
@@ -296,7 +296,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any, prematu
   }
   return noti;
 }
-export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcperiodid: any, child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any, growthEnabledFlag: boolean, developmentEnabledFlag: boolean, vchcEnabledFlag: boolean) => {
+export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcperiodid: any, child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any, growthEnabledFlag: boolean, developmentEnabledFlag: boolean, vchcEnabledFlag: boolean):any => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
@@ -389,7 +389,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   return notis
 
 }
-export const getChildNotification = (child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any, growthEnabledFlag: boolean, developmentEnabledFlag: boolean, vchcEnabledFlag: boolean) => {
+export const getChildNotification = (child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any, growthEnabledFlag: boolean, developmentEnabledFlag: boolean, vchcEnabledFlag: boolean):any => {
   if (child.birthDate != null && child.birthDate != undefined) {
     const activityTaxonomyId = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? child?.taxonomyData.prematureTaxonomyId : child?.taxonomyData.id;
 
@@ -460,7 +460,7 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
     }
   }
 }
-export const getChildReminderNotifications = (child: any, reminderNotis: any, vchcEnabledFlag: boolean) => {
+export const getChildReminderNotifications = (child: any, reminderNotis: any, vchcEnabledFlag: boolean):any => {
   ///get existing notis and compare for isread and is deleted
   const noti: any[] = [];
   const filteredPastRemidnerNotis = reminderNotis.filter((item: any) => !isFutureDateTime(new Date(item.notificationDate)));
@@ -633,7 +633,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
 
 
 
-const getVaccinesForPeriod = (allVaccineData: any, period: string) => {
+const getVaccinesForPeriod = (allVaccineData: any, period: string):any => {
   const allvc = allVaccineData.filter((item:any) => item.growth_period == period);
   let vc = ' ';
   allvc.map((item: any, index: number) => {
@@ -645,7 +645,7 @@ const getVaccinesForPeriod = (allVaccineData: any, period: string) => {
   })
   return vc;
 }
-const generatenotiId = (localNotifications: any, allNotis: any) => {
+const generatenotiId = (localNotifications: any, allNotis: any):any => {
   const rand = Math.floor(10000000 + Math.random() * 90000000);
   const commonArr = localNotifications?.find((x: any) => x.data.some((item:any) => item.notiid == String(rand)));
   const commonArr2 = allNotis?.data?.find((item: any) => item.notiid == String(rand));
@@ -657,7 +657,7 @@ const generatenotiId = (localNotifications: any, allNotis: any) => {
     return rand;
   }
 }
-export const createAllLocalNotificatoins = (child: any, childAge: any, developmentEnabledFlag: boolean, growthEnabledFlag: boolean, vchcEnabledFlag: boolean, t: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any, allVaccineData: any, localNotifications: any) => {
+export const createAllLocalNotificatoins = (child: any, childAge: any, developmentEnabledFlag: boolean, growthEnabledFlag: boolean, vchcEnabledFlag: boolean, t: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any, allVaccineData: any, localNotifications: any):any => {
   const allNotis: any[] = [];
   const childBirthDatePlanned = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != "" && child?.taxonomyData.prematureTaxonomyId != undefined ? child.plannedTermDate : child.birthDate;
   const activityTaxonomyId = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? child?.taxonomyData.prematureTaxonomyId : child?.taxonomyData.id;

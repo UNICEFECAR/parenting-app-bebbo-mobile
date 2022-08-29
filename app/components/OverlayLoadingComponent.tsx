@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
  
 });
 
-const OverlayLoadingComponent = (props: any) =>{
+const OverlayLoadingComponent = (props: any):any =>{
   const {loading} = props;
   const themeContext = useContext(ThemeContext);
    return (
@@ -30,7 +30,7 @@ const OverlayLoadingComponent = (props: any) =>{
       transparent={true}
       animationType={'none'}
       visible={loading}
-      onRequestClose={() => {
+      onRequestClose={():any => {
         console.log("request to close called");
       }}>
       <View style={styles.modalBackground}>

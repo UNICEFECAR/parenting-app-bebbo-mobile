@@ -25,7 +25,7 @@ const styles=StyleSheet.create({
 
 })
 import { DateTime } from 'luxon';
-const BabyNotification = () => {
+const BabyNotification = ():any => {
   const navigation = useNavigation();
   const { t } = useTranslation();
   const activeChild = useAppSelector((state: any) =>
@@ -36,7 +36,7 @@ const BabyNotification = () => {
   const pluralShow = useAppSelector(
     (state: any) => state.selectedCountry.pluralShow,
   );
-  const isFutureDate = (date: Date) => {
+  const isFutureDate = (date: Date):any => {
     return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
   };
   return (
@@ -90,7 +90,7 @@ const BabyNotification = () => {
                 </FlexDirRow>
               </Flex5>
               <TouchableHighlight underlayColor="transparent"
-                    onPress={() => {
+                    onPress={():any => {
                       if (isFutureDate(activeChild.birthDate)) {
                         navigation.navigate('AddExpectingChildProfile', {
                           childData:

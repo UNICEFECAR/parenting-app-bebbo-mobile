@@ -32,7 +32,7 @@ const styles=StyleSheet.create(
     paddingBottom8:{paddingBottom:'8%'}
   }
 )
-const Notifications = () => {
+const Notifications = ():any => {
   const allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
   const [allChildnotification, setAllChildNotification] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,7 +54,7 @@ const Notifications = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const onBackPress = () => {
+  const onBackPress = ():any => {
     navigation.reset({
       index: 0,
       routes: [{ name: 'HomeDrawerNavigator' }],
@@ -67,12 +67,12 @@ const Notifications = () => {
       onBackPress,
     );
     navigation.addListener('gestureEnd', onBackPress);
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', onBackPress);
       backHandler.remove()};
   }, []);
   const appState = useRef(AppState.currentState);
-  const calculateNotis = (currentChildNotis: any) => {
+  const calculateNotis = (currentChildNotis: any):any => {
     if (currentChildNotis!= undefined) {
       const currentChildallnoti: any = [];
       if (currentChildNotis.gwcdnotis) {
@@ -118,7 +118,7 @@ const Notifications = () => {
       setIsLoading(false)
     }
   }
-  const handleAppStateChange = (nextAppState:any) => {
+  const handleAppStateChange = (nextAppState:any):any => {
     if (appState != nextAppState) {
       if (appState.current.match(/inactive|background/) 
             && nextAppState === 'active') {
@@ -133,7 +133,7 @@ const Notifications = () => {
   };
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
-    return () => {
+    return ():any => {
       AppState.removeEventListener('change', handleAppStateChange);
     };
   }, []);
@@ -152,7 +152,7 @@ const Notifications = () => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  const onCategorychange = async (selectedCategoriesParam: any) => {
+  const onCategorychange = async (selectedCategoriesParam: any):Promise<any> => {
     const selectedFilters = selectedCategoriesParam.filter((category:any) => category.isActivated == true).map((item:any) => {
       return item.type
     });
@@ -166,7 +166,7 @@ const Notifications = () => {
 
     // on vc hc reminder check add reminder category to list, and remove vica versa
   };
-  const onNotiItemChecked = (item: any, isChecked: boolean) => {
+  const onNotiItemChecked = (item: any, isChecked: boolean):any => {
     if (isChecked == true) {
       const allCheckedNotis = [
         ...checkedNotifications,
@@ -182,7 +182,7 @@ const Notifications = () => {
     }
 
   }
-  const onItemReadMarked = async (notiItem: any) => {
+  const onItemReadMarked = async (notiItem: any):Promise<any> => {
     const allNotifications = [...allChildnotification];
     const currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     const currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
@@ -228,7 +228,7 @@ const Notifications = () => {
     calculateNotis(currentChildNotis);
     return currentChildNotis
   }
-  const onItemDeleteMarked = (notiItem: any) => {
+  const onItemDeleteMarked = (notiItem: any):any => {
     const allNotifications = [...allChildnotification];
     const currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     const currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
@@ -286,7 +286,7 @@ const Notifications = () => {
     }
 
   }
-  const deleteSelectedNotifications = async () => {
+  const deleteSelectedNotifications = async ():Promise<any> => {
 
     const allNotifications = [...allChildnotification];
     const currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
@@ -354,13 +354,13 @@ const Notifications = () => {
             <OuterIconRow>
               <OuterIconSpace>
               <HeaderNotiIcon color="#000" isVisibleIcon={false}/>
-                <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
+                <Pressable onPress={():any => navigation.navigate('SettingsScreen')}>
                   <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
                 </Pressable>
               </OuterIconSpace>
               {isFutureDate(activeChild?.birthDate) || notifications.length == 0 ? null :
                 <OuterIconSpace>
-                  <Pressable onPress={() => { setIsDeleteEnabled(!isDeleteEnabled); setCheckedNotifications([]); }}>
+                  <Pressable onPress={():any => { setIsDeleteEnabled(!isDeleteEnabled); setCheckedNotifications([]); }}>
                     <Icon name={'ic_trash'} size={20} color="#FFF" />
                   </Pressable>
                 </OuterIconSpace>}
@@ -379,7 +379,7 @@ const Notifications = () => {
                     ref={flatListRefNoti}
                     data={selectedCategories.length == 0 ? notifications:notifications.filter((item) => selectedCategories.includes(item.type))}
                     contentContainerStyle={styles.paddingBottom8}
-                    onScroll={(e)=>{
+                    onScroll={(e):any=>{
                       console.log("e--",e);
                     }}
                     nestedScrollEnabled={true}
@@ -390,7 +390,7 @@ const Notifications = () => {
                     maxToRenderPerBatch={8} // Reduce number in each render batch
                     updateCellsBatchingPeriod={100} // Increase time between renders
                     windowSize={30} // Reduce the window size
-                    renderItem={({item, index}) =>  <NotificationItem
+                    renderItem={({item, index}):any =>  <NotificationItem
                             item={item}
                             itemIndex={index}
                             isDeleteEnabled={isDeleteEnabled}
@@ -401,7 +401,7 @@ const Notifications = () => {
                             activeChild={activeChild}
                           />
                    }
-                   keyExtractor={(item,index) => index.toString()}
+                   keyExtractor={(item,index):any => index.toString()}
                    />: <Heading4Center>{t('noDataTxt')}</Heading4Center>
                    : <Heading4Center>{t('noDataTxt')}</Heading4Center>
                     }
@@ -412,13 +412,13 @@ const Notifications = () => {
               <>
                 <ButtonContainerTwo style={styles.buttonContainerTwo}>
                   <ButtonColTwo>
-                    <ButtonSecondaryTint onPress={() => { setIsDeleteEnabled(!isDeleteEnabled); setCheckedNotifications([]) }}>
+                    <ButtonSecondaryTint onPress={():any => { setIsDeleteEnabled(!isDeleteEnabled); setCheckedNotifications([]) }}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                     </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
-                    <ButtonSecondary onPress={() => { deleteSelectedNotifications() }}  disabled={checkedNotifications.length==0?true:false}>
+                    <ButtonSecondary onPress={():any => { deleteSelectedNotifications() }}  disabled={checkedNotifications.length==0?true:false}>
                       <ButtonText numberOfLines={2}>{t('notiDelSelected', { count: checkedNotifications.length })} </ButtonText>
                     </ButtonSecondary>
                   </ButtonColTwo>

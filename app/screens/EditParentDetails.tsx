@@ -51,7 +51,7 @@ const styles=StyleSheet.create({
   textInputML:{width:'100%'}
 
 })
-const EditParentDetails = ({ route, navigation }: Props) => {
+const EditParentDetails = ({ route, navigation }: Props):any => {
   const { userParentalRoleData, userRelationToParentEdit, parentEditName } = route.params;
   const [relationship, setRelationship] = useState(userParentalRoleData ? userParentalRoleData : "");
   const [userRelationToParent, setUserRelationToParent] = useState();
@@ -85,7 +85,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
     }, [])
   );
   useEffect(() => {
-    const backAction = () => {
+    const backAction = ():any => {
       navigation.goBack();
       return true;
     };
@@ -94,7 +94,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
       backAction,
     );
     navigation.addListener('gestureEnd', backAction);
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
@@ -104,7 +104,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const saveParentData = async (relationship: any, parentName: any, userRelationToParent: any) => {
+  const saveParentData = async (relationship: any, parentName: any, userRelationToParent: any):Promise<any> => {
     const relationshipnew: any = relationship;
     if (typeof relationshipnew === 'string' || relationshipnew instanceof String) {
       relationship = relationshipnew
@@ -119,7 +119,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
     updateActiveChild(activeChild, "parent_gender", relationship, dispatch, String(userRelationToParent));
     navigation.navigate('ChildProfileScreen');
   }
-  const getCheckedParentItem = (checkedItem: any) => {
+  const getCheckedParentItem = (checkedItem: any):any => {
     if (
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
@@ -136,7 +136,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
         style={[styles.headerRowView,{backgroundColor: headerColor}]}>
         <HeaderIconView>
           <HeaderIconPress
-            onPress={() => {
+            onPress={():any => {
               navigation.goBack();
             }}>
             <IconML name={'ic_back'} color="#FFF" size={15} />
@@ -150,7 +150,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
       </HeaderRowView>
       <MainContainer>
         <FormInputGroup
-          onPress={() => {
+          onPress={():any => {
             actionSheetRef.current?.setModalVisible();
           }}>
           <LabelText>{t('relationShipTxt')}</LabelText>
@@ -187,7 +187,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
                 return (
                   <ChildRelationList key={index}>
                     <Pressable
-                      onPress={() => {
+                      onPress={():any => {
                         setUserRelationToParent(item.id);
 
                         if (item.id == relationShipMotherId) {
@@ -231,7 +231,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
-              onChangeText={(value: any) => {
+              onChangeText={(value: any):any => {
                 if (value.replace(/\s/g, "") == "") {
                   setParentName(value.replace(/\s/g, ''));
                 } else {
@@ -250,7 +250,7 @@ const EditParentDetails = ({ route, navigation }: Props) => {
           <ButtonPrimary
             disabled={
               relationship == "" || relationship == null || relationship == undefined || parentName == null || parentName == undefined || parentName == "" ? true : false}
-            onPress={() => {
+            onPress={():any => {
               saveParentData(relationship, parentName, userRelationToParent);
             }}>
             <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>

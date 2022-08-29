@@ -36,7 +36,7 @@ const styles=StyleSheet.create({
   toolsIconOuterView:{ alignItems: "flex-end", flex: 1 },
   vaccineOuterView:{ flex: 6, flexDirection: "row" }
  })
-const UpcomingVaccines = (props: any) => {
+const UpcomingVaccines = (props: any):any => {
   const {item, headerColor, backgroundColor, currentPeriodId} =props;
   const {t} = useTranslation();
   const navigation = useNavigation();
@@ -69,7 +69,7 @@ const UpcomingVaccines = (props: any) => {
     currentPeriodId == item?.periodID ? setIsOpen(true) : setIsOpen(false);
     // open first collapsible in upcoming vaccine period
   }, []);
-  const gotoArticle = (pinned_articleID:any) => {
+  const gotoArticle = (pinned_articleID:any):any => {
     if(pinned_articleID!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: 'VaccinationTab',
@@ -107,7 +107,7 @@ const UpcomingVaccines = (props: any) => {
             )}
           </ToolsIconView>
           <ToolsHeadPress
-            onPress={() => {
+            onPress={():any => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
@@ -163,7 +163,7 @@ const UpcomingVaccines = (props: any) => {
                       </Heading4Regular>
                       {v?.pinned_article ? (
                         <Pressable
-                          onPress={() => gotoArticle(v.pinned_article)}>
+                          onPress={():any => gotoArticle(v.pinned_article)}>
                           <ButtonTextSmLineL numberOfLines={2}>
                             {t('vcArticleLink')}
                           </ButtonTextSmLineL>
@@ -172,7 +172,7 @@ const UpcomingVaccines = (props: any) => {
                     </ToolsHeadingView>
                     </View>
                     <View  style={styles.toolsIconOuterView}>
-                    {v.isMeasured ? <Pressable onPress={() =>navigation.navigate('AddChildVaccination', {
+                    {v.isMeasured ? <Pressable onPress={():any =>navigation.navigate('AddChildVaccination', {
                         headerTitle: t('editVcTitle'),
                         vcPeriod: item,
                         editVaccineDate:v.measurementDate,
@@ -223,7 +223,7 @@ const UpcomingVaccines = (props: any) => {
                     </View>
                     <View  style={styles.toolsIconOuterView}>
                     <Pressable
-                          onPress={() => {
+                          onPress={():any => {
                             navigation.navigate('AddReminder', {
                               reminderType: 'vaccine', // from remiderType
                               headerTitle: t('vcEditReminderHeading'),
@@ -246,7 +246,7 @@ const UpcomingVaccines = (props: any) => {
                 ) : (
                   <Pressable
                     disabled={isFutureDate(activeChild?.birthDate)}
-                    onPress={() => {
+                    onPress={():any => {
                       navigation.navigate('AddReminder', {
                         reminderType: 'vaccine', // from remiderType
                         headerTitle: t('vcReminderHeading'),
@@ -272,7 +272,7 @@ const UpcomingVaccines = (props: any) => {
               <ButtonContainerAuto>
                 <ButtonVaccination
                   disabled={isFutureDate(activeChild?.birthDate)}
-                  onPress={() =>
+                  onPress={():any =>
                     navigation.navigate('AddChildVaccination', {
                       headerTitle: t('addVcTitle'),
                       vcPeriod: item,

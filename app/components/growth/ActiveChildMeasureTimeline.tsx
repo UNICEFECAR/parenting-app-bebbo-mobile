@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     color: grayCode
   }
 })
-const ActiveChildMeasureTimeline = (props: any) => {
+const ActiveChildMeasureTimeline = (props: any):any => {
   const {activeChild} = props;
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const {t} = useTranslation();
-  const setNewChildMeasureUpdates = () => {
+  const setNewChildMeasureUpdates = ():any => {
     const measures = activeChild.measures.filter((item:any)=>item.isChildMeasured== true && item.weight>0 && item.height>0);
     let measurementDate: DateTime = DateTime.local();
     let allMeasurements = measures.map((item: MeasuresEntity) => {
@@ -89,8 +89,8 @@ const ActiveChildMeasureTimeline = (props: any) => {
     }, [activeChild]),
   );
 
-  const renderDetail = (rowData:any, sectionID:any) => {
-    const renderTitle = (key: number, titleDateInMonth: number) => {
+  const renderDetail = (rowData:any, sectionID:any):any => {
+    const renderTitle = (key: number, titleDateInMonth: number):any => {
       // if (key === 0) {
       if (titleDateInMonth === 0) {
         return t('onBirthDay');
@@ -137,7 +137,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
             </Flex2>
             <Flex1>
               <Pressable
-                onPress={() => {
+                onPress={():any => {
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
                     editMeasurementDate: rowData.dateToMilis

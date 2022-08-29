@@ -76,7 +76,7 @@ export const appConfig = {
   faqs:'faqs',
   archive:'archive',
 }
-export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
+export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string):any=>{
     if(apiEndpoint==appConfig.sponsors){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
     } 
@@ -114,7 +114,7 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
 }
 
 
-  export const allApisObject = (isDatetimeReq:any, dateTimeObj:any) => {
+  export const allApisObject = (isDatetimeReq:any, dateTimeObj:any):any => {
     const allApiObject = [
       {
         apiEndpoint: appConfig.sponsors,
@@ -273,7 +273,7 @@ export const basicPagesUniqueName = {
     privacypolicy: 'privacy_policy',
 
 }
-export const measurementPlaces = (items:any)=>{
+export const measurementPlaces = (items:any):any=>{
     return [ {id:0,title:items[0] },{id:1,title:items[1] }]
 }
 export const maxCharForRemarks = 200;

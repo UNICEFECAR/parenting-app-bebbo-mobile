@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   width100:{ width: '100%' }
 });
 
-const EditChildProfile = ({ route, navigation }: Props) => {
+const EditChildProfile = ({ route, navigation }: Props):any => {
   const childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -157,7 +157,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
-  const sendData = (data: any) => {
+  const sendData = (data: any):any => {
     // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
@@ -169,7 +169,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     childData != null ? childData.gender : 0,
   );
   useEffect(() => {
-    const backAction = () => {
+    const backAction = ():any => {
       navigation.goBack();
       return true;
     };
@@ -179,7 +179,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       backAction,
     );
     navigation.addListener('gestureEnd', backAction);
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove()};
   }, []);
@@ -199,7 +199,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
 
 
   const onChildPhotoChange = async (image: ImageObject,
-  ) => {
+  ):Promise<any> => {
     // Create Documents/children folder if it doesnt exist
     if (!(await exists(CHILDREN_PATH))) {
       mkdir(CHILDREN_PATH);
@@ -207,7 +207,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     setCapturedImage(image.path);
     setPhotoDeleted(false);
   };
-  const removePhoto = () => {
+  const removePhoto = ():any => {
 
     deleteImageFile(capturedPhoto)
       .then(async (data: any) => {
@@ -221,20 +221,20 @@ const EditChildProfile = ({ route, navigation }: Props) => {
         Alert.alert(t('tryText'));
       });
   };
-  const handleImageOptionClick = async (item:any,index: number) => {
+  const handleImageOptionClick = async (item:any,index: number):Promise<any> => {
     console.log(index)
     if (item.id == 0) {
       Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
         {
           text: t('removePhotoOption1'),
-          onPress: () => {
+          onPress: ():any => {
             console.log("pressed")
            },
           style: 'cancel',
         },
         {
           text: t('removePhotoOption2'),
-          onPress: () => {
+          onPress: ():any => {
             setPhotoDeleted(true);
           },
         },
@@ -252,17 +252,17 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       });
     }
   };
-  const deleteRecord = (index: number, dispatch: any, uuid: string) => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string):any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
           text: t('removeOption1'),
-          onPress: () => resolve('error'),
+          onPress: ():any => resolve('error'),
           style: 'cancel',
         },
         {
           text: t('removeOption2'),
-          onPress: () => {
+          onPress: ():any => {
             deleteChild(
               languageCode,
               index,
@@ -281,7 +281,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       ]);
     });
   };
-  const setPhoto = async (uuid: string) => {
+  const setPhoto = async (uuid: string):Promise<any> => {
     const parts = capturedPhoto.split('.');
     let extension: string | null = null;
     if (parts.length > 1) {
@@ -309,7 +309,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     setphotoUri(destPath.replace(CHILDREN_PATH, ''));
     return destPath.replace(CHILDREN_PATH, '');
   }
-  const AddChild = async () => {
+  const AddChild = async ():Promise<any> => {
     // if dob /plannedTermDate changes, append notifications to current child's notifications in slice
     const insertData: any = editScreen
       ? await getNewChild(
@@ -350,7 +350,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   };
 
-  const getCheckedItem = (checkedItem: typeof genders[0]) => {
+  const getCheckedItem = (checkedItem: typeof genders[0]):any => {
     setGender(checkedItem.id);
   };
   return (
@@ -363,7 +363,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
           }]}>
           <HeaderIconView>
             <HeaderIconPress
-              onPress={() => {
+              onPress={():any => {
                 navigation.goBack();
               }}>
               <IconML name={'ic_back'} color="#FFF" size={15} />
@@ -378,7 +378,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
           </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
            <HeaderActionView style={styles.padding0}>
-           <Pressable  style={styles.pressableView}  onPress={() =>
+           <Pressable  style={styles.pressableView}  onPress={():any =>
                deleteRecord(childData?.index, dispatch, childData?.uuid)
              }>
              <Icon name={'ic_trash'} size={20} color="#FFF" />
@@ -398,7 +398,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                       : null
                   }
                   style={styles.image}>
-                  <ProfileEditView onPress={() => {
+                  <ProfileEditView onPress={():any => {
                         actionSheetRef.current?.setModalVisible();
                       }}>
                     <Icon
@@ -416,7 +416,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                   backgroundColor: SecondaryColor,
                  
                 }]}
-                onPress={() => {
+                onPress={():any => {
                   actionSheetRef.current?.setModalVisible();
                 }}>
                 <IconBox>
@@ -438,7 +438,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                       autoCorrect={false}
                       maxLength={30}
                       clearButtonMode="always"
-                      onChangeText={(value) => {
+                      onChangeText={(value):any => {
                         if (value.replace(/\s/g, "") == "") {
                           setName(value.replace(/\s/g, ''));
                         } else {
@@ -489,7 +489,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                         style={styles.innerImageView}>
                         <Pressable
                           style={styles.alignItemsCenter}
-                          onPress={() => {
+                          onPress={():any => {
                             actionSheetRef.current?.hide();
                             handleImageOptionClick(item,index);
                           }}>
@@ -517,7 +517,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                 gender,
               )
             }
-            onPress={(e:any) => {
+            onPress={(e:any):any => {
               e.preventDefault();
               setLoading(true);
                 const validated = validateForm(

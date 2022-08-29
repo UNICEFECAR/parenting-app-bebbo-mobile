@@ -10,7 +10,7 @@ import { Heading2, ShiftFromBottom15 } from '@styles/typography';
 import { useTranslation } from 'react-i18next';
 import VectorImage from 'react-native-vector-image';
 import React from 'react';
-const ChildMilestones = () => {
+const ChildMilestones = ():any => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   return (
@@ -31,7 +31,7 @@ const ChildMilestones = () => {
             <Heading2>{t('homeScreencdHeader')}</Heading2>
             </ShiftFromBottom15>
               <ButtonDevelopment
-                onPress={() => navigation.navigate('ChildDevelopment')}>
+                onPress={():any => navigation.navigate('ChildDevelopment')}>
                 <ButtonText numberOfLines={2}>{t('homeScreencdButton')}</ButtonText>
                 
               </ButtonDevelopment>

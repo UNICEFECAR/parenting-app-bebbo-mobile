@@ -15,7 +15,7 @@ export interface ChartAreaDataFormat {
 }
 
 
-export const setInitialWeightValues = (weightValue: any) => {
+export const setInitialWeightValues = (weightValue: any):any => {
   if (weightValue + ''.indexOf('.') === -1) {
     return { weight: weightValue, weight1: 0 };
   } else {
@@ -30,7 +30,7 @@ export const setInitialWeightValues = (weightValue: any) => {
     }
   }
 };
-export const setInitialHeightValues = (heightValue: any) => {
+export const setInitialHeightValues = (heightValue: any):any => {
    if (heightValue + ''.indexOf('.') === -1) {
     return { height: heightValue, height1: 0 };
   } else {
@@ -50,7 +50,7 @@ export const setInitialHeightValues = (heightValue: any) => {
 export const convertMeasuresData = (
   measures: MeasuresEntity[],
   childBirthDay: Date,
-) => {
+):any => {
   let measurementDateInDays = 0;
 
   const measuresData: any[] = [];
@@ -76,7 +76,7 @@ export const convertMeasuresData = (
 
   return measuresData;
 };
-export const formatDaysData = (data: any) => {
+export const formatDaysData = (data: any):any => {
   const topArea: SingleAreaDataFormat[] = [];
   const middleArea: SingleAreaDataFormat[] = [];
   const bottomArea: SingleAreaDataFormat[] = [];
@@ -94,7 +94,7 @@ export const formatDaysData = (data: any) => {
 
   return obj;
 }
-export const formatHeightData = (data: any,param:any) => {
+export const formatHeightData = (data: any,param:any):any => {
   const topArea: SingleAreaDataFormat[] = [];
   const middleArea: SingleAreaDataFormat[] = [];
   const bottomArea: SingleAreaDataFormat[] = [];

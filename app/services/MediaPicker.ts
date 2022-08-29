@@ -21,7 +21,7 @@ class MediaPicker {
     pickerTypeCamera = PICKER_TYPE.CAMERA_WITH_CROPPING,
     galleryOptions = {},
     cameraOptions = {}
-  ) {
+  ):any {
     this.checkPermissionCamera(() => {
       this.showCameraPickerOptions(
         callback,
@@ -38,7 +38,7 @@ class MediaPicker {
     pickerTypeCamera = PICKER_TYPE.CAMERA_WITH_CROPPING,
     galleryOptions = {},
     cameraOptions = {}
-  ) {
+  ):any {
     this.checkPermissionGallery(() => {
       this.showGalleryPickerOptions(
         callback,
@@ -49,10 +49,10 @@ class MediaPicker {
       );
     });
   }
-  showCameraPickerOptions(...args: any) {
+  showCameraPickerOptions(...args: any):any {
     this.pickCameraOptions(...args);
   }
-  showGalleryPickerOptions(...args: any) {
+  showGalleryPickerOptions(...args: any):any {
     this.pickGalleryOptions(...args);
   }
   pickCameraOptionsWithPermission(
@@ -61,7 +61,7 @@ class MediaPicker {
     pickerTypeCamera = PICKER_TYPE.CAMERA,
     galleryOptions = {},
     cameraOptions = {}
-  ) {
+  ):any {
     this.checkPermissionCamera(() => {
       this.pickCameraOptions(
         callback,
@@ -73,7 +73,7 @@ class MediaPicker {
     });
   }
 
-  pickCameraOptions(...args: any) {
+  pickCameraOptions(...args: any):any {
     const [
       callback,
       pickerTypeCamera,
@@ -99,7 +99,7 @@ class MediaPicker {
     pickerTypeCamera = PICKER_TYPE.CAMERA,
     galleryOptions = {},
     cameraOptions = {}
-  ) {
+  ):any {
     this.checkPermissionGallery(() => {
       this.pickGalleryOptions(
         callback,
@@ -111,7 +111,7 @@ class MediaPicker {
     });
   }
 
-  pickGalleryOptions(...args: any) {
+  pickGalleryOptions(...args: any):any {
     const [
       callback,
       pickerTypeCamera,
@@ -143,7 +143,7 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickImageFromCamera(callback: any, options: any) {
+  pickImageFromCamera(callback: any, options: any):any {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
     setTimeout(() => {
       ImagePicker.openCamera({
@@ -170,7 +170,7 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickImageFromCameraWithCropping(callback: any, options: any) {
+  pickImageFromCameraWithCropping(callback: any, options: any):any {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
     setTimeout(() => {
       ImagePicker.openCamera({
@@ -199,7 +199,7 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickImageFromGallery(callback: any, options: any) {
+  pickImageFromGallery(callback: any, options: any):any {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
     setTimeout(() => {
       ImagePicker.openPicker({
@@ -226,7 +226,7 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickImageFromGalleryWithCropping(callback: any, options: any) {
+  pickImageFromGalleryWithCropping(callback: any, options: any):any {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
     setTimeout(() => {
       ImagePicker.openPicker({
@@ -255,7 +255,7 @@ class MediaPicker {
    * @param {*} options  customize attributes
    *
    */
-  pickMultiple(callback: any, options: any) {
+  pickMultiple(callback: any, options: any):any {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
     ImagePicker.openPicker({
       multiple: true,
@@ -283,7 +283,7 @@ class MediaPicker {
   /**
    * Clean temp Images
    */
-  cleanupImages() {
+  cleanupImages():any {
     ImagePicker.clean()
       .then(() => {
         console.log("cleaned all images");
@@ -297,7 +297,7 @@ class MediaPicker {
    *
    * @param {*} image path to be clean
    */
-  cleanupSingleImage(image: any) {
+  cleanupSingleImage(image: any):any {
     ImagePicker.cleanSingle(image ? image.uri : null)
       .then(() => {
         console.log("cleaned single image")
@@ -312,30 +312,30 @@ class MediaPicker {
    * @param {*} includeBase64
    * @param {*} image
    */
-  getImageUriFromData(includeBase64: any, image: any) {
+  getImageUriFromData(includeBase64: any, image: any):any {
     return includeBase64
       ? `data:${image.mime};base64,` + image.data
       : image.path;
   }
 
-  handleError(error: any) {
+  handleError(error: any):any {
     if (error.code && error.code === "E_PICKER_CANCELLED") return;
     Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
   }
 
-  openSettingModal() {
+  openSettingModal():any {
     Alert.alert(
       i18n.t('permissionTitleText'),
       i18n.t('permissionText'),
       [
         { text: i18n.t('retryCancelPopUpBtn'), style: "cancel" },
-        { text: i18n.t('settingsTextOpen'), onPress: () => openSettings() },
+        { text: i18n.t('settingsTextOpen'), onPress: ():any => openSettings() },
       ],
       { cancelable: false }
     );
   }
 
-  handlePermissionsCamera(triggerFunc: any) {
+  handlePermissionsCamera(triggerFunc: any):any {
     request(CAMERA_PERMISSION)
       .then((cameraPermission) => {
         return cameraPermission;
@@ -353,7 +353,7 @@ class MediaPicker {
         }
       });
   }
-  handlePermissionsGallery(triggerFunc: any) {
+  handlePermissionsGallery(triggerFunc: any):any {
     request(GALLERY_PERMISSION).then(async (photoPermission) => {
       if (
         photoPermission === RESULTS.GRANTED
@@ -380,7 +380,7 @@ class MediaPicker {
       }
     });
   }
-  checkPermissionCamera(triggerFunc: any, openSettings = undefined) {
+  checkPermissionCamera(triggerFunc: any, openSettings = undefined):any {
     console.log("checkPermissionGallery-",openSettings);
     Promise.all([
       check(CAMERA_PERMISSION)
@@ -392,7 +392,7 @@ class MediaPicker {
       }
     });
   }
-  checkPermissionGallery(triggerFunc: any, openSettings = undefined) {
+  checkPermissionGallery(triggerFunc: any, openSettings = undefined):any {
     console.log("checkPermissionGallery-",openSettings);
     Promise.all([
       check(GALLERY_PERMISSION),

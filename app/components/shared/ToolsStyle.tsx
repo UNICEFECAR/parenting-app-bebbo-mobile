@@ -11,11 +11,11 @@ align-items:center;
 `;
 
 export const VacSummaryPress = styled.Pressable`
-background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+background:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 
 padding:8px 5px;
 width:100px;
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 margin:7px 0 8px;
 `;
 
@@ -27,7 +27,7 @@ flex:1;
 
 
 export const ToolsBgContainer = styled.View`
-background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+background:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 flex-direction:column;
 flex:1;
 `;
@@ -35,7 +35,7 @@ export const ToolsListOuter = styled.View`
 padding:7px 8px;
 `;
 export const ToolsListContainer = styled.View`
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 flex-direction:row;
 padding:10px 15px;
 `;

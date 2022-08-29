@@ -7,7 +7,7 @@ export const INSERT_IN_STORE = 'api/INSERT_IN_STORE';
 export interface ApiJsonArray {
   apiEndpoint: string; method: string; postdata: any; saveinDB?: boolean;
 }
-export const fetchAPI = (apiJsonData: Array<ApiJsonArray>, prevPage?: string, dispatch?: Dispatch<AnyAction> | undefined, navigation?: any, languageCode?: string, activeChild?: any, oldErrorObj?: Array<ApiJsonArray>, netInfovalisConnected?: boolean | null, forceupdatetime?: any, downloadWeeklyData?: any, downloadMonthlyData?: any, enableImageDownload?: any) => ({
+export const fetchAPI = (apiJsonData: Array<ApiJsonArray>, prevPage?: string, dispatch?: Dispatch<AnyAction> | undefined, navigation?: any, languageCode?: string, activeChild?: any, oldErrorObj?: Array<ApiJsonArray>, netInfovalisConnected?: boolean | null, forceupdatetime?: any, downloadWeeklyData?: any, downloadMonthlyData?: any, enableImageDownload?: any):any => ({
   type: FETCH_API,
   payload: apiJsonData,
   prevPage: prevPage,
@@ -23,12 +23,12 @@ export const fetchAPI = (apiJsonData: Array<ApiJsonArray>, prevPage?: string, di
   enableImageDownload: enableImageDownload,
 });
 
-export const insertInDB = (apiJsonData: Array<ApiJsonArray>, dispatch?: Dispatch<AnyAction> | undefined) => ({
+export const insertInDB = (apiJsonData: Array<ApiJsonArray>, dispatch?: Dispatch<AnyAction> | undefined):any => ({
   type: INSERT_IN_DB,
   payload: apiJsonData,
   dispatch: dispatch
 });
-export const insertInStore = (apiJsonData: Array<ApiJsonArray>, dispatch?: Dispatch<AnyAction> | undefined, languageCode?: string) => ({
+export const insertInStore = (apiJsonData: Array<ApiJsonArray>, dispatch?: Dispatch<AnyAction> | undefined, languageCode?: string):any => ({
   type: INSERT_IN_STORE,
   payload: apiJsonData,
   dispatch: dispatch,

@@ -42,7 +42,7 @@ type Props = {
 };
 
 
-const LoadingScreen = ({ route, navigation }: Props) => {
+const LoadingScreen = ({ route, navigation }: Props):any => {
   const dispatch = useAppDispatch();
   const child_age = useAppSelector(
     (state: any) =>
@@ -79,7 +79,7 @@ const LoadingScreen = ({ route, navigation }: Props) => {
   );
   const netInfoval = useNetInfoHook();
   const [netflag, setnetflag] = useState(false);
-  const getAgeWithAgeBrackets = async (prevPage: any) => {
+  const getAgeWithAgeBrackets = async (prevPage: any):Promise<any> => {
     const alldataarr: any[] = [], deltadataarr: any[] = [];
     if (allDataDownloadFlag == true && prevPage != "CountryLangChange") {
       bufferAgeBracket.map((x: any) => deltadataarr.push(x));
@@ -112,7 +112,7 @@ const LoadingScreen = ({ route, navigation }: Props) => {
     }
     return { alldataarr: alldataarr, deltadataarr: deltadataarr };
   }
-  const callSagaApi = async (enableImageDownload: any) => {
+  const callSagaApi = async (enableImageDownload: any):Promise<any> => {
     const routes = navigation.dangerouslyGetState()?.routes;
     console.log(routes.length, "in callSagaApi navigation history--", navigation.dangerouslyGetState());
 
@@ -261,7 +261,7 @@ const LoadingScreen = ({ route, navigation }: Props) => {
     }, [netInfoval.isConnected])
   );
   useEffect(() => {
-    const backAction = () => {
+    const backAction = ():any => {
       return true;
     };
     const backHandler = BackHandler.addEventListener(
@@ -269,7 +269,7 @@ const LoadingScreen = ({ route, navigation }: Props) => {
       backAction,
     );
 
-    return () => {
+    return ():any => {
       backHandler.remove();
     }
   }, []);

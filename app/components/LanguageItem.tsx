@@ -3,12 +3,12 @@ import React from 'react';
 import { Pressable, View } from 'react-native';
 import Radio, { RadioActive, RadioItem, RadioItemText } from './shared/radio';
 
-const LanguageItem = ({item, currentItem, setLanguage}:any) => {
+const LanguageItem = ({item, currentItem, setLanguage}:any):any => {
   const isActive: boolean = item === currentItem ? true : false;
   return (
     <>
       <Pressable
-        onPress={() => {
+        onPress={():any => {
           setLanguage(item);
         }}>
         <RadioItem>

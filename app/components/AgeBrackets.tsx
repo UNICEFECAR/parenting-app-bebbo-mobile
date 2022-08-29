@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../App';
 import ScrollingButtonMenu from '../services/ScrollingButtonMenu';
-const AgeBrackets = (props: any) => {
+const AgeBrackets = (props: any):any => {
   const {currentSelectedChildId, showSelectedBracketData, activatedItemColor, itemColor, ItemTintColor} = props;
   const childAge = useAppSelector(
     (state: any) =>
@@ -11,7 +11,7 @@ const AgeBrackets = (props: any) => {
     <>
     <ScrollingButtonMenu
                 items={childAge}
-                onPress={(item: any) => {
+                onPress={(item: any):any => {
                     showSelectedBracketData(item)
                 }}
                 selected={currentSelectedChildId}
