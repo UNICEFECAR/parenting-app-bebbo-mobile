@@ -7,14 +7,14 @@ import { FDirRow } from './shared/FlexBoxStyle';
 import Icon from './shared/Icon';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from './shared/ModalPopupStyle';
 
-const AlertModal = (props: any) =>{
+const AlertModal = (props: any):any =>{
   const {loading,title,message,onCancel,onConfirm,disabledValue} = props;
   return (
     <Modal
       transparent={true}
       animationType={'none'}
       visible={loading}
-      onRequestClose={() => {
+      onRequestClose={():any => {
         console.log("on request closed")
       }}>
           <PopupOverlay>

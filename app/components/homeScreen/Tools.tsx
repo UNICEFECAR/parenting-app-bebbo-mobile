@@ -6,7 +6,7 @@ import { Heading2, Heading3Center, ShiftFromTop10 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import VectorImage from 'react-native-vector-image';
-const Tools = () => {
+const Tools = ():any => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   return (
@@ -19,19 +19,19 @@ const Tools = () => {
           </ShiftFromTop10>
           <ToolBox>
           
-          <ToolPress onPress={() => navigation.navigate("Tools", { screen: 'VaccinationTab' })}>
+          <ToolPress onPress={():any => navigation.navigate("Tools", { screen: 'VaccinationTab' })}>
               <VectorImage source={require('@assets/svg/ic_vaccination_color.svg')} />
               <ToolBoxText>
               <Heading3Center>{t('homeScreenvc')}</Heading3Center>
               </ToolBoxText>
             </ToolPress>
-            <ToolPress onPress={() => navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}>
+            <ToolPress onPress={():any => navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}>
               <VectorImage source={require('@assets/svg/ic_health_color.svg')} />
               <ToolBoxText>
               <Heading3Center>{t('homeScreenhc')}</Heading3Center>
               </ToolBoxText>
             </ToolPress>
-            <ToolPress onPress={() => navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}>
+            <ToolPress onPress={():any => navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}>
               <VectorImage source={require('@assets/svg/ic_growth_color.svg')} />
               <ToolBoxText>
               <Heading3Center>{t('homeScreencg')}</Heading3Center>

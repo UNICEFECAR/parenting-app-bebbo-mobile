@@ -5,11 +5,11 @@ import {
   ButtonContainerAuto,
   ButtonHealth,
   ButtonText,
-  ButtonTextSmLine
+  ButtonTextSmLine,
+  ButtonModal
 } from '@components/shared/ButtonGlobal';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import { MainContainer } from '@components/shared/Container';
-import { FlexCol } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FDirRow } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { ToolsBgContainer } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -36,8 +36,7 @@ import ModalPopupContainer, {
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import Icon from '@components/shared/Icon';
-import { ButtonModal } from '@components/shared/ButtonGlobal';
-import { FDirRow } from '@components/shared/FlexBoxStyle';
+import { MainContainer } from '@components/shared/Container';
 import { isFutureDate } from '../../services/childCRUD';
 const styles=StyleSheet.create({
   flex1:{flex: 1},
@@ -51,7 +50,7 @@ type Props = {
   route: any;
 };
 
-const HealthCheckups = ({navigation,route}: Props) => {
+const HealthCheckups = ({navigation,route}: Props):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
@@ -66,7 +65,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
   const [modalVisible, setModalVisible] = React.useState(true);
   const dispatch = useAppDispatch();
-  const setIsModalOpened = async (varkey: any) => {
+  const setIsModalOpened = async (varkey: any):Promise<any> => {
     const obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
@@ -92,7 +91,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
   const healthCheckupReminder = reminders.filter(
     (item:any) => item.reminderType == 'healthCheckup',
   )[0];
-  const renderItem = (index: number) => {
+  const renderItem = (index: number):any => {
     if (index === 0) {
       return (
         <FlexCol>
@@ -137,7 +136,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
       );
     }
   };
-  const getVaccinationPeriod = () => {
+  const getVaccinationPeriod = ():any => {
 
     if(upcomingPeriods[0]?.vaccination_opens <= childAgeIndays && upcomingPeriods[0]?.vaccination_ends > childAgeIndays)
     {
@@ -149,7 +148,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
 
 
   }
-  const onBackPress = () => {
+  const onBackPress = ():any => {
     if(route.params?.fromNotificationScreen==true){
       navigation.navigate('NotificationsScreen');
       return true;
@@ -164,7 +163,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
       onBackPress,
     );
     navigation.addListener('gestureEnd', onBackPress);
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', onBackPress);
       backHandler.remove()};
   }, []);
@@ -174,17 +173,17 @@ const HealthCheckups = ({navigation,route}: Props) => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           console.log("in onRequestClose");
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                   setIsModalOpened('IsHCUModalOpened');
                 }}>
@@ -198,7 +197,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
               </ModalPopupContent>
               <FDirRow>
               <ButtonModal
-                onPress={() => {
+                onPress={():any => {
                   setIsModalOpened('IsHCUModalOpened');
                 }}>
                 <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
@@ -227,7 +226,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
               isFutureDate(activeChild?.birthDate) ? (null) :
               healthCheckupReminder ? null : 
                 (<Pressable
-                  onPress={() => {
+                  onPress={():any => {
                     navigation.navigate('AddReminder', {
                       reminderType: 'healthCheckup', // from remiderType
                       headerTitle: t('vcReminderHeading'),
@@ -244,7 +243,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
               <ButtonContainerAuto>
                 <ButtonHealth
                   disabled={isFutureDate(activeChild?.birthDate)}
-                  onPress={() =>
+                  onPress={():any =>
                     navigation.navigate('AddChildHealthCheckup', {
                       headerTitle: t('hcNewHeaderTitle'),
                       vcPeriod: getVaccinationPeriod(),
@@ -261,7 +260,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
                   <Pressable
                     key={itemindex}
                     style={styles.flex1}
-                    onPress={() => {
+                    onPress={():any => {
                       setSelectedIndex(itemindex);
                     }}>
                     <TabBarDefault 

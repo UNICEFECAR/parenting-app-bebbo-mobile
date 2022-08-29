@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
     width: 120
   }
 });
-const ButtonItem = (props: any) => {
+const ButtonItem = (props: any):any => {
   return (
     <Pressable
-      onPress={() => {
+      onPress={():any => {
         props.setbutton();
       }}
       style={[
@@ -59,7 +59,7 @@ const ButtonItem = (props: any) => {
     </Pressable>
   );
 };
-const NotificationsCategories = (props: any) => {
+const NotificationsCategories = (props: any):any => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const backgroundColor = themeContext.colors.PRIMARY_COLOR;
@@ -103,7 +103,7 @@ const NotificationsCategories = (props: any) => {
   ];
   const [products, setProducts] = useState(allbuttons);
 
-  const handleChange = (id: number) => {
+  const handleChange = (id: number):any => {
     const updated = products.map((item) => {
       if (id === item.id) {
         return {...item, isActivated: !item.isActivated};
@@ -119,12 +119,12 @@ const NotificationsCategories = (props: any) => {
       <View
         style={styles.containerView}>
         <FlexRow>
-          <ButtonItem data={products[0]} setbutton={() => handleChange(0)} />
-          <ButtonItem data={products[1]} setbutton={() => handleChange(1)} />
+          <ButtonItem data={products[0]} setbutton={():any => handleChange(0)} />
+          <ButtonItem data={products[1]} setbutton={():any => handleChange(1)} />
         </FlexRow>
         <FlexRow>
-          <ButtonItem data={products[2]} setbutton={() => handleChange(2)} />
-          <ButtonItem data={products[3]} setbutton={() => handleChange(3)} />
+          <ButtonItem data={products[2]} setbutton={():any => handleChange(2)} />
+          <ButtonItem data={products[3]} setbutton={():any => handleChange(3)} />
         </FlexRow>
       </View>
       </View>

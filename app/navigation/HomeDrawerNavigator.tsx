@@ -11,7 +11,7 @@ import DashboardTabNavigator from './DashboardTabNavigator';
 import { HomeDrawerNavigatorStackParamList } from './types';
 const HomeDrawerNavigator =
   createDrawerNavigator<HomeDrawerNavigatorStackParamList>();
-export default () => {
+export default ():any => {
   return (
     <HomeDrawerNavigator.Navigator
     screenOptions={{
@@ -20,7 +20,7 @@ export default () => {
    lazy
    detachInactiveScreens={true}
     backBehavior={'initialRoute'}
-      drawerContent={(props) => <CustomDrawerContent {...props} />}>
+      drawerContent={(props):any => <CustomDrawerContent {...props} />}>
       <HomeDrawerNavigator.Screen
         name="Home"
         component={DashboardTabNavigator}

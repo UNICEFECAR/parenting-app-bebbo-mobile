@@ -12,7 +12,7 @@ import { createMigrate } from 'redux-persist';
 import { bandWidthSlice } from './bandwidthSlice';
 
 const migrations = {  
-  0: (state: any) => {    
+  0: (state: any):any => {    
       return {      
         ...state,      
         childDataSet: {       
@@ -25,7 +25,7 @@ const migrations = {
   }
 }
 const migrationsnotification = {  
-  0: (state: any) => {    
+  0: (state: any):any => {    
       return {      
         ...state,      
         localNotifications: [],
@@ -40,13 +40,13 @@ const migrationsnotification = {
 
 }
 const migrationsutils = {  
-  0: (state: any) => {    
+  0: (state: any):any => {    
       return {      
         ...state,
         faqsData:'',
       }  
   },
-  1: (state: any) => {    
+  1: (state: any):any => {    
       return {      
         ...state,
         incrementalSyncDT:{
@@ -63,7 +63,7 @@ const migrationsutils = {
   }
 }
 const migrationslocalization = {
-  0: (state: any) => {    
+  0: (state: any):any => {    
       return {      
         ...state,      
         restartOnLangChange:'no',
@@ -72,7 +72,7 @@ const migrationslocalization = {
         AppLayoutDirectionParams:{}
       }  
   },
-  1: (state: any) => {    
+  1: (state: any):any => {    
     return {      
       ...state,      
       pluralShow:false,

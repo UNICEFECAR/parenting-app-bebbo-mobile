@@ -12,7 +12,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import VectorImage from 'react-native-vector-image';
 
-const PlayingTogether = () => {
+const PlayingTogether = ():any => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   return (
@@ -31,7 +31,7 @@ const PlayingTogether = () => {
             <Heading2>{t('homeScreenptHeader')}</Heading2>
             </ShiftFromBottom15>
               <ButtonActivity
-                onPress={() => navigation.navigate('Activities')}>
+                onPress={():any => navigation.navigate('Activities')}>
                 <ButtonText numberOfLines={2}>{t('homeScreenptButton')}</ButtonText>
               </ButtonActivity>
           </FeatureContentBox>

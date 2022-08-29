@@ -30,50 +30,50 @@ export const localizationSlice = createSlice({
   name: 'localization',
   initialState,
   reducers: {
-    onLocalizationSelect: (state, action: PayloadAction<any>) => {
+    onLocalizationSelect: (state, action: PayloadAction<any>):any => {
       state.countryId = action.payload.country.countryId;
       state.languageCode = action.payload.language.languageCode;
       state.luxonLocale = action.payload.language.luxonLocale;
       state.locale = action.payload.language.locale;
       state.pluralShow = action.payload.language.pluralShow;
     },
-    oncountrtIdChange: (state, action: PayloadAction<any>) => {
+    oncountrtIdChange: (state, action: PayloadAction<any>):any => {
       state.countryId = action.payload;      
     },
     setSponsorStore: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       state.sponsors = action.payload;
     },
     setChildStore: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
         console.log(action.payload,"--",state);
     },
     setrestartOnLangChange: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       state.restartOnLangChange = action.payload;
     },
     setAppLayoutDirection: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       state.AppLayoutDirection = action.payload;
     },
     setAppLayoutDirectionScreen: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       state.AppLayoutDirectionScreen = action.payload;
     },
     setAppLayoutDirectionParams: (
       state,
       action: PayloadAction<any>,
-    ) => {
+    ):any => {
       console.log(action.payload);
       state.AppLayoutDirectionParams = action.payload;
     },

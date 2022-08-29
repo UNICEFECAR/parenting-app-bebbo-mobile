@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     flex: 1,
   }
 });
-const LoadableImage = (props: any) => {
+const LoadableImage = (props: any):any => {
   const netInfo = useNetInfo();
   const { style, item, toggleSwitchVal, resizeMode } = props;
   useFocusEffect(
     React.useCallback(() => {
-      async function fetchData() {
+      async function fetchData():Promise<any> {
         if (!toggleSwitchVal && netInfo.isConnected == true) {
           if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
             if (item['cover_image'].url.split('https://')[1] || item['cover_image'].url.split('http://')[1]) {
@@ -48,10 +48,10 @@ const LoadableImage = (props: any) => {
                 }}
                 style={style}
                 resizeMode={resizeMode}
-                indicator={() => <ActivityIndicator
+                indicator={():any => <ActivityIndicator
                   size="large" color="#000"
                 />}
-                renderError={(error: any) => {
+                renderError={(error: any):any => {
                   console.log("rendererror", error);
                   if (Platform.OS == "android") {
                     return (<DefaultImage

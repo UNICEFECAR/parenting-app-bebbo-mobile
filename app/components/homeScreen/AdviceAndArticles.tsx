@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import VectorImage from 'react-native-vector-image';
 
 
-const AdviceAndArticles = () => {
+const AdviceAndArticles = ():any => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   return (
@@ -31,7 +31,7 @@ const AdviceAndArticles = () => {
             <Heading2>{t('homeScreenexpHeader')}</Heading2>
             </ShiftFromBottom15>
               <ButtonArticles
-                onPress={() => navigation.navigate('Articles')}>
+                onPress={():any => navigation.navigate('Articles')}>
                 <ButtonText numberOfLines={2}>{t('homeScreenexpButton')}</ButtonText>
               </ButtonArticles>
           </FeatureContentBox>

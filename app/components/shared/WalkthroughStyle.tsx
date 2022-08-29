@@ -42,16 +42,16 @@ export const WalkthroughSubtext = styled.Text`
 
 export const ButtonTertiary1 = styled.View`
   padding: 15px 30px;
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
   font-size: 16px;
-  color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
-  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+  background-color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
   flex: 1;
   min-width: 140px;
 `;
 
 export const ButtonTertiary2 = styled(ButtonTertiary1)`
-  background-color: ${(props) => props.theme.colors.ARTICLES_TINTCOLOR};
+  background-color: ${(props):any => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
 
 export const WalkthroughButton = styled.View`

@@ -27,7 +27,7 @@ const styles=StyleSheet.create({
   paddingTop10:{paddingTop:10},
   vectorImage:{ borderRadius: 100, height: 20, resizeMode: 'contain', width: 20 },
 })
-const BotBubble = (props: any) => {
+const BotBubble = (props: any):any => {
   const { message, steps,stepindex,loading } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -80,7 +80,7 @@ const BotBubble = (props: any) => {
             {steps && steps.textToShow && steps.textToShow.answer_part_2 && steps.textToShow.answer_part_2 != '' && answer2visible == false ?
               <SideSpacing15>
                 <ButtonLinkPressLeft
-                  onPress={() => {
+                  onPress={():any => {
                     //show answer 2
                     setanswer2visible(true)
                   }}>
@@ -105,7 +105,7 @@ const BotBubble = (props: any) => {
             {steps && steps.textToShow && steps.textToShow.related_article && steps.textToShow.related_article != 0 && (answer2visible == true || (steps.textToShow.answer_part_2 == '' && answer2visible == false)) ?
               <SideSpacing15>
                 <ButtonLinkPressLeft
-                  onPress={() => {
+                  onPress={():any => {
                     //show article related steps.textToShow.related_article
                       navigation.navigate('DetailsScreen',
                       {
@@ -130,7 +130,7 @@ const BotBubble = (props: any) => {
     </FlexRow>
   )
 }
-const UserBubble = (props: any) => {
+const UserBubble = (props: any):any => {
   const { message } = props
   return (
     <UserBubbleContainer>
@@ -140,14 +140,14 @@ const UserBubble = (props: any) => {
     </UserBubbleContainer>
   )
 }
-const OptionBubble = (props: any) => {
+const OptionBubble = (props: any):any => {
   const { optionval, optionindex, stepindex, steps } = props
   return (
     <>
 
       <OptionBubbleContainer>
         <OptionBubblePressable
-          onPress={() => {
+          onPress={():any => {
             optionval?.nextStepFunc(stepindex, optionindex, steps)
           }}>
           <Heading4Centerr>
@@ -159,14 +159,14 @@ const OptionBubble = (props: any) => {
     </>
   )
 }
-const ActionBubble = (props: any) => {
+const ActionBubble = (props: any):any => {
   const { actionval, actionindex, stepindex, steps, stepsjson } = props
   return (
     <>
 
       <ActionBubbleContainer style={actionindex == 0 ? styles.marginTop40 : styles.marginTop0}>
         <ActionBubblePressable
-          onPress={() => {
+          onPress={():any => {
             actionval?.nextStepFunc(stepindex, actionindex, actionval.nextStepval, steps[stepindex].id, steps, stepsjson)
           }}>
           <ActionBubbleIcon>
@@ -182,7 +182,7 @@ const ActionBubble = (props: any) => {
 }
 
 
-const ChatBot = (props: any) => {
+const ChatBot = (props: any):any => {
   const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink,noDataStep } = props;
   const [loading,setLoading] = useState<boolean>(true);
   useEffect(() => {

@@ -53,7 +53,7 @@ const commonApiService: CommonApiInterface = async (apiEndpoint: string, methodn
       return responseData;
     });
 }
-export const updateIncrementalSyncDT = async(response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
+export const updateIncrementalSyncDT = async(response: any, dispatch: any, _navigation: any,_languageCode: string,prevPage:string):Promise<any> => {
   const articleresp = response.find((y:any)=>y.apiEndpoint == appConfig.articles);
   const videoarticleresp = response.find((y:any)=>y.apiEndpoint == appConfig.videoArticles);
   const activitiesresp = response.find((y:any)=>y.apiEndpoint == appConfig.activities);
@@ -85,7 +85,7 @@ export const updateIncrementalSyncDT = async(response: any, dispatch: any, navig
     dispatch(setIncrementalSyncDT({key: 'archiveDatetime', value: archiveresp.data.datetime}));
   }
 }
-export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any,oldErrorObj:any) => {
+export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any,oldErrorObj:any):Promise<any> => {
 const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
 if(artresp && artresp != {})
 {
@@ -94,7 +94,7 @@ if(artresp && artresp != {})
     const storedata = store.getState();
     const bufferAgeBracket = storedata.childData.childDataSet.bufferAgeBracket;
      const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
-    const agesarr = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number);
+    const agesarr = artobj.postdata.childAge == 'all' ? childagearray.map((x:any)=>x.id) : artobj.postdata.childAge.split(',').map(Number);
     const mergedarray = [...new Set([...agesarr,...bufferAgeBracket])];
      dispatch(setDownloadedBufferAgeBracket(mergedarray))
   }
@@ -102,7 +102,7 @@ if(artresp && artresp != {})
 
  navigation.navigate('ChildProfileScreen');
 }
-export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
+export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string):Promise<any> => {
   if (response && response[0] && response[0].apiEndpoint == appConfig.sponsors) {
     response = response[0];
     if(response.data && response.data.status && response.data.status == 200)
@@ -162,7 +162,7 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
   console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
   navigation.navigate('Walkthrough');
 }
-export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string) => {
+export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string):Promise<any> => {
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
   const allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
@@ -173,7 +173,7 @@ export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigati
     navigation.navigate('ChildSetup');
   }
 }
-export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any,oldErrorObj:any) => {
+export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any,oldErrorObj:any):Promise<any> => {
   const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
   if(artresp && artresp != {})
   {
@@ -197,7 +197,7 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
     ],
   });
 }
-export const downloadArticleImages = async() => {
+export const downloadArticleImages = async():Promise<any> => {
   // return new Promise(async (resolve, reject) => {
       const databaseData = await dataRealmCommon.getData<ArticleEntity>(ArticleEntitySchema);
       const databaseDataact = await dataRealmCommon.getData<ActivitiesEntity>(ActivitiesEntitySchema);
@@ -274,7 +274,7 @@ export const downloadArticleImages = async() => {
       })
   // });
 }
-export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any) => {
+export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any):Promise<any> => {
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
       if(x.apiEndpoint == appConfig.sponsors){
         const sponsorresp = response.filter((y:any)=>y.apiEndpoint == appConfig.sponsors);
@@ -376,7 +376,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       if(artobj && artobj != {}){
         const storedata = store.getState();
         const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
-        const artarray = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number)
+        const artarray = artobj.postdata.childAge == 'all' ? childagearray.map((x:any)=>x.id) : artobj.postdata.childAge.split(',').map(Number)
         console.log(artarray,"---childagearray--",childagearray);
         dispatch(setDownloadedBufferAgeBracket(artarray))
       }
@@ -407,7 +407,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   if(prevPage == 'DownloadUpdate' && errorObj?.length == 0) {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
       [
-        { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
+        { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async ():Promise<any> => {
             navigation.reset({
               index: 0,
               routes: [
@@ -426,7 +426,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       await downloadArticleImages();
         Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
         [
-          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
+          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async ():Promise<any> => {
               dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
               navigation.reset({
                 index: 0,
@@ -443,7 +443,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     }else {
         Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
         [
-          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
+          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async ():Promise<any> => {
             dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
               navigation.reset({
                 index: 0,
@@ -471,44 +471,44 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     });
   }
 }
-export const onHomeSurveyapiSuccess = async (_response: any, dispatch: any, _navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
+export const onHomeSurveyapiSuccess = async (_response: any, dispatch: any, _navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any):Promise<any> => {
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
       const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
       return allDatatoStore;
   });
   await Promise.all(resolvedPromises);
 }
-export const onHomeVideoartapiSuccess = async (_response: any, dispatch: any, _navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
+export const onHomeVideoartapiSuccess = async (_response: any, dispatch: any, _navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any):Promise<any> => {
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
       const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
       return allDatatoStore;
   });
   await Promise.all(resolvedPromises);
 }
-export const retryAlert = () => {
+export const retryAlert = ():any => {
   return new Promise((resolve, reject) => {
     Alert.alert(i18n.t('retryPopupTitle'), i18n.t('retryPopupText'),
       [
         {
           text: i18n.t('retryCancelPopUpBtn'),
-          onPress: () => reject("Retry Cancelled"),
+          onPress: ():any => reject("Retry Cancelled"),
           style: "cancel"
         },
-        { text: i18n.t('retryRetryBtn'), onPress: () => resolve("Retry success") }
+        { text: i18n.t('retryRetryBtn'), onPress: ():any => resolve("Retry success") }
       ]
     );
   });
 }
-export const cancelRetryAlert = () => {
+export const cancelRetryAlert = ():any => {
   return new Promise((resolve) => {
     Alert.alert(i18n.t('cancelRetryPopupTitle'), i18n.t('cancelPopupText'),
       [
-        { text: i18n.t('cancelPopUpBtn'), onPress: () => resolve("cancelRetry success") }
+        { text: i18n.t('cancelPopUpBtn'), onPress: ():any => resolve("cancelRetry success") }
       ]
     );
   });
 }
-export const retryAlert1 = (bandwidth: any,toggle: any) => {
+export const retryAlert1 = (bandwidth: any,toggle: any):any => {
   return new Promise((resolve) => {
     if(bandwidth==1){
       bandwidth=i18n.t('lowBandwidth');
@@ -528,16 +528,16 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
       [
         {
           text: i18n.t('retryCancelPopUpBtn'),
-          onPress: () => resolve("cancel"),
+          onPress: ():any => resolve("cancel"),
           style: "cancel"
         },
-        { text: i18n.t('vcIsMeasuredOption1'), onPress: () => resolve("yes") }
+        { text: i18n.t('vcIsMeasuredOption1'), onPress: ():any => resolve("yes") }
       ]
     );
   },2500);
   });
 }
-export const deleteArticleNotPinned= async () => {
+export const deleteArticleNotPinned= async ():Promise<any> => {
   const createresult = await dataRealmCommon.delete(ArticleEntitySchema.name, "isarticle_pinned!='1'");
   return createresult;
 }

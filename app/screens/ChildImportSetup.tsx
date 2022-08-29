@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     paddingTop: 0
   }
 })
-const ChildImportSetup = (props: any) => {
+const ChildImportSetup = (props: any):any => {
   let { importResponse } = props.route.params;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -101,7 +101,7 @@ const ChildImportSetup = (props: any) => {
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
   useEffect(() => {
-    const backAction = () => {
+    const backAction = ():any => {
       return true;
     };
     const backHandler = BackHandler.addEventListener(
@@ -109,12 +109,12 @@ const ChildImportSetup = (props: any) => {
       backAction,
     );
     props.navigation.addListener('gestureEnd', backAction);
-    return () => {
+    return ():any => {
       props.navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
   }, []);
-  const getCheckedParentItem = (checkedItem: any) => {
+  const getCheckedParentItem = (checkedItem: any):any => {
     if (
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
@@ -159,7 +159,7 @@ const ChildImportSetup = (props: any) => {
                     <Heading3Centerw style={styles.headingStyle2}>{t('updateImportText')}</Heading3Centerw>
                   </ShiftFromTopBottom20>
                   <FormInputGroup
-                    onPress={() => {
+                    onPress={():any => {
                       actionSheetRef.current?.setModalVisible();
                     }}>
                     <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
@@ -202,7 +202,7 @@ const ChildImportSetup = (props: any) => {
               return (
                 <ChildRelationList key={index}>
                   <Pressable
-                    onPress={() => {
+                    onPress={():any => {
                       setUserRelationToParent(item.id);
                       if (item.id == relationShipMotherId) {
                         if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
@@ -241,7 +241,7 @@ const ChildImportSetup = (props: any) => {
           <ButtonRow>
             <ButtonPrimary
               disabled={relationship == null || relationship == "" || relationship == undefined || userRelationToParent == undefined ? true : false}
-              onPress={async (e) => {
+              onPress={async (e):Promise<any> => {
                 e.stopPropagation();
                 if (importResponse) {
                   importResponse = JSON.parse(importResponse);

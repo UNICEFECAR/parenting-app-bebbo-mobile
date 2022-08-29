@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop:50
   }
 })
-const ChartHeightForAge = (props: any) => {
+const ChartHeightForAge = (props: any):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
@@ -32,7 +32,7 @@ const ChartHeightForAge = (props: any) => {
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
 );
-  const fullScreenChart = (chartType:any, obj:any) => {
+  const fullScreenChart = (chartType:any, obj:any):any => {
     navigation.navigate('ChartFullScreen', {
       activeChild,
       chartType,
@@ -91,7 +91,7 @@ const [deviceOrientation, setDeviceOrientation] = useState(
     : 'landscape'
 );
 useEffect(() => {
-  const deviceOrientation = () => {
+  const deviceOrientation = ():any => {
     if (Dimensions.get('window').width < Dimensions.get('window').height) {
       setDeviceOrientation('portrait');
     } else {
@@ -99,7 +99,7 @@ useEffect(() => {
     }
   };
   Dimensions.addEventListener('change', deviceOrientation);
-  return () => {
+  return ():any => {
     //cleanup work
     Dimensions.removeEventListener('change', deviceOrientation);
   };
@@ -110,7 +110,7 @@ useEffect(() => {
         <FlexRowEnd>
           <Pressable
             style={styles.fullScreenPressable}
-            onPress={() => fullScreenChart(chartTypes.HeightForAge, obj)}>
+            onPress={():any => fullScreenChart(chartTypes.HeightForAge, obj)}>
             <Icon name="ic_fullscreen" size={16} />
           </Pressable>
         </FlexRowEnd>

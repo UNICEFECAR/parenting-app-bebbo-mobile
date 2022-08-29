@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
           width:'100%',
     }
 })
-const ActivitiesCategories = (props: ActivityCategoriesProps) => {
+const ActivitiesCategories = (props: ActivityCategoriesProps):any => {
     const activityCategoryData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
     );
-    const getFilterArray = (itemId: any, filterArray: any[]) => {
+    const getFilterArray = (itemId: any, filterArray: any[]):any => {
         if (!filterArray.includes(itemId)) {
             filterArray.push(itemId);
             analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+itemId);                    
@@ -55,7 +55,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
         props.onFilterArrayChange(filterArray);
         return filterArray;
     };
-    const chunk = (arr: any, size: any) =>
+    const chunk = (arr: any, size: any):any =>
         Array.from({ length: Math.ceil(arr.length / size) }, (v:any, i:any) =>
             arr.slice(i * size, i * size + size)
         );
@@ -69,7 +69,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
                         return (<View key={i} style={styles.innerView} >
                             {
                                 activityCategoryInner.map((item) => {
-                                    return (<Pressable style={styles.pressableView} key={item.id} onPress={async() => {
+                                    return (<Pressable style={styles.pressableView} key={item.id} onPress={async():Promise<any> => {
                                         props.filterOnCategory(getFilterArray(item.id, props.filterArray)) }}>
                                         <FilterBox style={props.filterArray.includes(item.id) ? styles.filterBoxbg1 : styles.filterBoxbg2}>
                                             <OuterIconRow>

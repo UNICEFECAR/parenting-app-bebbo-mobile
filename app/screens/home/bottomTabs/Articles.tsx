@@ -60,13 +60,13 @@ export type ArticleCategoriesProps = {
   fromPage?: any;
   onFilterArrayChange?: any;
 }
-const Articles = ({ route, navigation }: any) => {
+const Articles = ({ route, navigation }: any):any => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState('');
   const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
-  const setIsModalOpened = async (varkey: any) => {
+  const setIsModalOpened = async (varkey: any):Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
@@ -88,7 +88,7 @@ const Articles = ({ route, navigation }: any) => {
   const modalScreenText = 'articleModalText';
   const netInfoval = useNetInfoHook();
   
-  const mergearr = (articlearrold: any[],videoartarrold: any[]) => {
+  const mergearr = (articlearrold: any[],videoartarrold: any[]):any => {
     let combinedarr: any[] = [];
     let i = 0;
     let j = 0;
@@ -162,7 +162,7 @@ const Articles = ({ route, navigation }: any) => {
   const [loadingArticle, setLoadingArticle] = useState(true);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const videoIsFocused = useIsFocused();
-  const goToArticleDetail = (item: any) => {
+  const goToArticleDetail = (item: any):any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Articles",
@@ -172,10 +172,10 @@ const Articles = ({ route, navigation }: any) => {
         listCategoryArray: filterArray
       });
   };
-  const RenderArticleItem = ({ item, index }:any) => {
+  const RenderArticleItem = ({ item, index }:any):any => {
     return (
     <ArticleListContainer>
-      <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
+      <Pressable onPress={():any => { goToArticleDetail(item) }} key={index}>
         {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
            videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>:null
           : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
@@ -192,11 +192,11 @@ const Articles = ({ route, navigation }: any) => {
   )
       };
   const memoizedValue = useMemo(() => RenderArticleItem, [RenderArticleItem,filteredData]);
-  const toTop = () => {
+  const toTop = ():any => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
   }
-  const setFilteredArticleData = (itemId: any) => {
+  const setFilteredArticleData = (itemId: any):any => {
     
     if (articleData != null && articleData != undefined && articleData.length > 0) {
       setLoadingArticle(true);
@@ -237,7 +237,7 @@ const Articles = ({ route, navigation }: any) => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      async function fetchData() {
+      async function fetchData():Promise<any> {
         if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
           setFilterArray(route.params?.categoryArray);
           setFilteredArticleData(route.params?.categoryArray);
@@ -265,7 +265,7 @@ const Articles = ({ route, navigation }: any) => {
       const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
         setKeyboardStatus(false);
       });
-      return () => {
+      return ():any => {
         {
           navigation.setParams({ categoryArray: [] })
           showSubscription.remove();
@@ -279,12 +279,12 @@ const Articles = ({ route, navigation }: any) => {
   
   
 
-  const onFilterArrayChange = (newFilterArray: any) => {
+  const onFilterArrayChange = (newFilterArray: any):any => {
    
     setFilterArray(newFilterArray)
   }
   //code for getting article dynamic data ends here.
-  const searchList = async (queryText: any) => {
+  const searchList = async (queryText: any):Promise<any> => {
     setLoadingArticle(true);
     
     let artData: any;
@@ -331,7 +331,7 @@ const Articles = ({ route, navigation }: any) => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                onChangeText={(queryText: any) => {
+                onChangeText={(queryText: any):any => {
                   if (queryText.replace(/\s/g, "") == "") {
                     searchQueryText(queryText.replace(/\s/g, ''));
                   } else {
@@ -339,7 +339,7 @@ const Articles = ({ route, navigation }: any) => {
                   }
                 }}
                 value={queryText}
-                onSubmitEditing={async (event) => {
+                onSubmitEditing={async (event):Promise<any> => {
                   console.log("event-",event);
                   await searchList(queryText);
                 }}
@@ -353,7 +353,7 @@ const Articles = ({ route, navigation }: any) => {
                 Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
                 <OuterIconRow>
 
-                  <IconClearPress onPress={() => {
+                  <IconClearPress onPress={():any => {
                     searchQueryText('');
                   }}>
                     <Icon
@@ -367,7 +367,7 @@ const Articles = ({ route, navigation }: any) => {
               }
               <OuterIconRow>
 
-                <Pressable style={styles.pressablePadding} onPress={async (e) => {
+                <Pressable style={styles.pressablePadding} onPress={async (e):Promise<any> => {
                   e.preventDefault();
                   await searchList(queryText);
                   Keyboard.dismiss();
@@ -392,8 +392,8 @@ const Articles = ({ route, navigation }: any) => {
               <FlatList
                 ref={flatListRef}
                 data={filteredData}
-                onScroll={(e) => {
-                  console.log(e)
+                onScroll={(e):any => {
+                  console.log(e);
                   if (keyboardStatus == true) {
                     Keyboard.dismiss();
                   }
@@ -408,7 +408,7 @@ const Articles = ({ route, navigation }: any) => {
                 windowSize={7} // Reduce the window size
                 // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
                 renderItem={memoizedValue}
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item):any => item.id.toString()}
               />
               : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
             

@@ -7,13 +7,13 @@ type TourNavigationProp = StackNavigationProp<RootStackParamList, 'ChildSetup'>;
 type Props = {
   navigation: TourNavigationProp;
 };
-const Tour = ({navigation}: Props) => {
+const Tour = ({navigation}: Props):any => {
   return (
     <View>
       <Text>Tour</Text>
       <Button
         title="Go to Details"
-        onPress={() => navigation.navigate('ChildSetup')}
+        onPress={():any => navigation.navigate('ChildSetup')}
       />
     </View>
   );
