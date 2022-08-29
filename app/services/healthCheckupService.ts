@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from "../../App";
 import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { formatStringDate } from './Utils';
-export const getAllHealthCheckupPeriods = () => {
+export const getAllHealthCheckupPeriods = ():any => {
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -28,7 +28,7 @@ export const getAllHealthCheckupPeriods = () => {
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
-const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
+const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any):any=>{
   return vaccineIds?.filter( (vcId:any) => {
     return allVaccinePeriods?.some((el:any) => {
       return vcId.uuid === el.uuid;
@@ -69,7 +69,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
     }
 
   });
-  const vaccineMeasuredInfo = (uuid: number) => {
+  const vaccineMeasuredInfo = (uuid: number):any => {
     return (measuredVaccines.find(item => String(item.uuid) == String(uuid)))
   }
 
@@ -77,7 +77,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
-  const getVaccinesForHCPeriod = (growthPeriodID:any) => {
+  const getVaccinesForHCPeriod = (growthPeriodID:any):any => {
     const vaccinesforHC = allVaccinePeriods.filter((item:any) => item.growth_period == growthPeriodID);
     vaccinesforHC?.forEach((vaccine:any) => {
       const vaccineMeasured = vaccineMeasuredInfo(vaccine.uuid);
@@ -92,7 +92,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any)=>{
       JSON.parse(state.utilsData.healthCheckupsData),
   );
   const additionalMeasures: any[] = [];
-  const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number) => {
+  const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number):any => {
     console.log("currentIndex--",currentIndex)
     const { t } = useTranslation();
     if (hcItem) {

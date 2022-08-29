@@ -8,7 +8,7 @@ export const sagaSlice = createSlice({
     errorObj: []
   },
   reducers: {
-    receiveAPIFailure: (state, action) => {
+    receiveAPIFailure: (state, action):any => {
       action.payload.errorArr = action.payload.errorArr.filter((_item: any) => _item.apiEndpoint !== appConfig.surveys);
       //write code to check if element already in array.
       if (action.payload?.fromPage == "OnLoad") {

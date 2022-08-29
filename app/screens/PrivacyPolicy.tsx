@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     padding: 0
   }
 })
-const PrivacyPolicy = ({navigation}: Props) => {
+const PrivacyPolicy = ({navigation}: Props):any => {
   const {t} = useTranslation();
   const privacydata = useAppSelector(
     (state: any) => state.utilsData.privacypolicy.body,
@@ -50,7 +50,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
 );
   useFocusEffect(
     React.useCallback(() => {
-      const backAction = () => {
+      const backAction = ():any => {
           navigation.goBack()
         return true;
       };
@@ -60,7 +60,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
     );
     navigation.addListener('gestureEnd', backAction);
 
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove()
     };
@@ -78,7 +78,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
             <Heading1w>{t('tNcprivacyPolicyTitle')}</Heading1w>
             <ShiftFromTop5>
               <Pressable
-                onPress={() => {
+                onPress={():any => {
                   navigation.goBack();
                 }}>
                 <Icon name="ic_close" size={20} color="#FFF" />
@@ -107,7 +107,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
               }}
               renderers={{
                 iframe,
-                img:(attribs:any) => {
+                img:(attribs:any):any => {
                   const imagePath:any = attribs.src;
                   console.log(imagePath,"..imagePath");
                   if(imagePath!="" && imagePath!=null && imagePath!=undefined){

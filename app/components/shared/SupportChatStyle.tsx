@@ -19,7 +19,7 @@ export const ChatBgImage = styled.View`
 export const BotImage = styled.View`
     height: 36px;
     width: 36px;
-    border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+    border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
     align-items: center;
     justify-content: center;
     margin-right: 15px;
@@ -27,9 +27,9 @@ export const BotImage = styled.View`
 `;
 
 export const BotBubbleContainer = styled(FlexCol)`
-  background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background-color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
   margin-bottom: 20px;
-  border-radius: ${(props) => props.theme.borderRadius.BORDERRADIUS};
+  border-radius: ${(props):any => props.theme.borderRadius.BORDERRADIUS};
   overflow: hidden;
 `;
 export const BotBubbleTextContainer = styled.View`
@@ -49,9 +49,9 @@ export const UserBubbleContainer = styled.View`
     align-items: flex-end;
 `;
 export const UserBubbleTextContainer = styled.View`
-    background-color:${props => props.theme.colors.PRIMARY_COLOR};
+    background-color:${(props):any => props.theme.colors.PRIMARY_COLOR};
     padding: 15px;
-    border-radius: ${(props) => props.theme.borderRadius.BORDERRADIUS};
+    border-radius: ${(props):any => props.theme.borderRadius.BORDERRADIUS};
     margin-bottom: 40px;
     margin-left: 100px;
     padding-top: 17px;
@@ -67,11 +67,11 @@ export const OptionBubbleContainer = styled.View`
 export const OptionBubblePressable = styled.Pressable`
     justify-content: center;
     align-items: center;
-    background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+    background-color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
     padding: 15px;
-    border-radius: ${(props) => props.theme.borderRadius.BORDERRADIUS};
+    border-radius: ${(props):any => props.theme.borderRadius.BORDERRADIUS};
     border-width: 2px;
-    border-color: ${props => props.theme.colors.PRIMARY_COLOR};
+    border-color: ${(props):any => props.theme.colors.PRIMARY_COLOR};
     padding-top: 17px;
     padding-bottom: 17px;
 `;
@@ -88,10 +88,10 @@ export const ActionBubblePressable = styled.Pressable`
     background-color: #75A7DD;
     padding: 4px;
     padding-right: 10px;
-    border-radius: ${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+    border-radius: ${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
     margin-bottom: 10px;
     border-width: 2px;
-    border-color: ${props => props.theme.colors.PRIMARY_COLOR};
+    border-color: ${(props):any => props.theme.colors.PRIMARY_COLOR};
 `;
 export const ActionBubbleIcon = styled.View`
     height: 40px;
@@ -100,5 +100,5 @@ export const ActionBubbleIcon = styled.View`
     align-items: center;
     margin-right: 15px;
     background-color: #e2edf7;
-    border-radius: ${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+    border-radius: ${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;

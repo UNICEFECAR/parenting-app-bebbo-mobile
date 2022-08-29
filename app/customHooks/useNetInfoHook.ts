@@ -1,7 +1,7 @@
 import { useNetInfo } from "@react-native-community/netinfo";
 import { useEffect, useState } from "react";
 
-const useNetInfoHook = () => {
+const useNetInfoHook = ():any => {
     const [isConnected, setIsConnected] = useState<boolean | null>(null);
     const [netValue, setNetValue] = useState<any>(null);
     const [netType, setNetType] = useState<any>(null);

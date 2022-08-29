@@ -13,12 +13,12 @@ export const ProfileListView = styled.View`
 
 
 export const ProfileListViewSelected = styled(ProfileListView)`
-  background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
+  background-color: ${(props):any => props.theme.colors.SECONDARY_COLOR};
   margin-bottom:3px;
   align-items:flex-start;
 `;
 export const ProfileListViewSelected1 = styled(ProfileListViewSelected)`
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 margin-bottom:15px;
 `;
 export const ProfileIconView = styled.View`
@@ -68,7 +68,7 @@ export const ProfileListInner = styled.View`
 `;
 export const ProfileListActiveChild = styled(ProfileListView)`
   align-items: flex-start;
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 `;
 
 export const ProfileLinkRow = styled.View`
@@ -77,7 +77,7 @@ width:100%;
   margin:0;
   padding:5px 10px;
  margin-bottom:15px;
- border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+ border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
  margin-top:-4px;
  border-color: rgba(0, 0, 0, 0.1);
  border-top-width: 1px;
@@ -119,17 +119,17 @@ align-items:flex-start;
 export const ParentListView = styled.View`
 padding:10px 11px 3px;
 align-items:center;
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 `
 
 export const ChildListScrollView = styled.View`
 height:350px;margin-top:15px;
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
 `
 
 export const ProfileEditView = styled.Pressable`
 background-color:#fff;
-border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 margin:10px;
 align-items:center;
 justify-content:center;
