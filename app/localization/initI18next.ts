@@ -24,7 +24,7 @@ import i18n, {
     }
   }
 
-  const findLangCode = (languageTag: string | undefined) => {
+  const findLangCode = (languageTag: string | undefined):any => {
     const obj = localisationnew.reduce((prev, product):any => prev || product.languages.find((item:any) => item.luxonLocale === languageTag && item.locale != 'RSen'), undefined);
     const obj2 = obj ? obj.locale : obj;
     return obj2;
@@ -63,7 +63,7 @@ import i18n, {
       AsyncStorage.setItem('APP_LANG', lng);
     },
   };
-  const trimwhiteSpace = (str:any) => {
+  const trimwhiteSpace = (str:any):any => {
     return str.length ? str.trim(): str
   }
   i18n

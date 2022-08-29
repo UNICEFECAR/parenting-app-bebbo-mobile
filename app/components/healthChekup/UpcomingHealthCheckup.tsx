@@ -48,7 +48,7 @@ const styles=StyleSheet.create({
   radioActive:{ backgroundColor: greenColor },
   textDecoration:{textDecorationLine:"none"}
 })
-const UpcomingHealthCheckup = (props: any) => {
+const UpcomingHealthCheckup = (props: any):any => {
   const { item, childAgeIndays, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -80,7 +80,7 @@ const UpcomingHealthCheckup = (props: any) => {
     })
 
   }
-  const gotoArticle = (pinned_articleID:any) => {
+  const gotoArticle = (pinned_articleID:any):any => {
     if (pinned_articleID != 0) {
       navigation.navigate('DetailsScreen', {
         fromScreen: 'HealthCheckupsTab',
@@ -94,7 +94,7 @@ const UpcomingHealthCheckup = (props: any) => {
   const allVaccineData = useAppSelector((state: any) =>
     JSON.parse(state.utilsData.vaccineData),
   );
-  const getVaccineName = (vaccineID:any) => {
+  const getVaccineName = (vaccineID:any):any => {
     return allVaccineData?.find((v:any) => v.uuid == vaccineID)?.title;
   };
   useEffect(() => {
@@ -118,7 +118,7 @@ const UpcomingHealthCheckup = (props: any) => {
             )}
           </ToolsIconView>
           <ToolsHeadPress
-            onPress={() => {
+            onPress={():any => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
@@ -230,7 +230,7 @@ const UpcomingHealthCheckup = (props: any) => {
               ) : null}
               {item?.pinned_article ? (
                 <ShiftFromTop15>
-                  <Pressable onPress={() => gotoArticle(item?.pinned_article)}>
+                  <Pressable onPress={():any => gotoArticle(item?.pinned_article)}>
                     <ButtonTextSmLineL numberOfLines={2}>{t('hcArticleLink')}</ButtonTextSmLineL>
                   </Pressable>
                 </ShiftFromTop15>
@@ -268,7 +268,7 @@ const UpcomingHealthCheckup = (props: any) => {
                       <View  style={styles.pressableOuterView}>
                       <Pressable
                           disabled={isFutureDate(activeChild?.birthDate)}
-                          onPress={() => {
+                          onPress={():any => {
                             navigation.navigate('AddReminder', {
                               reminderType: 'healthCheckup', // from remiderType
                               headerTitle: t('vcEditReminderHeading'),
@@ -293,7 +293,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 ) : isFutureDate(activeChild?.birthDate) ? null : (
                   <Pressable
                     disabled={isFutureDate(activeChild?.birthDate)}
-                    onPress={() => {
+                    onPress={():any => {
                       navigation.navigate('AddReminder', {
                         reminderType: 'healthCheckup', // from remiderType
                         headerTitle: t('vcReminderHeading'),
@@ -317,7 +317,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 <ShiftFromTopBottom10>
                   <Pressable
                     onPress={
-                      () => { 
+                      ():any => { 
                         console.log("pressable called")
                       }
                     }>
@@ -328,7 +328,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 <ButtonContainerAuto>
                   <ButtonHealth
                     disabled={isFutureDate(activeChild?.birthDate)}
-                    onPress={() =>
+                    onPress={():any =>
                       navigation.navigate('AddChildHealthCheckup', {
                         headerTitle: t('hcNewHeaderTitle'),
                         vcPeriod: item,

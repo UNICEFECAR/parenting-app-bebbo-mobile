@@ -169,7 +169,7 @@ class Ruler extends React.Component<Props, State> {
   }
   
 
-  componentDidMount() {
+  componentDidMount():any {
     const { minimum, initialValue, onChangeValue } = this.props;
      if (this.scrollViewRef && this.scrollViewRef.current) {
      setTimeout(() => {
@@ -195,7 +195,7 @@ class Ruler extends React.Component<Props, State> {
     });
   }
 
-  componentWillUnmount() {
+  componentWillUnmount():any {
     // Remove the above listener
     if (this.scrollListener) {
       this.state.scrollX.removeListener(this.scrollListener);
@@ -203,7 +203,7 @@ class Ruler extends React.Component<Props, State> {
 
   }
 
-  renderRuler(data: number[]) {
+  renderRuler(data: number[]):any {
     const {
       segmentWidth,
       segmentSpacing,
@@ -265,7 +265,7 @@ class Ruler extends React.Component<Props, State> {
     );
   }
 
-  render() {
+  render():any {
     const {
       style,
       minimum,
@@ -341,7 +341,7 @@ class Ruler extends React.Component<Props, State> {
               { useNativeDriver: false },
             )
           }
-          onMomentumScrollEnd={() => {
+          onMomentumScrollEnd={():any => {
             this.scrollViewRef.current?.scrollTo({
               x: (this.state.value * this.snapSegment)+ minimum,
               y: 0,
@@ -358,7 +358,7 @@ Ruler.defaultProps = {
   vertical: false,
   width,
   height: height * 0.23,
-  onChangeValue: () => { 
+  onChangeValue: ():any => { 
     console.log("ruler value change")
   },
   minimum: 0,

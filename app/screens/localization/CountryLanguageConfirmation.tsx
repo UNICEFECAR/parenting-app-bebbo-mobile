@@ -30,8 +30,7 @@ import {
 } from '@styles/typography';
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { I18nManager, Platform } from 'react-native';
-import { BackHandler } from 'react-native';
+import { I18nManager, Platform, BackHandler } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
@@ -48,7 +47,7 @@ type Props = {
   navigation: CountryLanguageConfirmationNavigationProp;
   route: any;
 };
-const CountryLanguageConfirmation = ({route, navigation}: Props) => {
+const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
   const {country, language} = route.params;
   const dispatch = useAppDispatch();
   const userIsOnboarded = useAppSelector(
@@ -94,14 +93,14 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   useEffect(() => {
     console.log("confirm useeffect called");
 
-    return () => {
+    return ():any => {
       dispatch(setrestartOnLangChange('no'));
     }
   }, []);
 
   useFocusEffect(
     React.useCallback(() => {
-      const backAction = () => {
+      const backAction = ():any => {
           i18n.changeLanguage(locale);
           navigation.goBack()
         return true;
@@ -112,14 +111,14 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     );
     navigation.addListener('gestureEnd', backAction);
 
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove()
     };
   }, []),
   );
 
-  const saveSelection = () => {
+  const saveSelection = ():any => {
     i18n.changeLanguage(language.locale)
     .then(() => {
       if(language?.locale == 'GRarb' || language?.locale == 'GRda')
@@ -204,7 +203,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
 
               <LocalizationAction>
                 <ButtonLinkText
-                  onPress={() => {
+                  onPress={():any => {
                     if(localization.length == 1) {
                       navigation.navigate('LanguageSelection',{country:country,languagenew:language})
                     }else {
@@ -221,7 +220,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               </LocalizationAction>
             </LocalizationRow>
             <Flex1>
-              <ButtonPrimary onPress={() => saveSelection()}>
+              <ButtonPrimary onPress={():any => saveSelection()}>
                 <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
               </ButtonPrimary>
             </Flex1>

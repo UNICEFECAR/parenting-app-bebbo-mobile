@@ -43,7 +43,7 @@ justify-content:flex-start;
 
 export const HeaderActionBox = styled.Pressable`
   background: rgba(255, 255, 255, 0.5);
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
   width: 40px;
   height: 40px;
   flex-direction: row;

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Platform, StatusBar, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getStatusBarHeight } from '../services/StatusBarHeight';
-const FocusAwareStatusBar = (props: any) => {
+const FocusAwareStatusBar = (props: any):any => {
   if(Platform.OS === 'android') {
   const isFocused = useIsFocused();
   return isFocused ? <StatusBar  {...props} /> : null;

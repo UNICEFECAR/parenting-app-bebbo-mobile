@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
   innerView:{flex: 1, flexDirection: 'column'},
     pressableView:{flex:1}
 });
-const ArticleCategories = (props: ArticleCategoriesProps) => {
+const ArticleCategories = (props: ArticleCategoriesProps):any => {
   const categoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  const getFilterArray = (itemId: any,filterArray: any[]) => {
+  const getFilterArray = (itemId: any,filterArray: any[]):any => {
     if (!filterArray.includes(itemId)) {
       filterArray.push(itemId);
        analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+itemId);
@@ -38,7 +38,7 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
     props.onFilterArrayChange(filterArray);
     return filterArray;
   };
-  const chunk = (arr:any, size:any) =>
+  const chunk = (arr:any, size:any):any =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v:any, i:any) =>
     arr.slice(i * size, i * size + size)
   );
@@ -51,7 +51,7 @@ const articleBrackets = chunk(articleCategoryobj, 2)
             return (<View key={i} style={styles.innerView}>
                 {
                  articleCategoryInner.map((item) => {
-                    return (<Pressable style={styles.pressableView} key={item.id} onPress={()=>{
+                    return (<Pressable style={styles.pressableView} key={item.id} onPress={():any=>{
                       props.filterOnCategory(getFilterArray(item.id,props.filterArray))}}>
                     <FilterBox style={props.filterArray.includes(item.id) ? styles.filterBoxbg1 : styles.filterBoxbg2}  >
                        <OuterIconRow>

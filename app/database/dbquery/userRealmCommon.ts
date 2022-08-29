@@ -47,7 +47,7 @@ class UserRealmCommon extends Component {
             }
         });
     }
-    public closeRealm() {
+    public closeRealm():any {
         if (this.realm) {
             this.realm.close();
             delete this.realm;

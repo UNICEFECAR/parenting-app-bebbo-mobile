@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 })
-const AddSiblingData = ({ route, navigation }: Props) => {
+const AddSiblingData = ({ route, navigation }: Props):any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { headerTitle } = route.params;
@@ -75,14 +75,14 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected,setIsExpected] = useState<string>('false');
   const [defaultGenderValue, setDefaultGenderValue] = useState<any>(null);
-  const sendData = (data: any) => { // the callback. Use a better name
+  const sendData = (data: any):any => { // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
     const myString = String(data.isPremature);
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
-  const isFutureDate = (date: Date) => {
+  const isFutureDate = (date: Date):any => {
     return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
   };
   const [name, setName] = React.useState('');
@@ -99,10 +99,10 @@ const AddSiblingData = ({ route, navigation }: Props) => {
 const [gender, setGender] = React.useState(
   childData != null ? childData.gender : 0,
 );
-const getCheckedItem = (checkedItem: typeof genders[0]) => {
+const getCheckedItem = (checkedItem: typeof genders[0]):any => {
   setGender(checkedItem.id);
 };
-const AddChild=async ()=>{
+const AddChild=async ():Promise<any>=>{
   await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   const defaultName =name;
   const insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender,createdAt) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender,createdAt)
@@ -124,7 +124,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
             <Heading1Centerw>{headerTitle}</Heading1Centerw>
             <ShiftFromTop5>
               <Pressable
-                onPress={() => {
+                onPress={():any => {
                   navigation.goBack();
                 }}>
                 <Icon name="ic_close" size={20} color="#FFF" />
@@ -142,7 +142,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                     autoCorrect={false}
                     maxLength={30}
                     clearButtonMode="always"
-                    onChangeText={(value) => {
+                    onChangeText={(value):any => {
                       if (value.replace(/\s/g, "") == "") {
                         setName(value.replace(/\s/g, ''));
                       } else {
@@ -178,7 +178,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
     <ButtonRow>
         <ButtonPrimary
          disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(2, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(4, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
-          onPress={() => {
+          onPress={():any => {
             let validated:any=false;
             if(birthDate != null && birthDate != undefined && !isFutureDate(birthDate)){
               validated=validateForm(2,birthDate,isPremature,relationship,plannedTermDate,name,gender);

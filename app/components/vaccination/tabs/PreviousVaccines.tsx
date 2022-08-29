@@ -33,7 +33,7 @@ const styles=StyleSheet.create({
   toolsIconOuterView:{ alignItems: "flex-end", flex: 1 },
   vaccineOuterView:{ flex: 6, flexDirection: "row" }
  })
-const PreviousVaccines = (props: any) => {
+const PreviousVaccines = (props: any):any => {
   const { item, headerColor, backgroundColor } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -43,7 +43,7 @@ const PreviousVaccines = (props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const gotoArticle = (pinned_articleID: any) => {
+  const gotoArticle = (pinned_articleID: any):any => {
     if (pinned_articleID != 0) {
       navigation.navigate('DetailsScreen', {
         fromScreen: 'VaccinationTab',
@@ -81,7 +81,7 @@ const PreviousVaccines = (props: any) => {
             )}
           </ToolsIconView>
           <ToolsHeadPress
-            onPress={() => {
+            onPress={():any => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
@@ -129,7 +129,7 @@ const PreviousVaccines = (props: any) => {
                         <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate) : null}</Heading4Regular>
 
                         {v?.pinned_article ?
-                          <Pressable onPress={() => gotoArticle(v.pinned_article)}>
+                          <Pressable onPress={():any => gotoArticle(v.pinned_article)}>
                             <ButtonTextSmLineL numberOfLines={2}>
                               {t('vcArticleLink')}
                             </ButtonTextSmLineL>
@@ -139,7 +139,7 @@ const PreviousVaccines = (props: any) => {
                     </View>
                     <View style={styles.toolsIconOuterView}>
                       <ToolsIconView1>
-                        {v.isMeasured ? <Pressable onPress={() =>
+                        {v.isMeasured ? <Pressable onPress={():any =>
                           navigation.navigate('AddChildVaccination', {
                             headerTitle: t('editVcTitle'),
                             vcPeriod: item,
@@ -165,7 +165,7 @@ const PreviousVaccines = (props: any) => {
               <ButtonContainerAuto>
                 <ButtonVaccination
                   disabled={isFutureDate(activeChild?.birthDate)}
-                  onPress={() =>
+                  onPress={():any =>
                     navigation.navigate('AddChildVaccination', {
                       headerTitle: t('addVcTitle'),
                       vcPeriod: item,
