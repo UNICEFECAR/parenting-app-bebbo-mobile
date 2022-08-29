@@ -28,7 +28,7 @@ innerView:{
 scrollView:{ paddingBottom: 100, paddingHorizontal: 10, paddingTop: 20 }
 
 })
-const Aboutus = () => {
+const Aboutus = ():any => {
   const themeContext = useContext(ThemeContext);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const { t } = useTranslation();
@@ -78,7 +78,7 @@ const Aboutus = () => {
                 }}
                 renderers={{
                   iframe,
-                  img: (attribs: any) => {
+                  img: (attribs: any):any => {
                     const imagePath: any = attribs.src;
                     console.log(imagePath, "..imagePath");
                     if (imagePath != "" && imagePath != null && imagePath != undefined) {

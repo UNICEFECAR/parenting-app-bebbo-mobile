@@ -49,7 +49,7 @@ import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificat
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 const RootStack = createStackNavigator<RootStackParamList>();
-export default () => {
+export default ():any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const userIsOnboarded = useAppSelector(
     (state: any) =>
@@ -92,7 +92,7 @@ export default () => {
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
 
-  const callUrl = (url: any) => {
+  const callUrl = (url: any):any => {
     if (url) {
       const initialUrlnew: any = url;
       if (initialUrlnew === null) {
@@ -144,7 +144,7 @@ export default () => {
  
 
   useEffect(() => {
-    const initPixel = async () => {
+    const initPixel = async ():Promise<any> => {
       if (Platform.OS === 'ios') {
         const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
         console.log(ATT_CHECK, "..ATT_CHECK..");
@@ -171,7 +171,7 @@ export default () => {
         Settings.setAdvertiserTrackingEnabled(true);
       }
     }
-    const updateTrackingStatus = (status: any) => {
+    const updateTrackingStatus = (status: any):any => {
       console.log(status, "..status")
       if (status === 'active') {
         initPixel();
@@ -185,7 +185,7 @@ export default () => {
       // Need to wait until the app is ready before checking the permission
       AppState.addEventListener('change', updateTrackingStatus)
 
-      return () => {
+      return ():any => {
         AppState.removeEventListener('change', updateTrackingStatus)
       }
     }
@@ -193,7 +193,7 @@ export default () => {
   useEffect(() => {
 
 
-    async function requestUserPermission() {
+    async function requestUserPermission():Promise<any> {
       const authStatus = await messaging().requestPermission();
       const enabled =
         authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
@@ -213,7 +213,7 @@ export default () => {
     }
 
   }, []);
-  const redirectLocation = (notification: any) => {
+  const redirectLocation = (notification: any):any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
     console.log(activeChild, "..activeChild..");
     console.log(notification.data.uuid, "..notification.data.uuid..");
@@ -315,7 +315,7 @@ export default () => {
     }, 0);
 
   }
-  const handleNotification = (notification: any) => {  
+  const handleNotification = (notification: any):any => {  
     let executed = false;
     if (!executed) {
       executed = true;
@@ -345,7 +345,7 @@ export default () => {
     }
 
   }
-  const createLocalNotificationListeners = async () => {
+  const createLocalNotificationListeners = async ():Promise<any> => {
     try {
       PushNotification.configure({
         // this will listen to your local push notifications on clicked 
@@ -393,7 +393,7 @@ export default () => {
   }, []);
 
   useMemo(() => {
-    async function fetchNetInfo() {
+    async function fetchNetInfo():Promise<any> {
       if (netInfoval && netInfoval.isConnected != null) {
         if (netInfoval.isConnected == true) {
           if (Platform.OS == 'android') {
@@ -473,7 +473,7 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    async function fetchNetInfoSet() {
+    async function fetchNetInfoSet():Promise<any> {
       if (netState == "Highbandwidth" && toggleSwitchVal == true) {
 
         const confirmation = await retryAlert1(0, 0);
@@ -496,10 +496,10 @@ export default () => {
     <SafeAreaProvider>
       <NavigationContainer
         ref={navigationRef}
-        onReady={() => {
+        onReady={():any => {
           routeNameRef.current = navigationRef.current.getCurrentRoute().name;
         }}
-        onStateChange={async () => {
+        onStateChange={async ():Promise<any> => {
           const previousRouteName = routeNameRef.current;
           const currentRouteName = navigationRef.current.getCurrentRoute().name;
 

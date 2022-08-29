@@ -62,7 +62,7 @@ export type RelatedArticlesProps = {
   fromScreen?:any;
   currentSelectedChildId?:any;
 }
-const DetailsScreen = ({route, navigation}: any) => {
+const DetailsScreen = ({route, navigation}: any):any => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
   console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor,newBackgroundColor;
@@ -86,7 +86,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const [detailDataToUse,setDetailDataToUse] = useState<any>({});
   
   const adviceval = fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
-  const onHeaderBack =()=>{
+  const onHeaderBack =():any=>{
     console.log("onHeaderBack called");
     if(fromScreen == "ChildDevelopment")
     {
@@ -129,7 +129,6 @@ const DetailsScreen = ({route, navigation}: any) => {
       });
     }
     else {
-      // navigation.goBack();
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: {categoryArray:listCategoryArray,backClicked:'yes'},
@@ -138,7 +137,7 @@ const DetailsScreen = ({route, navigation}: any) => {
     }
   }
   useEffect(() => {
-    const backAction = () => {
+    const backAction = ():any => {
       //console.log("dwferfef")
       onHeaderBack()
       return true;
@@ -151,14 +150,14 @@ const DetailsScreen = ({route, navigation}: any) => {
     navigation.addListener('gestureEnd', backAction);
       
   
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
   }, []);
   
   useEffect(() => {
-      const functionOnLoad = async () => {
+      const functionOnLoad = async ():Promise<any> => {
         if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
         {
           console.log(detailData,"..detailData..")
@@ -193,7 +192,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                     //show alert and back function
                     Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
                     [
-                      { text: t('detailScreenNoDataOkBtn'), onPress: () => onHeaderBack() }
+                      { text: t('detailScreenNoDataOkBtn'), onPress: ():any => onHeaderBack() }
                     ]
                   );
                 }
@@ -232,7 +231,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               //show alert and back function
               Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
               [
-                { text: t('detailScreenNoDataOkBtn'), onPress: () => onHeaderBack() }
+                { text: t('detailScreenNoDataOkBtn'), onPress: ():any => onHeaderBack() }
               ]
             );
             }
@@ -263,7 +262,7 @@ const DetailsScreen = ({route, navigation}: any) => {
         }
       }
       functionOnLoad();
-      return () => {
+      return ():any => {
         console.log("in return")
       }
 
@@ -281,7 +280,7 @@ const videoIsFocused = useIsFocused();
 console.log(videoIsFocused,"..videoIsFocused");
   const [filterArray,setFilterArray] = useState([]);
   const fromPage = 'Details';
-  const setNewFilteredArticleData = (itemId:any) => {
+  const setNewFilteredArticleData = (itemId:any):any => {
     navigation.navigate({
       name: fromScreen,
       params: {categoryArray:itemId,backClicked:'no'},
@@ -289,7 +288,7 @@ console.log(videoIsFocused,"..videoIsFocused");
     });
   }
   
-  const onFilterArrayChange = (newFilterArray: any) => {
+  const onFilterArrayChange = (newFilterArray: any):any => {
     setFilterArray(newFilterArray)
   }
   const cssRules =
@@ -372,7 +371,7 @@ console.log(videoIsFocused,"..videoIsFocused");
            renderers={{
             table,
             iframe,
-            img:(attribs:any) => {
+            img:(attribs:any):any => {
               const imagePath:any = attribs.src;
               console.log(imagePath,"..imagePath");
               if(imagePath!="" && imagePath!=null && imagePath!=undefined){

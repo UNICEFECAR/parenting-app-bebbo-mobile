@@ -2,7 +2,7 @@ import { appConfig, firstPeriodicSyncDays, secondPeriodicSyncDays } from "@asset
 import { DateTime } from "luxon";
 import {  useAppSelector } from "../../App";
 
-export const getAllPeriodicSyncData = () => {
+export const getAllPeriodicSyncData = ():any => {
     const childList = useAppSelector((state: any) =>
       state.childData.childDataSet.allChild != ''
         ? JSON.parse(state.childData.childDataSet.allChild)

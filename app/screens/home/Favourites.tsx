@@ -23,7 +23,7 @@ type Props = {
 const styles=StyleSheet.create({
   flex1:{flex: 1}
 })
-const Favourites = ({navigation, route}: Props) => {
+const Favourites = ({navigation, route}: Props):any => {
   const themeContext = useContext(ThemeContext);
   const {t} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
@@ -49,7 +49,7 @@ const Favourites = ({navigation, route}: Props) => {
 
     }, [route.params?.tabIndex])
   );
-  const renderItem = (index: number) => {
+  const renderItem = (index: number):any => {
     if(index===0){
     return (
       <>
@@ -81,7 +81,7 @@ const Favourites = ({navigation, route}: Props) => {
               <Pressable
                 key={itemindex}
                 style={styles.flex1}
-                onPress={() => {
+                onPress={():any => {
                   setSelectedIndex(itemindex);
                 }}>
                   <ShiftFromBottom5>

@@ -1,10 +1,10 @@
 import { BgContainer } from '@components/shared/Container';
 import React from 'react';
 import VaccineItem from './VaccineItem';
-const TakenVaccines = (props: any) => {
+const TakenVaccines = (props: any):any => {
   const {onTakenVaccineToggle, fromScreen,backgroundActiveColor} = props;
   const {takenVaccines} = props;
-   const onToggleVaccine = (id: any, isVaccineItemChecked: any) => {
+   const onToggleVaccine = (id: any, isVaccineItemChecked: any):any => {
      if (isVaccineItemChecked) {
      const updatedItem =  takenVaccines.find((el: any) => el.uuid === id)
       updatedItem.isMeasured= true;

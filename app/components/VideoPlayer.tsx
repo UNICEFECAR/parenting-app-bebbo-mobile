@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     }
 })
 
-const VideoPlayer = (props: any) => {
+const VideoPlayer = (props: any):any => {
     const [playing, setPlaying] = useState(false);
     const [loading, setLoading] = useState(true);
     let videoId: string;
@@ -54,7 +54,7 @@ const VideoPlayer = (props: any) => {
       videoType = videoTypeImage;
     }, []);
     const windowWidth = Dimensions.get('window').width;
-    const displaySpinner=()=>{
+    const displaySpinner=():any=>{
         return (
             <View style={styles.spinner}><ActivityIndicator size="large" color="#000" style={{
             }}/></View>
@@ -70,7 +70,7 @@ const VideoPlayer = (props: any) => {
     } else if (videoType == videoTypeYoutube) {
         videoId = getYoutubeId(props.selectedPinnedArticleData?.cover_video?.url)
     }
-    const getVimeoHtml = () => {
+    const getVimeoHtml = ():any => {
         return `
         <!DOCTYPE html>
         <html lang="en">

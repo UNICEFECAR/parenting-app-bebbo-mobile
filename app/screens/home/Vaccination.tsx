@@ -52,7 +52,7 @@ const stylesLocal=StyleSheet.create({
     justifyContent: 'space-around',
   }
 })
-const Vaccination = ({navigation,route}: Props) => {
+const Vaccination = ({navigation,route}: Props):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
@@ -61,11 +61,11 @@ const Vaccination = ({navigation,route}: Props) => {
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading,setProfileLoading] =  React.useState(false);
   const dispatch = useAppDispatch();
-  const setIsModalOpened = async (varkey: any) => {
+  const setIsModalOpened = async (varkey: any):Promise<any> => {
     const obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
-  const onBackPress = () => {
+  const onBackPress = ():any => {
     if(route.params?.fromNotificationScreen==true){
       navigation.navigate('NotificationsScreen');
       return true;
@@ -80,7 +80,7 @@ const Vaccination = ({navigation,route}: Props) => {
       onBackPress,
     );
     navigation.addListener('gestureEnd', onBackPress);
-    return () => {
+    return ():any => {
       navigation.removeListener('gestureEnd', onBackPress);
       backHandler.remove()};
   }, []);
@@ -100,7 +100,7 @@ const Vaccination = ({navigation,route}: Props) => {
     overDuePreviousVCcount,
     doneVCcount,
   } = getAllVaccinePeriods();
-  const renderItem = (index: number) => {
+  const renderItem = (index: number):any => {
     if (index === 0) {
       return (
         <View>
@@ -141,17 +141,17 @@ const Vaccination = ({navigation,route}: Props) => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           console.log("in onRequestClose");
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                   setIsModalOpened('IsVaccineModalOpened');
                 }}>
@@ -165,7 +165,7 @@ const Vaccination = ({navigation,route}: Props) => {
               </ModalPopupContent>
               <FDirRow>
               <ButtonModal
-                onPress={() => {
+                onPress={():any => {
                   setIsModalOpened('IsVaccineModalOpened');
                 }}>
                 <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
@@ -191,7 +191,7 @@ const Vaccination = ({navigation,route}: Props) => {
               </ShiftFromTopBottom5>
               <View
                 style={stylesLocal.vacSummaryMainView}>
-                <VacSummaryPress onPress={() => setSelectedIndex(0)}>
+                <VacSummaryPress onPress={():any => setSelectedIndex(0)}>
                   <VacSummaryBox>
                     <Heading2>
                       {totalUpcomingVaccines ? totalUpcomingVaccines : 0}
@@ -200,7 +200,7 @@ const Vaccination = ({navigation,route}: Props) => {
                     <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
                   </VacSummaryBox>
                 </VacSummaryPress>
-                <VacSummaryPress onPress={() => setSelectedIndex(1)}>
+                <VacSummaryPress onPress={():any => setSelectedIndex(1)}>
                   <VacSummaryBox>
                     <Heading2>
                       {overDuePreviousVCcount ? overDuePreviousVCcount : 0}
@@ -208,7 +208,7 @@ const Vaccination = ({navigation,route}: Props) => {
                     <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
                   </VacSummaryBox>
                 </VacSummaryPress>
-                <VacSummaryPress onPress={() => setSelectedIndex(1)}>
+                <VacSummaryPress onPress={():any => setSelectedIndex(1)}>
                   <VacSummaryBox>
                     <Heading2>{doneVCcount ? doneVCcount : 0}</Heading2>
                     <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
@@ -223,7 +223,7 @@ const Vaccination = ({navigation,route}: Props) => {
                   <Pressable
                     key={itemindex}
                     style={stylesLocal.flex1}
-                    onPress={() => {
+                    onPress={():any => {
                       setSelectedIndex(itemindex);
                     }}>
                     <TabBarDefault
