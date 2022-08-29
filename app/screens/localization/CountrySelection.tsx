@@ -23,7 +23,7 @@ import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
-const CountrySelection = (props: any) => {
+const CountrySelection = (props: any):any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
@@ -53,7 +53,7 @@ const CountrySelection = (props: any) => {
       const selectedCountry = localization.find(
         (country:any) => country.countryId === newCountryId,
       );
-      const fetchData = async () => {
+      const fetchData = async ():Promise<any> => {
         if (userIsOnboarded == false) {
           await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
           const data=await dataRealmCommon.deleteAllAtOnce();
@@ -68,7 +68,7 @@ const CountrySelection = (props: any) => {
     }
     
   }, [isVisible, props.route.params]);
-  const renderItem = ({ item }: any) => (
+  const renderItem = ({ item }: any):any => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
   
@@ -87,7 +87,7 @@ const CountrySelection = (props: any) => {
           <FlatList
             data={localization}
             renderItem={renderItem}
-            keyExtractor={(item) => item.countryId.toString()}
+            keyExtractor={(item):any => item.countryId.toString()}
           />
         </SelectionView>
         {country ? (
@@ -95,7 +95,7 @@ const CountrySelection = (props: any) => {
             <ShiftFromTopBottom10>
               <ButtonviewNext>
                 <ButtonviewClick
-                  onPress={() => {
+                  onPress={():any => {
                       props.navigation.navigate('LanguageSelection', { country:country,languagenew: props.route.params && props.route.params.language ? props.route.params.language : null})
                     }
                   }>
@@ -106,7 +106,7 @@ const CountrySelection = (props: any) => {
           </ButtonSection>
         ) : (
           <ButtonviewPrevious>
-            <ButtonviewClick onPress={() => {
+            <ButtonviewClick onPress={():any => {
               console.log("pressed")
              }}>
               <IconML name="ic_angle_right" size={32} color="#000" />

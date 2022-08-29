@@ -101,7 +101,7 @@ bgColorWhite:{ backgroundColor:bgcolorWhite2},
 borderWidth1:{ borderWidth: 1 },
 flex1:{flex:1}
 })
-const SettingScreen = (props: any) => {
+const SettingScreen = (props: any):any => {
   const themeContext = useContext(ThemeContext);
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
   const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
@@ -169,14 +169,14 @@ const SettingScreen = (props: any) => {
 
   const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
 
-  const importAllData = async () => {
+  const importAllData = async ():Promise<any> => {
     setIsImportRunning(true);
     await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
     setIsImportRunning(false);
     actionSheetRefImport.current?.setModalVisible(false);
   }
 
-  const exportFile = async () => {
+  const exportFile = async ():Promise<any> => {
     //need to add code.
     setIsExportRunning(true);
     const userRealmPath = userRealmCommon.realm?.path;
@@ -249,13 +249,13 @@ const SettingScreen = (props: any) => {
     
     }
   }
-  const onExportCancel = () => {
+  const onExportCancel = ():any => {
     setExportAlertVisible(false);
   }
-  const onImportCancel = () => {
+  const onImportCancel = ():any => {
     setImportAlertVisible(false);
   }
-  const exportToDrive = async () => {
+  const exportToDrive = async ():Promise<any> => {
     setIsExportRunning(true);
     const exportIsSuccess = await backup.export();
     setIsExportRunning(false);
@@ -266,20 +266,20 @@ const SettingScreen = (props: any) => {
     }
     actionSheetRef.current?.setModalVisible(false);
   }
-  const handleExportAlertConfirm = () => {
+  const handleExportAlertConfirm = ():any => {
     setExportAlertVisible(false);
     exportToDrive();
   };
-  const handleImportAlertConfirm = async () => {
+  const handleImportAlertConfirm = async ():Promise<any> => {
     setImportAlertVisible(false);
     importAllData()
   };
-  const exportAllData = async () => {
+  const exportAllData = async ():Promise<any> => {
 
     actionSheetRef.current?.setModalVisible();
 
   };
-  const toggleSwitch = () => {
+  const toggleSwitch = ():any => {
     if (vchcEnabledFlag == true || growthEnabledFlag == true || developmentEnabledFlag == true) {
       setIsEnabled(true);
     } else {
@@ -290,7 +290,7 @@ const SettingScreen = (props: any) => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
-  const toggleGrowthFutureNotiData = async (callCreateLocalNoti:boolean) => {
+  const toggleGrowthFutureNotiData = async (callCreateLocalNoti:boolean):Promise<any> => {
     //toggle isDeleted flag from gwcdnotis where type = 'gw'
     let currscheduledlocalNotifications = [...scheduledlocalNotifications];
     const childList = await getAllChildren(dispatch, childAge, 1);
@@ -348,7 +348,7 @@ const SettingScreen = (props: any) => {
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
-  const togglecdFutureNotiData = async (callCreateLocalNoti:boolean) => {
+  const togglecdFutureNotiData = async (callCreateLocalNoti:boolean):Promise<any> => {
     //toggle isDeleted flag from gwcdnotis where type = 'cd'
     let currscheduledlocalNotifications = [...scheduledlocalNotifications];
     const childList = await getAllChildren(dispatch, childAge, 1);
@@ -406,7 +406,7 @@ const SettingScreen = (props: any) => {
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
-  const toggleVCHCVCRHCRFutureNotiData = async (callCreateLocalNoti:boolean) => {
+  const toggleVCHCVCRHCRFutureNotiData = async (callCreateLocalNoti:boolean):Promise<any> => {
     //toggle isDeleted flag from reminderNotis,hcnotis,vchcnotis
     let currscheduledlocalNotifications = [...scheduledlocalNotifications];
     const childList = await getAllChildren(dispatch, childAge, 1);
@@ -504,7 +504,7 @@ const SettingScreen = (props: any) => {
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
-  const toggleAllNotis = () => {
+  const toggleAllNotis = ():any => {
     if (isEnabled == true) {
       const obj = { key: 'growthEnabled', value: false };
       dispatch(toggleNotificationFlags(obj));
@@ -534,22 +534,22 @@ const SettingScreen = (props: any) => {
     const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
   }
-  const toggleDataSaverSwitch = () => {
+  const toggleDataSaverSwitch = ():any => {
     dispatch(onNetworkStateChange(!toggleSwitchVal));
   }
 
-  const downloadUpdatedData = () => {
+  const downloadUpdatedData = ():any => {
     Alert.alert(t('downloadUpdatePopupTitle'), t('downloadUpdatePopupText'),
       [
         {
           text: t('downloadUpdateCancelPopUpBtn'),
-          onPress: () => {
+          onPress: ():any => {
           console.log("on pressed")
           },
           style: "cancel"
         },
         {
-          text: t('downloadUpdateContinueBtn'), onPress: async () => {
+          text: t('downloadUpdateContinueBtn'), onPress: async ():Promise<any> => {
             props.navigation.navigate('LoadingScreen', {
               apiJsonData: allApisObject(true,incrementalSyncDT),
               prevPage: 'DownloadUpdate'
@@ -560,18 +560,18 @@ const SettingScreen = (props: any) => {
     );
   }
 
-  const downloadAllData = () => {
+  const downloadAllData = ():any => {
     Alert.alert(t('downloadAllPopupTitle'), t('downloadAllPopupText'),
       [
         {
           text: t('downloadAllCancelPopUpBtn'),
-          onPress: () => {
+          onPress: ():any => {
             console.log("on pressed")
           },
           style: "cancel"
         },
         {
-          text: t('downloadAllContinueBtn'), onPress: async () => {
+          text: t('downloadAllContinueBtn'), onPress: async ():Promise<any> => {
             props.navigation.navigate('LoadingScreen', {
               apiJsonData: allDataDownloadFlag == false ? allApisObject(false,incrementalSyncDT) : allApisObject(true,incrementalSyncDT),
               prevPage: 'DownloadAllData'
@@ -599,7 +599,7 @@ const SettingScreen = (props: any) => {
       toggleSwitch();
     }, [developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag])
   );
-  const handleError = (err: any) => {
+  const handleError = (err: any):any => {
     console.log(err,"..err")
     
     if (DocumentPicker.isCancel(err)) {
@@ -611,7 +611,7 @@ const SettingScreen = (props: any) => {
       throw err
     }
   };
-  const importFromSettingsFile =async() => {
+  const importFromSettingsFile =async():Promise<any> => {
     if(Platform.OS=="android"){
     const dataset=await ScopedStorage.openDocument(true,'base64');
     console.log(dataset,"..dataset");
@@ -711,7 +711,7 @@ const SettingScreen = (props: any) => {
               <SideSpacing10>
                 <FDirRowStart>
                   <FormOuterCheckbox
-                    onPress={() => {
+                    onPress={():any => {
                       const obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
                       toggleGrowthFutureNotiData(true);
@@ -751,7 +751,7 @@ const SettingScreen = (props: any) => {
               <SideSpacing10>
                 <FDirRowStart>
                   <FormOuterCheckbox
-                    onPress={() => {
+                    onPress={():any => {
                       const obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
                       togglecdFutureNotiData(true);
@@ -792,7 +792,7 @@ const SettingScreen = (props: any) => {
               <SideSpacing10>
                 <FDirRowStart>
                   <FormOuterCheckbox
-                    onPress={() => {
+                    onPress={():any => {
                       const obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
                       dispatch(toggleNotificationFlags(obj));
                       toggleVCHCVCRHCRFutureNotiData(true);
@@ -868,7 +868,7 @@ const SettingScreen = (props: any) => {
             </Heading6>
             <ShiftFromTop10>
               {/* <ButtonPrimary onPress={() => { downloadUpdatedData() }}> */}
-              <ButtonPrimary onPress={() => {
+              <ButtonPrimary onPress={():any => {
                 if (netInfoval && netInfoval.isConnected == true) {
                   downloadUpdatedData()
                 }
@@ -884,7 +884,7 @@ const SettingScreen = (props: any) => {
               <Heading6>{t('settingScreendownldSubHeader3Text')}</Heading6>
             </ShiftFromTop10>
             <ShiftFromTop10>
-              <ButtonPrimary onPress={() => { if (netInfoval && netInfoval.isConnected == true) {
+              <ButtonPrimary onPress={():any => { if (netInfoval && netInfoval.isConnected == true) {
                     downloadAllData()
                   }
                   else {
@@ -900,7 +900,7 @@ const SettingScreen = (props: any) => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <IconAreaPress onPress={() => {
+                <IconAreaPress onPress={():any => {
                   setModalVisible(true)
                 }}>
                   <Icon name="ic_edit" size={16} color="#000" />
@@ -936,13 +936,13 @@ const SettingScreen = (props: any) => {
             <ShiftFromTopBottom10>
               <ButtonPrimary
                 disabled={isExportRunning || isImportRunning}
-                onPress={() => { exportAllData(); }}>
+                onPress={():any => { exportAllData(); }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenexportBtnText')}</ButtonText>
               </ButtonPrimary>
 
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
-              <ButtonPrimary disabled={isExportRunning || isImportRunning} onPress={() => {
+              <ButtonPrimary disabled={isExportRunning || isImportRunning} onPress={():any => {
                 actionSheetRefImport.current?.setModalVisible(true);
               }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
@@ -959,7 +959,7 @@ const SettingScreen = (props: any) => {
               <SettingShareData>
                 <FDirRow>
                   <SettingOptions>
-                    <Pressable onPress={async () => {
+                    <Pressable onPress={async ():Promise<any> => {
                       console.log("icon clicked");
                       try {
                         if (Platform.OS === "android") {
@@ -989,7 +989,7 @@ const SettingScreen = (props: any) => {
                     </Pressable>
                   </SettingOptions>
                   <SettingOptions>
-                    <Pressable onPress={() => {
+                    <Pressable onPress={():any => {
                       actionSheetRef.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
                         Platform.OS=='ios'? setTimeout(()=>{
@@ -1023,7 +1023,7 @@ const SettingScreen = (props: any) => {
               <SettingShareData>
                 <FDirRow>
                   <SettingOptions>
-                    <Pressable onPress={() => {
+                    <Pressable onPress={():any => {
                       console.log("icon clicked");
                       actionSheetRefImport.current?.setModalVisible(false);
                       setTimeout(async () => {
@@ -1059,7 +1059,7 @@ const SettingScreen = (props: any) => {
                     </Pressable>
                   </SettingOptions>
                   <SettingOptions>
-                    <Pressable onPress={() => {
+                    <Pressable onPress={():any => {
                       actionSheetRefImport.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
 
@@ -1092,17 +1092,17 @@ const SettingScreen = (props: any) => {
           animationType="none"
           transparent={true}
           visible={modalVisible}
-          onRequestClose={() => {
+          onRequestClose={():any => {
             setModalVisible(false);
           }}
-          onDismiss={() => {
+          onDismiss={():any => {
             setModalVisible(false);
           }}>
           <PopupOverlay>
             <ModalPopupContainer>
               <PopupCloseContainer>
                 <PopupClose
-                  onPress={() => {
+                  onPress={():any => {
                     setModalVisible(false);
                   }}>
                   <Icon name="ic_close" size={16} color="#000" />
@@ -1115,7 +1115,7 @@ const SettingScreen = (props: any) => {
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
-                  onPress={() => {
+                  onPress={():any => {
                     setModalVisible(false);
                     props.navigation.navigate('Localization',
                       {

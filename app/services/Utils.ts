@@ -21,7 +21,7 @@ import { VaccinationEntity, VaccinationSchema } from "../database/schema/Vaccina
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
-export const addApiDataInRealm = async (response: any) => {
+export const addApiDataInRealm = async (response: any):any => {
     // return new Promise(async (resolve, reject) => {
        let EntitySchema:ObjectSchema = {name: "",properties: {}};
         let EntitySchema2:ObjectSchema = {name: "",properties: {}};
@@ -177,7 +177,7 @@ export const addApiDataInRealm = async (response: any) => {
         
     // });
 }
-export const addSpaceToHtml=(htmlInput:any)=>{
+export const addSpaceToHtml=(htmlInput:any):any=>{
 	if(htmlInput !== null && htmlInput !== undefined){
 		let html = htmlInput;
         html = html.replace(/<[/]strong> /g, " </strong>");
@@ -195,14 +195,14 @@ export const addSpaceToHtml=(htmlInput:any)=>{
 		return html;
 	}
 }
-export const formatDate = (dateData: any) => {
+export const formatDate = (dateData: any):any => {
     const day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
     const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     const dateView = day + "." + month + "." + year;
     return dateView;
 }
-export const formatStringDate = (dateData: any) => {
+export const formatStringDate = (dateData: any):any => {
     const day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
     const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
@@ -210,10 +210,10 @@ export const formatStringDate = (dateData: any) => {
     return dateView;
 }
 
-export const formatStringTime = (dateData: any) => {
+export const formatStringTime = (dateData: any):any => {
     return new Intl.DateTimeFormat(luxonDefaultLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateData));
 }
-export const removeParams=(sParam:any)=>
+export const removeParams=(sParam:any):any=>
 {
   if(sParam.indexOf("?") != -1){
     const url =sParam.split('?')[0];
@@ -223,7 +223,7 @@ export const removeParams=(sParam:any)=>
     return sParam;
   }    
 }
-export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any) => {
+export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any):any => {
     if (birthDate == null || birthDate == undefined) {
        return false;
     }
@@ -269,7 +269,7 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
         }
     }
 }
-export const  randomArrayShuffle = (array:any) => {
+export const  randomArrayShuffle = (array:any):any => {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -325,7 +325,7 @@ export const getVimeoId = (url: string): string => {
 
     return rval;
 }
-const formatImportedMeasures = (measures: any) => {
+const formatImportedMeasures = (measures: any):any => {
    //imported from old app
     if (measures == "" || measures == [] || measures == null) {
         return [];
@@ -373,7 +373,7 @@ const formatImportedMeasures = (measures: any) => {
         }
     }
 }
-const callAsyncOperationdatetime = async (rem:any) => {
+const callAsyncOperationdatetime = async (rem:any):Promise<any> => {
     const remnew = {
         reminderDate : rem?.reminderDate,
         reminderTime : rem?.reminderTime,
@@ -385,7 +385,7 @@ const callAsyncOperationdatetime = async (rem:any) => {
      return await remnew;
 }
 
-const formatImportedReminders = async (reminders: any) => {
+const formatImportedReminders = async (reminders: any):Promise<any> => {
     if (reminders == "" || reminders == [] || reminders == null) {
         // in old app reminders were string, new app has reminders array
         return [];
@@ -417,7 +417,7 @@ const formatImportedReminders = async (reminders: any) => {
     }
 }
 //child data get
-export const getChild = async (child: any, genders: any) => {
+export const getChild = async (child: any, genders: any):Promise<any> => {
     const photoUri = await RNFS.exists(CHILDREN_PATH + child.photoUri);
     const childmeasures: any[] = await formatImportedMeasures(child.measures)
     const childreminders: any[] = await formatImportedReminders(child.reminders)

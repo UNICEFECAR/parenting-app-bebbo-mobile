@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     padding: 8 
   }
 })
-const CustomDrawerContent = ({ navigation }: any) => {
+const CustomDrawerContent = ({ navigation }: any):any => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
@@ -179,7 +179,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
     }
   }, [isOpen, activeChild.uuid, allnotis]),
   );
-  const onShare = async () => {
+  const onShare = async ():Promise<any> => {
     const localeData=(String(buildFor) != buildForBebbo)?languageCode:"";
     const messageData=t('appShareText')+shareText+localeData;
     console.log(messageData,"..messageData..");
@@ -212,7 +212,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
         <ScrollView style={styles.scrollViewStyle}>
           <Flex1>
             <Pressable
-              onPress={() => navigation.navigate('ChildProfileScreen')}
+              onPress={():any => navigation.navigate('ChildProfileScreen')}
               style={{
                 backgroundColor: headerColor,
               }}>
@@ -260,7 +260,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
           </Flex1>
          
           <DrawerLinkView
-            onPress={() => navigation.navigate('Home', { screen: 'Home' })}>
+            onPress={():any => navigation.navigate('Home', { screen: 'Home' })}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_home" size={25} color="#000" />
@@ -272,7 +272,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
 
           <DrawerLinkView
-            onPress={() => navigation.navigate('NotificationsScreen')}>
+            onPress={():any => navigation.navigate('NotificationsScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_notification" size={25} color="#000" />
@@ -288,7 +288,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               : null}
           </DrawerLinkView>
 
-          <DrawerLinkView style={{ backgroundColor: accordvalue ? lightShadeColor : bgcolorWhite2 }} onPress={() => onChangeaccordvalue(!accordvalue)}>
+          <DrawerLinkView style={{ backgroundColor: accordvalue ? lightShadeColor : bgcolorWhite2 }} onPress={():any => onChangeaccordvalue(!accordvalue)}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_tools" size={25} color="#000" />
@@ -306,7 +306,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
           {accordvalue ? (
             <>
               <SubDrawerLinkView 
-                onPress={() =>
+                onPress={():any =>
                   navigation.navigate('Home', { screen: 'ChildDevelopment' })
                 }>
                 <FDirRow>
@@ -323,7 +323,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={() => {
+                onPress={():any => {
                   navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
@@ -346,7 +346,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={() => {
+                onPress={():any => {
                   navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
@@ -369,7 +369,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={() => {
+                onPress={():any => {
                   navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
@@ -393,7 +393,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </SubDrawerLinkView>
             </>
           ) : null}
-          <DrawerLinkView onPress={() => navigation.navigate('SupportChat')}>
+          <DrawerLinkView onPress={():any => navigation.navigate('SupportChat')}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_chat" size={25} color="#000" />
@@ -402,7 +402,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuchatTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => navigation.navigate('Favourites',{tabIndex: 0,backClicked:'no'})}>
+          <DrawerLinkView onPress={():any => navigation.navigate('Favourites',{tabIndex: 0,backClicked:'no'})}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_favorites" size={25} color="#000" />
@@ -419,7 +419,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               : null
             }
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => navigation.navigate('AboutusScreen')}>
+          <DrawerLinkView onPress={():any => navigation.navigate('AboutusScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_about" size={25} color="#000" />
@@ -429,7 +429,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuabtTxt')}</Heading4>
           </DrawerLinkView>
           {userGuideItem && userGuideItem != {} && userGuideItem != '' && userGuideItem?.survey_feedback_link && userGuideItem?.survey_feedback_link != '' && userGuideItem?.survey_feedback_link != null ? 
-            <DrawerLinkView onPress={() => 
+            <DrawerLinkView onPress={():any => 
               {
                 Linking.openURL(userGuideItem?.survey_feedback_link);
                 // navigation.navigate('UserGuide')
@@ -443,7 +443,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuugTxt')}</Heading4>
             </DrawerLinkView>
             : null}
-          <DrawerLinkView onPress={() => navigation.navigate('SettingsScreen')}>
+          <DrawerLinkView onPress={():any => navigation.navigate('SettingsScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_settings" size={25} color="#000" />
@@ -453,7 +453,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenusetTxt')}</Heading4>
           </DrawerLinkView>
 
-          <DrawerLinkView onPress={() => onShare()}>
+          <DrawerLinkView onPress={():any => onShare()}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_shareapp" size={25} color="#000" />
@@ -461,7 +461,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </OuterIconRow>
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenushareTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => { setModalVisible(true); }}>
+          <DrawerLinkView onPress={():any => { setModalVisible(true); }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_feedback" size={25} color="#000" />
@@ -469,7 +469,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </OuterIconRow>
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenufeedbackTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => {
+          <DrawerLinkView onPress={():any => {
             if(Platform.OS === 'android') {
               if(String(buildFor) == buildForBebbo) { 
                 Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo') 
@@ -495,7 +495,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenurateTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView
-            onPress={() => {
+            onPress={():any => {
               navigation.navigate('PrivacyPolicy');
             }}>
             <OuterIconRow>
@@ -512,17 +512,17 @@ const CustomDrawerContent = ({ navigation }: any) => {
         animationType="none"
         transparent={true}
         visible={modalVisible === true}
-        onRequestClose={() => {
+        onRequestClose={():any => {
           setModalVisible(false);
         }}
-        onDismiss={() => {
+        onDismiss={():any => {
           setModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={() => {
+                onPress={():any => {
                   setModalVisible(false);
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />
@@ -544,7 +544,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </ModalPopupContent>
                 <FDirRow>
                   <ButtonModal
-                    onPress={() => {
+                    onPress={():any => {
                       setModalVisible(false);
                       analytics().logEvent(FEEDBACK_SUBMIT)
                       Linking.openURL(feedbackItem?.survey_feedback_link)

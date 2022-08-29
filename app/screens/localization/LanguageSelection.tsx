@@ -31,7 +31,7 @@ type Props = {
   navigation: LanguageSelectionNavigationProp;
   route: any;
 };
-const LanguageSelection = ({route, navigation}: Props) => {
+const LanguageSelection = ({route, navigation}: Props):any => {
   const [language, setLanguage] = useState<any>();
   console.log("in lang file ---",route.params);
   let country:any,languagenew: any;
@@ -65,7 +65,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
     );
     setLanguage(selectedLanguage);
   }, []);
-  const renderItem = ({item}: any) => (
+  const renderItem = ({item}: any):any => (
     <LanguageItem
       item={item}
       currentItem={language}
@@ -74,7 +74,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const rtlConditions = () => {
+  const rtlConditions = ():any => {
     if(language?.locale == 'GRarb' || language?.locale == 'GRda')
           {
             if(AppLayoutDirection == 'ltr') {
@@ -123,7 +123,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
       language,
     })
   }
-  const goToConfirmationScreen = () => {
+  const goToConfirmationScreen = ():any => {
     i18n.changeLanguage(language?.locale)
     .then(() => {
       if(buildFor == buildForBebbo) {
@@ -132,7 +132,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
           if(language?.locale == rotwLanguagelocaleen || language?.locale == rotwLanguagelocaleru) {
                 Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
                 [
-                  { text:t('restOfTheWorldOkTitle'), onPress: async () => {
+                  { text:t('restOfTheWorldOkTitle'), onPress: async ():Promise<any> => {
                     rtlConditions()
                     }
                   }
@@ -161,14 +161,14 @@ const LanguageSelection = ({route, navigation}: Props) => {
           <FlatList
             data={languages}
             renderItem={renderItem}
-            keyExtractor={(item) => item.languageCode.toString()}
+            keyExtractor={(item):any => item.languageCode.toString()}
           />
         </SelectionView>
         <ShiftFromTopBottom10>
           <BtnMultiple>
             {localization.length > 1 ?
                 <ButtonviewNext>
-                  <ButtonviewClick onPress={() => navigation.goBack()}>
+                  <ButtonviewClick onPress={():any => navigation.goBack()}>
                     <IconML name="ic_angle_left" size={32} color="#000" />
                   </ButtonviewClick>
                 </ButtonviewNext>
@@ -177,7 +177,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
             {language ? (
               <ButtonviewNext>
                 <ButtonviewClick
-                  onPress={() => {
+                  onPress={():any => {
                       goToConfirmationScreen()
                   }
                   }>
@@ -186,7 +186,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
               </ButtonviewNext>
             ) : <ButtonviewPrevious>
             <ButtonviewClick
-              onPress={() =>{
+              onPress={():any =>{
                 console.log("pressed")
               }
               }>
