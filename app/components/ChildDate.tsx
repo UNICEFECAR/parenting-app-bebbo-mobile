@@ -19,7 +19,8 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
-  LabelText
+  LabelText,
+  LabelText1
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
   FormDobInfoPress,
@@ -39,7 +40,9 @@ const styles = StyleSheet.create({
     backgroundColor: greyCode,
     opacity: 0.5,
   },
-  formDateText:{flex:1,flexDirection:"row"}
+  flexRow:{flexDirection:"row"},
+  formDateText:{flex:1,flexDirection:"row"},
+  margin3:{margin:3}
 });
 const ChildDate = (props: any):any => {
   const {dobMax,prevScreen} = props;
@@ -162,7 +165,12 @@ const ChildDate = (props: any):any => {
       <FormDateContainer>
         {Platform.OS != 'ios' ? (
           <FormInputGroup onPress={showdobDatepicker}>
-              <LabelText>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}<FormDobInfoPress onPress={(): any => setDobModalVisible(true)}><Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/></FormDobInfoPress></LabelText> 
+             <View style={styles.flexRow}>
+              <LabelText1>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText1> 
+              <FormDobInfoPress style={styles.margin3} onPress={(): any => setDobModalVisible(true)}>
+                <Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/>
+                </FormDobInfoPress>
+                </View>
             <FormInputBox>
             <FlexFDirRowSpace>
                 <Text>
@@ -192,7 +200,12 @@ const ChildDate = (props: any):any => {
           </FormInputGroup>
         ) : (
           <FormInputGroup onPress={showdobDatepicker}> 
-                <LabelText>{prevScreen == 'EditScreen' ? t('editChildDobLabel') : t('childSetupdobLabel')}<FormDobInfoPress onPress={(): any => setDobModalVisible(true)}><Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/></FormDobInfoPress></LabelText>
+                <View style={styles.flexRow}>
+                  <LabelText1>{prevScreen == 'EditScreen' ? t('editChildDobLabel') : t('childSetupdobLabel')}</LabelText1>
+                <FormDobInfoPress style={styles.margin3} onPress={(): any => setDobModalVisible(true)}>
+                  <Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/>
+                  </FormDobInfoPress>
+                </View>
                 <FormInputBox>
                   <FlexFDirRowSpace>
                     <Text>
