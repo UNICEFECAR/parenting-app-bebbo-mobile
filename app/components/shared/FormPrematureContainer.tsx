@@ -16,8 +16,6 @@ export const FormInfoPress = styled.Pressable`
   padding: 10px 10px;
 `;
 export const FormDobInfoPress = styled.Pressable`
-padding: 2px 10px;
-align-self:center;
-border:1px solid red;
+padding: 0px 10px;
 `;
 export default FormPrematureContainer;
