@@ -13,7 +13,11 @@ export const FormInfoLabel = styled.View`
 
 `;
 export const FormInfoPress = styled.Pressable`
-
   padding: 10px 10px;
+`;
+export const FormDobInfoPress = styled.Pressable`
+padding: 2px 10px;
+align-self:center;
+border:1px solid red;
 `;
 export default FormPrematureContainer;
