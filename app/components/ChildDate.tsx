@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   flexRow:{flexDirection:"row"},
-  formDateText:{flex:1,flexDirection:"row"},
-  margin3:{margin:3}
+  formDateText:{flex:1,flexDirection:"row"}
 });
 const ChildDate = (props: any):any => {
   const {dobMax,prevScreen} = props;
@@ -164,13 +163,14 @@ const ChildDate = (props: any):any => {
     <>
       <FormDateContainer>
         {Platform.OS != 'ios' ? (
-          <FormInputGroup onPress={showdobDatepicker}>
-             <View style={styles.flexRow}>
-              <LabelText1>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText1> 
-              <FormDobInfoPress style={styles.margin3} onPress={(): any => setDobModalVisible(true)}>
+          <FormInputGroup>
+             <FormPrematureContainer>
+              <FormOuterCheckbox  onPress={showdobDatepicker}><LabelText1>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText1></FormOuterCheckbox> 
+              <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/>
-                </FormDobInfoPress>
-                </View>
+                </FormInfoPress></FormInfoLabel>
+                </FormPrematureContainer>
+            <Pressable  onPress={showdobDatepicker}>
             <FormInputBox>
             <FlexFDirRowSpace>
                 <Text>
@@ -197,15 +197,17 @@ const ChildDate = (props: any):any => {
                 <Icon name="ic_calendar" size={20} color="#000" />
               </FormDateAction>
             </FormInputBox>
+            </Pressable>
           </FormInputGroup>
         ) : (
-          <FormInputGroup onPress={showdobDatepicker}> 
-                <View style={styles.flexRow}>
-                  <LabelText1>{prevScreen == 'EditScreen' ? t('editChildDobLabel') : t('childSetupdobLabel')}</LabelText1>
-                <FormDobInfoPress style={styles.margin3} onPress={(): any => setDobModalVisible(true)}>
+          <FormInputGroup> 
+                <FormPrematureContainer>
+                <FormOuterCheckbox  onPress={showdobDatepicker}><LabelText1>{prevScreen == 'EditScreen' ? t('editChildDobLabel') : t('childSetupdobLabel')}</LabelText1></FormOuterCheckbox>
+                <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                   <Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/>
-                  </FormDobInfoPress>
-                </View>
+                  </FormInfoPress></FormInfoLabel>
+                  </FormPrematureContainer>
+                <Pressable  onPress={showdobDatepicker}>
                 <FormInputBox>
                   <FlexFDirRowSpace>
                     <Text>
@@ -230,6 +232,7 @@ const ChildDate = (props: any):any => {
                     <Icon name="ic_calendar" size={20} color="#000" />
                   </FormDateAction>
                 </FormInputBox>
+                </Pressable>
               </FormInputGroup>
        )}
 
