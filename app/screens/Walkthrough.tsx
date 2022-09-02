@@ -25,7 +25,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
-import { bebbo_logo_shape } from '@dynamicImportsClass/dynamicImports';
+import { bebboLogoShape } from '@dynamicImportsClass/dynamicImports';
 import { bgcolorWhite2 } from '@styles/style';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -74,13 +74,13 @@ const styles = StyleSheet.create({
 });
 
 
-const Walkthrough = ({navigation}: Props):any => {
+const Walkthrough = ({navigation}: Props): any => {
   const {t} = useTranslation();
   let slider = useRef<any>(null);
   const data = [
     {
       title: t('walkthroughTextstitle0'),
-      image: bebbo_logo_shape,
+      image: bebboLogoShape,
       colors: ['#2B2F84', '#1F50A0',  '#00AEEF'],
       textcolor: '#FFF',
       subtitle: t('walkthroughTextssubtitle0'),
@@ -108,7 +108,7 @@ const Walkthrough = ({navigation}: Props):any => {
     },
   ];
   type Item = typeof data[0];
-  const renderItem = (item: typeof data[0], index: number):any => {
+  const renderItem = (item: typeof data[0], index: number): any => {
     return (
       <>
         <WalkthroughContainer>
@@ -167,12 +167,12 @@ const Walkthrough = ({navigation}: Props):any => {
   const [showPrevbtn, setShowPrevbtn] = useState(false);
   const [isDotsRequired, setIsDotsRequired] = useState(true);
   const [statubarColor, setstatubarColor] = useState(headerColor);
-  const getDotStyle = (colorString: string):any => {
+  const getDotStyle = (colorString: string): any => {
     return isDotsRequired
       ? {backgroundColor: colorString}
       : {backgroundColor: 'transparent'};
   };
-  const onSlideChange = (index: number):any => {
+  const onSlideChange = (index: number): any => {
     index == 3 ? setShowPrevbtn(true) : setShowPrevbtn(false);
     index == 3 ? setIsDotsRequired(false) : setIsDotsRequired(true);
     index == 0
@@ -202,15 +202,15 @@ useFocusEffect(
     },500);
   },[])
 );
-  const onDone = ():any => {
+  const onDone = (): any => {
     // User finished the introduction. Show real app through
     // navigation or simply by controlling state
     navigation.navigate('Terms');
   };
-const goBackSlide = ():any=>{
+const goBackSlide = (): any=>{
   slider?.goToSlide(2, true);
 }
-const _renderPagination = (activeIndex: number):any => {
+const _renderPagination = (activeIndex: number): any => {
   return (
     <View style={styles.paginationContainer}>
       <View>
@@ -226,7 +226,7 @@ const _renderPagination = (activeIndex: number):any => {
                     ? getDotStyle('black')
                     :getDotStyle('white'),
                 ]}
-                onPress={():any => slider?.goToSlide(i, true)}
+                onPress={(): any => slider?.goToSlide(i, true)}
               />
             ))}
         </View>):null}
@@ -251,13 +251,13 @@ const _renderPagination = (activeIndex: number):any => {
     </View>
   );
 };
-  const keyExtractor = (item: Item):any => item.title;
+  const keyExtractor = (item: Item): any => item.title;
   return (
     <>
       <FocusAwareStatusBar animated={true} backgroundColor={statubarColor} />
       <AppIntroSlider
         keyExtractor={keyExtractor}
-        renderItem={({item, index}:any):any => renderItem(item, index)}
+        renderItem={({item, index}: any): any => renderItem(item, index)}
         dotClickEnabled
         activeDotStyle={getDotStyle('black')}
         dotStyle={getDotStyle('white')}
@@ -269,7 +269,7 @@ const _renderPagination = (activeIndex: number):any => {
         onDone={onDone}
         onSlideChange={onSlideChange}
         renderPagination={_renderPagination}
-        ref={(ref):any => (slider = ref!)}
+        ref={(ref): any => (slider = ref!)}
       />
     </>
   );
