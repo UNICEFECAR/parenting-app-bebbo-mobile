@@ -1,4 +1,4 @@
-import { articleCategoryArray, both_child_gender, maxArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
+import { articleCategoryArray, bothChildGender, maxArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -60,13 +60,13 @@ export type ArticleCategoriesProps = {
   fromPage?: any;
   onFilterArrayChange?: any;
 }
-const Articles = ({ route, navigation }: any):any => {
+const Articles = ({ route, navigation }: any): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState('');
   const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
-  const setIsModalOpened = async (varkey: any):Promise<any> => {
+  const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
@@ -88,7 +88,7 @@ const Articles = ({ route, navigation }: any):any => {
   const modalScreenText = 'articleModalText';
   const netInfoval = useNetInfoHook();
   
-  const mergearr = (articlearrold: any[],videoartarrold: any[]):any => {
+  const mergearr = (articlearrold: any[],videoartarrold: any[]): any => {
     let combinedarr: any[] = [];
     let i = 0;
     let j = 0;
@@ -104,7 +104,7 @@ const Articles = ({ route, navigation }: any):any => {
         if (index == articlearr.length - 1) {
           if (j < videoartarr.length) {
             const dd = videoartarr.splice(j);
-            dd.map((y:any) => combinedarr.push(y));
+            dd.map((y: any) => combinedarr.push(y));
           }
         }
       } else {
@@ -115,7 +115,7 @@ const Articles = ({ route, navigation }: any):any => {
         if (index == articlearr.length - 1) {
           if (j < videoartarr.length) {
             const dd = videoartarr.splice(j);
-            dd.map((y:any) => combinedarr.push(y));
+            dd.map((y: any) => combinedarr.push(y));
           }
         }
       }
@@ -154,15 +154,15 @@ const Articles = ({ route, navigation }: any):any => {
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
-  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
 
-  let articleData:any = mergearr(articleDataOld,videoarticleData);
+  let articleData: any = mergearr(articleDataOld,videoarticleData);
   const [filteredData, setfilteredData] = useState<any>([]);
   const [filterArray, setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const videoIsFocused = useIsFocused();
-  const goToArticleDetail = (item: any):any => {
+  const goToArticleDetail = (item: any): any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Articles",
@@ -172,10 +172,10 @@ const Articles = ({ route, navigation }: any):any => {
         listCategoryArray: filterArray
       });
   };
-  const RenderArticleItem = ({ item, index }:any):any => {
+  const RenderArticleItem = ({ item, index }: any): any => {
     return (
     <ArticleListContainer>
-      <Pressable onPress={():any => { goToArticleDetail(item) }} key={index}>
+      <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}>
         {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
            videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>:null
           : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
@@ -192,11 +192,11 @@ const Articles = ({ route, navigation }: any):any => {
   )
       };
   const memoizedValue = useMemo(() => RenderArticleItem, [RenderArticleItem,filteredData]);
-  const toTop = ():any => {
+  const toTop = (): any => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
   }
-  const setFilteredArticleData = (itemId: any):any => {
+  const setFilteredArticleData = (itemId: any): any => {
     
     if (articleData != null && articleData != undefined && articleData.length > 0) {
       setLoadingArticle(true);
@@ -204,8 +204,8 @@ const Articles = ({ route, navigation }: any):any => {
         let newArticleData = articleDataOld.filter((x: any) => itemId.includes(x.category));
         let newvideoArticleData = videoarticleData.filter((x: any) => itemId.includes(x.category));
         if (queryText != "" && queryText != undefined && queryText != null) {
-          newArticleData = newArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          newvideoArticleData = newvideoArticleData.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+          newArticleData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+          newvideoArticleData = newvideoArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
         }
         const combinedartarr = mergearr(newArticleData,newvideoArticleData);
 
@@ -215,12 +215,12 @@ const Articles = ({ route, navigation }: any):any => {
         toTop();
       } else {
         let newArticleData = articleData != '' ? articleData : [];
-        const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+        const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
         let newvideoArticleData = videoarticleData != '' ? videoarticleData : [];
         let combinedartarr = [];
         if (queryText != "" && queryText != undefined && queryText != null) {
           newArticleData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          newvideoArticleData = videoarticleDataAllCategory.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+          newvideoArticleData = videoarticleDataAllCategory.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
           combinedartarr = mergearr(newArticleData,newvideoArticleData);
           setfilteredData(combinedartarr);
         }else {
@@ -237,7 +237,7 @@ const Articles = ({ route, navigation }: any):any => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      async function fetchData():Promise<any> {
+      async function fetchData(): Promise<any> {
         if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
           setFilterArray(route.params?.categoryArray);
           setFilteredArticleData(route.params?.categoryArray);
@@ -265,7 +265,7 @@ const Articles = ({ route, navigation }: any):any => {
       const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
         setKeyboardStatus(false);
       });
-      return ():any => {
+      return (): any => {
         {
           navigation.setParams({ categoryArray: [] })
           showSubscription.remove();
@@ -279,27 +279,27 @@ const Articles = ({ route, navigation }: any):any => {
   
   
 
-  const onFilterArrayChange = (newFilterArray: any):any => {
+  const onFilterArrayChange = (newFilterArray: any): any => {
    
     setFilterArray(newFilterArray)
   }
   //code for getting article dynamic data ends here.
-  const searchList = async (queryText: any):Promise<any> => {
+  const searchList = async (queryText: any): Promise<any> => {
     setLoadingArticle(true);
     
     let artData: any;
     let newvideoArticleData: any;
     let combinedartarr = [];
-    const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+    const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
 
     if (queryText != "" && queryText != undefined && queryText != null) {
-      artData = articleDataall.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-      newvideoArticleData = videoarticleDataAllCategory.filter((element:any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+      artData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+      newvideoArticleData = videoarticleDataAllCategory.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
       combinedartarr = mergearr(artData,newvideoArticleData);
     }
     else {
       artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
-      newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+      newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
       combinedartarr = mergearr(artData,newvideoArticleData);
       // mergearr
     }
@@ -331,7 +331,7 @@ const Articles = ({ route, navigation }: any):any => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                onChangeText={(queryText: any):any => {
+                onChangeText={(queryText: any): any => {
                   if (queryText.replace(/\s/g, "") == "") {
                     searchQueryText(queryText.replace(/\s/g, ''));
                   } else {
@@ -339,7 +339,7 @@ const Articles = ({ route, navigation }: any):any => {
                   }
                 }}
                 value={queryText}
-                onSubmitEditing={async (event):Promise<any> => {
+                onSubmitEditing={async (event): Promise<any> => {
                   console.log("event-",event);
                   await searchList(queryText);
                 }}
@@ -353,7 +353,7 @@ const Articles = ({ route, navigation }: any):any => {
                 Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
                 <OuterIconRow>
 
-                  <IconClearPress onPress={():any => {
+                  <IconClearPress onPress={(): any => {
                     searchQueryText('');
                   }}>
                     <Icon
@@ -367,7 +367,7 @@ const Articles = ({ route, navigation }: any):any => {
               }
               <OuterIconRow>
 
-                <Pressable style={styles.pressablePadding} onPress={async (e):Promise<any> => {
+                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
                   e.preventDefault();
                   await searchList(queryText);
                   Keyboard.dismiss();
@@ -392,7 +392,7 @@ const Articles = ({ route, navigation }: any):any => {
               <FlatList
                 ref={flatListRef}
                 data={filteredData}
-                onScroll={(e):any => {
+                onScroll={(e): any => {
                   console.log(e);
                   if (keyboardStatus == true) {
                     Keyboard.dismiss();
@@ -408,7 +408,7 @@ const Articles = ({ route, navigation }: any):any => {
                 windowSize={7} // Reduce the window size
                 // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
                 renderItem={memoizedValue}
-                keyExtractor={(item):any => item.id.toString()}
+                keyExtractor={(item): any => item.id.toString()}
               />
               : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
             
