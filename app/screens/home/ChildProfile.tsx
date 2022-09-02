@@ -62,7 +62,7 @@ type NotificationsNavigationProp =
 type Props = {
   navigation: NotificationsNavigationProp;
 };
-const ChildProfile = ({ navigation }: Props):any => {
+const ChildProfile = ({ navigation }: Props): any => {
   const { t } = useTranslation();
   const [parentViewHeight, setParentViewheight] = useState(0);
   const [profileLoading,setProfileLoading] = React.useState(false);
@@ -78,18 +78,18 @@ const ChildProfile = ({ navigation }: Props):any => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
-  const child_age = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch, child_age, 0);
+      getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
       setTimeout(() => {
-        navigation.dispatch((state:any) => {
+        navigation.dispatch((state: any) => {
           // Remove the home route from the stack
-          const routes = state.routes.filter((r:any) => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
+          const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
 
           return CommonActions.reset({
             ...state,
@@ -111,7 +111,7 @@ const ChildProfile = ({ navigation }: Props):any => {
       : [],
   );
   useEffect(() => {
-    const backAction = ():any => {
+    const backAction = (): any => {
       //console.log("11")
       navigation.goBack();
       return true;
@@ -122,18 +122,18 @@ const ChildProfile = ({ navigation }: Props):any => {
     );
     navigation.addListener('gestureEnd', backAction);
 
-    return ():any => {
+    return (): any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
   }, []);
-  const isFutureDate = (date: Date):any => {
+  const isFutureDate = (date: Date): any => {
     return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
   };
-  const onLayout = (event: any):any => {
+  const onLayout = (event: any): any => {
     setParentViewheight(event.nativeEvent.layout.height);
   }
-  const onLayout1 = (event:any):any => {
+  const onLayout1 = (event: any): any => {
     setProfileViewheight(event.nativeEvent.layout.height);
   }
 
@@ -146,19 +146,19 @@ const ChildProfile = ({ navigation }: Props):any => {
   );
   const userParentalRoleData =
     allConfigData?.length > 0
-      ? allConfigData.filter((item:any) => item.key === 'userParentalRole')
+      ? allConfigData.filter((item: any) => item.key === 'userParentalRole')
       : [];
   const userNameData =
     allConfigData?.length > 0
-      ? allConfigData.filter((item:any) => item.key === 'userName')
+      ? allConfigData.filter((item: any) => item.key === 'userName')
       : [];
-  const relationship_to_parent = useAppSelector(
+  const relationshipToParentGlobal = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
   );
   const userRelationToParent =
     allConfigData?.length > 0
-      ? allConfigData.filter((item:any) => item.key === 'userRelationToParent')
+      ? allConfigData.filter((item: any) => item.key === 'userRelationToParent')
       : [];
   const relationshipData = useAppSelector(
     (state: any) =>
@@ -166,14 +166,14 @@ const ChildProfile = ({ navigation }: Props):any => {
   );
 
   const relationshipValue = relationshipData.length > 0 && userParentalRoleData.length > 0 ? relationshipData.find((o: any) => String(o.id) === userParentalRoleData[0].value) : '';
-  const relationshipToParent = relationship_to_parent.length > 0 && userRelationToParent.length > 0 ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
+  const relationshipToParent = relationshipToParentGlobal.length > 0 && userRelationToParent.length > 0 ? relationshipToParentGlobal.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
   const windowHeight = Dimensions.get('window').height;
 
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     console.log(b);
     if (a.uuid == currentActiveChild) return -1;
   });
-  const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string,navigationCustom:any):any => (
+  const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string,navigationCustom: any): any => (
     <View key={data.uuid}>
       {currentActiveChild != '' &&
         currentActiveChild != null &&
@@ -212,7 +212,7 @@ const ChildProfile = ({ navigation }: Props):any => {
 
                   </OuterIconRight>
                   <OuterIconRight>
-                    <Pressable onPress={():any => {
+                    <Pressable onPress={(): any => {
                       data.index = index;
                       if (isFutureDate(data.birthDate)) {
                         navigationCustom.navigate('AddExpectingChildProfile', { childData: data });
@@ -264,10 +264,10 @@ const ChildProfile = ({ navigation }: Props):any => {
             <FlexColEnd>
               <FDirRow>
                 <OuterIconRow>
-                <Pressable onPress={():any => {
+                <Pressable onPress={(): any => {
                         setProfileLoading(true);
                         setTimeout(async()=>{
-                         const setData=await setActiveChild(languageCode, data.uuid, dispatch, child_age,true);
+                         const setData=await setActiveChild(languageCode, data.uuid, dispatch, childAge,true);
                          if(setData=="activeset"){
                           setProfileLoading(false);
                          }
@@ -284,7 +284,7 @@ const ChildProfile = ({ navigation }: Props):any => {
                   </OuterIconRight>
                   </Pressable>
                   <OuterIconRight>
-                  <Pressable onPress={():any => {
+                  <Pressable onPress={(): any => {
                         data.index = index;
                         if (isFutureDate(data.birthDate)) {
                           navigationCustom.navigate('AddExpectingChildProfile', { childData: data });
@@ -323,7 +323,7 @@ const ChildProfile = ({ navigation }: Props):any => {
           }]}>
           <HeaderIconView>
             <HeaderIconPress
-              onPress={(e):any => {
+              onPress={(e): any => {
                 e.stopPropagation();
                 navigation.goBack();
               }}>
@@ -340,7 +340,7 @@ const ChildProfile = ({ navigation }: Props):any => {
               <ScrollView style={[styles.autoHeight,{ maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
-                    const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset:any) => genderset.id == parseInt(item.gender)).name : '';
+                    const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
                     return renderChildProfile(dispatch, item, index, genderLocal,navigation);
                   })
                   : null}
@@ -352,7 +352,7 @@ const ChildProfile = ({ navigation }: Props):any => {
                 }}>
                 <ProfileLinkCol>
                   <ButtonLinkPress
-                    onPress={():any => {
+                    onPress={(): any => {
                       navigation.navigate('EditChildProfile', { childData: null });
                     }}>
                     <OuterIconRow>
@@ -366,7 +366,7 @@ const ChildProfile = ({ navigation }: Props):any => {
                 </ProfileLinkCol>
                 <ProfileLinkCol>
                   <ButtonLinkPress
-                    onPress={():any => {
+                    onPress={(): any => {
                       navigation.navigate('AddExpectingChildProfile', { childData: null });
                     }}>
                     <OuterIconRow>
@@ -388,7 +388,7 @@ const ChildProfile = ({ navigation }: Props):any => {
                   <ProfileActionView>
                     <ButtonLinkPress
                       style={styles.buttonLinkPress}
-                      onPress={():any => {
+                      onPress={(): any => {
                         navigation.navigate('EditParentDetails', {
                           userParentalRoleData:
                             userParentalRoleData?.length > 0

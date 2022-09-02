@@ -1,6 +1,6 @@
 import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 import {
-  both_parent_gender,
+  bothParentGender,
   femaleData,
   maleData,
   relationShipFatherId,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     paddingTop: 0
   }
 })
-const ChildImportSetup = (props: any):any => {
+const ChildImportSetup = (props: any): any => {
   let { importResponse } = props.route.params;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -85,7 +85,7 @@ const ChildImportSetup = (props: any):any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const child_age = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
@@ -93,15 +93,15 @@ const ChildImportSetup = (props: any):any => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
-  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != both_parent_gender;
+  relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+    return e.id != bothParentGender;
   });
-  const relationship_to_parent = useAppSelector(
+  const relationshipToParent = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationshipToParent,
   );
   useEffect(() => {
-    const backAction = ():any => {
+    const backAction = (): any => {
       return true;
     };
     const backHandler = BackHandler.addEventListener(
@@ -109,12 +109,12 @@ const ChildImportSetup = (props: any):any => {
       backAction,
     );
     props.navigation.addListener('gestureEnd', backAction);
-    return ():any => {
+    return (): any => {
       props.navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
   }, []);
-  const getCheckedParentItem = (checkedItem: any):any => {
+  const getCheckedParentItem = (checkedItem: any): any => {
     if (
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
@@ -126,9 +126,9 @@ const ChildImportSetup = (props: any):any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      props.navigation.dispatch((state:any) => {
+      props.navigation.dispatch((state: any) => {
         // Remove the home route from the stack
-        const routes = state.routes.filter((r:any) => r.name !== 'LoadingScreen');
+        const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen');
 
         return CommonActions.reset({
           ...state,
@@ -159,7 +159,7 @@ const ChildImportSetup = (props: any):any => {
                     <Heading3Centerw style={styles.headingStyle2}>{t('updateImportText')}</Heading3Centerw>
                   </ShiftFromTopBottom20>
                   <FormInputGroup
-                    onPress={():any => {
+                    onPress={(): any => {
                       actionSheetRef.current?.setModalVisible();
                     }}>
                     <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
@@ -198,11 +198,11 @@ const ChildImportSetup = (props: any):any => {
         <ActionSheet ref={actionSheetRef}>
 
           <View>
-            {relationship_to_parent.map((item: any, index: any) => {
+            {relationshipToParent.map((item: any, index: any) => {
               return (
                 <ChildRelationList key={index}>
                   <Pressable
-                    onPress={():any => {
+                    onPress={(): any => {
                       setUserRelationToParent(item.id);
                       if (item.id == relationShipMotherId) {
                         if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
@@ -241,7 +241,7 @@ const ChildImportSetup = (props: any):any => {
           <ButtonRow>
             <ButtonPrimary
               disabled={relationship == null || relationship == "" || relationship == undefined || userRelationToParent == undefined ? true : false}
-              onPress={async (e):Promise<any> => {
+              onPress={async (e): Promise<any> => {
                 e.stopPropagation();
                 if (importResponse) {
                   importResponse = JSON.parse(importResponse);
@@ -263,14 +263,14 @@ const ChildImportSetup = (props: any):any => {
                           childId = childId[0].value;
                           const activeChildData = importResponse.filter((x: any) => x.uuid == childId);
                           if (activeChildData.length > 0) {
-                            await setActiveChild(languageCode, childId, dispatch, child_age, false);
+                            await setActiveChild(languageCode, childId, dispatch, childAge, false);
                           }
                           else {
-                            await setActiveChild(languageCode, '', dispatch, child_age, false);
+                            await setActiveChild(languageCode, '', dispatch, childAge, false);
                           }
                         }
                         else {
-                          await setActiveChild(languageCode, '', dispatch, child_age, false);
+                          await setActiveChild(languageCode, '', dispatch, childAge, false);
                         }
                         counter++;
                       }
@@ -284,8 +284,8 @@ const ChildImportSetup = (props: any):any => {
                   await Promise.all(resolvedPromises).then(async item => {
                     console.log("item--",item);
                     if (importResponse.length > 0) {
-                      const childList = await getAllChildren(dispatch, child_age, 1);
-                      const Ages = await getAge(childList, child_age);
+                      const childList = await getAllChildren(dispatch, childAge, 1);
+                      const Ages = await getAge(childList, childAge);
                       let apiJsonData;
                       if (Ages?.length > 0) {
                         apiJsonData = apiJsonDataGet(String(Ages), "all")
