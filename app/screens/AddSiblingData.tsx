@@ -1,5 +1,5 @@
 
-import { both_child_gender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+import { bothChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 })
-const AddSiblingData = ({ route, navigation }: Props):any => {
+const AddSiblingData = ({ route, navigation }: Props): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { headerTitle } = route.params;
@@ -55,7 +55,7 @@ const AddSiblingData = ({ route, navigation }: Props):any => {
   const createdAt = childData != null ? childData.createdAt:null;
   const relationship= childData != null ? childData.relationship:'';
   const editScreen = childData != null ? true : false;
-  const child_age = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
      );
@@ -67,22 +67,22 @@ const AddSiblingData = ({ route, navigation }: Props):any => {
     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
   
-  genders = genders.map((v:any) => ({...v, title: v.name})).filter(function (e: any) {
-    return e.id!=both_child_gender;
+  genders = genders.map((v: any) => ({...v, title: v.name})).filter(function (e: any) {
+    return e.id!=bothChildGender;
   });
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected,setIsExpected] = useState<string>('false');
   const [defaultGenderValue, setDefaultGenderValue] = useState<any>(null);
-  const sendData = (data: any):any => { // the callback. Use a better name
+  const sendData = (data: any): any => { // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
     const myString = String(data.isPremature);
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
-  const isFutureDate = (date: Date):any => {
+  const isFutureDate = (date: Date): any => {
     return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
   };
   const [name, setName] = React.useState('');
@@ -92,23 +92,23 @@ const AddSiblingData = ({ route, navigation }: Props):any => {
       sendData(childData);
       setName(childData.childName);
     }
-    setDefaultGenderValue(childData && childData.uuid? genders.find((item:any) => item.id == childData?.gender): {title: ''})
+    setDefaultGenderValue(childData && childData.uuid? genders.find((item: any) => item.id == childData?.gender): {title: ''})
     }, [])
   );
   
 const [gender, setGender] = React.useState(
   childData != null ? childData.gender : 0,
 );
-const getCheckedItem = (checkedItem: typeof genders[0]):any => {
+const getCheckedItem = (checkedItem: typeof genders[0]): any => {
   setGender(checkedItem.id);
 };
-const AddChild=async ():Promise<any>=>{
+const AddChild=async (): Promise<any>=>{
   await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   const defaultName =name;
   const insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender,createdAt) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender,createdAt)
   const childSet: Array<any> = [];
   childSet.push(insertData);
-  addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null,null);
+  addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,childAge,null,null);
 }
 const themeContext = useContext(ThemeContext);
 const headerColor = themeContext.colors.PRIMARY_COLOR;
@@ -124,7 +124,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
             <Heading1Centerw>{headerTitle}</Heading1Centerw>
             <ShiftFromTop5>
               <Pressable
-                onPress={():any => {
+                onPress={(): any => {
                   navigation.goBack();
                 }}>
                 <Icon name="ic_close" size={20} color="#FFF" />
@@ -142,7 +142,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                     autoCorrect={false}
                     maxLength={30}
                     clearButtonMode="always"
-                    onChangeText={(value):any => {
+                    onChangeText={(value): any => {
                       if (value.replace(/\s/g, "") == "") {
                         setName(value.replace(/\s/g, ''));
                       } else {
@@ -178,8 +178,8 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
     <ButtonRow>
         <ButtonPrimary
          disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(2, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(4, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
-          onPress={():any => {
-            let validated:any=false;
+          onPress={(): any => {
+            let validated: any=false;
             if(birthDate != null && birthDate != undefined && !isFutureDate(birthDate)){
               validated=validateForm(2,birthDate,isPremature,relationship,plannedTermDate,name,gender);
             }

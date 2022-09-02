@@ -33,7 +33,7 @@ const styles=StyleSheet.create({
   toolsIconOuterView:{ alignItems: "flex-end", flex: 1 },
   vaccineOuterView:{ flex: 6, flexDirection: "row" }
  })
-const PreviousVaccines = (props: any):any => {
+const PreviousVaccines = (props: any): any => {
   const { item, headerColor, backgroundColor } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -43,17 +43,17 @@ const PreviousVaccines = (props: any):any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const gotoArticle = (pinned_articleID: any):any => {
-    if (pinned_articleID != 0) {
+  const gotoArticle = (pinnedArticleId: any): any => {
+    if (pinnedArticleId != 0) {
       navigation.navigate('DetailsScreen', {
         fromScreen: 'VaccinationTab',
         headerColor: headerColor,
         backgroundColor: backgroundColor,
-        detailData: pinned_articleID,
+        detailData: pinnedArticleId,
       });
     }
   };
-  const doneVc = item.vaccines.filter((item:any) => {
+  const doneVc = item.vaccines.filter((item: any) => {
     return item.isMeasured;
   })
   return (
@@ -64,7 +64,7 @@ const PreviousVaccines = (props: any):any => {
             backgroundColor: backgroundColor
           }}>
           <ToolsIconView>
-            {item.vaccines.every((el:any) => {
+            {item.vaccines.every((el: any) => {
               return el.isMeasured == true;
             }) ? (
               <RadioActive style={styles.radioActive}>
@@ -81,7 +81,7 @@ const PreviousVaccines = (props: any):any => {
             )}
           </ToolsIconView>
           <ToolsHeadPress
-            onPress={():any => {
+            onPress={(): any => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
@@ -104,7 +104,7 @@ const PreviousVaccines = (props: any):any => {
         </ToolsListContainer>
         {isOpen ? (
           <>
-            {item.vaccines.map((v:any, i:any) => {
+            {item.vaccines.map((v: any, i: any) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>
@@ -129,7 +129,7 @@ const PreviousVaccines = (props: any):any => {
                         <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate) : null}</Heading4Regular>
 
                         {v?.pinned_article ?
-                          <Pressable onPress={():any => gotoArticle(v.pinned_article)}>
+                          <Pressable onPress={(): any => gotoArticle(v.pinned_article)}>
                             <ButtonTextSmLineL numberOfLines={2}>
                               {t('vcArticleLink')}
                             </ButtonTextSmLineL>
@@ -139,7 +139,7 @@ const PreviousVaccines = (props: any):any => {
                     </View>
                     <View style={styles.toolsIconOuterView}>
                       <ToolsIconView1>
-                        {v.isMeasured ? <Pressable onPress={():any =>
+                        {v.isMeasured ? <Pressable onPress={(): any =>
                           navigation.navigate('AddChildVaccination', {
                             headerTitle: t('editVcTitle'),
                             vcPeriod: item,
@@ -159,13 +159,13 @@ const PreviousVaccines = (props: any):any => {
               );
             })}
            
-            {(item.vaccines.some((el:any) => {
+            {(item.vaccines.some((el: any) => {
               return el.isMeasured == false;
             })) ? (
               <ButtonContainerAuto>
                 <ButtonVaccination
                   disabled={isFutureDate(activeChild?.birthDate)}
-                  onPress={():any =>
+                  onPress={(): any =>
                     navigation.navigate('AddChildVaccination', {
                       headerTitle: t('addVcTitle'),
                       vcPeriod: item,
