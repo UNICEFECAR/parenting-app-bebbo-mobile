@@ -1,4 +1,4 @@
-import { both_child_gender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+import { bothChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   width100:{ width: '100%' }
 });
 
-const EditChildProfile = ({ route, navigation }: Props):any => {
+const EditChildProfile = ({ route, navigation }: Props): any => {
   const childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -127,9 +127,9 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
 
-  genders = genders.map((v:any) => ({ ...v, title: v.name })).filter(function (e: { id: number }, i: any, a: any) {
+  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: { id: number }, i: any, a: any) {
     console.log(i,a);
-    return e.id != both_child_gender;
+    return e.id != bothChildGender;
   });
 
   const imageOptions = [
@@ -153,11 +153,11 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
   const [isExpected, setIsExpected] = React.useState<string>('false');
   const [destPath, setDestPath] = React.useState<string>('');
   const [loading,setLoading] = React.useState<boolean>(false);
-  const child_age = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
-  const sendData = (data: any):any => {
+  const sendData = (data: any): any => {
     // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
@@ -169,7 +169,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
     childData != null ? childData.gender : 0,
   );
   useEffect(() => {
-    const backAction = ():any => {
+    const backAction = (): any => {
       navigation.goBack();
       return true;
     };
@@ -179,7 +179,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
       backAction,
     );
     navigation.addListener('gestureEnd', backAction);
-    return ():any => {
+    return (): any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove()};
   }, []);
@@ -192,14 +192,14 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
         }
         sendData(childData);
       }
-      setDefaultGenderValue(childData && childData.uuid? genders.find((item:any) => item.id == childData?.gender):{ title: '' })
+      setDefaultGenderValue(childData && childData.uuid? genders.find((item: any) => item.id == childData?.gender):{ title: '' })
       console.log(destPath)
     }, []),
   );
 
 
   const onChildPhotoChange = async (image: ImageObject,
-  ):Promise<any> => {
+  ): Promise<any> => {
     // Create Documents/children folder if it doesnt exist
     if (!(await exists(CHILDREN_PATH))) {
       mkdir(CHILDREN_PATH);
@@ -207,7 +207,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
     setCapturedImage(image.path);
     setPhotoDeleted(false);
   };
-  const removePhoto = ():any => {
+  const removePhoto = (): any => {
 
     deleteImageFile(capturedPhoto)
       .then(async (data: any) => {
@@ -221,20 +221,20 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
         Alert.alert(t('tryText'));
       });
   };
-  const handleImageOptionClick = async (item:any,index: number):Promise<any> => {
+  const handleImageOptionClick = async (item: any,index: number): Promise<any> => {
     console.log(index)
     if (item.id == 0) {
       Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
         {
           text: t('removePhotoOption1'),
-          onPress: ():any => {
+          onPress: (): any => {
             console.log("pressed")
            },
           style: 'cancel',
         },
         {
           text: t('removePhotoOption2'),
-          onPress: ():any => {
+          onPress: (): any => {
             setPhotoDeleted(true);
           },
         },
@@ -252,17 +252,17 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
       });
     }
   };
-  const deleteRecord = (index: number, dispatch: any, uuid: string):any => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
           text: t('removeOption1'),
-          onPress: ():any => resolve('error'),
+          onPress: (): any => resolve('error'),
           style: 'cancel',
         },
         {
           text: t('removeOption2'),
-          onPress: ():any => {
+          onPress: (): any => {
             deleteChild(
               languageCode,
               index,
@@ -272,7 +272,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
               'uuid ="' + uuid + '"',
               resolve,
               reject,
-              child_age,
+              childAge,
               t
             );
             navigation.navigate('ChildProfileScreen');
@@ -281,7 +281,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
       ]);
     });
   };
-  const setPhoto = async (uuid: string):Promise<any> => {
+  const setPhoto = async (uuid: string): Promise<any> => {
     const parts = capturedPhoto.split('.');
     let extension: string | null = null;
     if (parts.length > 1) {
@@ -309,7 +309,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
     setphotoUri(destPath.replace(CHILDREN_PATH, ''));
     return destPath.replace(CHILDREN_PATH, '');
   }
-  const AddChild = async ():Promise<any> => {
+  const AddChild = async (): Promise<any> => {
     // if dob /plannedTermDate changes, append notifications to current child's notifications in slice
     const insertData: any = editScreen
       ? await getNewChild(
@@ -347,10 +347,10 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
     console.log(insertData,"...insertData")
     childSet.push(insertData);
     setLoading(false);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null,null);
   };
 
-  const getCheckedItem = (checkedItem: typeof genders[0]):any => {
+  const getCheckedItem = (checkedItem: typeof genders[0]): any => {
     setGender(checkedItem.id);
   };
   return (
@@ -363,7 +363,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
           }]}>
           <HeaderIconView>
             <HeaderIconPress
-              onPress={():any => {
+              onPress={(): any => {
                 navigation.goBack();
               }}>
               <IconML name={'ic_back'} color="#FFF" size={15} />
@@ -378,7 +378,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
           </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
            <HeaderActionView style={styles.padding0}>
-           <Pressable  style={styles.pressableView}  onPress={():any =>
+           <Pressable  style={styles.pressableView}  onPress={(): any =>
                deleteRecord(childData?.index, dispatch, childData?.uuid)
              }>
              <Icon name={'ic_trash'} size={20} color="#FFF" />
@@ -398,7 +398,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
                       : null
                   }
                   style={styles.image}>
-                  <ProfileEditView onPress={():any => {
+                  <ProfileEditView onPress={(): any => {
                         actionSheetRef.current?.setModalVisible();
                       }}>
                     <Icon
@@ -416,7 +416,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
                   backgroundColor: SecondaryColor,
                  
                 }]}
-                onPress={():any => {
+                onPress={(): any => {
                   actionSheetRef.current?.setModalVisible();
                 }}>
                 <IconBox>
@@ -438,7 +438,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
                       autoCorrect={false}
                       maxLength={30}
                       clearButtonMode="always"
-                      onChangeText={(value):any => {
+                      onChangeText={(value): any => {
                         if (value.replace(/\s/g, "") == "") {
                           setName(value.replace(/\s/g, ''));
                         } else {
@@ -489,7 +489,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
                         style={styles.innerImageView}>
                         <Pressable
                           style={styles.alignItemsCenter}
-                          onPress={():any => {
+                          onPress={(): any => {
                             actionSheetRef.current?.hide();
                             handleImageOptionClick(item,index);
                           }}>
@@ -517,7 +517,7 @@ const EditChildProfile = ({ route, navigation }: Props):any => {
                 gender,
               )
             }
-            onPress={(e:any):any => {
+            onPress={(e: any): any => {
               e.preventDefault();
               setLoading(true);
                 const validated = validateForm(

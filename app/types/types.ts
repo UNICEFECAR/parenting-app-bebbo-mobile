@@ -1,35 +1,9 @@
 import { rootReducer } from "../redux";
-import { selectRoleAction, RoleErrorAction, RoleModel, LoginAction, LoginErrorAction, UserModel } from "../interfaces/interface";
 import { PERMISSIONS } from "react-native-permissions";
 import { Platform } from "react-native";
 import { DateTime } from "luxon";
 import { DocumentDirectoryPath } from "react-native-fs";
-export const On_Login = "On_Login";
-export const On_Login_Error = "On_Login_Error";
-export const On_Role = "On_Role";
-export const On_Role_Error = "On_Role_Error";
-export type UserActionList = LoginAction | LoginErrorAction;
-export type RoleActionList = selectRoleAction | RoleErrorAction;
 
-export type UserState={
-    user:UserModel;
-    error:string|undefined|null;
-}
-//RoleState
-export type RoleState={
-    roles:RoleModel;
-    error:string|undefined|null;
-}
-export type UserProps = {
-    user: string;
-    token:string;
-    jti:string;
-    getRoles:Function;
-    roles:Array<RoleModel>;
-}
-  export type RoleProps = {
-    roles: [];
-  }
 export type ApplicationState= ReturnType<typeof rootReducer>
 
 export type ApiImageData = {
