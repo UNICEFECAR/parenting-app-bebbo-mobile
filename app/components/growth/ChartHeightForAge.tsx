@@ -1,4 +1,4 @@
-import { boy_child_gender, girl_child_gender, weight_growth_type } from '@assets/translations/appOfflineData/apiConstants';
+import { boyChildGender, girlChildGender, weightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
 import { FlexCol, FlexColChart, FlexRowEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop:50
   }
 })
-const ChartHeightForAge = (props: any):any => {
+const ChartHeightForAge = (props: any): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
@@ -32,7 +32,7 @@ const ChartHeightForAge = (props: any):any => {
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
 );
-  const fullScreenChart = (chartType:any, obj:any):any => {
+  const fullScreenChart = (chartType: any, obj: any): any => {
     navigation.navigate('ChartFullScreen', {
       activeChild,
       chartType,
@@ -48,17 +48,17 @@ const ChartHeightForAge = (props: any):any => {
   let obj: any;
   let standardDeviation: any;
    // if (activeChild?.gender == '40' || activeChild?.gender == '') {
-  if (activeChild?.gender == boy_child_gender || activeChild?.gender == '') {
+  if (activeChild?.gender == boyChildGender || activeChild?.gender == '') {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == weight_growth_type && item.child_gender == boy_child_gender,
+      (item) => item.growth_type == weightGrowthType && item.child_gender == boyChildGender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'height');
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item) => item.growth_type == weight_growth_type && item.child_gender == girl_child_gender,
+      (item) => item.growth_type == weightGrowthType && item.child_gender == girlChildGender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'height');
@@ -91,7 +91,7 @@ const [deviceOrientation, setDeviceOrientation] = useState(
     : 'landscape'
 );
 useEffect(() => {
-  const deviceOrientation = ():any => {
+  const deviceOrientation = (): any => {
     if (Dimensions.get('window').width < Dimensions.get('window').height) {
       setDeviceOrientation('portrait');
     } else {
@@ -99,7 +99,7 @@ useEffect(() => {
     }
   };
   Dimensions.addEventListener('change', deviceOrientation);
-  return ():any => {
+  return (): any => {
     //cleanup work
     Dimensions.removeEventListener('change', deviceOrientation);
   };
@@ -110,7 +110,7 @@ useEffect(() => {
         <FlexRowEnd>
           <Pressable
             style={styles.fullScreenPressable}
-            onPress={():any => fullScreenChart(chartTypes.HeightForAge, obj)}>
+            onPress={(): any => fullScreenChart(chartTypes.HeightForAge, obj)}>
             <Icon name="ic_fullscreen" size={16} />
           </Pressable>
         </FlexRowEnd>
@@ -146,7 +146,7 @@ useEffect(() => {
           <FlexColChart>
             <RelatedArticles
               fromScreen={'ChildgrowthTab'}
-              related_articles={item?.interpretationText?.articleID}
+              relatedArticles={item?.interpretationText?.articleID}
               category={5}
               currentId={chartTypes.HeightForAge}
               headerColor={headerColor}

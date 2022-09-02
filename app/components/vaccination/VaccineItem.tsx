@@ -13,19 +13,19 @@ const styles=StyleSheet.create({
   checkboxStyle:{borderWidth: 1}
   })
   
-const VaccineItem = (props: any):any => {
+const VaccineItem = (props: any): any => {
   const {item, onToggleVaccine, fromScreen,backgroundActiveColor} = props;
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
   const headerColor = themeContext.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const gotoArticle = (pinned_articleID:any):any => {
-    if(pinned_articleID!=0){
+  const gotoArticle = (pinnedArticleId: any): any => {
+    if(pinnedArticleId!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: fromScreen,
       headerColor: headerColor,
       backgroundColor: backgroundColor,
-      detailData: pinned_articleID,
+      detailData: pinnedArticleId,
     });
   }
   };
@@ -38,7 +38,7 @@ const VaccineItem = (props: any):any => {
         <ToolsHeadView>
           <FlexDirRow>
             <FormOuterCheckbox
-              onPress={():any => {
+              onPress={(): any => {
                 setToggleCheckBox(!toggleCheckBox);
                 onToggleVaccine(uuid, !toggleCheckBox);
               }}>
@@ -61,7 +61,7 @@ const VaccineItem = (props: any):any => {
             </FormOuterCheckbox>
           </FlexDirRow>
          {pinned_article ? <Pressable
-            onPress={():any => {
+            onPress={(): any => {
               gotoArticle(pinned_article);
             }}>
             <OuterIconRow>
