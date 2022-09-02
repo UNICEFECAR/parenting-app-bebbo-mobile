@@ -6,7 +6,7 @@ import { dobMin, maxDue, minDue } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Platform, StyleSheet, Text, View } from 'react-native';
+import { Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { formatStringDate } from '../services/Utils';
 import Checkbox, {
   CheckboxActive,
@@ -19,9 +19,11 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
-  LabelText
+  LabelText,
+  LabelText1
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
+  FormDobInfoPress,
   FormInfoLabel,FormInfoPress
 } from './shared/FormPrematureContainer';
 import { FlexFDirRowSpace } from './shared/FlexBoxStyle';
@@ -38,6 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: greyCode,
     opacity: 0.5,
   },
+  flexRow:{flexDirection:"row"},
   formDateText:{flex:1,flexDirection:"row"}
 });
 const ChildDate = (props: any):any => {
@@ -51,6 +54,7 @@ const ChildDate = (props: any):any => {
   const [dueDate, setdueDate] = useState<Date | null>(null);
   const [showdue, setdueShow] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [dobModalVisible, setDobModalVisible] = useState(false);
  
   const isFutureDate = (date: Date):any => {
     return (
@@ -159,8 +163,14 @@ const ChildDate = (props: any):any => {
     <>
       <FormDateContainer>
         {Platform.OS != 'ios' ? (
-          <FormInputGroup onPress={showdobDatepicker}>
-            <LabelText>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText>
+          <FormInputGroup>
+             <FormPrematureContainer>
+              <FormOuterCheckbox  onPress={showdobDatepicker}><LabelText1>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText1></FormOuterCheckbox> 
+              <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
+                <Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/>
+                </FormInfoPress></FormInfoLabel>
+                </FormPrematureContainer>
+            <Pressable  onPress={showdobDatepicker}>
             <FormInputBox>
             <FlexFDirRowSpace>
                 <Text>
@@ -187,38 +197,43 @@ const ChildDate = (props: any):any => {
                 <Icon name="ic_calendar" size={20} color="#000" />
               </FormDateAction>
             </FormInputBox>
+            </Pressable>
           </FormInputGroup>
         ) : (
-          <FormInputGroup onPress={showdobDatepicker}>
-          <LabelText>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText>
-          <FormInputBox>
-          <FlexFDirRowSpace>
-              <Text>
-                {doborExpectedDate
-                  ? formatStringDate(doborExpectedDate)
-                 : prevScreen=='EditScreen'?t('childSetupdobText'):t('childSetupdobSelector')}
-              </Text>
-              {showdob && (
-                <DateTimePickerModal
-                isVisible={isDobDatePickerVisible}
-                mode="date"
-                date={
-                    doborExpectedDate != null ? doborExpectedDate : new Date()
-                }
-                onConfirm={handleDobConfirm}
-                onCancel={():any => {
-                   setDobDatePickerVisibility(false);
-                }}
-                minimumDate={new Date(dobMin)}
-                maximumDate={new Date(dobMax)}
-                />
-              )}
-            </FlexFDirRowSpace>
-            <FormDateAction>
-              <Icon name="ic_calendar" size={20} color="#000" />
-            </FormDateAction>
-          </FormInputBox>
-        </FormInputGroup>
+          <FormInputGroup> 
+                <FormPrematureContainer>
+                <FormOuterCheckbox  onPress={showdobDatepicker}><LabelText1>{prevScreen == 'EditScreen' ? t('editChildDobLabel') : t('childSetupdobLabel')}</LabelText1></FormOuterCheckbox>
+                <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
+                  <Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/>
+                  </FormInfoPress></FormInfoLabel>
+                  </FormPrematureContainer>
+                <Pressable  onPress={showdobDatepicker}>
+                <FormInputBox>
+                  <FlexFDirRowSpace>
+                    <Text>
+                      {doborExpectedDate
+                        ? formatStringDate(doborExpectedDate)
+                        : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
+                    </Text>
+                    {showdob && (
+                      <DateTimePickerModal
+                        isVisible={isDobDatePickerVisible}
+                        mode="date"
+                        date={doborExpectedDate != null ? doborExpectedDate : new Date()}
+                        onConfirm={handleDobConfirm}
+                        onCancel={(): any => {
+                          setDobDatePickerVisibility(false);
+                        } }
+                        minimumDate={new Date(dobMin)}
+                        maximumDate={new Date(dobMax)} />
+                    )}
+                  </FlexFDirRowSpace>
+                  <FormDateAction>
+                    <Icon name="ic_calendar" size={20} color="#000" />
+                  </FormDateAction>
+                </FormInputBox>
+                </Pressable>
+              </FormInputGroup>
        )}
 
         <FormPrematureContainer>
@@ -379,6 +394,34 @@ const ChildDate = (props: any):any => {
             <ModalPopupContent>
               <Heading4Centerr>
                 {t('childSetupprematureMessage')}
+              </Heading4Centerr>
+            </ModalPopupContent>
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={dobModalVisible}
+        onRequestClose={():any => {
+          setDobModalVisible(false);
+        }}
+        onDismiss={():any => {
+          setDobModalVisible(false);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={():any => {
+                  setDobModalVisible(false);
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <Heading4Centerr>
+                {t('upto6YearsMsg')}
               </Heading4Centerr>
             </ModalPopupContent>
           </ModalPopupContainer>
