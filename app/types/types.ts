@@ -59,7 +59,8 @@ export const IMAGE_PICKER_OPTIONS = {
    showCropGuidelines: true,
    multiple: false
 };
-export const dobMin = DateTime.local().plus({ years: -5,months:-11,day:2}).toISODate();
+export const dobMin = DateTime.local().plus({  years: -6,months:0,day:0}).toISODate();
+//export const dobMin = DateTime.local().plus({ years: -5,months:-11,day:2}).toISODate();
 export const dobMax = DateTime.local().plus({ months: +9 }).toISODate();
 export const maxDue=5;
 export const minDue=4;
