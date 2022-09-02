@@ -1,4 +1,4 @@
-import { both_parent_gender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
+import { bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
@@ -51,7 +51,7 @@ const styles=StyleSheet.create({
   textInputML:{width:'100%'}
 
 })
-const EditParentDetails = ({ route, navigation }: Props):any => {
+const EditParentDetails = ({ route, navigation }: Props): any => {
   const { userParentalRoleData, userRelationToParentEdit, parentEditName } = route.params;
   const [relationship, setRelationship] = useState(userParentalRoleData ? userParentalRoleData : "");
   const [userRelationToParent, setUserRelationToParent] = useState();
@@ -61,13 +61,13 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
-  const relationship_to_parent = useAppSelector(
+  const relationshipToParentGlobal = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
-  const relationshipToParent = relationship_to_parent.length > 0 && userRelationToParentEdit != "" ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParentEdit) : '';
-  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != both_parent_gender;
+  const relationshipToParent = relationshipToParentGlobal.length > 0 && userRelationToParentEdit != "" ? relationshipToParentGlobal.find((o: any) => String(o.id) === userRelationToParentEdit) : '';
+  relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+    return e.id != bothParentGender;
   });
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
@@ -80,12 +80,12 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
       setRelationshipName(relationshipToParent != "" && relationshipToParent != null && relationshipToParent != undefined ? relationshipToParent.name : '');
       setUserRelationToParent(relationshipToParent != "" && relationshipToParent != null && relationshipToParent != undefined ? relationshipToParent.id : '');
       setDefaultGenderValue(userParentalRoleData != ''
-        ? relationshipData.find((item:any) => item.id == relationship)
+        ? relationshipData.find((item: any) => item.id == relationship)
         : { title: '' })
     }, [])
   );
   useEffect(() => {
-    const backAction = ():any => {
+    const backAction = (): any => {
       navigation.goBack();
       return true;
     };
@@ -94,7 +94,7 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
       backAction,
     );
     navigation.addListener('gestureEnd', backAction);
-    return ():any => {
+    return (): any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
@@ -104,7 +104,7 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const saveParentData = async (relationship: any, parentName: any, userRelationToParent: any):Promise<any> => {
+  const saveParentData = async (relationship: any, parentName: any, userRelationToParent: any): Promise<any> => {
     const relationshipnew: any = relationship;
     if (typeof relationshipnew === 'string' || relationshipnew instanceof String) {
       relationship = relationshipnew
@@ -119,7 +119,7 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
     updateActiveChild(activeChild, "parent_gender", relationship, dispatch, String(userRelationToParent));
     navigation.navigate('ChildProfileScreen');
   }
-  const getCheckedParentItem = (checkedItem: any):any => {
+  const getCheckedParentItem = (checkedItem: any): any => {
     if (
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
@@ -136,7 +136,7 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
         style={[styles.headerRowView,{backgroundColor: headerColor}]}>
         <HeaderIconView>
           <HeaderIconPress
-            onPress={():any => {
+            onPress={(): any => {
               navigation.goBack();
             }}>
             <IconML name={'ic_back'} color="#FFF" size={15} />
@@ -150,7 +150,7 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
       </HeaderRowView>
       <MainContainer>
         <FormInputGroup
-          onPress={():any => {
+          onPress={(): any => {
             actionSheetRef.current?.setModalVisible();
           }}>
           <LabelText>{t('relationShipTxt')}</LabelText>
@@ -183,11 +183,11 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
         <ActionSheet ref={actionSheetRef}>
           <View>
             {
-              relationship_to_parent.map((item: any, index: any) => {
+              relationshipToParentGlobal.map((item: any, index: any) => {
                 return (
                   <ChildRelationList key={index}>
                     <Pressable
-                      onPress={():any => {
+                      onPress={(): any => {
                         setUserRelationToParent(item.id);
 
                         if (item.id == relationShipMotherId) {
@@ -231,7 +231,7 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
-              onChangeText={(value: any):any => {
+              onChangeText={(value: any): any => {
                 if (value.replace(/\s/g, "") == "") {
                   setParentName(value.replace(/\s/g, ''));
                 } else {
@@ -250,7 +250,7 @@ const EditParentDetails = ({ route, navigation }: Props):any => {
           <ButtonPrimary
             disabled={
               relationship == "" || relationship == null || relationship == undefined || parentName == null || parentName == undefined || parentName == "" ? true : false}
-            onPress={():any => {
+            onPress={(): any => {
               saveParentData(relationship, parentName, userRelationToParent);
             }}>
             <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>

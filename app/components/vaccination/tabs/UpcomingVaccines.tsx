@@ -36,7 +36,7 @@ const styles=StyleSheet.create({
   toolsIconOuterView:{ alignItems: "flex-end", flex: 1 },
   vaccineOuterView:{ flex: 6, flexDirection: "row" }
  })
-const UpcomingVaccines = (props: any):any => {
+const UpcomingVaccines = (props: any): any => {
   const {item, headerColor, backgroundColor, currentPeriodId} =props;
   const {t} = useTranslation();
   const navigation = useNavigation();
@@ -49,10 +49,10 @@ const UpcomingVaccines = (props: any):any => {
   const reminders = activeChild.reminders;
   let vcReminder: any;
   const vaccineReminders = reminders.filter(
-    (item:any) => item?.reminderType == 'vaccine',
+    (item: any) => item?.reminderType == 'vaccine',
   );
   if (vaccineReminders.length>0) {
-    vaccineReminders.forEach((vaccineReminder:any)=>{
+    vaccineReminders.forEach((vaccineReminder: any)=>{
       const today = DateTime.fromJSDate(new Date());
       const reminderDate = new Date(DateTime.fromMillis(vaccineReminder?.reminderDate));
       const hours = new Date(vaccineReminder?.reminderTime).getHours()
@@ -69,17 +69,17 @@ const UpcomingVaccines = (props: any):any => {
     currentPeriodId == item?.periodID ? setIsOpen(true) : setIsOpen(false);
     // open first collapsible in upcoming vaccine period
   }, []);
-  const gotoArticle = (pinned_articleID:any):any => {
-    if(pinned_articleID!=0){
+  const gotoArticle = (pinnedArticleId: any): any => {
+    if(pinnedArticleId!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: 'VaccinationTab',
       headerColor: headerColor,
       backgroundColor: backgroundColor,
-      detailData: pinned_articleID,
+      detailData: pinnedArticleId,
     });
   }
   };
-  const doneVc = item?.vaccines.filter((item:any) => {
+  const doneVc = item?.vaccines.filter((item: any) => {
     return item?.isMeasured;
   });
    return (
@@ -90,7 +90,7 @@ const UpcomingVaccines = (props: any):any => {
             backgroundColor: backgroundColor
           }}>
           <ToolsIconView>
-            {item?.vaccines.every((el:any) => {
+            {item?.vaccines.every((el: any) => {
               return el.isMeasured == true;
             }) ? (
               <RadioActive style={styles.radioActive}>
@@ -107,7 +107,7 @@ const UpcomingVaccines = (props: any):any => {
             )}
           </ToolsIconView>
           <ToolsHeadPress
-            onPress={():any => {
+            onPress={(): any => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
@@ -131,7 +131,7 @@ const UpcomingVaccines = (props: any):any => {
         </ToolsListContainer>
         {isOpen ? (
           <>
-            {item?.vaccines.map((v:any, i:any) => {
+            {item?.vaccines.map((v: any, i: any) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>     
@@ -163,7 +163,7 @@ const UpcomingVaccines = (props: any):any => {
                       </Heading4Regular>
                       {v?.pinned_article ? (
                         <Pressable
-                          onPress={():any => gotoArticle(v.pinned_article)}>
+                          onPress={(): any => gotoArticle(v.pinned_article)}>
                           <ButtonTextSmLineL numberOfLines={2}>
                             {t('vcArticleLink')}
                           </ButtonTextSmLineL>
@@ -172,7 +172,7 @@ const UpcomingVaccines = (props: any):any => {
                     </ToolsHeadingView>
                     </View>
                     <View  style={styles.toolsIconOuterView}>
-                    {v.isMeasured ? <Pressable onPress={():any =>navigation.navigate('AddChildVaccination', {
+                    {v.isMeasured ? <Pressable onPress={(): any =>navigation.navigate('AddChildVaccination', {
                         headerTitle: t('editVcTitle'),
                         vcPeriod: item,
                         editVaccineDate:v.measurementDate,
@@ -223,7 +223,7 @@ const UpcomingVaccines = (props: any):any => {
                     </View>
                     <View  style={styles.toolsIconOuterView}>
                     <Pressable
-                          onPress={():any => {
+                          onPress={(): any => {
                             navigation.navigate('AddReminder', {
                               reminderType: 'vaccine', // from remiderType
                               headerTitle: t('vcEditReminderHeading'),
@@ -246,7 +246,7 @@ const UpcomingVaccines = (props: any):any => {
                 ) : (
                   <Pressable
                     disabled={isFutureDate(activeChild?.birthDate)}
-                    onPress={():any => {
+                    onPress={(): any => {
                       navigation.navigate('AddReminder', {
                         reminderType: 'vaccine', // from remiderType
                         headerTitle: t('vcReminderHeading'),
@@ -266,13 +266,13 @@ const UpcomingVaccines = (props: any):any => {
               </MainContainer>
             ) : null}
             {currentPeriodId == item?.periodID &&
-            item?.vaccines.some((el:any) => {
+            item?.vaccines.some((el: any) => {
               return el.isMeasured == false;
             }) ? (
               <ButtonContainerAuto>
                 <ButtonVaccination
                   disabled={isFutureDate(activeChild?.birthDate)}
-                  onPress={():any =>
+                  onPress={(): any =>
                     navigation.navigate('AddChildVaccination', {
                       headerTitle: t('addVcTitle'),
                       vcPeriod: item,

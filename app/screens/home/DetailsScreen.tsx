@@ -52,17 +52,17 @@ const styles = StyleSheet.create({
   scrollView:{backgroundColor:bgcolorWhite2,flex: 4}
 });
 export type RelatedArticlesProps = {
-  related_articles?:any;
-  category?:any;
-  currentId?:any;
-  headerColor?:any;
-  backgroundColor?:any;
-  listCategoryArray?:any;
-  navigation?:any;
-  fromScreen?:any;
-  currentSelectedChildId?:any;
+  relatedArticles?: any;
+  category?: any;
+  currentId?: any;
+  headerColor?: any;
+  backgroundColor?: any;
+  listCategoryArray?: any;
+  navigation?: any;
+  fromScreen?: any;
+  currentSelectedChildId?: any;
 }
-const DetailsScreen = ({route, navigation}: any):any => {
+const DetailsScreen = ({route, navigation}: any): any => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
   console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor,newBackgroundColor;
@@ -86,7 +86,7 @@ const DetailsScreen = ({route, navigation}: any):any => {
   const [detailDataToUse,setDetailDataToUse] = useState<any>({});
   
   const adviceval = fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
-  const onHeaderBack =():any=>{
+  const onHeaderBack =(): any=>{
     console.log("onHeaderBack called");
     if(fromScreen == "ChildDevelopment")
     {
@@ -137,7 +137,7 @@ const DetailsScreen = ({route, navigation}: any):any => {
     }
   }
   useEffect(() => {
-    const backAction = ():any => {
+    const backAction = (): any => {
       //console.log("dwferfef")
       onHeaderBack()
       return true;
@@ -150,14 +150,14 @@ const DetailsScreen = ({route, navigation}: any):any => {
     navigation.addListener('gestureEnd', backAction);
       
   
-    return ():any => {
+    return (): any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
   }, []);
   
   useEffect(() => {
-      const functionOnLoad = async ():Promise<any> => {
+      const functionOnLoad = async (): Promise<any> => {
         if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
         {
           console.log(detailData,"..detailData..")
@@ -192,7 +192,7 @@ const DetailsScreen = ({route, navigation}: any):any => {
                     //show alert and back function
                     Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
                     [
-                      { text: t('detailScreenNoDataOkBtn'), onPress: ():any => onHeaderBack() }
+                      { text: t('detailScreenNoDataOkBtn'), onPress: (): any => onHeaderBack() }
                     ]
                   );
                 }
@@ -231,7 +231,7 @@ const DetailsScreen = ({route, navigation}: any):any => {
               //show alert and back function
               Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
               [
-                { text: t('detailScreenNoDataOkBtn'), onPress: ():any => onHeaderBack() }
+                { text: t('detailScreenNoDataOkBtn'), onPress: (): any => onHeaderBack() }
               ]
             );
             }
@@ -262,7 +262,7 @@ const DetailsScreen = ({route, navigation}: any):any => {
         }
       }
       functionOnLoad();
-      return ():any => {
+      return (): any => {
         console.log("in return")
       }
 
@@ -280,7 +280,7 @@ const videoIsFocused = useIsFocused();
 console.log(videoIsFocused,"..videoIsFocused");
   const [filterArray,setFilterArray] = useState([]);
   const fromPage = 'Details';
-  const setNewFilteredArticleData = (itemId:any):any => {
+  const setNewFilteredArticleData = (itemId: any): any => {
     navigation.navigate({
       name: fromScreen,
       params: {categoryArray:itemId,backClicked:'no'},
@@ -288,7 +288,7 @@ console.log(videoIsFocused,"..videoIsFocused");
     });
   }
   
-  const onFilterArrayChange = (newFilterArray: any):any => {
+  const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray)
   }
   const cssRules =
@@ -336,8 +336,8 @@ console.log(videoIsFocused,"..videoIsFocused");
               }
             </View>
             {adviceval == true ?
-              <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/>
-            : <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoritegames.findIndex((x:any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/> }
+              <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoriteadvices.findIndex((x: any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/>
+            : <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoritegames.findIndex((x: any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/> }
             <ArticleDetailsContainer>
               <ShiftFromBottom5>
             {detailDataToUse && detailDataToUse?.category && detailDataToUse?.category!= 0 ?    
@@ -371,11 +371,11 @@ console.log(videoIsFocused,"..videoIsFocused");
            renderers={{
             table,
             iframe,
-            img:(attribs:any):any => {
-              const imagePath:any = attribs.src;
+            img:(attribs: any): any => {
+              const imagePath: any = attribs.src;
               console.log(imagePath,"..imagePath");
               if(imagePath!="" && imagePath!=null && imagePath!=undefined){
-              const itemnew:any={
+              const itemnew: any={
                 cover_image:{
                   url:imagePath
                 }
@@ -405,9 +405,9 @@ console.log(videoIsFocused,"..videoIsFocused");
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
-                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                    <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
 
-                        <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                        <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
                     
                   <ArticleHeading>
                     <Heading2>{t('detailScreenArticleHeader')}</Heading2>
@@ -420,9 +420,9 @@ console.log(videoIsFocused,"..videoIsFocused");
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
-                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                    <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
 
-                      <RelatedVideoArticles related_articles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                      <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
                 </FlexCol>
               </>
             ) : null}

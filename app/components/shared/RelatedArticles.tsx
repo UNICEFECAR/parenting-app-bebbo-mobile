@@ -45,10 +45,10 @@ const styles = StyleSheet.create({
     paddingLeft:10
   }
 });
-const RelatedArticles = (props: RelatedArticlesProps):any => {
-  const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
+const RelatedArticles = (props: RelatedArticlesProps): any => {
+  const { relatedArticles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
   const { t } = useTranslation();
-  let relartlength = related_articles ? related_articles.length : 0;
+  let relartlength = relatedArticles ? relatedArticles.length : 0;
   const articleDataold = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
@@ -68,14 +68,14 @@ const RelatedArticles = (props: RelatedArticlesProps):any => {
   useFocusEffect(
     React.useCallback(() => {
       setrelatedArticleData([]);
-      async function fetchData():Promise<any> {
+      async function fetchData(): Promise<any> {
         if (relartlength > 0) {
           let relatedData: any = [];
           if (fromScreen == "ChildgrowthTab") {
-            const filterQuery = JSON.parse(JSON.stringify(related_articles)).map((x: any) => `id = '${x}'`).join(' OR ');
+            const filterQuery = JSON.parse(JSON.stringify(relatedArticles)).map((x: any) => `id = '${x}'`).join(' OR ');
             relatedData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
           } else {
-            relatedData = articleData.filter((x: any) => JSON.parse(JSON.stringify(related_articles)).includes(x.id));
+            relatedData = articleData.filter((x: any) => JSON.parse(JSON.stringify(relatedArticles)).includes(x.id));
           }
           relartlength = relatedData.length;
            if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
@@ -101,9 +101,9 @@ const RelatedArticles = (props: RelatedArticlesProps):any => {
         }
       }
       fetchData()
-    }, [currentId,related_articles])
+    }, [currentId,relatedArticles])
   );
-  const goToArticleDetail = (item: any):any => {
+  const goToArticleDetail = (item: any): any => {
     navigation.push('DetailsScreen',
       {
         fromScreen: fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) : "Articles",
@@ -114,9 +114,9 @@ const RelatedArticles = (props: RelatedArticlesProps):any => {
         currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
       });
   };
-  const RenderRelatedArticleItem = ({item, index}:any):any => {
+  const RenderRelatedArticleItem = ({item, index}: any): any => {
     return (
-      <Pressable onPress={():any => { goToArticleDetail(item) }} key={index}
+      <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}
         style={styles.itemPressable}
       >
         <RelatedArticleContainer key={index}>    
@@ -130,7 +130,7 @@ const RelatedArticles = (props: RelatedArticlesProps):any => {
                 <Heading3 numberOfLines={2}>{item.title}</Heading3>
               </ArticleListContent>
             </View>
-            <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
+            <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x: any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
           </View>
         </RelatedArticleContainer>
       </Pressable>
@@ -155,7 +155,7 @@ const RelatedArticles = (props: RelatedArticlesProps):any => {
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
               renderItem={memoizedValue}
-              keyExtractor={(item):any => item.id}
+              keyExtractor={(item): any => item.id}
             />
           </View>
         </ContainerView>
