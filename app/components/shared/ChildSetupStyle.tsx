@@ -50,6 +50,10 @@ export const LabelText = styled(LabelTextVac)`
   margin-bottom: 7px;
   text-align:left;
 `;
+export const LabelText1 = styled(LabelTextVac)`
+margin-bottom: 7px;
+text-align:left;
+`;
 export const ChildSection = styled.View`
   flex: 1;
   width: 100%;
