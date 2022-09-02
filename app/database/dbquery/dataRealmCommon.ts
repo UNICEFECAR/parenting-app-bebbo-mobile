@@ -45,7 +45,7 @@ class DataRealmCommon {
             }
         });
     }
-    public closeRealm():any {
+    public closeRealm(): any {
         if (this.realm) {
             this.realm.close();
             delete this.realm;
@@ -64,7 +64,7 @@ class DataRealmCommon {
 
     public async getObjectLength<Entity>(entitySchema: ObjectSchema): Promise<number> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -85,7 +85,7 @@ class DataRealmCommon {
 
     public async create<Entity>(entitySchema: ObjectSchema, records: Entity[], _articleRelation?: string): Promise<any> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -112,7 +112,7 @@ class DataRealmCommon {
     }
     public async createArticles<Entity>(entitySchema: ObjectSchema, records: Entity[], articleRelation: string): Promise<any> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -156,7 +156,7 @@ class DataRealmCommon {
     }
     public async createStandardDev<Entity>(records: Entity[]): Promise<any> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -189,7 +189,7 @@ class DataRealmCommon {
         // });
     }
     public async updateSettings<Entity>(_entitySchema: ObjectSchema, key: string, value: string): Promise<string> {
-        let result:any='';
+        let result: any='';
         // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
@@ -236,7 +236,7 @@ class DataRealmCommon {
     }
     public async getData<Entity>(entitySchema: ObjectSchema, sortedOrder?: any): Promise<any> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -263,7 +263,7 @@ class DataRealmCommon {
     }
     public async getFilteredData<Entity>(entitySchema: ObjectSchema, filterData: any): Promise<any> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -284,13 +284,13 @@ class DataRealmCommon {
 
     public async deleteDeltaData(Schemavideo: string, Schemaarticle: string, Schemaactivities: string, Schemafaqs: string, records: any): Promise<any> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     const articleids = records && records.article && records.article.length > 0 ? records.article : []
                     const activitiesids = records && records.activities && records.activities.length > 0 ? records.activities : []
-                    const video_articleids = records && records.video_article && records.video_article.length > 0 ? records.video_article : []
+                    const videoArticleIds = records && records.video_article && records.video_article.length > 0 ? records.video_article : []
                     const faqids = records && records.faq && records.faq.length > 0 ? records.faq : []
                     realm?.write(() => {
                         console.log("write")
@@ -316,8 +316,8 @@ class DataRealmCommon {
                                 );
                             }
                         }
-                        if (video_articleids.length > 0) {
-                            const filterQuery = video_articleids.map((x: any) => `id = '${x}'`).join(' OR ');
+                        if (videoArticleIds.length > 0) {
+                            const filterQuery = videoArticleIds.map((x: any) => `id = '${x}'`).join(' OR ');
                             if (
                                 realm.objects(Schemavideo).filtered(filterQuery)
                                     .length > 0
@@ -353,7 +353,7 @@ class DataRealmCommon {
         // });
     }
     public async delete(Schema: string, filterCondition: any): Promise<any> {
-        let result:any='';
+        let result: any='';
         // return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
@@ -384,7 +384,7 @@ class DataRealmCommon {
     }
     public async deleteAllAtOnce(): Promise<any> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {
@@ -410,7 +410,7 @@ class DataRealmCommon {
     }
     public async deleteOneByOne(entitySchema: ObjectSchema): Promise<any> {
         // return new Promise(async (resolve, reject) => {
-            let result:any='';
+            let result: any='';
             try {
                 const realm = await this.openRealm();
                 if (realm) {

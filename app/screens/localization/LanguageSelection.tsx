@@ -31,11 +31,11 @@ type Props = {
   navigation: LanguageSelectionNavigationProp;
   route: any;
 };
-const LanguageSelection = ({route, navigation}: Props):any => {
+const LanguageSelection = ({route, navigation}: Props): any => {
   const [language, setLanguage] = useState<any>();
   console.log("in lang file ---",route.params);
-  let country:any,languagenew: any;
-  if(buildFor == buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
+  let country: any,languagenew: any;
+  if(buildFor == String(buildForFoleja) && (route.params == null || route.params == undefined || route.params?.country == null)) {
     console.log("in if--");
     country = localization[localization.length-1];
     languagenew = null;
@@ -61,11 +61,11 @@ const LanguageSelection = ({route, navigation}: Props):any => {
         newLanguageId = languageCode;
       }
     const selectedLanguage = languages?.find(
-      (lang:any) => lang.languageCode === newLanguageId,
+      (lang: any) => lang.languageCode === newLanguageId,
     );
     setLanguage(selectedLanguage);
   }, []);
-  const renderItem = ({item}: any):any => (
+  const renderItem = ({item}: any): any => (
     <LanguageItem
       item={item}
       currentItem={language}
@@ -74,7 +74,7 @@ const LanguageSelection = ({route, navigation}: Props):any => {
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const rtlConditions = ():any => {
+  const rtlConditions = (): any => {
     if(language?.locale == 'GRarb' || language?.locale == 'GRda')
           {
             if(AppLayoutDirection == 'ltr') {
@@ -123,7 +123,7 @@ const LanguageSelection = ({route, navigation}: Props):any => {
       language,
     })
   }
-  const goToConfirmationScreen = ():any => {
+  const goToConfirmationScreen = (): any => {
     i18n.changeLanguage(language?.locale)
     .then(() => {
       if(buildFor == buildForBebbo) {
@@ -132,7 +132,7 @@ const LanguageSelection = ({route, navigation}: Props):any => {
           if(language?.locale == rotwLanguagelocaleen || language?.locale == rotwLanguagelocaleru) {
                 Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
                 [
-                  { text:t('restOfTheWorldOkTitle'), onPress: async ():Promise<any> => {
+                  { text:t('restOfTheWorldOkTitle'), onPress: async (): Promise<any> => {
                     rtlConditions()
                     }
                   }
@@ -161,14 +161,14 @@ const LanguageSelection = ({route, navigation}: Props):any => {
           <FlatList
             data={languages}
             renderItem={renderItem}
-            keyExtractor={(item):any => item.languageCode.toString()}
+            keyExtractor={(item): any => item.languageCode.toString()}
           />
         </SelectionView>
         <ShiftFromTopBottom10>
           <BtnMultiple>
             {localization.length > 1 ?
                 <ButtonviewNext>
-                  <ButtonviewClick onPress={():any => navigation.goBack()}>
+                  <ButtonviewClick onPress={(): any => navigation.goBack()}>
                     <IconML name="ic_angle_left" size={32} color="#000" />
                   </ButtonviewClick>
                 </ButtonviewNext>
@@ -177,7 +177,7 @@ const LanguageSelection = ({route, navigation}: Props):any => {
             {language ? (
               <ButtonviewNext>
                 <ButtonviewClick
-                  onPress={():any => {
+                  onPress={(): any => {
                       goToConfirmationScreen()
                   }
                   }>
@@ -186,7 +186,7 @@ const LanguageSelection = ({route, navigation}: Props):any => {
               </ButtonviewNext>
             ) : <ButtonviewPrevious>
             <ButtonviewClick
-              onPress={():any =>{
+              onPress={(): any =>{
                 console.log("pressed")
               }
               }>

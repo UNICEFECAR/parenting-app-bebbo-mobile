@@ -1,5 +1,5 @@
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
-import { appConfig, boy_child_gender } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, boyChildGender } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
@@ -16,7 +16,7 @@ import { setAllLocalNotificationGenerateType, setAllNotificationData } from '../
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 import LocalNotifications from './LocalNotifications';
-export const apiJsonDataGet = (childAge: any, parentGender: any,isDatetimeReq?:any, dateTimeObj?:any):any => {
+export const apiJsonDataGet = (childAge: any, parentGender: any,isDatetimeReq?: any, dateTimeObj?: any): any => {
   const postData = {
     childGender: 'all',
     childAge: childAge != "" && childAge != undefined && childAge != null ? childAge : "all",
@@ -49,7 +49,7 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
   };
 
 }
-export const getCurrentChildAgeInDays = (birthDayMillis: number):any => {
+export const getCurrentChildAgeInDays = (birthDayMillis: number): any => {
   const childBirthDay = birthDayMillis;
   let timeNow: any = DateTime.local().toMillis();
   timeNow = DateTime.fromMillis(timeNow);
@@ -66,23 +66,23 @@ export const getCurrentChildAgeInDays = (birthDayMillis: number):any => {
   }
   return days;
 };
-export const between = (x: any, min: any, max: any):any => {
+export const between = (x: any, min: any, max: any): any => {
   return x >= min && x <= max;
 }
-export const checkBetween = async (param: any, users: any, child_age: any):Promise<any> => {
+export const checkBetween = async (param: any, users: any, childAge: any): Promise<any> => {
   let ageData: any = [];
   await Promise.all(users.map(async (itemset: any) => {
-    if(child_age.length>0){
-    if(itemset>child_age[child_age.length-1].days_to){
+    if(childAge.length>0){
+    if(itemset>childAge[childAge.length-1].days_to){
       if (param == 0) {
-        ageData.push(child_age[child_age.length-1].id);
+        ageData.push(childAge[childAge.length-1].id);
       }
       else {
-        ageData.push(child_age[child_age.length-1]);
+        ageData.push(childAge[childAge.length-1]);
       }
      }
     else{
-    const result = await Promise.all(child_age.map((item: any) => {
+    const result = await Promise.all(childAge.map((item: any) => {
       if (between(itemset, parseInt(item["days_from"]), parseInt(item["days_to"]))) {
         if (item.id != "446") {
          if (param == 0) {
@@ -107,7 +107,7 @@ export const checkBetween = async (param: any, users: any, child_age: any):Promi
   }));
   return ageData;
 }
-export const getTaxonomyData = async (param: any, birthDate: any, child_age: any,plannedTermDate:any,isPremature:any):Promise<any> => {
+export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,plannedTermDate: any,isPremature: any): Promise<any> => {
   if (birthDate != null && birthDate != undefined && birthDate != "") {
     const ageLimit = [];
     ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(birthDate)).toMillis()));
@@ -115,10 +115,10 @@ export const getTaxonomyData = async (param: any, birthDate: any, child_age: any
     if(isPremature=="true" && plannedTermDate!=null && plannedTermDate!=undefined && plannedTermDate!=""){
     prematureageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(plannedTermDate)).toMillis()));
     }
-    const taxonomyData = await checkBetween(param, ageLimit, child_age);
-    let prematureTaxonomyData:any=[];
+    const taxonomyData = await checkBetween(param, ageLimit, childAge);
+    let prematureTaxonomyData: any=[];
     if(prematureageLimit && prematureageLimit.length>0){
-       prematureTaxonomyData = await checkBetween(param, prematureageLimit, child_age);
+       prematureTaxonomyData = await checkBetween(param, prematureageLimit, childAge);
     }
     if (taxonomyData?.length > 0) {
       if(prematureTaxonomyData && prematureTaxonomyData.length>0){
@@ -134,7 +134,7 @@ export const getTaxonomyData = async (param: any, birthDate: any, child_age: any
     }
   }
 }
-export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, child_age: any,activeset?:any):Promise<any> => {
+export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any,activeset?: any): Promise<any> => {
 
   const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
   let userRelationToParent = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userRelationToParent'");
@@ -151,10 +151,10 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         if(child.isPremature=="true" && child.plannedTermDate!=null && child.plannedTermDate!=undefined && child.plannedTermDate!=""){
         prematureageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.plannedTermDate)).toMillis()));
         }
-        const taxonomyData = await checkBetween(1, ageLimit, child_age);
-        let prematureTaxonomyData:any=[];
+        const taxonomyData = await checkBetween(1, ageLimit, childAge);
+        let prematureTaxonomyData: any=[];
         if(prematureageLimit && prematureageLimit.length>0){
-           prematureTaxonomyData = await checkBetween(1, prematureageLimit, child_age);
+           prematureTaxonomyData = await checkBetween(1, prematureageLimit, childAge);
         }
         if (taxonomyData?.length > 0) {
           if(prematureTaxonomyData && prematureTaxonomyData.length>0){
@@ -174,7 +174,8 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({ 
         ageid: String(child.taxonomyData.id), 
-        is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", 
+        is_premature: child.isPremature, 
+        child_gender: child.gender == boyChildGender ? "Boy" : "Girl", 
         relationship_with_child:userRelationToParent,
         parent_gender: child.parent_gender
     }) // relationship_with_child:monther/father
@@ -191,10 +192,10 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         if(child.isPremature=="true" && child.plannedTermDate!=null && child.plannedTermDate!=undefined && child.plannedTermDate!=""){
         prematureageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.plannedTermDate)).toMillis()));
         }
-        const taxonomyData = await checkBetween(1, ageLimit, child_age);
-        let prematureTaxonomyData:any=[];
+        const taxonomyData = await checkBetween(1, ageLimit, childAge);
+        let prematureTaxonomyData: any=[];
         if(prematureageLimit && prematureageLimit.length>0){
-           prematureTaxonomyData = await checkBetween(1, prematureageLimit, child_age);
+           prematureTaxonomyData = await checkBetween(1, prematureageLimit, childAge);
         }
         if (taxonomyData?.length > 0) {
           if(prematureTaxonomyData && prematureTaxonomyData.length>0){
@@ -216,7 +217,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         dispatch(setActiveChildData(child));
         analytics().setUserProperties({ ageid: String(child.taxonomyData.id), 
           is_premature: child.isPremature, 
-          child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", 
+          child_gender: child.gender == boyChildGender ? "Boy" : "Girl", 
           relationship_with_child:userRelationToParent,
           parent_gender: child.parent_gender
         }) // relationship_with_child:monther/father
@@ -235,10 +236,10 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
        if(child.isPremature=="true" && child.plannedTermDate!=null && child.plannedTermDate!=undefined && child.plannedTermDate!=""){
        prematureageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.plannedTermDate)).toMillis()));
        }
-      const taxonomyData = await checkBetween(1, ageLimit, child_age);
-      let prematureTaxonomyData:any=[];
+      const taxonomyData = await checkBetween(1, ageLimit, childAge);
+      let prematureTaxonomyData: any=[];
       if(prematureageLimit && prematureageLimit.length>0){
-         prematureTaxonomyData = await checkBetween(1, prematureageLimit, child_age);
+         prematureTaxonomyData = await checkBetween(1, prematureageLimit, childAge);
       }
        if (taxonomyData?.length > 0) {
         if(prematureTaxonomyData && prematureTaxonomyData.length>0){
@@ -258,7 +259,8 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       console.log("allDatatoStore AddEditChild3--",allDatatoStore);
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({ ageid: String(child.taxonomyData.id),
-         is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", 
+         is_premature: child.isPremature, 
+         child_gender: child.gender == boyChildGender ? "Boy" : "Girl", 
          relationship_with_child:userRelationToParent,
          parent_gender: child.parent_gender
         }) // relationship_with_child:monther/father
@@ -272,7 +274,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
   }
 }
 
-export const getAge = (childList: any, child_age: any):any => {
+export const getAge = (childList: any, childAge: any): any => {
   if (childList.length > 0) {
     const promises = childList.map((item: any) => {
       if (item.birthDate != null && item.birthDate != undefined && item.birthDate != "") {
@@ -280,13 +282,13 @@ export const getAge = (childList: any, child_age: any):any => {
       }
     })
     return Promise.all(promises).then(async (results: any) => {
-      const data = await checkBetween(0, results, child_age);
+      const data = await checkBetween(0, results, childAge);
       return data;
     })
   }
 }
 
-export const getDiffinDays = (day1millis: number, day2millis: number):any => {
+export const getDiffinDays = (day1millis: number, day2millis: number): any => {
   let days = 0;
   if (day1millis && day2millis) {
     const date1 = DateTime.fromMillis(day1millis);
@@ -300,7 +302,7 @@ export const getDiffinDays = (day1millis: number, day2millis: number):any => {
   return days;
 };
 
-export const getCurrentChildAgeInYears = (birthDayMillis: number):any => {
+export const getCurrentChildAgeInYears = (birthDayMillis: number): any => {
   const childBirthDay = birthDayMillis;
   let timeNow: any = DateTime.local().toMillis();
   timeNow = DateTime.fromMillis(timeNow);
@@ -317,14 +319,14 @@ export const getCurrentChildAgeInYears = (birthDayMillis: number):any => {
   }
   return years;
 };
-export const isFutureDate = (date: Date):any => {
+export const isFutureDate = (date: Date): any => {
   return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
 };
-export const isFutureDateTime = (date: DateTime):any => {
+export const isFutureDateTime = (date: any): any => {
   return new Date(date) > new Date()
 };
 
-export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:boolean):any => {
+export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow: boolean): any => {
   const date1 = DateTime.fromISO(DateTime.local().toISODate());
   const date2 = DateTime.fromISO(String(birthDate).split('T')[0])
   const diff: any = date1.diff(date2, ["years", "months", "days"])
@@ -360,7 +362,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
 
 };
 
-export const getNotificationDateInString = (t: any, birthDate: string,pluralShow:boolean):any => {
+export const getNotificationDateInString = (t: any, birthDate: string,pluralShow: boolean): any => {
   const date1 = DateTime.fromISO(DateTime.local().toISODate());
   const date2 = DateTime.fromISO(String(birthDate).split('T')[0])
   const diff: any = date1.diff(date2, ["years", "months", "days"])
@@ -397,7 +399,7 @@ export const getNotificationDateInString = (t: any, birthDate: string,pluralShow
   return ageStr
 
 };
-export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any):any => {
+export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
   const month1 = dateTime1.getUTCMonth() + 1; //months from 1-12
   const day1 = dateTime1.getUTCDate();
   const year1 = dateTime1.getUTCFullYear();
@@ -406,14 +408,14 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any):any => {
   const year2 = dateTime2.getUTCFullYear();
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any, relationship?: any,userRelationToParent?:any):Promise<any> => {
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any,userRelationToParent?: any): Promise<any> => {
   let oldBirthDate;
   console.log(editScreen, "..editScreen..",param);
    if (editScreen) {
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
     console.log(oldChild,"..oldChild..");
     if (oldChild?.length > 0) {
-      oldChild = oldChild.map((item:any) => item)[0];
+      oldChild = oldChild.map((item: any) => item)[0];
       oldBirthDate = oldChild.birthDate;
     }
     await userRealmCommon.updateChild<ChildEntity>(ChildEntitySchema, data);
@@ -431,7 +433,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
-    setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
+    setActiveChild(languageCode, data[0].uuid, dispatch, childAge,false);
     const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
   }
@@ -441,7 +443,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     if (currentActiveChildId?.length > 0) {
       currentActiveChildId = currentActiveChildId[0].value;
       if (currentActiveChildId == data[0].uuid) {
-        setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
+        setActiveChild(languageCode, data[0].uuid, dispatch, childAge,false);
       }
     }
     navigation.navigate('ChildSetupList');
@@ -457,9 +459,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       // regenerate notifications for new dob child
       const storedata = store.getState();
       let allchildNotis = storedata.notificationData.notifications;
-      const findIfNotisExistForChild = (childuuid: any):any => {
+      const findIfNotisExistForChild = (childuuid: any): any => {
         if (allchildNotis.length > 0) {
-          return allchildNotis.find((item:any) => String(item.childuuid) == String(childuuid))
+          return allchildNotis.find((item: any) => String(item.childuuid) == String(childuuid))
         }
       }
       if (findIfNotisExistForChild(data[0].uuid)) {
@@ -477,9 +479,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       );
       let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
       if (oldChild?.length > 0) {
-        oldChild = oldChild.map((item:any) => item)[0];
+        oldChild = oldChild.map((item: any) => item)[0];
       }
-      oldChild.reminders.map((x:any) => {
+      oldChild.reminders.map((x: any) => {
         let previousDTDefined;
         const onlyDateDefined = new Date(x.reminderDateDefined);
         previousDTDefined = onlyDateDefined.setHours(new Date(x.reminderTimeDefined).getHours());
@@ -493,14 +495,14 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
         'uuid ="' + data[0].uuid + '"',
       );
        ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
-       const taxonomyData = await checkBetween(0, ageLimit, child_age);
+       const taxonomyData = await checkBetween(0, ageLimit, childAge);
       let apiJsonData;
       if (taxonomyData?.length > 0) {
         apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
         if (currentActiveChildId?.length > 0) {
           currentActiveChildId = currentActiveChildId[0].value;
           if (currentActiveChildId == data[0].uuid) {
-            setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
+            setActiveChild(languageCode, data[0].uuid, dispatch, childAge,false);
           }
         }
         navigation.navigate('LoadingScreen', {
@@ -514,7 +516,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       if (currentActiveChildId?.length > 0) {
         currentActiveChildId = currentActiveChildId[0].value;
         if (currentActiveChildId == data[0].uuid) {
-          setActiveChild(languageCode, data[0].uuid, dispatch, child_age,false);
+          setActiveChild(languageCode, data[0].uuid, dispatch, childAge,false);
         }
       }
       navigation.navigate('ChildProfileScreen');
@@ -526,16 +528,17 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
 }
 
-export const updateActiveChild = (child: any, key: any, value: any, dispatch: any,userRelationToParent:any):any => {
+export const updateActiveChild = (child: any, key: any, value: any, dispatch: any,userRelationToParent: any): any => {
   child[key] = value;
   dispatch(setActiveChildData(child));
   analytics().setUserProperties({ ageid: String(child.taxonomyData.id), 
-    is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl",
+    is_premature: child.isPremature,
+    child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
     relationship_with_child:userRelationToParent,
     parent_gender: child.parent_gender
      }) // relationship_with_child:monther/father
 }
-export const getAllConfigData = async (dispatch: any):Promise<any> => {
+export const getAllConfigData = async (dispatch: any): Promise<any> => {
   const allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
   allJsonDatanew.removeAllListeners();
   const configAllData: any = [];
@@ -544,13 +547,13 @@ export const getAllConfigData = async (dispatch: any):Promise<any> => {
   })
   dispatch(getVariableData(configAllData));
 }
-export const calc = async (value: any, child_age: any):Promise<any> => {
-  value.taxonomyData = await getTaxonomyData(1, value.birthDate, child_age,value.plannedTermDate,value.isPremature);
+export const calc = async (value: any, childAge: any): Promise<any> => {
+  value.taxonomyData = await getTaxonomyData(1, value.birthDate, childAge,value.plannedTermDate,value.isPremature);
   return value;
 };
 
 
-export const getAllChildren = async (dispatch: any, child_age: any, param: any):Promise<any> => {
+export const getAllChildren = async (dispatch: any, childAge: any, param: any): Promise<any> => {
   const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   allJsonDatanew.removeAllListeners();
@@ -558,7 +561,7 @@ export const getAllChildren = async (dispatch: any, child_age: any, param: any):
   if (allJsonDatanew?.length > 0) {
     childAllData = [];
     const p = allJsonDatanew.map(async (n: any) => {
-      const value = await calc(n, child_age);
+      const value = await calc(n, childAge);
       const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
       if (childId?.length > 0) {
         childId = childId[0].value;
@@ -595,13 +598,13 @@ export const getAllChildren = async (dispatch: any, child_age: any, param: any):
 }
 
 
-export const deleteChild = async (languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, child_age: any, t: any):Promise<any> => {
+export const deleteChild = async (languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, childAge: any, t: any): Promise<any> => {
   let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterCondition);
       if (oldChild?.length > 0) {
-        oldChild = oldChild.map((item:any) => item)[0];
+        oldChild = oldChild.map((item: any) => item)[0];
       }
-       oldChild.reminders.map((x:any) => {
+       oldChild.reminders.map((x: any) => {
         let previousDTDefined;
         const onlyDateDefined = new Date(x.reminderDateDefined);
         previousDTDefined = onlyDateDefined.setHours(new Date(x.reminderTimeDefined).getHours());
@@ -620,7 +623,7 @@ export const deleteChild = async (languageCode: any, _index: number, dispatch: a
     if (currentActiveChildId?.length > 0) {
       currentActiveChildId = currentActiveChildId[0].value;
       if (currentActiveChildId == recordId) {
-        setActiveChild(languageCode, '', dispatch, child_age,false);
+        setActiveChild(languageCode, '', dispatch, childAge,false);
       }
     }
     if (Platform.OS === 'android') {

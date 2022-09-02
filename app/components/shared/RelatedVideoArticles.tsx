@@ -1,4 +1,4 @@
-import { both_child_gender, maxRelatedArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
+import { bothChildGender, maxRelatedArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
 import VideoPlayer from '@components/VideoPlayer';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
@@ -35,21 +35,21 @@ const styles = StyleSheet.create({
   }
 });
 export type RelatedVideoArticlesProps = {
-  related_articles?:any;
-  related_video_articles?:any;
-  category?:any;
-  currentId?:any;
-  headerColor?:any;
-  backgroundColor?:any;
-  listCategoryArray?:any;
-  navigation?:any;
-  fromScreen?:any;
-  currentSelectedChildId?:any;
+  relatedArticles?: any;
+  related_video_articles?: any;
+  category?: any;
+  currentId?: any;
+  headerColor?: any;
+  backgroundColor?: any;
+  listCategoryArray?: any;
+  navigation?: any;
+  fromScreen?: any;
+  currentSelectedChildId?: any;
 }
-const RelatedVideoArticles = (props: RelatedVideoArticlesProps):any => {
-  const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
+const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
+  const { relatedArticles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
   const { t } = useTranslation();
-  let relartlength = related_articles ? related_articles.length : 0;
+  let relartlength = relatedArticles ? relatedArticles.length : 0;
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -59,7 +59,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps):any => {
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
-  const videoarticleDataold = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == both_child_gender));
+  const videoarticleDataold = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
   const videoarticleData = randomArrayShuffle(videoarticleDataold);
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -72,14 +72,14 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps):any => {
   useFocusEffect(
     React.useCallback(() => {
       setrelatedArticleData([]);
-      async function fetchData():Promise<any> {
+      async function fetchData(): Promise<any> {
         if (relartlength > 0) {
           let relatedData: any = [];
           if (fromScreen == "ChildgrowthTab") {
-            const filterQuery = JSON.parse(JSON.stringify(related_articles)).map((x: any) => `id = '${x}'`).join(' OR ');
+            const filterQuery = JSON.parse(JSON.stringify(relatedArticles)).map((x: any) => `id = '${x}'`).join(' OR ');
             relatedData = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema, filterQuery);
           } else {
-            relatedData = videoarticleData.filter((x: any) => JSON.parse(JSON.stringify(related_articles)).includes(x.id));
+            relatedData = videoarticleData.filter((x: any) => JSON.parse(JSON.stringify(relatedArticles)).includes(x.id));
           }
           relartlength = relatedData.length;
           if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
@@ -108,10 +108,10 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps):any => {
         }
       }
       fetchData()
-    }, [currentId,related_articles])
+    }, [currentId,relatedArticles])
   );
   
-  const goToArticleDetail = (item: any):any => {
+  const goToArticleDetail = (item: any): any => {
     navigation.push('DetailsScreen',
       {
         fromScreen: fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) : "Articles",
@@ -122,9 +122,9 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps):any => {
         currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
       });
   };
-  const RenderRelatedArticleItem =({item, index}:any):any => {
+  const RenderRelatedArticleItem =({item, index}: any): any => {
     return (
-      <Pressable onPress={():any => { goToArticleDetail(item) }} key={index}
+      <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}
         style={styles.itemPressable}
       >
       <RelatedArticleContainer2 key={index}>    
@@ -140,7 +140,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps):any => {
                   <Heading3 numberOfLines={2}>{item.title}</Heading3>
                 </ArticleListContent>
               </View>
-              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
+              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x: any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
 
             </View>
         </RelatedArticleContainer2>
@@ -167,7 +167,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps):any => {
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
               renderItem={memoizedValue}
-              keyExtractor={(item):any => item.id}
+              keyExtractor={(item): any => item.id}
             />
           </View>
         </ContainerView>

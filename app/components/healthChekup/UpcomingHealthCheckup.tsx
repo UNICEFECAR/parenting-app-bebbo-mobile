@@ -48,7 +48,7 @@ const styles=StyleSheet.create({
   radioActive:{ backgroundColor: greenColor },
   textDecoration:{textDecorationLine:"none"}
 })
-const UpcomingHealthCheckup = (props: any):any => {
+const UpcomingHealthCheckup = (props: any): any => {
   const { item, childAgeIndays, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -64,10 +64,10 @@ const UpcomingHealthCheckup = (props: any):any => {
   const reminders = activeChild.reminders;
   let hcReminder: any;
   const healthCheckupReminders = reminders.filter(
-    (item:any) => item?.reminderType == 'healthCheckup',
+    (item: any) => item?.reminderType == 'healthCheckup',
   );
   if (healthCheckupReminders.length > 0) {
-    healthCheckupReminders.forEach((healthCheckupReminder:any) => {
+    healthCheckupReminders.forEach((healthCheckupReminder: any) => {
       const today = DateTime.fromJSDate(new Date());
       const reminderDate = new Date(DateTime.fromMillis(healthCheckupReminder?.reminderDate));
       const hours = new Date(healthCheckupReminder?.reminderTime).getHours()
@@ -80,13 +80,13 @@ const UpcomingHealthCheckup = (props: any):any => {
     })
 
   }
-  const gotoArticle = (pinned_articleID:any):any => {
-    if (pinned_articleID != 0) {
+  const gotoArticle = (pinnedArticleId: any): any => {
+    if (pinnedArticleId != 0) {
       navigation.navigate('DetailsScreen', {
         fromScreen: 'HealthCheckupsTab',
         headerColor: artHeaderColor,
         backgroundColor: artBackgroundColor,
-        detailData: pinned_articleID,
+        detailData: pinnedArticleId,
       });
     }
   };
@@ -94,8 +94,8 @@ const UpcomingHealthCheckup = (props: any):any => {
   const allVaccineData = useAppSelector((state: any) =>
     JSON.parse(state.utilsData.vaccineData),
   );
-  const getVaccineName = (vaccineID:any):any => {
-    return allVaccineData?.find((v:any) => v.uuid == vaccineID)?.title;
+  const getVaccineName = (vaccineID: any): any => {
+    return allVaccineData?.find((v: any) => v.uuid == vaccineID)?.title;
   };
   useEffect(() => {
     currentPeriodId == item?.id ? setIsOpen(true) : setIsOpen(false);
@@ -118,7 +118,7 @@ const UpcomingHealthCheckup = (props: any):any => {
             )}
           </ToolsIconView>
           <ToolsHeadPress
-            onPress={():any => {
+            onPress={(): any => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
@@ -230,7 +230,7 @@ const UpcomingHealthCheckup = (props: any):any => {
               ) : null}
               {item?.pinned_article ? (
                 <ShiftFromTop15>
-                  <Pressable onPress={():any => gotoArticle(item?.pinned_article)}>
+                  <Pressable onPress={(): any => gotoArticle(item?.pinned_article)}>
                     <ButtonTextSmLineL numberOfLines={2}>{t('hcArticleLink')}</ButtonTextSmLineL>
                   </Pressable>
                 </ShiftFromTop15>
@@ -268,7 +268,7 @@ const UpcomingHealthCheckup = (props: any):any => {
                       <View  style={styles.pressableOuterView}>
                       <Pressable
                           disabled={isFutureDate(activeChild?.birthDate)}
-                          onPress={():any => {
+                          onPress={(): any => {
                             navigation.navigate('AddReminder', {
                               reminderType: 'healthCheckup', // from remiderType
                               headerTitle: t('vcEditReminderHeading'),
@@ -293,7 +293,7 @@ const UpcomingHealthCheckup = (props: any):any => {
                 ) : isFutureDate(activeChild?.birthDate) ? null : (
                   <Pressable
                     disabled={isFutureDate(activeChild?.birthDate)}
-                    onPress={():any => {
+                    onPress={(): any => {
                       navigation.navigate('AddReminder', {
                         reminderType: 'healthCheckup', // from remiderType
                         headerTitle: t('vcReminderHeading'),
@@ -317,7 +317,7 @@ const UpcomingHealthCheckup = (props: any):any => {
                 <ShiftFromTopBottom10>
                   <Pressable
                     onPress={
-                      ():any => { 
+                      (): any => { 
                         console.log("pressable called")
                       }
                     }>
@@ -328,7 +328,7 @@ const UpcomingHealthCheckup = (props: any):any => {
                 <ButtonContainerAuto>
                   <ButtonHealth
                     disabled={isFutureDate(activeChild?.birthDate)}
-                    onPress={():any =>
+                    onPress={(): any =>
                       navigation.navigate('AddChildHealthCheckup', {
                         headerTitle: t('hcNewHeaderTitle'),
                         vcPeriod: item,
