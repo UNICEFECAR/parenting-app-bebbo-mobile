@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     zIndex: 9999
   }
 });
-const HeaderBabyMenu = (props : any):any => {
+const HeaderBabyMenu = (props: any): any => {
   const {setProfileLoading}=props;
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
@@ -144,7 +144,7 @@ const HeaderBabyMenu = (props : any):any => {
       : [],
   );
   const currentActiveChild = activeChild.uuid;
-  const child_age = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
@@ -154,7 +154,7 @@ const HeaderBabyMenu = (props : any):any => {
   const SortedchildList = [...childList].sort((a: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
-  const renderChildItem = (dispatch: any, data: any, index: number):any => {
+  const renderChildItem = (dispatch: any, data: any, index: number): any => {
     const genderLocal =
       genders?.length > 0 && data.gender != ''
         ? genders.find((genderset: any) => genderset.id === parseInt(data.gender)).name
@@ -231,11 +231,11 @@ const HeaderBabyMenu = (props : any):any => {
               <FlexColEnd>
                 <FDirRow>
                   <Pressable style={styles.pressableProfile}
-                    onPress={():any => {
+                    onPress={(): any => {
                       setModalVisible(false);
                       setProfileLoading(true);
                       setTimeout(async () => {
-                        const setData = await setActiveChild(languageCode, data.uuid, dispatch, child_age, true);
+                        const setData = await setActiveChild(languageCode, data.uuid, dispatch, childAge, true);
                         if (setData == "activeset") {
                         setProfileLoading(false);
                         }
@@ -264,10 +264,10 @@ const HeaderBabyMenu = (props : any):any => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={():any => {
+        onRequestClose={(): any => {
           setModalVisible(false);
         }}
-        onDismiss={():any => {
+        onDismiss={(): any => {
           setModalVisible(false);
         }}>
 
@@ -279,11 +279,11 @@ const HeaderBabyMenu = (props : any):any => {
               <FlatList
                 nestedScrollEnabled={true}
                 data={SortedchildList}
-                renderItem={({ item, index }: any):any =>
+                renderItem={({ item, index }: any): any =>
                   // return a component using that data
                   renderChildItem(dispatch, item, index)
                 }
-                keyExtractor={(item: { uuid: any }):any => item.uuid}
+                keyExtractor={(item: { uuid: any }): any => item.uuid}
               />
             </View>
           ) : null}
@@ -291,7 +291,7 @@ const HeaderBabyMenu = (props : any):any => {
           <ButtonContainer>
             <ShiftFromBottom10>
               <ButtonLinkPress
-                onPress={():any => {
+                onPress={(): any => {
                   setModalVisible(false);
                   navigation.navigate('EditChildProfile', { childData: null })
                 }
@@ -308,7 +308,7 @@ const HeaderBabyMenu = (props : any):any => {
             </ShiftFromBottom10>
 
             <ButtonPrimary
-              onPress={():any => {
+              onPress={(): any => {
                 setModalVisible(false);
                 navigation.navigate('ChildProfileScreen')
               }}>
@@ -320,10 +320,10 @@ const HeaderBabyMenu = (props : any):any => {
           style={styles.centeredView}>
           <View style={styles.innerCenteredView}>
             <Pressable style={styles.centeredPressable}
-              onPress={():any => {
+              onPress={(): any => {
                 setModalVisible(!modalVisible);
                 if (modalVisible) {
-                  getAllChildren(dispatch, child_age, 0);
+                  getAllChildren(dispatch, childAge, 0);
                   getAllConfigData(dispatch);
                 }
               }}>
@@ -332,7 +332,7 @@ const HeaderBabyMenu = (props : any):any => {
         </View>
         <View style={styles.hbMenuView} >
           <Pressable style={styles.hbPressable}
-            onPress={():any => {
+            onPress={(): any => {
               setModalVisible(false);
             }}>
           </Pressable>
@@ -341,10 +341,10 @@ const HeaderBabyMenu = (props : any):any => {
 
       <HeaderActionView>
         <HeaderActionBox
-          onPress={():any => {
+          onPress={(): any => {
             setModalVisible(!modalVisible);
             if (modalVisible) {
-              getAllChildren(dispatch, child_age, 0);
+              getAllChildren(dispatch, childAge, 0);
               getAllConfigData(dispatch);
             }
           }}>
