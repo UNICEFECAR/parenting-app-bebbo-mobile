@@ -18,7 +18,7 @@ import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
-import { appConfig, both_child_gender, both_parent_gender} from "./apiConstants";
+import { appConfig, bothChildGender, bothParentGender} from "./apiConstants";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, PinnedChildDevData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any):Promise<any> => {
@@ -58,10 +58,10 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
                     filterQuery += 'child_age == 0';
                 }
                 if (currentChildData.parent_gender != "" && currentChildData.parent_gender != 0 && currentChildData.parent_gender != "0") {
-                    filterQuery += '&& (parent_gender==' + parseInt(currentChildData.parent_gender) + ' || parent_gender == ' + both_parent_gender + ' || parent_gender == ' + String(both_parent_gender) + '  || parent_gender == 0)';
+                    filterQuery += '&& (parent_gender==' + parseInt(currentChildData.parent_gender) + ' || parent_gender == ' + bothParentGender + ' || parent_gender == ' + String(bothParentGender) + '  || parent_gender == 0)';
                 }
                 if (currentChildData.gender != "" && currentChildData.gender != 0 && currentChildData.gender != "0") {
-                    filterQuery += '&& (child_gender==' + parseInt(currentChildData.gender) + ' || child_gender == ' + both_child_gender + ' || child_gender == ' + String(both_child_gender) + '  || child_gender == 0)';
+                    filterQuery += '&& (child_gender==' + parseInt(currentChildData.gender) + ' || child_gender == ' + bothChildGender + ' || child_gender == ' + String(bothChildGender) + '  || child_gender == 0)';
                 }
                // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
                 const databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse, filterQuery);

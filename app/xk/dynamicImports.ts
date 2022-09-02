@@ -1,9 +1,9 @@
 import 'intl';
 export const localization=require('@assets/data/xk/localization').default;
-import bebbo_logo_shape1 from '@assets/svg/xk/bebbo_logo_shape.svg';
-export const bebbo_logo_shape=bebbo_logo_shape1;
-import img_logo_chatbot_new1 from '@assets/svg/xk/img-logo-chatbot-new.svg';
-export const img_logo_chatbot_new=img_logo_chatbot_new1;
+import bebboLogoShape1 from '@assets/svg/xk/bebbo_logo_shape.svg';
+export const bebboLogoShape=bebboLogoShape1;
+import imgLogoChatbotNew1 from '@assets/svg/xk/img-logo-chatbot-new.svg';
+export const imgLogoChatbotNew=imgLogoChatbotNew1;
 export const AVAILABLE_LANGUAGES =require('../localization/Available_lang_xk').default;
 export const taxonomydata =require('@offlinedata/xk/taxonomies').taxonomydata;
 export const ActivitiesData =require('@offlinedata/xk/ActivitiesData').ActivitiesData;

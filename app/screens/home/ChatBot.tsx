@@ -13,7 +13,7 @@ import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContain
 import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from '../../../App';
 import ThreeDotsLoader from '../../services/ThreeDotsLoader';
-import { img_logo_chatbot_new } from '@dynamicImportsClass/dynamicImports';
+import { imgLogoChatbotNew } from '@dynamicImportsClass/dynamicImports';
 const styles=StyleSheet.create({
   flex1:{flex:1},
   flexShrink1:{ flexShrink: 1 },
@@ -27,7 +27,7 @@ const styles=StyleSheet.create({
   paddingTop10:{paddingTop:10},
   vectorImage:{ borderRadius: 100, height: 20, resizeMode: 'contain', width: 20 },
 })
-const BotBubble = (props: any):any => {
+const BotBubble = (props: any): any => {
   const { message, steps,stepindex,loading } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -39,7 +39,7 @@ const BotBubble = (props: any):any => {
     );
     const userNameData =
         allConfigData?.length > 0
-          ? allConfigData.filter((item:any) => item.key === 'userName')
+          ? allConfigData.filter((item: any) => item.key === 'userName')
           : [];
 
   
@@ -51,7 +51,7 @@ const BotBubble = (props: any):any => {
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           colors={['#2B2F84', '#1F50A0', '#00AEEF']}>
-          <VectorImage style={styles.vectorImage} source={img_logo_chatbot_new} />
+          <VectorImage style={styles.vectorImage} source={imgLogoChatbotNew} />
         </LinearGradient>
       </BotImage>
       <BotBubbleContainer>
@@ -80,7 +80,7 @@ const BotBubble = (props: any):any => {
             {steps && steps.textToShow && steps.textToShow.answer_part_2 && steps.textToShow.answer_part_2 != '' && answer2visible == false ?
               <SideSpacing15>
                 <ButtonLinkPressLeft
-                  onPress={():any => {
+                  onPress={(): any => {
                     //show answer 2
                     setanswer2visible(true)
                   }}>
@@ -105,7 +105,7 @@ const BotBubble = (props: any):any => {
             {steps && steps.textToShow && steps.textToShow.related_article && steps.textToShow.related_article != 0 && (answer2visible == true || (steps.textToShow.answer_part_2 == '' && answer2visible == false)) ?
               <SideSpacing15>
                 <ButtonLinkPressLeft
-                  onPress={():any => {
+                  onPress={(): any => {
                     //show article related steps.textToShow.related_article
                       navigation.navigate('DetailsScreen',
                       {
@@ -130,7 +130,7 @@ const BotBubble = (props: any):any => {
     </FlexRow>
   )
 }
-const UserBubble = (props: any):any => {
+const UserBubble = (props: any): any => {
   const { message } = props
   return (
     <UserBubbleContainer>
@@ -140,14 +140,14 @@ const UserBubble = (props: any):any => {
     </UserBubbleContainer>
   )
 }
-const OptionBubble = (props: any):any => {
+const OptionBubble = (props: any): any => {
   const { optionval, optionindex, stepindex, steps } = props
   return (
     <>
 
       <OptionBubbleContainer>
         <OptionBubblePressable
-          onPress={():any => {
+          onPress={(): any => {
             optionval?.nextStepFunc(stepindex, optionindex, steps)
           }}>
           <Heading4Centerr>
@@ -159,14 +159,14 @@ const OptionBubble = (props: any):any => {
     </>
   )
 }
-const ActionBubble = (props: any):any => {
+const ActionBubble = (props: any): any => {
   const { actionval, actionindex, stepindex, steps, stepsjson } = props
   return (
     <>
 
       <ActionBubbleContainer style={actionindex == 0 ? styles.marginTop40 : styles.marginTop0}>
         <ActionBubblePressable
-          onPress={():any => {
+          onPress={(): any => {
             actionval?.nextStepFunc(stepindex, actionindex, actionval.nextStepval, steps[stepindex].id, steps, stepsjson)
           }}>
           <ActionBubbleIcon>
@@ -182,7 +182,7 @@ const ActionBubble = (props: any):any => {
 }
 
 
-const ChatBot = (props: any):any => {
+const ChatBot = (props: any): any => {
   const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink,noDataStep } = props;
   const [loading,setLoading] = useState<boolean>(true);
   useEffect(() => {
