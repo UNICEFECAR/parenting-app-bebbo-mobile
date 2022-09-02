@@ -22,7 +22,7 @@ export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const shareText=(String(buildFor) != buildForBebbo)?'\nhttps://www.bebbo.app/foleja/share/':'\nhttps://www.bebbo.app/share/';
 export const shareTextButton=(String(buildFor) != buildForBebbo)?'https://www.bebbo.app/foleja/share/':'https://www.bebbo.app/share/';
-export const maleData:any={
+export const maleData: any={
     "id": 37,
     "name": "Male",
     "unique_name": "male"
@@ -31,17 +31,17 @@ export const relationShipMotherId=109801;
 export const relationShipFatherId=109806;
 export const relationShipOtherCaregiverId=109811;
 export const relationShipServiceProviderId=109816;
-export const femaleData:any={
+export const femaleData: any={
     "id": 38,
     "name": "Female",
     "unique_name": "female"
 };
-export const both_parent_gender=60;
-export const both_child_gender=59;
-export const girl_child_gender=41;
-export const boy_child_gender=40;
-export const weight_growth_type=32786;
-export const height_growth_type=6461;
+export const bothParentGender=60;
+export const bothChildGender=59;
+export const girlChildGender=41;
+export const boyChildGender=40;
+export const weightGrowthType=32786;
+export const heightGrowthType=6461;
 const today = new Date();
 today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
@@ -65,8 +65,8 @@ export const appConfig = {
   healthCheckupData:'health-checkup-data',
   pinnedContent:'pinned-contents',
   vaccinePinnedContent:'pinnedvaccinations',
-  childdevGirlPinnedContent:'child_development/'+girl_child_gender,
-  childdevBoyPinnedContent:'child_development/'+boy_child_gender,
+  childdevGirlPinnedContent:'child_development/'+girlChildGender,
+  childdevBoyPinnedContent:'child_development/'+boyChildGender,
   childGrowthPinnedContent:'child_growth',
   healthcheckupPinnedContent:'health_check_ups',
   faqPinnedContent:'faq',
@@ -76,7 +76,7 @@ export const appConfig = {
   faqs:'faqs',
   archive:'archive',
 }
-export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string):any=>{
+export const finalUrl = (apiEndpoint: string,selectedCountry: number | undefined,selectedLang: string): any=>{
     if(apiEndpoint==appConfig.sponsors){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
     } 
@@ -114,7 +114,7 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
 }
 
 
-  export const allApisObject = (isDatetimeReq:any, dateTimeObj:any):any => {
+  export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
     const allApiObject = [
       {
         apiEndpoint: appConfig.sponsors,
@@ -273,7 +273,7 @@ export const basicPagesUniqueName = {
     privacypolicy: 'privacy_policy',
 
 }
-export const measurementPlaces = (items:any):any=>{
+export const measurementPlaces = (items: any): any=>{
     return [ {id:0,title:items[0] },{id:1,title:items[1] }]
 }
 export const maxCharForRemarks = 200;
