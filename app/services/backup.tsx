@@ -77,13 +77,13 @@ class Backup {
         return true;
     }
 
-    public closeImportedRealm():any {
+    public closeImportedRealm(): any {
         if (this.importedrealm) {
             this.importedrealm.close();
             delete this.importedrealm;
         }
     }
-    public async importFromFile(oldChildrenData:any,navigation:any,genders:any,dispatch:any,child_age:any,langCode:any): Promise<any> {
+    public async importFromFile(oldChildrenData: any,navigation: any,genders: any,dispatch: any,childAge: any,langCode: any): Promise<any> {
         if (oldChildrenData?.length > 0) {
             const resolvedPromises = oldChildrenData.map(async (item: any) => {
                 if(item.birthDate!=null && item.birthDate!=undefined){
@@ -99,16 +99,16 @@ class Backup {
             dispatch(setInfoModalOpened(notiFlagObj));
             await Promise.all(resolvedPromises).then(async item => {
                 console.log("importfromfile--",item);
-                const allChildren = await getAllChildren(dispatch, child_age,1);
+                const allChildren = await getAllChildren(dispatch, childAge,1);
                 let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                 this.closeImportedRealm();
                     
                 if (allChildren.length > 0) {
                     if (childId?.length > 0) {
                     childId = childId[0].value;
-                    const activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
+                    const activeChildData = allChildren.filter((x: any)=>x.uuid == childId);
                     if(activeChildData.length>0){
-                        await setActiveChild(langCode,childId, dispatch, child_age,false);
+                        await setActiveChild(langCode,childId, dispatch, childAge,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -121,7 +121,7 @@ class Backup {
                         return "Imported";
                     }
                     else{
-                        await setActiveChild(langCode, '', dispatch, child_age,false);
+                        await setActiveChild(langCode, '', dispatch, childAge,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -135,7 +135,7 @@ class Backup {
                     }
                     }
                     else{
-                        await setActiveChild(langCode, '', dispatch, child_age,false);
+                        await setActiveChild(langCode, '', dispatch, childAge,false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -160,8 +160,8 @@ class Backup {
 
         }
     }
-    public async import1(navigation: any, langCode: any, dispatch: any, child_age: any, genders: any): Promise<any> {
-        console.log("import1-",navigation,langCode,dispatch, child_age, genders);
+    public async import1(navigation: any, langCode: any, dispatch: any, childAge: any, genders: any): Promise<any> {
+        console.log("import1-",navigation,langCode,dispatch, childAge, genders);
         const tokens = await googleAuth.getTokens();
 
         // Sign in if neccessary
@@ -212,7 +212,7 @@ class Backup {
 
         }
     }
-    public async import(navigation: any, langCode: any, dispatch: any, child_age: any, genders: any): Promise<any> {
+    public async import(navigation: any, langCode: any, dispatch: any, childAge: any, genders: any): Promise<any> {
         const tokens = await googleAuth.getTokens();
 
         // Sign in if neccessary
@@ -270,7 +270,7 @@ class Backup {
                     dispatch(setInfoModalOpened(notiFlagObj));
                     await Promise.all(resolvedPromises).then(async item => {
                         console.log("item-",item);
-                        const allChildren = await getAllChildren(dispatch, child_age,1);
+                        const allChildren = await getAllChildren(dispatch, childAge,1);
                         let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                         this.closeImportedRealm();
                             try {
@@ -281,9 +281,9 @@ class Backup {
                         if (allChildren.length > 0) {
                             if (childId?.length > 0) {
                             childId = childId[0].value;
-                            const activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
+                            const activeChildData = allChildren.filter((x: any)=>x.uuid == childId);
                             if(activeChildData.length>0){
-                                 await setActiveChild(langCode,childId, dispatch, child_age,false);
+                                 await setActiveChild(langCode,childId, dispatch, childAge,false);
                                  navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -291,7 +291,7 @@ class Backup {
                                 return "Imported";
                             }
                             else{
-                                await setActiveChild(langCode, '', dispatch, child_age,false);
+                                await setActiveChild(langCode, '', dispatch, childAge,false);
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -300,7 +300,7 @@ class Backup {
                             }
                             }
                             else{
-                                 await setActiveChild(langCode, '', dispatch, child_age,false);
+                                 await setActiveChild(langCode, '', dispatch, childAge,false);
                                  navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
