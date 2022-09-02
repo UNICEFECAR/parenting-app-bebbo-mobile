@@ -36,7 +36,7 @@ const styles=StyleSheet.create({
   iconStyle:{alignSelf: 'center'},
   radioActive:{backgroundColor: greenColor, borderRadius: 50}
 })
-const PreviousHealthCheckup = (props: any):any => {
+const PreviousHealthCheckup = (props: any): any => {
   const {item, backgroundColor} = props;
   const {t} = useTranslation();
   const navigation = useNavigation();
@@ -44,13 +44,13 @@ const PreviousHealthCheckup = (props: any):any => {
   const themeContext = useContext(ThemeContext);
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const gotoArticle = (pinned_articleID:any):any => {
-    if(pinned_articleID!=0){
+  const gotoArticle = (pinnedArticleId: any): any => {
+    if(pinnedArticleId!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: 'HealthCheckupsTab',
       headerColor: artHeaderColor,
       backgroundColor: artBackgroundColor,
-      detailData: pinned_articleID,
+      detailData: pinnedArticleId,
     });
   }
   };
@@ -58,8 +58,8 @@ const PreviousHealthCheckup = (props: any):any => {
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
- const getVaccineName = (vaccineID:any):any => {
-  return allVaccineData?.find((v:any) => v.uuid == vaccineID)?.title;
+ const getVaccineName = (vaccineID: any): any => {
+  return allVaccineData?.find((v: any) => v.uuid == vaccineID)?.title;
 }
   return (
     <>
@@ -87,7 +87,7 @@ const PreviousHealthCheckup = (props: any):any => {
               )}
           </ToolsIconView>
           <ToolsHeadPress
-            onPress={():any => {
+            onPress={(): any => {
               setIsOPen(!isOPen);
             }}>
             <ToolsHeadingView>
@@ -183,7 +183,7 @@ const PreviousHealthCheckup = (props: any):any => {
               ) : null} 
               {item?.pinned_article ? (
                 <ShiftFromTop15>
-                  <Pressable onPress={():any => gotoArticle(item.pinned_article)}>
+                  <Pressable onPress={(): any => gotoArticle(item.pinned_article)}>
                     <ButtonTextSmLineL numberOfLines={2}>{t('hcArticleLink')}</ButtonTextSmLineL>
                   </Pressable>
                 </ShiftFromTop15>
@@ -192,7 +192,7 @@ const PreviousHealthCheckup = (props: any):any => {
             {item?.growthMeasures?.uuid ? (
             <ShiftFromTopBottom10>
               <Pressable
-                onPress={():any =>
+                onPress={(): any =>
                   navigation.navigate('AddChildHealthCheckup', {
                     headerTitle: t('hcEditHeaderTitle'),
                     vcPeriod: item,
@@ -205,7 +205,7 @@ const PreviousHealthCheckup = (props: any):any => {
              ) : ( 
             <ButtonContainerAuto>
               <ButtonHealth
-                onPress={():any =>
+                onPress={(): any =>
                   navigation.navigate('AddChildHealthCheckup', {
                     headerTitle: t('hcNewHeaderTitle'),
                     vcPeriod: item,

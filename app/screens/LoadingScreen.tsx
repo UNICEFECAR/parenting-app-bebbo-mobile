@@ -42,9 +42,9 @@ type Props = {
 };
 
 
-const LoadingScreen = ({ route, navigation }: Props):any => {
+const LoadingScreen = ({ route, navigation }: Props): any => {
   const dispatch = useAppDispatch();
-  const child_age = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
@@ -79,26 +79,28 @@ const LoadingScreen = ({ route, navigation }: Props):any => {
   );
   const netInfoval = useNetInfoHook();
   const [netflag, setnetflag] = useState(false);
-  const getAgeWithAgeBrackets = async (prevPage: any):Promise<any> => {
+  const getAgeWithAgeBrackets = async (prevPage: any): Promise<any> => {
     const alldataarr: any[] = [], deltadataarr: any[] = [];
     if (allDataDownloadFlag == true && prevPage != "CountryLangChange") {
       bufferAgeBracket.map((x: any) => deltadataarr.push(x));
     }
     else {
-      const Ages = await getAge(childList, child_age);
+      const Ages = await getAge(childList, childAge);
       const ageBrackets: any = [];
       childList.map((child: any) => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
+        if(childAgedays){
         if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
-          const i = child_age.findIndex((_item: any) => _item.id === child.taxonomyData.id);
-          if (i > -1 && i < child_age.length - 1) {
-            const nextchildAgeData = child_age[i + 1];
+          const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
+          if (i > -1 && i < childAge.length - 1) {
+            const nextchildAgeData = childAge[i + 1];
             if (nextchildAgeData.age_bracket.length > 0) {
               nextchildAgeData.age_bracket.map((ages: any) => {
                 ageBrackets.push(ages);
               })
             }
           }
+        }
         }
       });
       const newAges = [...new Set([...Ages, ...ageBrackets])];
@@ -112,7 +114,7 @@ const LoadingScreen = ({ route, navigation }: Props):any => {
     }
     return { alldataarr: alldataarr, deltadataarr: deltadataarr };
   }
-  const callSagaApi = async (enableImageDownload: any):Promise<any> => {
+  const callSagaApi = async (enableImageDownload: any): Promise<any> => {
     const routes = navigation.dangerouslyGetState()?.routes;
     console.log(routes.length, "in callSagaApi navigation history--", navigation.dangerouslyGetState());
 
@@ -226,7 +228,7 @@ const LoadingScreen = ({ route, navigation }: Props):any => {
     }
     else if (prevPage == "ImportScreen") {
       //when importing data replace agebrackets
-      const Ages = await getAge(childList, child_age);
+      const Ages = await getAge(childList, childAge);
       let apiJsonDataarticle;
       if (Ages?.length > 0) {
         apiJsonDataarticle = apiJsonDataGet(String(Ages), "all")
@@ -261,7 +263,7 @@ const LoadingScreen = ({ route, navigation }: Props):any => {
     }, [netInfoval.isConnected])
   );
   useEffect(() => {
-    const backAction = ():any => {
+    const backAction = (): any => {
       return true;
     };
     const backHandler = BackHandler.addEventListener(
@@ -269,7 +271,7 @@ const LoadingScreen = ({ route, navigation }: Props):any => {
       backAction,
     );
 
-    return ():any => {
+    return (): any => {
       backHandler.remove();
     }
   }, []);

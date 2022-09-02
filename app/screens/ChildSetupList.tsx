@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 8 
   }
 })
-const ChildSetupList = ({ navigation }: Props):any => {
+const ChildSetupList = ({ navigation }: Props): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
@@ -75,7 +75,7 @@ const ChildSetupList = ({ navigation }: Props):any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const child_age = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
@@ -86,7 +86,7 @@ const ChildSetupList = ({ navigation }: Props):any => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch, child_age, 0);
+      getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
       setTimeout(() => {
         navigation.dispatch(state => {
@@ -100,7 +100,7 @@ const ChildSetupList = ({ navigation }: Props):any => {
           });
         });
       }, 500);
-      const backAction = ():any => {
+      const backAction = (): any => {
         return true;
       };
       const backHandler = BackHandler.addEventListener(
@@ -108,25 +108,25 @@ const ChildSetupList = ({ navigation }: Props):any => {
         backAction,
       );
       navigation.addListener('gestureEnd', backAction);
-      return ():any => {
+      return (): any => {
         navigation.removeListener('gestureEnd', backAction);
         backHandler.remove();
       }
     }, [])
   );
-  const deleteRecord = (index: number, dispatch: any, uuid: string):any => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'),
         [
           {
             text: t('removeOption1'),
-            onPress: ():any => resolve("error"),
+            onPress: (): any => resolve("error"),
             style: "cancel"
           },
           {
-            text: t('growthScreendelText'), onPress: async ():Promise<any> => {
-              await deleteChild(languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, child_age, t);
-              getAllChildren(dispatch, child_age, 0);
+            text: t('growthScreendelText'), onPress: async (): Promise<any> => {
+              await deleteChild(languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, childAge, t);
+              getAllChildren(dispatch, childAge, 0);
             }
           }
         ]
@@ -134,10 +134,10 @@ const ChildSetupList = ({ navigation }: Props):any => {
     });
 
   }
-  const editRecord = (data: any):any => {
+  const editRecord = (data: any): any => {
     navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListeditSiblingBtn'), childData: data });
   }
-  const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any):any => {
+  const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any): any => {
 
     return (
       <ChildListingBox key={index}>
@@ -148,7 +148,7 @@ const ChildSetupList = ({ navigation }: Props):any => {
         <ChildColArea2>
           {
             childList.length > 1 ? (
-              <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={():any => deleteRecord(index, dispatch, data.uuid)}>
+              <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={(): any => deleteRecord(index, dispatch, data.uuid)}>
                 <ChildListAction>
                   <Icon
                     name="ic_trash"
@@ -159,7 +159,7 @@ const ChildSetupList = ({ navigation }: Props):any => {
               </TouchableHighlight>
             ) : null
           }
-          <TouchableHighlight style={styles.touchableLeft} underlayColor="transparent" onPress={():any => editRecord(data)}>
+          <TouchableHighlight style={styles.touchableLeft} underlayColor="transparent" onPress={(): any => editRecord(data)}>
             <ChildListAction>
               <Icon
                 name="ic_edit"
@@ -176,8 +176,8 @@ const ChildSetupList = ({ navigation }: Props):any => {
   
 
 
-  const childSetup = async ():Promise<any> => {
-    const Ages = await getAge(childList, child_age);
+  const childSetup = async (): Promise<any> => {
+    const Ages = await getAge(childList, childAge);
     let apiJsonData;
     if (Ages?.length > 0) {
       apiJsonData = apiJsonDataGet(String(Ages), "all")
@@ -221,7 +221,7 @@ const ChildSetupList = ({ navigation }: Props):any => {
                 {
                   childList.length > 0 ? (
                     childList.map((item: ChildEntity, index: number) => {
-                      const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset:any) => genderset.id == parseInt(item.gender)).name : '';
+                      const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)).name : '';
                       return renderDailyReadItem(dispatch, item, index, genderLocal);
                     })
                   ) :
@@ -238,7 +238,7 @@ const ChildSetupList = ({ navigation }: Props):any => {
 
             <ShiftFromBottom10>
               <ButtonLinkPress
-                onPress={():any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
+                onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
                 <OuterIconRow>
                   <OuterIconLeft>
                     <Icon name="ic_plus" size={20} color="#FFF" />
@@ -249,7 +249,7 @@ const ChildSetupList = ({ navigation }: Props):any => {
             </ShiftFromBottom10>
 
             <ButtonPrimary
-              onPress={(e):any => {
+              onPress={(e): any => {
                 e.stopPropagation();
                 setLoading(true);
                 setTimeout(() => {
