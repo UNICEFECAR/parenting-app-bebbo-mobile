@@ -1,5 +1,5 @@
 import { buildFor, buildForBebbo } from '@assets/translations/appOfflineData/apiConstants';
-import { bebbo_logo_shape } from '@dynamicImportsClass/dynamicImports';
+import { bebboLogoShape } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -9,7 +9,7 @@ import { FlexDirCol } from './shared/FlexBoxStyle';
 import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
 
 const item = {
-  image:bebbo_logo_shape,
+  image:bebboLogoShape,
   colors: ['#2B2F84', '#1F50A0',  '#00AEEF'],
 };
 const styles = StyleSheet.create({
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
    },
    vectorImageView:{marginBottom:15}
  });
-const LoadingScreenComponent = (props: any):any => {
+const LoadingScreenComponent = (props: any): any => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
   const prevPage = props.prevPage;

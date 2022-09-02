@@ -1,4 +1,4 @@
-import { both_child_gender, both_parent_gender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { bothChildGender, bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 })
-const ChildSetup = ({ navigation }: Props):any => {
+const ChildSetup = ({ navigation }: Props): any => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
@@ -106,21 +106,21 @@ const ChildSetup = ({ navigation }: Props):any => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
-  const relationship_to_parent = useAppSelector(
+  const relationshipToParent = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const child_age = useAppSelector(
+  const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const actionSheetRef = createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
-  const sendData = (data: any):any => { // the callback. Use a better name
+  const sendData = (data: any): any => { // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
     const myString = String(data.isPremature);
@@ -132,13 +132,13 @@ const ChildSetup = ({ navigation }: Props):any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
 
-  genders = genders.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != both_child_gender;
+  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+    return e.id != bothChildGender;
   });
-  relationshipData = relationshipData.map((v:any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != both_parent_gender;
+  relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+    return e.id != bothParentGender;
   });
-  const onImportCancel = ():any => {
+  const onImportCancel = (): any => {
     setImportAlertVisible(false);
   }
   useFocusEffect(
@@ -157,10 +157,10 @@ const ChildSetup = ({ navigation }: Props):any => {
       }, 500);
     }, [])
   );
-  const getCheckedItem = (checkedItem: typeof genders[0]):any => {
+  const getCheckedItem = (checkedItem: typeof genders[0]): any => {
     setGender(checkedItem.id);
   };
-  const getCheckedParentItem = (checkedItem: any):any => {
+  const getCheckedParentItem = (checkedItem: any): any => {
     if (
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
@@ -170,7 +170,7 @@ const ChildSetup = ({ navigation }: Props):any => {
       setRelationship(String(checkedItem.id));
     }
   };
-  const handleError = (err: any):any => {
+  const handleError = (err: any): any => {
     console.log(err,"..err")
     if (DocumentPicker.isCancel(err)) {
       console.log('cancelled')
@@ -181,7 +181,7 @@ const ChildSetup = ({ navigation }: Props):any => {
       throw err
     }
   };
-  const importFromFile=async():Promise<any>=>{
+  const importFromFile=async(): Promise<any>=>{
     if(Platform.OS=="android"){
       const dataset=await ScopedStorage.openDocument(true,'base64');
       console.log(dataset,"..dataset");
@@ -222,7 +222,7 @@ const ChildSetup = ({ navigation }: Props):any => {
       allowMultiSelection: false,
       type: DocumentPicker.types.allFiles,
     })
-  .then(async (res:any)=>{
+  .then(async (res: any)=>{
     console.log(res, "..res..");
     if (res.length > 0 && res[0].uri) {
       const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
@@ -267,12 +267,12 @@ const ChildSetup = ({ navigation }: Props):any => {
   .catch(handleError);
    }
   }
-  const importAllData = async ():Promise<any> => {
+  const importAllData = async (): Promise<any> => {
     setImportAlertVisible(false);
     setLoading(true);
     setIsImportRunning(true);
     //param 1 from settings import for navigation
-    const importResponse = await backup.import1(navigation, languageCode, dispatch, child_age, genders);
+    const importResponse = await backup.import1(navigation, languageCode, dispatch, childAge, genders);
     if (importResponse.length > 0) {
       setIsImportRunning(false);
       setLoading(false);
@@ -287,13 +287,13 @@ const ChildSetup = ({ navigation }: Props):any => {
   }
 
 
-  const AddChild = async ():Promise<any> => {
+  const AddChild = async (): Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     const defaultName = name;
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, child_age, relationship, userRelationToParent);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent);
   }
 
   const themeContext = useContext(ThemeContext);
@@ -321,7 +321,7 @@ const ChildSetup = ({ navigation }: Props):any => {
               <Flex1>
                 <ButtonPrimaryMd
                   disabled={isImportRunning}
-                  onPress={(e):any => {
+                  onPress={(e): any => {
                     e.stopPropagation();
                     actionSheetRefImport.current?.setModalVisible(true);
                   }}>
@@ -356,7 +356,7 @@ const ChildSetup = ({ navigation }: Props):any => {
                   autoCorrect={false}
                   maxLength={30}
                   clearButtonMode="always"
-                  onChangeText={(value):any => {
+                  onChangeText={(value): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
@@ -387,7 +387,7 @@ const ChildSetup = ({ navigation }: Props):any => {
 
             <ShiftFromTop20>
               <FormInputGroup
-                onPress={():any => {
+                onPress={(): any => {
                   actionSheetRef.current?.setModalVisible();
                 }}>
                 <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
@@ -429,11 +429,11 @@ const ChildSetup = ({ navigation }: Props):any => {
       <ActionSheet ref={actionSheetRef}>
 
         <View>
-          {relationship_to_parent.map((item: any, index: any) => {
+          {relationshipToParent.map((item: any, index: any) => {
             return (
               <ChildRelationList key={index}>
                 <Pressable
-                  onPress={():any => {
+                  onPress={(): any => {
                     setUserRelationToParent(item.id);
                     if (item.id == relationShipMotherId) {
                       if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
@@ -475,7 +475,7 @@ const ChildSetup = ({ navigation }: Props):any => {
           <SettingShareData>
             <FDirRow>
                 <SettingOptions>
-                <Pressable onPress={():any => {
+                <Pressable onPress={(): any => {
                   actionSheetRefImport.current?.setModalVisible(false);
                   setTimeout(async () => {
                     try {
@@ -507,7 +507,7 @@ const ChildSetup = ({ navigation }: Props):any => {
                   </Pressable>
               </SettingOptions>
               <SettingOptions>
-                <Pressable onPress={():any => {
+                <Pressable onPress={(): any => {
                   actionSheetRefImport.current?.setModalVisible(false);
                   if (netInfoval && netInfoval.isConnected == true) {
                     if(Platform.OS=='ios'){
@@ -544,7 +544,7 @@ const ChildSetup = ({ navigation }: Props):any => {
         <ButtonRow>
           <ButtonPrimary
             disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
-            onPress={(e):any => {
+            onPress={(e): any => {
               e.stopPropagation();
               setLoading(true);
               let validated: any = false;
