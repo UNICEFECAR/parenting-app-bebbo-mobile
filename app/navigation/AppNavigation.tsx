@@ -48,6 +48,7 @@ import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import dynamicLinks from '@react-native-firebase/dynamic-links';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default ():any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -94,6 +95,7 @@ export default ():any => {
 
   const callUrl = (url: any):any => {
     if (url) {
+      Alert.alert("in deep link",url);
       const initialUrlnew: any = url;
       if (initialUrlnew === null) {
         return;
@@ -190,6 +192,13 @@ export default ():any => {
       }
     }
   }, [AppState.currentState])
+  const handleDynamicLink = (link:any):any => {
+    Alert.alert("foreground dynamic link",link.url);
+    // Handle dynamic link inside your own application
+    // if (link.url === 'https://invertase.io/offer') {
+    //   // ...navigate to your offers screen
+    // }
+  };
   useEffect(() => {
 
 
@@ -211,6 +220,18 @@ export default ():any => {
     if (Platform.OS == "ios") {
       requestUserPermission();
     }
+
+    const unsubscribe = dynamicLinks().onLink(handleDynamicLink);
+    // When the component is unmounted, remove the listener
+    dynamicLinks()
+      .getInitialLink()
+      .then((link:any) => {
+        Alert.alert("background dynamic link",link.url);
+        // if (link.url === 'https://invertase.io/offer') {
+        //   // ...set initial route as offers screen
+        // }
+      });
+    return ():any => unsubscribe();
 
   }, []);
   const redirectLocation = (notification: any):any => {
