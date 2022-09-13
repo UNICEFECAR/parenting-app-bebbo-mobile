@@ -23,6 +23,7 @@
     "@react-native-firebase/analytics": "^15.1.1",
     "@react-native-firebase/app": "^15.1.1",
     "@react-native-firebase/crashlytics": "^15.1.1",
+    "@react-native-firebase/dynamic-links": "^15.4.0",
     "@react-native-firebase/messaging": "^15.1.1",
     "@react-native-google-signin/google-signin": "^6.0.1",
     "@react-navigation/bottom-tabs": "^5.11.10",
