@@ -65,8 +65,8 @@ import {
 import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import LocalNotifications from '../../services/LocalNotifications';
-import { formatStringDate, formatStringTime } from '../../services/Utils';
-
+import { formatStringDate, formatStringTime, formatStringTimeNew } from '../../services/Utils';
+import * as RNLocalize from 'react-native-localize';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -146,20 +146,37 @@ const AddReminder = ({ route, navigation }: Props):any => {
   );
 
   //if measureDate is luxon today, then set measureTime to hours,minutes,seconds
-  
+ 
   const onmeasureChange = (event: any, selectedDate: any):any => {
+    console.log(selectedDate)
     const currentDate = selectedDate || measureDate;
+    const dt = DateTime.fromJSDate(currentDate).setZone(RNLocalize.getTimeZone());
+
+    console.log('This is your date format', dt)
     setmeasureShow(false);
     if (selectedDate) {
-      setmeasureDate(DateTime.fromJSDate(currentDate));
+      setmeasureDate(dt);
       setDateTouched(true);
-      if (new Date(selectedDate).toDateString() == new Date().toDateString()) {
-        setminmeasureTime(new Date(currentDate));
-        setmeasureTime(new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0))
+      if (dt.toISODate() == DateTime.local().toISODate()) {
+        setminmeasureTime(dt);
+        setmeasureTime(dt.set({
+          minute:dt.minute<59 ? dt.minute+1:0
+        }));
+
+        //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
       }
       else {
-        const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
-        setminmeasureTime(new Date(currentDatenew));
+        const currentDatenew = dt;
+        dt.set({
+          hour:0,
+          minute:0,
+          second:0,
+          millisecond:0
+        })
+        console.log(dt,"..d")
+        // const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
+        // setminmeasureTime(new Date(currentDatenew));
+        setminmeasureTime(dt);
       }
 
     }
@@ -167,12 +184,18 @@ const AddReminder = ({ route, navigation }: Props):any => {
   };
   const onmeasureChangeDefined = (event: any, selectedDate: any):any => {
     const currentDate = selectedDate || measureDateDefined;
+    const dt = DateTime.fromJSDate(currentDate).setZone(RNLocalize.getTimeZone());
+
+    console.log('This is your date format', dt)
     setmeasureShowDefined(false);
     if (selectedDate) {
-      setmeasureDateDefined(DateTime.fromJSDate(currentDate));
+      setmeasureDateDefined(dt);
       setDateTouchedDefined(true);
-      if (new Date(selectedDate).toDateString() == new Date().toDateString()) {
-        setmeasureTimeDefined(new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0))
+      if (dt.toISODate() == DateTime.local().toISODate()) {
+        setmeasureTimeDefined(dt.set({
+          minute:dt.minute<59 ? dt.minute+1:0
+        }))
+        //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
       }
     }
 
@@ -201,17 +224,24 @@ const AddReminder = ({ route, navigation }: Props):any => {
   };
   const onmeasureTimeChange = (event: any, selectedTime: any):any => {
     const currentTime = selectedTime || measureTime;
+    const dt = DateTime.fromJSDate(currentTime).setZone(RNLocalize.getTimeZone());
+
+    console.log('This is your date format', dt)
     setmeasureShowTime(false);
     if (selectedTime) {
-      setmeasureTime(DateTime.fromJSDate(currentTime));
+      setmeasureTime(dt);
       setTimeTouched(true);
     }
   };
   const onmeasureTimeChangeDefined = (event: any, selectedTime: any):any => {
     const currentTime = selectedTime || measureTimeDefined;
+    const dt = DateTime.fromJSDate(currentTime).setZone(RNLocalize.getTimeZone());
+
+    console.log('This is your date format', dt)
+  
     setmeasureShowTimeDefined(false);
     if (selectedTime) {
-      setmeasureTimeDefined(DateTime.fromJSDate(currentTime));
+      setmeasureTimeDefined(dt);
       setTimeTouchedDefined(true);
     }
   };
@@ -278,6 +308,7 @@ const AddReminder = ({ route, navigation }: Props):any => {
     else {
       measureTimeNew = measureTime.toMillis();
     }
+   
     if (typeof measureTimeDefined === 'number' || measureTimeDefined instanceof Number) {
       measureTimeNewDefined = measureTimeDefined;
     }
@@ -319,6 +350,9 @@ const AddReminder = ({ route, navigation }: Props):any => {
       : measureDateDefined?.toMillis())
     finalReminderDateDefined.setHours(hoursDefined);
     finalReminderDateDefined.setMinutes(minsDefined);
+    Alert.alert(finalReminderDate.toString(),"..finalReminderDate.")
+    Alert.alert(finalReminderDateDefined.toString(),"..finalReminderDateDefined.")
+   
     if (DateTime.fromJSDate(finalReminderDate).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) {
       if((DateTime.fromJSDate(finalReminderDateDefined).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) 
       && (DateTime.fromJSDate(finalReminderDateDefined).toMillis() < DateTime.fromJSDate(finalReminderDate).toMillis())) {
@@ -353,8 +387,8 @@ const AddReminder = ({ route, navigation }: Props):any => {
           );
           if (createresult?.length > 0) {
             activeChild.reminders = createresult;
-            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTime(measureTimeNew)});
-            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTime(measureTimeNew)});
+            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTimeNew(measureTimeNew)});
+            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTimeNew(measureTimeNew)});
             const message = reminderType == 'vaccine' ? titlevcr : titlehcr;
             if(editReminderItem) {
               let previousDTDefined;
@@ -496,7 +530,7 @@ useEffect(() => {
                     <Text>
                       {measureTime
                         ?
-                        formatStringTime(measureTime)
+                        formatStringTimeNew(measureTime)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTime && (
@@ -529,7 +563,7 @@ useEffect(() => {
                     <Text>
                       {measureTime
                         ?
-                        formatStringTime(measureTime)
+                        formatStringTimeNew(measureTime)
                         : t('vcReminderTime')}
                     </Text>
                     <DateTimePickerModal
@@ -627,7 +661,7 @@ useEffect(() => {
                     <Text>
                       {measureTimeDefined
                         ?
-                        formatStringTime(measureTimeDefined)
+                        formatStringTimeNew(measureTimeDefined)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTimeDefined && (
@@ -661,7 +695,7 @@ useEffect(() => {
                     <Text>
                       {measureTimeDefined
                         ?
-                        formatStringTime(measureTimeDefined)
+                        formatStringTimeNew(measureTimeDefined)
                         : t('vcReminderTime')}
                     </Text>
                     <DateTimePickerModal
