@@ -1,4 +1,5 @@
 import { CHILDREN_PATH } from "@types/types";
+import { DateTime } from "luxon";
 import RNFS from 'react-native-fs';
 import { ObjectSchema } from "realm";
 import { v4 as uuidv4 } from 'uuid';
@@ -209,9 +210,27 @@ export const formatStringDate = (dateData: any):any => {
     const dateView = day + "." + month+ "." + year;
     return dateView;
 }
+const minutes_with_leading_zeros=(number:any): string=> 
+{ 
+  return (number < 10 ? '0' : '') + number;
+}
 
+export const formatStringTimeNew = (dateData: any):any => {
+    console.log(dateData,"dateData");
+    if(typeof dateData=="number"){
+    dateData=DateTime.fromMillis(dateData)
+    }
+const hour = DateTime.fromISO(dateData).hour;
+const minute = DateTime.fromISO(dateData).minute;
+
+const humanReadable = minutes_with_leading_zeros(hour)+":"+minutes_with_leading_zeros(minute)
+
+console.log(humanReadable);
+return humanReadable;
+ //   return new Intl.DateTimeFormat(luxonDefaultLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(dateData);
+}
 export const formatStringTime = (dateData: any):any => {
-    return new Intl.DateTimeFormat(luxonDefaultLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateData));
+    return new Intl.DateTimeFormat(luxonDefaultLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(dateData);
 }
 export const removeParams=(sParam:any):any=>
 {
