@@ -215,7 +215,7 @@ const minutes_with_leading_zeros=(number:any): string=>
   return (number < 10 ? '0' : '') + number;
 }
 
-export const formatStringTimeNew = (dateData: any):any => {
+export const formatStringTime = (dateData: any):any => {
     console.log(dateData,"dateData");
     if(typeof dateData=="number"){
     dateData=DateTime.fromMillis(dateData)
@@ -229,7 +229,7 @@ console.log(humanReadable);
 return humanReadable;
  //   return new Intl.DateTimeFormat(luxonDefaultLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(dateData);
 }
-export const formatStringTime = (dateData: any):any => {
+export const formatStringTimeOld = (dateData: any):any => {
     return new Intl.DateTimeFormat(luxonDefaultLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(dateData);
 }
 export const removeParams=(sParam:any):any=>

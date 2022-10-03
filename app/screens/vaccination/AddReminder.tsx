@@ -65,7 +65,7 @@ import {
 import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import LocalNotifications from '../../services/LocalNotifications';
-import { formatStringDate, formatStringTime, formatStringTimeNew } from '../../services/Utils';
+import { formatStringDate, formatStringTime } from '../../services/Utils';
 import * as RNLocalize from 'react-native-localize';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -350,9 +350,10 @@ const AddReminder = ({ route, navigation }: Props):any => {
       : measureDateDefined?.toMillis())
     finalReminderDateDefined.setHours(hoursDefined);
     finalReminderDateDefined.setMinutes(minsDefined);
+    console.log(finalReminderDate,"--finalReminderDate--",finalReminderDateDefined);
     Alert.alert(finalReminderDate.toString(),"..finalReminderDate.")
     Alert.alert(finalReminderDateDefined.toString(),"..finalReminderDateDefined.")
-   
+   console.log(DateTime.fromJSDate(new Date()).toMillis(),"new date--",DateTime.fromJSDate(new Date()));
     if (DateTime.fromJSDate(finalReminderDate).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) {
       if((DateTime.fromJSDate(finalReminderDateDefined).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) 
       && (DateTime.fromJSDate(finalReminderDateDefined).toMillis() < DateTime.fromJSDate(finalReminderDate).toMillis())) {
@@ -387,8 +388,8 @@ const AddReminder = ({ route, navigation }: Props):any => {
           );
           if (createresult?.length > 0) {
             activeChild.reminders = createresult;
-            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTimeNew(measureTimeNew)});
-            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTimeNew(measureTimeNew)});
+            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTime(measureTimeNew)});
+            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate) + "," + formatStringTime(measureTimeNew)});
             const message = reminderType == 'vaccine' ? titlevcr : titlehcr;
             if(editReminderItem) {
               let previousDTDefined;
@@ -399,6 +400,7 @@ const AddReminder = ({ route, navigation }: Props):any => {
             }
             if(vchcEnabledFlag == true) {
               //needs to test noti click once 
+              console.log("finalReminderDateDefined for noti---",finalReminderDateDefined);
              LocalNotifications.schduleNotification(finalReminderDateDefined,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis(),reminderType == 'vaccine' ? 'vcr' : 'hcr',activeChild.uuid);
             }
             dispatch(setActiveChildData(activeChild));
@@ -530,7 +532,7 @@ useEffect(() => {
                     <Text>
                       {measureTime
                         ?
-                        formatStringTimeNew(measureTime)
+                        formatStringTime(measureTime)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTime && (
@@ -563,7 +565,7 @@ useEffect(() => {
                     <Text>
                       {measureTime
                         ?
-                        formatStringTimeNew(measureTime)
+                        formatStringTime(measureTime)
                         : t('vcReminderTime')}
                     </Text>
                     <DateTimePickerModal
@@ -661,7 +663,7 @@ useEffect(() => {
                     <Text>
                       {measureTimeDefined
                         ?
-                        formatStringTimeNew(measureTimeDefined)
+                        formatStringTime(measureTimeDefined)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTimeDefined && (
@@ -695,7 +697,7 @@ useEffect(() => {
                     <Text>
                       {measureTimeDefined
                         ?
-                        formatStringTimeNew(measureTimeDefined)
+                        formatStringTime(measureTimeDefined)
                         : t('vcReminderTime')}
                     </Text>
                     <DateTimePickerModal
