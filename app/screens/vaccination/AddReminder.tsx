@@ -152,31 +152,33 @@ const AddReminder = ({ route, navigation }: Props):any => {
     const currentDate = selectedDate || measureDate;
     const dt = DateTime.fromJSDate(currentDate).setZone(RNLocalize.getTimeZone());
 
-    console.log('This is your date format', dt)
+    console.log('This is your date format', dt.valueOf())
     setmeasureShow(false);
     if (selectedDate) {
       setmeasureDate(dt);
       setDateTouched(true);
-      if (dt.toISODate() == DateTime.local().toISODate()) {
-        setminmeasureTime(dt);
-        setmeasureTime(dt.set({
+      if (dt.toISODate() != DateTime.local().toISODate()) {
+        const currentDatenew = dt;
+        currentDatenew.set({
           minute:dt.minute<59 ? dt.minute+1:0
-        }));
+        })
+        setminmeasureTime(new Date());
+        setmeasureTime(currentDatenew);
 
         //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
       }
       else {
-        const currentDatenew = dt;
-        dt.set({
-          hour:0,
-          minute:0,
-          second:0,
-          millisecond:0
-        })
-        console.log(dt,"..d")
-        // const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
-        // setminmeasureTime(new Date(currentDatenew));
-        setminmeasureTime(dt);
+        // const currentDatenew = dt;
+        // currentDatenew.set({
+        //   hour:0,
+        //   minute:0,
+        //   second:0,
+        //   millisecond:0
+        // })
+        // console.log(currentDatenew,"..currentDatenew")
+        // // const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
+        // // setminmeasureTime(new Date(currentDatenew));
+        setminmeasureTime(new Date());
       }
 
     }
