@@ -95,7 +95,7 @@ export default ():any => {
 
   const callUrl = (url: any):any => {
     if (url) {
-      Alert.alert("in deep link",url);
+      //Alert.alert("in deep link",url);
       const initialUrlnew: any = url;
       if (initialUrlnew === null) {
         return;
@@ -193,7 +193,9 @@ export default ():any => {
     }
   }, [AppState.currentState])
   const handleDynamicLink = (link:any):any => {
+    if (link.url) {
     Alert.alert("foreground dynamic link",link.url);
+    }
     // Handle dynamic link inside your own application
     // if (link.url === 'https://invertase.io/offer') {
     //   // ...navigate to your offers screen
@@ -226,7 +228,9 @@ export default ():any => {
     dynamicLinks()
       .getInitialLink()
       .then((link:any) => {
+        if (link.url) {
         Alert.alert("background dynamic link",link.url);
+        }
         // if (link.url === 'https://invertase.io/offer') {
         //   // ...set initial route as offers screen
         // }
