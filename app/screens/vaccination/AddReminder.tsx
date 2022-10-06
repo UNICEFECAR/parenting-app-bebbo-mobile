@@ -151,11 +151,8 @@ const AddReminder = ({ route, navigation }: Props):any => {
   //if measureDate is luxon today, then set measureTime to hours,minutes,seconds
  
   const onmeasureChange = (event: any, selectedDate: any):any => {
-    console.log(selectedDate)
     const currentDate = selectedDate || measureDate;
     const dt = DateTime.fromJSDate(currentDate).setZone(RNLocalize.getTimeZone());
-
-    console.log('This is your date format', dt.valueOf())
     setmeasureShow(false);
     if (selectedDate) {
       setmeasureDate(dt);
@@ -169,14 +166,6 @@ const AddReminder = ({ route, navigation }: Props):any => {
         //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
       }
       else {
-        // const currentDatenew = dt;
-        // currentDatenew.set({
-        //   hour:0,
-        //   minute:0,
-        //   second:0,
-        //   millisecond:0
-        // })
-        // console.log(currentDatenew,"..currentDatenew")
         // // const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
         // // setminmeasureTime(new Date(currentDatenew));
         setminmeasureTime(new Date());
@@ -357,10 +346,10 @@ const AddReminder = ({ route, navigation }: Props):any => {
       : measureDateDefined?.toMillis())
     finalReminderDateDefined.setHours(hoursDefined);
     finalReminderDateDefined.setMinutes(minsDefined);
-    console.log(finalReminderDate,"--finalReminderDate--",finalReminderDateDefined);
-    Alert.alert(finalReminderDate.toString(),"..finalReminderDate.")
-    Alert.alert(finalReminderDateDefined.toString(),"..finalReminderDateDefined.")
-   console.log(DateTime.fromJSDate(new Date()).toMillis(),"new date--",DateTime.fromJSDate(new Date()));
+    // console.log(finalReminderDate,"--finalReminderDate--",finalReminderDateDefined);
+    // Alert.alert(finalReminderDate.toString(),"..finalReminderDate.")
+    // Alert.alert(finalReminderDateDefined.toString(),"..finalReminderDateDefined.")
+    // console.log(DateTime.fromJSDate(new Date()).toMillis(),"new date--",DateTime.fromJSDate(new Date()));
     if (DateTime.fromJSDate(finalReminderDate).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) {
       if((DateTime.fromJSDate(finalReminderDateDefined).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) 
       && (DateTime.fromJSDate(finalReminderDateDefined).toMillis() < DateTime.fromJSDate(finalReminderDate).toMillis())) {
