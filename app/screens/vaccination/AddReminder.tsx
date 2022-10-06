@@ -157,7 +157,7 @@ const AddReminder = ({ route, navigation }: Props):any => {
     if (selectedDate) {
       setmeasureDate(dt);
       setDateTouched(true);
-      if (dt.toISODate() != DateTime.local().toISODate()) {
+      if (dt.toISODate() == DateTime.local().toISODate()) {
         const currentDatenew = dt;
         currentDatenew.set({
           minute:dt.minute<59 ? dt.minute+1:0
