@@ -116,6 +116,9 @@ const AddReminder = ({ route, navigation }: Props):any => {
   const [minmeasureTime, setminmeasureTime] = useState<any>(
     editReminderItem ? new Date(editReminderItem.reminderDate) : new Date(),
   );
+  const [minmeasureTimeDefined, setminmeasureTimeDefined] = useState<any>(
+    editReminderItem ? new Date(editReminderItem.reminderDateDefined) : new Date(),
+  );
   const [showmeasureTime, setmeasureShowTime] = useState<boolean>(false);
   const [dateTouched, setDateTouched] = useState<boolean>(false);
   const [timeTouched, setTimeTouched] = useState<boolean>(false);
@@ -158,12 +161,10 @@ const AddReminder = ({ route, navigation }: Props):any => {
       setmeasureDate(dt);
       setDateTouched(true);
       if (dt.toISODate() == DateTime.local().toISODate()) {
-        const currentDatenew = dt;
-        currentDatenew.set({
-          minute:dt.minute<59 ? dt.minute+1:0
-        })
         setminmeasureTime(new Date());
-        setmeasureTime(currentDatenew);
+        setmeasureTime(dt.set({
+          minute:dt.minute<59 ? dt.minute+1:0
+        }));
 
         //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
       }
@@ -197,7 +198,11 @@ const AddReminder = ({ route, navigation }: Props):any => {
         setmeasureTimeDefined(dt.set({
           minute:dt.minute<59 ? dt.minute+1:0
         }))
+        setminmeasureTimeDefined(new Date())
         //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
+      }
+      else{
+        setminmeasureTimeDefined(new Date())
       }
     }
 
@@ -710,7 +715,8 @@ useEffect(() => {
                       onCancel={():any => {
                         setMeasureTimePickerVisibilityDefined(false);
                       }}
-                      minimumDate={new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
+                      minimumDate={minmeasureTimeDefined}
+                      //minimumDate={new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
                       maximumDate={measureTime ? new Date(measureTime) : new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
                     />
 
