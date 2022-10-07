@@ -16,7 +16,7 @@
     "@native-html/iframe-plugin": "^1.1.2",
     "@native-html/table-plugin": "^3.1.1",
     "@react-native-async-storage/async-storage": "^1.15.4",
-    "@react-native-community/datetimepicker": "^3.5.1",
+    "@react-native-community/datetimepicker": "^6.3.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/netinfo": "^6.0.0",
     "@react-native-community/push-notification-ios": "^1.10.1",
