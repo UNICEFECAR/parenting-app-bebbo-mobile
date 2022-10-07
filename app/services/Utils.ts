@@ -1,4 +1,5 @@
 import { CHILDREN_PATH } from "@types/types";
+import { DateTime } from "luxon";
 import RNFS from 'react-native-fs';
 import { ObjectSchema } from "realm";
 import { v4 as uuidv4 } from 'uuid';
@@ -21,211 +22,223 @@ import { VaccinationEntity, VaccinationSchema } from "../database/schema/Vaccina
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
-export const addApiDataInRealm = async (response: any):any => {
+export const addApiDataInRealm = async (response: any): any => {
     // return new Promise(async (resolve, reject) => {
-       let EntitySchema:ObjectSchema = {name: "",properties: {}};
-        let EntitySchema2:ObjectSchema = {name: "",properties: {}};
-        let EntitySchema3:ObjectSchema = {name: "",properties: {}};
-        let EntitySchema4:ObjectSchema = {name: "",properties: {}};
-        let Entity: any;
-        let insertData = [];
-        let pinnedArticle = "";
-        if (response.payload.apiEndpoint == appConfig.articles) {
-            insertData = response.payload.data.data;
-            Entity = Entity as ArticleEntity;
-            EntitySchema = ArticleEntitySchema;
-            pinnedArticle = "";
+    let EntitySchema: ObjectSchema = { name: "", properties: {} };
+    let EntitySchema2: ObjectSchema = { name: "", properties: {} };
+    let EntitySchema3: ObjectSchema = { name: "", properties: {} };
+    let EntitySchema4: ObjectSchema = { name: "", properties: {} };
+    let Entity: any;
+    let insertData = [];
+    let pinnedArticle = "";
+    if (response.payload.apiEndpoint == appConfig.articles) {
+        insertData = response.payload.data.data;
+        Entity = Entity as ArticleEntity;
+        EntitySchema = ArticleEntitySchema;
+        pinnedArticle = "";
+    }
+    else if (response.payload.apiEndpoint == appConfig.vaccinePinnedContent ||
+        response.payload.apiEndpoint == appConfig.childGrowthPinnedContent ||
+        response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent ||
+        response.payload.apiEndpoint == appConfig.faqPinnedContent ||
+        response.payload.apiEndpoint == appConfig.faqUpdatedPinnedContent ||
+        response.payload.apiEndpoint == appConfig.milestoneRelatedArticle) {
+        insertData = response.payload.data.data;
+        Entity = Entity as ArticleEntity;
+        EntitySchema = ArticleEntitySchema;
+        pinnedArticle = isArticlePinned;
+    }
+    else if (response.payload.apiEndpoint == appConfig.archive) {
+        insertData = response.payload.data.data;
+        Entity = Entity as VideoArticleEntity;
+        EntitySchema = VideoArticleEntitySchema;
+        EntitySchema2 = ArticleEntitySchema;
+        EntitySchema3 = ActivitiesEntitySchema;
+        EntitySchema4 = FAQsSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.childdevGirlPinnedContent ||
+        response.payload.apiEndpoint == appConfig.childdevBoyPinnedContent) {
+        insertData = response.payload.data.data;
+        Entity = Entity as PinnedChildDevelopmentEntity;
+        EntitySchema = PinnedChildDevelopmentSchema;
+        pinnedArticle = isArticlePinned;
+    }
+    else if (response.payload.apiEndpoint == appConfig.videoArticles) {
+        insertData = response.payload.data.data;
+        Entity = Entity as VideoArticleEntity;
+        EntitySchema = VideoArticleEntitySchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.dailyMessages) {
+        insertData = response.payload.data.data;
+        Entity = Entity as DailyHomeMessagesEntity;
+        EntitySchema = DailyHomeMessagesSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.basicPages) {
+        insertData = response.payload.data.data;
+        Entity = Entity as BasicPagesEntity;
+        EntitySchema = BasicPagesSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.taxonomies) {
+        const { ...allData } = response.payload.data.data;
+        insertData.push({ langCode: response.payload.data.langcode, allData: JSON.stringify(allData), standardDevData: JSON.stringify(response.payload.data.data.standard_deviation) });
+        Entity = Entity as TaxonomyEntity;
+        EntitySchema = TaxonomySchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.activities) {
+        insertData = response.payload.data.data;
+        Entity = Entity as ActivitiesEntity;
+        EntitySchema = ActivitiesEntitySchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.surveys) {
+        insertData = response.payload.data.data;
+        Entity = Entity as SurveysEntity;
+        EntitySchema = SurveysSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.milestones) {
+        insertData = response.payload.data.data;
+        Entity = Entity as MilestonesEntity;
+        EntitySchema = MilestonesSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.childDevelopmentData) {
+        insertData = response.payload.data.data;
+        Entity = Entity as ChildDevelopmentEntity;
+        EntitySchema = ChildDevelopmentSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.childGrowthData) {
+        insertData = response.payload.data.data;
+        Entity = Entity as ChildGrowthEntity;
+        EntitySchema = ChildGrowthSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.vaccinations) {
+        insertData = response.payload.data.data;
+        Entity = Entity as VaccinationEntity;
+        EntitySchema = VaccinationSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.healthCheckupData) {
+        insertData = response.payload.data.data;
+        Entity = Entity as HealthCheckUpsEntity;
+        EntitySchema = HealthCheckUpsSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.standardDeviation) {
+        insertData = response.payload.data.data;
+        EntitySchema = StandardDevWeightForHeightSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.faqs) {
+        insertData = response.payload.data.data;
+        Entity = Entity as FAQsEntity;
+        EntitySchema = FAQsSchema;
+    }
+    if (EntitySchema == ArticleEntitySchema || EntitySchema == PinnedChildDevelopmentSchema) {
+        try {
+            await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData, pinnedArticle);
+            return "successinsert";
+        } catch (e) {
+            const errorArr = [];
+            errorArr.push(response.payload);
+            const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
+            response.dispatch(receiveAPIFailure(payload));
+            return '';
         }
-        else if (response.payload.apiEndpoint == appConfig.vaccinePinnedContent ||
-            response.payload.apiEndpoint == appConfig.childGrowthPinnedContent ||
-            response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent ||
-            response.payload.apiEndpoint == appConfig.faqPinnedContent ||
-            response.payload.apiEndpoint == appConfig.faqUpdatedPinnedContent ||
-            response.payload.apiEndpoint == appConfig.milestoneRelatedArticle) {
-            insertData = response.payload.data.data;
-            Entity = Entity as ArticleEntity;
-            EntitySchema = ArticleEntitySchema;
-            pinnedArticle = isArticlePinned;
+    }
+    else if (EntitySchema == VideoArticleEntitySchema && response.payload.apiEndpoint == appConfig.archive) {
+        try {
+            await dataRealmCommon.deleteDeltaData(EntitySchema.name, EntitySchema2.name, EntitySchema3.name, EntitySchema4.name, insertData);
+            return "successinsert";
+        } catch (e) {
+            const errorArr = [];
+            errorArr.push(response.payload);
+            const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
+            response.dispatch(receiveAPIFailure(payload));
+            return '';
         }
-        else if (response.payload.apiEndpoint == appConfig.archive) {
-            insertData = response.payload.data.data;
-            Entity = Entity as VideoArticleEntity;
-            EntitySchema = VideoArticleEntitySchema;
-            EntitySchema2 = ArticleEntitySchema;
-            EntitySchema3 = ActivitiesEntitySchema;
-            EntitySchema4 = FAQsSchema;
+    }
+    else if (EntitySchema == StandardDevWeightForHeightSchema) {
+        try {
+            await dataRealmCommon.createStandardDev<typeof Entity>(insertData);
+            return "successinsert";
+        } catch (e) {
+            const errorArr = [];
+            errorArr.push(response.payload);
+            const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
+            response.dispatch(receiveAPIFailure(payload));
+            return '';
         }
-        else if (response.payload.apiEndpoint == appConfig.childdevGirlPinnedContent ||
-            response.payload.apiEndpoint == appConfig.childdevBoyPinnedContent) {
-            insertData = response.payload.data.data;
-            Entity = Entity as PinnedChildDevelopmentEntity;
-            EntitySchema = PinnedChildDevelopmentSchema;
-            pinnedArticle = isArticlePinned;
+    } else {
+        try {
+            await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+            return "successinsert";
+        } catch (e) {
+            const errorArr = [];
+            errorArr.push(response.payload);
+            const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
+            response.dispatch(receiveAPIFailure(payload));
+            return '';
         }
-        else if (response.payload.apiEndpoint == appConfig.videoArticles) {
-            insertData = response.payload.data.data;
-            Entity = Entity as VideoArticleEntity;
-            EntitySchema = VideoArticleEntitySchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.dailyMessages) {
-            insertData = response.payload.data.data;
-            Entity = Entity as DailyHomeMessagesEntity;
-            EntitySchema = DailyHomeMessagesSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.basicPages) {
-            insertData = response.payload.data.data;
-            Entity = Entity as BasicPagesEntity;
-            EntitySchema = BasicPagesSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.taxonomies) {
-            const { ...allData } = response.payload.data.data;
-            insertData.push({ langCode: response.payload.data.langcode, allData: JSON.stringify(allData), standardDevData: JSON.stringify(response.payload.data.data.standard_deviation) });
-            Entity = Entity as TaxonomyEntity;
-            EntitySchema = TaxonomySchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.activities) {
-            insertData = response.payload.data.data;
-            Entity = Entity as ActivitiesEntity;
-            EntitySchema = ActivitiesEntitySchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.surveys) {
-            insertData = response.payload.data.data;
-            Entity = Entity as SurveysEntity;
-            EntitySchema = SurveysSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.milestones) {
-            insertData = response.payload.data.data;
-            Entity = Entity as MilestonesEntity;
-            EntitySchema = MilestonesSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.childDevelopmentData) {
-            insertData = response.payload.data.data;
-            Entity = Entity as ChildDevelopmentEntity;
-            EntitySchema = ChildDevelopmentSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.childGrowthData) {
-            insertData = response.payload.data.data;
-            Entity = Entity as ChildGrowthEntity;
-            EntitySchema = ChildGrowthSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.vaccinations) {
-            insertData = response.payload.data.data;
-            Entity = Entity as VaccinationEntity;
-            EntitySchema = VaccinationSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.healthCheckupData) {
-            insertData = response.payload.data.data;
-            Entity = Entity as HealthCheckUpsEntity;
-            EntitySchema = HealthCheckUpsSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.standardDeviation) {
-            insertData = response.payload.data.data;
-            EntitySchema = StandardDevWeightForHeightSchema;
-        }
-        else if (response.payload.apiEndpoint == appConfig.faqs) {
-            insertData = response.payload.data.data;
-            Entity= Entity as FAQsEntity;
-            EntitySchema = FAQsSchema;
-        }
-        if (EntitySchema == ArticleEntitySchema || EntitySchema == PinnedChildDevelopmentSchema) {
-           try {
-                await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData, pinnedArticle);
-                return "successinsert";
-            } catch (e) {
-                const errorArr = [];
-                errorArr.push(response.payload);
-                const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
-                response.dispatch(receiveAPIFailure(payload));
-                return '';
-            }
-        } 
-        else if (EntitySchema == VideoArticleEntitySchema && response.payload.apiEndpoint == appConfig.archive) {
-            try {
-                await dataRealmCommon.deleteDeltaData(EntitySchema.name,EntitySchema2.name,EntitySchema3.name,EntitySchema4.name, insertData);
-                return "successinsert";
-            } catch (e) {
-                const errorArr = [];
-                errorArr.push(response.payload);
-                const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
-                response.dispatch(receiveAPIFailure(payload));
-                return '';
-            }
-        } 
-        else if (EntitySchema == StandardDevWeightForHeightSchema) {
-            try {
-                await dataRealmCommon.createStandardDev<typeof Entity>(insertData);
-                return "successinsert";
-            } catch (e) {
-                const errorArr = [];
-                errorArr.push(response.payload);
-                const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
-                response.dispatch(receiveAPIFailure(payload));
-                return '';
-            }
-        } else {
-            try {
-                await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
-                return "successinsert";
-            } catch (e) {
-                const errorArr = [];
-                errorArr.push(response.payload);
-                const payload = { errorArr: errorArr, fromPage: 'OnLoad' }
-                response.dispatch(receiveAPIFailure(payload));
-                return '';
-            }
-        }
-        
+    }
+
     // });
 }
-export const addSpaceToHtml=(htmlInput:any):any=>{
-	if(htmlInput !== null && htmlInput !== undefined){
-		let html = htmlInput;
+export const addSpaceToHtml = (htmlInput: any): any => {
+    if (htmlInput !== null && htmlInput !== undefined) {
+        let html = htmlInput;
         html = html.replace(/<[/]strong> /g, " </strong>");
         html = html.replace(/<[/]em> /g, " </em>");
-		html = html.replace(/<[/]i> /g, " </i>");
-		html = html.replace(/<[/]s> /g, " </s>");
-		html = html.replace(/<[/]u> /g, " </u>");
-		html = html.replace(/<[/]span> /g, " </span>");
-		html = html.replace(/<[/]strong> /g, " </strong>");
-		html = html.replace(/<[/]em> /g, " </em>");
-		html = html.replace(/<[/]i> /g, " </i>");
-		html = html.replace(/<[/]s> /g, " </s>");
-		html = html.replace(/<[/]u> /g, " </u>");
-		html = html.replace(/<[/]span> /g, " </span>");
-		return html;
-	}
+        html = html.replace(/<[/]i> /g, " </i>");
+        html = html.replace(/<[/]s> /g, " </s>");
+        html = html.replace(/<[/]u> /g, " </u>");
+        html = html.replace(/<[/]span> /g, " </span>");
+        html = html.replace(/<[/]strong> /g, " </strong>");
+        html = html.replace(/<[/]em> /g, " </em>");
+        html = html.replace(/<[/]i> /g, " </i>");
+        html = html.replace(/<[/]s> /g, " </s>");
+        html = html.replace(/<[/]u> /g, " </u>");
+        html = html.replace(/<[/]span> /g, " </span>");
+        return html;
+    }
 }
-export const formatDate = (dateData: any):any => {
+export const formatDate = (dateData: any): any => {
     const day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
     const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     const dateView = day + "." + month + "." + year;
     return dateView;
 }
-export const formatStringDate = (dateData: any):any => {
+export const formatStringDate = (dateData: any): any => {
     const day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
     const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
-    const dateView = day + "." + month+ "." + year;
+    const dateView = day + "." + month + "." + year;
     return dateView;
 }
+const getTwoDigits = (number: any): string => {
+    return (number < 10 ? '0' : '') + number;
+}
 
-export const formatStringTime = (dateData: any):any => {
-    return new Intl.DateTimeFormat(luxonDefaultLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateData));
+export const formatStringTime = (dateData: any): any => {
+    console.log(dateData, "dateData");
+    if (typeof dateData == "number") {
+        dateData = DateTime.fromMillis(dateData)
+    }
+    const hour = DateTime.fromISO(dateData).hour;
+    const minute = DateTime.fromISO(dateData).minute;
+
+    const formattedTime = getTwoDigits(hour) + ":" + getTwoDigits(minute)
+
+    console.log(formattedTime);
+    return formattedTime;
 }
-export const removeParams=(sParam:any):any=>
-{
-  if(sParam.indexOf("?") != -1){
-    const url =sParam.split('?')[0];
-    return url;
-  }
-  else{
-    return sParam;
-  }    
+export const removeParams = (sParam: any): any => {
+    if (sParam.indexOf("?") != -1) {
+        const url = sParam.split('?')[0];
+        return url;
+    }
+    else {
+        return sParam;
+    }
 }
-export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any):any => {
+export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any): any => {
     if (birthDate == null || birthDate == undefined) {
-       return false;
+        return false;
     }
     else {
         if (name == '' || name == null || name == undefined) {
@@ -237,9 +250,9 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
             }
         }
         if (param == 1) {
-           
+
             if (gender == '' || gender == 0 || gender == null || gender == undefined) {
-                 return false;
+                return false;
             }
         }
         if (param == 2) {
@@ -253,12 +266,12 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
             }
         }
         if (param == 4) {
-          console.log("param 4");
+            console.log("param 4");
         }
 
         if (isPremature == "true") {
             if (plannedTermDate == null || plannedTermDate == undefined) {
-                 return false;
+                return false;
             }
             else {
                 return true;
@@ -269,17 +282,17 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
         }
     }
 }
-export const  randomArrayShuffle = (array:any):any => {
+export const randomArrayShuffle = (array: any): any => {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
     return array;
-  }
+}
 /**
  * Get YouTube video ID from given url.
  */
@@ -287,7 +300,7 @@ export const  randomArrayShuffle = (array:any):any => {
 export const getYoutubeId = (url: string): string => {
     let rval: string = url;
 
-     if (url?.indexOf('youtu.be') === -1) {
+    if (url?.indexOf('youtu.be') === -1) {
         const re = new RegExp('v=([^&]+)', 'img');
         const result = re.exec(url)
 
@@ -325,8 +338,8 @@ export const getVimeoId = (url: string): string => {
 
     return rval;
 }
-const formatImportedMeasures = (measures: any):any => {
-   //imported from old app
+const formatImportedMeasures = (measures: any): any => {
+    //imported from old app
     if (measures == "" || measures == [] || measures == null) {
         return [];
     } else {
@@ -337,7 +350,7 @@ const formatImportedMeasures = (measures: any):any => {
             //import from old app's exported files
             const importedMeasures = JSON.parse(measures);
             importedMeasures.forEach((measure: any) => {
-               measure.uuid = uuidv4();
+                measure.uuid = uuidv4();
                 if (measure.didChildGetVaccines == false)
                     measure.vaccineIds = ""
                 else {
@@ -347,7 +360,7 @@ const formatImportedMeasures = (measures: any):any => {
                         allmeausreVaccineIds.push({ uuid: element })
                     });
                     measure.vaccineIds = JSON.stringify(allmeausreVaccineIds);
-               
+
                 }
                 if (typeof measure?.measurementPlace === 'string' || measure?.measurementPlace instanceof String) {
                     if (measure?.measurementPlace == "doctor") {
@@ -357,9 +370,9 @@ const formatImportedMeasures = (measures: any):any => {
                     }
                 } //titleDateInMonth
                 if ("length" in measure && measure.length != null && measure.length != undefined) {
-                    if(isNaN(parseFloat(measure.length)) || isNaN(parseFloat(measure.weight))){
+                    if (isNaN(parseFloat(measure.length)) || isNaN(parseFloat(measure.weight))) {
                         measure.isChildMeasured = false;
-                    }else{
+                    } else {
                         measure.weight = measure.weight == "" ? "" : (parseFloat(measure?.weight) / 1000).toFixed(2);
                         measure.height = measure.length == "" ? "" : parseFloat(measure?.length).toFixed(2);
                         measure.isChildMeasured = true;
@@ -369,44 +382,44 @@ const formatImportedMeasures = (measures: any):any => {
                 }
 
             });
-             return importedMeasures;
+            return importedMeasures;
         }
     }
 }
-const callAsyncOperationdatetime = async (rem:any):Promise<any> => {
+const callAsyncOperationdatetime = async (rem: any): Promise<any> => {
     const remnew = {
-        reminderDate : rem?.reminderDate,
-        reminderTime : rem?.reminderTime,
-        reminderType : rem?.reminderType,
-        uuid : rem?.uuid,
+        reminderDate: rem?.reminderDate,
+        reminderTime: rem?.reminderTime,
+        reminderType: rem?.reminderType,
+        uuid: rem?.uuid,
         reminderDateDefined: rem.reminderDateDefined && rem.reminderDateDefined > 0 ? rem.reminderDateDefined : rem.reminderDate,
-        reminderTimeDefined: rem.reminderTimeDefined && rem.reminderTimeDefined > 0 ? rem.reminderTimeDefined : rem.reminderTime-60000
+        reminderTimeDefined: rem.reminderTimeDefined && rem.reminderTimeDefined > 0 ? rem.reminderTimeDefined : rem.reminderTime - 60000
     };
-     return await remnew;
+    return await remnew;
 }
 
-const formatImportedReminders = async (reminders: any):Promise<any> => {
+const formatImportedReminders = async (reminders: any): Promise<any> => {
     if (reminders == "" || reminders == [] || reminders == null) {
         // in old app reminders were string, new app has reminders array
         return [];
     } else {
         if (typeof reminders === 'object' && reminders !== null) {
             //import from new app's exported files
-            const importedReminders:any[] = [...reminders];
-            const results: any[] = await Promise.all(importedReminders.map(async (item:any): Promise<any> => {
-                const item2  =  await callAsyncOperationdatetime(item);
+            const importedReminders: any[] = [...reminders];
+            const results: any[] = await Promise.all(importedReminders.map(async (item: any): Promise<any> => {
+                const item2 = await callAsyncOperationdatetime(item);
                 return item2;
             }));
-             return results;
+            return results;
         } else {
             //import from old app's exported files
             const importedReminders = JSON.parse(reminders);
             importedReminders.forEach((reminder: any) => {
-                const reminderUUID=(reminder.uuid);
+                const reminderUUID = (reminder.uuid);
                 reminder.reminderDate = Number(reminder.date);
                 reminder.reminderTime = Number(reminder.time);
                 reminder.reminderDateDefined = Number(reminder.date);
-                reminder.reminderTimeDefined = Number(reminder.time)-60000;
+                reminder.reminderTimeDefined = Number(reminder.time) - 60000;
                 reminder.reminderType = "healthCheckup";
                 reminder.uuid = reminderUUID;
                 delete reminder.date;
@@ -417,32 +430,32 @@ const formatImportedReminders = async (reminders: any):Promise<any> => {
     }
 }
 //child data get
-export const getChild = async (child: any, genders: any):Promise<any> => {
+export const getChild = async (child: any, genders: any): Promise<any> => {
     const photoUri = await RNFS.exists(CHILDREN_PATH + child.photoUri);
     const childmeasures: any[] = await formatImportedMeasures(child.measures)
     const childreminders: any[] = await formatImportedReminders(child.reminders)
-    console.log("reminders output---",childreminders);
-    const isPremature:any=child.isPremature=="true"?"true":"false";
+    console.log("reminders output---", childreminders);
+    const isPremature: any = child.isPremature == "true" ? "true" : "false";
     const childName: any = ("name" in child) === true ? child.name : ("childName" in child) === true ? child.childName : ""
     console.log(isPremature, "..isPremature..");
     let genderValue: any = child.gender;
     if (typeof genderValue === 'string' || genderValue instanceof String) {
-         if (genders.length > 0 && genderValue != "") {
-            genderValue = genders.find((genderset:any) => genderset.unique_name.toLowerCase() == child.gender.toLowerCase()).id
+        if (genders.length > 0 && genderValue != "") {
+            genderValue = genders.find((genderset: any) => genderset.unique_name.toLowerCase() == child.gender.toLowerCase()).id
         }
         else {
             genderValue = 0;
         }
     }
-    let favoriteadvices: any[] = [],favoritegames: any[] = []
-    if(child && child.favoriteadvices && child.favoriteadvices.length > 0) {
+    let favoriteadvices: any[] = [], favoritegames: any[] = []
+    if (child && child.favoriteadvices && child.favoriteadvices.length > 0) {
         favoriteadvices = [...child.favoriteadvices];
-    }else {
+    } else {
         favoriteadvices = [];
     }
-    if(child && child.favoritegames && child.favoritegames.length > 0) {
+    if (child && child.favoritegames && child.favoritegames.length > 0) {
         favoritegames = [...child.favoritegames];
-    }else {
+    } else {
         favoritegames = [];
     }
     const inFuture = isFutureDate(child.birthDate);
@@ -464,7 +477,7 @@ export const getChild = async (child: any, genders: any):Promise<any> => {
         isMigrated: true,
         isPremature: isPremature,
         isExpected: inFuture == true ? 'true' : 'false',
-        favoriteadvices:favoriteadvices,
+        favoriteadvices: favoriteadvices,
         favoritegames: favoritegames
     };
 }
