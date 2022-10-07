@@ -168,7 +168,8 @@ const AddReminder = ({ route, navigation }: Props):any => {
       else {
         // // const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
         // // setminmeasureTime(new Date(currentDatenew));
-        setminmeasureTime(new Date());
+        //setminmeasureTime(new Date());
+        setminmeasureTime(new Date(new Date(currentDate).setHours(0, 0, 0, 0)));
       }
 
     }
@@ -191,7 +192,7 @@ const AddReminder = ({ route, navigation }: Props):any => {
         //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
       }
       else{
-        setminmeasureTimeDefined(new Date())
+        setminmeasureTimeDefined(new Date(new Date(currentDate).setHours(0, 0, 0, 0)))
       }
     }
 
