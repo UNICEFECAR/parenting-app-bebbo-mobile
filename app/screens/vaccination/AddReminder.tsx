@@ -152,15 +152,15 @@ const AddReminder = ({ route, navigation }: Props):any => {
  
   const onmeasureChange = (event: any, selectedDate: any):any => {
     const currentDate = selectedDate || measureDate;
-    const dt = DateTime.fromJSDate(currentDate).setZone(RNLocalize.getTimeZone());
+    const localCurrentDate = DateTime.fromJSDate(currentDate).setZone(RNLocalize.getTimeZone());
     setmeasureShow(false);
     if (selectedDate) {
-      setmeasureDate(dt);
+      setmeasureDate(localCurrentDate);
       setDateTouched(true);
-      if (dt.toISODate() == DateTime.local().toISODate()) {
+      if (localCurrentDate.toISODate() == DateTime.local().toISODate()) {
         setminmeasureTime(new Date());
-        setmeasureTime(dt.set({
-          minute:dt.minute<59 ? dt.minute+1:0
+        setmeasureTime(localCurrentDate.set({
+          minute:localCurrentDate.minute<59 ? localCurrentDate.minute+1:0
         }));
 
         //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
@@ -177,16 +177,16 @@ const AddReminder = ({ route, navigation }: Props):any => {
   };
   const onmeasureChangeDefined = (event: any, selectedDate: any):any => {
     const currentDate = selectedDate || measureDateDefined;
-    const dt = DateTime.fromJSDate(currentDate).setZone(RNLocalize.getTimeZone());
+    const localCurrentDate = DateTime.fromJSDate(currentDate).setZone(RNLocalize.getTimeZone());
 
-    console.log('This is your date format', dt)
+    console.log('This is your date format', localCurrentDate)
     setmeasureShowDefined(false);
     if (selectedDate) {
-      setmeasureDateDefined(dt);
+      setmeasureDateDefined(localCurrentDate);
       setDateTouchedDefined(true);
-      if (dt.toISODate() == DateTime.local().toISODate()) {
-        setmeasureTimeDefined(dt.set({
-          minute:dt.minute<59 ? dt.minute+1:0
+      if (localCurrentDate.toISODate() == DateTime.local().toISODate()) {
+        setmeasureTimeDefined(localCurrentDate.set({
+          minute:localCurrentDate.minute<59 ? localCurrentDate.minute+1:0
         }))
         setminmeasureTimeDefined(new Date())
         //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
@@ -221,24 +221,24 @@ const AddReminder = ({ route, navigation }: Props):any => {
   };
   const onmeasureTimeChange = (event: any, selectedTime: any):any => {
     const currentTime = selectedTime || measureTime;
-    const dt = DateTime.fromJSDate(currentTime).setZone(RNLocalize.getTimeZone());
+    const localCurrentDate = DateTime.fromJSDate(currentTime).setZone(RNLocalize.getTimeZone());
 
-    console.log('This is your date format', dt)
+    console.log('This is your date format', localCurrentDate)
     setmeasureShowTime(false);
     if (selectedTime) {
-      setmeasureTime(dt);
+      setmeasureTime(localCurrentDate);
       setTimeTouched(true);
     }
   };
   const onmeasureTimeChangeDefined = (event: any, selectedTime: any):any => {
     const currentTime = selectedTime || measureTimeDefined;
-    const dt = DateTime.fromJSDate(currentTime).setZone(RNLocalize.getTimeZone());
+    const localCurrentDate = DateTime.fromJSDate(currentTime).setZone(RNLocalize.getTimeZone());
 
-    console.log('This is your date format', dt)
+    console.log('This is your date format', localCurrentDate)
   
     setmeasureShowTimeDefined(false);
     if (selectedTime) {
-      setmeasureTimeDefined(dt);
+      setmeasureTimeDefined(localCurrentDate);
       setTimeTouchedDefined(true);
     }
   };
