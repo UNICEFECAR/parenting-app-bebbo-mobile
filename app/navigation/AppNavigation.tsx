@@ -192,9 +192,20 @@ export default ():any => {
       }
     }
   }, [AppState.currentState])
+  const getSearchParamFromURL = (urlNew:any, paramNew:any):any => {
+    const url= new URL(urlNew);
+    const params = new URLSearchParams(url.search);
+    const param = params.get(paramNew);
+    console.log(param,params) ;
+    return param;
+  }
+  
   const handleDynamicLink = (link:any):any => {
-    if (link.url) {
-    Alert.alert("foreground dynamic link",link.url);
+    console.log(link,"..22link")
+    if (link && link.url) {
+     Alert.alert("foreground dynamic link",link.url);
+     const urlCallback = getSearchParamFromURL(link.url, 'facebook_id') 
+     console.log(urlCallback,"..urlCallback.");
     }
     // Handle dynamic link inside your own application
     // if (link.url === 'https://invertase.io/offer') {
@@ -228,8 +239,11 @@ export default ():any => {
     dynamicLinks()
       .getInitialLink()
       .then((link:any) => {
-        if (link.url) {
+        console.log(link,"..11link")
+        if (link && link.url) {
         Alert.alert("background dynamic link",link.url);
+         const urlCallback = getSearchParamFromURL(link.url, 'facebook_id') 
+         console.log(urlCallback,"..11urlCallback.")
         }
         // if (link.url === 'https://invertase.io/offer') {
         //   // ...set initial route as offers screen
