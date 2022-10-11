@@ -207,10 +207,6 @@ export default ():any => {
      facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
      console.log(facebookId,"..facebookId.");
     }
-    // Handle dynamic link inside your own application
-    // if (link.url === 'https://invertase.io/offer') {
-    //   // ...navigate to your offers screen
-    // }
   };
   useEffect(() => {
 
@@ -246,9 +242,6 @@ export default ():any => {
          facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
          console.log(facebookId,"..facebookId11.")
         }
-        // if (link.url === 'https://invertase.io/offer') {
-        //   // ...set initial route as offers screen
-        // }
       });
     return ():any => unsubscribe();
 
