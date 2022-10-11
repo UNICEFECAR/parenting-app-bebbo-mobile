@@ -48,6 +48,7 @@ import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import DynamicLinks from '@react-native-firebase/dynamic-links';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default ():any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -94,6 +95,7 @@ export default ():any => {
 
   const callUrl = (url: any):any => {
     if (url) {
+      //Alert.alert("in deep link",url);
       const initialUrlnew: any = url;
       if (initialUrlnew === null) {
         return;
@@ -190,6 +192,22 @@ export default ():any => {
       }
     }
   }, [AppState.currentState])
+  const getSearchParamFromURL = (urlNew:any, paramNew:any):any => {
+    const url= new URL(urlNew);
+    const params = new URLSearchParams(url.search);
+    const param = params.get(paramNew);
+    console.log(param,params) ;
+    return param;
+  }
+  
+  const handleDynamicLink = (link:any):any => {
+    if (link && link.url) {
+    //  Alert.alert("foreground dynamic link",link.url);
+     const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
+     facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
+     console.log(facebookId,"..facebookId.");
+    }
+  };
   useEffect(() => {
 
 
@@ -211,6 +229,21 @@ export default ():any => {
     if (Platform.OS == "ios") {
       requestUserPermission();
     }
+
+    const unsubscribe = DynamicLinks().onLink(handleDynamicLink);
+    // When the component is unmounted, remove the listener
+    DynamicLinks()
+      .getInitialLink()
+      .then((link:any) => {
+        console.log(link,"..11link")
+        if (link && link.url) {
+        // Alert.alert("background dynamic link",link.url);
+         const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
+         facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
+         console.log(facebookId,"..facebookId11.")
+        }
+      });
+    return ():any => unsubscribe();
 
   }, []);
   const redirectLocation = (notification: any):any => {
