@@ -202,7 +202,7 @@ export default ():any => {
   
   const handleDynamicLink = (link:any):any => {
     if (link && link.url) {
-     Alert.alert("foreground dynamic link",link.url);
+    //  Alert.alert("foreground dynamic link",link.url);
      const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
      facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
      console.log(facebookId,"..facebookId.");
@@ -237,7 +237,7 @@ export default ():any => {
       .then((link:any) => {
         console.log(link,"..11link")
         if (link && link.url) {
-        Alert.alert("background dynamic link",link.url);
+        // Alert.alert("background dynamic link",link.url);
          const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
          facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
          console.log(facebookId,"..facebookId11.")
