@@ -48,7 +48,7 @@ import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import dynamicLinks from '@react-native-firebase/dynamic-links';
+import DynamicLinks from '@react-native-firebase/dynamic-links';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default ():any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -202,7 +202,7 @@ export default ():any => {
   
   const handleDynamicLink = (link:any):any => {
     if (link && link.url) {
-    //  Alert.alert("foreground dynamic link",link.url);
+     Alert.alert("foreground dynamic link",link.url);
      const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
      facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
      console.log(facebookId,"..facebookId.");
@@ -230,14 +230,14 @@ export default ():any => {
       requestUserPermission();
     }
 
-    const unsubscribe = dynamicLinks().onLink(handleDynamicLink);
+    const unsubscribe = DynamicLinks().onLink(handleDynamicLink);
     // When the component is unmounted, remove the listener
-    dynamicLinks()
+    DynamicLinks()
       .getInitialLink()
       .then((link:any) => {
         console.log(link,"..11link")
         if (link && link.url) {
-        // Alert.alert("background dynamic link",link.url);
+        Alert.alert("background dynamic link",link.url);
          const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
          facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
          console.log(facebookId,"..facebookId11.")
