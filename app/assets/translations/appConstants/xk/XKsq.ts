@@ -29,10 +29,10 @@ const XKsq = {
                 tNcacceptbtn: "Unë i pranoj Termat dhe Kushtet",
                 loadingText: "Të dhënat po ngarkohen...",
                 childSetupheader: "Ju lutemi, ndani pak kohë për ta personalizuar aplikacionin tuaj",
-                childSetupdobLabel: "Data e lindjes së fëmijës/data e parashikuar e lindjes",
-                childSetupdobSelector: "Vendoseni datën e lindjes/datën e parashikuar të lindjes",
+                childSetupdobLabel: "Shkruaj datën e lindjes",
+                childSetupdobSelector: "Vendoseni datën e lindjes së fëmijës",
                 childSetupdueLabel: "Data e planifikuar e lindjes",
-                childSetupdueSelector: "Vendoseni datën e saktë të lindjes",
+                childSetupdueSelector: "Vendoseni datën e planifikuar të lindjes",
                 childSetupprematureLabel: "Foshnjë e lindur para kohe",
                 childSetupprematureMessage: "Një foshnjë e lindur para 37 javëve të shtatzënisë konsiderohet si lindje e parakohshme ose lindje e hershme",
                 childSetuprelationSelectTitle: "Marrëdhënia me fëmijën",
@@ -440,13 +440,11 @@ const XKsq = {
                 vcrNoti2: "Vaksinimi është planifikuar më {{reminderDateTime}}",
                 hcrNoti2: "Kontrolli shëndetësor është planifikuar më {{reminderDateTime}}",
                 vcrNoti3: "Vaksinimi është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet e vaksinimit",
-                hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
+                hcrNoti3: "Kontrolli shëndetësor është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet e kontrollit shëndetësor",
                 hcHasScheduled: "Kontrolla shëndetësore është caktuar",
                 vcHasScheduled: "Vaksinimi është caktuar",
-
-                //24 May
                 relatedVideoArticle: "Video të ngjashme",
-                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
+                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç"
         }
 }
 export default XKsq;
