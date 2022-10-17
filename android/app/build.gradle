@@ -191,8 +191,8 @@ android {
             applicationId 'org.unicef.ecar.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 13
-            versionName "1.1.7"
+            versionCode 15
+            versionName "1.1.9"
             signingConfig signingConfigs.release
         }
         prodstaging {
