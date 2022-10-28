@@ -552,7 +552,49 @@ export const calc = async (value: any, childAge: any): Promise<any> => {
   return value;
 };
 
+export const getAllChildrenDetails = async (dispatch: any, childAge: any, param: any): Promise<any> => {
+  const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+  allJsonDatanew.removeAllListeners();
+  let childAllData: any = [];
+  if (allJsonDatanew?.length > 0) {
+    childAllData = [];
+    const p = allJsonDatanew.map(async (n: any) => {
+      const value = await calc(n, childAge);
+      const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
+      if (childId?.length > 0) {
+        childId = childId[0].value;
+        if (childId === n.uuid) {
+          const activeChild: any = value;
+           if (userParentalRole?.length > 0) {
+            activeChild.parent_gender = userParentalRole[0].value
+          }
 
+          // const storedata = store.getState();
+          // const allDatatoStore = await getAllDataToStore(storedata.selectedCountry.languageCode, dispatch, "AddEditChild", activeChild);
+          // console.log("allDatatoStore AddEditChild4--",allDatatoStore);
+          // dispatch(setActiveChildData(activeChild));
+        }
+      }
+      childAllData.push(value);
+      return value;
+    });
+    await Promise.all(p);
+    childAllData = childAllData.sort((a: any, b: any) => {
+      DateTime.fromISO(a.createdAt).diff(DateTime.fromISO(b.createdAt));
+      const keyA = new Date(a.createdAt),
+        keyB = new Date(b.createdAt);
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return 0;
+    });
+    //dispatch(setAllChildData(childAllData));
+    if (param == 1) {
+      return childAllData;
+    }
+  }
+
+}
 export const getAllChildren = async (dispatch: any, childAge: any, param: any): Promise<any> => {
   const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
