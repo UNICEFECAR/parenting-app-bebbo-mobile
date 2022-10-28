@@ -211,7 +211,7 @@ const HeaderNotiIcon = (props: any):any => {
     }, [activeChild.uuid, allnotis]),
   );
   useEffect(() => {	
-    console.log("olduseeffect")
+    console.log("olduseeffect2",localNotificationGenerateType);
     const fetchData = async ():Promise<any> => {
       const currscheduledlocalNotifications = [...scheduledlocalNotifications];
       if(localNotificationGenerateType.generateFlag == true) {
@@ -277,7 +277,7 @@ const HeaderNotiIcon = (props: any):any => {
   useEffect(() => {
     console.log("flaguseeffect")
   if(flagValue==true){
-    //Alert.alert(String(flagValue),String(newAllChildNotis));
+    Alert.alert(String(flagValue),String(newAllChildNotis));
     dispatch(setAllScheduledLocalNotificationData([]));
     dispatch(setAllLocalNotificationData(newAllChildNotis));
     const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
