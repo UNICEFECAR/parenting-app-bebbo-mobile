@@ -3,14 +3,14 @@ import { Heading6w } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet } from 'react-native';
+import { Alert, Pressable, StyleSheet } from 'react-native';
 import {  useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { setFavouriteAdvices, setFavouriteGames } from '../redux/reducers/childSlice';
 import { setAllLocalNotificationData, setAllLocalNotificationGenerateType, setAllNotificationData, setAllScheduledLocalNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
-import { getAllChildren, isFutureDate, isFutureDateTime } from '../services/childCRUD';
+import { getAllChildrenDetails, isFutureDate, isFutureDateTime } from '../services/childCRUD';
 import LocalNotifications from '../services/LocalNotifications';
 import { createAllLocalNotificatoins, getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
 import Icon from './shared/Icon';
@@ -69,10 +69,12 @@ const HeaderNotiIcon = (props: any):any => {
   );
   const { t } = useTranslation();
   const [notifications, setNotifications] = useState<any[]>([]);
+  const [flagValue, setFlagValue] = useState<boolean>(false);
+  const [newAllChildNotis, setAllChildNotis] = useState<any>([]);
   useEffect(() => {
       if (generateNotificationsFlag == true) {
       const fetchData = async ():Promise<any> => {
-        const childList = await getAllChildren(dispatch, childAge, 1);
+        const childList = await getAllChildrenDetails(dispatch, childAge, 1);
         const allchildNotis: any[] = [];
          childList?.map((child: any) => {
           const notiExist = allnotis.find((item:any) => String(item.childuuid) == String(child.uuid))
@@ -209,16 +211,17 @@ const HeaderNotiIcon = (props: any):any => {
     }, [activeChild.uuid, allnotis]),
   );
   useEffect(() => {	
+    console.log("olduseeffect")
     const fetchData = async ():Promise<any> => {
-      let currscheduledlocalNotifications = [...scheduledlocalNotifications];
+      const currscheduledlocalNotifications = [...scheduledlocalNotifications];
       if(localNotificationGenerateType.generateFlag == true) {
         if(localNotificationGenerateType.generateType == 'onAppStart') {
            dispatch(setAllLocalNotificationData(localNotifications));
               const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
               dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }else {
-          const childList = await getAllChildren(dispatch, childAge, 1);
-          if(childList && childList.length > 0) {
+          const childList = await getAllChildrenDetails(dispatch, childAge, 1);
+           if(childList && childList.length > 0) {
             if(localNotificationGenerateType.childuuid == 'all') {
               const allChildNotis: any[] = [];
               const resolvedPromises = childList.map(async (child:any)=> {
@@ -234,25 +237,13 @@ const HeaderNotiIcon = (props: any):any => {
               dispatch(setAllLocalNotificationData(allChildNotis));
               const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
               dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-            }else {
-              const allChildNotis: any[] = [];
-              const currchildnoti = localNotifications.find((x:any) => x.key == localNotificationGenerateType.childuuid);
-               if(currchildnoti && currchildnoti != null && currchildnoti != undefined) {
-                //delete existing notifications
-                // create new ones and add in existing array
-                currchildnoti.data.map((n:any)=>{
-                   if((currscheduledlocalNotifications.findIndex((m:any)=> m.notiid == n.notiid)) > -1)
-                  {
-                    LocalNotifications.cancelReminderLocalNotification(n.notiid);
-                    currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m:any)=> m.notiid != n.notiid);
-                  }
-                })
-              }
-              // else {
-                // create new one and add in existing array
+            }
+          else {
+               const allChildNotis: any[] = [];
+                //create new one and add in existing array
                 const newchild = childList.find((z:any)=>z.uuid == localNotificationGenerateType.childuuid);
                 if(newchild && newchild != {}) {
-                  const newchildnoti = await createAllLocalNotificatoins(newchild, childAge, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, t, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData, allVaccineData,localNotifications);
+                 const newchildnoti = await createAllLocalNotificatoins(newchild, childAge, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag, t, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData, allVaccineData,localNotifications);
                   localNotifications.map((y:any)=>{
                     if(y.key != localNotificationGenerateType.childuuid) {
                       allChildNotis.push(y);
@@ -266,24 +257,36 @@ const HeaderNotiIcon = (props: any):any => {
                     }
                   });
                 }
-                //cancelled all scheduled notifications as when new child added or edited the noti should come for all child.
+                // //cancelled all scheduled notifications as when new child added or edited the noti should come for all child.
                 currscheduledlocalNotifications.map((m:any)=>{
                   LocalNotifications.cancelReminderLocalNotification(m.notiid);
                 })
-                dispatch(setAllScheduledLocalNotificationData([]));
-                dispatch(setAllLocalNotificationData(allChildNotis));
-                const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
-                dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+                console.log("1122")
+                setAllChildNotis(allChildNotis)
+                setFlagValue(true);
+               
+                
             }
-          }
+           }
           //make flag false at the end
         }
       }     
     }	
     fetchData()	
   }, [localNotificationGenerateType]);
-
-  
+  useEffect(() => {
+    console.log("flaguseeffect")
+  if(flagValue==true){
+    //Alert.alert(String(flagValue),String(newAllChildNotis));
+    dispatch(setAllScheduledLocalNotificationData([]));
+    dispatch(setAllLocalNotificationData(newAllChildNotis));
+    const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
+    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+  }
+  return (): any=>{
+    setFlagValue(false);
+  }
+  },[flagValue]);
   useEffect(() => {
     const fetchData2 = async ():Promise<any> => {
       const allnotiobj: any[]=[];
