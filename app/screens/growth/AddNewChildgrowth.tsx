@@ -279,12 +279,13 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
       : measureDate.toFormat('MM');
     if (editMeasurementDate) {
       //
+      // console.log("in delete main if");
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
 
       if (isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)) {
         //  update measure where only vacccines were added.
         // allow adding growth values for that vaccine measure
-
+        // console.log("in delete if if");
         const growthValues = {
           uuid: existingMeasure.uuid,
           isChildMeasured: false,
@@ -314,6 +315,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
       } else {
         // delete measure
         //delete measure obj
+        // console.log("in delete if else");
         const deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
           ChildEntitySchema,
           existingMeasure,
@@ -327,12 +329,13 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         navigation.goBack();
       }
     } else {
+      // console.log("in delete main else");
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)
 
       if (isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
         //  update measure where only vacccines were added.
         // allow adding growth values for that vaccine measure
-
+        // console.log("in delete else if");
         const growthValues = {
           uuid: existingMeasure.uuid,
           isChildMeasured: false,
@@ -362,6 +365,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
       } else {
         // delete measure
         //delete measure obj
+        // console.log("in delete else else");
         const deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
           ChildEntitySchema,
           existingMeasure,
@@ -413,8 +417,8 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
-          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+          // const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          // dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
         const growthValuesForVaccineMeasured = {
@@ -437,9 +441,12 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
-          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+          // const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          // dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
+        // console.log("in main if if");
+        const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+        dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         navigation.goBack();
       } else {
         const growthValues = {
@@ -462,6 +469,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
+          // console.log("in main if else");
           const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
@@ -493,6 +501,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
+          // console.log("in main else if");
           const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
@@ -521,6 +530,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
+          // console.log("in main else else");
           const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? 'doctor' : 'home' })
