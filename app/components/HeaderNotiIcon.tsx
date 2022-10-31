@@ -263,7 +263,7 @@ const HeaderNotiIcon = (props: any):any => {
                 currscheduledlocalNotifications.map((m:any)=>{
                   LocalNotifications.cancelReminderLocalNotification(m.notiid);
                 })
-                console.log("1122",allChildNotis)
+                console.log("1122")
                 setAllChildNotis(allChildNotis);
                 setFlagValue(true);
             }
@@ -276,9 +276,9 @@ const HeaderNotiIcon = (props: any):any => {
   }, [localNotificationGenerateType]),
   );
   useEffect(() => {
-  console.log(newAllChildNotis,"flaguseeffect",flagValue)
+  console.log("flaguseeffect",flagValue)
   if(flagValue==true){
-    Alert.alert(String(flagValue),String(newAllChildNotis));
+    // Alert.alert(String(flagValue),String(newAllChildNotis));
     dispatch(setAllScheduledLocalNotificationData([]));
     dispatch(setAllLocalNotificationData(newAllChildNotis));
     const localnotiFlagObj = { generateFlag: false,generateType: 'add',childuuid: 'all'};
