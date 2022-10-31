@@ -43,14 +43,14 @@ export const notificationSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ):any => {
-      console.log(JSON.stringify(action.payload),"action.payload localNotifications---");
+      // console.log(JSON.stringify(action.payload),"action.payload localNotifications---");
       state.localNotifications = (action.payload);
     },
     setAllScheduledLocalNotificationData: (
       state,
       action: PayloadAction<any>,
     ):any => {
-      console.log(JSON.stringify(action.payload),"action.payload scheduledlocalNotifications---");
+      // console.log(JSON.stringify(action.payload),"action.payload scheduledlocalNotifications---");
       state.scheduledlocalNotifications = (action.payload);
     },
     setAllLocalNotificationGenerateType:( state:any,
