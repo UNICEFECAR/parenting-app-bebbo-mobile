@@ -24,6 +24,7 @@ import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Text } from 'react-native-svg';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { getCurrentChildAgeInYears } from '../../services/childCRUD';
@@ -83,10 +84,15 @@ const LastChildMeasure = ():any => {
    const lastmeasurementDate =  DateTime.fromMillis(childmeasures[
     childmeasures.length - 1
   ]?.dateToMilis)
+  console.log(lastmeasurementDate,"..lastmeasurementDate..")
   const date = DateTime.fromISO(activeChild.birthDate);
   const convertInDays = lastmeasurementDate.diff(date, "days").days;
+  console.log(convertInDays,"..convertInDays..")
   let days = 0;
-  if (convertInDays !== undefined) {days = Math.round(convertInDays)}
+  if (convertInDays !== undefined) {
+    days = Math.round(convertInDays)
+  }
+  console.log(days,"....",activeChild.taxonomyData.days_from,activeChild.taxonomyData.days_to);
   return (
     <>
       <BannerContainer1>
@@ -176,6 +182,8 @@ const LastChildMeasure = ():any => {
               </FlexDirRowEnd>
             </Flex1>
           </FlexDirRowSpace>
+          {/* <Text>{days+"hi"}</Text>
+          <Text>{activeChild.taxonomyData.days_from+"hi"}</Text> */}
          {(days< activeChild.taxonomyData.days_from) ? <ShiftFromTop20>
           <FDirRowStart>
           <OuterIconRow>
