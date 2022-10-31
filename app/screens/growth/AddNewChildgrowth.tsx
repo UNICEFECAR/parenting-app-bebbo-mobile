@@ -382,7 +382,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
 
   }
   const saveChildMeasures = async ():Promise<any> => {
-
+  console.log(measureDate)
     const measurementDateParam = editMeasurementDate
       ? dateTouched
         ? measureDate?.toMillis()
