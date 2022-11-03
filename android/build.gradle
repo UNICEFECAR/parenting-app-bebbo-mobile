@@ -9,6 +9,7 @@ buildscript {
     }
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
     dependencies {
@@ -33,6 +34,16 @@ allprojects {
         }
 
         google()
+        mavenCentral()
+        configurations.all {
+            resolutionStrategy {
+
+                // versions used by 0.67
+                force 'com.facebook.react:react-native:0.64.1'
+                force 'com.facebook.android:facebook-android-sdk:12.3.0'
+            }
+        }
+
         jcenter()
         maven { url 'https://www.jitpack.io' }
     }
