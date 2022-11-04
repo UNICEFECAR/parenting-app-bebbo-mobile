@@ -569,11 +569,6 @@ export const getAllChildrenDetails = async (dispatch: any, childAge: any, param:
            if (userParentalRole?.length > 0) {
             activeChild.parent_gender = userParentalRole[0].value
           }
-
-          // const storedata = store.getState();
-          // const allDatatoStore = await getAllDataToStore(storedata.selectedCountry.languageCode, dispatch, "AddEditChild", activeChild);
-          // console.log("allDatatoStore AddEditChild4--",allDatatoStore);
-          // dispatch(setActiveChildData(activeChild));
         }
       }
       childAllData.push(value);
@@ -588,7 +583,6 @@ export const getAllChildrenDetails = async (dispatch: any, childAge: any, param:
       if (keyA > keyB) return 1;
       return 0;
     });
-    //dispatch(setAllChildData(childAllData));
     if (param == 1) {
       return childAllData;
     }
