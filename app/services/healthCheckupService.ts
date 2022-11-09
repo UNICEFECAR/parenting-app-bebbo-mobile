@@ -93,7 +93,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any):any=>{
   );
   const additionalMeasures: any[] = [];
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number):any => {
-    console.log("currentIndex--",currentIndex)
+    // console.log("currentIndex--",currentIndex)
     const { t } = useTranslation();
     if (hcItem) {
       const measure = allMeasurements.filter((measure:any) => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))
