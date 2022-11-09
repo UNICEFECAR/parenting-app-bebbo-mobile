@@ -217,6 +217,7 @@ const HeaderNotiIcon = (props: any): any => {
         const currscheduledlocalNotifications = [...scheduledlocalNotifications];
         if (localNotificationGenerateType.generateFlag == true) {
           if (localNotificationGenerateType.generateType == 'onAppStart') {
+            LocalNotifications.removeReminderLocalNotification();
             dispatch(setAllLocalNotificationData(localNotifications));
             const localnotiFlagObj = { generateFlag: false, generateType: 'add', childuuid: 'all' };
             dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
