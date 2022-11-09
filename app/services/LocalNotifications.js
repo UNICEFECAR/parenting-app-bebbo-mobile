@@ -43,7 +43,7 @@ class LocalNotifications {
     const notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
     PushNotification.cancelLocalNotification(notificationid);
   }
-  removeReminderLocalNotification() {
+  removeAllDeliveredLocalNotifications() {
    // Alert.alert("removed","removed")
     PushNotification.removeAllDeliveredNotifications();
    // Alert.alert("11removed","11removed")
