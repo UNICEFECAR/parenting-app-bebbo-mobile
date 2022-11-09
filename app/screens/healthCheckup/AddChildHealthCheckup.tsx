@@ -120,6 +120,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any):any => {
   const [remarkTxt, handleDoctorRemark] = useState<string>('');
   const [dateTouched, setDateTouched] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const [clicked, setClicked] = useState(false);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -388,6 +389,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any):any => {
         {
           cancelable: false,
         })
+        setClicked(false);
     } else {
       if (editHCDate) {
         const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editHCDate)), activeChild)
@@ -415,6 +417,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any):any => {
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
+        setClicked(false);
         navigation.goBack();
       } else {
         if (isGrowthMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
@@ -442,6 +445,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any):any => {
             const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
             dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           }
+          setClicked(false);
           navigation.goBack();
 
         } else {
@@ -477,11 +481,30 @@ const AddChildHealthCheckup = ({ route, navigation }: any):any => {
             }
             analytics().logEvent(HEALTH_CHECKUP_ENTERED, { age_id: activeChild?.taxonomyData?.id })
           }
+          setClicked(false);
           navigation.goBack();
         }
       }
     }
+    
   };
+  const disableSave=():any=>{
+    if(clicked==true && isFormDisabled()==true){
+      return true;
+    }
+    else if(isFormDisabled()==true && clicked==false){
+      return true;
+    }
+    else if(isFormDisabled()==false && clicked==true){
+      return true;
+    }
+    else if(isFormDisabled()==false && clicked==false){
+      return false;
+    }
+    else{
+      return false;
+    }
+  }
   const { previousPeriods } = getAllHealthCheckupPeriods();	
   const isAllVaccinesMeasured = ():any => {	
     // previousPeriods.shift();	
@@ -769,10 +792,13 @@ const AddChildHealthCheckup = ({ route, navigation }: any):any => {
               </MainContainer>
               <ButtonContainer>
                 <ButtonTertiary
-                  disabled={isFormDisabled()}
+                  disabled={disableSave()}
                   onPress={(e):any => {
                     e.stopPropagation();
+                    setClicked(true);
+                    setTimeout(()=>{
                     saveChildMeasures();
+                    },0);
                   }}>
                   <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
                 </ButtonTertiary>

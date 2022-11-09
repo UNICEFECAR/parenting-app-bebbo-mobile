@@ -115,6 +115,7 @@ const AddChildVaccination = ({ route, navigation }: any):any => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editVaccineDate ? editVaccineDate : null,
   );
+  const [clicked, setClicked] = useState(false);
   const [editVCDate, seteditVCDate] = useState<DateTime>( editVaccineDate ? editVaccineDate : null);
   const [showmeasureDate, setmeasureDateShow] = useState<boolean>(false);
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -360,6 +361,7 @@ const AddChildVaccination = ({ route, navigation }: any):any => {
         {
           cancelable: false,
         })
+        setClicked(false);
     } else {
       if (editVCDate) {
         const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVCDate)), activeChild)
@@ -387,6 +389,7 @@ const AddChildVaccination = ({ route, navigation }: any):any => {
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
+        setClicked(false);
         navigation.goBack();
       } else {
         if (isAnyMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
@@ -415,6 +418,7 @@ const AddChildVaccination = ({ route, navigation }: any):any => {
             const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
             dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           }
+          setClicked(false);
           navigation.goBack();
 
         } else {
@@ -443,6 +447,7 @@ const AddChildVaccination = ({ route, navigation }: any):any => {
             dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
             analytics().logEvent(VACCINE_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' })
           }
+          setClicked(false);
           navigation.goBack();
         }
       }
@@ -451,6 +456,23 @@ const AddChildVaccination = ({ route, navigation }: any):any => {
   const onBackPress = ():any => {
     navigation.goBack();  
     return true;
+}
+const disableSave=():any=>{
+  if(clicked==true && isFormDisabled()==true){
+    return true;
+  }
+  else if(isFormDisabled()==true && clicked==false){
+    return true;
+  }
+  else if(isFormDisabled()==false && clicked==true){
+    return true;
+  }
+  else if(isFormDisabled()==false && clicked==false){
+    return false;
+  }
+  else{
+    return false;
+  }
 }
 useEffect(() => {
   const backHandler = BackHandler.addEventListener(
@@ -692,10 +714,13 @@ useEffect(() => {
           </MainContainer>
           <ButtonContainer>
           <ButtonTertiary
-            disabled={isFormDisabled()}
+            disabled={disableSave()}
             onPress={(e):any => {
               e.stopPropagation();
+              setClicked(true);
+              setTimeout(()=>{
               saveChildMeasures().then(() => {console.log("in then") });
+              },0);
             }}>
             <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
           </ButtonTertiary>

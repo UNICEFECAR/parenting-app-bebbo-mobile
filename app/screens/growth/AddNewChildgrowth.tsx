@@ -118,7 +118,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editMeasurementDate ? editMeasurementDate : null,
   );
-  
+  const [clicked, setClicked] = useState(false);
   const measurePlaces = measurementPlaces([
     t('growthScreendoctorMeasurePlace'),
     t('growthScreenhomeMeasurePlace'),
@@ -279,12 +279,13 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
       : measureDate.toFormat('MM');
     if (editMeasurementDate) {
       //
+      // console.log("in delete main if");
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
 
       if (isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)) {
         //  update measure where only vacccines were added.
         // allow adding growth values for that vaccine measure
-
+        // console.log("in delete if if");
         const growthValues = {
           uuid: existingMeasure.uuid,
           isChildMeasured: false,
@@ -314,6 +315,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
       } else {
         // delete measure
         //delete measure obj
+        // console.log("in delete if else");
         const deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
           ChildEntitySchema,
           existingMeasure,
@@ -327,12 +329,13 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         navigation.goBack();
       }
     } else {
+      // console.log("in delete main else");
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)
 
       if (isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
         //  update measure where only vacccines were added.
         // allow adding growth values for that vaccine measure
-
+        // console.log("in delete else if");
         const growthValues = {
           uuid: existingMeasure.uuid,
           isChildMeasured: false,
@@ -362,6 +365,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
       } else {
         // delete measure
         //delete measure obj
+        // console.log("in delete else else");
         const deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
           ChildEntitySchema,
           existingMeasure,
@@ -377,8 +381,25 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
     }
 
   }
+  const disableSave=():any=>{
+    if(clicked==true && isFormFilled()==true){
+      return true;
+    }
+    else if(isFormFilled()==true && clicked==false){
+      return true;
+    }
+    else if(isFormFilled()==false && clicked==true){
+      return true;
+    }
+    else if(isFormFilled()==false && clicked==false){
+      return false;
+    }
+    else{
+      return false;
+    }
+  }
   const saveChildMeasures = async ():Promise<any> => {
-
+  console.log(measureDate)
     const measurementDateParam = editMeasurementDate
       ? dateTouched
         ? measureDate?.toMillis()
@@ -413,8 +434,6 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
-          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
         const growthValuesForVaccineMeasured = {
@@ -437,9 +456,10 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
-          dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
+        const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+        dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+        setClicked(false);
         navigation.goBack();
       } else {
         const growthValues = {
@@ -465,6 +485,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
           const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
+        setClicked(false);
         navigation.goBack();
       }
 
@@ -496,6 +517,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
           const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
+        setClicked(false);
         navigation.goBack();
 
       } else {
@@ -525,6 +547,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? 'doctor' : 'home' })
         }
+        setClicked(false);
         navigation.goBack();
       }
     }
@@ -740,12 +763,15 @@ useEffect(() => {
             </MainContainer>
             <ButtonContainer>
             <ButtonTertiary
-              disabled={isFormFilled()}
+              disabled={disableSave()}
               onPress={(e):any => {
                 e.stopPropagation();
+                setClicked(true);
+                setTimeout(()=>{
                 saveChildMeasures().then(() => { 
                   console.log("saveChildMeasures")
                 });
+              },0);
               }}>
               <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonTertiary>
