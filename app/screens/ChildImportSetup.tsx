@@ -96,9 +96,10 @@ const ChildImportSetup = (props: any): any => {
   relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != bothParentGender;
   });
+  
   const relationshipToParent = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationshipToParent,
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
   useEffect(() => {
     const backAction = (): any => {
