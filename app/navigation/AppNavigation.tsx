@@ -409,21 +409,96 @@ export default ():any => {
     createLocalNotificationListeners();
     }
   }, [userIsOnboarded]);
-  useEffect(() => {
+  const redirectPayload=(remoteMessage:any):any=>{
+   
+    //console.log(remoteMessage,userIsOnboarded,navigationRef,"..redirectPayload")
+    if (remoteMessage && remoteMessage.data && remoteMessage.data.type && remoteMessage.data.type=="article" && remoteMessage.data.id) {
+     // console.log("..11redirectPayload")
+      if (userIsOnboarded == true) {
+        //console.log(userIsOnboarded,"..22redirectPayload")
+        if (navigationRef) {
+          //console.log(navigationRef,"..33redirectPayload")
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "HomeArt",
+              headerColor: '',
+              backgroundColor: '',
+              detailData: Number(remoteMessage.data.id),
+              listCategoryArray: []
+            });
 
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-      if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
-        Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
-          { text: t('forceUpdateOkBtn') }
-        ]);
+        }
       }
+
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && remoteMessage.data.type=="activity" && remoteMessage.data.id) {
+      if (userIsOnboarded == true) {
+      if (navigationRef) {
+        navigationRef.current?.navigate('DetailsScreen',
+          {
+            fromScreen: "HomeAct",
+            headerColor: headerColor,
+            backgroundColor: backgroundColor,
+            detailData:  Number(remoteMessage.data.id),
+            listCategoryArray: []
+          });
+      }
+    }
+    }
+    else{
+      if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
+      Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
+        { text: t('forceUpdateOkBtn') }
+      ]);
+     }
+    }
+  }
+  useEffect(() => {
+    console.log('useEffectonMessage');
+    
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      // ios background click noti
+      if(remoteMessage){
+       // Alert.alert("123","567");
+        if(userIsOnboarded==true){
+          redirectPayload(remoteMessage);
+          }
+      }
+      
     });
+
+    // Check whether an initial notification is available
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+         
+        if (remoteMessage) {
+         // Alert.alert("124","568");
+          if(userIsOnboarded==true){
+          redirectPayload(remoteMessage);
+          }
+        }   
+      });
+     messaging().setBackgroundMessageHandler(async remoteMessage => {
+        try {
+       // Alert.alert('Remote notification', JSON.stringify(remoteMessage))
+        } catch (err) { console.log(err) }
+     });
     setTimeout(() => {
       SplashScreen.hide();
     }, 2000);
-    
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      //console.log('11onMessage');
+      // Alert.alert('Message handled in the background!', JSON.stringify(remoteMessage));
+      //type article/activities
+      if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
+        // Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
+        //   { text: t('forceUpdateOkBtn') }
+        // ]);
+      }
+    });
     return unsubscribe;
-  }, []);
+  }, [userIsOnboarded]);
 
   useMemo(() => {
     async function fetchNetInfo():Promise<any> {
