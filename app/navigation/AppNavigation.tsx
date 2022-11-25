@@ -462,7 +462,7 @@ export default ():any => {
        // Alert.alert("123","567");
         if(userIsOnboarded==true){
           redirectPayload(remoteMessage);
-          }
+        }
       }
       
     });
@@ -492,9 +492,9 @@ export default ():any => {
       // Alert.alert('Message handled in the background!', JSON.stringify(remoteMessage));
       //type article/activities
       if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
-        // Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
-        //   { text: t('forceUpdateOkBtn') }
-        // ]);
+        Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
+          { text: t('forceUpdateOkBtn') }
+        ]);
       }
     });
     return unsubscribe;
