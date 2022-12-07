@@ -282,6 +282,9 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
         }
     }
 }
+export const trimwhiteSpacePayload = (str:any):any => {
+    return str.length ? str.trim(): str
+  }
 export const randomArrayShuffle = (array: any): any => {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
