@@ -49,7 +49,7 @@ import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificat
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import DynamicLinks from '@react-native-firebase/dynamic-links';
-import { trimwhiteSpacePayload } from '../services/Utils';
+import { trimWhiteSpacePayload } from '../services/Utils';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -416,20 +416,17 @@ export default (): any => {
   }, [userIsOnboarded]);
   const redirectPayload = (remoteMessage: any): any => {
 
-    console.log(remoteMessage, userIsOnboarded, navigationRef, "..redirectPayload")
-    if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimwhiteSpacePayload(remoteMessage.data.type) === "articles") {
-      // console.log("..11redirectPayload")
+    //console.log(remoteMessage, userIsOnboarded, navigationRef, "..redirectPayload")
+    if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
       if (userIsOnboarded == true) {
-        //console.log(userIsOnboarded,"..22redirectPayload")
         if (navigationRef) {
-          //console.log(navigationRef,"..33redirectPayload")
-          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimwhiteSpacePayload(remoteMessage.data.id))){
+          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))){
             navigationRef.current?.navigate('DetailsScreen',
             {
               fromScreen: "ArticlesFirebase",
               headerColor: '',
               backgroundColor: '',
-              detailData: Number(trimwhiteSpacePayload(remoteMessage.data.id)),
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
               listCategoryArray: []
             });
           }
@@ -454,17 +451,17 @@ export default (): any => {
       }
 
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimwhiteSpacePayload(remoteMessage.data.type) === "activities") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "activities") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimwhiteSpacePayload(remoteMessage.data.id))){
+          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))){
             console.log( Number(remoteMessage.data.id),"Number(remoteMessage.data.id)");
             navigationRef.current?.navigate('DetailsScreen',
             {
               fromScreen: "ActivitiesFirebase",
               headerColor: headerColor,
               backgroundColor: backgroundColor,
-              detailData: Number(trimwhiteSpacePayload(remoteMessage.data.id)),
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
               listCategoryArray: []
             });
           }
@@ -489,16 +486,16 @@ export default (): any => {
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimwhiteSpacePayload(remoteMessage.data.type) === "vaccination") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "vaccination") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimwhiteSpacePayload(remoteMessage.data.id))){
+          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))){
             navigationRef.current?.navigate('DetailsScreen',
             {
               fromScreen: "VaccinationTabFirebase",
               headerColor: headerColor,
               backgroundColor: backgroundColor,
-              detailData: Number(trimwhiteSpacePayload(remoteMessage.data.id)),
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
               listCategoryArray: []
             });
           }
@@ -534,16 +531,16 @@ export default (): any => {
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimwhiteSpacePayload(remoteMessage.data.type) === "checkup") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "checkup") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimwhiteSpacePayload(remoteMessage.data.id))){
+          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))){
             navigationRef.current?.navigate('DetailsScreen',
             {
               fromScreen: "HealthCheckupsTabFirebase",
               headerColor: headerColor,
               backgroundColor: backgroundColor,
-              detailData: Number(trimwhiteSpacePayload(remoteMessage.data.id)),
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
               listCategoryArray: []
             });
           }
@@ -576,7 +573,7 @@ export default (): any => {
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimwhiteSpacePayload(remoteMessage.data.type) === "growth") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "growth") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
           const screenName = navigationRef.current.getCurrentRoute().name;
@@ -602,27 +599,11 @@ export default (): any => {
               },
             })
           }
-          // if (screenName == "NotificationsScreen") {
-          //   navigationRef.current?.navigate('AddNewChildgrowth', {
-          //     headerTitle: t('growthScreenaddNewBtntxt'),
-          //     fromNotificationScreen: true,
-          //   })
-          // }
-          // else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-          //   navigationRef.current?.navigate('AddNewChildgrowth', {
-          //     headerTitle: t('growthScreenaddNewBtntxt'),
-          //   });
-          // }
-          // else {
-          //   navigationRef.current?.navigate('AddNewChildgrowth', {
-          //     headerTitle: t('growthScreenaddNewBtntxt'),
-          //   });
-          // }
          
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimwhiteSpacePayload(remoteMessage.data.type) === "development") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "development") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
           const screenName = navigationRef.current.getCurrentRoute().name;
@@ -642,28 +623,27 @@ export default (): any => {
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimwhiteSpacePayload(remoteMessage.data.type) === "notifications") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "notifications") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
           navigationRef.current?.navigate('NotificationsScreen')
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimwhiteSpacePayload(remoteMessage.data.type) === "chat") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "chat") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
           navigationRef.current?.navigate('SupportChat')
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimwhiteSpacePayload(remoteMessage.data.type) === "user_survey") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "user_survey") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.URL && trimwhiteSpacePayload(remoteMessage.data.URL)!=""  && trimwhiteSpacePayload(remoteMessage.data.URL)!=null  && trimwhiteSpacePayload(remoteMessage.data.URL)!=undefined){
+          if(remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL)!=""  && trimWhiteSpacePayload(remoteMessage.data.URL)!=null  && trimWhiteSpacePayload(remoteMessage.data.URL)!=undefined){
           Linking.openURL(remoteMessage.data.URL);
         }
         else{
-          //Alert.alert(JSON.stringify(surveyData),"..surveyData..");
           if(Platform.OS=="ios"){
             setTimeout(()=>{
               const surveyItem = surveyData.find((item:any) => item.type == "survey");
@@ -684,10 +664,10 @@ export default (): any => {
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimwhiteSpacePayload(remoteMessage.data.type)  === "hyperlink") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type)  === "hyperlink") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.URL && trimwhiteSpacePayload(remoteMessage.data.URL)!=""  && trimwhiteSpacePayload(remoteMessage.data.URL)!=null  && trimwhiteSpacePayload(remoteMessage.data.URL)!=undefined){
+          if(remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL)!=""  && trimWhiteSpacePayload(remoteMessage.data.URL)!=null  && trimWhiteSpacePayload(remoteMessage.data.URL)!=undefined){
             Linking.openURL(remoteMessage.data.URL);
           }
         }
@@ -702,7 +682,7 @@ export default (): any => {
     }
   }
   useEffect(() => {
-    console.log('useEffectonMessage');
+   // console.log('useEffectonMessage');
 
     messaging().onNotificationOpenedApp(remoteMessage => {
       // ios background click noti
