@@ -94,9 +94,9 @@ export default (): any => {
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
   const surveyData = useAppSelector((state: any) =>
-  state.utilsData.surveryData != ''
-    ? JSON.parse(state.utilsData.surveryData)
-    : state.utilsData.surveryData,
+    state.utilsData.surveryData != ''
+      ? JSON.parse(state.utilsData.surveryData)
+      : state.utilsData.surveryData,
   );
   const callUrl = (url: any): any => {
     if (url) {
@@ -417,24 +417,24 @@ export default (): any => {
   const redirectPayload = (remoteMessage: any): any => {
 
     //console.log(remoteMessage, userIsOnboarded, navigationRef, "..redirectPayload")
-    if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
+    if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))){
+          if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
             navigationRef.current?.navigate('DetailsScreen',
-            {
-              fromScreen: "ArticlesFirebase",
-              headerColor: '',
-              backgroundColor: '',
-              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-              listCategoryArray: []
-            });
+              {
+                fromScreen: "ArticlesFirebase",
+                headerColor: '',
+                backgroundColor: '',
+                detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+                listCategoryArray: []
+              });
           }
-          else{
+          else {
             const screenName = navigationRef.current.getCurrentRoute().name;
             if (screenName == "NotificationsScreen") {
               navigationRef.current?.navigate('Home', {
-                screen: 'Articles', 
+                screen: 'Articles',
                 params: {
                   fromNotificationScreen: true,
                 }
@@ -451,25 +451,25 @@ export default (): any => {
       }
 
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "activities") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "activities") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))){
-            console.log( Number(remoteMessage.data.id),"Number(remoteMessage.data.id)");
+          if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+            console.log(Number(remoteMessage.data.id), "Number(remoteMessage.data.id)");
             navigationRef.current?.navigate('DetailsScreen',
-            {
-              fromScreen: "ActivitiesFirebase",
-              headerColor: headerColor,
-              backgroundColor: backgroundColor,
-              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-              listCategoryArray: []
-            });
+              {
+                fromScreen: "ActivitiesFirebase",
+                headerColor: headerColor,
+                backgroundColor: backgroundColor,
+                detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+                listCategoryArray: []
+              });
           }
-          else{
+          else {
             const screenName = navigationRef.current.getCurrentRoute().name;
             if (screenName == "NotificationsScreen") {
               navigationRef.current?.navigate('Home', {
-                screen: 'Activities', 
+                screen: 'Activities',
                 params: {
                   fromNotificationScreen: true,
                 }
@@ -482,24 +482,24 @@ export default (): any => {
               navigationRef.current?.navigate('Home', { screen: 'Activities' })
             }
           }
-         
+
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "vaccination") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "vaccination") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))){
+          if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
             navigationRef.current?.navigate('DetailsScreen',
-            {
-              fromScreen: "VaccinationTabFirebase",
-              headerColor: headerColor,
-              backgroundColor: backgroundColor,
-              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-              listCategoryArray: []
-            });
+              {
+                fromScreen: "VaccinationTabFirebase",
+                headerColor: headerColor,
+                backgroundColor: backgroundColor,
+                detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+                listCategoryArray: []
+              });
           }
-          else{
+          else {
             const screenName = navigationRef.current.getCurrentRoute().name;
             if (screenName == "NotificationsScreen") {
               console.log("..NotificationsScreen..", screenName);
@@ -525,26 +525,26 @@ export default (): any => {
                 },
               });
             }
-    
+
           }
-         
+
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "checkup") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "checkup") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.id && remoteMessage.data.id!="" && remoteMessage.data.id!=null && remoteMessage.data.id!=undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))){
+          if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
             navigationRef.current?.navigate('DetailsScreen',
-            {
-              fromScreen: "HealthCheckupsTabFirebase",
-              headerColor: headerColor,
-              backgroundColor: backgroundColor,
-              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-              listCategoryArray: []
-            });
+              {
+                fromScreen: "HealthCheckupsTabFirebase",
+                headerColor: headerColor,
+                backgroundColor: backgroundColor,
+                detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+                listCategoryArray: []
+              });
           }
-          else{
+          else {
             const screenName = navigationRef.current.getCurrentRoute().name;
             if (screenName == "NotificationsScreen") {
               navigationRef.current?.navigate('Home', {
@@ -569,11 +569,11 @@ export default (): any => {
               });
             }
           }
-         
+
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type &&  trimWhiteSpacePayload(remoteMessage.data.type) === "growth") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "growth") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
           const screenName = navigationRef.current.getCurrentRoute().name;
@@ -582,14 +582,14 @@ export default (): any => {
               screen: 'Tools',
               params: {
                 screen: 'ChildgrowthTab',
-                params:{
+                params: {
                   fromNotificationScreen: true,
                 }
               },
             })
           }
           else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-            navigationRef.current?.navigate("Tools", { screen: 'ChildgrowthTab'})
+            navigationRef.current?.navigate("Tools", { screen: 'ChildgrowthTab' })
           }
           else {
             navigationRef.current?.navigate('Home', {
@@ -599,7 +599,7 @@ export default (): any => {
               },
             })
           }
-         
+
         }
       }
     }
@@ -619,7 +619,7 @@ export default (): any => {
           }
           else {
             navigationRef.current?.navigate('Home', { screen: 'ChildDevelopment' })
-          } 
+          }
         }
       }
     }
@@ -640,34 +640,34 @@ export default (): any => {
     else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "user_survey") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL)!=""  && trimWhiteSpacePayload(remoteMessage.data.URL)!=null  && trimWhiteSpacePayload(remoteMessage.data.URL)!=undefined){
-          Linking.openURL(remoteMessage.data.URL);
-        }
-        else{
-          if(Platform.OS=="ios"){
-            setTimeout(()=>{
-              const surveyItem = surveyData.find((item:any) => item.type == "survey");
-              if(surveyItem && surveyItem.survey_feedback_link){
-              Linking.openURL(surveyItem.survey_feedback_link);
-              }
-            },100)   
+          if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
+            Linking.openURL(remoteMessage.data.URL);
           }
-          else{
-            const surveyItem = surveyData.find((item:any) => item.type == "survey");
-              if(surveyItem && surveyItem.survey_feedback_link){
-              Linking.openURL(surveyItem.survey_feedback_link);
+          else {
+            if (Platform.OS == "ios") {
+              setTimeout(() => {
+                const surveyItem = surveyData.find((item: any) => item.type == "survey");
+                if (surveyItem && surveyItem.survey_feedback_link) {
+                  Linking.openURL(surveyItem.survey_feedback_link);
+                }
+              }, 100)
+            }
+            else {
+              const surveyItem = surveyData.find((item: any) => item.type == "survey");
+              if (surveyItem && surveyItem.survey_feedback_link) {
+                Linking.openURL(surveyItem.survey_feedback_link);
               }
+            }
+
+
           }
-           
-        
-        }
         }
       }
     }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type)  === "hyperlink") {
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "hyperlink") {
       if (userIsOnboarded == true) {
         if (navigationRef) {
-          if(remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL)!=""  && trimWhiteSpacePayload(remoteMessage.data.URL)!=null  && trimWhiteSpacePayload(remoteMessage.data.URL)!=undefined){
+          if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
             Linking.openURL(remoteMessage.data.URL);
           }
         }
@@ -682,7 +682,7 @@ export default (): any => {
     }
   }
   useEffect(() => {
-   // console.log('useEffectonMessage');
+    // console.log('useEffectonMessage');
 
     messaging().onNotificationOpenedApp(remoteMessage => {
       // ios background click noti
@@ -708,15 +708,15 @@ export default (): any => {
       });
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       try {
-        // Alert.alert('Remote notification', JSON.stringify(remoteMessage))
-      } catch (err) { console.log(err) }
+        // console.log('Remote notification', JSON.stringify(remoteMessage))
+      } catch (err) {
+        console.log(err)
+      }
     });
     setTimeout(() => {
       SplashScreen.hide();
     }, 2000);
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      //console.log('11onMessage');
-      // Alert.alert('Message handled in the background!', JSON.stringify(remoteMessage));
       //type article/activities
       if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
         Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
