@@ -282,7 +282,7 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
         }
     }
 }
-export const trimwhiteSpacePayload = (str:any):any => {
+export const trimWhiteSpacePayload = (str:any):any => {
     return str.length ? str.trim(): str
   }
 export const randomArrayShuffle = (array: any): any => {
