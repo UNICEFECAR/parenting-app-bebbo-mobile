@@ -24,7 +24,7 @@ import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, AppState, Platform } from 'react-native';
+import { Alert, AppState, Linking, Platform } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -49,8 +49,9 @@ import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificat
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import DynamicLinks from '@react-native-firebase/dynamic-links';
+import { trimWhiteSpacePayload } from '../services/Utils';
 const RootStack = createStackNavigator<RootStackParamList>();
-export default ():any => {
+export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const userIsOnboarded = useAppSelector(
     (state: any) =>
@@ -92,8 +93,12 @@ export default ():any => {
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
-
-  const callUrl = (url: any):any => {
+  const surveyData = useAppSelector((state: any) =>
+    state.utilsData.surveryData != ''
+      ? JSON.parse(state.utilsData.surveryData)
+      : state.utilsData.surveryData,
+  );
+  const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
       const initialUrlnew: any = url;
@@ -143,10 +148,10 @@ export default ():any => {
     // ... handle deep link
     callUrl(linkedURL);
   }, [linkedURL, resetURL, userIsOnboarded])
- 
+
 
   useEffect(() => {
-    const initPixel = async ():Promise<any> => {
+    const initPixel = async (): Promise<any> => {
       if (Platform.OS === 'ios') {
         const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
         console.log(ATT_CHECK, "..ATT_CHECK..");
@@ -160,7 +165,7 @@ export default ():any => {
               });
             }
           } catch (error) {
-            console.log(error,"error");
+            console.log(error, "error");
             throw error;
           } finally {
             Settings.initializeSDK();
@@ -173,7 +178,7 @@ export default ():any => {
         Settings.setAdvertiserTrackingEnabled(true);
       }
     }
-    const updateTrackingStatus = (status: any):any => {
+    const updateTrackingStatus = (status: any): any => {
       console.log(status, "..status")
       if (status === 'active') {
         initPixel();
@@ -187,31 +192,31 @@ export default ():any => {
       // Need to wait until the app is ready before checking the permission
       AppState.addEventListener('change', updateTrackingStatus)
 
-      return ():any => {
+      return (): any => {
         AppState.removeEventListener('change', updateTrackingStatus)
       }
     }
   }, [AppState.currentState])
-  const getSearchParamFromURL = (urlNew:any, paramNew:any):any => {
-    const url= new URL(urlNew);
+  const getSearchParamFromURL = (urlNew: any, paramNew: any): any => {
+    const url = new URL(urlNew);
     const params = new URLSearchParams(url.search);
     const param = params.get(paramNew);
-    console.log(param,params) ;
+    console.log(param, params);
     return param;
   }
-  
-  const handleDynamicLink = (link:any):any => {
+
+  const handleDynamicLink = (link: any): any => {
     if (link && link.url) {
-    //  Alert.alert("foreground dynamic link",link.url);
-     const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
-     facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
-     console.log(facebookId,"..facebookId.");
+      //  Alert.alert("foreground dynamic link",link.url);
+      const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
+      facebookId && facebookId != '' ? analytics().setUserProperties({ facebook_id: facebookId }) : null;
+      console.log(facebookId, "..facebookId.");
     }
   };
   useEffect(() => {
 
 
-    async function requestUserPermission():Promise<any> {
+    async function requestUserPermission(): Promise<any> {
       const authStatus = await messaging().requestPermission();
       const enabled =
         authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
@@ -234,19 +239,19 @@ export default ():any => {
     // When the component is unmounted, remove the listener
     DynamicLinks()
       .getInitialLink()
-      .then((link:any) => {
-        console.log(link,"..11link")
+      .then((link: any) => {
+        console.log(link, "..11link")
         if (link && link.url) {
-        // Alert.alert("background dynamic link",link.url);
-         const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
-         facebookId && facebookId != '' ? analytics().setUserProperties({facebook_id:facebookId}) : null;
-         console.log(facebookId,"..facebookId11.")
+          // Alert.alert("background dynamic link",link.url);
+          const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
+          facebookId && facebookId != '' ? analytics().setUserProperties({ facebook_id: facebookId }) : null;
+          console.log(facebookId, "..facebookId11.")
         }
       });
-    return ():any => unsubscribe();
+    return (): any => unsubscribe();
 
   }, []);
-  const redirectLocation = (notification: any):any => {
+  const redirectLocation = (notification: any): any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
     console.log(activeChild, "..activeChild..");
     console.log(notification.data.uuid, "..notification.data.uuid..");
@@ -348,19 +353,19 @@ export default ():any => {
     }, 0);
 
   }
-  const handleNotification = (notification: any):any => {  
+  const handleNotification = (notification: any): any => {
     let executed = false;
     if (!executed) {
       executed = true;
-      if(Platform.OS=="ios"){
-        PushNotificationIOS.getApplicationIconBadgeNumber((num)=>{ // get current number
-          console.log(num,"...num...")
-          if(num >= 1){
-              PushNotificationIOS.setApplicationIconBadgeNumber(0) //set number to 0
+      if (Platform.OS == "ios") {
+        PushNotificationIOS.getApplicationIconBadgeNumber((num) => { // get current number
+          console.log(num, "...num...")
+          if (num >= 1) {
+            PushNotificationIOS.setApplicationIconBadgeNumber(0) //set number to 0
           }
-         });
+        });
       }
-      
+
       if (notification && notification.userInteraction == true) {
         if (notification && notification.data && notification.data.notitype != '' && notification.data.notitype != null && notification.data.notitype != undefined && userIsOnboarded) {
 
@@ -378,7 +383,7 @@ export default ():any => {
     }
 
   }
-  const createLocalNotificationListeners = async ():Promise<any> => {
+  const createLocalNotificationListeners = async (): Promise<any> => {
     try {
       PushNotification.configure({
         // this will listen to your local push notifications on clicked 
@@ -386,7 +391,7 @@ export default ():any => {
           handleNotification(notification);
           if (Platform.OS == "ios") {
             notification.finish(PushNotificationIOS.FetchResult.NoData);
-           
+
           }
         },
         popInitialNotification: true,
@@ -402,31 +407,305 @@ export default ():any => {
       console.log("error")
     }
   }
- 
-  
+
+
   useEffect(() => {
-    if( userIsOnboarded == true){
-    createLocalNotificationListeners();
+    if (userIsOnboarded == true) {
+      createLocalNotificationListeners();
     }
   }, [userIsOnboarded]);
-  useEffect(() => {
+  const redirectPayload = (remoteMessage: any): any => {
+    if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
+      if (navigationRef) {
+        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "FirebaseArticles",
+              headerColor: '',
+              backgroundColor: '',
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+              listCategoryArray: []
+            });
+        }
+        else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate('Home', {
+              screen: 'Articles',
+              params: {
+                fromNotificationScreen: true,
+              }
+            })
+          }
+          else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+            navigationRef.current?.navigate('Articles');
+          }
+          else {
+            navigationRef.current?.navigate('Home', { screen: 'Articles' })
+          }
+        }
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "activities") {
+      if (navigationRef) {
+        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+          console.log(Number(remoteMessage.data.id), "Number(remoteMessage.data.id)");
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "FirebaseActivities",
+              headerColor: headerColor,
+              backgroundColor: backgroundColor,
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+              listCategoryArray: []
+            });
+        }
+        else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate('Home', {
+              screen: 'Activities',
+              params: {
+                fromNotificationScreen: true,
+              }
+            })
+          }
+          else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+            navigationRef.current?.navigate('Activities');
+          }
+          else {
+            navigationRef.current?.navigate('Home', { screen: 'Activities' })
+          }
+        }
 
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "vaccination") {
+      if (navigationRef) {
+        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "FirebaseVaccinationTab",
+              headerColor: headerColor,
+              backgroundColor: backgroundColor,
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+              listCategoryArray: []
+            });
+        }
+        else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            console.log("..NotificationsScreen..", screenName);
+            navigationRef.current?.navigate('Home', {
+              screen: 'Tools',
+              params: {
+                screen: 'VaccinationTab',
+                params: {
+                  fromNotificationScreen: true,
+                }
+              },
+            })
+          }
+          else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+            navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
+          }
+          else {
+            console.log("..nohomenew..", screenName);
+            navigationRef.current?.navigate('Home', {
+              screen: 'Tools',
+              params: {
+                screen: 'VaccinationTab',
+              },
+            });
+          }
+
+        }
+
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "checkup") {
+      if (navigationRef) {
+        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "FirebaseHealthCheckupsTab",
+              headerColor: headerColor,
+              backgroundColor: backgroundColor,
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+              listCategoryArray: []
+            });
+        }
+        else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate('Home', {
+              screen: 'Tools',
+              params: {
+                screen: 'HealthCheckupsTab',
+                params: {
+                  fromNotificationScreen: true,
+                }
+              },
+            })
+          }
+          else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+            navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
+          }
+          else {
+            navigationRef.current?.navigate('Home', {
+              screen: 'Tools',
+              params: {
+                screen: 'HealthCheckupsTab',
+              },
+            });
+          }
+        }
+
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "growth") {
+      if (navigationRef) {
+        const screenName = navigationRef.current.getCurrentRoute().name;
+        if (screenName == "NotificationsScreen") {
+          navigationRef.current?.navigate('Home', {
+            screen: 'Tools',
+            params: {
+              screen: 'ChildgrowthTab',
+              params: {
+                fromNotificationScreen: true,
+              }
+            },
+          })
+        }
+        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+          navigationRef.current?.navigate("Tools", { screen: 'ChildgrowthTab' })
+        }
+        else {
+          navigationRef.current?.navigate('Home', {
+            screen: 'Tools',
+            params: {
+              screen: 'ChildgrowthTab'
+            },
+          })
+        }
+
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "development") {
+      if (navigationRef) {
+        const screenName = navigationRef.current.getCurrentRoute().name;
+        if (screenName == "NotificationsScreen") {
+          navigationRef.current?.navigate('Home', {
+            screen: 'ChildDevelopment', params: {
+              fromNotificationScreen: true,
+            }
+          })
+        }
+        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+          navigationRef.current?.navigate('ChildDevelopment');
+        }
+        else {
+          navigationRef.current?.navigate('Home', { screen: 'ChildDevelopment' })
+        }
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "notifications") {
+      if (navigationRef) {
+        navigationRef.current?.navigate('NotificationsScreen')
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "chat") {
+      if (navigationRef) {
+        navigationRef.current?.navigate('SupportChat')
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "user_survey") {
+      if (navigationRef) {
+        if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
+          Linking.openURL(remoteMessage.data.URL);
+        }
+        else {
+          if (Platform.OS == "ios") {
+            setTimeout(() => {
+              const surveyItem = surveyData.find((item: any) => item.type == "survey");
+              if (surveyItem && surveyItem.survey_feedback_link) {
+                Linking.openURL(surveyItem.survey_feedback_link);
+              }
+            }, 100)
+          }
+          else {
+            const surveyItem = surveyData.find((item: any) => item.type == "survey");
+            if (surveyItem && surveyItem.survey_feedback_link) {
+              Linking.openURL(surveyItem.survey_feedback_link);
+            }
+          }
+
+
+        }
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "hyperlink") {
+      if (navigationRef) {
+        if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
+          Linking.openURL(remoteMessage.data.URL);
+        }
+      }
+    }
+    else {
+      if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
+        Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
+          { text: t('forceUpdateOkBtn') }
+        ]);
+      }
+    }
+  }
+  useEffect(() => {
+    // console.log('useEffectonMessage');
+
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      if (remoteMessage) {
+        // background click noti
+        if (userIsOnboarded == true) {
+          redirectPayload(remoteMessage);
+        }
+      }
+
+    });
+
+    // Check whether an initial notification is available
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if (remoteMessage) {
+          // after kill and restart application
+          if (userIsOnboarded == true) {
+            redirectPayload(remoteMessage);
+          }
+        }
+      });
+    messaging().setBackgroundMessageHandler(async remoteMessage => {
+      try {
+        // console.log('Remote notification', JSON.stringify(remoteMessage))
+      } catch (err) {
+        console.log(err)
+      }
+    });
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 2000);
     const unsubscribe = messaging().onMessage(async remoteMessage => {
+      //type article/activities
+      //foreground call
       if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
         Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
           { text: t('forceUpdateOkBtn') }
         ]);
       }
     });
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 2000);
-    
     return unsubscribe;
-  }, []);
+  }, [userIsOnboarded]);
 
   useMemo(() => {
-    async function fetchNetInfo():Promise<any> {
+    async function fetchNetInfo(): Promise<any> {
       if (netInfoval && netInfoval.isConnected != null) {
         if (netInfoval.isConnected == true) {
           if (Platform.OS == 'android') {
@@ -506,7 +785,7 @@ export default ():any => {
   }, []);
 
   useEffect(() => {
-    async function fetchNetInfoSet():Promise<any> {
+    async function fetchNetInfoSet(): Promise<any> {
       if (netState == "Highbandwidth" && toggleSwitchVal == true) {
 
         const confirmation = await retryAlert1(0, 0);
@@ -524,15 +803,15 @@ export default ():any => {
     fetchNetInfoSet();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
- 
+
   return (
     <SafeAreaProvider>
       <NavigationContainer
         ref={navigationRef}
-        onReady={():any => {
+        onReady={(): any => {
           routeNameRef.current = navigationRef.current.getCurrentRoute().name;
         }}
-        onStateChange={async ():Promise<any> => {
+        onStateChange={async (): Promise<any> => {
           const previousRouteName = routeNameRef.current;
           const currentRouteName = navigationRef.current.getCurrentRoute().name;
 

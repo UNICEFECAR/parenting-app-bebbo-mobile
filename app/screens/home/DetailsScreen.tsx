@@ -66,7 +66,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
   console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor,newBackgroundColor;
-  if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+  if(fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
   {
     newHeaderColor = headerColor;
     newBackgroundColor = backgroundColor;
@@ -85,9 +85,9 @@ const DetailsScreen = ({route, navigation}: any): any => {
  
   const [detailDataToUse,setDetailDataToUse] = useState<any>({});
   
-  const adviceval = fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
+  const adviceval = fromScreen === 'Activities' || fromScreen ==="FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
   const onHeaderBack =(): any=>{
-    console.log("onHeaderBack called");
+    console.log("onHeaderBack called",fromScreen);
     if(fromScreen == "ChildDevelopment")
     {
       navigation.navigate({
@@ -111,6 +111,53 @@ const DetailsScreen = ({route, navigation}: any): any => {
         params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId,backClicked:'yes'},
         merge: true,
       });
+     
+    }
+    else if(fromScreen == "FirebaseActivities")
+    {
+      navigation.navigate('Home', {
+        screen: "Activities", 
+        params: {
+          categoryArray:listCategoryArray,
+          currentSelectedChildId:currentSelectedChildId,
+          backClicked:'no'
+        },
+        merge:true
+      })  
+    }
+    else if(fromScreen == "FirebaseVaccinationTab")
+    {
+      navigation.navigate('Home', {
+        screen: 'Tools',
+        params: {
+          screen: 'VaccinationTab',
+        },
+        merge:true
+      });
+    }
+    else if(fromScreen == "FirebaseHealthCheckupsTab")
+    {
+      console.log(fromScreen,"fromScreen")
+      navigation.navigate('Home', {
+        screen: 'Tools',
+        params: {
+          screen: 'HealthCheckupsTab',
+        },
+        merge:true
+      });
+    }
+    else if(fromScreen == "FirebaseArticles")
+    {
+      const screenName = route.name;
+      console.log("Articles callled",screenName);   
+      navigation.navigate('Home', {
+        screen: "Articles", 
+        params: {
+          categoryArray:listCategoryArray,
+          backClicked:'no'
+        },
+        merge:true
+      })
     }
     else if(fromScreen == "HomeAct" || fromScreen == "HomeArt")
     {
@@ -129,6 +176,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
       });
     }
     else {
+      console.log("else callled")
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: {categoryArray:listCategoryArray,backClicked:'yes'},
@@ -158,7 +206,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
   
   useEffect(() => {
       const functionOnLoad = async (): Promise<any> => {
-        if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
+        if(fromScreen == "VaccinationTab" || fromScreen=="FirebaseVaccinationTab" || fromScreen=="Articles" || fromScreen == "FirebaseArticles" || fromScreen == "HealthCheckupsTab"  || fromScreen == "FirebaseHealthCheckupsTab"  || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
         {
           console.log(detailData,"..detailData..")
           
@@ -168,7 +216,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
             if(articleData && articleData.length > 0)
             {
               setDetailDataToUse(articleData[0]);
-              if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+              if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
               {
                  analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+articleData[0]?.activity_category);
                  analytics().logEvent(GAME_DETAILS_OPENED,{game_id: articleData[0]?.id,game_category_id:articleData[0]?.activity_category});    
@@ -180,7 +228,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
               const videoarticleData = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema,'id == "'+detailData+'"');
                 if(videoarticleData && videoarticleData.length > 0) {
                   setDetailDataToUse(videoarticleData[0]);
-                  if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+                  if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
                   {
                     analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+videoarticleData[0]?.activity_category);
                     analytics().logEvent(GAME_DETAILS_OPENED,{game_id: videoarticleData[0]?.id,game_category_id:videoarticleData[0]?.activity_category});    
@@ -200,7 +248,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
           }else if(typeof detailData == "object")
           {
             setDetailDataToUse(detailData);
-            if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+            if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
             {
                analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
                analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
@@ -211,14 +259,14 @@ const DetailsScreen = ({route, navigation}: any): any => {
           }
           
         }else {
-        if(fromScreen == "HomeAct"){
+        if(fromScreen == "HomeAct" || fromScreen=="Activities" ||  fromScreen === 'FirebaseActivities'){
           if(typeof detailData == "number")
           {
             const activityData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema,'id == "'+detailData+'"');
             if(activityData && activityData.length > 0)
             {
               setDetailDataToUse(activityData[0]);
-              if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+              if(fromScreen === 'Activities' ||  fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
                 {
                    analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+activityData[0]?.activity_category);
                    analytics().logEvent(GAME_DETAILS_OPENED,{game_id:activityData[0]?.id,game_category_id:activityData[0]?.activity_category});    
@@ -238,7 +286,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
           }
           else{
             setDetailDataToUse(detailData);
-            if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+            if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
               {
                  analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
                  analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
@@ -250,7 +298,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
         }
         else{
           setDetailDataToUse(detailData);
-          if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+          if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
             {
                analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
                analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
@@ -401,7 +449,7 @@ console.log(videoIsFocused,"..videoIsFocused");
                : null 
             } 
             </ArticleDetailsContainer>
-            {fromScreen === 'Articles' ? (
+            {fromScreen === 'Articles' || fromScreen === 'FirebaseArticles'? (
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
@@ -416,7 +464,7 @@ console.log(videoIsFocused,"..videoIsFocused");
                 </FlexCol>
               </>
             ) : null}
-            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup" || fromScreen == "MileStone" || fromScreen === 'HomeArt' || fromScreen === 'FavArticles' || fromScreen === 'SupportChat' ? (
+            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "FirebaseVaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "FirebaseHealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup" || fromScreen == "MileStone" || fromScreen === 'HomeArt' || fromScreen === 'FavArticles' || fromScreen === 'SupportChat' ? (
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
@@ -427,7 +475,7 @@ console.log(videoIsFocused,"..videoIsFocused");
               </>
             ) : null}
             
-            {fromScreen === 'Activities' ? (
+            {fromScreen === 'Activities'  || fromScreen === 'FirebaseActivities'? (
               <>
               
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
