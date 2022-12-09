@@ -415,261 +415,238 @@ export default (): any => {
     }
   }, [userIsOnboarded]);
   const redirectPayload = (remoteMessage: any): any => {
-
-    //console.log(remoteMessage, userIsOnboarded, navigationRef, "..redirectPayload")
     if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
-            navigationRef.current?.navigate('DetailsScreen',
-              {
-                fromScreen: "FirebaseArticles",
-                headerColor: '',
-                backgroundColor: '',
-                detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-                listCategoryArray: []
-              });
-          }
-          else {
-            const screenName = navigationRef.current.getCurrentRoute().name;
-            if (screenName == "NotificationsScreen") {
-              navigationRef.current?.navigate('Home', {
-                screen: 'Articles',
-                params: {
-                  fromNotificationScreen: true,
-                }
-              })
-            }
-            else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-              navigationRef.current?.navigate('Articles');
-            }
-            else {
-              navigationRef.current?.navigate('Home', { screen: 'Articles' })
-            }
-          }
+      if (navigationRef) {
+        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "FirebaseArticles",
+              headerColor: '',
+              backgroundColor: '',
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+              listCategoryArray: []
+            });
         }
-      }
-
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "activities") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
-            console.log(Number(remoteMessage.data.id), "Number(remoteMessage.data.id)");
-            navigationRef.current?.navigate('DetailsScreen',
-              {
-                fromScreen: "FirebaseActivities",
-                headerColor: headerColor,
-                backgroundColor: backgroundColor,
-                detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-                listCategoryArray: []
-              });
-          }
-          else {
-            const screenName = navigationRef.current.getCurrentRoute().name;
-            if (screenName == "NotificationsScreen") {
-              navigationRef.current?.navigate('Home', {
-                screen: 'Activities',
-                params: {
-                  fromNotificationScreen: true,
-                }
-              })
-            }
-            else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-              navigationRef.current?.navigate('Activities');
-            }
-            else {
-              navigationRef.current?.navigate('Home', { screen: 'Activities' })
-            }
-          }
-
-        }
-      }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "vaccination") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
-            navigationRef.current?.navigate('DetailsScreen',
-              {
-                fromScreen: "FirebaseVaccinationTab",
-                headerColor: headerColor,
-                backgroundColor: backgroundColor,
-                detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-                listCategoryArray: []
-              });
-          }
-          else {
-            const screenName = navigationRef.current.getCurrentRoute().name;
-            if (screenName == "NotificationsScreen") {
-              console.log("..NotificationsScreen..", screenName);
-              navigationRef.current?.navigate('Home', {
-                screen: 'Tools',
-                params: {
-                  screen: 'VaccinationTab',
-                  params: {
-                    fromNotificationScreen: true,
-                  }
-                },
-              })
-            }
-            else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-              navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
-            }
-            else {
-              console.log("..nohomenew..", screenName);
-              navigationRef.current?.navigate('Home', {
-                screen: 'Tools',
-                params: {
-                  screen: 'VaccinationTab',
-                },
-              });
-            }
-
-          }
-
-        }
-      }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "checkup") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
-            navigationRef.current?.navigate('DetailsScreen',
-              {
-                fromScreen: "FirebaseHealthCheckupsTab",
-                headerColor: headerColor,
-                backgroundColor: backgroundColor,
-                detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-                listCategoryArray: []
-              });
-          }
-          else {
-            const screenName = navigationRef.current.getCurrentRoute().name;
-            if (screenName == "NotificationsScreen") {
-              navigationRef.current?.navigate('Home', {
-                screen: 'Tools',
-                params: {
-                  screen: 'HealthCheckupsTab',
-                  params: {
-                    fromNotificationScreen: true,
-                  }
-                },
-              })
-            }
-            else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-              navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
-            }
-            else {
-              navigationRef.current?.navigate('Home', {
-                screen: 'Tools',
-                params: {
-                  screen: 'HealthCheckupsTab',
-                },
-              });
-            }
-          }
-
-        }
-      }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "growth") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
+        else {
           const screenName = navigationRef.current.getCurrentRoute().name;
           if (screenName == "NotificationsScreen") {
             navigationRef.current?.navigate('Home', {
-              screen: 'Tools',
+              screen: 'Articles',
               params: {
-                screen: 'ChildgrowthTab',
-                params: {
-                  fromNotificationScreen: true,
-                }
-              },
-            })
-          }
-          else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-            navigationRef.current?.navigate("Tools", { screen: 'ChildgrowthTab' })
-          }
-          else {
-            navigationRef.current?.navigate('Home', {
-              screen: 'Tools',
-              params: {
-                screen: 'ChildgrowthTab'
-              },
-            })
-          }
-
-        }
-      }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "development") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          const screenName = navigationRef.current.getCurrentRoute().name;
-          if (screenName == "NotificationsScreen") {
-            navigationRef.current?.navigate('Home', {
-              screen: 'ChildDevelopment', params: {
                 fromNotificationScreen: true,
               }
             })
           }
           else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-            navigationRef.current?.navigate('ChildDevelopment');
+            navigationRef.current?.navigate('Articles');
           }
           else {
-            navigationRef.current?.navigate('Home', { screen: 'ChildDevelopment' })
+            navigationRef.current?.navigate('Home', { screen: 'Articles' })
           }
+        }
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "activities") {
+      if (navigationRef) {
+        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+          console.log(Number(remoteMessage.data.id), "Number(remoteMessage.data.id)");
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "FirebaseActivities",
+              headerColor: headerColor,
+              backgroundColor: backgroundColor,
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+              listCategoryArray: []
+            });
+        }
+        else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate('Home', {
+              screen: 'Activities',
+              params: {
+                fromNotificationScreen: true,
+              }
+            })
+          }
+          else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+            navigationRef.current?.navigate('Activities');
+          }
+          else {
+            navigationRef.current?.navigate('Home', { screen: 'Activities' })
+          }
+        }
+
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "vaccination") {
+      if (navigationRef) {
+        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "FirebaseVaccinationTab",
+              headerColor: headerColor,
+              backgroundColor: backgroundColor,
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+              listCategoryArray: []
+            });
+        }
+        else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            console.log("..NotificationsScreen..", screenName);
+            navigationRef.current?.navigate('Home', {
+              screen: 'Tools',
+              params: {
+                screen: 'VaccinationTab',
+                params: {
+                  fromNotificationScreen: true,
+                }
+              },
+            })
+          }
+          else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+            navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
+          }
+          else {
+            console.log("..nohomenew..", screenName);
+            navigationRef.current?.navigate('Home', {
+              screen: 'Tools',
+              params: {
+                screen: 'VaccinationTab',
+              },
+            });
+          }
+
+        }
+
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "checkup") {
+      if (navigationRef) {
+        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
+          navigationRef.current?.navigate('DetailsScreen',
+            {
+              fromScreen: "FirebaseHealthCheckupsTab",
+              headerColor: headerColor,
+              backgroundColor: backgroundColor,
+              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+              listCategoryArray: []
+            });
+        }
+        else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate('Home', {
+              screen: 'Tools',
+              params: {
+                screen: 'HealthCheckupsTab',
+                params: {
+                  fromNotificationScreen: true,
+                }
+              },
+            })
+          }
+          else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+            navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
+          }
+          else {
+            navigationRef.current?.navigate('Home', {
+              screen: 'Tools',
+              params: {
+                screen: 'HealthCheckupsTab',
+              },
+            });
+          }
+        }
+
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "growth") {
+      if (navigationRef) {
+        const screenName = navigationRef.current.getCurrentRoute().name;
+        if (screenName == "NotificationsScreen") {
+          navigationRef.current?.navigate('Home', {
+            screen: 'Tools',
+            params: {
+              screen: 'ChildgrowthTab',
+              params: {
+                fromNotificationScreen: true,
+              }
+            },
+          })
+        }
+        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+          navigationRef.current?.navigate("Tools", { screen: 'ChildgrowthTab' })
+        }
+        else {
+          navigationRef.current?.navigate('Home', {
+            screen: 'Tools',
+            params: {
+              screen: 'ChildgrowthTab'
+            },
+          })
+        }
+
+      }
+    }
+    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "development") {
+      if (navigationRef) {
+        const screenName = navigationRef.current.getCurrentRoute().name;
+        if (screenName == "NotificationsScreen") {
+          navigationRef.current?.navigate('Home', {
+            screen: 'ChildDevelopment', params: {
+              fromNotificationScreen: true,
+            }
+          })
+        }
+        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
+          navigationRef.current?.navigate('ChildDevelopment');
+        }
+        else {
+          navigationRef.current?.navigate('Home', { screen: 'ChildDevelopment' })
         }
       }
     }
     else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "notifications") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          navigationRef.current?.navigate('NotificationsScreen')
-        }
+      if (navigationRef) {
+        navigationRef.current?.navigate('NotificationsScreen')
       }
     }
     else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "chat") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          navigationRef.current?.navigate('SupportChat')
-        }
+      if (navigationRef) {
+        navigationRef.current?.navigate('SupportChat')
       }
     }
     else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "user_survey") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
-            Linking.openURL(remoteMessage.data.URL);
-          }
-          else {
-            if (Platform.OS == "ios") {
-              setTimeout(() => {
-                const surveyItem = surveyData.find((item: any) => item.type == "survey");
-                if (surveyItem && surveyItem.survey_feedback_link) {
-                  Linking.openURL(surveyItem.survey_feedback_link);
-                }
-              }, 100)
-            }
-            else {
+      if (navigationRef) {
+        if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
+          Linking.openURL(remoteMessage.data.URL);
+        }
+        else {
+          if (Platform.OS == "ios") {
+            setTimeout(() => {
               const surveyItem = surveyData.find((item: any) => item.type == "survey");
               if (surveyItem && surveyItem.survey_feedback_link) {
                 Linking.openURL(surveyItem.survey_feedback_link);
               }
-            }
-
-
+            }, 100)
           }
+          else {
+            const surveyItem = surveyData.find((item: any) => item.type == "survey");
+            if (surveyItem && surveyItem.survey_feedback_link) {
+              Linking.openURL(surveyItem.survey_feedback_link);
+            }
+          }
+
+
         }
       }
     }
     else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "hyperlink") {
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
-            Linking.openURL(remoteMessage.data.URL);
-          }
+      if (navigationRef) {
+        if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
+          Linking.openURL(remoteMessage.data.URL);
         }
       }
     }
@@ -685,9 +662,8 @@ export default (): any => {
     // console.log('useEffectonMessage');
 
     messaging().onNotificationOpenedApp(remoteMessage => {
-      // ios background click noti
       if (remoteMessage) {
-        // Alert.alert("123","567");
+        // background click noti
         if (userIsOnboarded == true) {
           redirectPayload(remoteMessage);
         }
@@ -700,7 +676,7 @@ export default (): any => {
       .getInitialNotification()
       .then(remoteMessage => {
         if (remoteMessage) {
-          // Alert.alert("124","568");
+          // after kill and restart application
           if (userIsOnboarded == true) {
             redirectPayload(remoteMessage);
           }
@@ -718,6 +694,7 @@ export default (): any => {
     }, 2000);
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       //type article/activities
+      //foreground call
       if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
         Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
           { text: t('forceUpdateOkBtn') }
