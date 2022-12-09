@@ -423,7 +423,7 @@ export default (): any => {
           if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
             navigationRef.current?.navigate('DetailsScreen',
               {
-                fromScreen: "ArticlesFirebase",
+                fromScreen: "FirebaseArticles",
                 headerColor: '',
                 backgroundColor: '',
                 detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
@@ -458,7 +458,7 @@ export default (): any => {
             console.log(Number(remoteMessage.data.id), "Number(remoteMessage.data.id)");
             navigationRef.current?.navigate('DetailsScreen',
               {
-                fromScreen: "ActivitiesFirebase",
+                fromScreen: "FirebaseActivities",
                 headerColor: headerColor,
                 backgroundColor: backgroundColor,
                 detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
@@ -492,7 +492,7 @@ export default (): any => {
           if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
             navigationRef.current?.navigate('DetailsScreen',
               {
-                fromScreen: "VaccinationTabFirebase",
+                fromScreen: "FirebaseVaccinationTab",
                 headerColor: headerColor,
                 backgroundColor: backgroundColor,
                 detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
@@ -537,7 +537,7 @@ export default (): any => {
           if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
             navigationRef.current?.navigate('DetailsScreen',
               {
-                fromScreen: "HealthCheckupsTabFirebase",
+                fromScreen: "FirebaseHealthCheckupsTab",
                 headerColor: headerColor,
                 backgroundColor: backgroundColor,
                 detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
