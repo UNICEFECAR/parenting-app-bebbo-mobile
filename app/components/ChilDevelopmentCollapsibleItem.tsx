@@ -30,9 +30,17 @@ import { addSpaceToHtml, removeParams } from '../services/Utils';
 import { PopupCloseVideo, PopupCloseContainer } from '@components/shared/ModalPopupStyle';
 import { isFutureDate } from '../services/childCRUD';
 import { bgColor1 } from '@styles/style';
+import VectorImage from 'react-native-vector-image';
 const styles = StyleSheet.create({
   alignItemsStart:{ alignItems: 'flex-start' },
   checkboxStyle:{ borderWidth: 1 },
+  close:{
+    height: 22,
+    left:"30%",
+    position: "absolute",
+    top:"30%",
+    width: 22
+  },
   heading4Regular:{ flex: 7, textAlignVertical: 'center' },
   htmlFontSize:{ fontSize: 14 },
   iconStyle:{ alignSelf: 'center', flex: 1, textAlign: 'right' },
@@ -210,6 +218,10 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
                           style={styles.imageStyle}
                           resizeMode={'cover'}
                         />
+                        <VectorImage
+                        style={styles.close}
+              source={require('@assets/svg/play_icon.svg')}
+            />
                       </Pressable>
                     </>
                     : null
