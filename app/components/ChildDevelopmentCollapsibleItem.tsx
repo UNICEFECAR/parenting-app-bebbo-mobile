@@ -32,33 +32,33 @@ import { isFutureDate } from '../services/childCRUD';
 import { bgColor1 } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
 const styles = StyleSheet.create({
-  alignItemsStart:{ alignItems: 'flex-start' },
-  checkboxStyle:{ borderWidth: 1 },
-  close:{
+  alignItemsStart: { alignItems: 'flex-start' },
+  checkboxStyle: { borderWidth: 1 },
+  close: {
     height: 22,
-    left:"30%",
+    left: "30%",
     position: "absolute",
-    top:"30%",
+    top: "30%",
     width: 22
   },
-  heading4Regular:{ flex: 7, textAlignVertical: 'center' },
-  htmlFontSize:{ fontSize: 14 },
-  iconStyle:{ alignSelf: 'center', flex: 1, textAlign: 'right' },
-  imageStyle:{ borderRadius: 5, flex: 1, height: 50, marginRight: 10, width: '100%' },
-  innerPressable:{ flex: 1, height: 50, marginRight: 10, width: '100%' },
-  innerView:{ flex: 1, flexDirection: 'row' },
-  outerView:{
+  heading4Regular: { flex: 7, textAlignVertical: 'center' },
+  htmlFontSize: { fontSize: 14 },
+  iconStyle: { alignSelf: 'center', flex: 1, textAlign: 'right' },
+  imageStyle: { borderRadius: 5, flex: 1, height: 50, marginRight: 10, width: '100%' },
+  innerPressable: { flex: 1, height: 50, marginRight: 10, width: '100%' },
+  innerView: { flex: 1, flexDirection: 'row' },
+  outerView: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  padding0:{padding:0},
-  popupCloseContainer:{ height: Dimensions.get('window').height, position: 'absolute', top: 0, width: Dimensions.get('window').width, zIndex: -1, },
-  popupCloseVideo:{alignItems: 'flex-start', height: Dimensions.get('window').height, justifyContent: 'flex-end', padding: 17, width: Dimensions.get('window').width},
-  popupView:{ alignItems: 'center', backgroundColor: bgColor1, flexDirection: 'row', height: Dimensions.get('window').height, justifyContent: 'center', width: Dimensions.get('window').width },
-  pressableView:{flexDirection: 'row',flex: 1}
+  padding0: { padding: 0 },
+  popupCloseContainer: { height: Dimensions.get('window').height, position: 'absolute', top: 0, width: Dimensions.get('window').width, zIndex: -1, },
+  popupCloseVideo: { alignItems: 'flex-start', height: Dimensions.get('window').height, justifyContent: 'flex-end', padding: 17, width: Dimensions.get('window').width },
+  popupView: { alignItems: 'center', backgroundColor: bgColor1, flexDirection: 'row', height: Dimensions.get('window').height, justifyContent: 'center', width: Dimensions.get('window').width },
+  pressableView: { flexDirection: 'row', flex: 1 }
 });
-const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
+const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
   const { item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent, currentSelectedChildId } = props;
   const navigation = useNavigation();
   const { t } = useTranslation()
@@ -90,7 +90,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
     } else {
       setToggleCheckBox(false);
     }
-    const fetchData = async ():Promise<any> => {
+    const fetchData = async (): Promise<any> => {
       setselVideoImage('');
       setselActivityImage('')
       const currVideoArtData = VideoArticlesData.filter((x: any) => x.id == item?.related_video_articles[0])[0];
@@ -131,13 +131,13 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
     }
     fetchData()
   }, [item]);
-  const milestoneCheckUncheck = async ():Promise<any> => {
+  const milestoneCheckUncheck = async (): Promise<any> => {
     const filterQuery = 'uuid == "' + activeChilduuid + '"';
     setToggleCheckBox(!toggleCheckBox);
     sendMileStoneDatatoParent(item, !toggleCheckBox);
     await userRealmCommon.updateChildMilestones<ChildEntity>(ChildEntitySchema, item?.id, filterQuery);
   }
-  const gotoArticle = (articleId: any[]):any => {
+  const gotoArticle = (articleId: any[]): any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "MileStone",
@@ -147,7 +147,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
         currentSelectedChildId: currentSelectedChildId
       });
   }
-  const gotoActivity = (activityData: any):any => {
+  const gotoActivity = (activityData: any): any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "MileStoneActivity", //ChildDevelopment
@@ -158,7 +158,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
         currentSelectedChildId: currentSelectedChildId
       });
   }
-  const openVideo = ():any => {
+  const openVideo = (): any => {
     setModalVisible(!modalVisible)
   }
   return (
@@ -170,7 +170,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
               style={styles.outerView}>
               <Pressable
                 disabled={isFutureDate(activeChild?.birthDate)}
-                onPress={():any => {
+                onPress={(): any => {
                   milestoneCheckUncheck();
                 }}>
                 <CheckboxItem>
@@ -188,7 +188,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
             </View>
             <Pressable
               style={styles.pressableView}
-              onPress={():any => {
+              onPress={(): any => {
                 setIsOPen(!isOPen);
               }}>
               <Heading4Regular style={styles.heading4Regular}>
@@ -212,16 +212,16 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
                 <FDirRow style={styles.alignItemsStart}>
                   {selVideoArticleData && selVideoArticleData?.cover_video && selVideoArticleData?.cover_video?.url != "" ?
                     <>
-                      <Pressable style={styles.innerPressable} onPress={():any => openVideo()}>
+                      <Pressable style={styles.innerPressable} onPress={(): any => openVideo()}>
                         <Image
                           source={selVideoImage != "" ? { uri: selVideoImage } : require('@assets/trash/defaultArticleImage.png')}
                           style={styles.imageStyle}
                           resizeMode={'cover'}
                         />
                         <VectorImage
-                        style={styles.close}
-              source={require('@assets/svg/play_icon.svg')}
-            />
+                          style={styles.close}
+                          source={require('@assets/svg/play_icon.svg')}
+                        />
                       </Pressable>
                     </>
                     : null
@@ -250,7 +250,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
                     </ShiftFromBottom5>
                     {/* uncomment this for related article */}
                     {item && item.related_articles && item.related_articles.length > 0 ?
-                      <Pressable onPress={():any => gotoArticle(item.related_articles)}>
+                      <Pressable onPress={(): any => gotoArticle(item.related_articles)}>
                         <ButtonTextSmLineL numberOfLines={2}>
                           {t('developScreenrelatedArticleText')}
                         </ButtonTextSmLineL>
@@ -284,7 +284,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
                           </Heading4Regular>
                         </ShiftFromBottom5>
                         {selActivitiesData ?
-                          <Pressable onPress={():any => gotoActivity(selActivitiesData)}>
+                          <Pressable onPress={(): any => gotoActivity(selActivitiesData)}>
                             <ButtonTextMdLineL numberOfLines={2}>
                               {t('developScreenviewDetails')}
                             </ButtonTextMdLineL>
@@ -304,17 +304,17 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
           animationType="none"
           transparent={true}
           visible={modalVisible}
-          onRequestClose={():any => {
+          onRequestClose={(): any => {
             setModalVisible(!modalVisible);
           }}
-          onDismiss={():any => {
+          onDismiss={(): any => {
             console.log("dismissed")
           }}>
           <View style={styles.popupView}>
             <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
             <PopupCloseContainer style={styles.popupCloseContainer}>
               <PopupCloseVideo style={styles.popupCloseVideo}
-                onPress={():any => {
+                onPress={(): any => {
                   setModalVisible(!modalVisible);
                 }}>
                 <Icon name="ic_close" size={20} color="#fff" />
@@ -326,4 +326,4 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
     </>
   );
 });
-export default ChilDevelopmentCollapsibleItem;
+export default ChildDevelopmentCollapsibleItem;
