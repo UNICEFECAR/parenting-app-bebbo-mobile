@@ -1,6 +1,6 @@
 import AgeBrackets from '@components/AgeBrackets';
 import VideoPlayer from '@components/VideoPlayer';
-import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsibleItem';
+import ChildDevelopmentCollapsibleItem from '@components/ChildDevelopmentCollapsibleItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import Container, { BannerContainer, MainContainer } from '@components/shared/Container';
@@ -434,7 +434,7 @@ const ChildDevelopment = ({ route, navigation }: any):any => {
             <FlatList
               ref={flatListRef}
               data={selectedChildMilestoneData}
-              renderItem={({ item }:any):any => <ChilDevelopmentCollapsibleItem key={item.id} activeChilduuidnew={activeChild.uuid} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
+              renderItem={({ item }:any):any => <ChildDevelopmentCollapsibleItem key={item.id} activeChilduuidnew={activeChild.uuid} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
               keyExtractor={(item):any => item.id.toString()}
               nestedScrollEnabled={true}
               ListHeaderComponent={ContentThatGoesAboveTheFlatList}
