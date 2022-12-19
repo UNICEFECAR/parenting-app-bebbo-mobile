@@ -9,7 +9,6 @@ import { DailyHomeMessagesSchema } from "../schema/DailyHomeMessagesSchema";
 import { FAQsSchema } from "../schema/FAQsSchema";
 import { HealthCheckUpsSchema } from "../schema/HealthCheckUpsSchema";
 import { MilestonesSchema } from "../schema/MilestonesSchema";
-import { PinnedChildDevelopmentSchema } from "../schema/PinnedChildDevelopmentSchema";
 import { StandardDevHeightForAgeSchema } from "../schema/StandardDevHeightForAgeSchema";
 import { StandardDevWeightForHeightSchema, StandDevObj } from "../schema/StandardDevWeightForHeightSchema";
 import { SurveysSchema } from "../schema/SurveysSchema";
@@ -22,7 +21,6 @@ export const dataRealmConfig: Realm.Configuration = {
   schema: [
     ConfigSettingsSchema,
     ArticleEntitySchema,
-    PinnedChildDevelopmentSchema,
     CoverVideo,
     CoverImage,
     VideoArticleEntitySchema,
