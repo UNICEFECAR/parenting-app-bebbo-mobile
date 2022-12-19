@@ -56,7 +56,7 @@ const ChildDevData = useAppSelector(
   );
 const PinnedChildDevData = useAppSelector(
   (state: any) =>
-    state.utilsData.PinnedChildDevData != '' ?JSON.parse(state.utilsData.PinnedChildDevData):[],
+    state.utilsData.VideoArticlesData != '' ?JSON.parse(state.utilsData.VideoArticlesData):[],
   );
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState<any>();
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
