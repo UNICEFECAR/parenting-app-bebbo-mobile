@@ -13,7 +13,6 @@ import { ActivitiesEntity, ActivitiesEntitySchema } from '../database/schema/Act
 import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
 import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
-import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from '../database/schema/PinnedChildDevelopmentSchema';
 import { VideoArticleEntity, VideoArticleEntitySchema } from '../database/schema/VideoArticleSchema';
 import downloadImages from '../downloadImages/ImageStorage';
 import { CommonApiInterface } from "../interface/interface";
@@ -202,7 +201,6 @@ export const downloadArticleImages = async():Promise<any> => {
       const databaseData = await dataRealmCommon.getData<ArticleEntity>(ArticleEntitySchema);
       const databaseDataact = await dataRealmCommon.getData<ActivitiesEntity>(ActivitiesEntitySchema);
       const databaseDatabasicpg = await dataRealmCommon.getData<BasicPagesEntity>(BasicPagesSchema);
-      const databaseDatapinnedCD = await dataRealmCommon.getData<PinnedChildDevelopmentEntity>(PinnedChildDevelopmentSchema);
       const databaseDatavideoart = await dataRealmCommon.getData<VideoArticleEntity>(VideoArticleEntitySchema);
       const imageArray: any[] = [];
       databaseData.map((x:any)=>{
@@ -230,18 +228,6 @@ export const downloadArticleImages = async():Promise<any> => {
         }
       })
       databaseDatabasicpg.map((x:any)=>{
-        if(x.embedded_images && x.embedded_images.length > 0) {
-          x.embedded_images.map((y:any)=>{
-            if((y.split('https://')[1] || y.split('http://')[1])) {
-              imageArray.push({uri:y})
-            }
-          });
-        }
-        if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
-          imageArray.push({uri:x.cover_image.url})
-        }
-      })
-      databaseDatapinnedCD.map((x:any)=>{
         if(x.embedded_images && x.embedded_images.length > 0) {
           x.embedded_images.map((y:any)=>{
             if((y.split('https://')[1] || y.split('http://')[1])) {
