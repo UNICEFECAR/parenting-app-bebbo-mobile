@@ -32,18 +32,18 @@ type TermsNavigationProp = StackNavigationProp<
 type Props = {
   navigation: TermsNavigationProp;
 };
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
   checkboxStyle: {
-    fontWeight:'bold',
-    textDecorationLine:'underline',
-    textDecorationStyle:'solid'
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid'
   },
   containerView: {
-    backgroundColor:primaryColor,
-    flex:1
+    backgroundColor: primaryColor,
+    flex: 1
   },
   containerView2: {
-    marginTop: 20, 
+    marginTop: 20,
     paddingRight: 40
   },
   htmlStyle: {
@@ -54,17 +54,17 @@ const styles=StyleSheet.create({
     padding: 0
   }
 })
-const Terms = ({navigation}: Props):any => {
+const Terms = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
-  const headerColor=themeContext.colors.PRIMARY_COLOR;
- 
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
+
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(true);
-  const isButtonDisabled = (toggleCheckBox==false || toggleCheckBox1==false)
+  const isButtonDisabled = (toggleCheckBox == false || toggleCheckBox1 == false)
   const [loading, setLoading] = useState(true);
-  const {t} = useTranslation();
-  const goToPrivacyPolicy = ():any => {
+  const { t } = useTranslation();
+  const goToPrivacyPolicy = (): any => {
     navigation.navigate('PrivacyPolicy');
   };
   const languageCode = useAppSelector(
@@ -74,16 +74,16 @@ const Terms = ({navigation}: Props):any => {
   useFocusEffect(
     React.useCallback(() => {
       setLoading(false);
-    },[languageCode])
+    }, [languageCode])
   );
   const termsdata = useAppSelector(
     (state: any) => state.utilsData.terms.body,
   );
-  
+
   const acceptTermsFlag = useAppSelector(
     (state: any) =>
       state.utilsData.acceptTerms
-     );
+  );
   const apiJsonData = [
     {
       apiEndpoint: appConfig.videoArticles,
@@ -146,18 +146,6 @@ const Terms = ({navigation}: Props):any => {
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.childdevGirlPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevBoyPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
       apiEndpoint: appConfig.healthcheckupPinnedContent,
       method: 'get',
       postdata: {},
@@ -176,122 +164,121 @@ const Terms = ({navigation}: Props):any => {
       saveinDB: true,
     },
     {
-        apiEndpoint: appConfig.standardDeviation,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: appConfig.faqs,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      }
+      apiEndpoint: appConfig.standardDeviation,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.faqs,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    }
     // survey,child dev,vaccine,healthcheckup,growth,activities,
     // pinned for all 4 tools
   ];
-  const acceptTerms = async ():any => {
-    
-       if(acceptTermsFlag == false)
-       {
-        dispatch(setAcceptTerms(true));
-       }
-       navigation.navigate('LoadingScreen', {
-        apiJsonData: apiJsonData, 
-        prevPage: 'Terms'
-      });
+  const acceptTerms = async (): any => {
+
+    if (acceptTermsFlag == false) {
+      dispatch(setAcceptTerms(true));
+    }
+    navigation.navigate('LoadingScreen', {
+      apiJsonData: apiJsonData,
+      prevPage: 'Terms'
+    });
   };
 
   return (
     <>
-     <View style={styles.containerView}>
-     <FocusAwareStatusBar
-        animated={true}
-        backgroundColor={headerColor}
-       />
-      <OnboardingContainer>
-      <OverlayLoadingComponent loading={loading} />
-        <OnboardingHeading>
-          <Heading1w>{t('tNcheader')}</Heading1w>
-        </OnboardingHeading>
-        <ScrollView contentContainerStyle={styles.scrollViewStyle}>
-          { termsdata != "" ?
-            <HTML
-              source={{html: addSpaceToHtml(termsdata)}}
-              baseFontStyle={styles.htmlStyle}
-              ignoredStyles={['color', 'font-size', 'font-family']}
-              tagsStyles={{
-              p: { marginBottom: 15, marginTop: 0,textAlign:'left'},h1: { marginBottom: 0, marginTop: 10,textAlign:'left'},h2: { marginBottom: 15, marginTop: 0,textAlign:'left'},h3: { marginBottom: 15, marginTop: 0,textAlign:'left' },h4: { marginBottom: 15, marginTop: 0,textAlign:'left'},h5: { marginBottom: 15, marginTop: 0,textAlign:'left'},h6: { marginBottom: 15, marginTop: 0,textAlign:'left'},span: { marginBottom: 15, marginTop: 0,textAlign:'left'},br: { height: 0 },
-              }}
-            />
-            : null
-          }
-          <Fragment>
-            <View style={styles.containerView2}>
-            <FormOuterCheckbox
-            onPress={():any => {
-              setToggleCheckBox(!toggleCheckBox);
-            }}>
-            <CheckboxItem>
-              <View>
-                {toggleCheckBox ? (
-                  <CheckboxActive>
-                    <Icon name="ic_tick" size={12} color="#fff" />
-                  </CheckboxActive>
-                ) : (
-                  <Checkbox></Checkbox>
-                )}
+      <View style={styles.containerView}>
+        <FocusAwareStatusBar
+          animated={true}
+          backgroundColor={headerColor}
+        />
+        <OnboardingContainer>
+          <OverlayLoadingComponent loading={loading} />
+          <OnboardingHeading>
+            <Heading1w>{t('tNcheader')}</Heading1w>
+          </OnboardingHeading>
+          <ScrollView contentContainerStyle={styles.scrollViewStyle}>
+            {termsdata != "" ?
+              <HTML
+                source={{ html: addSpaceToHtml(termsdata) }}
+                baseFontStyle={styles.htmlStyle}
+                ignoredStyles={['color', 'font-size', 'font-family']}
+                tagsStyles={{
+                  p: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' }, h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h3: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h4: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h5: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h6: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, span: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, br: { height: 0 },
+                }}
+              />
+              : null
+            }
+            <Fragment>
+              <View style={styles.containerView2}>
+                <FormOuterCheckbox
+                  onPress={(): any => {
+                    setToggleCheckBox(!toggleCheckBox);
+                  }}>
+                  <CheckboxItem>
+                    <View>
+                      {toggleCheckBox ? (
+                        <CheckboxActive>
+                          <Icon name="ic_tick" size={12} color="#fff" />
+                        </CheckboxActive>
+                      ) : (
+                        <Checkbox></Checkbox>
+                      )}
+                    </View>
+                  </CheckboxItem>
+                  <LabelText>{t('tNccheckbox1')}</LabelText>
+                </FormOuterCheckbox>
+                <FormOuterCheckbox
+                  onPress={(): any => {
+                    setToggleCheckBox1(!toggleCheckBox1);
+                  }}>
+                  <CheckboxItem >
+                    <View>
+                      {toggleCheckBox1 ? (
+                        <CheckboxActive>
+                          <Icon name="ic_tick" size={12} color="#fff" />
+                        </CheckboxActive>
+                      ) : (
+                        <Checkbox></Checkbox>
+                      )}
+                    </View>
+                  </CheckboxItem>
+                  <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={styles.checkboxStyle}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
+                </FormOuterCheckbox>
+                <FormOuterCheckbox
+                  onPress={(): any => {
+                    setToggleCheckBox2(!toggleCheckBox2);
+                  }}>
+                  <CheckboxItem>
+                    <View>
+                      {toggleCheckBox2 ? (
+                        <CheckboxActive>
+                          <Icon name="ic_tick" size={12} color="#fff" />
+                        </CheckboxActive>
+                      ) : (
+                        <Checkbox></Checkbox>
+                      )}
+                    </View>
+                  </CheckboxItem>
+                  <LabelText>{t('tNccheckbox3')}</LabelText>
+                </FormOuterCheckbox>
               </View>
-            </CheckboxItem>
-            <LabelText>{t('tNccheckbox1')}</LabelText>
-          </FormOuterCheckbox>
-          <FormOuterCheckbox
-            onPress={():any => {
-              setToggleCheckBox1(!toggleCheckBox1);
-            }}>
-            <CheckboxItem >
-              <View>
-                {toggleCheckBox1 ? (
-                  <CheckboxActive>
-                    <Icon name="ic_tick" size={12} color="#fff" />
-                  </CheckboxActive>
-                ) : (
-                  <Checkbox></Checkbox>
-                )}
-              </View>
-            </CheckboxItem>
-            <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={styles.checkboxStyle}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
-          </FormOuterCheckbox>
-          <FormOuterCheckbox
-            onPress={():any => {
-              setToggleCheckBox2(!toggleCheckBox2);
-            }}>
-            <CheckboxItem>
-              <View>
-                {toggleCheckBox2 ? (
-                  <CheckboxActive>
-                    <Icon name="ic_tick" size={12} color="#fff" />
-                  </CheckboxActive>
-                ) : (
-                  <Checkbox></Checkbox>
-                )}
-              </View>
-            </CheckboxItem>
-            <LabelText>{t('tNccheckbox3')}</LabelText>
-          </FormOuterCheckbox>
-            </View>
-          </Fragment>
-        </ScrollView>
-        <ButtonRow>
-          <ButtonPrimary
-            disabled={isButtonDisabled}
-            onPress={():any => {
-              acceptTerms();
-            }}>
-            <ButtonText>{t('tNcacceptbtn')}</ButtonText>
-          </ButtonPrimary>
-        </ButtonRow>
-      </OnboardingContainer>
+            </Fragment>
+          </ScrollView>
+          <ButtonRow>
+            <ButtonPrimary
+              disabled={isButtonDisabled}
+              onPress={(): any => {
+                acceptTerms();
+              }}>
+              <ButtonText>{t('tNcacceptbtn')}</ButtonText>
+            </ButtonPrimary>
+          </ButtonRow>
+        </OnboardingContainer>
       </View>
     </>
   );
