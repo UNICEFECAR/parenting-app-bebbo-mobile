@@ -56,7 +56,7 @@ const ChildDevelopment = ({ route, navigation }: any):any => {
   );
   const PinnedChildDevData = useAppSelector(
     (state: any) =>
-      state.utilsData.PinnedChildDevData != '' ? JSON.parse(state.utilsData.PinnedChildDevData) : [],
+      state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
   const MileStonesData = useAppSelector(
     (state: any) =>
