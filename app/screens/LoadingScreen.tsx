@@ -18,7 +18,6 @@ import { DailyHomeMessagesSchema } from '../database/schema/DailyHomeMessagesSch
 import { FAQsSchema } from '../database/schema/FAQsSchema';
 import { HealthCheckUpsSchema } from '../database/schema/HealthCheckUpsSchema';
 import { MilestonesSchema } from '../database/schema/MilestonesSchema';
-import { PinnedChildDevelopmentSchema } from '../database/schema/PinnedChildDevelopmentSchema';
 import { StandardDevHeightForAgeSchema } from '../database/schema/StandardDevHeightForAgeSchema';
 import { StandardDevWeightForHeightSchema } from '../database/schema/StandardDevWeightForHeightSchema';
 import { SurveysSchema } from '../database/schema/SurveysSchema';
@@ -168,7 +167,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       } else {
         //check download all flag on second downlaodd all click
         if (prevPage == "CountryLangChange" || (prevPage == "DownloadAllData" && allDataDownloadFlag == false)) {
-          const schemaarray = [ArticleEntitySchema, PinnedChildDevelopmentSchema, VideoArticleEntitySchema, DailyHomeMessagesSchema,
+          const schemaarray = [ArticleEntitySchema, VideoArticleEntitySchema, DailyHomeMessagesSchema,
             BasicPagesSchema, TaxonomySchema, MilestonesSchema, ChildDevelopmentSchema, VaccinationSchema, HealthCheckUpsSchema,
             SurveysSchema, ActivitiesEntitySchema, StandardDevHeightForAgeSchema, StandardDevWeightForHeightSchema, FAQsSchema]
           const resolvedPromises = schemaarray.map(async schema => {
