@@ -71,7 +71,6 @@ interface HardcodedDataType {
     updated_at: string;
     mandatory: number;
   };
-  PinnedChildDevData:string;
   MileStonesData:string;
   VideoArticlesData:string;
   ActivitiesData:string;
@@ -163,7 +162,6 @@ const initialState: HardcodedDataType = {
     updated_at: '',
     mandatory: 0
   },
-  PinnedChildDevData:'',
   MileStonesData:'',
   VideoArticlesData:'',
   ActivitiesData:'',
@@ -288,13 +286,6 @@ export const utilsSlice = createSlice({
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.ChildDevData = action.payload;
       },
-      setAllPinnedChildDevData: (
-        state,
-        action: PayloadAction<any>,
-      ):any => {
-       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
-       state.PinnedChildDevData = action.payload;
-      },
       setAllMileStonesData: (
         state,
         action: PayloadAction<any>,
@@ -333,5 +324,5 @@ export const utilsSlice = createSlice({
   },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData,setAllFaqsData,setIncrementalSyncDT} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData,setAllFaqsData,setIncrementalSyncDT} = utilsSlice.actions;
 export default utilsSlice.reducer;

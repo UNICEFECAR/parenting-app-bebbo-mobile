@@ -14,7 +14,6 @@ export const FaqsData = require('@offlinedata/xk/FaqsData').FaqsData ;
 export const healthCheckupsData =require('@offlinedata/xk/healthCheckupsData').healthCheckupsData;
 export const dailyHomeNotificationdata =require('@offlinedata/xk/dailyHomeNotification').dailyHomeNotificationdata;
 export const MileStonesData =require('@offlinedata/xk/MileStonesData').MileStonesData;
-export const PinnedChildDevData =require('@offlinedata/xk/PinnedChildDevData').PinnedChildDevData;
 export const standardDevData =require('@offlinedata/xk/standardDevData').standardDevData;
 export const SurveyData =require('@offlinedata/xk/SurveyData').SurveyData;
 export const vaccineData =require('@offlinedata/xk/vaccineData').vaccineData;

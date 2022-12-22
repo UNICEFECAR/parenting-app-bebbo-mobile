@@ -14,7 +14,6 @@ import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/sc
 import { FAQsEntity, FAQsSchema } from "../database/schema/FAQsSchema";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from "../database/schema/HealthCheckUpsSchema";
 import { MilestonesEntity, MilestonesSchema } from "../database/schema/MilestonesSchema";
-import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
 import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
 import { SurveysEntity, SurveysSchema } from "../database/schema/SurveysSchema";
 import { TaxonomyEntity, TaxonomySchema } from "../database/schema/TaxonomySchema";
@@ -55,13 +54,6 @@ export const addApiDataInRealm = async (response: any): any => {
         EntitySchema2 = ArticleEntitySchema;
         EntitySchema3 = ActivitiesEntitySchema;
         EntitySchema4 = FAQsSchema;
-    }
-    else if (response.payload.apiEndpoint == appConfig.childdevGirlPinnedContent ||
-        response.payload.apiEndpoint == appConfig.childdevBoyPinnedContent) {
-        insertData = response.payload.data.data;
-        Entity = Entity as PinnedChildDevelopmentEntity;
-        EntitySchema = PinnedChildDevelopmentSchema;
-        pinnedArticle = isArticlePinned;
     }
     else if (response.payload.apiEndpoint == appConfig.videoArticles) {
         insertData = response.payload.data.data;
@@ -128,7 +120,7 @@ export const addApiDataInRealm = async (response: any): any => {
         Entity = Entity as FAQsEntity;
         EntitySchema = FAQsSchema;
     }
-    if (EntitySchema == ArticleEntitySchema || EntitySchema == PinnedChildDevelopmentSchema) {
+    if (EntitySchema == ArticleEntitySchema) {
         try {
             await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData, pinnedArticle);
             return "successinsert";

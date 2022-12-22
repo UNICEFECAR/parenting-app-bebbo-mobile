@@ -14,7 +14,6 @@ export const FaqsData = require('@offlinedata/bebbo/FaqsData').FaqsData ;
 export const healthCheckupsData =require('@offlinedata/bebbo/healthCheckupsData').healthCheckupsData;
 export const dailyHomeNotificationdata =require('@offlinedata/bebbo/dailyHomeNotification').dailyHomeNotificationdata;
 export const MileStonesData =require('@offlinedata/bebbo/MileStonesData').MileStonesData;
-export const PinnedChildDevData =require('@offlinedata/bebbo/PinnedChildDevData').PinnedChildDevData;
 export const standardDevData =require('@offlinedata/bebbo/standardDevData').standardDevData;
 export const SurveyData =require('@offlinedata/bebbo/SurveyData').SurveyData;
 export const vaccineData =require('@offlinedata/bebbo/vaccineData').vaccineData;
