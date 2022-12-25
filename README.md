@@ -1,57 +1,57 @@
-# parenting-app-bebbo-mobile<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-<!--  <a href="https://github.com/github_username/repo_name">
-    <img src="https://github.com/byteout/halo-beba/blob/master/android/app/src/main/res/drawable/icon.png?raw=true" alt="Logo" width="80" height="80">
-  </a>
--->
-  <h3 align="center">Beboo Mobile App for Parenting</h3>
 
-  <p align="center">
-    Interactive guide for parents
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
-  </p>
-</p>
+<h1>Bebbo - an interactive mobile application for parenting</h1>
+    
+### Table of Contents
 
-
-
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
-
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-  * [Libraries Used](#libraries-used)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Running](#running)
-<!-- * [Source Code Overview](#source-code-overview)
-* [Realm Databases](#realm-databases) -->
+* [Project description](#project-description)
+* [Built with](#built-with)<!--* [Used libraries](#used-libraries)-->
+* [Getting started](#getting-started)
+* [Install Bebbo in localhost](#install-bebbo-in-localhost)
+* [How to run](#how-to-run)
 * [License](#license)
+<!-- 
+* [Source Code Overview](#source-code-overview)
+* [Realm Databases](#realm-databases)
+-->
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+## Project description
 
-This is a multi platform mobile application for both iOS and Android.
+[Bebbo](https://www.bebbo.app) is a multi platform mobile application for [iOS](https://apps.apple.com/us/app/bebbo/id1588918146) and [Android](https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo). 
+Discover the most complete parenting app giving you all the tools and expert advice you need just in one app to support your child’s growth development from birth to age 6! Personalize this app to access daily toddler games, parent advice and tips on taking care of your child’s and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child’s development needs.
 
-### Built With
+Bebbo offers:
+* Brief instructional videos and evidence-based support for each stage of your child’s development
+* Personalized 'learning through play' activities and games that support different critical areas of development, including cognition, language, motor skills, social emotional
+* Expert advice and parenting articles covering early learning, health, nutrition, caregiving, and safety, tailored to your questions and your child’s age
+* The ability to search Bebbo’s collection of hundreds of activities and articles by topic, age, or area of development
+* The ability to save and share your favorite content.
+
+Bebbo provides you with an interactive set of tools such as:
+* Development milestones tracker
+* Baby growth tracker
+* Vaccination child immunization tracker
+* Child health check-up tracker.
+
+The app can also operate in an off-line mode in environments with limited internet connectivity.
+It is offered in several languages and free to use. There is no internal advertisments, and you can share it with a partner.
+
+## Built with
 
 * [React Native](https://reactnative.dev/)
-    * Several RN modules have been used in order to speed up the development.
-    * Check package.json for details
+    * Several React Native modules have been used in order to speed up the development.
+    * Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
 * [TypeScript](https://www.typescriptlang.org/)
-    * TypeScript was used as a programming language
-    * Same source code compiles to both iOS and Android applications
+    * TypeScript was used as a programming language.
+    * The same source code compiles into iOS and Android applications.
 * [NPM](https://nodejs.org/en/)
     * NPM (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
-<!--* [Storybook](https://storybook.js.org/)
+<!--
+* [Storybook](https://storybook.js.org/)
     * Storybook was used to create visual tests for many components and services used in the application.
+-->
 
-### Libraries Used
+<!--    
+## Used libraries
 
 Many third party libraries and services were used. These are the most important, the full list can be seen by examining package.json (in the root of the project)
 
@@ -69,26 +69,20 @@ Many third party libraries and services were used. These are the most important,
 * [react-native-paper](https://callstack.github.io/react-native-paper/) - UI components
 * [realm](https://www.npmjs.com/package/realm) - local database
 * [victory-native](https://www.npmjs.com/package/victory-native) - for charts
-
 -->
-<!-- GETTING STARTED -->
-## Getting Started
 
-To get a local copy up and running follow these simple steps.
-
-### Prerequisites
+## Getting started
 
 * Both Mac and Windows can be used for development.
 * Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
 
+## Install Bebbo in localhost
 
-### Installation
-
-1. Clone the repo
+1. Clone the repo via GitBash
 ```sh
-git clone https://github.com/github_username/repo_name.git
+git clone https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
 ```
-2. Install NPM packages (DONT USE yarn!)
+2. Install NPM packages (DO NOT USE yarn!)
 ```sh
 npm install
 ```
@@ -97,15 +91,15 @@ npm install
 pod install
 ```
 Before running ios App on Device, necessary certificate setup from Apple developer Account is required.
-After each time pod install,copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp)
+After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp)
 
-  **Steps to add script(For reference attached screenshots):**
+  **Steps to add script:**
    * click on target’s build phases add on + sign.
-   * Add new run script phase.
+   * Add new run script phase.   
     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/AddScript.png)
     
-   * Rename it to [CP-User] [RNFB] Core Configuration
-      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_ConfigurationScript.png)
+   * Rename it to [CP-User] [RNFB] Core Configuration   
+    ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_ConfigurationScript.png)
       
    * Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Core Configuration” 
       script to other selected target’s  “[CP-User] [RNFB] Core Configuration” script 
@@ -132,11 +126,10 @@ After each time pod install,copy [CP-User] [RNFB] Core Configuration && [CP-User
    * Copy files path from input files from ParentBuddyApp target and paste to other 
       targets “[CP-User] [RNFB] Crashlytics Configuration” script input files 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Input_Crashalytics_File.png)
-      
+      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Input_Crashalytics_File.png)      
 
 4. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
-Refer this library for custom fonts : https://github.com/oblador/react-native-vector-icons
+Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons
 
 5. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
@@ -180,10 +173,7 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
        ```
        https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/XkDevelopment
        ```
-          
-          
-
-    
+               
 6. Configure google Signin and GDrive Import/Export
     * Configure Google Signin and GDrive Import/Export
     * Enable Google Drive API from Cloud Console.
@@ -192,7 +182,7 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
      and add in .env file as  projectNumber and clientIdKey.
        * Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
 
-7. Steps required while creating Flavour builds.Follow below steps for Bebbo Prod and ProdStaging
+7. Steps required while creating Flavour builds. Follow below steps for Bebbo Prod and ProdStaging
    
       * In apiConstants.ts change buildFor const value to buildForBebbo as follows :
          
@@ -235,40 +225,37 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
         clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
         ```
         
-  8. Running application based on flavours
-  * After you install the application you can create build files for various flavors with below npx commands.
+  ## How to run
+  After you install the application you can create build files for various flavors with below npx commands.
 	
-     Prod
-     ```
-	npx react-native run-android --variant=prodRelease --appId org.unicef.ecar.bebbo (apk)
-	cd android && ./gradlew bundleProdRelease (aab)
-	npx react-native run-ios --scheme ParentBuddyApp (ipa)
-     ```
+   Prod
+   ```
+   npx react-native run-android --variant=prodRelease --appId org.unicef.ecar.bebbo (apk)
+   cd android && ./gradlew bundleProdRelease (aab)
+   npx react-native run-ios --scheme ParentBuddyApp (ipa)
+   ```
 
-     Prodstaging
-     ```
-	npx react-native run-android --variant=prodstagingRelease --appId com.datamatics.bebbo (apk)
-	cd android && ./gradlew bundleProdstagingRelease (aab)
-    npx react-native run-ios --scheme ParentBuddyAppDev (ipa)
-     ```
+   Prodstaging
+   ```
+   npx react-native run-android --variant=prodstagingRelease --appId com.datamatics.bebbo (apk)
+   cd android && ./gradlew bundleProdstagingRelease (aab)
+   npx react-native run-ios --scheme ParentBuddyAppDev (ipa)
+   ```
 
-     xk 
-     ```
-	npx react-native run-android --variant=xkRelease --appId org.unicef.kosovo.foleja (apk)
-	cd android && ./gradlew bundleXkRelease (aab)
-	npx react-native run-ios --scheme ParentBuddyAppXk (ipa)
-     ```
+   xk 
+   ```
+   npx react-native run-android --variant=xkRelease --appId org.unicef.kosovo.foleja (apk)
+   cd android && ./gradlew bundleXkRelease (aab)
+   npx react-native run-ios --scheme ParentBuddyAppXk (ipa)
+   ```
 
-     xkstaging 
-    ```
-	npx react-native run-android --variant=xkstagingRelease --appId com.datamatics.foleja (apk)
-	cd android && ./gradlew bundleXkstagingRelease (aab)
-	npx react-native run-ios --scheme ParentBuddyAppXkDev (ipa)
-    ```
+   xkstaging 
+   ```
+   npx react-native run-android --variant=xkstagingRelease --appId com.datamatics.foleja (apk)
+   cd android && ./gradlew bundleXkstagingRelease (aab)
+   npx react-native run-ios --scheme ParentBuddyAppXkDev (ipa)
+   ```
 
-
-There are several other NPM scripts that can be useful during development. Check package.json for details.
-<!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
