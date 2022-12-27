@@ -3,8 +3,8 @@
     
 ### Table of Contents
 
-* [Project description](#project-description)
-* [Built with](#built-with)<!--* [Used libraries](#used-libraries)-->
+* [Introduction](#introduction)
+* [Technology stack](#technology-stack)<!--* [Used libraries](#used-libraries)-->
 * [Getting started](#getting-started)
 * [Install Bebbo in localhost](#install-bebbo-in-localhost)
 * [How to run](#how-to-run)
@@ -14,7 +14,7 @@
 * [Realm Databases](#realm-databases)
 -->
 
-## Project description
+## Introduction
 
 [Bebbo](https://www.bebbo.app) is a multi platform mobile application for [iOS](https://apps.apple.com/us/app/bebbo/id1588918146) and [Android](https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo). 
 Discover the most complete parenting app giving you all the tools and expert advice you need just in one app to support your child’s growth development from birth to age 6! Personalize this app to access daily toddler games, parent advice and tips on taking care of your child’s and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child’s development needs.
@@ -35,7 +35,7 @@ Bebbo provides you with an interactive set of tools such as:
 The app can also operate in an off-line mode in environments with limited internet connectivity.
 It is offered in several languages and free to use. There is no internal advertisments, and you can share it with a partner.
 
-## Built with
+## Technology stack
 
 * [React Native](https://reactnative.dev/)
     * Several React Native modules have been used in order to speed up the development.
@@ -94,39 +94,47 @@ Before running ios App on Device, necessary certificate setup from Apple develop
 After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp)
 
   **Steps to add script:**
-   * click on target’s build phases add on + sign.
+   * Click on target’s build phases add on + sign.
    * Add new run script phase.   
-    ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/AddScript.png)
+   
+     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/AddScript.png)
     
    * Rename it to [CP-User] [RNFB] Core Configuration   
-    ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_ConfigurationScript.png)
+   
+     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_ConfigurationScript.png)
       
    * Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Core Configuration” 
       script to other selected target’s  “[CP-User] [RNFB] Core Configuration” script 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_ConfigurationScript.png)
+      
+     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_ConfigurationScript.png)
       
    * Copy files path from input files from ParentBuddyApp target and paste to 
       other targets  “[CP-User] [RNFB] Core Configuration” script input files 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_Input_ConfigurationFile.png)
+     
+     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_Input_ConfigurationFile.png)
       
-   * click on target’s build phases add on + sign.
+   * Click on target’s build phases add on + sign.
    * Add new run script
-      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/AddScript.png)
+     
+     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/AddScript.png)
       
    * Rename it to  “[CP-User] [RNFB] Crashlytics Configuration”.
-      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Crashalytics_Script.png)
+     
+     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Crashalytics_Script.png)
       
    * Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Crashlytics Configuration” 
       script to other selected target’s  “[CP-User] [RNFB] Crashlytics Configuration” script 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Crashalytics_Script.png)
+     
+     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Crashalytics_Script.png)
       
    * Copy files path from input files from ParentBuddyApp target and paste to other 
       targets “[CP-User] [RNFB] Crashlytics Configuration” script input files 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Input_Crashalytics_File.png)      
+     
+     ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Input_Crashalytics_File.png)      
 
 4. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
 Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons
