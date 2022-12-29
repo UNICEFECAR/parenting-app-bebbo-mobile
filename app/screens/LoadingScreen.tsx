@@ -118,7 +118,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     console.log(routes.length, "in callSagaApi navigation history--", navigation.dangerouslyGetState());
 
     const prevRoute = routes.length > 2 ? routes[routes.length - 2] : null;
-    if (prevPage == "ChilSetup" || prevPage == "AddEditChild") {
+    if (prevPage == "ChildSetup" || prevPage == "AddEditChild") {
       dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
     else if (prevPage == "Home") {
