@@ -114,7 +114,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
         await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
         await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
         return "success";
-    } else if (prevPage == "ChilSetup") {
+    } else if (prevPage == "ChildSetup") {
         let Entity: any;
         const currentChildData = {
             "gender": activeChild.gender,
