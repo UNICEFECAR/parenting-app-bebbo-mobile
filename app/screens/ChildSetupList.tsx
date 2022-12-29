@@ -191,7 +191,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
       routes: [
         {
           name: 'LoadingScreen',
-          params: { apiJsonData: apiJsonData, prevPage: 'ChilSetup' },
+          params: { apiJsonData: apiJsonData, prevPage: 'ChildSetup' },
         },
       ],
     });

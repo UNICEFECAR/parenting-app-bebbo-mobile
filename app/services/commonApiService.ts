@@ -172,7 +172,7 @@ export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigati
     navigation.navigate('ChildSetup');
   }
 }
-export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any,oldErrorObj:any):Promise<any> => {
+export const onChildSetupApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any,oldErrorObj:any):Promise<any> => {
   const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
   if(artresp && artresp != {})
   {

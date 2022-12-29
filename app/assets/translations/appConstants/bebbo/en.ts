@@ -451,6 +451,10 @@ const en = {
                 //24 May
                 relatedVideoArticle: "Related videos",
                 upto6YearsMsg: "This app is designed for children up to 6 years of age",
+                //28th Dec
+                tNcTermsConditions: "Terms and conditions of the REMOVED_FACEBOOK_APP_ID1 application",
+                tNcTermsConditionsTitle: "Terms and conditions",
+                tNcStaticContent: "REMOVED_FACEBOOK_APP_ID1 does not collect or store any personal information.All data you enter is saved only on your phone.",
 
         }
 }
