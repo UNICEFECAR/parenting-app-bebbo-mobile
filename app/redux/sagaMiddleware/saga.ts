@@ -1,7 +1,7 @@
 import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
-import commonApiService, { cancelRetryAlert, onChildSetuppiSuccess, onOnLoadApiSuccess, onSponsorApiSuccess, retryAlert } from '../../services/commonApiService';
+import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onSponsorApiSuccess, retryAlert } from '../../services/commonApiService';
 import { ApiJsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
 import { receiveAPIFailure } from './sagaSlice';
@@ -51,8 +51,8 @@ if (prevPage == 'Terms') {
 else if (prevPage == 'CountryLanguageSelection') {
   yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
 }
- else if (prevPage == 'ChilSetup') {
-  yield call(onChildSetuppiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
+ else if (prevPage == 'ChildSetup') {
+  yield call(onChildSetupApiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
 }
  else if (prevPage == 'Home' || prevPage == 'CountryLangChange' || prevPage == 'PeriodicSync' || prevPage == 'ImportScreen' || prevPage == 'DownloadUpdate' || prevPage == 'ForceUpdate' || prevPage == 'DownloadAllData') {
   yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData,enableImageDownload)
