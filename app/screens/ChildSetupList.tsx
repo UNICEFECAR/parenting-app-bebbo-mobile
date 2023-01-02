@@ -26,7 +26,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { primaryColor } from '@styles/style';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, BackHandler, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { requestNotifications } from 'react-native-permissions';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -39,6 +40,7 @@ import {
   ShiftFromBottom10,
   ShiftFromTop30
 } from '../styles/typography';
+import PushNotification from 'react-native-push-notification';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -88,6 +90,18 @@ const ChildSetupList = ({ navigation }: Props): any => {
     React.useCallback(() => {
       getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
+      async function requestNotificationPermission(): Promise<any>{
+        const status= await requestNotifications([]);
+        console.log(status,"..status..")
+      }
+      setTimeout(()=>{
+        if(Platform.OS=="android"){
+          requestNotificationPermission();
+        }
+        else{
+          PushNotification.requestPermissions(); 
+        }  
+      },100)
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
