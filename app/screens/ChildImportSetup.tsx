@@ -28,7 +28,7 @@ import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import analytics from '@react-native-firebase/analytics';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View, ScrollView, BackHandler, StyleSheet } from 'react-native';
+import { Pressable, Text, View, ScrollView, BackHandler, StyleSheet, Platform } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -50,7 +50,8 @@ import {
 } from '../styles/typography';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import { primaryColor } from '@styles/style';
-
+import PushNotification from 'react-native-push-notification';
+import { requestNotifications } from 'react-native-permissions';
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor:primaryColor,
@@ -127,6 +128,18 @@ const ChildImportSetup = (props: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
+      async function requestNotificationPermission(): Promise<any>{
+        const status= await requestNotifications([]);
+        console.log(status,"..status..")
+      }
+      setTimeout(()=>{
+        if(Platform.OS=="android"){
+          requestNotificationPermission();
+        }
+        else{
+          PushNotification.requestPermissions(); 
+        }  
+      },100)
       props.navigation.dispatch((state: any) => {
         // Remove the home route from the stack
         const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen');
