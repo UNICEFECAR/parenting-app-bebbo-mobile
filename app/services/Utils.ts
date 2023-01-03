@@ -1,6 +1,8 @@
 import { CHILDREN_PATH } from "@types/types";
 import { DateTime } from "luxon";
+import { Platform } from "react-native";
 import RNFS from 'react-native-fs';
+import { requestNotifications } from "react-native-permissions";
 import { ObjectSchema } from "realm";
 import { v4 as uuidv4 } from 'uuid';
 import { appConfig, isArticlePinned, luxonDefaultLocale } from "../assets/translations/appOfflineData/apiConstants";
@@ -21,6 +23,22 @@ import { VaccinationEntity, VaccinationSchema } from "../database/schema/Vaccina
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
+import PushNotification from 'react-native-push-notification';
+const requestNotificationPermission= async (): any=>{
+    const status= await requestNotifications([]);
+    console.log(status,"..status..");
+   
+  }
+export const  notiPermissionUtil= async ():any=>{
+    setTimeout(()=>{
+        if(Platform.OS=="android"){
+          requestNotificationPermission();
+        }
+        else{
+          PushNotification.requestPermissions(); 
+        }  
+      },100);
+}
 export const addApiDataInRealm = async (response: any): any => {
     // return new Promise(async (resolve, reject) => {
     let EntitySchema: ObjectSchema = { name: "", properties: {} };
