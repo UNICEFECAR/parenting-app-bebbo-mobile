@@ -10,7 +10,7 @@ class LocalNotifications {
         console.log("onNotification-",notification);
       },
       popInitialNotification: true,
-      requestPermissions: true,
+      requestPermissions: false,
       // IOS ONLY (optional): default: all - Permissions to register.
       permissions: {
         alert: true,
