@@ -79,6 +79,7 @@ const ChildDevelopment = ({ route, navigation }: any):any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  console.log(childAge,"......",activeChild)
   const childDevModalOpened = useAppSelector((state: any) =>
     (state.utilsData.IsChildDevModalOpened),
   );
