@@ -38,7 +38,7 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { apiJsonDataGet, getAge, getAllChildren, setActiveChild } from '../services/childCRUD';
-import { getChild } from '../services/Utils';
+import { getChild, notiPermissionUtil } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3,
@@ -50,7 +50,6 @@ import {
 } from '../styles/typography';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import { primaryColor } from '@styles/style';
-
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor:primaryColor,
@@ -127,6 +126,7 @@ const ChildImportSetup = (props: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
+      notiPermissionUtil();
       props.navigation.dispatch((state: any) => {
         // Remove the home route from the stack
         const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen');

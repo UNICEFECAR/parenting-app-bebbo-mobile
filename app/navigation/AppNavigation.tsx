@@ -215,26 +215,6 @@ export default (): any => {
   };
   useEffect(() => {
 
-
-    async function requestUserPermission(): Promise<any> {
-      const authStatus = await messaging().requestPermission();
-      const enabled =
-        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-      console.log(enabled, "..enabled..", authStatus, "..authStatus..");
-      if (enabled) {
-        console.log(enabled, "..inif..");
-      }
-      else {
-        console.log(enabled, "..inelse..");
-      }
-
-
-    }
-    if (Platform.OS == "ios") {
-      requestUserPermission();
-    }
-
     const unsubscribe = DynamicLinks().onLink(handleDynamicLink);
     // When the component is unmounted, remove the listener
     DynamicLinks()
@@ -395,7 +375,7 @@ export default (): any => {
           }
         },
         popInitialNotification: true,
-        requestPermissions: true,
+        requestPermissions: false,
       });
       PushNotification.popInitialNotification((notification: any) => {
         handleNotification(notification);

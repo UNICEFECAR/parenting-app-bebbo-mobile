@@ -31,7 +31,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
 import { apiJsonDataGet, deleteChild, getAge, getAllChildren, getAllConfigData, isFutureDate } from '../services/childCRUD';
-import { formatDate } from '../services/Utils';
+import { formatDate, notiPermissionUtil } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3Centerw,
@@ -88,6 +88,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
     React.useCallback(() => {
       getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
+      notiPermissionUtil();
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
