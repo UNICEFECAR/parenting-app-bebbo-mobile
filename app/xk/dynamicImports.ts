@@ -4,6 +4,8 @@ import bebboLogoShape1 from '@assets/svg/xk/bebbo_logo_shape.svg';
 export const bebboLogoShape=bebboLogoShape1;
 import imgLogoChatbotNew1 from '@assets/svg/xk/img-logo-chatbot-new.svg';
 export const imgLogoChatbotNew=imgLogoChatbotNew1;
+import menubebboLogo from '@assets/svg/xk/bebbomenulogo.svg';
+export const menubebboLogoNew=menubebboLogo;
 export const AVAILABLE_LANGUAGES =require('../localization/Available_lang_xk').default;
 export const taxonomydata =require('@offlinedata/xk/taxonomies').taxonomydata;
 export const ActivitiesData =require('@offlinedata/xk/ActivitiesData').ActivitiesData;
