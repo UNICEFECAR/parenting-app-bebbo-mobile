@@ -448,6 +448,10 @@ const KGru = {
                 //24 May
                 relatedVideoArticle: "Видео по теме",
                 upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
+                 //donate button
+                 donateButton:"Пожертвования для Беббо",
+                 contactUs:"Напишите ни",
+                 drawerMenuabtTxtNew: "О {{appName}}",
         }
 }
 export default KGru;
