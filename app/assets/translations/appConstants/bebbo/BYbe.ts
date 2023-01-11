@@ -448,6 +448,10 @@ const BYbe = {
                 //24 May
                 relatedVideoArticle: "Відэа па тэме",
                 upto6YearsMsg: "Гэты дадатак прызначаны для дзяцей ва ўзросце да 6 гадоў",
+                 //donate button
+                 donateButton:"Ахвяруйце для Беббо",
+                 contactUs:"Напішыце нам",
+                 drawerMenuabtTxtNew: "Пра {{appName}}",
         }
 }
 export default BYbe;
