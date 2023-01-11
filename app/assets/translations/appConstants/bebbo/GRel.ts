@@ -448,7 +448,11 @@ const GRel = {
 
                 //24 May
                 relatedVideoArticle: "Σχετικά βίντεο",
-                upto6YearsMsg: "Αυτή η εφαρμογή έχει σχεδιαστεί για παιδιά έως 6 ετών."
+                upto6YearsMsg: "Αυτή η εφαρμογή έχει σχεδιαστεί για παιδιά έως 6 ετών.",
+                 //donate button
+                 donateButton:"Κάντε μια δωρεά για το Bebbo",
+                 contactUs:"Στείλτε μας μήνυμα",
+                 drawerMenuabtTxtNew: "Σχετικά με {{appName}}",
         }
 }
 export default GRel;
