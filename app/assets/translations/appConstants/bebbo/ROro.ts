@@ -450,6 +450,10 @@ const ROro = {
                 //24 May
                 relatedVideoArticle: "Videoclipuri similare",
                 upto6YearsMsg: "Această aplicație este concepută pentru copii cu vârsta de pănă la 6 ani.",
+                 //donate button
+                 donateButton:"Donați pentru Bebbo",
+                 contactUs:"Scrieți-ne",
+                 drawerMenuabtTxtNew: "Despre {{appName}}",
         }
 }
 export default ROro;
