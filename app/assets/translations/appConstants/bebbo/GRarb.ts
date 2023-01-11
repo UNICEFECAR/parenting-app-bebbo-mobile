@@ -447,7 +447,12 @@ const GRarb = {
                 vcHasScheduled: "Vaccination is scheduled",
 
                 //24 May
-                relatedVideoArticle: "Related Video advice ",
+                relatedVideoArticle: "Related videos",
+                upto6YearsMsg: "This app is designed for children up to 6 years of age",
+                 //donate button
+                 donateButton:"Donate for REMOVED_FACEBOOK_APP_ID1",
+                 contactUs:"Write to Us",
+                 drawerMenuabtTxtNew: "About {{appName}}",
         }
 
 }

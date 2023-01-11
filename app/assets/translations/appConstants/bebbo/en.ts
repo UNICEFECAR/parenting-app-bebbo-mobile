@@ -453,8 +453,8 @@ const en = {
                 upto6YearsMsg: "This app is designed for children up to 6 years of age",
                 //donate button
                 donateButton:"Donate for REMOVED_FACEBOOK_APP_ID1",
-                contactUs:"Contact us",
-                drawerMenuabtTxtNew: "About",
+                contactUs:"Write to Us",
+                drawerMenuabtTxtNew: "About {{appName}}",
 
         }
 }
