@@ -447,7 +447,11 @@ const BGbg = {
 
                 //24 May
                 relatedVideoArticle: "Свързани видеа",
-                upto6YearsMsg: "Това приложение е предназначено за деца на възраст до 6 години."
+                upto6YearsMsg: "Това приложение е предназначено за деца на възраст до 6 години.",
+                 //donate button
+                 donateButton:"Дарете за Беббо",
+                 contactUs:"Пишете ни",
+                 drawerMenuabtTxtNew: "За {{appName}}",
 
         }
 }
