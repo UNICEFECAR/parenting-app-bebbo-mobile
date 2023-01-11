@@ -448,7 +448,11 @@ const MKsq = {
 
                 //24 May
                 relatedVideoArticle: "Video tjera",
-                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç"
+                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
+                 //donate button
+                 donateButton:"Bëni donacion për Bebbo",
+                 contactUs:"Na shkruani",
+                 drawerMenuabtTxtNew: "Rheth {{appName}}",
         }
 }
 export default MKsq;
