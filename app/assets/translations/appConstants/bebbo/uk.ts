@@ -452,6 +452,10 @@ const uk = {
                 //24 May
                 relatedVideoArticle: "Дитячий профіль видалено",
                 upto6YearsMsg: "Ця програма призначена для дітей віком до 6 років",
+                 //donate button
+                 donateButton:"Пожертвуйте для Bebbo",
+                 contactUs:"Напишіть нам",
+                 drawerMenuabtTxtNew: "Про {{appName}}",
         }
 }
 export default uk;
