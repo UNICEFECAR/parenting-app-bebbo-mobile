@@ -448,6 +448,10 @@ const RSsr = {
               //24 May
               relatedVideoArticle: "Povezani videi",
               upto6YearsMsg: "Ova aplikacija je namenjena deci uzrasta do 6 godina",
+              //donate button
+              donateButton:"Donirajte za Bebbo",
+              contactUs:"Pišite nam",
+              drawerMenuabtTxtNew: "O {{appName}}",
        }
 
 }

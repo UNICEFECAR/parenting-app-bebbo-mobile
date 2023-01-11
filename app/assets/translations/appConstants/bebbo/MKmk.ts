@@ -450,6 +450,10 @@ const MKmk = {
                 //24 May
                 relatedVideoArticle: "Видеа со слична содржина",
                 upto6YearsMsg: "Апликацијата е дизајнирана за деца до 6 години",
+                 //donate button
+                 donateButton:"Донирај за Беббо",
+                 contactUs:"Испрати ни порака",
+                 drawerMenuabtTxtNew: "За {{appName}}",
         }
 }
 export default MKmk;
