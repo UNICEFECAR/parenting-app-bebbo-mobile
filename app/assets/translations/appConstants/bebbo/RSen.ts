@@ -447,6 +447,11 @@ const RSen = {
 
                 //24 May
                 relatedVideoArticle: "Related videos",
+                upto6YearsMsg: "This app is designed for children up to 6 years of age",
+                 //donate button
+                 donateButton:"Donate for Bebbo",
+                 contactUs:"Write to Us",
+                 drawerMenuabtTxtNew: "About {{appName}}",
         }
 }
 export default RSen;
