@@ -449,6 +449,10 @@ const MEcnr = {
                 //24 May
                 relatedVideoArticle: "Povezani video-zapisi",
                 upto6YearsMsg: "Ova aplikacija je osmišljena za djecu uzrasta do 6 godina",
+                 //donate button
+                 donateButton:"Donirajte za REMOVED_FACEBOOK_APP_ID1",
+                 contactUs:"Pišite nam",
+                 drawerMenuabtTxtNew: "O {{appName}}",
         }
 
 }
