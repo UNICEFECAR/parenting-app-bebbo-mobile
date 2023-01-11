@@ -452,6 +452,10 @@ const uk = {
                 //24 May
                 relatedVideoArticle: "Дитячий профіль видалено",
                 upto6YearsMsg: "Ця програма призначена для дітей віком до 6 років",
+                 //donate button
+                 donateButton:"Пожертвуйте для REMOVED_FACEBOOK_APP_ID1",
+                 contactUs:"Напишіть нам",
+                 drawerMenuabtTxtNew: "Про {{appName}}",
         }
 }
 export default uk;

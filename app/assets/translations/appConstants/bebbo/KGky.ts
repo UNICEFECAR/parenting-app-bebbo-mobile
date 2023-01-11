@@ -448,6 +448,10 @@ const KGky = {
                 //24 May
                 relatedVideoArticle: "Байланыштуу видео",
                 upto6YearsMsg: "Бул колдонмо 6 жашка чейинки балдарга арналган",
+                 //donate button
+                 donateButton:"Беббо үчүн кайрымдуулук",
+                 contactUs:"Бизге жазыңыз",
+                 drawerMenuabtTxtNew: "{{appName}} жөнүндө",
         }
 }
 export default KGky;
