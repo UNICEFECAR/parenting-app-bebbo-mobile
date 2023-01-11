@@ -450,6 +450,10 @@ const MDro = {
                 //24 May
                 relatedVideoArticle: "Videoclipuri similare",
                 upto6YearsMsg: "Această aplicație este destinată copiilor cu vârsta până la 6 ani",
+                 //donate button
+                 donateButton:"Donează pentru Bebbo",
+                 contactUs:"Trimite-ne un e-mail",
+                 drawerMenuabtTxtNew: "Despre {{appName}}",
         }
 }
 export default MDro;
