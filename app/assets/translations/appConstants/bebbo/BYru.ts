@@ -447,7 +447,11 @@ const BYru = {
 
                 //24 May
                 relatedVideoArticle: "Видео по теме",
-                upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет"
+                upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
+                 //donate button
+                 donateButton:"Пожертвовать для Беббо",
+                 contactUs:"Напишите нам",
+                 drawerMenuabtTxtNew: "О {{appName}}",
         }
 }
 export default BYru;
