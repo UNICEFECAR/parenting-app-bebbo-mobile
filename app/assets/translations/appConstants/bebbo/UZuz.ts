@@ -449,6 +449,10 @@ const UZuz = {
               //24 May
               relatedVideoArticle: "Tegishli videolar",
               upto6YearsMsg: "Bu ilova 6 yoshgacha boʻlgan bolalar uchun moʻljallangan",
+               //donate button
+               donateButton:"REMOVED_FACEBOOK_APP_ID1ʼga moliyaviy koʻmak",
+               contactUs:"Bizga yozish",
+               drawerMenuabtTxtNew: "{{appName}} haqinda",
        }
 }
 export default UZuz;

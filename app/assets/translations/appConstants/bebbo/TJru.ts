@@ -449,6 +449,10 @@ const TJru = {
                 //24 May
                 relatedVideoArticle: "Соответствующее видео",
                 upto6YearsMsg: "Это приложение предназначено для детей до 6 лет",
+                 //donate button
+                 donateButton:"Сделайте пожертвование для Беббо",
+                 contactUs:"Напишите нам",
+                 drawerMenuabtTxtNew: "О {{appName}}",
 
         }
 }

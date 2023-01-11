@@ -449,6 +449,10 @@ const UZru = {
                 //24 May
                 relatedVideoArticle: "Похожие видео",
                 upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
+                 //donate button
+                 donateButton:"Пожертвования для Беббо",
+                 contactUs:"Напишите ни",
+                 drawerMenuabtTxtNew: "О {{appName}}",
         }
 }
 export default UZru;
