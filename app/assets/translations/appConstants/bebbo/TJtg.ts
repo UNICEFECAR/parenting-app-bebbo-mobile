@@ -446,7 +446,11 @@ const TJtg = {
 
                 //24 May
                 relatedVideoArticle: "Наворҳои шабеҳ",
-                upto6YearsMsg: "Ин афзорак барои кӯдакони то синни 6 - сола пешбинӣ шудааст"
+                upto6YearsMsg: "Ин афзорак барои кӯдакони то синни 6 - сола пешбинӣ шудааст",
+                 //donate button
+                 donateButton:"Барои Беббо кӯмаки хайриявӣ кунед",
+                 contactUs:"Ба мо нависед",
+                 drawerMenuabtTxtNew: "Дар бораи {{appName}}",
         }
 }
 export default TJtg;
