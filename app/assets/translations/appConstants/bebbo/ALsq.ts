@@ -448,6 +448,10 @@ const ALsq = {
               //24 May
               relatedVideoArticle: "Video të ngjashme",
               upto6YearsMsg: "Ky aplikacion është krijuar për fëmijët deri në moshën 6 vjeç.",
+              //donate button
+              donateButton: "Bëni donacion për Bebbo",
+              contactUs: "Na shkruani",
+              drawerMenuabtTxtNew: "Rheth {{appName}}",
 
        }
 }
