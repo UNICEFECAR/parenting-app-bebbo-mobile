@@ -446,7 +446,7 @@ const RSsr = {
               upto6YearsMsg: "Ova aplikacija je namenjena deci uzrasta do 6 godina",
               donateButton: "Donirajte za REMOVED_FACEBOOK_APP_ID1",
               contactUs: "Pišite nam",
-              drawerMenuabtTxtNew: "O {{appName}}",
+              aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "O {{appName}}",
        }
 
 }

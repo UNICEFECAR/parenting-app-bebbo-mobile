@@ -450,7 +450,7 @@ const ROro = {
                 upto6YearsMsg: "Această aplicație este concepută pentru copii cu vârsta de pănă la 6 ani.",
                 donateButton: "Donați pentru REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Scrieți-ne",
-                drawerMenuabtTxtNew: "Despre {{appName}}",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Despre {{appName}}",
         }
 }
 export default ROro;

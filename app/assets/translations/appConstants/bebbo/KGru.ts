@@ -446,7 +446,7 @@ const KGru = {
                 upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
                 donateButton: "Пожертвования для Беббо",
                 contactUs: "Напишите ни",
-                drawerMenuabtTxtNew: "О {{appName}}",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "О {{appName}}",
         }
 }
 export default KGru;

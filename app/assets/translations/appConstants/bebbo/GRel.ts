@@ -447,7 +447,7 @@ const GRel = {
                 upto6YearsMsg: "Αυτή η εφαρμογή έχει σχεδιαστεί για παιδιά έως 6 ετών.",
                 donateButton: "Κάντε μια δωρεά για το REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Στείλτε μας μήνυμα",
-                drawerMenuabtTxtNew: "Σχετικά με {{appName}}",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Σχετικά με {{appName}}",
         }
 }
 export default GRel;

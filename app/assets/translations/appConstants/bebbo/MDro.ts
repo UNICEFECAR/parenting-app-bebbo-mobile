@@ -450,7 +450,7 @@ const MDro = {
                 upto6YearsMsg: "Această aplicație este destinată copiilor cu vârsta până la 6 ani",
                 donateButton: "Donează pentru REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Trimite-ne un e-mail",
-                drawerMenuabtTxtNew: "Despre {{appName}}",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Despre {{appName}}",
         }
 }
 export default MDro;
