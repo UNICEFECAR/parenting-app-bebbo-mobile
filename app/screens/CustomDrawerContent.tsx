@@ -34,6 +34,7 @@ import {
   DrawerHeadContainer,
   DrawerLinkView,
   NavIconSpacing,
+  NavIconSpacingAbout,
   SubDrawerHead,
   SubDrawerLinkView
 } from '@components/shared/NavigationDrawer';
@@ -54,41 +55,45 @@ import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import { isFutureDate } from '../services/childCRUD';
-import { formatDate,addSpaceToHtml } from '../services/Utils';
+import { formatDate, addSpaceToHtml } from '../services/Utils';
 
 const styles = StyleSheet.create({
   containerView: {
-    backgroundColor:secondaryColor,
-    flex:1
+    backgroundColor: secondaryColor,
+    flex: 1
   },
-  headingFlexShrink: { 
+  headingFlexShrink: {
     flexShrink: 1
   },
-  iconStyle: { 
+  iconStyle: {
     alignSelf: 'center',
     flex: 1,
-    textAlign: 'right' 
+    textAlign: 'right'
+  },
+  padding2:{
+    paddingLeft:Platform.OS=="android" ? 2:2
   },
   scrollViewStyle: {
-    backgroundColor:bgcolorWhite2,
-    flex:1
+    backgroundColor: bgcolorWhite2,
+    flex: 1
   },
-  textStyle: { 
+  textStyle: {
     fontSize: 12,
     fontWeight: 'normal'
   },
-  touchableLeft: { 
+  touchableLeft: {
     marginLeft: 2,
-    padding: 8 
+    padding: 8
   },
-  touchableRight: { 
+  touchableRight: {
     marginRight: 2,
-    padding: 8 
+    padding: 8
   }
 })
-const CustomDrawerContent = ({ navigation }: any):any => {
+const CustomDrawerContent = ({ navigation }: any): any => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
+  const [aboutaccordvalue, onChangeAboutAccordvalue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -101,8 +106,10 @@ const CustomDrawerContent = ({ navigation }: any):any => {
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
   );
-  const feedbackItem = surveryData.find((item:any) => item.type == "feedback")
-  const userGuideItem = surveryData.find((item:any) => item.type == "user_guide")
+  const feedbackItem = surveryData.find((item: any) => item.type == "feedback")
+  const userGuideItem = surveryData.find((item: any) => item.type == "user_guide")
+  const donateItem = surveryData.find((item: any) => item.type == "donate")
+  console.log(donateItem, "..donateItem..");
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices ? state.childData.childDataSet.favoriteadvices : []
@@ -114,79 +121,82 @@ const CustomDrawerContent = ({ navigation }: any):any => {
   const isOpen: boolean = useIsDrawerOpen();
   useFocusEffect(
     React.useCallback(() => {
-    if (isOpen) {
-      let favadvices,favgames;
-      if(favoriteadvices && favoriteadvices.length > 0) {
-        favadvices = favoriteadvices.length;
-      }else {
-        favadvices = 0;
+      if (isOpen) {
+        let favadvices, favgames;
+        if (favoriteadvices && favoriteadvices.length > 0) {
+          favadvices = favoriteadvices.length;
+        } else {
+          favadvices = 0;
+        }
+        if (favoritegames && favoritegames.length > 0) {
+          favgames = favoritegames.length;
+        } else {
+          favgames = 0;
+        }
+        setfavoritescount(favadvices + favgames);
       }
-      if(favoritegames && favoritegames.length > 0) {
-        favgames = favoritegames.length;
-      }else {
-        favgames = 0;
-      }
-      setfavoritescount(favadvices + favgames);
-    }
-  }, [isOpen, activeChild.uuid, favoriteadvices,favoritegames]),
+    }, [isOpen, activeChild.uuid, favoriteadvices, favoritegames]),
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const locale = useAppSelector(
+    (state: any) => state.selectedCountry.locale,
+  );
   useFocusEffect(
     React.useCallback(() => {
-    if (isOpen) {
-      // Your dismiss logic here 
+      if (isOpen) {
+        // Your dismiss logic here 
 
-      if (allnotis.length > 0) {
-        const currentChildNotis = allnotis?.find((item:any) => item.childuuid == activeChild.uuid)
-        if (!isFutureDate(activeChild?.birthDate)) {
-        if (currentChildNotis) {
-          const currentChildallnoti: any = [];
-          if (currentChildNotis.gwcdnotis) {
-            currentChildNotis.gwcdnotis.forEach((item:any) => {
-              currentChildallnoti.push(item)
-            })
-          }
-          if (currentChildNotis.hcnotis) {
-            currentChildNotis.hcnotis.forEach((item:any) => {
-              currentChildallnoti.push(item)
-            })
-          }
-          if (currentChildNotis.vcnotis) {
-            currentChildNotis.vcnotis.forEach((item:any) => {
-              currentChildallnoti.push(item)
-            })
-          }
-          if (currentChildNotis.reminderNotis) {
-            currentChildNotis.reminderNotis.forEach((item:any) => {
-              currentChildallnoti.push(item)
-            })
-          }
-          const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
-          const toDay = DateTime.fromJSDate(new Date()).toMillis();
+        if (allnotis.length > 0) {
+          const currentChildNotis = allnotis?.find((item: any) => item.childuuid == activeChild.uuid)
+          if (!isFutureDate(activeChild?.birthDate)) {
+            if (currentChildNotis) {
+              const currentChildallnoti: any = [];
+              if (currentChildNotis.gwcdnotis) {
+                currentChildNotis.gwcdnotis.forEach((item: any) => {
+                  currentChildallnoti.push(item)
+                })
+              }
+              if (currentChildNotis.hcnotis) {
+                currentChildNotis.hcnotis.forEach((item: any) => {
+                  currentChildallnoti.push(item)
+                })
+              }
+              if (currentChildNotis.vcnotis) {
+                currentChildNotis.vcnotis.forEach((item: any) => {
+                  currentChildallnoti.push(item)
+                })
+              }
+              if (currentChildNotis.reminderNotis) {
+                currentChildNotis.reminderNotis.forEach((item: any) => {
+                  currentChildallnoti.push(item)
+                })
+              }
+              const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+              const toDay = DateTime.fromJSDate(new Date()).toMillis();
 
 
-          const combinedNotis = currentChildallnoti.sort(
-            (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
-          ).filter((item:any) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
-          setNotifications(currentChildallnoti.length>0?combinedNotis:[])
+              const combinedNotis = currentChildallnoti.sort(
+                (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
+              ).filter((item: any) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
+              setNotifications(currentChildallnoti.length > 0 ? combinedNotis : [])
+            }
+          } else {
+            setNotifications([]);
+          }
         }
-      }else{
-        setNotifications([]);
       }
-      }
-    }
-  }, [isOpen, activeChild.uuid, allnotis]),
+    }, [isOpen, activeChild.uuid, allnotis]),
   );
-  const onShare = async ():Promise<any> => {
-    const localeData=(String(buildFor) != buildForBebbo)?languageCode:"";
-    const messageData=t('appShareText')+shareText+localeData;
-    console.log(messageData,"..messageData..");
+  const onShare = async (): Promise<any> => {
+    const localeData = (String(buildFor) != buildForBebbo) ? languageCode : "";
+    const messageData = t('appShareText') + shareText + localeData;
+    console.log(messageData, "..messageData..");
     try {
       const result = await Share.share({
         // message: t('appShareText')+'\nhttps://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en', 
-        message:messageData , 
+        message: messageData,
         //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
@@ -207,12 +217,12 @@ const CustomDrawerContent = ({ navigation }: any):any => {
   const headerColor = themeContext.colors.SECONDARY_COLOR;
   return (
     <>
-     <FocusAwareStatusBar animated={true} backgroundColor={Platform.OS=='ios' ?headerColor:null}/>
+      <FocusAwareStatusBar animated={true} backgroundColor={Platform.OS == 'ios' ? headerColor : null} />
       <View style={styles.containerView}>
         <ScrollView style={styles.scrollViewStyle}>
           <Flex1>
             <Pressable
-              onPress={():any => navigation.navigate('ChildProfileScreen')}
+              onPress={(): any => navigation.navigate('ChildProfileScreen')}
               style={{
                 backgroundColor: headerColor,
               }}>
@@ -258,9 +268,9 @@ const CustomDrawerContent = ({ navigation }: any):any => {
               </DrawerHeadContainer>
             </Pressable>
           </Flex1>
-         
+
           <DrawerLinkView
-            onPress={():any => navigation.navigate('Home', { screen: 'Home' })}>
+            onPress={(): any => navigation.navigate('Home', { screen: 'Home' })}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_home" size={25} color="#000" />
@@ -272,7 +282,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
 
 
           <DrawerLinkView
-            onPress={():any => navigation.navigate('NotificationsScreen')}>
+            onPress={(): any => navigation.navigate('NotificationsScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_notification" size={25} color="#000" />
@@ -288,7 +298,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
               : null}
           </DrawerLinkView>
 
-          <DrawerLinkView style={{ backgroundColor: accordvalue ? lightShadeColor : bgcolorWhite2 }} onPress={():any => onChangeaccordvalue(!accordvalue)}>
+          <DrawerLinkView style={{ backgroundColor: accordvalue ? lightShadeColor : bgcolorWhite2 }} onPress={(): any => onChangeaccordvalue(!accordvalue)}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_tools" size={25} color="#000" />
@@ -305,8 +315,8 @@ const CustomDrawerContent = ({ navigation }: any):any => {
 
           {accordvalue ? (
             <>
-              <SubDrawerLinkView 
-                onPress={():any =>
+              <SubDrawerLinkView
+                onPress={(): any =>
                   navigation.navigate('Home', { screen: 'ChildDevelopment' })
                 }>
                 <FDirRow>
@@ -323,7 +333,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={():any => {
+                onPress={(): any => {
                   navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
@@ -346,7 +356,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={():any => {
+                onPress={(): any => {
                   navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
@@ -369,7 +379,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={():any => {
+                onPress={(): any => {
                   navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
@@ -393,7 +403,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
               </SubDrawerLinkView>
             </>
           ) : null}
-          <DrawerLinkView onPress={():any => navigation.navigate('SupportChat')}>
+          <DrawerLinkView onPress={(): any => navigation.navigate('SupportChat')}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_chat" size={25} color="#000" />
@@ -402,7 +412,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
 
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuchatTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={():any => navigation.navigate('Favourites',{tabIndex: 0,backClicked:'no'})}>
+          <DrawerLinkView onPress={(): any => navigation.navigate('Favourites', { tabIndex: 0, backClicked: 'no' })}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_favorites" size={25} color="#000" />
@@ -410,7 +420,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
             </OuterIconRow>
 
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenufavTxt')}</Heading4>
-            { favoritescount > 0 ?
+            {favoritescount > 0 ?
               <BubbleContainer>
                 <BubbleView>
                   <Heading5>{favoritescount}</Heading5>
@@ -419,21 +429,28 @@ const CustomDrawerContent = ({ navigation }: any):any => {
               : null
             }
           </DrawerLinkView>
-          <DrawerLinkView onPress={():any => navigation.navigate('AboutusScreen')}>
+          <DrawerLinkView onPress={(): any => navigation.navigate('SettingsScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
-                <Icon name="ic_sb_about" size={25} color="#000" />
+                <Icon name="ic_sb_settings" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-
-            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuabtTxt')}</Heading4>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenusetTxt')}</Heading4>
           </DrawerLinkView>
-          {userGuideItem && userGuideItem != {} && userGuideItem != '' && userGuideItem?.survey_feedback_link && userGuideItem?.survey_feedback_link != '' && userGuideItem?.survey_feedback_link != null ? 
-            <DrawerLinkView onPress={():any => 
-              {
-                Linking.openURL(userGuideItem?.survey_feedback_link);
-                // navigation.navigate('UserGuide')
-              }}>
+
+          <DrawerLinkView onPress={(): any => onShare()}>
+            <OuterIconRow>
+              <OuterIconLeft15>
+                <Icon name="ic_sb_shareapp" size={25} color="#000" />
+              </OuterIconLeft15>
+            </OuterIconRow>
+            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenushareTxt')}</Heading4>
+          </DrawerLinkView>
+          {userGuideItem && userGuideItem != {} && userGuideItem != '' && userGuideItem?.survey_feedback_link && userGuideItem?.survey_feedback_link != '' && userGuideItem?.survey_feedback_link != null ?
+            <DrawerLinkView onPress={(): any => {
+              Linking.openURL(userGuideItem?.survey_feedback_link);
+              // navigation.navigate('UserGuide')
+            }}>
               <OuterIconRow>
                 <OuterIconLeft15>
                   <Icon name="ic_sb_userguide" size={25} color="#000" />
@@ -443,86 +460,145 @@ const CustomDrawerContent = ({ navigation }: any):any => {
               <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuugTxt')}</Heading4>
             </DrawerLinkView>
             : null}
-          <DrawerLinkView onPress={():any => navigation.navigate('SettingsScreen')}>
+          {/* <DrawerLinkView onPress={():any => navigation.navigate('AboutusScreen')}> */}
+          <DrawerLinkView style={{ backgroundColor: aboutaccordvalue ? lightShadeColor : bgcolorWhite2 }} onPress={(): any => onChangeAboutAccordvalue(!aboutaccordvalue)}>
             <OuterIconRow>
               <OuterIconLeft15>
-                <Icon name="ic_sb_settings" size={25} color="#000" />
+                <Icon name="ic_sb_about" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-
-            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenusetTxt')}</Heading4>
+            <><Heading4 style={styles.headingFlexShrink}>{t('drawerMenuabtTxtNew', {appName:t('homeScreenheaderTitle')})}</Heading4></>  
+           <Icon
+              style={styles.iconStyle}
+              name={aboutaccordvalue ? 'ic_angle_up' : 'ic_angle_down'}
+              size={10}
+              color="#000"
+            />
           </DrawerLinkView>
-
-          <DrawerLinkView onPress={():any => onShare()}>
-            <OuterIconRow>
-              <OuterIconLeft15>
-                <Icon name="ic_sb_shareapp" size={25} color="#000" />
-              </OuterIconLeft15>
-            </OuterIconRow>
-            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenushareTxt')}</Heading4>
-          </DrawerLinkView>
-          <DrawerLinkView onPress={():any => { setModalVisible(true); }}>
-            <OuterIconRow>
-              <OuterIconLeft15>
-                <Icon name="ic_sb_feedback" size={25} color="#000" />
-              </OuterIconLeft15>
-            </OuterIconRow>
-            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenufeedbackTxt')}</Heading4>
-          </DrawerLinkView>
-          <DrawerLinkView onPress={():any => {
-            if(Platform.OS === 'android') {
-              if(String(buildFor) == buildForBebbo) { 
-                Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo') 
-              }
-              else { 
-                Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.kosovo.foleja') 
-              }
-            }else {
-              if(String(buildFor) == buildForBebbo) {
-                Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review') 
-              }
-              else {
-                Linking.openURL('itms://itunes.apple.com/xk/app/apple-store/id1607980150?action=write-review');
-              }
-            }
-            
-           }}>
-            <OuterIconRow>
-              <OuterIconLeft15>
-                <Icon name="ic_sb_loveapp" size={25} color="#000" />
-              </OuterIconLeft15>
-            </OuterIconRow>
-            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenurateTxt')}</Heading4>
-          </DrawerLinkView>
-          <DrawerLinkView
-            onPress={():any => {
-              navigation.navigate('PrivacyPolicy');
-            }}>
-            <OuterIconRow>
-              <OuterIconLeft15>
-                <Icon name="ic_sb_privacy" size={25} color="#000" />
-              </OuterIconLeft15>
-            </OuterIconRow>
-            <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuPrivacyTxt')}</Heading4>
-          </DrawerLinkView>
-        
+          {aboutaccordvalue ? (
+            <>
+              <SubDrawerLinkView
+                onPress={(): any =>
+                  navigation.navigate('AboutusScreen')
+                }>
+                <FDirRow>
+                  <NavIconSpacingAbout>
+                    <Icon name="ic_sb_about" size={25} color="#000" />
+                  </NavIconSpacingAbout>
+                </FDirRow>
+                <FDirRow>
+                  <SubDrawerHead>
+                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuabtTxt')}</Heading4>
+                  </SubDrawerHead>
+                </FDirRow>
+              </SubDrawerLinkView>
+              <SubDrawerLinkView
+                onPress={(): any =>
+                  Linking.openURL('mailto:admin@bebbo.app')
+                }>
+                <FDirRow>
+                  <NavIconSpacingAbout>
+                    <Icon name="ic_contact" size={25} color="#000" />
+                  </NavIconSpacingAbout>
+                </FDirRow>
+                <FDirRow>
+                  <SubDrawerHead>
+                    <Heading4 style={styles.headingFlexShrink}>{t('contactUs')}</Heading4>
+                  </SubDrawerHead>
+                </FDirRow>
+              </SubDrawerLinkView>
+              <SubDrawerLinkView
+                onPress={(): any =>
+                  setModalVisible(true)
+                }>
+                <FDirRow>
+                  <NavIconSpacingAbout>
+                    <Icon name="ic_sb_feedback" size={25} color="#000" />
+                  </NavIconSpacingAbout>
+                </FDirRow>
+                <FDirRow>
+                  <SubDrawerHead>
+                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenufeedbackTxt')}</Heading4>
+                  </SubDrawerHead>
+                </FDirRow>
+              </SubDrawerLinkView>
+              <SubDrawerLinkView
+                onPress={(): any => {
+                  if (Platform.OS === 'android') {
+                    if (String(buildFor) == buildForBebbo) {
+                      Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo')
+                    }
+                    else {
+                      Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.kosovo.foleja')
+                    }
+                  } else {
+                    if (String(buildFor) == buildForBebbo) {
+                      Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review')
+                    }
+                    else {
+                      Linking.openURL('itms://itunes.apple.com/xk/app/apple-store/id1607980150?action=write-review');
+                    }
+                  }
+                }}>
+                <FDirRow>
+                  <NavIconSpacingAbout>
+                    <Icon name="ic_sb_loveapp" size={25} color="#000" />
+                  </NavIconSpacingAbout>
+                </FDirRow>
+                <FDirRow>
+                  <SubDrawerHead>
+                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenurateTxt')}</Heading4>
+                  </SubDrawerHead>
+                </FDirRow>
+              </SubDrawerLinkView>
+              <SubDrawerLinkView
+                onPress={(): any =>
+                  navigation.navigate('PrivacyPolicy')
+                }>
+                <FDirRow>
+                  <NavIconSpacingAbout>
+                    <Icon name="ic_sb_privacy" size={25} color="#000" />
+                  </NavIconSpacingAbout>
+                </FDirRow>
+                <FDirRow>
+                  <SubDrawerHead>
+                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuPrivacyTxt')}</Heading4>
+                  </SubDrawerHead>
+                </FDirRow>
+              </SubDrawerLinkView>
+            </>
+          ) : null}
+           {donateItem && donateItem != {} && donateItem != '' && donateItem?.survey_feedback_link && donateItem?.survey_feedback_link != '' && donateItem?.survey_feedback_link != null ?
+            <DrawerLinkView
+              onPress={(): any => {
+                Linking.openURL(donateItem?.survey_feedback_link);
+              }}>
+              <OuterIconRow>
+                <OuterIconLeft15>
+                  <Icon name="ic_donate" size={20} color="#000" style={styles.padding2}/>
+                </OuterIconLeft15>
+              </OuterIconRow>
+              <Heading4 style={styles.headingFlexShrink}>{t('donateButton')}</Heading4>
+            </DrawerLinkView>
+            : null
+          }
         </ScrollView>
       </View>
       <Modal
         animationType="none"
         transparent={true}
         visible={modalVisible === true}
-        onRequestClose={():any => {
+        onRequestClose={(): any => {
           setModalVisible(false);
         }}
-        onDismiss={():any => {
+        onDismiss={(): any => {
           setModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={():any => {
+                onPress={(): any => {
                   setModalVisible(false);
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />
@@ -535,7 +611,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
 
                 {feedbackItem && feedbackItem?.body ?
                   <HTML
-                    source={{ html: addSpaceToHtml(feedbackItem?.body)}}
+                    source={{ html: addSpaceToHtml(feedbackItem?.body) }}
                     ignoredStyles={['color', 'font-size', 'font-family']}
                   />
                   : null
@@ -544,7 +620,7 @@ const CustomDrawerContent = ({ navigation }: any):any => {
               </ModalPopupContent>
                 <FDirRow>
                   <ButtonModal
-                    onPress={():any => {
+                    onPress={(): any => {
                       setModalVisible(false);
                       analytics().logEvent(FEEDBACK_SUBMIT)
                       Linking.openURL(feedbackItem?.survey_feedback_link)
