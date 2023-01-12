@@ -444,9 +444,11 @@ const RSen = {
                 hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
                 hcHasScheduled: "Health-check is scheduled",
                 vcHasScheduled: "Vaccination is scheduled",
-
-                //24 May
                 relatedVideoArticle: "Related videos",
+                upto6YearsMsg: "This app is designed for children up to 6 years of age",
+                donateButton: "Donate for REMOVED_FACEBOOK_APP_ID1",
+                contactUs: "Write to us",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "About {{appName}}",
         }
 }
 export default RSen;

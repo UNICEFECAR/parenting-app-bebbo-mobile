@@ -442,10 +442,11 @@ const XKrs = {
               hcrNoti3: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}, molimo Vas unesite detalje  o pregledu",
               hcHasScheduled: "Zdravstveni pregled je zakazan",
               vcHasScheduled: "Vakcinacija je zakazana",
-
-              //24 May
               relatedVideoArticle: "Povezani videi",
               upto6YearsMsg: "Ova aplikacija je namenjena deci uzrasta do 6 godina",
+              donateButton: "Donirajte za REMOVED_FACEBOOK_APP_ID1",
+              contactUs: "Pišite nam",
+              aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "O {{appName}}",
        }
 }
 export default XKrs;
