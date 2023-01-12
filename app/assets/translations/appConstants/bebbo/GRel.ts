@@ -433,8 +433,6 @@ const GRel = {
                 downloadAllSuccessPopupTitle: "Τέλεια",
                 downloadAllSuccessPopupText: "Όλα τα δεδομένα ανανεώθηκαν με επιτυχία!!",
                 downloadAllSuccessOkBtn: "Οκ",
-                
-                //9/03/2022
                 remindersAlertTitle: "Υπενθύμιση!",
                 vcDefinedReminderText: "Προσθέστε την ημερομηνία και ώρα της υπενθύμισης",
                 hcDefinedReminderText: "Προσθέστε την ημερομηνία και ώρα της υπενθύμισης",
@@ -445,10 +443,11 @@ const GRel = {
                 hcrNoti3: "Ο ιατρικός έλεγχος προγραμματίστηκε για {{reminderDateTime}}, παρακαλώ καταχωρείστε τα δεδομένα του ιατρικού ελέγχου",
                 hcHasScheduled: "Ο ιατρικός έλεγχος προγραμματίστηκε",
                 vcHasScheduled: "Ο εμβολιασμός προγραμματίστηκε",
-
-                //24 May
                 relatedVideoArticle: "Σχετικά βίντεο",
-                upto6YearsMsg: "Αυτή η εφαρμογή έχει σχεδιαστεί για παιδιά έως 6 ετών."
+                upto6YearsMsg: "Αυτή η εφαρμογή έχει σχεδιαστεί για παιδιά έως 6 ετών.",
+                donateButton: "Κάντε μια δωρεά για το Bebbo",
+                contactUs: "Στείλτε μας μήνυμα",
+                aboutBebboDrawerMenu: "Σχετικά με {{appName}}",
         }
 }
 export default GRel;
