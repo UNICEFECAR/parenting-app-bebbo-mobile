@@ -434,8 +434,6 @@ const MKmk = {
                 downloadAllSuccessPopupTitle: "Успешно завршено",
                 downloadAllSuccessPopupText: "Сите податоци се успешно преземени!!",
                 downloadAllSuccessOkBtn: "Во ред",
-
-                //9/03/2022
                 remindersAlertTitle: "Потсетник!",
                 vcDefinedReminderText: "Внесете датум и време на потсетникот",
                 hcDefinedReminderText: "Внесете датум и време на потсетникот",
@@ -446,14 +444,11 @@ const MKmk = {
                 hcrNoti3: "Здравствен преглед закажан за {{reminderDateTime}}, Ве молиме внесете детали за прегледот.",
                 hcHasScheduled: "Прегледот е закажан",
                 vcHasScheduled: "Вакцинацијата е закажана",
-
-                //24 May
                 relatedVideoArticle: "Видеа со слична содржина",
                 upto6YearsMsg: "Апликацијата е дизајнирана за деца до 6 години",
-                 //donate button
-                 donateButton:"Донирај за Беббо",
-                 contactUs:"Испрати ни порака",
-                 drawerMenuabtTxtNew: "За {{appName}}",
+                donateButton: "Донирај за Беббо",
+                contactUs: "Испрати ни порака",
+                drawerMenuabtTxtNew: "За {{appName}}",
         }
 }
 export default MKmk;

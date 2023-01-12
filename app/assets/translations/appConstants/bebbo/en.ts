@@ -436,7 +436,6 @@ const en = {
                 restOfTheWorldAlertTitle: "Warning",
                 restOfTheWorldOkTitle: "Ok",
                 restOfTheWorldAlertText: "By selecting Rest of the world, you will enjoy all features of REMOVED_FACEBOOK_APP_ID1, but note that vaccinations and health check-ups are not customized to a specific national health program.",
-
                 remindersAlertTitle: "Reminder!",
                 vcDefinedReminderText: "Enter the date and time of the reminder",
                 hcDefinedReminderText: "Enter the date and time of the reminder",
@@ -447,13 +446,10 @@ const en = {
                 hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
                 hcHasScheduled: "Health-check is scheduled",
                 vcHasScheduled: "Vaccination is scheduled",
-
-                //24 May
                 relatedVideoArticle: "Related videos",
                 upto6YearsMsg: "This app is designed for children up to 6 years of age",
-                //donate button
-                donateButton:"Donate for REMOVED_FACEBOOK_APP_ID1",
-                contactUs:"Write to Us",
+                donateButton: "Donate for REMOVED_FACEBOOK_APP_ID1",
+                contactUs: "Write to us",
                 drawerMenuabtTxtNew: "About {{appName}}",
 
         }
