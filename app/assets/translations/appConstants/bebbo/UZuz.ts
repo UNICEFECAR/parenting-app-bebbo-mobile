@@ -433,8 +433,6 @@ const UZuz = {
               downloadAllSuccessPopupTitle: "Muvaffaqiyatli",
               downloadAllSuccessPopupText: "Barcha maʼlumotlar muvaffaqiyatli yuklab olindi!",
               downloadAllSuccessOkBtn: "Ok",
-
-              //9/03/2022
               remindersAlertTitle: "Eslatma!",
               vcDefinedReminderText: "Eslatma sanasi va vaqtini kiriting",
               hcDefinedReminderText: "Eslatma sanasi va vaqtini kiriting",
@@ -445,14 +443,11 @@ const UZuz = {
               hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
               hcHasScheduled: "Sog'liqni saqlash tekshiruvi rejalashtirildi",
               vcHasScheduled: "Emlash rejalashtirildi",
-
-              //24 May
               relatedVideoArticle: "Tegishli videolar",
               upto6YearsMsg: "Bu ilova 6 yoshgacha boʻlgan bolalar uchun moʻljallangan",
-               //donate button
-               donateButton:"Bebboʼga moliyaviy koʻmak",
-               contactUs:"Bizga yozish",
-               drawerMenuabtTxtNew: "{{appName}} haqinda",
+              donateButton: "Bebboʼga moliyaviy koʻmak",
+              contactUs: "Bizga yozish",
+              drawerMenuabtTxtNew: "{{appName}} haqinda",
        }
 }
 export default UZuz;

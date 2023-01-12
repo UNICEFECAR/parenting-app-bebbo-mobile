@@ -434,7 +434,6 @@ const MEcnr = {
                 downloadAllSuccessPopupTitle: "Uspješno obavljeno",
                 downloadAllSuccessPopupText: "Svi podaci su uspješno preuzeti!",
                 downloadAllSuccessOkBtn: "U redu",
-                //9/03/2022
                 remindersAlertTitle: "Podsjetnik!",
                 vcDefinedReminderText: "Unesite datum i vrijeme podsjetnika",
                 hcDefinedReminderText: "Unesite datum i vrijeme podsjetnika",
@@ -445,14 +444,11 @@ const MEcnr = {
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
                 hcHasScheduled: "Zdravstveni pregled je zakazan",
                 vcHasScheduled: "Vakcinacija je zakazana",
-
-                //24 May
                 relatedVideoArticle: "Povezani video-zapisi",
                 upto6YearsMsg: "Ova aplikacija je osmišljena za djecu uzrasta do 6 godina",
-                 //donate button
-                 donateButton:"Donirajte za Bebbo",
-                 contactUs:"Pišite nam",
-                 drawerMenuabtTxtNew: "O {{appName}}",
+                donateButton: "Donirajte za Bebbo",
+                contactUs: "Pišite nam",
+                drawerMenuabtTxtNew: "O {{appName}}",
         }
 
 }

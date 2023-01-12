@@ -433,8 +433,6 @@ const TJru = {
                 downloadAllSuccessPopupTitle: "Успех",
                 downloadAllSuccessPopupText: "Все данные успешно загружены!!",
                 downloadAllSuccessOkBtn: "Ок",
-
-                //9/03/2022
                 remindersAlertTitle: "Напоминание!",
                 vcDefinedReminderText: "Установите дату и время напоминания",
                 hcDefinedReminderText: "Установите дату и время напоминания",
@@ -445,14 +443,11 @@ const TJru = {
                 hcrNoti3: "Плановый осмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные планового осмотра",
                 hcHasScheduled: "Плановый осмотр запланирован",
                 vcHasScheduled: "Иммунизация запланирована",
-
-                //24 May
                 relatedVideoArticle: "Соответствующее видео",
                 upto6YearsMsg: "Это приложение предназначено для детей до 6 лет",
-                 //donate button
-                 donateButton:"Сделайте пожертвование для Беббо",
-                 contactUs:"Напишите нам",
-                 drawerMenuabtTxtNew: "О {{appName}}",
+                donateButton: "Сделайте пожертвование для Беббо",
+                contactUs: "Напишите нам",
+                drawerMenuabtTxtNew: "О {{appName}}",
 
         }
 }

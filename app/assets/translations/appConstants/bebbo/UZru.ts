@@ -433,8 +433,6 @@ const UZru = {
                 downloadAllSuccessPopupTitle: "Успех",
                 downloadAllSuccessPopupText: "Все данные успешно загружены!!",
                 downloadAllSuccessOkBtn: "Ок",
-
-                //9/03/2022
                 remindersAlertTitle: "Напоминание!",
                 vcDefinedReminderText: "Введите дату и время напоминания",
                 hcDefinedReminderText: "Введите дату и время напоминания",
@@ -445,14 +443,11 @@ const UZru = {
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
                 hcHasScheduled: "Медицинский осмотр запланирован",
                 vcHasScheduled: "Вакцинация запланирована",
-
-                //24 May
                 relatedVideoArticle: "Похожие видео",
                 upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
-                 //donate button
-                 donateButton:"Пожертвования для Беббо",
-                 contactUs:"Напишите ни",
-                 drawerMenuabtTxtNew: "О {{appName}}",
+                donateButton: "Пожертвования для Беббо",
+                contactUs: "Напишите ни",
+                drawerMenuabtTxtNew: "О {{appName}}",
         }
 }
 export default UZru;
