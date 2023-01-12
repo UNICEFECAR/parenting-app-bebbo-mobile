@@ -27,6 +27,10 @@ export const NavIconSpacing = styled.View`
 padding:12px 8px;
 
 `;
+export const NavIconSpacingAbout = styled.View`
+padding:12px 2px 12px 15px;
+
+`;
 export const SubDrawerHead = styled.View`
 margin-left:13px;
 `;

@@ -444,7 +444,10 @@ const XKsq = {
                 hcHasScheduled: "Kontrolla shëndetësore është caktuar",
                 vcHasScheduled: "Vaksinimi është caktuar",
                 relatedVideoArticle: "Video të ngjashme",
-                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç"
+                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
+                donateButton:"Dhuroni për REMOVED_FACEBOOK_APP_ID1",
+                contactUs:"Na shkruani",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Rheth {{appName}}",
         }
 }
 export default XKsq;
