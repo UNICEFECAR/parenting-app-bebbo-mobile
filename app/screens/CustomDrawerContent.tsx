@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   padding2:{
-    paddingLeft:Platform.OS=="android" ? 2:2
+    paddingLeft:2
   },
   scrollViewStyle: {
     backgroundColor: bgcolorWhite2,

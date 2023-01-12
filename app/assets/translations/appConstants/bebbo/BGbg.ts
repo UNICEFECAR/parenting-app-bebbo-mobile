@@ -432,8 +432,6 @@ const BGbg = {
                 downloadAllSuccessPopupTitle: "Успех",
                 downloadAllSuccessPopupText: "Всички данни са свалени успешно!!",
                 downloadAllSuccessOkBtn: "ОК",
-                
-                //9/03/2022
                 remindersAlertTitle: "Напомняне!",
                 vcDefinedReminderText: "Въведете датата и часа на напомнянето",
                 hcDefinedReminderText: "Въведете датата и часа на напомнянето",
@@ -444,14 +442,11 @@ const BGbg = {
                 hcrNoti3: "Профилактичният преглед е насрочен за {{reminderDateTime}}, моля въведете данните за прегледа",
                 hcHasScheduled: "Профилактичният преглед е насрочен",
                 vcHasScheduled: "Ваксинацията е насрочена",
-
-                //24 May
                 relatedVideoArticle: "Свързани видеа",
                 upto6YearsMsg: "Това приложение е предназначено за деца на възраст до 6 години.",
-                 //donate button
-                 donateButton:"Дарете за Беббо",
-                 contactUs:"Пишете ни",
-                 drawerMenuabtTxtNew: "За {{appName}}",
+                donateButton: "Дарете за Беббо",
+                contactUs: "Пишете ни",
+                drawerMenuabtTxtNew: "За {{appName}}",
 
         }
 }
