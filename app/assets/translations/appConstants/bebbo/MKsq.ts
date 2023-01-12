@@ -433,8 +433,6 @@ const MKsq = {
                 downloadAllSuccessPopupTitle: "Sukses",
                 downloadAllSuccessPopupText: "Te gjitha të dhënat u shkarkuan me sukses!!",
                 downloadAllSuccessOkBtn: "Dakort",
-
-                //9/03/2022
                 remindersAlertTitle: "Rikujtim!",
                 vcDefinedReminderText: "Vendosni datën dhe orën për alarmin rikujtues",
                 hcDefinedReminderText: "Vendosni datën dhe orën për alarmin rikujtues",
@@ -445,10 +443,11 @@ const MKsq = {
                 hcrNoti3: "Takimi për kontrollin shëndetësor është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet për kontrollin shëndetësor",
                 hcHasScheduled: "Kontrolli shëndetësor është i caktuar",
                 vcHasScheduled: "Vaksinimi është i caktuar",
-
-                //24 May
                 relatedVideoArticle: "Video tjera",
-                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç"
+                upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
+                donateButton: "Bëni donacion për Bebbo",
+                contactUs: "Na shkruani",
+                aboutBebboDrawerMenu: "Rheth {{appName}}",
         }
 }
 export default MKsq;

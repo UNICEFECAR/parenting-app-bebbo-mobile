@@ -432,8 +432,6 @@ const BYbe = {
                 downloadAllSuccessPopupTitle: "Поспех",
                 downloadAllSuccessPopupText: "Усе даныя паспяхова загружаны!",
                 downloadAllSuccessOkBtn: "Ок",
-
-                //9/03/2022
                 remindersAlertTitle: "Напамiнанне!",
                 vcDefinedReminderText: "Устанавіце дату і час напамінання",
                 hcDefinedReminderText: "Устанавіце дату і час напамінання",
@@ -444,10 +442,11 @@ const BYbe = {
                 hcrNoti3: "Медагляд запланаваны на {{reminderDateTime}}, калі ласка, увядзіце даныя пра медагляд",
                 hcHasScheduled: "Медыцынскі агляд запланаваны",
                 vcHasScheduled: "Вакцынацыя запланавана",
-
-                //24 May
                 relatedVideoArticle: "Відэа па тэме",
                 upto6YearsMsg: "Гэты дадатак прызначаны для дзяцей ва ўзросце да 6 гадоў",
+                donateButton: "Ахвяруйце для Беббо",
+                contactUs: "Напішыце нам",
+                aboutBebboDrawerMenu: "Пра {{appName}}",
         }
 }
 export default BYbe;

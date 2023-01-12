@@ -443,10 +443,11 @@ const TJtg = {
                 hcrNoti3: "Муоинаи тиббӣ ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи муоинаи тиббӣ ворид намоед",
                 hcHasScheduled: "Муоинаи тиббии навбатӣ ба нақша гирифта шудааст",
                 vcHasScheduled: "Иммунизатсия ба нақша гирифта шудааст",
-
-                //24 May
                 relatedVideoArticle: "Наворҳои шабеҳ",
-                upto6YearsMsg: "Ин афзорак барои кӯдакони то синни 6 - сола пешбинӣ шудааст"
+                upto6YearsMsg: "Ин афзорак барои кӯдакони то синни 6 - сола пешбинӣ шудааст",
+                donateButton: "Барои Беббо кӯмаки хайриявӣ кунед",
+                contactUs: "Ба мо нависед",
+                aboutBebboDrawerMenu: "Дар бораи {{appName}}",
         }
 }
 export default TJtg;
