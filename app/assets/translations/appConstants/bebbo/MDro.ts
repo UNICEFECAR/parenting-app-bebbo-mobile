@@ -450,7 +450,7 @@ const MDro = {
                 upto6YearsMsg: "Această aplicație este destinată copiilor cu vârsta până la 6 ani",
                 donateButton: "Donează pentru Bebbo",
                 contactUs: "Trimite-ne un e-mail",
-                drawerMenuabtTxtNew: "Despre {{appName}}",
+                aboutBebboDrawerMenu: "Despre {{appName}}",
         }
 }
 export default MDro;

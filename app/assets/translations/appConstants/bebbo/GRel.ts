@@ -447,7 +447,7 @@ const GRel = {
                 upto6YearsMsg: "Αυτή η εφαρμογή έχει σχεδιαστεί για παιδιά έως 6 ετών.",
                 donateButton: "Κάντε μια δωρεά για το Bebbo",
                 contactUs: "Στείλτε μας μήνυμα",
-                drawerMenuabtTxtNew: "Σχετικά με {{appName}}",
+                aboutBebboDrawerMenu: "Σχετικά με {{appName}}",
         }
 }
 export default GRel;

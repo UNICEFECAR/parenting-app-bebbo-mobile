@@ -446,7 +446,7 @@ const XKrs = {
               upto6YearsMsg: "Ova aplikacija je namenjena deci uzrasta do 6 godina",
               donateButton: "Donirajte za Foleja",
               contactUs: "Pišite nam",
-              drawerMenuabtTxtNew: "O {{appName}}",
+              aboutBebboDrawerMenu: "O {{appName}}",
        }
 }
 export default XKrs;

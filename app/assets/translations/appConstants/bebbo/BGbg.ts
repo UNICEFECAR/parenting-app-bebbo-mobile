@@ -446,7 +446,7 @@ const BGbg = {
                 upto6YearsMsg: "Това приложение е предназначено за деца на възраст до 6 години.",
                 donateButton: "Дарете за Беббо",
                 contactUs: "Пишете ни",
-                drawerMenuabtTxtNew: "За {{appName}}",
+                aboutBebboDrawerMenu: "За {{appName}}",
 
         }
 }

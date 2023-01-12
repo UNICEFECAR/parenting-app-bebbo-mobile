@@ -450,7 +450,7 @@ const uk = {
                 upto6YearsMsg: "Ця програма призначена для дітей віком до 6 років",
                 donateButton: "Пожертвуйте для Bebbo",
                 contactUs: "Напишіть нам",
-                drawerMenuabtTxtNew: "Про {{appName}}",
+                aboutBebboDrawerMenu: "Про {{appName}}",
         }
 }
 export default uk;

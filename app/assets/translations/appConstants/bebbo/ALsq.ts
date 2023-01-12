@@ -446,7 +446,7 @@ const ALsq = {
               upto6YearsMsg: "Ky aplikacion është krijuar për fëmijët deri në moshën 6 vjeç.",
               donateButton: "Bëni donacion për Bebbo",
               contactUs: "Na shkruani",
-              drawerMenuabtTxtNew: "Rheth {{appName}}",
+              aboutBebboDrawerMenu: "Rheth {{appName}}",
 
        }
 }
