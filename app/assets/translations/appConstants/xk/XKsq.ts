@@ -447,7 +447,7 @@ const XKsq = {
                 upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
                 donateButton:"Dhuroni për REMOVED_FACEBOOK_APP_ID1",
                 contactUs:"Na shkruani",
-                drawerMenuabtTxtNew: "Rheth {{appName}}",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Rheth {{appName}}",
         }
 }
 export default XKsq;

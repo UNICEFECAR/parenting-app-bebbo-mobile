@@ -450,7 +450,7 @@ const uk = {
                 upto6YearsMsg: "Ця програма призначена для дітей віком до 6 років",
                 donateButton: "Пожертвуйте для REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Напишіть нам",
-                drawerMenuabtTxtNew: "Про {{appName}}",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Про {{appName}}",
         }
 }
 export default uk;
