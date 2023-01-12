@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 const CustomDrawerContent = ({ navigation }: any): any => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
-  const [aboutaccordvalue, onChangeAboutAccordvalue] = React.useState(false);
+  const [aboutAccordValue, onChangeAboutAccordValue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -461,7 +461,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </DrawerLinkView>
             : null}
           {/* <DrawerLinkView onPress={():any => navigation.navigate('AboutusScreen')}> */}
-          <DrawerLinkView style={{ backgroundColor: aboutaccordvalue ? lightShadeColor : bgcolorWhite2 }} onPress={(): any => onChangeAboutAccordvalue(!aboutaccordvalue)}>
+          <DrawerLinkView style={{ backgroundColor: aboutAccordValue ? lightShadeColor : bgcolorWhite2 }} onPress={(): any => onChangeAboutAccordValue(!aboutAccordValue)}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_about" size={25} color="#000" />
@@ -470,12 +470,12 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             <><Heading4 style={styles.headingFlexShrink}>{t('aboutBebboDrawerMenu', {appName:t('homeScreenheaderTitle')})}</Heading4></>  
            <Icon
               style={styles.iconStyle}
-              name={aboutaccordvalue ? 'ic_angle_up' : 'ic_angle_down'}
+              name={aboutAccordValue ? 'ic_angle_up' : 'ic_angle_down'}
               size={10}
               color="#000"
             />
           </DrawerLinkView>
-          {aboutaccordvalue ? (
+          {aboutAccordValue ? (
             <>
               <SubDrawerLinkView
                 onPress={(): any =>
