@@ -436,8 +436,6 @@ const uk = {
                 restOfTheWorldAlertTitle: "Попередження",
                 restOfTheWorldOkTitle: "ОК",
                 restOfTheWorldAlertText: "Вибравши параметр «Інші країни світу», ви користуватиметеся всіма можливостями Bebbo, але зверніть увагу, що вакцинація та медичний огляд не підлаштовуються під конкретну національну програму охорони здоров'я.",
-
-                //9/03/2022
                 remindersAlertTitle: "Нагадування!",
                 vcDefinedReminderText: "Введіть дату та час нагадування",
                 hcDefinedReminderText: "Введіть дату та час нагадування",
@@ -448,14 +446,11 @@ const uk = {
                 hcrNoti3: "Медичне обстеження заплановано на{{reminderDateTime}}, будь ласка, введіть дані медичного обстеження",
                 hcHasScheduled: "Медичний огляд заплановано",
                 vcHasScheduled: "Щеплення заплановано",
-
-                //24 May
                 relatedVideoArticle: "Дитячий профіль видалено",
                 upto6YearsMsg: "Ця програма призначена для дітей віком до 6 років",
-                 //donate button
-                 donateButton:"Пожертвуйте для Bebbo",
-                 contactUs:"Напишіть нам",
-                 drawerMenuabtTxtNew: "Про {{appName}}",
+                donateButton: "Пожертвуйте для Bebbo",
+                contactUs: "Напишіть нам",
+                drawerMenuabtTxtNew: "Про {{appName}}",
         }
 }
 export default uk;

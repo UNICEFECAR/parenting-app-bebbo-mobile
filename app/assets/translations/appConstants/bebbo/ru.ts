@@ -436,8 +436,6 @@ const ru = {
                 restOfTheWorldAlertTitle: "Предупреждение",
                 restOfTheWorldOkTitle: "Ок",
                 restOfTheWorldAlertText: "Если вы выберете Rest of the world (остальные страны), вы сможете пользоваться всеми функциями Беббо, но информация о вакцинах и медосмотрах может не соответствовать национальной программе здравоохранения вашей страны.",
-
-                //9/03/2022
                 remindersAlertTitle: "Напоминание!",
                 vcDefinedReminderText: "Установите дату и время напоминания",
                 hcDefinedReminderText: "Установите дату и время напоминания",
@@ -448,13 +446,10 @@ const ru = {
                 hcrNoti3: "Медосмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные о медосмотре",
                 hcHasScheduled: "Медицинский осмотр запланирован",
                 vcHasScheduled: "Вакцинация запланирована",
-
-                //24 May
                 relatedVideoArticle: "Видео по теме",
                 upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
-                //donate button
-                donateButton:"Пожертвования для Беббо",
-                contactUs:"Напишите ни",
+                donateButton: "Пожертвования для Беббо",
+                contactUs: "Напишите ни",
                 drawerMenuabtTxtNew: "О {{appName}}",
         }
 }

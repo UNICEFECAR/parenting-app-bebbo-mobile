@@ -445,7 +445,6 @@ const XKsq = {
                 vcHasScheduled: "Vaksinimi është caktuar",
                 relatedVideoArticle: "Video të ngjashme",
                 upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
-                //donate button
                 donateButton:"Dhuroni për Foleja",
                 contactUs:"Na shkruani",
                 drawerMenuabtTxtNew: "Rheth {{appName}}",
