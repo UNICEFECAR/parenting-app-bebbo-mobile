@@ -446,7 +446,7 @@ const KGky = {
                 upto6YearsMsg: "Бул колдонмо 6 жашка чейинки балдарга арналган",
                 donateButton: "Беббо үчүн кайрымдуулук",
                 contactUs: "Бизге жазыңыз",
-                drawerMenuabtTxtNew: "{{appName}} жөнүндө",
+                aboutBebboDrawerMenu: "{{appName}} жөнүндө",
         }
 }
 export default KGky;

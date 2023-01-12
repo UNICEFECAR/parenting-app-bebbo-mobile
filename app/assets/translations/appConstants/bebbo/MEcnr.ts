@@ -448,7 +448,7 @@ const MEcnr = {
                 upto6YearsMsg: "Ova aplikacija je osmišljena za djecu uzrasta do 6 godina",
                 donateButton: "Donirajte za Bebbo",
                 contactUs: "Pišite nam",
-                drawerMenuabtTxtNew: "O {{appName}}",
+                aboutBebboDrawerMenu: "O {{appName}}",
         }
 
 }

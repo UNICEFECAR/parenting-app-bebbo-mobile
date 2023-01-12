@@ -450,7 +450,7 @@ const en = {
                 upto6YearsMsg: "This app is designed for children up to 6 years of age",
                 donateButton: "Donate for Bebbo",
                 contactUs: "Write to us",
-                drawerMenuabtTxtNew: "About {{appName}}",
+                aboutBebboDrawerMenu: "About {{appName}}",
 
         }
 }
