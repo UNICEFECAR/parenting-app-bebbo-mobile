@@ -433,8 +433,6 @@ const GRarb = {
                 downloadAllSuccessPopupTitle: "Success",
                 downloadAllSuccessPopupText: "All Data downloaded successfully!!",
                 downloadAllSuccessOkBtn: "Ok",
-
-                //9/03/2022
                 remindersAlertTitle: "Reminder!",
                 vcDefinedReminderText: "Enter the date and time of the reminder",
                 hcDefinedReminderText: "Enter the date and time of the reminder",
@@ -445,9 +443,11 @@ const GRarb = {
                 hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
                 hcHasScheduled: "Health-check is scheduled",
                 vcHasScheduled: "Vaccination is scheduled",
-
-                //24 May
-                relatedVideoArticle: "Related Video advice ",
+                relatedVideoArticle: "Related videos",
+                upto6YearsMsg: "This app is designed for children up to 6 years of age",
+                donateButton: "Donate for Bebbo",
+                contactUs: "Write to us",
+                aboutBebboDrawerMenu: "About {{appName}}",
         }
 
 }

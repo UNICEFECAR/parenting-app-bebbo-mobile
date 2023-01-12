@@ -446,10 +446,11 @@ const MDro = {
                 hcrNoti3: "Vizita la medic a fost programată pentru {{reminderDateTime}}; vă rugăm să introduceți detaliile examenului medical",
                 hcHasScheduled: "Vizita la medic este programată",
                 vcHasScheduled: "Vaccinarea este programată",
-
-                //24 May
                 relatedVideoArticle: "Videoclipuri similare",
                 upto6YearsMsg: "Această aplicație este destinată copiilor cu vârsta până la 6 ani",
+                donateButton: "Donează pentru Bebbo",
+                contactUs: "Trimite-ne un e-mail",
+                aboutBebboDrawerMenu: "Despre {{appName}}",
         }
 }
 export default MDro;
