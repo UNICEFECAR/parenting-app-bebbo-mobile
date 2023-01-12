@@ -432,8 +432,6 @@ const KGky = {
                 downloadAllSuccessPopupTitle: "Ийгилик",
                 downloadAllSuccessPopupText: "Бардык маалыматтар ийгиликтүү жүктөлүп алынды!!",
                 downloadAllSuccessOkBtn: "Макул",
-
-                //9/03/2022
                 remindersAlertTitle: "Эскертүү!",
                 vcDefinedReminderText: "Эстеткичтин күнүн жана убактысын киргизиңиз",
                 hcDefinedReminderText: "Эстеткичтин күнүн жана убактысын киргизиңиз",
@@ -444,10 +442,11 @@ const KGky = {
                 hcrNoti3: "Медициналык текшерүү {{reminderDateTime}} күнү пландаштырылган, медициналык текшерүүнүн чоо-жайын киргизиңиз",
                 hcHasScheduled: "Ден соолукту текшерүү пландаштырылган",
                 vcHasScheduled: "Эмдөө пландаштырылган",
-
-                //24 May
                 relatedVideoArticle: "Байланыштуу видео",
                 upto6YearsMsg: "Бул колдонмо 6 жашка чейинки балдарга арналган",
+                donateButton: "Беббо үчүн кайрымдуулук",
+                contactUs: "Бизге жазыңыз",
+                aboutBebboDrawerMenu: "{{appName}} жөнүндө",
         }
 }
 export default KGky;

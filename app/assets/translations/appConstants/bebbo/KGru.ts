@@ -432,8 +432,6 @@ const KGru = {
                 downloadAllSuccessPopupTitle: "Успех",
                 downloadAllSuccessPopupText: "Все данные успешно загружены!!",
                 downloadAllSuccessOkBtn: "Ок",
-
-                //9/03/2022
                 remindersAlertTitle: "Напоминание!",
                 vcDefinedReminderText: "Введите дату и время напоминания",
                 hcDefinedReminderText: "Введите дату и время напоминания",
@@ -444,10 +442,11 @@ const KGru = {
                 hcrNoti3: "Медицинский осмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные медицинского осмотра",
                 hcHasScheduled: "Медицинские осмотры запланированы",
                 vcHasScheduled: "Вакцинация запланирована",
-
-                //24 May
                 relatedVideoArticle: "Видео по теме",
                 upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
+                donateButton: "Пожертвования для Беббо",
+                contactUs: "Напишите ни",
+                aboutBebboDrawerMenu: "О {{appName}}",
         }
 }
 export default KGru;
