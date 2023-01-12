@@ -446,7 +446,7 @@ const BYbe = {
                 upto6YearsMsg: "Гэты дадатак прызначаны для дзяцей ва ўзросце да 6 гадоў",
                 donateButton: "Ахвяруйце для Беббо",
                 contactUs: "Напішыце нам",
-                drawerMenuabtTxtNew: "Пра {{appName}}",
+                aboutBebboDrawerMenu: "Пра {{appName}}",
         }
 }
 export default BYbe;

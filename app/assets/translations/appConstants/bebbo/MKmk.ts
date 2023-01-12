@@ -448,7 +448,7 @@ const MKmk = {
                 upto6YearsMsg: "Апликацијата е дизајнирана за деца до 6 години",
                 donateButton: "Донирај за Беббо",
                 contactUs: "Испрати ни порака",
-                drawerMenuabtTxtNew: "За {{appName}}",
+                aboutBebboDrawerMenu: "За {{appName}}",
         }
 }
 export default MKmk;
