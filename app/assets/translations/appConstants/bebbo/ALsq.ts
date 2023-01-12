@@ -432,8 +432,6 @@ const ALsq = {
               downloadAllSuccessPopupTitle: "Sukses",
               downloadAllSuccessPopupText: "Te gjitha të dhënat u shkarkuan me sukses!!",
               downloadAllSuccessOkBtn: "Dakort",
-
-              //9/03/2022
               remindersAlertTitle: "Kujtesë!",
               vcDefinedReminderText: "Vendosni datën dhe orën për alarmin rikujtues",
               hcDefinedReminderText: "Vendosni datën dhe orën për alarmin rikujtues",
@@ -444,10 +442,11 @@ const ALsq = {
               hcrNoti3: "Takimi për kontrollin shëndetësor është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet për kontrollin shëndetësor",
               hcHasScheduled: "Kontrolli shëndëtesor është caktuar",
               vcHasScheduled: "Vaksinimi është caktuar",
-       
-              //24 May
               relatedVideoArticle: "Video të ngjashme",
               upto6YearsMsg: "Ky aplikacion është krijuar për fëmijët deri në moshën 6 vjeç.",
+              donateButton: "Bëni donacion për Bebbo",
+              contactUs: "Na shkruani",
+              aboutBebboDrawerMenu: "Rheth {{appName}}",
 
        }
 }
