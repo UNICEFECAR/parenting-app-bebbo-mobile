@@ -446,7 +446,7 @@ const RSsr = {
               upto6YearsMsg: "Ova aplikacija je namenjena deci uzrasta do 6 godina",
               donateButton: "Donirajte za Bebbo",
               contactUs: "Pišite nam",
-              drawerMenuabtTxtNew: "O {{appName}}",
+              aboutBebboDrawerMenu: "O {{appName}}",
        }
 
 }

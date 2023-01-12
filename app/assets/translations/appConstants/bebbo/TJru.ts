@@ -447,7 +447,7 @@ const TJru = {
                 upto6YearsMsg: "Это приложение предназначено для детей до 6 лет",
                 donateButton: "Сделайте пожертвование для Беббо",
                 contactUs: "Напишите нам",
-                drawerMenuabtTxtNew: "О {{appName}}",
+                aboutBebboDrawerMenu: "О {{appName}}",
 
         }
 }

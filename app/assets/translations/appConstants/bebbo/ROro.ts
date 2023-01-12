@@ -450,7 +450,7 @@ const ROro = {
                 upto6YearsMsg: "Această aplicație este concepută pentru copii cu vârsta de pănă la 6 ani.",
                 donateButton: "Donați pentru Bebbo",
                 contactUs: "Scrieți-ne",
-                drawerMenuabtTxtNew: "Despre {{appName}}",
+                aboutBebboDrawerMenu: "Despre {{appName}}",
         }
 }
 export default ROro;

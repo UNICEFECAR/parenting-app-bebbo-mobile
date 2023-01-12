@@ -446,7 +446,7 @@ const BYru = {
                 upto6YearsMsg: "Это приложение предназначено для детей в возрасте до 6 лет",
                 donateButton: "Пожертвовать для Беббо",
                 contactUs: "Напишите нам",
-                drawerMenuabtTxtNew: "О {{appName}}",
+                aboutBebboDrawerMenu: "О {{appName}}",
         }
 }
 export default BYru;

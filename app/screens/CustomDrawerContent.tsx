@@ -467,7 +467,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 <Icon name="ic_sb_about" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <><Heading4 style={styles.headingFlexShrink}>{t('drawerMenuabtTxtNew', {appName:t('homeScreenheaderTitle')})}</Heading4></>  
+            <><Heading4 style={styles.headingFlexShrink}>{t('aboutBebboDrawerMenu', {appName:t('homeScreenheaderTitle')})}</Heading4></>  
            <Icon
               style={styles.iconStyle}
               name={aboutaccordvalue ? 'ic_angle_up' : 'ic_angle_down'}
