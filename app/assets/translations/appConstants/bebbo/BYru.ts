@@ -447,6 +447,8 @@ const BYru = {
                 donateButton: "Пожертвовать для Беббо",
                 contactUs: "Напишите нам",
                 aboutBebboDrawerMenu: "О {{appName}}",
+                tNcTermsConditions: "Условия и положения пользования приложением Беббо",
+                tNcStaticContent: "Беббо не собирает и не хранит никакую личную информацию. Все введенные вами данные сохраняются только на вашем телефоне.",
         }
 }
 export default BYru;
