@@ -447,8 +447,8 @@ const ALsq = {
               donateButton: "Bëni donacion për Bebbo",
               contactUs: "Na shkruani",
               aboutBebboDrawerMenu: "Rheth {{appName}}",
-              tNcTermsConditions: "Termat dhe Kushtet e aplikacionit Bebbo",
-              tNcStaticContent: "Bebbo nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj.",
+              tncCheckBoxText: "Termat dhe Kushtet e aplikacionit Bebbo",
+              tncScreenContent: "Bebbo nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj.",
 
        }
 }

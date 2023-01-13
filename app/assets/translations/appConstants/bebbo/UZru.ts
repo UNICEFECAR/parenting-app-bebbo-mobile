@@ -448,8 +448,8 @@ const UZru = {
                 donateButton: "Пожертвования для Беббо",
                 contactUs: "Напишите ни",
                 aboutBebboDrawerMenu: "О {{appName}}",
-                tNcTermsConditions: "Условия и положения пользования приложением Bebbo",
-                tNcStaticContent: "Bebbo не собирает и не хранит личную информацию. Все введенные вами данные  сохраняются только на вашем телефоне.",
+                tncCheckBoxText: "Условия и положения пользования приложением Bebbo",
+                tncScreenContent: "Bebbo не собирает и не хранит личную информацию. Все введенные вами данные  сохраняются только на вашем телефоне.",
         }
 }
 export default UZru;

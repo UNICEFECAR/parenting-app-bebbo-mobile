@@ -198,7 +198,7 @@ const Terms = ({ navigation }: Props): any => {
             <Heading1w>{t('tNcheader')}</Heading1w>
           </OnboardingHeading>
           <ScrollView contentContainerStyle={styles.scrollViewStyle}>
-          <LabelText>{t('tNcStaticContent')}</LabelText>
+          <LabelText>{t('tncScreenContent')}</LabelText>
             <Fragment>
               <View style={styles.containerView2}>
                 <FormOuterCheckbox
@@ -216,7 +216,7 @@ const Terms = ({ navigation }: Props): any => {
                       )}
                     </View>
                   </CheckboxItem>
-                  <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToTerms} style={styles.checkboxStyle}>{t('tNcTermsConditions')}</CheckboxItemText></LabelText>
+                  <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToTerms} style={styles.checkboxStyle}>{t('tncCheckBoxText')}</CheckboxItemText></LabelText>
                 </FormOuterCheckbox>
                 <FormOuterCheckbox
                   onPress={(): any => {
