@@ -451,6 +451,8 @@ const uk = {
                 donateButton: "Пожертвуйте для REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Напишіть нам",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Про {{appName}}",
+                tNcTermsConditions: "Умови та положення користування додатком REMOVED_FACEBOOK_APP_ID1",
+                tNcStaticContent: "REMOVED_FACEBOOK_APP_ID1 не збирає та не зберігає жодної особистої інформації. Усі дані, які ви вводите, зберігаються лише на вашому телефоні.",
         }
 }
 export default uk;
