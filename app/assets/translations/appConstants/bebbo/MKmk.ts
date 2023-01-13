@@ -449,6 +449,8 @@ const MKmk = {
                 donateButton: "Донирај за Беббо",
                 contactUs: "Испрати ни порака",
                 aboutBebboDrawerMenu: "За {{appName}}",
+                tNcTermsConditions: "условите за користење на апликацијата Bebbo",
+                tNcStaticContent: "Беббо не собира ниту складира никакви лични податоци. Сите податоци што ги внесувате се зачувуваат само на вашиот телефон.",
         }
 }
 export default MKmk;
