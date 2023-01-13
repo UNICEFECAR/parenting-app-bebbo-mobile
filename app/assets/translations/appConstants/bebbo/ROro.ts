@@ -451,6 +451,8 @@ const ROro = {
                 donateButton: "Donați pentru Bebbo",
                 contactUs: "Scrieți-ne",
                 aboutBebboDrawerMenu: "Despre {{appName}}",
+                tNcTermsConditions: "Termenii și condițiile aplicației Bebbo",
+                tNcStaticContent: "Bebbo nu colectează și nu păstrează niciun fel de informații personale. Toate datele încărcate sunt salvate doar pe telefonul dumneavoastră.",
         }
 }
 export default ROro;
