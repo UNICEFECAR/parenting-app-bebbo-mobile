@@ -448,6 +448,8 @@ const XKsq = {
                 donateButton:"Dhuroni për REMOVED_FACEBOOK_APP_ID1",
                 contactUs:"Na shkruani",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Rheth {{appName}}",
+                tNcTermsConditions: "Termat dhe Kushtet e aplikacionit REMOVED_FACEBOOK_APP_ID1",
+                tNcStaticContent: "REMOVED_FACEBOOK_APP_ID1 nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që ju i regjistroni, ruhen vetëm në telefonin tuaj.",
         }
 }
 export default XKsq;
