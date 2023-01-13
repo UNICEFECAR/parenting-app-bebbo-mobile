@@ -448,6 +448,8 @@ const UZuz = {
               donateButton: "Bebboʼga moliyaviy koʻmak",
               contactUs: "Bizga yozish",
               aboutBebboDrawerMenu: "{{appName}} haqinda",
+              tNcTermsConditions: "Bebbo ilovasi foydalanish shartlarini",
+              tNcStaticContent: "Bebbo shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi.",
        }
 }
 export default UZuz;
