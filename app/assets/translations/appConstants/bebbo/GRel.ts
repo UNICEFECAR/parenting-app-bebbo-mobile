@@ -448,6 +448,8 @@ const GRel = {
                 donateButton: "Κάντε μια δωρεά για το Bebbo",
                 contactUs: "Στείλτε μας μήνυμα",
                 aboutBebboDrawerMenu: "Σχετικά με {{appName}}",
+                tNcTermsConditions: "τους Όρους και Προϋποθέσεις της εφαρμογής Bebbo",
+                tNcStaticContent: "Το Bebbo δεν συλλέγει ούτε αποθηκεύει προσωπικές πληροφορίες. Όλα τα δεδομένα που εισάγετε αποθηκεύονται μόνο στο τηλέφωνό σας.",
         }
 }
 export default GRel;
