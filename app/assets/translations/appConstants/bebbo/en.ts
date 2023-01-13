@@ -448,13 +448,11 @@ const en = {
                 vcHasScheduled: "Vaccination is scheduled",
                 relatedVideoArticle: "Related videos",
                 upto6YearsMsg: "This app is designed for children up to 6 years of age",
-                tNcTermsConditions: "Terms and conditions of the Bebbo application",
-                tNcTermsConditionsTitle: "Terms and conditions",
-                tNcStaticContent: "Bebbo does not collect or store any personal information.All data you enter is saved only on your phone.",
                 donateButton: "Donate for Bebbo",
                 contactUs: "Write to us",
                 aboutBebboDrawerMenu: "About {{appName}}",
-
+                tNcTermsConditions: "Terms and conditions of the Bebbo application",
+                tNcStaticContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone.",
         }
 }
 export default en;
