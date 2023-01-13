@@ -448,6 +448,8 @@ const TJtg = {
                 donateButton: "Барои Беббо кӯмаки хайриявӣ кунед",
                 contactUs: "Ба мо нависед",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Дар бораи {{appName}}",
+                tNcTermsConditions: "Шартномаи истифодабарандаи афзораки мобилии Беббо",
+                tNcStaticContent: "Беббо ягон маълумоти шахсиро ҷамъ ва нигоҳ намедорад. Ҳама маълумоте, ки Шумо ворид мекунед, танҳо дар телефони Шумо нигоҳ дошта мешаванд.",
         }
 }
 export default TJtg;
