@@ -75,7 +75,7 @@ const TermsPage = ({navigation}: Props):any => {
       <OnboardingContainer>
         <OnboardingHeading>
           <ChildAddTop>
-            <Heading1w>{t('tNcTermsConditionsTitle')}</Heading1w>
+            <Heading1w>{t('tNcheader')}</Heading1w>
             <ShiftFromTop5>
               <Pressable
                 onPress={():any => {
