@@ -447,8 +447,8 @@ const RSsr = {
               donateButton: "Donirajte za REMOVED_FACEBOOK_APP_ID1",
               contactUs: "Pišite nam",
               aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "O {{appName}}",
-              tNcTermsConditions: "Uslove i odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
-              tNcStaticContent: "REMOVED_FACEBOOK_APP_ID1 aplikacija ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na vašem telefonu.",
+              tncCheckBoxText: "Uslove i odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
+              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 aplikacija ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na vašem telefonu.",
        }
 
 }

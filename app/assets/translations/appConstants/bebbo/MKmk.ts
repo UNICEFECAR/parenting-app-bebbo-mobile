@@ -449,8 +449,8 @@ const MKmk = {
                 donateButton: "Донирај за Беббо",
                 contactUs: "Испрати ни порака",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "За {{appName}}",
-                tNcTermsConditions: "условите за користење на апликацијата REMOVED_FACEBOOK_APP_ID1",
-                tNcStaticContent: "Беббо не собира ниту складира никакви лични податоци. Сите податоци што ги внесувате се зачувуваат само на вашиот телефон.",
+                tncCheckBoxText: "условите за користење на апликацијата REMOVED_FACEBOOK_APP_ID1",
+                tncScreenContent: "Беббо не собира ниту складира никакви лични податоци. Сите податоци што ги внесувате се зачувуваат само на вашиот телефон.",
         }
 }
 export default MKmk;
