@@ -448,6 +448,8 @@ const GRarb = {
                 donateButton: "Donate for Bebbo",
                 contactUs: "Write to us",
                 aboutBebboDrawerMenu: "About {{appName}}",
+                tNcTermsConditions: "Terms and conditions of the Bebbo application",
+                tNcStaticContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone.",
         }
 
 }
