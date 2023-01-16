@@ -451,6 +451,8 @@ const MDro = {
                 donateButton: "Donează pentru Bebbo",
                 contactUs: "Trimite-ne un e-mail",
                 aboutBebboDrawerMenu: "Despre {{appName}}",
+                tncCheckBoxText: "Termenii și condițiile aplicației Bebbo",
+                tncScreenContent: "Aplicația Bebbo nu colectează și nu stochează nicio informație cu caracter personal. Toate datele pe care le introduceți sunt salvate doar pe telefonul dvs.",
         }
 }
 export default MDro;
