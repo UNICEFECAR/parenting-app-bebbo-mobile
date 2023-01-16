@@ -447,6 +447,8 @@ const KGky = {
                 donateButton: "Беббо үчүн кайрымдуулук",
                 contactUs: "Бизге жазыңыз",
                 aboutBebboDrawerMenu: "{{appName}} жөнүндө",
+                tncCheckBoxText: "Беббо тиркемесин колдонуу боюнча шарттар менен",
+                tncScreenContent: "Беббо жеке маалыматтарды чогултпайт жана сактабайт. Сиз киргизген бардык маалыматтар телефонуңузда гана сакталат.",
         }
 }
 export default KGky;

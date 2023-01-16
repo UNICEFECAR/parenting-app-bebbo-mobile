@@ -448,6 +448,8 @@ const MKsq = {
                 donateButton: "Bëni donacion për Bebbo",
                 contactUs: "Na shkruani",
                 aboutBebboDrawerMenu: "Rheth {{appName}}",
+                tncCheckBoxText: "Termat dhe Kushtet e aplikacionit Bebbo",
+                tncScreenContent: "Bebbo nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj.",
         }
 }
 export default MKsq;

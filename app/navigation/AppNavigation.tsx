@@ -50,6 +50,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import DynamicLinks from '@react-native-firebase/dynamic-links';
 import { trimWhiteSpacePayload } from '../services/Utils';
+import TermsPage from '@screens/TermsPage';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -826,6 +827,11 @@ export default (): any => {
           <RootStack.Screen
             name="Terms"
             component={Terms}
+            options={{ headerShown: false }}
+          />
+           <RootStack.Screen
+            name="TermsPage"
+            component={TermsPage}
             options={{ headerShown: false }}
           />
           <RootStack.Screen

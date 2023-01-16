@@ -14,13 +14,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
 import { Heading1w } from '../styles/typography';
-import { addSpaceToHtml } from '../services/Utils';
 import { bgcolorWhite2, primaryColor } from '@styles/style';
 
 
@@ -67,6 +65,9 @@ const Terms = ({ navigation }: Props): any => {
   const goToPrivacyPolicy = (): any => {
     navigation.navigate('PrivacyPolicy');
   };
+  const goToTerms = (): any => {
+    navigation.navigate('TermsPage');
+  };
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -76,10 +77,6 @@ const Terms = ({ navigation }: Props): any => {
       setLoading(false);
     }, [languageCode])
   );
-  const termsdata = useAppSelector(
-    (state: any) => state.utilsData.terms.body,
-  );
-
   const acceptTermsFlag = useAppSelector(
     (state: any) =>
       state.utilsData.acceptTerms
@@ -179,7 +176,6 @@ const Terms = ({ navigation }: Props): any => {
     // pinned for all 4 tools
   ];
   const acceptTerms = async (): any => {
-
     if (acceptTermsFlag == false) {
       dispatch(setAcceptTerms(true));
     }
@@ -202,17 +198,7 @@ const Terms = ({ navigation }: Props): any => {
             <Heading1w>{t('tNcheader')}</Heading1w>
           </OnboardingHeading>
           <ScrollView contentContainerStyle={styles.scrollViewStyle}>
-            {termsdata != "" ?
-              <HTML
-                source={{ html: addSpaceToHtml(termsdata) }}
-                baseFontStyle={styles.htmlStyle}
-                ignoredStyles={['color', 'font-size', 'font-family']}
-                tagsStyles={{
-                  p: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' }, h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h3: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h4: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h5: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, h6: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, span: { marginBottom: 15, marginTop: 0, textAlign: 'left' }, br: { height: 0 },
-                }}
-              />
-              : null
-            }
+          <LabelText>{t('tncScreenContent')}</LabelText>
             <Fragment>
               <View style={styles.containerView2}>
                 <FormOuterCheckbox
@@ -230,7 +216,7 @@ const Terms = ({ navigation }: Props): any => {
                       )}
                     </View>
                   </CheckboxItem>
-                  <LabelText>{t('tNccheckbox1')}</LabelText>
+                  <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToTerms} style={styles.checkboxStyle}>{t('tncCheckBoxText')}</CheckboxItemText></LabelText>
                 </FormOuterCheckbox>
                 <FormOuterCheckbox
                   onPress={(): any => {
@@ -247,7 +233,7 @@ const Terms = ({ navigation }: Props): any => {
                       )}
                     </View>
                   </CheckboxItem>
-                  <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={styles.checkboxStyle}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
+                   <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={styles.checkboxStyle}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
                 </FormOuterCheckbox>
                 <FormOuterCheckbox
                   onPress={(): any => {
