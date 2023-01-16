@@ -449,6 +449,8 @@ const MEcnr = {
                 donateButton: "Donirajte za Bebbo",
                 contactUs: "Pišite nam",
                 aboutBebboDrawerMenu: "O {{appName}}",
+                tncCheckBoxText: "Uslove i odredbe korišćenja aplikacije Bebbo",
+                tncScreenContent: "Bebbo ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na Vašem telefonu.",
         }
 
 }
