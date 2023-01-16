@@ -447,6 +447,8 @@ const BYbe = {
                 donateButton: "Ахвяруйце для Беббо",
                 contactUs: "Напішыце нам",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Пра {{appName}}",
+                tncCheckBoxText: "Умовы і палажэнні карыстання дадаткам REMOVED_FACEBOOK_APP_ID1",
+                tncScreenContent: "Беббо не збірае і не захоўвае ніякай асабістай інфармацыі. Усе дадзеныя, якія вы ўводзіце, захоўваюцца толькі на вашым тэлефоне.",
         }
 }
 export default BYbe;

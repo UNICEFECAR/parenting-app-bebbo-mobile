@@ -448,6 +448,8 @@ const GRel = {
                 donateButton: "Κάντε μια δωρεά για το REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Στείλτε μας μήνυμα",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Σχετικά με {{appName}}",
+                tncCheckBoxText: "τους Όρους και Προϋποθέσεις της εφαρμογής REMOVED_FACEBOOK_APP_ID1",
+                tncScreenContent: "Το REMOVED_FACEBOOK_APP_ID1 δεν συλλέγει ούτε αποθηκεύει προσωπικές πληροφορίες. Όλα τα δεδομένα που εισάγετε αποθηκεύονται μόνο στο τηλέφωνό σας.",
         }
 }
 export default GRel;

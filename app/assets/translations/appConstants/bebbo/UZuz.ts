@@ -448,6 +448,8 @@ const UZuz = {
               donateButton: "REMOVED_FACEBOOK_APP_ID1ʼga moliyaviy koʻmak",
               contactUs: "Bizga yozish",
               aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "{{appName}} haqinda",
+              tncCheckBoxText: "REMOVED_FACEBOOK_APP_ID1 ilovasi foydalanish shartlarini",
+              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi.",
        }
 }
 export default UZuz;

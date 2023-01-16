@@ -447,6 +447,8 @@ const BGbg = {
                 donateButton: "Дарете за Беббо",
                 contactUs: "Пишете ни",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "За {{appName}}",
+                tncCheckBoxText: "Общите условия на приложението Беббо",
+                tncScreenContent: "Беббо не събира и не съхранява лична информация. Всички данни, които въвеждате, се запазват само на вашия телефон.",
 
         }
 }

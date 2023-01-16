@@ -448,6 +448,8 @@ const UZru = {
                 donateButton: "Пожертвования для Беббо",
                 contactUs: "Напишите ни",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "О {{appName}}",
+                tncCheckBoxText: "Условия и положения пользования приложением REMOVED_FACEBOOK_APP_ID1",
+                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 не собирает и не хранит личную информацию. Все введенные вами данные  сохраняются только на вашем телефоне.",
         }
 }
 export default UZru;

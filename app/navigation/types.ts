@@ -7,6 +7,7 @@ export type RootStackParamList = {
   AddSiblingDataScreen: {};
   LoadingScreen: {};
   Terms: undefined;
+  TermsPage:undefined;
   PrivacyPolicy: undefined;
   HomeDrawerNavigator: HomeDrawerNavigatorStackParamList;
   EditChildProfile:{};

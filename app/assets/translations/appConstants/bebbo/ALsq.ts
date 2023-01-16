@@ -447,6 +447,8 @@ const ALsq = {
               donateButton: "Bëni donacion për REMOVED_FACEBOOK_APP_ID1",
               contactUs: "Na shkruani",
               aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Rheth {{appName}}",
+              tncCheckBoxText: "Termat dhe Kushtet e aplikacionit REMOVED_FACEBOOK_APP_ID1",
+              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj.",
 
        }
 }
