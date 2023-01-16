@@ -451,6 +451,8 @@ const uk = {
                 donateButton: "Пожертвуйте для Bebbo",
                 contactUs: "Напишіть нам",
                 aboutBebboDrawerMenu: "Про {{appName}}",
+                tncCheckBoxText: "Умови та положення користування додатком Bebbo",
+                tncScreenContent: "Bebbo не збирає та не зберігає жодної особистої інформації. Усі дані, які ви вводите, зберігаються лише на вашому телефоні.",
         }
 }
 export default uk;

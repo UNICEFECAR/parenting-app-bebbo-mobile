@@ -448,6 +448,8 @@ const XKsq = {
                 donateButton:"Dhuroni për Foleja",
                 contactUs:"Na shkruani",
                 aboutBebboDrawerMenu: "Rheth {{appName}}",
+                tncCheckBoxText: "Termat dhe Kushtet e aplikacionit Foleja",
+                tncScreenContent: "Foleja nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që ju i regjistroni, ruhen vetëm në telefonin tuaj.",
         }
 }
 export default XKsq;

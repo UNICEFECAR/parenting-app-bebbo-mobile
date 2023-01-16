@@ -447,6 +447,8 @@ const XKrs = {
               donateButton: "Donirajte za Foleja",
               contactUs: "Pišite nam",
               aboutBebboDrawerMenu: "O {{appName}}",
+              tncCheckBoxText: "Uslove i odredbe korišćenja aplikacije Foleja",
+              tncScreenContent: "Foleja aplikacija ne prikuplja lične podatke. Svi podaci koje unesete se čuvaju samo na vašem telefonu.",
        }
 }
 export default XKrs;
