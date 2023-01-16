@@ -119,7 +119,7 @@ const languageCode = useAppSelector(
                 <FDirRow>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      <Icon name="ic_favorites_filled" size={20} color="#000" />
+                      <Icon name="ic_sb_favorites_filled" size={25} color="#000" />
                     </OuterIconLeft>
                   </OuterIconRow>
                   <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
