@@ -451,6 +451,8 @@ const MDro = {
                 donateButton: "Donează pentru REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Trimite-ne un e-mail",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Despre {{appName}}",
+                tncCheckBoxText: "Termenii și condițiile aplicației REMOVED_FACEBOOK_APP_ID1",
+                tncScreenContent: "Aplicația REMOVED_FACEBOOK_APP_ID1 nu colectează și nu stochează nicio informație cu caracter personal. Toate datele pe care le introduceți sunt salvate doar pe telefonul dvs.",
         }
 }
 export default MDro;
