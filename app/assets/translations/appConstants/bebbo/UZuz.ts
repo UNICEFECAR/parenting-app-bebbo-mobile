@@ -447,7 +447,7 @@ const UZuz = {
               upto6YearsMsg: "Bu ilova 6 yoshgacha boʻlgan bolalar uchun moʻljallangan",
               donateButton: "REMOVED_FACEBOOK_APP_ID1ʼga moliyaviy koʻmak",
               contactUs: "Bizga yozish",
-              aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "{{appName}} haqinda",
+              aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "{{appName}} haqida",
               tncCheckBoxText: "REMOVED_FACEBOOK_APP_ID1 ilovasi foydalanish shartlarini",
               tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi.",
        }
