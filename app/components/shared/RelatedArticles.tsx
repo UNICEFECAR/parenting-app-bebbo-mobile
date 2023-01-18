@@ -116,7 +116,6 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
       });
   };
   const RenderRelatedArticleItem = ({item, index}: any): any => {
-    console.log(item,"..item..")
     return (
       <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}
         style={styles.itemPressable}
