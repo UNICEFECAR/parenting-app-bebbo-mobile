@@ -111,7 +111,8 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
         backgroundColor: backgroundColor,
         detailData: item,
         listCategoryArray: listCategoryArray ? listCategoryArray : [],
-        currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
+        currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0,
+        fromCd: fromScreen == "ChildDevelopment" ? true :false
       });
   };
   const RenderRelatedArticleItem = ({item, index}: any): any => {
