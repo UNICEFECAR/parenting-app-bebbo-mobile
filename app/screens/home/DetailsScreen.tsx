@@ -87,7 +87,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
   
   const adviceval = fromScreen === 'Activities' || fromScreen ==="FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
   const onHeaderBack =(): any=>{
-    console.log("onHeaderBack called",fromScreen,fromCd);
+   // console.log("onHeaderBack called",fromScreen,fromCd);
     if(fromScreen == "ChildDevelopment" && fromCd==true)
     {
       navigation.navigate('Home', {
