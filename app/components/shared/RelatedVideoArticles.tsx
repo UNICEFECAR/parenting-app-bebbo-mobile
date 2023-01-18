@@ -120,7 +120,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
         detailData: item,
         listCategoryArray: listCategoryArray ? listCategoryArray : [],
         currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0,
-        fromCd:fromScreen == "ChildDevelopment" ? true :false
+        fromCd: fromScreen == "ChildDevelopment" ? true :false
       });
   };
   const RenderRelatedArticleItem =({item, index}: any): any => {
