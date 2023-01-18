@@ -87,17 +87,25 @@ const DetailsScreen = ({route, navigation}: any): any => {
   
   const adviceval = fromScreen === 'Activities' || fromScreen ==="FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
   const onHeaderBack =(): any=>{
-   // console.log("onHeaderBack called",fromScreen,fromCd);
-    if(fromScreen == "ChildDevelopment" && fromCd==true)
+    if(fromScreen == "ChildDevelopment")
     {
-      navigation.navigate('Home', {
-        screen: "Articles", 
-        params: {
-          categoryArray:listCategoryArray,
-          backClicked:'no'
-        },
-        merge:true
-      })
+      if(fromCd==true){
+        navigation.navigate('Home', {
+          screen: "Articles", 
+          params: {
+            categoryArray:listCategoryArray,
+            backClicked:'no'
+          },
+          merge:true
+        })
+      }
+      else{
+        navigation.navigate({
+          name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+          params: {currentSelectedChildId:currentSelectedChildId},
+          merge: true,
+        });
+      } 
     }
     else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
     {
