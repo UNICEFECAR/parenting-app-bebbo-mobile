@@ -64,7 +64,7 @@ export type RelatedArticlesProps = {
 }
 const DetailsScreen = ({route, navigation}: any): any => {
   const {fromCd,headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
-  console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
+  //console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor,newBackgroundColor;
   if(fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
   {
