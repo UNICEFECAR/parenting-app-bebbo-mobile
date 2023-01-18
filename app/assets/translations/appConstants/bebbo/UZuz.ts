@@ -447,7 +447,7 @@ const UZuz = {
               upto6YearsMsg: "Bu ilova 6 yoshgacha boʻlgan bolalar uchun moʻljallangan",
               donateButton: "Bebboʼga moliyaviy koʻmak",
               contactUs: "Bizga yozish",
-              aboutBebboDrawerMenu: "{{appName}} haqinda",
+              aboutBebboDrawerMenu: "{{appName}} haqida",
               tncCheckBoxText: "Bebbo ilovasi foydalanish shartlarini",
               tncScreenContent: "Bebbo shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi.",
        }
