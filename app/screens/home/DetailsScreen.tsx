@@ -516,13 +516,13 @@ console.log(videoIsFocused,"..videoIsFocused");
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               </>:null
             }
-             {
-              fromScreen ==="ChildDevelopment" ?
-              <>
+            {
+              fromScreen === "ChildDevelopment" ?
+                <>
                   <TrackMilestoneView currentSelectedChildId={currentSelectedChildId} />
                   <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
                   <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
-              </>:null
+                </> : null
             }
           </ScrollView>
         </View>
