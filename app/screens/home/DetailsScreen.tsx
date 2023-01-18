@@ -63,7 +63,7 @@ export type RelatedArticlesProps = {
   currentSelectedChildId?: any;
 }
 const DetailsScreen = ({route, navigation}: any): any => {
-  const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
+  const {fromCd,headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
   console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor,newBackgroundColor;
   if(fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
@@ -87,14 +87,17 @@ const DetailsScreen = ({route, navigation}: any): any => {
   
   const adviceval = fromScreen === 'Activities' || fromScreen ==="FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
   const onHeaderBack =(): any=>{
-    console.log("onHeaderBack called",fromScreen);
-    if(fromScreen == "ChildDevelopment")
+    console.log("onHeaderBack called",fromScreen,fromCd);
+    if(fromScreen == "ChildDevelopment" && fromCd==true)
     {
-      navigation.navigate({
-        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        params: {currentSelectedChildId:currentSelectedChildId},
-        merge: true,
-      });
+      navigation.navigate('Home', {
+        screen: "Articles", 
+        params: {
+          categoryArray:listCategoryArray,
+          backClicked:'no'
+        },
+        merge:true
+      })
     }
     else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
     {
@@ -373,7 +376,7 @@ console.log(videoIsFocused,"..videoIsFocused");
           <ScrollView overScrollMode="never" style={styles.scrollView}>
             <View>
               {
-              fromScreen ==="ChildDevelopment" || fromScreen === "Home" || (detailDataToUse && detailDataToUse.cover_video && detailDataToUse.cover_video.url!="" && detailDataToUse.cover_video.url!=undefined) ?
+              fromScreen === "Home" || (detailDataToUse && detailDataToUse.cover_video && detailDataToUse.cover_video.url!="" && detailDataToUse.cover_video.url!=undefined) ?
               videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>:null
               :
               detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
@@ -468,7 +471,7 @@ console.log(videoIsFocused,"..videoIsFocused");
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
-                    <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                    <RelatedArticles  relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
 
                       <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
                 </FlexCol>
@@ -501,9 +504,17 @@ console.log(videoIsFocused,"..videoIsFocused");
               </>
             ) : null}
             {
-              fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
+              fromScreen === "Home" ?
               <>
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
+              </>:null
+            }
+             {
+              fromScreen ==="ChildDevelopment" ?
+              <>
+                  <TrackMilestoneView currentSelectedChildId={currentSelectedChildId} />
+                  <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+                  <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
               </>:null
             }
           </ScrollView>
