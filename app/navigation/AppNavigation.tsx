@@ -756,7 +756,6 @@ export default (): any => {
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
       getAllChildren(dispatch, child_age, 0);
     }
-    //add notification condition in else if required 1st time as well
   }, [userIsOnboarded]);
   useEffect(() => {
     dispatch(setchatBotData([]));
