@@ -756,6 +756,8 @@ export default (): any => {
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
       getAllChildren(dispatch, child_age, 0);
     }
+  }, [userIsOnboarded]);
+  useEffect(() => {
     dispatch(setchatBotData([]));
     if (countryId == 1) {
       dispatch(oncountrtIdChange(restOfTheWorldCountryId));
@@ -764,7 +766,6 @@ export default (): any => {
     dispatch(setInfoModalOpened(notiFlagObj));
     //add notification condition in else if required 1st time as well
   }, []);
-
   useEffect(() => {
     async function fetchNetInfoSet(): Promise<any> {
       if (netState == "Highbandwidth" && toggleSwitchVal == true) {
