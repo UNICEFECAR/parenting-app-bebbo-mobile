@@ -70,20 +70,20 @@ type Props = {
 };
 const styles = StyleSheet.create({
   containerView: {
-    backgroundColor:primaryColor,
-    flex:1
+    backgroundColor: primaryColor,
+    flex: 1
   },
-  flex2Style: { 
-    alignItems:'flex-start'
+  flex2Style: {
+    alignItems: 'flex-start'
   },
-  flexRow1: { 
-    marginTop:10
+  flexRow1: {
+    marginTop: 10
   },
-  scrollViewStyle: { 
+  scrollViewStyle: {
     padding: 0,
     paddingTop: 0
   },
-  textInputStyle: { 
+  textInputStyle: {
     width: '100%'
   }
 })
@@ -171,7 +171,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     }
   };
   const handleError = (err: any): any => {
-    console.log(err,"..err")
+    console.log(err, "..err")
     if (DocumentPicker.isCancel(err)) {
       console.log('cancelled')
       // User cancelled the picker, exit any dialogs or menus and move on
@@ -181,91 +181,91 @@ const ChildSetup = ({ navigation }: Props): any => {
       throw err
     }
   };
-  const importFromFile=async(): Promise<any>=>{
-    if(Platform.OS=="android"){
-      const dataset=await ScopedStorage.openDocument(true,'base64');
-      console.log(dataset,"..dataset");
-      if (dataset && dataset.data!="" && dataset.data!=null && dataset.data!=undefined) {
-         await RNFS.writeFile(tempRealmFile,dataset.data,"base64");
-         const importedrealm = await new Realm({ path: 'user1.realm'});
-         console.log(importedrealm,"...importedrealm");
-         const user1Path = importedrealm.path;
-         console.log(user1Path, "..user1Path");
-         const oldChildrenData = importedrealm.objects('ChildEntity');
-         console.log(oldChildrenData,"..newoldChildrenData..")
-         setImportAlertVisible(false);
-         setLoading(true);
-         setIsImportRunning(true);
-         if (oldChildrenData.length > 0) {
-           await userRealmCommon.openRealm();
-           await userRealmCommon.deleteAllAtOnce();
-           setIsImportRunning(false);
-           setLoading(false);
-           navigation.navigate('ChildImportSetup', {
-             importResponse: JSON.stringify(oldChildrenData)
-           });
-           importedrealm.close();
-           try {
-             Realm.deleteFile({ path: tempRealmFile });
-         } catch (error) {
-             //console.log(error);
-         } 
-         }
-         else {
-           setLoading(false);
-           setIsImportRunning(false);
-         }
+  const importFromFile = async (): Promise<any> => {
+    if (Platform.OS == "android") {
+      const dataset = await ScopedStorage.openDocument(true, 'base64');
+      console.log(dataset, "..dataset");
+      if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
+        await RNFS.writeFile(tempRealmFile, dataset.data, "base64");
+        const importedrealm = await new Realm({ path: 'user1.realm' });
+        //console.log(importedrealm, "...importedrealm");
+        const user1Path = importedrealm.path;
+        console.log(user1Path, "..user1Path");
+        const oldChildrenData = importedrealm.objects('ChildEntity');
+        //console.log(oldChildrenData, "..newoldChildrenData..")
+        setImportAlertVisible(false);
+        setLoading(true);
+        setIsImportRunning(true);
+        if (oldChildrenData.length > 0) {
+          await userRealmCommon.openRealm();
+          await userRealmCommon.deleteAllAtOnce();
+          setIsImportRunning(false);
+          setLoading(false);
+          navigation.navigate('ChildImportSetup', {
+            importResponse: JSON.stringify(oldChildrenData)
+          });
+          importedrealm.close();
+          try {
+            Realm.deleteFile({ path: tempRealmFile });
+          } catch (error) {
+            //console.log(error);
+          }
+        }
+        else {
+          setLoading(false);
+          setIsImportRunning(false);
+        }
       }
     }
-    else{
-    DocumentPicker.pick({
-      allowMultiSelection: false,
-      type: DocumentPicker.types.allFiles,
-    })
-  .then(async (res: any)=>{
-    console.log(res, "..res..");
-    if (res.length > 0 && res[0].uri) {
-      const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
-      const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
-      let importedrealm=await new Realm({ path:'user1.realm' });
-      if(importedrealm){
-        importedrealm.close();
-      }
-      importedrealm=await new Realm({ path:'user1.realm' });
+    else {
+      DocumentPicker.pick({
+        allowMultiSelection: false,
+        type: DocumentPicker.types.allFiles,
+      })
+        .then(async (res: any) => {
+          console.log(res, "..res..");
+          if (res.length > 0 && res[0].uri) {
+            const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
+            const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
+            let importedrealm = await new Realm({ path: 'user1.realm' });
+            if (importedrealm) {
+              importedrealm.close();
+            }
+            importedrealm = await new Realm({ path: 'user1.realm' });
             const user1Path = importedrealm.path;
             console.log(user1Path, "..user1Path");
             const oldChildrenData = importedrealm.objects('ChildEntity');
-            console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
-            console.log(oldChildrenData, "..newoldChildrenData..")
-      setImportAlertVisible(false);
-      setLoading(true);
-      setIsImportRunning(true);
-      if (oldChildrenData.length > 0) {
-        await userRealmCommon.openRealm();
-        await userRealmCommon.deleteAllAtOnce();
-        setIsImportRunning(false);
-        setLoading(false);
-        navigation.navigate('ChildImportSetup', {
-          importResponse: JSON.stringify(oldChildrenData)
-        });
-        importedrealm.close();
-        try {
-          Realm.deleteFile({ path: tempRealmFile});
-      } catch (error) {
-          //console.log(error);
-      } 
-      
-      }
-      else {
-        setLoading(false);
-        setIsImportRunning(false);
-      }
-     
+            //console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
+            //console.log(oldChildrenData, "..newoldChildrenData..")
+            setImportAlertVisible(false);
+            setLoading(true);
+            setIsImportRunning(true);
+            if (oldChildrenData.length > 0) {
+              await userRealmCommon.openRealm();
+              await userRealmCommon.deleteAllAtOnce();
+              setIsImportRunning(false);
+              setLoading(false);
+              navigation.navigate('ChildImportSetup', {
+                importResponse: JSON.stringify(oldChildrenData)
+              });
+              importedrealm.close();
+              try {
+                Realm.deleteFile({ path: tempRealmFile });
+              } catch (error) {
+                //console.log(error);
+              }
+
+            }
+            else {
+              setLoading(false);
+              setIsImportRunning(false);
+            }
+
+          }
+
+        })
+        .catch(handleError);
     }
-   
-  })
-  .catch(handleError);
-   }
   }
   const importAllData = async (): Promise<any> => {
     setImportAlertVisible(false);
@@ -312,35 +312,6 @@ const ChildSetup = ({ navigation }: Props): any => {
             </ChildCenterView>
 
           </OnboardingHeading>
-
-          <FlexCol>
-              <FlexRow style={styles.flexRow1}>
-                <Flex2 style={styles.flex2Style}>
-                <Heading4Regularw>{t('importOnboardingText')}</Heading4Regularw>
-              </Flex2>
-              <Flex1>
-                <ButtonPrimaryMd
-                  disabled={isImportRunning}
-                  onPress={(e): any => {
-                    e.stopPropagation();
-                    actionSheetRefImport.current?.setModalVisible(true);
-                  }}>
-                  <ButtonText>{t('OnboardingImportButton')}</ButtonText>
-                </ButtonPrimaryMd>
-              </Flex1>
-            </FlexRow>
-            <FlexRow>
-              <Flex1>
-                <OrView>
-                  <OrDivider><Text></Text></OrDivider>
-                  <OrHeadingView>
-                    <Heading3Centerw>{t('ORkeyText')}</Heading3Centerw>
-                  </OrHeadingView>
-
-                </OrView>
-              </Flex1>
-            </FlexRow>
-          </FlexCol>
 
           <FlexCol>
             <Heading2w>
@@ -418,9 +389,37 @@ const ChildSetup = ({ navigation }: Props): any => {
               }
             </View>
 
-
           </FlexCol>
 
+          <FlexCol>
+            <FlexRow>
+              <Flex1>
+                <OrView>
+                  <OrDivider><Text></Text></OrDivider>
+                  <OrHeadingView>
+                    <Heading3Centerw>{t('ORkeyText')}</Heading3Centerw>
+                  </OrHeadingView>
+
+                </OrView>
+              </Flex1>
+            </FlexRow>
+            <FlexRow style={styles.flexRow1}>
+              <Flex2 style={styles.flex2Style}>
+                <Heading4Regularw>{t('importOnboardingText')}</Heading4Regularw>
+              </Flex2>
+              <Flex1>
+                <ButtonPrimaryMd
+                  disabled={isImportRunning}
+                  onPress={(e): any => {
+                    e.stopPropagation();
+                    actionSheetRefImport.current?.setModalVisible(true);
+                  }}>
+                  <ButtonText>{t('OnboardingImportButton')}</ButtonText>
+                </ButtonPrimaryMd>
+              </Flex1>
+            </FlexRow>
+
+          </FlexCol>
 
 
         </OnboardingContainer>
@@ -474,7 +473,7 @@ const ChildSetup = ({ navigation }: Props): any => {
           </SettingHeading>
           <SettingShareData>
             <FDirRow>
-                <SettingOptions>
+              <SettingOptions>
                 <Pressable onPress={(): any => {
                   actionSheetRefImport.current?.setModalVisible(false);
                   setTimeout(async () => {
@@ -482,12 +481,12 @@ const ChildSetup = ({ navigation }: Props): any => {
                       //import
                       if (Platform.OS === "android") {
                         console.log("1233");
-                          importFromFile();
-                      }
-                      else{
                         importFromFile();
                       }
-                    
+                      else {
+                        importFromFile();
+                      }
+
 
                     } catch (err) {
                       if (DocumentPicker.isCancel(err)) {
@@ -498,24 +497,24 @@ const ChildSetup = ({ navigation }: Props): any => {
                     }
                   }, 350);
                 }}>
-                 <VectorImage source={require('@assets/svg/ic_file.svg')} />
-                    <ShiftFromTopBottom5>
-                      <Heading4Regular>
-                        {t('importBtntxt')}
-                      </Heading4Regular>
-                    </ShiftFromTopBottom5>
-                  </Pressable>
+                  <VectorImage source={require('@assets/svg/ic_file.svg')} />
+                  <ShiftFromTopBottom5>
+                    <Heading4Regular>
+                      {t('importBtntxt')}
+                    </Heading4Regular>
+                  </ShiftFromTopBottom5>
+                </Pressable>
               </SettingOptions>
               <SettingOptions>
                 <Pressable onPress={(): any => {
                   actionSheetRefImport.current?.setModalVisible(false);
                   if (netInfoval && netInfoval.isConnected == true) {
-                    if(Platform.OS=='ios'){
-                      setTimeout(()=>{
+                    if (Platform.OS == 'ios') {
+                      setTimeout(() => {
                         setImportAlertVisible(true);
-                      },350)
+                      }, 350)
                     }
-                    else{
+                    else {
                       setImportAlertVisible(true);
                     }
                   }
@@ -535,7 +534,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                 </Pressable>
 
               </SettingOptions>
-              
+
             </FDirRow>
           </SettingShareData>
         </BannerContainer>
@@ -555,10 +554,10 @@ const ChildSetup = ({ navigation }: Props): any => {
                 validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
               }
               if (validated == true) {
-                setTimeout(()=>{
+                setTimeout(() => {
                   setLoading(false);
                   AddChild();
-                },0)
+                }, 0)
               }
               else {
                 console.log("in else");
