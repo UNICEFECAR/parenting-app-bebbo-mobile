@@ -9,7 +9,7 @@ const FormPrematureContainer = styled.View`
 export const FormInfoLabel = styled.View`
   flex-direction: row;
   margin-left: 0px;
-  margin-top: 3px;
+  margin-top: 2px;
 
 `;
 export const FormInfoPress = styled.Pressable`
