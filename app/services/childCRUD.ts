@@ -1,5 +1,5 @@
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
-import { appConfig, boyChildGender } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, articleCategory, boyChildGender } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
@@ -21,8 +21,9 @@ export const apiJsonDataGet = (childAge: any, parentGender: any,isDatetimeReq?: 
     childGender: 'all',
     childAge: childAge != "" && childAge != undefined && childAge != null ? childAge : "all",
     parentGender: parentGender != "" && parentGender != undefined && parentGender != null ? parentGender : "all",
-    category: 'all',
+    category: articleCategory != undefined && articleCategory != null ? articleCategory : "all",
   }
+  console.log(postData,"..postData..");
   return [
     {
       apiEndpoint: appConfig.articles,
