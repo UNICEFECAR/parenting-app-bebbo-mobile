@@ -28,3 +28,4 @@ export const VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF="vc_hc_notification_off";//e
 export const CHATBOT_CATEGORY_SELECTED="chatbot_category_selected";//chatbot category
 export const CHATBOT_SUBCATEGORY_SELECTED="chatbot_subcategory_selected";//chatbot subcategory
 export const CHATBOT_FAQ_SELECTED="chatbot_faq_selected";//chatbot faq category
+export const EMAIL_SENT="email_sent";//Email Sent
