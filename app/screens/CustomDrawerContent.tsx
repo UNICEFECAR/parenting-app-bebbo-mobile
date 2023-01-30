@@ -1,4 +1,4 @@
-import { APP_SHARE, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
+import { APP_SHARE, DONATE_OPENED, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
 import { buildFor, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
@@ -572,6 +572,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
            {donateItem && donateItem != {} && donateItem != '' && donateItem?.survey_feedback_link && donateItem?.survey_feedback_link != '' && donateItem?.survey_feedback_link != null ?
             <DrawerLinkView
               onPress={(): any => {
+                analytics().logEvent(DONATE_OPENED);
                 Linking.openURL(donateItem?.survey_feedback_link);
               }}>
               <OuterIconRow>
