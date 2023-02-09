@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'right'
   },
-  padding2:{
-    paddingLeft:2
+  padding2: {
+    paddingLeft: 2
   },
   scrollViewStyle: {
     backgroundColor: bgcolorWhite2,
@@ -467,8 +467,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 <Icon name="ic_sb_about" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <><Heading4 style={styles.headingFlexShrink}>{t('aboutBebboDrawerMenu', {appName:t('homeScreenheaderTitle')})}</Heading4></>  
-           <Icon
+            <><Heading4 style={styles.headingFlexShrink}>{t('aboutBebboDrawerMenu', { appName: t('homeScreenheaderTitle') })}</Heading4></>
+            <Icon
               style={styles.iconStyle}
               name={aboutAccordValue ? 'ic_angle_up' : 'ic_angle_down'}
               size={10}
@@ -477,53 +477,41 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           </DrawerLinkView>
           {aboutAccordValue ? (
             <>
-              <SubDrawerLinkView
+              <DrawerLinkView
                 onPress={(): any =>
                   navigation.navigate('AboutusScreen')
                 }>
-                <FDirRow>
-                  <NavIconSpacingAbout>
+                <OuterIconRow>
+                  <OuterIconLeft15>
                     <Icon name="ic_sb_about" size={25} color="#000" />
-                  </NavIconSpacingAbout>
-                </FDirRow>
-                <FDirRow>
-                  <SubDrawerHead>
-                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuabtTxt')}</Heading4>
-                  </SubDrawerHead>
-                </FDirRow>
-              </SubDrawerLinkView>
-              <SubDrawerLinkView
-                onPress={(): any =>{
+                  </OuterIconLeft15>
+                </OuterIconRow>
+                <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuabtTxt')}</Heading4>
+              </DrawerLinkView>
+              <DrawerLinkView
+                onPress={(): any => {
                   analytics().logEvent(EMAIL_SENT)
                   Linking.openURL('mailto:admin@bebbo.app');
-                 }}>
-                <FDirRow>
-                  <NavIconSpacingAbout>
+                }}>
+                <OuterIconRow>
+                  <OuterIconLeft15>
                     <Icon name="ic_contact" size={25} color="#000" />
-                  </NavIconSpacingAbout>
-                </FDirRow>
-                <FDirRow>
-                  <SubDrawerHead>
-                    <Heading4 style={styles.headingFlexShrink}>{t('contactUs')}</Heading4>
-                  </SubDrawerHead>
-                </FDirRow>
-              </SubDrawerLinkView>
-              <SubDrawerLinkView
+                  </OuterIconLeft15>
+                </OuterIconRow>
+                <Heading4 style={styles.headingFlexShrink}>{t('contactUs')}</Heading4>
+              </DrawerLinkView>
+              <DrawerLinkView
                 onPress={(): any =>
                   setModalVisible(true)
                 }>
-                <FDirRow>
-                  <NavIconSpacingAbout>
+                <OuterIconRow>
+                  <OuterIconLeft15>
                     <Icon name="ic_sb_feedback" size={25} color="#000" />
-                  </NavIconSpacingAbout>
-                </FDirRow>
-                <FDirRow>
-                  <SubDrawerHead>
-                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenufeedbackTxt')}</Heading4>
-                  </SubDrawerHead>
-                </FDirRow>
-              </SubDrawerLinkView>
-              <SubDrawerLinkView
+                  </OuterIconLeft15>
+                </OuterIconRow>
+                <Heading4 style={styles.headingFlexShrink}>{t('drawerMenufeedbackTxt')}</Heading4>
+              </DrawerLinkView>
+              <DrawerLinkView
                 onPress={(): any => {
                   if (Platform.OS === 'android') {
                     if (String(buildFor) == buildForBebbo) {
@@ -541,35 +529,27 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     }
                   }
                 }}>
-                <FDirRow>
-                  <NavIconSpacingAbout>
+                  <OuterIconRow>
+                  <OuterIconLeft15>
                     <Icon name="ic_sb_loveapp" size={25} color="#000" />
-                  </NavIconSpacingAbout>
-                </FDirRow>
-                <FDirRow>
-                  <SubDrawerHead>
-                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenurateTxt')}</Heading4>
-                  </SubDrawerHead>
-                </FDirRow>
-              </SubDrawerLinkView>
-              <SubDrawerLinkView
+                  </OuterIconLeft15>
+                </OuterIconRow>
+                <Heading4 style={styles.headingFlexShrink}>{t('drawerMenurateTxt')}</Heading4>
+              </DrawerLinkView>
+              <DrawerLinkView
                 onPress={(): any =>
                   navigation.navigate('PrivacyPolicy')
                 }>
-                <FDirRow>
-                  <NavIconSpacingAbout>
+                <OuterIconRow>
+                  <OuterIconLeft15>
                     <Icon name="ic_sb_privacy" size={25} color="#000" />
-                  </NavIconSpacingAbout>
-                </FDirRow>
-                <FDirRow>
-                  <SubDrawerHead>
-                    <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuPrivacyTxt')}</Heading4>
-                  </SubDrawerHead>
-                </FDirRow>
-              </SubDrawerLinkView>
+                  </OuterIconLeft15>
+                </OuterIconRow>
+                <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuPrivacyTxt')}</Heading4>
+              </DrawerLinkView>
             </>
           ) : null}
-           {donateItem && donateItem != {} && donateItem != '' && donateItem?.survey_feedback_link && donateItem?.survey_feedback_link != '' && donateItem?.survey_feedback_link != null ?
+          {donateItem && donateItem != {} && donateItem != '' && donateItem?.survey_feedback_link && donateItem?.survey_feedback_link != '' && donateItem?.survey_feedback_link != null ?
             <DrawerLinkView
               onPress={(): any => {
                 analytics().logEvent(DONATE_OPENED);
@@ -577,7 +557,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               }}>
               <OuterIconRow>
                 <OuterIconLeft15>
-                  <Icon name="ic_donate" size={20} color="#000" style={styles.padding2}/>
+                  <Icon name="ic_donate" size={20} color="#000" style={styles.padding2} />
                 </OuterIconLeft15>
               </OuterIconRow>
               <Heading4 style={styles.headingFlexShrink}>{t('donateButton')}</Heading4>
