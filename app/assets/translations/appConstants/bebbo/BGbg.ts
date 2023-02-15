@@ -23,13 +23,13 @@ const BGbg = {
                 tNcheader: "Общи условия",
                 tNccheckbox1: "Прочетох, разбрах и приемам Общите условия на приложението Беббо",
                 tNccheckbox2: "Прочетох, разбрах и приемам",
-                tNcprivacyPolicy: "Политика за поверителност на приложението Беббо",
+                tNcprivacyPolicy: "Политика за Поверителност на приложението Беббо",
                 tNccheckbox3: "Приемам, че анонимизираните данни за начина, по който използвам приложението, ще бъдат използвани за подобряване на приложението Беббо (не е задължително)",
                 tNcprivacyPolicyTitle: "Политика за поверителност",
                 tNcacceptbtn: "Приемам Общите условия",
                 loadingText: "Зареждане на данни...",
                 childSetupheader: "Mоля, отделете малко време, за да персонализирате приложението",
-                childSetupdobLabel: "Дата на раждане на детето / термин",
+                childSetupdobLabel: "Дата на раждане на детето",
                 childSetupdobSelector: "Въведете дата на раждане / термин",
                 childSetupdueLabel: "Първоначален термин",
                 childSetupdueSelector: "Въведете дата на първоначален термин",
@@ -391,7 +391,7 @@ const BGbg = {
                 successOnboardingImport: "Импортирахте успешно данни за дете",
                 updateImportText: "Моля, актуализирайте данните си, за да продължите",
                 importOnboardingText: "Можете да импортирате предишни експортирани данни за дете",
-                OnboardingImportButton: "Импортирайте сега",
+                OnboardingImportButton: "Импорт на данни",
                 ORkeyText: "ИЛИ",
                 addChildText: "Добавете данни за вашето дете",
                 notiTimeAgoTxt: "преди {{ageStr}}",
@@ -447,9 +447,8 @@ const BGbg = {
                 donateButton: "Дарете за Беббо",
                 contactUs: "Пишете ни",
                 aboutBebboDrawerMenu: "За {{appName}}",
-                tncCheckBoxText: "Общите условия на приложението Беббо",
-                tncScreenContent: "Беббо не събира и не съхранява лична информация. Всички данни, които въвеждате, се запазват само на вашия телефон.",
-
+                tncCheckBoxText: "Общите Условия на приложението Беббо",
+                tncScreenContent: "Беббо не събира и не съхранява лична информация. Всички данни, които въвеждате, се запазват само на вашия телефон."
         }
 }
 export default BGbg;
