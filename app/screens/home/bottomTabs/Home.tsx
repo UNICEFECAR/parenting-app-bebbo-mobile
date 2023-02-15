@@ -400,7 +400,7 @@ const Home = ({ route, navigation }: any):any => {
                 console.log("forceupdate apiresponse2",apiresponse);
                 let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
                 forceUpdateTime = forceUpdateTime ? forceUpdateTime : '0';
-                console.log("--forceUpdateTime--",forceUpdateTime);
+                //Alert.alert("--forceUpdateTime--",String(forceUpdateTime));
                 if(apiresponse.data.status == 200) {
                   if(apiresponse.data.flag == 1) {
                   if(parseInt(apiresponse.data.updated_at) > parseInt(forceUpdateTime)){
@@ -427,7 +427,14 @@ const Home = ({ route, navigation }: any):any => {
         }
               
     }
-    fetchNetInfo()
+    if(Platform.OS=="ios"){
+      if(netInfoval.isConnected!=null){
+        fetchNetInfo();
+      }
+    }
+    else{
+      fetchNetInfo();
+    }
   }, [netInfoval.isConnected]);
 
   const ondobChange = (event: any, selectedDate: any):any => {
