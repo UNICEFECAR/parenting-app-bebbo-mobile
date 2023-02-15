@@ -433,8 +433,6 @@ const GRda = {
                 downloadAllSuccessPopupTitle: "Success",
                 downloadAllSuccessPopupText: "All Data downloaded successfully!!",
                 downloadAllSuccessOkBtn: "Ok",
-
-                //9/03/2022
                 remindersAlertTitle: "Reminder!",
                 vcDefinedReminderText: "Enter the date and time of the reminder",
                 hcDefinedReminderText: "Enter the date and time of the reminder",
@@ -451,7 +449,7 @@ const GRda = {
                 contactUs: "Write to us",
                 aboutBebboDrawerMenu: "About {{appName}}",
                 tncCheckBoxText: "Terms and conditions of the Bebbo application",
-                tncScreenContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone.",
+                tncScreenContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone."
         }
 }
 export default GRda;

@@ -215,7 +215,7 @@ const GRarb = {
                 vcScreenenterDateText: "أدخل تاريخ الفحص الطبي",
                 vcPlanned: "اللقاحات المبرمجة",
                 vcPrev: "لقاحات المرحلة السابقة",
-                vcChildMeasureQ: "  هل تم قياس الطفل؟  ",
+                vcChildMeasureQ: "  هل تم قياس الطفل؟",
                 vcDoctorRemark: "ملاحظات وتعليقات الطبيب",
                 vcDoctorRemarkPlaceHolder: "أدخل ملاحظة أو تعليق الطبيب",
                 vcIsMeasuredOption1: "نعم",
@@ -404,7 +404,7 @@ const GRarb = {
                 favScreenremoveText: "حذف",
                 settingScreenimportOptionHeader: "إدخال بيانات إلى",
                 childSetupprematureMessageNext: "يَظهَرُ محتوى هذا الحقل وفقاَ للعمر الذي تم تعديله وليس اعتماداَ على العمر الحقيقي لطفلك المولود ولادة مُبكّرة.",
-                helloMessage: "أنا بيبو . أنا هُنا لأُجيب على أسئلتكَ.{{parentName}} مرحبا  ",
+                helloMessage: "أنا بيبو . أنا هُنا لأُجيب على أسئلتكَ.{{parentName}} مرحبا",
                 selectAreaOfInterest: "الرجاء اختيار المجال الذي يهمك، لتطرح سؤالك بصدده",
                 question1: "بأي مجال يتعلق سؤالك",
                 question2: " الرجاء اختيار أ حد الأسئلة التالية",
@@ -449,7 +449,7 @@ const GRarb = {
                 contactUs: "Write to us",
                 aboutBebboDrawerMenu: "About {{appName}}",
                 tncCheckBoxText: "Terms and conditions of the Bebbo application",
-                tncScreenContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone.",
+                tncScreenContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone."
         }
 
 }
