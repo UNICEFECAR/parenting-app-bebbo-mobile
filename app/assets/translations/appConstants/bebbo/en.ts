@@ -30,7 +30,7 @@ const en = {
                 tNcacceptbtn: "I accept the Terms and Conditions",
                 loadingText: "Loading data...",
                 childSetupheader: "Please take a moment to personalize your app",
-                childSetupdobLabel: "Child date of birth / expected due date",
+                childSetupdobLabel: "Child date of birth",
                 childSetupdobSelector: "Enter date of birth / expected due date",
                 childSetupdueLabel: "Original due date",
                 childSetupdueSelector: "Enter original due date",
@@ -451,8 +451,8 @@ const en = {
                 donateButton: "Donate for Bebbo",
                 contactUs: "Write to us",
                 aboutBebboDrawerMenu: "About {{appName}}",
-                tncCheckBoxText: "Terms and conditions of the Bebbo application",
-                tncScreenContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone.",
+                tncCheckBoxText: "Terms and Conditions of the Bebbo application",
+                tncScreenContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone."
         }
 }
 export default en;
