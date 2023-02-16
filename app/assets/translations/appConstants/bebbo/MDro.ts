@@ -24,13 +24,13 @@ const MDro = {
                 tNcheader: "Termeni și condiții",
                 tNccheckbox1: "Am citit, am înțeles și am acceptat Termenii și condițiile aplicației REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox2: "Am citit, am înțeles și am acceptat ",
-                tNcprivacyPolicy: "Politica de confidențialitate a aplicației REMOVED_FACEBOOK_APP_ID1",
+                tNcprivacyPolicy: "Politica de Confidențialitate a aplicației REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox3: "Accept ca datele anonimizate privind utilizarea aplicației de către mine să fie utilizate pentru îmbunătățirile aplicației REMOVED_FACEBOOK_APP_ID1 (nu este obligatoriu)",
                 tNcprivacyPolicyTitle: "Politica de confidențialitate",
                 tNcacceptbtn: "Accept Termenii și condițiile",
                 loadingText: "Se încarcă datele...",
                 childSetupheader: "Acordați câteva momente personalizării aplicației",
-                childSetupdobLabel: "Data nașterii copilului/data preconizată a nașterii",
+                childSetupdobLabel: "Data nașterii copilului",
                 childSetupdobSelector: "Introduceți data nașterii/data preconizată a nașterii",
                 childSetupdueLabel: "Data inițial estimată a nașterii",
                 childSetupdueSelector: "Introduceți data inițial estimată a nașterii",
@@ -451,8 +451,8 @@ const MDro = {
                 donateButton: "Donează pentru REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Trimite-ne un e-mail",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Despre {{appName}}",
-                tncCheckBoxText: "Termenii și condițiile aplicației REMOVED_FACEBOOK_APP_ID1",
-                tncScreenContent: "Aplicația REMOVED_FACEBOOK_APP_ID1 nu colectează și nu stochează nicio informație cu caracter personal. Toate datele pe care le introduceți sunt salvate doar pe telefonul dvs.",
+                tncCheckBoxText: "Termenii și Condițiile aplicației REMOVED_FACEBOOK_APP_ID1",
+                tncScreenContent: "Aplicația REMOVED_FACEBOOK_APP_ID1 nu colectează și nu stochează nicio informație cu caracter personal. Toate datele pe care le introduceți sunt salvate doar pe telefonul dvs."
         }
 }
 export default MDro;
