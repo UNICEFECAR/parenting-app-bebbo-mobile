@@ -24,13 +24,13 @@ const ROro = {
                 tNcheader: "Termeni și condiții",
                 tNccheckbox1: "Am citit, am înțeles și am acceptat Termenii și condițiile aplicației Bebbo",
                 tNccheckbox2: "Am citit, am înțeles și am acceptat ",
-                tNcprivacyPolicy: "Politica de confidențialitate a aplicației Bebbo",
+                tNcprivacyPolicy: "Politica de Confidențialitate a aplicației Bebbo",
                 tNccheckbox3: "Accept ca datele anonimizate privind utilizarea aplicației de către mine să fie utilizate pentru îmbunătățirile aplicației Bebbo (nu este obligatoriu)",
                 tNcprivacyPolicyTitle: "Politica de confidențialitate",
                 tNcacceptbtn: "Accept Termenii și condițiile",
                 loadingText: "Se încarcă datele...",
                 childSetupheader: "Acordați câteva momente personalizării aplicației",
-                childSetupdobLabel: "Data nașterii copilului/data preconizată a nașterii",
+                childSetupdobLabel: "Data nașterii copilului",
                 childSetupdobSelector: "Introduceți data nașterii/data preconizată a nașterii",
                 childSetupdueLabel: "Data inițial estimată a nașterii",
                 childSetupdueSelector: "Introduceți data inițial estimată a nașterii",
@@ -451,8 +451,8 @@ const ROro = {
                 donateButton: "Donați pentru Bebbo",
                 contactUs: "Scrieți-ne",
                 aboutBebboDrawerMenu: "Despre {{appName}}",
-                tncCheckBoxText: "Termenii și condițiile aplicației Bebbo",
-                tncScreenContent: "Bebbo nu colectează și nu păstrează niciun fel de informații personale. Toate datele încărcate sunt salvate doar pe telefonul dumneavoastră.",
+                tncCheckBoxText: "Termenii și Condițiile aplicației Bebbo",
+                tncScreenContent: "Bebbo nu colectează și nu păstrează niciun fel de informații personale. Toate datele încărcate sunt salvate doar pe telefonul dumneavoastră."
         }
 }
 export default ROro;
