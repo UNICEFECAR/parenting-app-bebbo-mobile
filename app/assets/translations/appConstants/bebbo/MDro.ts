@@ -24,13 +24,13 @@ const MDro = {
                 tNcheader: "Termeni și condiții",
                 tNccheckbox1: "Am citit, am înțeles și am acceptat Termenii și condițiile aplicației Bebbo",
                 tNccheckbox2: "Am citit, am înțeles și am acceptat ",
-                tNcprivacyPolicy: "Politica de confidențialitate a aplicației Bebbo",
+                tNcprivacyPolicy: "Politica de Confidențialitate a aplicației Bebbo",
                 tNccheckbox3: "Accept ca datele anonimizate privind utilizarea aplicației de către mine să fie utilizate pentru îmbunătățirile aplicației Bebbo (nu este obligatoriu)",
                 tNcprivacyPolicyTitle: "Politica de confidențialitate",
                 tNcacceptbtn: "Accept Termenii și condițiile",
                 loadingText: "Se încarcă datele...",
                 childSetupheader: "Acordați câteva momente personalizării aplicației",
-                childSetupdobLabel: "Data nașterii copilului/data preconizată a nașterii",
+                childSetupdobLabel: "Data nașterii copilului",
                 childSetupdobSelector: "Introduceți data nașterii/data preconizată a nașterii",
                 childSetupdueLabel: "Data inițial estimată a nașterii",
                 childSetupdueSelector: "Introduceți data inițial estimată a nașterii",
@@ -451,8 +451,8 @@ const MDro = {
                 donateButton: "Donează pentru Bebbo",
                 contactUs: "Trimite-ne un e-mail",
                 aboutBebboDrawerMenu: "Despre {{appName}}",
-                tncCheckBoxText: "Termenii și condițiile aplicației Bebbo",
-                tncScreenContent: "Aplicația Bebbo nu colectează și nu stochează nicio informație cu caracter personal. Toate datele pe care le introduceți sunt salvate doar pe telefonul dvs.",
+                tncCheckBoxText: "Termenii și Condițiile aplicației Bebbo",
+                tncScreenContent: "Aplicația Bebbo nu colectează și nu stochează nicio informație cu caracter personal. Toate datele pe care le introduceți sunt salvate doar pe telefonul dvs."
         }
 }
 export default MDro;
