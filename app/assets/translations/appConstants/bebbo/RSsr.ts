@@ -23,13 +23,13 @@ const RSsr = {
               tNcheader: "Uslovi i odredbe korišćenja",
               tNccheckbox1: "Pročitao/la sam, razumeo/la i prihvatam Uslove i odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
               tNccheckbox2: "Pročitao/la sam, razumeo/la i prihvatam",
-              tNcprivacyPolicy: "politiku privatnosti aplikacije REMOVED_FACEBOOK_APP_ID1",
+              tNcprivacyPolicy: "Politiku Privatnosti aplikacije REMOVED_FACEBOOK_APP_ID1",
               tNccheckbox3: "Prihvatam da se anonimni podaci o mom korišćenju ove aplikacije upotrebe za njeno poboljšanje (nije obavezno)",
               tNcprivacyPolicyTitle: "Politika privatnosti",
               tNcacceptbtn: "Prihvatam Uslove i odredbe",
               loadingText: "Učitavanje podataka…",
               childSetupheader: "Molimo Vas, iskoristite mogućnost da aplikaciju prilagodite svojim potrebama",
-              childSetupdobLabel: "Datum rođenja/očekivani datum rođenja deteta",
+              childSetupdobLabel: "Datum rođenja",
               childSetupdobSelector: "Unesite datum rođenja/očekivani datum rođenja deteta",
               childSetupdueLabel: "Prvobitni termin porođaja",
               childSetupdueSelector: "Unesite prvobitni termin porođaja",
@@ -447,8 +447,8 @@ const RSsr = {
               donateButton: "Donirajte za REMOVED_FACEBOOK_APP_ID1",
               contactUs: "Pišite nam",
               aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "O {{appName}}",
-              tncCheckBoxText: "Uslove i odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
-              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 aplikacija ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na vašem telefonu.",
+              tncCheckBoxText: "Uslove i Odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
+              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 aplikacija ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na vašem telefonu."
        }
 
 }
