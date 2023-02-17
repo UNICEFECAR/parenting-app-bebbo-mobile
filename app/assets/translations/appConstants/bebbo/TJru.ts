@@ -25,11 +25,11 @@ const TJru = {
                 tNccheckbox2: "Мною прочитана, понята и принимается",
                 tNcprivacyPolicy: "Политика конфиденциальности приложения Беббо ",
                 tNccheckbox3: "Я принимаю положение о том, что анонимизированные данные о моём использовании приложения будут собираться с целью улучшения его работы (не обязательно)",
-                tNcprivacyPolicyTitle: "Политика конфиденциальности",
+                tNcprivacyPolicyTitle: "Политика Конфиденциальности",
                 tNcacceptbtn: "Я принимаю условия и положения",
                 loadingText: "Загрузка данных…",
                 childSetupheader: "Давайте настроим приложение",
-                childSetupdobLabel: "Дата рождения ребёнка/предполагаемая дата родов",
+                childSetupdobLabel: "Дата рождения ребёнка",
                 childSetupdobSelector: "Введите дату рождения/предполагаемую дату родов",
                 childSetupdueLabel: "Первоначально предполагаемый срок",
                 childSetupdueSelector: "Введите первоначально предполагаемый срок",
@@ -391,8 +391,8 @@ const TJru = {
                 parentGender: "Пол",
                 successOnboardingImport: "Вы успешно импортировали данные ребенка",
                 updateImportText: "Обновите свои данные, чтобы продолжить",
-                importOnboardingText: "Вы можете импортировать ранее экспортированные данные ребенка",
-                OnboardingImportButton: "Импортировать сейчас",
+                importOnboardingText: "Вы можете загрузить введенные ранее данные ребенка",
+                OnboardingImportButton: "Загрузить",
                 ORkeyText: "ИЛИ",
                 addChildText: "Добавьте сведения о своем ребенке",
                 notiTimeAgoTxt: "{{ageStr}} назад",
@@ -448,9 +448,8 @@ const TJru = {
                 donateButton: "Сделайте пожертвование для Беббо",
                 contactUs: "Напишите нам",
                 aboutBebboDrawerMenu: "О {{appName}}",
-                tncCheckBoxText: "Условия и положения пользования приложением Беббо",
-                tncScreenContent: "Беббо не собирает и не хранит никакую личную информацию. Все введенные вами данные сохраняются только на вашем телефоне.",
-
+                tncCheckBoxText: "Условия и Положения пользования приложением Беббо",
+                tncScreenContent: "Беббо не собирает и не хранит никакую личную информацию. Все введенные вами данные сохраняются только на вашем телефоне."
         }
 }
 export default TJru;
