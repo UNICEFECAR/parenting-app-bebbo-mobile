@@ -23,13 +23,13 @@ const UZuz = {
               tNcheader: "Foydalanish shartlari",
               tNccheckbox1: "Bebbo ilovasi foydalanish shartlarini oʻqib chiqdim, tushundim va roziman",
               tNccheckbox2: "Oʻqib chiqdim, tushundim va roziman",
-              tNcprivacyPolicy: "Bebbo ilovasi maxfiylik siyosati",
+              tNcprivacyPolicy: "Bebbo ilovasi Maxfiylik Siyosati",
               tNccheckbox3: "Ilovadan foydalanishim haqidagi anonim maʼlumotlar Bebbo ilovasini yaxshilash uchun toʻplanishiga roziman (bu majburiy emas)",
               tNcprivacyPolicyTitle: "Maxfiylik siyosati",
               tNcacceptbtn: "Foydalanish shartlariga roziman",
               loadingText: "Maʼlumotlar yuklanmoqda…",
               childSetupheader: "Ilovani moslash uchun biroz vaqtingizni olamiz",
-              childSetupdobLabel: "Bolaning tugʻilgan sanasi/tugʻilishi kutilayotgan sana",
+              childSetupdobLabel: "Bolaning tugʻilgan sanasi",
               childSetupdobSelector: "Bolaning tugʻilgan/tugʻilishi kutilayotgan sanasini kiriting",
               childSetupdueLabel: "Dastlab taxmin qilingan sana",
               childSetupdueSelector: "Dastlab taxmin qilingan sanani kiriting",
@@ -448,8 +448,8 @@ const UZuz = {
               donateButton: "Bebboʼga moliyaviy koʻmak",
               contactUs: "Bizga yozish",
               aboutBebboDrawerMenu: "{{appName}} haqida",
-              tncCheckBoxText: "Bebbo ilovasi foydalanish shartlarini",
-              tncScreenContent: "Bebbo shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi.",
+              tncCheckBoxText: "Bebbo ilovasi Foydalanish Shartlarini",
+              tncScreenContent: "Bebbo shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi."
        }
 }
 export default UZuz;
