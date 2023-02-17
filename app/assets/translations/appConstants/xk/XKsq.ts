@@ -445,11 +445,11 @@ const XKsq = {
                 vcHasScheduled: "Vaksinimi është caktuar",
                 relatedVideoArticle: "Video të ngjashme",
                 upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
-                donateButton:"Dhuroni për REMOVED_FACEBOOK_APP_ID1",
-                contactUs:"Na shkruani",
-                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Rheth {{appName}}",
+                donateButton: "Dhuroni për REMOVED_FACEBOOK_APP_ID1",
+                contactUs: "Na shkruani",
+                aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Rreth {{appName}}",
                 tncCheckBoxText: "Termat dhe Kushtet e aplikacionit REMOVED_FACEBOOK_APP_ID1",
-                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që ju i regjistroni, ruhen vetëm në telefonin tuaj.",
+                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që ju i regjistroni, ruhen vetëm në telefonin tuaj."
         }
 }
 export default XKsq;
