@@ -1,5 +1,5 @@
 const BYru = {
-        translation:{
+        translation: {
                 countryLangSelection: "Вы выбрали страну и язык",
                 editCountryLang: "Редактировать",
                 continueCountryLang: "Продолжить",
@@ -449,6 +449,6 @@ const BYru = {
                 aboutBebboDrawerMenu: "О {{appName}}",
                 tncCheckBoxText: "Условия и Положения пользования приложением Беббо",
                 tncScreenContent: "Беббо не собирает и не хранит никакую личную информацию. Все введенные вами данные сохраняются только на вашем телефоне."
-                      }
+        }
 }
 export default BYru;

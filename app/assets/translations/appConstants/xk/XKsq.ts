@@ -445,11 +445,11 @@ const XKsq = {
                 vcHasScheduled: "Vaksinimi është caktuar",
                 relatedVideoArticle: "Video të ngjashme",
                 upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
-                donateButton:"Dhuroni për Foleja",
-                contactUs:"Na shkruani",
-                aboutBebboDrawerMenu: "Rheth {{appName}}",
+                donateButton: "Dhuroni për Foleja",
+                contactUs: "Na shkruani",
+                aboutBebboDrawerMenu: "Rreth {{appName}}",
                 tncCheckBoxText: "Termat dhe Kushtet e aplikacionit Foleja",
-                tncScreenContent: "Foleja nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që ju i regjistroni, ruhen vetëm në telefonin tuaj.",
+                tncScreenContent: "Foleja nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që ju i regjistroni, ruhen vetëm në telefonin tuaj."
         }
 }
 export default XKsq;
