@@ -24,13 +24,13 @@ const uk = {
                 tNcheader: "Умови та положення",
                 tNccheckbox1: "Я прочитав (-ла), зрозумів (-ла) та прийняв (-ла) Умови та положення користування додатком REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox2: "Я прочитав (-ла), зрозумів (-ла) та прийняв (-ла) ",
-                tNcprivacyPolicy: "Політику конфіденційності додатка REMOVED_FACEBOOK_APP_ID1",
+                tNcprivacyPolicy: "Політику Конфіденційності додатка REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox3: "Я погоджуюсь з тим, що анонімізовані дані про моє використання додатка будуть використані для покращення додатка REMOVED_FACEBOOK_APP_ID1 (не є обов'язковим)",
                 tNcprivacyPolicyTitle: "Політика конфіденційності",
                 tNcacceptbtn: "Я приймаю Умови та положення",
                 loadingText: "Завантаження даних...",
                 childSetupheader: "Знайдіть час, щоб персоналізувати додаток",
-                childSetupdobLabel: "Дата народження дитини/ очікувана дата пологів",
+                childSetupdobLabel: "Дата народження дитини",
                 childSetupdobSelector: "Введіть дату народження / очікувану дату пологів",
                 childSetupdueLabel: "Початкова дата пологів",
                 childSetupdueSelector: "Введіть початкову дату пологів",
@@ -451,8 +451,8 @@ const uk = {
                 donateButton: "Пожертвуйте для REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Напишіть нам",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Про {{appName}}",
-                tncCheckBoxText: "Умови та положення користування додатком REMOVED_FACEBOOK_APP_ID1",
-                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 не збирає та не зберігає жодної особистої інформації. Усі дані, які ви вводите, зберігаються лише на вашому телефоні.",
+                tncCheckBoxText: "Умови та Положення користування додатком REMOVED_FACEBOOK_APP_ID1",
+                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 не збирає та не зберігає жодної особистої інформації. Усі дані, які ви вводите, зберігаються лише на вашому телефоні."
         }
 }
 export default uk;

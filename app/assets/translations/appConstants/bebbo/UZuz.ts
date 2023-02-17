@@ -23,13 +23,13 @@ const UZuz = {
               tNcheader: "Foydalanish shartlari",
               tNccheckbox1: "REMOVED_FACEBOOK_APP_ID1 ilovasi foydalanish shartlarini oʻqib chiqdim, tushundim va roziman",
               tNccheckbox2: "Oʻqib chiqdim, tushundim va roziman",
-              tNcprivacyPolicy: "REMOVED_FACEBOOK_APP_ID1 ilovasi maxfiylik siyosati",
+              tNcprivacyPolicy: "REMOVED_FACEBOOK_APP_ID1 ilovasi Maxfiylik Siyosati",
               tNccheckbox3: "Ilovadan foydalanishim haqidagi anonim maʼlumotlar REMOVED_FACEBOOK_APP_ID1 ilovasini yaxshilash uchun toʻplanishiga roziman (bu majburiy emas)",
               tNcprivacyPolicyTitle: "Maxfiylik siyosati",
               tNcacceptbtn: "Foydalanish shartlariga roziman",
               loadingText: "Maʼlumotlar yuklanmoqda…",
               childSetupheader: "Ilovani moslash uchun biroz vaqtingizni olamiz",
-              childSetupdobLabel: "Bolaning tugʻilgan sanasi/tugʻilishi kutilayotgan sana",
+              childSetupdobLabel: "Bolaning tugʻilgan sanasi",
               childSetupdobSelector: "Bolaning tugʻilgan/tugʻilishi kutilayotgan sanasini kiriting",
               childSetupdueLabel: "Dastlab taxmin qilingan sana",
               childSetupdueSelector: "Dastlab taxmin qilingan sanani kiriting",
@@ -448,8 +448,8 @@ const UZuz = {
               donateButton: "REMOVED_FACEBOOK_APP_ID1ʼga moliyaviy koʻmak",
               contactUs: "Bizga yozish",
               aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "{{appName}} haqida",
-              tncCheckBoxText: "REMOVED_FACEBOOK_APP_ID1 ilovasi foydalanish shartlarini",
-              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi.",
+              tncCheckBoxText: "REMOVED_FACEBOOK_APP_ID1 ilovasi Foydalanish Shartlarini",
+              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi."
        }
 }
 export default UZuz;
