@@ -29,7 +29,7 @@ const MKsq = {
                 tNcacceptbtn: "Unë i pranoj Termat dhe Kushtet",
                 loadingText: "Të dhënat po ngarkohen...",
                 childSetupheader: "Ju lutemi, ndani pak kohë për ta personalizuar aplikacionin tuaj",
-                childSetupdobLabel: "Data e lindjes së fëmijës/data e parashikuar e lindjes",
+                childSetupdobLabel: "Data e lindjes së fëmijës",
                 childSetupdobSelector: "Vendoseni datën e lindjes/datën e parashikuar të lindjes",
                 childSetupdueLabel: "Data e saktë e lindjes",
                 childSetupdueSelector: "Vendoseni datën e saktë të lindjes",
@@ -447,9 +447,9 @@ const MKsq = {
                 upto6YearsMsg: "Ky aplikacion është dizajnuar për fëmijë deri në 6 vjeç",
                 donateButton: "Bëni donacion për Bebbo",
                 contactUs: "Na shkruani",
-                aboutBebboDrawerMenu: "Rheth {{appName}}",
+                aboutBebboDrawerMenu: "Rreth {{appName}}",
                 tncCheckBoxText: "Termat dhe Kushtet e aplikacionit Bebbo",
-                tncScreenContent: "Bebbo nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj.",
+                tncScreenContent: "Bebbo nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj."
         }
 }
 export default MKsq;
