@@ -23,13 +23,13 @@ const MEcnr = {
                 tNcheader: "Uslovi i odredbe korišćenja",
                 tNccheckbox1: "Pročitala/pročitao sam, razumjela/razumio i prihvatam Uslove i odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox2: "Pročitala/pročitao sam, razumjela/razumio i prihvatam",
-                tNcprivacyPolicy: "politiku privatnosti aplikacije REMOVED_FACEBOOK_APP_ID1",
+                tNcprivacyPolicy: "Politiku Privatnosti aplikacije REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox3: "Prihvatam da anonimni podaci o mom korišćenju ove aplikacije budu korišćeni za  njeno poboljšanje (nije obavezno)",
                 tNcprivacyPolicyTitle: "Politika privatnosti",
                 tNcacceptbtn: "Prihvatam Uslove i odredbe",
                 loadingText: "Učitavanje podataka…",
                 childSetupheader: "Molimo Vas da odvojite trenutak kako biste personalizovali Vašu aplikaciju",
-                childSetupdobLabel: "Datum rođenja djeteta / očekivani termin porođaja",
+                childSetupdobLabel: "Datum rođenja djeteta",
                 childSetupdobSelector: "Unesite datum rođenja djeteta / očekivani termin porođaja",
                 childSetupdueLabel: "Prvobitni termin porođaja",
                 childSetupdueSelector: "Unesite prvobitni termin porođaja",
@@ -449,8 +449,8 @@ const MEcnr = {
                 donateButton: "Donirajte za REMOVED_FACEBOOK_APP_ID1",
                 contactUs: "Pišite nam",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "O {{appName}}",
-                tncCheckBoxText: "Uslove i odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
-                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na Vašem telefonu.",
+                tncCheckBoxText: "Uslove i Odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
+                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na Vašem telefonu."
         }
 
 }

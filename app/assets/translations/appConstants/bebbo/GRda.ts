@@ -433,8 +433,6 @@ const GRda = {
                 downloadAllSuccessPopupTitle: "Success",
                 downloadAllSuccessPopupText: "All Data downloaded successfully!!",
                 downloadAllSuccessOkBtn: "Ok",
-
-                //9/03/2022
                 remindersAlertTitle: "Reminder!",
                 vcDefinedReminderText: "Enter the date and time of the reminder",
                 hcDefinedReminderText: "Enter the date and time of the reminder",
@@ -451,7 +449,7 @@ const GRda = {
                 contactUs: "Write to us",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "About {{appName}}",
                 tncCheckBoxText: "Terms and conditions of the REMOVED_FACEBOOK_APP_ID1 application",
-                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 does not collect or store any personal information. All data you enter is saved only on your phone.",
+                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 does not collect or store any personal information. All data you enter is saved only on your phone."
         }
 }
 export default GRda;

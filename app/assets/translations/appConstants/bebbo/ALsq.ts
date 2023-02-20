@@ -29,7 +29,7 @@ const ALsq = {
               tNcacceptbtn: "Unë pranoj Termat dhe Kushtet",
               loadingText: "Të dhënat po ngarkohen",
               childSetupheader: "Ju lutemi, merrni pak kohë për të personalizuar aplikacionin tuaj",
-              childSetupdobLabel: "Data e lindjes së fëmijës/data e parashikuar e lindjes",
+              childSetupdobLabel: "Data e lindjes së fëmijës",
               childSetupdobSelector: "Vendosni datën e lindjes/datën e parashikuar të lindjes",
               childSetupdueLabel: "Data origjinale e afatit",
               childSetupdueSelector: "Vendosni datën origjinale të afatit",
@@ -446,10 +446,9 @@ const ALsq = {
               upto6YearsMsg: "Ky aplikacion është krijuar për fëmijët deri në moshën 6 vjeç.",
               donateButton: "Bëni donacion për REMOVED_FACEBOOK_APP_ID1",
               contactUs: "Na shkruani",
-              aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Rheth {{appName}}",
+              aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Rreth {{appName}}",
               tncCheckBoxText: "Termat dhe Kushtet e aplikacionit REMOVED_FACEBOOK_APP_ID1",
-              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj.",
-
+              tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj."
        }
 }
 export default ALsq;
