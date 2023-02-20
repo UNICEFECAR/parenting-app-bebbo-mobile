@@ -23,13 +23,13 @@ const BYbe = {
                 tNcheader: "Умовы і палажэнні",
                 tNccheckbox1: "Умовы і палажэнні карыстання дадаткам Bebbo мной прачытаны, зразуметы і прымаюцца",
                 tNccheckbox2: "Мной прачытана, зразумета і прымаецца",
-                tNcprivacyPolicy: "Палітыка канфідэнцыяльнасці дадатку Bebbo",
+                tNcprivacyPolicy: "Палітыка Канфідэнцыяльнасці дадатку Bebbo",
                 tNccheckbox3: "Я прымаю палажэнне аб тым, што ананімізаваныя даныя пра выкарыстанне мной дадатку будуць збірацца з мэтай паляпшэння яго работы (не абавязкова)",
                 tNcprivacyPolicyTitle: "Палітыка канфідэнцыяльнасці",
                 tNcacceptbtn: "Я прымаю ўмовы і палажэнні",
                 loadingText: "Загрузка даных…",
                 childSetupheader: "Давайце настроім дадатак",
-                childSetupdobLabel: "Дата нараджэння дзіцяці / мяркуемая дата родаў",
+                childSetupdobLabel: "Дата нараджэння дзіцяці",
                 childSetupdobSelector: "Увядзіце дату нараджэння / мяркуемую дату родаў",
                 childSetupdueLabel: "Першапачаткова мяркуемы тэрмін",
                 childSetupdueSelector: "Увядзіце першапачаткова мяркуемы тэрмін",
@@ -390,8 +390,8 @@ const BYbe = {
                 parentGender: "Пол",
                 successOnboardingImport: "Вы паспяхова імпартавалі даныя дзіцяці",
                 updateImportText: "Калі ласка, абнавіце вашы даныя, каб прадоўжыць",
-                importOnboardingText: "Вы можаце імпартаваць раней экспартаваныя даныя дзіцяці",
-                OnboardingImportButton: "Імпартаваць зараз",
+                importOnboardingText: "Вы можаце загрузіць уведзеныя раней дадзеныя дзіцяці",
+                OnboardingImportButton: "Загрузіць",
                 ORkeyText: "АБО",
                 addChildText: "Дадаць даныя вашага дзіцяці",
                 notiTimeAgoTxt: "{{ageStr}} таму",
@@ -447,8 +447,8 @@ const BYbe = {
                 donateButton: "Ахвяруйце для Беббо",
                 contactUs: "Напішыце нам",
                 aboutBebboDrawerMenu: "Пра {{appName}}",
-                tncCheckBoxText: "Умовы і палажэнні карыстання дадаткам Bebbo",
-                tncScreenContent: "Беббо не збірае і не захоўвае ніякай асабістай інфармацыі. Усе дадзеныя, якія вы ўводзіце, захоўваюцца толькі на вашым тэлефоне.",
+                tncCheckBoxText: "Умовы і Палажэнні карыстання дадаткам Bebbo",
+                tncScreenContent: "Беббо не збірае і не захоўвае ніякай асабістай інфармацыі. Усе дадзеныя, якія вы ўводзіце, захоўваюцца толькі на вашым тэлефоне."
         }
 }
 export default BYbe;
