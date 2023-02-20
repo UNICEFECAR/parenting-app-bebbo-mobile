@@ -23,13 +23,13 @@ const GRel = {
                 tNcheader: "Όροι και Προϋποθέσεις",
                 tNccheckbox1: "Έχω διαβάσει, καταλάβει και αποδεχτεί τους Όρους και Προϋποθέσεις της εφαρμογής REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox2: "Έχω διαβάσει, καταλάβει και αποδεχτεί",
-                tNcprivacyPolicy: "Η πολιτική απορρήτου της εφαρμογής REMOVED_FACEBOOK_APP_ID1",
+                tNcprivacyPolicy: "Η Πολιτική Aπορρήτου της εφαρμογής REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox3: "Αποδέχομαι ότι τα ανώνυμα δεδομένα που καταχωρούνται στην εφαρμογή θα χρησιμοποιηθούν για τη βελτίωση της εφαρμογής REMOVED_FACEBOOK_APP_ID1 (δεν είναι υποχρεωτικό)",
                 tNcprivacyPolicyTitle: "Πολιτική απορρήτου",
                 tNcacceptbtn: "Αποδέχομαι τους όρους και τις προϋποθέσεις",
                 loadingText: "Φόρτωση δεδομένων",
                 childSetupheader: "Παρακαλώ αφιερώστε ένα λεπτό για να εξατομικεύσετε την εφαρμογή",
-                childSetupdobLabel: "Ημερομηνία γέννησης παιδιού / αναμενόμενη ημερομηνία τοκετού",
+                childSetupdobLabel: "Ημερομηνία γέννησης παιδιού",
                 childSetupdobSelector: "Εισάγετε ημερομηνία γέννησης / αναμενόμενη ημερομηνία τοκετού ",
                 childSetupdueLabel: "Αρχική ημερομηνία τοκετού",
                 childSetupdueSelector: "Εισάγετε την αρχική ημερομηνία τοκετού",
@@ -449,7 +449,7 @@ const GRel = {
                 contactUs: "Στείλτε μας μήνυμα",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Σχετικά με {{appName}}",
                 tncCheckBoxText: "τους Όρους και Προϋποθέσεις της εφαρμογής REMOVED_FACEBOOK_APP_ID1",
-                tncScreenContent: "Το REMOVED_FACEBOOK_APP_ID1 δεν συλλέγει ούτε αποθηκεύει προσωπικές πληροφορίες. Όλα τα δεδομένα που εισάγετε αποθηκεύονται μόνο στο τηλέφωνό σας.",
+                tncScreenContent: "Το REMOVED_FACEBOOK_APP_ID1 δεν συλλέγει ούτε αποθηκεύει προσωπικές πληροφορίες. Όλα τα δεδομένα που εισάγετε αποθηκεύονται μόνο στο τηλέφωνό σας."
         }
 }
 export default GRel;

@@ -449,7 +449,7 @@ const GRarb = {
                 contactUs: "Write to us",
                 aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "About {{appName}}",
                 tncCheckBoxText: "Terms and conditions of the REMOVED_FACEBOOK_APP_ID1 application",
-                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 does not collect or store any personal information. All data you enter is saved only on your phone.",
+                tncScreenContent: "REMOVED_FACEBOOK_APP_ID1 does not collect or store any personal information. All data you enter is saved only on your phone."
         }
 
 }
