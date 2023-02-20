@@ -449,7 +449,7 @@ const GRarb = {
                 contactUs: "Write to us",
                 aboutBebboDrawerMenu: "About {{appName}}",
                 tncCheckBoxText: "Terms and conditions of the Bebbo application",
-                tncScreenContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone.",
+                tncScreenContent: "Bebbo does not collect or store any personal information. All data you enter is saved only on your phone."
         }
 
 }

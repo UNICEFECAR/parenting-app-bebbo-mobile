@@ -23,13 +23,13 @@ const MEcnr = {
                 tNcheader: "Uslovi i odredbe korišćenja",
                 tNccheckbox1: "Pročitala/pročitao sam, razumjela/razumio i prihvatam Uslove i odredbe korišćenja aplikacije Bebbo",
                 tNccheckbox2: "Pročitala/pročitao sam, razumjela/razumio i prihvatam",
-                tNcprivacyPolicy: "politiku privatnosti aplikacije Bebbo",
+                tNcprivacyPolicy: "Politiku Privatnosti aplikacije Bebbo",
                 tNccheckbox3: "Prihvatam da anonimni podaci o mom korišćenju ove aplikacije budu korišćeni za  njeno poboljšanje (nije obavezno)",
                 tNcprivacyPolicyTitle: "Politika privatnosti",
                 tNcacceptbtn: "Prihvatam Uslove i odredbe",
                 loadingText: "Učitavanje podataka…",
                 childSetupheader: "Molimo Vas da odvojite trenutak kako biste personalizovali Vašu aplikaciju",
-                childSetupdobLabel: "Datum rođenja djeteta / očekivani termin porođaja",
+                childSetupdobLabel: "Datum rođenja djeteta",
                 childSetupdobSelector: "Unesite datum rođenja djeteta / očekivani termin porođaja",
                 childSetupdueLabel: "Prvobitni termin porođaja",
                 childSetupdueSelector: "Unesite prvobitni termin porođaja",
@@ -449,8 +449,8 @@ const MEcnr = {
                 donateButton: "Donirajte za Bebbo",
                 contactUs: "Pišite nam",
                 aboutBebboDrawerMenu: "O {{appName}}",
-                tncCheckBoxText: "Uslove i odredbe korišćenja aplikacije Bebbo",
-                tncScreenContent: "Bebbo ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na Vašem telefonu.",
+                tncCheckBoxText: "Uslove i Odredbe korišćenja aplikacije Bebbo",
+                tncScreenContent: "Bebbo ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na Vašem telefonu."
         }
 
 }

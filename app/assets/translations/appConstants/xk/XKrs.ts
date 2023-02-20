@@ -23,13 +23,13 @@ const XKrs = {
               tNcheader: "Uslovi i odredbe korišćenja",
               tNccheckbox1: "Pročitao/la sam, razumeo/la i prihvatam Uslove i odredbe korišćenja aplikacije Foleja",
               tNccheckbox2: "Pročitao/la sam, razumeo/la i prihvatam",
-              tNcprivacyPolicy: "politiku privatnosti aplikacije Foleja",
+              tNcprivacyPolicy: "politiku Privatnosti aplikacije Foleja",
               tNccheckbox3: "Prihvatam da se anonimni podaci o mom korišćenju ove aplikacije upotrebe za njeno poboljšanje (nije obavezno)",
               tNcprivacyPolicyTitle: "Politika privatnosti",
               tNcacceptbtn: "Prihvatam Uslove i odredbe",
               loadingText: "Učitavanje podataka…",
               childSetupheader: "Molimo Vas, iskoristite mogućnost da aplikaciju prilagodite svojim potrebama",
-              childSetupdobLabel: "Datum rođenja/očekivani datum rođenja deteta",
+              childSetupdobLabel: "Datum rođenja",
               childSetupdobSelector: "Unesite datum rođenja/očekivani datum rođenja deteta",
               childSetupdueLabel: "Prvobitni termin porođaja",
               childSetupdueSelector: "Unesite prvobitni termin porođaja",
@@ -447,8 +447,8 @@ const XKrs = {
               donateButton: "Donirajte za Foleja",
               contactUs: "Pišite nam",
               aboutBebboDrawerMenu: "O {{appName}}",
-              tncCheckBoxText: "Uslove i odredbe korišćenja aplikacije Foleja",
-              tncScreenContent: "Foleja aplikacija ne prikuplja lične podatke. Svi podaci koje unesete se čuvaju samo na vašem telefonu.",
+              tncCheckBoxText: "Uslove i Odredbe korišćenja aplikacije Foleja",
+              tncScreenContent: "Foleja aplikacija ne prikuplja lične podatke. Svi podaci koje unesete se čuvaju samo na vašem telefonu."
        }
 }
 export default XKrs;
