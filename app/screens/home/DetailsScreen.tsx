@@ -119,12 +119,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
         })
       }
       else{
-        // navigation.navigate({
-        //   name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        //   params: {categoryArray:listCategoryArray,backClicked:'yes'},
-        //   merge: true,
-        // });
-        navigation.navigate('Home', { screen: 'Home',merge:true})
+       navigation.navigate('Home', { screen: 'Home',merge:true})
       }
     }
     else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
