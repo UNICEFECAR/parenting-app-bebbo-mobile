@@ -112,7 +112,7 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
         detailData: item,
         listCategoryArray: listCategoryArray ? listCategoryArray : [],
         currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0,
-        fromCd: fromScreen == "ChildDevelopment" ? true :false
+        fromCd: fromScreen == "ChildDevelopment" || fromScreen == "Home" ? true :false
       });
   };
   const RenderRelatedArticleItem = ({item, index}: any): any => {
