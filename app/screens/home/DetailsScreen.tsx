@@ -63,7 +63,7 @@ export type RelatedArticlesProps = {
   currentSelectedChildId?: any;
 }
 const DetailsScreen = ({route, navigation}: any): any => {
-  const {fromCd, headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
+  const {fromCd, headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId,fromAdditionalScreen} = route.params;
   //console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor,newBackgroundColor;
   if(fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
@@ -119,7 +119,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
         })
       }
       else{
-       navigation.navigate('Home', { screen: 'Home',merge:true})
+       navigation.navigate('Home', { screen: 'Home', params: {categoryArray:listCategoryArray,backClicked:'yes'},merge:true})
       }
     }
     else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
@@ -187,11 +187,16 @@ const DetailsScreen = ({route, navigation}: any): any => {
     }
     else if(fromScreen == "HomeAct" || fromScreen == "HomeArt")
     {
-      navigation.navigate({
-        name: fromScreen == "HomeAct" || fromScreen == "HomeArt" ? "Home" : fromScreen,
-        params: {categoryArray:listCategoryArray,backClicked:'yes'},
-        merge: true,
-      });
+      if(fromAdditionalScreen=="DailyScreen"){
+        navigation.navigate('Home', { screen: 'Home',params: {categoryArray:listCategoryArray,backClicked:'yes'},merge:true})
+      }
+      else{
+        navigation.navigate({
+          name: fromScreen == "HomeAct" || fromScreen == "HomeArt" ? "Home" : fromScreen,
+          params: {categoryArray:listCategoryArray,backClicked:'yes'},
+          merge: true,
+        });
+      }    
     }
     else if(fromScreen == "FavActivities" || fromScreen == "FavArticles")
     {
