@@ -527,24 +527,14 @@ console.log(videoIsFocused,"..videoIsFocused");
               </>
             ) : null}
             {
-              fromScreen === "Home" ?
+              fromScreen === "Home" ||  fromScreen === "ChildDevelopment" ?
               <>
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               <FlexCol style={{ backgroundColor: newBackgroundColor }}>
-                    <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
-                    <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+              <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+              <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
               </FlexCol>
               </>:null
-            }
-            {
-              fromScreen === "ChildDevelopment" ?
-                <>
-                  <TrackMilestoneView currentSelectedChildId={currentSelectedChildId} />
-                  <FlexCol style={{ backgroundColor: newBackgroundColor }}>
-                    <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
-                    <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
-                  </FlexCol>
-                </> : null
             }
           </ScrollView>
         </View>
