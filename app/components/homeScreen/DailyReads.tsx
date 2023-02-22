@@ -81,7 +81,8 @@ const DailyReads = ():any => {
       headerColor: Object.prototype.hasOwnProperty.call(item,'activity_category') ? actHeaderColor : artHeaderColor,
       backgroundColor: Object.prototype.hasOwnProperty.call(item,'activity_category') ? actBackgroundColor : artBackgroundColor,
       detailData: item,
-      selectedChildActivitiesData: ActivitiesData
+      selectedChildActivitiesData: ActivitiesData,
+      fromAdditionalScreen:'DailyScreen'
     });
   }
   const onShare = async (item: any):Promise<any> => {
