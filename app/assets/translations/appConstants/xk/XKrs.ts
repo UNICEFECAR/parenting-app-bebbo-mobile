@@ -23,7 +23,7 @@ const XKrs = {
               tNcheader: "Uslovi i odredbe korišćenja",
               tNccheckbox1: "Pročitao/la sam, razumeo/la i prihvatam Uslove i odredbe korišćenja aplikacije Foleja",
               tNccheckbox2: "Pročitao/la sam, razumeo/la i prihvatam",
-              tNcprivacyPolicy: "politiku Privatnosti aplikacije Foleja",
+              tNcprivacyPolicy: "Politiku Privatnosti aplikacije Foleja",
               tNccheckbox3: "Prihvatam da se anonimni podaci o mom korišćenju ove aplikacije upotrebe za njeno poboljšanje (nije obavezno)",
               tNcprivacyPolicyTitle: "Politika privatnosti",
               tNcacceptbtn: "Prihvatam Uslove i odredbe",
