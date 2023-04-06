@@ -206,23 +206,47 @@ export const addSpaceToHtml = (htmlInput: any): any => {
         return html;
     }
 }
-export const formatDate = (dateData: any): any => {
-    const day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
-    const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
-    const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
-    const dateView = day + "." + month + "." + year;
-    return dateView;
-}
-export const formatStringDate = (dateData: any): any => {
-    const day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
-    const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
-    const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
-    const dateView = day + "." + month + "." + year;
-    return dateView;
-}
 const getTwoDigits = (number: any): string => {
     return (number < 10 ? '0' : '') + number;
 }
+export const formatDate = (dateData: any): any => {
+    dateData=DateTime.fromJSDate(new Date(dateData));
+    console.log(dateData,"..before")
+    if (typeof dateData == "number") {
+        dateData = DateTime.fromMillis(dateData)
+    }
+    console.log(DateTime.fromISO(dateData),".DateTime.fromISO(dateData)")
+    //
+    const day = DateTime.fromISO(dateData).day;
+    const month = DateTime.fromISO(dateData).month;
+    const year = DateTime.fromISO(dateData).year;
+    console.log(day+"."+month+"."+year,"..after");
+    // const day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
+    // const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
+    // const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
+    const dateView = getTwoDigits(dateData.day) + "." + getTwoDigits(dateData.month) + "." + dateData.year;
+    return dateView;
+}
+export const formatStringDate = (dateData: any): any => {
+    dateData=DateTime.fromJSDate(new Date(dateData));
+    console.log(dateData,"..before1");
+    if (typeof dateData == "number") {
+        dateData = DateTime.fromMillis(dateData)
+    }
+    console.log(DateTime.fromISO(dateData),".DateTime.fromISO(dateData)")
+  
+    //dateData=DateTime.fromJSDate(new Date(dateData));
+    const day = DateTime.fromISO(dateData).day;
+    const month = DateTime.fromISO(dateData).month;
+    const year = DateTime.fromISO(dateData).year;
+    console.log(day+"."+month+"."+year,"..after1")
+    // const day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
+    // const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
+    // const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
+    const dateView = getTwoDigits(day) + "." + getTwoDigits(month) + "." + year;
+    return dateView;
+}
+
 
 export const formatStringTime = (dateData: any): any => {
     console.log(dateData, "dateData");
