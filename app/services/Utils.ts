@@ -210,8 +210,8 @@ const getTwoDigits = (number: any): string => {
     return (number < 10 ? '0' : '') + number;
 }
 export const formatDate = (dateData: any): any => {
-    dateData=DateTime.fromJSDate(new Date(dateData));
-    console.log(dateData,"..before")
+    dateData = DateTime.fromJSDate(new Date(dateData));
+    console.log(dateData, "..before")
     if (typeof dateData == "number") {
         dateData = DateTime.fromMillis(dateData)
     }
@@ -227,13 +227,13 @@ export const formatDate = (dateData: any): any => {
     return dateView;
 }
 export const formatStringDate = (dateData: any): any => {
-    dateData=DateTime.fromJSDate(new Date(dateData));
+    dateData = DateTime.fromJSDate(new Date(dateData));
     //console.log(dateData,"..before1");
     if (typeof dateData == "number") {
         dateData = DateTime.fromMillis(dateData)
     }
     //console.log(DateTime.fromISO(dateData),".DateTime.fromISO(dateData)")
-  
+
     //dateData=DateTime.fromJSDate(new Date(dateData));
     const day = DateTime.fromISO(dateData).day;
     const month = DateTime.fromISO(dateData).month;
