@@ -49,6 +49,7 @@ interface HardcodedDataType {
     growth_period: number;
     created_at: string;
     updated_at: string;
+    field_old_calendar:number;
   };
   healthCheckupsData:{
     id: number;
@@ -138,7 +139,8 @@ const initialState: HardcodedDataType = {
     pinned_article: 0,
     growth_period: 0,
     created_at: '',
-    updated_at: ''
+    updated_at: '',
+    field_old_calendar:0
   },
   healthCheckupsData:{
     id: 0,
