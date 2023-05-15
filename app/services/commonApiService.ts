@@ -341,6 +341,12 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     if(prevPage == 'ForceUpdate'){
       AsyncStorage.setItem('forceUpdateTime',forceupdatetime);
+      LocalNotifications.cancelAllReminderLocalNotification();
+      dispatch(setAllNotificationData([]));
+      const notiFlagObj = { key: 'generateNotifications', value: true };
+      dispatch(setInfoModalOpened(notiFlagObj));
+      const localNotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
+      dispatch(setAllLocalNotificationGenerateType(localNotiFlagObj));
     }
   }
   if(prevPage == "PeriodicSync") {
