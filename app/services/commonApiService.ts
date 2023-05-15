@@ -345,8 +345,8 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       dispatch(setAllNotificationData([]));
       const notiFlagObj = { key: 'generateNotifications', value: true };
       dispatch(setInfoModalOpened(notiFlagObj));
-      const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
-      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+      const localNotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
+      dispatch(setAllLocalNotificationGenerateType(localNotiFlagObj));
     }
   }
   if(prevPage == "PeriodicSync") {
