@@ -9,7 +9,7 @@ export type VaccinationEntity = {
     growth_period: number;
     created_at: string;
     updated_at: string;
-    field_old_calendar:number;
+    old_calendar:number;
   };
 
 
@@ -25,6 +25,6 @@ export type VaccinationEntity = {
       growth_period: { type: 'int' },
       created_at: { type: 'string' },
       updated_at: { type: 'string' },
-      field_old_calendar: { type:'int' },
+      old_calendar: { type:'int' },
     }
   };
