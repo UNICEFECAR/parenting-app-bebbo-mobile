@@ -10,6 +10,7 @@ import { createRealmPersistStorage } from './realmPersistor';
 import {notificationSlice} from './notificationSlice';
 import { createMigrate } from 'redux-persist';
 import { bandWidthSlice } from './bandwidthSlice';
+import { parse } from 'react-native-svg';
 
 const migrations = {  
   0: (state: any):any => {    
@@ -46,7 +47,9 @@ const migrationsutils = {
         faqsData:'',
       }  
   },
-  1: (state: any):any => {    
+  1: (state: any):any => { 
+    console.log(state.vaccineData,"..11state.vaccineData..")
+      
       return {      
         ...state,
         incrementalSyncDT:{
@@ -60,7 +63,25 @@ const migrationsutils = {
         },
         allDataDownloadFlag:false
       }  
-  }
+  },
+   2: (state: any):any => { 
+    const categories=(typeof state.vaccineData == 'string') ? JSON.parse(state.vaccineData):null
+    let  categoriesDataSet=categories.map((i:any) => ({...i,old_calendar: 0}));
+    const categoriesDataSet1=(typeof categoriesDataSet == 'object') ? (categoriesDataSet = JSON.stringify(categoriesDataSet)) : null
+    return {      
+      ...state,
+      vaccineData:categoriesDataSet1
+    }
+    }
+  //   console.log("..state.vaccineData..",typeof state.vaccineData)
+  //   const categories=(typeof state.vaccineData == 'string') ? JSON.parse(state.vaccineData):null
+  //   let  categoriesDataSet=categories.map((i:any) => ({...i,old_calendar: 0}));
+  //   //console.log(typeof categoriesDataSet)
+  //   const categoriesDataSet1=
+  //    return {      
+  //     ...state,
+  //     vaccineData:(typeof categoriesDataSet == 'object') ? (categoriesDataSet = JSON.stringify(categoriesDataSet)) : null
+  //   }
 }
 const migrationslocalization = {
   0: (state: any):any => {    
@@ -93,7 +114,7 @@ const failedApiConfig = {
 const utilConfig = {
   key: 'utilsData',
   storage: createRealmPersistStorage(),
-  version: 1,
+  version: 2,
   debug: true,
   migrate: createMigrate(migrationsutils, { debug: true }) 
 };

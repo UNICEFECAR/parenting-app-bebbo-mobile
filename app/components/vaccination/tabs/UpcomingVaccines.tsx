@@ -82,8 +82,71 @@ const UpcomingVaccines = (props: any): any => {
   const doneVc = item?.vaccines.filter((item: any) => {
     return item?.isMeasured;
   });
+  const noVaccinesinAgePeriod=item.vaccines.every((el: any) => {
+    return el.old_calendar == 1  && el.isMeasured==false ? true : false;
+  })
+  const upcomingVaccineView=(v:any,i:any): any => {
+    return (
+      <MainContainer key={i}>
+      <FDirRowStart>     
+        <View style={styles.vaccineOuterView}>
+        <ToolsIconView>
+          {v.isMeasured ? (
+            <RadioActive
+              style={styles.radioActive}>
+              <Icon name="ic_tick" size={12} color="#FFF" />
+            </RadioActive>
+          ) : (
+            <IconViewAlert>
+              <Icon
+                name="ic_incom"
+                size={24}
+                color="#FFF"
+              />
+            </IconViewAlert>
+          )}
+        </ToolsIconView>
+        <ToolsHeadingView>
+          <Heading4Regular>
+            {v.title}
+            {v.isMeasured ? ' - ' : null}{' '}
+            {v.isMeasured
+              ? 
+               formatStringDate(v.measurementDate)
+              : null}
+          </Heading4Regular>
+          {v?.pinned_article ? (
+            <Pressable
+              onPress={(): any => gotoArticle(v.pinned_article)}>
+              <ButtonTextSmLineL numberOfLines={2}>
+                {t('vcArticleLink')}
+              </ButtonTextSmLineL>
+            </Pressable>
+          ) : null}
+        </ToolsHeadingView>
+        </View>
+        <View  style={styles.toolsIconOuterView}>
+        {v.isMeasured ? <Pressable onPress={(): any =>navigation.navigate('AddChildVaccination', {
+            headerTitle: t('editVcTitle'),
+            vcPeriod: item,
+            editVaccineDate:v.measurementDate,
+          })}>
+        <ToolsIconView1>
+               <ButtonTextSmLineL numberOfLines={2} style={styles.textNoLine}><Icon
+          name="ic_edit"
+          size={16}
+          color="#000"
+        /></ButtonTextSmLineL>
+        </ToolsIconView1>
+        </Pressable>: null}
+        </View>
+      </FDirRowStart>
+    </MainContainer>
+    );
+  }
    return (
     <>
+     { noVaccinesinAgePeriod == false ?
       <ToolsListOuter>
         <ToolsListContainer
           style={{
@@ -132,63 +195,18 @@ const UpcomingVaccines = (props: any): any => {
         {isOpen ? (
           <>
             {item?.vaccines.map((v: any, i: any) => {
-              return (
-                <MainContainer key={i}>
-                  <FDirRowStart>     
-                    <View style={styles.vaccineOuterView}>
-                    <ToolsIconView>
-                      {v.isMeasured ? (
-                        <RadioActive
-                          style={styles.radioActive}>
-                          <Icon name="ic_tick" size={12} color="#FFF" />
-                        </RadioActive>
-                      ) : (
-                        <IconViewAlert>
-                          <Icon
-                            name="ic_incom"
-                            size={24}
-                            color="#FFF"
-                          />
-                        </IconViewAlert>
-                      )}
-                    </ToolsIconView>
-                    <ToolsHeadingView>
-                      <Heading4Regular>
-                        {v.title}
-                        {v.isMeasured ? ' - ' : null}{' '}
-                        {v.isMeasured
-                          ? 
-                           formatStringDate(v.measurementDate)
-                          : null}
-                      </Heading4Regular>
-                      {v?.pinned_article ? (
-                        <Pressable
-                          onPress={(): any => gotoArticle(v.pinned_article)}>
-                          <ButtonTextSmLineL numberOfLines={2}>
-                            {t('vcArticleLink')}
-                          </ButtonTextSmLineL>
-                        </Pressable>
-                      ) : null}
-                    </ToolsHeadingView>
-                    </View>
-                    <View  style={styles.toolsIconOuterView}>
-                    {v.isMeasured ? <Pressable onPress={(): any =>navigation.navigate('AddChildVaccination', {
-                        headerTitle: t('editVcTitle'),
-                        vcPeriod: item,
-                        editVaccineDate:v.measurementDate,
-                      })}>
-                    <ToolsIconView1>
-                           <ButtonTextSmLineL numberOfLines={2} style={styles.textNoLine}><Icon
-                      name="ic_edit"
-                      size={16}
-                      color="#000"
-                    /></ButtonTextSmLineL>
-                    </ToolsIconView1>
-                    </Pressable>: null}
-                    </View>
-                  </FDirRowStart>
-                </MainContainer>
-              );
+               // console.log(v,"old_calendar",v.old_calendar)
+                if(v.old_calendar == 1){
+                  if(v.isMeasured  == true){
+                    return upcomingVaccineView(v,i);
+                  }
+                  else{
+                    return null;
+                  }
+                }
+                else{
+                return upcomingVaccineView(v,i);
+                }
             })}
 
             {/* Set Reminder After Add Time*/}
@@ -286,7 +304,7 @@ const UpcomingVaccines = (props: any): any => {
             ) : null}
           </>
         ) : null}
-      </ToolsListOuter>
+      </ToolsListOuter>:null}
     </>
   );
 };
