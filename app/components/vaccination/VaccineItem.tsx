@@ -30,7 +30,7 @@ const VaccineItem = (props: any): any => {
   }
   };
 
-  const {title, uuid, isMeasured, pinned_article} = item;
+  const {title, uuid, isMeasured, pinned_article,old_calendar} = item;
   const [toggleCheckBox, setToggleCheckBox] = useState(isMeasured);
   return (
     <>

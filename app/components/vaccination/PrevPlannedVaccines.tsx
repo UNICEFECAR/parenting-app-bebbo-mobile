@@ -62,12 +62,23 @@ const PrevPlannedVaccines = (props: any):any => {
       onPrevPlannedVaccineToggle(allCheckedVaccines);
     }
     };
+    const prevVaccineView=(item:any,index:any):any => {
+      return (
+        <VaccineItem
+          fromScreen={fromScreen}
+          backgroundActiveColor={backgroundActiveColor}
+          key={index}
+          item={item}
+          onToggleVaccine={onToggleVaccine}
+        />
+      );
+    }
   const {t} = useTranslation();
   return (
     <>
     {allPreviousPendingVaccines?.filter(
     (vItem: any) => {
-      return vItem.isMeasured == false
+        return vItem.isMeasured == false
     },
   )?.length > 0 ?
       <BgContainer>
@@ -75,16 +86,14 @@ const PrevPlannedVaccines = (props: any):any => {
     (vItem: any) => {
       return vItem.isMeasured == false
     },
-  )?.map((item, index) => {
-          return (
-            <VaccineItem
-              fromScreen={fromScreen}
-              backgroundActiveColor={backgroundActiveColor}
-              key={index}
-              item={item}
-              onToggleVaccine={onToggleVaccine}
-            />
-          );
+    )?.map((item, index) => {
+      if(item.old_calendar == 1){
+          return null;
+      }
+      else{
+        return prevVaccineView(item, index);
+      }
+          
         })}
       </BgContainer>
       :(
