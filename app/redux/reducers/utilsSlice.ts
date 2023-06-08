@@ -272,7 +272,9 @@ export const utilsSlice = createSlice({
         action: PayloadAction<any>,
       ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       console.log(action.payload,"..action.payload..");
        state.vaccineData = action.payload;
+    
       },
       setAllHealthCheckupsData: (
         state,
