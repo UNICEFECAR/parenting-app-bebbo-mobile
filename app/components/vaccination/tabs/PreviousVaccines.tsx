@@ -53,13 +53,72 @@ const PreviousVaccines = (props: any): any => {
       });
     }
   };
+  const previousVaccineView=(v:any,i:any): any => {
+    console.log(v,"...v..")
+    return (
+      <MainContainer key={i}>
+        <FDirRowStart>
+          <View style={styles.vaccineOuterView}>
+            <ToolsIconView>
+              {v.isMeasured ? (
+                <RadioActive
+                  style={styles.radioActive}>
+                  <Icon name="ic_tick" size={12} color="#FFF" />
+                </RadioActive>
+              ) : (
+                <IconViewAlert>
+                  <Icon
+                    name="ic_incom"
+                    size={24}
+                    color="#FFF"
+                  />
+                </IconViewAlert>
+              )}
+            </ToolsIconView>
+            <ToolsHeadingView>
+              <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate) : null}</Heading4Regular>
+
+              {v?.pinned_article ?
+                <Pressable onPress={(): any => gotoArticle(v.pinned_article)}>
+                  <ButtonTextSmLineL numberOfLines={2}>
+                    {t('vcArticleLink')}
+                  </ButtonTextSmLineL>
+                </Pressable>
+                : null}
+            </ToolsHeadingView>
+          </View>
+          <View style={styles.toolsIconOuterView}>
+            <ToolsIconView1>
+              {v.isMeasured ? <Pressable onPress={(): any =>
+                navigation.navigate('AddChildVaccination', {
+                  headerTitle: t('editVcTitle'),
+                  vcPeriod: item,
+                  editVaccineDate: v.measurementDate,
+                })}>
+              
+                <ButtonTextSmLineL numberOfLines={2} style={styles.textNoLine}><Icon
+                  name="ic_edit"
+                  size={16}
+                  color="#000"
+                /></ButtonTextSmLineL>
+              </Pressable> : null}
+            </ToolsIconView1>
+          </View>
+        </FDirRowStart>
+      </MainContainer>
+    );
+  }
   const doneVc = item.vaccines.filter((item: any) => {
     return item.isMeasured;
   })
+  const noVaccinesinAgePeriod=item.vaccines.every((el: any) => {
+    return el.old_calendar == 1 && el.isMeasured==false ? true : false;
+  })
   return (
     <>
+      { noVaccinesinAgePeriod == false ?
       <ToolsListOuter>
-        <ToolsListContainer
+         <ToolsListContainer
           style={{
             backgroundColor: backgroundColor
           }}>
@@ -104,60 +163,22 @@ const PreviousVaccines = (props: any): any => {
         </ToolsListContainer>
         {isOpen ? (
           <>
-            {item.vaccines.map((v: any, i: any) => {
-              return (
-                <MainContainer key={i}>
-                  <FDirRowStart>
-                    <View style={styles.vaccineOuterView}>
-                      <ToolsIconView>
-                        {v.isMeasured ? (
-                          <RadioActive
-                            style={styles.radioActive}>
-                            <Icon name="ic_tick" size={12} color="#FFF" />
-                          </RadioActive>
-                        ) : (
-                          <IconViewAlert>
-                            <Icon
-                              name="ic_incom"
-                              size={24}
-                              color="#FFF"
-                            />
-                          </IconViewAlert>
-                        )}
-                      </ToolsIconView>
-                      <ToolsHeadingView>
-                        <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate) : null}</Heading4Regular>
-
-                        {v?.pinned_article ?
-                          <Pressable onPress={(): any => gotoArticle(v.pinned_article)}>
-                            <ButtonTextSmLineL numberOfLines={2}>
-                              {t('vcArticleLink')}
-                            </ButtonTextSmLineL>
-                          </Pressable>
-                          : null}
-                      </ToolsHeadingView>
-                    </View>
-                    <View style={styles.toolsIconOuterView}>
-                      <ToolsIconView1>
-                        {v.isMeasured ? <Pressable onPress={(): any =>
-                          navigation.navigate('AddChildVaccination', {
-                            headerTitle: t('editVcTitle'),
-                            vcPeriod: item,
-                            editVaccineDate: v.measurementDate,
-                          })}>
-                        
-                          <ButtonTextSmLineL numberOfLines={2} style={styles.textNoLine}><Icon
-                            name="ic_edit"
-                            size={16}
-                            color="#000"
-                          /></ButtonTextSmLineL>
-                        </Pressable> : null}
-                      </ToolsIconView1>
-                    </View>
-                  </FDirRowStart>
-                </MainContainer>
-              );
-            })}
+            {
+            item.vaccines.map((v: any, i: any) => {
+              //console.log(v,"old_calendar",v.old_calendar)
+               if(v.old_calendar == 1){
+                if(v.isMeasured  == true){
+                  return previousVaccineView(v,i);
+                }
+                else{
+                  return null;
+                }
+              }
+              else{
+              return previousVaccineView(v,i);
+              }
+            })
+            }
            
             {(item.vaccines.some((el: any) => {
               return el.isMeasured == false;
@@ -177,7 +198,7 @@ const PreviousVaccines = (props: any): any => {
             ) : null}
           </>
         ) : null}
-      </ToolsListOuter>
+      </ToolsListOuter>:null}
     </>
   );
 };
