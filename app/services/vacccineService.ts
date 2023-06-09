@@ -89,7 +89,7 @@ export const getAllVaccinePeriods = ():any => {
   if (upcomingPeriods?.length > 0) {
     totalUpcomingVaccines = upcomingPeriods?.map((item) => {
       return item?.vaccines.filter((item:any) => {
-        return item?.isMeasured == false;
+        return item?.isMeasured == false && item.old_calendar==0;
       }).length;
     }).reduce((accumulator, current) => {
       return accumulator + current;
@@ -114,7 +114,7 @@ export const getAllVaccinePeriods = ():any => {
   if (previousPeriods?.length > 0) {
     overDuePreviousVCcount = previousPeriods.map((item) => {
       return item.vaccines.filter((item:any) => {
-        return !item.isMeasured;
+        return !item.isMeasured && item.old_calendar==0;
       }).length;
     }).reduce((accumulator, current) => {
       return accumulator + current;
