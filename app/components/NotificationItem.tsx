@@ -137,28 +137,58 @@ const NotificationItem = (props: any):any => {
     let vc = ' ';
     const vcArray:any=[];
     allvc.map((item: any, index: number) => {
-      console.log(item,"..allvcitem11")
-      if (index == allvc.length - 1) {
-       if(item.old_calendar!=1){
-        vc += `${item.title}.`
-       }
-       else{
-        vc='';
-       }
-      } else {
-        if(item.old_calendar!=1){
-          //vc += `${item.title}, `
-          vcArray.push(item.title);
-        }
-        if(vcArray && vcArray.length>0){
-        vc=vcArray.join(",");
-        }
-        else{
-          vc='';
-        }
+      // if (index == allvc.length - 1) {
+      //   if(item.old_calendar!=1){
+      //   vc += `${item.title}.`;
+      //   }
+      //   else{
+      //     vc+='.';
+      //   }
+      // } else {
+      //   if(item.old_calendar!=1){
+      //   vc += `${item.title}, `;
+      //   }
+        
+      // }
+      console.log(item,"..item..")
+      if(item.old_calendar!=1){
+        vcArray.push(item.title);
       }
     })
+    if(vcArray && vcArray.length>0){
+      vc+=vcArray.join(",");
+      vc+='.';
+    }
+    else{
+      vc='';
+    }
     return vc;
+    // const allvc = allVaccineData.filter((item:any) => item.growth_period == period);
+    // let vc = ' ';
+    // const vcArray:any=[];
+    // allvc.map((item: any, index: number) => {
+    //   console.log(item,"..allvcitem11")
+    //   if (index == allvc.length - 1) {
+    //    if(item.old_calendar!=1){
+    //     vc += `${item.title}.`
+    //    }
+    //    else{
+    //     vc='';
+    //    }
+    //   } else {
+    //     if(item.old_calendar!=1){
+    //       //vc += `${item.title}, `
+    //       vcArray.push(item.title);
+    //     }
+    //     if(vcArray && vcArray.length>0){
+    //     vc=vcArray.join(",");
+    //     }
+    //     else{
+    //       vc='';
+    //     }
+    //   }
+    // })
+    // return vc;
   }
   const toDay = DateTime.fromJSDate(new Date()).toMillis();
   const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
