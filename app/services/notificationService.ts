@@ -638,36 +638,68 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
   return sortednoti;
 }
 
-
+export  const getVaccinesForPeriodCount = (allVaccineData: any, period: string): any => {
+  const allvc = allVaccineData.filter((item: any) => item.growth_period == period);
+  let vc = ' ';
+  const vcArray:any=[];
+  allvc.map((item: any, index: number) => {
+    // if (index == allvc.length - 1) {
+    //   if(item.old_calendar!=1){
+    //   vc += `${item.title}.`;
+    //   }
+    //   else{
+    //     vc+='.';
+    //   }
+    // } else {
+    //   if(item.old_calendar!=1){
+    //   vc += `${item.title}, `;
+    //   }
+      
+    // }
+    if(item.old_calendar!=1){
+      vcArray.push(item.title);
+    }
+  })
+  if(vcArray && vcArray.length>0){
+    vc+=vcArray.join(",");
+    vc+='.';
+  }
+  else{
+    vc='';
+  }
+  return vc;
+}
 
 const getVaccinesForPeriod = (allVaccineData: any, period: string): any => {
   const allvc = allVaccineData.filter((item: any) => item.growth_period == period);
   let vc = ' ';
   const vcArray:any=[];
   allvc.map((item: any, index: number) => {
-    console.log(item,"..allvcitem")
-    if (index == allvc.length - 1) {
-      // vc += `${item.title}.`
-      if(item.old_calendar!=1){
-        vc += `${item.title}.`
-       }
-       else{
-        vc='';
-       }
-    } else {
-      // vc += `${item.title}, `
-      if(item.old_calendar!=1){
-        //vc += `${item.title}, `
-        vcArray.push(item.title);
-      }
-      if(vcArray && vcArray.length>0){
-      vc=vcArray.join(",");
-      }
-      else{
-      vc='';
-      }
+    // if (index == allvc.length - 1) {
+    //   if(item.old_calendar!=1){
+    //   vc += `${item.title}.`;
+    //   }
+    //   else{
+    //     vc+='.';
+    //   }
+    // } else {
+    //   if(item.old_calendar!=1){
+    //   vc += `${item.title}, `;
+    //   }
+      
+    // }
+
+    if(item.old_calendar!=1){
+      vcArray.push(item.title);
     }
   })
+  if(vcArray && vcArray.length>0){
+    vc+=vcArray.join(",");
+    vc+='.';
+  }
+  else{
+    vc='';
+  }
   return vc;
 }
 const generatenotiId = (localNotifications: any, allNotis: any): any => {
