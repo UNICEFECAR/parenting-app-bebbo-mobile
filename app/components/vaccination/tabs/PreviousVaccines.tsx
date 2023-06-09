@@ -108,6 +108,13 @@ const PreviousVaccines = (props: any): any => {
       </MainContainer>
     );
   }
+  const oldCalendar = item?.vaccines.filter((item: any) => {
+    return item?.old_calendar==1 && item?.isMeasured==true;
+  });
+  const newCalendar = item?.vaccines.filter((item: any) => {
+    return item?.old_calendar==0;
+  });
+  const totalVC=oldCalendar?.length+newCalendar?.length;
   const doneVc = item.vaccines.filter((item: any) => {
     return item.isMeasured;
   })
@@ -146,9 +153,9 @@ const PreviousVaccines = (props: any): any => {
             <ToolsHeadingView>
               <Heading2>{item.periodName}</Heading2>
               <Heading5>
-                {t('vaccinesTxt')}{':'}{item.vaccines.length} {' | '}
+                {t('vaccinesTxt')}{':'}{totalVC} {' | '}
                 {t('vaccinesDoneTxt')}{':'}{doneVc ? doneVc.length : 0} {' | '}
-                {t('vaccinesPendingTxt')}{':'}{item.vaccines.length - (doneVc ? doneVc.length : 0)}
+                {t('vaccinesPendingTxt')}{':'}{totalVC - (doneVc ? doneVc.length : 0)}
               </Heading5>
             </ToolsHeadingView>
             <ToolsActionView>
