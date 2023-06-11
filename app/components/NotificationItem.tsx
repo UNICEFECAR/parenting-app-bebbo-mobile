@@ -156,7 +156,7 @@ const NotificationItem = (props: any):any => {
       }
     })
     if(vcArray && vcArray.length>0){
-      vc+=vcArray.join(",");
+      vc+=vcArray.join(", ");
       vc+='.';
     }
     else{
