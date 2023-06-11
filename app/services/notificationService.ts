@@ -661,7 +661,7 @@ export  const getVaccinesForPeriodCount = (allVaccineData: any, period: string):
     }
   })
   if(vcArray && vcArray.length>0){
-    vc+=vcArray.join(",");
+    vc+=vcArray.join(", ");
     vc+='.';
   }
   else{
@@ -693,8 +693,9 @@ const getVaccinesForPeriod = (allVaccineData: any, period: string): any => {
       vcArray.push(item.title);
     }
   })
+  
   if(vcArray && vcArray.length>0){
-    vc+=vcArray.join(",");
+    vc+=vcArray.join(", ");
     vc+='.';
   }
   else{
