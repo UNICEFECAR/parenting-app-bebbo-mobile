@@ -137,21 +137,7 @@ const NotificationItem = (props: any):any => {
     let vc = ' ';
     const vcArray:any=[];
     allvc.map((item: any, index: number) => {
-      // if (index == allvc.length - 1) {
-      //   if(item.old_calendar!=1){
-      //   vc += `${item.title}.`;
-      //   }
-      //   else{
-      //     vc+='.';
-      //   }
-      // } else {
-      //   if(item.old_calendar!=1){
-      //   vc += `${item.title}, `;
-      //   }
-        
-      // }
-      console.log(item,"..item..")
-      if(item.old_calendar!=1){
+        if(item.old_calendar!=1){
         vcArray.push(item.title);
       }
     })
