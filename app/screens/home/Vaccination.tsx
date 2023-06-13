@@ -100,11 +100,35 @@ const Vaccination = ({navigation,route}: Props):any => {
     overDuePreviousVCcount,
     doneVCcount,
   } = getAllVaccinePeriods();
+  const upcomingPeriodsData =():any => {
+    const noVaccinesinAgePeriodInUpcoming=upcomingPeriods.every((el: any) => {
+    const noVaccinesinAgePeriod=el.vaccines.every((v: any) => {
+      console.log(v,"..vupco..")
+      return v.old_calendar == 1  && v.isMeasured==false ? true : false;
+    })
+    console.log(noVaccinesinAgePeriod,"..noVaccinesinAgePeriod..")
+    return noVaccinesinAgePeriod == true ? true : false;
+    });
+    console.log(noVaccinesinAgePeriodInUpcoming,"..noVaccinesinAgePeriodInUpcoming..")
+    return noVaccinesinAgePeriodInUpcoming;
+  }
+  const previousPeriodsData =():any => {
+    const noVaccinesinAgePeriodInPrevious=previousPeriods.every((el: any) => {
+    const noVaccinesinAgePeriod=el.vaccines.every((v: any) => {
+      console.log(v,"..vprev..")
+      return v.old_calendar == 1  && v.isMeasured==false? true : false;
+    })
+    console.log(noVaccinesinAgePeriod,"..previousnoVaccinesinAgePeriod..")
+    return noVaccinesinAgePeriod == true ? true : false;
+    });
+    console.log(noVaccinesinAgePeriodInPrevious,"..noVaccinesinAgePeriodInPrevious..")
+    return noVaccinesinAgePeriodInPrevious;
+  }
   const renderItem = (index: number):any => {
     if (index === 0) {
       return (
         <View>
-          {upcomingPeriods.length > 0 ? upcomingPeriods.map((item, itemindex) => {
+          {upcomingPeriods.length > 0 && upcomingPeriodsData()==false? upcomingPeriods.map((item, itemindex) => {
             return (
               <UpcomingVaccines
                 item={item}
@@ -121,7 +145,7 @@ const Vaccination = ({navigation,route}: Props):any => {
     } else if (index === 1) {
         return (
           <View>
-            {previousPeriods.length > 0 ? previousPeriods.map((item, itemindex) => {
+            {previousPeriods.length > 0 && previousPeriodsData()==false ? previousPeriods.map((item, itemindex) => {
               return (
                 <PreviousVaccines
                   item={item}

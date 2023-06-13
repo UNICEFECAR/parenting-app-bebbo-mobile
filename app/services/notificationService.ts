@@ -16,6 +16,7 @@ export const getVCPeriods = (allVaccinePeriods: any): any => {
   return groupsForPeriods
 }
 export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child: any): any => {
+  console.log(allVaccinePeriods,typeof allVaccinePeriods,"..allVaccinePeriods.length")
   if (allVaccinePeriods.length > 0 && allGrowthPeriods.length > 0) {
     const noti: any[] = [];
     const groupsForPeriods = getVCPeriods(allVaccinePeriods);
@@ -88,6 +89,8 @@ export const getHCReminderNotis = (allHealthCheckupsData: any, allGrowthPeriods:
   return noti;
 }
 export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any,): any => {
+  console.log(allVaccinePeriods,typeof allVaccinePeriods,"..isPeriodsMovedAheadallVaccinePeriods.length")
+ 
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
@@ -328,6 +331,8 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
       })
     }
   }
+  console.log(allVaccinePeriods,typeof allVaccinePeriods,"..getNextChildNotificationallVaccinePeriods.length")
+ 
   ///perform computation for hc,vc
   // get all notis between last period id to current running period
   const vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
@@ -400,6 +405,8 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
     const childDaysTo = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? prematurechildgwperiod.days_to : child.taxonomyData.days_to;
     const childDaysFrom = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? prematurechildgwperiod.days_from : child.taxonomyData.days_from;
     if (!isFutureDate(child?.birthDate)) {
+      console.log(allVaccinePeriods,typeof allVaccinePeriods,"..getChildNotificationallVaccinePeriods.length")
+ 
       const vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child);
       //sort by days_from => find days_from period id to
       let currentvcPeriodNoti = vcNotis.filter((item: any) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
@@ -631,18 +638,42 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
   return sortednoti;
 }
 
-
+export  const getVaccinesForPeriodCount = (allVaccineData: any, period: string): any => {
+  const allvc = allVaccineData.filter((item: any) => item.growth_period == period);
+  let vc = ' ';
+  const vcArray:any=[];
+  allvc.map((item: any, index: number) => {
+    if(item.old_calendar!=1){
+      vcArray.push(item.title);
+    }
+  })
+  if(vcArray && vcArray.length>0){
+    vc+=vcArray.join(", ");
+    vc+='.';
+  }
+  else{
+    vc='';
+  }
+  return vc;
+}
 
 const getVaccinesForPeriod = (allVaccineData: any, period: string): any => {
   const allvc = allVaccineData.filter((item: any) => item.growth_period == period);
   let vc = ' ';
+  const vcArray:any=[];
   allvc.map((item: any, index: number) => {
-    if (index == allvc.length - 1) {
-      vc += `${item.title}.`
-    } else {
-      vc += `${item.title}, `
+    if(item.old_calendar!=1){
+      vcArray.push(item.title);
     }
   })
+  
+  if(vcArray && vcArray.length>0){
+    vc+=vcArray.join(", ");
+    vc+='.';
+  }
+  else{
+    vc='';
+  }
   return vc;
 }
 const generatenotiId = (localNotifications: any, allNotis: any): any => {
@@ -830,6 +861,8 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
   })
 
   if (vchcEnabledFlag == true) {
+    console.log(allVaccinePeriods,typeof allVaccinePeriods,"..createAllLocalNotificatoinsallVaccinePeriods.length")
+ 
     const vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
       (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
     );
@@ -838,7 +871,7 @@ export const createAllLocalNotificatoins = (child: any, childAge: any, developme
 
     vcNotis.map((vc: any) => {
       const notificationDate4 = DateTime.fromJSDate(new Date(new Date(vc.notificationDate).setHours(19, 0, 0, 0)))
-      if (isFutureDateTime(new Date(notificationDate4))) {
+      if (isFutureDateTime(new Date(notificationDate4)) &&  getVaccinesForPeriod(allVaccineData, vc.growth_period)!='' &&  getVaccinesForPeriod(allVaccineData, vc.growth_period)!=null &&  getVaccinesForPeriod(allVaccineData, vc.growth_period)!=undefined) {
         const message4 = t(vc.title, {
           childName:
             child.childName != null &&
