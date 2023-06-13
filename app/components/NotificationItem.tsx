@@ -135,14 +135,46 @@ const NotificationItem = (props: any):any => {
   const getVaccinesForPeriod = (period: string):any => {
     const allvc = allVaccineData.filter((item:any) => item.growth_period == period);
     let vc = ' ';
+    const vcArray:any=[];
     allvc.map((item: any, index: number) => {
-      if (index == allvc.length - 1) {
-        vc += `${item.title}.`
-      } else {
-        vc += `${item.title}, `
+        if(item.old_calendar!=1){
+        vcArray.push(item.title);
       }
     })
+    if(vcArray && vcArray.length>0){
+      vc+=vcArray.join(", ");
+      vc+='.';
+    }
+    else{
+      vc='';
+    }
     return vc;
+    // const allvc = allVaccineData.filter((item:any) => item.growth_period == period);
+    // let vc = ' ';
+    // const vcArray:any=[];
+    // allvc.map((item: any, index: number) => {
+    //   console.log(item,"..allvcitem11")
+    //   if (index == allvc.length - 1) {
+    //    if(item.old_calendar!=1){
+    //     vc += `${item.title}.`
+    //    }
+    //    else{
+    //     vc='';
+    //    }
+    //   } else {
+    //     if(item.old_calendar!=1){
+    //       //vc += `${item.title}, `
+    //       vcArray.push(item.title);
+    //     }
+    //     if(vcArray && vcArray.length>0){
+    //     vc=vcArray.join(",");
+    //     }
+    //     else{
+    //       vc='';
+    //     }
+    //   }
+    // })
+    // return vc;
   }
   const toDay = DateTime.fromJSDate(new Date()).toMillis();
   const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
@@ -378,7 +410,7 @@ const NotificationItem = (props: any):any => {
   const renderVCNotifcation = ():any => {
     return (
       (toDay >= notiDate && childBirthDate <= notiDate) ? (item.isDeleted ? null :
-        <>
+        (getVaccinesForPeriod(item.growth_period)=='' ? null :<>
           <NotificationListContainer>
             <FlexDirRowStart>
               <NotifIcon style={{
@@ -488,7 +520,8 @@ const NotificationItem = (props: any):any => {
 
           </NotificationListContainer>
           <DividerContainer><Divider></Divider></DividerContainer>
-        </>) : null)
+        </>)
+        ) : null)
   }
 
   const renderCDNotifcation = ():any => {
