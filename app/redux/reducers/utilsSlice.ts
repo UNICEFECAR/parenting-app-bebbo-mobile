@@ -49,6 +49,7 @@ interface HardcodedDataType {
     growth_period: number;
     created_at: string;
     updated_at: string;
+    old_calendar:number;
   };
   healthCheckupsData:{
     id: number;
@@ -138,7 +139,8 @@ const initialState: HardcodedDataType = {
     pinned_article: 0,
     growth_period: 0,
     created_at: '',
-    updated_at: ''
+    updated_at: '',
+    old_calendar:0
   },
   healthCheckupsData:{
     id: 0,
@@ -270,7 +272,9 @@ export const utilsSlice = createSlice({
         action: PayloadAction<any>,
       ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       console.log(action.payload,"..action.payload..");
        state.vaccineData = action.payload;
+    
       },
       setAllHealthCheckupsData: (
         state,

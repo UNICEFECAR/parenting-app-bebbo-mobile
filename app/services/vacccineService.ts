@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { apiUrlDevelop } from "react-native-dotenv";
 import { useAppSelector } from "../../App";
 
 export const getAllVaccinePeriods = ():any => {
@@ -39,7 +40,8 @@ export const getAllVaccinePeriods = ():any => {
   );
   const group_to_growthPeriod = allVaccinePeriods.reduce(function (obj:any, item:any) {
      obj[item.growth_period] = obj[item.growth_period] || [];
-    obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
+     console.log(item,"...itemData..",apiUrlDevelop)
+    obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at,old_calendar: item.old_calendar });
     return obj;
   }, {});
   const groupsForPeriods: any = Object.keys(group_to_growthPeriod).map(function (key) {
@@ -87,7 +89,7 @@ export const getAllVaccinePeriods = ():any => {
   if (upcomingPeriods?.length > 0) {
     totalUpcomingVaccines = upcomingPeriods?.map((item) => {
       return item?.vaccines.filter((item:any) => {
-        return item?.isMeasured == false;
+        return item?.isMeasured == false && item.old_calendar==0;
       }).length;
     }).reduce((accumulator, current) => {
       return accumulator + current;
@@ -112,7 +114,7 @@ export const getAllVaccinePeriods = ():any => {
   if (previousPeriods?.length > 0) {
     overDuePreviousVCcount = previousPeriods.map((item) => {
       return item.vaccines.filter((item:any) => {
-        return !item.isMeasured;
+        return !item.isMeasured && item.old_calendar==0;
       }).length;
     }).reduce((accumulator, current) => {
       return accumulator + current;

@@ -12,7 +12,7 @@ import { setAllLocalNotificationData, setAllLocalNotificationGenerateType, setAl
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getAllChildrenDetails, isFutureDate, isFutureDateTime } from '../services/childCRUD';
 import LocalNotifications from '../services/LocalNotifications';
-import { createAllLocalNotificatoins, getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
+import { createAllLocalNotificatoins, getChildNotification, getChildReminderNotifications, getNextChildNotification, getVaccinesForPeriodCount, isPeriodsMovedAhead } from '../services/notificationService';
 import Icon from './shared/Icon';
 import { BubbleContainer, BubbleView1 } from './shared/NavigationDrawer';
 const styles = StyleSheet.create({
@@ -184,8 +184,17 @@ const HeaderNotiIcon = (props: any): any => {
               })
             }
             if (currentChildNotis.vcnotis) {
+              // 
               currentChildNotis.vcnotis.forEach((item: any) => {
-                currentChildallnoti.push(item)
+                if (item.title == "vcNoti1") {
+                  const vcNotisExists = getVaccinesForPeriodCount(allVaccineData, item.growth_period);
+                  if (vcNotisExists != "" && vcNotisExists != null && vcNotisExists != undefined) {
+                    currentChildallnoti.push(item)
+                  }
+                }
+                else {
+                  currentChildallnoti.push(item);
+                }
               })
             }
             if (currentChildNotis.reminderNotis) {

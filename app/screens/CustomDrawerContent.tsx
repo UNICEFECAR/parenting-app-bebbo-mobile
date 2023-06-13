@@ -55,6 +55,7 @@ import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import { isFutureDate } from '../services/childCRUD';
+import { getVaccinesForPeriodCount } from '../services/notificationService';
 import { formatDate, addSpaceToHtml } from '../services/Utils';
 
 const styles = StyleSheet.create({
@@ -98,6 +99,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
+  );
+  const allVaccineData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.vaccineData),
   );
   const allnotis = useAppSelector((state: any) => state.notificationData.notifications);
   const [notifications, setNotifications] = useState<any[]>([]);
@@ -165,7 +170,16 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               }
               if (currentChildNotis.vcnotis) {
                 currentChildNotis.vcnotis.forEach((item: any) => {
-                  currentChildallnoti.push(item)
+                  if(item.title=="vcNoti1"){
+                    const vcNotisExists= getVaccinesForPeriodCount(allVaccineData, item.growth_period);
+                    console.log(vcNotisExists,"..vcNotisExists..")
+                    if(vcNotisExists!="" && vcNotisExists!=null && vcNotisExists!=undefined){
+                    currentChildallnoti.push(item)
+                    }
+                    }
+                    else{
+                      currentChildallnoti.push(item);
+                    }
                 })
               }
               if (currentChildNotis.reminderNotis) {
