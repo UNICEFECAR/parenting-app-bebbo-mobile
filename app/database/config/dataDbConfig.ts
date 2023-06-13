@@ -38,7 +38,7 @@ export const dataRealmConfig: Realm.Configuration = {
     StandardDevHeightForAgeSchema,
     FAQsSchema
   ],
-  schemaVersion: 6,
+  schemaVersion: 7,
   migration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion < 1) {
       // const oldObjects = oldRealm.objects('VariableEntity');
