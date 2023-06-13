@@ -643,19 +643,6 @@ export  const getVaccinesForPeriodCount = (allVaccineData: any, period: string):
   let vc = ' ';
   const vcArray:any=[];
   allvc.map((item: any, index: number) => {
-    // if (index == allvc.length - 1) {
-    //   if(item.old_calendar!=1){
-    //   vc += `${item.title}.`;
-    //   }
-    //   else{
-    //     vc+='.';
-    //   }
-    // } else {
-    //   if(item.old_calendar!=1){
-    //   vc += `${item.title}, `;
-    //   }
-      
-    // }
     if(item.old_calendar!=1){
       vcArray.push(item.title);
     }
@@ -675,20 +662,6 @@ const getVaccinesForPeriod = (allVaccineData: any, period: string): any => {
   let vc = ' ';
   const vcArray:any=[];
   allvc.map((item: any, index: number) => {
-    // if (index == allvc.length - 1) {
-    //   if(item.old_calendar!=1){
-    //   vc += `${item.title}.`;
-    //   }
-    //   else{
-    //     vc+='.';
-    //   }
-    // } else {
-    //   if(item.old_calendar!=1){
-    //   vc += `${item.title}, `;
-    //   }
-      
-    // }
-
     if(item.old_calendar!=1){
       vcArray.push(item.title);
     }
