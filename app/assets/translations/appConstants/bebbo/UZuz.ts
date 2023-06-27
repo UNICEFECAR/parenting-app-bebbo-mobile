@@ -24,7 +24,6 @@ const UZuz = {
               tNccheckbox1: "REMOVED_FACEBOOK_APP_ID1 ilovasi foydalanish shartlarini oʻqib chiqdim, tushundim va roziman",
               tNccheckbox2: "Oʻqib chiqdim, tushundim va roziman",
               tNcprivacyPolicy: "REMOVED_FACEBOOK_APP_ID1 ilovasi Maxfiylik Siyosati",
-              tNccheckbox3: "Ilovadan foydalanishim haqidagi anonim maʼlumotlar REMOVED_FACEBOOK_APP_ID1 ilovasini yaxshilash uchun toʻplanishiga roziman (bu majburiy emas)",
               tNcprivacyPolicyTitle: "Maxfiylik siyosati",
               tNcacceptbtn: "Foydalanish shartlariga roziman",
               loadingText: "Maʼlumotlar yuklanmoqda…",

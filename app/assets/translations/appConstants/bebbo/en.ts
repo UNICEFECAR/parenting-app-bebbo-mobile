@@ -25,7 +25,6 @@ const en = {
                 tNccheckbox1: "I have read, understood and accepted the Terms and Conditions of the REMOVED_FACEBOOK_APP_ID1 application",
                 tNccheckbox2: "I have read, understood and accepted the ",
                 tNcprivacyPolicy: "Privacy Policy of the REMOVED_FACEBOOK_APP_ID1 application",
-                tNccheckbox3: "I accept that the anonymized data of my use of the app will be used for the REMOVED_FACEBOOK_APP_ID1 application improvements  (it is not mandatory)",
                 tNcprivacyPolicyTitle: "Privacy Policy",
                 tNcacceptbtn: "I accept the Terms and Conditions",
                 loadingText: "Loading data...",
