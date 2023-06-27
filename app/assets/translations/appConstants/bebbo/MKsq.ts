@@ -24,7 +24,6 @@ const MKsq = {
                 tNccheckbox1: "Unë i kam lexuar, kuptuar dhe pranuar Termat dhe Kushtet e aplikacionit Bebbo",
                 tNccheckbox2: "Unë e kam lexuar, kuptuar dhe pranuar",
                 tNcprivacyPolicy: "Politikën e Privatësisë së të dhënave për aplikacionin Bebbo",
-                tNccheckbox3: "Unë pranoj që të dhënat e mia anonime mbi përdorimin e aplikacionit të përdoren për ta përmirësuar aplikacionin Bebbo (nuk është e detyrueshme)",
                 tNcprivacyPolicyTitle: "Politika e Privatësisë së të dhënave",
                 tNcacceptbtn: "Unë i pranoj Termat dhe Kushtet",
                 loadingText: "Të dhënat po ngarkohen...",

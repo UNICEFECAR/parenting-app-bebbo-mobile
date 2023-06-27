@@ -25,7 +25,6 @@ const MDro = {
                 tNccheckbox1: "Am citit, am înțeles și am acceptat Termenii și condițiile aplicației Bebbo",
                 tNccheckbox2: "Am citit, am înțeles și am acceptat ",
                 tNcprivacyPolicy: "Politica de Confidențialitate a aplicației Bebbo",
-                tNccheckbox3: "Accept ca datele anonimizate privind utilizarea aplicației de către mine să fie utilizate pentru îmbunătățirile aplicației Bebbo (nu este obligatoriu)",
                 tNcprivacyPolicyTitle: "Politica de confidențialitate",
                 tNcacceptbtn: "Accept Termenii și condițiile",
                 loadingText: "Se încarcă datele...",
