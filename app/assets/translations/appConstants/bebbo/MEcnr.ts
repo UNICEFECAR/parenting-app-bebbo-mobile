@@ -24,7 +24,6 @@ const MEcnr = {
                 tNccheckbox1: "Pročitala/pročitao sam, razumjela/razumio i prihvatam Uslove i odredbe korišćenja aplikacije Bebbo",
                 tNccheckbox2: "Pročitala/pročitao sam, razumjela/razumio i prihvatam",
                 tNcprivacyPolicy: "Politiku Privatnosti aplikacije Bebbo",
-                tNccheckbox3: "Prihvatam da anonimni podaci o mom korišćenju ove aplikacije budu korišćeni za  njeno poboljšanje (nije obavezno)",
                 tNcprivacyPolicyTitle: "Politika privatnosti",
                 tNcacceptbtn: "Prihvatam Uslove i odredbe",
                 loadingText: "Učitavanje podataka…",

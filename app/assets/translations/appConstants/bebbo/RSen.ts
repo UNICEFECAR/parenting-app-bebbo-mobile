@@ -24,7 +24,6 @@ const RSen = {
                 tNccheckbox1: "I have read, understood and accepted the Terms and Conditions of the Bebbo application",
                 tNccheckbox2: "I have read, understood and accepted the ",
                 tNcprivacyPolicy: "Privacy Policy of the Bebbo application",
-                tNccheckbox3: "I accept that the anonymized data of my use of the app will be used for the Bebbo application improvements  (it is not mandatory)",
                 tNcprivacyPolicyTitle: "Privacy Policy",
                 tNcacceptbtn: "I accept the Terms and Conditions",
                 loadingText: "Loading data...",
