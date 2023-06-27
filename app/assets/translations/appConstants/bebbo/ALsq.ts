@@ -24,7 +24,6 @@ const ALsq = {
               tNccheckbox1: "Unë kam lexuar, kuptuar dhe pranuar Termat dhe Kushtet e aplikacionit REMOVED_FACEBOOK_APP_ID1",
               tNccheckbox2: "Unë kam lexuar, kuptuar dhe pranuar",
               tNcprivacyPolicy: "Politikën e Privatësisë së të dhënave për aplikacionin REMOVED_FACEBOOK_APP_ID1",
-              tNccheckbox3: "Unë pranoj që të dhënat e mia anonime mbi përdorimin e aplikacionit do të përdoren për të përmirësuar aplikacionin REMOVED_FACEBOOK_APP_ID1 (nuk është e detyrueshme)",
               tNcprivacyPolicyTitle: "Politika e Privatësisë së të dhënave",
               tNcacceptbtn: "Unë pranoj Termat dhe Kushtet",
               loadingText: "Të dhënat po ngarkohen",

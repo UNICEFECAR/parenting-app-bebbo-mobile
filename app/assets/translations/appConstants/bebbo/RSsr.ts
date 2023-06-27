@@ -24,7 +24,6 @@ const RSsr = {
               tNccheckbox1: "Pročitao/la sam, razumeo/la i prihvatam Uslove i odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1",
               tNccheckbox2: "Pročitao/la sam, razumeo/la i prihvatam",
               tNcprivacyPolicy: "Politiku Privatnosti aplikacije REMOVED_FACEBOOK_APP_ID1",
-              tNccheckbox3: "Prihvatam da se anonimni podaci o mom korišćenju ove aplikacije upotrebe za njeno poboljšanje (nije obavezno)",
               tNcprivacyPolicyTitle: "Politika privatnosti",
               tNcacceptbtn: "Prihvatam Uslove i odredbe",
               loadingText: "Učitavanje podataka…",
