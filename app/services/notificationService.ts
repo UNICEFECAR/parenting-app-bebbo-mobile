@@ -16,7 +16,6 @@ export const getVCPeriods = (allVaccinePeriods: any): any => {
   return groupsForPeriods
 }
 export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child: any): any => {
-  console.log(allVaccinePeriods,typeof allVaccinePeriods,"..allVaccinePeriods.length")
   if (allVaccinePeriods.length > 0 && allGrowthPeriods.length > 0) {
     const noti: any[] = [];
     const groupsForPeriods = getVCPeriods(allVaccinePeriods);
@@ -28,12 +27,16 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
 
       }
     })
-    groupsForPeriods.map((item: any, index: number) => {
+    const sortedGroupForPeriod = groupsForPeriods.sort(
+      (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
+    );
+    sortedGroupForPeriod.map((item: any, index: number) => {
       const vaccination_opens=item.vaccination_opens;
       item.vaccination_opens = vaccination_opens;
-      item.vaccination_closes = (index == groupsForPeriods.length - 1) ? maxPeriodDays : groupsForPeriods[index + 1].vaccination_opens;
+      item.vaccination_closes = (index == sortedGroupForPeriod.length - 1) ? maxPeriodDays : sortedGroupForPeriod[index + 1].vaccination_opens;
     })
-    groupsForPeriods.forEach((item: any) => {
+    sortedGroupForPeriod.forEach((item: any) => {
+      console.log(DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (item?.vaccination_opens) }),"notificationDate")
       noti.push({
         "days_from": item?.vaccination_opens,
         "days_to": item?.vaccination_closes,
@@ -50,6 +53,7 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
     const sortednoti = noti.sort(
       (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
     );
+    console.log('SortedNoti',sortednoti)
     return sortednoti;
   }
 }
