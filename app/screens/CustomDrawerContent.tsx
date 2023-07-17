@@ -505,7 +505,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               <DrawerLinkView
                 onPress={(): any => {
                   analytics().logEvent(EMAIL_SENT)
-                  Linking.openURL('mailto:admin@bebbo.app');
+                  if(buildFor == String(buildForBebbo)){
+                    Linking.openURL('mailto:admin@bebbo.app')   
+                  }else{               
+                    Linking.openURL('mailto:prishtina@unicef.org');
+                  }
                 }}>
                 <OuterIconRow>
                   <OuterIconLeft15>
