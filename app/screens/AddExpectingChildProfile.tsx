@@ -211,7 +211,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
               maximumDate={new Date(dobMax)}
               value={plannedTermDate!=null ? plannedTermDate : new Date()}
               mode={'date'}
-              display="default"
+             display="spinner"
               onChange={ondobChange}
             />
             ):
