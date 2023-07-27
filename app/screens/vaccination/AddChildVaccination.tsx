@@ -535,7 +535,7 @@ useEffect(() => {
                           editVaccineDate ? new Date(editVaccineDate) : new Date()
                         }
                         mode={'date'}
-                        display="default"
+                       display="spinner"
                         maximumDate={new Date()}
                         minimumDate={new Date(minChildGrwothDate)}
                         onChange={onmeasureDateChange}

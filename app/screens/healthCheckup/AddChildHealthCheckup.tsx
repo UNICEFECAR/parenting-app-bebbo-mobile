@@ -641,7 +641,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any):any => {
                               editMeasurementDate ? new Date(editMeasurementDate) : new Date()
                             }
                             mode={'date'}
-                            display="default"
+                           display="spinner"
                             maximumDate={new Date()}
                             minimumDate={new Date(minChildGrwothDate)}
                             onChange={onmeasureDateChange}
