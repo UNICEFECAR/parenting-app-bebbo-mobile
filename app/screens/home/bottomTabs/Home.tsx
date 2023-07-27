@@ -481,7 +481,7 @@ const Home = ({ route, navigation }: any):any => {
                   date1 != null || date1 != undefined ? date1 : new Date()
                 }
                 mode={'date'}
-                display="default"
+               display="spinner"
                 onChange={ondobChange}
               />
             )}
@@ -494,7 +494,7 @@ const Home = ({ route, navigation }: any):any => {
                   date2 != null || date2 != undefined ? date2 : new Date()
                 }
                 mode={'date'}
-                display="default"
+               display="spinner"
                 onChange={ondobChange2}
               />
             )}

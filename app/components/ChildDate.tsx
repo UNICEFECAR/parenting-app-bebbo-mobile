@@ -188,7 +188,7 @@ const ChildDate = (props: any):any => {
                       doborExpectedDate != null ? doborExpectedDate : new Date()
                     }
                     mode={'date'}
-                    display="default"
+                   display="spinner"
                     onChange={ondobChange}
                   />
                 )}
@@ -293,7 +293,7 @@ const ChildDate = (props: any):any => {
                           testID="duedatePicker"
                           value={dueDate != null ? dueDate : new Date()}
                           mode={'date'}
-                          display="default"
+                         display="spinner"
                           minimumDate={
                             new Date(
                               DateTime.fromJSDate(doborExpectedDate as Date)

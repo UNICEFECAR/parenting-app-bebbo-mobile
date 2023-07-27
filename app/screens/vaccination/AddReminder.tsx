@@ -482,7 +482,7 @@ useEffect(() => {
                         editReminderItem ? new Date(measureDate) : new Date()
                       }
                       mode={'date'}
-                      display="default"
+                     display="spinner"
                       minimumDate={new Date()}
                       maximumDate={fiveYearFromNow}
                       onChange={onmeasureChange}
@@ -539,7 +539,7 @@ useEffect(() => {
                           editReminderItem ? new Date(measureTime) : new Date()
                         }
                         mode={'time'}
-                        display="default"
+                       display="spinner"
                         is24Hour={true}
                         minimumDate={minmeasureTime}
                         onChange={onmeasureTimeChange}
@@ -613,7 +613,7 @@ useEffect(() => {
                         editReminderItem ? new Date(measureDateDefined) : new Date()
                       }
                       mode={'date'}
-                      display="default"
+                     display="spinner"
                       minimumDate={new Date()}
                       maximumDate={new Date(measureDate)}
                       onChange={onmeasureChangeDefined}
@@ -670,7 +670,7 @@ useEffect(() => {
                           editReminderItem ? new Date(measureTimeDefined) : new Date()
                         }
                         mode={'time'}
-                        display="default"
+                       display="spinner"
                         is24Hour={true}
                         minimumDate={new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
                         maximumDate={measureTime ? new Date(measureTime) : new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
