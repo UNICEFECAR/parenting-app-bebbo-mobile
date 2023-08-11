@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
     backgroundColor: articlesTintcolor,
     flex: 1
   },
-  flex1View: { 
+  flex1View: {
     flex: 1
   },
-  pressablePadding: { 
+  pressablePadding: {
     padding: 13
   }
 });
@@ -87,52 +87,52 @@ const Articles = ({ route, navigation }: any): any => {
   const modalScreenKey = 'IsArticleModalOpened';
   const modalScreenText = 'articleModalText';
   const netInfoval = useNetInfoHook();
-  
- //merge array 
- const mergearr = (articlearrold: any[], videoartarrold: any[], isSuffle: boolean): any => {
-  let combinedarr: any[] = [];
-  let i = 0;
-  let j = 0;
-  let articlearr: any[] = [];
-  let videoartarr: any[] = [];
 
-  if (isSuffle) {
-    articlearr = randomArrayShuffle(articlearrold)
-    videoartarr = randomArrayShuffle(videoartarrold)
-  } else {
-    articlearr = articlearrold
-    videoartarr = videoartarrold
-  }
+  //merge array 
+  const mergearr = (articlearrold: any[], videoartarrold: any[], isSuffle: boolean): any => {
+    let combinedarr: any[] = [];
+    let i = 0;
+    let j = 0;
+    let articlearr: any[] = [];
+    let videoartarr: any[] = [];
 
-  if (articlearr.length == 0) {
-    combinedarr = [...videoartarr];
-  }
-  articlearr.map((x: any, index: number) => {
-    if (i < maxArticleSize) {
-      combinedarr.push(x);
-      i++;
-      if (index == articlearr.length - 1) {
-        if (j < videoartarr.length) {
-          const dd = videoartarr.splice(j);
-          dd.map((y: any) => combinedarr.push(y));
-        }
-      }
+    if (isSuffle) {
+      articlearr = randomArrayShuffle(articlearrold)
+      videoartarr = randomArrayShuffle(videoartarrold)
     } else {
-      i = 1;
-      if (videoartarr[j]) { combinedarr.push(videoartarr[j]) }
-      combinedarr.push(x);
-      j++;
-      if (index == articlearr.length - 1) {
-        if (j < videoartarr.length) {
-          const dd = videoartarr.splice(j);
-          dd.map((y: any) => combinedarr.push(y));
+      articlearr = articlearrold
+      videoartarr = videoartarrold
+    }
+
+    if (articlearr.length == 0) {
+      combinedarr = [...videoartarr];
+    }
+    articlearr.map((x: any, index: number) => {
+      if (i < maxArticleSize) {
+        combinedarr.push(x);
+        i++;
+        if (index == articlearr.length - 1) {
+          if (j < videoartarr.length) {
+            const dd = videoartarr.splice(j);
+            dd.map((y: any) => combinedarr.push(y));
+          }
+        }
+      } else {
+        i = 1;
+        if (videoartarr[j]) { combinedarr.push(videoartarr[j]) }
+        combinedarr.push(x);
+        j++;
+        if (index == articlearr.length - 1) {
+          if (j < videoartarr.length) {
+            const dd = videoartarr.splice(j);
+            dd.map((y: any) => combinedarr.push(y));
+          }
         }
       }
-    }
-  });
+    });
 
-  return combinedarr;
-}
+    return combinedarr;
+  }
 
   useFocusEffect(() => {
     setModalVisible(articleModalOpened);
@@ -186,24 +186,24 @@ const Articles = ({ route, navigation }: any): any => {
   };
   const RenderArticleItem = ({ item, index }: any): any => {
     return (
-    <ArticleListContainer>
-      <Pressable onPress={(): any => { goToArticleDetail(item, queryText) }} key={index}>
-        {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
-           videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>:null
-          : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
-        }
-        <ArticleListContent>
-          <ShiftFromTopBottom5>
-            <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
-          </ShiftFromTopBottom5>
-          <Heading3>{item.title}</Heading3>
-        </ArticleListContent>
-        <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteadvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} />
-      </Pressable>
-    </ArticleListContainer>
-  )
-      };
-  const memoizedValue = useMemo(() => RenderArticleItem, [RenderArticleItem,filteredData]);
+      <ArticleListContainer>
+        <Pressable onPress={(): any => { goToArticleDetail(item, queryText) }} key={index}>
+          {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url != "" && item.cover_video.url != undefined) ?
+            videoIsFocused == true ? <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer> : null
+            : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
+          }
+          <ArticleListContent>
+            <ShiftFromTopBottom5>
+              <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
+            </ShiftFromTopBottom5>
+            <Heading3>{item.title}</Heading3>
+          </ArticleListContent>
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteadvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} />
+        </Pressable>
+      </ArticleListContainer>
+    )
+  };
+  const memoizedValue = useMemo(() => RenderArticleItem, [RenderArticleItem, filteredData]);
   const toTop = (): any => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
@@ -219,14 +219,14 @@ const Articles = ({ route, navigation }: any): any => {
         let videoTitleData = [];
         let videoBodyData = [];
         if (queryText != "" && queryText != undefined && queryText != null) {
-          // filter list for title first and then after from summary or body for article
+          // filter data with title first then after summary or body
           titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
           bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
           // combine array for article
           const combineArticleData: any[] = titleData.concat(bodyData)
           newArticleData = [...new Set(combineArticleData)];
 
-          // filter list for title first and then after from summary or body for video article
+          // filter data with title first then after summary or body
           videoTitleData = newvideoArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
           videoBodyData = newvideoArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
           // combine array for video article
@@ -316,15 +316,15 @@ const Articles = ({ route, navigation }: any): any => {
       }
     }, [])
   );
-  
-  
-  
+
+
+
 
   const onFilterArrayChange = (newFilterArray: any): any => {
-   
+
     setFilterArray(newFilterArray)
   }
- //code for getting article dynamic data ends here.
+  //code for getting article dynamic data ends here.
   const searchList = async (queryText: any): Promise<any> => {
     setLoadingArticle(true);
 
@@ -392,7 +392,7 @@ const Articles = ({ route, navigation }: any): any => {
                 }}
                 value={queryText}
                 onSubmitEditing={async (event): Promise<any> => {
-                  console.log("event-",event);
+                  console.log("event-", event);
                   await searchList(queryText);
                 }}
                 multiline={false}
@@ -463,10 +463,10 @@ const Articles = ({ route, navigation }: any): any => {
                 keyExtractor={(item): any => item.id.toString()}
               />
               : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
-            
+
           </FlexCol>
           <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
-          
+
           <OverlayLoadingComponent loading={profileLoading} />
         </KeyboardAvoidingView>
 
