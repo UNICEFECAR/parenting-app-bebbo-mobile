@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
   defaultImage:{height: 200, width: '100%'},
   flex1:{flex: 1},
   htmlCode:{color: bgcolorBlack2, fontSize: 16,margin:0,padding:0},
+  htmlSummaryCode:{fontFamily: 'roboto-regular', fontSize: 16 },
+  htmlTitleCode:{color: bgcolorBlack2, fontFamily: 'roboto-bold', fontSize: 20, lineHeight: 26, padding: 0 },
   marginBottom10:{marginBottom:10},
   maxHeight50:{maxHeight:50},
   scrollView:{backgroundColor:bgcolorWhite2,flex: 4}
@@ -61,9 +63,10 @@ export type RelatedArticlesProps = {
   navigation?: any;
   fromScreen?: any;
   currentSelectedChildId?: any;
+  queryText?: any;
 }
 const DetailsScreen = ({route, navigation}: any): any => {
-  const {fromCd, headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId,fromAdditionalScreen} = route.params;
+  const {fromCd, headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId,fromAdditionalScreen,queryText} = route.params;
   //console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor,newBackgroundColor;
   if(fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
@@ -379,6 +382,32 @@ console.log(videoIsFocused,"..videoIsFocused");
     trEvenBackground: 'transparent',
     // fontFamily: '"Open Sans"' // beware to quote font family name!
   });
+
+  // method use for highlight text
+  const highlightWord = (content: string, query: string): any => {
+    if (typeof content !== 'string') {
+      return "";
+    }
+
+    const regex = new RegExp(`${query}`, 'gi');
+    const highlightedContent = content.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+
+    return highlightedContent;
+  }
+  // method use for highlight text without image
+  const highlightTextWithoutImages = (jsonContent: any, wordToHighlight: any): any => {
+
+    const parts = jsonContent.split(/(<img[^>]*>)/i);
+
+    // Map each part and add spaces around the word if it is not inside an img tag
+    const modifiedParts = parts.map((part: any): any => {
+      if (!/<img[^>]*>/i.test(part)) {
+        return highlightWord(part, wordToHighlight);
+      }
+      return part;
+    });
+    return modifiedParts.join('')
+  }
  
   return (
     <>
@@ -423,62 +452,112 @@ console.log(videoIsFocused,"..videoIsFocused");
               <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailDataToUse.category)[0].name }</Heading6Bold>
               : null }
             </ShiftFromBottom5>
-            <Heading2 style={styles.marginBottom10}>{detailDataToUse?.title}</Heading2>
-            {detailDataToUse && detailDataToUse?.summary ?
-            <Heading3Regular style={styles.marginBottom10}>{detailDataToUse.summary}</Heading3Regular> 
-            : null }
-            {detailDataToUse && detailDataToUse.body ?
-              <HTML
-              source={{html: addSpaceToHtml(detailDataToUse.body)}} key={detailDataToUse.id} 
-                // source={{html: bodydata}} {...htmlProps}
-                baseFontStyle={styles.htmlCode}
-                ignoredStyles={['color', 'font-size', 'font-family']}
-                tagsStyles={{
-                  img: {maxWidth:Dimensions.get('window').width},
-                  p:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h1:{marginBottom:0,marginTop:10,textAlign:'left'},
-                  h2:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h3:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h4:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h5:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h6:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  span:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  li:{textAlign:'left'},
-                  br:{height:0},
-                  iframe:{maxWidth:'100%',height:200}
-                }}
-           renderers={{
-            table,
-            iframe,
-            img:(attribs: any): any => {
-              const imagePath: any = attribs.src;
-              console.log(imagePath,"..imagePath");
-              if(imagePath!="" && imagePath!=null && imagePath!=undefined){
-              const itemnew: any={
-                cover_image:{
-                  url:imagePath
-                }
-              };
-              console.log(itemnew,"..itemnew")
-                return (
-                   <RenderImage key={imagePath+"/"+Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
-                );
+            {detailDataToUse && detailDataToUse.title ?
+                <View style={styles.marginBottom10}>
+                  <HTML
+                    source={{ html: queryText != undefined ? queryText.length != 0 ? addSpaceToHtml(highlightWord(detailDataToUse?.title, queryText)) : addSpaceToHtml(detailDataToUse?.title) : addSpaceToHtml(detailDataToUse?.title) }} key={detailDataToUse.id}
+                    // source={{html: bodydata}} {...htmlProps}
+                    baseFontStyle={styles.htmlTitleCode}
+                    tagsStyles={{
+                      img: { maxWidth: Dimensions.get('window').width },
+                      p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' },
+                      h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h3: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h4: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h5: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h6: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      span: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      li: { textAlign: 'left' },
+                      br: { height: 0 },
+                      iframe: { maxWidth: '100%', height: 200 }
+                    }}
+                    WebView={WebView}
+                    ignoredTags={IGNORED_TAGS}
+                  />
+                </View>
+                : null
               }
-            },
-          }}
-          WebView={WebView}
-          ignoredTags= {IGNORED_TAGS}
-          renderersProps={{
-            table: {
-              cssRules
-              // Put the table config here (previously,
-              // the first argument of makeTableRenderer)
-            },
-            iframe: { webViewProps: { allowsFullscreenVideo: true } }
-          }}
-        />
-               : null 
-            } 
+
+              {detailDataToUse && detailDataToUse.summary ?
+                <View style={styles.marginBottom10}>
+                  <HTML
+                    source={{ html: queryText != undefined ? queryText.length != 0 ? addSpaceToHtml(highlightWord(detailDataToUse?.summary, queryText)) : addSpaceToHtml(detailDataToUse?.summary) : addSpaceToHtml(detailDataToUse?.summary) }} key={detailDataToUse.id}
+                    // source={{html: bodydata}} {...htmlProps}
+                    baseFontStyle={styles.htmlSummaryCode}
+                    tagsStyles={{
+                      img: { maxWidth: Dimensions.get('window').width },
+                      p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' },
+                      h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h3: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h4: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h5: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      h6: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      span: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                      li: { textAlign: 'left' },
+                      br: { height: 0 },
+                      iframe: { maxWidth: '100%', height: 200 }
+                    }}
+                    WebView={WebView}
+                    ignoredTags={IGNORED_TAGS}
+                  />
+                </View>
+                : null
+              }
+
+              {detailDataToUse && detailDataToUse.body ?
+                <HTML
+                  source={{ html: queryText != undefined ? queryText.length != 0 ? addSpaceToHtml(highlightTextWithoutImages(detailDataToUse?.body, queryText)) : addSpaceToHtml(detailDataToUse?.body) : addSpaceToHtml(detailDataToUse?.body) }} key={detailDataToUse.id}
+                  // source={{html: bodydata}} {...htmlProps}
+                  baseFontStyle={styles.htmlCode}
+                  ignoredStyles={['color', 'font-size', 'font-family']}
+                  tagsStyles={{
+                    img: { maxWidth: Dimensions.get('window').width },
+                    p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' },
+                    h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h3: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h4: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h5: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h6: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    span: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    li: { textAlign: 'left' },
+                    br: { height: 0 },
+                    iframe: { maxWidth: '100%', height: 200 }
+                  }}
+                  renderers={{
+                    table,
+                    iframe,
+                    img: (attribs: any): any => {
+                      const imagePath: any = attribs.src;
+                      console.log(imagePath, "..imagePath");
+                      if (imagePath != "" && imagePath != null && imagePath != undefined) {
+                        const itemnew: any = {
+                          cover_image: {
+                            url: imagePath
+                          }
+                        };
+                        console.log(itemnew, "..itemnew")
+                        return (
+                          <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                        );
+                      }
+                    },
+                  }}
+                  WebView={WebView}
+                  ignoredTags={IGNORED_TAGS}
+                  renderersProps={{
+                    table: {
+                      cssRules
+                      // Put the table config here (previously,
+                      // the first argument of makeTableRenderer)
+                    },
+                    iframe: { webViewProps: { allowsFullscreenVideo: true } }
+                  }}
+                />
+                : null
+              }
             </ArticleDetailsContainer>
             {fromScreen === 'Articles' || fromScreen === 'FirebaseArticles'? (
               <>
