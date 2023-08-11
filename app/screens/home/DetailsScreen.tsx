@@ -399,11 +399,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       : detailDataToUse?.summary
     : detailDataToUse?.summary;
 
-  const highlightTitleSummary = (highlightData: string): any => {
+  const highlightTitleSummary = (highlightData: string, isTitle: boolean): any => {
     return <View style={styles.marginBottom10}>
       <HTML
         source={{ html: addSpaceToHtml(highlightData) }} key={detailDataToUse.id}
-        baseFontStyle={styles.htmlSummaryCode}
+        baseFontStyle={isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode}
         tagsStyles={{
           img: { maxWidth: Dimensions.get('window').width },
           p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
@@ -469,12 +469,12 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   : null}
               </ShiftFromBottom5>
               {detailDataToUse && detailDataToUse.title ?
-                highlightTitleSummary(addSpaceToHtml(highlightedTitle))
+                highlightTitleSummary(addSpaceToHtml(highlightedTitle), true)
                 : null
               }
 
               {detailDataToUse && detailDataToUse.summary ?
-                highlightTitleSummary(addSpaceToHtml(highlightedSummary))
+                highlightTitleSummary(addSpaceToHtml(highlightedSummary), false)
                 : null
               }
 
