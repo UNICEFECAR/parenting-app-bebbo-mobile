@@ -4,7 +4,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleDetailsContainer, ArticleHeading } from '@components/shared/ArticlesStyle';
 import { BgActivityTint } from '@components/shared/BackgroundColors';
 import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
-import { HeaderIconView, HeaderTitleView,HeaderIconPress } from '@components/shared/HeaderContainerStyle';
+import { HeaderIconView, HeaderTitleView, HeaderIconPress } from '@components/shared/HeaderContainerStyle';
 import { IconML } from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
@@ -15,7 +15,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3Regular, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, ScrollView, View, BackHandler, Dimensions, StyleSheet  } from 'react-native';
+import { Alert, ScrollView, View, BackHandler, Dimensions, StyleSheet } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -44,12 +44,14 @@ type Props = {
   navigation: DetailsScreenNavigationProp;
 };
 const styles = StyleSheet.create({
-  defaultImage:{height: 200, width: '100%'},
-  flex1:{flex: 1},
-  htmlCode:{color: bgcolorBlack2, fontSize: 16,margin:0,padding:0},
-  marginBottom10:{marginBottom:10},
-  maxHeight50:{maxHeight:50},
-  scrollView:{backgroundColor:bgcolorWhite2,flex: 4}
+  defaultImage: { height: 200, width: '100%' },
+  flex1: { flex: 1 },
+  htmlCode: { color: bgcolorBlack2, fontSize: 16, margin: 0, padding: 0 },
+  htmlSummaryCode: { fontFamily: 'roboto-regular', fontSize: 16 },
+  htmlTitleCode: { color: bgcolorBlack2, fontFamily: 'roboto-bold', fontSize: 20, lineHeight: 26, padding: 0 },
+  marginBottom10: { marginBottom: 10 },
+  maxHeight50: { maxHeight: 50 },
+  scrollView: { backgroundColor: bgcolorWhite2, flex: 4 }
 });
 export type RelatedArticlesProps = {
   relatedArticles?: any;
@@ -61,16 +63,16 @@ export type RelatedArticlesProps = {
   navigation?: any;
   fromScreen?: any;
   currentSelectedChildId?: any;
+  queryText?: any;
 }
-const DetailsScreen = ({route, navigation}: any): any => {
-  const {fromCd, headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId,fromAdditionalScreen} = route.params;
+const DetailsScreen = ({ route, navigation }: any): any => {
+  const { fromCd, headerColor, fromScreen, backgroundColor, detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId, fromAdditionalScreen, queryText } = route.params;
   //console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
-  let newHeaderColor,newBackgroundColor;
-  if(fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
-  {
+  let newHeaderColor, newBackgroundColor;
+  if (fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
     newHeaderColor = headerColor;
     newBackgroundColor = backgroundColor;
-  }else{
+  } else {
     const themeContext = useContext(ThemeContext);
     newHeaderColor = themeContext.colors.ARTICLES_COLOR;
     newBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
@@ -81,13 +83,13 @@ const DetailsScreen = ({route, navigation}: any): any => {
   const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
-  const {t} = useTranslation();
- 
-  const [detailDataToUse,setDetailDataToUse] = useState<any>({});
-  
-  const adviceval = fromScreen === 'Activities' || fromScreen ==="FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
-  const onHeaderBack =(): any=>{
-    console.log(fromScreen,"/",fromCd);
+  const { t } = useTranslation();
+
+  const [detailDataToUse, setDetailDataToUse] = useState<any>({});
+
+  const adviceval = fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ? false : true;
+  const onHeaderBack = (): any => {
+    console.log(fromScreen, "/", fromCd);
     if (fromScreen == "ChildDevelopment") {
       if (fromCd == true) {
         navigation.navigate('Home', {
@@ -108,7 +110,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
       }
     }
     else if (fromScreen == "Home") {
-      if(fromCd == true){
+      if (fromCd == true) {
         navigation.navigate('Home', {
           screen: "Articles",
           params: {
@@ -118,91 +120,83 @@ const DetailsScreen = ({route, navigation}: any): any => {
           merge: true
         })
       }
-      else{
-       navigation.navigate('Home', { screen: 'Home', params: {categoryArray:listCategoryArray,backClicked:'yes'},merge:true})
+      else {
+        navigation.navigate('Home', { screen: 'Home', params: { categoryArray: listCategoryArray, backClicked: 'yes' }, merge: true })
       }
     }
-    else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
-    {
+    else if (fromScreen == "MileStone" || fromScreen == "MileStoneActivity") {
       navigation.navigate({
         name: "ChildDevelopment",
-        params: {currentSelectedChildId:currentSelectedChildId},
+        params: { currentSelectedChildId: currentSelectedChildId },
         merge: true,
       });
     }
-    else if(fromScreen == "Activities")
-    {
+    else if (fromScreen == "Activities") {
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId,backClicked:'yes'},
+        params: { categoryArray: listCategoryArray, currentSelectedChildId: currentSelectedChildId, backClicked: 'yes' },
         merge: true,
       });
-     
+
     }
-    else if(fromScreen == "FirebaseActivities")
-    {
+    else if (fromScreen == "FirebaseActivities") {
       navigation.navigate('Home', {
-        screen: "Activities", 
+        screen: "Activities",
         params: {
-          categoryArray:listCategoryArray,
-          currentSelectedChildId:currentSelectedChildId,
-          backClicked:'no'
+          categoryArray: listCategoryArray,
+          currentSelectedChildId: currentSelectedChildId,
+          backClicked: 'no'
         },
-        merge:true
-      })  
+        merge: true
+      })
     }
-    else if(fromScreen == "FirebaseVaccinationTab")
-    {
+    else if (fromScreen == "FirebaseVaccinationTab") {
       navigation.navigate('Home', {
         screen: 'Tools',
         params: {
           screen: 'VaccinationTab',
         },
-        merge:true
+        merge: true
       });
     }
-    else if(fromScreen == "FirebaseHealthCheckupsTab")
-    {
-      console.log(fromScreen,"fromScreen")
+    else if (fromScreen == "FirebaseHealthCheckupsTab") {
+      console.log(fromScreen, "fromScreen")
       navigation.navigate('Home', {
         screen: 'Tools',
         params: {
           screen: 'HealthCheckupsTab',
         },
-        merge:true
+        merge: true
       });
     }
-    else if(fromScreen == "FirebaseArticles")
-    {
+    else if (fromScreen == "FirebaseArticles") {
       const screenName = route.name;
-      console.log("Articles callled",screenName);   
+      console.log("Articles callled", screenName);
       navigation.navigate('Home', {
-        screen: "Articles", 
+        screen: "Articles",
         params: {
-          categoryArray:listCategoryArray,
-          backClicked:'no'
+          categoryArray: listCategoryArray,
+          backClicked: 'no'
         },
-        merge:true
+        merge: true
       })
     }
-    else if(fromScreen == "HomeAct" || fromScreen == "HomeArt")
-    {
-      if(fromAdditionalScreen=="DailyScreen"){
-        navigation.navigate('Home', { screen: 'Home',params: {categoryArray:listCategoryArray,backClicked:'yes'},merge:true})
+    else if (fromScreen == "HomeAct" || fromScreen == "HomeArt") {
+      if (fromAdditionalScreen == "DailyScreen") {
+        navigation.navigate('Home', { screen: 'Home', params: { categoryArray: listCategoryArray, backClicked: 'yes' }, merge: true })
       }
-      else{
+      else {
         navigation.navigate({
           name: fromScreen == "HomeAct" || fromScreen == "HomeArt" ? "Home" : fromScreen,
-          params: {categoryArray:listCategoryArray,backClicked:'yes'},
+          params: { categoryArray: listCategoryArray, backClicked: 'yes' },
           merge: true,
         });
-      }    
+      }
     }
-    else if(fromScreen == "FavActivities" || fromScreen == "FavArticles")
-    {
+    else if (fromScreen == "FavActivities" || fromScreen == "FavArticles") {
       navigation.navigate({
         name: fromScreen == "FavActivities" || fromScreen == "FavArticles" ? "Favourites" : fromScreen,
-        params: {tabIndex:fromScreen == "FavArticles" ? 0 : 1,backClicked:'yes'},
+        params: { tabIndex: fromScreen == "FavArticles" ? 0 : 1, backClicked: 'yes' },
         merge: true,
       });
     }
@@ -210,7 +204,7 @@ const DetailsScreen = ({route, navigation}: any): any => {
       console.log("else callled")
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        params: {categoryArray:listCategoryArray,backClicked:'yes'},
+        params: { categoryArray: listCategoryArray, backClicked: 'yes' },
         merge: true,
       });
     }
@@ -227,168 +221,219 @@ const DetailsScreen = ({route, navigation}: any): any => {
       backAction,
     );
     navigation.addListener('gestureEnd', backAction);
-      
-  
+
+
     return (): any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
   }, []);
-  
+
   useEffect(() => {
-      const functionOnLoad = async (): Promise<any> => {
-        if(fromScreen == "VaccinationTab" || fromScreen=="FirebaseVaccinationTab" || fromScreen=="Articles" || fromScreen == "FirebaseArticles" || fromScreen == "HealthCheckupsTab"  || fromScreen == "FirebaseHealthCheckupsTab"  || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
-        {
-          console.log(detailData,"..detailData..")
-          
-          if(typeof detailData == "number")
-          {
-            const articleData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,'id == "'+detailData+'"');
-            if(articleData && articleData.length > 0)
-            {
-              setDetailDataToUse(articleData[0]);
-              if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
-              {
-                 analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+articleData[0]?.activity_category);
-                 analytics().logEvent(GAME_DETAILS_OPENED,{game_id: articleData[0]?.id,game_category_id:articleData[0]?.activity_category});    
-              }else{
-                 analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+articleData[0]?.category);
-                 analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  articleData[0]?.id,advice_catergory_id:articleData[0]?.category});
-              }
-            }else {
-              const videoarticleData = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema,'id == "'+detailData+'"');
-                if(videoarticleData && videoarticleData.length > 0) {
-                  setDetailDataToUse(videoarticleData[0]);
-                  if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
-                  {
-                    analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+videoarticleData[0]?.activity_category);
-                    analytics().logEvent(GAME_DETAILS_OPENED,{game_id: videoarticleData[0]?.id,game_category_id:videoarticleData[0]?.activity_category});    
-                  }else{
-                    analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+videoarticleData[0]?.category);
-                    analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  videoarticleData[0]?.id,advice_catergory_id:videoarticleData[0]?.category});
-                  }
-                }else {
-                    //show alert and back function
-                    Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
-                    [
-                      { text: t('detailScreenNoDataOkBtn'), onPress: (): any => onHeaderBack() }
-                    ]
-                  );
-                }
+    const functionOnLoad = async (): Promise<any> => {
+      if (fromScreen == "VaccinationTab" || fromScreen == "FirebaseVaccinationTab" || fromScreen == "Articles" || fromScreen == "FirebaseArticles" || fromScreen == "HealthCheckupsTab" || fromScreen == "FirebaseHealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat") {
+        console.log(detailData, "..detailData..")
+
+        if (typeof detailData == "number") {
+          const articleData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, 'id == "' + detailData + '"');
+          if (articleData && articleData.length > 0) {
+            setDetailDataToUse(articleData[0]);
+            if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+              analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + articleData[0]?.activity_category);
+              analytics().logEvent(GAME_DETAILS_OPENED, { game_id: articleData[0]?.id, game_category_id: articleData[0]?.activity_category });
+            } else {
+              analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + articleData[0]?.category);
+              analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: articleData[0]?.id, advice_catergory_id: articleData[0]?.category });
             }
-          }else if(typeof detailData == "object")
-          {
-            setDetailDataToUse(detailData);
-            if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
-            {
-               analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
-               analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
-            }else{
-               analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+detailData?.category);
-               analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
+          } else {
+            const videoarticleData = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema, 'id == "' + detailData + '"');
+            if (videoarticleData && videoarticleData.length > 0) {
+              setDetailDataToUse(videoarticleData[0]);
+              if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+                analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + videoarticleData[0]?.activity_category);
+                analytics().logEvent(GAME_DETAILS_OPENED, { game_id: videoarticleData[0]?.id, game_category_id: videoarticleData[0]?.activity_category });
+              } else {
+                analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + videoarticleData[0]?.category);
+                analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: videoarticleData[0]?.id, advice_catergory_id: videoarticleData[0]?.category });
+              }
+            } else {
+              //show alert and back function
+              Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
+                [
+                  { text: t('detailScreenNoDataOkBtn'), onPress: (): any => onHeaderBack() }
+                ]
+              );
             }
           }
-          
-        }else {
-        if(fromScreen == "HomeAct" || fromScreen=="Activities" ||  fromScreen === 'FirebaseActivities'){
-          if(typeof detailData == "number")
-          {
-            const activityData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema,'id == "'+detailData+'"');
-            if(activityData && activityData.length > 0)
-            {
+        } else if (typeof detailData == "object") {
+          setDetailDataToUse(detailData);
+          if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+            analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category);
+            analytics().logEvent(GAME_DETAILS_OPENED, { game_id: detailData?.id, game_category_id: detailData?.activity_category });
+          } else {
+            analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + detailData?.category);
+            analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: detailData?.id, advice_catergory_id: detailData?.category });
+          }
+        }
+
+      } else {
+        if (fromScreen == "HomeAct" || fromScreen == "Activities" || fromScreen === 'FirebaseActivities') {
+          if (typeof detailData == "number") {
+            const activityData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema, 'id == "' + detailData + '"');
+            if (activityData && activityData.length > 0) {
               setDetailDataToUse(activityData[0]);
-              if(fromScreen === 'Activities' ||  fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
-                {
-                   analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+activityData[0]?.activity_category);
-                   analytics().logEvent(GAME_DETAILS_OPENED,{game_id:activityData[0]?.id,game_category_id:activityData[0]?.activity_category});    
-                }else{
-                   analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+activityData[0]?.category);
-                   analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:activityData[0]?.id,advice_catergory_id:activityData[0]?.category});
-                }
+              if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+                analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + activityData[0]?.activity_category);
+                analytics().logEvent(GAME_DETAILS_OPENED, { game_id: activityData[0]?.id, game_category_id: activityData[0]?.activity_category });
+              } else {
+                analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + activityData[0]?.category);
+                analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: activityData[0]?.id, advice_catergory_id: activityData[0]?.category });
+              }
             }
             else {
               //show alert and back function
               Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
-              [
-                { text: t('detailScreenNoDataOkBtn'), onPress: (): any => onHeaderBack() }
-              ]
-            );
+                [
+                  { text: t('detailScreenNoDataOkBtn'), onPress: (): any => onHeaderBack() }
+                ]
+              );
             }
           }
-          else{
+          else {
             setDetailDataToUse(detailData);
-            if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
-              {
-                 analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
-                 analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
-              }else{
-                 analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+detailData?.category);
-                 analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
-              }
+            if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+              analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category);
+              analytics().logEvent(GAME_DETAILS_OPENED, { game_id: detailData?.id, game_category_id: detailData?.activity_category });
+            } else {
+              analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + detailData?.category);
+              analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: detailData?.id, advice_catergory_id: detailData?.category });
+            }
           }
         }
-        else{
+        else {
           setDetailDataToUse(detailData);
-          if(fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
-            {
-               analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
-               analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
-            }else{
-               analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+detailData?.category);
-               analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
-            }
-        }
+          if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+            analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category);
+            analytics().logEvent(GAME_DETAILS_OPENED, { game_id: detailData?.id, game_category_id: detailData?.activity_category });
+          } else {
+            analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + detailData?.category);
+            analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: detailData?.id, advice_catergory_id: detailData?.category });
+          }
         }
       }
-      functionOnLoad();
-      return (): any => {
-        console.log("in return")
-      }
+    }
+    functionOnLoad();
+    return (): any => {
+      console.log("in return")
+    }
 
   }, [detailData]);
-  
+
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
   const toggleSwitchVal = useAppSelector((state: any) =>
-  state.bandWidthData?.lowbandWidth
-    ? state.bandWidthData.lowbandWidth
-    : false,
-);
-const videoIsFocused = useIsFocused();
-console.log(videoIsFocused,"..videoIsFocused");
-  const [filterArray,setFilterArray] = useState([]);
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
+  const videoIsFocused = useIsFocused();
+  console.log(videoIsFocused, "..videoIsFocused");
+  const [filterArray, setFilterArray] = useState([]);
   const fromPage = 'Details';
   const setNewFilteredArticleData = (itemId: any): any => {
     navigation.navigate({
       name: fromScreen,
-      params: {categoryArray:itemId,backClicked:'no'},
+      params: { categoryArray: itemId, backClicked: 'no' },
       merge: true,
     });
   }
-  
+
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray)
   }
   const cssRules =
-  cssRulesFromSpecs({
-    ...defaultTableStylesSpecs,
-    thOddBackground: 'transparent',
-    thEvenBackground: 'transparent',
-    trOddBackground: 'transparent',
-    trEvenBackground: 'transparent',
-    // fontFamily: '"Open Sans"' // beware to quote font family name!
-  });
- 
+    cssRulesFromSpecs({
+      ...defaultTableStylesSpecs,
+      thOddBackground: 'transparent',
+      thEvenBackground: 'transparent',
+      trOddBackground: 'transparent',
+      trEvenBackground: 'transparent',
+      // fontFamily: '"Open Sans"' // beware to quote font family name!
+    });
+
+  // A method for highlighting specific words within content
+  const highlightWord = (content: string, query: string): string => {
+    if (typeof content !== 'string') {
+      return "";
+    }
+
+    const regex = new RegExp(`${query}`, 'gi');
+    const highlightedContent = content.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+
+    return highlightedContent;
+  }
+
+  const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string): string => {
+
+    const parts = jsonContent.split(/(<img[^>]*>)/i);
+
+    // Map each part and add spaces around the word if it is not inside an img tag
+    const modifiedParts = parts.map((part: any): any => {
+      if (!/<img[^>]*>/i.test(part)) {
+        return highlightWord(part, wordToHighlight);
+      }
+      return part;
+    });
+    return modifiedParts.join('')
+  }
+  const highlightedTitle = queryText != undefined
+    ? queryText.length !== 0
+      ? highlightWord(detailDataToUse?.title, queryText)
+      : detailDataToUse?.title
+    : detailDataToUse?.title;
+
+  const highlightedSummary = queryText != undefined
+    ? queryText.length !== 0
+      ? highlightWord(detailDataToUse?.summary, queryText)
+      : detailDataToUse?.summary
+    : detailDataToUse?.summary;
+
+  const highlightTitleSummary = (highlightData: string, isTitle: boolean): any => {
+    return <View style={styles.marginBottom10}>
+      <HTML
+        source={{ html: addSpaceToHtml(highlightData) }} key={detailDataToUse.id}
+        baseFontStyle={isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode}
+        tagsStyles={{
+          img: { maxWidth: Dimensions.get('window').width },
+          p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+          h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' },
+          h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+          h3: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+          h4: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+          h5: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+          h6: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+          span: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+          li: { textAlign: 'left' },
+          br: { height: 0 },
+          iframe: { maxWidth: '100%', height: 200 }
+        }}
+        WebView={WebView}
+        ignoredTags={IGNORED_TAGS}
+      />
+    </View>
+
+  }
+
   return (
     <>
-    {detailDataToUse ?
-         <View style={[styles.flex1,{backgroundColor:newHeaderColor}]}>
+      {detailDataToUse ?
+        <View style={[styles.flex1, { backgroundColor: newHeaderColor }]}>
           <FocusAwareStatusBar animated={true} backgroundColor={newHeaderColor} />
           <FlexDirRow
-            style={[styles.maxHeight50,{
+            style={[styles.maxHeight50, {
               backgroundColor: newHeaderColor
-             
+
             }]}>
             <HeaderIconView>
               <HeaderIconPress
@@ -397,153 +442,158 @@ console.log(videoIsFocused,"..videoIsFocused");
               </HeaderIconPress>
             </HeaderIconView>
             <HeaderTitleView>
-            <Heading2 numberOfLines={1}>{detailDataToUse?.title}</Heading2>
+              <Heading2 numberOfLines={1}>{detailDataToUse?.title}</Heading2>
             </HeaderTitleView>
           </FlexDirRow>
 
           <ScrollView overScrollMode="never" style={styles.scrollView}>
             <View>
               {
-              (detailDataToUse && detailDataToUse.cover_video && detailDataToUse.cover_video.url!="" && detailDataToUse.cover_video.url!=undefined) ?
-              videoIsFocused==true?<VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>:null
-              :
-              detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
-              (<LoadableImage style={styles.defaultImage}  item={detailDataToUse} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>):
-              <DefaultImage
-              style={styles.defaultImage} 
-              source={require('@assets/trash/defaultArticleImage.png')}/>   
+                (detailDataToUse && detailDataToUse.cover_video && detailDataToUse.cover_video.url != "" && detailDataToUse.cover_video.url != undefined) ?
+                  videoIsFocused == true ? <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer> : null
+                  :
+                  detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url != "" && detailDataToUse.cover_image.url != undefined ?
+                    (<LoadableImage style={styles.defaultImage} item={detailDataToUse} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />) :
+                    <DefaultImage
+                      style={styles.defaultImage}
+                      source={require('@assets/trash/defaultArticleImage.png')} />
               }
             </View>
             {adviceval == true ?
-              <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoriteadvices.findIndex((x: any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/>
-            : <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoritegames.findIndex((x: any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/> }
+              <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite={((favoriteadvices.findIndex((x: any) => x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval} />
+              : <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite={((favoritegames.findIndex((x: any) => x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval} />}
             <ArticleDetailsContainer>
               <ShiftFromBottom5>
-            {detailDataToUse && detailDataToUse?.category && detailDataToUse?.category!= 0 ?    
-              <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailDataToUse.category)[0].name }</Heading6Bold>
-              : null }
-            </ShiftFromBottom5>
-            <Heading2 style={styles.marginBottom10}>{detailDataToUse?.title}</Heading2>
-            {detailDataToUse && detailDataToUse?.summary ?
-            <Heading3Regular style={styles.marginBottom10}>{detailDataToUse.summary}</Heading3Regular> 
-            : null }
-            {detailDataToUse && detailDataToUse.body ?
-              <HTML
-              source={{html: addSpaceToHtml(detailDataToUse.body)}} key={detailDataToUse.id} 
-                // source={{html: bodydata}} {...htmlProps}
-                baseFontStyle={styles.htmlCode}
-                ignoredStyles={['color', 'font-size', 'font-family']}
-                tagsStyles={{
-                  img: {maxWidth:Dimensions.get('window').width},
-                  p:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h1:{marginBottom:0,marginTop:10,textAlign:'left'},
-                  h2:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h3:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h4:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h5:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  h6:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  span:{marginBottom:15,marginTop:0,textAlign:'left'},
-                  li:{textAlign:'left'},
-                  br:{height:0},
-                  iframe:{maxWidth:'100%',height:200}
-                }}
-           renderers={{
-            table,
-            iframe,
-            img:(attribs: any): any => {
-              const imagePath: any = attribs.src;
-              console.log(imagePath,"..imagePath");
-              if(imagePath!="" && imagePath!=null && imagePath!=undefined){
-              const itemnew: any={
-                cover_image:{
-                  url:imagePath
-                }
-              };
-              console.log(itemnew,"..itemnew")
-                return (
-                   <RenderImage key={imagePath+"/"+Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
-                );
+                {detailDataToUse && detailDataToUse?.category && detailDataToUse?.category != 0 ?
+                  <Heading6Bold>{categoryData.filter((x: any) => x.id == detailDataToUse.category)[0].name}</Heading6Bold>
+                  : null}
+              </ShiftFromBottom5>
+              {detailDataToUse && detailDataToUse.title ?
+                highlightTitleSummary(addSpaceToHtml(highlightedTitle), true)
+                : null
               }
-            },
-          }}
-          WebView={WebView}
-          ignoredTags= {IGNORED_TAGS}
-          renderersProps={{
-            table: {
-              cssRules
-              // Put the table config here (previously,
-              // the first argument of makeTableRenderer)
-            },
-            iframe: { webViewProps: { allowsFullscreenVideo: true } }
-          }}
-        />
-               : null 
-            } 
-            </ArticleDetailsContainer>
-            {fromScreen === 'Articles' || fromScreen === 'FirebaseArticles'? (
-              <>
-                <FlexCol style={{backgroundColor: newBackgroundColor}}>
-                  
-                    <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
 
-                        <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-                    
+              {detailDataToUse && detailDataToUse.summary ?
+                highlightTitleSummary(addSpaceToHtml(highlightedSummary), false)
+                : null
+              }
+
+              {detailDataToUse && detailDataToUse.body ?
+                <HTML
+                  source={{ html: queryText != undefined ? queryText.length != 0 ? addSpaceToHtml(highlightTextWithoutImages(detailDataToUse?.body, queryText)) : addSpaceToHtml(detailDataToUse?.body) : addSpaceToHtml(detailDataToUse?.body) }} key={detailDataToUse.id}
+                  baseFontStyle={styles.htmlCode}
+                  ignoredStyles={['color', 'font-size', 'font-family']}
+                  tagsStyles={{
+                    img: { maxWidth: Dimensions.get('window').width },
+                    p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' },
+                    h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h3: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h4: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h5: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    h6: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    span: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
+                    li: { textAlign: 'left' },
+                    br: { height: 0 },
+                    iframe: { maxWidth: '100%', height: 200 }
+                  }}
+                  renderers={{
+                    table,
+                    iframe,
+                    img: (attribs: any): any => {
+                      const imagePath: any = attribs.src;
+                      console.log(imagePath, "..imagePath");
+                      if (imagePath != "" && imagePath != null && imagePath != undefined) {
+                        const itemnew: any = {
+                          cover_image: {
+                            url: imagePath
+                          }
+                        };
+                        console.log(itemnew, "..itemnew")
+                        return (
+                          <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                        );
+                      }
+                    },
+                  }}
+                  WebView={WebView}
+                  ignoredTags={IGNORED_TAGS}
+                  renderersProps={{
+                    table: {
+                      cssRules
+                      // Put the table config here (previously,
+                      // the first argument of makeTableRenderer)
+                    },
+                    iframe: { webViewProps: { allowsFullscreenVideo: true } }
+                  }}
+                />
+                : null
+              }
+            </ArticleDetailsContainer>
+            {fromScreen === 'Articles' || fromScreen === 'FirebaseArticles' ? (
+              <>
+                <FlexCol style={{ backgroundColor: newBackgroundColor }}>
+
+                  <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+
+                  <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+
                   <ArticleHeading>
                     <Heading2>{t('detailScreenArticleHeader')}</Heading2>
                   </ArticleHeading>
-                  <ArticleCategories borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}/>
+                  <ArticleCategories borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
                 </FlexCol>
               </>
             ) : null}
             {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "FirebaseVaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "FirebaseHealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup" || fromScreen == "MileStone" || fromScreen === 'HomeArt' || fromScreen === 'FavArticles' || fromScreen === 'SupportChat' ? (
               <>
-                <FlexCol style={{backgroundColor: newBackgroundColor}}>
-                  
-                    <RelatedArticles  relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                <FlexCol style={{ backgroundColor: newBackgroundColor }}>
 
-                      <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
+                  <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+
+                  <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
                 </FlexCol>
               </>
             ) : null}
-            
-            {fromScreen === 'Activities'  || fromScreen === 'FirebaseActivities'? (
+
+            {fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' ? (
               <>
-              
-              <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
-              <View style={{backgroundColor: newBackgroundColor}}>
-                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-              </View>
-              <BgActivityTint>
-                <ArticleHeading>
-                  <Heading2>{t('detailScreenActivityHeader')}</Heading2>
-                </ArticleHeading>
-                <ActivitiesCategories
-                  borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}
-                />
+
+                <TrackMilestoneView currentSelectedChildId={currentSelectedChildId} />
+                <View style={{ backgroundColor: newBackgroundColor }}>
+                  <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+                </View>
+                <BgActivityTint>
+                  <ArticleHeading>
+                    <Heading2>{t('detailScreenActivityHeader')}</Heading2>
+                  </ArticleHeading>
+                  <ActivitiesCategories
+                    borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}
+                  />
                 </BgActivityTint>
               </>
             ) : null}
             {fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ? (
               <>
-              <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
-              <View style={{backgroundColor: newBackgroundColor}}>
-                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
-              </View>
+                <TrackMilestoneView currentSelectedChildId={currentSelectedChildId} />
+                <View style={{ backgroundColor: newBackgroundColor }}>
+                  <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+                </View>
               </>
             ) : null}
             {
-              fromScreen === "Home" ||  fromScreen === "ChildDevelopment" ?
-              <>
-              <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
-              <FlexCol style={{ backgroundColor: newBackgroundColor }}>
-              <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
-              <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
-              </FlexCol>
-              </>:null
+              fromScreen === "Home" || fromScreen === "ChildDevelopment" ?
+                <>
+                  <TrackMilestoneView currentSelectedChildId={currentSelectedChildId} />
+                  <FlexCol style={{ backgroundColor: newBackgroundColor }}>
+                    <RelatedArticles relatedArticles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+                    <RelatedVideoArticles relatedArticles={detailDataToUse?.related_video_articles ? detailDataToUse?.related_video_articles : []} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId} />
+                  </FlexCol>
+                </> : null
             }
           </ScrollView>
         </View>
-        : null 
+        : null
       }
     </>
   );
