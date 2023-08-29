@@ -15,6 +15,7 @@ import { SurveysSchema } from "../schema/SurveysSchema";
 import { TaxonomySchema } from "../schema/TaxonomySchema";
 import { VaccinationSchema } from "../schema/VaccinationSchema";
 import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
+import { EventSchema } from "../schema/EventSchema";
 
 export const dataRealmConfig: Realm.Configuration = {
   path: 'data.realm',
@@ -36,9 +37,10 @@ export const dataRealmConfig: Realm.Configuration = {
     StandardDevWeightForHeightSchema,
     StandDevObj,
     StandardDevHeightForAgeSchema,
-    FAQsSchema
+    FAQsSchema,
+    EventSchema
   ],
-  schemaVersion: 7,
+  schemaVersion: 8,
   migration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion < 1) {
       // const oldObjects = oldRealm.objects('VariableEntity');

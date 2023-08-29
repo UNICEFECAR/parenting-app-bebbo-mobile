@@ -27,6 +27,7 @@ import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import LoadableImage from '../../../services/LoadableImage';
 import { randomArrayShuffle } from '../../../services/Utils';
+import { synchronizeEvents } from '../../../services/EventSyncService';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -135,6 +136,9 @@ const Articles = ({ route, navigation }: any): any => {
   }
 
   useFocusEffect(() => {
+    if(netInfoval.isConnected){
+      synchronizeEvents(netInfoval.isConnected);
+     }
     setModalVisible(articleModalOpened);
   })
   const themeContext = useContext(ThemeContext);

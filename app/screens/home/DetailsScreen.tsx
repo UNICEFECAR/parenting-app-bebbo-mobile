@@ -26,7 +26,6 @@ import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from 
 import WebView from "react-native-webview";
 import LoadableImage from '../../services/LoadableImage';
 import { DefaultImage } from '@components/shared/Image';
-import analytics from '@react-native-firebase/analytics';
 import { ADVICE_CATEGORY_SELECTED, ADVICE_DETAILS_OPENED, GAME_CATEGORY_SELECTED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
 import { addSpaceToHtml } from '../../services/Utils';
 import RenderImage from '../../services/RenderImage';
@@ -37,6 +36,8 @@ import iframe from '@native-html/iframe-plugin';
 import RelatedVideoArticles from '@components/shared/RelatedVideoArticles';
 import { useIsFocused } from '@react-navigation/native';
 import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -66,6 +67,7 @@ export type RelatedArticlesProps = {
   queryText?: any;
 }
 const DetailsScreen = ({ route, navigation }: any): any => {
+  const netInfoval = useNetInfoHook();
   const { fromCd, headerColor, fromScreen, backgroundColor, detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId, fromAdditionalScreen, queryText } = route.params;
   //console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor, newBackgroundColor;
@@ -239,22 +241,30 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           if (articleData && articleData.length > 0) {
             setDetailDataToUse(articleData[0]);
             if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
-              analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + articleData[0]?.activity_category);
-              analytics().logEvent(GAME_DETAILS_OPENED, { game_id: articleData[0]?.id, game_category_id: articleData[0]?.activity_category });
+              const eventGameCatData= {'name': GAME_CATEGORY_SELECTED + "_" + articleData[0]?.activity_category} 
+              const eventGameDetailsData= {'name': GAME_DETAILS_OPENED, 'params': { game_id: articleData[0]?.id, game_category_id: articleData[0]?.activity_category } }  
+              logEvent(eventGameCatData,netInfoval.isConnected)
+              logEvent(eventGameDetailsData,netInfoval.isConnected)
             } else {
-              analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + articleData[0]?.category);
-              analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: articleData[0]?.id, advice_catergory_id: articleData[0]?.category });
+              const eventAdviceCatData= {'name': ADVICE_CATEGORY_SELECTED + "_" + articleData[0]?.category} 
+              const eventAdviceDetailsData= {'name': ADVICE_DETAILS_OPENED, 'params':  { advise_id: articleData[0]?.id, advice_catergory_id: articleData[0]?.category } }  
+              logEvent(eventAdviceCatData,netInfoval.isConnected)
+              logEvent(eventAdviceDetailsData,netInfoval.isConnected)
             }
           } else {
             const videoarticleData = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema, 'id == "' + detailData + '"');
             if (videoarticleData && videoarticleData.length > 0) {
               setDetailDataToUse(videoarticleData[0]);
               if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
-                analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + videoarticleData[0]?.activity_category);
-                analytics().logEvent(GAME_DETAILS_OPENED, { game_id: videoarticleData[0]?.id, game_category_id: videoarticleData[0]?.activity_category });
+                const eventGameCatData= {'name': GAME_CATEGORY_SELECTED + "_" + videoarticleData[0]?.activity_category} 
+                const eventGameDetailsData= {'name': GAME_DETAILS_OPENED, 'params': { game_id: videoarticleData[0]?.id, game_category_id: videoarticleData[0]?.activity_category } }  
+                logEvent(eventGameCatData,netInfoval.isConnected)
+                logEvent(eventGameDetailsData,netInfoval.isConnected)
               } else {
-                analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + videoarticleData[0]?.category);
-                analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: videoarticleData[0]?.id, advice_catergory_id: videoarticleData[0]?.category });
+                const eventAdviceCatData= {'name': ADVICE_CATEGORY_SELECTED + "_" + videoarticleData[0]?.category} 
+                const eventAdviceDetailsData= {'name': ADVICE_DETAILS_OPENED, 'params':  { advise_id: videoarticleData[0]?.id, advice_catergory_id: videoarticleData[0]?.category } }  
+                logEvent(eventAdviceCatData,netInfoval.isConnected)
+                logEvent(eventAdviceDetailsData,netInfoval.isConnected)
               }
             } else {
               //show alert and back function
@@ -268,11 +278,15 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         } else if (typeof detailData == "object") {
           setDetailDataToUse(detailData);
           if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
-            analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category);
-            analytics().logEvent(GAME_DETAILS_OPENED, { game_id: detailData?.id, game_category_id: detailData?.activity_category });
+            const eventGameCatData= {'name': GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category} 
+            const eventGameDetailsData= {'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }  
+            logEvent(eventGameCatData,netInfoval.isConnected)
+            logEvent(eventGameDetailsData,netInfoval.isConnected)
           } else {
-            analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + detailData?.category);
-            analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: detailData?.id, advice_catergory_id: detailData?.category });
+            const eventAdviceCatData= {'name': ADVICE_CATEGORY_SELECTED + "_" + detailData?.category} 
+            const eventAdviceDetailsData= {'name': ADVICE_DETAILS_OPENED, 'params':  { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }  
+            logEvent(eventAdviceCatData,netInfoval.isConnected)
+            logEvent(eventAdviceDetailsData,netInfoval.isConnected)
           }
         }
 
@@ -283,11 +297,15 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             if (activityData && activityData.length > 0) {
               setDetailDataToUse(activityData[0]);
               if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
-                analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + activityData[0]?.activity_category);
-                analytics().logEvent(GAME_DETAILS_OPENED, { game_id: activityData[0]?.id, game_category_id: activityData[0]?.activity_category });
+                const eventGameCatData= {'name': GAME_CATEGORY_SELECTED + "_" + activityData[0]?.activity_category} 
+                const eventGameDetailsData= {'name': GAME_DETAILS_OPENED, 'params': { game_id: activityData[0]?.id, game_category_id: activityData[0]?.activity_category } }  
+                logEvent(eventGameCatData,netInfoval.isConnected)
+                logEvent(eventGameDetailsData,netInfoval.isConnected)
               } else {
-                analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + activityData[0]?.category);
-                analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: activityData[0]?.id, advice_catergory_id: activityData[0]?.category });
+                const eventAdviceCatData= {'name': ADVICE_CATEGORY_SELECTED + "_" + activityData[0]?.category} 
+                const eventAdviceDetailsData= {'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: activityData[0]?.id, advice_catergory_id: activityData[0]?.category } }  
+                logEvent(eventAdviceCatData,netInfoval.isConnected)
+                logEvent(eventAdviceDetailsData,netInfoval.isConnected)
               }
             }
             else {
@@ -302,22 +320,30 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           else {
             setDetailDataToUse(detailData);
             if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
-              analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category);
-              analytics().logEvent(GAME_DETAILS_OPENED, { game_id: detailData?.id, game_category_id: detailData?.activity_category });
+              const eventGameCatData= {'name': GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category} 
+              const eventGameDetailsData= {'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }  
+              logEvent(eventGameCatData,netInfoval.isConnected)
+              logEvent(eventGameDetailsData,netInfoval.isConnected)
             } else {
-              analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + detailData?.category);
-              analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: detailData?.id, advice_catergory_id: detailData?.category });
+              const eventAdviceCatData= {'name': ADVICE_CATEGORY_SELECTED + "_" + detailData?.category} 
+              const eventAdviceDetailsData= {'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }  
+              logEvent(eventAdviceCatData,netInfoval.isConnected)
+              logEvent(eventAdviceDetailsData,netInfoval.isConnected)
             }
           }
         }
         else {
           setDetailDataToUse(detailData);
           if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
-            analytics().logEvent(GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category);
-            analytics().logEvent(GAME_DETAILS_OPENED, { game_id: detailData?.id, game_category_id: detailData?.activity_category });
+            const eventGameCatData= {'name': GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category} 
+            const eventGameDetailsData= {'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }  
+            logEvent(eventGameCatData,netInfoval.isConnected)
+            logEvent(eventGameDetailsData,netInfoval.isConnected)
           } else {
-            analytics().logEvent(ADVICE_CATEGORY_SELECTED + "_" + detailData?.category);
-            analytics().logEvent(ADVICE_DETAILS_OPENED, { advise_id: detailData?.id, advice_catergory_id: detailData?.category });
+            const eventAdviceCatData= {'name': ADVICE_CATEGORY_SELECTED + "_" + detailData?.category} 
+            const eventAdviceDetailsData= {'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }  
+            logEvent(eventAdviceCatData,netInfoval.isConnected)
+            logEvent(eventAdviceDetailsData,netInfoval.isConnected)
           }
         }
       }
