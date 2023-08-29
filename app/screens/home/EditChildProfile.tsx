@@ -61,6 +61,7 @@ import MediaPicker from '../../services/MediaPicker';
 import { validateForm } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -107,6 +108,7 @@ const styles = StyleSheet.create({
 });
 
 const EditChildProfile = ({ route, navigation }: Props): any => {
+  const netInfoval = useNetInfoHook();
   const childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -347,7 +349,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     console.log(insertData,"...insertData")
     childSet.push(insertData);
     setLoading(false);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null,null);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null,null,netInfoval);
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {

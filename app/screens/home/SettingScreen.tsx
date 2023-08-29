@@ -41,7 +41,6 @@ import {
 } from '@components/shared/SettingsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import analytics from '@react-native-firebase/analytics';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
@@ -80,6 +79,7 @@ import * as ScopedStorage from "react-native-scoped-storage";
 import Share from 'react-native-share';
 import LocalNotifications from '../../services/LocalNotifications';
 import { bgcolorWhite2 } from '@styles/style';
+import { logEvent } from '../../services/EventSyncService';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -509,9 +509,9 @@ const SettingScreen = (props: any): any => {
       const obj2 = { key: 'vchcEnabled', value: false };
       dispatch(toggleNotificationFlags(obj2));
       setIsEnabled(false);
-      analytics().logEvent(GROWTH_NOTIFICATION_OFF)
-      analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
-      analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
+      logEvent({ 'name': GROWTH_NOTIFICATION_OFF },netInfoval.isConnected)
+      logEvent({ 'name': DEVELOPMENT_NOTIFICATION_OFF },netInfoval.isConnected)
+      logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF },netInfoval.isConnected)
     } else {
       const obj = { key: 'growthEnabled', value: true };
       dispatch(toggleNotificationFlags(obj));
@@ -520,9 +520,9 @@ const SettingScreen = (props: any): any => {
       const obj2 = { key: 'vchcEnabled', value: true };
       dispatch(toggleNotificationFlags(obj2));
       setIsEnabled(true);
-      analytics().logEvent(GROWTH_NOTIFICATION_ON)
-      analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
-      analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
+      logEvent({ 'name': GROWTH_NOTIFICATION_ON },netInfoval.isConnected)
+      logEvent({ 'name': DEVELOPMENT_NOTIFICATION_ON },netInfoval.isConnected)
+      logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_ON },netInfoval.isConnected)
     }
     toggleGrowthFutureNotiData(false);
     togglecdFutureNotiData(false);
@@ -717,9 +717,9 @@ const SettingScreen = (props: any): any => {
                         setIsEnabled(true);
                       }
                       if (growthEnabledFlag == true) {
-                        analytics().logEvent(GROWTH_NOTIFICATION_ON)
+                        logEvent({ 'name': GROWTH_NOTIFICATION_ON },netInfoval.isConnected)
                       } else {
-                        analytics().logEvent(GROWTH_NOTIFICATION_OFF)
+                        logEvent({ 'name': GROWTH_NOTIFICATION_OFF },netInfoval.isConnected)
                       }
                     }}>
                     <CheckboxItem>
@@ -757,9 +757,9 @@ const SettingScreen = (props: any): any => {
                         setIsEnabled(true);
                       }
                       if (developmentEnabledFlag == true) {
-                        analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
+                        logEvent({ 'name': DEVELOPMENT_NOTIFICATION_ON },netInfoval.isConnected)
                       } else {
-                        analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
+                        logEvent({ 'name': DEVELOPMENT_NOTIFICATION_OFF },netInfoval.isConnected)
                       }
 
                     }}>
@@ -798,9 +798,9 @@ const SettingScreen = (props: any): any => {
                         setIsEnabled(true);
                       }
                       if (vchcEnabledFlag == true) {
-                        analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
+                        logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_ON },netInfoval.isConnected)
                       } else {
-                        analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
+                        logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF },netInfoval.isConnected)
                       }
                     }}>
                     <CheckboxItem>

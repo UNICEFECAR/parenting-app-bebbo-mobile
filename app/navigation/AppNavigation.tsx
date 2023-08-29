@@ -51,6 +51,7 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import DynamicLinks from '@react-native-firebase/dynamic-links';
 import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
+import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -689,6 +690,7 @@ export default (): any => {
     async function fetchNetInfo(): Promise<any> {
       if (netInfoval && netInfoval.isConnected != null) {
         if (netInfoval.isConnected == true) {
+          synchronizeEvents(netInfoval.isConnected)
           if (Platform.OS == 'android') {
             if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other" || netInfoval.netValue.type == "bluetooth" || netInfoval.netValue.type == "vpn")) {
               setNetState('Lowbandwidth');
@@ -802,7 +804,8 @@ export default (): any => {
               screen_name: currentRouteName,
               screen_class: currentRouteName,
             });
-            analytics().logEvent(currentRouteName + "_opened");
+            const eventData= {'name': currentRouteName + "_opened" }
+            logEvent(eventData,netInfoval.isConnected)
           }
           routeNameRef.current = currentRouteName;
         }}

@@ -46,7 +46,6 @@ import {
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
@@ -92,6 +91,8 @@ import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDa
 import { formatStringDate } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
 import { setAllLocalNotificationGenerateType } from '../../redux/reducers/notificationSlice';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
@@ -105,6 +106,7 @@ const styles=StyleSheet.create({
   textInputMl:{flex:1,padding:10,textAlignVertical: 'top'}
 })
 const AddNewChildgrowth = ({ route, navigation }: any):any => {
+  const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
   const { editMeasurementDate } = route.params;
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -545,7 +547,8 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
           dispatch(setActiveChildData(activeChild));
           const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-          analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? 'doctor' : 'home' })
+          const eventData= {'name': GROWTH_MEASUREMENT_ADDED,'params': { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? 'doctor' : 'home' }  }
+          logEvent(eventData,netInfoval.isConnected)
         }
         setClicked(false);
         navigation.goBack();

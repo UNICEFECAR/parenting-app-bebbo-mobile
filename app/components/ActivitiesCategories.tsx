@@ -5,9 +5,10 @@ import { Pressable, StyleSheet, View } from "react-native";
 import { useAppSelector } from '../../App';
 import { ActivityFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
-import analytics from '@react-native-firebase/analytics';
 import { GAME_CATEGORY_SELECTED } from '@assets/data/firebaseEvents';
 import { activitiesColor, bgcolorWhite2 } from '@styles/style';
+import {logEvent} from '../services/EventSyncService';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 type ActivityCategoriesProps = {
     borderColor?: any;
     filterOnCategory?: any;
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
     }
 })
 const ActivitiesCategories = (props: ActivityCategoriesProps):any => {
+    const netInfoval = useNetInfoHook();
     const activityCategoryData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
@@ -48,7 +50,8 @@ const ActivitiesCategories = (props: ActivityCategoriesProps):any => {
     const getFilterArray = (itemId: any, filterArray: any[]):any => {
         if (!filterArray.includes(itemId)) {
             filterArray.push(itemId);
-            analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+itemId);                    
+            const eventData= {'name': GAME_CATEGORY_SELECTED+"_"+itemId }
+            logEvent(eventData,netInfoval.isConnected)                
         } else {
             filterArray.splice(filterArray.indexOf(itemId), 1);
         }

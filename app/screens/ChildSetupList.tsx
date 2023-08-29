@@ -20,7 +20,6 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
-import analytics from '@react-native-firebase/analytics';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { primaryColor } from '@styles/style';
@@ -39,6 +38,7 @@ import {
   ShiftFromBottom10,
   ShiftFromTop30
 } from '../styles/typography';
+//import useNetInfoHook from '../customHooks/useNetInfoHook';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   }
 })
 const ChildSetupList = ({ navigation }: Props): any => {
+  //const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
@@ -186,7 +187,10 @@ const ChildSetupList = ({ navigation }: Props): any => {
     else {
       apiJsonData = apiJsonDataGet("all", "all")
     }
-    analytics().logEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
+    const eventData= {'name': ONBOARDING_CHILD_COUNT,'params': { child_count: childList?.length }  }
+    //logEvent(eventData,netInfoval.isConnected)
+   // analytics().logEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
+   
     navigation.reset({
       index: 0,
       routes: [

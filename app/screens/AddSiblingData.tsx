@@ -24,6 +24,7 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 import { addChild, getNewChild } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
 import { Heading1Centerw, ShiftFromTop5, SideSpacing25 } from '../styles/typography';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'HomeDrawerNavigator'
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
   }
 })
 const AddSiblingData = ({ route, navigation }: Props): any => {
+  const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { headerTitle } = route.params;
@@ -108,7 +110,7 @@ const AddChild=async (): Promise<any>=>{
   const insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender,createdAt) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender,createdAt)
   const childSet: Array<any> = [];
   childSet.push(insertData);
-  addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,childAge,null,null);
+  addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,childAge,null,null,netInfoval);
 }
 const themeContext = useContext(ThemeContext);
 const headerColor = themeContext.colors.PRIMARY_COLOR;
