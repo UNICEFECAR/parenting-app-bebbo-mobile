@@ -39,6 +39,7 @@ import {
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import TextInputML from '@components/shared/TextInputML';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -60,6 +61,7 @@ const styles=StyleSheet.create({
 
 })
 const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
+  const netInfoval = useNetInfoHook();
   const childData = route.params.childData;
   const editScreen = childData && childData.uuid != '' ? true : false;
   const [clicked, setClicked] = useState(false);
@@ -127,7 +129,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '',childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '',null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null,null);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null,null,netInfoval);
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
     return new Promise((resolve, reject) => {

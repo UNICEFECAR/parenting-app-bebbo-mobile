@@ -47,7 +47,6 @@ import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import TakenVaccines from '@components/vaccination/TakenVaccines';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import analytics from '@react-native-firebase/analytics';
 import {
   Heading2,
   Heading3,
@@ -86,6 +85,8 @@ import {
 import { getAllHealthCheckupPeriods } from '../../services/healthCheckupService';
 import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import { formatStringDate } from '../../services/Utils';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 const styles=StyleSheet.create({
   flex1:{flex:1},
   flex9:{flex:9},
@@ -97,6 +98,7 @@ const styles=StyleSheet.create({
 
 })
 const AddChildHealthCheckup = ({ route, navigation }: any):any => {
+  const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
   const { vcPeriod, editMeasurementDate } = route.params;
   const themeContext = useContext(ThemeContext);
@@ -474,12 +476,15 @@ const AddChildHealthCheckup = ({ route, navigation }: any):any => {
             const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
             dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
             if (isMeasured) {
-              analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' })
+              const eventData= {'name': GROWTH_MEASUREMENT_ADDED,'params': { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' }  }
+              logEvent(eventData,netInfoval.isConnected)
             }
             if (isVaccineMeasured) {
-              analytics().logEvent(VACCINE_ADDED, { age_id: activeChild?.taxonomyData?.id, vaccine_id: allVaccines })
+              const eventData= {'name': VACCINE_ADDED,'params':  { age_id: activeChild?.taxonomyData?.id, vaccine_id: allVaccines }  }
+              logEvent(eventData,netInfoval.isConnected)
             }
-            analytics().logEvent(HEALTH_CHECKUP_ENTERED, { age_id: activeChild?.taxonomyData?.id })
+            const eventData= {'name': HEALTH_CHECKUP_ENTERED,'params':  { age_id: activeChild?.taxonomyData?.id }}  
+            logEvent(eventData,netInfoval.isConnected)
           }
           setClicked(false);
           navigation.goBack();

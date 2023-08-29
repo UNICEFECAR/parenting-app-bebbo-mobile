@@ -293,7 +293,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent,netInfoval);
   }
 
   const themeContext = useContext(ThemeContext);
@@ -411,6 +411,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                 <ButtonPrimaryMd
                   disabled={isImportRunning}
                   onPress={(e): any => {
+                  
                     e.stopPropagation();
                     actionSheetRefImport.current?.setModalVisible(true);
                   }}>
@@ -544,6 +545,7 @@ const ChildSetup = ({ navigation }: Props): any => {
           <ButtonPrimary
             disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
             onPress={(e): any => {
+              console.log('onPress');
               e.stopPropagation();
               setLoading(true);
               let validated: any = false;

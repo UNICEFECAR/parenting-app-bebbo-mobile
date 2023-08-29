@@ -1,6 +1,5 @@
 import { ADVICE_SHARED, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARED } from '@assets/data/firebaseEvents';
 import { shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
-import analytics from '@react-native-firebase/analytics';
 import { Heading4 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +11,8 @@ import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataS
 import { setFavouriteAdvices, setFavouriteGames } from '../../redux/reducers/childSlice';
 import { FDirRow } from './FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from './Icon';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 export const ShareFavBox = styled.View`
   flex-direction: row;
   padding: 5px 10px 0;
@@ -29,7 +30,7 @@ alignItemsFlexEnd:{alignItems:"flex-end"},
 flexShrink1:{flexShrink:1}
 });
 const ShareFavButtons = React.memo((props: any) => {
-
+  const netInfoval = useNetInfoHook();
   const activeChilduuid = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild).uuid
@@ -50,9 +51,11 @@ const languageCode = useAppSelector(
       });
       if (result.action === Share.sharedAction) {
         if(isAdvice){
-           analytics().logEvent(ADVICE_SHARED, {advise_id:item?.id});
+          const adviceEventData= {'name': ADVICE_SHARED,'params':{ advise_id: item?.id } }
+          logEvent(adviceEventData,netInfoval.isConnected)
         }else{
-           analytics().logEvent(GAME_SHARED, {game_id:item?.id});
+          const gameEventData= {'name': GAME_SHARED,'params':{ game_id: item?.id } }
+          logEvent(gameEventData,netInfoval.isConnected)
         }
       } else if (result.action === Share.dismissedAction) {
         // dismissed
@@ -67,12 +70,14 @@ const languageCode = useAppSelector(
     await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
     dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
-    analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
+    const favAdviceData= {'name': FAVOURITE_ADVICE_ADDED,'params':{ advise_id: item?.id } }
+    logEvent(favAdviceData,netInfoval.isConnected)
     }else{
       await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
       dispatch(setFavouriteGames(childData[0].favoritegames));
-      analytics().logEvent(FAVOURITE_GAME_ADDED, {game_id:item?.id});
+      const favGameData= {'name': FAVOURITE_GAME_ADDED,'params':{ game_id: item?.id } }
+      logEvent(favGameData,netInfoval.isConnected)
     }
 
     

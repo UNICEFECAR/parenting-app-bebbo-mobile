@@ -44,7 +44,6 @@ import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import TakenVaccines from '@components/vaccination/TakenVaccines';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import analytics from '@react-native-firebase/analytics';
 import { vaccinationColor } from '@styles/style';
 import {
   Heading2,
@@ -77,6 +76,8 @@ import {
 } from '../../services/growthService';
 import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import { formatStringDate } from '../../services/Utils';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 
 const styles= StyleSheet.create({
   constinerView:{ 
@@ -107,6 +108,7 @@ const styles= StyleSheet.create({
   }
 })
 const AddChildVaccination = ({ route, navigation }: any):any => {
+  const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
   const { vcPeriod, editVaccineDate } = route.params;
   const themeContext = useContext(ThemeContext);
@@ -445,7 +447,8 @@ const AddChildVaccination = ({ route, navigation }: any):any => {
             dispatch(setActiveChildData(activeChild));
             const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
             dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-            analytics().logEvent(VACCINE_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' })
+            const eventData = {'name':VACCINE_ADDED,'params':  { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' }}
+            logEvent(eventData,netInfoval.isConnected)
           }
           setClicked(false);
           navigation.goBack();

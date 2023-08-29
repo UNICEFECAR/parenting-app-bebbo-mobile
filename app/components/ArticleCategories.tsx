@@ -7,8 +7,9 @@ import { ArticleFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from './shared/Icon';
 import { ADVICE_CATEGORY_SELECTED } from '@assets/data/firebaseEvents';
-import analytics from '@react-native-firebase/analytics';
 import { articleColor, bgcolorWhite2 } from '@styles/style';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
+import { logEvent } from '../services/EventSyncService';
 const styles = StyleSheet.create({
   filterBoxbg1:{
     backgroundColor:articleColor
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     pressableView:{flex:1}
 });
 const ArticleCategories = (props: ArticleCategoriesProps):any => {
+  const netInfoval = useNetInfoHook();
   const categoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -30,7 +32,9 @@ const ArticleCategories = (props: ArticleCategoriesProps):any => {
   const getFilterArray = (itemId: any,filterArray: any[]):any => {
     if (!filterArray.includes(itemId)) {
       filterArray.push(itemId);
-       analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+itemId);
+      const eventData= {'name': ADVICE_CATEGORY_SELECTED+"_"+itemId }
+      logEvent(eventData,netInfoval.isConnected)
+     //  analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+itemId);
 
     } else {
       filterArray.splice(filterArray.indexOf(itemId), 1);

@@ -16,6 +16,8 @@ import { setAllLocalNotificationGenerateType, setAllNotificationData } from '../
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 import LocalNotifications from './LocalNotifications';
+import { logEvent } from './EventSyncService';
+
 export const apiJsonDataGet = (childAge: any, parentGender: any,isDatetimeReq?: any, dateTimeObj?: any): any => {
   const postData = {
     childGender: 'all',
@@ -409,7 +411,7 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
   const year2 = dateTime2.getUTCFullYear();
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any,userRelationToParent?: any): Promise<any> => {
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any,userRelationToParent?: any,netInfoval?: any): Promise<any> => {
   let oldBirthDate;
   console.log(editScreen, "..editScreen..",param);
    if (editScreen) {
@@ -423,7 +425,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
   else {
     if (data[0].isExpected == true || data[0].isExpected == 'true') {
-      analytics().logEvent(EXPECTED_CHILD_ENTERED)
+      const eventData = {'name':EXPECTED_CHILD_ENTERED}
+      logEvent(eventData,netInfoval.isConnected)
+      //analytics().logEvent(EXPECTED_CHILD_ENTERED)
     }
     await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
   }
