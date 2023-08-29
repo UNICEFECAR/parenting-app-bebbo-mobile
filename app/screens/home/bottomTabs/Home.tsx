@@ -30,7 +30,6 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { articledata, VideoArticleData } from '@dynamicImportsClass/dynamicImports';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import analytics from '@react-native-firebase/analytics';
 import {
   Heading1Centerr, Heading3Centerr, Heading3Regular, Heading4Center, ShiftFromTop20,
   ShiftFromTopBottom10,
@@ -62,7 +61,7 @@ import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/Art
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 import { bgcolorWhite2 } from '@styles/style';
 import { ToastAndroidLocal } from '../../../android/sharedAndroid.android';
-
+import {logEvent, synchronizeEvents} from '../../../services/EventSyncService';
 
 const styles=StyleSheet.create({
   flexShrink1:{flexShrink:1},
@@ -228,6 +227,9 @@ const Home = ({ route, navigation }: any):any => {
   const relfolejaprod = '1.1.0';
   useEffect(() => {
     setModalVisible(false);
+    if(netInfoval.isConnected){
+      synchronizeEvents(netInfoval.isConnected);
+     }
     async function fetchNetInfo():Promise<any> {
       console.log(bufferAgeBracket,"---userIsOnboarded----",userIsOnboarded);
       console.log(VersionInfo.appVersion,"--appVersion",VersionInfo.buildVersion,VersionInfo.bundleIdentifier);
@@ -575,8 +577,7 @@ const Home = ({ route, navigation }: any):any => {
                     <ButtonModal
                       onPress={():any => {
                         setModalVisible(false);
-
-                        analytics().logEvent(SURVEY_SUBMIT)
+                        logEvent({'name':SURVEY_SUBMIT},netInfoval.isConnected)
 
                         Linking.openURL(surveyItem?.survey_feedback_link)
                       }}>

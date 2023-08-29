@@ -13,7 +13,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -27,8 +27,6 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import LoadableImage from '../../../services/LoadableImage';
-
-import analytics from '@react-native-firebase/analytics';
 import { GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import Icon from '@components/shared/Icon';
@@ -38,6 +36,8 @@ import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDa
 import FastImage from 'react-native-fast-image';
 import { randomArrayShuffle } from '../../../services/Utils';
 import { activitiesTintcolor, bgcolorWhite2 } from '@styles/style';
+import useNetInfoHook from '../../../customHooks/useNetInfoHook';
+import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
   }
 });
 const Activities = ({ route, navigation }: any):any => {
+  const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   let sectionListRef:any;
@@ -147,7 +148,11 @@ const Activities = ({ route, navigation }: any):any => {
       setModalVisible(false);
     }
   };
+
   useFocusEffect(() => {
+    if(netInfoval.isConnected){
+      synchronizeEvents(netInfoval.isConnected);
+     }
     setModalVisible(activityModalOpened);
   })
   const toTop = ():any => {
@@ -216,8 +221,8 @@ const Activities = ({ route, navigation }: any):any => {
   );
 
   const showSelectedBracketData = (item: any):any => {
-
-    analytics().logEvent(GAME_AGEGROUP_SELECTED, { age_id: item.id });
+    const eventData ={'name': GAME_AGEGROUP_SELECTED,'params':{ age_id: item.id }}
+    logEvent(eventData,netInfoval.isConnected)
    
     setCurrentSelectedChildId(item.id);
     const filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
