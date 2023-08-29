@@ -30,7 +30,6 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
@@ -67,6 +66,8 @@ import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import LocalNotifications from '../../services/LocalNotifications';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 import * as RNLocalize from 'react-native-localize';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -93,6 +94,7 @@ const styles= StyleSheet.create({
   },
 })
 const AddReminder = ({ route, navigation }: Props):any => {
+  const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
   const {
     headerTitle,
@@ -405,9 +407,11 @@ const AddReminder = ({ route, navigation }: Props):any => {
             dispatch(setInfoModalOpened(notiFlagObj));
             navigation.goBack();
             if (reminderType == 'vaccine') {
-              analytics().logEvent(VACCINE_REMINDER_SET)
+            const eventData = {'name':VACCINE_REMINDER_SET}
+            logEvent(eventData,netInfoval.isConnected)
             } else {
-              analytics().logEvent(HEALTH_CHECKUP_REMINDER_SET)
+              const eventData = {'name':HEALTH_CHECKUP_REMINDER_SET}
+              logEvent(eventData,netInfoval.isConnected)
             }
           }
       }else {

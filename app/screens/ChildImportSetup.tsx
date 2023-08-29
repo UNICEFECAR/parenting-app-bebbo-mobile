@@ -25,8 +25,7 @@ import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import ToggleRadios from '@components/ToggleRadios';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
-import React, { createRef, useContext, useEffect, useState } from 'react';
-import analytics from '@react-native-firebase/analytics';
+import React, { createRef, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View, ScrollView, BackHandler, StyleSheet } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
@@ -50,6 +49,8 @@ import {
 } from '../styles/typography';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import { primaryColor } from '@styles/style';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
+import { logEvent } from '../services/EventSyncService';
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor:primaryColor,
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
   }
 })
 const ChildImportSetup = (props: any): any => {
+  const netInfoval = useNetInfoHook();
   let { importResponse } = props.route.params;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -294,7 +296,9 @@ const ChildImportSetup = (props: any): any => {
                       else {
                         apiJsonData = apiJsonDataGet("all", "all")
                       }
-                      analytics().logEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
+                      const eventData= {'name': ONBOARDING_CHILD_COUNT,'params': { child_count: childList?.length }  }
+                      logEvent(eventData,netInfoval.isConnected)
+                     // analytics().logEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
 
                       props.navigation.reset({
                         index: 0,

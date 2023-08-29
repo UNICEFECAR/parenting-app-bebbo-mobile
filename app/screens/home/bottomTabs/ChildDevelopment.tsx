@@ -13,7 +13,6 @@ import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading4
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import analytics from '@react-native-firebase/analytics';
 import {
   BackHandler,
   FlatList,
@@ -37,6 +36,8 @@ import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED } from '@a
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { bgcolorWhite2 } from '@styles/style';
+import useNetInfoHook from '../../../customHooks/useNetInfoHook';
+import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
 const styles=StyleSheet.create({
 bgWhite:{backgroundColor:bgcolorWhite2},
 flex1:{flex:1},
@@ -45,7 +46,7 @@ font18:{ fontSize: 18 },
 fullWidth:{ width: '100%' }
 })
 const ChildDevelopment = ({ route, navigation }: any):any => {
-
+  const netInfoval = useNetInfoHook();
   const themeContext = useContext(ThemeContext);
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -107,6 +108,9 @@ const ChildDevelopment = ({ route, navigation }: any):any => {
   };
   useEffect(() => {
     setModalVisible(childDevModalOpened);
+     if(netInfoval.isConnected){
+      synchronizeEvents(netInfoval.isConnected);
+     }
 
     setComponentColors({
       headerColor: themeContext.colors.CHILDDEVELOPMENT_COLOR,
@@ -136,7 +140,8 @@ const ChildDevelopment = ({ route, navigation }: any):any => {
   }
   const showSelectedBracketData = async (item: any):Promise<any> => {
     toTop();
-    analytics().logEvent(CHILD_DEVELOPMENT_AGEGROUP_SELECTED, { age_id: item.id });
+    const eventData ={'name': CHILD_DEVELOPMENT_AGEGROUP_SELECTED,'params':{ age_id: item.id }}
+    logEvent(eventData,netInfoval.isConnected)
 
     setCurrentSelectedChildId(item.id);
     let filteredData = ChildDevData.filter((x: any) => x.child_age.includes(item.id))[0];
@@ -235,7 +240,8 @@ const ChildDevelopment = ({ route, navigation }: any):any => {
   );
   const sendMileStoneDatatoParent = (item: any, togglevalue: any):any => {
     if (togglevalue == true) {
-      analytics().logEvent(CHILD_MILESTONE_TRACKED, { age_id: currentSelectedChildId });
+      const eventData ={'name': CHILD_MILESTONE_TRACKED,'params':{ age_id: currentSelectedChildId }}
+      logEvent(eventData,netInfoval.isConnected)
     }
     const i = selectedChildMilestoneData.findIndex((_item: any) => _item.id === item.id);
     if (i > -1) {
