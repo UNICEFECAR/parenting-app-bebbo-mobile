@@ -17,9 +17,10 @@ import Icon from '@components/shared/Icon';
 import HTML from 'react-native-render-html';
 import { addSpaceToHtml } from '../../services/Utils';
 import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
-import analytics from '@react-native-firebase/analytics';
 import { CHATBOT_CATEGORY_SELECTED, CHATBOT_FAQ_SELECTED, CHATBOT_SUBCATEGORY_SELECTED, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
 import { imageBg } from '@styles/style';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 
 type SupportChatNavigationProp = StackNavigationProp<any>;
 type Props = {
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
   imageBg:{backgroundColor:imageBg,flex:1,height:'100%',width:'100%'}
 });
 const SupportChat = ({ navigation }: Props):any => {
+  const netInfoval = useNetInfoHook();
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
   const {t} = useTranslation();
@@ -124,7 +126,8 @@ const faqsData = useAppSelector((state: any) =>
     localsteps[index].showNextStep = true;
     if(nextstepid == subCategoryStepId) {
       //setting options for nextStepId
-      analytics().logEvent(CHATBOT_CATEGORY_SELECTED+"_"+localsteps[stepIndex].options[optionIndex].value);
+      const eventData ={'name': CHATBOT_CATEGORY_SELECTED+"_"+localsteps[stepIndex].options[optionIndex].value}
+      logEvent(eventData,netInfoval.isConnected)
       const subcat = taxonomy.chatbot_subcategory.filter((x:any)=>x.parent_category_id == localsteps[stepIndex].options[optionIndex].value);
       const subcat2 = subcat.map((x: any,i: any) => {
         console.log(i)
@@ -133,7 +136,8 @@ const faqsData = useAppSelector((state: any) =>
       localsteps[index].options = subcat2;
       
     }else if(nextstepid == faqsStepId) {
-      analytics().logEvent(CHATBOT_SUBCATEGORY_SELECTED+"_"+localsteps[stepIndex].options[optionIndex].value);
+      const eventData ={'name': CHATBOT_SUBCATEGORY_SELECTED+"_"+localsteps[stepIndex].options[optionIndex].value}
+      logEvent(eventData,netInfoval.isConnected)
       const faqsoption = faqsData ? faqsData.filter((x:any)=>x.chatbot_subcategory == localsteps[stepIndex].options[optionIndex].value) : [];
       const faqsoption2 = faqsoption.map((x: any,i: any) => {
         console.log(i)
@@ -156,7 +160,8 @@ const faqsData = useAppSelector((state: any) =>
       const indexForText2 = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === exploresubcatstep ? i : acc
       ), -1);
-      analytics().logEvent(CHATBOT_FAQ_SELECTED,{faq_Id:localsteps[index].textToShow.id,faq_Subcategory_Id:localsteps[indexForText2].answer.value});
+      const eventData ={'name': CHATBOT_FAQ_SELECTED,'params': {faq_Id:localsteps[index].textToShow.id,faq_Subcategory_Id:localsteps[indexForText2].answer.value}}
+      logEvent(eventData,netInfoval.isConnected)
       localsteps[index+1].actions[0].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText2].answer.label})
       localsteps[index+1].actions[1].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText].answer.label})
     }
@@ -455,7 +460,8 @@ const faqsData = useAppSelector((state: any) =>
                   <ButtonModal
                     onPress={():any => {
                       setModalVisible(false);
-                      analytics().logEvent(FEEDBACK_SUBMIT)
+                      const eventData ={'name': FEEDBACK_SUBMIT}
+                      logEvent(eventData,netInfoval.isConnected)
                       Linking.openURL(feedbackItem?.survey_feedback_link)
                     }}>
                     <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
