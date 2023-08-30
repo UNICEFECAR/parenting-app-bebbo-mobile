@@ -30,7 +30,7 @@ alignItemsFlexEnd:{alignItems:"flex-end"},
 flexShrink1:{flexShrink:1}
 });
 const ShareFavButtons = React.memo((props: any) => {
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const activeChilduuid = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild).uuid
@@ -52,10 +52,10 @@ const languageCode = useAppSelector(
       if (result.action === Share.sharedAction) {
         if(isAdvice){
           const adviceEventData= {'name': ADVICE_SHARED,'params':{ advise_id: item?.id } }
-          logEvent(adviceEventData,netInfoval.isConnected)
+          logEvent(adviceEventData,netInfo.isConnected)
         }else{
           const gameEventData= {'name': GAME_SHARED,'params':{ game_id: item?.id } }
-          logEvent(gameEventData,netInfoval.isConnected)
+          logEvent(gameEventData,netInfo.isConnected)
         }
       } else if (result.action === Share.dismissedAction) {
         // dismissed
@@ -71,13 +71,13 @@ const languageCode = useAppSelector(
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
     dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
     const favAdviceData= {'name': FAVOURITE_ADVICE_ADDED,'params':{ advise_id: item?.id } }
-    logEvent(favAdviceData,netInfoval.isConnected)
+    logEvent(favAdviceData,netInfo.isConnected)
     }else{
       await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
       dispatch(setFavouriteGames(childData[0].favoritegames));
       const favGameData= {'name': FAVOURITE_GAME_ADDED,'params':{ game_id: item?.id } }
-      logEvent(favGameData,netInfoval.isConnected)
+      logEvent(favGameData,netInfo.isConnected)
     }
 
     
