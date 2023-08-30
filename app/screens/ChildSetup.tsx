@@ -545,7 +545,6 @@ const ChildSetup = ({ navigation }: Props): any => {
           <ButtonPrimary
             disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
             onPress={(e): any => {
-              console.log('onPress');
               e.stopPropagation();
               setLoading(true);
               let validated: any = false;

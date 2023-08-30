@@ -38,7 +38,8 @@ import {
   ShiftFromBottom10,
   ShiftFromTop30
 } from '../styles/typography';
-//import useNetInfoHook from '../customHooks/useNetInfoHook';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
+import { logEvent } from '../services/EventSyncService';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
   }
 })
 const ChildSetupList = ({ navigation }: Props): any => {
-  //const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
@@ -188,8 +189,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
       apiJsonData = apiJsonDataGet("all", "all")
     }
     const eventData= {'name': ONBOARDING_CHILD_COUNT,'params': { child_count: childList?.length }  }
-    //logEvent(eventData,netInfoval.isConnected)
-   // analytics().logEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
+    logEvent(eventData,netInfo.isConnected)
    
     navigation.reset({
       index: 0,
