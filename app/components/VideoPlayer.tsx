@@ -60,7 +60,7 @@ const VideoPlayer = (props: any):any => {
             }}/></View>
         );
       }
-    const netInfoval = useNetInfoHook();
+    const netInfo = useNetInfoHook();
     if(props.selectedPinnedArticleData && props.selectedPinnedArticleData != {})
     {
         videoType = props.selectedPinnedArticleData.cover_video && props.selectedPinnedArticleData.cover_video?.site && props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == videoTypeVimeo ? videoTypeVimeo : videoTypeYoutube) : videoTypeImage
@@ -129,7 +129,7 @@ const VideoPlayer = (props: any):any => {
     }
     return (
         <>
-            {videoType == videoTypeImage || netInfoval.isConnected == false ?
+            {videoType == videoTypeImage || netInfo.isConnected == false ?
                 ( <View style={styles.typeImageView}><Image
                     source={require('@assets/trash/defaultArticleImage.png')}
                     style={styles.typeImageImg}
