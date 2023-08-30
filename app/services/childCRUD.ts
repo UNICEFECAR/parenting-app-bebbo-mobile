@@ -427,7 +427,6 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     if (data[0].isExpected == true || data[0].isExpected == 'true') {
       const eventData = {'name':EXPECTED_CHILD_ENTERED}
       logEvent(eventData,netInfoval.isConnected)
-      //analytics().logEvent(EXPECTED_CHILD_ENTERED)
     }
     await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
   }
