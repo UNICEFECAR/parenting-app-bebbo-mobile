@@ -11,30 +11,29 @@ import { articleColor, bgcolorWhite2 } from '@styles/style';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
 const styles = StyleSheet.create({
-  filterBoxbg1:{
-    backgroundColor:articleColor
-    },
-  filterBoxbg2:{
-        backgroundColor:bgcolorWhite2
-    },
+  filterBoxbg1: {
+    backgroundColor: articleColor
+  },
+  filterBoxbg2: {
+    backgroundColor: bgcolorWhite2
+  },
   iconStyle: {
     marginLeft: 10
   },
-  innerView:{flex: 1, flexDirection: 'column'},
-    pressableView:{flex:1}
+  innerView: { flex: 1, flexDirection: 'column' },
+  pressableView: { flex: 1 }
 });
-const ArticleCategories = (props: ArticleCategoriesProps):any => {
-  const netInfoval = useNetInfoHook();
+const ArticleCategories = (props: ArticleCategoriesProps): any => {
+  const netInfo = useNetInfoHook();
   const categoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  const getFilterArray = (itemId: any,filterArray: any[]):any => {
+  const getFilterArray = (itemId: any, filterArray: any[]): any => {
     if (!filterArray.includes(itemId)) {
       filterArray.push(itemId);
-      const eventData= {'name': ADVICE_CATEGORY_SELECTED+"_"+itemId }
-      logEvent(eventData,netInfoval.isConnected)
-     //  analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+itemId);
+      const eventData = { 'name': ADVICE_CATEGORY_SELECTED + "_" + itemId }
+      logEvent(eventData, netInfo.isConnected)
 
     } else {
       filterArray.splice(filterArray.indexOf(itemId), 1);
@@ -42,37 +41,38 @@ const ArticleCategories = (props: ArticleCategoriesProps):any => {
     props.onFilterArrayChange(filterArray);
     return filterArray;
   };
-  const chunk = (arr:any, size:any):any =>
-  Array.from({ length: Math.ceil(arr.length / size) }, (v:any, i:any) =>
-    arr.slice(i * size, i * size + size)
-  );
-const articleBrackets = chunk(articleCategoryobj, 2)
+  const chunk = (arr: any, size: any): any =>
+    Array.from({ length: Math.ceil(arr.length / size) }, (v: any, i: any) =>
+      arr.slice(i * size, i * size + size)
+    );
+  const articleBrackets = chunk(articleCategoryobj, 2)
   return (
     <>
       <ArticleFilter key={props.filterArray.length}>
         <FlexDirRow>
-          {articleBrackets.map((articleCategoryInner:any[], i:number) => {
+          {articleBrackets.map((articleCategoryInner: any[], i: number) => {
             return (<View key={i} style={styles.innerView}>
-                {
-                 articleCategoryInner.map((item) => {
-                    return (<Pressable style={styles.pressableView} key={item.id} onPress={():any=>{
-                      props.filterOnCategory(getFilterArray(item.id,props.filterArray))}}>
+              {
+                articleCategoryInner.map((item) => {
+                  return (<Pressable style={styles.pressableView} key={item.id} onPress={(): any => {
+                    props.filterOnCategory(getFilterArray(item.id, props.filterArray))
+                  }}>
                     <FilterBox style={props.filterArray.includes(item.id) ? styles.filterBoxbg1 : styles.filterBoxbg2}  >
-                       <OuterIconRow>
-                         <OuterIconLeft>
-                              <Icon 
-                              style={styles.iconStyle} name={item.image} size={20} color="#000" />
-                         </OuterIconLeft>
-                         </OuterIconRow>
-                       <FilterText numberOfLines={2}>{categoryData.filter((x: any) => x.id==item.id)[0].name }</FilterText>
-                   </FilterBox>
-                   </Pressable>)
-                 })  
-                }
+                      <OuterIconRow>
+                        <OuterIconLeft>
+                          <Icon
+                            style={styles.iconStyle} name={item.image} size={20} color="#000" />
+                        </OuterIconLeft>
+                      </OuterIconRow>
+                      <FilterText numberOfLines={2}>{categoryData.filter((x: any) => x.id == item.id)[0].name}</FilterText>
+                    </FilterBox>
+                  </Pressable>)
+                })
+              }
             </View>)
           })}
 
-                </FlexDirRow>
+        </FlexDirRow>
       </ArticleFilter>
     </>
   );

@@ -54,7 +54,7 @@ const FavArticles = ():any => {
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
   const [favAdvicesToShow,setfavAdvicesToShow] = useState([]);
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const goToArticleDetail = (item:any):any => {
     navigation.navigate('DetailsScreen',
     {
@@ -87,7 +87,7 @@ useFocusEffect(
     return(
         <ArticleListContainer>
           <Pressable onPress={():any => { goToArticleDetail(item)}} key={index}>
-          {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
+          {(netInfo.isConnected == true && item && item.cover_video && item.cover_video.url!="" && item.cover_video.url!=undefined) ? 
              <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer> 
             : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
           }

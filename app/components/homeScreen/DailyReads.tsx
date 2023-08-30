@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   }
 });
 const DailyReads = ():any => {
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
@@ -99,10 +99,10 @@ const DailyReads = ():any => {
        
         if (isAdvice) {
           const adviceEventData= {'name': ADVICE_SHARED,'params':{ advise_id: item?.id } }
-          logEvent(adviceEventData,netInfoval.isConnected)
+          logEvent(adviceEventData,netInfo.isConnected)
         } else {
           const gameEventData= {'name': GAME_SHARED,'params':{ game_id: item?.id } }
-          logEvent(gameEventData,netInfoval.isConnected)
+          logEvent(gameEventData,netInfo.isConnected)
         }
 
       } else if (result.action === Share.dismissedAction) {
