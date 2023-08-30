@@ -1,25 +1,22 @@
 import { dataRealmCommon } from './../database/dbquery/dataRealmCommon';
 import analytics from '@react-native-firebase/analytics';
 
-
+//A method to log events to Firebase Analytics
 export const logEventToFirebase = async (analyticsInstance: any, event: any): Promise<void> => {
-  if(event.params!=undefined){
-  analyticsInstance.logEvent(event.name, event.params);
-  }else{
+  if (event.params != undefined) {
+    analyticsInstance.logEvent(event.name, event.params);
+  } else {
     analyticsInstance.logEvent(event.name)
   }
 }
-
+// A method mark event as synchronized after sync with firebase
 export const markEventAsSynchronized = async (realm: any, event: any): Promise<void> => {
-  if (!dataRealmCommon.isRealmClosed()) {
-    realm = await dataRealmCommon.openRealm();
-  }
   realm.write(() => {
     event.isSynchronized = true;
   });
 
 }
-
+//A method storing unsynchronized events in a local database Realm
 export const storeUnsyncedEvent = async (realm: any, eventData: any): Promise<any> => {
   realm.write(() => {
     const unsyncedEvent = realm.create('Event', {
@@ -30,11 +27,10 @@ export const storeUnsyncedEvent = async (realm: any, eventData: any): Promise<an
   });
 }
 
+//A method for log analytic events
 export const logEvent = async (eventData: any, netInfo: boolean): Promise<any> => {
-  let realm: any;
-  if (!dataRealmCommon.isRealmClosed()) {
-    realm = await dataRealmCommon.openRealm();
-  }
+  const realm = await dataRealmCommon.openRealm();
+
   if (netInfo == true) {
     const analyticsInstance = analytics();
     logEventToFirebase(analyticsInstance, eventData);
@@ -42,14 +38,14 @@ export const logEvent = async (eventData: any, netInfo: boolean): Promise<any> =
     storeUnsyncedEvent(realm, eventData);
   }
 }
-
+//A method synchronizing events when the device is online.
 export const synchronizeEvents = async (netInfo: boolean): Promise<any> => {
-  let realm: any;
-  if (!dataRealmCommon.isRealmClosed()) {
-    realm = await dataRealmCommon.openRealm();
-  }
+  const realm = await dataRealmCommon.openRealm();
+
   if (realm != null) {
     const unsynchronizedEvents = realm.objects('Event').filtered('isSynchronized = false');
+    console.log('unsynchronizedEvents events', unsynchronizedEvents)
+    console.log('unsynchronizedEvents length', unsynchronizedEvents.length)
     if (!unsynchronizedEvents.length) {
       return;
     }
