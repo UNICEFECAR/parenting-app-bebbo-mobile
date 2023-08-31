@@ -27,6 +27,7 @@ import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import LoadableImage from '../../../services/LoadableImage';
 import { randomArrayShuffle } from '../../../services/Utils';
+import { synchronizeEvents } from '../../../services/EventSyncService';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -86,7 +87,7 @@ const Articles = ({ route, navigation }: any): any => {
   );
   const modalScreenKey = 'IsArticleModalOpened';
   const modalScreenText = 'articleModalText';
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
 
   //merge array 
   const mergearr = (articlearrold: any[], videoartarrold: any[], isSuffle: boolean): any => {
@@ -135,6 +136,9 @@ const Articles = ({ route, navigation }: any): any => {
   }
 
   useFocusEffect(() => {
+    if (netInfo.isConnected) {
+      synchronizeEvents(netInfo.isConnected);
+    }
     setModalVisible(articleModalOpened);
   })
   const themeContext = useContext(ThemeContext);
@@ -188,7 +192,7 @@ const Articles = ({ route, navigation }: any): any => {
     return (
       <ArticleListContainer>
         <Pressable onPress={(): any => { goToArticleDetail(item, queryText) }} key={index}>
-          {(netInfoval.isConnected == true && item && item.cover_video && item.cover_video.url != "" && item.cover_video.url != undefined) ?
+          {(netInfo.isConnected == true && item && item.cover_video && item.cover_video.url != "" && item.cover_video.url != undefined) ?
             videoIsFocused == true ? <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer> : null
             : <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
           }
