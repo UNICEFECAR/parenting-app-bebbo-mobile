@@ -27,7 +27,7 @@ export const storeUnsyncedEvent = async (realm: any, eventData: any): Promise<an
   });
 }
 
-//A method for log analytic events
+//A method to log events to Firebase analytics or realm database.
 export const logEvent = async (eventData: any, netInfo: boolean): Promise<any> => {
   const realm = await dataRealmCommon.openRealm();
 
