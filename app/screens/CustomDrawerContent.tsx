@@ -38,7 +38,6 @@ import {
   SubDrawerHead,
   SubDrawerLinkView
 } from '@components/shared/NavigationDrawer';
-import analytics from '@react-native-firebase/analytics';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { useFocusEffect } from '@react-navigation/native';
 import { bgcolorWhite2, lightShadeColor, secondaryColor } from '@styles/style';
@@ -57,6 +56,8 @@ import { useAppSelector } from '../../App';
 import { isFutureDate } from '../services/childCRUD';
 import { getVaccinesForPeriodCount } from '../services/notificationService';
 import { formatDate, addSpaceToHtml } from '../services/Utils';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
+import { logEvent } from '../services/EventSyncService';
 
 const styles = StyleSheet.create({
   containerView: {
@@ -92,6 +93,7 @@ const styles = StyleSheet.create({
   }
 })
 const CustomDrawerContent = ({ navigation }: any): any => {
+  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const [aboutAccordValue, onChangeAboutAccordValue] = React.useState(false);
@@ -170,16 +172,16 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               }
               if (currentChildNotis.vcnotis) {
                 currentChildNotis.vcnotis.forEach((item: any) => {
-                  if(item.title=="vcNoti1"){
-                    const vcNotisExists= getVaccinesForPeriodCount(allVaccineData, item.growth_period);
-                    console.log(vcNotisExists,"..vcNotisExists..")
-                    if(vcNotisExists!="" && vcNotisExists!=null && vcNotisExists!=undefined){
-                    currentChildallnoti.push(item)
+                  if (item.title == "vcNoti1") {
+                    const vcNotisExists = getVaccinesForPeriodCount(allVaccineData, item.growth_period);
+                    console.log(vcNotisExists, "..vcNotisExists..")
+                    if (vcNotisExists != "" && vcNotisExists != null && vcNotisExists != undefined) {
+                      currentChildallnoti.push(item)
                     }
-                    }
-                    else{
-                      currentChildallnoti.push(item);
-                    }
+                  }
+                  else {
+                    currentChildallnoti.push(item);
+                  }
                 })
               }
               if (currentChildNotis.reminderNotis) {
@@ -214,7 +216,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
         //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
-        analytics().logEvent(APP_SHARE);
+        const eventData = { 'name': APP_SHARE }
+        logEvent(eventData, netInfo.isConnected)
       }
     } catch (error: any) {
       Alert.alert(t('generalError'));
@@ -504,10 +507,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               </DrawerLinkView>
               <DrawerLinkView
                 onPress={(): any => {
-                  analytics().logEvent(EMAIL_SENT)
-                  if(buildFor == String(buildForBebbo)){
-                    Linking.openURL('mailto:admin@bebbo.app')   
-                  }else{               
+                  const eventData = { 'name': EMAIL_SENT }
+                  logEvent(eventData, netInfo.isConnected)
+                  if (buildFor == String(buildForBebbo)) {
+                    Linking.openURL('mailto:admin@bebbo.app')
+                  } else {
                     Linking.openURL('mailto:prishtina@unicef.org');
                   }
                 }}>
@@ -547,7 +551,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     }
                   }
                 }}>
-                  <OuterIconRow>
+                <OuterIconRow>
                   <OuterIconLeft15>
                     <Icon name="ic_sb_loveapp" size={25} color="#000" />
                   </OuterIconLeft15>
@@ -570,7 +574,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           {donateItem && donateItem != {} && donateItem != '' && donateItem?.survey_feedback_link && donateItem?.survey_feedback_link != '' && donateItem?.survey_feedback_link != null ?
             <DrawerLinkView
               onPress={(): any => {
-                analytics().logEvent(DONATE_OPENED);
+                const eventData = { 'name': DONATE_OPENED }
+                logEvent(eventData, netInfo.isConnected)
                 Linking.openURL(donateItem?.survey_feedback_link);
               }}>
               <OuterIconRow>
@@ -622,7 +627,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                   <ButtonModal
                     onPress={(): any => {
                       setModalVisible(false);
-                      analytics().logEvent(FEEDBACK_SUBMIT)
+                      const eventData = { 'name': FEEDBACK_SUBMIT }
+                      logEvent(eventData, netInfo.isConnected)
                       Linking.openURL(feedbackItem?.survey_feedback_link)
                     }}>
                     <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
