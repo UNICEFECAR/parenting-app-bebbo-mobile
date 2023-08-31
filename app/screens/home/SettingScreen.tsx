@@ -67,7 +67,7 @@ import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { store, useAppDispatch, useAppSelector } from '../../../App';
-import  {localization}  from '@dynamicImportsClass/dynamicImports';
+import { localization } from '@dynamicImportsClass/dynamicImports';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
@@ -96,10 +96,10 @@ type localizationType = {
     locale: string;
   };
 };
-const styles=StyleSheet.create({
-bgColorWhite:{ backgroundColor:bgcolorWhite2},
-borderWidth1:{ borderWidth: 1 },
-flex1:{flex:1}
+const styles = StyleSheet.create({
+  bgColorWhite: { backgroundColor: bgcolorWhite2 },
+  borderWidth1: { borderWidth: 1 },
+  flex1: { flex: 1 }
 })
 const SettingScreen = (props: any): any => {
   const themeContext = useContext(ThemeContext);
@@ -129,8 +129,8 @@ const SettingScreen = (props: any): any => {
       : false,
   );
   const allDataDownloadFlag = useAppSelector((state: any) =>
-  (state.utilsData.allDataDownloadFlag),
-);
+    (state.utilsData.allDataDownloadFlag),
+  );
   const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
   const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
 
@@ -148,11 +148,11 @@ const SettingScreen = (props: any): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
-  const [profileLoading,setProfileLoading] = React.useState(false);
+  const [profileLoading, setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const weeklyDownloadDate = useAppSelector(
     (state: any) => state.utilsData.weeklyDownloadDate,
   );
@@ -160,11 +160,11 @@ const SettingScreen = (props: any): any => {
     (state: any) => state.utilsData.monthlyDownloadDate,
   );
   const incrementalSyncDT = useAppSelector((state: any) =>
-      (state.utilsData.incrementalSyncDT),
-    );
+    (state.utilsData.incrementalSyncDT),
+  );
   const childAge = useAppSelector(
-      (state: any) =>
-        state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
 
@@ -183,69 +183,69 @@ const SettingScreen = (props: any): any => {
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
     // export via file system
     if (Platform.OS === "android") {
-       const file = await ScopedStorage.openDocumentTree(true);
-       const uri: any = await ScopedStorage.getPersistedUriPermissions();
-       console.log(uri,"..uri");
-      try{
-      const fileDownload: any = await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
-      const uri1: any = await ScopedStorage.getPersistedUriPermissions();
-      console.log(uri1, "..uri..");
-      console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
-      if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
-        Alert.alert('', t('settingExportSuccess'));
+      const file = await ScopedStorage.openDocumentTree(true);
+      const uri: any = await ScopedStorage.getPersistedUriPermissions();
+      console.log(uri, "..uri");
+      try {
+        const fileDownload: any = await ScopedStorage.writeFile(file.uri, "my.backup", "*/*", realmContent, 'base64', false);
+        const uri1: any = await ScopedStorage.getPersistedUriPermissions();
+        console.log(uri1, "..uri..");
+        console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
+        if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
+          Alert.alert('', t('settingExportSuccess'));
+          setIsExportRunning(false);
+        }
+        else {
+          Alert.alert('', t('settingExportError'));
+          setIsExportRunning(false);
+        }
+      }
+      catch (e: any) {
+        console.log('', e.message);
         setIsExportRunning(false);
       }
-      else {
-        Alert.alert('', t('settingExportError'));
-        setIsExportRunning(false);
-      }
-    }
-    catch(e:any){
-       console.log('', e.message);
-       setIsExportRunning(false);
-    }
     }
     else {
-        RNFS.writeFile(tempbackUpPath, realmContent, 'base64').then(async (res: any)=>{
-          console.log(res,"..res..")
-          const shareOptions = {
-            title: 'Backup File',
-            url: tempbackUpPath,
-            saveToFiles:true,
-            failOnCancel:false
-          };
-          try {
+      RNFS.writeFile(tempbackUpPath, realmContent, 'base64').then(async (res: any) => {
+        console.log(res, "..res..")
+        const shareOptions = {
+          title: 'Backup File',
+          url: tempbackUpPath,
+          saveToFiles: true,
+          failOnCancel: false
+        };
+        try {
           const ShareResponse = await Share.open(shareOptions);
           setIsExportRunning(false);
-          if(ShareResponse && ShareResponse.success){
-          Alert.alert('', t('settingExportSuccess'));
-          await RNFS.exists(tempbackUpPath).then((exists) => {
-           console.log(String(exists),"..exists..")
-            if (exists) {
+          if (ShareResponse && ShareResponse.success) {
+            Alert.alert('', t('settingExportSuccess'));
+            await RNFS.exists(tempbackUpPath).then((exists) => {
+              console.log(String(exists), "..exists..")
+              if (exists) {
                 RNFS.unlink(tempbackUpPath).then(() => {
-                   //RNFS.scanFile(tempbackUpPath);
+                  //RNFS.scanFile(tempbackUpPath);
                 })
-             }
-          });
+              }
+            });
           }
-          else{
+          else {
             Alert.alert('', t('settingExportError'));
           }
-        } catch (error:any) {
+        } catch (error: any) {
           setIsExportRunning(false);
           if (error.error && error.error.code === "ECANCELLED500") {
             console.log("canceled");
-        } else {
-          Alert.alert('', t('settingExportError'));
-        }
-        }
-          }).catch((e)=>{
-            console.log(e)
-            setIsExportRunning(false);
+          } else {
             Alert.alert('', t('settingExportError'));
-          });
-  
-    
+          }
+        }
+      }).catch((e) => {
+        console.log(e)
+        setIsExportRunning(false);
+        Alert.alert('', t('settingExportError'));
+      });
+
+
     }
   }
   const onExportCancel = (): any => {
@@ -285,7 +285,7 @@ const SettingScreen = (props: any): any => {
       setIsEnabled(false);
     }
   }
- 
+
   const toggleGrowthFutureNotiData = async (callCreateLocalNoti: boolean): Promise<any> => {
     //toggle isDeleted flag from gwcdnotis where type = 'gw'
     let currscheduledlocalNotifications = [...scheduledlocalNotifications];
@@ -320,16 +320,15 @@ const SettingScreen = (props: any): any => {
           })
         }
       }
-      localNotifications.map((y: any)=>{
+      localNotifications.map((y: any) => {
         // growthEnabledFlag == true checked because state update of growthEnabledFlag istaking time
-        if(growthEnabledFlag == true) {
-          const notiToDelete = y.data.filter((o: any)=>o.type=='gw');
-          notiToDelete.map((n: any)=>{
-            if((currscheduledlocalNotifications.findIndex((m: any)=> m.notiid == n.notiid)) > -1)
-            {
+        if (growthEnabledFlag == true) {
+          const notiToDelete = y.data.filter((o: any) => o.type == 'gw');
+          notiToDelete.map((n: any) => {
+            if ((currscheduledlocalNotifications.findIndex((m: any) => m.notiid == n.notiid)) > -1) {
               LocalNotifications.cancelReminderLocalNotification(n.notiid);
-              currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m: any)=> m.notiid != n.notiid);
-              console.log("removed noti1---",currscheduledlocalNotifications);
+              currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m: any) => m.notiid != n.notiid);
+              console.log("removed noti1---", currscheduledlocalNotifications);
             }
           })
         }
@@ -339,8 +338,8 @@ const SettingScreen = (props: any): any => {
     });
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
-    if(callCreateLocalNoti == true) {
-      const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    if (callCreateLocalNoti == true) {
+      const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
@@ -378,16 +377,15 @@ const SettingScreen = (props: any): any => {
           })
         }
       }
-      localNotifications.map((y: any)=>{
+      localNotifications.map((y: any) => {
         // developmentEnabledFlag == true checked because state update of developmentEnabledFlag istaking time
-        if(developmentEnabledFlag == true) {
-          const notiToDelete = y.data.filter((o: any)=>o.type=='cd');
-          notiToDelete.map((n: any)=>{
-            if((currscheduledlocalNotifications.findIndex((m: any)=> m.notiid == n.notiid)) > -1)
-            {
+        if (developmentEnabledFlag == true) {
+          const notiToDelete = y.data.filter((o: any) => o.type == 'cd');
+          notiToDelete.map((n: any) => {
+            if ((currscheduledlocalNotifications.findIndex((m: any) => m.notiid == n.notiid)) > -1) {
               LocalNotifications.cancelReminderLocalNotification(n.notiid);
-              currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m: any)=> m.notiid != n.notiid);
-              console.log("removed noti---",currscheduledlocalNotifications);
+              currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m: any) => m.notiid != n.notiid);
+              console.log("removed noti---", currscheduledlocalNotifications);
             }
           })
         }
@@ -397,8 +395,8 @@ const SettingScreen = (props: any): any => {
     });
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
-    if(callCreateLocalNoti == true) {
-      const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    if (callCreateLocalNoti == true) {
+      const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
@@ -450,42 +448,40 @@ const SettingScreen = (props: any): any => {
           })
         }
         if (notiExist.reminderNotis.length > 0) {
-          if(vchcEnabledFlag == true) {
+          if (vchcEnabledFlag == true) {
             //cancel all local notifications
             LocalNotifications.cancelAllReminderLocalNotification();
           }
           currentChildNotis.reminderNotis = [...currentChildNotis.reminderNotis]?.map((item) => {
-            console.log(vchcEnabledFlag,"----vchcEnabledFlag");
+            console.log(vchcEnabledFlag, "----vchcEnabledFlag");
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
-            if(vchcEnabledFlag == false) {
+            if (vchcEnabledFlag == false) {
               //enable future notifications
-              console.log(item,'---isfuture date4 ---',isFutureDateTime(new Date(item.notificationDate)));
-              if(item.subtype == 'reminder' && isFutureDateTime(new Date(item.notificationDate)))
-              {
-                const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)});
-                const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)});
+              console.log(item, '---isfuture date4 ---', isFutureDateTime(new Date(item.notificationDate)));
+              if (item.subtype == 'reminder' && isFutureDateTime(new Date(item.notificationDate))) {
+                const titlevcr = t('vcrNoti2', { reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period) });
+                const titlehcr = t('hcrNoti2', { reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period) });
                 const message = item.type == 'vaccine' ? titlevcr : titlehcr;
-                LocalNotifications.schduleNotification(new Date(item.notificationDate),t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),item.type == 'vaccine' ? 'vcr' : 'hcr',child.uuid);
+                LocalNotifications.schduleNotification(new Date(item.notificationDate), t('remindersAlertTitle'), message, DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(), item.type == 'vaccine' ? 'vcr' : 'hcr', child.uuid);
               }
             }
             if (isFutureDateTime(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
-            } 
+            }
             else {
               return { ...item };
             }
           })
         }
-        localNotifications.map((y: any)=>{
+        localNotifications.map((y: any) => {
           // vchcEnabledFlag == true checked because state update of vchcEnabledFlag istaking time
-          if(vchcEnabledFlag == true) {
-            const notiToDelete = y.data.filter((o: any)=>o.type=='vc' || o.type=='hc');
-            notiToDelete.map((n: any)=>{
-              if((currscheduledlocalNotifications.findIndex((m: any)=> m.notiid == n.notiid)) > -1)
-              {
+          if (vchcEnabledFlag == true) {
+            const notiToDelete = y.data.filter((o: any) => o.type == 'vc' || o.type == 'hc');
+            notiToDelete.map((n: any) => {
+              if ((currscheduledlocalNotifications.findIndex((m: any) => m.notiid == n.notiid)) > -1) {
                 LocalNotifications.cancelReminderLocalNotification(n.notiid);
-                currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m: any)=> m.notiid != n.notiid);
-                console.log("removed noti---",currscheduledlocalNotifications);
+                currscheduledlocalNotifications = currscheduledlocalNotifications.filter((m: any) => m.notiid != n.notiid);
+                console.log("removed noti---", currscheduledlocalNotifications);
               }
             })
           }
@@ -495,8 +491,8 @@ const SettingScreen = (props: any): any => {
     });
     dispatch(setAllScheduledLocalNotificationData(currscheduledlocalNotifications));
     dispatch(setAllNotificationData(allnotis));
-    if(callCreateLocalNoti == true) {
-      const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    if (callCreateLocalNoti == true) {
+      const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
@@ -509,9 +505,9 @@ const SettingScreen = (props: any): any => {
       const obj2 = { key: 'vchcEnabled', value: false };
       dispatch(toggleNotificationFlags(obj2));
       setIsEnabled(false);
-      logEvent({ 'name': GROWTH_NOTIFICATION_OFF },netInfoval.isConnected)
-      logEvent({ 'name': DEVELOPMENT_NOTIFICATION_OFF },netInfoval.isConnected)
-      logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF },netInfoval.isConnected)
+      logEvent({ 'name': GROWTH_NOTIFICATION_OFF }, netInfo.isConnected)
+      logEvent({ 'name': DEVELOPMENT_NOTIFICATION_OFF }, netInfo.isConnected)
+      logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF }, netInfo.isConnected)
     } else {
       const obj = { key: 'growthEnabled', value: true };
       dispatch(toggleNotificationFlags(obj));
@@ -520,14 +516,14 @@ const SettingScreen = (props: any): any => {
       const obj2 = { key: 'vchcEnabled', value: true };
       dispatch(toggleNotificationFlags(obj2));
       setIsEnabled(true);
-      logEvent({ 'name': GROWTH_NOTIFICATION_ON },netInfoval.isConnected)
-      logEvent({ 'name': DEVELOPMENT_NOTIFICATION_ON },netInfoval.isConnected)
-      logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_ON },netInfoval.isConnected)
+      logEvent({ 'name': GROWTH_NOTIFICATION_ON }, netInfo.isConnected)
+      logEvent({ 'name': DEVELOPMENT_NOTIFICATION_ON }, netInfo.isConnected)
+      logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_ON }, netInfo.isConnected)
     }
     toggleGrowthFutureNotiData(false);
     togglecdFutureNotiData(false);
     toggleVCHCVCRHCRFutureNotiData(false);
-    const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: 'all'};
+    const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
   }
   const toggleDataSaverSwitch = (): any => {
@@ -540,14 +536,14 @@ const SettingScreen = (props: any): any => {
         {
           text: t('downloadUpdateCancelPopUpBtn'),
           onPress: (): any => {
-          console.log("on pressed")
+            console.log("on pressed")
           },
           style: "cancel"
         },
         {
           text: t('downloadUpdateContinueBtn'), onPress: async (): Promise<any> => {
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: allApisObject(true,incrementalSyncDT),
+              apiJsonData: allApisObject(true, incrementalSyncDT),
               prevPage: 'DownloadUpdate'
             });
           }
@@ -569,7 +565,7 @@ const SettingScreen = (props: any): any => {
         {
           text: t('downloadAllContinueBtn'), onPress: async (): Promise<any> => {
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: allDataDownloadFlag == false ? allApisObject(false,incrementalSyncDT) : allApisObject(true,incrementalSyncDT),
+              apiJsonData: allDataDownloadFlag == false ? allApisObject(false, incrementalSyncDT) : allApisObject(true, incrementalSyncDT),
               prevPage: 'DownloadAllData'
             });
           }
@@ -578,7 +574,7 @@ const SettingScreen = (props: any): any => {
     );
   }
 
- 
+
   useEffect(() => {
     const selectedCountry: any = localization.find(
       (country: any) => country.countryId === countryId,
@@ -596,8 +592,8 @@ const SettingScreen = (props: any): any => {
     }, [developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag])
   );
   const handleError = (err: any): any => {
-    console.log(err,"..err")
-    
+    console.log(err, "..err")
+
     if (DocumentPicker.isCancel(err)) {
       console.log('cancelled');
       // User cancelled the picker, exit any dialogs or menus and move on
@@ -607,60 +603,60 @@ const SettingScreen = (props: any): any => {
       throw err
     }
   };
-  const importFromSettingsFile =async(): Promise<any> => {
-    if(Platform.OS=="android"){
-    const dataset=await ScopedStorage.openDocument(true,'base64');
-    console.log(dataset,"..dataset");
-    if (dataset && dataset.data!="" && dataset.data!=null && dataset.data!=undefined) {
-      const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile,  dataset.data, "base64");
-      let importedrealm=await new Realm({ path:'user1.realm' });
-      if(importedrealm){
-        importedrealm.close();
-      }
-      importedrealm=await new Realm({ path:'user1.realm' });
-      const user1Path = importedrealm.path;
-      console.log(user1Path, "..user1Path")
-      const oldChildrenData = importedrealm.objects('ChildEntity');
-      console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
-      console.log(oldChildrenData, "..newoldChildrenData..")
-      setIsImportRunning(true);
-      if(oldChildrenData.length>0){
-        await userRealmCommon.openRealm();
-        await userRealmCommon.deleteAllAtOnce();
-        const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
-        console.log(importResponse, "..importResponse");
-      }
-      setIsImportRunning(false);
-      actionSheetRefImport.current?.setModalVisible(false);
+  const importFromSettingsFile = async (): Promise<any> => {
+    if (Platform.OS == "android") {
+      const dataset = await ScopedStorage.openDocument(true, 'base64');
+      console.log(dataset, "..dataset");
+      if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
+        const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, dataset.data, "base64");
+        let importedrealm = await new Realm({ path: 'user1.realm' });
+        if (importedrealm) {
+          importedrealm.close();
+        }
+        importedrealm = await new Realm({ path: 'user1.realm' });
+        const user1Path = importedrealm.path;
+        console.log(user1Path, "..user1Path")
+        const oldChildrenData = importedrealm.objects('ChildEntity');
+        console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
+        console.log(oldChildrenData, "..newoldChildrenData..")
+        setIsImportRunning(true);
+        if (oldChildrenData.length > 0) {
+          await userRealmCommon.openRealm();
+          await userRealmCommon.deleteAllAtOnce();
+          const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+          console.log(importResponse, "..importResponse");
+        }
+        setIsImportRunning(false);
+        actionSheetRefImport.current?.setModalVisible(false);
 
+      }
     }
-    }
-    else{
+    else {
       DocumentPicker.pick({
         allowMultiSelection: false,
         type: DocumentPicker.types.allFiles,
       })
-        .then(async (res: any)=>{
-          
+        .then(async (res: any) => {
+
           if (res.length > 0 && res[0].uri) {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
             const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
             console.log(exportedFileContentRealm, "..exportedFileContentRealm..");
-            let importedrealm=await new Realm({ path:'user1.realm' });
-            if(importedrealm){
+            let importedrealm = await new Realm({ path: 'user1.realm' });
+            if (importedrealm) {
               importedrealm.close();
             }
-            importedrealm=await new Realm({ path:'user1.realm' });
+            importedrealm = await new Realm({ path: 'user1.realm' });
             const user1Path = importedrealm.path;
             console.log(user1Path, "..user1Path")
             const oldChildrenData = importedrealm.objects('ChildEntity');
             console.log(oldChildrenData, "..newoldChildrenData..")
             setIsImportRunning(true);
-            if(oldChildrenData.length>0){
-            await userRealmCommon.openRealm();
-            await userRealmCommon.deleteAllAtOnce();
-            const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
-            console.log(importResponse, "..importResponse");
+            if (oldChildrenData.length > 0) {
+              await userRealmCommon.openRealm();
+              await userRealmCommon.deleteAllAtOnce();
+              const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+              console.log(importResponse, "..importResponse");
             }
             setIsImportRunning(false);
             actionSheetRefImport.current?.setModalVisible(false);
@@ -668,11 +664,11 @@ const SettingScreen = (props: any): any => {
         })
         .catch(handleError);
     }
-   
+
   }
   return (
     <>
-      <View style={[styles.flex1,{backgroundColor: primaryColor }]}>
+      <View style={[styles.flex1, { backgroundColor: primaryColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <TabScreenHeader
           title={t('settingScreenheaderTitle')}
@@ -681,7 +677,7 @@ const SettingScreen = (props: any): any => {
           setProfileLoading={setProfileLoading}
         />
 
-        <ScrollView style={[styles.flex1,styles.bgColorWhite]}>
+        <ScrollView style={[styles.flex1, styles.bgColorWhite]}>
           <MainContainer>
             <SettingHeading>
               <Heading1>{t('settingScreennotiHeaderText')}</Heading1>
@@ -717,9 +713,9 @@ const SettingScreen = (props: any): any => {
                         setIsEnabled(true);
                       }
                       if (growthEnabledFlag == true) {
-                        logEvent({ 'name': GROWTH_NOTIFICATION_ON },netInfoval.isConnected)
+                        logEvent({ 'name': GROWTH_NOTIFICATION_ON }, netInfo.isConnected)
                       } else {
-                        logEvent({ 'name': GROWTH_NOTIFICATION_OFF },netInfoval.isConnected)
+                        logEvent({ 'name': GROWTH_NOTIFICATION_OFF }, netInfo.isConnected)
                       }
                     }}>
                     <CheckboxItem>
@@ -757,9 +753,9 @@ const SettingScreen = (props: any): any => {
                         setIsEnabled(true);
                       }
                       if (developmentEnabledFlag == true) {
-                        logEvent({ 'name': DEVELOPMENT_NOTIFICATION_ON },netInfoval.isConnected)
+                        logEvent({ 'name': DEVELOPMENT_NOTIFICATION_ON }, netInfo.isConnected)
                       } else {
-                        logEvent({ 'name': DEVELOPMENT_NOTIFICATION_OFF },netInfoval.isConnected)
+                        logEvent({ 'name': DEVELOPMENT_NOTIFICATION_OFF }, netInfo.isConnected)
                       }
 
                     }}>
@@ -798,9 +794,9 @@ const SettingScreen = (props: any): any => {
                         setIsEnabled(true);
                       }
                       if (vchcEnabledFlag == true) {
-                        logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_ON },netInfoval.isConnected)
+                        logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_ON }, netInfo.isConnected)
                       } else {
-                        logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF },netInfoval.isConnected)
+                        logEvent({ 'name': VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF }, netInfo.isConnected)
                       }
                     }}>
                     <CheckboxItem>
@@ -865,7 +861,7 @@ const SettingScreen = (props: any): any => {
             <ShiftFromTop10>
               {/* <ButtonPrimary onPress={() => { downloadUpdatedData() }}> */}
               <ButtonPrimary onPress={(): any => {
-                if (netInfoval && netInfoval.isConnected == true) {
+                if (netInfo && netInfo.isConnected == true) {
                   downloadUpdatedData()
                 }
                 else {
@@ -880,13 +876,14 @@ const SettingScreen = (props: any): any => {
               <Heading6>{t('settingScreendownldSubHeader3Text')}</Heading6>
             </ShiftFromTop10>
             <ShiftFromTop10>
-              <ButtonPrimary onPress={(): any => { if (netInfoval && netInfoval.isConnected == true) {
-                    downloadAllData()
-                  }
-                  else {
-                    Alert.alert('', t('noInternet'));
-                  }
-                }}>
+              <ButtonPrimary onPress={(): any => {
+                if (netInfo && netInfo.isConnected == true) {
+                  downloadAllData()
+                }
+                else {
+                  Alert.alert('', t('noInternet'));
+                }
+              }}>
                 <ButtonText numberOfLines={2}>{t('settingScreendownldallBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
@@ -960,23 +957,23 @@ const SettingScreen = (props: any): any => {
                       try {
                         if (Platform.OS === "android") {
                           console.log("1233");
-                          
-                            console.log("You can write");
-                            actionSheetRef.current?.setModalVisible(false);
-                            exportFile();
+
+                          console.log("You can write");
+                          actionSheetRef.current?.setModalVisible(false);
+                          exportFile();
                         }
                         else {
                           actionSheetRef.current?.setModalVisible(false);
-                         setTimeout(()=>{
+                          setTimeout(() => {
                             exportFile();
-                          },350)
+                          }, 350)
                         }
 
                       } catch (err) {
                         console.warn(err);
                       }
                     }}>
-                     <VectorImage source={require('@assets/svg/ic_file.svg')} />
+                      <VectorImage source={require('@assets/svg/ic_file.svg')} />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
                           {t('settingScreenshareBtntxt')}
@@ -987,10 +984,10 @@ const SettingScreen = (props: any): any => {
                   <SettingOptions>
                     <Pressable onPress={(): any => {
                       actionSheetRef.current?.setModalVisible(false);
-                      if (netInfoval && netInfoval.isConnected == true) {
-                        Platform.OS=='ios'? setTimeout(()=>{
+                      if (netInfo && netInfo.isConnected == true) {
+                        Platform.OS == 'ios' ? setTimeout(() => {
                           setExportAlertVisible(true);
-                        },350) : setExportAlertVisible(true);
+                        }, 350) : setExportAlertVisible(true);
                       }
                       else {
                         Alert.alert('', t('noInternet'));
@@ -1028,7 +1025,7 @@ const SettingScreen = (props: any): any => {
                           //import
                           if (Platform.OS === "android") {
                             console.log("1233");
-                              importFromSettingsFile();
+                            importFromSettingsFile();
                           }
                           else {
                             importFromSettingsFile();
@@ -1045,7 +1042,7 @@ const SettingScreen = (props: any): any => {
                       }, 350);
 
                     }}>
-                     
+
                       <VectorImage source={require('@assets/svg/ic_file.svg')} />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
@@ -1057,12 +1054,12 @@ const SettingScreen = (props: any): any => {
                   <SettingOptions>
                     <Pressable onPress={(): any => {
                       actionSheetRefImport.current?.setModalVisible(false);
-                      if (netInfoval && netInfoval.isConnected == true) {
+                      if (netInfo && netInfo.isConnected == true) {
 
-                        Platform.OS=='ios'? setTimeout(()=>{
-                        setImportAlertVisible(true);
-                      },350) : setImportAlertVisible(true);
-                     
+                        Platform.OS == 'ios' ? setTimeout(() => {
+                          setImportAlertVisible(true);
+                        }, 350) : setImportAlertVisible(true);
+
                       }
                       else {
                         Alert.alert('', t('noInternet'));
@@ -1127,7 +1124,7 @@ const SettingScreen = (props: any): any => {
         </Modal>
         <AlertModal loading={isExportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('exportText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={handleExportAlertConfirm} onCancel={onExportCancel}></AlertModal>
         <AlertModal loading={isImportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={handleImportAlertConfirm} onCancel={onImportCancel}></AlertModal>
-        <OverlayLoadingComponent loading={profileLoading}/>
+        <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>
   );
