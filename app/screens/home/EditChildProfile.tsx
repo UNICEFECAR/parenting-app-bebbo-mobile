@@ -70,45 +70,45 @@ type Props = {
   navigation: NotificationsNavigationProp;
 };
 const styles = StyleSheet.create({
-  actionsheetView:{
+  actionsheetView: {
     alignItems: 'flex-start',
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  alignItemsCenter: { alignItems: 'center'},
+  alignItemsCenter: { alignItems: 'center' },
   container: {
     flex: 1,
     flexDirection: 'column',
     height: 180,
   },
-  flex1:{flex: 1},
-  flex4:{ flex: 4 },
-  headerRowView:{maxHeight: 50},
-  heading4:{ flexShrink: 1, marginTop: 10, textAlign: 'center' },
+  flex1: { flex: 1 },
+  flex4: { flex: 4 },
+  headerRowView: { maxHeight: 50 },
+  heading4: { flexShrink: 1, marginTop: 10, textAlign: 'center' },
   image: {
     alignItems: 'flex-end',
     flex: 1,
     justifyContent: 'flex-start',
     resizeMode: 'cover',
   },
-  innerImageView:{
+  innerImageView: {
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'center',
     padding: 16,
   },
-  innerPressableView:{
+  innerPressableView: {
     alignItems: 'center',
     height: 180,
     justifyContent: 'center',
   },
-  padding0:{padding:0},
-  pressableView:{paddingLeft:10,paddingRight:10},
-  width100:{ width: '100%' }
+  padding0: { padding: 0 },
+  pressableView: { paddingLeft: 10, paddingRight: 10 },
+  width100: { width: '100%' }
 });
 
 const EditChildProfile = ({ route, navigation }: Props): any => {
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -130,7 +130,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   );
 
   genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: { id: number }, i: any, a: any) {
-    console.log(i,a);
+    console.log(i, a);
     return e.id != bothChildGender;
   });
 
@@ -154,7 +154,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const createdAt = childData != null ? childData.createdAt : null;
   const [isExpected, setIsExpected] = React.useState<string>('false');
   const [destPath, setDestPath] = React.useState<string>('');
-  const [loading,setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -183,7 +183,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     navigation.addListener('gestureEnd', backAction);
     return (): any => {
       navigation.removeListener('gestureEnd', backAction);
-      backHandler.remove()};
+      backHandler.remove()
+    };
   }, []);
   useFocusEffect(
     React.useCallback(() => {
@@ -194,7 +195,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         }
         sendData(childData);
       }
-      setDefaultGenderValue(childData && childData.uuid? genders.find((item: any) => item.id == childData?.gender):{ title: '' })
+      setDefaultGenderValue(childData && childData.uuid ? genders.find((item: any) => item.id == childData?.gender) : { title: '' })
       console.log(destPath)
     }, []),
   );
@@ -223,7 +224,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         Alert.alert(t('tryText'));
       });
   };
-  const handleImageOptionClick = async (item: any,index: number): Promise<any> => {
+  const handleImageOptionClick = async (item: any, index: number): Promise<any> => {
     console.log(index)
     if (item.id == 0) {
       Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
@@ -231,7 +232,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
           text: t('removePhotoOption1'),
           onPress: (): any => {
             console.log("pressed")
-           },
+          },
           style: 'cancel',
         },
         {
@@ -241,13 +242,13 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
           },
         },
       ]);
-    } 
+    }
     else if (item.id == 1) {
       MediaPicker.showCameraImagePicker((image: any) => {
-         console.log(image,"..image..");
+        console.log(image, "..image..");
         onChildPhotoChange(image);
       });
-    } 
+    }
     else if (item.id == 2) {
       MediaPicker.showGalleryImagePicker((image: any) => {
         onChildPhotoChange(image);
@@ -346,10 +347,10 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         insertData.photoUri = await setPhoto(insertData.uuid);
       }
     }
-    console.log(insertData,"...insertData")
+    console.log(insertData, "...insertData")
     childSet.push(insertData);
     setLoading(false);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null,null,netInfoval);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo);
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
@@ -357,10 +358,10 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   };
   return (
     <>
-      <View style={[styles.flex1,{ backgroundColor: headerColor }]}>
+      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
-          style={[styles.headerRowView,{
+          style={[styles.headerRowView, {
             backgroundColor: headerColor,
           }]}>
           <HeaderIconView>
@@ -379,17 +380,17 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             )}
           </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
-           <HeaderActionView style={styles.padding0}>
-           <Pressable  style={styles.pressableView}  onPress={(): any =>
-               deleteRecord(childData?.index, dispatch, childData?.uuid)
-             }>
-             <Icon name={'ic_trash'} size={20} color="#FFF" />
-               </Pressable>
-         </HeaderActionView>
+            <HeaderActionView style={styles.padding0}>
+              <Pressable style={styles.pressableView} onPress={(): any =>
+                deleteRecord(childData?.index, dispatch, childData?.uuid)
+              }>
+                <Icon name={'ic_trash'} size={20} color="#FFF" />
+              </Pressable>
+            </HeaderActionView>
           ) : null}
         </HeaderRowView>
         <ScrollView style={styles.flex4}>
-        <OverlayLoadingComponent loading={loading} />
+          <OverlayLoadingComponent loading={loading} />
           <FlexCol>
             {capturedPhoto != '' && capturedPhoto != null && capturedPhoto != undefined && photoDeleted == false ? (
               <View style={styles.container}>
@@ -401,22 +402,22 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                   }
                   style={styles.image}>
                   <ProfileEditView onPress={(): any => {
-                        actionSheetRef.current?.setModalVisible();
-                      }}>
+                    actionSheetRef.current?.setModalVisible();
+                  }}>
                     <Icon
                       name="ic_edit"
                       size={16}
                       color="#000"
-                      
+
                     />
                   </ProfileEditView>
                 </ImageBackground>
               </View>
             ) : (
               <Pressable
-                style={[styles.innerPressableView,{
+                style={[styles.innerPressableView, {
                   backgroundColor: SecondaryColor,
-                 
+
                 }]}
                 onPress={(): any => {
                   actionSheetRef.current?.setModalVisible();
@@ -444,7 +445,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                         if (value.replace(/\s/g, "") == "") {
                           setName(value.replace(/\s/g, ''));
                         } else {
-                            setName(value.replace(regexpEmojiPresentation, ''));
+                          setName(value.replace(regexpEmojiPresentation, ''));
                         }
                       }}
                       value={name}
@@ -477,11 +478,11 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               <View
                 style={styles.actionsheetView}>
                 {imageOptions.map((item, index) => {
-                    if (
+                  if (
                     index == 0 &&
                     (capturedPhoto == '' ||
                       capturedPhoto == null ||
-                      capturedPhoto == undefined || photoDeleted==true)
+                      capturedPhoto == undefined || photoDeleted == true)
                   ) {
                     return null;
                   } else {
@@ -493,7 +494,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                           style={styles.alignItemsCenter}
                           onPress={(): any => {
                             actionSheetRef.current?.hide();
-                            handleImageOptionClick(item,index);
+                            handleImageOptionClick(item, index);
                           }}>
                           <Icon name={item.iconName} size={50} color="#000" />
                           <Heading4 style={styles.heading4}>{item.name}</Heading4>
@@ -522,23 +523,23 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             onPress={(e: any): any => {
               e.preventDefault();
               setLoading(true);
-                const validated = validateForm(
-                  1,
-                  birthDate,
-                  isPremature,
-                  '',
-                  plannedTermDate,
-                  name,
-                  gender,
-                );
-                console.log("24455e655",validated)
-                if (validated == true) {
-                  setTimeout(()=>{
-                    //setLoading(false);
-                    AddChild();
-                  },0)
-                }
-             // }
+              const validated = validateForm(
+                1,
+                birthDate,
+                isPremature,
+                '',
+                plannedTermDate,
+                name,
+                gender,
+              );
+              console.log("24455e655", validated)
+              if (validated == true) {
+                setTimeout(() => {
+                  //setLoading(false);
+                  AddChild();
+                }, 0)
+              }
+              // }
 
             }}>
             {childData && childData?.uuid != '' ? (

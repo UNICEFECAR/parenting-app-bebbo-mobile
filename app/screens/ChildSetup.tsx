@@ -101,7 +101,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [loading, setLoading] = useState(false);
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
   const actionSheetRefImport = createRef<any>();
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   let relationshipData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
@@ -293,7 +293,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent,netInfoval);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
   }
 
   const themeContext = useContext(ThemeContext);
@@ -411,7 +411,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                 <ButtonPrimaryMd
                   disabled={isImportRunning}
                   onPress={(e): any => {
-                  
+
                     e.stopPropagation();
                     actionSheetRefImport.current?.setModalVisible(true);
                   }}>
@@ -509,7 +509,7 @@ const ChildSetup = ({ navigation }: Props): any => {
               <SettingOptions>
                 <Pressable onPress={(): any => {
                   actionSheetRefImport.current?.setModalVisible(false);
-                  if (netInfoval && netInfoval.isConnected == true) {
+                  if (netInfo && netInfo.isConnected == true) {
                     if (Platform.OS == 'ios') {
                       setTimeout(() => {
                         setImportAlertVisible(true);

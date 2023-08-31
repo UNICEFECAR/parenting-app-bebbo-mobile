@@ -76,7 +76,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
   const allDataDownloadFlag = useAppSelector((state: any) =>
     (state.utilsData.allDataDownloadFlag),
   );
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const [netflag, setnetflag] = useState(false);
   const getAgeWithAgeBrackets = async (prevPage: any): Promise<any> => {
     const alldataarr: any[] = [], deltadataarr: any[] = [];
@@ -88,18 +88,18 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       const ageBrackets: any = [];
       childList.map((child: any) => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
-        if(childAgedays){
-        if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
-          const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
-          if (i > -1 && i < childAge.length - 1) {
-            const nextchildAgeData = childAge[i + 1];
-            if (nextchildAgeData.age_bracket.length > 0) {
-              nextchildAgeData.age_bracket.map((ages: any) => {
-                ageBrackets.push(ages);
-              })
+        if (childAgedays) {
+          if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
+            const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
+            if (i > -1 && i < childAge.length - 1) {
+              const nextchildAgeData = childAge[i + 1];
+              if (nextchildAgeData.age_bracket.length > 0) {
+                nextchildAgeData.age_bracket.map((ages: any) => {
+                  ageBrackets.push(ages);
+                })
+              }
             }
           }
-        }
         }
       });
       const newAges = [...new Set([...Ages, ...ageBrackets])];
@@ -119,11 +119,11 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
 
     const prevRoute = routes.length > 2 ? routes[routes.length - 2] : null;
     if (prevPage == "ChildSetup" || prevPage == "AddEditChild") {
-      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
+      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
     else if (prevPage == "Home") {
       //append agebrackets to existing on error obj
-      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
+      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
     else if (prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate" || prevPage == "DownloadAllData") {
       //when downloading all data replace agebrackets
@@ -178,7 +178,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       }
       const payload = { errorArr: [], fromPage: 'OnLoad' }
       dispatch(receiveAPIFailure(payload));
-      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
+      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
     else if (prevPage == "PeriodicSync") {
       //if flag true for buffer then append those in agebrackets
@@ -223,7 +223,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
         const newAges = [...new Set([...allAgeBrackets, ...bufferAgeBracket])]
         dispatch(setDownloadedBufferAgeBracket(newAges))
       }
-      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
+      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
     else if (prevPage == "ImportScreen") {
       //when importing data replace agebrackets
@@ -238,18 +238,18 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       //Article delete fun if not pinned have to create with ArticleEntitySchema after cvariable success dispatch
       await deleteArticleNotPinned();
       dispatch(setDownloadedBufferAgeBracket([]))
-      dispatch(fetchAPI(apiJsonDataarticle, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonDataarticle, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
+      dispatch(fetchAPI(apiJsonDataarticle, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonDataarticle, netInfo.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
     else {
-      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfoval.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
+      dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
   }
   useFocusEffect(
     React.useCallback(() => {
       console.log(incrementalSyncDT, "incrementalSyncDT in useeffect laoding---", netflag);
-      if (netInfoval.isConnected != null && netflag == false) {
+      if (netInfo.isConnected != null && netflag == false) {
         let enableImageDownload = false;
-        if (toggleSwitchVal == false && netInfoval.isConnected == true) {
+        if (toggleSwitchVal == false && netInfo.isConnected == true) {
           enableImageDownload = true
         } else {
           enableImageDownload = false
@@ -258,8 +258,8 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
         setnetflag(true);
         callSagaApi(enableImageDownload);
       }
-      
-    }, [netInfoval.isConnected])
+
+    }, [netInfo.isConnected])
   );
   useEffect(() => {
     const backAction = (): any => {
@@ -274,7 +274,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       backHandler.remove();
     }
   }, []);
-  
+
 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.SECONDARY_COLOR;
