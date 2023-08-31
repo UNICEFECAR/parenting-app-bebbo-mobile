@@ -46,10 +46,10 @@ type Props = {
 };
 const styles = StyleSheet.create({
   activityHeadingView: {
-    flexDirection:'row'
+    flexDirection: 'row'
   },
-  ageBracketView: { 
-    backgroundColor: bgcolorWhite2 
+  ageBracketView: {
+    backgroundColor: bgcolorWhite2
   },
   cardImage: {
     alignSelf: 'center',
@@ -58,35 +58,35 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   containerView: {
-    backgroundColor:activitiesTintcolor,
-    flex:1
+    backgroundColor: activitiesTintcolor,
+    flex: 1
   },
   customHeading3: {
-    flex:1,
-    paddingLeft:5,
-    paddingRight:5
+    flex: 1,
+    paddingLeft: 5,
+    paddingRight: 5
   },
   headingBoldStyle: {
-    justifyContent:"center",
-    paddingBottom:15,
-    paddingTop:17
+    justifyContent: "center",
+    paddingBottom: 15,
+    paddingTop: 17
   },
   pressableHeading: {
-    flex:1,
-    maxWidth:'40%'
+    flex: 1,
+    maxWidth: '40%'
   },
   pressableMilestone: {
-    paddingBottom:15,
-    paddingTop:15
+    paddingBottom: 15,
+    paddingTop: 15
   }
 });
-const Activities = ({ route, navigation }: any):any => {
-  const netInfoval = useNetInfoHook();
+const Activities = ({ route, navigation }: any): any => {
+  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  let sectionListRef:any;
+  let sectionListRef: any;
   const themeContext = useContext(ThemeContext);
-  const [profileLoading,setProfileLoading] = React.useState(false);
+  const [profileLoading, setProfileLoading] = React.useState(false);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
@@ -96,10 +96,10 @@ const Activities = ({ route, navigation }: any):any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const toggleSwitchVal = useAppSelector((state: any) =>
-  state.bandWidthData?.lowbandWidth
-    ? state.bandWidthData.lowbandWidth
-    : false,
-);
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -140,8 +140,8 @@ const Activities = ({ route, navigation }: any):any => {
   const [filteredData, setfilteredData] = useState([]);
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
-  const [childMilestonedata,setchildMilestonedata] = useState([]);
-  const setIsModalOpened = async (varkey: any):Promise<any> => {
+  const [childMilestonedata, setchildMilestonedata] = useState([]);
+  const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
@@ -150,26 +150,26 @@ const Activities = ({ route, navigation }: any):any => {
   };
 
   useFocusEffect(() => {
-    if(netInfoval.isConnected){
-      synchronizeEvents(netInfoval.isConnected);
-     }
+    if (netInfo.isConnected) {
+      synchronizeEvents(netInfo.isConnected);
+    }
     setModalVisible(activityModalOpened);
   })
-  const toTop = ():any => {
+  const toTop = (): any => {
     // use current
     // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
-    if(sectionListRef){
-    sectionListRef.scrollToLocation(
-      {
-        animated:Platform.OS=="android" ? true:false,
-        sectionIndex: 0,
-        itemIndex: 0
-      }
-    );
+    if (sectionListRef) {
+      sectionListRef.scrollToLocation(
+        {
+          animated: Platform.OS == "android" ? true : false,
+          sectionIndex: 0,
+          itemIndex: 0
+        }
+      );
     }
   }
-  const setFilteredActivityData = (itemId: any):any => {
-  
+  const setFilteredActivityData = (itemId: any): any => {
+
     if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != []) {
       if (itemId.length > 0) {
         const newArticleData = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
@@ -198,10 +198,10 @@ const Activities = ({ route, navigation }: any):any => {
   }
   useFocusEffect(
     React.useCallback(() => {
-     console.log("useFocusEffect called route.params?.backClicked",route.params?.backClicked);
+      console.log("useFocusEffect called route.params?.backClicked", route.params?.backClicked);
       setLoading(true);
-      
-      async function fetchData():Promise<any> {
+
+      async function fetchData(): Promise<any> {
         if (route.params?.categoryArray) {
           setFilterArray(route.params?.categoryArray);
           setFilteredActivityData(route.params?.categoryArray);
@@ -220,28 +220,28 @@ const Activities = ({ route, navigation }: any):any => {
     }, [selectedChildActivitiesData, route.params?.categoryArray])
   );
 
-  const showSelectedBracketData = (item: any):any => {
-    const eventData ={'name': GAME_AGEGROUP_SELECTED,'params':{ age_id: item.id }}
-    logEvent(eventData,netInfoval.isConnected)
-   
+  const showSelectedBracketData = (item: any): any => {
+    const eventData = { 'name': GAME_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
+    logEvent(eventData, netInfo.isConnected)
+
     setCurrentSelectedChildId(item.id);
     const filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
     setSelectedChildActivitiesData(filteredData);
-     }
+  }
   useFocusEffect(
     React.useCallback(() => {
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
-          console.log("if route params 0",route.params);
+          console.log("if route params 0", route.params);
           const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
           showSelectedBracketData(firstChildDevData[0]);
         }
         else {
-          console.log("else if route params 0",route.params,activityTaxonomyId);
-       
-        const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
-        showSelectedBracketData(firstChildDevData[0]);
+          console.log("else if route params 0", route.params, activityTaxonomyId);
+
+          const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
+          showSelectedBracketData(firstChildDevData[0]);
         }
       } else {
         setLoading(false);
@@ -250,37 +250,37 @@ const Activities = ({ route, navigation }: any):any => {
         }
       }
 
-    }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId,activityTaxonomyId])
+    }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId, activityTaxonomyId])
   );
   useFocusEffect(
     React.useCallback(() => {
-      const fetchData = async ():Promise<any> => {
-        const filterQuery = 'uuid == "'+activeChild?.uuid+'"';
+      const fetchData = async (): Promise<any> => {
+        const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
         setchildMilestonedata(childData[0].checkedMilestones)
       }
       fetchData()
-      return ():any => {
-        console.log("unmount activity",route.params);
-        
+      return (): any => {
+        console.log("unmount activity", route.params);
+
         navigation.setParams({ backClicked: 'no' })
-       
+
         navigation.setParams({ currentSelectedChildId: 0 })
-        
+
         navigation.setParams({ categoryArray: [] })
-        
+
       };
     }, [])
   );
-  
+
   useFocusEffect(
     React.useCallback(() => {
-      setsuggestedGames((filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) == -1))));
-      setotherGames((filteredData.filter((x: any) => x.related_milestone.length == 0  || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1))));
-    }, [filteredData,childMilestonedata])
+      setsuggestedGames((filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y: any) => y == x.related_milestone[0])) == -1))));
+      setotherGames((filteredData.filter((x: any) => x.related_milestone.length == 0 || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y: any) => y == x.related_milestone[0])) > -1))));
+    }, [filteredData, childMilestonedata])
   );
-  
-  const goToActivityDetail = (item: any):any => {
+
+  const goToActivityDetail = (item: any): any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Activities",
@@ -292,59 +292,59 @@ const Activities = ({ route, navigation }: any):any => {
         currentSelectedChildId: currentSelectedChildId
       });
   };
-  
 
-  const onFilterArrayChange = (newFilterArray: any):any => {
+
+  const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray)
   }
-  const gotoMilestone = ():any => {
+  const gotoMilestone = (): any => {
     navigation.navigate('ChildDevelopment',
-    {
-      currentSelectedChildId: currentSelectedChildId,
-      fromActivitiesScreen: true
-    });
+      {
+        currentSelectedChildId: currentSelectedChildId,
+        fromActivitiesScreen: true
+      });
   }
-  const SuggestedActivities = ({ item, section, index }:any):any => {
-    let milestonedatadetail:any = [];
-    if(section == 1) {
+  const SuggestedActivities = ({ item, section, index }: any): any => {
+    let milestonedatadetail: any = [];
+    if (section == 1) {
       const relatedmilestoneid = item.related_milestone.length > 0 ? item.related_milestone[0] : 0;
-      milestonedatadetail = MileStonesData.filter((x:any)=>x.id == relatedmilestoneid);
+      milestonedatadetail = MileStonesData.filter((x: any) => x.id == relatedmilestoneid);
     }
     return (
-        <ArticleListContainer>
-           <Pressable onPress={():any => { goToActivityDetail(item) }} key={index}>
-          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>
+      <ArticleListContainer>
+        <Pressable onPress={(): any => { goToActivityDetail(item) }} key={index}>
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
           <ArticleListContent>
             <ShiftFromTopBottom5>
               <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
             </ShiftFromTopBottom5>
             <Heading3>{item.title}</Heading3>
-            {section == 1 && milestonedatadetail.length > 0 && ((childMilestonedata.findIndex((x:any)=>x == milestonedatadetail[0]?.id)) == -1) ? 
-            <MainActivityBox>
-            <ActivityBox>
-            <Flex4>
-              <Heading6Bold  style={styles.headingBoldStyle}>
-                {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
-              </Heading6Bold>
-            </Flex4>
-            <Flex2>
-              <Pressable onPress={():any => gotoMilestone()} style={styles.pressableMilestone}>
-                <ButtonTextSmLine numberOfLines={2}>
-                  {t('actScreentrack')} {t('actScreenmilestones')}
-                </ButtonTextSmLine>
-              </Pressable>
-              </Flex2>
-          </ActivityBox>
-          <ActivityBox><ShiftFromTop5>
-          <Heading4>{milestonedatadetail[0]?.title}</Heading4>
-          </ShiftFromTop5></ActivityBox></MainActivityBox>
-        : null
-        }
+            {section == 1 && milestonedatadetail.length > 0 && ((childMilestonedata.findIndex((x: any) => x == milestonedatadetail[0]?.id)) == -1) ?
+              <MainActivityBox>
+                <ActivityBox>
+                  <Flex4>
+                    <Heading6Bold style={styles.headingBoldStyle}>
+                      {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
+                    </Heading6Bold>
+                  </Flex4>
+                  <Flex2>
+                    <Pressable onPress={(): any => gotoMilestone()} style={styles.pressableMilestone}>
+                      <ButtonTextSmLine numberOfLines={2}>
+                        {t('actScreentrack')} {t('actScreenmilestones')}
+                      </ButtonTextSmLine>
+                    </Pressable>
+                  </Flex2>
+                </ActivityBox>
+                <ActivityBox><ShiftFromTop5>
+                  <Heading4>{milestonedatadetail[0]?.title}</Heading4>
+                </ShiftFromTop5></ActivityBox></MainActivityBox>
+              : null
+            }
           </ArticleListContent>
-          <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoritegames.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={false} />
-          </Pressable>
-        </ArticleListContainer>
-     
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoritegames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />
+        </Pressable>
+      </ArticleListContainer>
+
     )
   };
 
@@ -360,16 +360,16 @@ const Activities = ({ route, navigation }: any):any => {
       data: otherGames
     }
   ];
-  const memoizedValue = useMemo(() => SuggestedActivities, [SuggestedActivities,DATA]);
+  const memoizedValue = useMemo(() => SuggestedActivities, [SuggestedActivities, DATA]);
 
-  const HeadingComponent = React.memo(({ section }:any) => {
+  const HeadingComponent = React.memo(({ section }: any) => {
     const maxWidthpercent = section?.id == 1 && activeChild.isPremature === 'true' ? '60%' : '90%';
     return (
       <ArticleHeading>
         <View style={styles.activityHeadingView}>
-          <Heading3 numberOfLines={1} style={[styles.customHeading3,{maxWidth:maxWidthpercent}]}>{section.title}</Heading3>
+          <Heading3 numberOfLines={1} style={[styles.customHeading3, { maxWidth: maxWidthpercent }]}>{section.title}</Heading3>
           {section?.id == 1 && activeChild.isPremature === 'true' ? (
-            <Pressable style={styles.pressableHeading} onPress={():any => setModalVisible1(true)}>
+            <Pressable style={styles.pressableHeading} onPress={(): any => setModalVisible1(true)}>
               <PrematureTagActivity>
                 <Heading5Bold numberOfLines={1}>{t('actScreenprematureText')}</Heading5Bold>
               </PrematureTagActivity>
@@ -417,12 +417,12 @@ const Activities = ({ route, navigation }: any):any => {
             {showNoData == true && suggestedGames?.length == 0 && otherGames?.length == 0 ?
               <Heading4Center>{t('noDataTxt')}</Heading4Center>
               : null}
-            
+
             <SectionList
               sections={DATA}
               // ref={flatListRef}
-              ref={(ref:any):any => (sectionListRef = ref)}
-              keyExtractor={(item: any, index: any):any => String(item?.id) + String(index)}
+              ref={(ref: any): any => (sectionListRef = ref)}
+              keyExtractor={(item: any, index: any): any => String(item?.id) + String(index)}
               stickySectionHeadersEnabled={false}
               // initialNumToRender={4}
               // renderItem={({ item, title }) => <Item item={item} title={title}/>}
@@ -433,7 +433,7 @@ const Activities = ({ route, navigation }: any):any => {
               windowSize={7} // Reduce the window size
               // renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
               renderItem={memoizedValue}
-              renderSectionHeader={({ section }):any => (
+              renderSectionHeader={({ section }): any => (
                 section.data.length > 0 ?
                   <HeadingComponent section={section} />
                   // <Text style={styles.header}>{section.title}</Text> 
@@ -448,17 +448,17 @@ const Activities = ({ route, navigation }: any):any => {
           animationType="none"
           transparent={true}
           visible={modalVisible1}
-          onRequestClose={():any => {
+          onRequestClose={(): any => {
             setModalVisible1(false);
           }}
-          onDismiss={():any => {
+          onDismiss={(): any => {
             setModalVisible1(false);
           }}>
           <PopupOverlay>
             <ModalPopupContainer>
               <PopupCloseContainer>
                 <PopupClose
-                  onPress={():any => {
+                  onPress={(): any => {
                     setModalVisible1(false);
                   }}>
                   <Icon name="ic_close" size={16} color="#000" />
@@ -472,7 +472,7 @@ const Activities = ({ route, navigation }: any):any => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-        <OverlayLoadingComponent loading={profileLoading}/>
+        <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>
   );
