@@ -26,7 +26,7 @@ import {
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { addChild, deleteChild,getNewChild } from '../services/childCRUD';
+import { addChild, deleteChild, getNewChild } from '../services/childCRUD';
 import { DateTime } from 'luxon';
 import { dobMax } from '@types/types';
 import {
@@ -39,6 +39,7 @@ import {
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import TextInputML from '@components/shared/TextInputML';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -49,22 +50,23 @@ type Props = {
   route: any;
   navigation: ChildSetupNavigationProp;
 };
-const styles=StyleSheet.create({
-  flex1:{flex: 1},
-  headerActionView:{padding:0},
-  headerRowView:{
+const styles = StyleSheet.create({
+  flex1: { flex: 1 },
+  headerActionView: { padding: 0 },
+  headerRowView: {
     maxHeight: 50
   },
-  pressableView:{paddingLeft:10,paddingRight:10},
-  textInputML:{width:'100%'}
+  pressableView: { paddingLeft: 10, paddingRight: 10 },
+  textInputML: { width: '100%' }
 
 })
 const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
+  const netInfo = useNetInfoHook();
   const childData = route.params.childData;
   const editScreen = childData && childData.uuid != '' ? true : false;
   const [clicked, setClicked] = useState(false);
   const [showdob, setdobShow] = useState(false);
-  
+
   const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -76,14 +78,14 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date | null>(null);
   const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const ondobChange = (event: any,selectedDate: any): any => {
+  const ondobChange = (event: any, selectedDate: any): any => {
     const currentDate = selectedDate || plannedTermDate;
     setdobShow(Platform.OS === 'ios');
     setPlannedTermDate(currentDate);
   };
   const showdobDatepicker = (): any => {
     setdobShow(true);
-    if(Platform.OS == 'ios'){
+    if (Platform.OS == 'ios') {
       setDobDatePickerVisibility(true);
     }
   };
@@ -96,14 +98,14 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       : state.childData.childDataSet.allChild,
   );
   const handleDobConfirm = (event: any): any => {
-    const date=event;
-    ondobChange(event,date);
+    const date = event;
+    ondobChange(event, date);
     setDobDatePickerVisibility(false);
   };
   useFocusEffect(
     React.useCallback(() => {
       if (childData?.uuid != '') {
-        setName(childData?.childName?childData?.childName:'');
+        setName(childData?.childName ? childData?.childName : '');
         setPlannedTermDate(childData?.birthDate != null ? new Date(childData?.birthDate) : null);
       }
     }, [])
@@ -124,10 +126,10 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     }
   }, []);
   const AddChild = async (): Promise<any> => {
-    const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '',childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '',null);
+    const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '', null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null,null);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo);
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
     return new Promise((resolve, reject) => {
@@ -159,10 +161,10 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     });
   };
   return <>
-    <View style={[styles.flex1,{ backgroundColor: headerColor }]}>
+    <View style={[styles.flex1, { backgroundColor: headerColor }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
-        style={[styles.headerRowView,{backgroundColor: headerColor}]}>
+        style={[styles.headerRowView, { backgroundColor: headerColor }]}>
         <HeaderIconView>
           <HeaderIconPress
             onPress={(): any => {
@@ -172,20 +174,20 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
           </HeaderIconPress>
         </HeaderIconView>
         <HeaderTitleView>
-        <Heading2w numberOfLines={1}>
-            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
+          <Heading2w numberOfLines={1}>
+            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('editExpectChildAddTxt') : t('expectChildAddTxt')}
           </Heading2w>
         </HeaderTitleView>
-        <HeaderActionView  style={styles.headerActionView}>
+        <HeaderActionView style={styles.headerActionView}>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
-            <Pressable  style={styles.pressableView}  onPress={(): any =>
-                deleteRecord(childData?.index, dispatch, childData?.uuid)
-              }>
-                    <Icon name={'ic_trash'} size={20} color="#FFF" />
-                </Pressable>
+            <Pressable style={styles.pressableView} onPress={(): any =>
+              deleteRecord(childData?.index, dispatch, childData?.uuid)
+            }>
+              <Icon name={'ic_trash'} size={20} color="#FFF" />
+            </Pressable>
           ) : null}
         </HeaderActionView>
-      </HeaderRowView>     
+      </HeaderRowView>
 
       <MainContainer>
         <FormDateContainer>
@@ -205,27 +207,27 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         <View>
           {showdob && (
             Platform.OS != 'ios' ? (
-            <DateTimePicker
-              testID="dobdatePicker"
-              minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
-              maximumDate={new Date(dobMax)}
-              value={plannedTermDate!=null ? plannedTermDate : new Date()}
-              mode={'date'}
-             display="spinner"
-              onChange={ondobChange}
-            />
-            ):
-            <DateTimePickerModal
-            isVisible={isDobDatePickerVisible}
-            mode="date"
-            onConfirm={handleDobConfirm}
-            date={plannedTermDate!=null ? plannedTermDate : new Date(DateTime.local().plus({ days: 1 }).toISODate())}
-            onCancel={(): any => {
-              setDobDatePickerVisibility(false);
-            }}
-            minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
-            maximumDate={new Date(dobMax)}
-            />
+              <DateTimePicker
+                testID="dobdatePicker"
+                minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
+                maximumDate={new Date(dobMax)}
+                value={plannedTermDate != null ? plannedTermDate : new Date()}
+                mode={'date'}
+                display="spinner"
+                onChange={ondobChange}
+              />
+            ) :
+              <DateTimePickerModal
+                isVisible={isDobDatePickerVisible}
+                mode="date"
+                onConfirm={handleDobConfirm}
+                date={plannedTermDate != null ? plannedTermDate : new Date(DateTime.local().plus({ days: 1 }).toISODate())}
+                onCancel={(): any => {
+                  setDobDatePickerVisibility(false);
+                }}
+                minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
+                maximumDate={new Date(dobMax)}
+              />
           )}
         </View>
 
@@ -233,22 +235,22 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
           <LabelText>{t('expectPreferNametxt')}</LabelText>
           <FormInputBox>
             <TextInputML
-             style={styles.textInputML}
+              style={styles.textInputML}
               autoCapitalize="none"
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
-              onChangeText={(value): any => { 
-                if (value.replace(/\s/g,"")=="") {
-                  setName(value.replace(/\s/g, '')); 
-                 } else {
+              onChangeText={(value): any => {
+                if (value.replace(/\s/g, "") == "") {
+                  setName(value.replace(/\s/g, ''));
+                } else {
                   setName(value.replace(regexpEmojiPresentation, ''));
-                 }
+                }
               }}
               value={name}
               placeholder={t('expectPreferNamePlacetxt')}
               placeholderTextColor={"gray"}
-              allowFontScaling={false} 
+              allowFontScaling={false}
             />
           </FormInputBox>
         </FormContainer>
@@ -257,12 +259,12 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       <ShiftFromTop10>
         <ButtonContainer>
           <ButtonPrimary
-            disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked? true : false}
+            disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked ? true : false}
             onPress={(): any => {
               setClicked(true);
-              setTimeout(()=>{
+              setTimeout(() => {
                 AddChild();
-              },0)
+              }, 0)
             }}>
             <ButtonText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
           </ButtonPrimary>
