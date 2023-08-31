@@ -83,7 +83,7 @@ export default (): any => {
   );
   const [netState, setNetState] = React.useState('');
   const dispatch = useAppDispatch();
-  const netInfoval = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -688,25 +688,25 @@ export default (): any => {
 
   useMemo(() => {
     async function fetchNetInfo(): Promise<any> {
-      if (netInfoval && netInfoval.isConnected != null) {
-        if (netInfoval.isConnected == true) {
-          synchronizeEvents(netInfoval.isConnected)
+      if (netInfo && netInfo.isConnected != null) {
+        if (netInfo.isConnected == true) {
+          synchronizeEvents(netInfo.isConnected)
           if (Platform.OS == 'android') {
-            if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other" || netInfoval.netValue.type == "bluetooth" || netInfoval.netValue.type == "vpn")) {
+            if ((netInfo.netValue.type == "unknown" || netInfo.netValue.type == "other" || netInfo.netValue.type == "bluetooth" || netInfo.netValue.type == "vpn")) {
               setNetState('Lowbandwidth');
 
             }
-            else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "2g") {
+            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "2g") {
 
               setNetState('Lowbandwidth');
 
             }
-            else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "3g") {
+            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "3g") {
               setNetState('Lowbandwidth');
 
 
             }
-            else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "4g") {
+            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "4g") {
               setNetState('Highbandwidth');
 
 
@@ -716,19 +716,19 @@ export default (): any => {
             }
           }
           else if (Platform.OS == 'ios') {
-            if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other")) {
+            if ((netInfo.netValue.type == "unknown" || netInfo.netValue.type == "other")) {
               setNetState('Lowbandwidth');
 
             }
-            else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "2g") {
+            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "2g") {
               setNetState('Lowbandwidth');
 
             }
-            else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "3g") {
+            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "3g") {
               setNetState('Lowbandwidth');
 
             }
-            else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "4g") {
+            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "4g") {
               setNetState('Highbandwidth');
 
             }
@@ -745,7 +745,7 @@ export default (): any => {
     }
     fetchNetInfo();
     return {};
-  }, [netInfoval.isConnected, netInfoval.netType, netInfoval.netValue?.details?.cellularGeneration]);
+  }, [netInfo.isConnected, netInfo.netType, netInfo.netValue?.details?.cellularGeneration]);
   useEffect(() => {
     console.log("linkedURL3---", linkedURL);
   }, [linkedURL]);
@@ -804,8 +804,8 @@ export default (): any => {
               screen_name: currentRouteName,
               screen_class: currentRouteName,
             });
-            const eventData= {'name': currentRouteName + "_opened" }
-            logEvent(eventData,netInfoval.isConnected)
+            const eventData = { 'name': currentRouteName + "_opened" }
+            logEvent(eventData, netInfo.isConnected)
           }
           routeNameRef.current = currentRouteName;
         }}
@@ -833,7 +833,7 @@ export default (): any => {
             component={Terms}
             options={{ headerShown: false }}
           />
-           <RootStack.Screen
+          <RootStack.Screen
             name="TermsPage"
             component={TermsPage}
             options={{ headerShown: false }}
