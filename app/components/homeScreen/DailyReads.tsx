@@ -17,7 +17,8 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../redux/reducers/articlesSlice';
 import LoadableImage from '../../services/LoadableImage';
-import analytics from '@react-native-firebase/analytics';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 
 const styles = StyleSheet.create({
   cardImage: {
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
   }
 });
 const DailyReads = ():any => {
+  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
@@ -94,10 +96,13 @@ const DailyReads = ():any => {
         message: item.title + '\n' + t('appShareText') + '\n' + mainUrl
       });
       if (result.action === Share.sharedAction) {
+       
         if (isAdvice) {
-          analytics().logEvent(ADVICE_SHARED, { advise_id: item?.id });
+          const adviceEventData= {'name': ADVICE_SHARED,'params':{ advise_id: item?.id } }
+          logEvent(adviceEventData,netInfo.isConnected)
         } else {
-          analytics().logEvent(GAME_SHARED, { game_id: item?.id });
+          const gameEventData= {'name': GAME_SHARED,'params':{ game_id: item?.id } }
+          logEvent(gameEventData,netInfo.isConnected)
         }
 
       } else if (result.action === Share.dismissedAction) {

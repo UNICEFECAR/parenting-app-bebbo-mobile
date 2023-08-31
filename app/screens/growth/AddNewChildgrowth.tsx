@@ -46,7 +46,6 @@ import {
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
@@ -92,19 +91,22 @@ import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDa
 import { formatStringDate } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
 import { setAllLocalNotificationGenerateType } from '../../redux/reducers/notificationSlice';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { logEvent } from '../../services/EventSyncService';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
-const styles=StyleSheet.create({
-  flex1:{flex:1},
-  maxHeight:{maxHeight: 50},
-  padding0:{padding:0},
-  pressableView:{paddingLeft:10,paddingRight:10},
-  textInputMl:{flex:1,padding:10,textAlignVertical: 'top'}
+const styles = StyleSheet.create({
+  flex1: { flex: 1 },
+  maxHeight: { maxHeight: 50 },
+  padding0: { padding: 0 },
+  pressableView: { paddingLeft: 10, paddingRight: 10 },
+  textInputMl: { flex: 1, padding: 10, textAlignVertical: 'top' }
 })
-const AddNewChildgrowth = ({ route, navigation }: any):any => {
+const AddNewChildgrowth = ({ route, navigation }: any): any => {
+  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const { editMeasurementDate } = route.params;
   const [showDelete, setShowDelete] = useState<boolean>(false);
@@ -128,7 +130,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
   const [remarkTxt, handleDoctorRemark] = useState<string>('');
   const [measurePlace, setMeasurePlace] = useState<number>();
   const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(null);
-  const getCheckedGrowthPlace = (checkedItem: any):any => {
+  const getCheckedGrowthPlace = (checkedItem: any): any => {
     setMeasurePlace(checkedItem.id);
   };
   const activeChild = useAppSelector((state: any) =>
@@ -137,8 +139,8 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
       : [],
   );
   const dispatch = useAppDispatch();
- 
-  const onmeasureDateChange = (event: any, selectedDate: any):any => {
+
+  const onmeasureDateChange = (event: any, selectedDate: any): any => {
     setmeasureDateShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
@@ -153,7 +155,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
             [
               {
                 text: t('alertForModifyMeasuresOk'),
-                onPress: ():any => {
+                onPress: (): any => {
                   setmeasureDate(editMeasurementDate)
                 },
                 style: "cancel",
@@ -182,7 +184,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
             [
               {
                 text: t('alertForModifyMeasuresOk'),
-                onPress: ():any => {
+                onPress: (): any => {
                   const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   setWeightValue(existingMeasure.weight)
                   setHeightValue(existingMeasure.height)
@@ -206,12 +208,12 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
 
     }
   };
-  const handleMeasureConfirm = (event: any):any => {
+  const handleMeasureConfirm = (event: any): any => {
     const date = event;
     onmeasureDateChange(event, date);
     setMeasureDatePickerVisibility(false);
   };
- 
+
   useEffect(() => {
     // find growthmeasures for date, if exist show growthmeasures with delete enabled.
     if (editMeasurementDate) {
@@ -227,7 +229,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
   }, [editMeasurementDate])
 
   //set initvalue here for edit  
-  const isFormFilled = ():any => {
+  const isFormFilled = (): any => {
     if (measureDate) {
       if (measurePlace != null) {
         if (measurePlace == 0) {
@@ -265,7 +267,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
       setHeightValue(route.params?.height);
     }
   }, [route.params?.weight, route.params?.height]);
-  const deleteGrowth = async ():Promise<any> => {
+  const deleteGrowth = async (): Promise<any> => {
     // delete measure at measurementdate got from param
     const measurementDateParam = editMeasurementDate
       ? dateTouched
@@ -306,7 +308,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: activeChild.uuid };
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
@@ -356,7 +358,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: activeChild.uuid };
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
         }
@@ -381,25 +383,25 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
     }
 
   }
-  const disableSave=():any=>{
-    if(clicked==true && isFormFilled()==true){
+  const disableSave = (): any => {
+    if (clicked == true && isFormFilled() == true) {
       return true;
     }
-    else if(isFormFilled()==true && clicked==false){
+    else if (isFormFilled() == true && clicked == false) {
       return true;
     }
-    else if(isFormFilled()==false && clicked==true){
+    else if (isFormFilled() == false && clicked == true) {
       return true;
     }
-    else if(isFormFilled()==false && clicked==false){
+    else if (isFormFilled() == false && clicked == false) {
       return false;
     }
-    else{
+    else {
       return false;
     }
   }
-  const saveChildMeasures = async ():Promise<any> => {
-  console.log(measureDate)
+  const saveChildMeasures = async (): Promise<any> => {
+    console.log(measureDate)
     const measurementDateParam = editMeasurementDate
       ? dateTouched
         ? measureDate?.toMillis()
@@ -457,7 +459,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
         }
-        const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+        const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: activeChild.uuid };
         dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         setClicked(false);
         navigation.goBack();
@@ -482,7 +484,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: activeChild.uuid };
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
         setClicked(false);
@@ -514,7 +516,7 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: activeChild.uuid };
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         }
         setClicked(false);
@@ -543,41 +545,43 @@ const AddNewChildgrowth = ({ route, navigation }: any):any => {
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
-          const localnotiFlagObj = { generateFlag: true,generateType: 'add',childuuid: activeChild.uuid};
+          const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: activeChild.uuid };
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-          analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? 'doctor' : 'home' })
+          const eventData = { 'name': GROWTH_MEASUREMENT_ADDED, 'params': { age_id: activeChild?.taxonomyData?.id, measured_at: measurePlace == 0 ? 'doctor' : 'home' } }
+          logEvent(eventData, netInfo.isConnected)
         }
         setClicked(false);
         navigation.goBack();
       }
     }
   };
-  const onBackPress = ():any => {
-    navigation.goBack();  
+  const onBackPress = (): any => {
+    navigation.goBack();
     return true;
-}
-useEffect(() => {
-  const backHandler = BackHandler.addEventListener(
-    'hardwareBackPress',
-    onBackPress,
-  );
-  navigation.addListener('gestureEnd', onBackPress);
-  return ():any => {
-    navigation.removeListener('gestureEnd', onBackPress);
-    backHandler.remove()};
-}, []);
+  }
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      onBackPress,
+    );
+    navigation.addListener('gestureEnd', onBackPress);
+    return (): any => {
+      navigation.removeListener('gestureEnd', onBackPress);
+      backHandler.remove()
+    };
+  }, []);
   return (
     <>
-      <View style={[styles.flex1,{backgroundColor: headerColor }]}>
+      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <ScrollView nestedScrollEnabled={true}  keyboardShouldPersistTaps={'always'}>
+        <ScrollView nestedScrollEnabled={true} keyboardShouldPersistTaps={'always'}>
           <HeaderRowView
-            style={[styles.maxHeight,{
+            style={[styles.maxHeight, {
               backgroundColor: headerColor
             }]}>
             <HeaderIconView>
               <HeaderIconPress
-                onPress={():any => {
+                onPress={(): any => {
                   navigation.goBack();
                 }}>
                 <IconML name={'ic_back'} color="#000" size={15} />
@@ -588,156 +592,156 @@ useEffect(() => {
             </HeaderTitleView>
             {showDelete ? (
               <HeaderActionView style={styles.padding0}>
-              <Pressable  style={styles.pressableView}  onPress={():any =>
-                 setModalVisible(true)
+                <Pressable style={styles.pressableView} onPress={(): any =>
+                  setModalVisible(true)
                 }>
-                <Icon name={'ic_trash'} size={20} color="#000" />
-                  </Pressable>
-            </HeaderActionView>
+                  <Icon name={'ic_trash'} size={20} color="#000" />
+                </Pressable>
+              </HeaderActionView>
             ) : null}
           </HeaderRowView>
           <FlexCol>
-          <KeyboardAwareScrollView  bounces={false} keyboardShouldPersistTaps={'always'}>
-            <MainContainer>
-              <FormInputGroup onPress={():any => {
-                setmeasureDateShow(true);
-                if (Platform.OS == 'ios') {
-                  setMeasureDatePickerVisibility(true);
-                }
-              }}>
-                <FormInputText>
-                  {t('growthScreendateMeasurementText')}
-                </FormInputText>
-                {Platform.OS != 'ios' ? (
-                  <FormInputBox>
-                    <FormDateText>
-                      <Text>
-                        {' '}
-                        {measureDate
-                          ?
-                          formatStringDate(measureDate)
-                          : t('growthScreenenterDateMeasurementText')}
-                      </Text>
-                      {showmeasureDate && (
-                        <DateTimePicker
-                          testID="measureDatePicker"
-                          value={
-                            editMeasurementDate ? new Date(editMeasurementDate) : new Date()
-                          }
-                          mode={'date'}
-                         display="spinner"
+            <KeyboardAwareScrollView bounces={false} keyboardShouldPersistTaps={'always'}>
+              <MainContainer>
+                <FormInputGroup onPress={(): any => {
+                  setmeasureDateShow(true);
+                  if (Platform.OS == 'ios') {
+                    setMeasureDatePickerVisibility(true);
+                  }
+                }}>
+                  <FormInputText>
+                    {t('growthScreendateMeasurementText')}
+                  </FormInputText>
+                  {Platform.OS != 'ios' ? (
+                    <FormInputBox>
+                      <FormDateText>
+                        <Text>
+                          {' '}
+                          {measureDate
+                            ?
+                            formatStringDate(measureDate)
+                            : t('growthScreenenterDateMeasurementText')}
+                        </Text>
+                        {showmeasureDate && (
+                          <DateTimePicker
+                            testID="measureDatePicker"
+                            value={
+                              editMeasurementDate ? new Date(editMeasurementDate) : new Date()
+                            }
+                            mode={'date'}
+                            display="spinner"
+                            maximumDate={new Date()}
+                            minimumDate={new Date(minChildGrwothDate)}
+                            onChange={onmeasureDateChange}
+                          />
+                        )}
+                      </FormDateText>
+                      <FormDateAction>
+                        <Icon name="ic_calendar" size={20} color="#000" />
+                      </FormDateAction>
+                    </FormInputBox>
+                  ) : (
+                    <FormInputBox>
+                      <FormDateText>
+                        <Text>
+                          {' '}
+                          {measureDate
+                            ?
+                            formatStringDate(measureDate)
+                            : t('growthScreenenterDateMeasurementText')}
+                        </Text>
+
+                        <DateTimePickerModal
+                          isVisible={isMeasureDatePickerVisible}
+                          mode="date"
+                          onConfirm={handleMeasureConfirm}
+                          date={editMeasurementDate ? new Date(editMeasurementDate) : new Date()}
+                          onCancel={(): any => {
+                            setMeasureDatePickerVisibility(false);
+                          }}
                           maximumDate={new Date()}
                           minimumDate={new Date(minChildGrwothDate)}
-                          onChange={onmeasureDateChange}
                         />
-                      )}
-                    </FormDateText>
-                    <FormDateAction>
-                      <Icon name="ic_calendar" size={20} color="#000" />
-                    </FormDateAction>
-                  </FormInputBox>
-                ) : (
-                  <FormInputBox>
-                    <FormDateText>
-                      <Text>
-                        {' '}
-                        {measureDate
-                          ?
-                          formatStringDate(measureDate)
-                          : t('growthScreenenterDateMeasurementText')}
-                      </Text>
-                      
-                      <DateTimePickerModal
-                        isVisible={isMeasureDatePickerVisible}
-                        mode="date"
-                        onConfirm={handleMeasureConfirm}
-                        date={editMeasurementDate ? new Date(editMeasurementDate) : new Date()}
-                        onCancel={():any => {
-                          setMeasureDatePickerVisibility(false);
-                        }}
-                        maximumDate={new Date()}
-                        minimumDate={new Date(minChildGrwothDate)}
-                      />
-                    </FormDateText>
+                      </FormDateText>
 
-                    <FormDateAction>
-                      <Icon name="ic_calendar" size={20} color="#000" />
-                    </FormDateAction>
-                  </FormInputBox>
+                      <FormDateAction>
+                        <Icon name="ic_calendar" size={20} color="#000" />
+                      </FormDateAction>
+                    </FormInputBox>
 
-                )}
-              </FormInputGroup>
-              <View></View>
-              <FormContainer>
-                <FormInputText>
-                  <Heading3>{t('growthScreenwhereMeasured')}</Heading3>
-                </FormInputText>
+                  )}
+                </FormInputGroup>
+                <View></View>
+                <FormContainer>
+                  <FormInputText>
+                    <Heading3>{t('growthScreenwhereMeasured')}</Heading3>
+                  </FormInputText>
 
-                <ToggleRadios
-                  options={measurePlaces}
-                  defaultValue={defaultMeasurePlace}
-                  tickbgColor={headerColor}
-                  tickColor={'#000'}
-                  getCheckedItem={getCheckedGrowthPlace}
-                />
-              </FormContainer>
+                  <ToggleRadios
+                    options={measurePlaces}
+                    defaultValue={defaultMeasurePlace}
+                    tickbgColor={headerColor}
+                    tickColor={'#000'}
+                    getCheckedItem={getCheckedGrowthPlace}
+                  />
+                </FormContainer>
 
-              <FormContainer>
-                <FormInputText>
-                  {t('growthScreenenterMeasuresText')}
-                </FormInputText>
-                <RadioBoxContainer>
-                  <FDirRow>
-                    <RadioOuter>
-                      <RadioInnerBox
-                        onPress={():any => {
-                          navigation.navigate('AddNewChildWeight', {
-                            prevRoute: 'AddNewChildgrowth',
-                            headerColor,
-                            backgroundColor,
-                            weightValue: setInitialWeightValues(weightValue),
-                          });
-                        }}>
-                        <FlexFDirRowSpace>
-                          <Heading3>
-                            {weightValue ? weightValue : t('growthScreenwText')}
-                          </Heading3>
-                          <Heading4Regular>
-                            {t('growthScreenkgText')}
-                          </Heading4Regular>
-                        </FlexFDirRowSpace>
-                      </RadioInnerBox>
-                    </RadioOuter>
-                    <RadioOuter>
-                      <RadioInnerBox
-                        onPress={():any => {
-                          navigation.navigate('AddNewChildHeight', {
-                            prevRoute: 'AddNewChildgrowth',
-                            headerColor,
-                            backgroundColor,
-                            heightValue: setInitialHeightValues(heightValue),
-                          });
-                        }}>
-                        <FlexFDirRowSpace>
-                          <Heading3>
-                            {heightValue ? heightValue : t('growthScreenhText')}
-                          </Heading3>
-                          <Heading4Regular>
-                            {t('growthScreencmText')}
-                          </Heading4Regular>
-                        </FlexFDirRowSpace>
-                      </RadioInnerBox>
-                    </RadioOuter>
-                  </FDirRow>
-                </RadioBoxContainer>
-              </FormContainer>
+                <FormContainer>
+                  <FormInputText>
+                    {t('growthScreenenterMeasuresText')}
+                  </FormInputText>
+                  <RadioBoxContainer>
+                    <FDirRow>
+                      <RadioOuter>
+                        <RadioInnerBox
+                          onPress={(): any => {
+                            navigation.navigate('AddNewChildWeight', {
+                              prevRoute: 'AddNewChildgrowth',
+                              headerColor,
+                              backgroundColor,
+                              weightValue: setInitialWeightValues(weightValue),
+                            });
+                          }}>
+                          <FlexFDirRowSpace>
+                            <Heading3>
+                              {weightValue ? weightValue : t('growthScreenwText')}
+                            </Heading3>
+                            <Heading4Regular>
+                              {t('growthScreenkgText')}
+                            </Heading4Regular>
+                          </FlexFDirRowSpace>
+                        </RadioInnerBox>
+                      </RadioOuter>
+                      <RadioOuter>
+                        <RadioInnerBox
+                          onPress={(): any => {
+                            navigation.navigate('AddNewChildHeight', {
+                              prevRoute: 'AddNewChildgrowth',
+                              headerColor,
+                              backgroundColor,
+                              heightValue: setInitialHeightValues(heightValue),
+                            });
+                          }}>
+                          <FlexFDirRowSpace>
+                            <Heading3>
+                              {heightValue ? heightValue : t('growthScreenhText')}
+                            </Heading3>
+                            <Heading4Regular>
+                              {t('growthScreencmText')}
+                            </Heading4Regular>
+                          </FlexFDirRowSpace>
+                        </RadioInnerBox>
+                      </RadioOuter>
+                    </FDirRow>
+                  </RadioBoxContainer>
+                </FormContainer>
 
 
-              <FormContainer>
-                <FormInputText>
-                  {t('growthScreenenterDoctorRemarkText')}
-                </FormInputText>
-                
+                <FormContainer>
+                  <FormInputText>
+                    {t('growthScreenenterDoctorRemarkText')}
+                  </FormInputText>
+
                   <TextAreaBox>
                     <TextInputML style={styles.textInputMl}
                       autoCapitalize="none"
@@ -746,7 +750,7 @@ useEffect(() => {
                       clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}
-                      onChangeText={(text):any => handleDoctorRemark(text)}
+                      onChangeText={(text): any => handleDoctorRemark(text)}
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
@@ -754,46 +758,46 @@ useEffect(() => {
                       allowFontScaling={false}
                     />
                   </TextAreaBox>
-               
-              </FormContainer>
 
-              <ShiftFromTopBottom10>
-                <Text>{t('growthScreennewGrowthBottomText')}</Text>
-              </ShiftFromTopBottom10>
-            </MainContainer>
-            <ButtonContainer>
-            <ButtonTertiary
-              disabled={disableSave()}
-              onPress={(e):any => {
-                e.stopPropagation();
-                setClicked(true);
-                setTimeout(()=>{
-                saveChildMeasures().then(() => { 
-                  console.log("saveChildMeasures")
-                });
-              },0);
-              }}>
-              <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
-            </ButtonTertiary>
-          </ButtonContainer>
-                        </KeyboardAwareScrollView>
+                </FormContainer>
+
+                <ShiftFromTopBottom10>
+                  <Text>{t('growthScreennewGrowthBottomText')}</Text>
+                </ShiftFromTopBottom10>
+              </MainContainer>
+              <ButtonContainer>
+                <ButtonTertiary
+                  disabled={disableSave()}
+                  onPress={(e): any => {
+                    e.stopPropagation();
+                    setClicked(true);
+                    setTimeout(() => {
+                      saveChildMeasures().then(() => {
+                        console.log("saveChildMeasures")
+                      });
+                    }, 0);
+                  }}>
+                  <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
+                </ButtonTertiary>
+              </ButtonContainer>
+            </KeyboardAwareScrollView>
           </FlexCol>
-          
+
           <Modal
             animationType="none"
             transparent={true}
             visible={modalVisible}
-            onRequestClose={():any => {
+            onRequestClose={(): any => {
               setModalVisible(false);
             }}
-            onDismiss={():any => {
+            onDismiss={(): any => {
               setModalVisible(false);
             }}>
             <PopupOverlay>
               <ModalPopupContainer>
                 <PopupCloseContainer>
                   <PopupClose
-                    onPress={():any => {
+                    onPress={(): any => {
                       setModalVisible(false);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />
@@ -807,7 +811,7 @@ useEffect(() => {
                 <ButtonContainerTwo>
                   <ButtonColTwo>
                     <ButtonSecondaryTint
-                      onPress={():any => {
+                      onPress={(): any => {
                         setModalVisible(false);
                       }}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
@@ -816,7 +820,7 @@ useEffect(() => {
 
                   <ButtonColTwo>
                     <ButtonPrimary
-                      onPress={():any => {
+                      onPress={(): any => {
                         deleteGrowth();
                       }}>
                       <ButtonText>{t('growthDeleteOption2')}</ButtonText>
