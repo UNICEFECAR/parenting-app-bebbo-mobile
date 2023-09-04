@@ -149,14 +149,14 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     filteredData = { ...filteredData, name: item.name };
     setSelectedChildDevData(filteredData);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, 'uuid == "' + activeChild.uuid + '"');
-    const milestonefilteredData = await MileStonesData.filter((x: any) => x.child_age.includes(item.id));
+    const filteredMilestoneData = await MileStonesData.filter((x: any) => x.child_age.includes(item.id));
     childData[0].checkedMilestones.filter((x: any) => {
-      const i = milestonefilteredData.findIndex((_item: any) => _item.id === x);
+      const i = filteredMilestoneData.findIndex((_item: any) => _item.id === x);
       if (i > -1) {
-        milestonefilteredData[i]['toggleCheck'] = true;
+        filteredMilestoneData[i]['toggleCheck'] = true;
       }
     })
-    setselectedChildMilestoneData(milestonefilteredData);
+    setselectedChildMilestoneData(filteredMilestoneData);
     setTimeout(() => {
       setshowNoData(true);
     }, 500);
