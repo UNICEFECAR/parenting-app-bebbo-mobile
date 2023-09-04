@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
   flex1: { flex: 1 },
   font14: { fontSize: 14 },
   font18: { fontSize: 18 },
-  fullWidth: { width: '100%' }
+  fullWidth: { width: '100%' },
+  titleUnderline: { textDecorationLine: 'underline' }
 })
 const ChildDevelopment = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
@@ -148,16 +149,14 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     filteredData = { ...filteredData, name: item.name };
     setSelectedChildDevData(filteredData);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, 'uuid == "' + activeChild.uuid + '"');
-    let milestonefilteredData = await MileStonesData.filter((x: any) => x.child_age.includes(item.id));
-    milestonefilteredData = milestonefilteredData.map((item: any) => ({ ...item, toggleCheck: false }))
+    const filteredMilestoneData = await MileStonesData.filter((x: any) => x.child_age.includes(item.id));
     childData[0].checkedMilestones.filter((x: any) => {
-      const i = milestonefilteredData.findIndex((_item: any) => _item.id === x);
+      const i = filteredMilestoneData.findIndex((_item: any) => _item.id === x);
       if (i > -1) {
-        milestonefilteredData[i]['toggleCheck'] = true;
+        filteredMilestoneData[i]['toggleCheck'] = true;
       }
     })
-    const sortednewArray = milestonefilteredData.sort((x: any, y: any) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
-    setselectedChildMilestoneData([...sortednewArray]);
+    setselectedChildMilestoneData(filteredMilestoneData);
     setTimeout(() => {
       setshowNoData(true);
     }, 500);
@@ -246,16 +245,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     }
     const i = selectedChildMilestoneData.findIndex((_item: any) => _item.id === item.id);
     if (i > -1) {
-      const abc = selectedChildMilestoneData[i];
-      abc['toggleCheck'] = togglevalue;
-      const newArray = [
-        ...selectedChildMilestoneData.slice(0, i),
-        abc,
-        ...selectedChildMilestoneData.slice(i + 1)
-      ]
-      const sortednewArray = newArray.sort((x, y) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
-
-      setselectedChildMilestoneData([...sortednewArray]);
+      setselectedChildMilestoneData(selectedChildMilestoneData);
     }
   }
   const ContentThatGoesBelowTheFlatList = (): any => {
@@ -331,9 +321,11 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
               <ShiftFromTop5>
                 <FlexDirRowSpaceStart>
                   <Flex1>
-                    <Heading2>
-                      {selectedChildDevData?.title}
-                    </Heading2>
+                    <Pressable onPress={onPressInfo}>
+                      <Heading2 style={styles.titleUnderline}>
+                        {selectedChildDevData?.title}
+                      </Heading2>
+                    </Pressable>
                   </Flex1>
                   {selectedPinnedArticleData ?
                     <IconAreaPress onPress={onPressInfo}>
