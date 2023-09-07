@@ -16,29 +16,28 @@
 
 ## Introduction
 
-[Bebbo](https://www.bebbo.app) is a multi platform mobile application for [iOS](https://apps.apple.com/us/app/bebbo/id1588918146) and [Android](https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo). 
-Discover the most complete parenting app giving you all the tools and expert advice you need just in one app to support your child’s growth development from birth to age 6! Personalize this app to access daily toddler games, parent advice and tips on taking care of your child’s and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child’s development needs.
+[Bebbo](https://www.bebbo.app) is a multi-platform mobile application available on both [iOS](https://apps.apple.com/us/app/bebbo/id1588918146) and [Android](https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo). 
+Discover the most comprehensive parenting app that provides you with all the tools and expert advice you need, all in one app, to support your child's growth and development from birth to age 6! Personalize this app to access daily toddler games, parenting advice, and tips on taking care of both your child and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child's developmental needs.
 
 Bebbo offers:
-* Brief instructional videos and evidence-based support for each stage of your child’s development
-* Personalized 'learning through play' activities and games that support different critical areas of development, including cognition, language, motor skills, social emotional
-* Expert advice and parenting articles covering early learning, health, nutrition, caregiving, and safety, tailored to your questions and your child’s age
-* The ability to search Bebbo’s collection of hundreds of activities and articles by topic, age, or area of development
+* Expert advice and parenting articles covering early learning, health, nutrition, caregiving, and safety, tailored to both your questions and your child’s age.
+* Personalized 'learning through play' activities and games that support various critical areas of development, including cognition, language, motor skills, and social-emotional skills.
+* Brief instructional videos and evidence-based support for each stage of your child’s development.
+* The ability to search Bebbo’s collection of hundreds of activities and articles by topic, age, or area of development.
 * The ability to save and share your favorite content.
 
 Bebbo provides you with an interactive set of tools such as:
 * Development milestones tracker
 * Baby growth tracker
 * Vaccination child immunization tracker
-* Child health check-up tracker.
+* Child health check-up tracker
 
-The app can also operate in an off-line mode in environments with limited internet connectivity.
-It is offered in several languages and free to use. There is no internal advertisments, and you can share it with a partner.
+The app can also operate in an offline mode in environments with limited internet connectivity. It is offered in several languages and is free to use. There are no internal advertisements, and you can share it with a partner.
 
 ## Technology stack
 
 * [React Native](https://reactnative.dev/)
-    * Several React Native modules have been used in order to speed up the development.
+    * Several React Native modules have been incorporated in order to speed up the development.
     * Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
 * [TypeScript](https://www.typescriptlang.org/)
     * TypeScript was used as a programming language.
@@ -53,7 +52,7 @@ It is offered in several languages and free to use. There is no internal adverti
 <!--    
 ## Used libraries
 
-Many third party libraries and services were used. These are the most important, the full list can be seen by examining package.json (in the root of the project)
+Several third party libraries and services are incorporated. These are the most important, the full list can be seen by examining package.json (in the root of the project)
 
 * [Firebase Analytics](https://www.npmjs.com/package/%40react-native-firebase/analytics) service
 * [Google SignIn](https://www.npmjs.com/package/@react-native-community/google-signin) service
@@ -73,7 +72,7 @@ Many third party libraries and services were used. These are the most important,
 
 ## Getting started
 
-* Both Mac and Windows can be used for development.
+* Either Mac or Windows can be used for development.
 * Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
 
 ## Install Bebbo in localhost
@@ -90,7 +89,7 @@ npm install
 ```sh
 pod install
 ```
-Before running ios App on Device, necessary certificate setup from Apple developer Account is required.
+Before running iOS App on Device, necessary certificate setup from Apple developer account is required.
 After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp)
 
   **Steps to add script:**
@@ -266,4 +265,4 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the GPL-3.0 license. See `LICENSE` for more information.
