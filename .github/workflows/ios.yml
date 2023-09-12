@@ -3,6 +3,10 @@ on:
   create:
     tags:
       - v*
+  push:
+    branches: 
+      - main
+    
   workflow_dispatch:
     inputs:
       message:
