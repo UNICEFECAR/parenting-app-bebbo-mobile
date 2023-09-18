@@ -40,7 +40,7 @@ jobs:
    
     - name: Install node modules
       run: |
-        npm install --legacy-deps=true
+        npm install --legacy-deps=false
         
     - name: Lint
       uses: Krizzu/eslint-check-action@v1.1.0
