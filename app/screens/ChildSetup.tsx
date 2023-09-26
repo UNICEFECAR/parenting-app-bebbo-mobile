@@ -60,6 +60,10 @@ import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from 'react-native-fs';
 import TextInputML from '@components/shared/TextInputML';
 import { primaryColor } from '@styles/style';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AesCrypto from 'react-native-aes-crypto';
+import { encryptionsKey,encryptionsIVKey } from '@assets/translations/appOfflineData/apiConstants';
+
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetupList'
@@ -183,16 +187,30 @@ const ChildSetup = ({ navigation }: Props): any => {
   };
   const importFromFile = async (): Promise<any> => {
     if (Platform.OS == "android") {
-      const dataset = await ScopedStorage.openDocument(true, 'base64');
-      console.log(dataset, "..dataset");
+      const dataset = await ScopedStorage.openDocument(true, 'utf8');
+      let oldChildrenData: any = null;
+      let importedrealm: any = null;
       if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
-        await RNFS.writeFile(tempRealmFile, dataset.data, "base64");
-        const importedrealm = await new Realm({ path: 'user1.realm' });
-        //console.log(importedrealm, "...importedrealm");
-        const user1Path = importedrealm.path;
-        console.log(user1Path, "..user1Path");
-        const oldChildrenData = importedrealm.objects('ChildEntity');
-        //console.log(oldChildrenData, "..newoldChildrenData..")
+        if (dataset.name.endsWith('.json')) {
+          const decryptedData = AesCrypto.decrypt(dataset.data, encryptionsKey, encryptionsIVKey, 'aes-256-cbc')
+            .then((text: any) => {
+              return text;
+            })
+            .catch((error: any) => {
+              console.log("Decrypted error", error);
+              throw error;
+            });
+          const importedJsonData = JSON.parse(await decryptedData);
+          await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+          oldChildrenData = importedJsonData;
+        } else {
+          const base64Dataset = await ScopedStorage.openDocument(true, 'base64');
+          await RNFS.writeFile(tempRealmFile, base64Dataset.data, "base64");
+          importedrealm = await new Realm({ path: 'user1.realm' });
+          const user1Path = importedrealm.path;
+          console.log(user1Path, "..user1Path");
+          oldChildrenData = importedrealm.objects('ChildEntity');
+        }
         setImportAlertVisible(false);
         setLoading(true);
         setIsImportRunning(true);
@@ -204,7 +222,9 @@ const ChildSetup = ({ navigation }: Props): any => {
           navigation.navigate('ChildImportSetup', {
             importResponse: JSON.stringify(oldChildrenData)
           });
-          importedrealm.close();
+          if (dataset.name.endsWith('.backup')) {
+            importedrealm.close();
+          }
           try {
             Realm.deleteFile({ path: tempRealmFile });
           } catch (error) {
@@ -224,19 +244,35 @@ const ChildSetup = ({ navigation }: Props): any => {
       })
         .then(async (res: any) => {
           console.log(res, "..res..");
+          let oldChildrenData: any = null;
+          let importedrealm: any = null;
           if (res.length > 0 && res[0].uri) {
-            const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
-            const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
-            let importedrealm = await new Realm({ path: 'user1.realm' });
-            if (importedrealm) {
-              importedrealm.close();
+            if (res[0].name.endsWith(".json")) {
+              const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8');
+              const decryptedData = AesCrypto.decrypt(exportedFileContent,encryptionsKey, encryptionsIVKey, 'aes-256-cbc')
+                .then((text: any) => {
+                  return text;
+                })
+                .catch((error: any) => {
+                  console.log("Decrypted error", error);
+                  throw error;
+                });
+              const importedData = JSON.parse(await decryptedData);
+              await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+              oldChildrenData = importedData;
+            } else {
+              const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
+              await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
+              importedrealm = await new Realm({ path: 'user1.realm' });
+              if (importedrealm) {
+                importedrealm.close();
+              }
+              importedrealm = await new Realm({ path: 'user1.realm' });
+              const user1Path = importedrealm.path;
+              console.log(user1Path, "..user1Path");
+              oldChildrenData = importedrealm.objects('ChildEntity');
             }
-            importedrealm = await new Realm({ path: 'user1.realm' });
-            const user1Path = importedrealm.path;
-            console.log(user1Path, "..user1Path");
-            const oldChildrenData = importedrealm.objects('ChildEntity');
-            //console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
-            //console.log(oldChildrenData, "..newoldChildrenData..")
+
             setImportAlertVisible(false);
             setLoading(true);
             setIsImportRunning(true);
@@ -248,7 +284,9 @@ const ChildSetup = ({ navigation }: Props): any => {
               navigation.navigate('ChildImportSetup', {
                 importResponse: JSON.stringify(oldChildrenData)
               });
-              importedrealm.close();
+              if (res[0].name.endsWith(".backup")) {
+                importedrealm.close();
+              }
               try {
                 Realm.deleteFile({ path: tempRealmFile });
               } catch (error) {
