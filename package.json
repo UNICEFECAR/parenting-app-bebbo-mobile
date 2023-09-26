@@ -68,6 +68,7 @@
     "react-native-modal-datetime-picker": "^10.2.0",
     "react-native-orientation-locker": "^1.3.1",
     "react-native-permissions": "^3.6.1",
+    "react-native-aes-crypto": "^3.0.1",
     "react-native-popup-menu": "^0.15.11",
     "react-native-progress-circle": "git+https://github.com/NehaRuparelgit/react-native-progress-circle.git",
     "react-native-push-notification": "^8.1.1",
