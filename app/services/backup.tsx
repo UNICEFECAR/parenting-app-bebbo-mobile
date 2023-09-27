@@ -2,7 +2,7 @@ import { googleAuth } from "./googleAuth";
 import { googleDrive } from "./googleDrive";
 import RNFS from 'react-native-fs';
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
-import { backupGDriveFileName, backupGDriveFolderName, encryptionsIVKey,encryptionsKey } from "@assets/translations/appOfflineData/apiConstants";
+import { backupGDriveFileName, backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
 import { getAllChildren, setActiveChild } from "./childCRUD";
@@ -11,6 +11,7 @@ import { getChild } from "./Utils";
 import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
 import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
 import AesCrypto from 'react-native-aes-crypto';
+import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 /**
  * Export / import user realm to GDrive in order to create backup.
  */
@@ -30,6 +31,9 @@ class Backup {
         return AesCrypto.encrypt(text, key, encryptionsIVKey, 'aes-256-cbc').then((cipher: any) => ({
           cipher
         }));
+    }
+    public decryptData = (text: string, key: any): any => {
+        return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
     }
     public async export(): Promise<boolean> {
         await googleAuth.signOut();
@@ -210,7 +214,7 @@ class Backup {
             if (backupFileName?.endsWith('.json')) {
                 // Read the downloaded file content from drive
                 const fileContent = await RNFS.readFile(RNFS.DocumentDirectoryPath + '/' + 'user1.realm', 'utf8');
-                const decryptedData = AesCrypto.decrypt(fileContent, encryptionsKey, encryptionsIVKey, 'aes-256-cbc')
+                const decryptedData = this.decryptData(fileContent, encryptionsKey)
                 .then((text: any) => {
                   return text;
                 })
@@ -282,7 +286,7 @@ class Backup {
             if (backupFileName?.endsWith('.json')) {
                 // Read the downloaded file content from drive
                 const fileContent = await RNFS.readFile(RNFS.DocumentDirectoryPath + '/' + 'user1.realm', 'utf8');
-                const decryptedData = AesCrypto.decrypt(fileContent, encryptionsKey, encryptionsIVKey, 'aes-256-cbc')
+                const decryptedData = this.decryptData(fileContent, encryptionsKey)
                 .then((text: any) => {
                   return text;
                 })
