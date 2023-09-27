@@ -60,9 +60,8 @@ import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from 'react-native-fs';
 import TextInputML from '@components/shared/TextInputML';
 import { primaryColor } from '@styles/style';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import AesCrypto from 'react-native-aes-crypto';
-import { encryptionsKey,encryptionsIVKey } from '@assets/translations/appOfflineData/apiConstants';
+import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -185,124 +184,132 @@ const ChildSetup = ({ navigation }: Props): any => {
       throw err
     }
   };
-  const importFromFile = async (): Promise<any> => {
-    if (Platform.OS == "android") {
-      const dataset = await ScopedStorage.openDocument(true, 'utf8');
-      let oldChildrenData: any = null;
-      let importedrealm: any = null;
-      if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
-        if (dataset.name.endsWith('.json')) {
-          const decryptedData = AesCrypto.decrypt(dataset.data, encryptionsKey, encryptionsIVKey, 'aes-256-cbc')
-            .then((text: any) => {
-              return text;
-            })
-            .catch((error: any) => {
-              console.log("Decrypted error", error);
-              throw error;
-            });
-          const importedJsonData = JSON.parse(await decryptedData);
-          await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
-          oldChildrenData = importedJsonData;
-        } else {
-          const base64Dataset = await ScopedStorage.openDocument(true, 'base64');
-          await RNFS.writeFile(tempRealmFile, base64Dataset.data, "base64");
-          importedrealm = await new Realm({ path: 'user1.realm' });
-          const user1Path = importedrealm.path;
-          console.log(user1Path, "..user1Path");
-          oldChildrenData = importedrealm.objects('ChildEntity');
-        }
-        setImportAlertVisible(false);
-        setLoading(true);
-        setIsImportRunning(true);
-        if (oldChildrenData.length > 0) {
-          await userRealmCommon.openRealm();
-          await userRealmCommon.deleteAllAtOnce();
-          setIsImportRunning(false);
-          setLoading(false);
-          navigation.navigate('ChildImportSetup', {
-            importResponse: JSON.stringify(oldChildrenData)
+  const decryptData = (text: string, key: any): any => {
+    return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
+  }
+  const importDataAndroid = async (): Promise<any> => {
+    const dataset = await ScopedStorage.openDocument(true, 'utf8');
+    let oldChildrenData: any = null;
+    let importedrealm: any = null;
+    if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
+      if (dataset.name.endsWith('.json')) {
+        const decryptedData = decryptData(dataset.data, encryptionsKey)
+          .then((text: any) => {
+            return text;
+          })
+          .catch((error: any) => {
+            console.log("Decrypted error", error);
+            throw error;
           });
-          if (dataset.name.endsWith('.backup')) {
-            importedrealm.close();
-          }
-          try {
-            Realm.deleteFile({ path: tempRealmFile });
-          } catch (error) {
-            //console.log(error);
-          }
+        const importedJsonData = JSON.parse(await decryptedData);
+        await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+        oldChildrenData = importedJsonData;
+      } else {
+        const base64Dataset = await ScopedStorage.openDocument(true, 'base64');
+        await RNFS.writeFile(tempRealmFile, base64Dataset.data, "base64");
+        importedrealm = await new Realm({ path: 'user1.realm' });
+        const user1Path = importedrealm.path;
+        console.log(user1Path, "..user1Path");
+        oldChildrenData = importedrealm.objects('ChildEntity');
+      }
+      setImportAlertVisible(false);
+      setLoading(true);
+      setIsImportRunning(true);
+      if (oldChildrenData.length > 0) {
+        await userRealmCommon.openRealm();
+        await userRealmCommon.deleteAllAtOnce();
+        setIsImportRunning(false);
+        setLoading(false);
+        navigation.navigate('ChildImportSetup', {
+          importResponse: JSON.stringify(oldChildrenData)
+        });
+        if (importedrealm) {
+          importedrealm.close();
         }
-        else {
-          setLoading(false);
-          setIsImportRunning(false);
+        try {
+          Realm.deleteFile({ path: tempRealmFile });
+        } catch (error) {
+          //console.log(error);
         }
       }
+      else {
+        setLoading(false);
+        setIsImportRunning(false);
+      }
     }
-    else {
-      DocumentPicker.pick({
-        allowMultiSelection: false,
-        type: DocumentPicker.types.allFiles,
-      })
-        .then(async (res: any) => {
-          console.log(res, "..res..");
-          let oldChildrenData: any = null;
-          let importedrealm: any = null;
-          if (res.length > 0 && res[0].uri) {
-            if (res[0].name.endsWith(".json")) {
-              const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8');
-              const decryptedData = AesCrypto.decrypt(exportedFileContent,encryptionsKey, encryptionsIVKey, 'aes-256-cbc')
-                .then((text: any) => {
-                  return text;
-                })
-                .catch((error: any) => {
-                  console.log("Decrypted error", error);
-                  throw error;
-                });
-              const importedData = JSON.parse(await decryptedData);
-              await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
-              oldChildrenData = importedData;
-            } else {
-              const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
-              await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
-              importedrealm = await new Realm({ path: 'user1.realm' });
-              if (importedrealm) {
-                importedrealm.close();
-              }
-              importedrealm = await new Realm({ path: 'user1.realm' });
-              const user1Path = importedrealm.path;
-              console.log(user1Path, "..user1Path");
-              oldChildrenData = importedrealm.objects('ChildEntity');
-            }
-
-            setImportAlertVisible(false);
-            setLoading(true);
-            setIsImportRunning(true);
-            if (oldChildrenData.length > 0) {
-              await userRealmCommon.openRealm();
-              await userRealmCommon.deleteAllAtOnce();
-              setIsImportRunning(false);
-              setLoading(false);
-              navigation.navigate('ChildImportSetup', {
-                importResponse: JSON.stringify(oldChildrenData)
+  }
+  const importDataIOS = async (): Promise<any> => {
+    DocumentPicker.pick({
+      allowMultiSelection: false,
+      type: DocumentPicker.types.allFiles,
+    })
+      .then(async (res: any) => {
+        console.log(res, "..res..");
+        let oldChildrenData: any = null;
+        let importedrealm: any = null;
+        if (res.length > 0 && res[0].uri) {
+          if (res[0].name.endsWith(".json")) {
+            const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8');
+            const decryptedData = decryptData(exportedFileContent, encryptionsKey)
+              .then((text: any) => {
+                return text;
+              })
+              .catch((error: any) => {
+                console.log("Decrypted error", error);
+                throw error;
               });
-              if (res[0].name.endsWith(".backup")) {
-                importedrealm.close();
-              }
-              try {
-                Realm.deleteFile({ path: tempRealmFile });
-              } catch (error) {
-                //console.log(error);
-              }
-
+            const importedData = JSON.parse(await decryptedData);
+            await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+            oldChildrenData = importedData;
+          } else {
+            const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
+            await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
+            importedrealm = await new Realm({ path: 'user1.realm' });
+            if (importedrealm) {
+              importedrealm.close();
             }
-            else {
-              setLoading(false);
-              setIsImportRunning(false);
+            importedrealm = await new Realm({ path: 'user1.realm' });
+            const user1Path = importedrealm.path;
+            console.log(user1Path, "..user1Path");
+            oldChildrenData = importedrealm.objects('ChildEntity');
+          }
+
+          setImportAlertVisible(false);
+          setLoading(true);
+          setIsImportRunning(true);
+          if (oldChildrenData.length > 0) {
+            await userRealmCommon.openRealm();
+            await userRealmCommon.deleteAllAtOnce();
+            setIsImportRunning(false);
+            setLoading(false);
+            navigation.navigate('ChildImportSetup', {
+              importResponse: JSON.stringify(oldChildrenData)
+            });
+            if (importedrealm) {
+              importedrealm.close();
+            }
+            try {
+              Realm.deleteFile({ path: tempRealmFile });
+            } catch (error) {
+              //console.log(error);
             }
 
           }
+          else {
+            setLoading(false);
+            setIsImportRunning(false);
+          }
 
-        })
-        .catch(handleError);
+        }
+
+      })
+      .catch(handleError);
+  }
+  const importFromFile = async (): Promise<any> => {
+    if (Platform.OS == "android") {
+      importDataAndroid();
+    } else {
+      importDataIOS();
     }
   }
   const importAllData = async (): Promise<any> => {
