@@ -84,11 +84,19 @@ const CountrySelection = (props: any):any => {
         />
 
         <SelectionView>
+        {userIsOnboarded==true ?
           <FlatList
             data={localization}
             renderItem={renderItem}
             keyExtractor={(item):any => item.countryId.toString()}
-          />
+          />:
+          <FlatList
+           inverted
+            data={localization}
+            contentContainerStyle={{ flexDirection: 'column-reverse' }}
+            renderItem={renderItem}
+            keyExtractor={(item):any => item.countryId.toString()}
+          />}
         </SelectionView>
         {country ? (
           <ButtonSection>
