@@ -24,7 +24,6 @@ const MKmk = {
                 tNccheckbox1: "Ги прочитав, ги разбирам и ги прифаќам условите за користење на апликацијата REMOVED_FACEBOOK_APP_ID1",
                 tNccheckbox2: "Ги прочитав, ги разбирам и ги прифаќам... ",
                 tNcprivacyPolicy: "Политика за Приватност на апликацијата REMOVED_FACEBOOK_APP_ID1",
-                tNccheckbox3: "Прифаќам анонимните податоци од моето користење на апликацијата да се користат за подобрување на REMOVED_FACEBOOK_APP_ID1 (не е задолжително)",
                 tNcprivacyPolicyTitle: "Политика за приватност",
                 tNcacceptbtn: "Ги прифаќам условите за користење",
                 loadingText: "Податоците се вчитуваат...",
