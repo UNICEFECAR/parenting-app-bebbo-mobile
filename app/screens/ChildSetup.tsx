@@ -187,6 +187,29 @@ const ChildSetup = ({ navigation }: Props): any => {
   const decryptData = (text: string, key: any): any => {
     return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
   }
+  const handleImportedData = async (importedData: any, importedrealm: any): Promise<any> => {
+    if (importedData.length > 0) {
+      await userRealmCommon.openRealm();
+      await userRealmCommon.deleteAllAtOnce();
+      setIsImportRunning(false);
+      setLoading(false);
+      navigation.navigate('ChildImportSetup', {
+        importResponse: JSON.stringify(importedData)
+      });
+      if (importedrealm) {
+        importedrealm.close();
+      }
+      try {
+        Realm.deleteFile({ path: tempRealmFile });
+      } catch (error) {
+        //console.log(error);
+      }
+    }
+    else {
+      setLoading(false);
+      setIsImportRunning(false);
+    }
+  }
   const importDataAndroid = async (): Promise<any> => {
     const dataset = await ScopedStorage.openDocument(true, 'utf8');
     let oldChildrenData: any = null;
@@ -215,27 +238,7 @@ const ChildSetup = ({ navigation }: Props): any => {
       setImportAlertVisible(false);
       setLoading(true);
       setIsImportRunning(true);
-      if (oldChildrenData.length > 0) {
-        await userRealmCommon.openRealm();
-        await userRealmCommon.deleteAllAtOnce();
-        setIsImportRunning(false);
-        setLoading(false);
-        navigation.navigate('ChildImportSetup', {
-          importResponse: JSON.stringify(oldChildrenData)
-        });
-        if (importedrealm) {
-          importedrealm.close();
-        }
-        try {
-          Realm.deleteFile({ path: tempRealmFile });
-        } catch (error) {
-          //console.log(error);
-        }
-      }
-      else {
-        setLoading(false);
-        setIsImportRunning(false);
-      }
+      handleImportedData(oldChildrenData, importedrealm);
     }
   }
   const importDataIOS = async (): Promise<any> => {
@@ -277,29 +280,8 @@ const ChildSetup = ({ navigation }: Props): any => {
           setImportAlertVisible(false);
           setLoading(true);
           setIsImportRunning(true);
-          if (oldChildrenData.length > 0) {
-            await userRealmCommon.openRealm();
-            await userRealmCommon.deleteAllAtOnce();
-            setIsImportRunning(false);
-            setLoading(false);
-            navigation.navigate('ChildImportSetup', {
-              importResponse: JSON.stringify(oldChildrenData)
-            });
-            if (importedrealm) {
-              importedrealm.close();
-            }
-            try {
-              Realm.deleteFile({ path: tempRealmFile });
-            } catch (error) {
-              //console.log(error);
-            }
-
-          }
-          else {
-            setLoading(false);
-            setIsImportRunning(false);
-          }
-
+          handleImportedData(oldChildrenData, importedrealm)
+          
         }
 
       })
