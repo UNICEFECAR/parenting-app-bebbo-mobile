@@ -10,14 +10,16 @@ import Realm from 'realm';
 import { getChild } from "./Utils";
 import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
 import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
+import AesCrypto from 'react-native-aes-crypto';
+import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 /**
  * Export / import user realm to GDrive in order to create backup.
  */
 class Backup {
     private static instance: Backup;
     importedrealm?: Realm;
-    private constructor(){ 
-     console.log("initialized")
+    private constructor() {
+        console.log("initialized")
     }
     static getInstance(): Backup {
         if (!Backup.instance) {
@@ -25,7 +27,14 @@ class Backup {
         }
         return Backup.instance;
     }
-
+    public encryptData = (text: string, key: any): any => {
+        return AesCrypto.encrypt(text, key, encryptionsIVKey, 'aes-256-cbc').then((cipher: any) => ({
+          cipher
+        }));
+    }
+    public decryptData = (text: string, key: any): any => {
+        return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
+    }
     public async export(): Promise<boolean> {
         await googleAuth.signOut();
         const tokens = await googleAuth.getTokens();
@@ -36,13 +45,6 @@ class Backup {
             if (!user) return false;
         }
 
-        // Get userRealmPath
-        const userRealmPath = userRealmCommon.realm?.path;
-        if (!userRealmPath) return false;
-
-        // Get realmContent
-        const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-        // Get backupFolderId
         const backupFolderId = await googleDrive.safeCreateFolder({
             name: backupGDriveFolderName,
             parentFolderId: 'root'
@@ -64,18 +66,26 @@ class Backup {
             await googleDrive.deleteFile(backupFileId);
         }
         // Create file on gdrive
-        const response = await googleDrive.createFileMultipart({
-            name: backupGDriveFileName,
-            content: realmContent,
-            contentType: 'application/realm',
-            parentFolderId: backupFolderId,
-            isBase64: true,
-        });
-        if (typeof response !== 'string') {
-           return false;
-        }
-        return true;
-    }
+        userRealmCommon.exportUserRealmDataToJson()
+            .then(async (jsonData: any) => {
+                this.encryptData(JSON.stringify(jsonData), encryptionsKey)
+                .then(async (cipher: any) => {
+                    const response = await googleDrive.createFileMultipart({
+                        name: backupGDriveFileName,
+                        content: cipher.cipher,
+                        parentFolderId: backupFolderId,
+                        isBase64: false,
+                    });
+                    if (typeof response !== 'string') {
+                        return false;
+                    }
+                })
+              .catch((error: any) => {
+                console.error('Error exporting data:', error);
+            });
+    });
+    return true;
+}
 
     public closeImportedRealm(): any {
         if (this.importedrealm) {
@@ -83,77 +93,77 @@ class Backup {
             delete this.importedrealm;
         }
     }
-    public async importFromFile(oldChildrenData: any,navigation: any,genders: any,dispatch: any,childAge: any,langCode: any): Promise<any> {
+    public async importFromFile(oldChildrenData: any, navigation: any, genders: any, dispatch: any, childAge: any, langCode: any): Promise<any> {
         if (oldChildrenData?.length > 0) {
             const resolvedPromises = oldChildrenData.map(async (item: any) => {
-                if(item.birthDate!=null && item.birthDate!=undefined){
-                const itemnew = await getChild(item, genders);
-                const childData: any = [];
-                childData.push(itemnew);
-                console.log(childData, "..childData..");
-                const createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
-                console.log(createresult, "..createresult");
+                if (item.birthDate != null && item.birthDate != undefined) {
+                    const itemnew = await getChild(item, genders);
+                    const childData: any = [];
+                    childData.push(itemnew);
+                    console.log(childData, "..childData..");
+                    const createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                    console.log(createresult, "..createresult");
                 }
             });
             const notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
             await Promise.all(resolvedPromises).then(async item => {
-                console.log("importfromfile--",item);
-                const allChildren = await getAllChildren(dispatch, childAge,1);
+                console.log("importfromfile--", item);
+                const allChildren = await getAllChildren(dispatch, childAge, 1);
                 let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                 this.closeImportedRealm();
-                    
+
                 if (allChildren.length > 0) {
                     if (childId?.length > 0) {
-                    childId = childId[0].value;
-                    const activeChildData = allChildren.filter((x: any)=>x.uuid == childId);
-                    if(activeChildData.length>0){
-                        await setActiveChild(langCode,childId, dispatch, childAge,false);
+                        childId = childId[0].value;
+                        const activeChildData = allChildren.filter((x: any) => x.uuid == childId);
+                        if (activeChildData.length > 0) {
+                            await setActiveChild(langCode, childId, dispatch, childAge, false);
+                            navigation.navigate('LoadingScreen', {
+                                apiJsonData: [],
+                                prevPage: 'ImportScreen'
+                            });
+                            try {
+                                Realm.deleteFile({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                            } catch (error) {
+                                console.log("error");
+                            }
+                            return "Imported";
+                        }
+                        else {
+                            await setActiveChild(langCode, '', dispatch, childAge, false);
+                            navigation.navigate('LoadingScreen', {
+                                apiJsonData: [],
+                                prevPage: 'ImportScreen'
+                            });
+                            try {
+                                Realm.deleteFile({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                            } catch (error) {
+                                console.log("error");
+                            }
+                            return "Imported";
+                        }
+                    }
+                    else {
+                        await setActiveChild(langCode, '', dispatch, childAge, false);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
                         });
                         try {
-                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                            Realm.deleteFile({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
                         } catch (error) {
                             console.log("error");
                         }
                         return "Imported";
-                    }
-                    else{
-                        await setActiveChild(langCode, '', dispatch, childAge,false);
-                        navigation.navigate('LoadingScreen', {
-                            apiJsonData: [],
-                            prevPage: 'ImportScreen'
-                        });
-                        try {
-                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
-                        } catch (error) {
-                            console.log("error");
-                        }
-                        return "Imported";
-                    }
-                    }
-                    else{
-                        await setActiveChild(langCode, '', dispatch, childAge,false);
-                        navigation.navigate('LoadingScreen', {
-                            apiJsonData: [],
-                            prevPage: 'ImportScreen'
-                        });
-                        try {
-                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
-                        } catch (error) {
-                            console.log("error");
-                        }
-                        return "Imported";
-                        
+
                     }
                 }
                 else {
                     return new Error('No Data');
                 }
             }).catch(error => {
-                console.log("error-",error);
+                console.log("error-", error);
                 return new Error('No Import Succeded');
             })
 
@@ -161,7 +171,7 @@ class Backup {
         }
     }
     public async import1(navigation: any, langCode: any, dispatch: any, childAge: any, genders: any): Promise<any> {
-        console.log("import1-",navigation,langCode,dispatch, childAge, genders);
+        console.log("import1-", navigation, langCode, dispatch, childAge, genders);
         const tokens = await googleAuth.getTokens();
 
         // Sign in if neccessary
@@ -181,12 +191,14 @@ class Backup {
 
         // Get backup file ID if exists on GDrive
         let backupFileId: string | null = null;
+        let backupFileName: string | null = null;
 
         const backupFiles = await googleDrive.list({
             filter: `trashed=false and (name contains '${backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
         });
         if (Array.isArray(backupFiles) && backupFiles.length > 0) {
             backupFileId = backupFiles[0].id;
+            backupFileName = backupFiles[0].name;
         }
         if (!backupFileId) {
             return new Error("..Error coming..");
@@ -198,24 +210,42 @@ class Backup {
         });
         userRealmCommon.closeRealm();
         if (downloadres && downloadres.statusCode == 200) {
-            this.closeImportedRealm();
-            this.importedrealm = await new Realm({ path: 'user1.realm' });
-            if (this.importedrealm) {
-                await userRealmCommon.openRealm();
-                await userRealmCommon.deleteAllAtOnce();
-                 this.closeImportedRealm();
+            let oldChildrenData: any = [];
+            if (backupFileName?.endsWith('.json')) {
+                // Read the downloaded file content from drive
+                const fileContent = await RNFS.readFile(RNFS.DocumentDirectoryPath + '/' + 'user1.realm', 'utf8');
+                const decryptedData = this.decryptData(fileContent, encryptionsKey)
+                .then((text: any) => {
+                  return text;
+                })
+                .catch((error: any) => {
+                  console.log("Decrypted error", error);
+                  throw error;
+                });
+                const jsonParseFileData = JSON.parse(await decryptedData);
+                oldChildrenData = jsonParseFileData;
+                return oldChildrenData;
+            } else {
+                this.closeImportedRealm();
                 this.importedrealm = await new Realm({ path: 'user1.realm' });
-                const oldChildrenData = this.importedrealm.objects('ChildEntity');
-               return oldChildrenData;
+                if (this.importedrealm) {
+                    await userRealmCommon.openRealm();
+                    await userRealmCommon.deleteAllAtOnce();
+                    this.closeImportedRealm();
+                    this.importedrealm = await new Realm({ path: 'user1.realm' });
+                    const oldChildrenData = this.importedrealm.objects('ChildEntity');
+                    return oldChildrenData;
 
+                }
             }
+
 
         }
     }
     public async import(navigation: any, langCode: any, dispatch: any, childAge: any, genders: any): Promise<any> {
         const tokens = await googleAuth.getTokens();
 
-        // Sign in if neccessary
+        // Sign in if neccessary-
         if (!tokens) {
             const user = await googleAuth.signIn();
             if (!user) return new Error('loginCanceled');
@@ -232,13 +262,16 @@ class Backup {
 
         // Get backup file ID if exists on GDrive
         let backupFileId: string | null = null;
+        let backupFileName: string | null = null;
 
         const backupFiles = await googleDrive.list({
             filter: `trashed=false and (name contains '${backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
         });
-         if (Array.isArray(backupFiles) && backupFiles.length > 0) {
+        if (Array.isArray(backupFiles) && backupFiles.length > 0) {
             backupFileId = backupFiles[0].id;
+            backupFileName = backupFiles[0].name;
         }
+        console.log('backupFileName', backupFileName)
         if (!backupFileId) {
             return new Error("..Error coming..");
         }
@@ -249,80 +282,101 @@ class Backup {
         });
         userRealmCommon.closeRealm();
         if (downloadres && downloadres.statusCode == 200) {
-            this.closeImportedRealm();
-            this.importedrealm = await new Realm({ path: 'user1.realm' });
-            if (this.importedrealm) {
-                await userRealmCommon.openRealm();
-                await userRealmCommon.deleteAllAtOnce();
-                this.closeImportedRealm();
+            let oldChildrenData: any = [];
+            if (backupFileName?.endsWith('.json')) {
+                // Read the downloaded file content from drive
+                const fileContent = await RNFS.readFile(RNFS.DocumentDirectoryPath + '/' + 'user1.realm', 'utf8');
+                const decryptedData = this.decryptData(fileContent, encryptionsKey)
+                .then((text: any) => {
+                  return text;
+                })
+                .catch((error: any) => {
+                  console.log("Decrypted error", error);
+                  throw error;
+                });
+                const jsonParseFileData = JSON.parse(await decryptedData);
+                oldChildrenData = jsonParseFileData;
+            } else {
                 this.importedrealm = await new Realm({ path: 'user1.realm' });
-                const oldChildrenData = this.importedrealm.objects('ChildEntity');
-                if (oldChildrenData?.length > 0) {
-                    const resolvedPromises = oldChildrenData.map(async (item: any) => {
-                        if(item.birthDate!=null && item.birthDate!=undefined){
+                if (this.importedrealm) {
+                    await userRealmCommon.openRealm();
+                    await userRealmCommon.deleteAllAtOnce();
+                    this.closeImportedRealm();
+                    this.importedrealm = await new Realm({ path: 'user1.realm' });
+                    oldChildrenData = this.importedrealm.objects('ChildEntity');
+
+                }
+            }
+            if (oldChildrenData?.length > 0) {
+                const resolvedPromises = oldChildrenData.map(async (item: any) => {
+                    if (item.birthDate != null && item.birthDate != undefined) {
                         const itemnew = await getChild(item, genders);
                         const childData: any = [];
                         childData.push(itemnew);
                         await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
-                        }
-                    });
-                    const notiFlagObj = { key: 'generateNotifications', value: true };
-                    dispatch(setInfoModalOpened(notiFlagObj));
-                    await Promise.all(resolvedPromises).then(async item => {
-                        console.log("item-",item);
-                        const allChildren = await getAllChildren(dispatch, childAge,1);
-                        let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-                        this.closeImportedRealm();
-                            try {
-                                Realm.deleteFile({ path: 'user1.realm' });
-                            } catch (error) {
-                                console.log("error");
-                            }
-                        if (allChildren.length > 0) {
-                            if (childId?.length > 0) {
+                    }
+                });
+                const notiFlagObj = { key: 'generateNotifications', value: true };
+                dispatch(setInfoModalOpened(notiFlagObj));
+                await Promise.all(resolvedPromises).then(async item => {
+                    console.log("item-", item);
+                    const allChildren = await getAllChildren(dispatch, childAge, 1);
+                    let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+                    this.closeImportedRealm();
+                    try {
+                        Realm.deleteFile({ path: 'user1.realm' });
+                    } catch (error) {
+                        console.log("error");
+                    }
+                    if (allChildren.length > 0) {
+                        if (childId?.length > 0) {
                             childId = childId[0].value;
-                            const activeChildData = allChildren.filter((x: any)=>x.uuid == childId);
-                            if(activeChildData.length>0){
-                                 await setActiveChild(langCode,childId, dispatch, childAge,false);
-                                 navigation.navigate('LoadingScreen', {
-                                    apiJsonData: [],
-                                    prevPage: 'ImportScreen'
-                                });
-                                return "Imported";
-                            }
-                            else{
-                                await setActiveChild(langCode, '', dispatch, childAge,false);
+                            const activeChildData = allChildren.filter((x: any) => x.uuid == childId);
+                            if (activeChildData.length > 0) {
+                                await setActiveChild(langCode, childId, dispatch, childAge, false);
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
                                 });
                                 return "Imported";
                             }
-                            }
-                            else{
-                                 await setActiveChild(langCode, '', dispatch, childAge,false);
-                                 navigation.navigate('LoadingScreen', {
+                            else {
+                                await setActiveChild(langCode, '', dispatch, childAge, false);
+                                navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
                                 });
                                 return "Imported";
                             }
-     
                         }
                         else {
-                            return new Error('No Data');
+                            await setActiveChild(langCode, '', dispatch, childAge, false);
+                            navigation.navigate('LoadingScreen', {
+                                apiJsonData: [],
+                                prevPage: 'ImportScreen'
+                            });
+                            return "Imported";
                         }
-                    }).catch(error => {
-                        console.log("error-",error);
-                        return new Error('No Import Succeded');
-                    })
+
+                    }
+                    else {
+                        return new Error('No Data');
+                    }
+                }).catch(error => {
+                    console.log("error-", error);
+                    return new Error('No Import Succeded');
+                })
 
 
-                }
             }
-
+        }
+        else {
+            console.error('Download failed with status code:', downloadres.statusCode);
+            // return null; // Handle the error appropriately
         }
     }
+
 }
+
 
 export const backup = Backup.getInstance();

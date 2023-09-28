@@ -80,6 +80,8 @@ import Share from 'react-native-share';
 import LocalNotifications from '../../services/LocalNotifications';
 import { bgcolorWhite2 } from '@styles/style';
 import { logEvent } from '../../services/EventSyncService';
+import AesCrypto from 'react-native-aes-crypto';
+import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -175,78 +177,100 @@ const SettingScreen = (props: any): any => {
     actionSheetRefImport.current?.setModalVisible(false);
   }
 
-  const exportFile = async (): Promise<any> => {
-    //need to add code.
-    setIsExportRunning(true);
-    const userRealmPath = userRealmCommon.realm?.path;
-    if (!userRealmPath) return false;
-    const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-    // export via file system
-    if (Platform.OS === "android") {
-      const file = await ScopedStorage.openDocumentTree(true);
-      const uri: any = await ScopedStorage.getPersistedUriPermissions();
-      console.log(uri, "..uri");
-      try {
-        const fileDownload: any = await ScopedStorage.writeFile(file.uri, "my.backup", "*/*", realmContent, 'base64', false);
-        const uri1: any = await ScopedStorage.getPersistedUriPermissions();
-        console.log(uri1, "..uri..");
-        console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
-        if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
-          Alert.alert('', t('settingExportSuccess'));
-          setIsExportRunning(false);
-        }
-        else {
-          Alert.alert('', t('settingExportError'));
-          setIsExportRunning(false);
-        }
+  const encryptData = (text: string, key: any): any => {
+    return AesCrypto.encrypt(text, key, encryptionsIVKey, 'aes-256-cbc').then((cipher: any) => ({
+      cipher
+    }));
+  }
+  const decryptData = (text: string, key: any): any => {
+    return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
+  }
+  const exportDataAndroid = async (cipher: string): Promise<any> => {
+    const file = await ScopedStorage.openDocumentTree(true);
+    const uri: any = await ScopedStorage.getPersistedUriPermissions();
+    try {
+      const fileDownload: any = await ScopedStorage.writeFile(file.uri, "mybackup.json", "*/*", JSON.stringify(cipher), 'utf8', false);
+      const uri1: any = await ScopedStorage.getPersistedUriPermissions();
+      console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
+      if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
+        Alert.alert('', t('settingExportSuccess'));
+        setIsExportRunning(false);
       }
-      catch (e: any) {
-        console.log('', e.message);
+      else {
+        Alert.alert('', t('settingExportError'));
         setIsExportRunning(false);
       }
     }
-    else {
-      RNFS.writeFile(tempbackUpPath, realmContent, 'base64').then(async (res: any) => {
-        console.log(res, "..res..")
-        const shareOptions = {
-          title: 'Backup File',
-          url: tempbackUpPath,
-          saveToFiles: true,
-          failOnCancel: false
-        };
-        try {
-          const ShareResponse = await Share.open(shareOptions);
-          setIsExportRunning(false);
-          if (ShareResponse && ShareResponse.success) {
-            Alert.alert('', t('settingExportSuccess'));
-            await RNFS.exists(tempbackUpPath).then((exists) => {
-              console.log(String(exists), "..exists..")
-              if (exists) {
-                RNFS.unlink(tempbackUpPath).then(() => {
-                  //RNFS.scanFile(tempbackUpPath);
-                })
-              }
-            });
-          }
-          else {
-            Alert.alert('', t('settingExportError'));
-          }
-        } catch (error: any) {
-          setIsExportRunning(false);
-          if (error.error && error.error.code === "ECANCELLED500") {
-            console.log("canceled");
-          } else {
-            Alert.alert('', t('settingExportError'));
-          }
+    catch (e: any) {
+      console.log('', e.message);
+      setIsExportRunning(false);
+    }
+  }
+  const exportDataIOS = async (cipher: string): Promise<any> => {
+    RNFS.writeFile(tempbackUpPath, cipher, 'utf8').then(async (res: any) => {
+      console.log(res, "..res..")
+      const shareOptions = {
+        title: 'Backup File',
+        url: tempbackUpPath,
+        saveToFiles: true,
+        failOnCancel: false
+      };
+      try {
+        const ShareResponse = await Share.open(shareOptions);
+        setIsExportRunning(false);
+        if (ShareResponse && ShareResponse.success) {
+          Alert.alert('', t('settingExportSuccess'));
+          await RNFS.exists(tempbackUpPath).then((exists) => {
+            console.log(String(exists), "..exists..")
+            if (exists) {
+              RNFS.unlink(tempbackUpPath).then(() => {
+                //RNFS.scanFile(tempbackUpPath);
+              })
+            }
+          });
         }
-      }).catch((e) => {
-        console.log(e)
+        else {
+          Alert.alert('', t('settingExportError'));
+        }
+      } catch (error: any) {
+        setIsExportRunning(false);
+        if (error.error && error.error.code === "ECANCELLED500") {
+          console.log("canceled");
+        } else {
+          Alert.alert('', t('settingExportError'));
+        }
+      }
+    }).catch((e) => {
+      console.log(e)
+      setIsExportRunning(false);
+      Alert.alert('', t('settingExportError'));
+    });
+  }
+
+  const exportFile = async (): Promise<any> => {
+    //need to add code.
+    setIsExportRunning(true);
+    userRealmCommon.exportUserRealmDataToJson()
+      .then(async (jsonData: any) => {
+        encryptData(JSON.stringify(jsonData), encryptionsKey)
+          .then(async (cipher: any) => {
+            if (Platform.OS === "android") {
+              exportDataAndroid(cipher.cipher);
+            }
+            else {
+              console.log('cipher is',cipher.cipher)
+              exportDataIOS(cipher.cipher);
+            }
+          })
+
+      })
+      .catch(error => {
+        console.error('Error exporting data:', error);
         setIsExportRunning(false);
         Alert.alert('', t('settingExportError'));
       });
 
 
-    }
   }
   const onExportCancel = (): any => {
     setExportAlertVisible(false);
@@ -603,12 +627,26 @@ const SettingScreen = (props: any): any => {
       throw err
     }
   };
-  const importFromSettingsFile = async (): Promise<any> => {
-    if (Platform.OS == "android") {
-      const dataset = await ScopedStorage.openDocument(true, 'base64');
-      console.log(dataset, "..dataset");
-      if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
-        const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, dataset.data, "base64");
+  const importDataAndroid = async (): Promise<any> => {
+    const dataset = await ScopedStorage.openDocument(true, 'utf8');
+    let oldChildrenData: any = []
+    if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
+      if (dataset.name.endsWith(".json")) {
+        const decryptedData = decryptData(dataset.data, encryptionsKey)
+          .then((text: any) => {
+            console.log('decryptData',text)
+            return text;
+          })
+          .catch((error: any) => {
+            console.log("Decrypted error", error);
+            throw error;
+          });
+        await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+        const importedJsonData = JSON.parse(await decryptedData);
+        oldChildrenData = importedJsonData;
+      } else {
+        const base64Dataset = await ScopedStorage.openDocument(true, 'base64');
+        await RNFS.writeFile(tempRealmFile, base64Dataset.data, 'base64');
         let importedrealm = await new Realm({ path: 'user1.realm' });
         if (importedrealm) {
           importedrealm.close();
@@ -616,32 +654,51 @@ const SettingScreen = (props: any): any => {
         importedrealm = await new Realm({ path: 'user1.realm' });
         const user1Path = importedrealm.path;
         console.log(user1Path, "..user1Path")
-        const oldChildrenData = importedrealm.objects('ChildEntity');
-        console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
-        console.log(oldChildrenData, "..newoldChildrenData..")
-        setIsImportRunning(true);
-        if (oldChildrenData.length > 0) {
-          await userRealmCommon.openRealm();
-          await userRealmCommon.deleteAllAtOnce();
-          const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
-          console.log(importResponse, "..importResponse");
-        }
-        setIsImportRunning(false);
-        actionSheetRefImport.current?.setModalVisible(false);
-
+        oldChildrenData = importedrealm.objects('ChildEntity');
       }
-    }
-    else {
-      DocumentPicker.pick({
-        allowMultiSelection: false,
-        type: DocumentPicker.types.allFiles,
-      })
-        .then(async (res: any) => {
 
-          if (res.length > 0 && res[0].uri) {
+      console.log(oldChildrenData, "..newoldChildrenData..")
+      setIsImportRunning(true);
+      if (oldChildrenData.length > 0) {
+        await userRealmCommon.openRealm();
+        await userRealmCommon.deleteAllAtOnce();
+        const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+        console.log(importResponse, "..importResponse");
+      }
+      setIsImportRunning(false);
+      actionSheetRefImport.current?.setModalVisible(false);
+
+    }
+  }
+  const importDataIOS = async (): Promise<any> => {
+    DocumentPicker.pick({
+      allowMultiSelection: false,
+      type: DocumentPicker.types.allFiles,
+    })
+      .then(async (res: any) => {
+        let oldChildrenData: any = []
+        if (res.length > 0 && res[0].uri) {
+          if (res[0].name.endsWith(".json")) {
+            const decryptFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8').then((edata: any) => {
+              return decryptData(edata, encryptionsKey)
+                .then((text: any) => {
+                  console.log('decryptData',text)
+                  return text;
+                })
+                .catch((error: any) => {
+                  console.log("Decrypted error", error);
+                  throw error;
+                });
+            }).catch((error) => {
+              console.error('Error:', error);
+              throw error;
+            });
+            const importedJsonData = JSON.parse(decryptFileContent);
+            await RNFS.writeFile(tempRealmFile, JSON.stringify(importedJsonData), "utf8");
+            oldChildrenData = importedJsonData;
+          } else {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
-            const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
-            console.log(exportedFileContentRealm, "..exportedFileContentRealm..");
+            await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
             let importedrealm = await new Realm({ path: 'user1.realm' });
             if (importedrealm) {
               importedrealm.close();
@@ -649,23 +706,39 @@ const SettingScreen = (props: any): any => {
             importedrealm = await new Realm({ path: 'user1.realm' });
             const user1Path = importedrealm.path;
             console.log(user1Path, "..user1Path")
-            const oldChildrenData = importedrealm.objects('ChildEntity');
-            console.log(oldChildrenData, "..newoldChildrenData..")
-            setIsImportRunning(true);
-            if (oldChildrenData.length > 0) {
-              await userRealmCommon.openRealm();
-              await userRealmCommon.deleteAllAtOnce();
-              const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
-              console.log(importResponse, "..importResponse");
-            }
-            setIsImportRunning(false);
-            actionSheetRefImport.current?.setModalVisible(false);
+            oldChildrenData = importedrealm.objects('ChildEntity');
           }
-        })
-        .catch(handleError);
+          setIsImportRunning(true);
+          if (oldChildrenData.length > 0) {
+            console.log(oldChildrenData.length, "..newoldChildrenData..")
+            await userRealmCommon.openRealm();
+            await userRealmCommon.deleteAllAtOnce();
+            const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+            console.log(importResponse, "..importResponse");
+          }
+          setIsImportRunning(false);
+          actionSheetRefImport.current?.setModalVisible(false);
+        }
+
+      })
+      .catch(handleError);
+  }
+  const importFromSettingsFile = async (): Promise<any> => {
+    if (Platform.OS == "android") {
+      importDataAndroid();
+    }
+    else {
+      importDataIOS();
     }
 
   }
+
+
+
+
+
+
+
   return (
     <>
       <View style={[styles.flex1, { backgroundColor: primaryColor }]}>
