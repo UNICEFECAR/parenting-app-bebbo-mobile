@@ -235,23 +235,6 @@ const Terms = ({ navigation }: Props): any => {
                   </CheckboxItem>
                    <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={styles.checkboxStyle}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
                 </FormOuterCheckbox>
-                <FormOuterCheckbox
-                  onPress={(): any => {
-                    setToggleCheckBox2(!toggleCheckBox2);
-                  }}>
-                  <CheckboxItem>
-                    <View>
-                      {toggleCheckBox2 ? (
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#fff" />
-                        </CheckboxActive>
-                      ) : (
-                        <Checkbox></Checkbox>
-                      )}
-                    </View>
-                  </CheckboxItem>
-                  <LabelText>{t('tNccheckbox3')}</LabelText>
-                </FormOuterCheckbox>
               </View>
             </Fragment>
           </ScrollView>
