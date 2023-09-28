@@ -24,7 +24,6 @@ const UZuz = {
               tNccheckbox1: "Bebbo ilovasi foydalanish shartlarini oʻqib chiqdim, tushundim va roziman",
               tNccheckbox2: "Oʻqib chiqdim, tushundim va roziman",
               tNcprivacyPolicy: "Bebbo ilovasi Maxfiylik Siyosati",
-              tNccheckbox3: "Ilovadan foydalanishim haqidagi anonim maʼlumotlar Bebbo ilovasini yaxshilash uchun toʻplanishiga roziman (bu majburiy emas)",
               tNcprivacyPolicyTitle: "Maxfiylik siyosati",
               tNcacceptbtn: "Foydalanish shartlariga roziman",
               loadingText: "Maʼlumotlar yuklanmoqda…",

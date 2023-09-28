@@ -24,7 +24,6 @@ const ALsq = {
               tNccheckbox1: "Unë kam lexuar, kuptuar dhe pranuar Termat dhe Kushtet e aplikacionit Bebbo",
               tNccheckbox2: "Unë kam lexuar, kuptuar dhe pranuar",
               tNcprivacyPolicy: "Politikën e Privatësisë së të dhënave për aplikacionin Bebbo",
-              tNccheckbox3: "Unë pranoj që të dhënat e mia anonime mbi përdorimin e aplikacionit do të përdoren për të përmirësuar aplikacionin Bebbo (nuk është e detyrueshme)",
               tNcprivacyPolicyTitle: "Politika e Privatësisë së të dhënave",
               tNcacceptbtn: "Unë pranoj Termat dhe Kushtet",
               loadingText: "Të dhënat po ngarkohen",
