@@ -68,17 +68,17 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   hbMenuView: {
-    backgroundColor: bgcolortransparent, 
-    height: '100%', 
-    opacity: 0.5, 
-    position: 'absolute', 
-    width: '100%', 
+    backgroundColor: bgcolortransparent,
+    height: '100%',
+    opacity: 0.5,
+    position: 'absolute',
+    width: '100%',
     zIndex: 2
   },
   hbPressable: {
-    backgroundColor: bgcolortransparent, 
-    height: '100%', 
-    position: 'relative', 
+    backgroundColor: bgcolortransparent,
+    height: '100%',
+    position: 'relative',
     width: '100%'
   },
   heading5Fontwg: {
@@ -114,17 +114,17 @@ const styles = StyleSheet.create({
     paddingTop: 7
   },
   sortedChildListView: {
-    backgroundColor: bgcolortransparent, 
-    height: 'auto', 
-    maxHeight: 150, 
-    minHeight: 100, 
-    position: 'relative', 
-    width: "100%", 
+    backgroundColor: bgcolortransparent,
+    height: 'auto',
+    maxHeight: 150,
+    minHeight: 100,
+    position: 'relative',
+    width: "100%",
     zIndex: 9999
   }
 });
 const HeaderBabyMenu = (props: any): any => {
-  const {setProfileLoading}=props;
+  const { setProfileLoading } = props;
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const genders = useAppSelector(
@@ -237,7 +237,7 @@ const HeaderBabyMenu = (props: any): any => {
                       setTimeout(async () => {
                         const setData = await setActiveChild(languageCode, data.uuid, dispatch, childAge, true);
                         if (setData == "activeset") {
-                        setProfileLoading(false);
+                          setProfileLoading(false);
                         }
                       }, 0);
                     }}>
@@ -289,23 +289,7 @@ const HeaderBabyMenu = (props: any): any => {
           ) : null}
 
           <ButtonContainer>
-            <ShiftFromBottom10>
-              <ButtonLinkPress
-                onPress={(): any => {
-                  setModalVisible(false);
-                  navigation.navigate('EditChildProfile', { childData: null })
-                }
-                }>
-                <OuterIconRow>
-                  <OuterIconLeft>
-                    <Icon name="ic_plus" size={20} color="#000" />
-                  </OuterIconLeft>
-                  <ButtonTextLine numberOfLines={2}>
-                    {t('childSetupListaddSiblingBtn')}
-                  </ButtonTextLine>
-                </OuterIconRow>
-              </ButtonLinkPress>
-            </ShiftFromBottom10>
+
 
             <ButtonPrimary
               onPress={(): any => {
