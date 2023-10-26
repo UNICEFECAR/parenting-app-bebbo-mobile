@@ -83,7 +83,7 @@ git clone https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
 ```
 2. Install NPM packages (DO NOT USE yarn!)
 ```sh
-npm install
+npm install --legacy-peer-deps 
 ```
 3. Only on Mac, go to "ios" folder, and run
 ```sh
