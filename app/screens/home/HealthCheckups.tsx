@@ -54,6 +54,7 @@ const HealthCheckups = ({navigation,route}: Props):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
+  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
   const {
     upcomingPeriods,
@@ -258,23 +259,29 @@ const HealthCheckups = ({navigation,route}: Props):any => {
               {data.map((item, itemindex) => {
                 return (
                   <Pressable
-                    key={itemindex}
-                    style={styles.flex1}
-                    onPress={():any => {
-                      setSelectedIndex(itemindex);
-                    }}>
-                    <TabBarDefault 
-                      style={[
-                        {
-                          backgroundColor:
-                            itemindex == selectedIndex
-                              ? headerColor
-                              : backgroundColor,
-                        },
-                      ]}>
-                      <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>
-                    </TabBarDefault>
-                  </Pressable>
+                  key={itemindex}
+                  style={[styles.flex1, {
+                    backgroundColor:
+                      itemindex == selectedIndex
+                        ? tabBackgroundColor
+                        : backgroundColor,
+                  }]}
+                  onPress={(): any => {
+                    setSelectedIndex(itemindex);
+                  }}>
+                  <TabBarDefault
+                    style={[
+                      {
+                        backgroundColor:
+                          itemindex == selectedIndex
+                            ? tabBackgroundColor
+                            : headerColor,
+                      },
+                    ]}>
+                    {itemindex == selectedIndex ? <Heading4Centerr numberOfLines={2}>{item.title}</Heading4Centerr>
+                      : <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>}
+                  </TabBarDefault>
+                </Pressable>
                 );
               })}
             </TabBarContainer>
