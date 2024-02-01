@@ -1,5 +1,5 @@
-export const ActivitiesData:any = {
-    "en":[
+export const ActivitiesData: any = {
+    "en": [
         {
             "id": 7571,
             "type": "Games",
@@ -301,7 +301,7 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    "ru":[
+    "ru": [
         {
             "id": 7656,
             "type": "Games",
@@ -603,7 +603,7 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    "al-sq":[
+    "al-sq": [
         {
             "id": 7606,
             "type": "Games",
@@ -1509,7 +1509,7 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    "bg-bg":[
+    "bg-bg": [
         {
             "id": 7571,
             "type": "Games",
@@ -1811,7 +1811,7 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    "gr-el":[
+    "gr-el": [
         {
             "id": 7631,
             "type": "Games",
@@ -4529,7 +4529,7 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    "rs-en":[
+    "rs-en": [
         {
             "id": 7656,
             "type": "Games",
@@ -4831,7 +4831,7 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    "tj-tg":[
+    "tj-tg": [
         {
             "id": 7306,
             "type": "Games",
@@ -5435,7 +5435,7 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    "uk":[
+    "uk": [
         {
             "id": 7511,
             "type": "Games",
@@ -5939,7 +5939,7 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    "uz-ru":[
+    "uz-ru": [
         {
             "id": 7406,
             "type": "Games",
@@ -6241,5 +6241,307 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    
+    "sk": [
+        {
+            "id": 7656,
+            "type": "Games",
+            "title": "Povedz moje meno",
+            "created_at": "Sat, 07/29/2023 - 16:06",
+            "updated_at": "Fri, 09/01/2023 - 13:11",
+            "summary": "Čo potrebujete: NičČo môžete spoločne robiť: Na realizáciu tejto aktivity stačí, ak svoje dieťa položíte na chrbát na mäkký povrch, napríklad na mäkkú podložku, do postieľky alebo na posteľ. Začnite sa so svojim dieťaťom rozprávať, aby ste upútali jeho pozornosť. Keď ste si ju získali, môžete sa mu prihovárať/ zaspievať alebo zarecitovať napríklad nasledovné verše:     „Kde je (meno Vášho dieťaťa)“    „Kde je (meno Vášho dieťaťa)?“    „Tu je! Tu je!“",
+            "body": "<p><strong>Čo potrebujete: </strong>Nič</p><p><strong>Čo môžete spoločne robiť: </strong>Na realizáciu tejto aktivity stačí, ak svoje dieťa položíte na chrbát na mäkký povrch, napríklad na mäkkú podložku, do postieľky alebo na posteľ. Začnite sa so svojim dieťaťom rozprávať, aby ste upútali jeho pozornosť. Keď ste si ju získali, môžete sa mu prihovárať/ zaspievať alebo zarecitovať napríklad nasledovné verše:</p><p><em>     „Kde je (meno Vášho dieťaťa)“</em></p><p><em>    „Kde je (meno Vášho dieťaťa)?“</em></p><p><em>    „Tu je! Tu je!“</em></p><p>Potom môžete verše obmieňať - spievať alebo rozprávať ju napr. nahlas a potichu, pomaly a rýchlo. Ďalším spôsobom, ako pomôcť dieťaťu rozpoznávať svoje meno, Váš hlas a miesto odkiaľ prichádza zvuk je spievať alebo prihovárať sa mu z rôznych strán a miest pri posteli napr. na jednej alebo druhej strane postele, pri nohách postele, pri vankúšoch a pod. Prihovárajte, spievajte podobnú pesničku s menom svojho dieťaťa a opakujte ju, kým sa za Vami neotočí a nepozrie sa, kde ste. Na záver vždy povedzte svojmu dieťaťu: „Ľúbim ťa (meno dieťaťa)!“ a dajte mu malú pusu.</p><p><strong>Čo sa Vaše dieťa učí: </strong>Táto aktivita môže pomôcť Vášmu dieťaťu začať rozpoznávať svoje meno a používať pohyby tela (napr. otočenie sa) ako reakciu na známe slová.</p><p> </p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                45
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2022-01/say-my-name-cover-image.jpg?itok=yK6DBuDc",
+                "name": "say-my-name-cover-image.jpg",
+                "alt": "A child laying on his or her back with a focussed expression on his or her face "
+            },
+            "related_milestone": [
+                2641
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7631,
+            "type": "Games",
+            "title": "Moje prvé pretočenie sa",
+            "created_at": "Fri, 07/28/2023 - 01:40",
+            "updated_at": "Fri, 09/01/2023 - 13:12",
+            "summary": "Čo potrebujete: NičČo môžete spoločne robiť: Deti postupne skúmajú a spoznávajú svoje telo a začínajú koordinovať pohyby, ktoré im umožňujú objavovať svet. Prvým vedomým pohybom do priestoru je pretočenie z chrbáta na brucho. Ponúknite Vášmu dieťaťu nasledovnú aktivitu, ktorou môžete podporiť pretáčanie z chrbáta cez oba boky na brucho. ",
+            "body": "<p><strong>Čo potrebujete: </strong>Nič</p><p><strong>Čo môžete spoločne robiť: </strong>Deti postupne skúmajú a spoznávajú svoje telo a začínajú koordinovať pohyby, ktoré im umožňujú objavovať svet. Prvým vedomým pohybom do priestoru je pretočenie z chrbáta na brucho. </p><p>Ponúknite Vášmu dieťaťu nasledovnú aktivitu, ktorou môžete podporiť pretáčanie z chrbáta cez oba boky na brucho. </p><p>Položte Vaše dieťa na chrbát na mäkký povrch, napríklad na posteľ. Dotknite sa najprv jeho chodidiel, ponúknite im oporu Vašimi dlaňami. Možno pocítite, ako Vám Vaše dieťa zatlačí nohami do dlaní, možno pri tejto hre zodvihne svoje nohy vyššie nad podložku. Jednu nohu mu jemne vezmite do dlaní a nasmerujte jej pohyb tak, aby prekrížila druhú nohu. Potom prestriedajte strany. Vaše dieťa bude prenášať váhu z jednej strany na druhú. Zopakujte to niekoľkokrát a potom skúste viesť tento pohyb tak, aby sa Vaše dieťa pretočilo až sa na bok. Pomôžte mu pritom druhou rukou, ktorú dajte pod panvu a jemne ju z jednej strany podvihnite. Po chvíľke oddychu mu môžte dotykom na panve a chrbátiku pomôcť pretočiť sa až na brucho. Počas cvičenia môžete recitovať nejakú básničku:</p><p><em>     Gúľalo sa gúľalo, to červené jabĺčko, </em></p><p><em>     Gúľalo sa gúľalo, k našim deťom ľahúčko. </em></p><p>Všetky pohyby robte veľmi plynulo a jemne, s cvičením začnite až vtedy, keď Vaše dieťa vie udržať pri pretáčaní hlavičku.</p><p>Pretáčanie zopakujte po oddychu aj na druhú stranu.</p><p><strong>Čo sa Vaše dieťa učí: </strong>Ukážte Vášmu dieťaťu cestu, akou sa môže pretočiť z chrbta na brucho. O niekoľko mesiacov, keď svoje pohyby skoordinuje, to zvládne aj samé.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                44
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=hrrZ8Qz7",
+                "name": "my_first_turns-cover-picture.jpg",
+                "alt": "A child turning from back to tummy"
+            },
+            "related_milestone": [
+                2601
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7571,
+            "type": "Games",
+            "title": "Lietajúca predstavivosť",
+            "created_at": "Thu, 07/27/2023 - 01:53",
+            "updated_at": "Fri, 09/01/2023 - 13:09",
+            "summary": "Čo potrebujete: NičČo môžete spoločne robiť: Nechajte deti predstaviť si, aké by to bolo lietať. Kam by ste išli? Koho by ste videli? Ako rýchlo by ste cestovali?Deti by si mohli predstaviť, aké by to bolo navštíviť Mesiac, alebo by možno využili svoje lietajúce schopnosti na konanie dobra, napríklad na záchranu zvierat, ktoré uviazli na vysokých miestach.",
+            "body": "<p><strong>Čo potrebujete: </strong>Nič</p><p><strong>Čo môžete spoločne robiť: </strong>Nechajte deti predstaviť si, aké by to bolo lietať. Kam by ste išli? Koho by ste videli? Ako rýchlo by ste cestovali?</p><p>Deti by si mohli predstaviť, aké by to bolo navštíviť Mesiac, alebo by možno využili svoje lietajúce schopnosti na konanie dobra, napríklad na záchranu zvierat, ktoré uviazli na vysokých miestach.</p><p>Nezabudnite skúmať detaily - ako si myslíte, že vonia vzduch vo výške 5000 metrov? Aký je to pocit na Vašej pokožke? Neexistujú žiadne nesprávne odpovede, fantázia nemá hranice! Vedeli ste, že najrýchlejším vtákom na svete je sokol sťahovavý? Tieto brilantné vtáky môžu dosiahnuť rýchlosť až 390 km za hodinu!</p><p><strong>Čo sa Vaše dieťa učí: </strong>Deťom s veľkou predstavivosťou sa bude páčiť, keď popustia uzdu svojej fantázii a predstavia si, aké by to bolo lietať! Táto aktivita je zameraná na komunikáciu, pretože Vaše dieťa sa naučí vyjadrovať svoje myšlienky, pocity a predstavy o lietaní.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                58
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=5vaEj2LH",
+                "name": "flying_imagination-cover-picture.jpg",
+                "alt": "Illustration of Flying imagination"
+            },
+            "related_milestone": [
+                7131
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7511,
+            "type": "Games",
+            "title": "Lov na farby",
+            "created_at": "Wed, 07/26/2023 - 21:18",
+            "updated_at": "Fri, 09/01/2023 - 13:10",
+            "summary": "Čo potrebujete: Malé predmety, každý inej farby (napríklad červená ponožka, oranžový pomaranč a pod).Čo môžete spoločne robiť: Zavolajte Vaše dieťa, aby si s Vami zahralo hru \"Lov na farby\". \"Pozri sa! Tu je červená ponožka. Nájdeš nejaké ďalšie veci, ktoré majú červenú farbu? Poďme hľadať spolu!\" Preskúmajte Váš byt alebo sa vydajte \"na lov\" do prírody. Často pri hre pomenúvajte jednotlivé farby.  ",
+            "body": "<p><strong>Čo potrebujete: </strong>Malé predmety, každý inej farby (napríklad červená ponožka, oranžový pomaranč a pod).</p><p><strong>Čo môžete spoločne robiť: </strong>Zavolajte Vaše dieťa, aby si s Vami zahralo hru \"Lov na farby\". \"Pozri sa! Tu je <em>červená </em>ponožka. Nájdeš nejaké ďalšie veci, ktoré majú <em>červenú </em>farbu? Poďme hľadať spolu!\" Preskúmajte Váš byt alebo sa vydajte \"na lov\" do prírody. Často pri hre pomenúvajte jednotlivé farby.  </p><p>Keď už Vaše dieťa pozná základné farby (červená, modrá, zelená), zahrňte do hľadania ďalšie (fialovú, oranžovú a hnedú atď).</p><p>Neskôr môžete hru pozmeniť tak, že poviete dieťaťu, aby hľadalo predmety nejakej farby, ale už mu neukážte malý farebný predmet ako predlohu. Prípadne sa dieťaťa spýtajte, akú farbu by teraz chcelo hľadať.</p><p>Pomôžte dieťaťu naučiť sa pomenúvať farby tak, že budete používať ich názvy v každodenných rozhovoroch (pri varení: \"Teraz ošúpem tieto žlté banány\" alebo pri obliekaní: \"Poďme nájsť to fialové tričko, ktoré si dnes oblečieš.\")</p><p><strong>Čo sa Vaše dieťa učí: </strong>Rozlišovanie a poznanie farieb je dôležitou súčasťou školskej pripravenosti. Dieťa sa učí, že predmety môžu vyzerať rôzne, ale môžu mať rovnakú farbu a aj to, že podobné predmety (napr. čiapky) môžu mať rôzne farby.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                57
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=59xQEN1V",
+                "name": "@Cory Woodward",
+                "alt": "Child facing the coloured road"
+            },
+            "related_milestone": [
+                7061
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7306,
+            "type": "Games",
+            "title": "Hľadať zvuk",
+            "created_at": "Wed, 07/26/2023 - 12:13",
+            "updated_at": "Fri, 09/01/2023 - 13:09",
+            "summary": "Čo potrebujete: Nič",
+            "body": "<p><strong>Čo potrebujete: </strong>Nič</p><p><strong>Čo môžete spoločne robiť: </strong>Deti radi opakujú jednouché zvuky, ktoré bežne používate. Všetko, čo musíte urobiť, je zastaviť sa a dobre počúvať, aby ste zachytili všetky zvuky v miestnosti alebo zvuky okolo Vás. Zostaňte chvíľu ticho a povzbudzujte svoje dieťa, aby urobilo to isté. Povedzte „ššššš, počuješ, čo to bol za zvuk?“ a potom ukážte na Vaše uši. Zvyčajne vieme zachytiť rôzne zvuky ako napríklad: búchanie, bzučanie hmyzu, kňučanie alebo štekanie psa, vŕzganie dverí, hrkanie, škriabanie po podlahe, húkanie sanitky, trúbenie auta, škrekot vtákov a podobne. Povzbudzujte dieťa aby po Vás zvuky napodobňovalo, môžete povedať: „Počujem, ako hodiny tikajú, počujem autobus, počujem výťah.“ Použite veľa zaujímavých slov, na pomenovanie zvukov aj keď im Vaše dieťa ešte nerozumie.  </p><p>Ak je dieťa staršie, môžete tiež položiť otázku „Kde by som mohol nájsť tento zvuk?\" (potom ho napodobnite). Nechajte ho vychutnať si pocit, že niečo uhádlo, lebo tak si vytvára spojenie medzi zvukom a objektom, ktorý ho vytvára a jeho názvom. Týmto spôsobom sa jazyk a slovná zásoba dieťaťa obohacuje.</p><p>Túto aktivitu môžete využiť prakticky v každej životnej situácii - počas voľného hrania a voľného času, ale aj pri každodenných rutinách - obliekaní, príprave jedál, hygiene, nakupovaní, chôdzi, šoférovaní a čakaní na autobus alebo pri státi v rade v banke, pošte alebo u lekára.</p><p><strong>Čo sa Vaše dieťa učí: </strong>Vaše dieťa sa teší na aktivity s Vami a pri spoločnom hraní napodobňuje výrazy tváre, gestá a niektoré aktivity blízkych ľudí, ukazovákom ukazuje na to, čo ho zaujíma, alebo ponúka veci iným ľuďom, aby ich zaujalo a zapojilo ich do hry. Táto činnosť buduje jeho slovnú zásobu a poznanie sveta. Nechajte svoje dieťa preskúmať okolie a povie Vám, čo počuje, dokonca aj džavotaním alebo jednoduchými slovami.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                49
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/ART_3230.JPG?itok=Pq51mhvc",
+                "name": "Vodič za roditelje",
+                "alt": "Potraga za zvukom"
+            },
+            "related_milestone": [
+                3021
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7606,
+            "type": "Games",
+            "title": "Pozri sa na svoju loptu",
+            "created_at": "Mon, 07/24/2023 - 02:39",
+            "updated_at": "Fri, 09/01/2023 - 13:07",
+            "summary": "Čo potrebujete: Loptu, podložku.Čo môžete spoločne robiť: Pripravte si najskôr prostredie, v ktorom budete vykonávať túto aktivitu. Vyberte si miestnosť, v ktorej nie je veľa rušivých elementov, podložku položte na zem alebo na veľkú posteľ. Vaše dieťa položte na brucho na podložku a sadnite si na podložku tvárou k nemu.",
+            "body": "<p><strong>Čo potrebujete: </strong>Loptu, podložku.</p><p><strong>Čo môžete spoločne robiť: </strong>Pripravte si najskôr prostredie, v ktorom budete vykonávať túto aktivitu. Vyberte si miestnosť, v ktorej nie je veľa rušivých elementov, podložku položte na zem alebo na veľkú posteľ. Vaše dieťa položte na brucho na podložku a sadnite si na podložku tvárou k nemu.</p><p>Rozprávajte sa s dieťatkom, snažte sa upútať jeho pozornosť, spočiatku si k nemu môžete aj ľahnúť na brucho. Potom vezmite loptičku a položte ju pred tvár Vášho dieťaťa. Pomaly ju kotúľajte z jednej strany na druhú, tak aby ju Vaše dieťa mohlo pozorovať očami. Pokračujte, kým Vaše dieťa nestratí záujem, alebo kým neuvidíte, že je unavené.</p><p>Ak Vaše dieťa ešte nedokáže zdvihnúť hlavu tak, aby mohlo pozorovať pohybujúcu sa loptu, môžete si k nemu ľahnúť na zem na brucho, tvárou v tvár a prihovárať sa mu. Vaša prítomnosť a plná pozornosť ho podporí v tom, aby zotrvalo v polohe na bruchu dlhšie, ako by to zvládlo bez Vás.</p><p><strong>Čo sa Vaše dieťa učí: </strong>Pri tejto aktivite sa podporuje poloha na bruchu, ktorá je dôležitým východiskom pre všetky pohybové vzorce, ktoré Vaše dieťa neskôr objaví. Stimuluje sa zrak a rozvíja sa schopnosť pozorovať pohybujúce sa predmety očami, čo je potrebná zručnosť pre koordináciu ruky a očí.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                43
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.jpg?itok=SF_Uixzh",
+                "name": "@Spencer Selover",
+                "alt": "A new-born baby looking attentively somewhere"
+            },
+            "related_milestone": [
+                2556
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7671,
+            "type": "Games",
+            "title": "Pohyby vedené hudbou",
+            "created_at": "Mon, 07/24/2023 - 01:36",
+            "updated_at": "Fri, 09/01/2023 - 13:07",
+            "summary": "Čo potrebujete: Hudbu s rôznymi rytmami, drevenú varešku, lyžičku alebo paličku. Čo môžete spoločne robiť: Pripravte si hudbu s rôznymi rytmami, ktorú budete s Vašim dieťaťom počúvať.Môžete držať Vaše dieťa v náručí a tancovať s ním v rytme hudby. Môžete sa pohybovať po celom dome a užívať si spoločný pohyb s dieťaťom. Potom si môžete spolu pohodlne sadnúť na podlahu a sledovať rytmus hudby, pričom môžete búchať do podlahy drevenou vareškou alebo rukami. Pozvite Vaše dieťa, aby sa k Vám pridalo a napodobnilo Vaše pohyby. ",
+            "body": "<p><strong>Čo potrebujete: </strong>Hudbu s rôznymi rytmami, drevenú varešku, lyžičku alebo paličku. </p><p><strong>Čo môžete spoločne robiť: </strong>Pripravte si hudbu s rôznymi rytmami, ktorú budete s Vašim dieťaťom počúvať.</p><p>Môžete držať Vaše dieťa v náručí a tancovať s ním v rytme hudby. Môžete sa pohybovať po celom dome a užívať si spoločný pohyb s dieťaťom. Potom si môžete spolu pohodlne sadnúť na podlahu a sledovať rytmus hudby, pričom môžete búchať do podlahy drevenou vareškou alebo rukami. Pozvite Vaše dieťa, aby sa k Vám pridalo a napodobnilo Vaše pohyby. </p><p>Vaše dieťa nebude zatiaľ pri búchaní dodržiavať rytmus, ale bude to pre neho zoznámenie sa s rytmikou, ktrorú v sebe a vo svojich pohyboch objaví neskôr.</p><p>Ak si nemôžete pustiť hudbu, môžete spievať a pri speve tancovať a búchať rytmicky do podlahy.</p><p><strong>Čo sa Vaše dieťa učí: </strong>Touto aktivitou pomôžete svojmu dieťaťu rozvíjať vnímanie rytmu, prepojiť ho s pohybom a umožníte mu zažiť polohu sedu s optimálnou oporou.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                46
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/musical_movements-cover-picture.png?itok=iGWnVtyG",
+                "name": "musical_movements-cover-picture.png",
+                "alt": "A mother is holding the child in her arms imitating dancing"
+            },
+            "related_milestone": [
+                2696
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7426,
+            "type": "Games",
+            "title": "Môj malý pomocník",
+            "created_at": "Sat, 07/22/2023 - 23:49",
+            "updated_at": "Fri, 09/01/2023 - 13:06",
+            "summary": "Čo potrebujete: Objekty každodennej potreby alebo iné veci používané v každodennom živote. Napríklad čisté vyprané oblečenie, hračky alebo iné objekty, s ktorými sa dieťa hralo, lyžice, nerozbitné poháre alebo iné nerozbitné riady, objekty v záhrade, napríklad listy na zemi.",
+            "body": "<p><strong>Čo potrebujete: </strong>Objekty každodennej potreby alebo iné veci používané v každodennom živote. Napríklad čisté vyprané oblečenie, hračky alebo iné objekty, s ktorými sa dieťa hralo, lyžice, nerozbitné poháre alebo iné nerozbitné riady, objekty v záhrade, napríklad listy na zemi.</p><p><strong>Čo môžete spoločne robiť: </strong>Prizvite Vaše dieťa, aby bolo \"Vaším malým pomocníkom\". Povedzte mu: \"Potrebujem tvoju pomoc pri ukladaní týchto ponožiek. Niektoré pôjdu do skrine sestričky, niektoré do tvojej. Môžeš ich, prosím, zobrať a odložiť? Ó, ako veľmi mi pomáhaš. Ďakujem!\"</p><p>Tento druh aktivity môže byť súčasťou Vašej každodennej rutiny s rôznymi objektmi a úlohami. </p><p><strong>Čo sa Vaše dieťa učí: </strong>Vaše dieťa sa učí spolupracovať a pomáhať druhým, čo robí ostatných aj dieťa šťastnými. Vaše dieťa sa tiež učí nasledovať jednoduché požiadavky a spoznáva názvy rôznych objektov. Môže sa tiež učiť triediť alebo zoskupovať veci, napríklad môžete požiadať dieťa, aby našlo všetky veľmi malé ponožky a dalo ich na jednu hromadu a väčšie ponožky na inú hromadu. Urobte túto aktivitu zábavnou a príjemnou, nie ako skúšku jeho schopností.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                52
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=G0NjesNG",
+                "name": "@Phillip Goldsberry",
+                "alt": "Children helping their parents"
+            },
+            "related_milestone": [
+                6976
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7406,
+            "type": "Games",
+            "title": "Pozrime si spolu knihu",
+            "created_at": "Sat, 07/22/2023 - 23:16",
+            "updated_at": "Fri, 09/01/2023 - 13:06",
+            "summary": "Čo potrebujete: Jednu alebo viac obrázkových kníh (ak nemáte obrázkové knihy, môžete si vytvoriť jednoduchú knihu nalepením obrázkov z časopisov do prázdneho zošita alebo môžete jednoduché obrázky do zošita nakresliť)",
+            "body": "<p><strong>Čo potrebujete: </strong>Jednu alebo viac obrázkových kníh (ak nemáte obrázkové knihy, môžete si vytvoriť jednoduchú knihu nalepením obrázkov z časopisov do prázdneho zošita alebo môžete jednoduché obrázky do zošita nakresliť)</p><p><strong>Čo môžete spoločne robiť: </strong>Prezeranie obrázkových kníh je činnosť, ktorá Vaše dieťa v tomto veku bude zaujímať, rozvíjať a tešiť. Počas čítania alebo rozprávania o obrázkoch povzbudzujte dieťa, aby otáčalo stránky. Urobte to zaujímavé a vzrušujúce: napríklad: \"Uvidíme, kam teraz pôjde mačka. Môžeš otočiť stránku?\" Ukážte dieťaťu ako má stránku otočiť a v prípade potreby veďte jeho ruku. Môžete povedať: \"Ďakujem, že si otočil/a stránku. Teraz vidíme, že mačka je na strome!\" Keď má Vaše dieťa o knihy záujem a dokáže otáčať stránky, zaraďte túto aktivitu do každodennej rutiny. Možno si všimnete, že Vaše dieťa chce strany v knihách a časopisoch otáčať samostatne.</p><p><strong>Čo sa Vaše dieťa učí: </strong>Pri otáčaní stránok v knihe si dieťa trénuje jemnú motoriku. Myslenie Vášho dieťaťa sa posilňuje aj tým, že si vytvára súvislosti medzi tým, čo je na stranách a krokom otočenia, aby si pozrelo nový obrázok.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                51
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=Ho_bSe-d",
+                "name": "@cottonbro",
+                "alt": "A child looking at a book"
+            },
+            "related_milestone": [
+                5861
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7231,
+            "type": "Games",
+            "title": "Čítanie s dieťaťom",
+            "created_at": "Sat, 07/22/2023 - 17:33",
+            "updated_at": "Fri, 09/01/2023 - 13:07",
+            "summary": "Čo potrebujete: Detská kniha (látková alebo s pevnou väzbou, pestrofarebné obrázky a hmatové prvky). Ak žiadnu knihu nemáte, môžete použiť obyčajný papier preložený na polovicu, na ktorý môžete nakresliť niekoľko farebných obrázkov alebo tvarov.",
+            "body": "<p><strong>Čo potrebujete: </strong>Detská kniha (látková alebo s pevnou väzbou, pestrofarebné obrázky a hmatové prvky). Ak žiadnu knihu nemáte, môžete použiť obyčajný papier preložený na polovicu, na ktorý môžete nakresliť niekoľko farebných obrázkov alebo tvarov.</p><p><strong>Čo môžete spoločne robiť: </strong> Položte si dieťa na kolená, aby ste sa mohli na knihu pozerať spoločne, ale zároveň aby ste videli do tváre dieťaťa. Položte si knihu tak, aby ste na ňu videli a potom ju mohli čítať! Môžete opísať, čo je na obrázku, alebo o ňom porozprávať príbeh, ukazovať prstom na obrázky a pomenovať ich. Používajte krátke a jednoduché vety. Často meňte tón hlasu, hovorte tichšie, potom naopak hovorte prekvapene a nahlas a pod...</p><p>Je dôležité aby dieťa videlo Vaše meniace sa výrazy tváre, Vy pozorujte jeho reakcie a skúste mu pomenovať to, čo sa mu podľa Vás páči alebo nepáči. Dovoľte mu, aby sa knihy dotýkalo, dávalo si ju do úst (ak je to bezpečné) a skúmalo ju aj inými spôsobmi. Ak dieťa počas čítania vydáva zvuky, nechajte ho \"čítať\" si tiež. Počúvajte ho a reagujte opakovaním jeho zvukov, kladením otázok a chválením. Keď si všimnete, že dieťa už nemá záujem - odvráti pohľad alebo protestuje iným spôsobom - trpezlivo počkajte, kým sa jeho pozornosť vráti ku knihe a pokračujte. Ak ho kniha už nezaujíma, vráťte sa k nej neskôr. </p><p><strong>Čo sa Vaše dieťa učí: </strong>Spoločné čítanie a prezeranie kníh je dôležité pre rozvoj komunikačných schopností a jazyka Vášho dieťaťa.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                47
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=1FI9_YIw",
+                "name": "@Elisabeth Wales",
+                "alt": "A mother looking at the book with her baby"
+            },
+            "related_milestone": [
+                2791
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7346,
+            "type": "Games",
+            "title": "Poďme von a rozprávajme sa!",
+            "created_at": "Sat, 07/22/2023 - 17:11",
+            "updated_at": "Fri, 09/01/2023 - 13:09",
+            "summary": "Čo potrebujete: Nič",
+            "body": "<p><strong>Čo potrebujete: </strong>Nič</p><p><strong>Čo môžete spoločne robiť: </strong>V tomto veku sa jazyk Vášho dieťaťa rýchlo rozvíja. Čoraz viac si rozumiete! Dávajte Vášmu dieťaťu doma veľa príležitostí využiť zvuky a slová, ktoré pozná. Ak je to možné, umožnite dieťaťu komunikovať aj s inými ľuďmi, či už ide o starých rodičov (osobne alebo prostredníctvom videohovorov), susedov alebo predavačov v obchode. Postupne sa Vaše dieťa môže pokúsiť týmto dospelým niečo samostatne povedať. Pomôžete dieťaťu tým, že mu budete klásť otázky - napríklad: \"Aha, tu je nejaké ovocie. Aké ovocie si kúpime?\" Ak Vaše dieťa zareaguje niekoľkými slovami, zopakujte ich po ňom v správnej forme a nejaké ďalšie slovo k tomu pridajte. Nechajte dieťa vypýtať si ovocie od predavača. Takéto skúsenosti môže dieťa naberať rôznymi inými spôsobmi. Pre Vaše dieťa je veľmi prínosné a podporné, ak sa dohovorí s niekým cudzím a tiež to že mu cudzia osoba rozumie.</p><p><strong>Čo sa Vaše dieťa učí: </strong>Vaše dieťa si takto rozvíja jazykové a komunikačné zručnosti. Stáva sa taktiež sebavedomejším v sociálnych situáciách. Vaša podpora posilňuje jeho pocit sebaistoty a pohodlia v nových situáciách.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                50
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=qE31flxF",
+                "name": "@Hero Images",
+                "alt": "Grandparents doing a videocall with their granddaughter"
+            },
+            "related_milestone": [
+                2876
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7246,
+            "type": "Games",
+            "title": "Kto je táto osoba?",
+            "created_at": "Sat, 07/22/2023 - 16:09",
+            "updated_at": "Fri, 09/01/2023 - 13:06",
+            "summary": "Čo potrebujete: Tentokrát nepotrebujete nič špeciálneČo môžete spoločne robiť: Možno Vás prekvapí, že v tomto veku sa Vaše dieťa zrazu začne báť, hanbiť alebo sa cíti nesvoje pri stretnutí s ľuďmi, ktorých nepozná. Predtým sa možno Vaše dieťa na všetkých usmievalo. Je to ďalší krok vo vývine Vášho dieťaťa. Ukazuje to, že Vaše dieťa rozpoznáva osoby a vníma rozdiel medzi vami - jeho dôležitými a blízkymi ľuďmi a všetkými ostatnými.",
+            "body": "<p><strong>Čo potrebujete: </strong>Tentokrát nepotrebujete nič špeciálne</p><p><strong>Čo môžete spoločne robiť: </strong>Možno Vás prekvapí, že v tomto veku sa Vaše dieťa zrazu začne báť, hanbiť alebo sa cíti nesvoje pri stretnutí s ľuďmi, ktorých nepozná. Predtým sa možno Vaše dieťa na všetkých usmievalo. Je to ďalší krok vo vývine Vášho dieťaťa. Ukazuje to, že Vaše dieťa rozpoznáva osoby a vníma rozdiel medzi vami - jeho dôležitými a blízkymi ľuďmi a všetkými ostatnými.</p><p>Ak je to možné, dajte dieťaťu čas na zoznámenie sa s novou osobou. Objímite Vaše dieťa, rozprávajte sa s druhou osobou a tým dieťa upokojujte. Namiesto toho, aby ste dieťa dráždili alebo naň naliehali (\"Nebuď taký hanblivý!\"), nechajte ho reagovať alebo nereagovať akýmkoľvek spôsobom, ktorý sa zdá byť pre Vaše dieťa teraz prirodzený. Ak je nová osoba na Vaše dieťa až príliš priateľská, môžete jednoducho povedať: \"Dajme mu trochu času, aby sa s Vami zoznámil.\" Opäť sa vyhnite tomu, aby ste Vaše dieťa označili za hanblivé alebo bojazlivé. V závislosti od situácie môžete dať novej osobe malú hračku alebo iný objekt, na ktorý môže byť Vaše dieťa zvedavé, aby ste \"prelomili ľady\".</p><p><strong>Čo sa Vaše dieťa učí: </strong>Táto neistota z nových ľudí môže trvať pomerne dlho, ale Vaše dieťa sa tým učí dve veci. Po prvé, učí sa, že ste pre neho zdrojom istoty a upokojenia v nepríjemných situáciách (emocionálna istota). Po druhé, Vaše dieťa sa učí, že ostatní ľudia sú milí a môže s nimi byť zábava (sociálny rozvoj). Vaša podpora je ako vždy pre dieťa veľmi dôležitá.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                48
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=r4m_GFrg",
+                "name": "@Pixabay",
+                "alt": "Grandmother and grandfather carrying two babies"
+            },
+            "related_milestone": [
+                2871
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        }
+    ]
+
 };

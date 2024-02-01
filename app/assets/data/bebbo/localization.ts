@@ -190,9 +190,24 @@ const localizationall = [
         displayName: 'English',
         languageCode: 'rs-en',
         locale: 'RSen',
-        luxonLocale:'en-US',
+        luxonLocale:'en-RS',
         pluralShow:false
       },
+    ],
+  },
+  {
+    name: 'Slovakia',
+    countryId: 151,
+    displayName: 'Slovakia (Slovensko)',
+    languages: [
+      {
+        name: 'slovenský',
+        displayName: 'slovenský',
+        languageCode: 'sk',
+        locale: 'sk',
+        luxonLocale:'sk-SK ',
+        pluralShow:true
+      }
     ],
   },
   {
@@ -282,4 +297,3 @@ const localizationall = [
  
 ];
 export default localizationall;
-

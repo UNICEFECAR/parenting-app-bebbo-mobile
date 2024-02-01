@@ -32,7 +32,7 @@ const Aboutus = ():any => {
   const themeContext = useContext(ThemeContext);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const { t } = useTranslation();
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const aboutusdata = useAppSelector(
     (state: any) => state.utilsData.aboutus.body,
   );
@@ -62,8 +62,8 @@ const Aboutus = ():any => {
             {aboutusdata != "" ?
               <HTML
                 source={{ html: addSpaceToHtml(aboutusdata) }}
-                baseFontStyle={styles.fontStyle}
-                ignoredStyles={['color', 'font-size', 'font-family']}
+                baseStyle={styles.fontStyle}
+                ignoredStyles={['color', 'fontSize', 'fontFamily']}
                 tagsStyles={{
                   p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
                   h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' },

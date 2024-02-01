@@ -38,7 +38,8 @@ import {
   SubDrawerHead,
   SubDrawerLinkView
 } from '@components/shared/NavigationDrawer';
-import { useIsDrawerOpen } from '@react-navigation/drawer';
+import analytics from '@react-native-firebase/analytics';
+import { useDrawerStatus } from '@react-navigation/drawer';
 import { useFocusEffect } from '@react-navigation/native';
 import { bgcolorWhite2, lightShadeColor, secondaryColor } from '@styles/style';
 import {
@@ -56,8 +57,6 @@ import { useAppSelector } from '../../App';
 import { isFutureDate } from '../services/childCRUD';
 import { getVaccinesForPeriodCount } from '../services/notificationService';
 import { formatDate, addSpaceToHtml } from '../services/Utils';
-import useNetInfoHook from '../customHooks/useNetInfoHook';
-import { logEvent } from '../services/EventSyncService';
 
 const styles = StyleSheet.create({
   containerView: {
@@ -93,7 +92,6 @@ const styles = StyleSheet.create({
   }
 })
 const CustomDrawerContent = ({ navigation }: any): any => {
-  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const [aboutAccordValue, onChangeAboutAccordValue] = React.useState(false);
@@ -116,7 +114,6 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   const feedbackItem = surveryData.find((item: any) => item.type == "feedback")
   const userGuideItem = surveryData.find((item: any) => item.type == "user_guide")
   const donateItem = surveryData.find((item: any) => item.type == "donate")
-  console.log(donateItem, "..donateItem..");
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices ? state.childData.childDataSet.favoriteadvices : []
@@ -125,7 +122,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
     state.childData.childDataSet.favoritegames ? state.childData.childDataSet.favoritegames : []
   );
   const [favoritescount, setfavoritescount] = useState(0);
-  const isOpen: boolean = useIsDrawerOpen();
+  const isOpen = useDrawerStatus() === "open";
   useFocusEffect(
     React.useCallback(() => {
       if (isOpen) {
@@ -172,16 +169,16 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               }
               if (currentChildNotis.vcnotis) {
                 currentChildNotis.vcnotis.forEach((item: any) => {
-                  if (item.title == "vcNoti1") {
-                    const vcNotisExists = getVaccinesForPeriodCount(allVaccineData, item.growth_period);
-                    console.log(vcNotisExists, "..vcNotisExists..")
-                    if (vcNotisExists != "" && vcNotisExists != null && vcNotisExists != undefined) {
-                      currentChildallnoti.push(item)
+                  if(item.title=="vcNoti1"){
+                    const vcNotisExists= getVaccinesForPeriodCount(allVaccineData, item.growth_period);
+                    console.log(vcNotisExists,"..vcNotisExists..")
+                    if(vcNotisExists!="" && vcNotisExists!=null && vcNotisExists!=undefined){
+                    currentChildallnoti.push(item)
                     }
-                  }
-                  else {
-                    currentChildallnoti.push(item);
-                  }
+                    }
+                    else{
+                      currentChildallnoti.push(item);
+                    }
                 })
               }
               if (currentChildNotis.reminderNotis) {
@@ -216,8 +213,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
         //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
-        const eventData = { 'name': APP_SHARE }
-        logEvent(eventData, netInfo.isConnected)
+        analytics().logEvent(APP_SHARE);
       }
     } catch (error: any) {
       Alert.alert(t('generalError'));
@@ -231,7 +227,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   );
 
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.SECONDARY_COLOR;
+  const headerColor = themeContext?.colors.SECONDARY_COLOR;
   return (
     <>
       <FocusAwareStatusBar animated={true} backgroundColor={Platform.OS == 'ios' ? headerColor : null} />
@@ -507,13 +503,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               </DrawerLinkView>
               <DrawerLinkView
                 onPress={(): any => {
-                  const eventData = { 'name': EMAIL_SENT }
-                  logEvent(eventData, netInfo.isConnected)
-                  if (buildFor == String(buildForBebbo)) {
-                    Linking.openURL('mailto:admin@bebbo.app')
-                  } else {
-                    Linking.openURL('mailto:prishtina@unicef.org');
-                  }
+                  analytics().logEvent(EMAIL_SENT)
+                  Linking.openURL('mailto:admin@bebbo.app');
                 }}>
                 <OuterIconRow>
                   <OuterIconLeft15>
@@ -551,7 +542,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     }
                   }
                 }}>
-                <OuterIconRow>
+                  <OuterIconRow>
                   <OuterIconLeft15>
                     <Icon name="ic_sb_loveapp" size={25} color="#000" />
                   </OuterIconLeft15>
@@ -574,8 +565,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           {donateItem && donateItem != {} && donateItem != '' && donateItem?.survey_feedback_link && donateItem?.survey_feedback_link != '' && donateItem?.survey_feedback_link != null ?
             <DrawerLinkView
               onPress={(): any => {
-                const eventData = { 'name': DONATE_OPENED }
-                logEvent(eventData, netInfo.isConnected)
+                analytics().logEvent(DONATE_OPENED);
                 Linking.openURL(donateItem?.survey_feedback_link);
               }}>
               <OuterIconRow>
@@ -627,8 +617,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                   <ButtonModal
                     onPress={(): any => {
                       setModalVisible(false);
-                      const eventData = { 'name': FEEDBACK_SUBMIT }
-                      logEvent(eventData, netInfo.isConnected)
+                      analytics().logEvent(FEEDBACK_SUBMIT)
                       Linking.openURL(feedbackItem?.survey_feedback_link)
                     }}>
                     <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>

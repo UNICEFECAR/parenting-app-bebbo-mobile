@@ -7,6 +7,7 @@ import { ButtonDevelopmentMd, ButtonTextMd } from './ButtonGlobal';
 import { BannerContainerMilestone, MainContainer } from './Container';
 import { Flex1, Flex3, FlexDirRowStart } from './FlexBoxStyle';
 import Icon, { IconBox, OuterIconLeft, OuterIconRow } from './Icon';
+import { StackNavigationProp } from '@react-navigation/stack';
 const styles = StyleSheet.create({
   mainContainerFlex:{
     flex:1
@@ -15,9 +16,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 })
+export type TracksRootStackParamList = {
+  Home: { screen: string,params:any,merge:boolean } | undefined;
+};
 const TrackMilestoneView = (props:any):any => {
   const {currentSelectedChildId} = props;
-  const navigation = useNavigation();
+  //const navigation = useNavigation<any>();
+  const navigation = useNavigation<StackNavigationProp<TracksRootStackParamList>>();
   const {t} = useTranslation();
   return (
     <>
