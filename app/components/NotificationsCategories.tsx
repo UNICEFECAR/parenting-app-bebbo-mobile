@@ -62,11 +62,11 @@ const ButtonItem = (props: any):any => {
 const NotificationsCategories = (props: any):any => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
-  const backgroundColor = themeContext.colors.PRIMARY_COLOR;
-  const cgColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
-  const vcColor = themeContext.colors.VACCINATION_COLOR;
-  const hcColor = themeContext.colors.HEALTHCHECKUP_COLOR;
+  const backgroundColor = themeContext?.colors.PRIMARY_COLOR;
+  const cgColor = themeContext?.colors.CHILDGROWTH_COLOR;
+  const cdColor = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
+  const vcColor = themeContext?.colors.VACCINATION_COLOR;
+  const hcColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
   const allbuttons = [
     {
       id: 0,

@@ -37,9 +37,9 @@ const styles = StyleSheet.create({
 const NotificationItem = (props: any):any => {
   const { item, onItemReadMarked, onItemDeleteMarked, isDeleteEnabled, activeChild } = props;
   const themeContext = useContext(ThemeContext);
-  const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
-  const navigation = useNavigation();
-  const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  const hcheaderColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
+  const navigation = useNavigation<any>();
+  const primaryTintColor = themeContext?.colors.PRIMARY_TINTCOLOR;
   const pluralShow = useAppSelector(
     (state: any) => state.selectedCountry.pluralShow,
   );
@@ -119,10 +119,10 @@ const NotificationItem = (props: any):any => {
               }) : '';
   };
 
-  const growthColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const vaccinationColor = themeContext.colors.VACCINATION_COLOR;
-  const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
-  const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
+  const growthColor = themeContext?.colors.CHILDGROWTH_COLOR;
+  const vaccinationColor = themeContext?.colors.VACCINATION_COLOR;
+  const hkColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
+  const cdColor = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
   
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
   useEffect(() => {

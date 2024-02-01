@@ -15,13 +15,14 @@ import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, FlatList, I18nManager, Platform, View } from 'react-native';
+import { Alert, FlatList, I18nManager, LayoutAnimation, Platform, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
 import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
 import  {localization}  from '@dynamicImportsClass/dynamicImports';
 import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
+import { err } from 'react-native-svg/lib/typescript/xml';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -53,6 +54,10 @@ const LanguageSelection = ({route, navigation}: Props): any => {
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
+  const extractLanguageCode = (languageTag: string): string => {
+    const [languageCode] = languageTag.split('-');
+    return languageCode;
+  };
   useEffect(() => {
     let newLanguageId: any;
       if(languagenew && languagenew != null){
@@ -63,18 +68,26 @@ const LanguageSelection = ({route, navigation}: Props): any => {
     const selectedLanguage = languages?.find(
       (lang: any) => lang.languageCode === newLanguageId,
     );
-    setLanguage(selectedLanguage);
+ 
+    const languagesWithLuxonLocale = country.languages.filter((lang: any) => lang.luxonLocale === route.params.luxonlocale || extractLanguageCode(lang.luxonLocale) === route.params.deviceLanCode);
+    if(languagesWithLuxonLocale.length!=0){
+    setLanguage(languagesWithLuxonLocale);
+    }else{
+      setLanguage(languages[0])
+    }
   }, []);
-  const renderItem = ({item}: any): any => (
+  const renderItem = ({item,index}: any): any => (
     <LanguageItem
       item={item}
+      index={index}
       currentItem={language}
       setLanguage={setLanguage}
     />
   );
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const rtlConditions = (): any => {
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const rtlConditions = (language:any): any => {
+    
     if(language?.locale == 'GRarb' || language?.locale == 'GRda')
           {
             if(AppLayoutDirection == 'ltr') {
@@ -98,6 +111,7 @@ const LanguageSelection = ({route, navigation}: Props): any => {
             }
     }else {
       if(AppLayoutDirection == 'rtl') {
+       
         dispatch(setrestartOnLangChange('yes'));
         dispatch(setAppLayoutDirection('ltr'));
         dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
@@ -118,32 +132,41 @@ const LanguageSelection = ({route, navigation}: Props): any => {
         I18nManager.forceRTL(false);
       }
     }
+    console.log('Before confirmation',country,language)
     navigation.navigate('CountryLanguageConfirmation', {
       country,
       language,
     })
   }
   const goToConfirmationScreen = (): any => {
-    i18n.changeLanguage(language?.locale)
+    let newLanguage:any =null
+   if(language?.locale!=undefined){
+      newLanguage = language
+   }else{
+    newLanguage = language[0]
+   }
+    i18n.changeLanguage(newLanguage.locale)
     .then(() => {
       if(buildFor == buildForBebbo) {
           const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
           const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
-          if(language?.locale == rotwLanguagelocaleen || language?.locale == rotwLanguagelocaleru) {
+          if(newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {
                 Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
                 [
                   { text:t('restOfTheWorldOkTitle'), onPress: async (): Promise<any> => {
-                    rtlConditions()
+                    rtlConditions(newLanguage)
                     }
                   }
                 ]
               );
           }else {
-            rtlConditions();
+            rtlConditions(newLanguage);
           }
       }else {
-        rtlConditions();
+        rtlConditions(newLanguage);
       }
+    }).catch((error:any)=>{
+      console.log('error',error)
     })
     
   }
@@ -168,7 +191,12 @@ const LanguageSelection = ({route, navigation}: Props): any => {
           <BtnMultiple>
             {localization.length > 1 ?
                 <ButtonviewNext>
-                  <ButtonviewClick onPress={(): any => navigation.goBack()}>
+                  <ButtonviewClick onPress={(): any => {
+                    navigation.navigate('CountrySelection', {
+                      country,
+                      language,
+                    })
+                  }}>
                     <IconML name="ic_angle_left" size={32} color="#000" />
                   </ButtonviewClick>
                 </ButtonviewNext>

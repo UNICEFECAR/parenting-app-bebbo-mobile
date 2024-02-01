@@ -19,7 +19,7 @@ import {
   ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
   ProfileLinkRow, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
-import { CommonActions, useFocusEffect } from '@react-navigation/native';
+import { CommonActions, useFocusEffect, useIsFocused } from '@react-navigation/native';
 import {
   Heading2w,
   Heading3,
@@ -64,12 +64,13 @@ type Props = {
 };
 const ChildProfile = ({ navigation }: Props): any => {
   const { t } = useTranslation();
+  const isFocused = useIsFocused();
   const [parentViewHeight, setParentViewheight] = useState(0);
   const [profileLoading,setProfileLoading] = React.useState(false);
   const [profileViewHeight, setProfileViewheight] = useState(0);
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const secopndaryTintColor = themeContext?.colors.SECONDARY_TINTCOLOR;
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -82,24 +83,27 @@ const ChildProfile = ({ navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
-  useFocusEffect(
-    React.useCallback(() => {
-      getAllChildren(dispatch, childAge, 0);
-      getAllConfigData(dispatch);
-      setTimeout(() => {
-        navigation.dispatch((state: any) => {
-          // Remove the home route from the stack
-          const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
+  useEffect(() => {
+    if (isFocused) {
+       console.log('In inFocused Block', isFocused);
+       console.log('Testing Testing')
+       getAllChildren(dispatch, childAge, 0);
+       getAllConfigData(dispatch);
+       setTimeout(() => {
+         navigation.dispatch((state: any) => {
+           // Remove the home route from the stack
+           const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
+ 
+           return CommonActions.reset({
+             ...state,
+             routes,
+             index: routes.length - 1,
+           });
+         });
+       }, 100);
+    }
+  }, [isFocused]);
 
-          return CommonActions.reset({
-            ...state,
-            routes,
-            index: routes.length - 1,
-          });
-        });
-      }, 500);
-    }, [])
-  );
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)
@@ -110,6 +114,8 @@ const ChildProfile = ({ navigation }: Props): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+
+  
   useEffect(() => {
     const backAction = (): any => {
       //console.log("11")
@@ -126,7 +132,7 @@ const ChildProfile = ({ navigation }: Props): any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
-  }, []);
+  }, [navigation]);
   const isFutureDate = (date: Date): any => {
     return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
   };
@@ -169,7 +175,7 @@ const ChildProfile = ({ navigation }: Props): any => {
   const relationshipToParent = relationshipToParentGlobal.length > 0 && userRelationToParent.length > 0 ? relationshipToParentGlobal.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
   const windowHeight = Dimensions.get('window').height;
 
-  const SortedchildList = [...childList].sort((a: any, b: any) => {
+  const SortedchildList = [...childList].sort((a: any, b: any):any => {
     console.log(b);
     if (a.uuid == currentActiveChild) return -1;
   });
@@ -436,7 +442,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                         <Text style={styles.marginLeft15}>
                           {
                             userParentalRoleData?.length > 0
-                              ? relationshipValue.name
+                              ? relationshipValue.name  
                               : ''
                           }
                         </Text>

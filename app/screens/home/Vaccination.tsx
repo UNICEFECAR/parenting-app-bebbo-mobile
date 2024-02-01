@@ -54,8 +54,8 @@ const stylesLocal=StyleSheet.create({
 })
 const Vaccination = ({navigation,route}: Props):any => {
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.VACCINATION_COLOR;
-  const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
+  const headerColor = themeContext?.colors.VACCINATION_COLOR;
+  const backgroundColor = themeContext?.colors.VACCINATION_TINTCOLOR;
   const {t} = useTranslation();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const [modalVisible, setModalVisible] = React.useState(true);
@@ -87,10 +87,16 @@ const Vaccination = ({navigation,route}: Props):any => {
   const vaccineModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsVaccineModalOpened),
     );
-   useFocusEffect(()=>{
-    // pass true to make modal visible every time & reload
+ 
+  //  useFocusEffect(
+  //   React.useCallback(() => {
+  //       // pass true to make modal visible every time & reload
+  //     setModalVisible(vaccineModalOpened)
+  //   }, [vaccineModalOpened])
+  //  );
+  useEffect(()=>{
     setModalVisible(vaccineModalOpened)
-   })
+  },[vaccineModalOpened]);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
   const {
     upcomingPeriods,
@@ -128,7 +134,7 @@ const Vaccination = ({navigation,route}: Props):any => {
     if (index === 0) {
       return (
         <View>
-          {upcomingPeriods.length > 0 && upcomingPeriodsData()==false? upcomingPeriods.map((item, itemindex) => {
+          {upcomingPeriods.length > 0 && upcomingPeriodsData()==false? upcomingPeriods.map((item:any, itemindex:any) => {
             return (
               <UpcomingVaccines
                 item={item}
@@ -145,7 +151,7 @@ const Vaccination = ({navigation,route}: Props):any => {
     } else if (index === 1) {
         return (
           <View>
-            {previousPeriods.length > 0 && previousPeriodsData()==false ? previousPeriods.map((item, itemindex) => {
+            {previousPeriods.length > 0 && previousPeriodsData()==false ? previousPeriods.map((item:any, itemindex:any) => {
               return (
                 <PreviousVaccines
                   item={item}

@@ -60,16 +60,16 @@ const styles = StyleSheet.create({
 });
 const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
   const { item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent, currentSelectedChildId } = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const { t } = useTranslation()
   const [isOPen, setIsOPen] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const themeContext = useContext(ThemeContext);
-  const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
-  const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
-  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
-  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const actHeaderColor = themeContext?.colors.ACTIVITIES_COLOR;
+  const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
+  const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const activeChilduuid = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild).uuid
@@ -232,7 +232,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                         <HTML
                           source={{ html: addSpaceToHtml(item.body) }}
                           baseFontStyle={styles.htmlFontSize}
-                          ignoredStyles={['color', 'font-size', 'font-family', 'margin', 'padding']}
+                          ignoredStyles={['color', 'fontSize', 'fontFamily', 'margin', 'padding']}
                           tagsStyles={{
                             p: { textAlign: 'left', marginTop: 0 },
                             h1: { textAlign: 'left' },

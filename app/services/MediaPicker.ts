@@ -1,7 +1,7 @@
 import ImagePicker from "react-native-image-crop-picker";
 import { RESULTS, check, request, openSettings, openLimitedPhotoLibraryPicker } from "react-native-permissions";
 import { Alert, Platform } from "react-native";
-import { PICKER_TYPE, IMAGE_PICKER_OPTIONS, CAMERA_PERMISSION, GALLERY_PERMISSION } from "../types/types";
+import { PICKER_TYPE, IMAGE_PICKER_OPTIONS, CAMERA_PERMISSION, GALLERY_PERMISSION,GALLERY_PERMISSION_LATEST } from "../types/types";
 import i18n from 'i18next';
 class MediaPicker {
   /**
@@ -353,8 +353,9 @@ class MediaPicker {
         }
       });
   }
+
   handlePermissionsGallery(triggerFunc: any):any {
-    request(GALLERY_PERMISSION).then(async (photoPermission) => {
+    request(Platform.Version>'32' ?GALLERY_PERMISSION_LATEST: GALLERY_PERMISSION).then(async (photoPermission) => {
       if (
         photoPermission === RESULTS.GRANTED
       ) {
@@ -394,8 +395,9 @@ class MediaPicker {
   }
   checkPermissionGallery(triggerFunc: any, openSettings = undefined):any {
     console.log("checkPermissionGallery-",openSettings);
+    console.log("Platform-",Platform.Version);
     Promise.all([
-      check(GALLERY_PERMISSION),
+      check(Platform.Version>'32' ?GALLERY_PERMISSION_LATEST: GALLERY_PERMISSION),
     ]).then(([photoStatus]) => {
       if (photoStatus === RESULTS.BLOCKED) {
         this.openSettingModal();
