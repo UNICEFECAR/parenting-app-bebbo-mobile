@@ -8,7 +8,7 @@ const Title = styled.Text`
   flex: 1;
   font-weight: bold;
   margin-left: 15px;
-  color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 const OnboardingStyle = (props: any):any => {

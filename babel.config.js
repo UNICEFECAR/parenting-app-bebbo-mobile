@@ -39,6 +39,9 @@ module.exports = (api) => {
         },
       },
     ],
+    [
+      "react-native-reanimated/plugin",
+      ],
   ];
   //change to 'production' to check if this is working in 'development' mode
   if (babelEnv !== 'development') {

@@ -44,7 +44,7 @@ const LastChildMeasure = ():any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [modalVisible, setModalVisible] = useState(false);
   let measures:any=[];
     if(activeChild?.measures.length>0){

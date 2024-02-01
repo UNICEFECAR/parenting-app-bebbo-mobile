@@ -29,7 +29,7 @@ import i18n, {
     const obj2 = obj ? obj.locale : obj;
     return obj2;
   }
-  const AVALAILABLE_LANG_CODES = findAllByKey(localisationnew,'luxonLocale');
+  const AVALAILABLE_LANG_CODES:any = findAllByKey(localisationnew,'luxonLocale');
   const languageDetector: LanguageDetectorAsyncModule = {
     type: 'languageDetector',
     // If this is set to true, your detect function receives a callback function that you should call with your language,
@@ -47,7 +47,7 @@ import i18n, {
         // Error fetching stored data or no language was stored
         if (err || !lng) {
           
-          const bestLng = RNLocalize.findBestAvailableLanguage(AVALAILABLE_LANG_CODES);
+          const bestLng = RNLocalize.findBestLanguageTag(AVALAILABLE_LANG_CODES);
          const langCodeNew = findLangCode(bestLng?.languageTag);
          const lang2 = langCodeNew ?langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
          const country = localization.find((x:any) => x.languages.some((item:any) => item.locale === lang2));
@@ -77,6 +77,7 @@ import i18n, {
       }
     })
     .init({
+      compatibilityJSON: 'v3',
       resources: AVAILABLE_LANGUAGES,
     //   load: 'currentOnly',
       react: {

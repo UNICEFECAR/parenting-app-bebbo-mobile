@@ -105,7 +105,7 @@ const UserGuide = ():any => {
     },
   ];
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const [profileLoading,setProfileLoading] = React.useState(false);
   type Item = typeof data[0];
   const keyExtractor = (item: Item):any => item.title;

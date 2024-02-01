@@ -146,6 +146,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   }
   useFocusEffect(
     React.useCallback(() => {
+      console.log('relationshipname1',relationshipToParent)
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
@@ -324,7 +325,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   }
 
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   return <>
     <View style={styles.containerView}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
@@ -354,7 +355,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                   autoCorrect={false}
                   maxLength={30}
                   clearButtonMode="always"
-                  onChangeText={(value): any => {
+                  onChangeText={(value:any): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
@@ -386,7 +387,8 @@ const ChildSetup = ({ navigation }: Props): any => {
             <ShiftFromTop20>
               <FormInputGroup
                 onPress={(): any => {
-                  actionSheetRef.current?.setModalVisible();
+                  console.log('actionsheet visiblity',actionSheetRef.current)
+                  actionSheetRef.current?.setModalVisible(true);
                 }}>
                 <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
                 <FormInputBox>
@@ -437,7 +439,7 @@ const ChildSetup = ({ navigation }: Props): any => {
               <Flex1>
                 <ButtonPrimaryMd
                   disabled={isImportRunning}
-                  onPress={(e): any => {
+                  onPress={(e:any): any => {
 
                     e.stopPropagation();
                     actionSheetRefImport.current?.setModalVisible(true);
@@ -457,10 +459,12 @@ const ChildSetup = ({ navigation }: Props): any => {
 
         <View>
           {relationshipToParent.map((item: any, index: any) => {
+            console.log('Helloooooo',item)
             return (
               <ChildRelationList key={index}>
                 <Pressable
                   onPress={(): any => {
+                    console.log('items is',item,index)
                     setUserRelationToParent(item.id);
                     if (item.id == relationShipMotherId) {
                       if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
@@ -483,10 +487,13 @@ const ChildSetup = ({ navigation }: Props): any => {
                         setRelationship('');
                       }
                     }
+                    console.log('relationship name',item.name)
                     setRelationshipName(item.name);
-                    actionSheetRef.current?.hide();
+                    actionSheetRef.current?.setModalVisible(false);
                   }}>
-                  <Heading3>{item.name}</Heading3>
+                  <Heading3>{console.log(item.name)}
+                  {item.name}
+                  </Heading3>
                 </Pressable>
               </ChildRelationList>
             );
@@ -571,7 +578,7 @@ const ChildSetup = ({ navigation }: Props): any => {
         <ButtonRow>
           <ButtonPrimary
             disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
-            onPress={(e): any => {
+            onPress={(e:any): any => {
               e.stopPropagation();
               setLoading(true);
               let validated: any = false;

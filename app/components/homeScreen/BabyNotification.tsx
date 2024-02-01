@@ -26,7 +26,7 @@ const styles=StyleSheet.create({
 })
 import { DateTime } from 'luxon';
 const BabyNotification = ():any => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''

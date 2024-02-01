@@ -113,7 +113,7 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
     addChild(languageCode, editScreen, 1, childSet, dispatch, navigation, childAge, null, null, netInfo);
   }
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   return <>
     <View style={styles.containerView}>
 

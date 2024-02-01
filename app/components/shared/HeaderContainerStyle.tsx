@@ -6,7 +6,7 @@ export const HeaderRowView = styled.View`
   flex: 1;
   align-items: center;
   z-index:99999999;
-  position:relative
+  position:relative;
 `;
 
 export const HeaderIconView = styled.View`
@@ -20,7 +20,7 @@ padding:7px 0px 4px;
 width:40px;
 height:30px;
 margin-left:-8px;
-margin-right:-8px
+margin-right:-8px;
 align-items:center;
 
 `;
@@ -43,7 +43,7 @@ justify-content:flex-start;
 
 export const HeaderActionBox = styled.Pressable`
   background: rgba(255, 255, 255, 0.5);
-  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+  border-radius:100px;
   width: 40px;
   height: 40px;
   flex-direction: row;

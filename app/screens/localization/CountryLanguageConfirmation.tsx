@@ -20,7 +20,7 @@ import OnboardingContainer, {
 } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2Centerw,
@@ -28,7 +28,7 @@ import {
   Heading3Centerw,
   Heading3Regular
 } from '@styles/typography';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { I18nManager, Platform, BackHandler } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -47,9 +47,12 @@ type Props = {
   navigation: CountryLanguageConfirmationNavigationProp;
   route: any;
 };
-const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
+const CountryLanguageConfirmation = ({route}: Props):any => {
   const {country, language} = route.params;
   const dispatch = useAppDispatch();
+  const [newLanguage,setNewLanguage] = useState<any>();
+  const [isObject,setIsObject] = useState<any>();
+  const navigation = useNavigation<any>();
   const userIsOnboarded = useAppSelector(
     (state: any) =>
       state.utilsData.userIsOnboarded
@@ -89,10 +92,16 @@ const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
   
   const {t, i18n} = useTranslation();
   console.log(I18nManager.isRTL,"---is rtl val");
-
   useEffect(() => {
-    console.log("confirm useeffect called");
-
+      if (!route.params.language) {
+      console.log('Language data not available');
+    } else if (Array.isArray(route.params.language)) {
+       route.params.language.length > 0 ? setNewLanguage(route.params.language[0]) : setNewLanguage(null);
+    } else if (typeof route.params.language === 'object') {
+      setNewLanguage(route.params.language);
+    } else {
+      console.log('Invalid language data');
+    }
     return ():any => {
       dispatch(setrestartOnLangChange('no'));
     }
@@ -118,10 +127,11 @@ const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
   }, []),
   );
 
+
   const saveSelection = ():any => {
-    i18n.changeLanguage(language.locale)
+    i18n.changeLanguage(newLanguage.locale)
     .then(() => {
-      if(language?.locale == 'GRarb' || language?.locale == 'GRda')
+      if(newLanguage?.locale == 'GRarb' || newLanguage?.locale == 'GRda')
       {
         if(AppLayoutDirection == 'ltr') {
           //remove rtl on backhandler
@@ -140,8 +150,8 @@ const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
         I18nManager.forceRTL(false);
       }
     })
-    console.log(language,"..language");
-    if(userIsOnboarded == true && (language.languageCode == languageCode))
+    
+    if(userIsOnboarded == true && (newLanguage.languageCode == languageCode))
     {
       navigation.reset({
         index: 0,
@@ -152,9 +162,10 @@ const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
         ],
       });
     }else {
+      console.log(newLanguage,"..newLanguage");
       dispatch(onLocalizationSelect(route.params));
       dispatch(setInfoModalOpened({key:'dailyMessageNotification', value: ''}));
-      analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
+      analytics().setUserProperties({country:route.params.country.displayName,language:newLanguage.displayName})
       if(userIsOnboarded == true){
         dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       }
@@ -166,11 +177,11 @@ const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
   };
   
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   return (
     <>
     <>
-    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} key={language}/>
+    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} key={newLanguage}/>
       <OnboardingContainer>
         <OnboardingconfirmationHead>
           <Icon name="ic_country" size={100} color="#FFF" />
@@ -197,7 +208,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
                   <Heading3Regular>{t('language')}</Heading3Regular>
                 </LocalizationcontentHead>
                 <LocalizationcontentResult>
-                  <Heading3>{language.displayName}</Heading3>
+                  <Heading3>{ Array.isArray(route.params.language) ?language[0].displayName:language.displayName}</Heading3>
                 </LocalizationcontentResult>
               </LocalizationCol>
 
@@ -205,9 +216,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props):any => {
                 <ButtonLinkText
                   onPress={():any => {
                     if(localization.length == 1) {
-                      navigation.navigate('LanguageSelection',{country:country,languagenew:language})
+                      navigation.navigate('LanguageSelection',{country:country,languagenew:newLanguage})
                     }else {
-                      navigation.navigate('CountrySelection',{country:country,language:language})
+                      navigation.navigate('CountrySelection',{country:country,language:newLanguage})
                     }
                   }}>
                   <OuterIconRow>

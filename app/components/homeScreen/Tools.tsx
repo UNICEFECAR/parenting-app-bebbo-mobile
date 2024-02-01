@@ -7,7 +7,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import VectorImage from 'react-native-vector-image';
 const Tools = ():any => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const {t} = useTranslation();
   return (
     <>

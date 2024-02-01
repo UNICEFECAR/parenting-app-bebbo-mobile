@@ -67,7 +67,7 @@ const TermsPage = ({navigation}: Props):any => {
   }, []),
   );
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   return (
     <>
     <View style={styles.containerView}>
@@ -90,8 +90,8 @@ const TermsPage = ({navigation}: Props):any => {
           { termsdata != "" ? 
             <HTML
               source={{html: addSpaceToHtml(termsdata)}}
-              baseFontStyle={styles.htmlStyle}
-              ignoredStyles={['color', 'font-size', 'font-family']}
+              baseStyle={styles.htmlStyle}
+              ignoredStyles={['color', 'fontSize', 'fontFamily']}
               tagsStyles={{
                 p: { marginBottom: 15, marginTop: 0,textAlign:'left' },
                 h1: { marginBottom: 0, marginTop: 10,textAlign:'left'},

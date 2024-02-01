@@ -82,7 +82,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
@@ -248,13 +248,14 @@ const ChildSetupList = ({ navigation }: Props): any => {
                   <OuterIconLeft>
                     <Icon name="ic_plus" size={20} color="#FFF" />
                   </OuterIconLeft>
-                  <ButtonTextLinew numberOfLines={2}> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
+                  <ButtonTextLinew 
+                  numberOfLines={2}> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
                 </OuterIconRow>
               </ButtonLinkPress>
             </ShiftFromBottom10>
 
             <ButtonPrimary
-              onPress={(e): any => {
+              onPress={(e:any): any => {
                 e.stopPropagation();
                 setLoading(true);
                 setTimeout(() => {

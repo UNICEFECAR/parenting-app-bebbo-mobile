@@ -27,7 +27,7 @@ const styles=StyleSheet.create({
 })
 const ChildInfo = (props: any):any => {
   const {t} = useTranslation();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const { headerColor, backgroundColor} = props;
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
@@ -97,7 +97,7 @@ const goToVideoArticleDetails = ():any => {
     <>
     
       <MainContainer key={selectedPinnedArticleData?.id}>
-        
+               
           <ShiftFromBottom10>
           <Heading2Center>
             {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:t('childInfoBabyText'),parentName:userNameData?.length > 0 ? t('childInfoAndText') + ' ' + userNameData[0].value : showAndParentText() ? t('childInfoAndText') + ' ' + t('childInfoParentText') : ''})} 
@@ -118,16 +118,17 @@ const goToVideoArticleDetails = ():any => {
             </Heading4Centerr>
               : null}
           </ShiftFromTopBottom10>
-          <ShiftFromBottom10>
+          {/* <ShiftFromBottom10>
             <ButtonSpacing>
               <SideSpacing25>
-            <ButtonPrimary onPress={goToVideoArticleDetails}>
+           
+            </SideSpacing25>
+            </ButtonSpacing>
+          </ShiftFromBottom10> */}
+           <ButtonPrimary onPress={goToVideoArticleDetails}>
               <ButtonText numberOfLines={2}>{t('homeScreenchildBtnText')}</ButtonText>
              
             </ButtonPrimary>
-            </SideSpacing25>
-            </ButtonSpacing>
-          </ShiftFromBottom10>
         </>
         : null 
       }
