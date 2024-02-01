@@ -51,11 +51,11 @@ const styles=StyleSheet.create({
 const UpcomingHealthCheckup = (props: any): any => {
   const { item, childAgeIndays, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const themeContext = useContext(ThemeContext);
-  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
-  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)

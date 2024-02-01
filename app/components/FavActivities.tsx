@@ -16,7 +16,7 @@ import ShareFavButtons from './shared/ShareFavButtons';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: row;
-  background-color: ${(props): string => props.theme.colors.ACTIVITIES_TINTCOLOR};,
+  background-color: ${(props: any): string => props.theme.colors.ACTIVITIES_TINTCOLOR};
 `;
 
 const styles = StyleSheet.create({
@@ -28,38 +28,38 @@ const styles = StyleSheet.create({
   }
 });
 
-const FavActivities = ():any => {
-  const navigation = useNavigation()
-  const {t} = useTranslation();
+const FavActivities = (): any => {
+  const navigation = useNavigation<any>()
+  const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
-  const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
-  const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
+  const actHeaderColor = themeContext?.colors.ACTIVITIES_COLOR;
+  const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const flatListRef = useRef(null);
   const activityCategoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
   );
   const toggleSwitchVal = useAppSelector((state: any) =>
-  state.bandWidthData?.lowbandWidth
-    ? state.bandWidthData.lowbandWidth
-    : false,
-);
-const activeChild = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-const ActivitiesDataall = useAppSelector(
-  (state: any) =>
-    state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
-);
-const favoritegames = useAppSelector((state: any) =>
+  const ActivitiesDataall = useAppSelector(
+    (state: any) =>
+      state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
+  );
+  const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
-  const [favGamesToShow,setfavGamesToShow] = useState([]);
+  const [favGamesToShow, setfavGamesToShow] = useState([]);
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId));
-  const goToActivityDetail = (item: any):any => {
+  const goToActivityDetail = (item: any): any => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "FavActivities",
@@ -72,59 +72,59 @@ const favoritegames = useAppSelector((state: any) =>
   };
   useFocusEffect(
     React.useCallback(() => {
-      async function fetchData():Promise<any> {
-        if(favoritegames.length > 0){
+      async function fetchData(): Promise<any> {
+        if (favoritegames.length > 0) {
           const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
           let favData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema, filterQuery);
-          if(favData.length == 0){
-            favData = ActivitiesDataall.filter((x: any) => (favoritegames.findIndex((y:any)=>y == x.id)) > -1);
+          if (favData.length == 0) {
+            favData = ActivitiesDataall.filter((x: any) => (favoritegames.findIndex((y: any) => y == x.id)) > -1);
           }
           setfavGamesToShow(favData);
-        }else {
+        } else {
           setfavGamesToShow([]);
         }
       }
       fetchData()
-    },[favoritegames])
+    }, [favoritegames])
   );
-  const SuggestedActivities = React.memo(({ item, index }:any) => {
-     return (
-        <ArticleListContainer>
-           <Pressable onPress={():any => { goToActivityDetail(item) }} key={index}>
-          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>
+  const SuggestedActivities = React.memo(({ item, index }: any) => {
+    return (
+      <ArticleListContainer>
+        <Pressable onPress={(): any => { goToActivityDetail(item) }} key={index}>
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover} />
           <ArticleListContent>
             <ShiftFromTopBottom5>
               <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
             </ShiftFromTopBottom5>
             <Heading3>{item.title}</Heading3>
           </ArticleListContent>
-          <ShareFavButtons backgroundColor={'#FFF'} item={item} fromScreen={'Favourites'} isFavourite = {((favoritegames.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={false} />
-          </Pressable>
-        </ArticleListContainer>
-     
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} fromScreen={'Favourites'} isFavourite={((favoritegames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />
+        </Pressable>
+      </ArticleListContainer>
+
     )
   });
   return (
     <>
-       <ContainerView>
-          <FlexCol>
-       {favGamesToShow.length> 0 ? 
-                 <FlatList
-                  ref={flatListRef}
-                  data={favGamesToShow}
-                  nestedScrollEnabled={true}
-                  removeClippedSubviews={true} // Unmount components when outside of window 
-                  initialNumToRender={4} // Reduce initial render amount
-                  maxToRenderPerBatch={4} // Reduce number in each render batch
-                  updateCellsBatchingPeriod={100} // Increase time between renders
-                  windowSize={7} // Reduce the window size
-                  renderItem={({item, index}:any):any => <SuggestedActivities item={item} index={index} /> }
-                  keyExtractor={(item:any):any => item.id.toString()}
-                  />
-                : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
+      <ContainerView>
+        <FlexCol>
+          {favGamesToShow.length > 0 ?
+            <FlatList
+              ref={flatListRef}
+              data={favGamesToShow}
+              nestedScrollEnabled={true}
+              removeClippedSubviews={true} // Unmount components when outside of window 
+              initialNumToRender={4} // Reduce initial render amount
+              maxToRenderPerBatch={4} // Reduce number in each render batch
+              updateCellsBatchingPeriod={100} // Increase time between renders
+              windowSize={7} // Reduce the window size
+              renderItem={({ item, index }: any): any => <SuggestedActivities item={item} index={index} />}
+              keyExtractor={(item: any): any => item.id.toString()}
+            />
+            : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
 
-          </FlexCol>
-        </ContainerView>
+        </FlexCol>
+      </ContainerView>
     </>
   );
 };

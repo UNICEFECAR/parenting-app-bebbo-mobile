@@ -35,7 +35,7 @@ const OverlayLoadingComponent = (props: any):any =>{
       }}>
       <View style={styles.modalBackground}>
         <View style={styles.activityIndicatorWrapper}>
-          <ActivityIndicator size="large" color={themeContext.colors.PRIMARY_TEXTCOLOR} animating={loading} />
+          <ActivityIndicator size="large" color={themeContext?.colors.PRIMARY_TEXTCOLOR} animating={loading} />
         </View>
       </View>
     </Modal>

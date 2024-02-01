@@ -13,19 +13,19 @@ export const ProfileListView = styled.View`
 
 
 export const ProfileListViewSelected = styled(ProfileListView)`
-  background-color: ${(props):any => props.theme.colors.SECONDARY_COLOR};
+  background-color: ${(props:any):any => props.theme?.colors?.SECONDARY_COLOR};
   margin-bottom:3px;
   align-items:flex-start;
 `;
 export const ProfileListViewSelected1 = styled(ProfileListViewSelected)`
-border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+border-radius:4px;
 margin-bottom:15px;
 `;
 export const ProfileIconView = styled.View`
  min-width:48px;
  text-align:center;
  align-items:center;
- margin-left:-5px
+ margin-left:-5px;
 `;
 
 export const ProfileTextView = styled.View`
@@ -68,7 +68,7 @@ export const ProfileListInner = styled.View`
 `;
 export const ProfileListActiveChild = styled(ProfileListView)`
   align-items: flex-start;
-  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+  border-radius:4px;
 `;
 
 export const ProfileLinkRow = styled.View`
@@ -77,7 +77,7 @@ width:100%;
   margin:0;
   padding:5px 10px;
  margin-bottom:15px;
- border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+ border-radius:4px;
  margin-top:-4px;
  border-color: rgba(0, 0, 0, 0.1);
  border-top-width: 1px;
@@ -119,17 +119,17 @@ align-items:flex-start;
 export const ParentListView = styled.View`
 padding:10px 11px 3px;
 align-items:center;
-border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+border-radius:4px;
 `
 
 export const ChildListScrollView = styled.View`
 height:350px;margin-top:15px;
-border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+border-radius:4px;
 `
 
 export const ProfileEditView = styled.Pressable`
 background-color:#fff;
-border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+border-radius:100px;
 margin:10px;
 align-items:center;
 justify-content:center;

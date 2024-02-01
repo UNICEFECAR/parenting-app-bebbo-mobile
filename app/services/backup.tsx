@@ -7,17 +7,18 @@ import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
 import { getAllChildren, setActiveChild } from "./childCRUD";
 import Realm from 'realm';
-import { getChild } from "./Utils";
 import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
 import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
+import { getChild } from '../services/Utils';
 /**
  * Export / import user realm to GDrive in order to create backup.
  */
 class Backup {
     private static instance: Backup;
     importedrealm?: Realm;
+   
     private constructor() {
         console.log("initialized")
     }
@@ -94,20 +95,22 @@ class Backup {
         }
     }
     public async importFromFile(oldChildrenData: any, navigation: any, genders: any, dispatch: any, childAge: any, langCode: any): Promise<any> {
+        console.log("oldchildrenresponse nwq",oldChildrenData)
         if (oldChildrenData?.length > 0) {
             const resolvedPromises = oldChildrenData.map(async (item: any) => {
+                console.log('here log')
                 if (item.birthDate != null && item.birthDate != undefined) {
+                    console.log('here log 1',item,genders)
                     const itemnew = await getChild(item, genders);
-                    const childData: any = [];
-                    childData.push(itemnew);
-                    console.log(childData, "..childData..");
-                    const createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
-                    console.log(createresult, "..createresult");
+                    console.log('here log itemnew',itemnew)
+                     const childData: any = [];
+                     childData.push(itemnew);
+                     await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
                 }
             });
             const notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
-            await Promise.all(resolvedPromises).then(async item => {
+            await Promise.all(resolvedPromises).then(async (item:any) => {
                 console.log("importfromfile--", item);
                 const allChildren = await getAllChildren(dispatch, childAge, 1);
                 let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");

@@ -4,7 +4,7 @@ import React,{ useEffect, useState } from 'react';
 import { Keyboard } from 'react-native';
 import { HeaderIconView,HeaderBurgerPress } from './HeaderContainerStyle';
 const BurgerIcon = (props:any):any => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
 
   useEffect(() => {

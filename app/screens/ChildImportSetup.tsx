@@ -78,7 +78,7 @@ const ChildImportSetup = (props: any): any => {
   const [relationshipname, setRelationshipName] = useState('');
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -163,7 +163,7 @@ const ChildImportSetup = (props: any): any => {
                   </ShiftFromTopBottom20>
                   <FormInputGroup
                     onPress={(): any => {
-                      actionSheetRef.current?.setModalVisible();
+                      actionSheetRef.current?.setModalVisible(true);
                     }}>
                     <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
                     <FormInputBox>
@@ -198,7 +198,7 @@ const ChildImportSetup = (props: any): any => {
           </OnboardingContainer>
 
         </ScrollView>
-        <ActionSheet ref={actionSheetRef}>
+        {/* <ActionSheet ref={actionSheetRef}>
 
           <View>
             {relationshipToParent.map((item: any, index: any) => {
@@ -229,7 +229,7 @@ const ChildImportSetup = (props: any): any => {
                         }
                       }
                       setRelationshipName(item.name);
-                      actionSheetRef.current?.hide();
+                      actionSheetRef.current?.setModalVisible(false);
                     }}>
                     <Heading3>{item.name}</Heading3>
                   </Pressable>
@@ -238,13 +238,58 @@ const ChildImportSetup = (props: any): any => {
             })}
 
           </View>
-        </ActionSheet>
+        </ActionSheet> */}
+<ActionSheet ref={actionSheetRef}>
 
+<View>
+  {relationshipToParent.map((item: any, index: any) => {
+    console.log('Helloooooo',item)
+    return (
+      <ChildRelationList key={index}>
+        <Pressable
+          onPress={(): any => {
+            console.log('items is',item,index)
+            setUserRelationToParent(item.id);
+            if (item.id == relationShipMotherId) {
+              if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
+                setRelationship(femaleData.id);
+              }
+              else {
+                setRelationship(String(femaleData.id));
+              }
+            }
+            else if (item.id == relationShipFatherId) {
+              if (typeof maleData.id === 'string' || maleData.id instanceof String) {
+                setRelationship(maleData.id);
+              }
+              else {
+                setRelationship(String(maleData.id));
+              }
+            }
+            else {
+              if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
+                setRelationship('');
+              }
+            }
+            console.log('relationship name',item.name)
+            setRelationshipName(item.name);
+            actionSheetRef.current?.setModalVisible(false);
+          }}>
+          <Heading3>{console.log(item.name)}
+          {item.name}
+          </Heading3>
+        </Pressable>
+      </ChildRelationList>
+    );
+  })}
+
+</View>
+</ActionSheet>
         <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
               disabled={relationship == null || relationship == "" || relationship == undefined || userRelationToParent == undefined ? true : false}
-              onPress={async (e): Promise<any> => {
+              onPress={async (e:any): Promise<any> => {
                 e.stopPropagation();
                 if (importResponse) {
                   importResponse = JSON.parse(importResponse);
@@ -253,6 +298,7 @@ const ChildImportSetup = (props: any): any => {
                 if (importResponse?.length > 0) {
                   const resolvedPromises = importResponse.map(async (item: any) => {
                     if (item.birthDate != null && item.birthDate != undefined) {
+                      console.log('Item is from dash',item,genders)
                       const itemnew = await getChild(item, genders);
                       const childData: any = [];
                       childData.push(itemnew);

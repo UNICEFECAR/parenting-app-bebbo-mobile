@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
 })
 const ChartHeightForAge = (props: any): any => {
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-  const navigation = useNavigation();
+  const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
+  const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
+  const navigation = useNavigation<any>();
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -98,10 +98,11 @@ useEffect(() => {
       setDeviceOrientation('landscape');
     }
   };
-  Dimensions.addEventListener('change', deviceOrientation);
+  const listener = Dimensions.addEventListener('change', deviceOrientation);
   return (): any => {
     //cleanup work
-    Dimensions.removeEventListener('change', deviceOrientation);
+    listener.remove()
+
   };
 }, []);
   return (

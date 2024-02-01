@@ -10378,5 +10378,534 @@ export const standardDevData:any = {
                 }
             }
         ]
-    }]
+    }],
+    "sk": [
+        {
+            "weight_for_height": [
+                {
+                    "child_age": [
+                        43,
+                        44,
+                        45,
+                        46
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3401,
+                            3416,
+                            3346,
+                            3341
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch - primeraná hmotnosť vzhľadom k dĺžke",
+                        "text": "Výborne! Vaše dieťa prospieva a jej/jeho hmotnosť je v súlade s dĺžkou. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast Vášho dieťaťa."
+                    },
+                    "warrningSmallHeightText": {
+                        "articleID": [
+                            6236,
+                            3401,
+                            3416,
+                            3341,
+                            3346
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch - mierna podvýživa",
+                        "text": "Pozor! Vaše dieťa nepriberá (alebo chudne), jeho hmotnosť je vzhľadom k dĺžke ľahko pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte, či má dieťa veku primeranú stravu v dostatočnom množstve (problémy s dojčením, nesprávna technika, nedostatok materského mlieka, nevhodná mliečna formula, alergia na bielkovinu kravského mlieka...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či opakovane po najedení \"neodgrckáva\" väčšie množstvá (gastroezofageálny reflux),  či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Určite si naplánujte vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, upravila sa strava a ev. objasnila príčina stavu, podvýživa môže byť prvým prejavom chronického ochorenia."
+                    },
+                    "emergencySmallHeightText": {
+                        "articleID": [
+                            6236,
+                            3371,
+                            3401,
+                            3341,
+                            3346
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch - ťažká podvýživa",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke výrazne pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (problémy s dojčením, nesprávna technika, nedostatok materského mlieka, nevhodná mliečna formula, alergia na bielkovinu kravského mlieka...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či opakovane po najedení \"neodgrckáva\" väčšie množstvá (gastroezofageálny reflux),  či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, upravila sa strava a odsledoval sa ďalší vývin a jeho zmeny. Podvýživa môže byť prejavom metabolického, ako aj iného chronického ochorenia.  "
+                    },
+                    "warrningBigHeightText": {
+                        "articleID": [
+                            3401,
+                            3376,
+                            3346,
+                            3341
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch – nadváha",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke nad očakávanou hornou hranicou normy. Tento stav hodnotíme rozdielne u detí plne dojčených a u detí na náhradnej mliečnej formule. Svetová zdravotnícka organizácia a UNICEF odporúčajú výlučné dojčenie počas prvých 6 mesiacov života. Materské mlieko obsahuje všetky potrebné živiny vo vyváženom množstve, preto vyššia hmotnosť u plne dojčeného dieťaťa je v širšom pásme normy. Dojčenie (najmä predĺžené dojčenie - minimálne 12 mesiacov) znižuje riziko obezity v neskoršom veku. Ak je Vaše dieťa výlučne dojčené, odporúča sa „dojčiť na požiadanie“, t.j. tak často ako dieťa chce, bez obmedzovania dĺžky a frekvencie dojčenia (pri správnej technike). Ak je Vaše dieťa kŕmené mliečnou formulou, uistite sa, že pripravujete formulu podľa odporúčaní (správne množstvo vody a prášku) a dávate primerané množstvo, a počet dávok, t.j. dieťa neprekrmujete. Rovnako aj v prípade, ak už dieťa dostáva nemliečne príkrmy. Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny."
+                    },
+                    "emergencyBigHeightText": {
+                        "articleID": [
+                            3401,
+                            3341,
+                            3376,
+                            3346
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch - obezita",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke výrazne nad očakávanou hornou hranicou normy. Tento stav hodnotíme rozdielne u detí plne dojčených a u detí na náhradnej mliečnej formule. Svetová zdravotnícka organizácia a UNICEF odporúčajú výlučné dojčenie počas prvých 6 mesiacov života. Materské mlieko obsahuje všetky potrebné živiny vo vyváženom množstve, preto vyššia hmotnosť u plne dojčeného dieťaťa je v širšom pásme normy. Dojčenie (najmä predĺžené dojčenie - minimálne 12 mesiacov) znižuje riziko obezity v neskoršom veku. Ak je Vaše dieťa výlučne dojčené, odporúča sa „dojčiť na požiadanie“, t.j. tak často ako dieťa chce, bez obmedzovania dĺžky a frekvencie dojčenia (pri správnej technike). Ak je Vaše dieťa kŕmené mliečnou formulou, uistite sa, že pripravujete formulu podľa odporúčaní (správne množstvo vody a prášku) a dávate primerané množstvo, a počet dávok, t.j. dieťa neprekrmujete. Rovnako aj v prípade, ak už dieťa dostáva nemliečne príkrmy. Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny. "
+                    }
+                },
+                {
+                    "child_age": [
+                        47
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3406,
+                            3416,
+                            3351,
+                            3346
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - primeraná hmotnosť vzhľadom k dĺžke",
+                        "text": "Výborne! Vaše dieťa prospieva a jej/jeho hmotnosť je v súlade s dĺžkou. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast Vášho dieťaťa."
+                    },
+                    "warrningSmallHeightText": {
+                        "articleID": [
+                            6201,
+                            3406,
+                            3371,
+                            3351,
+                            3346
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - mierna podvýživa",
+                        "text": "Pozor! Vaše dieťa nepriberá (alebo chudne), jeho hmotnosť je vzhľadom k dĺžke ľahko pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (neskoré zavádzanie nemliečnych príkrmov, problémy s kŕmením, nevhodné zloženie stravy...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Konzultujte pediatra, aby odsledoval ďalší vývoj a jeho zmeny, aby sa upravila strava a ev. objasnila príčina stavu, podvýživa môže byť prvým prejavom chronického ochorenia."
+                    },
+                    "emergencySmallHeightText": {
+                        "articleID": [
+                            6201,
+                            3406,
+                            3371,
+                            3351,
+                            3346
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - ťažká podvýživa",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke výrazne pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (neskoré zavádzanie nemliečnych príkrmov, problémy s kŕmením, nevhodné zloženie stravy...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či opakovane po najedení \"neodgrckáva\" väčšie množstvá (gastroezofageálny reflux),  či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, upravila sa strava a odsledoval sa ďalší vývin a jeho zmeny. Podvýživa môže byť prejavom metabolického, ako aj iného chronického ochorenia."
+                    },
+                    "warrningBigHeightText": {
+                        "articleID": [
+                            3406,
+                            3376,
+                            3351,
+                            3346
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - nadváha",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke nad očakávanou hornou hranicou normy. Ak je Vaše dieťa dojčené, Svetová zdravotnícka organizácia a UNICEF odporúčajú pokračovať v dojčení až do veku 2 rokov alebo aj ďalej, kým to matke a aj dieťaťu vyhovuje. Dojčenie (najmä predĺžené dojčenie - minimálne 12 mesiacov) znižuje riziko obezity v neskoršom veku. Od ukončeného 6. mesiaca je nutné pridať do výživy nemliečne príkrmy. Uistite sa, že ich dieťa dostáva v primeranom množstve a frekvencii podľa platných odporúčaní pre optimálnu výživu. Príčinou vyššej hmotnosti môže byť neprimeraná strava (dosladená, dosolená, džúsy...), prekrmovanie dieťaťa, nedostatočný spánok, významnejšie zmeny v rodine alebo v inom blízkom okolí (rozvod, psychická nepohoda v rodine...). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, objasnila sa príčina stavu a určil sa ďalší postup."
+                    },
+                    "emergencyBigHeightText": {
+                        "articleID": [
+                            3406,
+                            3376,
+                            3351,
+                            3346
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - obezita",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke výrazne nad očakávanou hornou hranicou normy. Ak je Vaše dieťa dojčené, Svetová zdravotnícka organizácia a UNICEF odporúčajú pokračovať v dojčení až do veku 2 rokov alebo aj ďalej, kým to matke a aj dieťaťu vyhovuje. Od ukončeného 6. mesiaca je nutné pridať do výživy nemliečne príkrmy. Uistite sa, že ich dieťa dostáva v primeranom množstve a frekvencií podľa platných odporúčaní pre optimálnu výživu. Príčinou vyššej hmotnosti môže byť neadekvátna strava (presladená, presolená, džúsy a sladené nápoje...), prekrmovanie dieťaťa, nedostatočný spánok, významnejšie zmeny v rodine alebo v inom blízkom okolí (rozvod, psychická nepohoda v rodine...). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývoj a jeho zmeny, objasnila sa príčina stavu a určil sa ďalší postup."
+                    }
+                },
+                {
+                    "child_age": [
+                        48
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3411,
+                            3416,
+                            3356,
+                            3346
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - primeraná hmotnosť vzhľadom k dĺžke",
+                        "text": "Výborne! Vaše dieťa prospieva a jej/jeho hmotnosť je v súlade s dĺžkou. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast Vášho dieťaťa."
+                    },
+                    "warrningSmallHeightText": {
+                        "articleID": [
+                            6201,
+                            3411,
+                            3371,
+                            3356,
+                            3346
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - mierna podvýživa",
+                        "text": "Pozor! Vaše dieťa nepriberá (alebo chudne), jeho hmotnosť je vzhľadom k dĺžke ľahko pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (neskoré zavádzanie nemliečnych príkrmov, problémy s kŕmením, nevhodné zloženie stravy...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Určite si naplánujte vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, upravila sa strava a ev. objasnila príčina stavu, podvýživa môže byť prvým prejavom chronického ochorenia."
+                    },
+                    "emergencySmallHeightText": {
+                        "articleID": [
+                            6201,
+                            3411,
+                            3356,
+                            3346
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - ťažká podvýživa",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke výrazne pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (problémy s kŕmením, nevhodné zloženie stravy...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či opakovane po najedení \"neodgrckáva\" väčšie množstvá (gastroezofageálny reflux),  či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, upravila sa strava a odsledoval sa ďalší vývin a jeho zmeny. Podvýživa môže byť prejavom metabolického, ako aj iného chronického ochorenia."
+                    },
+                    "warrningBigHeightText": {
+                        "articleID": [
+                            3411,
+                            3376,
+                            3356,
+                            3346
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - nadváha",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke nad očakávanou hornou hranicou normy. Ak je Vaše dieťa dojčené, Svetová zdravotnícka organizácia a UNICEF odporúčajú pokračovať v dojčení až do veku 2 rokov alebo aj ďalej, kým to matke a aj dieťaťu vyhovuje. Dojčenie (najmä predĺžené dojčenie- minimálne 12 mesiacov) znižuje riziko obezity v neskoršom veku. Príčinou vyššej hmotnosti môže byť neprimeraná strava (presladená, dosolená, džúsy a sladené nápoje...), prekrmovanie dieťaťa, nedostatočný spánok, významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, objasnila sa príčina stavu a určil sa ďalší postup."
+                    },
+                    "emergencyBigHeightText": {
+                        "articleID": [
+                            3411,
+                            3376,
+                            3356,
+                            3346
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - obezita",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke výrazne nad očakávanou hornou hranicou normy. Ak je Vaše dieťa dojčené, Svetová zdravotnícka organizácia a UNICEF odporúčajú pokračovať v dojčení až do veku 2 rokov alebo aj ďalej, kým to matke a aj dieťaťu vyhovuje. Príčinou vyššej hmotnosti môže byť neadekvátna strava (presladená, presolená, džúsy a sladké nápoje...), prekrmovanie dieťaťa, nedostatočný spánok, významnejšie zmeny v rodine alebo v inom blízkom okolí (rozvod, psychická nepohoda v rodine...). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývoj a jeho zmeny, objasnila sa príčina stavu a určil sa ďalší postup.    "
+                    }
+                },
+                {
+                    "child_age": [
+                        49,
+                        50
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3391,
+                            3416,
+                            3386,
+                            3361
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - primeraná hmotnosť vzhľadom k dĺžke",
+                        "text": "Výborne! Vaše dieťa prospieva a jej/jeho hmotnosť je v súlade s dĺžkou. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast Vášho dieťaťa."
+                    },
+                    "warrningSmallHeightText": {
+                        "articleID": [
+                            6201,
+                            3371,
+                            3391,
+                            3386,
+                            3361
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - mierna podvýživa",
+                        "text": "Pozor! Vaše dieťa nepriberá (alebo chudne), jeho hmotnosť je vzhľadom k dĺžke ľahko pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (problémy s kŕmením, nevhodné zloženie stravy...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, upravila sa strava a ev. objasnila príčina stavu, podvýživa môže byť prvým prejavom chronického ochorenia."
+                    },
+                    "emergencySmallHeightText": {
+                        "articleID": [
+                            6201,
+                            3391,
+                            3371,
+                            3386,
+                            3361
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - ťažká podvýživa",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke výrazne pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (problémy s kŕmením, nevhodné zloženie stravy...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či opakovane po najedení \"neodgrckáva\" väčšie množstvá (gastroezofageálny reflux),  či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, upravila sa strava a odsledoval sa ďalší vývin a jeho zmeny. Podvýživa môže byť prejavom metabolického, ako aj iného chronického ochorenia."
+                    },
+                    "warrningBigHeightText": {
+                        "articleID": [
+                            3391,
+                            3386,
+                            3381,
+                            3361
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - nadváha",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke nad očakávanou hornou hranicou normy. Príčinou vyššej hmotnosti môže byť neadekvátna strava (presladená, presolená, džúsy a sladené nápoje...), prekrmovanie dieťaťa, nedostatočná pohybová aktivita a vyšší čas strávený pred obrazovkami, nedostatočný spánok, významnejšie zmeny v rodine alebo v inom blízkom okolí (rozvod, psychická nepohoda v rodine...). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, objasnila sa príčina stavu a určil sa ďalší postup."
+                    },
+                    "emergencyBigHeightText": {
+                        "articleID": [
+                            3391,
+                            3386,
+                            3381,
+                            3361
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - obezita",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho dĺžke výrazne nad očakávanou hornou hranicou normy. Príčinou vyššej hmotnosti môže byť neadekvátna strava (presladená, presolená, džúsy a sladké nápoje...), prekrmovanie dieťaťa, nedostatočná pohybová aktivita a neprimerane dlhý čas strávený pred obrazovkami, nedostatočný spánok, významnejšie zmeny v rodine alebo v inom blízkom okolí (rozvod, psychická nepohoda v rodine...). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývoj a jeho zmeny, objasnila sa príčina stavu a určil sa ďalší postup."
+                    }
+                },
+                {
+                    "child_age": [
+                        51,
+                        52,
+                        57,
+                        58
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3396,
+                            3416,
+                            5891,
+                            3366
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku - primeraná hmotnosť vzhľadom k výške",
+                        "text": "Výborne! Vaše dieťa prospieva a jej/jeho hmotnosť je v súlade s výškou. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast Vášho dieťaťa."
+                    },
+                    "warrningSmallHeightText": {
+                        "articleID": [
+                            6201,
+                            3371,
+                            3396,
+                            5891,
+                            3366
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku života - mierna podvýživa",
+                        "text": "Pozor! Vaše dieťa nepriberá (alebo chudne), jeho hmotnosť je vzhľadom k výške ľahko pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (nevhodné zloženie stravy a alternatívne diéty...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Určite si naplánujte vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, upravila sa strava a ev. objasnila príčina stavu, podvýživa môže byť prvým prejavom chronického ochorenia."
+                    },
+                    "emergencySmallHeightText": {
+                        "articleID": [
+                            6201,
+                            3396,
+                            3371,
+                            5891,
+                            3366
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku života - ťažká podvýživa",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho výške výrazne pod dolnou hranicou normy. Príčiny môžu byť rôzne, preto zvážte či má dieťa veku primeranú stravu v dostatočnom množstve (nevhodné zloženie stravy, alternatívne diéty...), či nedávno neprekonalo infekčné ochorenie, predovšetkým hnačku, či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...) atď. Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, upravila sa strava a odsledoval sa ďalší vývin a jeho zmeny. Podvýživa môže byť prejavom metabolického, ako aj iného chronického ochorenia."
+                    },
+                    "warrningBigHeightText": {
+                        "articleID": [
+                            3396,
+                            5891,
+                            3381,
+                            3366
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku života - nadváha",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho výške nad očakávanou hornou hranicou normy. Príčiny vyššej hmotnosti sú najčastejšie nadmerný energetický príjem a/alebo nedostatočná fyzická aktivita, zriedkavo iné príčiny (genetické, metabolické, endokrinné ochorenia, lieky...). Zvážte, či má dieťa veku primeranú stravu v adekvátnom množstve (obmedziť sladkosti, dosládzané potraviny a nápoje, vysokokalorické a solené potraviny...), či má dostatok spánku a pohybovej aktivity, či netrávi veľa času pred obrazovkami, či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, objasnila sa príčina stavu a určil sa ďalší postup."
+                    },
+                    "emergencyBigHeightText": {
+                        "articleID": [
+                            5891,
+                            3396,
+                            3381,
+                            3366
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku života - obezita",
+                        "text": "Pozor! Hmotnosť Vášho dieťaťa je vzhľadom k jeho výške výrazne nad očakávanou hornou hranicou normy. Príčiny vyššej hmotnosti sú najčastejšie nadmerný energetický príjem a/alebo nedostatočná fyzická aktivita, zriedkavo iné príčiny (genetické, metabolické, endokrinné ochorenia, lieky...). Zvážte, či má dieťa veku primeranú stravu v adekvátnom množstve (obmedziť sladkosti, dosládzané potraviny a nápoje, vysokokalorické a solené potraviny...), či má dostatok spánku a pohybovej aktivity, či netrávi veľa času pred obrazovkami, či sa neudiali významnejšie zmeny v rodine alebo v inom blízkom okolí  (rozvod, psychická nepohoda v rodine...). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, objasnila sa príčina stavu a určil sa ďalší postup."
+                    }
+                }
+            ],
+            "height_for_age": [
+                {
+                    "child_age": [
+                        43,
+                        44,
+                        45,
+                        46
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3401,
+                            3346,
+                            3341,
+                            3416
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch - primeraný rast pre daný vek a pohlavie",
+                        "text": "Výborne! Vaše dieťa dobre rastie a jej/jeho dĺžka je v očakávanom pásme pre daný vek a pohlavie. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast Vášho dieťaťa."
+                    },
+                    "warrningSmallLengthText": {
+                        "articleID": [
+                            3606,
+                            3401,
+                            3341,
+                            3346
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch - mierne oneskorenie rastu",
+                        "text": "Pozor! Dĺžka Vášho dieťaťa je pod očakávaným pásmom pre daný vek a pohlavie, rast je mierne oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Určite si naplánujte vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, doplnili sa potrebné vyšetrania a objasnila sa príčina stavu."
+                    },
+                    "emergencySmallLengthText": {
+                        "articleID": [
+                            3401,
+                            3346,
+                            3341
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch - závažné oneskorenie rastu",
+                        "text": "Pozor! Dĺžka Vášho dieťaťa je výrazne pod očakávaným pásmom pre daný vek a pohlavie, rast je oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, odsledoval sa ďalší vývin a jeho zmeny, prípadne sa nastavila vhodná liečba."
+                    },
+                    "warrningBigLengthText": {
+                        "articleID": [
+                            3401,
+                            3346,
+                            3341
+                        ],
+                        "name": "Viac o raste v prvých 6 mesiacoch - nadpriemerná dĺžka vzhľadom na vek a pohlavie",
+                        "text": "Dĺžka Vášho dieťaťa je nad očakávaným pásmom pre daný vek a pohlavie, rastie rýchlejšie ako jej/jeho rovesníci. Väčšina detí s vysokým vzrastom je zdravá a jej/jeho dĺžka je pravdepodobne geneticky podmienená (rodiny s vysokým vzrastom). Spolu s pediatrom odsledujte rast a ďalší vývin v pravidelných intervaloch."
+                    }
+                },
+                {
+                    "child_age": [
+                        47
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3406,
+                            3351,
+                            3346,
+                            3416
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - primeraný rast pre daný vek a pohlavie",
+                        "text": "Výborne! Vaše dieťa dobre rastie a jej/jeho dĺžka je v očakávanom pásme pre daný vek a pohlavie. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast Vášho dieťaťa."
+                    },
+                    "warrningSmallLengthText": {
+                        "articleID": [
+                            3606,
+                            3406,
+                            3346,
+                            3351
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - mierne oneskorenie rastu",
+                        "text": "Pozor! Dĺžka Vášho dieťaťa je pod očakávaným pásmom pre daný vek a pohlavie, rast je mierne oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, doplnili sa potrebné vyšetrania a objasnila sa príčina stavu."
+                    },
+                    "emergencySmallLengthText": {
+                        "articleID": [
+                            3606,
+                            3406,
+                            3351,
+                            3346
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - závažné oneskorenie rastu",
+                        "text": "Pozor! Dĺžka Vášho dieťaťa je výrazne pod očakávaným pásmom pre daný vek a pohlavie, rast je oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, odsledoval sa ďalší vývin a jeho zmeny, prípadne sa nastavila vhodná liečba."
+                    },
+                    "warrningBigLengthText": {
+                        "articleID": [
+                            6116,
+                            3406,
+                            3351,
+                            3346
+                        ],
+                        "name": "Viac o raste v 7. až 9. mesiaci - nadpriemerná dĺžka vzhľadom na vek a pohlavie",
+                        "text": "Dĺžka Vášho dieťaťa je nad očakávaným pásmom pre daný vek a pohlavie, rastie rýchlejšie ako jej/jeho rovesníci. Väčšina detí s vysokým vzrastom je zdravá a jej/jeho dĺžka je pravdepodobne geneticky podmienená (rodiny s vysokým vzrastom). Spolu s pediatrom odsledujte rast a ďalší vývin v pravidelných intervaloch."
+                    }
+                },
+                {
+                    "child_age": [
+                        48
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3411,
+                            3356,
+                            3346,
+                            3416
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - primeraný rast pre daný vek a pohlavie",
+                        "text": "Výborne! Vaše dieťa dobre rastie a jej/jeho dĺžka je v očakávanom pásme pre daný vek a pohlavie. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast vášho dieťaťa."
+                    },
+                    "warrningSmallLengthText": {
+                        "articleID": [
+                            3606,
+                            3411,
+                            3356,
+                            3346
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - mierne oneskorenie rastu",
+                        "text": "Pozor! Dĺžka Vášho dieťaťa je pod očakávaným pásmom pre daný vek a pohlavie, rast je mierne oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, doplnili sa potrebné vyšetrenia a objasnila sa príčina stavu."
+                    },
+                    "emergencySmallLengthText": {
+                        "articleID": [
+                            3606,
+                            3411,
+                            3356,
+                            3346
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - závažné oneskorenie rastu",
+                        "text": "Pozor! Dĺžka Vášho dieťaťa je výrazne pod očakávaným pásmom pre daný vek a pohlavie, rast je oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, odsledoval sa ďalší vývin a jeho zmeny, prípadne sa nastavila vhodná liečba."
+                    },
+                    "warrningBigLengthText": {
+                        "articleID": [
+                            6116,
+                            3411,
+                            3356,
+                            3346
+                        ],
+                        "name": "Viac o raste v 10. až 12. mesiaci - nadpriemerná dĺžka vzhľadom na vek a pohlavie",
+                        "text": "Dĺžka Vášho dieťaťa je nad očakávaným pásmom pre daný vek a pohlavie, rastie rýchlejšie ako jej/jeho rovesníci. Väčšina detí s vysokým vzrastom je zdravá a jej/jeho dĺžka je pravdepodobne geneticky podmienená (rodiny s vysokým vzrastom). Spolu s pediatrom odsledujte rast a ďalší vývin v pravidelných intervaloch."
+                    }
+                },
+                {
+                    "child_age": [
+                        49,
+                        50
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            3391,
+                            3386,
+                            3361,
+                            3416
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - primeraný rast pre daný vek a pohlavie",
+                        "text": "Výborne! Vaše dieťa dobre rastie a jej/jeho dĺžka je v očakávanom pásme pre daný vek a pohlavie. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast vášho dieťaťa."
+                    },
+                    "warrningSmallLengthText": {
+                        "articleID": [
+                            3606,
+                            3391,
+                            3386,
+                            3361
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - mierne oneskorenie rastu",
+                        "text": "Pozor! Dĺžka Vášho dieťaťa je pod očakávaným pásmom pre daný vek a pohlavie, rast je mierne oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Naplánujte si vyšetrenie u pediatra, aby sa odsledoval ďalší vývin a jeho zmeny, doplnili sa potrebné vyšetrenia a objasnila sa príčina stavu."
+                    },
+                    "emergencySmallLengthText": {
+                        "articleID": [
+                            3606,
+                            3391,
+                            3386,
+                            3361
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - závažné oneskorenie rastu",
+                        "text": "Pozor! Dĺžka Vášho dieťaťa je výrazne pod očakávaným pásmom pre daný vek a pohlavie, rast je oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, odsledoval sa ďalší vývin a jeho zmeny, prípadne sa nastavila vhodná liečba."
+                    },
+                    "warrningBigLengthText": {
+                        "articleID": [
+                            6116,
+                            3391,
+                            3386,
+                            3361
+                        ],
+                        "name": "Viac o raste v 13. až 24. mesiaci - nadpriemerná dĺžka vzhľadom na vek a pohlavie",
+                        "text": "Dĺžka Vášho dieťaťa je nad očakávaným pásmom pre daný vek a pohlavie, rastie rýchlejšie ako jej/jeho rovesníci. Väčšina detí s vysokým vzrastom je zdravá a jej/jeho dĺžka je pravdepodobne geneticky podmienená (rodiny s vysokým vzrastom). Spolu s pediatrom odsledujte rast a ďalší vývin v pravidelných intervaloch."
+                    }
+                },
+                {
+                    "child_age": [
+                        51,
+                        52,
+                        57,
+                        58
+                    ],
+                    "goodText": {
+                        "articleID": [
+                            5891,
+                            3396,
+                            3386,
+                            3416
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku života - primeraný rast pre daný vek a pohlavie",
+                        "text": "Výborne! Vaše dieťa dobre rastie a jej/jeho dĺžka je v očakávanom pásme pre daný vek a pohlavie. Pokračujte v dodržiavaní odporúčaní pre optimálnu výživu, fyzickú aktivitu a spánok. Sledujte rast vášho dieťaťa."
+                    },
+                    "warrningSmallLengthText": {
+                        "articleID": [
+                            3606,
+                            5891,
+                            3396,
+                            3366
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku - mierne oneskorenie rastu",
+                        "text": "Pozor! Výška Vášho dieťaťa je pod očakávaným pásmom pre daný vek a pohlavie, rast je mierne oneskorený v porovnaní s jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Požiadajte o vyšetrenie u svojho pediatra (prípadne overte, kedy máte termín najbližšej preventívnej prehliadky), aby odsledoval vývin a jeho zmeny, prípadne doplnil potrebné vyšetrenia a objasnil príčinu stavu."
+                    },
+                    "emergencySmallLengthText": {
+                        "articleID": [
+                            5891,
+                            3606,
+                            3396,
+                            3366
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku - závažné oneskorenie rastu",
+                        "text": "Pozor! Výška Vášho dieťaťa je výrazne pod očakávaným pásmom pre daný vek a pohlavie, rast je oneskorený v porovnaní s jej/jeho rovesníkmi. Väčšina detí s nízkym vzrastom je zdravá, avšak u malého percenta detí môže byť príčina vážnejšia, napríklad chronická podvýživa (dlhodobo nedostatočná a nevhodná strava), časté infekčné ochorenia, ale aj iné chronické ochorenia (ochorenia srdca, pľúc, obličiek, čreva...) a endokrinné poruchy (hormonálne). Bezodkladne sa poraďte s pediatrom. Je potrebné, aby sa objasnila príčina stavu, odsledoval sa ďalší vývin a jeho zmeny, prípadne sa nastavila vhodná liečba."
+                    },
+                    "warrningBigLengthText": {
+                        "articleID": [
+                            6116,
+                            5891,
+                            3396,
+                            3366
+                        ],
+                        "name": "Viac o raste v 3. až 5. roku - nadpriemerná výška vzhľadom na vek a pohlavie",
+                        "text": "Výška Vášho dieťaťa je nad očakávaným pásmom pre daný vek a pohlavie, rastie rýchlejšie ako jej/jeho rovesníci. Väčšina detí s vysokým vzrastom je zdravá a jej/jeho výška je pravdepodobne geneticky podmienená (rodiny s vysokým vzrastom). Spolu s pediatrom odsledujte rast a ďalší vývin v pravidelných intervaloch."
+                    }
+                }
+            ]
+        }
+    ]
 };

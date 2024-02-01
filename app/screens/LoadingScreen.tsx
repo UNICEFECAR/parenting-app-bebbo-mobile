@@ -114,8 +114,8 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     return { alldataarr: alldataarr, deltadataarr: deltadataarr };
   }
   const callSagaApi = async (enableImageDownload: any): Promise<any> => {
-    const routes = navigation.dangerouslyGetState()?.routes;
-    console.log(routes.length, "in callSagaApi navigation history--", navigation.dangerouslyGetState());
+    const routes = navigation.getState().routes;
+    console.log(routes.length, "in callSagaApi navigation history--", navigation.getState().routes);
 
     const prevRoute = routes.length > 2 ? routes[routes.length - 2] : null;
     if (prevPage == "ChildSetup" || prevPage == "AddEditChild") {
@@ -277,7 +277,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
 
 
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.SECONDARY_COLOR;
+  const headerColor = themeContext?.colors.SECONDARY_COLOR;
   return (
     <>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />

@@ -3168,7 +3168,7 @@ export const MileStonesData: any = {
             "mandatory": 1
         }
     ],
-    "al-sq":[
+    "al-sq": [
         {
             "id": 2531,
             "type": "Milestone",
@@ -3836,7 +3836,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "by-be":[
+    "by-be": [
         {
             "id": 2936,
             "type": "Milestone",
@@ -5172,7 +5172,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "bg-bg":[
+    "bg-bg": [
         {
             "id": 2531,
             "type": "Milestone",
@@ -5840,7 +5840,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "gr-el":[
+    "gr-el": [
         {
             "id": 2531,
             "type": "Milestone",
@@ -6508,7 +6508,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "kg-ky":[
+    "kg-ky": [
         {
             "id": 2531,
             "type": "Milestone",
@@ -7176,7 +7176,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "kg-ru":[
+    "kg-ru": [
         {
             "id": 2531,
             "type": "Milestone",
@@ -9220,7 +9220,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "mk-mk":[
+    "mk-mk": [
         {
             "id": 2531,
             "type": "Milestone",
@@ -9888,7 +9888,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "mk-sq":[
+    "mk-sq": [
         {
             "id": 2936,
             "type": "Milestone",
@@ -12598,7 +12598,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "tj-tg":[
+    "tj-tg": [
         {
             "id": 2936,
             "type": "Milestone",
@@ -13934,7 +13934,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "uk":  [
+    "uk": [
         {
             "id": 2986,
             "type": "Milestone",
@@ -14622,7 +14622,7 @@ export const MileStonesData: any = {
             "mandatory": 1
         }
     ],
-    "uz-uz":[
+    "uz-uz": [
         {
             "id": 2531,
             "type": "Milestone",
@@ -15290,7 +15290,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "uz-ru":[
+    "uz-ru": [
         {
             "id": 7106,
             "type": "Milestone",
@@ -15956,6 +15956,684 @@ export const MileStonesData: any = {
                 6606
             ],
             "mandatory": 0
+        }
+    ],
+    "sk": [
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "1. mesiac: Vydáva zvuky",
+            "created_at": "Tue, 07/18/2023 - 19:50",
+            "updated_at": "Wed, 08/23/2023 - 13:33",
+            "body": "<p>Dieťa plače a vydáva rôzne iné zvuky.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Reaguje na zvuk hlasu produkovaním zvukov - spájaním samohlások: a, e, u...",
+            "created_at": "Tue, 07/18/2023 - 19:49",
+            "updated_at": "Tue, 08/22/2023 - 22:41",
+            "body": "<p>Keď ho niekto osloví, rozpráva, spieva, alebo mu číta, dieťa reaguje zvukom.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7211
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6421
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Snaží sa postaviť",
+            "created_at": "Tue, 07/18/2023 - 19:48",
+            "updated_at": "Wed, 08/23/2023 - 23:37",
+            "body": "<p> Snaží sa postaviť pridžiavaním nábytku ale potrebuje pomoc a oporu.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6471
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Aktívne sa zúčastňuje činností vyžadujúcich pokročilé fyzické zručnosti",
+            "created_at": "Tue, 07/18/2023 - 19:40",
+            "updated_at": "Tue, 08/22/2023 - 22:56",
+            "body": "<p>Dokáže stáť na jednej nohe, s presnosťou kopnúť do lopty, trafiť loptou cieľ a podobne.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7531
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58611
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Plačom vyjadruje nespokojnosť alebo reaguje na zmenu činnosti",
+            "created_at": "Tue, 07/18/2023 - 19:35",
+            "updated_at": "Tue, 08/22/2023 - 23:01",
+            "body": "<p>Dieťa vyjadruje nevôľu plačom, pri zotrvaní dlhší čas v jednej polohe, alebo pvyjadruje nespokojnosť ak je z náručia preložené na podložku.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7181
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6916
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2986,
+            "type": "Milestone",
+            "title": "Vyslovuje slová s významom",
+            "created_at": "Mon, 07/17/2023 - 21:57",
+            "updated_at": "Tue, 08/22/2023 - 22:39",
+            "body": "<p>V komunikácii s rodičmi použije aspoň jedno alebo niekoľko samostatných slov, ktoré majú význam.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7286
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6851
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Je aktívne a samostatné v rámci každodenných rutinných a spoločenských aktivít",
+            "created_at": "Mon, 07/17/2023 - 15:25",
+            "updated_at": "Tue, 08/22/2023 - 23:14",
+            "body": "<p>Dokáže sa samostatne obliecť a vyzliecť, používa lyžicu a vidličku, samostatne používa toaletu a umýva si ruky. Dokáže sa odpútať od rodičov a zapojiť sa do samostatných spoločenských aktivít. </p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7526
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58596
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Rozumie rozdielom medzi skutočným a predstieraným alebo vymysleným",
+            "created_at": "Mon, 07/17/2023 - 15:23",
+            "updated_at": "Tue, 08/22/2023 - 21:56",
+            "body": "<p>Príbehy, udalosti, postavy si vymýšľa len podľa svojej fantázie, umelecky ich prezentuje, opisuje a pripisuje im vlastnosti, ktoré nie sú reálne. Prejavuje pri tom radosť a uvedomuje si, že vo svete fantázie je možné všetko. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7571
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58641
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Dokáže sedieť s oporou",
+            "created_at": "Mon, 07/17/2023 - 15:19",
+            "updated_at": "Tue, 08/22/2023 - 22:03",
+            "body": "<p>Keď má dieťa oporu alebo sa niečoho drží, dokáže sedieť a na krátky čas dokáže samostatne udržať polohu v sede.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "Upokojí sa na krátky čas",
+            "created_at": "Mon, 07/17/2023 - 15:17",
+            "updated_at": "Tue, 08/22/2023 - 22:58",
+            "body": "<p>Dieťa sa upokojuje cmúľaním prsta alebo ručičky.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7176
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6361
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2981,
+            "type": "Milestone",
+            "title": "Rozumie jednoduchým príkazom a vykonáva ich",
+            "created_at": "Mon, 07/17/2023 - 15:12",
+            "updated_at": "Tue, 08/22/2023 - 21:54",
+            "body": "<p>Postupuje podľa jednoducho zadaných pokynov a bez názornej ukážky dokáže vykonať to, čo sa od neho očakáva.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7326
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6571
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Prejavuje radosť pri uvedomení si, že je čas na hru",
+            "created_at": "Mon, 07/17/2023 - 15:08",
+            "updated_at": "Tue, 08/22/2023 - 22:28",
+            "body": "<p>Dieťa prejavuje radosť zo spoločnej hry a kontaktu najmä s rodičmi alebo inými známymi osobami.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7841
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6441
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Vystupuje a zostupuje po schodoch",
+            "created_at": "Mon, 07/17/2023 - 14:23",
+            "updated_at": "Tue, 08/22/2023 - 22:08",
+            "body": "<p>Chodí po schodoch s oporou, pričom používa striedavo jednu a potom druhú nohu.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "S istotou počíta do desať a pomenuje desať predmetov",
+            "created_at": "Mon, 07/17/2023 - 14:22",
+            "updated_at": "Tue, 08/22/2023 - 22:05",
+            "body": "<p>Používa radové číslovky \"prvý, druhý\", počíta v obore do 10 a počíta dni v týždni a mesiace.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7501
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58601
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "Začína rozumieť významu slova \"nie\"",
+            "created_at": "Mon, 07/17/2023 - 14:22",
+            "updated_at": "Wed, 08/23/2023 - 12:56",
+            "body": "<p>Začína rozumieť významu slova \"nie\" a zastaví svoju činnosť.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7226
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6476
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Spolupracuje pri obliekaní",
+            "created_at": "Mon, 07/17/2023 - 14:20",
+            "updated_at": "Tue, 08/22/2023 - 22:41",
+            "body": "<p>Spolupracuje, keď ho obliekate, tlačí ruku cez rukávy a nohy cez nohavice.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7276
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 6981,
+            "type": "Milestone",
+            "title": "Používa vety pozostávajúce zo 4 až 5 slov",
+            "created_at": "Mon, 07/17/2023 - 14:18",
+            "updated_at": "Tue, 08/22/2023 - 22:39",
+            "body": "<p>Spája slová tak, aby dávali zmysel a sprostredkovali myšlienky.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7431
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58501
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 3001,
+            "type": "Milestone",
+            "title": "Samostatne čmára ceruzkou alebo pastelkami na papier",
+            "created_at": "Mon, 07/17/2023 - 14:09",
+            "updated_at": "Tue, 08/22/2023 - 22:30",
+            "body": "<p>Rado ľubovoľne čmára ceruzkou na papieri, rukou na piesku, s tyčinkou v blate alebo vodou na betóne. </p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7296
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6606
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "Používa vety pozostávajúce z 2 až 3 slov",
+            "created_at": "Mon, 07/17/2023 - 14:04",
+            "updated_at": "Tue, 08/22/2023 - 22:40",
+            "body": "<p>Dokáže zostaviť a povedať vety zložené z 2 až 3 slov dostatočne dobre na to, aby jej členovia rodiny rozumeli.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6996,
+            "type": "Milestone",
+            "title": "Pozná rozdiely medzi skutočným, predstieraným alebo vymysleným",
+            "created_at": "Mon, 07/17/2023 - 14:04",
+            "updated_at": "Tue, 08/22/2023 - 22:36",
+            "body": "<p>Vymyslí príbeh o postave, ktorá neexistuje alebo vie, že zvieratá v skutočnom živote nevedia rozprávať.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7441
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Preferuje jednu ruku pred druhou",
+            "created_at": "Mon, 07/17/2023 - 12:46",
+            "updated_at": "Tue, 08/22/2023 - 22:34",
+            "body": "<p>Začína používať jednu ruku prednostnejšie ako druhú.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7356
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6666
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2966,
+            "type": "Milestone",
+            "title": "Prejavuje väčšiu nezávislosť",
+            "created_at": "Mon, 07/17/2023 - 12:42",
+            "updated_at": "Tue, 08/22/2023 - 22:20",
+            "body": "<p>Niekedy odoláva pokynom a požiadavkám, hnevá sa, chce ovládať ostatných, háda sa, rozkazuje, alebo bráni svoje veci.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7786
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Časť komunikácie dieťaťa je zrozumiteľná aj pre ľudí ktorí netrávia s dieťaťom každý deň",
+            "created_at": "Mon, 07/17/2023 - 12:15",
+            "updated_at": "Tue, 08/22/2023 - 22:38",
+            "body": "<p>Dieťa začína zrozumiteľnejšie vyslovovať hlásky a používa čoraz viac významových slov čím je komunikácia s dieťaťom jednoduchšia.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7346
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2531,
+            "type": "Milestone",
+            "title": "Prejavuje radosť keď s ním hovoríte",
+            "created_at": "Mon, 07/17/2023 - 12:12",
+            "updated_at": "Tue, 08/22/2023 - 22:18",
+            "body": "<p>Na Váš hlas dieťa reaguje radosťou a vzrušením a súčasne spomalením svojich pohybov, dieťa aktívne počúva.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7586
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6311
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Zodvihne sa do polohy plazenia, prípadne sa dieťa už plazí",
+            "created_at": "Mon, 07/17/2023 - 12:10",
+            "updated_at": "Tue, 08/22/2023 - 22:14",
+            "body": "<p>Zodvihne sa do polohy plazenia, prípadne dieťa už plazí. Dieťa sa môže dostať do tejto polohy samostatne a následne sa pohybuje plazením dozadu alebo dopredu.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7706
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6486
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Rozvíja sa koordinácia ruky a oka",
+            "created_at": "Mon, 07/17/2023 - 00:09",
+            "updated_at": "Tue, 08/22/2023 - 22:06",
+            "body": "<p>Zlepšuje sa schopnosť koordinácie ruky a oka v situácii, kedy sa Vaše dieťa pozerá na nejaký predmet a zároveň sa usiluje naň dosiahnuť rukou.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Rozpráva celý príbeh v chronologickom poradí",
+            "created_at": "Mon, 07/17/2023 - 00:02",
+            "updated_at": "Tue, 08/22/2023 - 22:12",
+            "body": "<p>Dieťa dokáže úplne samostatne a presne prerozprávať dej určitého príbehu, správne zoradiť udalosti v chronologickom poradí, porozpráva o udalosti, na ktorej sa zúčastnilo, alebo o televíznom programe.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7826
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58656
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "V polohe ľahu na bruchu dvíha hlavu",
+            "created_at": "Sun, 07/16/2023 - 23:59",
+            "updated_at": "Tue, 08/22/2023 - 22:10",
+            "body": "<p>V polohe ľahu na bruchu sa dieťa pokúša zodvihnúť hlavu, aby mohlo voľne dýchať.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7606
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6281
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Začína džavotať",
+            "created_at": "Sun, 07/16/2023 - 23:56",
+            "updated_at": "Tue, 08/22/2023 - 22:42",
+            "body": "<p>Vokalizuje a produkuje zvuky, ktoré sa podobajú samohláskam - a, e, i, o, u</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Spontánne zdieľa záujmy a radosti s dospelými",
+            "created_at": "Sun, 07/16/2023 - 23:46",
+            "updated_at": "Tue, 08/22/2023 - 22:07",
+            "body": "<p>Obľubuje recipročné hry a aktivity: \"Ja ti to dám - ty mi to dáš\", \"Ja robím - ty robíš\" a podobne.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Rado sa hrá v spoločnosti detí",
+            "created_at": "Sun, 07/16/2023 - 23:42",
+            "updated_at": "Tue, 08/22/2023 - 22:23",
+            "body": "<p>Hra už nie je len paralelná (hra veddľa seba), ale obsahuje zložitejšie prvky, predstavivosť a tvorivosť.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7371
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6931
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6976,
+            "type": "Milestone",
+            "title": "Rado poteší iných a spolupracuje",
+            "created_at": "Sun, 07/16/2023 - 23:41",
+            "updated_at": "Tue, 08/22/2023 - 22:22",
+            "body": "<p>Rozpoznáva pocity druhých; často sa rád delí s ostatnými; dokáže sa striedať. </p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7426
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58521
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "Rozdielnymi zvukmi vyjadruje radosť, rozrušenie alebo hlad",
+            "created_at": "Sun, 07/16/2023 - 23:40",
+            "updated_at": "Tue, 08/22/2023 - 22:25",
+            "body": "<p>Plač dieťaťa sa líši v závislsoti od potrieb dieťaťa. Na základe zvukov, ktoré vydáva, možno rozpoznať, či je šťastné, rozrušené alebo má inú potrebu.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7611
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6316
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Používa vety s piatimi alebo viacerými slovami a používa budúci čas",
+            "created_at": "Sun, 07/16/2023 - 23:37",
+            "updated_at": "Tue, 08/22/2023 - 22:26",
+            "body": "<p>Spája slová na vyjadrenie svojich myšlienok, používa budúci čas, rozpráva čo sa \"bude diať\" alebo \"môže\" stať v budúcnosti.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7486
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58581
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Otočí hlavu smerom k zdroju zvuku a naznačuje počúvanie",
+            "created_at": "Sun, 07/16/2023 - 23:32",
+            "updated_at": "Tue, 08/22/2023 - 22:32",
+            "body": "<p>Ak dieťa počuje ľudský hlas alebo iný zvuk, otočí smerom k nemu hlavu. Keď dieťa počúva hlas, pozerá sa na rodiča alebo osobu, ktorá hovorí a jeho pohyby sa spomaľujú.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7721
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6326
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Prstami uchopuje malé predmety, kŕmi sa rukami",
+            "created_at": "Sun, 07/16/2023 - 23:32",
+            "updated_at": "Tue, 08/22/2023 - 21:46",
+            "body": "<p>Zlepšuje sa \"kliešťový úchop\" - dieťa dokáže uchopiť veľmi malé predmety medzi palcom a ukazovákom.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7766
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6536
+            ],
+            "mandatory": 1
         }
     ],
 };

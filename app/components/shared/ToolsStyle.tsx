@@ -11,11 +11,11 @@ align-items:center;
 `;
 
 export const VacSummaryPress = styled.Pressable`
-background:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+background:${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
 
 padding:8px 5px;
 width:100px;
-border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+border-radius:4px;
 margin:7px 0 8px;
 `;
 
@@ -27,7 +27,7 @@ flex:1;
 
 
 export const ToolsBgContainer = styled.View`
-background:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+background-color:${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
 flex-direction:column;
 flex:1;
 `;
@@ -35,13 +35,13 @@ export const ToolsListOuter = styled.View`
 padding:7px 8px;
 `;
 export const ToolsListContainer = styled.View`
-border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+border-radius:4px;
 flex-direction:row;
 padding:10px 15px;
 `;
 
 export const ToolsIconView = styled.View`
-padding:4px 0
+padding:4px 0;
 `;
 export const ToolsIconView1 = styled.View`
 padding:4px;
@@ -57,7 +57,7 @@ align-self:center;
 export const ToolsHeadPress = styled.Pressable`
 flex-direction:row;
 justify-content:space-between;
-flex:1
+flex:1;
 align-items:center;
 `;
 export const ToolsHeadView = styled.View`
