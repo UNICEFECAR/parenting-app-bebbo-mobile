@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { Platform } from "react-native";
 import RNFS from 'react-native-fs';
 import { requestNotifications } from "react-native-permissions";
-import { ObjectSchema } from "realm";
+import { ObjectSchema, PrimaryKey } from "realm";
 import { v4 as uuidv4 } from 'uuid';
 import { appConfig, isArticlePinned, luxonDefaultLocale } from "../assets/translations/appOfflineData/apiConstants";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
@@ -24,12 +24,12 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
 import PushNotification from 'react-native-push-notification';
-const requestNotificationPermission= async (): any=>{
+const requestNotificationPermission= async (): Promise<any>=>{
     const status= await requestNotifications([]);
     console.log(status,"..status..");
    
   }
-export const  notiPermissionUtil= async ():any=>{
+export const  notiPermissionUtil= async ():Promise<any>=>{
     setTimeout(()=>{
         if(Platform.OS=="android"){
           requestNotificationPermission();
@@ -39,7 +39,7 @@ export const  notiPermissionUtil= async ():any=>{
         }  
       },100);
 }
-export const addApiDataInRealm = async (response: any): any => {
+export const addApiDataInRealm = async (response: any): Promise<any> => {
     // return new Promise(async (resolve, reject) => {
     let EntitySchema: ObjectSchema = { name: "", properties: {} };
     let EntitySchema2: ObjectSchema = { name: "", properties: {} };
@@ -374,13 +374,17 @@ export const getVimeoId = (url: string): string => {
 
     return rval;
 }
-const formatImportedMeasures = (measures: any): any => {
+const formatImportedMeasures = async (measures: any): Promise<any>=> {
+    console.log(' here us')
+    console.log('measurement length is', measures.length)
     //imported from old app
-    if (measures == "" || measures == [] || measures == null) {
-        return [];
+    if (measures.length ==0) {
+        console.log('here us1...')
+        return measures;
     } else {
         if (typeof measures === 'object' && measures !== null) {
             //import from new app's exported files
+            console.log('here us1')
             return measures;
         } else {
             //import from old app's exported files
@@ -435,9 +439,10 @@ const callAsyncOperationdatetime = async (rem: any): Promise<any> => {
 }
 
 const formatImportedReminders = async (reminders: any): Promise<any> => {
-    if (reminders == "" || reminders == [] || reminders == null) {
+    console.log('remideer length is', reminders.length)
+    if (reminders.length==0) {
         // in old app reminders were string, new app has reminders array
-        return [];
+        return reminders;
     } else {
         if (typeof reminders === 'object' && reminders !== null) {
             //import from new app's exported files
@@ -465,37 +470,56 @@ const formatImportedReminders = async (reminders: any): Promise<any> => {
         }
     }
 }
+const checkFileExistence = async (filePath:string) => {
+    console.log('Existskkkkkkk');
+    try {
+      const exists = await RNFS.exists(filePath);
+      console.log('Exists:', exists);
+  
+      if (exists) {
+        console.log('File exists');
+      } else {
+        console.log('File does not exist');
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+  
 //child data get
 export const getChild = async (child: any, genders: any): Promise<any> => {
-    const photoUri = await RNFS.exists(CHILDREN_PATH + child.photoUri);
-    const childmeasures: any[] = await formatImportedMeasures(child.measures)
-    const childreminders: any[] = await formatImportedReminders(child.reminders)
-    console.log("reminders output---", childreminders);
-    const isPremature: any = child.isPremature == "true" ? "true" : "false";
-    const childName: any = ("name" in child) === true ? child.name : ("childName" in child) === true ? child.childName : ""
-    console.log(isPremature, "..isPremature..");
-    let genderValue: any = child.gender;
-    if (typeof genderValue === 'string' || genderValue instanceof String) {
-        if (genders.length > 0 && genderValue != "") {
-            genderValue = genders.find((genderset: any) => genderset.unique_name.toLowerCase() == child.gender.toLowerCase()).id
+    try {
+        const checkPhotoUri = child.photoUri!=null? CHILDREN_PATH +child.photoUri : CHILDREN_PATH;
+        const photoUri  = await RNFS.exists(String(checkPhotoUri));     
+        const childmeasures  = await formatImportedMeasures(child.measures)
+        console.log("reminders output---", childmeasures);
+        const childreminders = await formatImportedReminders(child.reminders)
+        console.log("reminders output---", childreminders);
+        const isPremature: any = child.isPremature == "true" ? "true" : "false";
+        const childName: any = ("name" in child) === true ? child.name : ("childName" in child) === true ? child.childName : ""
+        console.log(isPremature, "..isPremature..");
+        let genderValue: any = child.gender;
+        if (typeof genderValue === 'string' || genderValue instanceof String) {
+            if (genders.length > 0 && genderValue != "") {
+                genderValue = genders.find((genderset: any) => genderset.unique_name.toLowerCase() == child.gender.toLowerCase()).id
+            }
+            else {
+                genderValue = 0;
+            }
         }
-        else {
-            genderValue = 0;
+        let favoriteadvices: any[] = [], favoritegames: any[] = []
+        if (child && child.favoriteadvices && child.favoriteadvices.length > 0) {
+            favoriteadvices = [...child.favoriteadvices];
+        } else {
+            favoriteadvices = [];
         }
-    }
-    let favoriteadvices: any[] = [], favoritegames: any[] = []
-    if (child && child.favoriteadvices && child.favoriteadvices.length > 0) {
-        favoriteadvices = [...child.favoriteadvices];
-    } else {
-        favoriteadvices = [];
-    }
-    if (child && child.favoritegames && child.favoritegames.length > 0) {
-        favoritegames = [...child.favoritegames];
-    } else {
-        favoritegames = [];
-    }
-    const inFuture = isFutureDate(child.birthDate);
-    //planned will be date of birth se aage ka and birthdate ka diff 4weeks and above hai then premature true
+        if (child && child.favoritegames && child.favoritegames.length > 0) {
+            favoritegames = [...child.favoritegames];
+        } else {
+            favoritegames = [];
+        }
+        const inFuture = isFutureDate(child.birthDate);
+         //planned will be date of birth se aage ka and birthdate ka diff 4weeks and above hai then premature true
     return {
         uuid: child.uuid,
         childName: childName,
@@ -516,6 +540,11 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
         favoriteadvices: favoriteadvices,
         favoritegames: favoritegames
     };
+    } catch (error) {
+        console.error('Error in getChild:', error);
+        throw error; // Re-throw the error for handling in the calling function
+    }
 }
+
 
 

@@ -135,15 +135,19 @@ const Articles = ({ route, navigation }: any): any => {
     return combinedarr;
   }
 
-  useFocusEffect(() => {
-    if (netInfo.isConnected) {
-      synchronizeEvents(netInfo.isConnected);
-    }
-    setModalVisible(articleModalOpened);
-  })
+  useFocusEffect(
+    React.useCallback(() => {
+      // whatever
+      if (netInfo.isConnected) {
+        synchronizeEvents(netInfo.isConnected);
+      }
+      console.log('UseFouusEffect Articles');
+      setModalVisible(articleModalOpened);
+    }, [articleModalOpened])
+   );
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.ARTICLES_COLOR;
-  const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const headerColor = themeContext?.colors.ARTICLES_COLOR;
+  const backgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const { t } = useTranslation();
   //code for getting article dynamic data starts here.
   // let filterArray: string[] = [];
@@ -282,28 +286,33 @@ const Articles = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      async function fetchData(): Promise<any> {
-        if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
-          setFilterArray(route.params?.categoryArray);
-          setFilteredArticleData(route.params?.categoryArray);
+      console.log('UseFouusEffect Articles one');
+      if(queryText==''){
+        async function fetchData(): Promise<any> {
+          if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
+            setFilterArray(route.params?.categoryArray);
+            setFilteredArticleData(route.params?.categoryArray);
+          }
+          else {
+            setFilterArray([]);
+            setFilteredArticleData([]);
+          }
         }
-        else {
-          setFilterArray([]);
-          setFilteredArticleData([]);
+        if (route.params?.backClicked != 'yes') {
+          fetchData()
+        } else {
+          setLoadingArticle(false);
+          if (route.params?.backClicked == 'yes') {
+            navigation.setParams({ backClicked: 'no' })
+          }
         }
       }
-      if (route.params?.backClicked != 'yes') {
-        fetchData()
-      } else {
-        setLoadingArticle(false);
-        if (route.params?.backClicked == 'yes') {
-          navigation.setParams({ backClicked: 'no' })
-        }
-      }
-    }, [route.params?.categoryArray, activeChild?.uuid, languageCode])
+     
+    }, [route.params?.categoryArray, activeChild?.uuid, languageCode,queryText])
   );
   useFocusEffect(
     React.useCallback(() => {
+      console.log('UseFouusEffect Articles two');
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
       });
@@ -364,6 +373,7 @@ const Articles = ({ route, navigation }: any): any => {
     setFilteredArticleData(filterArray);
 
   }
+  
   return (
     <>
       <OverlayLoadingComponent loading={loadingArticle} />
@@ -387,15 +397,19 @@ const Articles = ({ route, navigation }: any): any => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                onChangeText={(queryText: any): any => {
+                onChangeText={async(queryText: any): Promise<any>=> {
+                  console.log('loghererer',queryText)
                   if (queryText.replace(/\s/g, "") == "") {
+                    console.log('loghererer1')
                     searchQueryText(queryText.replace(/\s/g, ''));
+                    await searchList(queryText)
                   } else {
+                    console.log('loghererer2')
                     searchQueryText(queryText);
                   }
                 }}
                 value={queryText}
-                onSubmitEditing={async (event): Promise<any> => {
+                onSubmitEditing={async (event:any): Promise<any> => {
                   console.log("event-", event);
                   await searchList(queryText);
                 }}
@@ -409,8 +423,11 @@ const Articles = ({ route, navigation }: any): any => {
                 Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
                 <OuterIconRow>
 
-                  <IconClearPress onPress={(): any => {
+                  <IconClearPress onPress={async (): Promise<any> => {
+                    console.log('cleartext')
                     searchQueryText('');
+                    await searchList(queryText);
+                  Keyboard.dismiss();
                   }}>
                     <Icon
                       name="ic_close"
@@ -421,6 +438,7 @@ const Articles = ({ route, navigation }: any): any => {
 
                 </OuterIconRow>
               }
+             
               <OuterIconRow>
 
                 <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {

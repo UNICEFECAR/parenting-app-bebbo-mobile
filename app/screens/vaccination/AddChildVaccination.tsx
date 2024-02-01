@@ -112,8 +112,8 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const { vcPeriod, editVaccineDate } = route.params;
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.VACCINATION_COLOR;
-  const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
+  const headerColor = themeContext?.colors.VACCINATION_COLOR;
+  const backgroundColor = themeContext?.colors.VACCINATION_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editVaccineDate ? editVaccineDate : null,
   );

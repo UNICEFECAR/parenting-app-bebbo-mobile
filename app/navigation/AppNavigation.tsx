@@ -48,7 +48,7 @@ import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import DynamicLinks from '@react-native-firebase/dynamic-links';
+//import DynamicLinks from '@react-native-firebase/dynamic-links';
 import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
@@ -91,8 +91,8 @@ export default (): any => {
   );
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.ACTIVITIES_COLOR;
-  const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
+  const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
+  const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
   const surveyData = useAppSelector((state: any) =>
@@ -192,10 +192,11 @@ export default (): any => {
       updateTrackingStatus(AppState.currentState)
     } else {
       // Need to wait until the app is ready before checking the permission
-      AppState.addEventListener('change', updateTrackingStatus)
+      const eventListener = AppState.addEventListener('change', updateTrackingStatus)
 
       return (): any => {
-        AppState.removeEventListener('change', updateTrackingStatus)
+        eventListener.remove()
+       // AppState.removeEventListener('change', updateTrackingStatus)
       }
     }
   }, [AppState.currentState])
@@ -217,20 +218,20 @@ export default (): any => {
   };
   useEffect(() => {
 
-    const unsubscribe = DynamicLinks().onLink(handleDynamicLink);
-    // When the component is unmounted, remove the listener
-    DynamicLinks()
-      .getInitialLink()
-      .then((link: any) => {
-        console.log(link, "..11link")
-        if (link && link.url) {
-          // Alert.alert("background dynamic link",link.url);
-          const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
-          facebookId && facebookId != '' ? analytics().setUserProperties({ facebook_id: facebookId }) : null;
-          console.log(facebookId, "..facebookId11.")
-        }
-      });
-    return (): any => unsubscribe();
+    // const unsubscribe = DynamicLinks().onLink(handleDynamicLink);
+    // // When the component is unmounted, remove the listener
+    // DynamicLinks()
+    //   .getInitialLink()
+    //   .then((link: any) => {
+    //     console.log(link, "..11link")
+    //     if (link && link.url) {
+    //       // Alert.alert("background dynamic link",link.url);
+    //       const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
+    //       facebookId && facebookId != '' ? analytics().setUserProperties({ facebook_id: facebookId }) : null;
+    //       console.log(facebookId, "..facebookId11.")
+    //     }
+    //   });
+    // return (): any => unsubscribe();
 
   }, []);
   const redirectLocation = (notification: any): any => {
@@ -816,7 +817,7 @@ export default (): any => {
               userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
               : AppLayoutDirectionScreen
           }
-          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false }}
+          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false, headerShown:false}}
         >
           <RootStack.Screen
             name="Localization"

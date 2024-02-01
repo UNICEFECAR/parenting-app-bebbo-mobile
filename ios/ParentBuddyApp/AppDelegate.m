@@ -94,7 +94,7 @@ static void InitializeFlipper(UIApplication *application) {
   //#2B2F84, #27378B, #1F50A0, #1277C1, #00AEEF
    // register LottieSplashScreen to RNSplashScreen
    [RNSplashScreen showLottieSplash:animationView inRootView:rootView];
-
+  // casting UIView type to AnimationView type
    // play
    [t playWithAnimationView:animationView];
 
@@ -110,6 +110,7 @@ static void InitializeFlipper(UIApplication *application) {
                         didFinishLaunchingWithOptions:launchOptions];
    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
    center.delegate = self;
+   [RNSplashScreen show];
   return YES;
 }
 //- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
@@ -125,7 +126,7 @@ static void InitializeFlipper(UIApplication *application) {
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
 #if DEBUG
-  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif

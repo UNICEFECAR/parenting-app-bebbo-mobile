@@ -1,21 +1,27 @@
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+
 /**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
+ * Metro configuration
+ * https://facebook.github.io/metro/docs/configuration
  *
- * @format
+ * @type {import('metro-config').MetroConfig}
  */
+
 const blacklist = require('metro-config/src/defaults/exclusionList')
-module.exports = {
-  resetCache:true,
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: false,
-      },
-    }),
-  },
-  resolver: {
-  blacklistRE: blacklist([/xk\/.*/])
-  }
-};
+const config = {
+    resetCache:true,
+    transformer: {
+      getTransformOptions: async () => ({
+        transform: {
+          experimentalImportSupport: false,
+          inlineRequires: true,
+        },
+      }),
+    },
+    resolver: {
+    blacklistRE: blacklist([/xk\/.*/]),
+    }
+  };
+  
+
+module.exports = mergeConfig(getDefaultConfig(__dirname), config);

@@ -27,9 +27,9 @@ export function useDeepLinkURL():any {
     // You can handle these events with Linking.addEventListener(url, callback)
     useEffect(() => {
       const callback = ({url}: {url: string}):any=> setLinkedURL(decodeURI(url));
-      Linking.addEventListener('url', callback);
+      const subscription = Linking.addEventListener('url', callback);
       return ():any => {
-        Linking.removeEventListener('url', callback);
+        subscription.remove()
       };
     }, []);
   

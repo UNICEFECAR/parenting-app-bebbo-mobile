@@ -26,6 +26,7 @@ import { useAppSelector } from '../../../../App';
 import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate } from '../../../services/Utils';
 import Icon, { IconViewAlert } from '../../shared/Icon';
+import { StackNavigationProp } from '@react-navigation/stack';
 const styles=StyleSheet.create({
   alignCenter:{alignSelf: 'center' },
   radioActive:{backgroundColor: greenColor, borderRadius: 50 },
@@ -33,10 +34,22 @@ const styles=StyleSheet.create({
   toolsIconOuterView:{ alignItems: "flex-end", flex: 1 },
   vaccineOuterView:{ flex: 6, flexDirection: "row" }
  })
+ export type PreviousRootStackParamList = {
+  DetailsScreen: { fromScreen: string,headerColor:any,backgroundColor:any,detailData:any } | undefined;
+};
+export type PreviousNewRootStackParamList = {
+  AddChildVaccination: { headerTitle: string,vcPeriod:any,editVaccineDate:any } | undefined;
+};
+export type PreviousNew1RootStackParamList = {
+  AddChildVaccination: { headerTitle: string,vcPeriod:any } | undefined;
+};
 const PreviousVaccines = (props: any): any => {
   const { item, headerColor, backgroundColor } = props;
   const { t } = useTranslation();
-  const navigation = useNavigation();
+  //const navigation = useNavigation<any>();
+  const navigation = useNavigation<StackNavigationProp<PreviousRootStackParamList>>();
+  const navigation1 = useNavigation<StackNavigationProp<PreviousNewRootStackParamList>>();
+  const navigation2 = useNavigation<StackNavigationProp<PreviousNew1RootStackParamList>>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -90,7 +103,7 @@ const PreviousVaccines = (props: any): any => {
           <View style={styles.toolsIconOuterView}>
             <ToolsIconView1>
               {v.isMeasured ? <Pressable onPress={(): any =>
-                navigation.navigate('AddChildVaccination', {
+                navigation1.navigate('AddChildVaccination', {
                   headerTitle: t('editVcTitle'),
                   vcPeriod: item,
                   editVaccineDate: v.measurementDate,
@@ -194,7 +207,7 @@ const PreviousVaccines = (props: any): any => {
                 <ButtonVaccination
                   disabled={isFutureDate(activeChild?.birthDate)}
                   onPress={(): any =>
-                    navigation.navigate('AddChildVaccination', {
+                    navigation2.navigate('AddChildVaccination', {
                       headerTitle: t('addVcTitle'),
                       vcPeriod: item,
                     })

@@ -41,7 +41,7 @@ export const dataRealmConfig: Realm.Configuration = {
     EventSchema
   ],
   schemaVersion: 8,
-  migration: (oldRealm, newRealm) => {
+  onMigration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion < 1) {
       // const oldObjects = oldRealm.objects('VariableEntity');
       // const newObjects = newRealm.objects(ConfigSettingsSchema.name);

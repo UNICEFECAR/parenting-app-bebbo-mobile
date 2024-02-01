@@ -14,7 +14,7 @@ import VectorImage from 'react-native-vector-image';
 import { Pressable } from 'react-native';
 
 const PlayingTogether = (): any => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const { t } = useTranslation();
   return (
     <>

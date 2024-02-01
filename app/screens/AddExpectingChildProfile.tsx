@@ -77,7 +77,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
   const { t } = useTranslation();
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date | null>(null);
   const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const ondobChange = (event: any, selectedDate: any): any => {
     const currentDate = selectedDate || plannedTermDate;
     setdobShow(Platform.OS === 'ios');
