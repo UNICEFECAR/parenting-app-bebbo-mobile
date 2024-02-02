@@ -91,7 +91,7 @@ const UZuz = {
               supportScreenheader2text: "Ayni damda chat mavjud emas",
               homeScreenheaderTitle: "Bebbo",
               homeScreenchildBtnText: "Batafsil",
-              homeScreenchildInfoTitle: "{{childName}} {{parentName}}, xush kelibsiz",
+              homeScreenchildInfoTitle: "Xush kelibsiz {{childName}} {{parentName}}",
               homeScreendailyReadsTitle: "Kunlik oʻqishlar",
               homeScreentodayarticle: "Kun maslahati",
               homeScreentodaygame: "Kun oʻyini",
