@@ -391,7 +391,7 @@ const en = {
                 "dataSaveroff": "Do you want to switch off data saver mode?",
                 "dataSaveron": "Do you want to switch on data saver mode?",
                 "parentGender": "Gender",
-                "successOnboardingImport": "You have successfully uploaded your  information.",
+                "successOnboardingImport": "You have successfully uploaded your information.",
                 "updateImportText": "Please update your details to continue",
                 "importOnboardingText": "You can upload a backed up data file",
                 "OnboardingImportButton": "Upload now",
