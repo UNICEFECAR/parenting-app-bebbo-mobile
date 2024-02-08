@@ -37,7 +37,7 @@ jobs:
           key: ndk-cache
 
     - name: Install NDK
-      run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install 'ndk;21.0.6113669'
+      run: echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install 'ndk;21.0.6113669'
    
     - name: Install node modules
       run: |
