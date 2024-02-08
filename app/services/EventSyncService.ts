@@ -54,9 +54,9 @@ export const synchronizeEvents = async (netInfo: boolean): Promise<any> => {
       const analyticsInstance = analytics();
 
       unsynchronizedEvents.forEach(async (event: any) => {
-        if (event != undefined) {
-        logEventToFirebase(analyticsInstance, event);
-        markEventAsSynchronized(realm, event);
+        if (typeof event !== 'undefined' && event !== null) {
+          logEventToFirebase(analyticsInstance, event);
+          markEventAsSynchronized(realm, event);
         }
       });
     } else {
