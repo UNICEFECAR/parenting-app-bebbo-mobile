@@ -24,7 +24,6 @@ background-color:${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
 export const TabBarContainer = styled.View`
 background-color:${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
 flex-direction:row;
-padding:0px 3px;
 justify-content:center;
 border-radius:4px;
 margin-bottom:10px;
