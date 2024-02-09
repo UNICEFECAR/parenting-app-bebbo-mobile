@@ -81,6 +81,7 @@ const Childgrowth = ({navigation}: any):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
+  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading,setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
@@ -270,23 +271,29 @@ const {width,height}= Dimensions.get('window');
                       {data.map((item, itemindex) => {
                         return (
                           <Pressable
-                            key={itemindex}
-                            style={styles.flex1}
-                            onPress={():any => {
-                              setSelectedIndex(itemindex);
-                            }}>
-                            <TabBarDefault
-                              style={[
-                                {
-                                  backgroundColor:
-                                    itemindex == selectedIndex
-                                      ? headerColor
-                                      : backgroundColor,
-                                },
-                              ]}>
-                              <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>
-                            </TabBarDefault>
-                          </Pressable>
+                          key={itemindex}
+                          style={[styles.flex1, {
+                            backgroundColor:
+                              itemindex == selectedIndex
+                                ? tabBackgroundColor
+                                : backgroundColor,
+                          }]}
+                          onPress={(): any => {
+                            setSelectedIndex(itemindex);
+                          }}>
+                          <TabBarDefault
+                            style={[
+                              {
+                                backgroundColor:
+                                  itemindex == selectedIndex
+                                    ? tabBackgroundColor
+                                    : headerColor,
+                              },
+                            ]}>
+                            {itemindex == selectedIndex ? <Heading4Centerr numberOfLines={2}>{item.title}</Heading4Centerr>
+                              : <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>}
+                          </TabBarDefault>
+                        </Pressable>
                         );
                       })}
                     </TabBarContainerBrd>

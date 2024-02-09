@@ -2,7 +2,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { MainContainer } from '@components/shared/Container';
 import { Flex1, FDirRow } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
-import { ToolsBgContainer, VacSummaryBox,VacSummaryPress } from '@components/shared/ToolsStyle';
+import { ToolsBgContainer, VacSummaryBox, VacSummaryPress } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import PreviousVaccines from '@components/vaccination/tabs/PreviousVaccines';
 import UpcomingVaccines from '@components/vaccination/tabs/UpcomingVaccines';
@@ -38,39 +38,40 @@ type VaccinationNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: VaccinationNavigationProp;
-  route:any;
+  route: any;
 };
-const stylesLocal=StyleSheet.create({
-  flex1:{flex: 1},
-  flex4:{flex: 4},
-  maxHeight50:{
+const stylesLocal = StyleSheet.create({
+  flex1: { flex: 1 },
+  flex4: { flex: 4 },
+  maxHeight50: {
     maxHeight: 50,
   },
-  vacSummaryMainView:{
+  vacSummaryMainView: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
   }
 })
-const Vaccination = ({navigation,route}: Props):any => {
+const Vaccination = ({ navigation, route }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext?.colors.VACCINATION_TINTCOLOR;
-  const {t} = useTranslation();
+  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const [modalVisible, setModalVisible] = React.useState(true);
-  const [profileLoading,setProfileLoading] =  React.useState(false);
+  const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
-  const setIsModalOpened = async (varkey: any):Promise<any> => {
-    const obj = {key: varkey, value: !modalVisible};
+  const setIsModalOpened = async (varkey: any): Promise<any> => {
+    const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
-  const onBackPress = ():any => {
-    if(route.params?.fromNotificationScreen==true){
+  const onBackPress = (): any => {
+    if (route.params?.fromNotificationScreen == true) {
       navigation.navigate('NotificationsScreen');
       return true;
-    }else{
-      navigation.goBack();  
+    } else {
+      navigation.goBack();
       return true;
     }
   }
@@ -80,9 +81,10 @@ const Vaccination = ({navigation,route}: Props):any => {
       onBackPress,
     );
     navigation.addListener('gestureEnd', onBackPress);
-    return ():any => {
+    return (): any => {
       navigation.removeListener('gestureEnd', onBackPress);
-      backHandler.remove()};
+      backHandler.remove()
+    };
   }, []);
   const vaccineModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsVaccineModalOpened),
@@ -106,31 +108,31 @@ const Vaccination = ({navigation,route}: Props):any => {
     overDuePreviousVCcount,
     doneVCcount,
   } = getAllVaccinePeriods();
-  const upcomingPeriodsData =():any => {
-    const noVaccinesinAgePeriodInUpcoming=upcomingPeriods.every((el: any) => {
-    const noVaccinesinAgePeriod=el.vaccines.every((v: any) => {
-      console.log(v,"..vupco..")
-      return v.old_calendar == 1  && v.isMeasured==false ? true : false;
-    })
-    console.log(noVaccinesinAgePeriod,"..noVaccinesinAgePeriod..")
-    return noVaccinesinAgePeriod == true ? true : false;
+  const upcomingPeriodsData = (): any => {
+    const noVaccinesinAgePeriodInUpcoming = upcomingPeriods.every((el: any) => {
+      const noVaccinesinAgePeriod = el.vaccines.every((v: any) => {
+        console.log(v, "..vupco..")
+        return v.old_calendar == 1 && v.isMeasured == false ? true : false;
+      })
+      console.log(noVaccinesinAgePeriod, "..noVaccinesinAgePeriod..")
+      return noVaccinesinAgePeriod == true ? true : false;
     });
-    console.log(noVaccinesinAgePeriodInUpcoming,"..noVaccinesinAgePeriodInUpcoming..")
+    console.log(noVaccinesinAgePeriodInUpcoming, "..noVaccinesinAgePeriodInUpcoming..")
     return noVaccinesinAgePeriodInUpcoming;
   }
-  const previousPeriodsData =():any => {
-    const noVaccinesinAgePeriodInPrevious=previousPeriods.every((el: any) => {
-    const noVaccinesinAgePeriod=el.vaccines.every((v: any) => {
-      console.log(v,"..vprev..")
-      return v.old_calendar == 1  && v.isMeasured==false? true : false;
-    })
-    console.log(noVaccinesinAgePeriod,"..previousnoVaccinesinAgePeriod..")
-    return noVaccinesinAgePeriod == true ? true : false;
+  const previousPeriodsData = (): any => {
+    const noVaccinesinAgePeriodInPrevious = previousPeriods.every((el: any) => {
+      const noVaccinesinAgePeriod = el.vaccines.every((v: any) => {
+        console.log(v, "..vprev..")
+        return v.old_calendar == 1 && v.isMeasured == false ? true : false;
+      })
+      console.log(noVaccinesinAgePeriod, "..previousnoVaccinesinAgePeriod..")
+      return noVaccinesinAgePeriod == true ? true : false;
     });
-    console.log(noVaccinesinAgePeriodInPrevious,"..noVaccinesinAgePeriodInPrevious..")
+    console.log(noVaccinesinAgePeriodInPrevious, "..noVaccinesinAgePeriodInPrevious..")
     return noVaccinesinAgePeriodInPrevious;
   }
-  const renderItem = (index: number):any => {
+  const renderItem = (index: number): any => {
     if (index === 0) {
       return (
         <View>
@@ -145,43 +147,43 @@ const Vaccination = ({navigation,route}: Props):any => {
                 backgroundColor={backgroundColor}
               />
             );
-          }) :  (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
+          }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
         </View>
       );
     } else if (index === 1) {
-        return (
-          <View>
-            {previousPeriods.length > 0 && previousPeriodsData()==false ? previousPeriods.map((item:any, itemindex:any) => {
-              return (
-                <PreviousVaccines
-                  item={item}
-                  key={itemindex}
-                  headerColor={headerColor}
-                  backgroundColor={backgroundColor}
-                />
-              );
-            }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
-          </View>
-        );
+      return (
+        <View>
+          {previousPeriods.length > 0 && previousPeriodsData() == false ? previousPeriods.map((item:any, itemindex:any) => {
+            return (
+              <PreviousVaccines
+                item={item}
+                key={itemindex}
+                headerColor={headerColor}
+                backgroundColor={backgroundColor}
+              />
+            );
+          }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
+        </View>
+      );
     }
   };
   return (
     <>
-     <Modal
+      <Modal
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={():any => {
+        onRequestClose={(): any => {
           console.log("in onRequestClose");
         }}
-        onDismiss={():any => {
+        onDismiss={(): any => {
           console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={():any => {
+                onPress={(): any => {
                   setModalVisible(false);
                   setIsModalOpened('IsVaccineModalOpened');
                 }}>
@@ -192,20 +194,20 @@ const Vaccination = ({navigation,route}: Props):any => {
               <Heading4Centerr>
                 {t('vaccineModalText')}
               </Heading4Centerr>
-              </ModalPopupContent>
-              <FDirRow>
+            </ModalPopupContent>
+            <FDirRow>
               <ButtonModal
-                onPress={():any => {
+                onPress={(): any => {
                   setIsModalOpened('IsVaccineModalOpened');
                 }}>
                 <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
               </ButtonModal>
-              </FDirRow>
-            
+            </FDirRow>
+
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={[stylesLocal.flex1,{backgroundColor:headerColor}]}>
+      <View style={[stylesLocal.flex1, { backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ToolsBgContainer>
           <TabScreenHeader
@@ -215,13 +217,13 @@ const Vaccination = ({navigation,route}: Props):any => {
             setProfileLoading={setProfileLoading}
           />
           <ScrollView style={stylesLocal.flex4}>
-            <MainContainer style={{backgroundColor: backgroundColor}}>
+            <MainContainer style={{ backgroundColor: backgroundColor }}>
               <ShiftFromTopBottom5>
                 <Heading3>{t('vcSummaryHeader')}</Heading3>
               </ShiftFromTopBottom5>
               <View
                 style={stylesLocal.vacSummaryMainView}>
-                <VacSummaryPress onPress={():any => setSelectedIndex(0)}>
+                <VacSummaryPress onPress={(): any => setSelectedIndex(0)}>
                   <VacSummaryBox>
                     <Heading2>
                       {totalUpcomingVaccines ? totalUpcomingVaccines : 0}
@@ -230,7 +232,7 @@ const Vaccination = ({navigation,route}: Props):any => {
                     <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
                   </VacSummaryBox>
                 </VacSummaryPress>
-                <VacSummaryPress onPress={():any => setSelectedIndex(1)}>
+                <VacSummaryPress onPress={(): any => setSelectedIndex(1)}>
                   <VacSummaryBox>
                     <Heading2>
                       {overDuePreviousVCcount ? overDuePreviousVCcount : 0}
@@ -238,7 +240,7 @@ const Vaccination = ({navigation,route}: Props):any => {
                     <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
                   </VacSummaryBox>
                 </VacSummaryPress>
-                <VacSummaryPress onPress={():any => setSelectedIndex(1)}>
+                <VacSummaryPress onPress={(): any => setSelectedIndex(1)}>
                   <VacSummaryBox>
                     <Heading2>{doneVCcount ? doneVCcount : 0}</Heading2>
                     <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
@@ -252,8 +254,13 @@ const Vaccination = ({navigation,route}: Props):any => {
                 return (
                   <Pressable
                     key={itemindex}
-                    style={stylesLocal.flex1}
-                    onPress={():any => {
+                    style={[stylesLocal.flex1, {
+                      backgroundColor:
+                        itemindex == selectedIndex
+                          ? tabBackgroundColor
+                          : backgroundColor,
+                    }]}
+                    onPress={(): any => {
                       setSelectedIndex(itemindex);
                     }}>
                     <TabBarDefault
@@ -261,11 +268,12 @@ const Vaccination = ({navigation,route}: Props):any => {
                         {
                           backgroundColor:
                             itemindex == selectedIndex
-                              ? headerColor
-                              : backgroundColor,
+                              ? tabBackgroundColor
+                              : headerColor,
                         },
                       ]}>
-                      <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>
+                      {itemindex == selectedIndex ? <Heading4Centerr numberOfLines={2}>{item.title}</Heading4Centerr>
+                        : <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>}
                     </TabBarDefault>
                   </Pressable>
                 );
@@ -276,7 +284,7 @@ const Vaccination = ({navigation,route}: Props):any => {
             </ShiftFromTopBottom10>
           </ScrollView>
         </ToolsBgContainer>
-        <OverlayLoadingComponent loading={profileLoading}/>
+        <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>
   );
