@@ -8,6 +8,7 @@ import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { FlexCol } from '@components/shared/FlexBoxStyle';
 import Icon, { IconClearPress, OuterIconRow } from '@components/shared/Icon';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
+import Realm from 'realm';
 import TabScreenHeader from '@components/TabScreenHeader';
 import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -15,10 +16,10 @@ import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { articlesTintcolor } from '@styles/style';
 import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, View
+  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ThemeContext } from 'styled-components/native';
@@ -27,7 +28,12 @@ import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import LoadableImage from '../../../services/LoadableImage';
 import { randomArrayShuffle } from '../../../services/Utils';
-import { synchronizeEvents } from '../../../services/EventSyncService';
+import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
+import { dataRealmCommon } from '../../../database/dbquery/dataRealmCommon';
+import { HistoryEntity, SearchHistorySchema } from '../../../database/schema/SearchHistorySchema';
+import VectorImage from 'react-native-vector-image';
+import { index } from 'realm';
+import { ARTICLE_SEARCHED } from '@assets/data/firebaseEvents';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -47,12 +53,42 @@ const styles = StyleSheet.create({
     backgroundColor: articlesTintcolor,
     flex: 1
   },
+  container: {
+    flexDirection: 'column'
+  },
+  divider: {
+    height: 1,
+    backgroundColor: 'grey',
+  },
   flex1View: {
     flex: 1
   },
+  historyList: {
+    position: 'absolute',
+    top: 51,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+    paddingBottom: 20,
+    backgroundColor: '#fff',
+  },
+  historyItem: {
+    flexDirection: 'row',
+    padding: 10,
+    marginHorizontal: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  historyText: {
+    fontSize: 14,
+    marginHorizontal: 5
+  },
   pressablePadding: {
-    padding: 13
-  }
+    paddingEnd:5,
+    paddingStart: 15,
+    paddingVertical:15
+  },
+
 });
 export type ArticleCategoriesProps = {
   borderColor?: any;
@@ -65,6 +101,7 @@ const Articles = ({ route, navigation }: any): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState('');
   const [profileLoading, setProfileLoading] = React.useState(false);
+  const [historyVisible, setHistoryVisible] = useState(true);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
   const setIsModalOpened = async (varkey: any): Promise<any> => {
@@ -88,6 +125,7 @@ const Articles = ({ route, navigation }: any): any => {
   const modalScreenKey = 'IsArticleModalOpened';
   const modalScreenText = 'articleModalText';
   const netInfo = useNetInfoHook();
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   //merge array 
   const mergearr = (articlearrold: any[], videoartarrold: any[], isSuffle: boolean): any => {
@@ -134,17 +172,65 @@ const Articles = ({ route, navigation }: any): any => {
 
     return combinedarr;
   }
+  const getSearchedKeywords = async (): Promise<any> => {
+    const realm = await dataRealmCommon.openRealm();
+   
+    if (realm != null) {
+      console.log('Seach History is...', realm?.objects('SerachHistory'))
+      const unsynchronizedEvents: any = realm.objects('SerachHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
+      console.log('Seach History is', unsynchronizedEvents)
+      setSearchHistory(unsynchronizedEvents);
 
+    }
+    console.log('search history.......',searchHistory)
+    //const realm = await dataRealmCommon.openRealm(); 
+    //const history:any = realm?.objects('SerachHistory');
+
+  }
+  // useEffect(() => {
+  //   // Load initial search history from RealmDB
+
+  // }, []);
+  const storeUnsyncedEvent = async (realm: any, keyword: any): Promise<any> => {
+    
+    realm.write(() => {
+      const unsyncedEvent = realm.create('SerachHistory', {
+        keyword: keyword,
+        createdAt: new Date(),
+      }, Realm.UpdateMode.Modified);
+      console.log('EventClick unsyncedEvent for category', unsyncedEvent);
+    });
+  }
+  const saveToRealm = async (keyword: string): Promise<any> => {
+    // const realm = await dataRealmCommon.openRealm();
+    // console.log('Realm Data is',realm?.create())
+    // realm?.create('SerachHistory', {
+    //   name: keyword,
+    //   createdAt: new Date(),
+    // });
+    const historyData: any = {
+      keyword: keyword,
+      createdAt: new Date(),
+    }
+    await dataRealmCommon.create<HistoryEntity>(SearchHistorySchema, historyData);
+    // realm?.write(() => {
+    //   realm.create('SearchHistory', {
+    //     keyword: keyword,
+    //     timestamp: new Date(),
+    //   });
+    // });
+  };
   useFocusEffect(
     React.useCallback(() => {
       // whatever
       if (netInfo.isConnected) {
         synchronizeEvents(netInfo.isConnected);
       }
+      getSearchedKeywords()
       console.log('UseFouusEffect Articles');
       setModalVisible(articleModalOpened);
-    }, [articleModalOpened])
-   );
+    }, [articleModalOpened, historyVisible])
+  );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
@@ -271,11 +357,13 @@ const Articles = ({ route, navigation }: any): any => {
 
           combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
           setfilteredData(combinedartarr);
+
         } else {
           setfilteredData(newArticleData);
         }
 
         setLoadingArticle(false);
+        setHistoryVisible(false);
         toTop();
       }
     } else {
@@ -287,7 +375,7 @@ const Articles = ({ route, navigation }: any): any => {
   useFocusEffect(
     React.useCallback(() => {
       console.log('UseFouusEffect Articles one');
-      if(queryText==''){
+      if (queryText == '') {
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
             setFilterArray(route.params?.categoryArray);
@@ -307,14 +395,15 @@ const Articles = ({ route, navigation }: any): any => {
           }
         }
       }
-     
-    }, [route.params?.categoryArray, activeChild?.uuid, languageCode,queryText])
+
+    }, [route.params?.categoryArray, activeChild?.uuid, languageCode, queryText])
   );
   useFocusEffect(
     React.useCallback(() => {
       console.log('UseFouusEffect Articles two');
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
+        setHistoryVisible(true);
       });
       const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
         setKeyboardStatus(false);
@@ -339,8 +428,9 @@ const Articles = ({ route, navigation }: any): any => {
   }
   //code for getting article dynamic data ends here.
   const searchList = async (queryText: any): Promise<any> => {
+    Keyboard.dismiss();
     setLoadingArticle(true);
-
+    console.log('Here log 2')
     let artData: any;
     let newvideoArticleData: any;
     let combinedartarr = [];
@@ -350,6 +440,27 @@ const Articles = ({ route, navigation }: any): any => {
     let searchVideoTitleData = [];
     let searchVideoBodyData = [];
     if (queryText != "" && queryText != undefined && queryText != null) {
+       const eventData = { 'name': ARTICLE_SEARCHED, 'params': { article_searched: queryText } }
+     logEvent(eventData, netInfo.isConnected)
+      //saveToRealm(queryText);
+      const realm = await dataRealmCommon.openRealm();
+      storeUnsyncedEvent(realm, queryText)
+
+      // Update search history state
+      
+      const updatedHistory = [queryText, ...searchHistory.slice(0, 4)];
+      const filterredUpdatedHistory = [...new Set(updatedHistory)];
+      console.log('updatedHistory',filterredUpdatedHistory)
+      setSearchHistory(filterredUpdatedHistory);
+     
+
+      // Delete older entries beyond the latest 5
+      const olderEntries = realm?.objects<HistoryEntity>('SerachHistory').sorted('createdAt', true).slice(5);
+      console.log('Older Entries', olderEntries)
+      realm?.write(() => {
+        realm.delete(olderEntries);
+      });
+     
       searchTitleData = articleDataall.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
       searchBodyData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
       const searchArticleData: any[] = searchTitleData.concat(searchBodyData)
@@ -361,6 +472,7 @@ const Articles = ({ route, navigation }: any): any => {
       newvideoArticleData = [...new Set(searchVideoArticleData)];
 
       combinedartarr = mergearr(artData, newvideoArticleData, false);
+
     }
     else {
       artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
@@ -373,7 +485,27 @@ const Articles = ({ route, navigation }: any): any => {
     setFilteredArticleData(filterArray);
 
   }
-  
+  const renderSearchHistoryItem = ({ item }: { item: string }): any => (
+    <Pressable
+      onPress={async (): Promise<any> => {
+        console.log('Here log 1', item);
+        searchQueryText(item);
+        Keyboard.dismiss();
+        setHistoryVisible(false);
+        await searchList(item);
+      }}
+    >
+
+      <View style={styles.historyItem}>
+        <View>
+          <VectorImage source={require('@assets/svg/history.svg')} />
+        </View>
+
+        <Text style={styles.historyText}>{item}</Text>
+      </View>
+    </Pressable>
+  );
+
   return (
     <>
       <OverlayLoadingComponent loading={loadingArticle} />
@@ -393,24 +525,43 @@ const Articles = ({ route, navigation }: any): any => {
           />
           <FlexCol>
             <SearchBox>
+              <OuterIconRow>
+
+                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
+                  e.preventDefault();
+                  await searchList(queryText);
+
+                }}>
+                  <Icon
+                    name="ic_search"
+                    size={20}
+                    color="#000"
+
+                  />
+                </Pressable>
+
+              </OuterIconRow>
               <SearchInput
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                onChangeText={async(queryText: any): Promise<any>=> {
-                  console.log('loghererer',queryText)
+                onChangeText={async (queryText: any): Promise<any> => {
+                  console.log('loghererer', queryText)
                   if (queryText.replace(/\s/g, "") == "") {
                     console.log('loghererer1')
                     searchQueryText(queryText.replace(/\s/g, ''));
-                    await searchList(queryText)
+                    //setHistoryVisible(true);
+                    // await searchList(queryText)
                   } else {
                     console.log('loghererer2')
                     searchQueryText(queryText);
+                    setHistoryVisible(true);
                   }
                 }}
                 value={queryText}
-                onSubmitEditing={async (event:any): Promise<any> => {
+                onSubmitEditing={async (event: any): Promise<any> => {
                   console.log("event-", event);
+                  Keyboard.dismiss();
                   await searchList(queryText);
                 }}
                 multiline={false}
@@ -427,7 +578,7 @@ const Articles = ({ route, navigation }: any): any => {
                     console.log('cleartext')
                     searchQueryText('');
                     await searchList(queryText);
-                  Keyboard.dismiss();
+                    Keyboard.dismiss();
                   }}>
                     <Icon
                       name="ic_close"
@@ -438,27 +589,22 @@ const Articles = ({ route, navigation }: any): any => {
 
                 </OuterIconRow>
               }
-             
-              <OuterIconRow>
 
-                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
-                  e.preventDefault();
-                  await searchList(queryText);
-                  Keyboard.dismiss();
 
-                }}>
-                  <Icon
-                    name="ic_search"
-                    size={20}
-                    color="#000"
-
-                  />
-                </Pressable>
-
-              </OuterIconRow>
 
 
             </SearchBox>
+            {searchHistory.length!==0 && historyVisible  &&
+
+
+              <FlatList
+                data={searchHistory}
+                renderItem={renderSearchHistoryItem}
+                keyExtractor={(item, index): any => index.toString()}
+                style={styles.historyList}
+              />
+
+            }
             <DividerArt></DividerArt>
             <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
             <DividerArt></DividerArt>

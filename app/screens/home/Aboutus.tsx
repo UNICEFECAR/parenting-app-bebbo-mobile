@@ -5,7 +5,7 @@ import iframe from '@native-html/iframe-plugin';
 import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import HTML from 'react-native-render-html';
 import WebView from 'react-native-webview';
@@ -65,6 +65,7 @@ const Aboutus = ():any => {
                 baseStyle={styles.fontStyle}
                 ignoredStyles={['color', 'fontSize', 'fontFamily']}
                 tagsStyles={{
+                  img: { maxWidth: Dimensions.get('window').width - 30 },
                   p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
                   h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' },
                   h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
@@ -78,7 +79,7 @@ const Aboutus = ():any => {
                 }}
                 renderers={{
                   iframe,
-                  img: (attribs: any):any => {
+                  a: (attribs: any):any => {
                     const imagePath: any = attribs.src;
                     console.log(imagePath, "..imagePath");
                     if (imagePath != "" && imagePath != null && imagePath != undefined) {
