@@ -457,50 +457,48 @@ const ChildSetup = ({ navigation }: Props): any => {
       </ScrollView>
       <ActionSheet ref={actionSheetRef}>
 
-        <View>
-          {relationshipToParent.map((item: any, index: any) => {
-            console.log('Helloooooo',item)
-            return (
-              <ChildRelationList key={index}>
-                <Pressable
-                  onPress={(): any => {
-                    console.log('items is',item,index)
-                    setUserRelationToParent(item.id);
-                    if (item.id == relationShipMotherId) {
-                      if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
-                        setRelationship(femaleData.id);
+          <View>
+            {relationshipToParent.map((item: any, index: any) => {
+              return (
+                <ChildRelationList key={index}>
+                  <Pressable
+                    onPress={(): any => {
+                      setUserRelationToParent(item.id);
+                      if (item.id == relationShipMotherId) {
+                        if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
+                          setRelationship(femaleData.id);
+                        }
+                        else {
+                          setRelationship(String(femaleData.id));
+                        }
+                      }
+                      else if (item.id == relationShipFatherId) {
+                        if (typeof maleData.id === 'string' || maleData.id instanceof String) {
+                          setRelationship(maleData.id);
+                        }
+                        else {
+                          setRelationship(String(maleData.id));
+                        }
                       }
                       else {
-                        setRelationship(String(femaleData.id));
+                        if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
+                          setRelationship('');
+                        }
                       }
-                    }
-                    else if (item.id == relationShipFatherId) {
-                      if (typeof maleData.id === 'string' || maleData.id instanceof String) {
-                        setRelationship(maleData.id);
-                      }
-                      else {
-                        setRelationship(String(maleData.id));
-                      }
-                    }
-                    else {
-                      if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
-                        setRelationship('');
-                      }
-                    }
-                    console.log('relationship name',item.name)
-                    setRelationshipName(item.name);
-                    actionSheetRef.current?.setModalVisible(false);
-                  }}>
-                  <Heading3>{console.log(item.name)}
-                  {item.name}
-                  </Heading3>
-                </Pressable>
-              </ChildRelationList>
-            );
-          })}
+                      console.log('relationship name', item.name)
+                      setRelationshipName(item.name);
+                      actionSheetRef.current?.setModalVisible(false);
+                    }}>
+                    <Heading3>{console.log(item.name)}
+                      {item.name}
+                    </Heading3>
+                  </Pressable>
+                </ChildRelationList>
+              );
+            })}
 
-        </View>
-      </ActionSheet>
+          </View>
+        </ActionSheet>
       <ActionSheet ref={actionSheetRefImport}>
         <BannerContainer>
           <SettingHeading>
