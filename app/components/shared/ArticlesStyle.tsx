@@ -37,9 +37,12 @@ export const SearchBox = styled.View`
 `;
 export const SearchInput = styled.TextInput`
   flex:1;
-  padding:0 15px;
+  padding:0 5px;
+
   text-align:${(props:any):any => props.theme.isRTL ? 'right' : 'left'};
 `;
+
+
 
 export const MainActivityBox = styled.View`
   justify-content:space-between;
