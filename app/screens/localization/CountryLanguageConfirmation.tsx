@@ -34,7 +34,7 @@ import { I18nManager, Platform, BackHandler } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
-import { onLocalizationSelect, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { oncountrtIdChange, onLocalizationSelect, setAppLayoutDirectionParams, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
 import {localization} from '@dynamicImportsClass/dynamicImports';
@@ -121,6 +121,7 @@ const CountryLanguageConfirmation = ({route}: Props):any => {
     navigation.addListener('gestureEnd', backAction);
 
     return ():any => {
+     // dispatch(onLocalizationSelect(route.params));
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove()
     };
@@ -215,9 +216,11 @@ const CountryLanguageConfirmation = ({route}: Props):any => {
               <LocalizationAction>
                 <ButtonLinkText
                   onPress={():any => {
-                    if(localization.length == 1) {
+                    if(localization.length == 1) {                      
+                      dispatch(onLocalizationSelect(route.params));
                       navigation.navigate('LanguageSelection',{country:country,languagenew:newLanguage})
                     }else {
+                      dispatch(onLocalizationSelect(route.params));
                       navigation.navigate('CountrySelection',{country:country,language:newLanguage})
                     }
                   }}>

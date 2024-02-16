@@ -452,15 +452,16 @@ const SupportChat = ({ navigation }: Props): any => {
                 initialNumToRender={75}
                 maxToRenderPerBatch={75}
                 updateCellsBatchingPeriod={100}
+                scrollIndicatorInsets={{ right: 1 }}
                 windowSize={90}
-                getItemLayout={(data, index) => {
+                getItemLayout={(data, index):any => {
                   return {
                       length: windowWidthstyle,
                       offset: windowHeightstyle * index,
                       index
                   };
               }}
-                renderItem={({ item, index }: any) => (
+                renderItem={({ item, index }: any):any => (
                   <ChatBot
                     item={item}
                     index={index}
@@ -475,7 +476,7 @@ const SupportChat = ({ navigation }: Props): any => {
                   />
                 )}
                 keyExtractor={(item: any, index: any): any => index.toString()}
-                onScrollToIndexFailed={(info: { averageItemLength: number; highestMeasuredFrameIndex: number; index: number }) => {
+                onScrollToIndexFailed={(info: { averageItemLength: number; highestMeasuredFrameIndex: number; index: number }):any => {
                   console.log('Scrolled failed while initial', info);
                   setTimeout(() => {
                     const offset = info.averageItemLength * info.index;

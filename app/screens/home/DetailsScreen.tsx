@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   flex1: { flex: 1 },
   htmlCode: { color: bgcolorBlack2, fontSize: 16, margin: 0, padding: 0 },
   htmlSummaryCode: { fontFamily: 'roboto-regular', fontSize: 16 },
-  htmlTitleCode: { color: bgcolorBlack2, fontFamily: 'roboto-bold', fontWeight: 800, fontSize: 20, lineHeight: 26, padding: 0 },
+  htmlTitleCode: { color: bgcolorBlack2, fontFamily: 'roboto-bold', fontWeight: 700, fontSize: 20, lineHeight: 26, padding: 0 },
   marginBottom10: { marginBottom: 10 },
   maxHeight50: { maxHeight: 50 },
   scrollView: { backgroundColor: bgcolorWhite2, flex: 4 }

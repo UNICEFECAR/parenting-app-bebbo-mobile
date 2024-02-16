@@ -84,9 +84,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5
   },
   pressablePadding: {
-    paddingEnd:5,
-    paddingStart: 15,
-    paddingVertical:15
+    padding: 15
   },
 
 });
@@ -174,7 +172,7 @@ const Articles = ({ route, navigation }: any): any => {
   }
   const getSearchedKeywords = async (): Promise<any> => {
     const realm = await dataRealmCommon.openRealm();
-   
+
     if (realm != null) {
       console.log('Seach History is...', realm?.objects('SerachHistory'))
       const unsynchronizedEvents: any = realm.objects('SerachHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
@@ -182,7 +180,7 @@ const Articles = ({ route, navigation }: any): any => {
       setSearchHistory(unsynchronizedEvents);
 
     }
-    console.log('search history.......',searchHistory)
+    console.log('search history.......', searchHistory)
     //const realm = await dataRealmCommon.openRealm(); 
     //const history:any = realm?.objects('SerachHistory');
 
@@ -192,7 +190,7 @@ const Articles = ({ route, navigation }: any): any => {
 
   // }, []);
   const storeUnsyncedEvent = async (realm: any, keyword: any): Promise<any> => {
-    
+
     realm.write(() => {
       const unsyncedEvent = realm.create('SerachHistory', {
         keyword: keyword,
@@ -226,10 +224,10 @@ const Articles = ({ route, navigation }: any): any => {
       if (netInfo.isConnected) {
         synchronizeEvents(netInfo.isConnected);
       }
-      getSearchedKeywords()
+      // getSearchedKeywords()
       console.log('UseFouusEffect Articles');
       setModalVisible(articleModalOpened);
-    }, [articleModalOpened, historyVisible])
+    }, [articleModalOpened])//historyVisible
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.ARTICLES_COLOR;
@@ -363,7 +361,7 @@ const Articles = ({ route, navigation }: any): any => {
         }
 
         setLoadingArticle(false);
-        setHistoryVisible(false);
+        // setHistoryVisible(false);
         toTop();
       }
     } else {
@@ -403,7 +401,7 @@ const Articles = ({ route, navigation }: any): any => {
       console.log('UseFouusEffect Articles two');
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
-        setHistoryVisible(true);
+        //  setHistoryVisible(true);
       });
       const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
         setKeyboardStatus(false);
@@ -440,19 +438,19 @@ const Articles = ({ route, navigation }: any): any => {
     let searchVideoTitleData = [];
     let searchVideoBodyData = [];
     if (queryText != "" && queryText != undefined && queryText != null) {
-       const eventData = { 'name': ARTICLE_SEARCHED, 'params': { article_searched: queryText } }
-     logEvent(eventData, netInfo.isConnected)
+      const eventData = { 'name': ARTICLE_SEARCHED, 'params': { article_searched: queryText } }
+      logEvent(eventData, netInfo.isConnected)
       //saveToRealm(queryText);
       const realm = await dataRealmCommon.openRealm();
       storeUnsyncedEvent(realm, queryText)
 
       // Update search history state
-      
+
       const updatedHistory = [queryText, ...searchHistory.slice(0, 4)];
       const filterredUpdatedHistory = [...new Set(updatedHistory)];
-      console.log('updatedHistory',filterredUpdatedHistory)
+      console.log('updatedHistory', filterredUpdatedHistory)
       setSearchHistory(filterredUpdatedHistory);
-     
+
 
       // Delete older entries beyond the latest 5
       const olderEntries = realm?.objects<HistoryEntity>('SerachHistory').sorted('createdAt', true).slice(5);
@@ -460,7 +458,7 @@ const Articles = ({ route, navigation }: any): any => {
       realm?.write(() => {
         realm.delete(olderEntries);
       });
-     
+
       searchTitleData = articleDataall.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
       searchBodyData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
       const searchArticleData: any[] = searchTitleData.concat(searchBodyData)
@@ -525,22 +523,7 @@ const Articles = ({ route, navigation }: any): any => {
           />
           <FlexCol>
             <SearchBox>
-              <OuterIconRow>
 
-                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
-                  e.preventDefault();
-                  await searchList(queryText);
-
-                }}>
-                  <Icon
-                    name="ic_search"
-                    size={20}
-                    color="#000"
-
-                  />
-                </Pressable>
-
-              </OuterIconRow>
               <SearchInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -555,7 +538,7 @@ const Articles = ({ route, navigation }: any): any => {
                   } else {
                     console.log('loghererer2')
                     searchQueryText(queryText);
-                    setHistoryVisible(true);
+                    //  setHistoryVisible(true);
                   }
                 }}
                 value={queryText}
@@ -570,6 +553,7 @@ const Articles = ({ route, navigation }: any): any => {
                 placeholderTextColor={"gray"}
                 allowFontScaling={false}
               />
+
               {
                 Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
                 <OuterIconRow>
@@ -589,12 +573,27 @@ const Articles = ({ route, navigation }: any): any => {
 
                 </OuterIconRow>
               }
+              <OuterIconRow>
 
+                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
+                  e.preventDefault();
+                  await searchList(queryText);
+
+                }}>
+                  <Icon
+                    name="ic_search"
+                    size={20}
+                    color="#000"
+
+                  />
+                </Pressable>
+
+              </OuterIconRow>
 
 
 
             </SearchBox>
-            {searchHistory.length!==0 && historyVisible  &&
+            {/* {searchHistory.length!==0 && historyVisible  &&
 
 
               <FlatList
@@ -604,7 +603,7 @@ const Articles = ({ route, navigation }: any): any => {
                 style={styles.historyList}
               />
 
-            }
+            } */}
             <DividerArt></DividerArt>
             <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
             <DividerArt></DividerArt>

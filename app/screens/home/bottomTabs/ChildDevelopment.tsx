@@ -473,9 +473,9 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
           </View>
         </FlexCol>
 
-        <View>
+        {/* <View>
           <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
-        </View>
+        </View> */}
 
         <View>
           <Modal
