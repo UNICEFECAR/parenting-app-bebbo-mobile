@@ -107,11 +107,11 @@ const ChildSetup = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   let relationshipData = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+    state.utilsData.taxonomy.allTaxonomyData != ''? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender:[],
   );
   const relationshipToParent = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent:[],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -146,7 +146,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('relationshipname1',relationshipToParent)
+      console.log('taxonomyData is',relationshipToParent)
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
@@ -457,7 +457,7 @@ const ChildSetup = ({ navigation }: Props): any => {
       </ScrollView>
       <ActionSheet ref={actionSheetRef}>
 
-          <View>
+          <View style={{marginBottom:20}}>
             {relationshipToParent.map((item: any, index: any) => {
               return (
                 <ChildRelationList key={index}>
