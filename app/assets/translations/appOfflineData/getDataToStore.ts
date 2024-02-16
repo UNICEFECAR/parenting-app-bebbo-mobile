@@ -20,25 +20,25 @@ import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { appConfig, bothChildGender, bothParentGender } from "./apiConstants";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
 
-export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any): Promise<any> => {
+export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: any, sortBy?: any, currentChildData?: any): Promise<any> => {
     // return new Promise((resolve) => {
     let dataToStore: any;
     let offlineData: any;
     if (SchemaToUse.name == StandardDevWeightForHeightSchema.name) {
         offlineData = jsonData[languageCode] ? jsonData[languageCode][0].weight_for_height : undefined;
-        if (offlineData == undefined || offlineData == "" || offlineData == {}) {
+        if (offlineData == undefined || offlineData == "" || offlineData == null) {
             offlineData = [];
         }
     }
     else if (SchemaToUse.name == StandardDevHeightForAgeSchema.name) {
         offlineData = jsonData[languageCode] ? jsonData[languageCode][0].height_for_age : undefined;
-        if (offlineData == undefined || offlineData == "" || offlineData == {}) {
+        if (offlineData == undefined || offlineData == "" || offlineData == null) {
             offlineData = [];
         }
     }
     else {
         offlineData = jsonData[languageCode];
-        if (offlineData == undefined || offlineData == "" || offlineData == {}) {
+        if (offlineData == undefined || offlineData == "" || offlineData == null) {
             offlineData = [];
         }
     }
@@ -73,7 +73,7 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
         dataToStore = databaseData2;
     }
     if (dataToStore?.length > 0) {
-        dispatch(setAllHardcodedData(dataToStore));
+        dispatch(setAllHardcodedData(dataToStore))
         return dataToStore;
     } else {
         dispatch(setAllHardcodedData(JSON.stringify(offlineData)));

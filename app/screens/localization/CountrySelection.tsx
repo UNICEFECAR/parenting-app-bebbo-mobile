@@ -30,11 +30,15 @@ const CountrySelection = (props: any): any => {
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const dispatch = useAppDispatch();
   const [country, setCountry] = useState<any>();
+  const [language, setSelectedLanguage] = useState<any>(null);
   const [luxonLanLocale, setLuxonLanLocale] = useState<any>();
   const [deviceLanCode, setDeviceLangCode] = useState<any>();
   const isVisible = useIsFocused();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
+  );
+  const getCountryData = useAppSelector(
+    (state: any) => state.AppLayoutDirectionParams,
   );
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
@@ -45,18 +49,22 @@ const CountrySelection = (props: any): any => {
       state.utilsData.userIsOnboarded
   );
 
+  useEffect(() => {
+    if (props.route?.params?.country == country) {
+      if (props.route?.params?.language != undefined) {
+        setSelectedLanguage(props.route?.params?.language)
+      }
+    } else {
+      setSelectedLanguage(null)
+    }
+  }, [props.route.params, country])
 
   useEffect(() => {
-    console.log('params data is', props)
-    console.log('All logs is here')
-    console.log('All Data from Device locales', RNLocalize.getLocales());
-    console.log('Country is', RNLocalize.getCountry());
-    console.log('CountryId is', RNLocalize.getCountry());
-    const getSelectedLanguage = ():any => {
+    const getSelectedLanguage = (): any => {
       const selectedLanguage = RNLocalize.getLocales(); // Get the locales
       return selectedLanguage[0]?.languageCode || 'en'; // Extract the language code
     };
-    const getSelectedCountry = ():any => {
+    const getSelectedCountry = (): any => {
       const selectedLanguage = RNLocalize.getLocales(); // Get the locales
       return selectedLanguage[0]?.languageTag || 'en-Us'; // Extract the language code
     };
@@ -84,6 +92,7 @@ const CountrySelection = (props: any): any => {
         if (props.route.params.country && props.route.params.country != null && props.route.params.country != undefined) {
           newCountryId = props.route.params.country.countryId;
           newCountryLocale = props.route.params.country.luxonLocale;
+          setCountry(props.route.params.country)
         } else {
           newCountryId = countryId;
           newCountryLocale = selectedDefaultCountry;
@@ -93,8 +102,13 @@ const CountrySelection = (props: any): any => {
           newCountryLocale = selectedDefaultCountry;
           newCountryId = countryId;
         } else {
+          //  setCountry(props.route.params.country)
           newCountryId = props.route.params.country.countryId;
-          newCountryLocale = props.route.params.country.luxonLocale;
+          if (props.route.params.language != undefined) {
+            newCountryLocale = props.route.params.language.luxonLocale;
+          } else {
+            newCountryLocale = selectedDefaultCountry;
+          }
         }
       }
 
@@ -109,7 +123,6 @@ const CountrySelection = (props: any): any => {
           setCountry(selectedCountry)
         }
       } else {
-        console.log('Luxon locale not found in the provided data', selectedCountry);
         setCountry(selectedCountry)
       }
 
@@ -165,7 +178,7 @@ const CountrySelection = (props: any): any => {
                   <ButtonviewClick
                     onPress={(): any => {
 
-                      props.navigation.navigate('LanguageSelection', { country: country, languagenew: props.route.params && props.route.params.language ? props.route.params.language : null, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
+                      props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
                     }
                     }>
                     <IconML name="ic_angle_right" size={32} color="#000" />
