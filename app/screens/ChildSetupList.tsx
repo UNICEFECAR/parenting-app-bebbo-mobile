@@ -20,10 +20,10 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
-import { CommonActions, useFocusEffect } from '@react-navigation/native';
+import { CommonActions, useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { primaryColor } from '@styles/style';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -40,6 +40,7 @@ import {
 } from '../styles/typography';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
+import { setActiveChildData } from '../redux/reducers/childSlice';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -70,6 +71,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
+  const isFocused = useIsFocused();
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -86,23 +88,28 @@ const ChildSetupList = ({ navigation }: Props): any => {
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
+  useEffect(() => {
+    if (isFocused) {
+       getAllChildren(dispatch, childAge, 0);
+       getAllConfigData(dispatch);
+       notiPermissionUtil();
+       setTimeout(() => {
+         navigation.dispatch(state => {
+           // Remove the home route from the stack
+           const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+ 
+           return CommonActions.reset({
+             ...state,
+             routes,
+             index: routes.length - 1,
+           });
+         });
+       }, 100);
+    }
+  }, [isFocused]);
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch, childAge, 0);
-      getAllConfigData(dispatch);
-      notiPermissionUtil();
-      setTimeout(() => {
-        navigation.dispatch(state => {
-          // Remove the home route from the stack
-          const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
-
-          return CommonActions.reset({
-            ...state,
-            routes,
-            index: routes.length - 1,
-          });
-        });
-      }, 500);
+     
       const backAction = (): any => {
         return true;
       };
@@ -128,7 +135,8 @@ const ChildSetupList = ({ navigation }: Props): any => {
           },
           {
             text: t('growthScreendelText'), onPress: async (): Promise<any> => {
-              await deleteChild(languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, childAge, t);
+          
+              await deleteChild(navigation,languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, childAge, t,childList);
               getAllChildren(dispatch, childAge, 0);
             }
           }
@@ -151,7 +159,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
         <ChildColArea2>
           {
             childList.length > 1 ? (
-              <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={(): any => deleteRecord(index, dispatch, data.uuid)}>
+              <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={(): any => {
+                
+                deleteRecord(index, dispatch, data.uuid)}}>
                 <ChildListAction>
                   <Icon
                     name="ic_trash"

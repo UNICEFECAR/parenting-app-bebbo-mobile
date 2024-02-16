@@ -181,7 +181,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
           }
         </View>
         <ActionSheet ref={actionSheetRef}>
-          <View>
+          <View style={{marginBottom:40}}>
             {
               relationshipToParentGlobal.map((item: any, index: any) => {
                 return (

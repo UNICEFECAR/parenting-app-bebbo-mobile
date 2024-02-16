@@ -26,7 +26,7 @@ import {
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { addChild, deleteChild, getNewChild } from '../services/childCRUD';
+import { addChild, deleteChild, deleteChildNew, getAllChildren, getNewChild, setActiveChild } from '../services/childCRUD';
 import { DateTime } from 'luxon';
 import { dobMax } from '@types/types';
 import {
@@ -40,6 +40,9 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import TextInputML from '@components/shared/TextInputML';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
+import { setActiveChildData } from '../redux/reducers/childSlice';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -104,6 +107,8 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
+      console.log('childList', childList)
+      console.log('childData is', childData)
       if (childData?.uuid != '') {
         setName(childData?.childName ? childData?.childName : '');
         setPlannedTermDate(childData?.birthDate != null ? new Date(childData?.birthDate) : null);
@@ -131,7 +136,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     childSet.push(insertData);
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo);
   }
-  const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
@@ -141,8 +146,14 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         },
         {
           text: t('removeOption2'),
-          onPress: (): any => {
-            deleteChild(
+          onPress: async (): Promise<any> => {
+            if (index == 0) {
+              const filterList = childList.filter((item: any) => item.uuid != uuid)
+              const selectedUuid = filterList[0];
+              dispatch(setActiveChildData(selectedUuid))
+            }
+            await deleteChild(
+              navigation,
               languageCode,
               index,
               dispatch,
@@ -152,10 +163,11 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
               resolve,
               reject,
               childAge,
-              t
+              t,
+              childList
             );
-            navigation.navigate('ChildProfileScreen');
-          },
+            navigation.navigate('ChildProfileScreen')
+          }
         },
       ]);
     });
@@ -180,8 +192,13 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         </HeaderTitleView>
         <HeaderActionView style={styles.headerActionView}>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
-            <Pressable style={styles.pressableView} onPress={(): any =>
-              deleteRecord(childData?.index, dispatch, childData?.uuid)
+            <Pressable style={styles.pressableView} onPress={(): any => {
+              if (childData?.index == undefined) {
+                deleteRecord(0, dispatch, childData?.uuid, childList)
+              } else {
+                deleteRecord(childData?.index, dispatch, childData?.uuid, childList)
+              }
+            }
             }>
               <Icon name={'ic_trash'} size={20} color="#FFF" />
             </Pressable>

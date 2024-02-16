@@ -86,10 +86,10 @@ export const updateIncrementalSyncDT = async(response: any, dispatch: any, _navi
 }
 export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any,oldErrorObj:any):Promise<any> => {
 const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
-if(artresp && artresp != {})
+if(artresp && artresp != null)
 {
   const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
-  if(artobj && artobj != {}){
+  if(artobj && artobj != null){
     const storedata = store.getState();
     const bufferAgeBracket = storedata.childData.childDataSet.bufferAgeBracket;
      const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
@@ -174,10 +174,10 @@ export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigati
 }
 export const onChildSetupApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any,oldErrorObj:any):Promise<any> => {
   const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
-  if(artresp && artresp != {})
+  if(artresp && artresp != null)
   {
     const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
-    if(artobj && artobj != {}){
+    if(artobj && artobj != null){
       const storedata = store.getState();
       const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
       const artarray = artobj.postdata.childAge == 'all' ? childagearray.map((x:any)=>x.id) : artobj.postdata.childAge.split(',').map(Number)
