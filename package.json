@@ -52,7 +52,7 @@
     "react-native-actions-sheet": "^0.4.9",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-config": "^1.4.5",
-    "react-native-document-picker": "^7.1.1",
+    "react-native-document-picker": "^9.1.1",
     "react-native-dotenv": "^2.5.5",
     "react-native-error-boundary": "^1.1.9",
     "react-native-fast-image": "git+https://github.com/kalyaniDM/FastImageCustom.git",
