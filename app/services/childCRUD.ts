@@ -641,8 +641,8 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
 }
 
 
-export const deleteChild = async (languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, childAge: any, t: any): Promise<any> => {
-  let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+export const deleteChild = async (navigation:any,languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, childAge: any, t: any,childList:any): Promise<any> => {
+  const currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterCondition);
   if (oldChild?.length > 0) {
     oldChild = oldChild.map((item: any) => item)[0];
@@ -657,18 +657,6 @@ export const deleteChild = async (languageCode: any, _index: number, dispatch: a
   const createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
   console.log(createresult, "..createresult..")
   if (createresult == 'success') {
-    const notiFlagObj = { key: 'generateNotifications', value: true };
-    dispatch(setInfoModalOpened(notiFlagObj));
-
-    const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: recordId };
-    dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-    console.log("check local notification log3---");
-    if (currentActiveChildId?.length > 0) {
-      currentActiveChildId = currentActiveChildId[0].value;
-      if (currentActiveChildId == recordId) {
-        setActiveChild(languageCode, '', dispatch, childAge, false);
-      }
-    }
     if (Platform.OS === 'android') {
       ToastAndroidLocal.showWithGravityAndOffset(
         t('deleteSuccess'),
@@ -699,4 +687,3 @@ export const deleteChild = async (languageCode: any, _index: number, dispatch: a
     reject("error");
   }
 }
-

@@ -26,7 +26,7 @@ import Icon, { IconBox, IconML } from '@components/shared/Icon';
 import { ProfileEditView } from '@components/shared/ProfileListingStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
@@ -54,13 +54,17 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import { deleteImageFile } from '../../downloadImages/ImageStorage';
 import {
   addChild,
-  deleteChild, getNewChild
+  deleteChild, getAllChildren, getNewChild,
+  setActiveChild
 } from '../../services/childCRUD';
 import MediaPicker from '../../services/MediaPicker';
 import { validateForm } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
+import { setActiveChildData } from '../../redux/reducers/childSlice';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -154,6 +158,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [isExpected, setIsExpected] = React.useState<string>('false');
   const [destPath, setDestPath] = React.useState<string>('');
   const [loading, setLoading] = React.useState<boolean>(false);
+  const isFocused = useIsFocused()
   const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -187,10 +192,14 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     }
   }
   useEffect(() => {
+
      handleBack();
   }, []);
   useFocusEffect(
+    
     React.useCallback(() => {
+      
+      console.log('childData is',childData)
       console.log('childData is profiles',childData)
       if (childData != undefined && childData != null && childData != '' && childData.uuid != '') {
         setphotoUri(childData.photoUri);
@@ -262,7 +271,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       });
     }
   };
-  const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string,childList:any): any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
@@ -272,30 +281,28 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         },
         {
           text: t('removeOption2'),
-          onPress: (): any => {
-            deleteChild(
+          onPress: async (): Promise<any> => {
+            if (index == 0) {
+              const filterList = childList.filter((item: any) => item.uuid != uuid)
+              const selectedUuid = filterList[0];
+              dispatch(setActiveChildData(selectedUuid))
+            }
+             await deleteChild(
+              navigation,
               languageCode,
               index,
               dispatch,
               'ChildEntity',
-              uuid,
+               uuid,  
               'uuid ="' + uuid + '"',
               resolve,
               reject,
               childAge,
-              t
+              t,
+              childList
             );
-           // navigation.navigate('ChildProfileScreen');
-           // handleBack();
-            // const backAction = (): any => {
-            //   //console.log("11")
-            //   navigation.goBack();
-            //   return true;
-            // };
-            // navigation.removeListener('gestureEnd', backAction);
-         // navigation.goBack();
-          //  navigation.navigate({ key: 'ChildProfileScreen', params: {childData:childData}});
-            navigation.navigate('ChildProfileScreen');
+           navigation.navigate('ChildProfileScreen')
+       
     
           },
         },
@@ -399,8 +406,15 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
           </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
             <HeaderActionView style={styles.padding0}>
-              <Pressable style={styles.pressableView} onPress={(): any =>
-                deleteRecord(childData?.index, dispatch, childData?.uuid,childData)
+              <Pressable style={styles.pressableView} onPress={(): any =>{
+                console.log('ChildData position',childData)
+                if(childData?.index==undefined){
+                  deleteRecord(0, dispatch, childData?.uuid,childList)
+                }else{
+                deleteRecord(childData?.index, dispatch, childData?.uuid,childList)
+                }
+               // deleteRecord(childData?.index, dispatch, childData?.uuid)
+              }
               }>
                 <Icon name={'ic_trash'} size={20} color="#FFF" />
               </Pressable>

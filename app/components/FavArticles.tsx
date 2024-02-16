@@ -18,7 +18,7 @@ import VideoPlayer from './VideoPlayer';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: row;
-  background-color: ${(props: any): string => props.theme.colors.ARTICLES_TINTCOLOR};,
+  background-color: ${(props: any): string => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
 
 const styles = StyleSheet.create({

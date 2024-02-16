@@ -198,10 +198,10 @@ const ChildImportSetup = (props: any): any => {
           </OnboardingContainer>
 
         </ScrollView>
-        
+
         <ActionSheet ref={actionSheetRef}>
 
-          <View>
+          <View style={{ marginBottom: 20 }}>
             {relationshipToParent.map((item: any, index: any) => {
               return (
                 <ChildRelationList key={index}>
@@ -256,7 +256,6 @@ const ChildImportSetup = (props: any): any => {
                 if (importResponse?.length > 0) {
                   const resolvedPromises = importResponse.map(async (item: any) => {
                     if (item.birthDate != null && item.birthDate != undefined) {
-                      console.log('Item is from dash', item, genders)
                       const itemnew = await getChild(item, genders);
                       const childData: any = [];
                       childData.push(itemnew);

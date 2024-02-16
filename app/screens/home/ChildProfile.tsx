@@ -36,25 +36,26 @@ import { formatDate } from '../../services/Utils';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { bgcolorWhite2 } from '@styles/style';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { setActiveChildData, setAllChildData } from '../../redux/reducers/childSlice';
 
-const styles= StyleSheet.create({
-  alignItemsStart:{ alignItems: 'flex-start' },
-  areaContainerInnerView:{ flexDirection: 'column' },
-  autoHeight:{height: 'auto'},
-  buttonLinkPress:{justifyContent:"flex-end",width:50},
-  flex1:{flex:1},
-  flexCol:{ backgroundColor: bgcolorWhite2 },
-  flexShrink1:{ flexShrink: 1 },
-  fontText:{ fontSize: 12, fontWeight: 'normal' },
-  headingText1:{ fontSize: 12, fontWeight: 'normal' },
-  imageIcon:{ borderRadius: 20, height: 40, width: 40 },
-  marginLeft15:{ marginLeft: 15 },
-  maxHeight50:{maxHeight:50},
-  paddingLeft30:{paddingLeft:30},
-  profileActionView:{alignItems:"center",height:"100%",justifyContent:"center"},
-  profileListDefault:{flexDirection: 'column', flex: 1},
-  profileTextView:{ paddingRight: 5 },
-  textDecorationNone:{ textDecorationLine: "none"}
+const styles = StyleSheet.create({
+  alignItemsStart: { alignItems: 'flex-start' },
+  areaContainerInnerView: { flexDirection: 'column' },
+  autoHeight: { height: 'auto' },
+  buttonLinkPress: { justifyContent: "flex-end", width: 50 },
+  flex1: { flex: 1 },
+  flexCol: { backgroundColor: bgcolorWhite2 },
+  flexShrink1: { flexShrink: 1 },
+  fontText: { fontSize: 12, fontWeight: 'normal' },
+  headingText1: { fontSize: 12, fontWeight: 'normal' },
+  imageIcon: { borderRadius: 20, height: 40, width: 40 },
+  marginLeft15: { marginLeft: 15 },
+  maxHeight50: { maxHeight: 50 },
+  paddingLeft30: { paddingLeft: 30 },
+  profileActionView: { alignItems: "center", height: "100%", justifyContent: "center" },
+  profileListDefault: { flexDirection: 'column', flex: 1 },
+  profileTextView: { paddingRight: 5 },
+  textDecorationNone: { textDecorationLine: "none" }
 })
 type NotificationsNavigationProp =
   StackNavigationProp<any>;
@@ -66,7 +67,8 @@ const ChildProfile = ({ navigation }: Props): any => {
   const { t } = useTranslation();
   const isFocused = useIsFocused();
   const [parentViewHeight, setParentViewheight] = useState(0);
-  const [profileLoading,setProfileLoading] = React.useState(false);
+  const [profileLoading, setProfileLoading] = React.useState(false);
+  const [isChildSwitch, setISChildSwitch] = React.useState(false);
   const [profileViewHeight, setProfileViewheight] = useState(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
@@ -83,26 +85,25 @@ const ChildProfile = ({ navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
-  useEffect(() => {
-    if (isFocused) {
-       console.log('In inFocused Block', isFocused);
-       console.log('Testing Testing')
-       getAllChildren(dispatch, childAge, 0);
-       getAllConfigData(dispatch);
-       setTimeout(() => {
-         navigation.dispatch((state: any) => {
-           // Remove the home route from the stack
-           const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
- 
-           return CommonActions.reset({
-             ...state,
-             routes,
-             index: routes.length - 1,
-           });
-         });
-       }, 100);
-    }
-  }, [isFocused]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch, childAge, 0);
+      getAllConfigData(dispatch);
+      setTimeout(() => {
+        navigation.dispatch((state: any) => {
+          // Remove the home route from the stack
+          const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
+
+          return CommonActions.reset({
+            ...state,
+            routes,
+            index: routes.length - 1,
+          });
+        });
+      }, 500);
+    }, [])
+  );
 
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -115,7 +116,7 @@ const ChildProfile = ({ navigation }: Props): any => {
       : [],
   );
 
-  
+
   useEffect(() => {
     const backAction = (): any => {
       //console.log("11")
@@ -132,7 +133,7 @@ const ChildProfile = ({ navigation }: Props): any => {
       navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
-  }, [navigation]);
+  }, [navigation, isFocused]);
   const isFutureDate = (date: Date): any => {
     return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
   };
@@ -144,7 +145,7 @@ const ChildProfile = ({ navigation }: Props): any => {
   }
 
   const currentActiveChild = activeChild.uuid;
- 
+
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
       ? JSON.parse(state.variableData?.variableData)
@@ -175,11 +176,17 @@ const ChildProfile = ({ navigation }: Props): any => {
   const relationshipToParent = relationshipToParentGlobal.length > 0 && userRelationToParent.length > 0 ? relationshipToParentGlobal.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
   const windowHeight = Dimensions.get('window').height;
 
-  const SortedchildList = [...childList].sort((a: any, b: any):any => {
+  const SortedchildList = [...childList].sort((a: any, b: any): any => {
     console.log(b);
     if (a.uuid == currentActiveChild) return -1;
   });
-  const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string,navigationCustom: any): any => (
+  useEffect(() => {
+    if (isChildSwitch) {
+      dispatch(setAllChildData(SortedchildList))
+      setISChildSwitch(false);
+    }
+  }, [SortedchildList, isChildSwitch])
+  const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string, navigationCustom: any): any => (
     <View key={data.uuid}>
       {currentActiveChild != '' &&
         currentActiveChild != null &&
@@ -207,7 +214,7 @@ const ChildProfile = ({ navigation }: Props): any => {
             </Heading5>
           </ProfileTextView>
 
-          <ProfileActionView  style={styles.profileActionView}>
+          <ProfileActionView style={styles.profileActionView}>
             <FlexColEnd>
               <FDirRow>
                 <OuterIconRow>
@@ -241,9 +248,9 @@ const ChildProfile = ({ navigation }: Props): any => {
       ) : (
 
         <ProfileListDefault
-          style={[styles.profileListDefault,{
+          style={[styles.profileListDefault, {
             backgroundColor: secopndaryTintColor,
-           
+
           }]}>
           <ProfileListInner>
             <ProfileIconView>
@@ -254,62 +261,66 @@ const ChildProfile = ({ navigation }: Props): any => {
               }
             </ProfileIconView>
             <ProfileTextView>
-                  <ProfileSectionView style={styles.alignItemsStart}>
-                    <Heading3>{data.childName}{genderName != '' && genderName != null && genderName != undefined ? <Text style={styles.fontText}>{', ' + genderName}</Text> : null}
-                    </Heading3>
+              <ProfileSectionView style={styles.alignItemsStart}>
+                <Heading3>{data.childName}{genderName != '' && genderName != null && genderName != undefined ? <Text style={styles.fontText}>{', ' + genderName}</Text> : null}
+                </Heading3>
 
-                  </ProfileSectionView>
-                  <Heading5>
-                    {(data.birthDate != '' &&
-                      data.birthDate != null &&
-                      data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
-                  </Heading5>
+              </ProfileSectionView>
+              <Heading5>
+                {(data.birthDate != '' &&
+                  data.birthDate != null &&
+                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
+              </Heading5>
 
-                </ProfileTextView>
-                <ProfileActionView  style={styles.profileActionView}>
-            <FlexColEnd>
-              <FDirRow>
-                <OuterIconRow>
-                <Pressable onPress={(): any => {
-                        setProfileLoading(true);
-                        setTimeout(async()=>{
-                         const setData=await setActiveChild(languageCode, data.uuid, dispatch, childAge,true);
-                         if(setData=="activeset"){
+            </ProfileTextView>
+            <ProfileActionView style={styles.profileActionView}>
+              <FlexColEnd>
+                <FDirRow>
+                  <OuterIconRow>
+                    <Pressable onPress={(): any => {
+                      setProfileLoading(true);
+                      setTimeout(async () => {
+                        const setData = await setActiveChild(languageCode, data.uuid, dispatch, childAge, true);
+
+                        getAllChildren(dispatch, childAge, 0);
+                        if (setData == "activeset") {
                           setProfileLoading(false);
-                         }
-                        },0);
-                      
-                      }}>
-                  <OuterIconRight style={styles.paddingLeft30}>
-                
+                          setISChildSwitch(true);
+
+                        }
+                      }, 0);
+
+                    }}>
+                      <OuterIconRight style={styles.paddingLeft30}>
+
                         <TickView4>
                           {/* <Icon name="ic_tick" size={11} color="#000000" /> */}
                         </TickView4>
-                      
 
-                  </OuterIconRight>
-                  </Pressable>
-                  <OuterIconRight>
-                  <Pressable onPress={(): any => {
+
+                      </OuterIconRight>
+                    </Pressable>
+                    <OuterIconRight>
+                      <Pressable onPress={(): any => {
                         data.index = index;
                         if (isFutureDate(data.birthDate)) {
                           navigationCustom.navigate('AddExpectingChildProfile', { childData: data });
                         }
                         else {
                           navigationCustom.navigate('EditChildProfile', { childData: data });
-                          
+
                         }
                       }}>
                         <TickView1>
                           <Icon name="ic_edit" size={16} color="#000" />
                         </TickView1>
                       </Pressable>
-                      
-                  </OuterIconRight>
-                </OuterIconRow>
-              </FDirRow>
-            </FlexColEnd>
-          </ProfileActionView>
+
+                    </OuterIconRight>
+                  </OuterIconRow>
+                </FDirRow>
+              </FlexColEnd>
+            </ProfileActionView>
           </ProfileListInner>
         </ProfileListDefault>
       )}
@@ -318,14 +329,14 @@ const ChildProfile = ({ navigation }: Props): any => {
 
   return (
     <>
-      <View style={[styles.flex1,{backgroundColor: headerColor }]}>
+      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
 
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <HeaderRowView
-          style={[styles.maxHeight50,{
+          style={[styles.maxHeight50, {
             backgroundColor: headerColor,
-            
+
           }]}>
           <HeaderIconView>
             <HeaderIconPress
@@ -343,11 +354,11 @@ const ChildProfile = ({ navigation }: Props): any => {
         <FlexCol style={styles.flexCol}>
           <AreaContainer>
             <View style={styles.areaContainerInnerView}>
-              <ScrollView style={[styles.autoHeight,{ maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
+              <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
                     const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
-                    return renderChildProfile(dispatch, item, index, genderLocal,navigation);
+                    return renderChildProfile(dispatch, item, index, genderLocal, navigation);
                   })
                   : null}
               </ScrollView>
@@ -442,7 +453,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                         <Text style={styles.marginLeft15}>
                           {
                             userParentalRoleData?.length > 0
-                              ? relationshipValue.name  
+                              ? relationshipValue.name
                               : ''
                           }
                         </Text>
@@ -467,7 +478,7 @@ const ChildProfile = ({ navigation }: Props): any => {
             </View>
           </AreaContainer>
         </FlexCol>
-        <OverlayLoadingComponent loading={profileLoading}/>
+        <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>
   );
