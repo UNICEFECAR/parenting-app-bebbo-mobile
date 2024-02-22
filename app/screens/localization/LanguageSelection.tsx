@@ -35,7 +35,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const [language, setLanguage] = useState<any>();
   console.log("in lang file ---", route.params);
   let country: any, languagenew: any;
-  if (buildFor == String(buildForFoleja) && (route.params == null || route.params == undefined || route.params?.country == null)) {
+  if (buildFor == buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
     console.log("in if--");
     country = localization[localization.length - 1];
     languagenew = null;
@@ -60,17 +60,24 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     return languageCode;
   };
   useEffect(() => {
-    if (route.params.language != undefined) {
-      setLanguage(route.params.language)
+    if (route?.params?.language != undefined) {
+      setLanguage(route?.params?.language)
     } else {
-      const languagesWithLuxonLocale = country.languages.filter((lang: any) => lang.luxonLocale === route.params.luxonlocale || extractLanguageCode(lang.luxonLocale) === route.params.deviceLanCode);
-      if (languagesWithLuxonLocale.length != 0) {
-        setLanguage(languagesWithLuxonLocale)
-      } else {
+      console.log('languages for foleja is',languages)
+      if (buildFor == String(buildForFoleja)){
         setLanguage(languages[0])
+      }else{
+        const languagesWithLuxonLocale = country.languages.filter((lang: any) => lang.luxonLocale === route.params.luxonlocale || extractLanguageCode(lang.luxonLocale) === route.params.deviceLanCode);
+        if (languagesWithLuxonLocale.length != 0) {
+          setLanguage(languagesWithLuxonLocale)
+        } else {
+          setLanguage(languages[0])
+        }
       }
+    
+    
     }
-  }, [route.params.language]);
+  }, [route?.params?.language]);
 
   const renderItem = ({ item, index }: any): any => (
     <LanguageItem
