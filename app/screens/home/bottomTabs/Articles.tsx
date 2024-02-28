@@ -361,7 +361,7 @@ const Articles = ({ route, navigation }: any): any => {
         }
 
         setLoadingArticle(false);
-        // setHistoryVisible(false);
+         setHistoryVisible(false);
         toTop();
       }
     } else {
@@ -401,7 +401,7 @@ const Articles = ({ route, navigation }: any): any => {
       console.log('UseFouusEffect Articles two');
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
-        //  setHistoryVisible(true);
+          //setHistoryVisible(true);
       });
       const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
         setKeyboardStatus(false);
@@ -440,7 +440,7 @@ const Articles = ({ route, navigation }: any): any => {
     if (queryText != "" && queryText != undefined && queryText != null) {
       const eventData = { 'name': ARTICLE_SEARCHED, 'params': { article_searched: queryText } }
       logEvent(eventData, netInfo.isConnected)
-      //saveToRealm(queryText);
+      saveToRealm(queryText);
       const realm = await dataRealmCommon.openRealm();
       storeUnsyncedEvent(realm, queryText)
 
@@ -533,12 +533,12 @@ const Articles = ({ route, navigation }: any): any => {
                   if (queryText.replace(/\s/g, "") == "") {
                     console.log('loghererer1')
                     searchQueryText(queryText.replace(/\s/g, ''));
-                    //setHistoryVisible(true);
+                    setHistoryVisible(true);
                     // await searchList(queryText)
                   } else {
                     console.log('loghererer2')
                     searchQueryText(queryText);
-                    //  setHistoryVisible(true);
+                      setHistoryVisible(true);
                   }
                 }}
                 value={queryText}
@@ -593,7 +593,7 @@ const Articles = ({ route, navigation }: any): any => {
 
 
             </SearchBox>
-            {/* {searchHistory.length!==0 && historyVisible  &&
+             {searchHistory.length!==0 && historyVisible  &&
 
 
               <FlatList
@@ -603,7 +603,7 @@ const Articles = ({ route, navigation }: any): any => {
                 style={styles.historyList}
               />
 
-            } */}
+            } 
             <DividerArt></DividerArt>
             <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
             <DividerArt></DividerArt>
