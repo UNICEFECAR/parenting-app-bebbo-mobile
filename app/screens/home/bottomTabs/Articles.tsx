@@ -301,8 +301,9 @@ const Articles = ({ route, navigation }: any): any => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
   }
-  const setFilteredArticleData = (itemId: any): any => {
+  const setFilteredArticleData = (itemId: any,queryText:any): any => {
     if (articleData != null && articleData != undefined && articleData.length > 0) {
+      console.log('Qurty text data',itemId)
       setLoadingArticle(true);
       if (itemId.length > 0) {
         let newArticleData = articleDataOld.filter((x: any) => itemId.includes(x.category));
@@ -331,7 +332,7 @@ const Articles = ({ route, navigation }: any): any => {
         const combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
 
         setfilteredData(combinedartarr);
-
+        setHistoryVisible(false);
         setLoadingArticle(false);
         toTop();
       } else {
@@ -362,7 +363,7 @@ const Articles = ({ route, navigation }: any): any => {
         }
 
         setLoadingArticle(false);
-        setHistoryVisible(false);
+       setHistoryVisible(false);
         toTop();
       }
     } else {
@@ -373,16 +374,17 @@ const Articles = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log('UseFouusEffect Articles one');
+ 
       if (queryText == '') {
+        console.log('UseFouusEffect Articles one');
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
             setFilterArray(route.params?.categoryArray);
-            setFilteredArticleData(route.params?.categoryArray);
+            setFilteredArticleData(route.params?.categoryArray,queryText);
           }
           else {
             setFilterArray([]);
-            setFilteredArticleData([]);
+            setFilteredArticleData([],queryText);
           }
         }
         if (route.params?.backClicked != 'yes') {
@@ -429,7 +431,7 @@ const Articles = ({ route, navigation }: any): any => {
   const searchList = async (queryText: any): Promise<any> => {
     Keyboard.dismiss();
     setLoadingArticle(true);
-    console.log('Here log 2')
+    console.log('Here log 2',queryText)
     let artData: any;
     let newvideoArticleData: any;
     let combinedartarr = [];
@@ -439,6 +441,7 @@ const Articles = ({ route, navigation }: any): any => {
     let searchVideoTitleData = [];
     let searchVideoBodyData = [];
     if (queryText != "" && queryText != undefined && queryText != null) {
+      console.log('Here log 3',queryText)
       const eventData = { 'name': ARTICLE_SEARCHED, 'params': { article_searched: queryText } }
       logEvent(eventData, netInfo.isConnected)
       saveToRealm(queryText);
@@ -481,17 +484,19 @@ const Articles = ({ route, navigation }: any): any => {
     }
 
     articleData = [...combinedartarr];
-    setFilteredArticleData(filterArray);
+    setFilteredArticleData(filterArray,queryText);
 
   }
   const renderSearchHistoryItem = ({ item }: { item: string }): any => (
     <Pressable
       onPress={async (): Promise<any> => {
-        console.log('Here log 1', item);
+       // searchQueryText(queryText.replace(/\s/g, ''));
+       Keyboard.dismiss();
+      // setHistoryVisible(false);
+      console.log('Item querytext is',item)
         searchQueryText(item);
-        Keyboard.dismiss();
-        setHistoryVisible(false);
         await searchList(item);
+       // searchQueryText(item)
       }}
     >
 
@@ -548,7 +553,7 @@ const Articles = ({ route, navigation }: any): any => {
                   console.log('loghererer', queryText)
                   if (queryText.replace(/\s/g, "") == "") {
                     console.log('loghererer1')
-                    searchQueryText(queryText.replace(/\s/g, ''));
+                   searchQueryText(queryText.replace(/\s/g, ''));
                     setHistoryVisible(true);
                     // await searchList(queryText)
                   } else {
@@ -561,7 +566,7 @@ const Articles = ({ route, navigation }: any): any => {
                 onSubmitEditing={async (event: any): Promise<any> => {
                   console.log("event-", event);
                   Keyboard.dismiss();
-                  await searchList(queryText);
+               //   await searchList(queryText);
                 }}
                 multiline={false}
                 // placeholder="Search for Keywords"
