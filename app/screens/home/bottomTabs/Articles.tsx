@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 5
   },
   pressablePadding: {
-    padding: 15
+    paddingLeft: 15,
+    paddingVertical: 15
   },
 
 });
@@ -361,7 +362,7 @@ const Articles = ({ route, navigation }: any): any => {
         }
 
         setLoadingArticle(false);
-         setHistoryVisible(false);
+        setHistoryVisible(false);
         toTop();
       }
     } else {
@@ -401,7 +402,7 @@ const Articles = ({ route, navigation }: any): any => {
       console.log('UseFouusEffect Articles two');
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
-          //setHistoryVisible(true);
+        //setHistoryVisible(true);
       });
       const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
         setKeyboardStatus(false);
@@ -523,7 +524,22 @@ const Articles = ({ route, navigation }: any): any => {
           />
           <FlexCol>
             <SearchBox>
+              <OuterIconRow>
 
+                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
+                  e.preventDefault();
+                  await searchList(queryText);
+
+                }}>
+                  <Icon
+                    name="ic_search"
+                    size={20}
+                    color="#000"
+
+                  />
+                </Pressable>
+
+              </OuterIconRow>
               <SearchInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -538,7 +554,7 @@ const Articles = ({ route, navigation }: any): any => {
                   } else {
                     console.log('loghererer2')
                     searchQueryText(queryText);
-                      setHistoryVisible(true);
+                    setHistoryVisible(true);
                   }
                 }}
                 value={queryText}
@@ -573,27 +589,12 @@ const Articles = ({ route, navigation }: any): any => {
 
                 </OuterIconRow>
               }
-              <OuterIconRow>
 
-                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
-                  e.preventDefault();
-                  await searchList(queryText);
-
-                }}>
-                  <Icon
-                    name="ic_search"
-                    size={20}
-                    color="#000"
-
-                  />
-                </Pressable>
-
-              </OuterIconRow>
 
 
 
             </SearchBox>
-             {searchHistory.length!==0 && historyVisible  &&
+            {searchHistory.length !== 0 && historyVisible &&
 
 
               <FlatList
@@ -603,7 +604,7 @@ const Articles = ({ route, navigation }: any): any => {
                 style={styles.historyList}
               />
 
-            } 
+            }
             <DividerArt></DividerArt>
             <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
             <DividerArt></DividerArt>
