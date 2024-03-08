@@ -35,12 +35,12 @@ flex:1;
 `;
 
 export const FlexColChart = styled(FlexCol)`
-background-color: ${(props):any => props.theme.colors.CHILDGROWTH_TINTCOLOR};
+background-color: ${(props:any):any => props.theme?.colors?.CHILDGROWTH_TINTCOLOR};
 marginLeft: -20px;
 marginRight: -20px;
 `;
 export const FlexColEnd = styled(FlexCol)`
-alignItems:flex-end
+alignItems:flex-end;
 `;
 
 export const FlexDirCol = styled.View`
@@ -63,13 +63,13 @@ align-items:flex-start;
 `;
 export const FlexDirRowEnd = styled(FlexDirRow)`
 
-justify-content:flex-end
+justify-content:flex-end;
 `;
 
 export const FlexRowEnd = styled.View`
 flex-direction:row;
 flex:1;
-justify-content:flex-end
+justify-content:flex-end;
 `;
 
 export const FDirRow = styled.View`

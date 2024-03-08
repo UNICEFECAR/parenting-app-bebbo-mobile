@@ -30,3 +30,4 @@ export const CHATBOT_SUBCATEGORY_SELECTED="chatbot_subcategory_selected";//chatb
 export const CHATBOT_FAQ_SELECTED="chatbot_faq_selected";//chatbot faq category
 export const EMAIL_SENT="email_sent";//Email Sent
 export const DONATE_OPENED="donate_opened";//Donate Event
+export const ARTICLE_SEARCHED="article_searched";//Article Searched Event

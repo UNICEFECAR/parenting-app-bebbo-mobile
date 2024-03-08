@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 const ModalPopupContainer = styled.View`
-  background-color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
-  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+  background-color: ${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
+  border-radius:4px;
   padding: 20px 0px;
   align-items: center;
 `;
@@ -9,7 +9,7 @@ const ModalPopupContainer = styled.View`
 export const ModalPopupContainerVideo = styled(ModalPopupContainer)`
 border-radius:0px;
 background-color: transparent;
-    padding:0
+padding:0;
 `;
 export const PopupOverlay = styled.View`
   flex: 1;
@@ -26,7 +26,7 @@ export const PopupOverlayVideo = styled(PopupOverlay)`
 export const PopupCloseContainer = styled.View`
   flex-direction: row;
   justify-content: flex-end;
-  width: 100%;;
+  width: 100%;
   position:relative;
   z-index:111;
   
@@ -44,11 +44,11 @@ export const PopupClose = styled.Pressable`
 `;
 export const PopupCloseVideo = styled(PopupClose)`
   margin-right:4px;
-  top:0
+  top:0;
 `;
 export const ModalPopupContent = styled.View`
   padding:10px 40px;
-  margin-top:-25px
+  margin-top:-25px;
 `;
 export const ModalPopupContentVideo = styled.View`
   width:100%;

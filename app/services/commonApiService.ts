@@ -60,36 +60,36 @@ export const updateIncrementalSyncDT = async(response: any, dispatch: any, _navi
   const faqsresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqs);
   const faqupdatedpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqUpdatedPinnedContent);
   const archiveresp = response.find((y:any)=>y.apiEndpoint == appConfig.archive);
-  if(articleresp && articleresp != {} && articleresp.data) {
+  if(articleresp && articleresp != null && articleresp.data) {
     if(prevPage != "AddEditChild") {
       dispatch(setIncrementalSyncDT({key: 'articlesDatetime', value: articleresp.data.datetime}));
     }
   }
-  if(videoarticleresp && videoarticleresp != {} && videoarticleresp.data) {
+  if(videoarticleresp && videoarticleresp != null && videoarticleresp.data) {
     dispatch(setIncrementalSyncDT({key: 'videoArticlesDatetime', value: videoarticleresp.data.datetime}));
   }
-  if(activitiesresp && activitiesresp != {} && activitiesresp.data) {
+  if(activitiesresp && activitiesresp != null && activitiesresp.data) {
     dispatch(setIncrementalSyncDT({key: 'activitiesDatetime', value: activitiesresp.data.datetime}));
   }
-  if(faqpinnedresp && faqpinnedresp != {} && faqpinnedresp.data) {
+  if(faqpinnedresp && faqpinnedresp != null && faqpinnedresp.data) {
     dispatch(setIncrementalSyncDT({key: 'faqPinnedContentDatetime', value: faqpinnedresp.data.datetime}));
   }
-  if(faqsresp && faqsresp != {} && faqsresp.data) {
+  if(faqsresp && faqsresp != null && faqsresp.data) {
     dispatch(setIncrementalSyncDT({key: 'faqsDatetime', value: faqsresp.data.datetime}));
   }
-  if(faqupdatedpinnedresp && faqupdatedpinnedresp != {} && faqupdatedpinnedresp.data) {
+  if(faqupdatedpinnedresp && faqupdatedpinnedresp != null && faqupdatedpinnedresp.data) {
     dispatch(setIncrementalSyncDT({key: 'faqUpdatedPinnedContentDatetime', value: faqupdatedpinnedresp.data.datetime}));
   }
-  if(archiveresp && archiveresp != {} && archiveresp.data) {
+  if(archiveresp && archiveresp != null && archiveresp.data) {
     dispatch(setIncrementalSyncDT({key: 'archiveDatetime', value: archiveresp.data.datetime}));
   }
 }
 export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any,oldErrorObj:any):Promise<any> => {
 const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
-if(artresp && artresp != {})
+if(artresp && artresp != null)
 {
   const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
-  if(artobj && artobj != {}){
+  if(artobj && artobj != null){
     const storedata = store.getState();
     const bufferAgeBracket = storedata.childData.childDataSet.bufferAgeBracket;
      const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
@@ -174,10 +174,10 @@ export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigati
 }
 export const onChildSetupApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any,oldErrorObj:any):Promise<any> => {
   const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
-  if(artresp && artresp != {})
+  if(artresp && artresp != null)
   {
     const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
-    if(artobj && artobj != {}){
+    if(artobj && artobj != null){
       const storedata = store.getState();
       const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
       const artarray = artobj.postdata.childAge == 'all' ? childagearray.map((x:any)=>x.id) : artobj.postdata.childAge.split(',').map(Number)

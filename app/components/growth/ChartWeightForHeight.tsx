@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
 })
 
 const ChartWeightForHeight = (props: any): any => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
+  const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -98,10 +98,10 @@ const ChartWeightForHeight = (props: any): any => {
         setDeviceOrientation('landscape');
       }
     };
-    Dimensions.addEventListener('change', deviceOrientation);
+    const listenerEvent = Dimensions.addEventListener('change', deviceOrientation);
     return (): any => {
       //cleanup work
-      Dimensions.removeEventListener('change', deviceOrientation);
+      listenerEvent.remove()
     };
   }, [deviceOrientation]);
   return (

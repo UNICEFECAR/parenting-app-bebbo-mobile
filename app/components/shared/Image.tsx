@@ -5,11 +5,11 @@ export const DefaultImage = styled.Image`
 `;
 export const ImageFull = styled.View`
   width: 100%;
-  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+  border-radius:4px;
 `;
 export const ImageIcon = styled.Image`
   width: 40px;
-  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
-  height:40px
+  border-radius:100px;
+  height:40px;
 `;
 export default Image;

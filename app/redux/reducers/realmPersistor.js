@@ -1,6 +1,7 @@
 import Realm from "realm";
-
+import {ObjectSchema} from 'realm';
 const FRAGMENT_SIZE = 16000000; // Limit of 16 MB per string
+
 const ITEM_SCHEMA = {
   name: "ReduxPersistItem",
   primaryKey: "name",
@@ -10,7 +11,7 @@ const ITEM_SCHEMA = {
   }
 };
 
-class ItemSchema {
+class ItemSchema extends Realm.Object {
   static schema = ITEM_SCHEMA;
 
   get content() {

@@ -11,11 +11,11 @@ flex-direction:row;
 export const NotifIcon = styled.View`
 padding:8px;
 margin:0 10px 0 0px;
-border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+border-radius:100px;
 `;
 export const NotifiContent = styled.View`
 flex-direction:column;
-flex:1
+flex:1;
 `;
 
 export const NotifAction = styled.View`

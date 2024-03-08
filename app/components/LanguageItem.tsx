@@ -1,21 +1,29 @@
 import Icon from '@components/shared/Icon';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import Radio, { RadioActive, RadioItem, RadioItemText } from './shared/radio';
 
-const LanguageItem = ({item, currentItem, setLanguage}:any):any => {
-  const isActive: boolean = item === currentItem ? true : false;
+const LanguageItem = ({ item, currentItem, setLanguage }: any): any => {
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    if (currentItem != null && currentItem[0]?.luxonLocale != null) {
+      setIsActive(item === currentItem[0] ? true : false);
+    } else {
+      setIsActive(item === currentItem ? true : false);
+    }
+  }, [currentItem, item, isActive]);
   return (
     <>
       <Pressable
-        onPress={():any => {
+        onPress={(): any => {
           setLanguage(item);
         }}>
         <RadioItem>
-        <View>
-            {isActive ? <RadioActive><Icon name="ic_tick" size={12} color="#fff" /></RadioActive> : <Radio></Radio> } 
-            </View>
-            <RadioItemText isActive={isActive}>{item.displayName}</RadioItemText>
+          <View>
+            {isActive ? <RadioActive><Icon name="ic_tick" size={12} color="#fff" /></RadioActive> : <Radio></Radio>}
+          </View>
+          <RadioItemText isActive={isActive}>{item.displayName}</RadioItemText>
         </RadioItem>
       </Pressable>
     </>

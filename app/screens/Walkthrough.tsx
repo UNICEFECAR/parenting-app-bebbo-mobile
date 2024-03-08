@@ -163,7 +163,7 @@ const Walkthrough = ({navigation}: Props): any => {
 
   
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.SECONDARY_COLOR;
+  const headerColor = themeContext?.colors.SECONDARY_COLOR;
   const [showPrevbtn, setShowPrevbtn] = useState(false);
   const [isDotsRequired, setIsDotsRequired] = useState(true);
   const [statubarColor, setstatubarColor] = useState(headerColor);
