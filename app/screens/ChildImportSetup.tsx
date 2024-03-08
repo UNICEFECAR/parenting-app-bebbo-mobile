@@ -78,7 +78,7 @@ const ChildImportSetup = (props: any): any => {
   const [relationshipname, setRelationshipName] = useState('');
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -163,7 +163,7 @@ const ChildImportSetup = (props: any): any => {
                   </ShiftFromTopBottom20>
                   <FormInputGroup
                     onPress={(): any => {
-                      actionSheetRef.current?.setModalVisible();
+                      actionSheetRef.current?.setModalVisible(true);
                     }}>
                     <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
                     <FormInputBox>
@@ -198,9 +198,10 @@ const ChildImportSetup = (props: any): any => {
           </OnboardingContainer>
 
         </ScrollView>
+
         <ActionSheet ref={actionSheetRef}>
 
-          <View>
+          <View style={{ marginBottom: 20 }}>
             {relationshipToParent.map((item: any, index: any) => {
               return (
                 <ChildRelationList key={index}>
@@ -228,10 +229,13 @@ const ChildImportSetup = (props: any): any => {
                           setRelationship('');
                         }
                       }
+                      console.log('relationship name', item.name)
                       setRelationshipName(item.name);
-                      actionSheetRef.current?.hide();
+                      actionSheetRef.current?.setModalVisible(false);
                     }}>
-                    <Heading3>{item.name}</Heading3>
+                    <Heading3>{console.log(item.name)}
+                      {item.name}
+                    </Heading3>
                   </Pressable>
                 </ChildRelationList>
               );
@@ -239,12 +243,11 @@ const ChildImportSetup = (props: any): any => {
 
           </View>
         </ActionSheet>
-
         <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
               disabled={relationship == null || relationship == "" || relationship == undefined || userRelationToParent == undefined ? true : false}
-              onPress={async (e): Promise<any> => {
+              onPress={async (e: any): Promise<any> => {
                 e.stopPropagation();
                 if (importResponse) {
                   importResponse = JSON.parse(importResponse);

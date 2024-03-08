@@ -24,7 +24,7 @@ export const sagaSlice = createSlice({
         action.payload.errorArr.map((value: any) => {
           const i = state.errorObj.findIndex((_item:any) => _item.apiEndpoint === value.apiEndpoint);
           if (i == -1) {
-            state.errorObj.push(value)
+            state.errorObj.push(value as never)
           }
         });
       }

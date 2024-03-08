@@ -26,7 +26,7 @@ import Icon, { IconBox, IconML } from '@components/shared/Icon';
 import { ProfileEditView } from '@components/shared/ProfileListingStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
@@ -50,18 +50,21 @@ import ActionSheet from 'react-native-actions-sheet';
 import { copyFile, exists, mkdir, unlink } from 'react-native-fs';
 import { Image as ImageObject } from 'react-native-image-crop-picker';
 import { ThemeContext } from 'styled-components/native';
-import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { deleteImageFile } from '../../downloadImages/ImageStorage';
 import {
   addChild,
-  deleteChild, getNewChild
+  deleteChild, getAllChildren, getNewChild,
+  setActiveChild
 } from '../../services/childCRUD';
 import MediaPicker from '../../services/MediaPicker';
 import { validateForm } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
+import { setActiveChildData } from '../../redux/reducers/childSlice';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -119,8 +122,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const SecondaryColor = themeContext?.colors.SECONDARY_COLOR;
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -155,6 +158,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [isExpected, setIsExpected] = React.useState<string>('false');
   const [destPath, setDestPath] = React.useState<string>('');
   const [loading, setLoading] = React.useState<boolean>(false);
+  const isFocused = useIsFocused()
   const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -170,24 +174,33 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [gender, setGender] = React.useState(
     childData != null ? childData.gender : 0,
   );
-  useEffect(() => {
+  const handleBack=():any=>{
     const backAction = (): any => {
+      //console.log("11")
       navigation.goBack();
       return true;
     };
-
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       backAction,
     );
     navigation.addListener('gestureEnd', backAction);
+
     return (): any => {
       navigation.removeListener('gestureEnd', backAction);
-      backHandler.remove()
-    };
+      backHandler.remove();
+    }
+  }
+  useEffect(() => {
+
+     handleBack();
   }, []);
   useFocusEffect(
+    
     React.useCallback(() => {
+      
+      console.log('childData is',childData)
+      console.log('childData is profiles',childData)
       if (childData != undefined && childData != null && childData != '' && childData.uuid != '') {
         setphotoUri(childData.photoUri);
         if (childData.photoUri != '' && childData.photoUri != null && childData.photoUri != undefined) {
@@ -225,7 +238,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       });
   };
   const handleImageOptionClick = async (item: any, index: number): Promise<any> => {
-    console.log(index)
+    console.log('index is',index)
+    console.log('Obn image click1')
     if (item.id == 0) {
       Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
         {
@@ -244,18 +258,20 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       ]);
     }
     else if (item.id == 1) {
+      console.log('Obn image click2')
       MediaPicker.showCameraImagePicker((image: any) => {
         console.log(image, "..image..");
         onChildPhotoChange(image);
       });
     }
     else if (item.id == 2) {
+      console.log('Obn image click3')
       MediaPicker.showGalleryImagePicker((image: any) => {
         onChildPhotoChange(image);
       });
     }
   };
-  const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string,childList:any): any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
@@ -265,20 +281,29 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         },
         {
           text: t('removeOption2'),
-          onPress: (): any => {
-            deleteChild(
+          onPress: async (): Promise<any> => {
+            if (index == 0) {
+              const filterList = childList.filter((item: any) => item.uuid != uuid)
+              const selectedUuid = filterList[0];
+              dispatch(setActiveChildData(selectedUuid))
+            }
+             await deleteChild(
+              navigation,
               languageCode,
               index,
               dispatch,
               'ChildEntity',
-              uuid,
+               uuid,  
               'uuid ="' + uuid + '"',
               resolve,
               reject,
               childAge,
-              t
+              t,
+              childList
             );
-            navigation.navigate('ChildProfileScreen');
+           navigation.navigate('ChildProfileScreen')
+       
+    
           },
         },
       ]);
@@ -327,7 +352,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         createdAt,
       )
       : await getNewChild(
-        uuidv4(),
+        uuid,
         isExpected,
         plannedTermDate,
         isPremature,
@@ -381,8 +406,15 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
           </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
             <HeaderActionView style={styles.padding0}>
-              <Pressable style={styles.pressableView} onPress={(): any =>
-                deleteRecord(childData?.index, dispatch, childData?.uuid)
+              <Pressable style={styles.pressableView} onPress={(): any =>{
+                console.log('ChildData position',childData)
+                if(childData?.index==undefined){
+                  deleteRecord(0, dispatch, childData?.uuid,childList)
+                }else{
+                deleteRecord(childData?.index, dispatch, childData?.uuid,childList)
+                }
+               // deleteRecord(childData?.index, dispatch, childData?.uuid)
+              }
               }>
                 <Icon name={'ic_trash'} size={20} color="#FFF" />
               </Pressable>
@@ -402,7 +434,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                   }
                   style={styles.image}>
                   <ProfileEditView onPress={(): any => {
-                    actionSheetRef.current?.setModalVisible();
+                 actionSheetRef.current?.setModalVisible(true);
                   }}>
                     <Icon
                       name="ic_edit"
@@ -420,7 +452,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
 
                 }]}
                 onPress={(): any => {
-                  actionSheetRef.current?.setModalVisible();
+                  actionSheetRef.current?.setModalVisible(true);
                 }}>
                 <IconBox>
                   <Icon name="ic_camera" size={24} color="#000" />
@@ -441,7 +473,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                       autoCorrect={false}
                       maxLength={30}
                       clearButtonMode="always"
-                      onChangeText={(value): any => {
+                      onChangeText={(value: string): any => {
                         if (value.replace(/\s/g, "") == "") {
                           setName(value.replace(/\s/g, ''));
                         } else {
@@ -478,12 +510,14 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               <View
                 style={styles.actionsheetView}>
                 {imageOptions.map((item, index) => {
+                  console.log('imageOptions',item)
                   if (
                     index == 0 &&
                     (capturedPhoto == '' ||
                       capturedPhoto == null ||
                       capturedPhoto == undefined || photoDeleted == true)
                   ) {
+                    console.log('cehcking')
                     return null;
                   } else {
                     return (
@@ -493,7 +527,9 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                         <Pressable
                           style={styles.alignItemsCenter}
                           onPress={(): any => {
-                            actionSheetRef.current?.hide();
+                            console.log('Obn image click')
+                          //  actionSheetRef.current?.hide();
+                          actionSheetRef.current?.setModalVisible(false);
                             handleImageOptionClick(item, index);
                           }}>
                           <Icon name={item.iconName} size={50} color="#000" />

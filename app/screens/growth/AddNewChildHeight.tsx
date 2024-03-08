@@ -141,7 +141,7 @@ const AddNewChildHeight = ({ navigation, route }: Props):any => {
         </HeaderRowView>
         <FlexCol>
           <MainContainer>
-            <View style={[styles.borderRadius4,{ backgroundColor: tintColor}]}>
+            <View style={[{ backgroundColor: tintColor}]}>
               <View style={styles.overflowHidden}>
                 <ShiftFromTopBottom20>
                   <Heading1Center>

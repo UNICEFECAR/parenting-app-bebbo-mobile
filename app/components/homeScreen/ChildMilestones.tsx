@@ -12,7 +12,7 @@ import VectorImage from 'react-native-vector-image';
 import React from 'react';
 import { Pressable } from 'react-native';
 const ChildMilestones = (): any => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const { t } = useTranslation();
   return (
     <>

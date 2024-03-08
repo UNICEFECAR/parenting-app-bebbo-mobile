@@ -36,7 +36,9 @@ import {
   SideSpacing25
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { InteractionManager } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -62,6 +64,7 @@ import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 import { bgcolorWhite2 } from '@styles/style';
 import { ToastAndroidLocal } from '../../../android/sharedAndroid.android';
 import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
+import { useIsFocused } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -71,9 +74,9 @@ const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   // console.log(route.params,"home params")
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const headerColorChildInfo = themeContext.colors.CHILDDEVELOPMENT_COLOR;
-  const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColorChildInfo = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [date1, setdate1] = useState<Date | null>(null);
   const [show, setShow] = useState(false);
   const [date2, setdate2] = useState<Date | null>(null);
@@ -81,7 +84,7 @@ const Home = ({ route, navigation }: any): any => {
 
 
   const backgroundColorChildInfo =
-    themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
+    themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
 
   const dispatch = useAppDispatch();
 
@@ -99,6 +102,7 @@ const Home = ({ route, navigation }: any): any => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const netInfo = useNetInfoHook();
+  const isFoucused = useIsFocused();
   const surveyItem = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)?.find((item: any) => item.type == "survey")
@@ -111,6 +115,13 @@ const Home = ({ route, navigation }: any): any => {
     state.childData.childDataSet.bufferAgeBracket
   );
   let currentCount = 0;
+  const setIsModalOpened = async (varkey: any): Promise<any> => {
+    if (modalVisible == true) {
+      const obj = { key: varkey, value: false };
+      dispatch(setInfoModalOpened(obj));
+      setModalVisible(false);
+    }
+  };
   const { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets } = getAllPeriodicSyncData();
   const onBackPress = (): any => {
     if (currentCount === 0) {
@@ -135,7 +146,7 @@ const Home = ({ route, navigation }: any): any => {
 
   };
   useEffect(() => {
-
+    
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -226,11 +237,22 @@ const Home = ({ route, navigation }: any): any => {
   const relbebboprod = '1.1.5';
   const relfolejadev = '0.2.0';
   const relfolejaprod = '1.1.0';
-  useEffect(() => {
-    setModalVisible(false);
-    if (netInfo.isConnected) {
-      synchronizeEvents(netInfo.isConnected);
-    }
+ 
+  useLayoutEffect(
+    React.useCallback(() => {
+      const task = InteractionManager.runAfterInteractions(() => {
+        if (netInfo.isConnected) {
+          synchronizeEvents(netInfo.isConnected);
+        }
+       
+        // Expensive task
+      });
+  
+      return () => task.cancel();
+    }, [])
+  );
+  useEffect(()=>{
+   // setModalVisible(false);
     async function fetchNetInfo(): Promise<any> {
       console.log(bufferAgeBracket, "---userIsOnboarded----", userIsOnboarded);
       console.log(VersionInfo.appVersion, "--appVersion", VersionInfo.buildVersion, VersionInfo.bundleIdentifier);
@@ -438,8 +460,7 @@ const Home = ({ route, navigation }: any): any => {
     else {
       fetchNetInfo();
     }
-  }, [netInfo.isConnected]);
-
+  },[netInfo.isConnected])
   const ondobChange = (event: any, selectedDate: any): any => {
     setShow(Platform.OS === 'ios');
     setdate1(selectedDate);
@@ -543,7 +564,7 @@ const Home = ({ route, navigation }: any): any => {
         <Modal
           animationType="none"
           transparent={true}
-          visible={modalVisible === true}
+          visible={modalVisible}
           onRequestClose={(): any => {
             setModalVisible(false);
           }}
@@ -568,7 +589,7 @@ const Home = ({ route, navigation }: any): any => {
                     {surveyItem && surveyItem?.body ?
                       <HTML
                         source={{ html: addSpaceToHtml(surveyItem?.body) }}
-                        ignoredStyles={['color', 'font-size', 'font-family']}
+                        ignoredStyles={['color', 'fontSize', 'fontFamily']}
                       />
                       : null
                     }

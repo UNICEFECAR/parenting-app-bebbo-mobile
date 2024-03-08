@@ -24,7 +24,7 @@ import { ObjectSchema } from "realm";
       body: { type: 'string' },
       mandatory: { type: 'int' },
       unique_name: { type: 'string' },
-      embedded_images: { type: 'string[]',optional: true}
+      embedded_images: { type: 'list', objectType: 'string', optional: true },
     }
   };
 

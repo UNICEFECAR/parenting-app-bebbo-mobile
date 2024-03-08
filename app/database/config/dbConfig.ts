@@ -10,7 +10,7 @@ export const userRealmConfig: Realm.Configuration = {
     ReminderEntitySchema
   ],
   schemaVersion: 3,
-  migration: (oldRealm, newRealm) => {
+  onMigration: (oldRealm, newRealm) => {
     //realm old version was 0 and new version is 1.
     // const oldObjects = oldRealm.objects('ChildEntity');
     // const newObjects = newRealm.objects('ChildEntity');

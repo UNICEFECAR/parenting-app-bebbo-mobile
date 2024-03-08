@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   flex1: { flex: 1 },
   htmlCode: { color: bgcolorBlack2, fontSize: 16, margin: 0, padding: 0 },
   htmlSummaryCode: { fontFamily: 'roboto-regular', fontSize: 16 },
-  htmlTitleCode: { color: bgcolorBlack2, fontFamily: 'roboto-bold', fontSize: 20, lineHeight: 26, padding: 0 },
+  htmlTitleCode: { color: bgcolorBlack2, fontFamily: 'roboto-bold', fontWeight: 700, fontSize: 20, lineHeight: 26, padding: 0 },
   marginBottom10: { marginBottom: 10 },
   maxHeight50: { maxHeight: 50 },
   scrollView: { backgroundColor: bgcolorWhite2, flex: 4 }
@@ -76,8 +76,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     newBackgroundColor = backgroundColor;
   } else {
     const themeContext = useContext(ThemeContext);
-    newHeaderColor = themeContext.colors.ARTICLES_COLOR;
-    newBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+    newHeaderColor = themeContext?.colors.ARTICLES_COLOR;
+    newBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   }
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices
@@ -401,7 +401,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   }
 
   const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string): string => {
-
+    console.log('JsonContent is', jsonContent)
     const parts = jsonContent.split(/(<img[^>]*>)/i);
 
     // Map each part and add spaces around the word if it is not inside an img tag
@@ -426,10 +426,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     : detailDataToUse?.summary;
 
   const highlightTitleSummary = (highlightData: string, isTitle: boolean): any => {
+    console.log('isTitle is', isTitle)
     return <View style={styles.marginBottom10}>
       <HTML
         source={{ html: addSpaceToHtml(highlightData) }} key={detailDataToUse.id}
-        baseFontStyle={isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode}
+        baseStyle={isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode}
         tagsStyles={{
           img: { maxWidth: Dimensions.get('window').width },
           p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
@@ -445,7 +446,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           iframe: { maxWidth: '100%', height: 200 }
         }}
         WebView={WebView}
-        ignoredTags={IGNORED_TAGS}
+        ignoredDomTags={IGNORED_TAGS}
       />
     </View>
 
@@ -507,10 +508,10 @@ const DetailsScreen = ({ route, navigation }: any): any => {
               {detailDataToUse && detailDataToUse.body ?
                 <HTML
                   source={{ html: queryText != undefined ? queryText.length != 0 ? addSpaceToHtml(highlightTextWithoutImages(detailDataToUse?.body, queryText)) : addSpaceToHtml(detailDataToUse?.body) : addSpaceToHtml(detailDataToUse?.body) }} key={detailDataToUse.id}
-                  baseFontStyle={styles.htmlCode}
-                  ignoredStyles={['color', 'font-size', 'font-family']}
+                  baseStyle={styles.htmlCode}
+                  ignoredStyles={['color', 'fontSize', 'fontFamily']}
                   tagsStyles={{
-                    img: { maxWidth: Dimensions.get('window').width },
+                    img: { maxWidth: Dimensions.get('window').width - 30 },
                     p: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
                     h1: { marginBottom: 0, marginTop: 10, textAlign: 'left' },
                     h2: { marginBottom: 15, marginTop: 0, textAlign: 'left' },
@@ -526,8 +527,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   renderers={{
                     table,
                     iframe,
-                    img: (attribs: any): any => {
-                      const imagePath: any = attribs.src;
+                    a: (htmlAttribs: any,): any => {
+                      const imagePath: any = htmlAttribs.src;
                       console.log(imagePath, "..imagePath");
                       if (imagePath != "" && imagePath != null && imagePath != undefined) {
                         const itemnew: any = {
@@ -543,8 +544,10 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                     },
                   }}
                   WebView={WebView}
-                  ignoredTags={IGNORED_TAGS}
+                  ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{
+
+                  
                     table: {
                       cssRules
                       // Put the table config here (previously,

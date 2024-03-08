@@ -71,7 +71,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from 'styled-components/native';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4  } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import {
   maxCharForRemarks,
@@ -115,8 +115,8 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
   const [dateTouched, setDateTouched] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
+  const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editMeasurementDate ? editMeasurementDate : null,
   );
@@ -750,7 +750,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                       clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}
-                      onChangeText={(text): any => handleDoctorRemark(text)}
+                      onChangeText={(text:any): any => handleDoctorRemark(text)}
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
@@ -768,7 +768,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
               <ButtonContainer>
                 <ButtonTertiary
                   disabled={disableSave()}
-                  onPress={(e): any => {
+                  onPress={(e:any): any => {
                     e.stopPropagation();
                     setClicked(true);
                     setTimeout(() => {
