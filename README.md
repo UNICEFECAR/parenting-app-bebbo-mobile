@@ -37,6 +37,8 @@ The app can also operate in an offline mode in environments with limited interne
 ## Technology stack
 
 * [React Native](https://reactnative.dev/)
+    * Project is set with Latest version of react native:
+       * React native - 0.72.5
     * Several React Native modules have been incorporated in order to speed up the development.
     * Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
 * [TypeScript](https://www.typescriptlang.org/)
@@ -44,6 +46,8 @@ The app can also operate in an offline mode in environments with limited interne
     * The same source code compiles into iOS and Android applications.
 * [NPM](https://nodejs.org/en/)
     * NPM (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
+        * Node version - 21.2.0
+        * NPM version  - 10.3.0
 <!--
 * [Storybook](https://storybook.js.org/)
     * Storybook was used to create visual tests for many components and services used in the application.
@@ -83,14 +87,20 @@ git clone https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
 ```
 2. Install NPM packages (DO NOT USE yarn!)
 ```sh
-npm install --legacy-peer-deps 
+npm install
 ```
 3. Only on Mac, go to "ios" folder, and run
 ```sh
 pod install
 ```
 Before running iOS App on Device, necessary certificate setup from Apple developer account is required.
-After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp)
+After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp). In Project use below targets.
+
+  **Project Target:**
+   1. ParentBuddyApp - Bebbo Production target
+   2. ParentBuddyAppDev - Bebbo Development target
+   3. ParentBuddyAppXk - Foleja Production target
+   4. ParentBuddyAppXkDev - Foleja Development target
 
   **Steps to add script:**
    * Click on target’s build phases add on + sign.
@@ -189,7 +199,9 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
      and add in .env file as  projectNumber and clientIdKey.
        * Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
 
-7. Steps required while creating Flavour builds. Follow below steps for Bebbo Prod and ProdStaging
+7. Steps required while creating Flavour builds for both Bebbo and Foleja. 
+
+   **1.** Follow below steps for **Bebbo Prod and ProdStaging**:
    
       * In apiConstants.ts change buildFor const value to buildForBebbo as follows :
          
@@ -198,6 +210,49 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
          ```
  
       * In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows :
+       
+        ```
+         "@dynamicImportsClass/*": ["./app/bebbo/*"]
+         ```
+       
+      * In metro.config.js keep blacklistRe value to /xk\/.*/ as follows : 
+       
+         ```
+         blacklistRE: blacklist([/xk\/.*/])
+         ```
+       
+      * In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : 
+        
+        ```
+        '@dynamicImportsClass': './app/bebbo'
+        ```
+       
+      * Run below command to generate vector images based on flavour folders :
+       
+         ```
+         npx react-native-vector-image generate
+         ```
+        
+      * Create .env file at project root and add below 6 variables in it :
+         
+        ```
+        apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
+        facebookAppDisplayName=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+        facebookAppId=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+        facebookClientToken=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+        projectNumber=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
+        clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
+        ```
+
+    **2.** Follow below steps for **Foleja Prod and ProdStaging**:
+   
+      * In apiConstants.ts change buildFor const value to buildForFoleja as follows :
+         
+         ```
+         export const buildFor = buildForFoleja;
+         ```
+ 
+      * In tsconfig.json keep dynamicImportsClass value to ./app/xk/* as follows :
        
         ```
          "@dynamicImportsClass/*": ["./app/xk/*"]
@@ -209,7 +264,7 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
          blacklistRE: blacklist([/bebbo\/.*/])
          ```
        
-      * In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : 
+      * In babel.config.js keep dynamicImportsClass value to ./app/xk as follows : 
         
         ```
         '@dynamicImportsClass': './app/xk'
@@ -231,7 +286,6 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
         projectNumber=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
         clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
         ```
-        
   ## How to run
   After you install the application you can create build files for various flavors with below npx commands.
 	
