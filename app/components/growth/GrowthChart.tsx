@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Dimensions, Platform, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import Svg from 'react-native-svg';
 import { VictoryAreaProps } from 'victory-area';
-import { TickLabelProps, VictoryAxisCommonProps } from 'victory-core';
+import { LabelProps, VictoryAxisCommonProps } from 'victory-core';
 import { VictoryLineProps } from 'victory-line';
 import {
   VictoryArea,
@@ -46,7 +46,7 @@ export interface VictoryStyles {
   VictoryLine: VictoryLineProps['style'];
   VictoryScatter: VictoryScatterProps['style'];
   VictoryArea: VictoryAreaProps['style'];
-  axisLabel?: TickLabelProps;
+  axisLabel?: LabelProps;
   VictoryTooltip: VictoryTooltipProps;
 }
 export enum chartTypes {
@@ -154,10 +154,11 @@ useEffect(() => {
       setDeviceOrientation('landscape');
     }
   };
-  Dimensions.addEventListener('change', deviceOrientation);
+  const subscription = Dimensions.addEventListener('change', deviceOrientation);
+
   return ():any => {
     //cleanup work
-    Dimensions.removeEventListener('change', deviceOrientation);
+    subscription.remove()
   };
 }, [deviceOrientation]);
 
@@ -248,7 +249,7 @@ useEffect(() => {
               flyoutStyle={victoryStyles.VictoryTooltip.flyoutStyle}
             />
           }
-          labels={(props):any =>
+          labels={(props:any):any =>
             props.datum.y +
             ' ' +
             labelY +

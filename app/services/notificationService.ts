@@ -1,7 +1,7 @@
 import { afterDays, beforeDays, maxPeriodDays, oneMonthDays, threeeMonthDays, twoMonthDays } from "@assets/translations/appOfflineData/apiConstants";
 import { DateTime } from "luxon";
 import { getCurrentChildAgeInDays, isFutureDate, isFutureDateTime } from './childCRUD';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 export const getVCPeriods = (allVaccinePeriods: any): any => {
   const groupToGrowthPeriod = allVaccinePeriods.reduce(function (obj: any, item: any) {
@@ -513,7 +513,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
               "days_to": Math.floor(childvcReminderDateInDaysDefined),
               "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
               "subtype": "start",
-              "subtypeid": uuidv4(),
+              "subtypeid": uuid(),
               "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
               "checkinField": "days_from",
               "notificationDate": DateTime.fromJSDate(new Date()),
@@ -531,7 +531,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
             "days_to": Math.floor(childvcReminderDateInDays),
             "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
             "subtype": "reminder",
-            "subtypeid": uuidv4(),
+            "subtypeid": uuid(),
             "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
             "checkinField": "days_from",
             "notificationDate": DateTime.fromJSDate(finalremDTDefined),
@@ -552,7 +552,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
                 "days_to": Math.floor(childvcReminderDateInDays),
                 "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
                 "subtype": "reminder",
-                "subtypeid": uuidv4(),
+                "subtypeid": uuid(),
                 "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
                 "checkinField": "days_from",
                 "notificationDate": DateTime.fromJSDate(finalremDTDefined),
@@ -569,7 +569,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
             "days_to": Math.floor(childvcReminderDateInDays + 1),
             "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
             "subtype": "scheduled",
-            "subtypeid": uuidv4(),
+            "subtypeid": uuid(),
             "title": element.reminderType == 'vaccine' ? ('vcrNoti3') : ('hcrNoti3'),
             "checkinField": "days_from",
             "notificationDate": DateTime.fromJSDate(finalremDT),
@@ -589,7 +589,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
           "days_to": Math.floor(childvcReminderDateInDaysDefined),
           "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
           "subtype": "start",
-          "subtypeid": uuidv4(),
+          "subtypeid": uuid(),
           "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
           "checkinField": "days_from",
           "notificationDate": DateTime.fromJSDate(new Date()),
@@ -605,7 +605,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
           "days_to": Math.floor(childvcReminderDateInDays),
           "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
           "subtype": "reminder",
-          "subtypeid": uuidv4(),
+          "subtypeid": uuid(),
           "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
           "checkinField": "days_from",
           "notificationDate": DateTime.fromJSDate(finalremDTDefined),
@@ -622,7 +622,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
           "days_to": Math.floor(childvcReminderDateInDays + 1),
           "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
           "subtype": "scheduled",
-          "subtypeid": uuidv4(),
+          "subtypeid": uuid(),
           "title": element.reminderType == 'vaccine' ? ('vcrNoti3') : ('hcrNoti3'),
           "checkinField": "days_from",
           "notificationDate": DateTime.fromJSDate(finalremDT),

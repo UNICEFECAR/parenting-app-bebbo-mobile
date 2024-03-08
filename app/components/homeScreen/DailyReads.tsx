@@ -36,12 +36,12 @@ const DailyReads = ():any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const themeContext = useContext(ThemeContext);
-  const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
-  const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
-  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
-  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const actHeaderColor = themeContext?.colors.ACTIVITIES_COLOR;
+  const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
+  const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );

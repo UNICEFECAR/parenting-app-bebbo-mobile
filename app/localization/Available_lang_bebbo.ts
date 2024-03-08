@@ -19,6 +19,7 @@ import UZru from "@assets/translations/appConstants/bebbo/UZru";
 import UZuz from "@assets/translations/appConstants/bebbo/UZuz";
 import MDro from "@assets/translations/appConstants/bebbo/MDro";
 import ROro from "@assets/translations/appConstants/bebbo/ROro";
+import sk from "@assets/translations/appConstants/bebbo/sk";
 
 const AVAILABLE_LANGUAGES = {
     en,
@@ -43,7 +44,8 @@ const AVAILABLE_LANGUAGES = {
     // GRarb,
     // GRda,
     MDro,
-    ROro
+    ROro,
+    sk
   };
 
   export default AVAILABLE_LANGUAGES;

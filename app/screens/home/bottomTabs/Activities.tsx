@@ -87,9 +87,9 @@ const Activities = ({ route, navigation }: any): any => {
   let sectionListRef: any;
   const themeContext = useContext(ThemeContext);
   const [profileLoading, setProfileLoading] = React.useState(false);
-  const headerColor = themeContext.colors.ACTIVITIES_COLOR;
-  const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
-  const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
+  const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
+  const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
+  const headerColorBlack = themeContext?.colors.PRIMARY_TEXTCOLOR;
   const fromPage = 'Activities';
   const childAge = useAppSelector(
     (state: any) =>
@@ -149,12 +149,17 @@ const Activities = ({ route, navigation }: any): any => {
     }
   };
 
-  useFocusEffect(() => {
-    if (netInfo.isConnected) {
-      synchronizeEvents(netInfo.isConnected);
-    }
-    setModalVisible(activityModalOpened);
-  })
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // whatever
+      if (netInfo.isConnected) {
+        synchronizeEvents(netInfo.isConnected);
+      }
+      console.log('UseFouusEffect Activities');
+      setModalVisible(activityModalOpened);
+    }, [activityModalOpened])
+   );
   const toTop = (): any => {
     // use current
     // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
@@ -170,7 +175,7 @@ const Activities = ({ route, navigation }: any): any => {
   }
   const setFilteredActivityData = (itemId: any): any => {
 
-    if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != []) {
+    if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData.length != 0) {
       if (itemId.length > 0) {
         const newArticleData = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
         setfilteredData(newArticleData);

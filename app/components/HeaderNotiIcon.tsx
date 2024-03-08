@@ -333,7 +333,7 @@ const HeaderNotiIcon = (props: any): any => {
     }
     fetchDataFav()
   }, [activeChild.uuid]);
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   return (
     <>
       {

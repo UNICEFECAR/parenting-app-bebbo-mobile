@@ -42,9 +42,9 @@ const styles = StyleSheet.create({
 })
 const ActiveChildMeasureTimeline = (props: any):any => {
   const {activeChild} = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
+  const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const {t} = useTranslation();
   const setNewChildMeasureUpdates = ():any => {

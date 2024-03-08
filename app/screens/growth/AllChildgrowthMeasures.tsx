@@ -29,8 +29,8 @@ const styles=StyleSheet.create({
 })
 const AllChildgrowthMeasures = ({navigation}: any):any => {
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
+  const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const {t} = useTranslation();
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''

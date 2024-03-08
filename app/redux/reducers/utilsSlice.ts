@@ -247,6 +247,7 @@ export const utilsSlice = createSlice({
     },
     setInfoModalOpened:( state:any,
       action: PayloadAction<any>,):any=>{
+        console.log("payload is",action.payload)
         state[action.payload.key]=action.payload.value;
       },
     setIncrementalSyncDT:( state:any,
@@ -272,7 +273,7 @@ export const utilsSlice = createSlice({
         action: PayloadAction<any>,
       ):any => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
-       console.log(action.payload,"..action.payload..");
+      // console.log(action.payload,"..action.payload..");
        state.vaccineData = action.payload;
     
       },

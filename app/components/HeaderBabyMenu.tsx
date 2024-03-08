@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 });
 const HeaderBabyMenu = (props: any): any => {
   const { setProfileLoading } = props;
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const genders = useAppSelector(
     (state: any) =>
@@ -292,6 +292,7 @@ const HeaderBabyMenu = (props: any): any => {
 
 
             <ButtonPrimary
+            disabled={false}
               onPress={(): any => {
                 setModalVisible(false);
                 navigation.navigate('ChildProfileScreen')

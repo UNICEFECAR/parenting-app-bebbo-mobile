@@ -16,9 +16,9 @@ const styles=StyleSheet.create({
 const VaccineItem = (props: any): any => {
   const {item, onToggleVaccine, fromScreen,backgroundActiveColor} = props;
   const themeContext = useContext(ThemeContext);
-  const navigation = useNavigation();
-  const headerColor = themeContext.colors.ARTICLES_COLOR;
-  const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const navigation = useNavigation<any>();
+  const headerColor = themeContext?.colors.ARTICLES_COLOR;
+  const backgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = (pinnedArticleId: any): any => {
     if(pinnedArticleId!=0){
     navigation.navigate('DetailsScreen', {

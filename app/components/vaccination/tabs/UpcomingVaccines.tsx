@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 const UpcomingVaccines = (props: any): any => {
   const { item, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''

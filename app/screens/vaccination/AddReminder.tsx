@@ -54,7 +54,7 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import {
@@ -357,7 +357,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
       if ((DateTime.fromJSDate(finalReminderDateDefined).toMillis() > DateTime.fromJSDate(new Date()).toMillis())
         && (DateTime.fromJSDate(finalReminderDateDefined).toMillis() < DateTime.fromJSDate(finalReminderDate).toMillis())) {
         const reminderValues = {
-          uuid: editReminderItem ? editReminderItem.uuid : uuidv4(),
+          uuid: editReminderItem ? editReminderItem.uuid : uuid(),
           reminderType: reminderType,
           reminderDate: editReminderItem
             ? dateTouched

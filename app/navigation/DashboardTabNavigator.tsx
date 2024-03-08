@@ -3,7 +3,7 @@ import { BottomBarBg, BottomBarList } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import Activities from '@screens/home/bottomTabs/Activities';
 import Articles from '@screens/home/bottomTabs/Articles';
 import ChildDevelopment from '@screens/home/bottomTabs/ChildDevelopment';
@@ -28,7 +28,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   }
 });
-
+export type ToolsRootStackParamList = {
+  Tools: { screen: string } | undefined;
+};
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
 const secondStack = createStackNavigator<any>();
@@ -47,8 +49,9 @@ const secondaryRoot = ():any => {
 export default ():any => {
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.SECONDARY_COLOR;
-  const navigation = useNavigation();
+  const headerColor = themeContext?.colors.SECONDARY_COLOR;
+  //const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ToolsRootStackParamList>>();
   const { t } = useTranslation();
   return (
     <>
@@ -88,7 +91,9 @@ export default ():any => {
                   </FDirRow>
                 </BottomBarList>
               </Pressable>
-              <Pressable onPress={():any => { setModalVisible(false); navigation.navigate("Tools", { screen: 'HealthCheckupsTab' }) }}>
+              <Pressable onPress={():any => { 
+                setModalVisible(false);
+                 navigation.navigate("Tools", { screen: 'HealthCheckupsTab' }) }}>
                 <BottomBarList>
                   <FDirRow>
                     <OuterIconRow>
@@ -123,14 +128,14 @@ export default ():any => {
       <DashboardBottomTab.Navigator
         backBehavior={'firstRoute'}
         detachInactiveScreens={true}
-        tabBarOptions={{
-          activeTintColor: headerColor,
-          inactiveTintColor: '#000',
-          activeBackgroundColor: '#FFF',
-          inactiveBackgroundColor: '#FFF',
-          keyboardHidesTabBar: true,
-          labelPosition: 'below-icon'
-
+        screenOptions={{
+          tabBarActiveTintColor: headerColor,
+          tabBarInactiveTintColor: '#000',
+          tabBarActiveBackgroundColor: '#FFF',
+          tabBarInactiveBackgroundColor: '#FFF',
+          tabBarHideOnKeyboard: true,
+          tabBarLabelPosition: 'below-icon',
+          headerShown: false
         }}
       >
         <DashboardBottomTab.Screen name="Home" component={Home}
@@ -140,6 +145,7 @@ export default ():any => {
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
             unmountOnBlur: true,
+            headerShown:false
           }} />
         <DashboardBottomTab.Screen name="Activities" component={Activities} initialParams={{ categoryArray: [], currentSelectedChildId: 0, backClicked: 'no' }}
           options={{
@@ -147,6 +153,7 @@ export default ():any => {
             tabBarIcon: ({ color, size }:any):any => (
               <Icon name="ic_activities" color={color} size={size} />
             ),
+            headerShown:false
           }} />
         <DashboardBottomTab.Screen
           component={secondaryRoot}
@@ -157,6 +164,7 @@ export default ():any => {
               <Icon name="ic_sb_tools" color={color} size={size} style={styles.bottomtabIconStyle} />
             ),
             unmountOnBlur: true,
+            headerShown:false
           }}
           listeners={():any => ({
             tabPress: (e: any):any => {
@@ -172,6 +180,7 @@ export default ():any => {
               <Icon name="ic_articles" color={color} size={size} />
             ),
             unmountOnBlur: true,
+            headerShown:false
           }} />
         <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment} initialParams={{ currentSelectedChildId: 0 }}
           options={{
@@ -180,6 +189,7 @@ export default ():any => {
               <Icon name="ic_milestone" color={color} size={size} />
             ),
             unmountOnBlur: true,
+            headerShown:false
           }} />
       </DashboardBottomTab.Navigator>
     </>

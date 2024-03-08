@@ -1,4 +1,5 @@
-import Realm from "realm";
+import Realm from 'realm';
+
 import { migrateConfigSettings } from "../migration/init";
 import { ActivitiesEntitySchema } from "../schema/ActivitiesSchema";
 import { ArticleEntitySchema, CoverImage, CoverVideo } from "../schema/ArticleSchema";
@@ -16,6 +17,7 @@ import { TaxonomySchema } from "../schema/TaxonomySchema";
 import { VaccinationSchema } from "../schema/VaccinationSchema";
 import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
 import { EventSchema } from "../schema/EventSchema";
+import { SearchHistorySchema } from "../schema/SearchHistorySchema";
 
 export const dataRealmConfig: Realm.Configuration = {
   path: 'data.realm',
@@ -38,10 +40,11 @@ export const dataRealmConfig: Realm.Configuration = {
     StandDevObj,
     StandardDevHeightForAgeSchema,
     FAQsSchema,
-    EventSchema
+    EventSchema,
+    SearchHistorySchema
   ],
-  schemaVersion: 8,
-  migration: (oldRealm, newRealm) => {
+  schemaVersion: 9,
+  onMigration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion < 1) {
       // const oldObjects = oldRealm.objects('VariableEntity');
       // const newObjects = newRealm.objects(ConfigSettingsSchema.name);
