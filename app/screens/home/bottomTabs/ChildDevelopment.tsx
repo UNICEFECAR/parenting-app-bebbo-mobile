@@ -25,7 +25,7 @@ import {
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
 import ProgressCircle from 'react-native-progress-circle'
@@ -85,8 +85,10 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const childDevModalOpened = useAppSelector((state: any) =>
     (state.utilsData.IsChildDevModalOpened),
   );
+  console.log("childDevModalOpened......", childDevModalOpened)
   const modalScreenKey = 'IsChildDevModalOpened';
   const modalScreenText = 'childDevModalText';
+  const isFocused = useIsFocused();
   const [modalVisible, setModalVisible] = useState(false);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildDevData, setSelectedChildDevData] = useState<any>();
@@ -100,7 +102,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const flatListRef = useRef<any>();
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
 
-  const setIsModalOpened = async (varkey: any): Promise<any> => {
+  const setIsModalOpened = (varkey: any): any => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
@@ -108,17 +110,28 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     }
   };
   useEffect(() => {
-    setModalVisible(childDevModalOpened);
-    if (netInfo.isConnected) {
-      synchronizeEvents(netInfo.isConnected);
+    if (isFocused) {
+      if (netInfo.isConnected) {
+        synchronizeEvents(netInfo.isConnected);
+      }
+      setModalVisible(childDevModalOpened);
     }
-
+  }, [isFocused]);
+  // useFocusEffect(
+  //   React.useCallback(()=>{
+  //      if (netInfo.isConnected) {
+  //        synchronizeEvents(netInfo.isConnected);
+  //      }
+  //      //setModalVisible(childDevModalOpened);
+  //    },[]) 
+  //  )
+  useEffect(() => {
     setComponentColors({
-      headerColor: themeContext.colors.CHILDDEVELOPMENT_COLOR,
-      backgroundColor: themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR,
-      artHeaderColor: themeContext.colors.ARTICLES_COLOR,
-      artBackgroundColor: themeContext.colors.ARTICLES_TINTCOLOR,
-      headerColorBlack: themeContext.colors.PRIMARY_TEXTCOLOR
+      headerColor: themeContext?.colors.CHILDDEVELOPMENT_COLOR,
+      backgroundColor: themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR,
+      artHeaderColor: themeContext?.colors.ARTICLES_COLOR,
+      artBackgroundColor: themeContext?.colors.ARTICLES_TINTCOLOR,
+      headerColorBlack: themeContext?.colors.PRIMARY_TEXTCOLOR
     });
 
     return (): any => {
@@ -180,7 +193,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     }
   }
   useEffect(() => {
-
+    console.log('USe effect chilkd 2');
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -191,13 +204,16 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       backHandler.remove()
     };
   }, []);
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(() => {
+    if (isFocused) {
+      console.log('UseFouusEffect child development');
       setListLoading(true);
       return ((): any => {
         setListLoading(false);
       })
-    }, []));
+    }
+  }, [isFocused,listLoading]);
+  
   const calculateMileStone = (): any => {
     const arrlength = selectedChildMilestoneData?.length;
     let abc = 0;
@@ -208,6 +224,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     setMilestonePercent(percent);
   }
   useEffect(() => {
+    console.log('USe effect chilkd 3');
     setshowNoData(false);
     if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
       const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
@@ -220,8 +237,9 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
 
   }, [activeChild?.uuid, route.params?.currentSelectedChildId, activityTaxonomyId]
   );
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(() => {
+    if (isFocused) {
+      console.log('UseFouusEffect child development one');
       if (activeChild?.gender == "" || activeChild?.gender == 0 || activeChild?.gender == 40 || activeChild?.gender == 59) //for boy,other and blank
       {
         const filteredPinnedData = PinnedChildDevData.filter((x: any) => x.id == selectedChildDevData?.boy_video_article)[0];
@@ -231,13 +249,15 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
         const filteredPinnedData = PinnedChildDevData.filter((x: any) => x.id == selectedChildDevData?.girl_video_article)[0];
         setSelectedPinnedArticleData(filteredPinnedData);
       }
-    }, [selectedChildDevData])
-  );
-  useFocusEffect(
-    React.useCallback(() => {
+    }
+  }, [isFocused,selectedChildDevData]);
+  useEffect(() => {
+    if (isFocused) {
+      console.log('UseFouusEffect child development two');
       calculateMileStone();
-    }, [selectedChildMilestoneData])
-  );
+    }
+  }, [isFocused,selectedChildMilestoneData]);
+
   const sendMileStoneDatatoParent = (item: any, togglevalue: any): any => {
     if (togglevalue == true) {
       const eventData = { 'name': CHILD_MILESTONE_TRACKED, 'params': { age_id: currentSelectedChildId } }
@@ -245,7 +265,16 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     }
     const i = selectedChildMilestoneData.findIndex((_item: any) => _item.id === item.id);
     if (i > -1) {
-      setselectedChildMilestoneData(selectedChildMilestoneData);
+      const abc = selectedChildMilestoneData[i];
+      abc['toggleCheck'] = togglevalue;
+      const newArray = [
+        ...selectedChildMilestoneData.slice(0, i),
+        abc,
+        ...selectedChildMilestoneData.slice(i + 1)
+      ]
+      //const sortednewArray = newArray.sort((x, y) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
+
+      setselectedChildMilestoneData([...newArray]);
     }
   }
   const ContentThatGoesBelowTheFlatList = (): any => {
@@ -261,8 +290,8 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                     selectedChildDevData?.milestone ?
                       <HTML
                         source={{ html: addSpaceToHtml(selectedChildDevData?.milestone) }}
-                        baseFontStyle={styles.font14}
-                        ignoredStyles={['color', 'font-size', 'font-family']}
+                        baseStyle={styles.font14}
+                        ignoredStyles={['color', 'fontSize', 'fontFamily']}
                         tagsStyles={{
                           p: { textAlign: 'left', marginBottom: 15 },
                           h1: { textAlign: 'left' },
@@ -303,7 +332,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
           : null
         }
         <ArticleHeading>
-          {selectedChildDevData && selectedChildDevData != {} && selectedChildDevData != "" ?
+          {selectedChildDevData && selectedChildDevData != null && selectedChildDevData != "" ?
             <>
               <FlexDirRowSpace>
                 <Heading3>{selectedChildDevData?.name} </Heading3>
@@ -413,7 +442,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
           textColor="#000"
           setProfileLoading={setProfileLoading}
         />
-        {currentSelectedChildId && componentColors != {} && currentSelectedChildId != 0 ?
+        {currentSelectedChildId && componentColors != null && currentSelectedChildId != 0 ?
           <View style={styles.bgWhite}>
             <AgeBrackets
               itemColor={componentColors?.headerColorBlack}
@@ -437,41 +466,50 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
               renderItem={({ item }: any): any => <ChildDevelopmentCollapsibleItem key={item.id} activeChilduuidnew={activeChild.uuid} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
               keyExtractor={(item): any => item.id.toString()}
               nestedScrollEnabled={true}
+
               ListHeaderComponent={ContentThatGoesAboveTheFlatList}
               ListFooterComponent={ContentThatGoesBelowTheFlatList}
             />
           </View>
         </FlexCol>
 
-        <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
-        <Modal
-          animationType="none"
-          transparent={true}
-          visible={modalVisible1}
-          onRequestClose={(): any => {
-            setModalVisible1(false);
-          }}
-          onDismiss={(): any => {
-            setModalVisible1(false);
-          }}>
-          <PopupOverlay>
-            <ModalPopupContainer>
-              <PopupCloseContainer>
-                <PopupClose
-                  onPress={(): any => {
-                    setModalVisible1(false);
-                  }}>
-                  <Icon name="ic_close" size={16} color="#000" />
-                </PopupClose>
-              </PopupCloseContainer>
-              <ModalPopupContent>
-                <Heading4Centerr>
-                  {t('childSetupprematureMessageNext')}
-                </Heading4Centerr>
-              </ModalPopupContent>
-            </ModalPopupContainer>
-          </PopupOverlay>
-        </Modal>
+        {/* <View>
+          <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
+        </View> */}
+
+        <View>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible1}
+            onRequestClose={(): any => {
+              setModalVisible1(false);
+            }}
+            onDismiss={(): any => {
+              setModalVisible1(false);
+            }}>
+            <PopupOverlay>
+              <ModalPopupContainer>
+                <PopupCloseContainer>
+                  <PopupClose
+                    onPress={(): any => {
+                      setModalVisible1(false);
+                    }}>
+                    <Icon name="ic_close" size={16} color="#000" />
+                  </PopupClose>
+                </PopupCloseContainer>
+                <ModalPopupContent>
+                  <Heading4Centerr>
+                    {t('childSetupprematureMessageNext')}
+                  </Heading4Centerr>
+                </ModalPopupContent>
+              </ModalPopupContainer>
+            </PopupOverlay>
+          </Modal>
+        </View>
+
+
+
         <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>

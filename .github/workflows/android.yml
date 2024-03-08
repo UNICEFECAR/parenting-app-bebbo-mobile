@@ -3,13 +3,13 @@ name: Android Build
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-     branches: 
-     - vaccinationTabIconChange
+  # push:
+  #   branches: 
+  #   - main
     
-  # pull_request:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - Development
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -37,7 +37,7 @@ jobs:
           key: ndk-cache
 
     - name: Install NDK
-      run: echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install 'ndk;21.0.6113669'
+      run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install 'ndk;21.0.6113669'
    
     - name: Install node modules
       run: |

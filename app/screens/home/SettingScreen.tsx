@@ -1,5 +1,3 @@
-
-
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
 import { allApisObject, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import AlertModal from '@components/AlertModal';
@@ -41,7 +39,7 @@ import {
 } from '@components/shared/SettingsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1,
@@ -105,8 +103,8 @@ const styles = StyleSheet.create({
 })
 const SettingScreen = (props: any): any => {
   const themeContext = useContext(ThemeContext);
-  const primaryColor = themeContext.colors.PRIMARY_COLOR;
-  const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  const primaryColor = themeContext?.colors?.PRIMARY_COLOR;
+  const primaryTintColor = themeContext?.colors?.PRIMARY_TINTCOLOR;
   const trackTrueColor = primaryTintColor;
   const trackFalseColor = '#C8D6EE';
   const thumbTrueColor = primaryColor;
@@ -135,7 +133,7 @@ const SettingScreen = (props: any): any => {
   );
   const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
   const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
-
+  const isFocused = useIsFocused();
   const { t } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
@@ -189,7 +187,7 @@ const SettingScreen = (props: any): any => {
     const file = await ScopedStorage.openDocumentTree(true);
     const uri: any = await ScopedStorage.getPersistedUriPermissions();
     try {
-      const fileDownload: any = await ScopedStorage.writeFile(file.uri, "mybackup.json", "*/*", JSON.stringify(cipher), 'utf8', false);
+      const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
       const uri1: any = await ScopedStorage.getPersistedUriPermissions();
       console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
       if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
@@ -299,7 +297,7 @@ const SettingScreen = (props: any): any => {
   };
   const exportAllData = async (): Promise<any> => {
 
-    actionSheetRef.current?.setModalVisible();
+    actionSheetRef.current?.setModalVisible(true);
 
   };
   const toggleSwitch = (): any => {
@@ -610,11 +608,12 @@ const SettingScreen = (props: any): any => {
     setlanguage(selectedLanguage);
     toggleSwitch();
   }, []);
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(() => {
+    if (isFocused) {
       toggleSwitch();
-    }, [developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag])
-  );
+    }
+  }, [isFocused,developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag]);
+
   const handleError = (err: any): any => {
     console.log(err, "..err")
 
@@ -641,6 +640,7 @@ const SettingScreen = (props: any): any => {
             console.log("Decrypted error", error);
             throw error;
           });
+         
         await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
         const importedJsonData = JSON.parse(await decryptedData);
         oldChildrenData = importedJsonData;
@@ -662,6 +662,7 @@ const SettingScreen = (props: any): any => {
       if (oldChildrenData.length > 0) {
         await userRealmCommon.openRealm();
         await userRealmCommon.deleteAllAtOnce();
+        console.log("oldchildrenresponse",oldChildrenData)
         const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
         console.log(importResponse, "..importResponse");
       }
@@ -693,9 +694,12 @@ const SettingScreen = (props: any): any => {
               console.error('Error:', error);
               throw error;
             });
+            console.log('ios data is',decryptFileContent)
             const importedJsonData = JSON.parse(decryptFileContent);
-            await RNFS.writeFile(tempRealmFile, JSON.stringify(importedJsonData), "utf8");
+            console.log('importedJsonData data is',importedJsonData)
             oldChildrenData = importedJsonData;
+            await RNFS.writeFile(tempRealmFile, JSON.stringify(importedJsonData), "utf8");
+           
           } else {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
             await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
@@ -708,9 +712,10 @@ const SettingScreen = (props: any): any => {
             console.log(user1Path, "..user1Path")
             oldChildrenData = importedrealm.objects('ChildEntity');
           }
+      
+          console.log(oldChildrenData, "..newoldChildrenData..")
           setIsImportRunning(true);
           if (oldChildrenData.length > 0) {
-            console.log(oldChildrenData.length, "..newoldChildrenData..")
             await userRealmCommon.openRealm();
             await userRealmCommon.deleteAllAtOnce();
             const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
@@ -718,6 +723,7 @@ const SettingScreen = (props: any): any => {
           }
           setIsImportRunning(false);
           actionSheetRefImport.current?.setModalVisible(false);
+          
         }
 
       })
@@ -734,11 +740,6 @@ const SettingScreen = (props: any): any => {
   }
 
 
-
-
-
-
-
   return (
     <>
       <View style={[styles.flex1, { backgroundColor: primaryColor }]}>
@@ -750,7 +751,9 @@ const SettingScreen = (props: any): any => {
           setProfileLoading={setProfileLoading}
         />
 
-        <ScrollView style={[styles.flex1, styles.bgColorWhite]}>
+        <ScrollView
+        scrollIndicatorInsets={{right:1}}
+        style={[styles.flex1, styles.bgColorWhite]}>
           <MainContainer>
             <SettingHeading>
               <Heading1>{t('settingScreennotiHeaderText')}</Heading1>

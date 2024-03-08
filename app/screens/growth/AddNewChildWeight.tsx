@@ -17,7 +17,7 @@ import ModalPopupContainer, {
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { RootStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1Center, Heading2, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
@@ -49,7 +49,7 @@ const AddNewChildWeight = ({ navigation, route }: Props):any => {
   const [weight, setweight] = useState<any>(0);
   const [weight1, setweight1] = useState<any>(0.0);
   const dispatch = useAppDispatch();
-  const setIsModalOpened = async (varkey: any):any => {
+  const setIsModalOpened = async (varkey: any):Promise<any> => {
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -154,7 +154,7 @@ const AddNewChildWeight = ({ navigation, route }: Props):any => {
         </HeaderRowView>
         <FlexCol>
           <MainContainer>
-            <View style={[styles.borderRadius4,{ backgroundColor: tintColor }]}>
+            <View style={[{ backgroundColor: tintColor }]}>
               <View style={styles.overflowHidden}>
                 <ShiftFromTopBottom20>
                   <Heading1Center>

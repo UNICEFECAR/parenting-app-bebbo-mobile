@@ -1,4 +1,4 @@
-export const vaccineData:any = {
+export const vaccineData: any = {
     "en": [
         {
             "uuid": "396de639-043b-4ad7-a95f-19bb8435cbd5",
@@ -243,7 +243,7 @@ export const vaccineData:any = {
             "updated_at": "Mon, 08/16/2021 - 14:13"
         }
     ],
-    "ru":  [
+    "ru": [
         {
             "uuid": "9ce5dd04-b8bb-486b-aa36-9f9aa021e88f",
             "id": 56266,
@@ -476,7 +476,7 @@ export const vaccineData:any = {
             "updated_at": "Thu, 01/06/2022 - 16:03"
         }
     ],
-    "al-sq":[
+    "al-sq": [
         {
             "uuid": "66fda5f9-02c9-4bf8-a2d2-3743f78dcdbd",
             "id": 56496,
@@ -676,7 +676,7 @@ export const vaccineData:any = {
             "updated_at": "Sat, 08/28/2021 - 03:52"
         }
     ],
-    "by-be":[
+    "by-be": [
         {
             "uuid": "204d8838-7888-4387-9c84-340433723805",
             "id": 58741,
@@ -865,7 +865,7 @@ export const vaccineData:any = {
             "updated_at": "Mon, 11/22/2021 - 05:29"
         }
     ],
-    "by-ru":[
+    "by-ru": [
         {
             "uuid": "1d60bbf3-366b-49d3-a6ac-b1c3dd9317de",
             "id": 58726,
@@ -1610,7 +1610,7 @@ export const vaccineData:any = {
             "updated_at": "Thu, 09/30/2021 - 12:41"
         }
     ],
-    "kg-ru":[
+    "kg-ru": [
         {
             "uuid": "497e8154-55dc-4bda-a225-26381ae34398",
             "id": 24001,
@@ -2216,7 +2216,7 @@ export const vaccineData:any = {
             "updated_at": "Wed, 04/27/2022 - 16:37"
         }
     ],
-    "rs-sr":[
+    "rs-sr": [
         {
             "uuid": "4ceaf41b-0043-435a-9dce-d5767985197a",
             "id": 57021,
@@ -2383,7 +2383,7 @@ export const vaccineData:any = {
             "updated_at": "Sat, 08/28/2021 - 04:14"
         }
     ],
-    "rs-en":[
+    "rs-en": [
         {
             "uuid": "7f16f821-edf9-402c-b4b9-54d8bccb0f93",
             "id": 57106,
@@ -2550,7 +2550,153 @@ export const vaccineData:any = {
             "updated_at": "Sat, 08/28/2021 - 04:12"
         }
     ],
-    "tj-tg":[
+    "sk": [
+        {
+            "uuid": "152a2191-c148-4556-8706-da8c64fe906b",
+            "id": 64276,
+            "type": "Vaccinations - Age Periods",
+            "title": "1. proti diftérii, tetanu, čiernemu kašľu, poliomyelitíde - štvrtá dávka",
+            "growth_period": 6551,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:20",
+            "updated_at": "Mon, 10/23/2023 - 03:21",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "c7d7bf98-defb-46b0-8ed1-79fd078bf774",
+            "id": 64271,
+            "type": "Vaccinations - Age Periods",
+            "title": "1. proti osýpkam, rubeole a parotitíde (MMR) - druhá dávka",
+            "growth_period": 6548,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:20",
+            "updated_at": "Mon, 10/23/2023 - 03:20",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "cfa4bc63-0084-449d-aee7-ea5f58943670",
+            "id": 64266,
+            "type": "Vaccinations - Age Periods",
+            "title": "1. proti osýpkam, rubeole a parotitíde (MMR) - prvá dávka",
+            "growth_period": 135811,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:19",
+            "updated_at": "Mon, 10/23/2023 - 03:19",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "be0b7896-83a0-4f9e-a9e7-57883f818b3f",
+            "id": 64261,
+            "type": "Vaccinations - Age Periods",
+            "title": "2. proti pneumokokovými infekciám - tretia dávka",
+            "growth_period": 6526,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:18",
+            "updated_at": "Mon, 10/23/2023 - 03:19",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "cf270f47-cc35-4dd8-9c89-235b56a9866c",
+            "id": 64256,
+            "type": "Vaccinations - Age Periods",
+            "title": "1. proti diftérii, tetanu, čiernemu kašľu, poliomyelitíde, hemofilovým infekciám, hepatitíde B - tretia dávka",
+            "growth_period": 6526,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:17",
+            "updated_at": "Mon, 10/23/2023 - 03:18",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "5b197707-0f05-4544-9aa4-01a33d478ef8",
+            "id": 64251,
+            "type": "Vaccinations - Age Periods",
+            "title": "3. proti rotavírusom - druhá alebo tretia dávka",
+            "growth_period": 159471,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:16",
+            "updated_at": "Mon, 10/23/2023 - 03:16",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "188fb335-dddd-4b1e-9a7f-d2c2671b6fdc",
+            "id": 64246,
+            "type": "Vaccinations - Age Periods",
+            "title": "2. proti pneumokokovými infekciám - druhá dávka",
+            "growth_period": 6491,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:16",
+            "updated_at": "Mon, 10/23/2023 - 03:16",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "3397c055-bdba-4d20-aacd-5ca49bfbcf45",
+            "id": 64241,
+            "type": "Vaccinations - Age Periods",
+            "title": "1. proti diftérii, tetanu, čiernemu kašľu, poliomyelitíde, hemofilovým infekciám, hepatitíde B - druhá dávka",
+            "growth_period": 6491,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:15",
+            "updated_at": "Mon, 10/23/2023 - 03:15",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "4e1017d9-18ac-45dc-8d8a-bfdbd7897f09",
+            "id": 64236,
+            "type": "Vaccinations - Age Periods",
+            "title": "3. proti rotavírusom - prvá alebo druhá dávka",
+            "growth_period": 6476,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:15",
+            "updated_at": "Mon, 10/23/2023 - 03:15",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "b2d778af-052a-4583-a29e-105b0b4554e3",
+            "id": 64231,
+            "type": "Vaccinations - Age Periods",
+            "title": "2. proti pneumokokovými infekciám - prvá dávka",
+            "growth_period": 6476,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:14",
+            "updated_at": "Mon, 10/23/2023 - 03:14",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "2ad2afc4-5a05-4a9a-95bf-3c3cce6203b8",
+            "id": 64226,
+            "type": "Vaccinations - Age Periods",
+            "title": "1. proti diftérii, tetanu, čiernemu kašľu, poliomyelitíde, hemofilovým infekciám, hepatitíde B - prvá dávka",
+            "growth_period": 6476,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:13",
+            "updated_at": "Mon, 10/23/2023 - 03:14",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "60f25419-3c01-43b9-8364-861a4fa04343",
+            "id": 64221,
+            "type": "Vaccinations - Age Periods",
+            "title": "1. proti rotavírusom - prvá dávka",
+            "growth_period": 159536,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:13",
+            "updated_at": "Mon, 10/23/2023 - 03:13",
+            "old_calendar": 0
+        }
+    ],
+    "tj-tg": [
         {
             "uuid": "f184820a-b518-468d-a2b5-34e1f78d1c8e",
             "id": 58926,
@@ -3016,7 +3162,7 @@ export const vaccineData:any = {
             "updated_at": "Mon, 09/27/2021 - 20:43"
         }
     ],
-    "uk":[
+    "uk": [
         {
             "uuid": "1e868924-b646-4102-bc5c-1b3e22fdd9be",
             "id": 60931,
@@ -3317,7 +3463,7 @@ export const vaccineData:any = {
             "updated_at": "Sat, 08/28/2021 - 04:19"
         }
     ],
-    "uz-ru":[
+    "uz-ru": [
         {
             "uuid": "739acbe6-5736-42b0-b85c-59e0fd392c27",
             "id": 56746,
@@ -3462,4 +3608,5 @@ export const vaccineData:any = {
             "updated_at": "Sat, 08/28/2021 - 04:18"
         }
     ],
+
 };

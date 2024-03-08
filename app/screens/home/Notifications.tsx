@@ -38,9 +38,9 @@ const Notifications = ():any => {
   const [isLoading, setIsLoading] = useState(true);
   const [profileLoading,setProfileLoading] = React.useState(false);
   const themeContext = useContext(ThemeContext);
-  const primaryColor = themeContext.colors.PRIMARY_COLOR;
+  const primaryColor = themeContext?.colors.PRIMARY_COLOR;
   const { t } = useTranslation();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const [selectedCategories, setselectedCategories] = useState<any[]>([]);
   const [notifications, setNotifications] = useState<any[]>([]);
@@ -123,7 +123,7 @@ const Notifications = ():any => {
       if (appState.current.match(/inactive|background/) 
             && nextAppState === 'active') {
         if (allChildnotification.length > 0) {
-          const currentChildNotis = allChildnotification.find((item) => item.childuuid == activeChild.uuid)
+          const currentChildNotis = allChildnotification.find((item:any) => item.childuuid == activeChild.uuid)
           calculateNotis(currentChildNotis)
         }
 
@@ -132,10 +132,16 @@ const Notifications = ():any => {
     }
   };
   useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
-    return ():any => {
-      AppState.removeEventListener('change', handleAppStateChange);
-    };
+    // AppState.addEventListener('change', handleAppStateChange);
+    // return ():any => {
+    //   AppState.removeEventListener('change', handleAppStateChange);
+    // };
+    const eventListener = AppState.addEventListener('change', handleAppStateChange)
+
+    return (): any => {
+      eventListener.remove()
+     // AppState.removeEventListener('change', updateTrackingStatus)
+    }
   }, []);
   
  
@@ -291,7 +297,7 @@ const Notifications = ():any => {
     const allNotifications = [...allChildnotification];
     const currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     const currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
-    checkedNotifications.map(async (notiItem) => {
+    checkedNotifications.map(async (notiItem:any) => {
       if (notiItem.type == 'gw' || notiItem.type == 'cd') {
         const notitoUpdateIndex = currentChildNotis.gwcdnotis.findIndex((item:any) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
         const newItem: any = { ...notiItem };
@@ -374,12 +380,12 @@ const Notifications = ():any => {
                 <View style={styles.notiCategoriesView}>
                   {
                     notifications?.length>0?
-                    selectedCategories.length==0 || (selectedCategories.length>0 && notifications.filter((item) => selectedCategories.includes(item.type)).length>0)?
+                    selectedCategories.length==0 || (selectedCategories.length>0 && notifications.filter((item: { type: any; }) => selectedCategories.includes(item.type)).length>0)?
                     <FlatList
                     ref={flatListRefNoti}
-                    data={selectedCategories.length == 0 ? notifications:notifications.filter((item) => selectedCategories.includes(item.type))}
+                    data={selectedCategories.length == 0 ? notifications:notifications.filter((item: { type: any; }) => selectedCategories.includes(item.type))}
                     contentContainerStyle={styles.paddingBottom8}
-                    onScroll={(e):any=>{
+                    onScroll={(e: any):any=>{
                       console.log("e--",e);
                     }}
                     nestedScrollEnabled={true}
@@ -401,7 +407,7 @@ const Notifications = ():any => {
                             activeChild={activeChild}
                           />
                    }
-                   keyExtractor={(item,index):any => index.toString()}
+                   keyExtractor={(_item: any,index: { toString: () => any; }):any => index.toString()}
                    />: <Heading4Center>{t('noDataTxt')}</Heading4Center>
                    : <Heading4Center>{t('noDataTxt')}</Heading4Center>
                     }

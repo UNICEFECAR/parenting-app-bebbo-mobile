@@ -39,7 +39,7 @@ padding12:{padding: 12}
 export const ChartFullScreen = ({ route, navigation }: Props):any => {
   const {activeChild, chartType, obj} = route.params;
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
+  const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const [windowWidth,setWindowWidth] = React.useState(Dimensions.get('window').width);
   const [windowHeight,setWindowHeight] = React.useState(Dimensions.get('window').height);
   const {t} = useTranslation();

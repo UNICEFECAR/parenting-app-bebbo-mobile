@@ -1,10 +1,10 @@
-import { rootReducer } from "../redux";
+import rootReducer from "../redux/reducers";
 import { PERMISSIONS } from "react-native-permissions";
 import { Platform } from "react-native";
 import { DateTime } from "luxon";
 import { DocumentDirectoryPath } from "react-native-fs";
 
-export type ApplicationState= ReturnType<typeof rootReducer>
+export type ApplicationState = ReturnType<typeof rootReducer>
 
 export type ApiImageData = {
   srcUrl: string;
@@ -31,7 +31,7 @@ export const PICKER_TYPE = {
 };
 export const CROPPED_IMAGE_WIDTH = 800;
 export const CROPPED_IMAGE_HEIGHT = 800;
-export const CHILDREN_PATH=`${DocumentDirectoryPath}/children`;
+export const CHILDREN_PATH = `${DocumentDirectoryPath}/children`;
 export const IMAGE_PICKER_OPTIONS = {
   cropping: true,
   // includeExif: false, // Include image details in the response
@@ -55,22 +55,30 @@ export const IMAGE_PICKER_OPTIONS = {
   // cropping: false,
   // cropperCircleOverlay: false, // Enable or disable circular cropping mask.
   // enableRotationGesture: false, // (android only) default false
-   freeStyleCropEnabled: true, // (android only) default false | Enable custom rectangle area for cropping
-   showCropGuidelines: true,
-   multiple: false
+  freeStyleCropEnabled: true, // (android only) default false | Enable custom rectangle area for cropping
+  showCropGuidelines: true,
+  multiple: false
 };
-export const dobMin = DateTime.local().plus({  years: -6,months:0,day:0}).toISODate();
+export const dobMin = DateTime.local().plus({ years: -6, months: 0, day: 0 }).toISODate();
 //export const dobMin = DateTime.local().plus({ years: -5,months:-11,day:2}).toISODate();
 export const dobMax = DateTime.local().plus({ months: +9 }).toISODate();
-export const maxDue=5;
-export const minDue=4;
+export const maxDue = 5;
+export const minDue = 4;
 export const CAMERA_PERMISSION =
   Platform.OS === "android"
     ? PERMISSIONS.ANDROID.CAMERA
     : PERMISSIONS.IOS.CAMERA;
 
-export const GALLERY_PERMISSION =
+
+
+export const GALLERY_PERMISSION_LATEST =
+  Platform.OS === "android"
+    ? PERMISSIONS.ANDROID.ACCESS_MEDIA_LOCATION
+    : PERMISSIONS.IOS.PHOTO_LIBRARY;
+
+    export const GALLERY_PERMISSION =
   Platform.OS === "android"
     ? PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
     : PERMISSIONS.IOS.PHOTO_LIBRARY;
+
 

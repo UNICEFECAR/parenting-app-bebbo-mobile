@@ -1,4 +1,4 @@
-export const healthCheckupsData:any = {
+export const healthCheckupsData: any = {
     "en": [
         {
             "id": 56251,
@@ -111,7 +111,7 @@ export const healthCheckupsData:any = {
             "updated_at": "Mon, 08/16/2021 - 14:15"
         }
     ],
-    "ru":[
+    "ru": [
         {
             "id": 56231,
             "type": "Health Check-ups - Age Periods",
@@ -2002,6 +2002,148 @@ export const healthCheckupsData:any = {
             "updated_at": "Sat, 08/28/2021 - 03:36"
         }
     ],
+    "sk": [
+        {
+            "id": 64346,
+            "type": "Health Check-ups - Age Periods",
+            "title": "6. až 8. rok života",
+            "growth_period": 159531,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:39",
+            "updated_at": "Mon, 10/23/2023 - 03:39"
+        },
+        {
+            "id": 64341,
+            "type": "Health Check-ups - Age Periods",
+            "title": "5. až 6. rok života",
+            "growth_period": 59016,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:38",
+            "updated_at": "Mon, 10/23/2023 - 03:39"
+        },
+        {
+            "id": 64336,
+            "type": "Health Check-ups - Age Periods",
+            "title": "3. až 4. rok života",
+            "growth_period": 159521,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:38",
+            "updated_at": "Mon, 10/23/2023 - 03:38"
+        },
+        {
+            "id": 64331,
+            "type": "Health Check-ups - Age Periods",
+            "title": "15. až 18. mesiac života",
+            "growth_period": 135811,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:37",
+            "updated_at": "Mon, 10/23/2023 - 03:38"
+        },
+        {
+            "id": 64326,
+            "type": "Health Check-ups - Age Periods",
+            "title": "11. až 13. mesiac života",
+            "growth_period": 159516,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:37",
+            "updated_at": "Mon, 10/23/2023 - 03:37"
+        },
+        {
+            "id": 64321,
+            "type": "Health Check-ups - Age Periods",
+            "title": "9. až 11. mesiac života",
+            "growth_period": 159511,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:36",
+            "updated_at": "Mon, 10/23/2023 - 03:36"
+        },
+        {
+            "id": 64316,
+            "type": "Health Check-ups - Age Periods",
+            "title": "7. až 9. mesiac života",
+            "growth_period": 159506,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:36",
+            "updated_at": "Mon, 10/23/2023 - 03:36"
+        },
+        {
+            "id": 64311,
+            "type": "Health Check-ups - Age Periods",
+            "title": "5. až 7. mesiac života",
+            "growth_period": 159501,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:35",
+            "updated_at": "Mon, 10/23/2023 - 03:36"
+        },
+        {
+            "id": 64306,
+            "type": "Health Check-ups - Age Periods",
+            "title": "3. až 5. mesiac života",
+            "growth_period": 159496,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:35",
+            "updated_at": "Mon, 10/23/2023 - 03:35"
+        },
+        {
+            "id": 64301,
+            "type": "Health Check-ups - Age Periods",
+            "title": "8. až 11. týždeň života",
+            "growth_period": 159491,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:34",
+            "updated_at": "Mon, 10/23/2023 - 03:35"
+        },
+        {
+            "id": 64296,
+            "type": "Health Check-ups - Age Periods",
+            "title": "5. až 8. týždeň života",
+            "growth_period": 159541,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:32",
+            "updated_at": "Mon, 10/23/2023 - 03:32"
+        },
+        {
+            "id": 64291,
+            "type": "Health Check-ups - Age Periods",
+            "title": "do 5. týždňa života",
+            "growth_period": 159481,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:28",
+            "updated_at": "Mon, 10/23/2023 - 03:28"
+        },
+        {
+            "id": 64286,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Po prepustení z pôrodnice ",
+            "growth_period": 159476,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:23",
+            "updated_at": "Mon, 10/23/2023 - 03:24"
+        },
+        {
+            "id": 64281,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Po narodení v pôrodnici ",
+            "growth_period": 6466,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 10/23/2023 - 03:21",
+            "updated_at": "Mon, 10/23/2023 - 03:23"
+        }
+    ],
     "tj-tg": [
         {
             "id": 58866,
@@ -2526,7 +2668,7 @@ export const healthCheckupsData:any = {
             "updated_at": "Mon, 09/27/2021 - 20:12"
         }
     ],
-    "uk":  [
+    "uk": [
         {
             "id": 61431,
             "type": "Health Check-ups - Age Periods",
@@ -2628,7 +2770,7 @@ export const healthCheckupsData:any = {
             "updated_at": "Wed, 04/13/2022 - 19:37"
         }
     ],
-    "uz-uz":  [
+    "uz-uz": [
         {
             "id": 57766,
             "type": "Health Check-ups - Age Periods",
@@ -3151,6 +3293,7 @@ export const healthCheckupsData:any = {
             "created_at": "Fri, 07/16/2021 - 12:45",
             "updated_at": "Sat, 08/28/2021 - 03:43"
         }
-    ]
-    
+    ],
+
+
 };

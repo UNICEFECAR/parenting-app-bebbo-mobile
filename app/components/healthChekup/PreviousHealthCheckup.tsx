@@ -39,11 +39,11 @@ const styles=StyleSheet.create({
 const PreviousHealthCheckup = (props: any): any => {
   const {item, backgroundColor} = props;
   const {t} = useTranslation();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [isOPen, setIsOPen] = useState<boolean>(false);
   const themeContext = useContext(ThemeContext);
-  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
-  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = (pinnedArticleId: any): any => {
     if(pinnedArticleId!=0){
     navigation.navigate('DetailsScreen', {

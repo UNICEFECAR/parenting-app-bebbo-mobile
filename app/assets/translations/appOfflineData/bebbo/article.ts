@@ -1,5 +1,5 @@
-export const articledata:any = {
-    "en":[
+export const articledata: any = {
+    "en": [
         {
             "id": 331,
             "type": "Article",
@@ -42,7 +42,7 @@ export const articledata:any = {
             "embedded_images": []
         }
     ],
-    "ru":[
+    "ru": [
         {
             "id": 331,
             "type": "Article",
@@ -773,7 +773,7 @@ export const articledata:any = {
             "embedded_images": []
         }
     ],
-    "uk":[{
+    "uk": [{
         "id": 331,
         "type": "Article",
         "title": "Позитивна увага і ваша дитина",
@@ -899,5 +899,49 @@ export const articledata:any = {
             "mandatory": 0,
             "embedded_images": []
         }
-    ]
+    ],
+    "sk": [
+        {
+            "id": 331,
+            "type": "Article",
+            "title": "Pozitívna pozornosť a Vaše dieťa",
+            "created_at": "Tue, 06/06/2023 - 19:52",
+            "updated_at": "Sat, 09/02/2023 - 03:36",
+            "summary": "Pozitívna pozornosť je, keď na dieťa reagujete srdečne a so záujmom. Pomáha Vášmu dieťaťu cítiť sa bezpečne a ocenene. Zistite, ako čo najlepšie využiť každodenné chvíle na prejavenie pozitívnej pozornosti svojmu dieťaťu.",
+            "body": "<h2>Čo je pozitívna pozornosť?</h2><p>Pozitívna pozornosť je spôsob, akým prejavujete radosť z dieťaťa a vrelosť vo Vašom vzťahu:</p><ul><li>úsmev na dieťa,</li>\t<li>nadväzovanie očného kontaktu a používanie láskavej mimiky,</li>\t<li>byť k dieťaťu fyzicky nežný a starostlivý,</li>\t<li>používanie slov na oslavu a povzbudenie dieťaťa,</li>\t<li>prejavenie záujmu o záujmy, aktivity a úspechy Vášho dieťaťa.</li></ul><h2>Prečo je dôležitá pozitívna pozornosť</h2><p>Deti od narodenia potrebujú skúsenosti a vzťahy, ktoré im ukážu, že sú hodnotné a schopné ľudské bytosti, ktoré prinášajú radosť iným. Pozitívna pozornosť, reakcie a odozvy kľúčových dospelých pomáhajú deťom vytvoriť si predstavu o tom, ako si ich cenia.</p><p><strong>Sebaobraz</strong> Vášho <strong>dieťaťa</strong> sa časom buduje vďaka pozitívnym a láskyplným odkazom od Vás a ďalších dôležitých ľudí v jeho živote.</p><p><strong>Pocit istoty a bezpečia Vášho dieťaťa</strong> vychádza z jeho interakcie s Vami a s ostatnými ľuďmi, ktorí sa oň starajú. Ak svoje dieťa upokojíte a podporíte, keď sa bojí, je neisté alebo čelí novej alebo neznámej situácii, bude sa cítiť bezpečne.</p><h2>Ako prejavovať pozitívnu pozornosť: všetky vekové kategórie</h2><p><strong>Bez ohľadu na vek Vášho dieťaťa</strong> môžete každý deň urobiť niekoľko jednoduchých vecí, ktorými mu dáte najavo, že je výnimočné a dôležité. Napríklad:</p><ul><li>pozrite sa na svoje dieťa a usmejte sa naň,</li>\t<li>prejavte záujem o to, čo vaše dieťa robí, ak môže, požiadajte ho, aby Vám o tom porozprávalo,</li>\t<li>venujte pozornosť a pozorne počúvajte, keď s Vami dieťa hovorí,</li>\t<li>vymyslite si nejaké špeciálne rituály, ktoré môžete zdieľať spoločne.</li></ul><p>Existujú aj spôsoby, ako môžete deťom rôzneho veku prejavovať pozitívnu pozornosť.</p><h2>Novorodenci a dojčatá: tipy na pozitívnu pozornosť</h2><ul><li>upokojte svoje dieťa, keď plače,</li>\t<li>keď sa Vaše dieťa usmieva, úsmev opätujte,</li>\t<li>reagujte na zvuky, ktoré Vaše dieťa vydáva a povedzte niečo na oplátku,</li>\t<li>rozprávajte sa o tom, čo sa deje okolo Vás dvoch,</li>\t<li>všímajte si, čo Vaše dieťa zaujíma a povzbudzujte ho, aby to skúmalo napríklad mu ukážte, ako má zatriasť farebnou hrkálkou, ktorá ho zaujala.</li></ul><h2>Batoľatá: tipy na pozitívnu pozornosť</h2><ul><li>povedzte dieťaťu, čo sa Vám na jeho činnosti páči. Napríklad: \"Milujem, keď mi pomáhaš zbierať kocky. Používajte pozitívny tón hlasu, ktorý sa zhoduje s pochvalou,</li>\t<li>vžite sa do okamihu spolu so svojím dieťaťom, môže to byť tak jednoduché, ako keď si sadnete a spoločne sa pozriete na húsenicu,</li>\t<li>keď sa spolu rozprávate, nechajte si po rozhovore čas, aby Vaše dieťa mohlo odpovedať, aj keď nie vždy dokáže nájsť správne slová.</li></ul><h2>Predškoláci: tipy na pozitívnu pozornosť</h2><p>Nájdite si čas na obľúbené činnosti svojho dieťaťa napríklad na skladačky, lego, maľovanie a podobne.</p><ul><li>Dávajte veľa spätnej väzby o správaní, ktoré chcete podporiť, napríklad: \"Ďakujem, že si si priniesol tanier do kuchyne. Po obede sa tak dá oveľa rýchlejšie upratať.\"</li>\t<li>Nezabudnite sa usmievať a nadviazať s dieťaťom očný kontakt, keď ho ráno vítate - možno si dokonca nájdete chvíľku na špeciálne objatie.</li></ul><p><strong>Keď je ťažké byť pozitívny</strong></p><p>Nie je reálne a ani normálne byť neustále pozitívne naladený. A Vaše dieťa to zvládne, aj keď ste občas nedostupní, úzkostliví alebo roztržití.  Stres v domácnosti, ako aj pandémia, ekonomická neistota a ďalšie udalosti spôsobujú, že pre Vás a Vaše dieťa nastávajú ťažké časy. Nezabudnite sa o seba postarať.</p><p><strong>Rozdiel je v tom, čo sa deje v priebehu času, nie v každom konkrétnom prípade.</strong> Ak sa Vášmu dieťaťu časom dostane väčšinou pozitívnej pozornosti, bude sa cítiť milované a v bezpečí.</p><p>Ak sa však rodičia nedokážu sústrediť na potreby svojich detí, môže to mať negatívny vplyv na deti v prvých rokoch života a v budúcnosti. Ak sú mnohé z Vašich každodenných interakcií s dieťaťom negatívne alebo ak je pre Vás ťažké cítiť alebo správať sa k dieťaťu pozitívne, oplatí sa vyhľadať pomoc u poskytovateľa zdravotnej starostlivosti alebo inú odbornú pomoc.</p>",
+            "category": 56,
+            "child_age": [
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                57,
+                58
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                4771,
+                4766,
+                4761
+            ],
+            "cover_image": {
+                "url": "https://bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/UNI11812.jpg?itok=QCH1F13v",
+                "name": "© UNICEF/UNI11812/Pirozzi",
+                "alt": "Mother with her baby giving him positive attention."
+            },
+            "related_articles": [],
+            "related_video_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 1,
+            "embedded_images": []
+        }
+    ],
 };

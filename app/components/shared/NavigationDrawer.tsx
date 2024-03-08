@@ -19,7 +19,7 @@ padding:0px;
 flex-direction:row;
 align-items:center;
 border-bottom-width:1px;
-border-color:#ddd
+border-color:#ddd;
 
 `;
 
@@ -36,7 +36,7 @@ margin-left:13px;
 `;
 
 export const BubbleContainer = styled.View`
-margin-left:auto
+margin-left:auto;
 `;
 
 export const BubbleView = styled.View`
@@ -44,8 +44,8 @@ width:26px;height:26px;
 justify-content:center;
 align-items:center;
 padding:2px;
-background-color:${(props):any => props.theme.colors.SECONDARY_COLOR};
-border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+background-color:${(props:any):any => props.theme?.colors?.SECONDARY_COLOR};
+border-radius:100px;
 `;
 
 export const BubbleView1 = styled(BubbleView)`

@@ -74,7 +74,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [parentName, setParentName] = React.useState(parentEditName ? parentEditName : "");
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
   useFocusEffect(
     React.useCallback(() => {
       setRelationshipName(relationshipToParent != "" && relationshipToParent != null && relationshipToParent != undefined ? relationshipToParent.name : '');
@@ -151,7 +151,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
       <MainContainer>
         <FormInputGroup
           onPress={(): any => {
-            actionSheetRef.current?.setModalVisible();
+            actionSheetRef.current?.setModalVisible(true);
           }}>
           <LabelText>{t('relationShipTxt')}</LabelText>
 
@@ -181,7 +181,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
           }
         </View>
         <ActionSheet ref={actionSheetRef}>
-          <View>
+          <View style={{marginBottom:40}}>
             {
               relationshipToParentGlobal.map((item: any, index: any) => {
                 return (
@@ -213,7 +213,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
                           }
                         }
                         setRelationshipName(item.name);
-                        actionSheetRef.current?.hide();
+                        actionSheetRef.current?.setModalVisible(false);
                       }}>
                       <Heading3>{item.name}</Heading3>
                     </Pressable>

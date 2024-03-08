@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
 const Radio = styled.View`
-  background-color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background-color: ${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
   width: 20px;
   height: 20px;
-  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+  border-radius:100px;
 `;
 
 export const RadioActive = styled(Radio)`
@@ -12,7 +12,7 @@ export const RadioActive = styled(Radio)`
   flex-direction: row;
   text-align: center;
   justify-content:center;
-  background-color: ${(props):any => props.theme.colors.PRIMARY_TINTCOLOR};
+  background-color: ${(props:any):any => props.theme?.colors?.PRIMARY_TINTCOLOR};
 `;
 
 export const RadioItemText = styled.Text`
@@ -22,7 +22,7 @@ export const RadioItemText = styled.Text`
   color: #fff;
   flex: 9;
   margin-left: 15px;
-  font-family: ${(props: any):any =>
+  fontFamily: ${(props: any):any =>
     props.isActive
       ? props.theme.fonts.ROBOTO_BOLD
       : props.theme.fonts.ROBOTO_REGULAR};
@@ -34,7 +34,7 @@ export const RadioItem = styled.View`
   padding: 15px 0;
   border-color: rgba(255, 255, 255, 0.3);
   border-bottom-width: 0.5px;
-  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+  border-radius:4px;
 `;
 
 export const RadioBoxContainer = styled.View`
@@ -46,22 +46,22 @@ export const RadioOuter = styled.View`
  flex-direction:row;
  flex:1;
  justify-content:center;
- padding:0 10px
+ padding:0 10px;
  
 `;
 export const RadioInnerBox = styled.Pressable`
   flex:1;
   flex-direction:row;
-  background:${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background:${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
   align-items:center;
   justify-content:flex-start;
-  border-radius:${(props):any => props.theme.borderRadius.BORDERRADIUS};
+  border-radius:4px;
   padding:5px 10px;
   height:52px;
   
 `;
 export const RadioLabelText = styled.Text`
-  color: ${(props):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
   font-size: 16px;
  
 `

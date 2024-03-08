@@ -39,7 +39,7 @@ import ModalPopupContainer, {
   PopupCloseContainer,
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
@@ -79,8 +79,8 @@ const Childgrowth = ({navigation}: any):any => {
   ];
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
+  const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading,setProfileLoading] = React.useState(false);
@@ -96,12 +96,11 @@ const Childgrowth = ({navigation}: any):any => {
     const pluralShow = useAppSelector(
       (state: any) => state.selectedCountry.pluralShow,
     );
-   useFocusEffect(()=>{
-    // console.log('growthModalOpened',growthModalOpened);
-    // pass true to make modal visible every time & reload
-    setModalVisible(growthModalOpened)
-   })
-  
+
+    useEffect(()=>{
+      setModalVisible(growthModalOpened)
+    },[growthModalOpened]);
+    
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)

@@ -26,9 +26,9 @@ const styles=StyleSheet.create({
 const Favourites = ({navigation, route}: Props):any => {
   const themeContext = useContext(ThemeContext);
   const {t} = useTranslation();
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const backgroundBlue = themeContext.colors.SECONDARY_COLOR;
-  const backgroundBlueTint = themeContext.colors.SECONDARY_TINTCOLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const backgroundBlue = themeContext?.colors.SECONDARY_COLOR;
+  const backgroundBlueTint = themeContext?.colors.SECONDARY_TINTCOLOR;
   const [profileLoading,setProfileLoading] = React.useState(false);
 
   const [selectedIndex, setSelectedIndex] = React.useState<number>();

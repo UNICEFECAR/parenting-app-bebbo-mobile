@@ -44,17 +44,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingRight: 40
   },
-  htmlStyle: {
-    color: bgcolorWhite2,
-    fontSize: 16
-  },
   scrollViewStyle: {
     padding: 0
   }
 })
 const Terms = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_COLOR;
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
@@ -175,7 +171,7 @@ const Terms = ({ navigation }: Props): any => {
     // survey,child dev,vaccine,healthcheckup,growth,activities,
     // pinned for all 4 tools
   ];
-  const acceptTerms = async (): any => {
+  const acceptTerms = async (): Promise<any> => {
     if (acceptTermsFlag == false) {
       dispatch(setAcceptTerms(true));
     }

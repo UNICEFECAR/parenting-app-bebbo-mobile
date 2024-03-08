@@ -1,7 +1,7 @@
-export const taxonomydata:any = {
+export const taxonomydata: any = {
     "en": [{
         "langCode": "en",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -5485,14 +5485,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "ru": [{
         "langCode": "ru",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -6262,14 +6262,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "al-sq": [{
         "langCode": "al-sq",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -11941,14 +11941,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "by-be": [{
         "langCode": "by-be",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -12718,14 +12718,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "by-ru": [{
         "langCode": "by-ru",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -13505,14 +13505,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "bg-bg": [{
         "langCode": "bg-bg",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -19848,14 +19848,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "gr-el": [{
         "langCode": "gr-el",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -25271,15 +25271,15 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
-    "kg-ky":[{
+    "kg-ky": [{
         "langCode": "gr-el",
-        "allData":{
-            "activity_category":  [
+        "allData": {
+            "activity_category": [
                 {
                     "id": 6421,
                     "name": "Моторикалык",
@@ -25301,7 +25301,7 @@ export const taxonomydata:any = {
                     "unique_name": "language_and_communication"
                 }
             ],
-            "category":[
+            "category": [
                 {
                     "id": 1,
                     "name": "Тамактануу жана эмчек эмизүү",
@@ -25353,7 +25353,7 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_category":  [
+            "chatbot_category": [
                 {
                     "id": 110071,
                     "name": "Баланы өнүктүрүү",
@@ -25663,7 +25663,7 @@ export const taxonomydata:any = {
                     ]
                 }
             ],
-            "child_gender":[
+            "child_gender": [
                 {
                     "id": 40,
                     "name": "Бала",
@@ -25680,7 +25680,7 @@ export const taxonomydata:any = {
                     "unique_name": "both"
                 }
             ],
-            "growth_introductory":[
+            "growth_introductory": [
                 {
                     "id": 10003,
                     "name": "1 айлык",
@@ -25738,7 +25738,7 @@ export const taxonomydata:any = {
                     "days_to": 2190
                 }
             ],
-            "growth_period":[
+            "growth_period": [
                 {
                     "id": 6466,
                     "name": "Туулганда",
@@ -30667,7 +30667,7 @@ export const taxonomydata:any = {
                     "name": "ден соолукту текшерүү"
                 }
             ],
-            "parent_gender":[
+            "parent_gender": [
                 {
                     "id": 37,
                     "name": "Эркек",
@@ -30718,14 +30718,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
-    "kg-ru":[{
+    "kg-ru": [{
         "langCode": "gr-el",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -35669,14 +35669,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "md-ro": [{
         "langCode": "md-ro",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -36447,14 +36447,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "me-cnr": [{
         "langCode": "me-cnr",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -41870,14 +41870,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "mk-mk": [{
         "langCode": "mk-mk",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -47549,14 +47549,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "mk-sq": [{
         "langCode": "mk-sq",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -48326,14 +48326,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "ro-ro": [{
         "langCode": "ro-ro",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -58393,14 +58393,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "rs-sr": [{
         "langCode": "rs-sr",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -63820,14 +63820,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "rs-en": [{
         "langCode": "rs-en",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -69243,14 +69243,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "tj-tg": [{
         "langCode": "tj-tg",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -74754,14 +74754,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "tj-ru": [{
         "langCode": "tj-ru",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -80193,7 +80193,7 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
@@ -81000,14 +81000,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "uz-uz": [{
         "langCode": "uz-uz",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -86679,14 +86679,14 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
 
             ]
         }
     }],
     "uz-ru": [{
         "langCode": "uz-ru",
-        "allData":{
+        "allData": {
             "activity_category": [
                 {
                     "id": 6421,
@@ -92342,10 +92342,753 @@ export const taxonomydata:any = {
             ]
         },
         "standardDevData": {
-            "standard_deviation":[
+            "standard_deviation": [
+
+            ]
+        }
+    }],
+    "sk": [
+        {
+        "langCode": "sk",
+        "allData": {
+            "activity_category": [
+                {
+                    "id": 6421,
+                    "name": "Motorika",
+                    "unique_name": "motor"
+                },
+                {
+                    "id": 6431,
+                    "name": "Sociálno-emocionálny",
+                    "unique_name": "socio_ emotional"
+                },
+                {
+                    "id": 6436,
+                    "name": "Poznávanie",
+                    "unique_name": "cognitive"
+                },
+                {
+                    "id": 6441,
+                    "name": "Reč a komunikácia",
+                    "unique_name": "language_and_communication"
+                }
+            ],
+            "category": [
+                {
+                    "id": 1,
+                    "name": "Výživa a dojčenie",
+                    "unique_name": "nutrition_and_breastfeeding"
+                },
+                {
+                    "id": 2,
+                    "name": "Zdravie a prospievanie",
+                    "unique_name": "health_and_wellbeing"
+                },
+                {
+                    "id": 3,
+                    "name": "Bezpečnosť a ochrana",
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 4,
+                    "name": "Rodičovský kútik",
+                    "unique_name": "parenting_corner"
+                },
+                {
+                    "id": 5,
+                    "name": "Rast dieťaťa",
+                    "unique_name": "child_growth"
+                },
+                {
+                    "id": 6,
+                    "name": "Vývoj dieťaťa",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 7,
+                    "name": "Preventívne prehliadky",
+                    "unique_name": "health_check_ups"
+                },
+                {
+                    "id": 8,
+                    "name": "Očkovanie",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 55,
+                    "name": "Hra a učenie",
+                    "unique_name": "play_and_learning"
+                },
+                {
+                    "id": 56,
+                    "name": "Responzívne rodičovstvo",
+                    "unique_name": "responsive_parenting"
+                }
+            ],
+            "chatbot_category": [
+                {
+                    "id": 110071,
+                    "name": "Vývoj dieťaťa",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 110076,
+                    "name": "Lepšie rodičovstvo",
+                    "unique_name": "better_parenting"
+                },
+                {
+                    "id": 110081,
+                    "name": "Vychova zdravých detí",
+                    "unique_name": "raising_healthy_children"
+                },
+                {
+                    "id": 110086,
+                    "name": "Očkovanie",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 110091,
+                    "name": "Ako sa udržať zdravý a šťastný",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Vývoj a učenie",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Rozprávanie a čítanie",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Prostredie pre učenie",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Moje dieťa a škôlka",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Učenie hrou",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Láskyplné vzťahy",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Hra s mojím dieťaťom",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Problémové správanie",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Učenie doma",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Vzťahy dieťaťa s ostatnými",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Obavy o vývoj dieťaťa",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Zdravé návyky",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Zdravé stravovanie",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Dojčenie",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Bezpečnosť a ochrana",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "O vakcínach",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Bezpečnosť vakcín",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Vakcínami preventabilné ochorenia",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Očkovací kalendár",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vakcíny a ochorenia",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Zostať zdravý a šťastný",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Získanie pomoci s mojím stresom",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Zvládanie rodičovských výziev",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Psychická pohoda",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
+                }
+            ],
+            "child_age": [
+                {
+                    "id": 43,
+                    "name": "1. mesiac",
+                    "days_from": 0,
+                    "days_to": 31,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        43,
+                        44,
+                        45
+                    ]
+                },
+                {
+                    "id": 44,
+                    "name": "2. mesiac",
+                    "days_from": 32,
+                    "days_to": 60,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        44,
+                        45,
+                        46
+                    ]
+                },
+                {
+                    "id": 45,
+                    "name": "3-4 mesiace",
+                    "days_from": 61,
+                    "days_to": 121,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        45,
+                        46,
+                        47
+                    ]
+                },
+                {
+                    "id": 46,
+                    "name": "5-6 mesiacov",
+                    "days_from": 122,
+                    "days_to": 182,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        46,
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 47,
+                    "name": "7-9 mesiacov",
+                    "days_from": 183,
+                    "days_to": 274,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 48,
+                    "name": "10-12 mesiacov",
+                    "days_from": 275,
+                    "days_to": 365,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        48,
+                        49
+                    ]
+                },
+                {
+                    "id": 49,
+                    "name": "13-18 mesiacov",
+                    "days_from": 366,
+                    "days_to": 547,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        49,
+                        50
+                    ]
+                },
+                {
+                    "id": 50,
+                    "name": "19-24 mesiacov",
+                    "days_from": 548,
+                    "days_to": 730,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        50,
+                        51
+                    ]
+                },
+                {
+                    "id": 51,
+                    "name": "25-36 mesiacov",
+                    "days_from": 731,
+                    "days_to": 1095,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        51,
+                        52
+                    ]
+                },
+                {
+                    "id": 52,
+                    "name": "37-48 mesiacov",
+                    "days_from": 1096,
+                    "days_to": 1460,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        52,
+                        57
+                    ]
+                },
+                {
+                    "id": 57,
+                    "name": "49-60 mesiacov",
+                    "days_from": 1461,
+                    "days_to": 1825,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        57,
+                        58
+                    ]
+                },
+                {
+                    "id": 58,
+                    "name": "61-72 mesiacov",
+                    "days_from": 1826,
+                    "days_to": 2190,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        58
+                    ]
+                }
+            ],
+            "child_gender": [
+                {
+                    "id": 40,
+                    "name": "Chlapec",
+                    "unique_name": "boy"
+                },
+                {
+                    "id": 41,
+                    "name": "Dievča",
+                    "unique_name": "girl"
+                },
+                {
+                    "id": 59,
+                    "name": "Obaja",
+                    "unique_name": "both"
+                }
+            ],
+            "growth_introductory": [
+                {
+                    "id": 10003,
+                    "name": "1 mesiac",
+                    "body": "Počas prvých 5 dní stratí novorodenec až 10% svojej telesnej hmotnosti, ale s primeranou starostlivosťou a výživou, predovšetkým dojčením, dobehnú túto stratu zvyčajne do 14 dní života. V nasledujúcom období bude novorodenec priberať približne 20 až 30 g za deň, narastie do dĺžky až 5 cm mesačne a obvod hlavičky narastie o 2 až 2,5 cm.",
+                    "days_from": 0,
+                    "days_to": 30
+                },
+                {
+                    "id": 10004,
+                    "name": "2 mesiace, 3 mesiace",
+                    "body": "V druhom a treťom mesiaci dieťa naďalej rastie približne rovnakým tempom ako rástlo počas prvých týždňov. Priberie mesačne asi 700 až 900 g , narastie o 2,5 až 4 cm a obvod hlavičky sa zväčší o 1,2 cm.",
+                    "days_from": 31,
+                    "days_to": 91
+                },
+                {
+                    "id": 10005,
+                    "name": "5 mesiacov (zahŕňa 4 a 5 mesiacov)",
+                    "body": "Rast sa spomaľuje v 4. a 5. mesiaci, dieťa priberie mesačne priemerne 450-550 gramov a narastie približne 2cm.",
+                    "days_from": 92,
+                    "days_to": 152
+                },
+                {
+                    "id": 10007,
+                    "name": "6 mesiacov",
+                    "body": "Dieťa naďalej priberá mesačne asi 450-550 gramov a rastie v priemere asi o 2 cm. Vo veku 6 mesiacov už dieťa od narodenia zdvojnásobí svoju pôrodnú hmotnosť.",
+                    "days_from": 153,
+                    "days_to": 183
+                },
+                {
+                    "id": 10008,
+                    "name": "9 mesiacov (zahŕňa od 7 do 9 mesiacov)",
+                    "body": "Od siedmeho do deviateho mesiaca sa rast naďalej spomaľuje. Deti rastú rôznym tempom, dôležité je, aby ich rast kopíroval tempo z predchádzajúcich mesiacov (hmotnosť a rast na rovnakom percentile, ako v predchádzajúcom období).",
+                    "days_from": 184,
+                    "days_to": 274
+                },
+                {
+                    "id": 10009,
+                    "name": "12 mesiacov (zahŕňa 10 až 12 mesiacov)",
+                    "body": "V poslednom trimestri prvého roku získa dieťa asi 1 cm mesačne, zatiaľ čo hmotnosť sa líši a závisí od úrovne aktivity. Počas prvého roka dieťa zvyčajne pri narodení strojnásobí svoju váhu, v priemere rastie 25 cm a obvod hlavy sa zvyšuje o 12,5 cm.",
+                    "days_from": 275,
+                    "days_to": 365
+                },
+                {
+                    "id": 10010,
+                    "name": "18 mesiacov (zahŕňa druhý rok)",
+                    "body": "V druhom roku pokračuje postupné spomaľovanie rastu. Počas tohto roku dieťa narastie asi o 12 cm, priberie asi 2-2,5 kg a obvod hlavy sa zväčší o 2 až 2,5 cm.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 10012,
+                    "name": "3 roky a viac (od tretieho roku)",
+                    "body": "Rast od tretieho rokov sa stáva rovnomernejším. Dieťa narastie o približne  5 až 7,5 cm a hmotnosť sa zvýši o 2-3 kg ročne.",
+                    "days_from": 731,
+                    "days_to": 2190
+                }
+            ],
+            "growth_period": [
+                {
+                    "id": 6466,
+                    "name": "pri narodení",
+                    "vaccination_opens": 0
+                },
+                {
+                    "id": 6471,
+                    "name": "po ukončenom 1. mesiaci",
+                    "vaccination_opens": 31
+                },
+                {
+                    "id": 6476,
+                    "name": "po ukončenom  2. mesiaci",
+                    "vaccination_opens": 60
+                },
+                {
+                    "id": 6481,
+                    "name": "po ukončenom 3 mesiaci",
+                    "vaccination_opens": 91
+                },
+                {
+                    "id": 6486,
+                    "name": "po dosiahnutí 3,5 mesiaca veku",
+                    "vaccination_opens": 107
+                },
+                {
+                    "id": 6491,
+                    "name": "po ukončenom  4. mesiaci",
+                    "vaccination_opens": 121
+                },
+                {
+                    "id": 6496,
+                    "name": "po ukončenom  5. mesiaci",
+                    "vaccination_opens": 152
+                },
+                {
+                    "id": 6501,
+                    "name": "po ukončenom  6. mesiaci",
+                    "vaccination_opens": 182
+                },
+                {
+                    "id": 6506,
+                    "name": "od 16 do 23 mesiacov",
+                    "vaccination_opens": 486
+                },
+                {
+                    "id": 6511,
+                    "name": "po ukončenom  7. mesiaci",
+                    "vaccination_opens": 213
+                },
+                {
+                    "id": 6516,
+                    "name": "po ukončenom  8. mesiaci",
+                    "vaccination_opens": 244
+                },
+                {
+                    "id": 6521,
+                    "name": "po ukončenom  9. mesiaci",
+                    "vaccination_opens": 274
+                },
+                {
+                    "id": 6526,
+                    "name": "po ukončenom  10. mesiaci",
+                    "vaccination_opens": 305
+                },
+                {
+                    "id": 6531,
+                    "name": "po ukončenom  11. mesiaci",
+                    "vaccination_opens": 335
+                },
+                {
+                    "id": 6532,
+                    "name": "po ukončenom  12. mesiaci",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6533,
+                    "name": "od 12 do 15 mesiacov",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6534,
+                    "name": "po ukončenom  15. mesiaci",
+                    "vaccination_opens": 456
+                },
+                {
+                    "id": 6535,
+                    "name": "po ukončenom  16. mesiaci",
+                    "vaccination_opens": 486
+                },
+                {
+                    "id": 6537,
+                    "name": "po ukončenom  21. mesiaci",
+                    "vaccination_opens": 639
+                },
+                {
+                    "id": 6538,
+                    "name": "po ukončenom  24. mesiaci",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6540,
+                    "name": "po ukončenom  27. mesiaci",
+                    "vaccination_opens": 821
+                },
+                {
+                    "id": 6541,
+                    "name": "po ukončenom  30. mesiaci",
+                    "vaccination_opens": 912
+                },
+                {
+                    "id": 6542,
+                    "name": "po ukončenom  33. mesiaci",
+                    "vaccination_opens": 1004
+                },
+                {
+                    "id": 6543,
+                    "name": "po ukončenom  36. mesiaci",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6544,
+                    "name": "medzi 30 - 36 mesiacmi",
+                    "vaccination_opens": 912
+                },
+                {
+                    "id": 6545,
+                    "name": "v 3. roku ",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6546,
+                    "name": "medzi 36 - 48 mesiacmi",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6547,
+                    "name": "po ukončenom 42. mesiaci",
+                    "vaccination_opens": 1277
+                },
+                {
+                    "id": 6548,
+                    "name": "po ukončenom 48. mesiaci",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6549,
+                    "name": "po ukončenom 54. mesiaci",
+                    "vaccination_opens": 1642
+                },
+                {
+                    "id": 6550,
+                    "name": "48 - 61 mesiacov",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6551,
+                    "name": "po ukončenom 60. mesiaci",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 6552,
+                    "name": "medzi 3 až 7 rokmi",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6553,
+                    "name": "po ukončenom 6. roku",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 6556,
+                    "name": "v 6 a pol roku ",
+                    "vaccination_opens": 2372
+                },
+                {
+                    "id": 6557,
+                    "name": "po ukončení 7. roku",
+                    "vaccination_opens": 2555
+                },
+                {
+                    "id": 6560,
+                    "name": "po ukončenom  18. mesiaci",
+                    "vaccination_opens": 547
+                },
+                {
+                    "id": 32906,
+                    "name": "v 5 a pol roku",
+                    "vaccination_opens": 2007
+                },
+                {
+                    "id": 59051,
+                    "name": "po ukončenom 13. mesiaci",
+                    "vaccination_opens": 396
+                },
+                {
+                    "id": 59056,
+                    "name": "v 6 až 7 rokoch",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 59061,
+                    "name": "medzi 18 až 24 mesiacmi",
+                    "vaccination_opens": 547
+                },
+                {
+                    "id": 110006,
+                    "name": "od 7 do 14 dní",
+                    "vaccination_opens": 7
+                }
+            ],
+            "growth_type": [
+                {
+                    "id": 6461,
+                    "name": "Výška vzhľadom k hmotnosti",
+                    "unique_name": "height_for_weight"
+                },
+                {
+                    "id": 32786,
+                    "name": "Výška vzhľadom na vek",
+                    "unique_name": "height_for_age"
+                }
+            ],
+            "parent_gender": [
+                {
+                    "id": 37,
+                    "name": "Muž",
+                    "unique_name": "male"
+                },
+                {
+                    "id": 38,
+                    "name": "Žena",
+                    "unique_name": "female"
+                },
+                {
+                    "id": 60,
+                    "name": "Obaja",
+                    "unique_name": "both"
+                }
+            ],
+            "relationship_to_parent": [
+                {
+                    "id": 109801,
+                    "name": "Matka",
+                    "unique_name": "mother"
+                },
+                {
+                    "id": 109806,
+                    "name": "Otec",
+                    "unique_name": "father"
+                },
+                {
+                    "id": 109811,
+                    "name": "Iný opatrovateľ",
+                    "unique_name": "other_caregiver"
+                },
+                {
+                    "id": 109816,
+                    "name": "Poskytovateľ služieb",
+                    "unique_name": "service_provider"
+                }
+            ],
+            "type_of_support": [
+                {
+                    "id": 59001,
+                    "name": "Rodičom vedená hra"
+                },
+                {
+                    "id": 59006,
+                    "name": "Samostatná hra"
+                }
+            ]
+        },
+        "standardDevData": {
+            "standard_deviation": [
 
             ]
         }
     }]
-    
+
 };

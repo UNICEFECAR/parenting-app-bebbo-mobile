@@ -52,8 +52,8 @@ type Props = {
 
 const HealthCheckups = ({navigation,route}: Props):any => {
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
-  const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
+  const headerColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
+  const backgroundColor = themeContext?.colors.HEALTHCHECKUP_TINTCOLOR;
   const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
   const {
@@ -70,15 +70,22 @@ const HealthCheckups = ({navigation,route}: Props):any => {
     const obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
+  const [profileLoading,setProfileLoading] = React.useState(false);
   const hcuModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsHCUModalOpened),
     );
-    const [profileLoading,setProfileLoading] = React.useState(false);
-   useFocusEffect(()=>{
-    // console.log('vaccineModalOpened',vaccineModalOpened);
-    // pass true to make modal visible every time & reload
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // whatever
+  //     setModalVisible(hcuModalOpened)
+  //   }, [hcuModalOpened])
+  //  );
+  useEffect(()=>{
     setModalVisible(hcuModalOpened)
-   })
+  },[hcuModalOpened]);
+  
+ 
+ 
   const reminders = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild).reminders
@@ -97,7 +104,7 @@ const HealthCheckups = ({navigation,route}: Props):any => {
       return (
         <FlexCol>
           {upcomingPeriods.length > 0 ? (
-            upcomingPeriods?.map((item, itemindex) => {
+            upcomingPeriods?.map((item:any, itemindex:any) => {
               return (
                 <UpcomingHealthCheckup
                   item={item}
@@ -118,7 +125,7 @@ const HealthCheckups = ({navigation,route}: Props):any => {
       return (
         <FlexCol>
           {previousPeriods.length > 0 ? (
-            previousPeriods?.map((item, itemindex) => {
+            previousPeriods?.map((item:any, itemindex:any) => {
               return (
                 <View style={styles.previousPeriodsView} key={itemindex}>
                 <PreviousHealthCheckup
@@ -143,7 +150,7 @@ const HealthCheckups = ({navigation,route}: Props):any => {
     {
      return upcomingPeriods[0]
     }else{
-     const prevPeriod = previousPeriods.find(item =>item.vaccination_opens <= childAgeIndays && item.vaccination_ends > childAgeIndays)
+     const prevPeriod = previousPeriods.find((item:any) =>item.vaccination_opens <= childAgeIndays && item.vaccination_ends > childAgeIndays)
      return prevPeriod;
     }
 

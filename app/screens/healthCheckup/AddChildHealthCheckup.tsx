@@ -69,7 +69,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from 'styled-components/native';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import {
@@ -102,8 +102,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const { vcPeriod, editMeasurementDate } = route.params;
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
-  const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
+  const headerColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
+  const backgroundColor = themeContext?.colors.HEALTHCHECKUP_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editMeasurementDate ? editMeasurementDate : null,
   );
@@ -455,7 +455,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
 
           // check if blank healthcheckup is done or not?// is there entry exists for that date update or else add?
           const growthValues = {
-            uuid: uuidv4(),
+            uuid: uuid(),
             isChildMeasured: isMeasured,
             weight: isMeasured ? String(weightValue) : '0',
             height: isMeasured ? String(heightValue) : '0',
@@ -516,7 +516,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
     // previousPeriods.shift();	
     //remove first period which is the current period	
     let allPreviousPendingVaccines: any[] = [];
-    previousPeriods.forEach((period) => {
+    previousPeriods.forEach((period:any) => {
       period.vaccines.forEach((vItem: any) => {
         allPreviousPendingVaccines.push(vItem);
       });
@@ -781,7 +781,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                       clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}
-                      onChangeText={(text): any => handleDoctorRemark(text)}
+                      onChangeText={(text:any): any => handleDoctorRemark(text)}
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
@@ -799,7 +799,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
               <ButtonContainer>
                 <ButtonTertiary
                   disabled={disableSave()}
-                  onPress={(e): any => {
+                  onPress={(e:any): any => {
                     e.stopPropagation();
                     setClicked(true);
                     setTimeout(() => {

@@ -1,6 +1,6 @@
 import { ObjectSchema } from "realm";
 export type remiderType = "vaccine" | "healthCheckup";
-export const MeasuresEntitySchema = {
+export const MeasuresEntitySchema: ObjectSchema = {
   name: "Measures",
   embedded: true,
   properties: {
@@ -29,7 +29,7 @@ export type MeasuresEntity = {
   doctorComment: string;
   measurementPlace: number;
 }
-export const ReminderEntitySchema = {
+export const ReminderEntitySchema: ObjectSchema = {
   name: "Reminder",
   embedded: true,
   properties: {
@@ -53,7 +53,7 @@ export type ReminderEntity = {
 export type ChildEntity = {
   uuid: string;
   childName: string;
-  gender: number|string;
+  gender: number | string;
   photoUri?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -87,14 +87,14 @@ export const ChildEntitySchema: ObjectSchema = {
     babyRating: { type: "int", optional: true },
     measures: { type: "list", objectType: "Measures", default: [] },
     comment: { type: "string", optional: true },
-    checkedMilestones: { type: "int[]", optional: true },
+    checkedMilestones: { type: "list", objectType: 'int', optional: true },
     reminders: { type: "list", objectType: "Reminder", default: [] },
     measurementPlace: { type: "string", optional: true },
     isPremature: { type: "string", optional: true },
     isExpected: { type: "string", optional: true },
     isMigrated: { type: 'bool', optional: true },
-    favoriteadvices: { type: "int[]", optional: true },
-    favoritegames: { type: "int[]", optional: true },
+    favoriteadvices: { type: "list", objectType: 'int', optional: true },
+    favoritegames: { type: "list", objectType: 'int', optional: true },
   }
 };
 

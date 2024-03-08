@@ -792,4 +792,174 @@ export const basicPagesData:any = {
             "embedded_images": []
         }
     ],
+    "sk": [
+        {
+            "id": 12012,
+            "type": "Child Development - Age Periods",
+            "title": "Pripravenosť na nové prostredie",
+            "child_age": [
+                58
+            ],
+            "boy_video_article": 7986,
+            "girl_video_article": 7981,
+            "milestone": "<p>Sledujte správanie svojho dieťaťa a poraďte sa so svojím pediatrom, ak si všimnete, že na konci šiesteho roku života Vaše dieťa:</p>\n\n<ul><li>má veľmi malý rozsah pozornosti,</li>\n\t<li>vôbec sa nezaujíma o písmená, čísla, čítanie alebo písanie,</li>\n\t<li>zdá sa, že dobre nepočuje,</li>\n\t<li>nehovorí jasne vety zložené z 5 alebo viac slov,</li>\n\t<li>nevyrozpráva dlhšie príbehy pomocou celých viet,</li>\n\t<li>neoblečie sa a nepoužije toaletu bez pomoci,</li>\n\t<li>nevie sa zúčastňovať rozhovorov,</li>\n\t<li>nevie sa hrať viac ako jedným spôsobom,</li>\n\t<li>nevie uviesť svoje meno a adresu,</li>\n\t<li>nevie stáť alebo skákať na jednej nohe.</li>\n</ul>",
+            "created_at": "Tue, 07/11/2023 - 02:13",
+            "updated_at": "Thu, 08/31/2023 - 23:19",
+            "mandatory": 1
+        },
+        {
+            "id": 12011,
+            "type": "Child Development - Age Periods",
+            "title": "Radosť z asociácie",
+            "child_age": [
+                57
+            ],
+            "boy_video_article": 7996,
+            "girl_video_article": 7991,
+            "milestone": "<p>Sledujte správanie svojho dieťaťa a poraďte sa so svojím pediatrom, ak si všimnete, že na konci piateho roku života Vaše dieťa:</p>\n\n<ul><li>nevie s istotou chodiť, behať, liezť, skákať alebo používať schody,</li>\n\t<li>nevie odpovedať na jednoduché otázky (Ako sa voláš? Kto je tvoja rodina? Aká je tvoja obľúbená rozprávka?),</li>\n\t<li>nerozumie dvojčlenným pokynom (Polož šálku na stôl! alebo Daj loptu pod posteľ!),</li>\n\t<li>nevie samo vykonávať každodenné činnosti, ako je jedenie alebo obliekanie,</li>\n\t<li>zdá sa, že má problém s držaním ceruzky,</li>\n\t<li>prejavuje sa extrémnym správaním (napríklad je extrémne bojazlivé, agresívne alebo smutné),</li>\n\t<li>nehovorí o denných činnostiach,</li>\n\t<li>neprejavuje záujem o interakciu s dospelými ani s deťmi.</li>\n</ul>",
+            "created_at": "Tue, 07/11/2023 - 01:47",
+            "updated_at": "Thu, 08/31/2023 - 23:19",
+            "mandatory": 1
+        },
+        {
+            "id": 12010,
+            "type": "Child Development - Age Periods",
+            "title": "Kladenie otázok",
+            "child_age": [
+                52
+            ],
+            "boy_video_article": 7976,
+            "girl_video_article": 7971,
+            "milestone": "<p>Sledujte správanie svojho dieťaťa a porozprávajte sa so svojím pediatrom, ak si všimnete, že na konci štvrtého roka života Vaše dieťa:</p>\n\n<ul><li>neprejavuje záujem o hranie hier s ostatnými alebo hranie predstieraných hier,</li>\n\t<li>ignoruje iné deti alebo nereaguje na ľudí mimo rodiny,</li>\n\t<li>neskáče na mieste,</li>\n\t<li>má problém čmárať (vytvárať znaky/stopy na papieri),</li>\n\t<li>nerozumie pokynu, ktorý má tri časti,</li>\n\t<li>nerozpráva obľúbený príbeh.</li>\n</ul>",
+            "created_at": "Tue, 07/11/2023 - 01:19",
+            "updated_at": "Thu, 08/31/2023 - 23:19",
+            "mandatory": 1
+        },
+        {
+            "id": 12007,
+            "type": "Child Development - Age Periods",
+            "title": "Prvý krok a prvé slovo",
+            "child_age": [
+                49
+            ],
+            "boy_video_article": 7951,
+            "girl_video_article": 7946,
+            "milestone": "<p>Pozorujte správanie svojho dieťaťa a poraďte sa s Vašim pediatrom, ak si všimnete, že Vaše dieťa:</p>\n\n<ul><li>má problémy s videním alebo počutím,</li>\n\t<li>nehovorí žiadne slová,</li>\n\t<li>má ťažkosti s dodržiavaním aj veľmi jednoduchých pokynov a požiadaviek,</li>\n\t<li>nepoužíva pri komunikácii gestá a ukazovanie,</li>\n\t<li>nenadväzuje s Vami očný kontakt a odmieta sa s Vami objímať,</li>\n\t<li>nechodí samostatne.</li>\n</ul>",
+            "created_at": "Fri, 06/30/2023 - 17:40",
+            "updated_at": "Thu, 08/31/2023 - 23:22",
+            "mandatory": 1
+        },
+        {
+            "id": 12009,
+            "type": "Child Development - Age Periods",
+            "title": "Predstavivosť sa rozvíja",
+            "child_age": [
+                51
+            ],
+            "boy_video_article": 7881,
+            "girl_video_article": 7966,
+            "milestone": "<p>Pozorujte správanie svojho dieťaťa a poraďte sa s Vašim pediatrom, ak si všimnete, že na konci tretieho roku života Vaše dieťa:</p>\n\n<ul><li>nepozerá sa na vás (neudržiava s Vami očný kontakt),</li>\n\t<li>má ťažkosti so sluchom alebo zrakom (nevidí niektoré veci/ detaily),</li>\n\t<li>nehovorí v krátkych vetách (aspoň 3 slovná veta),</li>\n\t<li>má ťažko zrozumiteľnú reč,</li>\n\t<li>nenasleduje jednoduché pokyny,</li>\n\t<li>nechce sa hrať s inými deťmi alebo s hračkami a inými predmetmi,</li>\n\t<li>nepozorujete hru “akože” a predstieranie,</li>\n\t<li>má ťažkosti bežať,</li>\n\t<li>na papier nečmára alebo nekreslí,</li>\n\t<li>neudrží v ruke drobné objekty.</li>\n</ul>",
+            "created_at": "Tue, 06/20/2023 - 11:49",
+            "updated_at": "Thu, 08/31/2023 - 23:26",
+            "mandatory": 1
+        },
+        {
+            "id": 12008,
+            "type": "Child Development - Age Periods",
+            "title": "Osamostatňovanie sa ",
+            "child_age": [
+                50
+            ],
+            "boy_video_article": 7961,
+            "girl_video_article": 7956,
+            "milestone": "<p>Pozorujte správanie svojho dieťaťa a poraďte sa s Vašim pediatrom, ak si všimnete, že na konci svojho druhého roka Vaše dieťa:</p>\n\n<ul><li>s Vami nenadväzuje očný kontakt,</li>\n\t<li>má ťažkosti vidieť alebo počuť určité veci,</li>\n\t<li>nehovorí žiadne slová,</li>\n\t<li>neukazuje prstom na objekty,</li>\n\t<li>nenasleduje jednoduché inštrukcie,</li>\n\t<li>neprejavuje a nezdieľa emócie,</li>\n\t<li>chôdza nie je stabilná, koordinovaná a istá.</li>\n</ul>",
+            "created_at": "Tue, 06/20/2023 - 11:46",
+            "updated_at": "Thu, 08/31/2023 - 23:24",
+            "mandatory": 1
+        },
+        {
+            "id": 12006,
+            "type": "Child Development - Age Periods",
+            "title": "Vytváranie návykov",
+            "child_age": [
+                48
+            ],
+            "boy_video_article": 7941,
+            "girl_video_article": 7936,
+            "milestone": "<p>Pozorujte správanie svojho dieťaťa a poraďte sa s Vašim pediatrom, ak si všimnete, že na konci prvého roka života Vaše dieťa:</p>\n\n<ul><li>nenadväzuje s Vami očný kontakt alebo nesleduje očami pohybujúce sa predmety,</li>\n\t<li>nereaguje na zvuky,</li>\n\t<li>nereaguje na svoje meno, keď ho oslovíte alebo naň zavoláte,</li>\n\t<li>nie je prítomné džavotanie,</li>\n\t<li>nedáva najavo svoju potrebu alebo záujem,</li>\n\t<li>neukazuje prstom na objekty,</li>\n\t<li>nezdieľa s vami svoje emócie (radosť, strach, úspech),</li>\n\t<li>neštvornožkuje.</li>\n</ul>",
+            "created_at": "Tue, 06/20/2023 - 11:43",
+            "updated_at": "Thu, 08/31/2023 - 23:26",
+            "mandatory": 1
+        },
+        {
+            "id": 12005,
+            "type": "Child Development - Age Periods",
+            "title": "Nové objavy",
+            "child_age": [
+                47
+            ],
+            "boy_video_article": 7931,
+            "girl_video_article": 7926,
+            "milestone": "<p>Pozorujte správanie svojho dieťaťa a porozprávajte sa so svojím pediatrom, ak si všimnete, že na konci deviateho mesiaca Vaše dieťa: </p>\n\n<ul><li>nenadväzuje s Vami očný kontakt alebo zrakom nesleduje pohybujúce sa objekty,</li>\n\t<li>nedžavoce („mama“, „baba“ atď.),</li>\n\t<li>neotáča hlavu za zdrojom zvuku,</li>\n\t<li>nepozerá sa kam ukazujete,</li>\n\t<li>neprejavuje náklonnosť k svojim primárnym opatrovateľom – neusmieva sa na nich,</li>\n\t<li>nereaguje na svoje meno,</li>\n\t<li>zdá sa, že nerozpoznáva známe osoby,</li>\n\t<li>nepretáča sa,</li>\n\t<li>keď ju/ho dvíhate, je buď poddajný/á alebo príliš stuhnutý/á,</li>\n\t<li>nesedí ani s Vašou pomocou a podporou,</li>\n\t<li>má ťažkosti s jedením tuhej stravy.</li>\n</ul>",
+            "created_at": "Tue, 06/20/2023 - 11:43",
+            "updated_at": "Thu, 08/31/2023 - 23:18",
+            "mandatory": 1
+        },
+        {
+            "id": 12001,
+            "type": "Child Development - Age Periods",
+            "title": "Vzájomné spoznávanie sa",
+            "child_age": [
+                43
+            ],
+            "boy_video_article": 7886,
+            "girl_video_article": 7891,
+            "milestone": "<p>Pozorujte správanie svjoho dieťaťa a poraďte sa s Vašim pediatrom, ak si všimnete, že na konci prvého mesiaca Vaše dieťa: </p>\n\n<ul><li>veľa plače a nedá sa utíšiť,</li>\n\t<li>s ťažkosťami saje a veľmi pomaly je možné ho nakŕmiť,</li>\n\t<li>spí viac ako 16 hodín denne, alebo spí nepokojne,</li>\n\t<li>vôbec nehýbe rukami alebo nohami,</li>\n\t<li>pri hlasnom zvuku sa nezľakne,</li>\n\t<li>pri jasnom svetle neprižmúri oči.</li>\n</ul>",
+            "created_at": "Thu, 06/15/2023 - 20:20",
+            "updated_at": "Thu, 08/31/2023 - 23:20",
+            "mandatory": 1
+        },
+        {
+            "id": 12004,
+            "type": "Child Development - Age Periods",
+            "title": "Intenzívne skúmanie",
+            "child_age": [
+                46
+            ],
+            "boy_video_article": 7921,
+            "girl_video_article": 7916,
+            "milestone": "<p>Pozorujte správanie svojho dieťaťa a poraďte sa s Vašim pediatrom, ak si všimnete, že na konci šiesteho mesiaca Vaše dieťa: </p>\n\n<ul><li>pravidelne a dlho plače a nie je možné ho utíšiť,</li>\n\t<li>nenadväzuje s vami očný kontakt a nepozorujte očami pohybujúce sa predmety,</li>\n\t<li>nedžavoce a neotáča sa za zdrojom zvuku,</li>\n\t<li>nesmeje sa a nevýska,</li>\n\t<li>nepretáča sa z chrbta na brucho,</li>\n\t<li>nemá pod kontrolou pohyby krku a hlavy,</li>\n\t<li>nedokáže sedieť s Vašou oporou,</li>\n\t<li>nenaťahuje sa za predmetmi ani keď ho povzbudzujete ,</li>\n\t<li>nesnaží sa dočiahnuť na predmety, ktoré má na dosah ruky,</li>\n\t<li>nedáva si predmety k ústam.</li>\n</ul>",
+            "created_at": "Thu, 06/15/2023 - 20:19",
+            "updated_at": "Thu, 08/31/2023 - 23:20",
+            "mandatory": 1
+        },
+        {
+            "id": 12003,
+            "type": "Child Development - Age Periods",
+            "title": "Rozmanité skúsenosti",
+            "child_age": [
+                45
+            ],
+            "boy_video_article": 7911,
+            "girl_video_article": 7906,
+            "milestone": "<p>Pozorujte správanie svojho dieťaťa a poraďte sa s Vašim pediatrom, ak si na konci štvrtého mesiaca všimnete, že Vaše dieťa: </p>\n\n<ul><li>často plače a nedá sa utíšiť,</li>\n\t<li>nenadväzuje očný kontakt alebo nevenuje pozornosť tvári iných ľudí,</li>\n\t<li>nepozoruje predmety v pohybe,</li>\n\t<li>nevydáva žiadne zvuky ani na ne nereaguje,</li>\n\t<li>nedokáže udržať hlavu v osi tela,</li>\n\t<li>nesiaha na hračku alebo predmet, ktorý má pred sebou,</li>\n\t<li>nevkladá si hračky do úst.</li>\n</ul>",
+            "created_at": "Thu, 06/15/2023 - 14:12",
+            "updated_at": "Thu, 08/31/2023 - 23:21",
+            "mandatory": 1
+        },
+        {
+            "id": 12002,
+            "type": "Child Development - Age Periods",
+            "title": "Vzájomné vyladenie sa a zavedenie rutín",
+            "child_age": [
+                44
+            ],
+            "boy_video_article": 7901,
+            "girl_video_article": 7896,
+            "milestone": "<p>Pozorujte správanie svojho dieťaťa a poraďte sa s Vašim pediatrom, ak si na konci druhého mesiaca všimnete, že Vaše dieťa:  </p>\n\n<ul><li>často a veľa plače a zvyčajne nie je možné ho utíšiť,</li>\n\t<li>nepozoruje tvár dospelého človeka ani na krátky čas,</li>\n\t<li>nereaguje na jasné svetlo alebo hlasné zvuky,</li>\n\t<li>nespí, alebo spí viac ako 16 hodín denne,</li>\n\t<li>pozorujete ťažkosti s kŕmením,</li>\n\t<li>vôbec nehýbe rukami alebo nohami,</li>\n\t<li>nedáva si svoje ruky k ústam,</li>\n\t<li>neopätuje Vám úsmev.</li>\n</ul>",
+            "created_at": "Thu, 06/15/2023 - 14:11",
+            "updated_at": "Thu, 08/31/2023 - 23:21",
+            "mandatory": 1
+        }
+    ],
 };
