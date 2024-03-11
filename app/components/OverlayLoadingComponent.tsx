@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
   },
   modalBackground: {
     alignItems: 'center',
+    backgroundColor: overlaymodalBackground,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-around',
-    backgroundColor: overlaymodalBackground,
   }
  
 });
