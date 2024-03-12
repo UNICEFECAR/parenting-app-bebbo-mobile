@@ -59,9 +59,10 @@ import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from 'react-native-fs';
 import TextInputML from '@components/shared/TextInputML';
-import { primaryColor } from '@styles/style';
+import { bgcolorWhite2, primaryColor } from '@styles/style';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
+import BackgroundColors from '@components/shared/BackgroundColors';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -73,7 +74,7 @@ type Props = {
 };
 const styles = StyleSheet.create({
   containerView: {
-    backgroundColor: primaryColor,
+    backgroundColor: bgcolorWhite2,
     flex: 1
   },
   flex2Style: {
@@ -325,7 +326,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   }
 
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   return <>
     <View style={styles.containerView}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />

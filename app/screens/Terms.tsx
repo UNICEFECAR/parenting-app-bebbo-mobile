@@ -6,7 +6,7 @@ import {
 import Checkbox, { CheckboxActive, CheckboxItem, CheckboxItemText, FormOuterCheckbox } from '@components/shared/CheckboxStyle';
 import { LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingContainer, { OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -18,8 +18,10 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
-import { Heading1w } from '../styles/typography';
+import { Heading1w, Heading2Centerw } from '../styles/typography';
 import { bgcolorWhite2, primaryColor } from '@styles/style';
+import VectorImage from 'react-native-vector-image';
+import { bebboLogoShapeNew } from '@dynamicImportsClass/dynamicImports';
 
 
 type TermsNavigationProp = StackNavigationProp<
@@ -29,6 +31,9 @@ type TermsNavigationProp = StackNavigationProp<
 
 type Props = {
   navigation: TermsNavigationProp;
+};
+const item = {
+  image:bebboLogoShapeNew
 };
 const styles = StyleSheet.create({
   checkboxStyle: {
@@ -46,11 +51,17 @@ const styles = StyleSheet.create({
   },
   scrollViewStyle: {
     padding: 0
+  },
+  vectorImageView:{
+    alignItems:'center',
+    justifyContent:'center',
+    marginBottom:15,
+    marginTop:45,
   }
 })
 const Terms = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
@@ -190,11 +201,15 @@ const Terms = ({ navigation }: Props): any => {
         />
         <OnboardingContainer>
           <OverlayLoadingComponent loading={loading} />
-          <OnboardingHeading>
-            <Heading1w>{t('tNcheader')}</Heading1w>
-          </OnboardingHeading>
+      
+          <View style={styles.vectorImageView}>
+                      <VectorImage source={item.image} />
+                    </View>
+         
+          <OnboardingshiftHead>
+            <Heading2Centerw>{t('discoverBebo')}</Heading2Centerw>
+          </OnboardingshiftHead>
           <ScrollView contentContainerStyle={styles.scrollViewStyle}>
-          <LabelText>{t('tncScreenContent')}</LabelText>
             <Fragment>
               <View style={styles.containerView2}>
                 <FormOuterCheckbox

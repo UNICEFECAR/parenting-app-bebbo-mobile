@@ -43,7 +43,7 @@ export const ChildContentArea = styled.View`
 `;
 
 export const LabelTextVac = styled.Text`
-  color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
   font-size: 16px;
 `;
 export const LabelText = styled(LabelTextVac)`
@@ -162,8 +162,6 @@ padding-bottom:7px;
 
 
 export const OrView = styled.View`
-position:relative;
-z-index:11;
 justify-content:center;
 align-items:center;
 margin:15px 0
@@ -179,7 +177,7 @@ export const OrDivider = styled.View`
 position:absolute;
 width:100%;
 height:1px;
-background-color:#fff;
+background-color:#1CABE2;
 top:50%;
 left:0;
 z-index:0;

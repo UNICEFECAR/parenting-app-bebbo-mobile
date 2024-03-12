@@ -6,6 +6,9 @@ declare module 'styled-components/native' {
 
     colors: {
         PRIMARY_COLOR: string;
+        SECONDARY_RE_COLOR: string;
+        PRIMARY_REDESIGN_COLOR: string;
+        PRIMARY_RE_TEXTCOLOR: string;
         PRIMARY_TINTCOLOR: string;
         SECONDARY_COLOR: string;
         SECONDARY_TINTCOLOR: string;
