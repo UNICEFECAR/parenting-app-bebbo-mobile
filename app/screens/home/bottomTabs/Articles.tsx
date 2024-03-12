@@ -14,7 +14,7 @@ import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { articlesTintcolor } from '@styles/style';
+import { articlesTintcolor, bgColor1, bgcolorWhite2, greyCode } from '@styles/style';
 import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -33,9 +33,7 @@ import { logEvent, synchronizeEvents } from '../../../services/EventSyncService'
 import { dataRealmCommon } from '../../../database/dbquery/dataRealmCommon';
 import { HistoryEntity, SearchHistorySchema } from '../../../database/schema/SearchHistorySchema';
 import VectorImage from 'react-native-vector-image';
-import { index } from 'realm';
 import unorm from 'unorm';
-import FlexSearch from 'flexsearch';
 import Fuse from 'fuse.js';
 import { ARTICLE_SEARCHED } from '@assets/data/firebaseEvents';
 
@@ -57,31 +55,24 @@ const styles = StyleSheet.create({
     backgroundColor: articlesTintcolor,
     flex: 1
   },
-  container: {
-    flexDirection: 'column'
-  },
-  divider: {
-    height: 1,
-    backgroundColor: 'grey',
-  },
   flex1View: {
     flex: 1
   },
-  historyList: {
-    position: 'absolute',
-    top: 51,
-    left: 0,
-    right: 0,
-    zIndex: 1,
-    paddingBottom: 20,
-    backgroundColor: '#fff',
-  },
-  historyItem: {
-    flexDirection: 'row',
-    padding: 10,
-    marginHorizontal: 10,
+  historyItem: { 
+    borderBottomColor: greyCode,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    flexDirection: 'row',
+    marginHorizontal: 10,
+    padding: 10,
+  },
+  historyList: { 
+    backgroundColor: bgcolorWhite2,
+    left: 0,
+    paddingBottom: 20,
+    position: 'absolute',
+    right: 0,
+    top: 51,
+    zIndex: 1,
   },
   historyText: {
     fontSize: 14,
@@ -106,10 +97,8 @@ const Articles = ({ route, navigation }: any): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(true);
   const [loadingArticle, setLoadingArticle] = useState(false);
-  const [fuseData, setFuseData] = useState<any>(null);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
-  const [searchResults, setSearchResults] = useState([]);
   const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
@@ -133,7 +122,7 @@ const Articles = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
-  
+
   //merge array 
   const mergearr = (articlearrold: any[], videoartarrold: any[], isSuffle: boolean): any => {
     let combinedarr: any[] = [];
@@ -179,7 +168,7 @@ const Articles = ({ route, navigation }: any): any => {
 
     return combinedarr;
   }
-  const preprocessArticles =  (articles: any): any=> {
+  const preprocessArticles = (articles: any): any => {
     return articles.map((article: any) => ({
       ...article,
       normalizedTitle: normalizeText(article.title),
@@ -206,47 +195,31 @@ const Articles = ({ route, navigation }: any): any => {
     //const history:any = realm?.objects('SerachHistory');
 
   }
-  // useEffect(() => {
-  //   // Load initial search history from RealmDB
 
-  // }, []);
-  const storeUnsyncedEvent = async (realm: any, keyword: any): Promise<any> => {
-
+  //store previous searched keyword
+  const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
     realm.write(() => {
-      const unsyncedEvent = realm.create('SerachHistory', {
+      const storeKeyword = realm.create('SerachHistory', {
         keyword: keyword,
         createdAt: new Date(),
       }, Realm.UpdateMode.Modified);
-      console.log('EventClick unsyncedEvent for category', unsyncedEvent);
     });
   }
+
   const saveToRealm = async (keyword: string): Promise<any> => {
-    // const realm = await dataRealmCommon.openRealm();
-    // console.log('Realm Data is',realm?.create())
-    // realm?.create('SerachHistory', {
-    //   name: keyword,
-    //   createdAt: new Date(),
-    // });
     const historyData: any = {
       keyword: keyword,
       createdAt: new Date(),
     }
     await dataRealmCommon.create<HistoryEntity>(SearchHistorySchema, historyData);
-    // realm?.write(() => {
-    //   realm.create('SearchHistory', {
-    //     keyword: keyword,
-    //     timestamp: new Date(),
-    //   });
-    // });
   };
+
   useFocusEffect(
     React.useCallback(() => {
-      // whatever
       if (netInfo.isConnected) {
         synchronizeEvents(netInfo.isConnected);
       }
       getSearchedKeywords()
-      console.log('UseFouusEffect Articles');
       setModalVisible(articleModalOpened);
     }, [articleModalOpened])//historyVisible
   );
@@ -322,12 +295,10 @@ const Articles = ({ route, navigation }: any): any => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
   }
-  const setFilteredArticleData = (itemId: any, queryText: any): any => {
-    console.log('in set filtered method')
-    // Keyboard.dismiss();
+  const setFilteredArticleData = (itemId: any): any => {
+    setHistoryVisible(false)
     if (articleData != null && articleData != undefined && articleData.length > 0) {
       setLoadingArticle(true);
-      
       if (itemId.length > 0) {
         let newArticleData = articleDataOld.filter((x: any) => itemId.includes(x.category));
         let newvideoArticleData = videoarticleData.filter((x: any) => itemId.includes(x.category));
@@ -353,9 +324,9 @@ const Articles = ({ route, navigation }: any): any => {
 
         //combine-array
         const combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
-        console.log('Search Data', combinedartarr)
+
         setfilteredData(combinedartarr);
-        setHistoryVisible(false);
+
         setLoadingArticle(false);
         toTop();
       } else {
@@ -384,10 +355,9 @@ const Articles = ({ route, navigation }: any): any => {
         } else {
           setfilteredData(newArticleData);
         }
-        console.log('Here is for loading', loadingArticle)
+
         setLoadingArticle(false);
-        console.log('Here is for loading...', loadingArticle)
-        setHistoryVisible(false);
+        // setHistoryVisible(false);
         toTop();
       }
     } else {
@@ -405,13 +375,12 @@ const Articles = ({ route, navigation }: any): any => {
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
             setFilterArray(route.params?.categoryArray);
-            setFilteredArticleData(route.params?.categoryArray, queryText);
+            setFilteredArticleData(route.params?.categoryArray);
             console.log('UseFouusEffect Articles one');
           }
           else {
-            console.log('UseFouusEffect Articles one', queryText);
             setFilterArray([]);
-            setFilteredArticleData([], queryText);
+            setFilteredArticleData([]);
           }
         }
         if (route.params?.backClicked != 'yes') {
@@ -448,108 +417,55 @@ const Articles = ({ route, navigation }: any): any => {
 
 
   const onFilterArrayChange = (newFilterArray: any): any => {
-    console.log('filterarray data', newFilterArray)
     setFilterArray(newFilterArray)
   }
 
-  //custom sort function 
-  const customSortFunction = (a: any, b: any, queryText: any): any => {
-    // Check if a and b are valid strings
 
-    if (typeof a !== 'string' || typeof b !== 'string') {
-      return 0; // Return 0 if either a or b is not a string
-    }
-
-    // Convert a and b to lowercase strings for case-insensitive comparison
-    const aLower = a.toLowerCase();
-    const bLower = b.toLowerCase();
-
-    // Check if aLower and bLower are valid strings after conversion
-    if (typeof aLower !== 'string' || typeof bLower !== 'string') {
-      return 0; // Return 0 if either aLower or bLower is not a string
-    }
-
-    // Find the index of queryText in aLower and bLower
-    const indexA = aLower.indexOf(queryText.toLowerCase());
-    const indexB = bLower.indexOf(queryText.toLowerCase());
-
-    return indexB - indexA;
-  };
-  let artData: any;
-  let newvideoArticleData: any;
-  let combinedartarr = [];
-  let fuse:any;
-  
-  useEffect(()=>{
-    console.log('In every fuse call')
-    const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-    combinedartarr = mergearr(articleDataall, videoarticleDataAllCategory, false);
-    articleData = [...combinedartarr];
-    const processedArticles =  preprocessArticles(articleData);
-    fuse = new Fuse(processedArticles, {
-      keys: ['normalizedTitle', 'normalizedSummary', 'normalizedBody'],
-      threshold: 0.6, // Adjust as needed
-      ignoreLocation: true,
-      shouldSort: true,
-      includeScore: true,
-      // sortFn: (a, b) => customSortFunction(a, b, keywords) // No need to pass queryText here
-    });
-    setFuseData(fuse)
-  },[])
   //code for getting article dynamic data ends here.
-  const searchList = async (queryText: any): Promise<any> => {  
+  const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false)
     setLoadingArticle(true);
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve,0));
     Keyboard.dismiss();
+    let artData:any;
+    let combinedartarr:[];
+    let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
-
-      console.log('Fuse data',fuse)
-
-      // if (keywords.length > 1) {
-      //   //  setLoadingDataArticle(false);
-      //   keywords.map(async (keyword: any) => {
-      //     console.log('keyword is search here', keyword)
-      //     const results = await fuse.search(keyword).map((result) => result.item).flat();
-      //     console.log('Results is search here', results)
-      //     setfilteredData(results);
-      //   })
-      //   setHistoryVisible(false);
-      //   toTop();
-      //   //setLoadingDataArticle(false);
-
-      // } else {
-      //   //   setLoadingDataArticle(false);
-      //   const results = await keywords.map((keyword: any) => fuse.search(keyword).map((result) => result.item)).flat();
-      //   console.log('Results is search here', results)
-      //   setfilteredData(results);
-      //   setHistoryVisible(false);
-      //   toTop();
-      //   //setLoadingDataArticle(false);
-
-      // }
-
+      const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+      combinedartarr = mergearr(articleDataall, videoarticleDataAllCategory, false);
+      articleData = [...combinedartarr];
+      const processedArticles = preprocessArticles(articleData);
+      const fuse = new Fuse(processedArticles, {
+        keys: ['normalizedTitle', 'normalizedSummary', 'normalizedBody'],
+        threshold: 0.6, // Adjust as needed
+        //ignoreLocation: true,
+        shouldSort: true,
+        //includeScore: true,
+        minMatchCharLength: 3
+        // sortFn: (a, b) => customSortFunction(a, b, keywords) // No need to pass queryText here
+      });
       const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
       if (keywords.length > 1) {
         const resultsPromises = keywords.map(async (keyword: any) => {
-          const results = await fuseData?.search(keyword).map((result:any) => result.item).flat();
+          const results = await fuse?.search(keyword).map((result: any) => result.item).flat();
           return results;
         });
         const resultsArrays = await Promise.all(resultsPromises);
         const aggregatedResults = resultsArrays.flat();
         setfilteredData(aggregatedResults);
         setLoadingArticle(false)
+        toTop()
       } else {
-        const results = await Promise.all(keywords.map((keyword: any) => fuseData?.search(keyword).map((result:any) => result.item).flat()));
+        const results = await Promise.all(keywords.map((keyword: any) => fuse?.search(keyword).map((result: any) => result.item).flat()));
         const aggregatedResults = results.flat();
         setfilteredData(aggregatedResults);
         setLoadingArticle(false)
+        toTop()
       }
       const eventData = { 'name': ARTICLE_SEARCHED, 'params': { article_searched: queryText } }
       logEvent(eventData, netInfo.isConnected)
-      saveToRealm(queryText);
       const realm = await dataRealmCommon.openRealm();
-      storeUnsyncedEvent(realm, queryText)
+      storeSearchKeyword(realm, queryText)
 
       // Update search history state
       const updatedHistoryWithoutClickedItem = searchHistory.filter(item => item !== queryText);
@@ -564,30 +480,21 @@ const Articles = ({ route, navigation }: any): any => {
           realm.delete(olderEntries);
         });
       }
-     
-      
+
+
     }
     else {
       artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
       newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
       combinedartarr = mergearr(artData, newvideoArticleData, true);
-      // mergearr
       articleData = [...combinedartarr];
-      setFilteredArticleData(filterArray, queryText);
-     // setLoadingDataArticle(false);
+      setFilteredArticleData(filterArray);
+      setLoadingArticle(false);
     }
-    setLoadingArticle(false)
   }
-  // useLayoutEffect(()=>{
-  //   console.log('In use layourEffect')
-  //   setLoadingDataArticle(true)
-    
-  // },[searchList])
   const renderSearchHistoryItem = ({ item }: { item: string }): any => (
     <Pressable
       onPress={async (): Promise<any> => {
-        // setLoadingDataArticle(true);
-
         Keyboard.dismiss();
         searchQueryText(item);
         await searchList(item);
@@ -627,6 +534,7 @@ const Articles = ({ route, navigation }: any): any => {
 
                 <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
                   e.preventDefault();
+                  Keyboard.dismiss();
                   await searchList(queryText);
 
                 }}>
@@ -661,7 +569,6 @@ const Articles = ({ route, navigation }: any): any => {
 
                 onSubmitEditing={async (event: any): Promise<any> => {
                   console.log("event-", queryText);
-                  // setLoadingDataArticle(true)
                   setHistoryVisible(false)
                   Keyboard.dismiss();
                   await searchList(queryText);
@@ -682,7 +589,6 @@ const Articles = ({ route, navigation }: any): any => {
                     Keyboard.dismiss();
                     searchQueryText('');
                     setHistoryVisible(true);
-                    await searchList('');
 
                   }}>
                     <Icon
