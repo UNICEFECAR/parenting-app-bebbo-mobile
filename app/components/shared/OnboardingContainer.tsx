@@ -5,7 +5,7 @@ const OnboardingContainer = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${(props:any):any => props.theme?.colors?.PRIMARY_COLOR};
+  background-color: ${(props:any):any => props.theme?.colors?.PRIMARY_REDESIGN_COLOR};
   padding: 0 25px;
 `;
 
@@ -16,7 +16,7 @@ export const OnboardingconfirmationHead = styled.View`
   justify-content: center;
   align-items:center;
   align-content:center;
-  background-color: ${(props:any):any => props.theme?.colors?.PRIMARY_COLOR};
+  background-color: ${(props:any):any => props.theme?.colors?.PRIMARY_REDESIGN_COLOR};
   padding:0 10px;
   text-align:center;
 `;

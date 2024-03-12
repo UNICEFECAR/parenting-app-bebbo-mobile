@@ -3,7 +3,9 @@ import styled from 'styled-components/native';
 
 export const ButtonText = styled.Text`
   text-align: center;
-  color: #000;
+  color: #fff;
+  text-transform: uppercase; 
+  font-weight:700;
 `;
 export const SelectionView = styled.View`
   flex: 1;
