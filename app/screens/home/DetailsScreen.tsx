@@ -388,31 +388,40 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       // fontFamily: '"Open Sans"' // beware to quote font family name!
     });
 
-  // A method for highlighting specific words within content
-  const highlightWord = (content: string, query: string): string => {
+  const highlightWord = (content: string, query: string[]): any => {
+    console.log('content is', typeof content);
+
     if (typeof content !== 'string') {
-      return "";
+        return "";
     }
 
-    const regex = new RegExp(`${query}`, 'gi');
-    const highlightedContent = content.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+    console.log('QueryText is', query);
+
+    let highlightedContent = content; // Initialize with original content
+
+    query.forEach((item) => {
+        const regex = new RegExp(`${item}`, 'gi');
+        highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+    });
 
     return highlightedContent;
-  }
+}
 
-  const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string): string => {
+
+  const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string[]): string => {
     console.log('JsonContent is', jsonContent)
     const parts = jsonContent.split(/(<img[^>]*>)/i);
 
     // Map each part and add spaces around the word if it is not inside an img tag
     const modifiedParts = parts.map((part: any): any => {
       if (!/<img[^>]*>/i.test(part)) {
-        return highlightWord(part, wordToHighlight);
-      }
+        return highlightWord(part, wordToHighlight); // Pass wordToHighlight array here
+    }
       return part;
     });
     return modifiedParts.join('')
   }
+  
   const highlightedTitle = queryText != undefined
     ? queryText.length !== 0
       ? highlightWord(detailDataToUse?.title, queryText)
