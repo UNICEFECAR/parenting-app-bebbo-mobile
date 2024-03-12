@@ -24,11 +24,12 @@ min-height:40px;
 /*Button Text */
 export const ButtonText = styled.Text`
   text-align: center;
-  color: ${(props:any):any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
+  color: ${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
-  
+  text-transform: uppercase; 
+  font-weight:700;
 `;
 
 export const ButtonTextLine = styled(ButtonText)`
@@ -80,6 +81,7 @@ export const ButtonLinkText = styled.Text`
 
 export const ButtonTextLg = styled(ButtonText)`
   font-size:16px;
+  color: ${(props:any):any => props.theme?.colors?.PRIMARY_RE_TEXTCOLOR};
 `;
 
 export const ButtonRow = styled.View`
@@ -94,7 +96,7 @@ export const ButtonLinkRow = styled(ButtonRow)`
   flex-direction:row;
   margin:0;
   padding: 10px;
- margin-bottom:15px;
+  margin-bottom:15px;
 `;
 
 export const ButtonCol = styled.View`

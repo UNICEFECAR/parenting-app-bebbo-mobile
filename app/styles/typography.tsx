@@ -12,7 +12,7 @@ export const Heading1 = styled.Text`
   text-align:left;
 `;
 export const Heading1w = styled(Heading1)`
-  color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `;
 
 export const Heading1Center = styled(Heading1)`
@@ -44,7 +44,7 @@ export const Heading2 = styled.Text`
   `;
 
 export const Heading2w = styled(Heading2)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `;
 
 export const Heading2Center = styled(Heading2)`
@@ -74,7 +74,8 @@ export const Heading3 = styled.Text`
   text-align:left;
 `
 export const Heading3w = styled(Heading3)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+fontFamily: 'roboto';
 `
 
 export const Heading3Center = styled(Heading3)`
@@ -109,7 +110,7 @@ export const Heading4 = styled.Text`
   
 `;
 export const Heading4w = styled(Heading4)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `
 
 export const Heading4Center = styled(Heading4)`

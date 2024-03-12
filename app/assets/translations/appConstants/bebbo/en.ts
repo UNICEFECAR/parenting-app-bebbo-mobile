@@ -1,13 +1,14 @@
 const en = {
         translation: {
-                "countryLangSelection": "You have selected country and language",
+                "countryLangSelection": "Country and language",
+                "discoverBebo": "Discover bebbo",
                 "editCountryLang": "Edit",
                 "continueCountryLang": "Continue",
                 "selectYourCountry": "Select your country",
                 "selectYourLang": "Select your language",
                 "goToLanguageSelection": "Go to language selection",
                 "goToConfirm": "Go to confirm",
-                "checkonce": "Check before proceeding",
+                "checkonce": "Bebbo will localize your content based on your selection of your country and langauge",
                 "country": "Country",
                 "language": "Language",
                 "walkthroughTextstitle0": "Welcome Parents!",

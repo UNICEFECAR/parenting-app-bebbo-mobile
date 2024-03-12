@@ -32,23 +32,25 @@ export const localizationSlice = createSlice({
   reducers: {
     onLocalizationSelect: (state, action: PayloadAction<any>):any => {
       console.log('LanguageCode is',action.payload)
-      if(action.payload.language.languageCode!=undefined){
+      if(action?.payload?.language?.languageCode!=undefined){
       state.countryId = action.payload.country.countryId;
       state.languageCode = action.payload.language.languageCode;
       state.luxonLocale = action.payload.language.luxonLocale;
       state.locale = action.payload.language.locale;
       state.pluralShow = action.payload.language.pluralShow;
       }else {
-        state.countryId = action.payload.country.countryId;
-        state.languageCode = action.payload.language[0].languageCode;
-        state.luxonLocale = action.payload.language[0].luxonLocale;
-        state.locale = action.payload.language[0].locale;
-        state.pluralShow = action.payload.language[0].pluralShow;
+        console.log('country default is',action.payload)
+        state.countryId = action.payload.countryId;
+        state.languageCode = action.payload.languages[0].languageCode;
+        state.luxonLocale = action.payload.languages[0].luxonLocale;
+        state.locale = action.payload.languages[0].locale;
+        state.pluralShow = action.payload.languages[0].pluralShow;
       }
     },
     oncountrtIdChange: (state, action: PayloadAction<any>):any => {
       state.countryId = action.payload;      
     },
+    
     setSponsorStore: (
       state,
       action: PayloadAction<any>,
@@ -83,12 +85,12 @@ export const localizationSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ):any => {
-      console.log(action.payload);
+      console.log('Hiiiiiiiiii',action.payload);
       state.AppLayoutDirectionParams = action.payload;
     },
   },
 });
 
-export const {onLocalizationSelect,setChildStore,setSponsorStore,oncountrtIdChange,ountrtDataChange,setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams} = localizationSlice.actions;
+export const {onLocalizationSelect,setChildStore,setSponsorStore,oncountrtIdChange,setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams} = localizationSlice.actions;
 
 export default localizationSlice.reducer;
