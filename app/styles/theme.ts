@@ -4,7 +4,7 @@ export const appTheme= {
     colors: {
         PRIMARY_COLOR: '#2B2F84',
         PRIMARY_REDESIGN_COLOR: '#FAFAFA',
-        PRIMARY_TINTCOLOR: '#8CAEE4',
+        PRIMARY_TINTCOLOR: '#B3E7FA',
         SECONDARY_COLOR: '#00AEEF',
         SECONDARY_RE_COLOR: ' #1CABE2',
         SECONDARY_TINTCOLOR: '#B3E7FA',
@@ -22,6 +22,7 @@ export const appTheme= {
         ARTICLES_TINTCOLOR: '#FFD2C4',
         PRIMARY_TEXTCOLOR: '#000000',
         PRIMARY_RE_TEXTCOLOR: '#2D2926',
+        TERMS_TEXTCOLOR: '#777779',
         SECONDARY_TEXTCOLOR: '#ffffff',
         LIGHTSHADE_COLOR: '#F7F6F4',
     },

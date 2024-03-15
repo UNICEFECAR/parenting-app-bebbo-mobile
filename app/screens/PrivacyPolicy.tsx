@@ -72,10 +72,10 @@ const PrivacyPolicy = ({navigation}: Props):any => {
     <>
     <View style={styles.containerView}>
     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-      <OnboardingContainer>
+      <OnboardingContainer style={styles.containerView}>
         <OnboardingHeading>
           <ChildAddTop>
-            <Heading1w>{t('tNcprivacyPolicyTitle')}</Heading1w>
+            <Heading1w style={{color:'#fff'}}>{t('tNcprivacyPolicyTitle')}</Heading1w>
             <ShiftFromTop5>
               <Pressable
                 onPress={():any => {

@@ -1,7 +1,7 @@
 export type RootStackParamList = {
   Localization: undefined;
-  Walkthrough: undefined;
   ChildSetup: undefined;
+  AddChildSetup: undefined;
   ChildImportSetup: {};
   ChildSetupList: undefined;
   AddSiblingDataScreen: {};
@@ -26,9 +26,9 @@ export type RootStackParamList = {
 };
 
 export type LocalizationStackParamList = {
+  CountryLanguageConfirmation: {};
   CountrySelection: {};
   LanguageSelection: undefined;
-  CountryLanguageConfirmation: {};
 };
 
 export type HomeDrawerNavigatorStackParamList = {

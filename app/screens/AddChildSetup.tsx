@@ -30,7 +30,7 @@ import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
-import React, { createRef, useContext, useState } from 'react';
+import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View, ScrollView, Alert, Platform, StyleSheet } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
@@ -40,7 +40,7 @@ import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { backup } from '../services/backup';
 import { addChild, getNewChild, isFutureDate } from '../services/childCRUD';
-import { validateForm, validateParentsForm } from '../services/Utils';
+import { validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3,
@@ -53,10 +53,6 @@ import {
   Heading4Regular,
   ShiftFromTopBottom5,
   Heading3w,
-  ShiftFromTop50,
-  Heading3Centerrw,
-  Heading3BoldCenterrw,
-  ShiftFromTop40,
   ShiftFromTop25,
 } from '../styles/typography';
 import AlertModal from '@components/AlertModal';
@@ -87,8 +83,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   flex2Style: {
-    alignItems: 'center',
-    marginVertical: 20
+    alignItems: 'flex-start'
   },
   flexRow1: {
     marginTop: 10
@@ -98,26 +93,16 @@ const styles = StyleSheet.create({
     paddingTop: 0
   },
   textInputStyle: {
-    width: '100%'
+    width: '100%',
   },
   textParentInfoStyle: {
-    textAlign: 'center'
-  },
-  importTextStyle: {
-    fontWeight: 700
-  },
-  uploadTextStyle: {
-    color: "#1CABE2"
-  },
-  orDividerStyle:{
-    width:172,
-    alignSelf:'center',
+    textAlign:'center'
   },
   dividerStyle: {
     marginEnd:20
   }
 })
-const ChildSetup = ({ navigation }: Props): any => {
+const AddChildSetup = ({route, navigation }: Props): any => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
@@ -134,11 +119,11 @@ const ChildSetup = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   let relationshipData = useAppSelector(
     (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
+    state.utilsData.taxonomy.allTaxonomyData != ''? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender:[],
   );
   const relationshipToParent = useAppSelector(
     (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent:[],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -173,7 +158,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('relationshipToParent is', relationshipToParent)
+      console.log('taxonomyData is',relationshipToParent)
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
@@ -188,6 +173,10 @@ const ChildSetup = ({ navigation }: Props): any => {
       }, 500);
     }, [])
   );
+  useEffect(()=>{
+    setRelationship(route?.params.relationship)
+    setUserRelationToParent(route?.params.userRelationToParent)
+  },[route?.params])
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
     setGender(checkedItem.id);
   };
@@ -309,7 +298,7 @@ const ChildSetup = ({ navigation }: Props): any => {
           setLoading(true);
           setIsImportRunning(true);
           handleImportedData(oldChildrenData, importedrealm)
-
+          
         }
 
       })
@@ -359,12 +348,28 @@ const ChildSetup = ({ navigation }: Props): any => {
       <ScrollView contentContainerStyle={styles.scrollViewStyle}>
         <OnboardingContainer>
           <OverlayLoadingComponent loading={loading} />
+          <FlexRow>
+          <ShiftFromTop25>
+          <Pressable
+            onPress={(e: any): any => {
+              navigation.navigate('ChildSetup')
+            }}
+          >
+          <Icon name={'ic_back'} size={12} color="#2D2926" />
+          </Pressable>
+          </ShiftFromTop25>
           <OrHeadingView>
-          <ParentSetUpDivider style={styles.dividerStyle}></ParentSetUpDivider>
-             <ChildSetupDivider></ChildSetupDivider>
-          </OrHeadingView>
-          <OnboardingHeading>
 
+          <ChildSetupDivider style={styles.dividerStyle}></ChildSetupDivider>
+          <ParentSetUpDivider></ParentSetUpDivider>
+          </OrHeadingView>
+       
+         
+         
+          </FlexRow>
+        
+          <OnboardingHeading>
+          
             <ChildCenterView>
               <Heading1Centerw>
                 {t('childSetupheader')}
@@ -375,11 +380,11 @@ const ChildSetup = ({ navigation }: Props): any => {
 
           <FlexCol>
             <Heading3w style={styles.textParentInfoStyle}>
-              {t('addBasicParentsInfo')}
+              {t('addBasicChildInfo')}
             </Heading3w>
-            {/* <ChildDate sendData={sendData} dobMax={dobMax} prevScreen="Onboarding" /> */}
-            <ShiftFromTop50>
-              <LabelText>{t('parentNameText')}</LabelText>
+            <ChildDate sendData={sendData} dobMax={dobMax} prevScreen="Onboarding" />
+            <ShiftFromTop20>
+              <LabelText>{t('childNameTxt')}</LabelText>
               <FormInputBox>
                 <TextInputML
                   style={styles.textInputStyle}
@@ -387,7 +392,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                   autoCorrect={false}
                   maxLength={30}
                   clearButtonMode="always"
-                  onChangeText={(value: any): any => {
+                  onChangeText={(value:any): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
@@ -395,14 +400,13 @@ const ChildSetup = ({ navigation }: Props): any => {
                     }
                   }}
                   value={name}
-                  placeholder={t('parentNamePlaceTxt')}
+                  placeholder={t('childNamePlaceTxt')}
                   placeholderTextColor={"gray"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
-            </ShiftFromTop50>
-
-            {/* {
+            </ShiftFromTop20>
+            {
               birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
                 <FormContainer1>
                   <LabelText>{t('genderLabel')}</LabelText>
@@ -414,240 +418,48 @@ const ChildSetup = ({ navigation }: Props): any => {
                   />
                 </FormContainer1>
                 : null
-            } */}
-
-
-            <ShiftFromTop20>
-              <FormInputGroup
-                onPress={(): any => {
-                  console.log('actionsheet visiblity', actionSheetRef.current)
-                  actionSheetRef.current?.setModalVisible(true);
-                }}>
-                <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
-                <FormInputBox>
-                  <FormDateText>
-                    <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text>
-                  </FormDateText>
-                  <FormDateAction>
-                    <Icon name="ic_angle_down" size={10} color="#000" />
-                  </FormDateAction>
-                </FormInputBox>
-              </FormInputGroup>
-            </ShiftFromTop20>
-
-            <View>
-              {
-                userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
-                  <FormContainer1>
-                    <LabelText>{t('parentGender')}</LabelText>
-                    <ToggleRadios
-                      options={relationshipData}
-                      tickbgColor={headerColor}
-                      tickColor={'#FFF'}
-                      getCheckedItem={getCheckedParentItem}
-                    />
-                  </FormContainer1>
-                  : null
-              }
-            </View>
-
-          </FlexCol>
-         <ShiftFromTop25>
-         <ButtonPrimary
-              disabled={!validateParentsForm(0, relationship, name)}
-              onPress={(e: any): any => {
-                e.stopPropagation();
-                setLoading(true);
-                let validated: any = false;
-                validated = validateParentsForm(0,  relationship, name);
-             
-                if (validated == true) {
-                  setTimeout(() => {
-                    setLoading(false);
-                    navigation.navigate('AddChildSetup',{
-                      birthDate:birthDate,
-                      relationship: relationship,
-                      userRelationToParent:userRelationToParent
-                    })
-                    //AddChild();
-                  }, 0)
-                }
-                else {
-                  console.log("in else");
-                }
-              }}>
-              <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
-            </ButtonPrimary>
-         </ShiftFromTop25>
-      
-          <FlexCol>
-            {/* <FlexRow>
-              <Flex1>
-                <OrView>
-                  <OrDivider><Text></Text></OrDivider>
-                  <OrHeadingView>
-                    <Heading3Centerw>{t('ORkeyText')}</Heading3Centerw>
-                  </OrHeadingView>
-
-                </OrView>
-              </Flex1>
-            </FlexRow> */}
-            <FlexRow>
-              <Flex2 style={styles.flex2Style}>
-                <Heading4Regularw style={styles.importTextStyle}>{t('importOnboardingText')}</Heading4Regularw>
-                <Heading4Regularw>{t('importOnboardingText1')}</Heading4Regularw>
-              </Flex2>
-
-            </FlexRow>
-            <FlexCol>
-              <ShiftFromTop20>
-              <ParentSetUpDivider style={styles.orDividerStyle}></ParentSetUpDivider>
-              <Heading3Centerw style={styles.flex2Style}>{t('ORkeyText')}</Heading3Centerw>
-              </ShiftFromTop20>
+            }
   
-
-            </FlexCol>
-            <Pressable onPress={(e: any): any => {
-
+        <ButtonRow>
+          <ButtonPrimary
+            disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
+            onPress={(e:any): any => {
               e.stopPropagation();
-              actionSheetRefImport.current?.setModalVisible(true);
+              setLoading(true);
+              let validated: any = false;
+              if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
+                validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender);
+              }
+              else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
+                validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
+              }
+              if (validated == true) {
+                setTimeout(() => {
+                  setLoading(false);
+                  AddChild();
+                }, 0)
+              }
+              else {
+                console.log("in else");
+              }
             }}>
-              <Heading3BoldCenterrw style={styles.uploadTextStyle}>
-                {t('OnboardingImportButton')}
-              </Heading3BoldCenterrw>
-
-            </Pressable>
-            <Flex2 style={styles.flex2Style}>
-              <Heading4Regularw>{t('importOnboardingText2')}</Heading4Regularw>
-            </Flex2>
+            <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
+          </ButtonPrimary>
+        </ButtonRow>
+    
+  
           </FlexCol>
 
+        
 
         </OnboardingContainer>
 
       </ScrollView>
-      <ActionSheet ref={actionSheetRef}>
-
-        <View style={{ marginBottom: 20 }}>
-          {relationshipToParent.map((item: any, index: any) => {
-            return (
-              <ChildRelationList key={index}>
-                <Pressable
-                  onPress={(): any => {
-                    setUserRelationToParent(item.id);
-                    if (item.id == relationShipMotherId) {
-                      if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
-                        setRelationship(femaleData.id);
-                      }
-                      else {
-                        setRelationship(String(femaleData.id));
-                      }
-                    }
-                    else if (item.id == relationShipFatherId) {
-                      if (typeof maleData.id === 'string' || maleData.id instanceof String) {
-                        setRelationship(maleData.id);
-                      }
-                      else {
-                        setRelationship(String(maleData.id));
-                      }
-                    }
-                    else {
-                      if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
-                        setRelationship('');
-                      }
-                    }
-                    console.log('relationship name', item.name)
-                    setRelationshipName(item.name);
-                    actionSheetRef.current?.setModalVisible(false);
-                  }}>
-                  <Heading3>{console.log(item.name)}
-                    {item.name}
-                  </Heading3>
-                </Pressable>
-              </ChildRelationList>
-            );
-          })}
-
-        </View>
-      </ActionSheet>
-      <ActionSheet ref={actionSheetRefImport}>
-        <BannerContainer>
-          <SettingHeading>
-            <Heading1>{t('settingScreenimportOptionHeader')}</Heading1>
-          </SettingHeading>
-          <SettingShareData>
-            <FDirRow>
-              <SettingOptions>
-                <Pressable onPress={(): any => {
-                  actionSheetRefImport.current?.setModalVisible(false);
-                  setTimeout(async () => {
-                    try {
-                      //import
-                      if (Platform.OS === "android") {
-                        console.log("1233");
-                        importFromFile();
-                      }
-                      else {
-                        importFromFile();
-                      }
-
-
-                    } catch (err) {
-                      if (DocumentPicker.isCancel(err)) {
-                        // User cancelled the picker, exit any dialogs or menus and move on
-                      } else {
-                        throw err
-                      }
-                    }
-                  }, 350);
-                }}>
-                  <VectorImage source={require('@assets/svg/ic_file.svg')} />
-                  <ShiftFromTopBottom5>
-                    <Heading4Regular>
-                      {t('importBtntxt')}
-                    </Heading4Regular>
-                  </ShiftFromTopBottom5>
-                </Pressable>
-              </SettingOptions>
-              <SettingOptions>
-                <Pressable onPress={(): any => {
-                  actionSheetRefImport.current?.setModalVisible(false);
-                  if (netInfo && netInfo.isConnected == true) {
-                    if (Platform.OS == 'ios') {
-                      setTimeout(() => {
-                        setImportAlertVisible(true);
-                      }, 350)
-                    }
-                    else {
-                      setImportAlertVisible(true);
-                    }
-                  }
-                  else {
-                    Alert.alert('', t('noInternet'));
-                  }
-
-                }}>
-                  <VectorImage
-                    source={require('@assets/svg/ic_gdrive.svg')}
-                  />
-                  <ShiftFromTopBottom5>
-                    <Heading4Regular>
-                      {t('settingScreengdriveBtntxt')}
-                    </Heading4Regular>
-                  </ShiftFromTopBottom5>
-                </Pressable>
-
-              </SettingOptions>
-
-            </FDirRow>
-          </SettingShareData>
-        </BannerContainer>
-      </ActionSheet>
-
-      <AlertModal loading={isImportAlertVisible} disabled={isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={importAllData} onCancel={onImportCancel}></AlertModal>
+     
+   
 
     </View>
   </>;
 };
 
-export default ChildSetup;
+export default AddChildSetup;

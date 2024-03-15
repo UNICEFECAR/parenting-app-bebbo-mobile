@@ -2,14 +2,17 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonLinkText,
   ButtonPrimary,
+  ButtonTertiaryMd,
   ButtonText,
-  ButtonTextLg
+  ButtonTextLg,
+  ButtonWithBorder
 } from '@components/shared/ButtonGlobal';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
 import Icon, { IconML, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
   LocalizationAction,
   LocalizationCol,
+  LocalizationWithoutBorderCol,
   LocalizationContainer,
   LocalizationcontentHead,
   LocalizationcontentResult,
@@ -20,7 +23,7 @@ import OnboardingContainer, {
 } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
-import { useFocusEffect, useIsFocused, useNavigation } from '@react-navigation/native';
+import { CommonActions, useFocusEffect, useIsFocused, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2Centerw,
@@ -42,7 +45,7 @@ import * as RNLocalize from "react-native-localize";
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'Walkthrough'
+  'Terms'
 >;
 type Props = {
   navigation: CountryLanguageConfirmationNavigationProp;
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'roboto-bold',
     color: '#2D2926',
-    marginBottom: 20
+    marginBottom: 22
   }
 })
 const CountryLanguageConfirmation = ({ route }: Props): any => {
@@ -138,6 +141,22 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     }
     return null;
   };
+  useFocusEffect(
+    React.useCallback(() => {
+      setTimeout(() => {
+        navigation.dispatch((state:any) => {
+          // Remove the home route from the stack
+          const routes = state.routes.filter((r:any) => r.name !== 'LoadingScreen');
+        
+          return CommonActions.reset({
+            ...state,
+            routes,
+            index: routes.length - 1,
+          });
+        });
+      },500);
+    },[])
+  );
   useEffect(() => {
     const getSelectedLanguage = (): any => {
       const selectedLanguage = RNLocalize.getLocales(); // Get the locales
@@ -307,7 +326,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} key={newLanguage} />
         <OnboardingContainer>
           <OnboardingconfirmationHead>
-            <Text style={styles.welcomeText}>Welcome</Text>
+            <Text style={styles.welcomeText}>{t('welcomeText')}</Text>
             <Icon name="ic_country" size={100} color="#00AEEF" />
             <OnboardingshiftHead>
               <Heading2Centerw>{t('countryLangSelection')}</Heading2Centerw>
@@ -327,37 +346,28 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                   </LocalizationcontentResult>
                 </LocalizationCol>
 
-                <LocalizationCol>
+                <LocalizationWithoutBorderCol>
                   <LocalizationcontentHead>
                     <Heading3Regular>{t('language')}</Heading3Regular>
                   </LocalizationcontentHead>
                   <LocalizationcontentResult>
                     <Heading3>{Array.isArray(route.params.language) ? language[0].displayName : newLanguage?.displayName}</Heading3>
                   </LocalizationcontentResult>
-                </LocalizationCol>
+                </LocalizationWithoutBorderCol>
 
                 <LocalizationAction>
-                  <ButtonLinkText
-                    onPress={(): any => {
-                      // if (localization.length == 1) {
-                      //   dispatch(onLocalizationSelect(route.params));
-                      //   navigation.navigate('LanguageSelection', { country: country, languagenew: newLanguage })
-                      // } else {
-                      //   dispatch(onLocalizationSelect(route.params));
-                      //   navigation.navigate('CountrySelection', { country: country, language: newLanguage })
-                      // }
-                        //dispatch(onLocalizationSelect(route.params));
-                        navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })
-                    }}>
-                    <OuterIconRow>
-                      <OuterIconLeft>
-                        <IconML name="ic_edit" size={16} color="#000" />
-                      </OuterIconLeft>
-                      <ButtonTextLg>{t('editCountryLang')}</ButtonTextLg>
-                    </OuterIconRow>
-                  </ButtonLinkText>
+                 
                 </LocalizationAction>
               </LocalizationRow>
+          
+              <ButtonWithBorder onPress={(): any =>   navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
+                <OuterIconRow>
+                      <OuterIconLeft>
+                        <IconML name="ic_edit" size={16} color="#1CABE2" />
+                      </OuterIconLeft>
+                      <ButtonTextLg style={{color:"#1CABE2"}}>{t('editCountryLang')}</ButtonTextLg>
+                    </OuterIconRow>
+                </ButtonWithBorder>
               <Flex1>
                 <ButtonPrimary onPress={(): any => saveSelection()}>
                   <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>

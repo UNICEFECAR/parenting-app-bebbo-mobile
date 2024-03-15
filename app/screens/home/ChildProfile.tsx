@@ -1,9 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-  ButtonLinkPress, ButtonTextMdLineL,
+  ButtonLinkPress, ButtonPrimary, ButtonTextLg, ButtonTextMdLineL,
+  ButtonWithBorder,
 } from '@components/shared/ButtonGlobal';
 import { AreaContainer } from '@components/shared/Container';
-import { FDirRow, FlexColEnd, FlexCol } from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexColEnd, FlexCol, Flex1 } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderRowView, HeaderTitleView, HeaderIconPress } from '@components/shared/HeaderContainerStyle';
 import Icon, {
   IconML,
@@ -24,6 +25,8 @@ import {
   Heading2w,
   Heading3,
   Heading5,
+  ShiftFromBottom30,
+  ShiftFromTop30,
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useContext, useEffect, useState } from 'react';
@@ -34,7 +37,7 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import { getAllChildren, getAllConfigData, setActiveChild } from '../../services/childCRUD';
 import { formatDate } from '../../services/Utils';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import { bgcolorWhite2 } from '@styles/style';
+import { ButtonText, bgcolorWhite, bgcolorWhite2 } from '@styles/style';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { setActiveChildData, setAllChildData } from '../../redux/reducers/childSlice';
 
@@ -48,6 +51,9 @@ const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
   fontText: { fontSize: 12, fontWeight: 'normal' },
   headingText1: { fontSize: 12, fontWeight: 'normal' },
+  headetTitleText: {
+    color: bgcolorWhite
+  },
   imageIcon: { borderRadius: 20, height: 40, width: 40 },
   marginLeft15: { marginLeft: 15 },
   maxHeight50: { maxHeight: 50 },
@@ -56,6 +62,7 @@ const styles = StyleSheet.create({
   profileListDefault: { flexDirection: 'column', flex: 1 },
   profileTextView: { paddingRight: 5 },
   textDecorationNone: { textDecorationLine: "none" }
+
 })
 type NotificationsNavigationProp =
   StackNavigationProp<any>;
@@ -181,7 +188,12 @@ const ChildProfile = ({ navigation }: Props): any => {
     if (a.uuid == currentActiveChild) return -1;
   });
   useEffect(() => {
+    console.log('relationshipData to parent data', relationshipData)
+    console.log('Relationship to parent data', relationshipToParent)
+    console.log('relationshipValue to parent data', relationshipValue)
+    console.log('userParentalRoleData to parent data', userParentalRoleData)
     if (isChildSwitch) {
+
       dispatch(setAllChildData(SortedchildList))
       setISChildSwitch(false);
     }
@@ -348,7 +360,7 @@ const ChildProfile = ({ navigation }: Props): any => {
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
-            <Heading2w numberOfLines={1}>{t('childProfileHeader')}</Heading2w>
+            <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('childProfileHeader')}</Heading2w>
           </HeaderTitleView>
         </HeaderRowView>
         <FlexCol style={styles.flexCol}>
@@ -362,7 +374,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                   })
                   : null}
               </ScrollView>
-              <ProfileLinkRow onLayout={onLayout1}
+              {/* <ProfileLinkRow onLayout={onLayout1}
                 style={{
                   backgroundColor: secopndaryTintColor,
 
@@ -395,7 +407,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                     <ButtonTextMdLineL>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
                   </ButtonLinkPress>
                 </ProfileLinkCol>
-              </ProfileLinkRow>
+              </ProfileLinkRow> */}
 
               <ParentListView style={{ backgroundColor: secopndaryTintColor }} onLayout={onLayout}>
                 <ProfileContentView>
@@ -475,6 +487,32 @@ const ChildProfile = ({ navigation }: Props): any => {
                   </ParentRowView>
                 </ProfileContentView>
               </ParentListView>
+
+              <ShiftFromTop30>
+                <ButtonWithBorder onPress={(): any => {
+                      navigation.navigate('EditChildProfile', { childData: null });
+                    }}>
+                  <OuterIconRow>
+                    <OuterIconLeft>
+                      <Icon name="ic_plus" size={16} color="#1CABE2" />
+                    </OuterIconLeft>
+                    <ButtonTextLg style={{ color: "#1CABE2" }}>{t('btnAddAnotherChildText')}</ButtonTextLg>
+                  </OuterIconRow>
+                </ButtonWithBorder>
+
+                <ButtonWithBorder onPress={(): any => {
+                      navigation.navigate('AddExpectingChildProfile', { childData: null });
+                    }}>
+                  <OuterIconRow>
+                    <OuterIconLeft>
+                      <Icon name="ic_plus" size={16} color="#1CABE2" />
+                    </OuterIconLeft>
+                    <ButtonTextLg style={{ color: "#1CABE2" }}>{t('btnAddExpectedChildText')}</ButtonTextLg>
+                  </OuterIconRow>
+                </ButtonWithBorder>
+
+              </ShiftFromTop30>
+
             </View>
           </AreaContainer>
         </FlexCol>

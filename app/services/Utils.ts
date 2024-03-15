@@ -270,6 +270,7 @@ export const removeParams = (sParam: any): any => {
     }
 }
 export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any): any => {
+    console.log('Check button here',relationship,gender,birthDate,param,name)
     if (birthDate == null || birthDate == undefined) {
         return false;
     }
@@ -314,6 +315,29 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
             return true;
         }
     }
+}
+export const validateParentsForm = (param: any,  relationship: any,  name?: any,): any => {
+    if (name == '' || name == null || name == undefined) {
+        return false;
+    }
+     if (param == 0) {
+        if (relationship == '' || relationship == null || relationship == undefined ) {
+            return false;
+        }
+    }
+
+    if (param == 3) {
+        if (relationship == '' || relationship == null || relationship == undefined) {
+            return false;
+        }
+    }
+    if (param == 4) {
+        console.log("param 4");
+    }
+    else {
+        return true;
+    }
+
 }
 export const trimWhiteSpacePayload = (str:any):any => {
     return str.length ? str.trim(): str

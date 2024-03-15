@@ -52,6 +52,7 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
+import AddChildSetup from '@screens/AddChildSetup';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -825,11 +826,6 @@ export default (): any => {
             options={{ headerShown: false }}
           />
           <RootStack.Screen
-            name="Walkthrough"
-            component={Walkthrough}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
             name="Terms"
             component={Terms}
             options={{ headerShown: false }}
@@ -847,6 +843,11 @@ export default (): any => {
           <RootStack.Screen
             name="ChildSetup"
             component={ChildSetup}
+            options={{ headerShown: false }}
+          />
+             <RootStack.Screen
+            name="AddChildSetup"
+            component={AddChildSetup}
             options={{ headerShown: false }}
           />
           <RootStack.Screen

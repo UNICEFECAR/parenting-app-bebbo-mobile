@@ -9,6 +9,7 @@ const Checkbox = styled.View`
 `;
 export const FormOuterCheckbox = styled.Pressable`
   margin-top: 10px;
+  margin-bottom: 30px;
   align-items: flex-start;
   flex-direction: row;
 `;

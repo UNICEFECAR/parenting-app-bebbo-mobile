@@ -72,10 +72,10 @@ const TermsPage = ({navigation}: Props):any => {
     <>
     <View style={styles.containerView}>
     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-      <OnboardingContainer>
+      <OnboardingContainer style={styles.containerView}>
         <OnboardingHeading>
           <ChildAddTop>
-            <Heading1w>{t('tNcheader')}</Heading1w>
+            <Heading1w style={{color:'#fff'}}>{t('tNcheader')}</Heading1w>
             <ShiftFromTop5>
               <Pressable
                 onPress={():any => {

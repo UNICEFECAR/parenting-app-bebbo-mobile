@@ -91,6 +91,11 @@ fontFamily: 'roboto-regular';
 export const Heading3Centerrw = styled(Heading3Centerw)`
 fontFamily: 'roboto-regular';
 `
+
+export const Heading3BoldCenterrw = styled(Heading3Centerw)`
+fontFamily: 'roboto-bold';
+`
+
 export const Heading3Regular = styled(Heading3)`
 fontFamily: 'roboto-regular';
 `
@@ -106,7 +111,7 @@ export const Heading4 = styled.Text`
   line-height: 18px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
-  text-align:left;
+  text-align:center;
   
 `;
 export const Heading4w = styled(Heading4)`
@@ -241,6 +246,11 @@ margin-top:15px;
 `
 export const ShiftFromTop20 = styled.View`
 margin-top:20px;
+
+`
+export const ShiftFromTop25 = styled.View`
+margin-top:25px;
+
 `
 export const ShiftFromTop30 = styled.View`
 margin-top:30px;
