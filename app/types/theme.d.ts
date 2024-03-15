@@ -25,7 +25,8 @@ declare module 'styled-components/native' {
         ARTICLES_COLOR:string;
         ARTICLES_TINTCOLOR: string;
         PRIMARY_TEXTCOLOR: string;
-        SECONDARY_TEXTCOLOR: string;
+        TERMS_TEXTCOLOR: string; 
+        SECONDARY_TEXTCOLOR: string; 
         LIGHTSHADE_COLOR: string;
     };
     fonts:{

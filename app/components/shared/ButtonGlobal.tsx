@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
- 
+
 /*Button Pressable */
 export const ButtonPrimary = styled.Pressable`
-background-color: ${(props:any):any => props.disabled ? props.theme?.colors?.SECONDARY_COLOR : props.theme?.colors?.SECONDARY_COLOR};
-opacity: ${(props:any):any => props.disabled ? 0.5 : 1};
-color: ${(props:any):any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
+background-color: ${(props: any): any => props.disabled ? props.theme?.colors?.SECONDARY_COLOR : props.theme?.colors?.SECONDARY_COLOR};
+opacity: ${(props: any): any => props.disabled ? 0.5 : 1};
+color: ${(props: any): any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
 padding: 5px 15px;
 width:100%;
 fontFamily: 'roboto-bold';
@@ -14,7 +14,24 @@ height:auto;
 justify-content:center;
 
 `;
+/*Button Pressable */
+export const ButtonWithBorder = styled.Pressable`
+background-color: ${(props: any): any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
+opacity: ${(props: any): any => props.disabled ? 0.5 : 1};
+color: ${(props: any): any => props.theme?.colors?.PRIMARY_REDESIGN_COLOR};
+padding: 5px 15px;
+width:100%;
+fontFamily: 'roboto-bold';
+border-radius:4px;
+margin-bottom:15px;
+min-height:50px;
+border-width:2px;
+border-color:#1CABE2;
+height:auto;
+align-items:center;
+justify-content:center;
 
+`;
 export const ButtonPrimaryMd = styled(ButtonPrimary)`
 padding: 6px 4px;
 height:auto;
@@ -24,7 +41,7 @@ min-height:40px;
 /*Button Text */
 export const ButtonText = styled.Text`
   text-align: center;
-  color: ${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
+  color: ${(props: any): any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
@@ -41,7 +58,7 @@ export const ButtonTextSmLine = styled(ButtonTextLine)`
   
 `;
 export const ButtonTextSmLineW = styled(ButtonTextSmLine)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const ButtonTextSm = styled(ButtonText)`
@@ -65,14 +82,14 @@ export const ButtonTextSmLineL = styled(ButtonTextSmLine)`
 `;
 
 export const ButtonTextLinew = styled.Text`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 text-decoration:underline;
-text-decoration-color:${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
+text-decoration-color:${(props: any): any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
 `;
 
 export const ButtonLinkText = styled.Text`
   text-align: center;
-  color: ${(props:any):any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
+  color: ${(props: any): any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
@@ -81,12 +98,13 @@ export const ButtonLinkText = styled.Text`
 
 export const ButtonTextLg = styled(ButtonText)`
   font-size:16px;
-  color: ${(props:any):any => props.theme?.colors?.PRIMARY_RE_TEXTCOLOR};
+  color: ${(props: any): any => props.theme?.colors?.PRIMARY_RE_TEXTCOLOR};
 `;
 
 export const ButtonRow = styled.View`
   padding:15px 0;
   margin-top:10px;
+  margin-bottom:30px;
   width:100%;
 justify-content: center;
 `;
@@ -140,10 +158,10 @@ export const ButtonLinkPressLeft = styled(ButtonLinkPress)`
 // only for chatbot call to action property end
 
 export const ButtonTertiary = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background-color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
-  background-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  background-color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
   padding-left:4px;
   padding-right:4px;
   height:auto;
@@ -170,41 +188,41 @@ export const ButtonEditPress = styled(ButtonDelPress)`
 /*Button Colors as per features*/
 
 export const ButtonActivity = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.ACTIVITIES_COLOR};
+  background-color: ${(props: any): any => props.theme.colors.ACTIVITIES_COLOR};
 `;
 export const ButtonArticles = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.ARTICLES_COLOR};
+  background-color: ${(props: any): any => props.theme.colors.ARTICLES_COLOR};
 `;
- 
+
 export const ButtonArticlesTint = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.ARTICLES_TINTCOLOR};
+  background-color: ${(props: any): any => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
 export const ButtonVaccination = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.VACCINATION_COLOR};
+  background-color: ${(props: any): any => props.theme.colors.VACCINATION_COLOR};
 `;
 export const ButtonDevelopment = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.CHILDDEVELOPMENT_COLOR};
+  background-color: ${(props: any): any => props.theme.colors.CHILDDEVELOPMENT_COLOR};
 `;
 export const ButtonGrowth = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.CHILDGROWTH_COLOR};
+  background-color: ${(props: any): any => props.theme.colors.CHILDGROWTH_COLOR};
 `;
 export const ButtonHealth = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.HEALTHCHECKUP_COLOR};
+  background-color: ${(props: any): any => props.theme.colors.HEALTHCHECKUP_COLOR};
 `;
 export const ButtonSecondary = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.SECONDARY_COLOR};
+  background-color: ${(props: any): any => props.theme.colors.SECONDARY_COLOR};
 `;
 export const ButtonSecondaryTint = styled(ButtonPrimary)`
-  background-color: ${(props:any):any => props.theme.colors.SECONDARY_TINTCOLOR};
+  background-color: ${(props: any): any => props.theme.colors.SECONDARY_TINTCOLOR};
 `;
 
 export const ButtonDevelopmentMd = styled(ButtonPrimaryMd)`
-  background-color: ${(props:any):any => props.theme.colors.CHILDDEVELOPMENT_COLOR};
+  background-color: ${(props: any): any => props.theme.colors.CHILDDEVELOPMENT_COLOR};
 `;
 export const ButtonContainerTwo = styled.View`
 flex:1;max-height:80px;flex-direction:row;padding:0 10px;align-items:center;
 `;
-export const ButtonContainerTwoP =styled(ButtonContainerTwo)`
+export const ButtonContainerTwoP = styled(ButtonContainerTwo)`
 padding:0;
 `;
 export const ButtonColTwo = styled.View`
