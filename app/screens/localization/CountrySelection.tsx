@@ -157,10 +157,7 @@ const CountrySelection = (props: any): any => {
         <Pressable
             onPress={(e: any): any => {
               console.log('Back icon click')
-              navigation.navigate('CountryLanguageConfirmation', {
-                country,
-                language,
-              })
+              navigation.navigate('CountryLanguageConfirmation')
             }}
           >
           <OnboardingStyle

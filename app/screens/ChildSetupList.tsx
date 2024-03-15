@@ -3,7 +3,9 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
-  ButtonTextLinew
+  ButtonTextLg,
+  ButtonTextLinew,
+  ButtonWithBorder
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
@@ -16,7 +18,7 @@ import {
   ChildListTitle,
   CustomScrollView,
 } from '@components/shared/ChildSetupStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconML, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
@@ -25,7 +27,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { primaryColor } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, BackHandler, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -41,6 +43,8 @@ import {
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
 import { setActiveChildData } from '../redux/reducers/childSlice';
+import { Flex1, FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
+import { ScrollView } from 'react-native-gesture-handler';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -49,6 +53,7 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 const styles = StyleSheet.create({
+  autoHeight: { height: 'auto' },
   containerView: {
     backgroundColor:primaryColor,
     flex:1
@@ -64,14 +69,20 @@ const styles = StyleSheet.create({
   touchableRight: { 
     marginRight: 2,
     padding: 8 
+  },
+  listBgColor:{
+    backgroundColor:'red'
   }
 })
 const ChildSetupList = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const [parentViewHeight, setParentViewheight] = useState(0);
+  const [profileViewHeight, setProfileViewheight] = useState(0);
   const [loading, setLoading] = useState(false);
   const isFocused = useIsFocused();
+  const windowHeight = Dimensions.get('window').height;
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -84,10 +95,13 @@ const ChildSetupList = ({ navigation }: Props): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
+  const onLayout = (event: any): any => {
+    setParentViewheight(event.nativeEvent.layout.height);
+  }
   useEffect(() => {
     if (isFocused) {
        getAllChildren(dispatch, childAge, 0);
@@ -152,7 +166,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
 
     return (
       <ChildListingBox key={index}>
+         <Icon name="ic_baby" size={40} color='#000' />
         <ChildColArea1>
+       
           <ChildListTitle >{data.childName}{(gender != '' && gender != 0 && gender != undefined) ? <Text style={styles.textStyle}>, {gender}</Text> : null}</ChildListTitle>
           <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}</Heading5>
         </ChildColArea1>
@@ -230,10 +246,12 @@ const ChildSetupList = ({ navigation }: Props): any => {
               </ShiftFromTop30>
             </ChildCenterView>
           </OnboardingHeading>
+          <FlexCol>
+          
           <ChildContentArea>
-            <ChildListingArea>
-              <CustomScrollView >
-                {
+            <ChildListingArea >
+            <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
+              {
                   childList.length > 0 ? (
                     childList.map((item: ChildEntity, index: number) => {
                       const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)).name : '';
@@ -245,13 +263,14 @@ const ChildSetupList = ({ navigation }: Props): any => {
                         <Text>{t('noChildsTxt')}</Text></ChildColArea1>
                     </ChildListingBox>
                 }
-              </CustomScrollView>
+              </ScrollView>
+           
             </ChildListingArea>
           </ChildContentArea>
 
-          <ButtonRow>
+    
 
-            <ShiftFromBottom10>
+            {/* <ShiftFromBottom10>
               <ButtonLinkPress
                 onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
                 <OuterIconRow>
@@ -275,9 +294,30 @@ const ChildSetupList = ({ navigation }: Props): any => {
 
               }}>
               <ButtonText numberOfLines={2}>{t('childSetupListcontinueBtnText')}</ButtonText>
-            </ButtonPrimary>
+            </ButtonPrimary> */}
+            <View onLayout={onLayout} style={{flexDirection:'column'}}>
+            <ButtonWithBorder onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
+                <OuterIconRow>
+                      <OuterIconLeft>
+                        <Icon name="ic_plus" size={16} color="#1CABE2" />
+                      </OuterIconLeft>
+                      <ButtonTextLg style={{color:"#1CABE2"}}>{t('btnAddAnotherChildText')}</ButtonTextLg>
+                    </OuterIconRow>
+                </ButtonWithBorder>
+                <ButtonPrimary onPress={(e:any): any => {
+                e.stopPropagation();
+                setLoading(true);
+                setTimeout(() => {
+                  setLoading(false);
+                  childSetup();
+                }, 0)
 
-          </ButtonRow>
+              }}>
+                  <ButtonText numberOfLines={2}>{t('letGetStartedText')}</ButtonText>
+                </ButtonPrimary>
+            </View>
+            
+              </FlexCol>
         </OnboardingContainer>
       </View>
     </>

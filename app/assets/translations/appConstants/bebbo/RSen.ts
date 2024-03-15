@@ -392,7 +392,7 @@ const RSen = {
                 "parentGender": "Gender",
                 "successOnboardingImport": "You have successfully uploaded your  information.",
                 "updateImportText": "Please update your details to continue",
-                "importOnboardingText": "You can upload a backed up data file",
+                "importOnboardingText": "Bebbo does not collect your personal details.Information you enter to the app is saved to your phone or your personal storage.",
                 "OnboardingImportButton": "Upload now",
                 "ORkeyText": "OR",
                 "addChildText": "Add your child details",
