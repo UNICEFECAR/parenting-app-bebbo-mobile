@@ -43,6 +43,7 @@ import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { setActiveChildData } from '../redux/reducers/childSlice';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { bgcolorWhite } from '@styles/style';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -58,6 +59,9 @@ const styles = StyleSheet.create({
   headerActionView: { padding: 0 },
   headerRowView: {
     maxHeight: 50
+  },
+  headetTitleText: {
+    color: bgcolorWhite
   },
   pressableView: { paddingLeft: 10, paddingRight: 10 },
   textInputML: { width: '100%' }
@@ -173,7 +177,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     });
   };
   return <>
-    <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+    <View style={[styles.flex1, { backgroundColor: bgcolorWhite }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
         style={[styles.headerRowView, { backgroundColor: headerColor }]}>
@@ -186,7 +190,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
           </HeaderIconPress>
         </HeaderIconView>
         <HeaderTitleView>
-          <Heading2w numberOfLines={1}>
+          <Heading2w style={styles.headetTitleText} numberOfLines={1}>
             {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('editExpectChildAddTxt') : t('expectChildAddTxt')}
           </Heading2w>
         </HeaderTitleView>
@@ -209,7 +213,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       <MainContainer>
         <FormDateContainer>
           <FormInputGroup onPress={showdobDatepicker}>
-            <LabelText> {t('expectChildDueDateTxt')}</LabelText>
+            <LabelText> {t('childSetupISdueLabel')}</LabelText>
             <FormInputBox>
               <FormDateText>
                 <Text>  {plannedTermDate ? formatStringDate(plannedTermDate) : t('expectChildDueDateTxt')}</Text>
