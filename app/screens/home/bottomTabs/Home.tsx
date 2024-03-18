@@ -19,7 +19,7 @@ import {
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { FeatureDivideArea, HomeSurveyBox, OfflineBar } from '@components/shared/HomeScreenStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconClearPress, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -38,7 +38,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { InteractionManager } from 'react-native';
+import { InteractionManager, Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -65,15 +65,22 @@ import { bgcolorWhite2 } from '@styles/style';
 import { ToastAndroidLocal } from '../../../android/sharedAndroid.android';
 import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
 import { useIsFocused } from '@react-navigation/native';
+import ChildPinnedArticleInfo from '@components/homeScreen/ChildPinnedArticleInfo';
+import { SearchBox, SearchInput } from '@components/shared/ArticlesStyle';
 
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
-  scrollView: { backgroundColor: bgcolorWhite2, flex: 5 }
+  pressablePadding: {
+    paddingLeft: 15,
+    paddingVertical: 15
+  },
+  scrollView: { backgroundColor: bgcolorWhite2, flex: 5 },
 })
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   // console.log(route.params,"home params")
   const themeContext = useContext(ThemeContext);
+  const [queryText, searchQueryText] = useState('');
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const headerColorChildInfo = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -252,7 +259,11 @@ const Home = ({ route, navigation }: any): any => {
     }, [])
   );
   useEffect(()=>{
+     console.log('Active child is',activeChild)
+  },[isFoucused])
+  useEffect(()=>{
    // setModalVisible(false);
+
     async function fetchNetInfo(): Promise<any> {
       console.log(bufferAgeBracket, "---userIsOnboarded----", userIsOnboarded);
       console.log(VersionInfo.appVersion, "--appVersion", VersionInfo.buildVersion, VersionInfo.bundleIdentifier);
@@ -484,7 +495,7 @@ const Home = ({ route, navigation }: any): any => {
           textColor="#FFF"
           setProfileLoading={setProfileLoading}
         />
-
+ 
         {
           (netInfo && netInfo.isConnected == false) ?
             <OfflineBar><Heading3Centerr>{t('noInternet')}</Heading3Centerr></OfflineBar> : null
@@ -492,10 +503,7 @@ const Home = ({ route, navigation }: any): any => {
         <ScrollView style={styles.scrollView}>
           <FlexCol>
             <BabyNotification />
-            <ChildInfo
-              headerColor={headerColorChildInfo}
-              backgroundColor={backgroundColorChildInfo}
-            />
+           
 
             {show && (
               <DateTimePicker
@@ -522,10 +530,91 @@ const Home = ({ route, navigation }: any): any => {
                 onChange={ondobChange2}
               />
             )}
-            <DailyReads />
-            <FeatureDivideArea>
+             <SearchBox>
+              <OuterIconRow>
+
+                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
+                  e.preventDefault();
+                 // await searchList(queryText);
+
+                }}>
+                  <Icon
+                    name="ic_search"
+                    size={20}
+                    color="#000"
+
+                  />
+                </Pressable>
+
+              </OuterIconRow>
+              <SearchInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                clearButtonMode="always"
+                onFocus={(): any => {
+                 // setHistoryVisible(true);
+                }}
+                onChangeText={async (queryText: any): Promise<any> => {
+                  console.log('loghererer', queryText)
+                  if (queryText.replace(/\s/g, "") == "") {
+                    console.log('loghererer1')
+                     searchQueryText(queryText.replace(/\s/g, ''));
+                    // setHistoryVisible(true);
+                    //  await searchList(queryText)
+                  } else {
+                    console.log('loghererer2')
+                     searchQueryText(queryText);
+                    // setHistoryVisible(true);
+                  }
+                }}
+                value={queryText}
+
+                onSubmitEditing={async (event: any): Promise<any> => {
+                  // console.log("event-", queryText);
+                  // setLoadingArticle(true)
+                  // setHistoryVisible(false)
+                  // Keyboard.dismiss();
+                  // await searchList(queryText);
+                }}
+                multiline={false}
+                // placeholder="Search for Keywords"
+                placeholder={t('articleScreensearchPlaceHolder')}
+                placeholderTextColor={"gray"}
+                allowFontScaling={false}
+              />
+
+              {
+                Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
+                <OuterIconRow>
+
+                  <IconClearPress onPress={async (): Promise<any> => {
+                    // console.log('cleartext')
+                    // Keyboard.dismiss();
+                     searchQueryText(queryText.replace(/\s/g, ''));
+                    // setHistoryVisible(true);
+                    // await searchList(queryText);
+
+                  }}>
+                    <Icon
+                      name="ic_close"
+                      size={10}
+                      color="#fff"
+                    />
+                  </IconClearPress>
+
+                </OuterIconRow>
+              }
+            </SearchBox>
+            
+           <DailyReads />
+           <FeatureDivideArea>
               <DailyHomeNotification />
             </FeatureDivideArea>
+           <ChildInfo
+              headerColor={headerColorChildInfo}
+              backgroundColor={backgroundColorChildInfo}
+            />
+           
             <ChildMilestones />
             <PlayingTogether />
             <AdviceAndArticles />
