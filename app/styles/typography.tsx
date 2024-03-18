@@ -293,6 +293,9 @@ export const SideSpacing20 = styled.View`
 margin-left:20px;
 margin-right:20px;
 `
+export const SideRightSpacing20 = styled.View`
+margin-right:20px;
+`
 export const SideSpacing25 = styled.View`
 margin-left:25px;
 margin-right:25px;
