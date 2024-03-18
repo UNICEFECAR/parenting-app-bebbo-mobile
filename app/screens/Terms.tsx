@@ -13,16 +13,17 @@ import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
-import { Heading1w, Heading2Centerw } from '../styles/typography';
+import { Heading1w, Heading2Centerw, SideRightSpacing20, SideSpacing20 } from '../styles/typography';
 import { bgcolorWhite2, primaryColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
 import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo } from '@dynamicImportsClass/dynamicImports';
 import FeatureTCView from '@components/shared/FeaturesTCView';
+import { FontWeight } from '@shopify/react-native-skia';
 
 
 type TermsNavigationProp = StackNavigationProp<
@@ -54,6 +55,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingRight: 40
   },
+  privacyText:{
+    color:'#1CABE2',
+    fontWeight: "700"
+  },
   scrollViewStyle: {
     padding: 0
   },
@@ -62,7 +67,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 15,
     marginTop: 45,
-  }
+  },
+
 })
 const Terms = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
@@ -92,18 +98,18 @@ const Terms = ({ navigation }: Props): any => {
   useFocusEffect(
     React.useCallback(() => {
       setTimeout(() => {
-        navigation.dispatch((state:any) => {
+        navigation.dispatch((state: any) => {
           // Remove the home route from the stack
-          const routes = state.routes.filter((r:any) => r.name !== 'LoadingScreen');
-        
+          const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen');
+
           return CommonActions.reset({
             ...state,
             routes,
             index: routes.length - 1,
           });
         });
-      },500);
-    },[])
+      }, 500);
+    }, [])
   );
   const acceptTermsFlag = useAppSelector(
     (state: any) =>
@@ -269,7 +275,7 @@ const Terms = ({ navigation }: Props): any => {
                 </View>
               </CheckboxItem>
 
-              <LabelText>
+              {/* <LabelText>
                 {t('tNccheckbox2')}{' '}
                 <LinkContainer>
                 <Text style={{fontSize:16}}>
@@ -293,8 +299,22 @@ const Terms = ({ navigation }: Props): any => {
                  
                 </LinkContainer>
                application.
+              </LabelText> */}
+              <SideRightSpacing20>
+              <LabelText>
+              {t('tNccheckbox2')}{' '}
+            
+                <LabelText onPress={goToPrivacyPolicy} style={styles.privacyText}>
+                  Privacy Policy {' '}
+                </LabelText>
+                and {' '}
+                <LabelText onPress={goToTerms} style={styles.privacyText}>
+                  Terms and conditions {' '}
+                </LabelText>
+                of the application.
               </LabelText>
-
+              </SideRightSpacing20>
+      
               {/* <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToTerms} style={styles.checkboxStyle}>{t('tncCheckBoxText')}</CheckboxItemText></LabelText> */}
             </FormOuterCheckbox>
             <ButtonPrimary
