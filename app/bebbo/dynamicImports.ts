@@ -1,5 +1,6 @@
 import 'intl';
 export const localization=require('@assets/data/bebbo/localization').default;
+export const sponsers=require('@assets/data/bebbo/sponsers').default;
 import bebboLogoShape1 from '@assets/svg/bebbo/bebbo_logo_shape.svg';
 export const bebboLogoShape=bebboLogoShape1;
 import bebboLogoShapeNew1 from '@assets/svg/bebbo/bebbo_logo_shape1.svg';
