@@ -19,10 +19,12 @@ export const WrapView = styled.View`
   
 `;
 export const PartnerLogo = styled.Image`
-flex:1
+width: 160px;
+  height: 60px;
 `;
 export const SponsorLogo = styled.Image`
-flex:1;
+width: 160px;
+  height: 60px;
 
 `;
 export const StaticLogo = styled.Image`
