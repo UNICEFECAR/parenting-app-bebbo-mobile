@@ -265,6 +265,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }, [netInfo.isConnected])
   );
   useEffect(() => {
+    console.log('Sponsers List Data is',sponsors)
     const backAction = (): any => {
       return true;
     };

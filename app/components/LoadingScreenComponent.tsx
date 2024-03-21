@@ -19,9 +19,7 @@ const styles = StyleSheet.create({
      alignItems: 'center',
      flex: 1,
      flexDirection: 'column',
-     justifyContent: 'flex-end',
      marginBottom: 15,
-     marginTop:25,
    },
  linearGradient:{
      flex: 1,
@@ -29,7 +27,7 @@ const styles = StyleSheet.create({
    loadingText:{textAlign: 'center'},
    mainView:{
      alignContent:'center',height:60,
-     marginTop:25,
+     marginTop:15,
      width:180,
    },
    outerView:{
@@ -73,41 +71,38 @@ const LoadingScreenComponent = (props: any): any => {
                       <VectorImage source={item.image} />
                     </View>
                     <View style={styles.partnerLogoView}>
-                      {prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' ?
-                            null :
+                      
                           <PartnerLogo 
                           style={styles.partnerLogo}
                             source={
                               sponsors?.country_national_partner!=null
                                 ? {
-                                    uri:sponsors?.country_national_partner
+                                    uri:sponsors?.country_national_partner?.url
                                   }
                                 : require('')
                             }
                           />
-                        }
+                        
                     </View>
                     <View style={styles.mainView}>
-                        {prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' ?
-                            null :
+                        
                           <SponsorLogo
                           style={styles.sponsorLogo}
                             source={
                               sponsors?.country_sponsor_logo!=null
                                 ? {
-                                    uri:sponsors?.country_sponsor_logo
+                                    uri:sponsors?.country_sponsor_logo?.url
                                   }
                                 : require('')
                             }
                           />
-                        }
+                        
                     </View>
                     <WrapView>
                       <StaticLogo
                         source={
-                            (prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection') && buildFor == buildForBebbo
-                            ? require('')
-                            : require('../assets/loading/unicef_logo.png')}
+                            
+                           require('../assets/loading/unicef_logo.png')}
                       />
                     </WrapView>
             </FlexDirCol>

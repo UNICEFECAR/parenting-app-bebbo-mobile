@@ -102,61 +102,61 @@ if(artresp && artresp != null)
  navigation.navigate('ChildProfileScreen');
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string):Promise<any> => {
-  if (response && response[0] && response[0].apiEndpoint == appConfig.sponsors) {
-    response = response[0];
-    if(response.data && response.data.status && response.data.status == 200)
-    {
+  // if (response && response[0] && response[0].apiEndpoint == appConfig.sponsors) {
+  //   response = response[0];
+  //   if(response.data && response.data.status && response.data.status == 200)
+  //   {
       
-      const partnerObj = response.data.data.map((val: any) => {
-        if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
-        {
-          return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
-        }else {
-          return null;
-        }
-      })
-      const logoObj = response.data.data.map((val: any) => {
-        if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
-        {
-          return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
-        }else {
-          return null;
-        }
-      })
-      const sponsarsObj:any={};
-      if(logoObj && logoObj != null && logoObj[0])
-      {
-        const ImageArray = [];
-        ImageArray.push(logoObj[0].country_national_partner)
-        const imagesDownloadResult = await downloadImages(ImageArray);
-        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
-          sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
-        }
-        else{
-          sponsarsObj.country_national_partner=null;
-        }
-      }
-      else{
-        sponsarsObj.country_national_partner=null;
-      }
-      if(partnerObj && partnerObj != null && partnerObj[0])
-      {
-        const ImageArray = [];
-        ImageArray.push(partnerObj[0].country_sponsor_logo)
-        const imagesDownloadResult = await downloadImages(ImageArray);
-        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
-          sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
-        }
-        else{
-          sponsarsObj.country_sponsor_logo=null;
-        }
-      }
-      else{
-         sponsarsObj.country_sponsor_logo=null;
-       }
-      dispatch(setSponsorStore(sponsarsObj));
-    }
-  }
+  //     const partnerObj = response.data.data.map((val: any) => {
+  //       if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
+  //       {
+  //         return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
+  //       }else {
+  //         return null;
+  //       }
+  //     })
+  //     const logoObj = response.data.data.map((val: any) => {
+  //       if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
+  //       {
+  //         return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
+  //       }else {
+  //         return null;
+  //       }
+  //     })
+  //     const sponsarsObj:any={};
+  //     if(logoObj && logoObj != null && logoObj[0])
+  //     {
+  //       const ImageArray = [];
+  //       ImageArray.push(logoObj[0].country_national_partner)
+  //       const imagesDownloadResult = await downloadImages(ImageArray);
+  //       if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+  //         sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+  //       }
+  //       else{
+  //         sponsarsObj.country_national_partner=null;
+  //       }
+  //     }
+  //     else{
+  //       sponsarsObj.country_national_partner=null;
+  //     }
+  //     if(partnerObj && partnerObj != null && partnerObj[0])
+  //     {
+  //       const ImageArray = [];
+  //       ImageArray.push(partnerObj[0].country_sponsor_logo)
+  //       const imagesDownloadResult = await downloadImages(ImageArray);
+  //       if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+  //         sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+  //       }
+  //       else{
+  //         sponsarsObj.country_sponsor_logo=null;
+  //       }
+  //     }
+  //     else{
+  //        sponsarsObj.country_sponsor_logo=null;
+  //      }
+  //     dispatch(setSponsorStore(sponsarsObj));
+  //   }
+  // }
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
   navigation.navigate('Terms');
@@ -262,67 +262,67 @@ export const downloadArticleImages = async():Promise<any> => {
 }
 export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any):Promise<any> => {
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
-      if(x.apiEndpoint == appConfig.sponsors){
-        const sponsorresp = response.filter((y:any)=>y.apiEndpoint == appConfig.sponsors);
-        const sponsorrespnew = sponsorresp ? sponsorresp[0] : [];
-        if(sponsorrespnew && sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
-        {
-          const partnerObj = sponsorrespnew.data.data.map((val: any) => {
-            if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
-            {
-              return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
-            }else {
-              return null;
-            }
-          })
-          const logoObj = sponsorrespnew.data.data.map((val: any) => {
-            if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
-            {
-              return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
-            }else {
-              return null;
-            }
-          })
-      const sponsarsObj:any={};
-      if(logoObj && logoObj != null && logoObj[0])
-      {
-        const ImageArray = [];
-        ImageArray.push(logoObj[0].country_national_partner)
-        const imagesDownloadResult = await downloadImages(ImageArray);
-        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
-          sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
-        }
-        else{
-          sponsarsObj.country_national_partner=null;
-        }
-      }
-      else{
-        sponsarsObj.country_national_partner=null;
-      }
-      if(partnerObj && partnerObj != null && partnerObj[0])
-      {
-        const ImageArray = [];
-        ImageArray.push(partnerObj[0].country_sponsor_logo)
-        const imagesDownloadResult = await downloadImages(ImageArray);
-        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
-          sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
-        }
-        else{
-          sponsarsObj.country_sponsor_logo=null;
-        }
-      }
-      else{
-         sponsarsObj.country_sponsor_logo=null;
-       }
-          dispatch(setSponsorStore(sponsarsObj));
-          return sponsarsObj;
-        }else {
-          return "success";
-        }
-      }else {
+      // if(x.apiEndpoint == appConfig.sponsors){
+      //   const sponsorresp = response.filter((y:any)=>y.apiEndpoint == appConfig.sponsors);
+      //   const sponsorrespnew = sponsorresp ? sponsorresp[0] : [];
+      //   if(sponsorrespnew && sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
+      //   {
+      //     const partnerObj = sponsorrespnew.data.data.map((val: any) => {
+      //       if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
+      //       {
+      //         return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
+      //       }else {
+      //         return null;
+      //       }
+      //     })
+      //     const logoObj = sponsorrespnew.data.data.map((val: any) => {
+      //       if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
+      //       {
+      //         return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
+      //       }else {
+      //         return null;
+      //       }
+      //     })
+      // const sponsarsObj:any={};
+      // if(logoObj && logoObj != null && logoObj[0])
+      // {
+      //   const ImageArray = [];
+      //   ImageArray.push(logoObj[0].country_national_partner)
+      //   const imagesDownloadResult = await downloadImages(ImageArray);
+      //   if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+      //     sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+      //   }
+      //   else{
+      //     sponsarsObj.country_national_partner=null;
+      //   }
+      // }
+      // else{
+      //   sponsarsObj.country_national_partner=null;
+      // }
+      // if(partnerObj && partnerObj != null && partnerObj[0])
+      // {
+      //   const ImageArray = [];
+      //   ImageArray.push(partnerObj[0].country_sponsor_logo)
+      //   const imagesDownloadResult = await downloadImages(ImageArray);
+      //   if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+      //     sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+      //   }
+      //   else{
+      //     sponsarsObj.country_sponsor_logo=null;
+      //   }
+      // }
+      // else{
+      //    sponsarsObj.country_sponsor_logo=null;
+      //  }
+      //     dispatch(setSponsorStore(sponsarsObj));
+      //     return sponsarsObj;
+      //   }else {
+      //     return "success";
+      //   }
+      // }else {
         const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
         return allDatatoStore;
-      }
+      
   })
   const forceUpdateData = [
     {
