@@ -20,7 +20,7 @@ import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useStat
 import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
-  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View
+  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ThemeContext } from 'styled-components/native';
@@ -35,8 +35,9 @@ import { HistoryEntity, SearchHistorySchema } from '../../../database/schema/Sea
 import VectorImage from 'react-native-vector-image';
 import unorm from 'unorm';
 import Fuse from 'fuse.js';
+import MiniSearch from 'minisearch'
 import { ARTICLE_SEARCHED } from '@assets/data/firebaseEvents';
-
+import Intl from 'intl';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
@@ -58,14 +59,14 @@ const styles = StyleSheet.create({
   flex1View: {
     flex: 1
   },
-  historyItem: { 
+  historyItem: {
     borderBottomColor: greyCode,
     borderBottomWidth: 1,
     flexDirection: 'row',
     marginHorizontal: 10,
     padding: 10,
   },
-  historyList: { 
+  historyList: {
     backgroundColor: bgcolorWhite2,
     left: 0,
     paddingBottom: 20,
@@ -171,15 +172,12 @@ const Articles = ({ route, navigation }: any): any => {
   const preprocessArticles = (articles: any): any => {
     return articles.map((article: any) => ({
       ...article,
-      normalizedTitle: normalizeText(article.title),
-      normalizedSummary: normalizeText(article.summary),
-      normalizedBody: normalizeText(article.body)
+      normalizedTitle: article.title,
+      normalizedSummary: article.summary,
+      normalizedBody: article.body
     }));
   };
 
-  const normalizeText = (text: string): any => {
-    return unorm.nfd(text.toLowerCase()).replace(/[\u0300-\u036f]/g, "");
-  };
   const getSearchedKeywords = async (): Promise<any> => {
     const realm = await dataRealmCommon.openRealm();
 
@@ -367,34 +365,34 @@ const Articles = ({ route, navigation }: any): any => {
   }
 
 
-  useFocusEffect(
-    React.useCallback(() => {
+  // useFocusEffect(
+  //   React.useCallback(() => {
 
-      if (queryText == '') {
+  //     if (queryText == '') {
 
-        async function fetchData(): Promise<any> {
-          if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
-            setFilterArray(route.params?.categoryArray);
-            setFilteredArticleData(route.params?.categoryArray);
-            console.log('UseFouusEffect Articles one');
-          }
-          else {
-            setFilterArray([]);
-            setFilteredArticleData([]);
-          }
-        }
-        if (route.params?.backClicked != 'yes') {
-          fetchData()
-        } else {
-          setLoadingArticle(false);
-          if (route.params?.backClicked == 'yes') {
-            navigation.setParams({ backClicked: 'no' })
-          }
-        }
-      }
+  //       async function fetchData(): Promise<any> {
+  //         if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
+  //           setFilterArray(route.params?.categoryArray);
+  //           setFilteredArticleData(route.params?.categoryArray);
+  //           console.log('UseFouusEffect Articles one');
+  //         }
+  //         else {
+  //           setFilterArray([]);
+  //           setFilteredArticleData([]);
+  //         }
+  //       }
+  //       if (route.params?.backClicked != 'yes') {
+  //         fetchData()
+  //       } else {
+  //         setLoadingArticle(false);
+  //         if (route.params?.backClicked == 'yes') {
+  //           navigation.setParams({ backClicked: 'no' })
+  //         }
+  //       }
+  //     }
 
-    }, [route.params?.categoryArray, activeChild?.uuid, languageCode, queryText])
-  );
+  //   }, [route.params?.categoryArray, activeChild?.uuid, languageCode, queryText])
+  // );
   useFocusEffect(
     React.useCallback(() => {
       console.log('UseFouusEffect Articles two');
@@ -419,46 +417,272 @@ const Articles = ({ route, navigation }: any): any => {
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray)
   }
+  // const processedArticles = preprocessArticles(articleData);
+  // const data = [
+  //   {
+  //     "id": 606,
+  //     "type": "Article",
+  //     "title": "Infekcia močových ciest (IMC) u dojčiat a batoliat",
+  //     "summary": "U dojčiat a batoliat príznaky infekcie močových ciest (IMC) zahŕňajú podráždenosť, problémy s kŕmením a horúčku...",
+  //     "body": "<h1>O infekciách močových ciest (IMC)</h1><p>Infekcie močových ciest (IMC) vzniknú, keď sa baktérie, ktoré sa dostanú do močových ciest cez močovú trubicu alebo krvou, v moči ďalej rozmnožujú a rastú...</p>",
+  //   },
+  //   {
+  //     "id": 2196,
+  //     "type": "Article",
+  //     "title": "Čítanie v obrázkoch: batoľatá",
+  //     "summary": "Hrajte sa a komunikujte s batoľaťom Hovorte a čítajte Spôsoby čítania...",
+  //     "body": "<h2>Hrajte sa a komunikujte s batoľaťom</h2><p>Porozprávajte sa s batoľaťom o tom, čo robí...</p>",
+  //   },
+  //   // Add more data here
+  // ];
 
+  // Create MiniSearch instance
+  // const searchIndex = new MiniSearch({
+  //   fields: ['title', 'summary', 'body'], // Fields to search
+  //   storeFields: ['id', 'title', 'summary', 'body'], // Fields to return in search results
+  // });
 
+  // Add data to MiniSearch index
+  // processedArticles.forEach((item:any) => searchIndex.add(item));
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const [searchResults, setSearchResults] = useState<any>([]);
   //code for getting article dynamic data ends here.
+
+  // useEffect(() => {
+  //  // console.log('ProcessArticle Data',processedArticles)
+  //   if (searchTerm.trim() === '') {
+  //     setSearchResults([]);
+  //     return;
+  //   }
+
+  //   const results = searchIndex.search(searchTerm);
+  //   setSearchResults(results);
+  //   console.log('Results Data is ',results)
+  // }, [searchTerm]);
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log('UseFouusEffect Articles one');
+      if (queryText == '') {
+        async function fetchData(): Promise<any> {
+          if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
+            setFilterArray(route.params?.categoryArray);
+            setFilteredArticleData(route.params?.categoryArray);
+          }
+          else {
+            setFilterArray([]);
+            setFilteredArticleData([]);
+          }
+        }
+        if (route.params?.backClicked != 'yes') {
+          fetchData()
+        } else {
+          setLoadingArticle(false);
+          if (route.params?.backClicked == 'yes') {
+            navigation.setParams({ backClicked: 'no' })
+          }
+        }
+      }
+
+    }, [route.params?.categoryArray, activeChild?.uuid, languageCode, queryText])
+  );
+  const fetchArticlesData = async (): Promise<any> => {
+    // Simulated asynchronous data fetching
+    return new Promise((resolve) => {
+      setTimeout(() => {
+
+        resolve(articleData)
+      }, 0); // Simulating a delay of 2 seconds
+    });
+  }
+  const [searchnwqIndex, setSearchIndex] = useState<any>(null);
+
+  const suffixes = (term: any, minLength: any): any => {
+    if (term == null) { return []; }
+    const tokens = [];
+    for (let i = 0; i <= term.length - minLength; i++) {
+      tokens.push(term.slice(i));
+    }
+    return tokens;
+  }
+  useEffect(() => {
+    async function initializeSearchIndex() {
+
+      const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+      const combinedartarr = mergearr(articleDataall, videoarticleDataAllCategory, false);
+      articleData = [...combinedartarr];
+      const processedArticles = preprocessArticles(articleData);
+      const segmenter =
+        Intl.Segmenter && new Intl.Segmenter("zh", { granularity: "word" });
+      const searchIndex = new MiniSearch({
+        //   tokenize: (string, _fieldName):any => {
+        //     if (!segmenter) return string.split(/[^a-zA-Z0-9\u00C0-\u017F\u0400-\u04FF\u0500-\u052F]+/);
+
+        //     const tokens = [];
+        //     for (const seg of segmenter.segment(string)) {
+        //         const segment = seg.segment;
+        //         if (segment.length > 3) { // Check if the segment length is greater than 3
+        //             tokens.push(segment);
+        //         }
+        //     }
+        //     return tokens;
+        // },
+        processTerm: (term) => suffixes(term, 3),
+        extractField: (document, fieldName): any => {
+          const arrFields = fieldName.split(".");
+          if (arrFields.length === 2) {
+            return (document[arrFields[0]] || [])
+              .map((arrField: any) => arrField[arrFields[1]] || "")
+              .join(" ");
+          } else if (arrFields.length === 3) {
+            const tmparr = (document[arrFields[0]] || []).flatMap(
+              (arrField: any) => arrField[arrFields[1]] || []
+            );
+            return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
+          }
+
+          // Access fields in simple path (such as a.b.c)
+          return fieldName
+            .split(".")
+            .reduce((doc, key) => doc && doc[key], document);
+        },
+        searchOptions: {
+         // processTerm: MiniSearch.getDefault('processTerm'),
+          boost: { title: 2, summary: 1.5, body: 1 },
+          bm25: { k: 1.0, b: 0.7, d: 0.5 },
+          fuzzy: true,
+         // prefix:true,
+          weights: {
+            fuzzy: 0.6,
+            prefix: 0.6
+          }
+          //  prefix: true,
+        },
+        // tokenize: (string, _fieldName) => string.split(/[^a-zA-Z0-9\u00C0-\u017F\u0400-\u04FF\u0500-\u052F]+/),
+        fields: ['title', 'summary', 'body'],
+        storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'related_articles', 'embedded_images']
+      });
+
+      processedArticles.forEach((item: any) => searchIndex.add(item));
+      setSearchIndex(searchIndex);
+
+    }
+
+    initializeSearchIndex();
+  }, []);
+  // useEffect(()=>{
+
+  //     const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+  //     const combinedartarr = mergearr(articleDataall, videoarticleDataAllCategory, false);
+  //     articleData = [...combinedartarr];
+  //     const processedArticles = preprocessArticles(articleData);
+  //     const indexedDocuments = processedArticles.map((doc: any) => {
+  //       const content = `${doc.title} ${doc.body} ${doc.summary}`; // Combine title, body, and summary
+  //       const words = content.toLowerCase().split(/\W+/).filter(word => word.length > 0);
+  //       const wordCount: any = {};
+  //       words.forEach(word => {
+  //         wordCount[word] = (wordCount[word] || 0) + 1;
+  //       });
+  //       return { ...doc, wordCount };
+  //     });
+
+  //     const searchIndex = new MiniSearch({
+  //       searchOptions: {
+  //         fuzzy: 0.6, // Fuzzy matching threshold
+  //         boost: { title: 2, summary: 1, body: 0.5 } // Boost titles more than summary and body
+  //       },
+  //       tokenize: (string, _fieldName) => string.split(/[^a-zA-Z0-9\u00C0-\u017F\u0400-\u04FF\u0500-\u052F]+/),
+  //       fields: ['title', 'summary', 'body'], // Fields to search
+  //       storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'related_articles', 'embedded_images'], // Fields to return in search results
+  //     });
+  //   //  searchIndex.addAll(indexedDocuments);
+  //     processedArticles.forEach((item: any) => searchIndex.add(item));
+  //     setSearchIndex(searchIndex);
+
+
+  // },[])
+
+
+  const getTotalOccurrences = (wordCount: any, query: any): any => {
+    const queryLowerCase = query.toLowerCase();
+    let totalCount = 0;
+    for (const field in wordCount) {
+      if (Object.prototype.hasOwnProperty.call(wordCount, field)) {
+        totalCount += wordCount[field][queryLowerCase] || 0;
+      }
+    }
+    return totalCount;
+  }
   const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false)
     setLoadingArticle(true);
-    await new Promise(resolve => setTimeout(resolve,0));
+    await new Promise(resolve => setTimeout(resolve, 0));
     Keyboard.dismiss();
-    let artData:any;
-    let combinedartarr:[];
+    let artData: any;
+    let combinedartarr: [];
     let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
-      const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-      combinedartarr = mergearr(articleDataall, videoarticleDataAllCategory, false);
-      articleData = [...combinedartarr];
-      const processedArticles = preprocessArticles(articleData);
-      const fuse = new Fuse(processedArticles, {
-        keys: ['normalizedTitle', 'normalizedSummary', 'normalizedBody'],
-        threshold: 0.6, // Adjust as needed
-        //ignoreLocation: true,
-        shouldSort: true,
-        //includeScore: true,
-        minMatchCharLength: 3
-        // sortFn: (a, b) => customSortFunction(a, b, keywords) // No need to pass queryText here
-      });
+      // const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+      // combinedartarr = mergearr(articleDataall, videoarticleDataAllCategory, false);
+      // articleData = [...combinedartarr];
+
+      // const processedArticles = preprocessArticles(articleData);
+      // const index = Fuse.createIndex(['title', 'summary'], processedArticles);
+      // const searchIndex = new MiniSearch({
+      //   searchOptions: {
+      //     fuzzy: 0.2,
+      //     boost: { title: 2 }
+      //   },
+      //   fields: ['title', 'summary','body'], // Fields to search
+      //   storeFields: ['id', 'ype', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'related_articles', 'embedded_images'], // Fields to return in search results
+      // });
+      // processedArticles.forEach((item: any) => searchIndex.add(item));
+      // const fuse = new Fuse(processedArticles, {
+      //   //   keys: ['normalizedTitle', 'normalizedSummary','normalizedBody'],//'normalizedBody'
+      //   threshold: 0.6, // Adjust as needed
+      //   ignoreLocation: true,
+      //   //ignoreFieldNorm: true,
+      //   // fieldNormWeight: 0,
+      //   shouldSort: true,
+      //   //includeScore: true,
+      //   minMatchCharLength: 2
+      //   // sortFn: (a, b) => customSortFunction(a, b, keywords) // No need to pass queryText here
+      // }, index);
+
+
       const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
       if (keywords.length > 1) {
         const resultsPromises = keywords.map(async (keyword: any) => {
-          const results = await fuse?.search(keyword).map((result: any) => result.item).flat();
+          const results = searchnwqIndex.search(keyword);
           return results;
         });
         const resultsArrays = await Promise.all(resultsPromises);
         const aggregatedResults = resultsArrays.flat();
+        console.log('aggregatedResults length is', aggregatedResults.length)
         setfilteredData(aggregatedResults);
         setLoadingArticle(false)
         toTop()
       } else {
-        const results = await Promise.all(keywords.map((keyword: any) => fuse?.search(keyword).map((result: any) => result.item).flat()));
-        const aggregatedResults = results.flat();
-        setfilteredData(aggregatedResults);
+        //const results = await Promise.all(keywords.map((keyword: any) => searchIndex?.search(keyword).map((result: any) => result.item).flat()));
+        const results = searchnwqIndex.search(queryText, {
+          // sort: (a:any, b:any) => {
+          //   // Sort by descending score
+          //   return b.score - a.score;
+          // }
+        });
+        // results.sort((a: any, b: any) => {
+        //   //return b.score - a.score;
+        //   const totalCountA = (a.title[queryText.toLowerCase()] || 0) +
+        //     (a.summary[queryText.toLowerCase()] || 0) +
+        //     (a.body[queryText.toLowerCase()] || 0);
+        //   const totalCountB = (b.title[queryText.toLowerCase()] || 0) +
+        //     (b.summary[queryText.toLowerCase()] || 0) +
+        //     (b.body[queryText.toLowerCase()] || 0);
+        //   return totalCountB - totalCountA; // Sort by descending total word count of the search term
+        // });
+        // const aggregatedResults = results.flat();
+        console.log('Results Data is', results)
+        console.log('Results length is', results.length)
+        setfilteredData(results);
         setLoadingArticle(false)
         toTop()
       }

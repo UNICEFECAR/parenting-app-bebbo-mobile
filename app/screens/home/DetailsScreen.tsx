@@ -394,10 +394,14 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     }
 
     let highlightedContent = content; // Initialize with original content
+   
     query.forEach((item) => {
         const regex = new RegExp(`${item}`, 'gi');
+        if(item.length>2){
         highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
-    });
+        }
+      });
+  
 
     return highlightedContent;
 }
