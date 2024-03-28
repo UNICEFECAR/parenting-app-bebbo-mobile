@@ -2,7 +2,6 @@ const en = {
         translation: {
                 "countryLangSelection": "Country and language",
                 "welcomeText":"Welcome!",
-                "discoverBebo": "Discover bebbo",
                 "editCountryLang": "Edit",
                 "continueCountryLang": "Continue",
                 "selectYourCountry": "Select your country",
@@ -13,7 +12,7 @@ const en = {
                 "country": "Country",
                 "language": "Language",
                 "walkthroughTextstitle0": "Welcome Parents!",
-                "walkthroughTextssubtitle0": "Discover Bebbo - everything you need as a parent to support your child's development",
+                "walkthroughTextssubtitle0": "Discover Bebbo",
                 "walkthroughTextstitle1": "Games ",
                 "walkthroughTextssubtitle1": "to help your child learn new things everyday",
                 "walkthroughTextstitle2": "Tools",
@@ -399,7 +398,7 @@ const en = {
                 "importOnboardingText1": "Information you enter to the app is saved to your phone or your personal storage.",
                 "importOnboardingText2": "If you have used Bebbo on another device and exported your information, you can upload the file to this device now.",
                 "OnboardingImportButton": "Upload now",
-                "ORkeyText": "OR",
+                "ORkeyText": "Or",
                 "addChildText": "Add your child details",
                 "addBasicParentsInfo": "Add basic info about yourself.",
                 "addBasicChildInfo":"Add basic info about your child. If you have more children, you can add them later.",
@@ -462,11 +461,13 @@ const en = {
                 "contactUs": "Write to us",
                 "aboutBebboDrawerMenu": "About {{appName}}",
                 "letGetStartedText":"LET'S GET STARTED",
-                "btnAddAnotherChildText":"ADD ANOTER CHILD",
-                "btnAddExpectedChildText":"ADD EXPECTED CHILD",
+                "btnAddAnotherChildText":"+ ADD ANOTER CHILD",
+                "btnAddExpectedChildText":"+ ADD EXPECTED CHILD",
                 "genderLabel1": "Your child is a",
-                "childDevelopmentDelayText":"My child has a developmental delay or difficulty",
                 "childSetupISdueLabel": "What is your child’s expected birth date?",
+                "childProfileSkipText":"If you skip this step, a newborn child profile will be created. You can edit it later to get personalized content.",
+                "serviceProviderHeaderInfoText" :"Bebbo is getting ready to support your journey in providing care!",
+                "serviceProviderHeaderSubInfoText" :"Bebbo created a newborn child profile to get you started. You can add more child profiles later.",
               }
 }
 export default en;
