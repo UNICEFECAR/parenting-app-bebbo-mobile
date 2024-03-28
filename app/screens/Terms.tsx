@@ -4,9 +4,9 @@ import {
   ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem, CheckboxItemText, FormOuterCheckbox } from '@components/shared/CheckboxStyle';
-import { LabelTCText, LabelText, LinkContainer, LinkText } from '@components/shared/ChildSetupStyle';
+import { LabelTCText, LabelText, LabelTextTerms, LinkContainer, LinkText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
-import OnboardingContainer, { OnboardingshiftHead } from '@components/shared/OnboardingContainer';
+import OnboardingContainer, { OnboardingTermsHead, OnboardingconfirmationHead, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
@@ -18,8 +18,8 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
-import { Heading1w, Heading2Centerw, SideRightSpacing20, SideSpacing20 } from '../styles/typography';
-import { bgcolorWhite2, primaryColor } from '@styles/style';
+import { Heading1w, Heading2Centerw, ShiftFromBottom15, ShiftFromTop15, SideRightSpacing20, SideSpacing10, SideSpacing20, SideSpacing25 } from '../styles/typography';
+import { bgcolorWhite, bgcolorWhite2, bgcolortransparent, primaryColor, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
 import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo } from '@dynamicImportsClass/dynamicImports';
 import FeatureTCView from '@components/shared/FeaturesTCView';
@@ -48,31 +48,36 @@ const styles = StyleSheet.create({
   },
 
   containerView: {
-    backgroundColor: primaryColor,
+    backgroundColor: bgcolorWhite2,
+    padding:16,
     flex: 1
   },
   containerView2: {
-    marginTop: 20,
-    paddingRight: 40
+    marginTop: 30,
   },
-  privacyText:{
-    color:'#1CABE2',
+  privacyText: {
+    color: secondaryBtnColor,
     fontWeight: "700"
   },
   scrollViewStyle: {
     padding: 0
   },
   vectorImageView: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 15,
-    marginTop: 45,
+    marginTop:50
   },
+  contentDataView:{
+    justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center',
+    backgroundColor:'red',
+    flex:1
+  }
 
 })
 const Terms = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
+  const termsTextColor = themeContext?.colors?.TERMS_TEXTCOLOR;
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
@@ -221,44 +226,52 @@ const Terms = ({ navigation }: Props): any => {
 
   return (
     <>
-      <View style={styles.containerView}>
+     <View style={styles.containerView}>
         <FocusAwareStatusBar
           animated={true}
           backgroundColor={headerColor}
         />
         <OnboardingContainer>
-          <OverlayLoadingComponent loading={loading} />
+         <OnboardingTermsHead>
+         <OverlayLoadingComponent loading={loading} />
 
-          <View style={styles.vectorImageView}>
-            <VectorImage source={item.image} />
-          </View>
+            <View style={styles.vectorImageView}>
+              <VectorImage source={item.image} />
+            </View>
 
-          <OnboardingshiftHead>
-            <Heading2Centerw>{t('discoverBebo')}</Heading2Centerw>
-          </OnboardingshiftHead>
-          <ScrollView contentContainerStyle={styles.scrollViewStyle}>
-            <Fragment>
-              <View style={styles.containerView2}>
-                <FeatureTCView
-                  title={t('walkthroughTextstitle3').toString()}
-                  subTitle={t('walkthroughTextssubtitle3').toString()}
-                  iconname={item.advice}
-                />
-                <FeatureTCView
-                  title={t('walkthroughTextstitle2').toString()}
-                  subTitle={t('walkthroughTextssubtitle2').toString()}
-                  iconname={item.tools}
-                />
-                <FeatureTCView
-                  title={t('walkthroughTextstitle1').toString()}
-                  subTitle={t('walkthroughTextssubtitle1').toString()}
-                  iconname={item.activity}
-                />
+            <ShiftFromTop15>
+              <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>
+            </ShiftFromTop15>
+            
+          
+                <View style={styles.containerView2}>
+                  <FeatureTCView
+                    title={t('walkthroughTextstitle3').toString()}
+                    subTitle={t('walkthroughTextssubtitle3').toString()}
+                    iconname={item.advice}
+                  />
+                  <FeatureTCView
+                    title={t('walkthroughTextstitle2').toString()}
+                    subTitle={t('walkthroughTextssubtitle2').toString()}
+                    iconname={item.tools}
+                  />
+                  <FeatureTCView
+                    title={t('walkthroughTextstitle1').toString()}
+                    subTitle={t('walkthroughTextssubtitle1').toString()}
+                    iconname={item.activity}
+                  />
 
-              </View>
-            </Fragment>
-          </ScrollView>
-          <ButtonRow>
+                </View>
+
+     
+
+         </OnboardingTermsHead>
+   
+         
+         
+        </OnboardingContainer>
+        <SideSpacing10>
+        <ButtonRow>
             <FormOuterCheckbox
               onPress={(): any => {
                 setToggleCheckBox(!toggleCheckBox);
@@ -275,46 +288,22 @@ const Terms = ({ navigation }: Props): any => {
                 </View>
               </CheckboxItem>
 
-              {/* <LabelText>
-                {t('tNccheckbox2')}{' '}
-                <LinkContainer>
-                <Text style={{fontSize:16}}>
-                <TouchableOpacity onPress={goToPrivacyPolicy}>
-                    <LinkText>Privacy Policy</LinkText>
-                   
-                  </TouchableOpacity>
-                  {' '}
-                  and{' '}
-                </Text>
-                 
-                  <Text style={{fontSize:16,marginBottom:-20}}>
-                  <TouchableOpacity onPress={goToTerms}>
-                    <LinkText>Terms and Conditions</LinkText>
-                   
-                  </TouchableOpacity>
-                  {' '} of the
-                
-                  </Text>
-                 
-                 
-                </LinkContainer>
-               application.
-              </LabelText> */}
+
               <SideRightSpacing20>
-              <LabelText>
-              {t('tNccheckbox2')}{' '}
-            
-                <LabelText onPress={goToPrivacyPolicy} style={styles.privacyText}>
-                  Privacy Policy {' '}
-                </LabelText>
-                and {' '}
-                <LabelText onPress={goToTerms} style={styles.privacyText}>
-                  Terms and conditions {' '}
-                </LabelText>
-                of the application.
-              </LabelText>
+                <LabelTextTerms>
+                  {t('tNccheckbox2')}{' '}
+
+                  <LabelTextTerms onPress={goToPrivacyPolicy} style={styles.privacyText}>
+                    {t('tNcprivacyPolicyTitle')} {' '}
+                  </LabelTextTerms>
+                  and {' '}
+                  <LabelTextTerms onPress={goToTerms} style={styles.privacyText}>
+                    {t('tNcheader')} {' '}
+                  </LabelTextTerms>
+                  of the application.
+                </LabelTextTerms>
               </SideRightSpacing20>
-      
+
               {/* <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToTerms} style={styles.checkboxStyle}>{t('tncCheckBoxText')}</CheckboxItemText></LabelText> */}
             </FormOuterCheckbox>
             <ButtonPrimary
@@ -325,8 +314,8 @@ const Terms = ({ navigation }: Props): any => {
               <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
             </ButtonPrimary>
           </ButtonRow>
-        </OnboardingContainer>
-      </View>
+        </SideSpacing10>
+        </View>
     </>
   );
 };

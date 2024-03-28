@@ -35,4 +35,5 @@ export const lightShadeColor= '#F7F6F4';
 export const vaccinationColor= '#00A8A8';
 export const childListBgColor = "#B3E7FA";
 export const childProfileBgColor = "#EFEFEF";
+export const secondaryBtnColor = "#1CABE2";
 
