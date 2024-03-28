@@ -104,7 +104,7 @@ jobs:
       run: cd android && chmod +x ./gradlew
                 
     - name: build prod
-      run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease --no-daemon && ./gradlew wrapper && --gradle-version 8.0.1
+      run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease --no-daemon && ./gradlew wrapper && --gradle-version 8.0.1 --warning-mode all
       
      #run: cd android && ./gradlew clean && ./gradlew wrapper && --gradle-version 8.0.1 && ./gradlew assembleprodstagingRelease --no-daemon 
       # run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease --no-daemon  
