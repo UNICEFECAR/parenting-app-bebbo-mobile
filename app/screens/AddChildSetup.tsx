@@ -39,7 +39,7 @@ import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { backup } from '../services/backup';
-import { addChild, getNewChild, isFutureDate } from '../services/childCRUD';
+import { addChild, apiJsonDataGet, getAge, getNewChild, isFutureDate } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
@@ -54,6 +54,8 @@ import {
   ShiftFromTopBottom5,
   Heading3w,
   ShiftFromTop25,
+  Heading2Centerw,
+  Heading3BoldCenterrw,
 } from '../styles/typography';
 import AlertModal from '@components/AlertModal';
 import { BannerContainer } from '@components/shared/Container';
@@ -96,34 +98,41 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   textParentInfoStyle: {
-    textAlign:'center'
+    textAlign: 'center'
   },
   dividerStyle: {
-    marginEnd:20
-  }
+    marginEnd: 20
+  },
+  orDividerStyle: {
+    width: 172,
+    alignSelf: 'center',
+  },
+  uploadTextStyle: {
+    color: "#1CABE2"
+  },
 })
-const AddChildSetup = ({route, navigation }: Props): any => {
+const AddChildSetup = ({ route, navigation }: Props): any => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState('');
-  const [birthDate, setBirthDate] = useState<Date>();
+  const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected, setIsExpected] = useState<string>('false');
-  const [name, setName] = React.useState('');
+  const [name, setName] = React.useState('Child');
   const [loading, setLoading] = useState(false);
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
   const actionSheetRefImport = createRef<any>();
   const netInfo = useNetInfoHook();
   let relationshipData = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ''? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
   const relationshipToParent = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -158,7 +167,7 @@ const AddChildSetup = ({route, navigation }: Props): any => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('taxonomyData is',relationshipToParent)
+      console.log('taxonomyData is', relationshipToParent)
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
@@ -173,10 +182,11 @@ const AddChildSetup = ({route, navigation }: Props): any => {
       }, 500);
     }, [])
   );
-  useEffect(()=>{
+  useEffect(() => {
     setRelationship(route?.params.relationship)
+    setRelationshipName(route?.params.relationshipname)
     setUserRelationToParent(route?.params.userRelationToParent)
-  },[route?.params])
+  }, [route?.params])
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
     setGender(checkedItem.id);
   };
@@ -298,7 +308,7 @@ const AddChildSetup = ({route, navigation }: Props): any => {
           setLoading(true);
           setIsImportRunning(true);
           handleImportedData(oldChildrenData, importedrealm)
-          
+
         }
 
       })
@@ -331,13 +341,17 @@ const AddChildSetup = ({route, navigation }: Props): any => {
   }
 
 
-  const AddChild = async (): Promise<any> => {
+  const AddChild = async (isDefaultChild: boolean): Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     const defaultName = name;
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
+    if (isDefaultChild) {
+      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
+    } else {
+      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
+    }
   }
 
   const themeContext = useContext(ThemeContext);
@@ -349,27 +363,27 @@ const AddChildSetup = ({route, navigation }: Props): any => {
         <OnboardingContainer>
           <OverlayLoadingComponent loading={loading} />
           <FlexRow>
-          <ShiftFromTop25>
-          <Pressable
-            onPress={(e: any): any => {
-              navigation.navigate('ChildSetup')
-            }}
-          >
-          <Icon name={'ic_back'} size={12} color="#2D2926" />
-          </Pressable>
-          </ShiftFromTop25>
-          <OrHeadingView>
+            <ShiftFromTop25>
+              <Pressable
+                onPress={(e: any): any => {
+                  navigation.navigate('ChildSetup')
+                }}
+              >
+                <Icon name={'ic_back'} size={12} color="#2D2926" />
+              </Pressable>
+            </ShiftFromTop25>
+            <OrHeadingView>
 
-          <ChildSetupDivider style={styles.dividerStyle}></ChildSetupDivider>
-          <ParentSetUpDivider></ParentSetUpDivider>
-          </OrHeadingView>
-       
-         
-         
+              <ChildSetupDivider style={styles.dividerStyle}></ChildSetupDivider>
+              <ParentSetUpDivider></ParentSetUpDivider>
+            </OrHeadingView>
+
+
+
           </FlexRow>
-        
+
           <OnboardingHeading>
-          
+
             <ChildCenterView>
               <Heading1Centerw>
                 {t('childSetupheader')}
@@ -392,7 +406,7 @@ const AddChildSetup = ({route, navigation }: Props): any => {
                   autoCorrect={false}
                   maxLength={30}
                   clearButtonMode="always"
-                  onChangeText={(value:any): any => {
+                  onChangeText={(value: any): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
@@ -406,57 +420,100 @@ const AddChildSetup = ({route, navigation }: Props): any => {
                 />
               </FormInputBox>
             </ShiftFromTop20>
-            {
-              birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
-                <FormContainer1>
-                  <LabelText>{t('genderLabel')}</LabelText>
-                  <ToggleRadios
-                    options={genders}
-                    tickbgColor={headerColor}
-                    tickColor={'#FFF'}
-                    getCheckedItem={getCheckedItem}
-                  />
-                </FormContainer1>
-                : null
-            }
-  
-        <ButtonRow>
-          <ButtonPrimary
-            disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
-            onPress={(e:any): any => {
-              e.stopPropagation();
-              setLoading(true);
-              let validated: any = false;
-              if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
-                validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender);
+            <View>
+              {
+                birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
+                  <FormContainer1>
+                    <LabelText>{t('genderLabel')}</LabelText>
+                    <ToggleRadios
+                      options={genders}
+                      tickbgColor={headerColor}
+                      tickColor={'#FFF'}
+                      getCheckedItem={getCheckedItem}
+                    />
+                  </FormContainer1>
+                  : null
               }
-              else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
-                validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
-              }
-              if (validated == true) {
-                setTimeout(() => {
-                  setLoading(false);
-                  AddChild();
-                }, 0)
-              }
-              else {
-                console.log("in else");
-              }
-            }}>
-            <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
-          </ButtonPrimary>
-        </ButtonRow>
-    
-  
+            </View>
+
+
+            <ButtonRow>
+              <ButtonPrimary
+                disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
+                onPress={(e: any): any => {
+                  e.stopPropagation();
+                  setLoading(true);
+                  let validated: any = false;
+                  if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
+                    validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender);
+                  }
+                  else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
+                    validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
+                  }
+                  if (validated == true) {
+                    setTimeout(() => {
+                      setLoading(false);
+                      AddChild(false);
+                    }, 0)
+                  }
+                  else {
+                    console.log("in else");
+                  }
+                }}>
+                <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
+              </ButtonPrimary>
+            </ButtonRow>
+
+
+            <FlexCol>
+              <ParentSetUpDivider style={styles.orDividerStyle}></ParentSetUpDivider>
+
+              <ShiftFromTop20>
+                <Heading2Centerw>{t('ORkeyText')}</Heading2Centerw>
+              </ShiftFromTop20>
+
+
+              <ShiftFromTop20>
+                <Pressable onPress={(e: any): any => {
+
+                  e.stopPropagation();
+                  setTimeout(() => {
+                    console.log('Relationship name', relationshipname, relationship)
+                    if (relationshipname == 'service provider') {
+                     // AddChild(true);
+                      navigation.navigate('ServiceProviderInfoSetup')
+                    } else {
+                      // const currentDate = new Date();
+                      // setBirthDate(currentDate)
+                      AddChild(true);
+                    }
+                    //setLoading(true);
+                    // AddChild();
+                  }, 0)
+                }}>
+                  <Heading3BoldCenterrw style={styles.uploadTextStyle}>
+                    {t('walkthroughButtonSkip')}
+                  </Heading3BoldCenterrw>
+
+                </Pressable>
+              </ShiftFromTop20>
+
+              <ShiftFromTop20>
+                <Flex2>
+                  <Heading4Regularw>{t('childProfileSkipText')}</Heading4Regularw>
+                </Flex2>
+
+              </ShiftFromTop20>
+            </FlexCol>
           </FlexCol>
 
-        
+
 
         </OnboardingContainer>
 
       </ScrollView>
-     
-   
+
+
 
     </View>
   </>;

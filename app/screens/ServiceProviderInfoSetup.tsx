@@ -24,7 +24,7 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { primaryColor } from '@styles/style';
+import { bgcolorBlack, bgcolorWhite, bgcolorWhite2, primaryColor, secondaryBtnColor } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
@@ -72,9 +72,21 @@ const styles = StyleSheet.create({
   },
   listBgColor:{
     backgroundColor:'red'
+  },
+  babyImageContainer:{
+    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+    borderColor: secondaryBtnColor,
+    borderWidth:2,
+    marginVertical:30,
+    width: Dimensions.get('window').width * 0.5,
+    height: Dimensions.get('window').width * 0.5,
+    backgroundColor:bgcolorWhite2,
+    justifyContent: 'center',
+    alignSelf:'center',
+    alignItems: 'center'
   }
 })
-const ChildSetupList = ({ navigation }: Props): any => {
+const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -226,7 +238,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
       routes: [
         {
           name: 'LoadingScreen',
-          params: { apiJsonData: apiJsonData, prevPage: 'ChildSetup' },
+          params: { apiJsonData: apiJsonData, prevPage: 'AddChildSetup' },
         },
       ],
     });
@@ -241,70 +253,29 @@ const ChildSetupList = ({ navigation }: Props): any => {
           <OnboardingHeading>
             <ChildCenterView>
               <Heading1Centerw>
-                {t('childSetupListheader')}
+                {t('serviceProviderHeaderInfoText')}
               </Heading1Centerw>
               <ShiftFromTop30>
                 <Heading3Centerw>
-                  {t('childSetupListsubHeader')}
+                  {t('serviceProviderHeaderSubInfoText')}
                 </Heading3Centerw>
               </ShiftFromTop30>
             </ChildCenterView>
           </OnboardingHeading>
           <FlexCol>
-          
-          <ChildContentArea>
-            <ChildListingArea >
-            <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
-              {
-                  childList.length > 0 ? (
-                    childList.map((item: ChildEntity, index: number) => {
-                      const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)).name : '';
-                      return renderDailyReadItem(dispatch, item, index, genderLocal);
-                    })
-                  ) :
-                    <ChildListingBox>
-                      <ChildColArea1>
-                        <Text>{t('noChildsTxt')}</Text></ChildColArea1>
-                    </ChildListingBox>
-                }
-              </ScrollView>
-           
-            </ChildListingArea>
-          </ChildContentArea>
+             <View style={styles.babyImageContainer}>
+             <Icon
+                name="ic_baby_girl"
+                size={90}
+                color="#000"
+              />
+             </View>
 
     
 
-            {/* <ShiftFromBottom10>
-              <ButtonLinkPress
-                onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
-                <OuterIconRow>
-                  <OuterIconLeft>
-                    <Icon name="ic_plus" size={20} color="#FFF" />
-                  </OuterIconLeft>
-                  <ButtonTextLinew 
-                  numberOfLines={2}> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
-                </OuterIconRow>
-              </ButtonLinkPress>
-            </ShiftFromBottom10>
-
-            <ButtonPrimary
-              onPress={(e:any): any => {
-                e.stopPropagation();
-                setLoading(true);
-                setTimeout(() => {
-                  setLoading(false);
-                  childSetup();
-                }, 0)
-
-              }}>
-              <ButtonText numberOfLines={2}>{t('childSetupListcontinueBtnText')}</ButtonText>
-            </ButtonPrimary> */}
+          
             <View onLayout={onLayout} style={{flexDirection:'column'}}>
-            <ButtonWithBorder onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
-                <OuterIconRow>
-                      <ButtonTextLg style={{color:"#1CABE2"}}>{t('btnAddAnotherChildText')}</ButtonTextLg>
-                    </OuterIconRow>
-                </ButtonWithBorder>
+           
                 <ButtonPrimary onPress={(e:any): any => {
                 e.stopPropagation();
                 setLoading(true);
@@ -325,4 +296,4 @@ const ChildSetupList = ({ navigation }: Props): any => {
   );
 };
 
-export default ChildSetupList;
+export default ServiceProviderInfoSetup;

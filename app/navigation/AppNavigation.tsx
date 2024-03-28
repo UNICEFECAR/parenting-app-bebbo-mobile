@@ -6,6 +6,7 @@ import AddSiblingData from '@screens/AddSiblingData';
 import ChildSetup from '@screens/ChildSetup';
 import ChildImportSetup from '@screens/ChildImportSetup';
 import ChildSetupList from '@screens/ChildSetupList';
+import ServiceProviderInfoSetup from '@screens/ServiceProviderInfoSetup';
 import EditParentDetails from '@screens/EditParentDetails';
 import AddNewChildgrowth from '@screens/growth/AddNewChildgrowth';
 import AddNewChildHeight from '@screens/growth/AddNewChildHeight';
@@ -858,6 +859,11 @@ export default (): any => {
           <RootStack.Screen
             name="ChildSetupList"
             component={ChildSetupList}
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <RootStack.Screen
+            name="ServiceProviderInfoSetup"
+            component={ServiceProviderInfoSetup}
             options={{ headerShown: false, gestureEnabled: false }}
           />
           <RootStack.Screen

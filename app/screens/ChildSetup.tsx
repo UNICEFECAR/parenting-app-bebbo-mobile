@@ -340,17 +340,6 @@ const ChildSetup = ({ navigation }: Props): any => {
       setIsImportRunning(false);
     }
   }
-
-
-  const AddChild = async (): Promise<any> => {
-    await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    const defaultName = name;
-    const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
-    const childSet: Array<any> = [];
-    childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
-  }
-
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   return <>
@@ -467,6 +456,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                     navigation.navigate('AddChildSetup',{
                       birthDate:birthDate,
                       relationship: relationship,
+                      relationshipname: relationshipname,
                       userRelationToParent:userRelationToParent
                     })
                     //AddChild();
@@ -502,7 +492,7 @@ const ChildSetup = ({ navigation }: Props): any => {
             <FlexCol>
               <ShiftFromTop20>
               <ParentSetUpDivider style={styles.orDividerStyle}></ParentSetUpDivider>
-              <Heading3Centerw style={styles.flex2Style}>{t('ORkeyText')}</Heading3Centerw>
+              <Heading3BoldCenterrw style={styles.flex2Style}>{t('ORkeyText')}</Heading3BoldCenterrw>
               </ShiftFromTop20>
   
 
