@@ -67,8 +67,10 @@ import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
-import { bgcolorWhite, childProfileBgColor } from '@styles/style';
+import { bgcolorWhite, childProfileBgColor, secondaryBtnColor } from '@styles/style';
 import Checkbox, { CheckboxActive, CheckboxItem } from '@components/shared/CheckboxStyle';
+import VectorImage from 'react-native-vector-image';
+import { cameraProfileImage } from '@dynamicImportsClass/dynamicImports';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -384,7 +386,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     console.log(insertData, "...insertData")
     childSet.push(insertData);
     setLoading(false);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false);
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
@@ -463,9 +465,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 onPress={(): any => {
                   actionSheetRef.current?.setModalVisible(true);
                 }}>
-                <IconBox>
-                  <Icon name="ic_camera" size={24} color="#000" />
-                </IconBox>
+                    <VectorImage source={cameraProfileImage} />
                 <ShiftFromTop10>
                   <Heading4Regular>{t('uploadPhtototxt')}</Heading4Regular>
                 </ShiftFromTop10>
@@ -524,25 +524,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 )}
               </View>
             </CheckboxItem> */}
-            <ShiftFromTop15>
-            <FlexRow>
-                <CheckboxItem>
-                  <Pressable onPress={() => {
-                    toggleCheckBox?setToggleCheckBox(false):setToggleCheckBox(true)
-                  }}>
-                    {
-                      toggleCheckBox ?
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#fff" />
-                        </CheckboxActive> : <Checkbox></Checkbox>
-                    }
-
-                  </Pressable>
-
-                </CheckboxItem>
-                <LabelText>{t('childDevelopmentDelayText')}</LabelText>
-              </FlexRow>
-            </ShiftFromTop15>
+           
              
            
 
