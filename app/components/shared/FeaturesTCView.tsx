@@ -7,7 +7,6 @@ import VectorImage from 'react-native-vector-image';
 
 const Title = styled.Text`
   font-size: 14px;
-  flex: 1;
   font-weight: bold;
   margin-left: 15px;
   margin-top: 5px;
@@ -17,7 +16,7 @@ const Title = styled.Text`
 const SubTitle = styled.Text`
   font-size: 14px;
   margin-left: 15px;
-  margin-top:10;
+  margin-top:5px;
   line-height:16px;
   color: ${(props: any): any => props.theme.colors.TERMS_TEXTCOLOR};
 `;
@@ -30,7 +29,6 @@ const MainContainer = styled.View`
 `;
 const TitleContainer = styled.View`
   flex-direction:column;
-  justify-content:space-between;
 `;
 
 const FeatureTCView = (props: any): any => {

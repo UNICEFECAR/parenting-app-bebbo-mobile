@@ -220,7 +220,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
     }
     const eventData= {'name': ONBOARDING_CHILD_COUNT,'params': { child_count: childList?.length }  }
     logEvent(eventData,netInfo.isConnected)
-   
+   console.log('API json data is ',apiJsonData)
     navigation.reset({
       index: 0,
       routes: [
