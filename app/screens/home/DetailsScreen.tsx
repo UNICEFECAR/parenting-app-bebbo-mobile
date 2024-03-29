@@ -392,20 +392,24 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     console.log('content is', typeof content);
 
     if (typeof content !== 'string') {
-        return "";
+      return "";
     }
 
     console.log('QueryText is', query);
 
     let highlightedContent = content; // Initialize with original content
-
+    console.log('Query highlight content is', query)
     query.forEach((item) => {
-        const regex = new RegExp(`${item}`, 'gi');
+      const regex = new RegExp(`${item}`, 'gi');
+      console.log('Highlight content is', item)
+      if (item.length > 2) {
         highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+      }
     });
 
+
     return highlightedContent;
-}
+  }
 
 
   const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string[]): string => {
@@ -416,12 +420,12 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     const modifiedParts = parts.map((part: any): any => {
       if (!/<img[^>]*>/i.test(part)) {
         return highlightWord(part, wordToHighlight); // Pass wordToHighlight array here
-    }
+      }
       return part;
     });
     return modifiedParts.join('')
   }
-  
+
   const highlightedTitle = queryText != undefined
     ? queryText.length !== 0
       ? highlightWord(detailDataToUse?.title, queryText)
@@ -556,7 +560,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{
 
-                  
+
                     table: {
                       cssRules
                       // Put the table config here (previously,

@@ -122,7 +122,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState('');
-  const [birthDate, setBirthDate] = useState<Date>();
+  const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isPremature, setIsPremature] = useState<string>('false');
@@ -340,6 +340,22 @@ const ChildSetup = ({ navigation }: Props): any => {
       setIsImportRunning(false);
     }
   }
+  const AddChild = async (isDefaultChild: boolean): Promise<any> => {
+    await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    let defaultName ;
+    if(isDefaultChild){
+       defaultName=' Baby';
+    }else{
+        defaultName= name;
+    }
+    
+    const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    const childSet: Array<any> = [];
+    childSet.push(insertData);
+
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,isDefaultChild);
+  }
+  
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   return <>
@@ -453,13 +469,20 @@ const ChildSetup = ({ navigation }: Props): any => {
                 if (validated == true) {
                   setTimeout(() => {
                     setLoading(false);
-                    navigation.navigate('AddChildSetup',{
-                      birthDate:birthDate,
-                      relationship: relationship,
-                      relationshipname: relationshipname,
-                      userRelationToParent:userRelationToParent
-                    })
-                    //AddChild();
+                    console.log('parentalRole',relationshipname)
+                    if (relationshipname == 'service provider') {
+                      AddChild(true);
+                    }else{
+                      navigation.navigate('AddChildSetup',{
+                        birthDate:birthDate,
+                        relationship: relationship,
+                        relationshipname: relationshipname,
+                        userRelationToParent:userRelationToParent
+                      })  
+                    
+                    }
+                   
+              
                   }, 0)
                 }
                 else {

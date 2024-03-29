@@ -238,7 +238,7 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
       routes: [
         {
           name: 'LoadingScreen',
-          params: { apiJsonData: apiJsonData, prevPage: 'AddChildSetup' },
+          params: { apiJsonData: apiJsonData, prevPage: 'ChildSetup' },
         },
       ],
     });
