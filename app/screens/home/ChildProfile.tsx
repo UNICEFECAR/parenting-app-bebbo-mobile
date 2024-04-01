@@ -273,7 +273,8 @@ const ChildProfile = ({ navigation }: Props): any => {
               {
                 data.photoUri != '' ?
                   <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
-                  </ImageIcon> : <Icon name="ic_baby" size={30} color="#000" />
+                  </ImageIcon> : genderName=='Girl'?<Icon name="ic_baby_girl" size={30} color="#000" />:
+                <Icon name="ic_baby" size={30} color="#000" />
               }
             </ProfileIconView>
             <ProfileTextView>
@@ -373,7 +374,12 @@ const ChildProfile = ({ navigation }: Props): any => {
               <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
-                    const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
+                    console.log('Gender is',item.gender,genders)
+                    let genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
+                    console.log('genderLocal is',genderLocal)
+                    if(genderLocal==''){
+                      genderLocal='Girl';
+                    }
                     return renderChildProfile(dispatch, item, index, genderLocal, navigation);
                   })
                   : null}
@@ -451,7 +457,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                  */}
                     <ParentSection>
                       <ParentLabel>
-                        <Text>{t('parentRoleLabel')}</Text>
+                        <Text>{t('childSetuprelationSelectTitle')}</Text>
                       </ParentLabel>
                       <ParentData>
 

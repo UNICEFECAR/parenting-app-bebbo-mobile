@@ -172,7 +172,7 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
 
   }
   const editRecord = (data: any): any => {
-    navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListeditSiblingBtn'), childData: data });
+    navigation.navigate('AddSiblingDataScreen', { headerTitle: t('babyNotificationUpdateBtn'), childData: data });
   }
   const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any): any => {
    console.log('Gender is',gender)

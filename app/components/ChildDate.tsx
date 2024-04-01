@@ -26,7 +26,7 @@ import FormPrematureContainer, {
   FormDobInfoPress,
   FormInfoLabel, FormInfoPress
 } from './shared/FormPrematureContainer';
-import { FlexFDirRowSpace } from './shared/FlexBoxStyle';
+import { FlexFDirRowSpace, FlexRow } from './shared/FlexBoxStyle';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -165,7 +165,7 @@ const ChildDate = (props: any): any => {
         {Platform.OS != 'ios' ? (
           <FormInputGroup>
             <FormPrematureContainer>
-              <LabelText>{prevScreen == 'EditScreen' ? t('editChildDobLabel') : t('childSetupdobLabel')}</LabelText>
+              <LabelText>{prevScreen == 'EditScreen' ? t('childSetupdobLabel') : t('enterDobExpctedDate')}</LabelText>
               <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
               </FormInfoPress></FormInfoLabel>
@@ -176,7 +176,7 @@ const ChildDate = (props: any): any => {
                   <Text>
                     {doborExpectedDate
                       ? formatStringDate(doborExpectedDate)
-                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
+                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('enterDobExpctedDate')}
                   </Text>
                   {showdob && (
                     <DateTimePicker
@@ -202,18 +202,19 @@ const ChildDate = (props: any): any => {
         ) : (
           <FormInputGroup>
             <FormPrematureContainer>
-              <LabelText>{prevScreen == 'EditScreen' ? t('editChildDobLabel') : t('childSetupdobLabel')}</LabelText>
+              <LabelText>{prevScreen == 'EditScreen' ? t('enterDobExpctedDate') : t('childSetupdobLabel')}</LabelText>
               <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
               </FormInfoPress></FormInfoLabel>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
-              <FormInputBox>
+             <View style={{marginTop:-10}}>
+             <FormInputBox>
                 <FlexFDirRowSpace>
                   <Text>
                     {doborExpectedDate
                       ? formatStringDate(doborExpectedDate)
-                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
+                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('enterDobExpctedDate')}
                   </Text>
                   {showdob && (
                     <DateTimePickerModal
@@ -232,6 +233,8 @@ const ChildDate = (props: any): any => {
                   <Icon name="ic_calendar" size={20} color="#000" />
                 </FormDateAction>
               </FormInputBox>
+             </View>
+             
             </Pressable>
           </FormInputGroup>
         )}
@@ -288,7 +291,7 @@ const ChildDate = (props: any): any => {
                         {' '}
                         {dueDate
                           ? formatStringDate(dueDate)
-                          : t('childSetupdobSelector')}
+                          : t('enterDobExpctedDate')}
                       </Text>
                       {showdue && (
                         <DateTimePicker
@@ -332,7 +335,7 @@ const ChildDate = (props: any): any => {
                         {' '}
                         {dueDate
                           ? formatStringDate(dueDate)
-                          : t('childSetupdobSelector')}
+                          : t('enterDobExpctedDate')}
                       </Text>
                       {showdue && (
                         <DateTimePickerModal
