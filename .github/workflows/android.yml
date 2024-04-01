@@ -107,10 +107,13 @@ jobs:
      # run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease --no-daemon && ./gradlew wrapper && --gradle-version 8.0.1 --warning-mode all
      # run : cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease && --gradle-version 8.0.1
      #run: cd android && ./gradlew clean && ./gradlew wrapper && --gradle-version 8.0.1 && ./gradlew assembleprodstagingRelease --no-daemon 
-      run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease --no-daemon   
+      run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease 
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v1
+      uses: r0adkll/sign-android-release@v1
       with:
-        name: Bebbo_Release.apk
-        path: android/app/build/outputs/apk/
+         releaseDirectory: android/app/build/outputs/apk/release
+         signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+         alias: ${{ secrets.ANDROID_ALIAS }}
+         keyStorePassword: ${{ secrets.ANDROID_KEY_STORE_PASSWORD }}
+         keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
