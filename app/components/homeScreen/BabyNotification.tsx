@@ -54,7 +54,9 @@ const BabyNotification = ():any => {
                         source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
                       ></ImageIcon>
                     ) : (
-                      <Icon name="ic_baby" size={36} color="#000" />
+                      activeChild.gender != '' ? activeChild.gender == 'Boy'?<Icon name="ic_baby" size={36} color="#000" />:
+                      <Icon name="ic_baby" size={36} color="#000" />:
+                     <Icon name="ic_baby_girl" size={36} color="#000" />
                     )}
                   </OuterIconLeft>
                 </OuterIconRow>
