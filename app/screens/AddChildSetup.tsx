@@ -398,7 +398,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       });
       //addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
     } else {
-      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,true);
+      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,isDefaultChild);
     }
   }
 
