@@ -410,7 +410,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
           </HeaderIconView>
           <HeaderTitleView>
             {childData && childData?.uuid != '' ? (
-              <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('editChildProfileHeader')} </Heading2w>
+              <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('babyNotificationUpdateBtn')} </Heading2w>
             ) : (
               <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('addChildProfileHeader')}</Heading2w>
             )}

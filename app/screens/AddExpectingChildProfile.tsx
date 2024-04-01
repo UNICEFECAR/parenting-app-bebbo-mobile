@@ -191,7 +191,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         </HeaderIconView>
         <HeaderTitleView>
           <Heading2w style={styles.headetTitleText} numberOfLines={1}>
-            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('editExpectChildAddTxt') : t('expectChildAddTxt')}
+            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt')}
           </Heading2w>
         </HeaderTitleView>
         <HeaderActionView style={styles.headerActionView}>
@@ -213,7 +213,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       <MainContainer>
         <FormDateContainer>
           <FormInputGroup onPress={showdobDatepicker}>
-            <LabelText> {t('childSetupISdueLabel')}</LabelText>
+            <LabelText> {t('expectChildDueDateTxt')}</LabelText>
             <FormInputBox>
               <FormDateText>
                 <Text>  {plannedTermDate ? formatStringDate(plannedTermDate) : t('expectChildDueDateTxt')}</Text>
