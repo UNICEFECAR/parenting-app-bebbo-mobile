@@ -116,7 +116,6 @@ jobs:
     #     path: android/app/build/outputs/apk/
 
     - name: Sign APK
-        id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: android/app/build/outputs/apk/release
