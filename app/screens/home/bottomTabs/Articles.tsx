@@ -197,7 +197,7 @@ const Articles = ({ route, navigation }: any): any => {
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
     realm.write(() => {
-      const storeKeyword = realm.create('SerachHistory', {
+      const storeKeyword = realm.create('SearchHistory', {
         keyword: keyword,
         createdAt: new Date(),
       }, Realm.UpdateMode.Modified);
@@ -321,17 +321,17 @@ const Articles = ({ route, navigation }: any): any => {
         }
 
         //combine-array
-        const combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
+        const combineDartArr = mergearr(newArticleData, newvideoArticleData, false);
 
-        setfilteredData(combinedartarr);
+        setfilteredData(combineDartArr);
 
         setLoadingArticle(false);
         toTop();
       } else {
         let newArticleData = articleData != '' ? articleData : [];
-        const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+        const videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
         let newvideoArticleData = videoarticleData != '' ? videoarticleData : [];
-        let combinedartarr = [];
+        let combineDartArr = [];
         let titleData = [];
         let bodyData = [];
         let videoTitleData = [];
@@ -347,8 +347,8 @@ const Articles = ({ route, navigation }: any): any => {
           const combineVideoArticleData: any[] = videoTitleData.concat(videoBodyData)
           newvideoArticleData = [...new Set(combineVideoArticleData)];
 
-          combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
-          setfilteredData(combinedartarr);
+          combineDartArr = mergearr(newArticleData, newvideoArticleData, false);
+          setfilteredData(combineDartArr);
 
         } else {
           setfilteredData(newArticleData);
@@ -364,38 +364,9 @@ const Articles = ({ route, navigation }: any): any => {
     }
   }
 
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-
-  //     if (queryText == '') {
-
-  //       async function fetchData(): Promise<any> {
-  //         if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
-  //           setFilterArray(route.params?.categoryArray);
-  //           setFilteredArticleData(route.params?.categoryArray);
-  //           console.log('UseFouusEffect Articles one');
-  //         }
-  //         else {
-  //           setFilterArray([]);
-  //           setFilteredArticleData([]);
-  //         }
-  //       }
-  //       if (route.params?.backClicked != 'yes') {
-  //         fetchData()
-  //       } else {
-  //         setLoadingArticle(false);
-  //         if (route.params?.backClicked == 'yes') {
-  //           navigation.setParams({ backClicked: 'no' })
-  //         }
-  //       }
-  //     }
-
-  //   }, [route.params?.categoryArray, activeChild?.uuid, languageCode, queryText])
-  // );
   useFocusEffect(
     React.useCallback(() => {
-      console.log('UseFouusEffect Articles two');
+      console.log('UseFocusEffect Articles two');
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
       });
@@ -417,51 +388,10 @@ const Articles = ({ route, navigation }: any): any => {
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray)
   }
-  // const processedArticles = preprocessArticles(articleData);
-  // const data = [
-  //   {
-  //     "id": 606,
-  //     "type": "Article",
-  //     "title": "Infekcia močových ciest (IMC) u dojčiat a batoliat",
-  //     "summary": "U dojčiat a batoliat príznaky infekcie močových ciest (IMC) zahŕňajú podráždenosť, problémy s kŕmením a horúčku...",
-  //     "body": "<h1>O infekciách močových ciest (IMC)</h1><p>Infekcie močových ciest (IMC) vzniknú, keď sa baktérie, ktoré sa dostanú do močových ciest cez močovú trubicu alebo krvou, v moči ďalej rozmnožujú a rastú...</p>",
-  //   },
-  //   {
-  //     "id": 2196,
-  //     "type": "Article",
-  //     "title": "Čítanie v obrázkoch: batoľatá",
-  //     "summary": "Hrajte sa a komunikujte s batoľaťom Hovorte a čítajte Spôsoby čítania...",
-  //     "body": "<h2>Hrajte sa a komunikujte s batoľaťom</h2><p>Porozprávajte sa s batoľaťom o tom, čo robí...</p>",
-  //   },
-  //   // Add more data here
-  // ];
-
-  // Create MiniSearch instance
-  // const searchIndex = new MiniSearch({
-  //   fields: ['title', 'summary', 'body'], // Fields to search
-  //   storeFields: ['id', 'title', 'summary', 'body'], // Fields to return in search results
-  // });
-
-  // Add data to MiniSearch index
-  // processedArticles.forEach((item:any) => searchIndex.add(item));
-  // const [searchTerm, setSearchTerm] = useState('');
-  // const [searchResults, setSearchResults] = useState<any>([]);
-  //code for getting article dynamic data ends here.
-
-  // useEffect(() => {
-  //  // console.log('ProcessArticle Data',processedArticles)
-  //   if (searchTerm.trim() === '') {
-  //     setSearchResults([]);
-  //     return;
-  //   }
-
-  //   const results = searchIndex.search(searchTerm);
-  //   setSearchResults(results);
-  //   console.log('Results Data is ',results)
-  // }, [searchTerm]);
+  
   useFocusEffect(
     React.useCallback(() => {
-      console.log('UseFouusEffect Articles one');
+      console.log('UseFocusEffect Articles one');
       if (queryText == '') {
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
@@ -495,12 +425,15 @@ const Articles = ({ route, navigation }: any): any => {
     }
     return tokens;
   }
+  // add minisearch on active child article data 
   useEffect(() => {
     async function initializeSearchIndex() {
-
-      const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-      const combinedartarr = mergearr(articleDataall, videoarticleDataAllCategory, false);
-      articleData = [...combinedartarr];
+      let videoArticleDataAllCategory:any;
+      if(activeChild!=null && activeChild.taxonomyData!=null && activeChild?.gender!=null){
+         videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+      }
+      const combineDartArr = mergearr(articleDataall, videoArticleDataAllCategory, false);
+      articleData = [...combineDartArr];
       const processedArticles = preprocessArticles(articleData);
       const searchIndex = new MiniSearch({
         processTerm: (term) => suffixes(term, 3),
@@ -525,7 +458,7 @@ const Articles = ({ route, navigation }: any): any => {
           bm25: { k: 1.0, b: 0.7, d: 0.5 },
           fuzzy: true,
           // prefix true means it will contain "foo" then search for "foobar"
-          prefix:true,
+          prefix: true,
           weights: {
             fuzzy: 0.6,
             prefix: 0.6
@@ -549,7 +482,7 @@ const Articles = ({ route, navigation }: any): any => {
     await new Promise(resolve => setTimeout(resolve, 0));
     Keyboard.dismiss();
     let artData: any;
-    let combinedartarr: [];
+    let combineDartArr: [];
     let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
       const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
@@ -595,8 +528,8 @@ const Articles = ({ route, navigation }: any): any => {
     else {
       artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
       newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-      combinedartarr = mergearr(artData, newvideoArticleData, true);
-      articleData = [...combinedartarr];
+      combineDartArr = mergearr(artData, newvideoArticleData, true);
+      articleData = [...combineDartArr];
       setFilteredArticleData(filterArray);
       setLoadingArticle(false);
     }
@@ -755,13 +688,9 @@ const Articles = ({ route, navigation }: any): any => {
 
           </FlexCol>
           <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
-
           <OverlayLoadingComponent loading={profileLoading} />
         </KeyboardAvoidingView>
-
       </View>
-
-
     </>
   );
 };
