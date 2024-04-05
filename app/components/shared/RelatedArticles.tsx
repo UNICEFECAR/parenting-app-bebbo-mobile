@@ -71,11 +71,15 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
       async function fetchData(): Promise<any> {
         if (relartlength > 0) {
           let relatedData: any = [];
+          console.log('From screen', fromScreen)
+          console.log('Related articles is', relatedArticles)
           if (fromScreen == "ChildgrowthTab") {
             const filterQuery = JSON.parse(JSON.stringify(relatedArticles)).map((x: any) => `id = '${x}'`).join(' OR ');
             relatedData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
           } else {
+            console.log('In artcile data from database',articleData.length,articleDataold.length)
             relatedData = articleData.filter((x: any) => JSON.parse(JSON.stringify(relatedArticles)).includes(x.id));
+            console.log('relatedData data from database',relatedData)
           }
           relartlength = relatedData.length;
            if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
