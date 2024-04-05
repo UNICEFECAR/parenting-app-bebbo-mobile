@@ -42,8 +42,6 @@
     "@types/uuid": "^9.0.7",
     "axios": "^1.6.0",
     "deprecated-react-native-prop-types": "^5.0.0",
-    "flexsearch": "^0.7.43",
-    "fuse.js": "^7.0.0",
     "i": "^0.3.7",
     "i18next": "^23.6.0",
     "intl": "^1.2.5",
