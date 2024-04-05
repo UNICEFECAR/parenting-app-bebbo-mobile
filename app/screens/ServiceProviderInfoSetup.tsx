@@ -3,7 +3,9 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
-  ButtonTextLinew
+  ButtonTextLg,
+  ButtonTextLinew,
+  ButtonWithBorder
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
@@ -16,16 +18,16 @@ import {
   ChildListTitle,
   CustomScrollView,
 } from '@components/shared/ChildSetupStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconML, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { primaryColor } from '@styles/style';
+import { bgcolorBlack, bgcolorWhite, bgcolorWhite2, primaryColor, secondaryBtnColor } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, BackHandler, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -41,6 +43,8 @@ import {
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
 import { setActiveChildData } from '../redux/reducers/childSlice';
+import { Flex1, FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
+import { ScrollView } from 'react-native-gesture-handler';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -49,6 +53,7 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 const styles = StyleSheet.create({
+  autoHeight: { height: 'auto' },
   containerView: {
     backgroundColor:primaryColor,
     flex:1
@@ -64,14 +69,32 @@ const styles = StyleSheet.create({
   touchableRight: { 
     marginRight: 2,
     padding: 8 
+  },
+  listBgColor:{
+    backgroundColor:'red'
+  },
+  babyImageContainer:{
+    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+    borderColor: secondaryBtnColor,
+    borderWidth:2,
+    marginVertical:30,
+    width: Dimensions.get('window').width * 0.5,
+    height: Dimensions.get('window').width * 0.5,
+    backgroundColor:bgcolorWhite2,
+    justifyContent: 'center',
+    alignSelf:'center',
+    alignItems: 'center'
   }
 })
-const ChildSetupList = ({ navigation }: Props): any => {
+const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const [parentViewHeight, setParentViewheight] = useState(0);
+  const [profileViewHeight, setProfileViewheight] = useState(0);
   const [loading, setLoading] = useState(false);
   const isFocused = useIsFocused();
+  const windowHeight = Dimensions.get('window').height;
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -84,10 +107,13 @@ const ChildSetupList = ({ navigation }: Props): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
+  const onLayout = (event: any): any => {
+    setParentViewheight(event.nativeEvent.layout.height);
+  }
   useEffect(() => {
     if (isFocused) {
        getAllChildren(dispatch, childAge, 0);
@@ -146,13 +172,19 @@ const ChildSetupList = ({ navigation }: Props): any => {
 
   }
   const editRecord = (data: any): any => {
-    navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListeditSiblingBtn'), childData: data });
+    navigation.navigate('AddSiblingDataScreen', { headerTitle: t('babyNotificationUpdateBtn'), childData: data });
   }
   const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any): any => {
-
+   console.log('Gender is',gender)
     return (
       <ChildListingBox key={index}>
+       { gender != '' && gender != 0 && gender != undefined ? 
+         gender=='Girl' ?
+         <Icon name="ic_baby_girl" size={40} color='#000' />
+         :  <Icon name="ic_baby" size={40} color='#000' />
+         :<Icon name="ic_baby_girl" size={40} color='#000' />}
         <ChildColArea1>
+       
           <ChildListTitle >{data.childName}{(gender != '' && gender != 0 && gender != undefined) ? <Text style={styles.textStyle}>, {gender}</Text> : null}</ChildListTitle>
           <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}</Heading5>
         </ChildColArea1>
@@ -222,51 +254,30 @@ const ChildSetupList = ({ navigation }: Props): any => {
           <OnboardingHeading>
             <ChildCenterView>
               <Heading1Centerw>
-                {t('childSetupListheader')}
+                {t('serviceProviderHeaderInfoText')}
               </Heading1Centerw>
               <ShiftFromTop30>
                 <Heading3Centerw>
-                  {t('childSetupListsubHeader')}
+                  {t('serviceProviderHeaderSubInfoText')}
                 </Heading3Centerw>
               </ShiftFromTop30>
             </ChildCenterView>
           </OnboardingHeading>
-          <ChildContentArea>
-            <ChildListingArea>
-              <CustomScrollView >
-                {
-                  childList.length > 0 ? (
-                    childList.map((item: ChildEntity, index: number) => {
-                      const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)).name : '';
-                      return renderDailyReadItem(dispatch, item, index, genderLocal);
-                    })
-                  ) :
-                    <ChildListingBox>
-                      <ChildColArea1>
-                        <Text>{t('noChildsTxt')}</Text></ChildColArea1>
-                    </ChildListingBox>
-                }
-              </CustomScrollView>
-            </ChildListingArea>
-          </ChildContentArea>
+          <FlexCol>
+             <View style={styles.babyImageContainer}>
+             <Icon
+                name="ic_baby_girl"
+                size={90}
+                color="#000"
+              />
+             </View>
 
-          <ButtonRow>
+    
 
-            <ShiftFromBottom10>
-              <ButtonLinkPress
-                onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
-                <OuterIconRow>
-                  <OuterIconLeft>
-                    <Icon name="ic_plus" size={20} color="#FFF" />
-                  </OuterIconLeft>
-                  <ButtonTextLinew 
-                  numberOfLines={2}> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
-                </OuterIconRow>
-              </ButtonLinkPress>
-            </ShiftFromBottom10>
-
-            <ButtonPrimary
-              onPress={(e:any): any => {
+          
+            <View onLayout={onLayout} style={{flexDirection:'column'}}>
+           
+                <ButtonPrimary onPress={(e:any): any => {
                 e.stopPropagation();
                 setLoading(true);
                 setTimeout(() => {
@@ -275,14 +286,15 @@ const ChildSetupList = ({ navigation }: Props): any => {
                 }, 0)
 
               }}>
-              <ButtonText numberOfLines={2}>{t('childSetupListcontinueBtnText')}</ButtonText>
-            </ButtonPrimary>
-
-          </ButtonRow>
+                  <ButtonText numberOfLines={2}>{t('letGetStartedText')}</ButtonText>
+                </ButtonPrimary>
+            </View>
+            
+              </FlexCol>
         </OnboardingContainer>
       </View>
     </>
   );
 };
 
-export default ChildSetupList;
+export default ServiceProviderInfoSetup;
