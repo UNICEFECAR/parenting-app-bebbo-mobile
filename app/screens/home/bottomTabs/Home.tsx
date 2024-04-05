@@ -341,7 +341,8 @@ const Home = ({ route, navigation }: any): any => {
                 saveinDB: true,
               },
             ];
-            const apiJsonDataarticleall = apiJsonDataGet(String(bufferAgeBracket), "all");
+           // const apiJsonDataarticleall = apiJsonDataGet(String(bufferAgeBracket), "all");
+           const apiJsonDataarticleall = apiJsonDataGet("all");
             if (apiJsonDataarticleall.length > 0) {
               apiJsonDatarelatedvideoart.push(apiJsonDataarticleall[0])
             }
