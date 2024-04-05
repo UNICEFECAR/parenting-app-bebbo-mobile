@@ -182,15 +182,13 @@ const Articles = ({ route, navigation }: any): any => {
     const realm = await dataRealmCommon.openRealm();
 
     if (realm != null) {
-      console.log('Seach History is...', realm?.objects('SerachHistory'))
-      const unsynchronizedEvents: any = realm.objects('SerachHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
+      console.log('Seach History is...', realm?.objects('SearchHistory'))
+      const unsynchronizedEvents: any = realm.objects('SearchHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
       console.log('Seach History is', unsynchronizedEvents)
       setSearchHistory(unsynchronizedEvents);
 
     }
-    console.log('search history.......', searchHistory)
-    //const realm = await dataRealmCommon.openRealm(); 
-    //const history:any = realm?.objects('SerachHistory');
+    console.log('search history.......', searchHistory);
 
   }
 
@@ -516,7 +514,7 @@ const Articles = ({ route, navigation }: any): any => {
       setSearchHistory(filterredUpdatedHistory);
 
       // Delete older entries beyond the latest 5
-      const olderEntries = realm?.objects<HistoryEntity>('SerachHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
+      const olderEntries = realm?.objects<HistoryEntity>('SearchHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
       if (olderEntries != undefined && olderEntries?.length > 5) {
         realm?.write(() => {
           realm.delete(olderEntries);
