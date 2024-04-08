@@ -43,7 +43,7 @@ const DailyReads = ():any => {
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const articleDataall = useAppSelector(
-    (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
+    (state: any) => state.articlesData.article.articles != '' ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth
@@ -76,6 +76,7 @@ const DailyReads = ():any => {
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
   const [dataToShowInList, setDataToShowInList] = useState([]);
+  const [activityDataToShowInList, setActivityDataToShowInList] = useState([]);
   const goToArticleDetail = (item:any):any => {
     console.log(Object.prototype.hasOwnProperty.call(item,'activity_category'),"..ds")
     navigation.navigate('DetailsScreen', {
@@ -228,16 +229,18 @@ const DailyReads = ():any => {
       }
       categoryActivityData = categoryActivityData.filter((i: any) => !gamesarray.find((f: any) => f === i.id));
       const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
-      const data: any = [];
+      const articleDailyReadsData: any = [];
+      const activityDailyReadsData: any = [];
       if (articleDataToShow != null && articleDataToShow != undefined) {
         advicearray.push(articleDataToShow?.id);
-        data.push(articleDataToShow);
+        articleDailyReadsData.push(articleDataToShow);
       }
       if (activityDataToShow != null && activityDataToShow != undefined) {
         gamesarray.push(activityDataToShow?.id);
-        data.push(activityDataToShow);
+        activityDailyReadsData.push(activityDataToShow);
       }
-      setDataToShowInList(data);
+      setDataToShowInList(articleDailyReadsData);
+      setActivityDataToShowInList(activityDailyReadsData);
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
       const showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
       dailyDataCategorytoDispatch[activeChild.uuid] = {
@@ -253,7 +256,8 @@ const DailyReads = ():any => {
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
       dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
     } else {
-      const data: any = [];
+      const articleDailyReadsData: any = [];
+      const activityDailyReadsData: any = [];
       const articleDataToShow = articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid).length > 0 ?
         articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid)[0] : null;
       const activityDataToShow = ActivitiesData.filter((x: any) => x.id == dailyDataCategory.currentgamesid).length > 0 ?
@@ -263,18 +267,18 @@ const DailyReads = ():any => {
         dispatch(setShowedDailyDataCategory({}));
       }
       if (articleDataToShow != null) {
-        data.push(articleDataToShow);
+        articleDailyReadsData.push(articleDataToShow);
       }
       if (activityDataToShow != null) {
-        data.push(activityDataToShow);
+        activityDailyReadsData.push(activityDataToShow);
       }
-      setDataToShowInList(data);
+      setDataToShowInList(articleDailyReadsData);
+      setActivityDataToShowInList(activityDailyReadsData)
     }
   }, [activeChild.uuid, activityTaxonomyId]);
   return (
     <>
-      <BgSecondaryTint>
-        <MainContainer>
+      <MainContainer>
           <ShiftFromTopBottom10>
             <Heading2>{t('homeScreendailyReadsTitle')}</Heading2>
           </ShiftFromTopBottom10>
@@ -286,8 +290,15 @@ const DailyReads = ():any => {
               keyExtractor={(item:any):any => item?.id}
             />
           </View>
+          <View style={styles.flatlistOuterView}>
+            <FlatList
+              data={activityDataToShowInList}
+              horizontal
+              renderItem={({ item, index }:any):any => <RenderDailyReadItem item={item} index={index} />}
+              keyExtractor={(item:any):any => item?.id}
+            />
+          </View>
         </MainContainer>
-      </BgSecondaryTint>
     </>
   );
 };

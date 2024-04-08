@@ -43,6 +43,7 @@ import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { setActiveChildData } from '../redux/reducers/childSlice';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { bgcolorWhite } from '@styles/style';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -58,6 +59,9 @@ const styles = StyleSheet.create({
   headerActionView: { padding: 0 },
   headerRowView: {
     maxHeight: 50
+  },
+  headetTitleTextColor: {
+    color: bgcolorWhite
   },
   pressableView: { paddingLeft: 10, paddingRight: 10 },
   textInputML: { width: '100%' }
@@ -134,7 +138,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '', null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false);
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
@@ -173,7 +177,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     });
   };
   return <>
-    <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+    <View style={[styles.flex1, { backgroundColor: bgcolorWhite }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
         style={[styles.headerRowView, { backgroundColor: headerColor }]}>
@@ -186,8 +190,8 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
           </HeaderIconPress>
         </HeaderIconView>
         <HeaderTitleView>
-          <Heading2w numberOfLines={1}>
-            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('editExpectChildAddTxt') : t('expectChildAddTxt')}
+          <Heading2w style={styles.headetTitleTextColor} numberOfLines={1}>
+            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt')}
           </Heading2w>
         </HeaderTitleView>
         <HeaderActionView style={styles.headerActionView}>
