@@ -1,5 +1,5 @@
 import { buildFor, buildForBebbo } from '@assets/translations/appOfflineData/apiConstants';
-import { bebboLogoShape, nmPartnerLogo, nmSponserLogo, albeniaPartnerLogo1, blSponserLogo, blParterLogo, kgPartnerLogo, mnSponserLogo, mnParterLogo, sbPartnerLogo, sbSponserLogo, skParterLogo, tjkParterLogo, uzSponserLogo, uzPartnerLogo } from '@dynamicImportsClass/dynamicImports';
+import { bebboLogoShape, nmPartnerLogo, nmSponserLogo, albaniaPartnerLogo1, blSponserLogo, blPartnerLogo, kgPartnerLogo, mnSponserLogo, mnPartnerLogo, sbPartnerLogo, sbSponserLogo, skPartnerLogo, tjkPartnerLogo, uzSponserLogo, uzPartnerLogo } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -58,11 +58,11 @@ const styles = StyleSheet.create({
   },
   vectorImageView: { marginBottom: 15 }
 });
-const sponsersData = [
+const sponsorsData = [
   {
     id: 6,
     sponserImage: null,
-    partnerImage: albeniaPartnerLogo1
+    partnerImage: albaniaPartnerLogo1
   },
   {
     id: 36,
@@ -72,7 +72,7 @@ const sponsersData = [
   {
     id: 106,
     sponserImage: blSponserLogo,
-    partnerImage: blParterLogo
+    partnerImage: blPartnerLogo
   },
   {
     id: 26,
@@ -82,7 +82,7 @@ const sponsersData = [
   {
     id: 31,
     sponserImage: mnSponserLogo,
-    partnerImage: mnParterLogo
+    partnerImage: mnPartnerLogo
   },
   {
     id: 41,
@@ -92,12 +92,12 @@ const sponsersData = [
   {
     id: 151,
     sponserImage: null,
-    partnerImage: skParterLogo
+    partnerImage: skPartnerLogo
   },
   {
     id: 46,
     sponserImage: null,
-    partnerImage: tjkParterLogo
+    partnerImage: tjkPartnerLogo
   },
   {
     id: 51,
@@ -109,13 +109,13 @@ const LoadingScreenComponent = (props: any): any => {
   const { t } = useTranslation();
   const sponsors = props.sponsors;
   const [logoname, setLogoName] = React.useState('')
-  const [countrySponsor, setCountrySponser] = React.useState<any>(null)
+  const [countrySponsor, setCountrySponsor] = React.useState<any>(null)
   const prevPage = props.prevPage;
 
   React.useEffect(() => {
-    const countrySponsor1 = sponsersData.find(sponsor => sponsor.id === props.sponsors.id);
-    setCountrySponser(countrySponsor1)
-  }, [sponsersData, countrySponsor])
+    const countrySponsor1 = sponsorsData.find(sponsor => sponsor.id === props.sponsors.id);
+    setCountrySponsor(countrySponsor1)
+  }, [sponsorsData, countrySponsor])
   return (
     <LoadingContainer>
       <MainView>
