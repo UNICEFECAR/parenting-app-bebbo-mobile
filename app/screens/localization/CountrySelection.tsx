@@ -10,12 +10,12 @@ import {
 import { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
-import { useIsFocused } from '@react-navigation/native';
-import { SelectionView } from '@styles/style';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { ButtonText, SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, NativeModules, Platform } from 'react-native';
+import { FlatList, NativeModules, Platform, Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
@@ -24,16 +24,19 @@ import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
 import * as RNLocalize from "react-native-localize";
+import { Flex1, Flex3 } from '@components/shared/FlexBoxStyle';
+import { ButtonLinkRow, ButtonPrimary, ButtonRow } from '@components/shared/ButtonGlobal';
 const CountrySelection = (props: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const dispatch = useAppDispatch();
   const [country, setCountry] = useState<any>();
   const [language, setSelectedLanguage] = useState<any>(null);
   const [luxonLanLocale, setLuxonLanLocale] = useState<any>();
   const [deviceLanCode, setDeviceLangCode] = useState<any>();
   const isVisible = useIsFocused();
+  const navigation = useNavigation<any>();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
@@ -151,10 +154,17 @@ const CountrySelection = (props: any): any => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <OnboardingContainer>
+        <Pressable
+            onPress={(e: any): any => {
+              console.log('Back icon click')
+              navigation.navigate('CountryLanguageConfirmation')
+            }}
+          >
           <OnboardingStyle
             title={t('selectYourCountry').toString()}
-            iconname="ic_country"
+            iconname="ic_back"
           />
+          </Pressable>
 
           <SelectionView>
             {userIsOnboarded == true ?
@@ -171,7 +181,7 @@ const CountrySelection = (props: any): any => {
                 keyExtractor={(item): any => item.countryId.toString()}
               />}
           </SelectionView>
-          {country ? (
+          {/* {country ? (
             <ButtonSection>
               <ShiftFromTopBottom10>
                 <ButtonviewNext>
@@ -194,8 +204,17 @@ const CountrySelection = (props: any): any => {
                 <IconML name="ic_angle_right" size={32} color="#000" />
               </ButtonviewClick>
             </ButtonviewPrevious>
-          )}
+          )} */}
+        <ButtonLinkRow>
+          
+              <ButtonPrimary onPress={():any =>{
+                props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
+              }}>
+                <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
+              </ButtonPrimary>
+            </ButtonLinkRow>
         </OnboardingContainer>
+      
       </>
     </>
   );

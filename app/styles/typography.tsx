@@ -12,7 +12,7 @@ export const Heading1 = styled.Text`
   text-align:left;
 `;
 export const Heading1w = styled(Heading1)`
-  color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `;
 
 export const Heading1Center = styled(Heading1)`
@@ -44,7 +44,7 @@ export const Heading2 = styled.Text`
   `;
 
 export const Heading2w = styled(Heading2)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `;
 
 export const Heading2Center = styled(Heading2)`
@@ -74,7 +74,8 @@ export const Heading3 = styled.Text`
   text-align:left;
 `
 export const Heading3w = styled(Heading3)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+fontFamily: 'roboto';
 `
 
 export const Heading3Center = styled(Heading3)`
@@ -90,6 +91,11 @@ fontFamily: 'roboto-regular';
 export const Heading3Centerrw = styled(Heading3Centerw)`
 fontFamily: 'roboto-regular';
 `
+
+export const Heading3BoldCenterrw = styled(Heading3Centerw)`
+fontFamily: 'roboto-bold';
+`
+
 export const Heading3Regular = styled(Heading3)`
 fontFamily: 'roboto-regular';
 `
@@ -105,11 +111,11 @@ export const Heading4 = styled.Text`
   line-height: 18px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
-  text-align:left;
+  text-align:center;
   
 `;
 export const Heading4w = styled(Heading4)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `
 
 export const Heading4Center = styled(Heading4)`
@@ -240,6 +246,11 @@ margin-top:15px;
 `
 export const ShiftFromTop20 = styled.View`
 margin-top:20px;
+
+`
+export const ShiftFromTop25 = styled.View`
+margin-top:25px;
+
 `
 export const ShiftFromTop30 = styled.View`
 margin-top:30px;
@@ -280,6 +291,9 @@ margin-right:15px;
 `
 export const SideSpacing20 = styled.View`
 margin-left:20px;
+margin-right:20px;
+`
+export const SideRightSpacing20 = styled.View`
 margin-right:20px;
 `
 export const SideSpacing25 = styled.View`

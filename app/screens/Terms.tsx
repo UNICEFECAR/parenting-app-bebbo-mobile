@@ -4,31 +4,41 @@ import {
   ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem, CheckboxItemText, FormOuterCheckbox } from '@components/shared/CheckboxStyle';
-import { LabelText } from '@components/shared/ChildSetupStyle';
+import { LabelTCText, LabelText, LabelTextTerms, LinkContainer, LinkText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingContainer, { OnboardingTermsHead, OnboardingconfirmationHead, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
-import { Heading1w } from '../styles/typography';
-import { bgcolorWhite2, primaryColor } from '@styles/style';
+import { Heading1w, Heading2Centerw, ShiftFromBottom15, ShiftFromTop15, SideRightSpacing20, SideSpacing10, SideSpacing20, SideSpacing25 } from '../styles/typography';
+import { bgcolorWhite, bgcolorWhite2, bgcolortransparent, primaryColor, secondaryBtnColor } from '@styles/style';
+import VectorImage from 'react-native-vector-image';
+import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo } from '@dynamicImportsClass/dynamicImports';
+import FeatureTCView from '@components/shared/FeaturesTCView';
+import { FontWeight } from '@shopify/react-native-skia';
 
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'LoadingScreen'
+  'ChildSetup'
 >;
 
 type Props = {
   navigation: TermsNavigationProp;
+};
+const item = {
+  image: bebboLogoShapeNew,
+  advice: adviceLogo,
+  tools: toolsLogo,
+  activity: activityLogo
 };
 const styles = StyleSheet.create({
   checkboxStyle: {
@@ -36,26 +46,43 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     textDecorationStyle: 'solid'
   },
+
   containerView: {
-    backgroundColor: primaryColor,
+    backgroundColor: bgcolorWhite2,
+    padding:16,
     flex: 1
   },
   containerView2: {
-    marginTop: 20,
-    paddingRight: 40
+    marginTop: 30,
+  },
+  privacyText: {
+    color: secondaryBtnColor,
+    fontWeight: "700"
   },
   scrollViewStyle: {
     padding: 0
+  },
+  vectorImageView: {
+    marginTop:50
+  },
+  contentDataView:{
+    justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center',
+    backgroundColor:'red',
+    flex:1
   }
+
 })
 const Terms = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
+  const termsTextColor = themeContext?.colors?.TERMS_TEXTCOLOR;
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(true);
-  const isButtonDisabled = (toggleCheckBox == false || toggleCheckBox1 == false)
+  const isButtonDisabled = (toggleCheckBox == false)
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
   const goToPrivacyPolicy = (): any => {
@@ -72,6 +99,22 @@ const Terms = ({ navigation }: Props): any => {
     React.useCallback(() => {
       setLoading(false);
     }, [languageCode])
+  );
+  useFocusEffect(
+    React.useCallback(() => {
+      setTimeout(() => {
+        navigation.dispatch((state: any) => {
+          // Remove the home route from the stack
+          const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen');
+
+          return CommonActions.reset({
+            ...state,
+            routes,
+            index: routes.length - 1,
+          });
+        });
+      }, 500);
+    }, [])
   );
   const acceptTermsFlag = useAppSelector(
     (state: any) =>
@@ -183,68 +226,96 @@ const Terms = ({ navigation }: Props): any => {
 
   return (
     <>
-      <View style={styles.containerView}>
+     <View style={styles.containerView}>
         <FocusAwareStatusBar
           animated={true}
           backgroundColor={headerColor}
         />
         <OnboardingContainer>
-          <OverlayLoadingComponent loading={loading} />
-          <OnboardingHeading>
-            <Heading1w>{t('tNcheader')}</Heading1w>
-          </OnboardingHeading>
-          <ScrollView contentContainerStyle={styles.scrollViewStyle}>
-          <LabelText>{t('tncScreenContent')}</LabelText>
-            <Fragment>
-              <View style={styles.containerView2}>
-                <FormOuterCheckbox
-                  onPress={(): any => {
-                    setToggleCheckBox(!toggleCheckBox);
-                  }}>
-                  <CheckboxItem>
-                    <View>
-                      {toggleCheckBox ? (
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#fff" />
-                        </CheckboxActive>
-                      ) : (
-                        <Checkbox></Checkbox>
-                      )}
-                    </View>
-                  </CheckboxItem>
-                  <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToTerms} style={styles.checkboxStyle}>{t('tncCheckBoxText')}</CheckboxItemText></LabelText>
-                </FormOuterCheckbox>
-                <FormOuterCheckbox
-                  onPress={(): any => {
-                    setToggleCheckBox1(!toggleCheckBox1);
-                  }}>
-                  <CheckboxItem >
-                    <View>
-                      {toggleCheckBox1 ? (
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#fff" />
-                        </CheckboxActive>
-                      ) : (
-                        <Checkbox></Checkbox>
-                      )}
-                    </View>
-                  </CheckboxItem>
-                   <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={styles.checkboxStyle}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
-                </FormOuterCheckbox>
-              </View>
-            </Fragment>
-          </ScrollView>
-          <ButtonRow>
+         <OnboardingTermsHead>
+         <OverlayLoadingComponent loading={loading} />
+
+            <View style={styles.vectorImageView}>
+              <VectorImage source={item.image} />
+            </View>
+
+            <ShiftFromTop15>
+              <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>
+            </ShiftFromTop15>
+            
+          
+                <View style={styles.containerView2}>
+                  <FeatureTCView
+                    title={t('walkthroughTextstitle3').toString()}
+                    subTitle={t('walkthroughTextssubtitle3').toString()}
+                    iconname={item.advice}
+                  />
+                  <FeatureTCView
+                    title={t('walkthroughTextstitle2').toString()}
+                    subTitle={t('walkthroughTextssubtitle2').toString()}
+                    iconname={item.tools}
+                  />
+                  <FeatureTCView
+                    title={t('walkthroughTextstitle1').toString()}
+                    subTitle={t('walkthroughTextssubtitle1').toString()}
+                    iconname={item.activity}
+                  />
+
+                </View>
+
+     
+
+         </OnboardingTermsHead>
+   
+         
+         
+        </OnboardingContainer>
+        <SideSpacing10>
+        <ButtonRow>
+            <FormOuterCheckbox
+              onPress={(): any => {
+                setToggleCheckBox(!toggleCheckBox);
+              }}>
+              <CheckboxItem>
+                <View>
+                  {toggleCheckBox ? (
+                    <CheckboxActive>
+                      <Icon name="ic_tick" size={12} color="#fff" />
+                    </CheckboxActive>
+                  ) : (
+                    <Checkbox></Checkbox>
+                  )}
+                </View>
+              </CheckboxItem>
+
+
+              <SideRightSpacing20>
+                <LabelTextTerms>
+                  {t('tNccheckbox2')}{' '}
+
+                  <LabelTextTerms onPress={goToPrivacyPolicy} style={styles.privacyText}>
+                    {t('tNcprivacyPolicyTitle')} {' '}
+                  </LabelTextTerms>
+                  and {' '}
+                  <LabelTextTerms onPress={goToTerms} style={styles.privacyText}>
+                    {t('tNcheader')} {' '}
+                  </LabelTextTerms>
+                  of the application.
+                </LabelTextTerms>
+              </SideRightSpacing20>
+
+              {/* <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToTerms} style={styles.checkboxStyle}>{t('tncCheckBoxText')}</CheckboxItemText></LabelText> */}
+            </FormOuterCheckbox>
             <ButtonPrimary
               disabled={isButtonDisabled}
               onPress={(): any => {
                 acceptTerms();
               }}>
-              <ButtonText>{t('tNcacceptbtn')}</ButtonText>
+              <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
             </ButtonPrimary>
           </ButtonRow>
-        </OnboardingContainer>
-      </View>
+        </SideSpacing10>
+        </View>
     </>
   );
 };

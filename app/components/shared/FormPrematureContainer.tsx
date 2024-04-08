@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 const FormPrematureContainer = styled.View`
   width: 100%;
-  height: 40px;
   flex-direction: row;
   align-items: center;
 `;

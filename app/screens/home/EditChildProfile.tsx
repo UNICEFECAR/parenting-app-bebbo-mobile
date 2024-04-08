@@ -14,7 +14,7 @@ import {
   LabelText
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
-import { FlexCol } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderIconPress,
@@ -32,10 +32,12 @@ import {
   Heading2,
   Heading2w,
   Heading4,
-  Heading4Regular, ShiftFromTop10
+  Heading4Regular, ShiftFromTop10,
+  ShiftFromTop15,
+  ShiftFromTop20
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import React, { createRef, useContext, useEffect } from 'react';
+import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -65,6 +67,10 @@ import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
+import { bgcolorWhite, childProfileBgColor, secondaryBtnColor } from '@styles/style';
+import Checkbox, { CheckboxActive, CheckboxItem } from '@components/shared/CheckboxStyle';
+import VectorImage from 'react-native-vector-image';
+import { cameraProfileImage } from '@dynamicImportsClass/dynamicImports';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -87,7 +93,11 @@ const styles = StyleSheet.create({
   flex1: { flex: 1 },
   flex4: { flex: 4 },
   headerRowView: { maxHeight: 50 },
+  headetTitleText: {
+    color: bgcolorWhite
+  },
   heading4: { flexShrink: 1, marginTop: 10, textAlign: 'center' },
+
   image: {
     alignItems: 'flex-end',
     flex: 1,
@@ -112,6 +122,7 @@ const styles = StyleSheet.create({
 
 const EditChildProfile = ({ route, navigation }: Props): any => {
   const netInfo = useNetInfoHook();
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -174,7 +185,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [gender, setGender] = React.useState(
     childData != null ? childData.gender : 0,
   );
-  const handleBack=():any=>{
+  const handleBack = (): any => {
     const backAction = (): any => {
       //console.log("11")
       navigation.goBack();
@@ -193,14 +204,14 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   }
   useEffect(() => {
 
-     handleBack();
+    handleBack();
   }, []);
   useFocusEffect(
-    
+
     React.useCallback(() => {
-      
-      console.log('childData is',childData)
-      console.log('childData is profiles',childData)
+
+      console.log('childData is', childData)
+      console.log('childData is profiles', childData)
       if (childData != undefined && childData != null && childData != '' && childData.uuid != '') {
         setphotoUri(childData.photoUri);
         if (childData.photoUri != '' && childData.photoUri != null && childData.photoUri != undefined) {
@@ -238,7 +249,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       });
   };
   const handleImageOptionClick = async (item: any, index: number): Promise<any> => {
-    console.log('index is',index)
+    console.log('index is', index)
     console.log('Obn image click1')
     if (item.id == 0) {
       Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
@@ -271,7 +282,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       });
     }
   };
-  const deleteRecord = (index: number, dispatch: any, uuid: string,childList:any): any => {
+  const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
@@ -287,13 +298,13 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               const selectedUuid = filterList[0];
               dispatch(setActiveChildData(selectedUuid))
             }
-             await deleteChild(
+            await deleteChild(
               navigation,
               languageCode,
               index,
               dispatch,
               'ChildEntity',
-               uuid,  
+              uuid,
               'uuid ="' + uuid + '"',
               resolve,
               reject,
@@ -301,9 +312,9 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               t,
               childList
             );
-           navigation.navigate('ChildProfileScreen')
-       
-    
+            navigation.navigate('ChildProfileScreen')
+
+
           },
         },
       ]);
@@ -375,7 +386,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     console.log(insertData, "...insertData")
     childSet.push(insertData);
     setLoading(false);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false);
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
@@ -383,7 +394,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   };
   return (
     <>
-      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+      <View style={[styles.flex1, { backgroundColor: bgcolorWhite }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={[styles.headerRowView, {
@@ -399,21 +410,21 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
           </HeaderIconView>
           <HeaderTitleView>
             {childData && childData?.uuid != '' ? (
-              <Heading2w numberOfLines={1}>{t('editChildProfileHeader')} </Heading2w>
+              <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('babyNotificationUpdateBtn')} </Heading2w>
             ) : (
-              <Heading2w numberOfLines={1}>{t('addChildProfileHeader')}</Heading2w>
+              <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('addChildProfileHeader')}</Heading2w>
             )}
           </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
             <HeaderActionView style={styles.padding0}>
-              <Pressable style={styles.pressableView} onPress={(): any =>{
-                console.log('ChildData position',childData)
-                if(childData?.index==undefined){
-                  deleteRecord(0, dispatch, childData?.uuid,childList)
-                }else{
-                deleteRecord(childData?.index, dispatch, childData?.uuid,childList)
+              <Pressable style={styles.pressableView} onPress={(): any => {
+                console.log('ChildData position', childData)
+                if (childData?.index == undefined) {
+                  deleteRecord(0, dispatch, childData?.uuid, childList)
+                } else {
+                  deleteRecord(childData?.index, dispatch, childData?.uuid, childList)
                 }
-               // deleteRecord(childData?.index, dispatch, childData?.uuid)
+                // deleteRecord(childData?.index, dispatch, childData?.uuid)
               }
               }>
                 <Icon name={'ic_trash'} size={20} color="#FFF" />
@@ -434,7 +445,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                   }
                   style={styles.image}>
                   <ProfileEditView onPress={(): any => {
-                 actionSheetRef.current?.setModalVisible(true);
+                    actionSheetRef.current?.setModalVisible(true);
                   }}>
                     <Icon
                       name="ic_edit"
@@ -448,15 +459,13 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             ) : (
               <Pressable
                 style={[styles.innerPressableView, {
-                  backgroundColor: SecondaryColor,
+                  backgroundColor: childProfileBgColor,
 
                 }]}
                 onPress={(): any => {
                   actionSheetRef.current?.setModalVisible(true);
                 }}>
-                <IconBox>
-                  <Icon name="ic_camera" size={24} color="#000" />
-                </IconBox>
+                    <VectorImage source={cameraProfileImage} />
                 <ShiftFromTop10>
                   <Heading4Regular>{t('uploadPhtototxt')}</Heading4Regular>
                 </ShiftFromTop10>
@@ -488,7 +497,11 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                   </FormInputBox>
                 </ShiftFromTop10>
               </FormInputGroup>
+
+              <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen" />
+
               <FormContainerFlex>
+                <LabelText>{t('genderLabel')}</LabelText>
                 <ToggleRadios
                   options={genders}
                   defaultValue={defaultGenderValue}
@@ -497,53 +510,29 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                   getCheckedItem={getCheckedItem}
                 />
               </FormContainerFlex>
-              <ShiftFromTop10>
-                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen" />
-              </ShiftFromTop10>
+              {/* <CheckboxItem>
+              <View>
+                {toggleCheckBox ? (
+                  <CheckboxActive
+                    style={
+                      disablePrematureCheck ? styles.disabledCheckBox : null
+                    }>
+                    <Icon name="ic_tick" size={12} color="#000" />
+                  </CheckboxActive>
+                ) : (
+                  <Checkbox></Checkbox>
+                )}
+              </View>
+            </CheckboxItem> */}
+           
+             
+           
+
+
             </MainContainer>
           </FlexCol>
-          <ActionSheet ref={actionSheetRef}>
-            <MainContainer>
-              <ArticleHeading>
-                <Heading2>{t('cameraOptionsHeader')}</Heading2>
-              </ArticleHeading>
-              <View
-                style={styles.actionsheetView}>
-                {imageOptions.map((item, index) => {
-                  console.log('imageOptions',item)
-                  if (
-                    index == 0 &&
-                    (capturedPhoto == '' ||
-                      capturedPhoto == null ||
-                      capturedPhoto == undefined || photoDeleted == true)
-                  ) {
-                    console.log('cehcking')
-                    return null;
-                  } else {
-                    return (
-                      <View
-                        key={index}
-                        style={styles.innerImageView}>
-                        <Pressable
-                          style={styles.alignItemsCenter}
-                          onPress={(): any => {
-                            console.log('Obn image click')
-                          //  actionSheetRef.current?.hide();
-                          actionSheetRef.current?.setModalVisible(false);
-                            handleImageOptionClick(item, index);
-                          }}>
-                          <Icon name={item.iconName} size={50} color="#000" />
-                          <Heading4 style={styles.heading4}>{item.name}</Heading4>
-                        </Pressable>
-                      </View>
-                    );
-                  }
-                })}
-              </View>
-            </MainContainer>
-          </ActionSheet>
-        </ScrollView>
-        <ButtonContainer>
+          <ShiftFromTop10>
+          <ButtonContainer>
           <ButtonPrimary
             disabled={
               !validateForm(
@@ -579,12 +568,57 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
 
             }}>
             {childData && childData?.uuid != '' ? (
-              <ButtonText numberOfLines={2}>{t('babyNotificationUpdateBtn')}</ButtonText>
+              <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
             ) : (
-              <ButtonText numberOfLines={2}>{t('addProfileBtn')}</ButtonText>
+              <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
             )}
           </ButtonPrimary>
-        </ButtonContainer>
+          </ButtonContainer>
+          </ShiftFromTop10>
+         
+         
+          <ActionSheet ref={actionSheetRef}>
+            <MainContainer>
+              <ArticleHeading>
+                <Heading2>{t('cameraOptionsHeader')}</Heading2>
+              </ArticleHeading>
+              <View
+                style={styles.actionsheetView}>
+                {imageOptions.map((item, index) => {
+                  console.log('imageOptions', item)
+                  if (
+                    index == 0 &&
+                    (capturedPhoto == '' ||
+                      capturedPhoto == null ||
+                      capturedPhoto == undefined || photoDeleted == true)
+                  ) {
+                    console.log('cehcking')
+                    return null;
+                  } else {
+                    return (
+                      <View
+                        key={index}
+                        style={styles.innerImageView}>
+                        <Pressable
+                          style={styles.alignItemsCenter}
+                          onPress={(): any => {
+                            console.log('Obn image click')
+                            //  actionSheetRef.current?.hide();
+                            actionSheetRef.current?.setModalVisible(false);
+                            handleImageOptionClick(item, index);
+                          }}>
+                          <Icon name={item.iconName} size={50} color="#000" />
+                          <Heading4 style={styles.heading4}>{item.name}</Heading4>
+                        </Pressable>
+                      </View>
+                    );
+                  }
+                })}
+              </View>
+            </MainContainer>
+          </ActionSheet>
+        </ScrollView>
+       
       </View>
     </>
   );
