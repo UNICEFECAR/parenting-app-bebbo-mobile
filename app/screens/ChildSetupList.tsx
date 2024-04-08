@@ -24,7 +24,7 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { primaryColor } from '@styles/style';
+import { primaryColor, secondaryBtnColor } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
@@ -55,31 +55,32 @@ type Props = {
 const styles = StyleSheet.create({
   autoHeight: { height: 'auto' },
   containerView: {
-    backgroundColor:primaryColor,
-    flex:1
+    backgroundColor: primaryColor,
+    flex: 1
   },
-  textStyle: { 
+  plusBtnColor: {
+    color: secondaryBtnColor,
+    textTransform: 'uppercase'
+  },
+  textStyle: {
     fontSize: 12,
     fontWeight: 'normal'
   },
-  touchableLeft: { 
+  touchableLeft: {
     marginLeft: 2,
-    padding: 8 
+    padding: 8
   },
-  touchableRight: { 
+  touchableRight: {
     marginRight: 2,
-    padding: 8 
+    padding: 8
   },
-  listBgColor:{
-    backgroundColor:'red'
-  }
 })
 const ChildSetupList = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const [parentViewHeight, setParentViewheight] = useState(0);
-  const [profileViewHeight, setProfileViewheight] = useState(0);
+  const [parentViewHeight, setParentViewHeight] = useState(0);
+  const [profileViewHeight, setProfileViewHeight] = useState(0);
   const [loading, setLoading] = useState(false);
   const isFocused = useIsFocused();
   const windowHeight = Dimensions.get('window').height;
@@ -100,30 +101,30 @@ const ChildSetupList = ({ navigation }: Props): any => {
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
   const onLayout = (event: any): any => {
-    setParentViewheight(event.nativeEvent.layout.height);
+    setParentViewHeight(event.nativeEvent.layout.height);
   }
   useEffect(() => {
     if (isFocused) {
-       getAllChildren(dispatch, childAge, 0);
-       getAllConfigData(dispatch);
-       notiPermissionUtil();
-       setTimeout(() => {
-         navigation.dispatch(state => {
-           // Remove the home route from the stack
-           const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
- 
-           return CommonActions.reset({
-             ...state,
-             routes,
-             index: routes.length - 1,
-           });
-         });
-       }, 100);
+      getAllChildren(dispatch, childAge, 0);
+      getAllConfigData(dispatch);
+      notiPermissionUtil();
+      setTimeout(() => {
+        navigation.dispatch(state => {
+          // Remove the home route from the stack
+          const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+
+          return CommonActions.reset({
+            ...state,
+            routes,
+            index: routes.length - 1,
+          });
+        });
+      }, 100);
     }
   }, [isFocused]);
   useFocusEffect(
     React.useCallback(() => {
-     
+
       const backAction = (): any => {
         return true;
       };
@@ -149,8 +150,8 @@ const ChildSetupList = ({ navigation }: Props): any => {
           },
           {
             text: t('growthScreendelText'), onPress: async (): Promise<any> => {
-          
-              await deleteChild(navigation,languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, childAge, t,childList);
+
+              await deleteChild(navigation, languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, childAge, t, childList);
               getAllChildren(dispatch, childAge, 0);
             }
           }
@@ -163,16 +164,16 @@ const ChildSetupList = ({ navigation }: Props): any => {
     navigation.navigate('AddSiblingDataScreen', { headerTitle: t('babyNotificationUpdateBtn'), childData: data });
   }
   const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any): any => {
-   console.log('Gender is',gender)
+    console.log('Gender is', gender)
     return (
       <ChildListingBox key={index}>
-       { gender != '' && gender != 0 && gender != undefined ? 
-         gender=='Girl' ?
-         <Icon name="ic_baby_girl" size={40} color='#000' />
-         :  <Icon name="ic_baby" size={40} color='#000' />
-         :<Icon name="ic_baby_girl" size={40} color='#000' />}
+        {gender && gender !== '' && gender !== 0 && gender !== undefined ?
+          gender === 'Girl' ?
+            <Icon name="ic_baby_girl" size={40} color='#000' />
+            : <Icon name="ic_baby" size={40} color='#000' />
+          : <Icon name="ic_baby_girl" size={40} color='#000' />}
         <ChildColArea1>
-       
+
           <ChildListTitle >{data.childName}{(gender != '' && gender != 0 && gender != undefined) ? <Text style={styles.textStyle}>, {gender}</Text> : null}</ChildListTitle>
           <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}</Heading5>
         </ChildColArea1>
@@ -180,8 +181,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
           {
             childList.length > 1 ? (
               <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={(): any => {
-                
-                deleteRecord(index, dispatch, data.uuid)}}>
+
+                deleteRecord(index, dispatch, data.uuid)
+              }}>
                 <ChildListAction>
                   <Icon
                     name="ic_trash"
@@ -206,7 +208,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
       </ChildListingBox>
     );
   };
-  
+
 
 
   const childSetup = async (): Promise<any> => {
@@ -218,9 +220,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
     else {
       apiJsonData = apiJsonDataGet("all", "all")
     }
-    const eventData= {'name': ONBOARDING_CHILD_COUNT,'params': { child_count: childList?.length }  }
-    logEvent(eventData,netInfo.isConnected)
-   console.log('API json data is ',apiJsonData)
+    const eventData = { 'name': ONBOARDING_CHILD_COUNT, 'params': { child_count: childList?.length } }
+    logEvent(eventData, netInfo.isConnected)
+    console.log('API json data is ', apiJsonData)
     navigation.reset({
       index: 0,
       routes: [
@@ -251,44 +253,33 @@ const ChildSetupList = ({ navigation }: Props): any => {
             </ChildCenterView>
           </OnboardingHeading>
           <FlexCol>
-          
-          <ChildContentArea>
-            <ChildListingArea >
-            <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
-              {
-                  childList.length > 0 ? (
-                    childList.map((item: ChildEntity, index: number) => {
-                      const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)).name : '';
-                      return renderDailyReadItem(dispatch, item, index, genderLocal);
-                    })
-                  ) :
-                    <ChildListingBox>
-                      <ChildColArea1>
-                        <Text>{t('noChildsTxt')}</Text></ChildColArea1>
-                    </ChildListingBox>
-                }
-              </ScrollView>
-           
-            </ChildListingArea>
-          </ChildContentArea>
 
-    
+            <ChildContentArea>
+              <ChildListingArea >
+                <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
+                  {
+                    childList.length > 0 ? (
+                      childList.map((item: ChildEntity, index: number) => {
+                        const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)).name : '';
+                        return renderDailyReadItem(dispatch, item, index, genderLocal);
+                      })
+                    ) :
+                      <ChildListingBox>
+                        <ChildColArea1>
+                          <Text>{t('noChildsTxt')}</Text></ChildColArea1>
+                      </ChildListingBox>
+                  }
+                </ScrollView>
 
-            {/* <ShiftFromBottom10>
-              <ButtonLinkPress
-                onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
+              </ChildListingArea>
+            </ChildContentArea>
+            <View onLayout={onLayout} style={{ flexDirection: 'column' }}>
+              <ButtonWithBorder onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
                 <OuterIconRow>
-                  <OuterIconLeft>
-                    <Icon name="ic_plus" size={20} color="#FFF" />
-                  </OuterIconLeft>
-                  <ButtonTextLinew 
-                  numberOfLines={2}> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
+                  <ButtonTextLg style={styles.plusBtnColor}>{t('childSetupListaddSiblingBtn')}</ButtonTextLg>
                 </OuterIconRow>
-              </ButtonLinkPress>
-            </ShiftFromBottom10>
-
-            <ButtonPrimary
-              onPress={(e:any): any => {
+              </ButtonWithBorder>
+              <ButtonPrimary onPress={(e: any): any => {
                 e.stopPropagation();
                 setLoading(true);
                 setTimeout(() => {
@@ -297,28 +288,11 @@ const ChildSetupList = ({ navigation }: Props): any => {
                 }, 0)
 
               }}>
-              <ButtonText numberOfLines={2}>{t('childSetupListcontinueBtnText')}</ButtonText>
-            </ButtonPrimary> */}
-            <View onLayout={onLayout} style={{flexDirection:'column'}}>
-            <ButtonWithBorder onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
-                <OuterIconRow>
-                      <ButtonTextLg style={{color:"#1CABE2"}}>{t('btnAddAnotherChildText')}</ButtonTextLg>
-                    </OuterIconRow>
-                </ButtonWithBorder>
-                <ButtonPrimary onPress={(e:any): any => {
-                e.stopPropagation();
-                setLoading(true);
-                setTimeout(() => {
-                  setLoading(false);
-                  childSetup();
-                }, 0)
-
-              }}>
-                  <ButtonText numberOfLines={2}>{t('letGetStartedText')}</ButtonText>
-                </ButtonPrimary>
+                <ButtonText numberOfLines={2}>{t('letGetStartedText')}</ButtonText>
+              </ButtonPrimary>
             </View>
-            
-              </FlexCol>
+
+          </FlexCol>
         </OnboardingContainer>
       </View>
     </>

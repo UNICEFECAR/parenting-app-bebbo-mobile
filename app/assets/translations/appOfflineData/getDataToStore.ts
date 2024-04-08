@@ -26,13 +26,13 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     let offlineData: any;
     if (SchemaToUse.name == StandardDevWeightForHeightSchema.name) {
         offlineData = jsonData[languageCode] ? jsonData[languageCode][0].weight_for_height : undefined;
-        if (offlineData == undefined || offlineData == "" || offlineData == null) {
+        if (!offlineData) {
             offlineData = [];
         }
     }
     else if (SchemaToUse.name == StandardDevHeightForAgeSchema.name) {
         offlineData = jsonData[languageCode] ? jsonData[languageCode][0].height_for_age : undefined;
-        if (offlineData == undefined || offlineData == "" || offlineData == null) {
+        if (!offlineData) {
             offlineData = [];
         }
     }

@@ -1,24 +1,17 @@
-import { bothChildGender, bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { bothChildGender, bothParentGender, regexpEmojiPresentation, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonPrimaryMd, ButtonRow, ButtonText
+  ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
-  ChildRelationList,
   ChildSetupDivider,
-  ChildTabView,
   FormContainer1,
-  FormDateAction,
-  FormDateText,
   FormInputBox,
-  FormInputGroup,
   LabelText,
-  OrDivider,
   OrHeadingView,
-  OrView,
   ParentSetUpDivider,
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
@@ -33,7 +26,6 @@ import { dobMax } from '@types/types';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View, ScrollView, Alert, Platform, StyleSheet } from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -46,21 +38,11 @@ import {
   Heading3,
   Heading4Regularw,
   ShiftFromTop20,
-  SideSpacing25,
-  Heading3Centerw,
-  Heading2w,
-  Heading1,
-  Heading4Regular,
-  ShiftFromTopBottom5,
   Heading3w,
   ShiftFromTop25,
   Heading2Centerw,
   Heading3BoldCenterrw,
 } from '../styles/typography';
-import AlertModal from '@components/AlertModal';
-import { BannerContainer } from '@components/shared/Container';
-import { SettingHeading, SettingShareData, SettingOptions } from '@components/shared/SettingsStyle';
-import VectorImage from 'react-native-vector-image';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import * as ScopedStorage from "react-native-scoped-storage";
@@ -75,7 +57,6 @@ import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
-import { setActiveChildData } from '../redux/reducers/childSlice';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -121,7 +102,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
-  const [relationshipname, setRelationshipName] = useState('');
+  const [relationshipName, setRelationshipName] = useState('');
   const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isImportRunning, setIsImportRunning] = useState(false);
@@ -193,7 +174,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   );
   useEffect(() => {
     setRelationship(route?.params.relationship)
-    setRelationshipName(route?.params.relationshipname)
+    setRelationshipName(route?.params.relationshipName)
     setUserRelationToParent(route?.params.userRelationToParent)
   }, [route?.params])
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
@@ -354,7 +335,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     let defaultName ;
     if(isDefaultName){
-       defaultName='Baby';
+      defaultName = t('childInfoBabyText');
     }else{
         defaultName= name;
     }
@@ -526,8 +507,8 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
 
                   e.stopPropagation();
                   setTimeout(() => {
-                    console.log('Relationship name', relationshipname, relationship)
-                    if (relationshipname == 'service provider') {
+                    console.log('Relationship name', relationshipName, relationship)
+                    if (relationshipName == 'service provider') {
                      // AddChild(true);
                       setName('Child')
                       AddChild(false,true);
