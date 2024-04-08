@@ -159,7 +159,7 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
   }
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
-  navigation.navigate('Walkthrough');
+  navigation.navigate('Terms');
 }
 export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string):Promise<any> => {
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);

@@ -97,12 +97,6 @@ const goToVideoArticleDetails = ():any => {
     <>
     
       <MainContainer key={selectedPinnedArticleData?.id}>
-               
-          <ShiftFromBottom10>
-          <Heading2Center>
-            {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:t('childInfoBabyText'),parentName:userNameData?.length > 0 ? t('childInfoAndText') + ' ' + userNameData[0].value : showAndParentText() ? t('childInfoAndText') + ' ' + t('childInfoParentText') : ''})} 
-           </Heading2Center>
-          </ShiftFromBottom10>
           {selectedPinnedArticleData ?
           <>
           <ShiftFromBottom10 style={styles.shiftFromBottom}>
@@ -118,13 +112,6 @@ const goToVideoArticleDetails = ():any => {
             </Heading4Centerr>
               : null}
           </ShiftFromTopBottom10>
-          {/* <ShiftFromBottom10>
-            <ButtonSpacing>
-              <SideSpacing25>
-           
-            </SideSpacing25>
-            </ButtonSpacing>
-          </ShiftFromBottom10> */}
            <ButtonPrimary onPress={goToVideoArticleDetails}>
               <ButtonText numberOfLines={2}>{t('homeScreenchildBtnText')}</ButtonText>
              
