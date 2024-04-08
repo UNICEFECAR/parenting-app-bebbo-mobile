@@ -2,29 +2,23 @@ import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
-  ButtonTextLg,
-  ButtonTextLinew,
-  ButtonWithBorder
+ ButtonPrimary, ButtonText,
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
   ChildColArea1,
   ChildColArea2,
-  ChildContentArea,
   ChildListAction,
-  ChildListingArea,
   ChildListingBox,
   ChildListTitle,
-  CustomScrollView,
 } from '@components/shared/ChildSetupStyle';
-import Icon, { IconML, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon  from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { bgcolorBlack, bgcolorWhite, bgcolorWhite2, primaryColor, secondaryBtnColor } from '@styles/style';
+import { bgcolorWhite2, primaryColor, secondaryBtnColor } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
@@ -37,14 +31,11 @@ import {
   Heading1Centerw,
   Heading3Centerw,
   Heading5,
-  ShiftFromBottom10,
   ShiftFromTop30
 } from '../styles/typography';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
-import { setActiveChildData } from '../redux/reducers/childSlice';
-import { Flex1, FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
-import { ScrollView } from 'react-native-gesture-handler';
+import { FlexCol } from '@components/shared/FlexBoxStyle';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'

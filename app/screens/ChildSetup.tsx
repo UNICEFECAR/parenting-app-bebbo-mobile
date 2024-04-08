@@ -109,12 +109,12 @@ const styles = StyleSheet.create({
   uploadTextStyle: {
     color: "#1CABE2"
   },
-  orDividerStyle:{
-    width:172,
-    alignSelf:'center',
+  orDividerStyle: {
+    width: 172,
+    alignSelf: 'center',
   },
   dividerStyle: {
-    marginEnd:20
+    marginEnd: 20
   }
 })
 const ChildSetup = ({ navigation }: Props): any => {
@@ -342,20 +342,20 @@ const ChildSetup = ({ navigation }: Props): any => {
   }
   const AddChild = async (isDefaultChild: boolean): Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    let defaultName ;
-    if(isDefaultChild){
-       defaultName=' Baby';
-    }else{
-        defaultName= name;
+    let defaultName;
+    if (isDefaultChild) {
+      defaultName = t('childInfoBabyText');
+    } else {
+      defaultName = name;
     }
-    
+
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
 
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,isDefaultChild);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild);
   }
-  
+
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   return <>
@@ -365,8 +365,8 @@ const ChildSetup = ({ navigation }: Props): any => {
         <OnboardingContainer>
           <OverlayLoadingComponent loading={loading} />
           <OrHeadingView>
-          <ParentSetUpDivider style={styles.dividerStyle}></ParentSetUpDivider>
-             <ChildSetupDivider></ChildSetupDivider>
+            <ParentSetUpDivider style={styles.dividerStyle}></ParentSetUpDivider>
+            <ChildSetupDivider></ChildSetupDivider>
           </OrHeadingView>
           <OnboardingHeading>
 
@@ -457,32 +457,29 @@ const ChildSetup = ({ navigation }: Props): any => {
             </View>
 
           </FlexCol>
-         <ShiftFromTop25>
-         <ButtonPrimary
+          <ShiftFromTop25>
+            <ButtonPrimary
               disabled={!validateParentsForm(0, relationship, name)}
               onPress={(e: any): any => {
                 e.stopPropagation();
                 setLoading(true);
                 let validated: any = false;
-                validated = validateParentsForm(0,  relationship, name);
-             
+                validated = validateParentsForm(0, relationship, name);
+
                 if (validated == true) {
                   setTimeout(() => {
                     setLoading(false);
-                    console.log('parentalRole',relationshipname)
+                    console.log('parentalRole', relationshipname)
                     if (relationshipname == 'service provider') {
                       AddChild(true);
-                    }else{
-                      navigation.navigate('AddChildSetup',{
-                        birthDate:birthDate,
+                    } else {
+                      navigation.navigate('AddChildSetup', {
+                        birthDate: birthDate,
                         relationship: relationship,
                         relationshipname: relationshipname,
-                        userRelationToParent:userRelationToParent
-                      })  
-                    
+                        userRelationToParent: userRelationToParent
+                      })
                     }
-                   
-              
                   }, 0)
                 }
                 else {
@@ -491,8 +488,8 @@ const ChildSetup = ({ navigation }: Props): any => {
               }}>
               <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
             </ButtonPrimary>
-         </ShiftFromTop25>
-      
+          </ShiftFromTop25>
+
           <FlexCol>
             {/* <FlexRow>
               <Flex1>
@@ -514,10 +511,10 @@ const ChildSetup = ({ navigation }: Props): any => {
             </FlexRow>
             <FlexCol>
               <ShiftFromTop20>
-              <ParentSetUpDivider style={styles.orDividerStyle}></ParentSetUpDivider>
-              <Heading3BoldCenterrw style={styles.flex2Style}>{t('ORkeyText')}</Heading3BoldCenterrw>
+                <ParentSetUpDivider style={styles.orDividerStyle}></ParentSetUpDivider>
+                <Heading3BoldCenterrw style={styles.flex2Style}>{t('ORkeyText')}</Heading3BoldCenterrw>
               </ShiftFromTop20>
-  
+
 
             </FlexCol>
             <Pressable onPress={(e: any): any => {

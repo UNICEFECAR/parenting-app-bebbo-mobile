@@ -165,7 +165,7 @@ const ChildDate = (props: any): any => {
         {Platform.OS != 'ios' ? (
           <FormInputGroup>
             <FormPrematureContainer>
-              <LabelText>{prevScreen == 'EditScreen' ? t('childSetupdobLabel') : t('enterDobExpctedDate')}</LabelText>
+              <LabelText>{prevScreen == 'EditScreen' ? t('childSetupdobLabel') : t('childSetupdobSelector')}</LabelText>
               <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
               </FormInfoPress></FormInfoLabel>
@@ -176,7 +176,7 @@ const ChildDate = (props: any): any => {
                   <Text>
                     {doborExpectedDate
                       ? formatStringDate(doborExpectedDate)
-                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('enterDobExpctedDate')}
+                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
                   </Text>
                   {showdob && (
                     <DateTimePicker
@@ -202,7 +202,7 @@ const ChildDate = (props: any): any => {
         ) : (
           <FormInputGroup>
             <FormPrematureContainer>
-              <LabelText>{prevScreen == 'EditScreen' ? t('enterDobExpctedDate') : t('childSetupdobLabel')}</LabelText>
+              <LabelText>{prevScreen == 'EditScreen' ? t('childSetupdobSelector') : t('childSetupdobLabel')}</LabelText>
               <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
               </FormInfoPress></FormInfoLabel>
@@ -214,7 +214,7 @@ const ChildDate = (props: any): any => {
                   <Text>
                     {doborExpectedDate
                       ? formatStringDate(doborExpectedDate)
-                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('enterDobExpctedDate')}
+                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
                   </Text>
                   {showdob && (
                     <DateTimePickerModal
@@ -291,7 +291,7 @@ const ChildDate = (props: any): any => {
                         {' '}
                         {dueDate
                           ? formatStringDate(dueDate)
-                          : t('enterDobExpctedDate')}
+                          : t('childSetupdobSelector')}
                       </Text>
                       {showdue && (
                         <DateTimePicker
@@ -335,7 +335,7 @@ const ChildDate = (props: any): any => {
                         {' '}
                         {dueDate
                           ? formatStringDate(dueDate)
-                          : t('enterDobExpctedDate')}
+                          : t('childSetupdobSelector')}
                       </Text>
                       {showdue && (
                         <DateTimePickerModal

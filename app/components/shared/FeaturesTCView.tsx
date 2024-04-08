@@ -1,8 +1,4 @@
-import React from 'react';
 import styled from 'styled-components/native';
-import Icon from './Icon';
-import OnboardingHeading from './OnboardingHeading';
-import { View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 
 const Title = styled.Text`

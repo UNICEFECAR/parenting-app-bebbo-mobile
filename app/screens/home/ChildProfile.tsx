@@ -58,8 +58,9 @@ const styles = StyleSheet.create({
   marginLeft15: { marginLeft: 15 },
   maxHeight50: { maxHeight: 50 },
   paddingLeft30: { paddingLeft: 30 },
-  plusBtnColor:{
-    color: secondaryBtnColor
+  plusBtnColor: {
+    color: secondaryBtnColor,
+    textTransform: 'uppercase'
   },
   profileActionView: { alignItems: "center", height: "100%", justifyContent: "center" },
   profileListDefault: { flexDirection: 'column', flex: 1 },
@@ -213,8 +214,11 @@ const ChildProfile = ({ navigation }: Props): any => {
             {
               data.photoUri != '' ?
                 <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
-                </ImageIcon> : genderName=='Girl'?<Icon name="ic_baby_girl" size={30} color="#000" />:
-                <Icon name="ic_baby" size={30} color="#000" />
+                </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
+                  genderName === 'Girl' ?
+                    <Icon name="ic_baby_girl" size={40} color='#000' />
+                    : <Icon name="ic_baby" size={40} color='#000' />
+                  : <Icon name="ic_baby_girl" size={40} color='#000' />
             }
           </ProfileIconView>
           <ProfileTextView style={styles.profileTextView}>
@@ -273,8 +277,11 @@ const ChildProfile = ({ navigation }: Props): any => {
               {
                 data.photoUri != '' ?
                   <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
-                  </ImageIcon> : genderName=='Girl'?<Icon name="ic_baby_girl" size={30} color="#000" />:
-                <Icon name="ic_baby" size={30} color="#000" />
+                  </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
+                  genderName === 'Girl' ?
+                    <Icon name="ic_baby_girl" size={40} color='#000' />
+                    : <Icon name="ic_baby" size={40} color='#000' />
+                  : <Icon name="ic_baby_girl" size={40} color='#000' />
               }
             </ProfileIconView>
             <ProfileTextView>
@@ -374,11 +381,11 @@ const ChildProfile = ({ navigation }: Props): any => {
               <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
-                    console.log('Gender is',item.gender,genders)
+                    console.log('Gender is', item.gender, genders)
                     let genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
-                    console.log('genderLocal is',genderLocal)
-                    if(genderLocal==''){
-                      genderLocal='Girl';
+                    console.log('genderLocal is', genderLocal)
+                    if (genderLocal == '') {
+                      genderLocal = 'Girl';
                     }
                     return renderChildProfile(dispatch, item, index, genderLocal, navigation);
                   })
@@ -500,18 +507,18 @@ const ChildProfile = ({ navigation }: Props): any => {
 
               <ShiftFromTop30>
                 <ButtonWithBorder onPress={(): any => {
-                      navigation.navigate('EditChildProfile', { childData: null });
-                    }}>
+                  navigation.navigate('EditChildProfile', { childData: null });
+                }}>
                   <OuterIconRow>
-                    <ButtonTextLg style={styles.plusBtnColor}>{t('btnAddAnotherChildText')}</ButtonTextLg>
+                    <ButtonTextLg style={styles.plusBtnColor}>{t('childSetupListaddSiblingBtn')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
 
                 <ButtonWithBorder onPress={(): any => {
-                      navigation.navigate('AddExpectingChildProfile', { childData: null });
-                    }}>
+                  navigation.navigate('AddExpectingChildProfile', { childData: null });
+                }}>
                   <OuterIconRow>
-                    <ButtonTextLg style={styles.plusBtnColor}>{t('btnAddExpectedChildText')}</ButtonTextLg>
+                    <ButtonTextLg style={styles.plusBtnColor}>{t('expectChildAddTxt2')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
 

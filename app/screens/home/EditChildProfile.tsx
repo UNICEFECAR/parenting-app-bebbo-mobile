@@ -501,7 +501,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen" />
 
               <FormContainerFlex>
-                <LabelText>{t('genderLabel1')}</LabelText>
+                <LabelText>{t('genderLabel')}</LabelText>
                 <ToggleRadios
                   options={genders}
                   defaultValue={defaultGenderValue}

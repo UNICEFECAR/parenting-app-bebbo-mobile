@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   headerRowView: {
     maxHeight: 50
   },
-  headetTitleText: {
+  headetTitleTextColor: {
     color: bgcolorWhite
   },
   pressableView: { paddingLeft: 10, paddingRight: 10 },
@@ -138,7 +138,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '', null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false);
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
@@ -190,7 +190,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
           </HeaderIconPress>
         </HeaderIconView>
         <HeaderTitleView>
-          <Heading2w style={styles.headetTitleText} numberOfLines={1}>
+          <Heading2w style={styles.headetTitleTextColor} numberOfLines={1}>
             {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt')}
           </Heading2w>
         </HeaderTitleView>
