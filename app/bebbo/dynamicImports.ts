@@ -12,6 +12,8 @@ export const toolsLogo=toolsFeatureLogo;
 import activityFeatureLogo from '@assets/svg/activity_feature_logo.svg';
 export const activityLogo=activityFeatureLogo;
 import imgLogoChatbotNew1 from '@assets/svg/bebbo/img-logo-chatbot-new.svg';
+import cameraProfile from '@assets/svg/camera_profile.svg';
+export const cameraProfileImage=cameraProfile;
 export const imgLogoChatbotNew=imgLogoChatbotNew1;
 export const AVAILABLE_LANGUAGES =require('../localization/Available_lang_bebbo').default;
 export const taxonomydata =require('@offlinedata/bebbo/taxonomies').taxonomydata;
