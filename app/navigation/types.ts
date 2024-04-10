@@ -4,6 +4,7 @@ export type RootStackParamList = {
   AddChildSetup: undefined;
   ChildImportSetup: {};
   ChildSetupList: undefined;
+  ServiceProviderInfoSetup: undefined;
   AddSiblingDataScreen: {};
   LoadingScreen: {};
   Terms: undefined;

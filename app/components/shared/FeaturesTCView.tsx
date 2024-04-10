@@ -1,13 +1,8 @@
-import React from 'react';
 import styled from 'styled-components/native';
-import Icon from './Icon';
-import OnboardingHeading from './OnboardingHeading';
-import { View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 
 const Title = styled.Text`
   font-size: 14px;
-  flex: 1;
   font-weight: bold;
   margin-left: 15px;
   margin-top: 5px;
@@ -16,19 +11,20 @@ const Title = styled.Text`
 
 const SubTitle = styled.Text`
   font-size: 14px;
-  flex: 1;
   margin-left: 15px;
+  margin-top:5px;
+  line-height:16px;
   color: ${(props: any): any => props.theme.colors.TERMS_TEXTCOLOR};
 `;
 const MainContainer = styled.View`
   padding-top: 15px;
   padding-bottom: 5px;
+  padding-right:50px;
   flex-direction: row;
   align-items: center;
 `;
 const TitleContainer = styled.View`
   flex-direction:column;
-  justify-content:center;
 `;
 
 const FeatureTCView = (props: any): any => {

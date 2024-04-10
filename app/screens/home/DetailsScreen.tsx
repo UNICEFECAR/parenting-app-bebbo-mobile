@@ -389,20 +389,19 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     });
 
   const highlightWord = (content: string, query: string[]): any => {
-    console.log('content is', typeof content);
-
     if (typeof content !== 'string') {
         return "";
     }
 
-    console.log('QueryText is', query);
-
     let highlightedContent = content; // Initialize with original content
-
+   
     query.forEach((item) => {
         const regex = new RegExp(`${item}`, 'gi');
+        if(item.length>2){
         highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
-    });
+        }
+      });
+  
 
     return highlightedContent;
 }

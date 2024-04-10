@@ -1,24 +1,17 @@
-import { bothChildGender, bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { bothChildGender, bothParentGender, regexpEmojiPresentation, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonPrimaryMd, ButtonRow, ButtonText
+  ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
-  ChildRelationList,
   ChildSetupDivider,
-  ChildTabView,
   FormContainer1,
-  FormDateAction,
-  FormDateText,
   FormInputBox,
-  FormInputGroup,
   LabelText,
-  OrDivider,
   OrHeadingView,
-  OrView,
   ParentSetUpDivider,
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
@@ -33,32 +26,23 @@ import { dobMax } from '@types/types';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View, ScrollView, Alert, Platform, StyleSheet } from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { backup } from '../services/backup';
-import { addChild, getNewChild, isFutureDate } from '../services/childCRUD';
+import { addChild, apiJsonDataGet, getAge, getNewChild, isFutureDate, setActiveChild } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3,
   Heading4Regularw,
   ShiftFromTop20,
-  SideSpacing25,
-  Heading3Centerw,
-  Heading2w,
-  Heading1,
-  Heading4Regular,
-  ShiftFromTopBottom5,
   Heading3w,
   ShiftFromTop25,
+  Heading2Centerw,
+  Heading3BoldCenterrw,
 } from '../styles/typography';
-import AlertModal from '@components/AlertModal';
-import { BannerContainer } from '@components/shared/Container';
-import { SettingHeading, SettingShareData, SettingOptions } from '@components/shared/SettingsStyle';
-import VectorImage from 'react-native-vector-image';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import * as ScopedStorage from "react-native-scoped-storage";
@@ -68,6 +52,11 @@ import { bgcolorWhite2, primaryColor } from '@styles/style';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 import BackgroundColors from '@components/shared/BackgroundColors';
+import { logEvent } from '../services/EventSyncService';
+import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -96,18 +85,25 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   textParentInfoStyle: {
-    textAlign:'center'
+    textAlign: 'center'
   },
   dividerStyle: {
-    marginEnd:20
-  }
+    marginEnd: 20
+  },
+  orDividerStyle: {
+    width: 172,
+    alignSelf: 'center',
+  },
+  uploadTextStyle: {
+    color: "#1CABE2"
+  },
 })
-const AddChildSetup = ({route, navigation }: Props): any => {
+const AddChildSetup = ({ route, navigation }: Props): any => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
-  const [relationshipname, setRelationshipName] = useState('');
-  const [birthDate, setBirthDate] = useState<Date>();
+  const [relationshipName, setRelationshipName] = useState('');
+  const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isPremature, setIsPremature] = useState<string>('false');
@@ -119,11 +115,11 @@ const AddChildSetup = ({route, navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   let relationshipData = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ''? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
   const relationshipToParent = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -131,6 +127,9 @@ const AddChildSetup = ({route, navigation }: Props): any => {
   const childAge = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
+  const childList = useAppSelector(
+    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
   const actionSheetRef = createRef<any>();
   const [gender, setGender] = React.useState(0);
@@ -158,7 +157,7 @@ const AddChildSetup = ({route, navigation }: Props): any => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('taxonomyData is',relationshipToParent)
+      console.log('taxonomyData is', relationshipToParent)
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
@@ -173,10 +172,11 @@ const AddChildSetup = ({route, navigation }: Props): any => {
       }, 500);
     }, [])
   );
-  useEffect(()=>{
+  useEffect(() => {
     setRelationship(route?.params.relationship)
+    setRelationshipName(route?.params.relationshipName)
     setUserRelationToParent(route?.params.userRelationToParent)
-  },[route?.params])
+  }, [route?.params])
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
     setGender(checkedItem.id);
   };
@@ -298,7 +298,7 @@ const AddChildSetup = ({route, navigation }: Props): any => {
           setLoading(true);
           setIsImportRunning(true);
           handleImportedData(oldChildrenData, importedrealm)
-          
+
         }
 
       })
@@ -331,13 +331,56 @@ const AddChildSetup = ({route, navigation }: Props): any => {
   }
 
 
-  const AddChild = async (): Promise<any> => {
+  const AddChild = async (isDefaultChild: boolean,isDefaultName: boolean): Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    const defaultName = name;
+    let defaultName ;
+    if(isDefaultName){
+      defaultName = t('childInfoBabyText');
+    }else{
+        defaultName= name;
+    }
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
+    if (isDefaultChild) {
+      if (childSet[0].isExpected == true || childSet[0].isExpected == 'true') {
+        const eventData = { 'name': EXPECTED_CHILD_ENTERED }
+        logEvent(eventData, netInfo.isConnected)
+      }
+      await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childSet);
+  
+      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
+      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
+      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", childSet[0].uuid);
+      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
+      await setActiveChild(languageCode, childSet[0].uuid, dispatch, childAge, false);
+    // dispatch(setActiveChildData(childSet[0].uuid))
+      const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
+      await dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+     console.log('childAge is',childAge,childSet)
+      const Ages = await getAge(childSet, childAge);
+      console.log('childAge is Ageds',Ages)
+      let apiJsonData;
+      if (Ages?.length > 0) {
+        apiJsonData = apiJsonDataGet(String(Ages), "all")
+      }
+      else {
+        apiJsonData = apiJsonDataGet("all", "all")
+      }
+      console.log('child API json data is ',apiJsonData)
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'LoadingScreen',
+            params: { apiJsonData: apiJsonData, prevPage: 'ChildSetup' },
+          },
+        ],
+      });
+      //addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
+    } else {
+      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,isDefaultChild);
+    }
   }
 
   const themeContext = useContext(ThemeContext);
@@ -349,27 +392,27 @@ const AddChildSetup = ({route, navigation }: Props): any => {
         <OnboardingContainer>
           <OverlayLoadingComponent loading={loading} />
           <FlexRow>
-          <ShiftFromTop25>
-          <Pressable
-            onPress={(e: any): any => {
-              navigation.navigate('ChildSetup')
-            }}
-          >
-          <Icon name={'ic_back'} size={12} color="#2D2926" />
-          </Pressable>
-          </ShiftFromTop25>
-          <OrHeadingView>
+            <ShiftFromTop25>
+              <Pressable
+                onPress={(e: any): any => {
+                  navigation.navigate('ChildSetup')
+                }}
+              >
+                <Icon name={'ic_back'} size={12} color="#2D2926" />
+              </Pressable>
+            </ShiftFromTop25>
+            <OrHeadingView>
 
-          <ChildSetupDivider style={styles.dividerStyle}></ChildSetupDivider>
-          <ParentSetUpDivider></ParentSetUpDivider>
-          </OrHeadingView>
-       
-         
-         
+              <ChildSetupDivider style={styles.dividerStyle}></ChildSetupDivider>
+              <ParentSetUpDivider></ParentSetUpDivider>
+            </OrHeadingView>
+
+
+
           </FlexRow>
-        
+
           <OnboardingHeading>
-          
+
             <ChildCenterView>
               <Heading1Centerw>
                 {t('childSetupheader')}
@@ -392,7 +435,7 @@ const AddChildSetup = ({route, navigation }: Props): any => {
                   autoCorrect={false}
                   maxLength={30}
                   clearButtonMode="always"
-                  onChangeText={(value:any): any => {
+                  onChangeText={(value: any): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
@@ -406,57 +449,102 @@ const AddChildSetup = ({route, navigation }: Props): any => {
                 />
               </FormInputBox>
             </ShiftFromTop20>
-            {
-              birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
-                <FormContainer1>
-                  <LabelText>{t('genderLabel')}</LabelText>
-                  <ToggleRadios
-                    options={genders}
-                    tickbgColor={headerColor}
-                    tickColor={'#FFF'}
-                    getCheckedItem={getCheckedItem}
-                  />
-                </FormContainer1>
-                : null
-            }
-  
-        <ButtonRow>
-          <ButtonPrimary
-            disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
-            onPress={(e:any): any => {
-              e.stopPropagation();
-              setLoading(true);
-              let validated: any = false;
-              if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
-                validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender);
+            <View>
+              {
+                birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
+                  <FormContainer1>
+                    <LabelText>{t('genderLabel')}</LabelText>
+                    <ToggleRadios
+                      options={genders}
+                      tickbgColor={headerColor}
+                      tickColor={'#FFF'}
+                      getCheckedItem={getCheckedItem}
+                    />
+                  </FormContainer1>
+                  : null
               }
-              else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
-                validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
-              }
-              if (validated == true) {
-                setTimeout(() => {
-                  setLoading(false);
-                  AddChild();
-                }, 0)
-              }
-              else {
-                console.log("in else");
-              }
-            }}>
-            <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
-          </ButtonPrimary>
-        </ButtonRow>
-    
-  
+            </View>
+
+
+            <ButtonRow>
+              <ButtonPrimary
+                disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
+                onPress={(e: any): any => {
+                  e.stopPropagation();
+                  setLoading(true);
+                  let validated: any = false;
+                  if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
+                    validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender);
+                  }
+                  else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
+                    validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
+                  }
+                  if (validated == true) {
+                    setTimeout(() => {
+                      setLoading(false);
+                      AddChild(false,false);
+                    }, 0)
+                  }
+                  else {
+                    console.log("in else");
+                  }
+                }}>
+                <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
+              </ButtonPrimary>
+            </ButtonRow>
+
+
+            <FlexCol>
+              <ParentSetUpDivider style={styles.orDividerStyle}></ParentSetUpDivider>
+
+              <ShiftFromTop20>
+                <Heading2Centerw>{t('ORkeyText')}</Heading2Centerw>
+              </ShiftFromTop20>
+
+
+              <ShiftFromTop20>
+                <Pressable onPress={(e: any): any => {
+
+                  e.stopPropagation();
+                  setTimeout(() => {
+                    console.log('Relationship name', relationshipName, relationship)
+                    if (relationshipName == 'service provider') {
+                     // AddChild(true);
+                      setName('Child')
+                      AddChild(false,true);
+                      navigation.navigate('ServiceProviderInfoSetup')
+                    } else {
+                      // const currentDate = new Date();
+                      // setBirthDate(currentDate)
+                      AddChild(true,true);
+                    }
+                    //setLoading(true);
+                    // AddChild();
+                  }, 0)
+                }}>
+                  <Heading3BoldCenterrw style={styles.uploadTextStyle}>
+                    {t('walkthroughButtonSkip')}
+                  </Heading3BoldCenterrw>
+
+                </Pressable>
+              </ShiftFromTop20>
+
+              <ShiftFromTop20>
+                <Flex2>
+                  <Heading4Regularw>{t('childProfileSkipText')}</Heading4Regularw>
+                </Flex2>
+
+              </ShiftFromTop20>
+            </FlexCol>
           </FlexCol>
 
-        
+
 
         </OnboardingContainer>
 
       </ScrollView>
-     
-   
+
+
 
     </View>
   </>;

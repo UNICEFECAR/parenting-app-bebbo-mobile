@@ -9,6 +9,7 @@ transform: ${(props:any):any => props.theme.isRTL ? 'scaleX(-1)' : 'scaleX(1)'}
 `;
 export const OuterIconRow = styled.View`
   flex-direction: row;
+  margin-right: 15px;
 `;
 
 export const OuterIconLeft = styled.View`
