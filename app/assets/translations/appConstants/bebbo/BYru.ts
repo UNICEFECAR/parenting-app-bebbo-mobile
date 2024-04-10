@@ -35,7 +35,7 @@ const BYru = {
                 childSetupdueSelector: "Введите первоначально предполагаемый срок",
                 childSetupprematureLabel: "Ребенок родился недоношенным",
                 childSetupprematureMessage: "Ребенок, родившийся до 37-й недели срока, считается недоношенным.",
-                childSetuprelationSelectTitle: "Ты:",
+                childSetuprelationSelectTitle: "Вы:",
                 childSetuprelationSelectText: "Выбрать",
                 childSetupcontinueBtnText: "Продолжить",
                 childSetupListheader: "Беббо готовится поддержать ваше родительское путешествие!",
