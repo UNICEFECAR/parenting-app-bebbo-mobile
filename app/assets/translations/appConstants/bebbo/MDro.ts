@@ -36,7 +36,7 @@ const MDro = {
                 childSetupdueSelector: "Introduceți data inițial estimată a nașterii",
                 childSetupprematureLabel: "Copilul s-a născut prematura",
                 childSetupprematureMessage: "Un bebeluș născut înainte de 37 de săptămâni de sarcină este considerat prematur sau născut prea devreme.",
-                childSetuprelationSelectTitle: "childtext",
+                childSetuprelationSelectTitle: "Ești:",
                 childSetuprelationSelectText: "Selectare",
                 childSetupcontinueBtnText: "Continuare",
                 childSetupListheader: "Bebbo se pregătește să te susțină în călătoria ta de părinte!",
