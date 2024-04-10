@@ -80,6 +80,7 @@ const ChildProfile = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const secopndaryTintColor = themeContext?.colors.SECONDARY_TINTCOLOR;
+  const buttonTextColor = themeContext?.colors.SECONDARY_RE_COLOR;
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -496,7 +497,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                     <OuterIconLeft>
                       <Icon name="ic_plus" size={16} color="#1CABE2" />
                     </OuterIconLeft>
-                    <ButtonTextLg style={{ color: "#1CABE2" }}>{t('btnAddAnotherChildText')}</ButtonTextLg>
+                    <ButtonTextLg style={{ color : buttonTextColor }}>{t('btnAddAnotherChildText')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
 
@@ -507,7 +508,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                     <OuterIconLeft>
                       <Icon name="ic_plus" size={16} color="#1CABE2" />
                     </OuterIconLeft>
-                    <ButtonTextLg style={{ color: "#1CABE2" }}>{t('btnAddExpectedChildText')}</ButtonTextLg>
+                    <ButtonTextLg style={{ color: buttonTextColor }}>{t('btnAddExpectedChildText')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
 
