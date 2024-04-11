@@ -66,7 +66,7 @@ import { ToastAndroidLocal } from '../../../android/sharedAndroid.android';
 import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
 import { useIsFocused } from '@react-navigation/native';
 import ChildPinnedArticleInfo from '@components/homeScreen/ChildPinnedArticleInfo';
-import { SearchBox, SearchInput } from '@components/shared/ArticlesStyle';
+import { HomeSearchBox, SearchBox, SearchInput } from '@components/shared/ArticlesStyle';
 
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -530,7 +530,7 @@ const Home = ({ route, navigation }: any): any => {
                 onChange={ondobChange2}
               />
             )}
-             <SearchBox>
+             <HomeSearchBox>
               <OuterIconRow>
 
                 <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
@@ -572,7 +572,7 @@ const Home = ({ route, navigation }: any): any => {
                 }}
                 multiline={false}
                 // placeholder="Search for Keywords"
-                placeholder={t('articleScreensearchPlaceHolder')}
+                placeholder={t('searchInBebboText')}
                 placeholderTextColor={"gray"}
                 allowFontScaling={false}
               />
@@ -598,7 +598,9 @@ const Home = ({ route, navigation }: any): any => {
 
                 </OuterIconRow>
               }
-            </SearchBox>
+             
+            </HomeSearchBox>
+            
             
            <DailyReads />
            <FeatureDivideArea>
