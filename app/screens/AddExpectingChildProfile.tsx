@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   headerRowView: {
     maxHeight: 50
   },
-  headetTitleTextColor: {
+  headerTitleTextColor: {
     color: bgcolorWhite
   },
   pressableView: { paddingLeft: 10, paddingRight: 10 },
@@ -190,7 +190,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
           </HeaderIconPress>
         </HeaderIconView>
         <HeaderTitleView>
-          <Heading2w style={styles.headetTitleTextColor} numberOfLines={1}>
+          <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>
             {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt')}
           </Heading2w>
         </HeaderTitleView>

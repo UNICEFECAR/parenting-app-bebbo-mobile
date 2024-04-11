@@ -557,13 +557,15 @@ const Home = ({ route, navigation }: any): any => {
                   const queryReText = queryText.replace(/\s/g, "");
                   if (queryReText == "") {
                      searchQueryText(queryReText);
+                    // setHistoryVisible(true);
+                    //  await searchList(queryText)
                   } else {
                      searchQueryText(queryText);
                   }
                 }}
                 value={queryText}
 
-                onSubmitEditing={async (event: any): Promise<any> => {
+                onSubmitEditing={(event: any): any => {
                   // console.log("event-", queryText);
                   // setLoadingArticle(true)
                   // setHistoryVisible(false)
