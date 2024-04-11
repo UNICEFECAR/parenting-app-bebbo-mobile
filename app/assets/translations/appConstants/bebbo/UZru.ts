@@ -190,7 +190,7 @@ const UZru = {
                 trackMilestoneViewBtn: "Отслеживайте этапы развития вашего ребенка ",
                 babyNotificationText: "Данные о рождении ребенка не обновлены ",
                 babyNotificationbyAge: "{{childName}} - {{ageInMonth}}",
-                babyNotificationUpdateBtn: "ООбновить профиль",
+                babyNotificationUpdateBtn: "Обновить профиль",
                 favScreenHeader: "Избранное",
                 actScreenremovetoFavText: "Сохранено",
                 appShareText: "Беббо | Приложение для родителей о росте и развитии ребенка",
