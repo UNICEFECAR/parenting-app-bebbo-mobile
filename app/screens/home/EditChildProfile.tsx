@@ -524,59 +524,54 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 )}
               </View>
             </CheckboxItem> */}
-           
-             
-           
-
-
             </MainContainer>
           </FlexCol>
           <ShiftFromTop10>
-          <ButtonContainer>
-          <ButtonPrimary
-            disabled={
-              !validateForm(
-                1,
-                birthDate,
-                isPremature,
-                '',
-                plannedTermDate,
-                name,
-                gender,
-              )
-            }
-            onPress={(e: any): any => {
-              e.preventDefault();
-              setLoading(true);
-              const validated = validateForm(
-                1,
-                birthDate,
-                isPremature,
-                '',
-                plannedTermDate,
-                name,
-                gender,
-              );
-              console.log("24455e655", validated)
-              if (validated == true) {
-                setTimeout(() => {
-                  //setLoading(false);
-                  AddChild();
-                }, 0)
-              }
-              // }
+            <ButtonContainer>
+              <ButtonPrimary
+                disabled={
+                  !validateForm(
+                    1,
+                    birthDate,
+                    isPremature,
+                    '',
+                    plannedTermDate,
+                    name,
+                    gender,
+                  )
+                }
+                onPress={(e: any): any => {
+                  e.preventDefault();
+                  setLoading(true);
+                  const validated = validateForm(
+                    1,
+                    birthDate,
+                    isPremature,
+                    '',
+                    plannedTermDate,
+                    name,
+                    gender,
+                  );
+                  console.log("24455e655", validated)
+                  if (validated == true) {
+                    setTimeout(() => {
+                      //setLoading(false);
+                      AddChild();
+                    }, 0)
+                  }
+                  // }
 
-            }}>
-            {childData && childData?.uuid != '' ? (
-              <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
-            ) : (
-              <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
-            )}
-          </ButtonPrimary>
-          </ButtonContainer>
+                }}>
+                {childData && childData?.uuid != '' ? (
+                  <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+                ) : (
+                  <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+                )}
+              </ButtonPrimary>
+            </ButtonContainer>
           </ShiftFromTop10>
-         
-         
+
+
           <ActionSheet ref={actionSheetRef}>
             <MainContainer>
               <ArticleHeading>
@@ -592,7 +587,6 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                       capturedPhoto == null ||
                       capturedPhoto == undefined || photoDeleted == true)
                   ) {
-                    console.log('cehcking')
                     return null;
                   } else {
                     return (
@@ -618,7 +612,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             </MainContainer>
           </ActionSheet>
         </ScrollView>
-       
+
       </View>
     </>
   );
