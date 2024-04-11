@@ -378,13 +378,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                     <Heading3>{Array.isArray(route.params.language) ? language[0].displayName : newLanguage?.displayName}</Heading3>
                   </LocalizationcontentResult>
                 </LocalizationWithoutBorderCol>
-
-                <LocalizationAction>
-
-                </LocalizationAction>
               </LocalizationRow>
               <ButtonWithBorder onPress={(): any => navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
-            </LocalizationContainer>
                 <OuterIconRow>
                   <OuterIconLeft>
                     <IconML name="ic_edit" size={16} color={secondaryBtnColor} />
