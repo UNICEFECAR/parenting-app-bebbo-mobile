@@ -397,7 +397,7 @@ const TJru = {
                 OnboardingImportButton: "Загрузите сейчас",
                 ORkeyText: "ИЛИ",
                 addChildText: "Добавьте сведения о своем ребенке",
-                addBasicParentsInfo: "AДобавьте основную информацию о себе.",
+                addBasicParentsInfo: "Добавьте основную информацию о себе.",
                 addBasicChildInfo:"Добавьте основную информацию о вашем ребенке. Если у вас есть еще дети, вы можете добавить их позже.",
                 parentNameText: "Ваше имя или псевдоним?",
                 notiTimeAgoTxt: "{{ageStr}} назад",

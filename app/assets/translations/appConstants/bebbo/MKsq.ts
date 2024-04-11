@@ -333,7 +333,7 @@ const MKsq = {
                 detailScreenNoDataOkBtn: "Në rregull",
                 editExpectChildAddTxt: "Ndrysho detajet e fëmijës që pritet të lindë   ",
                 editChildDobLabel: "Shkruaj datën e lindjes",
-                childInfoBabyText: " Bebe",
+                childInfoBabyText: "Bebe",
                 childInfoParentText: "Prindi",
                 childInfoAndText: "dhe",
                 childSetupdobText: "Shkruani datën e lindjes",
