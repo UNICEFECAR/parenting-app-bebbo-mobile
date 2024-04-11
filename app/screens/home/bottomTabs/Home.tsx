@@ -554,7 +554,7 @@ const Home = ({ route, navigation }: any): any => {
                 onFocus={(): any => {
                  // setHistoryVisible(true);
                 }}
-                onChangeText={async (queryText: any): Promise<any> => {
+                onChangeText={ (queryText: any): any => {
                   console.log('loghererer', queryText)
                   if (queryText.replace(/\s/g, "") == "") {
                     console.log('loghererer1')
@@ -569,7 +569,7 @@ const Home = ({ route, navigation }: any): any => {
                 }}
                 value={queryText}
 
-                onSubmitEditing={async (event: any): Promise<any> => {
+                onSubmitEditing={(event: any): any => {
                   // console.log("event-", queryText);
                   // setLoadingArticle(true)
                   // setHistoryVisible(false)

@@ -229,18 +229,18 @@ const DailyReads = ():any => {
       }
       categoryActivityData = categoryActivityData.filter((i: any) => !gamesarray.find((f: any) => f === i.id));
       const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
-      const articleDailyReadsData: any = [];
-      const activityDailyReadsData: any = [];
+      const dailyArticles: any = [];
+      const dailyActivityList: any = [];
       if (articleDataToShow != null && articleDataToShow != undefined) {
         advicearray.push(articleDataToShow?.id);
-        articleDailyReadsData.push(articleDataToShow);
+        dailyArticles.push(articleDataToShow);
       }
       if (activityDataToShow != null && activityDataToShow != undefined) {
         gamesarray.push(activityDataToShow?.id);
-        activityDailyReadsData.push(activityDataToShow);
+        dailyActivityList.push(activityDataToShow);
       }
-      setDataToShowInList(articleDailyReadsData);
-      setActivityDataToShowInList(activityDailyReadsData);
+      setDataToShowInList(dailyArticles);
+      setActivityDataToShowInList(dailyActivityList);
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
       const showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
       dailyDataCategorytoDispatch[activeChild.uuid] = {
@@ -256,8 +256,8 @@ const DailyReads = ():any => {
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
       dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
     } else {
-      const articleDailyReadsData: any = [];
-      const activityDailyReadsData: any = [];
+      const dailyArticles: any = [];
+      const dailyActivityList: any = [];
       const articleDataToShow = articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid).length > 0 ?
         articleData.filter((x: any) => x.id == dailyDataCategory.currentadviceid)[0] : null;
       const activityDataToShow = ActivitiesData.filter((x: any) => x.id == dailyDataCategory.currentgamesid).length > 0 ?
@@ -267,13 +267,13 @@ const DailyReads = ():any => {
         dispatch(setShowedDailyDataCategory({}));
       }
       if (articleDataToShow != null) {
-        articleDailyReadsData.push(articleDataToShow);
+        dailyArticles.push(articleDataToShow);
       }
       if (activityDataToShow != null) {
-        activityDailyReadsData.push(activityDataToShow);
+        dailyActivityList.push(activityDataToShow);
       }
-      setDataToShowInList(articleDailyReadsData);
-      setActivityDataToShowInList(activityDailyReadsData)
+      setDataToShowInList(dailyArticles);
+      setActivityDataToShowInList(dailyActivityList)
     }
   }, [activeChild.uuid, activityTaxonomyId]);
   return (
