@@ -50,8 +50,15 @@ export const ChildContentArea = styled.View`
 
 export const LabelTextVac = styled.Text`
   color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
-  font-size: 16px;
+  font-size: 14px;
 `;
+
+export const LabelTextTerms = styled.Text`
+  color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+  font-size: 14px;
+  text-align:left;
+`;
+
 export const LabelText = styled(LabelTextVac)`
   text-align:left;
 `;
