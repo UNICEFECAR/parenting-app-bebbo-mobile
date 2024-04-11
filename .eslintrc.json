@@ -1,45 +1,44 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-  "ecmaFeatures": {
-    "jsx": true
-  }
-},
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "env": {
     "browser": true,
     "react-native/react-native": true
   },
-  "plugins": ["react", "react-native"],
+  "plugins": ["react", "react-native", "@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "react-native/no-unused-styles": 2,
-    "react-native/split-platform-components": 2,
-    "react-native/no-inline-styles":2,
-    "react-native/no-color-literals":2,
+    "react-native/no-unused-styles": "error",
+    "react-native/split-platform-components": "error",
+    "react-native/no-inline-styles": "error",
+    "react-native/no-color-literals": "error",
     "react-native/no-raw-text": "off",
     "react/display-name": "off",
-    "@typescript-eslint/type-annotation-spacing":"off",
+    "@typescript-eslint/type-annotation-spacing": "off",
     "no-irregular-whitespace": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "react-native/sort-styles": [
       "error",
       "asc",
-       {
-         "ignoreClassNames": false,
-         "ignoreStyleProperties": false
-       }
-     ]
+      {
+        "ignoreClassNames": false,
+        "ignoreStyleProperties": false
+      }
+    ]
   },
   "overrides": [
     {
-      // enable the rule specifically for TypeScript files
       "files": ["*.ts", "*.tsx"],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": ["error"]
