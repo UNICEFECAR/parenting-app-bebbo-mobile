@@ -134,7 +134,7 @@ const CountrySelection = (props: any): any => {
           await userRealmCommon.deleteBy(ChildEntitySchema, "isMigrated == false");
           const data = await dataRealmCommon.deleteAllAtOnce();
           console.log(data, "..newdata..");
-          dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
+         // dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
           const payload = { errorArr: [], fromPage: 'OnLoad' }
           dispatch(receiveAPIFailure(payload));
         }

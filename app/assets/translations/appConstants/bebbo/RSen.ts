@@ -7,7 +7,7 @@ const RSen = {
                 "selectYourLang": "Select your language",
                 "goToLanguageSelection": "Go to language selection",
                 "goToConfirm": "Go to confirm",
-                "checkonce": "REMOVED_FACEBOOK_APP_ID1 will localize your content based on your selection of your country and langauge",
+                "checkonce": "REMOVED_FACEBOOK_APP_ID1 will localize your content based on your selection of your country and language",
                 "country": "Country",
                 "language": "Language",
                 "walkthroughTextstitle0": "Welcome Parents!",

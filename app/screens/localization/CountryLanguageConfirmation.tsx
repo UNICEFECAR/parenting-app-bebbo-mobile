@@ -43,7 +43,7 @@ import { allApisObject, appConfig } from '../../assets/translations/appOfflineDa
 import { oncountrtIdChange, onLocalizationSelect, setAppLayoutDirectionParams, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
-import { localization } from '@dynamicImportsClass/dynamicImports';
+import { localization, sponsors } from '@dynamicImportsClass/dynamicImports';
 import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor } from '@styles/style';
 
@@ -67,7 +67,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const { country, language } = route.params;
   const dispatch = useAppDispatch();
   const [countryData, setCountryData] = useState<any>();
- // const [sponsersData, setSponsersData] = useState<any>();
+  const [sponsorsData, setSponsorsData] = useState<any>();
   const [newLanguage, setNewLanguage] = useState<any>();
   const [luxonLanLocale, setLuxonLanLocale] = useState<any>();
   const [deviceLanCode, setDeviceLangCode] = useState<any>();
@@ -212,13 +212,13 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       const selectedCountry = localization.find(
         (country: any) => country.countryId === newCountryId,
       );
-      // const countrySponsersData = sponsers.find(
-      //   (country: any) => country.id === selectedCountry.countryId,
-      // )
-      // console.log('Seleted  country is', countrySponsersData)
-      // console.log('selectedCountry  country is', selectedCountry)
-      // setSponsersData(countrySponsersData);
 
+      const countrySponsorsData = sponsors.find(
+        (country: any) => country.id === selectedCountry.countryId,
+      )
+      console.log('Seleted  country is', countrySponsorsData)
+      console.log('selectedCountry  country is', selectedCountry)
+      setSponsorsData(countrySponsorsData);
       const foundCountry = getCountryByCountryCode(RNLocalize.getCountry());
       console.log('Found country is', foundCountry)
       if (foundCountry != undefined && foundCountry != null) {
@@ -330,8 +330,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       // if (userIsOnboarded == true) {
       //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
       // }
-    //  console.log('Sponsers Data for countryList',sponsersData)
-    //   dispatch(setSponsorStore(sponsersData));
+     console.log('Sponsors Data for countryList',sponsorsData)
+      dispatch(setSponsorStore(sponsorsData));
       navigation.navigate('LoadingScreen', {
         apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
         prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
@@ -383,10 +383,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
 
                 </LocalizationAction>
               </LocalizationRow>
- 
-           
+              <ButtonWithBorder onPress={(): any => navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
             </LocalizationContainer>
-            <ButtonWithBorder onPress={(): any => navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
                 <OuterIconRow>
                   <OuterIconLeft>
                     <IconML name="ic_edit" size={16} color={secondaryBtnColor} />
@@ -399,8 +397,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                   <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
                 </ButtonPrimary>
               </Flex1>
+            </LocalizationContainer>
           </OnboardingContent>
-
         </OnboardingContainer>
       </>
     </>

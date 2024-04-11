@@ -534,7 +534,6 @@ const Home = ({ route, navigation }: any): any => {
               <OuterIconRow>
 
                 <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
-                  e.preventDefault();
                  // await searchList(queryText);
 
                 }}>
@@ -554,17 +553,14 @@ const Home = ({ route, navigation }: any): any => {
                 onFocus={(): any => {
                  // setHistoryVisible(true);
                 }}
-                onChangeText={ (queryText: any): any => {
-                  console.log('loghererer', queryText)
-                  if (queryText.replace(/\s/g, "") == "") {
-                    console.log('loghererer1')
-                     searchQueryText(queryText.replace(/\s/g, ''));
+                onChangeText={(queryText: any): any => {
+                  const queryReText = queryText.replace(/\s/g, "");
+                  if (queryReText == "") {
+                     searchQueryText(queryReText);
                     // setHistoryVisible(true);
                     //  await searchList(queryText)
                   } else {
-                    console.log('loghererer2')
                      searchQueryText(queryText);
-                    // setHistoryVisible(true);
                   }
                 }}
                 value={queryText}
