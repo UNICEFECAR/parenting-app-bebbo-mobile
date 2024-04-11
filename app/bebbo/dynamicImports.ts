@@ -29,9 +29,9 @@ export const standardDevData =require('@offlinedata/bebbo/standardDevData').stan
 export const SurveyData =require('@offlinedata/bebbo/SurveyData').SurveyData;
 export const vaccineData =require('@offlinedata/bebbo/vaccineData').vaccineData;
 export const VideoArticleData =require('@offlinedata/bebbo/VideoArticleData').VideoArticleData;
-import northMacedoniaPartnerLogo from '@assets/appOfflineImages/northMacedonia/partner/1.png';
+import northMacedoniaPartnerLogo from '@assets/appOfflineImages/northmacedonia/partner/1.png';
 export const nmPartnerLogo=northMacedoniaPartnerLogo;
-import northMacedinaSponserLogo from '@assets/appOfflineImages/northMacedonia/sponser/2.png';
+import northMacedinaSponserLogo from '@assets/appOfflineImages/northmacedonia/sponser/2.png';
 export const nmSponserLogo=northMacedinaSponserLogo;
 import albaniaPartnerLogo from '@assets/appOfflineImages/albania/partner/IPH.png';
 export const albaniaPartnerLogo1=albaniaPartnerLogo;
