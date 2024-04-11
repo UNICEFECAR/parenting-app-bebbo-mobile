@@ -510,6 +510,9 @@ const ChildProfile = ({ navigation }: Props): any => {
                   navigation.navigate('EditChildProfile', { childData: null });
                 }}>
                   <OuterIconRow>
+                    <OuterIconLeft>
+                      <Icon name="ic_plus" size={16} color="#1CABE2" />
+                    </OuterIconLeft>        
                     <ButtonTextLg style={styles.plusBtnColor}>{t('childSetupListaddSiblingBtn')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
@@ -518,6 +521,9 @@ const ChildProfile = ({ navigation }: Props): any => {
                   navigation.navigate('AddExpectingChildProfile', { childData: null });
                 }}>
                   <OuterIconRow>
+                    <OuterIconLeft>
+                      <Icon name="ic_plus" size={16} color="#1CABE2" />
+                    </OuterIconLeft>
                     <ButtonTextLg style={styles.plusBtnColor}>{t('expectChildAddTxt2')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>

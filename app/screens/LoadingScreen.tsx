@@ -117,10 +117,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     const routes = navigation.getState().routes;
     console.log(routes, "Routes is");
     console.log(routes.length, "in callSagaApi navigation history--", navigation.getState().routes);
-
     const prevRoute = routes.length > 2 ? routes[routes.length - 2] : null;
-    console.log(prevRoute, "Prebious Routes is");
-    console.log(prevPage, "Previous page");
     if (prevPage == "ChildSetup" || prevPage == "AddEditChild") {
       dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
@@ -265,6 +262,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }, [netInfo.isConnected])
   );
   useEffect(() => {
+    console.log('Sponsers List Data is',sponsors)
     const backAction = (): any => {
       return true;
     };

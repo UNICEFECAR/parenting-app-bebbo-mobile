@@ -7,7 +7,7 @@ const en = {
                 "selectYourLang": "Select your language",
                 "goToLanguageSelection": "Go to language selection",
                 "goToConfirm": "Go to confirm",
-                "checkonce": "Bebbo will localize your content based on your selection of your country and langauge",
+                "checkonce": "Bebbo will localize your content based on your selection of your country and language",
                 "country": "Country",
                 "language": "Language",
                 "walkthroughTextstitle0": "Welcome Parents!",
