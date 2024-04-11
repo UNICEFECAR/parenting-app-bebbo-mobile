@@ -12,6 +12,17 @@ export const OnboardingconfirmationHead = styled.View`
   width: 100%;
   flex: 1;
   flex-direction: column;
+  justify-content: flex-end;
+  align-items:center;
+  align-content:center;
+  background-color: ${(props: any): any => props.theme?.colors?.PRIMARY_REDESIGN_COLOR};
+  padding:0 10px;
+  text-align:center;
+`;
+export const OnboardingTermsHead = styled.View`
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
   justify-content: center;
   align-items:center;
   align-content:center;
@@ -35,7 +46,7 @@ flex:1;
 `
 
 export const LocalizationRow = styled.View`
-flex: 0.4;
+flex: 0.7;
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
@@ -45,9 +56,8 @@ flex: 0.4;
   shadow-offset: 0px 7px; /* Shadow only at the bottom */
   shadow-opacity: 0.19;
   shadow-radius: 7px;
+  margin-top:20px;
   elevation: 12;
-  margin-bottom: 30px;
-  margin-top: -50px;
   border-radius: 4px;
 `;
 

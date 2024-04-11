@@ -37,7 +37,7 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import { getAllChildren, getAllConfigData, setActiveChild } from '../../services/childCRUD';
 import { formatDate } from '../../services/Utils';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import { ButtonText, bgcolorWhite, bgcolorWhite2 } from '@styles/style';
+import { ButtonText, bgcolorWhite, bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { setActiveChildData, setAllChildData } from '../../redux/reducers/childSlice';
 
@@ -50,14 +50,18 @@ const styles = StyleSheet.create({
   flexCol: { backgroundColor: bgcolorWhite2 },
   flexShrink1: { flexShrink: 1 },
   fontText: { fontSize: 12, fontWeight: 'normal' },
-  headingText1: { fontSize: 12, fontWeight: 'normal' },
-  headetTitleText: {
+  headerTitleText: {
     color: bgcolorWhite
   },
+  headingText1: { fontSize: 12, fontWeight: 'normal' },
   imageIcon: { borderRadius: 20, height: 40, width: 40 },
   marginLeft15: { marginLeft: 15 },
   maxHeight50: { maxHeight: 50 },
   paddingLeft30: { paddingLeft: 30 },
+  plusBtnColor: {
+    color: secondaryBtnColor,
+    textTransform: 'uppercase'
+  },
   profileActionView: { alignItems: "center", height: "100%", justifyContent: "center" },
   profileListDefault: { flexDirection: 'column', flex: 1 },
   profileTextView: { paddingRight: 5 },
@@ -80,7 +84,6 @@ const ChildProfile = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const secopndaryTintColor = themeContext?.colors.SECONDARY_TINTCOLOR;
-  const buttonTextColor = themeContext?.colors.SECONDARY_RE_COLOR;
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -211,7 +214,11 @@ const ChildProfile = ({ navigation }: Props): any => {
             {
               data.photoUri != '' ?
                 <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
-                </ImageIcon> : <Icon name="ic_baby" size={30} color="#000" />
+                </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
+                  genderName === 'Girl' ?
+                    <Icon name="ic_baby_girl" size={40} color='#000' />
+                    : <Icon name="ic_baby" size={40} color='#000' />
+                  : <Icon name="ic_baby_girl" size={40} color='#000' />
             }
           </ProfileIconView>
           <ProfileTextView style={styles.profileTextView}>
@@ -270,7 +277,11 @@ const ChildProfile = ({ navigation }: Props): any => {
               {
                 data.photoUri != '' ?
                   <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
-                  </ImageIcon> : <Icon name="ic_baby" size={30} color="#000" />
+                  </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
+                  genderName === 'Girl' ?
+                    <Icon name="ic_baby_girl" size={40} color='#000' />
+                    : <Icon name="ic_baby" size={40} color='#000' />
+                  : <Icon name="ic_baby_girl" size={40} color='#000' />
               }
             </ProfileIconView>
             <ProfileTextView>
@@ -361,7 +372,7 @@ const ChildProfile = ({ navigation }: Props): any => {
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
-            <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('childProfileHeader')}</Heading2w>
+            <Heading2w style={styles.headerTitleText} numberOfLines={1}>{t('childProfileHeader')}</Heading2w>
           </HeaderTitleView>
         </HeaderRowView>
         <FlexCol style={styles.flexCol}>
@@ -370,7 +381,12 @@ const ChildProfile = ({ navigation }: Props): any => {
               <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
-                    const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
+                    console.log('Gender is', item.gender, genders)
+                    let genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
+                    console.log('genderLocal is', genderLocal)
+                    if (genderLocal == '') {
+                      genderLocal = 'Girl';
+                    }
                     return renderChildProfile(dispatch, item, index, genderLocal, navigation);
                   })
                   : null}
@@ -448,7 +464,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                  */}
                     <ParentSection>
                       <ParentLabel>
-                        <Text>{t('parentRoleLabel')}</Text>
+                        <Text>{t('childSetuprelationSelectTitle')}</Text>
                       </ParentLabel>
                       <ParentData>
 
@@ -491,24 +507,24 @@ const ChildProfile = ({ navigation }: Props): any => {
 
               <ShiftFromTop30>
                 <ButtonWithBorder onPress={(): any => {
-                      navigation.navigate('EditChildProfile', { childData: null });
-                    }}>
+                  navigation.navigate('EditChildProfile', { childData: null });
+                }}>
                   <OuterIconRow>
                     <OuterIconLeft>
                       <Icon name="ic_plus" size={16} color="#1CABE2" />
-                    </OuterIconLeft>
-                    <ButtonTextLg style={{ color : buttonTextColor }}>{t('btnAddAnotherChildText')}</ButtonTextLg>
+                    </OuterIconLeft>        
+                    <ButtonTextLg style={styles.plusBtnColor}>{t('childSetupListaddSiblingBtn')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
 
                 <ButtonWithBorder onPress={(): any => {
-                      navigation.navigate('AddExpectingChildProfile', { childData: null });
-                    }}>
+                  navigation.navigate('AddExpectingChildProfile', { childData: null });
+                }}>
                   <OuterIconRow>
                     <OuterIconLeft>
                       <Icon name="ic_plus" size={16} color="#1CABE2" />
                     </OuterIconLeft>
-                    <ButtonTextLg style={{ color: buttonTextColor }}>{t('btnAddExpectedChildText')}</ButtonTextLg>
+                    <ButtonTextLg style={styles.plusBtnColor}>{t('expectChildAddTxt2')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
 

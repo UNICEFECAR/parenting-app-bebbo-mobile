@@ -7,6 +7,10 @@ opacity: ${(props: any): any => props.disabled ? 0.5 : 1};
 color: ${(props: any): any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
 padding: 5px 15px;
 width:100%;
+shadow-color: #00000;
+shadow-offset: 0px 8px; /* Shadow only at the bottom */
+shadow-opacity: 0.08;
+shadow-radius: 8px;
 fontFamily: 'roboto-bold';
 border-radius:4px;
 min-height:50px;
@@ -24,9 +28,13 @@ width:100%;
 fontFamily: 'roboto-bold';
 border-radius:4px;
 margin-bottom:15px;
+shadow-color: #00000;
+shadow-offset: 0px 8px; /* Shadow only at the bottom */
+shadow-opacity: 0.08;
+shadow-radius: 8px;
 min-height:50px;
 border-width:2px;
-border-color:#1CABE2;
+border-color:${(props: any): any => props.theme?.colors?.SECONDARY_RE_COLOR};
 height:auto;
 align-items:center;
 justify-content:center;
@@ -45,6 +53,7 @@ export const ButtonText = styled.Text`
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
+  letter-spacing:1.25;
   text-transform: uppercase; 
   font-weight:700;
 `;
@@ -98,7 +107,7 @@ export const ButtonLinkText = styled.Text`
 
 export const ButtonTextLg = styled(ButtonText)`
   font-size:16px;
-  color: ${(props: any): any => props.theme?.colors?.PRIMARY_RE_TEXTCOLOR};
+  color: ${(props: any): any => props.theme?.colors?.SECONDARY_RE_COLOR};
 `;
 
 export const ButtonRow = styled.View`
