@@ -3,7 +3,8 @@ import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonPrimaryMd, ButtonRow, ButtonText
+  ButtonPrimary,
+  ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
@@ -58,6 +59,7 @@ import {
   Heading3BoldCenterrw,
   ShiftFromTop40,
   ShiftFromTop25,
+  Heading4Centerrw,
 } from '../styles/typography';
 import AlertModal from '@components/AlertModal';
 import { BannerContainer } from '@components/shared/Container';
@@ -401,7 +403,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                   }}
                   value={name}
                   placeholder={t('parentNamePlaceTxt')}
-                  placeholderTextColor={"gray"}
+                  placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
@@ -486,7 +488,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                   console.log("in else");
                 }
               }}>
-              <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
+              <ButtonUpperCaseText>{t('childSetupcontinueBtnText')}</ButtonUpperCaseText>
             </ButtonPrimary>
           </ShiftFromTop25>
 
@@ -504,8 +506,8 @@ const ChildSetup = ({ navigation }: Props): any => {
             </FlexRow> */}
             <FlexRow>
               <Flex2 style={styles.flex2Style}>
-                <Heading4Regularw style={styles.importTextStyle}>{t('importOnboardingText')}</Heading4Regularw>
-                <Heading4Regularw>{t('importOnboardingText1')}</Heading4Regularw>
+                <Heading4Centerrw style={styles.importTextStyle}>{t('importOnboardingText')}</Heading4Centerrw>
+                <Heading4Centerrw>{t('importOnboardingText1')}</Heading4Centerrw>
               </Flex2>
 
             </FlexRow>
@@ -528,7 +530,7 @@ const ChildSetup = ({ navigation }: Props): any => {
 
             </Pressable>
             <Flex2 style={styles.flex2Style}>
-              <Heading4Regularw>{t('importOnboardingText2')}</Heading4Regularw>
+              <Heading4Centerrw>{t('importOnboardingText2')}</Heading4Centerrw>
             </Flex2>
           </FlexCol>
 

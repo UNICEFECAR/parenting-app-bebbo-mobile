@@ -9,7 +9,7 @@ import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint,
 import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { bgcolorWhite2 } from '@styles/style';
+import { bgcolorWhite, bgcolorWhite2 } from '@styles/style';
 import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -25,6 +25,9 @@ const styles=StyleSheet.create(
     flex1:{flex:1},
     flex2:{ flex: 2},
     flex7:{ flex: 7},
+    headerTitleTextColor: {
+      color: bgcolorWhite
+    },
     mainOuterView:{ flex:1,flexDirection: 'column', backgroundColor:bgcolorWhite2},
     marginTop10:{marginTop:10},
     maxHeight50:{maxHeight: 50},
@@ -354,7 +357,7 @@ const Notifications = ():any => {
             <BurgerIcon />
 
             <HeaderTitleView style={styles.flex2}>
-              <Heading2w>{t('notiScreenheaderTitle')}</Heading2w>
+              <Heading2w style={styles.headerTitleTextColor}>{t('notiScreenheaderTitle')}</Heading2w>
             </HeaderTitleView>
 
             <OuterIconRow>
