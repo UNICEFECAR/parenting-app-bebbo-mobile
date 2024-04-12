@@ -35,6 +35,12 @@ export const RadioItem = styled.View`
   flex-direction: row;
   align-items: center;
   padding: 15px 0;
+`;
+
+export const RadioCountryItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 0;
   border-color: rgba(200, 191, 191, 0.7);
   border-bottom-width: 1px;
   border-radius:4px;

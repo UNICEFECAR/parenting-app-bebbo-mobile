@@ -616,7 +616,7 @@ const Articles = ({ route, navigation }: any): any => {
                 multiline={false}
                 // placeholder="Search for Keywords"
                 placeholder={t('articleScreensearchPlaceHolder')}
-                placeholderTextColor={"gray"}
+                placeholderTextColor={"#777779"}
                 allowFontScaling={false}
               />
 

@@ -19,6 +19,7 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
+  LabelDatePlaceHolderText,
   LabelText,
   LabelText1
 } from './shared/ChildSetupStyle';
@@ -173,11 +174,11 @@ const ChildDate = (props: any): any => {
             <Pressable onPress={showdobDatepicker}>
               <FormInputBox>
                 <FlexFDirRowSpace>
-                  <Text>
+                  <LabelDatePlaceHolderText>
                     {doborExpectedDate
                       ? formatStringDate(doborExpectedDate)
                       : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
-                  </Text>
+                  </LabelDatePlaceHolderText>
                   {showdob && (
                     <DateTimePicker
                       testID="dobdatePicker"
@@ -211,11 +212,11 @@ const ChildDate = (props: any): any => {
              <View style={{marginTop:-10}}>
              <FormInputBox>
                 <FlexFDirRowSpace>
-                  <Text>
+                  <LabelDatePlaceHolderText>
                     {doborExpectedDate
                       ? formatStringDate(doborExpectedDate)
                       : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
-                  </Text>
+                  </LabelDatePlaceHolderText>
                   {showdob && (
                     <DateTimePickerModal
                       isVisible={isDobDatePickerVisible}
