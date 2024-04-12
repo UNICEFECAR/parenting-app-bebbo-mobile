@@ -754,7 +754,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
-                      placeholderTextColor={"gray"}
+                      placeholderTextColor={"#77777779"}
                       allowFontScaling={false}
                     />
                   </TextAreaBox>

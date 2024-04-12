@@ -3,7 +3,8 @@ import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonRow, ButtonText
+  ButtonPrimary, ButtonRow,
+  ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
@@ -42,6 +43,7 @@ import {
   ShiftFromTop25,
   Heading2Centerw,
   Heading3BoldCenterrw,
+  Heading4Centerrw,
 } from '../styles/typography';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import DocumentPicker, { isInProgress } from 'react-native-document-picker';
@@ -444,7 +446,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                   }}
                   value={name}
                   placeholder={t('childNamePlaceTxt')}
-                  placeholderTextColor={"gray"}
+                  placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
@@ -489,7 +491,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                     console.log("in else");
                   }
                 }}>
-                <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
+                <ButtonUpperCaseText>{t('childSetupcontinueBtnText')}</ButtonUpperCaseText>
               </ButtonPrimary>
             </ButtonRow>
 
@@ -509,10 +511,8 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                   setTimeout(() => {
                     console.log('Relationship name', relationshipName, relationship)
                     if (relationshipName == 'service provider') {
-                     // AddChild(true);
-                      setName('Child')
+
                       AddChild(false,true);
-                      navigation.navigate('ServiceProviderInfoSetup')
                     } else {
                       // const currentDate = new Date();
                       // setBirthDate(currentDate)
@@ -531,7 +531,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
 
               <ShiftFromTop20>
                 <Flex2>
-                  <Heading4Regularw>{t('childProfileSkipText')}</Heading4Regularw>
+                  <Heading4Centerrw>{t('childProfileSkipText')}</Heading4Centerrw>
                 </Flex2>
 
               </ShiftFromTop20>

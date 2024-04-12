@@ -5,7 +5,7 @@ import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import {
   ButtonContainer,
   ButtonPrimary,
-  ButtonText,
+  ButtonUpperCaseText,
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainerFlex,
@@ -491,7 +491,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                       }}
                       value={name}
                       placeholder={t('childNamePlaceTxt')}
-                      placeholderTextColor={"gray"}
+                      placeholderTextColor={"#77777779"}
                       allowFontScaling={false}
                     />
                   </FormInputBox>
@@ -563,9 +563,9 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
 
                 }}>
                 {childData && childData?.uuid != '' ? (
-                  <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+                  <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
                 ) : (
-                  <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+                  <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
                 )}
               </ButtonPrimary>
             </ButtonContainer>

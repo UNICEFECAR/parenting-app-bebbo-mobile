@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
   FormDateAction,
@@ -191,7 +191,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         </HeaderIconView>
         <HeaderTitleView>
           <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>
-            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt')}
+            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt2')}
           </Heading2w>
         </HeaderTitleView>
         <HeaderActionView style={styles.headerActionView}>
@@ -270,7 +270,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
               }}
               value={name}
               placeholder={t('expectPreferNamePlacetxt')}
-              placeholderTextColor={"gray"}
+              placeholderTextColor={"#77777779"}
               allowFontScaling={false}
             />
           </FormInputBox>
@@ -287,7 +287,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
                 AddChild();
               }, 0)
             }}>
-            <ButtonText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
+            <ButtonUpperCaseText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonUpperCaseText>
           </ButtonPrimary>
         </ButtonContainer>
       </ShiftFromTop10>

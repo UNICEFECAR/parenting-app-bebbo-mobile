@@ -1,31 +1,21 @@
 import { localization } from '@dynamicImportsClass/dynamicImports';
 import CountryItem from '@components/CountryItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import {
-  ButtonSection,
-  ButtonviewClick,
-  ButtonviewNext,
-  ButtonviewPrevious
-} from '@components/shared/ButtonView';
-import { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { ButtonText, SelectionView } from '@styles/style';
-import { ShiftFromTopBottom10 } from '@styles/typography';
+import { SelectionView } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, NativeModules, Platform, Pressable } from 'react-native';
+import { FlatList, Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
-import { setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
 import * as RNLocalize from "react-native-localize";
-import { Flex1, Flex3 } from '@components/shared/FlexBoxStyle';
-import { ButtonLinkRow, ButtonPrimary, ButtonRow } from '@components/shared/ButtonGlobal';
+import { ButtonLinkRow, ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 const CountrySelection = (props: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -210,7 +200,7 @@ const CountrySelection = (props: any): any => {
               <ButtonPrimary onPress={():any =>{
                 props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
               }}>
-                <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
+                <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
               </ButtonPrimary>
             </ButtonLinkRow>
         </OnboardingContainer>

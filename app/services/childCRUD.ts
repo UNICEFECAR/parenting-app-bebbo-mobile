@@ -18,14 +18,14 @@ import { getVariableData } from '../redux/reducers/variableSlice';
 import LocalNotifications from './LocalNotifications';
 import { logEvent } from './EventSyncService';
 
-export const apiJsonDataGet = (childAge: any, parentGender: any, isDatetimeReq?: any, dateTimeObj?: any): any => {
+export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeObj?: any): any => {
   const postData = {
     childGender: 'all',
-    childAge: childAge != "" && childAge != undefined && childAge != null ? childAge : "all",
+    childAge: "all", //childAge != "" && childAge != undefined && childAge != null ? childAge : "all"
     parentGender: parentGender != "" && parentGender != undefined && parentGender != null ? parentGender : "all",
-    category: articleCategory != undefined && articleCategory != null ? articleCategory : "all",
+    category: articleCategory != undefined && articleCategory != null ? articleCategory : "all"
   }
-  console.log(postData, "..postData..");
+  console.log(postData, "..postData Data is here..");
   return [
     {
       apiEndpoint: appConfig.articles,
@@ -261,6 +261,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
     if (child) {
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log("allDatatoStore AddEditChild3--", allDatatoStore);
+      console.log("taxonomy data is", child);
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
@@ -413,7 +414,8 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
   const year2 = dateTime2.getUTCFullYear();
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any): Promise<any> => {
+
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any,isDefaultChild:boolean): Promise<any> => {
   let oldBirthDate;
   console.log(editScreen, "..editScreen..", param);
   if (editScreen) {
@@ -434,12 +436,17 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
   //new child add from 
   if (param == 0) {
-    navigation.navigate('ChildSetupList');
+    if(isDefaultChild){
+      navigation.navigate('ServiceProviderInfoSetup')
+    }else{
+      navigation.navigate('ChildSetupList');
+    }
+   console.log('UUID is',data[0])
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
-    setActiveChild(languageCode, data[0].uuid, dispatch, childAge, false);
+    await setActiveChild(languageCode, data[0].uuid, dispatch, childAge, false);
     const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
   }
@@ -503,8 +510,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       const taxonomyData = await checkBetween(0, ageLimit, childAge);
       let apiJsonData;
+      //  apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
       if (taxonomyData?.length > 0) {
-        apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
+          apiJsonData = apiJsonDataGet("all");
         if (currentActiveChildId?.length > 0) {
           currentActiveChildId = currentActiveChildId[0].value;
           if (currentActiveChildId == data[0].uuid) {
