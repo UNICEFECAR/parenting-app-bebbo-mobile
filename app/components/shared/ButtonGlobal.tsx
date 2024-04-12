@@ -49,6 +49,15 @@ min-height:40px;
 /*Button Text */
 export const ButtonText = styled.Text`
   text-align: center;
+  color: ${(props:any):any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
+  font-family: 'roboto-bold';
+  font-size:16px;
+  line-height:20px;
+  
+`;
+
+export const ButtonUpperCaseText = styled.Text`
+  text-align: center;
   color: ${(props: any): any => props.theme?.colors?.SECONDARY_TEXTCOLOR};
   font-family: 'roboto-bold';
   font-size:16px;
@@ -105,7 +114,7 @@ export const ButtonLinkText = styled.Text`
   text-decoration:underline;
 `;
 
-export const ButtonTextLg = styled(ButtonText)`
+export const ButtonTextLg = styled(ButtonUpperCaseText)`
   font-size:16px;
   color: ${(props: any): any => props.theme?.colors?.SECONDARY_RE_COLOR};
 `;

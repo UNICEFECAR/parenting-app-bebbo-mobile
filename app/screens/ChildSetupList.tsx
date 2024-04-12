@@ -2,9 +2,9 @@ import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
+  ButtonPrimary,
   ButtonTextLg,
-  ButtonTextLinew,
+  ButtonUpperCaseText,
   ButtonWithBorder
 } from '@components/shared/ButtonGlobal';
 import {
@@ -168,9 +168,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
     return (
       <ChildListingBox key={index}>
         {gender && gender !== '' && gender !== 0 && gender !== undefined ?
-          gender === 'Girl' ?
+          (gender === 'Girl' ?
             <Icon name="ic_baby_girl" size={40} color='#000' />
-            : <Icon name="ic_baby" size={40} color='#000' />
+            : <Icon name="ic_baby" size={40} color='#000' />)
           : <Icon name="ic_baby_girl" size={40} color='#000' />}
         <ChildColArea1>
 
@@ -274,7 +274,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
               </ChildListingArea>
             </ChildContentArea>
             <View onLayout={onLayout} style={{ flexDirection: 'column' }}>
-              <ButtonWithBorder onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('childSetupListaddSiblingBtn'), childData: null })}>
+              <ButtonWithBorder onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('addChildProfileHeader'), childData: null })}>
                 <OuterIconRow>
                   <ButtonTextLg style={styles.plusBtnColor}>{t('childSetupListaddSiblingBtn')}</ButtonTextLg>
                 </OuterIconRow>
@@ -288,7 +288,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
                 }, 0)
 
               }}>
-                <ButtonText numberOfLines={2}>{t('letGetStartedText')}</ButtonText>
+                <ButtonUpperCaseText numberOfLines={2}>{t('letGetStartedText')}</ButtonUpperCaseText>
               </ButtonPrimary>
             </View>
 

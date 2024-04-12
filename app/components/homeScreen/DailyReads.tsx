@@ -6,7 +6,7 @@ import { FDirRow } from '@components/shared/FlexBoxStyle';
 import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading2, Heading3w, Heading4, HeadingHome3w, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: '100%'
   },
-  flatlistOuterView:{ marginLeft: -7, marginRight: -7 },
+  flatlistOuterView:{ marginLeft: -7, marginRight: -7,marginTop:10 },
   linearGradient: {
     flex: 1,
   }
@@ -122,7 +122,7 @@ const DailyReads = ():any => {
             </LoadableImage>
             <View>
               <DailyArtTitle>
-                <Heading3w numberOfLines={1}>{item?.title}</Heading3w>
+                <HeadingHome3w numberOfLines={1}>{item?.title}</HeadingHome3w>
               </DailyArtTitle>
               <OverlayFaded>
                 <LinearGradient colors={['rgba(0,0,0,0.0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']} style={styles.linearGradient}>
