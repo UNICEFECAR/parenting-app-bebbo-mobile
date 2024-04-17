@@ -131,7 +131,7 @@ export const ButtonLinkRow = styled(ButtonRow)`
   
   flex-direction:row;
   margin:0;
-  padding: 10px;
+  padding-verticle: 10px;
   margin-bottom:15px;
 `;
 

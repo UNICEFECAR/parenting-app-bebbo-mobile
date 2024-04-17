@@ -219,7 +219,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         }
         sendData(childData);
       }
-      setDefaultGenderValue(childData && childData.uuid ? genders.find((item: any) => item.id == childData?.gender) : { title: '' })
+      console.log('childadata gender is', genders.find((item: any) => item.id == childData?.gender));
+      setDefaultGenderValue(childData && childData.uuid && childData?.gender !=0 ? genders.find((item: any) => item.id == childData?.gender) : { title: 'Girl' })
       console.log(destPath)
     }, []),
   );
