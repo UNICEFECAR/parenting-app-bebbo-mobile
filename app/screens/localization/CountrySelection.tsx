@@ -195,8 +195,8 @@ const CountrySelection = (props: any): any => {
               </ButtonviewClick>
             </ButtonviewPrevious>
           )} */}
+
         <ButtonLinkRow>
-          
               <ButtonPrimary onPress={():any =>{
                 props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
               }}>

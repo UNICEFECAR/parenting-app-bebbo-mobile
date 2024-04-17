@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: '100%'
   },
-  flatlistOuterView:{ marginLeft: -7, marginRight: -7,marginTop:10 },
+  flatlistOuterView:{ marginLeft: -7, marginRight: -7 },
   linearGradient: {
     flex: 1,
   }
@@ -115,7 +115,7 @@ const DailyReads = ():any => {
   };
   const RenderDailyReadItem = React.memo(({ item, index }: any) => {
     return (
-      <View>
+      <View style={{marginTop:10}}>
         <Pressable onPress={():any => { goToArticleDetail(item) }} key={index}>
           <DailyBox>
             <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}>

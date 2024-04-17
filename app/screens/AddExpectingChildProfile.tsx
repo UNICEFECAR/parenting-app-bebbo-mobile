@@ -7,6 +7,7 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
+  LabelDatePlaceHolderText,
   LabelText,
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
@@ -216,7 +217,8 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
             <LabelText> {t('expectChildDueDateTxt')}</LabelText>
             <FormInputBox>
               <FormDateText>
-                <Text>  {plannedTermDate ? formatStringDate(plannedTermDate) : t('expectChildDueDateTxt')}</Text>
+                {plannedTermDate ? <Text>{formatStringDate(plannedTermDate)}</Text> :
+                  <LabelDatePlaceHolderText>{t('expectChildDueDateTxt')}</LabelDatePlaceHolderText>}
               </FormDateText>
               <FormDateAction>
                 <Icon name="ic_calendar" size={20} color="#000" />
