@@ -21,7 +21,8 @@ import {
   FormInputGroup,
   LabelDatePlaceHolderText,
   LabelText,
-  LabelText1
+  LabelText1,
+  LabelTextTerms
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
   FormDobInfoPress,
@@ -174,11 +175,13 @@ const ChildDate = (props: any): any => {
             <Pressable onPress={showdobDatepicker}>
               <FormInputBox>
                 <FlexFDirRowSpace>
-                  <LabelDatePlaceHolderText>
-                    {doborExpectedDate
-                      ? formatStringDate(doborExpectedDate)
-                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
-                  </LabelDatePlaceHolderText>
+                  {doborExpectedDate ?
+                    <LabelTextTerms>
+                      {formatStringDate(doborExpectedDate)}
+                    </LabelTextTerms> :
+                    <LabelDatePlaceHolderText>
+                      {prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
+                    </LabelDatePlaceHolderText>}
                   {showdob && (
                     <DateTimePicker
                       testID="dobdatePicker"
@@ -209,33 +212,35 @@ const ChildDate = (props: any): any => {
               </FormInfoPress></FormInfoLabel>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
-             <View style={{marginTop:-10}}>
-             <FormInputBox>
-                <FlexFDirRowSpace>
-                  <LabelDatePlaceHolderText>
-                    {doborExpectedDate
-                      ? formatStringDate(doborExpectedDate)
-                      : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
-                  </LabelDatePlaceHolderText>
-                  {showdob && (
-                    <DateTimePickerModal
-                      isVisible={isDobDatePickerVisible}
-                      mode="date"
-                      date={doborExpectedDate != null ? doborExpectedDate : new Date()}
-                      onConfirm={handleDobConfirm}
-                      onCancel={(): any => {
-                        setDobDatePickerVisibility(false);
-                      }}
-                      minimumDate={new Date(dobMin)}
-                      maximumDate={new Date(dobMax)} />
-                  )}
-                </FlexFDirRowSpace>
-                <FormDateAction>
-                  <Icon name="ic_calendar" size={20} color="#000" />
-                </FormDateAction>
-              </FormInputBox>
-             </View>
-             
+              <View style={{ marginTop: -10 }}>
+                <FormInputBox>
+                  <FlexFDirRowSpace>
+                    {doborExpectedDate ?
+                      <LabelTextTerms>
+                        {formatStringDate(doborExpectedDate)}
+                      </LabelTextTerms> :
+                      <LabelDatePlaceHolderText>
+                        {prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
+                      </LabelDatePlaceHolderText>}
+                    {showdob && (
+                      <DateTimePickerModal
+                        isVisible={isDobDatePickerVisible}
+                        mode="date"
+                        date={doborExpectedDate != null ? doborExpectedDate : new Date()}
+                        onConfirm={handleDobConfirm}
+                        onCancel={(): any => {
+                          setDobDatePickerVisibility(false);
+                        }}
+                        minimumDate={new Date(dobMin)}
+                        maximumDate={new Date(dobMax)} />
+                    )}
+                  </FlexFDirRowSpace>
+                  <FormDateAction>
+                    <Icon name="ic_calendar" size={20} color="#000" />
+                  </FormDateAction>
+                </FormInputBox>
+              </View>
+
             </Pressable>
           </FormInputGroup>
         )}
@@ -286,58 +291,60 @@ const ChildDate = (props: any): any => {
                 <FormInputGroup onPress={showdueDatepicker}>
                   <LabelText>{t('childSetupdueLabel')}</LabelText>
                   <ShiftFromTop10>
-                  <FormInputBox>
-                    <FormDateText style={styles.formDateText}>
-                      <Text>
-                        {' '}
-                        {dueDate
-                          ? formatStringDate(dueDate)
-                          : t('childSetupdobSelector')}
-                      </Text>
-                      {showdue && (
-                        <DateTimePicker
-                          testID="duedatePicker"
-                          value={dueDate != null ? dueDate : new Date()}
-                          mode={'date'}
-                          display="spinner"
-                          minimumDate={
-                            new Date(
-                              DateTime.fromJSDate(doborExpectedDate as Date)
-                                .plus({ weeks: minDue })
-                                .toISODate(),
-                            )
-                          }
-                          maximumDate={
-                            new Date(
-                              DateTime.fromJSDate(doborExpectedDate as Date)
-                                .plus({ months: maxDue })
-                                .toISODate(),
-                            )
-                          }
-                          // minimumDate={{}}
-                          // maximumDate={{}}
-                          onChange={ondueDateChange}
-                        />
-                      )}
-                    </FormDateText>
-                    <FormDateAction>
-                      <Icon name="ic_calendar" size={20} color="#000" />
-                    </FormDateAction>
-                  </FormInputBox>
+                    <FormInputBox>
+                      <FormDateText style={styles.formDateText}>
+                        {dueDate ?
+                          <LabelTextTerms>
+                            {formatStringDate(dueDate)}
+                          </LabelTextTerms> :
+                          <LabelDatePlaceHolderText>
+                            {t('childSetupdobSelector')}
+                          </LabelDatePlaceHolderText>}
+                        {showdue && (
+                          <DateTimePicker
+                            testID="duedatePicker"
+                            value={dueDate != null ? dueDate : new Date()}
+                            mode={'date'}
+                            display="spinner"
+                            minimumDate={
+                              new Date(
+                                DateTime.fromJSDate(doborExpectedDate as Date)
+                                  .plus({ weeks: minDue })
+                                  .toISODate(),
+                              )
+                            }
+                            maximumDate={
+                              new Date(
+                                DateTime.fromJSDate(doborExpectedDate as Date)
+                                  .plus({ months: maxDue })
+                                  .toISODate(),
+                              )
+                            }
+                            // minimumDate={{}}
+                            // maximumDate={{}}
+                            onChange={ondueDateChange}
+                          />
+                        )}
+                      </FormDateText>
+                      <FormDateAction>
+                        <Icon name="ic_calendar" size={20} color="#000" />
+                      </FormDateAction>
+                    </FormInputBox>
                   </ShiftFromTop10>
-                 
+
                 </FormInputGroup>
               ) : (
                 <FormInputGroup onPress={showdueDatepicker}>
                   <LabelText>{t('childSetupdueLabel')}</LabelText>
                   <FormInputBox>
                     <FormDateText style={styles.formDateText}>
-                      <Text>
-                        {' '}
-                        {dueDate
-                          ? formatStringDate(dueDate)
-                          : t('childSetupdobSelector')}
-                      </Text>
+                      {dueDate ?
+                        <LabelTextTerms>
+                          {formatStringDate(dueDate)}
+                        </LabelTextTerms> :
+                        <LabelDatePlaceHolderText>
+                          {t('childSetupdobSelector')}
+                        </LabelDatePlaceHolderText>}
                       {showdue && (
                         <DateTimePickerModal
                           isVisible={isDueDatePickerVisible}

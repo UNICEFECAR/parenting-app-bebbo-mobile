@@ -1,6 +1,6 @@
 import { bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonPrimary, ButtonText, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import {
   ChildRelationList,
   FormContainer,
@@ -34,6 +34,7 @@ import {
   Heading2w,
   Heading3, ShiftFromTop10
 } from '../styles/typography';
+import { bgcolorWhite } from '@styles/style';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList
@@ -47,6 +48,9 @@ const styles=StyleSheet.create({
   flex1:{flex: 1},
   headerRowView:{
     maxHeight: 50
+  },
+  headetTitleText: {
+    color: bgcolorWhite
   },
   textInputML:{width:'100%'}
 
@@ -130,7 +134,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
     }
   };
   return <>
-    <View style={[styles.flex1,{ backgroundColor: headerColor }]}>
+    <View style={[styles.flex1,{ backgroundColor: bgcolorWhite }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
         style={[styles.headerRowView,{backgroundColor: headerColor}]}>
@@ -143,8 +147,8 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
           </HeaderIconPress>
         </HeaderIconView>
         <HeaderTitleView>
-          <Heading2w numberOfLines={1}>
-            {t('editParentTxt')}
+          <Heading2w style={styles.headetTitleText} numberOfLines={1}>
+            {t('babyNotificationUpdateBtn')}
           </Heading2w>
         </HeaderTitleView>
       </HeaderRowView>
@@ -153,7 +157,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
           onPress={(): any => {
             actionSheetRef.current?.setModalVisible(true);
           }}>
-          <LabelText>{t('relationShipTxt')}</LabelText>
+          <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
 
           <FormInputBox>
             <FormDateText>
@@ -240,7 +244,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
               }}
               value={parentName}
               placeholder={t('parentPlaceNameTxt')}
-              placeholderTextColor={"gray"}
+              placeholderTextColor={"#77777779"}
               allowFontScaling={false}
             /></FormInputBox>
         </FormContainer>
@@ -253,7 +257,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
             onPress={(): any => {
               saveParentData(relationship, parentName, userRelationToParent);
             }}>
-            <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+            <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
           </ButtonPrimary>
         </ButtonContainer>
       </ShiftFromTop10>
