@@ -140,7 +140,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   );
   const relationshipToParent = useAppSelector(
     (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
+      state.utilsData.taxonomy.allTaxonomyData != ''  ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -164,10 +164,10 @@ const ChildSetup = ({ navigation }: Props): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
 
-  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+  genders = genders?.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != bothChildGender;
   });
-  relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+  relationshipData = relationshipData?.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != bothParentGender;
   });
   const onImportCancel = (): any => {
@@ -402,8 +402,8 @@ const ChildSetup = ({ navigation }: Props): any => {
                     }
                   }}
                   value={name}
-                  placeholder={t('parentNamePlaceTxt')}
-                  placeholderTextColor={"#77777779"}
+                  //placeholder={t('parentNamePlaceTxt')}
+                  //placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
@@ -433,7 +433,8 @@ const ChildSetup = ({ navigation }: Props): any => {
                 <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text>
+                   {/*  <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text> */}
+                   <Text>{relationshipname ? relationshipname : ''}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_angle_down" size={10} color="#000" />
@@ -541,7 +542,7 @@ const ChildSetup = ({ navigation }: Props): any => {
       <ActionSheet ref={actionSheetRef}>
 
         <View style={{ marginBottom: 20 }}>
-          {relationshipToParent.map((item: any, index: any) => {
+          {relationshipToParent?.map((item: any, index: any) => {
             return (
               <ChildRelationList key={index}>
                 <Pressable

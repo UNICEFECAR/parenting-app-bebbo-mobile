@@ -107,21 +107,21 @@ const PrivacyPolicy = ({navigation}: Props):any => {
               }}
               renderers={{
                 iframe,
-                img:(attribs:any):any => {
-                  const imagePath:any = attribs.src;
-                  console.log(imagePath,"..imagePath");
-                  if(imagePath!="" && imagePath!=null && imagePath!=undefined){
-                  const itemnew:any={
-                    cover_image:{
-                      url:imagePath
-                    }
-                  };
-                    return (
-                      <RenderImage key={imagePath+"/"+Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                // img:(attribs:any):any => {
+                //   const imagePath:any = attribs.src;
+                //   console.log(imagePath,"..imagePath");
+                //   if(imagePath!="" && imagePath!=null && imagePath!=undefined){
+                //   const itemnew:any={
+                //     cover_image:{
+                //       url:imagePath
+                //     }
+                //   };
+                //     return (
+                //       <RenderImage key={imagePath+"/"+Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
              
-                   );
-                  }
-                },
+                //    );
+                //   }
+                // },
               }}
               WebView={WebView}
               renderersProps={{

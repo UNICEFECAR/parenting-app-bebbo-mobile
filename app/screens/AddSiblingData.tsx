@@ -152,8 +152,8 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
                     }
                   }}
                   value={name}
-                  placeholder={t('childNamePlaceTxt')}
-                  placeholderTextColor={"#77777779"}
+                  //placeholder={t('childNamePlaceTxt')}
+                  //placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>

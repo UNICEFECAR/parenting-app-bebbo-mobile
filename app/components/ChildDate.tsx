@@ -219,9 +219,7 @@ const ChildDate = (props: any): any => {
                       <LabelTextTerms>
                         {formatStringDate(doborExpectedDate)}
                       </LabelTextTerms> :
-                      <LabelDatePlaceHolderText>
-                        {prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
-                      </LabelDatePlaceHolderText>}
+                      ''}
                     {showdob && (
                       <DateTimePickerModal
                         isVisible={isDobDatePickerVisible}

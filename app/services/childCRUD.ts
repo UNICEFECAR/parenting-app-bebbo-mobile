@@ -389,12 +389,12 @@ export const getNotificationDateInString = (t: any, birthDate: string, pluralSho
     }
     if (diff.days >= 1 && diff.months == "" && diff.years == "") {
       if (pluralShow == true) {
-        ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25 ? ' ' + t('days5tag') : Math.round(diff.days) == 21 ? ' ' + t('daytag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25 ? ' ' + t('days5tag') : Math.round(diff.days) == 21 ? ' ' + t('daytag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       }
       else {
         ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       }
-    }
+    }  
     if (ageStr == "") {
       ageStr = t('todayTxt');
     } else {

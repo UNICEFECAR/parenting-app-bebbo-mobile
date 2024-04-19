@@ -231,8 +231,8 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                       {item && item.body ?
                         <HTML
                           source={{ html: addSpaceToHtml(item.body) }}
-                          baseFontStyle={styles.htmlFontSize}
-                          ignoredStyles={['color', 'fontSize', 'fontFamily', 'margin', 'padding']}
+                          baseStyle={styles.htmlFontSize}
+                          ignoredStyles={['color', 'fontSize', 'fontFamily']}
                           tagsStyles={{
                             p: { textAlign: 'left', marginTop: 0 },
                             h1: { textAlign: 'left' },
