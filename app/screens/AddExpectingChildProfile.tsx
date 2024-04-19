@@ -271,8 +271,8 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
                 }
               }}
               value={name}
-              placeholder={t('expectPreferNamePlacetxt')}
-              placeholderTextColor={"#77777779"}
+              //placeholder={t('expectPreferNamePlacetxt')}
+              //placeholderTextColor={"#77777779"}
               allowFontScaling={false}
             />
           </FormInputBox>
