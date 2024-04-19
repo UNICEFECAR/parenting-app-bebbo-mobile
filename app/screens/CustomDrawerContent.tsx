@@ -619,7 +619,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 {feedbackItem && feedbackItem?.body ?
                   <HTML
                     source={{ html: addSpaceToHtml(feedbackItem?.body) }}
-                    ignoredStyles={['color', 'font-size', 'font-family']}
+                    ignoredStyles={['color', 'fontSize', 'fontFamily']}
                   />
                   : null
                 }

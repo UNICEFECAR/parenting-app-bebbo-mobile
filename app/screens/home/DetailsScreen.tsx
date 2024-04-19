@@ -535,21 +535,21 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   renderers={{
                     table,
                     iframe,
-                    a: (htmlAttribs: any,): any => {
-                      const imagePath: any = htmlAttribs.src;
-                      console.log(imagePath, "..imagePath");
-                      if (imagePath != "" && imagePath != null && imagePath != undefined) {
-                        const itemnew: any = {
-                          cover_image: {
-                            url: imagePath
-                          }
-                        };
-                        console.log(itemnew, "..itemnew")
-                        return (
-                          <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
-                        );
-                      }
-                    },
+                    // a: (htmlAttribs: any,): any => {
+                    //   const imagePath: any = htmlAttribs.src;
+                    //   console.log(imagePath, "..imagePath");
+                    //   if (imagePath != "" && imagePath != null && imagePath != undefined) {
+                    //     const itemnew: any = {
+                    //       cover_image: {
+                    //         url: imagePath
+                    //       }
+                    //     };
+                    //     console.log(itemnew, "..itemnew")
+                    //     return (
+                    //       <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                    //     );
+                    //   }
+                    // },
                   }}
                   WebView={WebView}
                   ignoredDomTags={IGNORED_TAGS}

@@ -293,13 +293,13 @@ const Terms = ({ navigation }: Props): any => {
                   {t('tNccheckbox2')}{' '}
 
                   <LabelTextTerms onPress={goToPrivacyPolicy} style={styles.privacyText}>
-                    {t('tNcprivacyPolicyTitle')} {' '}
+                    {t('tNcprivacyPolicyTitle')}{' '}
                   </LabelTextTerms>
-                  and {' '}
+                  {t('childInfoAndText')}{' '}
                   <LabelTextTerms onPress={goToTerms} style={styles.privacyText}>
-                    {t('tNcheader')} {' '}
+                    {t('tNcheader')}
                   </LabelTextTerms>
-                  of the application.
+                  .
                 </LabelTextTerms>
               </SideRightSpacing20>
 
