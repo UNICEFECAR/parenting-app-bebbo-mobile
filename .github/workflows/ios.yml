@@ -48,14 +48,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: Set up Node.js 12.16.1
+      - name: Set up Node.js 21.2.0
         uses: actions/setup-node@v1
         with:
-          node-version: 12.16.1
+          node-version: 21.2.0
           
       - name: Install dependencies
         run: npm install
-        
+      
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo apiUrlDevelop=${{ secrets.APIURLDEVELOP }} >> .env
+          echo facebookAppDisplayName=${{ secrets.FACEBOOKAPPDISPLAYNAME }} >> .env
+          echo facebookAppId=${{ secrets.FACEBOOKAPPID }} >> .env
+          echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
+          echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
+          echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
+          cat .env
+             
+      - name: Create file
+        run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json | base64
+      
+      - name: Putting data
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+          run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
+
+                 
       - name: Install pod dependencies
         run: | 
           cd ios && pod install
