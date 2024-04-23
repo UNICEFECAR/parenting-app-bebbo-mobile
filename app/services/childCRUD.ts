@@ -415,7 +415,7 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
 
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any,isDefaultChild:boolean): Promise<any> => {
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any, isDefaultChild?:boolean, isSibling?:boolean): Promise<any> => {
   let oldBirthDate;
   console.log(editScreen, "..editScreen..", param);
   if (editScreen) {
@@ -519,10 +519,14 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
             setActiveChild(languageCode, data[0].uuid, dispatch, childAge, false);
           }
         }
+        if(!isSibling) {
         navigation.navigate('LoadingScreen', {
           apiJsonData: apiJsonData,
           prevPage: 'AddEditChild'
         });
+      }else{
+        navigation.navigate('ChildProfileScreen');
+      }
       }
 
     }

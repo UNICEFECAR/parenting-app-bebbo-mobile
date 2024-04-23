@@ -321,7 +321,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,false,false);
   }
 
   const themeContext = useContext(ThemeContext);
