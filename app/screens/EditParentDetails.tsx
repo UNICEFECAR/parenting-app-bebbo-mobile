@@ -1,6 +1,6 @@
 import { bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonText, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
+import { ButtonMangeProfileContainer, ButtonPrimary, ButtonText, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import {
   ChildRelationList,
   FormContainer,
@@ -10,7 +10,7 @@ import {
   FormInputGroup,
   LabelText
 } from '@components/shared/ChildSetupStyle';
-import { MainContainer } from '@components/shared/Container';
+import { MainManageProfileContainer } from '@components/shared/Container';
 import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { IconML } from '@components/shared/Icon';
 import TextInputML from '@components/shared/TextInputML';
@@ -152,7 +152,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
           </Heading2w>
         </HeaderTitleView>
       </HeaderRowView>
-      <MainContainer>
+      <MainManageProfileContainer>
         <FormInputGroup
           onPress={(): any => {
             actionSheetRef.current?.setModalVisible(true);
@@ -243,14 +243,14 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
                 }
               }}
               value={parentName}
-              placeholder={t('parentPlaceNameTxt')}
-              placeholderTextColor={"#77777779"}
+              //placeholder={t('parentPlaceNameTxt')}
+              //placeholderTextColor={"#77777779"}
               allowFontScaling={false}
             /></FormInputBox>
         </FormContainer>
-      </MainContainer>
+      </MainManageProfileContainer>
       <ShiftFromTop10>
-        <ButtonContainer>
+        <ButtonMangeProfileContainer>
           <ButtonPrimary
             disabled={
               relationship == "" || relationship == null || relationship == undefined || parentName == null || parentName == undefined || parentName == "" ? true : false}
@@ -259,7 +259,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
             }}>
             <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
           </ButtonPrimary>
-        </ButtonContainer>
+        </ButtonMangeProfileContainer>
       </ShiftFromTop10>
     </View>
   </>;

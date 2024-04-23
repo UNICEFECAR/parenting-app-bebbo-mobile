@@ -1,7 +1,8 @@
 import {
   ButtonPrimary,
   ButtonSpacing,
-  ButtonText
+  ButtonText,
+  ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import VideoPlayer from '@components/VideoPlayer';
@@ -113,7 +114,7 @@ const goToVideoArticleDetails = ():any => {
               : null}
           </ShiftFromTopBottom10>
            <ButtonPrimary onPress={goToVideoArticleDetails}>
-              <ButtonText numberOfLines={2}>{t('homeScreenchildBtnText')}</ButtonText>
+              <ButtonUpperCaseText numberOfLines={2}>{t('homeScreenchildBtnText')}</ButtonUpperCaseText>
              
             </ButtonPrimary>
         </>

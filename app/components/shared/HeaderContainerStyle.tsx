@@ -34,6 +34,11 @@ export const HeaderTitleView = styled.View`
   padding: 10px;
   justify-content: center;
 `;
+export const HomeHeaderTitleView = styled.View`
+  flex: 4;
+  padding-verticle: 10px;
+  justify-content: center;
+`;
 export const HeaderActionView = styled.View`
 flex:1;
 padding:10px;

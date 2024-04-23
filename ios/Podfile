@@ -1,11 +1,15 @@
 # Resolve react_native_pods.rb with node to allow for hoisting
-require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
-  require_relative '../node_modules/react-native/scripts/react_native_pods'
-  require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+def node_require(script)
+  # Resolve script with node to allow for hoisting
+  require Pod::Executable.execute_command('node', ['-p',
+    "require.resolve(
+      '#{script}',
+      {paths: [process.argv[1]]},
+    )", __dir__]).strip
+end
+
+node_require('react-native/scripts/react_native_pods.rb')
+node_require('react-native-permissions/scripts/setup.rb')
 platform :ios, '14.0'
 prepare_react_native_project!
 pod 'Firebase', :modular_headers => true  
@@ -34,18 +38,39 @@ if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
 end
-
+setup_permissions([
+   'AppTrackingTransparency',
+  # 'Bluetooth',
+  # 'Calendars',
+  # 'CalendarsWriteOnly',
+   'Camera',
+  # 'Contacts',
+  # 'FaceID',
+  # 'LocationAccuracy',
+  # 'LocationAlways',
+  # 'LocationWhenInUse',
+  # 'MediaLibrary',
+  # 'Microphone',
+  # 'Motion',
+  # 'Notifications',
+  'PhotoLibrary',
+ 'PhotoLibraryAddOnly',
+  # 'Reminders',
+  # 'Siri',
+  # 'SpeechRecognition',
+  # 'StoreKit',
+])
 def shared_pods
 
 
   # Core React Native libraries
 
-  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
-  permissions_path = '../node_modules/react-native-permissions/ios'
-  pod 'Permission-AppTrackingTransparency', :path => "#{permissions_path}/AppTrackingTransparency/Permission-AppTrackingTransparency.podspec"
-  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
-  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
-  pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
+  # pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+  # permissions_path = '../node_modules/react-native-permissions/ios'
+  # pod 'Permission-AppTrackingTransparency', :path => "#{permissions_path}/AppTrackingTransparency/Permission-AppTrackingTransparency.podspec"
+  # pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  # pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+  # pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
   pod 'react-native-lottie-splash-screen', :path => '../node_modules/react-native-lottie-splash-screen'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'RNFS', :path => '../node_modules/react-native-fs'

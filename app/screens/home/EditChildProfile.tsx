@@ -3,7 +3,7 @@ import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import {
-  ButtonContainer,
+  ButtonMangeProfileContainer,
   ButtonPrimary,
   ButtonUpperCaseText,
 } from '@components/shared/ButtonGlobal';
@@ -13,7 +13,7 @@ import {
   FormInputGroup,
   LabelText
 } from '@components/shared/ChildSetupStyle';
-import { MainContainer } from '@components/shared/Container';
+import { MainContainer, MainManageProfileContainer } from '@components/shared/Container';
 import { FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
@@ -387,7 +387,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     console.log(insertData, "...insertData")
     childSet.push(insertData);
     setLoading(false);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,'');
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
@@ -472,7 +472,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 </ShiftFromTop10>
               </Pressable>
             )}
-            <MainContainer>
+            <MainManageProfileContainer>
               <FormInputGroup>
                 <ShiftFromTop10>
                   <LabelText>{t('childNameTxt')}</LabelText>
@@ -525,10 +525,10 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 )}
               </View>
             </CheckboxItem> */}
-            </MainContainer>
+            </MainManageProfileContainer>
           </FlexCol>
           <ShiftFromTop10>
-            <ButtonContainer>
+            <ButtonMangeProfileContainer>
               <ButtonPrimary
                 disabled={
                   !validateForm(
@@ -569,7 +569,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                   <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
                 )}
               </ButtonPrimary>
-            </ButtonContainer>
+            </ButtonMangeProfileContainer>
           </ShiftFromTop10>
 
 

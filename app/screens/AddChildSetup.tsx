@@ -105,6 +105,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipName, setRelationshipName] = useState('');
+  const [parentName, setParentName] = useState('');
   const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isImportRunning, setIsImportRunning] = useState(false);
@@ -177,7 +178,9 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   useEffect(() => {
     setRelationship(route?.params.relationship)
     setRelationshipName(route?.params.relationshipName)
+    console.log('Setuser relationship to parent',route?.params.parentName)
     setUserRelationToParent(route?.params.userRelationToParent)
+    setParentName(route?.params.parentName);
   }, [route?.params])
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
     setGender(checkedItem.id);
@@ -355,6 +358,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", childSet[0].uuid);
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
+      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
       await setActiveChild(languageCode, childSet[0].uuid, dispatch, childAge, false);
     // dispatch(setActiveChildData(childSet[0].uuid))
       const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
@@ -381,7 +385,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       });
       //addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
     } else {
-      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,isDefaultChild);
+      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,isDefaultChild,parentName);
     }
   }
 

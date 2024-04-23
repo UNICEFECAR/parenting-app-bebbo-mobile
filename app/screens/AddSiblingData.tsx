@@ -110,7 +110,7 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
     const insertData: any = editScreen ? await getNewChild(uuid, isExpected, plannedTermDate, isPremature, birthDate, name, '', gender, createdAt) : await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, createdAt)
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 1, childSet, dispatch, navigation, childAge, null, null, netInfo,false);
+    addChild(languageCode, editScreen, 1, childSet, dispatch, navigation, childAge, null, null, netInfo,false,'');
   }
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;

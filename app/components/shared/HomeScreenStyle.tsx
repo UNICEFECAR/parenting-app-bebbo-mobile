@@ -89,7 +89,10 @@ background-color: ${(props:any):any => props.theme?.colors?.SECONDARY_TEXTCOLOR}
 border-radius:4px;
 margin:0 7px 15px;
 width:285px;
-overflow:hidden;
+shadow-color: #00000;
+shadow-offset: 0px 8px; /* Shadow only at the bottom */
+shadow-opacity: 0.08;
+shadow-radius: 6px;
 
 `;
 
