@@ -179,9 +179,7 @@ const ChildDate = (props: any): any => {
                     <LabelTextTerms>
                       {formatStringDate(doborExpectedDate)}
                     </LabelTextTerms> :
-                    <LabelDatePlaceHolderText>
-                      {prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
-                    </LabelDatePlaceHolderText>}
+                    ''}
                   {showdob && (
                     <DateTimePicker
                       testID="dobdatePicker"
@@ -295,9 +293,7 @@ const ChildDate = (props: any): any => {
                           <LabelTextTerms>
                             {formatStringDate(dueDate)}
                           </LabelTextTerms> :
-                          <LabelDatePlaceHolderText>
-                            {t('childSetupdobSelector')}
-                          </LabelDatePlaceHolderText>}
+                          ''}
                         {showdue && (
                           <DateTimePicker
                             testID="duedatePicker"
@@ -340,9 +336,7 @@ const ChildDate = (props: any): any => {
                         <LabelTextTerms>
                           {formatStringDate(dueDate)}
                         </LabelTextTerms> :
-                        <LabelDatePlaceHolderText>
-                          {t('childSetupdobSelector')}
-                        </LabelDatePlaceHolderText>}
+                        ''}
                       {showdue && (
                         <DateTimePickerModal
                           isVisible={isDueDatePickerVisible}
