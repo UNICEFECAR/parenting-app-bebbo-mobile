@@ -1,0 +1,123 @@
+name: iOS Build
+on:
+  # create:
+  #   tags:
+  #     - v*
+  push:
+    branches: 
+      - Development
+    
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Build description'
+
+env:
+  WORKSPACE: ${{ 'ios/MyApp.xcworkspace' }}
+  SCHEME: ${{ 'MyAppProd' }}
+  CONFIGURATION: ${{ 'Release' }}
+  ARCHIVE_PATH: ${{ 'build/MyAppProd.xcarchive' }}
+  EXPORT_PATH_STAGING: ${{ 'staging/' }}
+  EXPORT_PATH_PROD: ${{ 'prod/' }}
+  PLIST_PATH_STAGING: ${{'ios/MyApp/StagingExport.plist' }}
+  PLIST_PATH_PROD: ${{ 'ios/MyApp/ProdExport.plist' }}
+  APP_CENTER_TOKEN_PROD: ${{ secrets.APP_CENTER_TOKEN_MYAPP_IOS_PROD }}
+  APP_CENTER_TOKEN_STAGING: ${{ secrets.APP_CENTER_TOKEN_MYAPP_IOS_STAGING }}
+  ARTIFACT_NAME: ${{ 'MyApp.ipa' }}
+  ARTIFACT_PATH_STAGING: ${{ 'staging/' }}
+  ARTIFACT_PATH_PROD: ${{ 'prod/' }}
+  APP_NAME_STAGING: ${{ 'MyApp-iOS/ENV_STAGING' }}
+  APP_NAME_PROD: ${{ 'MyApp-iOS/ENV_PROD' }}
+  TESTING_GROUP_STAGING: ${{ 'ENV_STAGING' }}
+  TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
+  UPLOAD_FILE_STAGING: ${{ 'staging/MyApp.ipa' }}
+  UPLOAD_FILE_PROD: ${{ 'prod/MyApp.ipa' }}
+  DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
+  CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+  DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
+  DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD-HOC_PROFILE }}
+  KEY_PWD: ${{ secrets.KEY_PWD }}
+  
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    # timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js 12.16.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.16.1
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Install pod dependencies
+        run: | 
+          cd ios && pod install
+      - name: Signing & Provisioning
+        run: |
+          # create variables
+          CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
+          PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
+          PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
+          KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+  
+          # import certificate and provisioning profile from secrets
+          echo -n “$DISTRIBUTION_CERTIFICATE” | base64 — decode — output $CERT_PATH
+          echo -n “$DISTRIBUTION_PROFILE_STAGING” | base64 — decode — output $PP_PATH_STAGING
+          echo -n “$DISTRIBUTION_PROFILE_PROD” | base64 — decode — output $PP_PATH_PROD
+          # create temporary keychain
+          security create-keychain -p “$KEY_PWD” $KCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KCHAIN_PATH
+          security unlock-keychain -p “$KEY_PWD” $KCHAIN_PATH
+          # import certificate to keychain
+          security import $CERT_PATH -P “$CERTIFICATE_PASSWORD” -A -t cert -f pkcs12 -k $KCHAIN_PATH
+          security list-keychain -d user -s $KCHAIN_PATH
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH_PROD ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH_STAGING ~/Library/MobileDevice/Provisioning\ Profiles
+  
+          - name: Select Xcode
+            run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
+          - name: Xcode Version
+              run: /usr/bin/xcodebuild -version
+          - name: Create build folder
+            run: |
+              mkdir -p build && mkdir -p staging && mkdir -p prod
+
+          - name: Build Archive
+            run: |
+              xcodebuild -workspace $WORKPLACE -scheme $SCHEME -configuration $CONFIGURATION \
+              archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
+              PROVISIONING_STYLE=”Manual” \
+              PROVISIONING_PROFILE={$DISTRIBUTION_PROFILE_STAGING} \
+              CODE_SIGN_STYLE=”Manual” \
+              CODE_SIGN_IDENTITY={$DISTRIBUTION_CERTIFICATE} \
+          - name: Export STAGING
+            run: |
+              xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_STAGING . -exportOptionsPlist $PLIST_PATH_STAGING \
+          - name: Export PROD
+            run: |
+              xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
+
+          - name: Upload Artifacts
+            uses: actions/upload-artifact@v3
+              with:
+              name: ${{ env.ARTIFACT_NAME }}
+                path: |
+                  ${{ env.ARTIFACT_PATH_STAGING }}
+                  ${{ env.ARTIFACT_PATH_PROD }}
+
+          - name: Clean up keychain and provisioning profile
+            if: ${{ always() }}
+              run: |
+                security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+                rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
+                rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
+    
