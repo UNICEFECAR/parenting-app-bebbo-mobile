@@ -148,6 +148,11 @@ export const ButtonContainer = styled.View`
 padding:10px 15px;
 
 `;
+
+export const ButtonMangeProfileContainer = styled.View`
+padding:10px 25px;
+
+`;
 export const ButtonContainerAuto = styled.View`
 padding:10px 15px;
 width:auto;

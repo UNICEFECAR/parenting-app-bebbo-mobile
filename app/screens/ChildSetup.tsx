@@ -354,8 +354,9 @@ const ChildSetup = ({ navigation }: Props): any => {
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild);
+    
+  
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild,name);
   }
 
   const themeContext = useContext(ThemeContext);
@@ -472,7 +473,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                 if (validated == true) {
                   setTimeout(() => {
                     setLoading(false);
-                    console.log('parentalRole', relationshipname)
+                    console.log('parentalRole', userRelationToParent)
                     if (relationshipname == 'service provider') {
                       AddChild(true);
                     } else {
@@ -480,7 +481,8 @@ const ChildSetup = ({ navigation }: Props): any => {
                         birthDate: birthDate,
                         relationship: relationship,
                         relationshipname: relationshipname,
-                        userRelationToParent: userRelationToParent
+                        userRelationToParent: userRelationToParent,
+                        parentName: name
                       })
                     }
                   }, 0)

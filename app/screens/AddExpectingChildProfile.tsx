@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
+import { ButtonMangeProfileContainer, ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
   FormDateAction,
@@ -10,7 +10,7 @@ import {
   LabelDatePlaceHolderText,
   LabelText,
 } from '@components/shared/ChildSetupStyle';
-import { MainContainer } from '@components/shared/Container';
+import { MainManageProfileContainer } from '@components/shared/Container';
 import Icon, { IconML } from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -139,7 +139,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '', null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false,'');
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
@@ -211,14 +211,14 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         </HeaderActionView>
       </HeaderRowView>
 
-      <MainContainer>
+      <MainManageProfileContainer>
         <FormDateContainer>
           <FormInputGroup onPress={showdobDatepicker}>
             <LabelText> {t('expectChildDueDateTxt')}</LabelText>
             <FormInputBox>
               <FormDateText>
                 {plannedTermDate ? <Text>{formatStringDate(plannedTermDate)}</Text> :
-                  <LabelDatePlaceHolderText>{t('expectChildDueDateTxt')}</LabelDatePlaceHolderText>}
+                  ''}
               </FormDateText>
               <FormDateAction>
                 <Icon name="ic_calendar" size={20} color="#000" />
@@ -278,9 +278,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
           </FormInputBox>
         </FormContainer>
 
-      </MainContainer>
+      </MainManageProfileContainer>
       <ShiftFromTop10>
-        <ButtonContainer>
+        <ButtonMangeProfileContainer>
           <ButtonPrimary
             disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked ? true : false}
             onPress={(): any => {
@@ -291,7 +291,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
             }}>
             <ButtonUpperCaseText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonUpperCaseText>
           </ButtonPrimary>
-        </ButtonContainer>
+        </ButtonMangeProfileContainer>
       </ShiftFromTop10>
     </View>
   </>;
