@@ -1,24 +1,17 @@
-import { bothChildGender, bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { bothChildGender, bothParentGender, regexpEmojiPresentation, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonPrimaryMd, ButtonRow, ButtonText
+  ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
-  ChildRelationList,
   ChildSetupDivider,
-  ChildTabView,
   FormContainer1,
-  FormDateAction,
-  FormDateText,
   FormInputBox,
-  FormInputGroup,
   LabelText,
-  OrDivider,
   OrHeadingView,
-  OrView,
   ParentSetUpDivider,
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
@@ -33,7 +26,6 @@ import { dobMax } from '@types/types';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View, ScrollView, Alert, Platform, StyleSheet } from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -43,39 +35,26 @@ import { addChild, apiJsonDataGet, getAge, getNewChild, isFutureDate, setActiveC
 import { validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
-  Heading3,
   Heading4Regularw,
   ShiftFromTop20,
-  SideSpacing25,
-  Heading3Centerw,
-  Heading2w,
-  Heading1,
-  Heading4Regular,
-  ShiftFromTopBottom5,
   Heading3w,
   ShiftFromTop25,
   Heading2Centerw,
   Heading3BoldCenterrw,
 } from '../styles/typography';
-import AlertModal from '@components/AlertModal';
-import { BannerContainer } from '@components/shared/Container';
-import { SettingHeading, SettingShareData, SettingOptions } from '@components/shared/SettingsStyle';
-import VectorImage from 'react-native-vector-image';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from 'react-native-fs';
 import TextInputML from '@components/shared/TextInputML';
-import { bgcolorWhite2, primaryColor } from '@styles/style';
+import { bgcolorWhite2 } from '@styles/style';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
-import BackgroundColors from '@components/shared/BackgroundColors';
 import { logEvent } from '../services/EventSyncService';
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
-import { setActiveChildData } from '../redux/reducers/childSlice';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -117,7 +96,7 @@ const styles = StyleSheet.create({
     color: "#1CABE2"
   },
 })
-const AddChildSetup = ({ route, navigation }: Props): any => {
+const AddChildInfoSetup = ({ route, navigation }: Props): any => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
@@ -165,8 +144,8 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
 
-  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != bothChildGender;
+  genders = genders.map((item: any) => ({ ...item, title: item.name })).filter(function (filterItem: any) {
+    return filterItem.id != bothChildGender;
   });
   relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != bothParentGender;
@@ -212,7 +191,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   const handleError = (err: any): any => {
     console.log(err, "..err")
     if (DocumentPicker.isCancel(err)) {
-      console.log('cancelled')
+      console.log('Document pickup is cancelled')
       // User cancelled the picker, exit any dialogs or menus and move on
     } else if (isInProgress(err)) {
       console.log('multiple pickers were opened, only the last will be considered')
@@ -325,7 +304,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   }
   const importFromFile = async (): Promise<any> => {
     if (Platform.OS == "android") {
-      importDataAndroid();
+      await importDataAndroid();
     } else {
       importDataIOS();
     }
@@ -366,12 +345,12 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
         const eventData = { 'name': EXPECTED_CHILD_ENTERED }
         logEvent(eventData, netInfo.isConnected)
       }
+      const isUserEnteredChildData = "true";
       await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childSet);
-  
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", childSet[0].uuid);
-      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
+      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", isUserEnteredChildData);
       await setActiveChild(languageCode, childSet[0].uuid, dispatch, childAge, false);
     // dispatch(setActiveChildData(childSet[0].uuid))
       const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
@@ -570,4 +549,4 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   </>;
 };
 
-export default AddChildSetup;
+export default AddChildInfoSetup;
