@@ -21,8 +21,6 @@ env:
   EXPORT_PATH_PROD: ${{ 'prod/' }}
   PLIST_PATH_STAGING: ${{'ios/MyApp/StagingExport.plist' }}
   PLIST_PATH_PROD: ${{ 'ios/MyApp/ProdExport.plist' }}
-  APP_CENTER_TOKEN_PROD: ${{ secrets.APP_CENTER_TOKEN_MYAPP_IOS_PROD }}
-  APP_CENTER_TOKEN_STAGING: ${{ secrets.APP_CENTER_TOKEN_MYAPP_IOS_STAGING }}
   ARTIFACT_NAME: ${{ 'MyApp.ipa' }}
   ARTIFACT_PATH_STAGING: ${{ 'staging/' }}
   ARTIFACT_PATH_PROD: ${{ 'prod/' }}
@@ -31,10 +29,10 @@ env:
   TESTING_GROUP_STAGING: ${{ 'ENV_STAGING' }}
   TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
   UPLOAD_FILE_STAGING: ${{ 'staging/MyApp.ipa' }}
-  UPLOAD_FILE_PROD: ${{ 'prod/MyApp.ipa' }}
+ # UPLOAD_FILE_PROD: ${{ 'prod/MyApp.ipa' }}
   DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
   CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
-  DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
+#  DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
   DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD-HOC_PROFILE }}
   KEY_PWD: ${{ secrets.KEY_PWD }}
   
@@ -83,14 +81,14 @@ jobs:
         run: |
           # create variables
           CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
-          PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
+          #  PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
           PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
           KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
   
           # import certificate and provisioning profile from secrets
           echo -n “$DISTRIBUTION_CERTIFICATE” | base64 — decode — output $CERT_PATH
           echo -n “$DISTRIBUTION_PROFILE_STAGING” | base64 — decode — output $PP_PATH_STAGING
-          echo -n “$DISTRIBUTION_PROFILE_PROD” | base64 — decode — output $PP_PATH_PROD
+        #  echo -n “$DISTRIBUTION_PROFILE_PROD” | base64 — decode — output $PP_PATH_PROD
           # create temporary keychain
           security create-keychain -p “$KEY_PWD” $KCHAIN_PATH
           security set-keychain-settings -lut 21600 $KCHAIN_PATH
@@ -100,7 +98,7 @@ jobs:
           security list-keychain -d user -s $KCHAIN_PATH
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH_PROD ~/Library/MobileDevice/Provisioning\ Profiles
+       #   cp $PP_PATH_PROD ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH_STAGING ~/Library/MobileDevice/Provisioning\ Profiles
   
           - name: Select Xcode
@@ -122,9 +120,9 @@ jobs:
           - name: Export STAGING
             run: |
               xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_STAGING . -exportOptionsPlist $PLIST_PATH_STAGING \
-          - name: Export PROD
-            run: |
-              xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
+         # - name: Export PROD
+          #  run: |
+           #   xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
 
           - name: Upload Artifacts
             uses: actions/upload-artifact@v3
@@ -132,12 +130,12 @@ jobs:
               name: ${{ env.ARTIFACT_NAME }}
                 path: |
                   ${{ env.ARTIFACT_PATH_STAGING }}
-                  ${{ env.ARTIFACT_PATH_PROD }}
+           #       ${{ env.ARTIFACT_PATH_PROD }}
 
           - name: Clean up keychain and provisioning profile
             if: ${{ always() }}
               run: |
                 security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-                rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
+                #      rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
                 rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
     
