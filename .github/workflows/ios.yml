@@ -13,30 +13,34 @@ on:
         description: 'Build description'
 
 env:
-  WORKSPACE: ${{ 'ios/MyApp.xcworkspace' }}
-  SCHEME: ${{ 'MyAppProd' }}
+
+  WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
+  SCHEME: ${{ 'ParentBuddyApp' }}
   CONFIGURATION: ${{ 'Release' }}
-  ARCHIVE_PATH: ${{ 'build/MyAppProd.xcarchive' }}
-  EXPORT_PATH_STAGING: ${{ 'staging/' }}
-  EXPORT_PATH_PROD: ${{ 'prod/' }}
-  PLIST_PATH_STAGING: ${{'ios/MyApp/StagingExport.plist' }}
-  PLIST_PATH_PROD: ${{ 'ios/MyApp/ProdExport.plist' }}
-  ARTIFACT_NAME: ${{ 'MyApp.ipa' }}
-  ARTIFACT_PATH_STAGING: ${{ 'staging/' }}
-  ARTIFACT_PATH_PROD: ${{ 'prod/' }}
-  APP_NAME_STAGING: ${{ 'MyApp-iOS/ENV_STAGING' }}
-  APP_NAME_PROD: ${{ 'MyApp-iOS/ENV_PROD' }}
-  TESTING_GROUP_STAGING: ${{ 'ENV_STAGING' }}
-  TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
-  UPLOAD_FILE_STAGING: ${{ 'staging/MyApp.ipa' }}
- # UPLOAD_FILE_PROD: ${{ 'prod/MyApp.ipa' }}
+  ARCHIVE_PATH: ${{ 'build/ParentBuddyApp.xcarchive' }}
+  EXPORT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
+  PLIST_PATH_STAGING: ${{'ios/ParentBuddyAppDev-Info.plist' }}
+  ARTIFACT_NAME: ${{ 'Bebbo.ipa' }}
+  ARTIFACT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
+  APP_NAME_STAGING: ${{ 'ParentBuddyAppDev-iOS/ENV_DEV' }}
+  TESTING_GROUP_STAGING: ${{ 'ENV_DEV' }}
+  UPLOAD_FILE_STAGING: ${{ 'ParentBuddyAppDev/BebboDev.ipa' }}
+
   DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
   CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
-#  DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
   DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD-HOC_PROFILE }}
   KEY_PWD: ${{ secrets.KEY_PWD }}
-  
 
+  #EXPORT_PATH_PROD: ${{ 'prod/' }}
+  #PLIST_PATH_PROD: ${{'ios/ParentBuddyApp/Info.plist' }}
+  #ARTIFACT_PATH_PROD: ${{ 'prod/' }}
+  #APP_NAME_PROD: ${{ 'ParentBuddyApp-iOS/ENV_PROD' }}
+  #TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
+  #UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
+  
+  #DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
+
+  
 jobs:
   build:
     runs-on: macOS-latest
