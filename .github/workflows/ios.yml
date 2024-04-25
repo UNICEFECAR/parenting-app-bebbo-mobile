@@ -107,8 +107,10 @@ jobs:
   
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.3.app
+     
       - name: Xcode Version
         run: /usr/bin/xcodebuild -version
+      
       - name: Create build folder
         run: |
           mkdir -p build && mkdir -p staging && mkdir -p prod
@@ -121,20 +123,25 @@ jobs:
           PROVISIONING_PROFILE={$DISTRIBUTION_PROFILE_STAGING} \
           CODE_SIGN_STYLE=”Manual” \
           CODE_SIGN_IDENTITY={$DISTRIBUTION_CERTIFICATE} \
+          
       - name: Export STAGING
         run: |
           xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_STAGING . -exportOptionsPlist $PLIST_PATH_STAGING \
+      
       - name: Export PROD
         run: |
           xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
-
+        
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
           with:
-            name: ${{ env.ARTIFACT_NAME }}
-            path: |
-              ${{ env.ARTIFACT_PATH_STAGING }}
-              ${{ env.ARTIFACT_PATH_PROD }}
+            name: Bebbo.ipa
+        path: ${{ env.ARTIFACT_PATH_STAGING }}
+
+#            name: ${{ env.ARTIFACT_NAME }}
+ #           path: |
+              #${{ env.ARTIFACT_PATH_STAGING }}
+              #${{ env.ARTIFACT_PATH_PROD }}
 
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
