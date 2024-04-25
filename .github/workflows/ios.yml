@@ -73,23 +73,23 @@ jobs:
           echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
           cat .env
              
-      - name: Create google service Dev file 
-        run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist | base64
+#      - name: Create google service Dev file 
+ #       run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist | base64
       
-      - name: Putting data google service Dev file
-        env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
-        run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+  #    - name: Putting data google service Dev file
+   #     env:
+    #      DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
+     #   run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
         #run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
 
 
-      - name: Create google service prod file 
-        run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist | base64
+#      - name: Create google service prod file 
+ #       run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist | base64
       
-      - name: Putting data google service prod file
-        env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
-        run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+  #    - name: Putting data google service prod file
+   #     env:
+    #      DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
+     #   run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
         #run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
 
       - name: Install pod dependencies
