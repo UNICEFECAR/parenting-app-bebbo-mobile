@@ -134,9 +134,9 @@ jobs:
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
-          with:
-            name: Bebbo.ipa
-        path: ${{ env.ARTIFACT_PATH_STAGING }}
+        with:
+          name: Bebbo.ipa
+          path: ${{ env.ARTIFACT_PATH_STAGING }}
 
 #            name: ${{ env.ARTIFACT_NAME }}
  #           path: |
