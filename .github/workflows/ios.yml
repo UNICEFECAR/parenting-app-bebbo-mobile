@@ -75,12 +75,12 @@ jobs:
       - name: Putting data
         env:
           DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
-          run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
+        run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
 
-                 
       - name: Install pod dependencies
         run: | 
           cd ios && pod install
+
       - name: Signing & Provisioning
         run: |
           # create variables
@@ -105,41 +105,41 @@ jobs:
           cp $PP_PATH_PROD ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH_STAGING ~/Library/MobileDevice/Provisioning\ Profiles
   
-          - name: Select Xcode
-            run: sudo xcode-select -switch /Applications/Xcode_15.3.app
-          - name: Xcode Version
-              run: /usr/bin/xcodebuild -version
-          - name: Create build folder
-            run: |
-              mkdir -p build && mkdir -p staging && mkdir -p prod
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_15.3.app
+      - name: Xcode Version
+        run: /usr/bin/xcodebuild -version
+      - name: Create build folder
+        run: |
+          mkdir -p build && mkdir -p staging && mkdir -p prod
 
-          - name: Build Archive
-            run: |
-              xcodebuild -workspace $WORKPLACE -scheme $SCHEME -configuration $CONFIGURATION \
-              archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
-              PROVISIONING_STYLE=”Manual” \
-              PROVISIONING_PROFILE={$DISTRIBUTION_PROFILE_STAGING} \
-              CODE_SIGN_STYLE=”Manual” \
-              CODE_SIGN_IDENTITY={$DISTRIBUTION_CERTIFICATE} \
-          - name: Export STAGING
-            run: |
-              xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_STAGING . -exportOptionsPlist $PLIST_PATH_STAGING \
-          - name: Export PROD
-            run: |
-              xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
+      - name: Build Archive
+        run: |
+          xcodebuild -workspace $WORKPLACE -scheme $SCHEME -configuration $CONFIGURATION \
+          archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
+          PROVISIONING_STYLE=”Manual” \
+          PROVISIONING_PROFILE={$DISTRIBUTION_PROFILE_STAGING} \
+          CODE_SIGN_STYLE=”Manual” \
+          CODE_SIGN_IDENTITY={$DISTRIBUTION_CERTIFICATE} \
+      - name: Export STAGING
+        run: |
+          xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_STAGING . -exportOptionsPlist $PLIST_PATH_STAGING \
+      - name: Export PROD
+        run: |
+          xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
 
-          - name: Upload Artifacts
-            uses: actions/upload-artifact@v3
-              with:
-              name: ${{ env.ARTIFACT_NAME }}
-                path: |
-                  ${{ env.ARTIFACT_PATH_STAGING }}
-                  ${{ env.ARTIFACT_PATH_PROD }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+          with:
+            name: ${{ env.ARTIFACT_NAME }}
+            path: |
+              ${{ env.ARTIFACT_PATH_STAGING }}
+              ${{ env.ARTIFACT_PATH_PROD }}
 
-          - name: Clean up keychain and provisioning profile
-            if: ${{ always() }}
-              run: |
-                security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-                #      rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
-                rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
+      - name: Clean up keychain and provisioning profile
+        if: ${{ always() }}
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+            rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
+            rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
     
