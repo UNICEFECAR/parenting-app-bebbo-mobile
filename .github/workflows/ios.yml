@@ -17,7 +17,7 @@ env:
   WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
   SCHEME: ${{ 'ParentBuddyApp' }}
   CONFIGURATION: ${{ 'Release' }}
-  ARCHIVE_PATH: ${{ 'build/ParentBuddyApp.xcarchive' }}
+  ARCHIVE_PATH: ${{ 'ios/build/ParentBuddyApp.xcarchive' }}
   EXPORT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
   PLIST_PATH_STAGING: ${{'ios/ParentBuddyAppDev-Info.plist' }}
   ARTIFACT_NAME: ${{ 'Bebbo.ipa' }}
@@ -55,8 +55,8 @@ jobs:
         with:
           node-version: '16.14.0'
         
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
       
       - name: 'Create env file'
         run: |
@@ -85,9 +85,9 @@ jobs:
           DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
         run: echo $DATA > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
-      # - name: Install pod dependencies
-      #   run: | 
-      #     cd ios && pod install
+      - name: Install pod dependencies
+        run: | 
+          cd ios && pod install
 
       - name: Signing & Provisioning
         run: |
