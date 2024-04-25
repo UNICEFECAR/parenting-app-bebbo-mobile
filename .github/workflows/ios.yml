@@ -73,13 +73,24 @@ jobs:
           echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
           cat .env
              
-      - name: Create file
-        run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json | base64
+      - name: Create google service Dev file 
+        run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist | base64
       
-      - name: Putting data
+      - name: Putting data google service Dev file
         env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
+          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
+        run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+        #run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
+
+
+      - name: Create google service prod file 
+        run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist | base64
+      
+      - name: Putting data google service prod file
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
+        run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+        #run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
 
       - name: Install pod dependencies
         run: | 
@@ -89,7 +100,7 @@ jobs:
         run: |
           # create variables
           CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
-          #  PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
+          PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
           PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
           KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
   
@@ -140,7 +151,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Bebbo.ipa
-          path: ${{ env.ARTIFACT_PATH_STAGING }}
+          path: | 
+            ${{ env.ARTIFACT_PATH_STAGING }}
+            ${{ env.ARTIFACT_PATH_PROD }}
 
 #            name: ${{ env.ARTIFACT_NAME }}
  #           path: |
