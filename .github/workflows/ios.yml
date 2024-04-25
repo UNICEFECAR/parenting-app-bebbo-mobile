@@ -74,23 +74,23 @@ jobs:
           echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
           cat .env
              
-#      - name: Create google service Dev file 
- #       run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist | base64
+      - name: Create google service Dev file 
+        run: cat /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist | base64
       
-  #    - name: Putting data google service Dev file
-   #     env:
-    #      DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
-     #   run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+      - name: Putting data google service Dev file
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
+        run: echo $DATA > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
         #run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
 
 
       - name: Create google service prod file 
-        run: cat /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist | base64
+        run: cat /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist | base64
       
-  #    - name: Putting data google service prod file
-   #     env:
-    #      DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
-     #   run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+      - name: Putting data google service prod file
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
+        run: echo $DATA > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
         #run: echo $DATA > /home/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/android/app/src/prodstaging/google-services.json
 
       - name: Install pod dependencies
@@ -107,8 +107,8 @@ jobs:
           KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
   
           # import certificate and provisioning profile from secrets
-          echo -n “$DISTRIBUTION_CERTIFICATE” | base64 --decode --output >$CERT_PATH
-          echo -n “$DISTRIBUTION_PROFILE_PROD” | base64 --decode --output >$PP_PATH_PROD
+          echo -n “$DISTRIBUTION_CERTIFICATE” | base64 --decode --output $CERT_PATH
+          echo -n “$DISTRIBUTION_PROFILE_PROD” | base64 --decode --output $PP_PATH_PROD
           #echo -n “$DEVELOPMENT_CERTIFICATE” | base64 --decode --output $DEV_CERT_PATH
           #echo -n “$DISTRIBUTION_PROFILE_STAGING” | base64 --decode --output $PP_PATH_STAGING
           
