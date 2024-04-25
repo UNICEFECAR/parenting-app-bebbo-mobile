@@ -105,9 +105,9 @@ jobs:
           KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
   
           # import certificate and provisioning profile from secrets
-          echo -n “$DISTRIBUTION_CERTIFICATE” | base64 — decode — output $CERT_PATH
-          echo -n “$DISTRIBUTION_PROFILE_STAGING” | base64 — decode — output $PP_PATH_STAGING
-          echo -n “$DISTRIBUTION_PROFILE_PROD” | base64 — decode — output $PP_PATH_PROD
+          echo -n “$DISTRIBUTION_CERTIFICATE” | base64 --decode --output $CERT_PATH
+          echo -n “$DISTRIBUTION_PROFILE_STAGING” | base64 --decode --output $PP_PATH_STAGING
+          echo -n “$DISTRIBUTION_PROFILE_PROD” | base64 --decode --output $PP_PATH_PROD
           # create temporary keychain
           security create-keychain -p “$KEY_PWD” $KCHAIN_PATH
           security set-keychain-settings -lut 21600 $KCHAIN_PATH
