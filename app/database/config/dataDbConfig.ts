@@ -18,6 +18,7 @@ import { VaccinationSchema } from "../schema/VaccinationSchema";
 import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
 import { EventSchema } from "../schema/EventSchema";
 import { SearchHistorySchema } from "../schema/SearchHistorySchema";
+import { ActivitySearchHistorySchema } from '../schema/ActivitySearchHistorySchema';
 
 export const dataRealmConfig: Realm.Configuration = {
   path: 'data.realm',
@@ -41,7 +42,8 @@ export const dataRealmConfig: Realm.Configuration = {
     StandardDevHeightForAgeSchema,
     FAQsSchema,
     EventSchema,
-    SearchHistorySchema
+    SearchHistorySchema,
+    ActivitySearchHistorySchema
   ],
   schemaVersion: 9,
   onMigration: (oldRealm, newRealm) => {
