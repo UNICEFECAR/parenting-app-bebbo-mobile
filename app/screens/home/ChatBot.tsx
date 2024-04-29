@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useTranslation } from 'react-i18next';
 import HTML from 'react-native-render-html';
 import { addSpaceToHtml } from '../../services/Utils';
-import { Heading4Bold, Heading4Centerr, Heading4Regular, Heading4Centerw, SideSpacing15 } from '@styles/typography';
+import { Heading4Bold, Heading4Centerr, Heading4Regular, SideSpacing15, HeadingChatCenterw } from '@styles/typography';
 import { FlexRow } from '@components/shared/FlexBoxStyle';
 import VectorImage from 'react-native-vector-image';
 import { ButtonLinkPressLeft, ButtonTextMdLineL } from '@components/shared/ButtonGlobal';
@@ -147,7 +147,7 @@ const UserBubble = (props: any): any => {
   return (
     <UserBubbleContainer>
       <UserBubbleTextContainer>
-        <Heading4Centerw>{message}</Heading4Centerw>
+        <HeadingChatCenterw>{message}</HeadingChatCenterw>
       </UserBubbleTextContainer>
     </UserBubbleContainer>
   )
