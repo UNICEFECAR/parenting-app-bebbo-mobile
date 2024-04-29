@@ -3,7 +3,8 @@ import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonPrimaryMd, ButtonRow, ButtonText
+  ButtonPrimary,
+  ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
@@ -58,6 +59,7 @@ import {
   Heading3BoldCenterrw,
   ShiftFromTop40,
   ShiftFromTop25,
+  Heading4Centerrw,
 } from '../styles/typography';
 import AlertModal from '@components/AlertModal';
 import { BannerContainer } from '@components/shared/Container';
@@ -162,10 +164,10 @@ const ChildSetup = ({ navigation }: Props): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
 
-  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+  genders = genders?.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != bothChildGender;
   });
-  relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+  relationshipData = relationshipData?.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != bothParentGender;
   });
   const onImportCancel = (): any => {
@@ -352,8 +354,9 @@ const ChildSetup = ({ navigation }: Props): any => {
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild);
+    
+  
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild, name);
   }
 
   const themeContext = useContext(ThemeContext);
@@ -400,8 +403,8 @@ const ChildSetup = ({ navigation }: Props): any => {
                     }
                   }}
                   value={name}
-                  placeholder={t('parentNamePlaceTxt')}
-                  placeholderTextColor={"gray"}
+                  //placeholder={t('parentNamePlaceTxt')}
+                  //placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
@@ -431,7 +434,8 @@ const ChildSetup = ({ navigation }: Props): any => {
                 <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text>
+                   {/*  <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text> */}
+                   <Text>{relationshipname ? relationshipname : ''}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_angle_down" size={10} color="#000" />
@@ -469,7 +473,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                 if (validated == true) {
                   setTimeout(() => {
                     setLoading(false);
-                    console.log('parentalRole', relationshipname)
+                    console.log('parentalRole', userRelationToParent)
                     if (relationshipname == 'service provider') {
                       AddChild(true);
                     } else {
@@ -477,7 +481,8 @@ const ChildSetup = ({ navigation }: Props): any => {
                         birthDate: birthDate,
                         relationship: relationship,
                         relationshipname: relationshipname,
-                        userRelationToParent: userRelationToParent
+                        userRelationToParent: userRelationToParent,
+                        parentName: name
                       })
                     }
                   }, 0)
@@ -486,7 +491,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                   console.log("in else");
                 }
               }}>
-              <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
+              <ButtonUpperCaseText>{t('childSetupcontinueBtnText')}</ButtonUpperCaseText>
             </ButtonPrimary>
           </ShiftFromTop25>
 
@@ -504,8 +509,8 @@ const ChildSetup = ({ navigation }: Props): any => {
             </FlexRow> */}
             <FlexRow>
               <Flex2 style={styles.flex2Style}>
-                <Heading4Regularw style={styles.importTextStyle}>{t('importOnboardingText')}</Heading4Regularw>
-                <Heading4Regularw>{t('importOnboardingText1')}</Heading4Regularw>
+                <Heading4Centerrw style={styles.importTextStyle}>{t('importOnboardingText')}</Heading4Centerrw>
+                <Heading4Centerrw>{t('importOnboardingText1')}</Heading4Centerrw>
               </Flex2>
 
             </FlexRow>
@@ -528,7 +533,7 @@ const ChildSetup = ({ navigation }: Props): any => {
 
             </Pressable>
             <Flex2 style={styles.flex2Style}>
-              <Heading4Regularw>{t('importOnboardingText2')}</Heading4Regularw>
+              <Heading4Centerrw>{t('importOnboardingText2')}</Heading4Centerrw>
             </Flex2>
           </FlexCol>
 
@@ -539,7 +544,7 @@ const ChildSetup = ({ navigation }: Props): any => {
       <ActionSheet ref={actionSheetRef}>
 
         <View style={{ marginBottom: 20 }}>
-          {relationshipToParent.map((item: any, index: any) => {
+          {relationshipToParent?.map((item: any, index: any) => {
             return (
               <ChildRelationList key={index}>
                 <Pressable

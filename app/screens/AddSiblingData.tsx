@@ -2,7 +2,7 @@
 import { bothChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonPrimary, ButtonRow, ButtonText, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import { ChildAddTop, FormContainer1, FormInputBox, LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -110,7 +110,7 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
     const insertData: any = editScreen ? await getNewChild(uuid, isExpected, plannedTermDate, isPremature, birthDate, name, '', gender, createdAt) : await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, createdAt)
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 1, childSet, dispatch, navigation, childAge, null, null, netInfo,false);
+    addChild(languageCode, editScreen, 1, childSet, dispatch, navigation, childAge, null, null, netInfo,false,'');
   }
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
@@ -152,8 +152,8 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
                     }
                   }}
                   value={name}
-                  placeholder={t('childNamePlaceTxt')}
-                  placeholderTextColor={"gray"}
+                  //placeholder={t('childNamePlaceTxt')}
+                  //placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
@@ -192,7 +192,7 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
 
 
             }}>
-            <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+            <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
           </ButtonPrimary>
         </ButtonRow>
 

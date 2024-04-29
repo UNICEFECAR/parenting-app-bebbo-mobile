@@ -1,29 +1,28 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonRow, ButtonText
+  ButtonPrimary, ButtonRow,
+  ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
-import Checkbox, { CheckboxActive, CheckboxItem, CheckboxItemText, FormOuterCheckbox } from '@components/shared/CheckboxStyle';
-import { LabelTCText, LabelText, LabelTextTerms, LinkContainer, LinkText } from '@components/shared/ChildSetupStyle';
+import Checkbox, { CheckboxActive, CheckboxItem, FormOuterCheckbox } from '@components/shared/CheckboxStyle';
+import { LabelTextTerms } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
-import OnboardingContainer, { OnboardingTermsHead, OnboardingconfirmationHead, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
-import OnboardingHeading from '@components/shared/OnboardingHeading';
+import OnboardingContainer, { OnboardingTermsHead } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { Fragment, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
-import { Heading1w, Heading2Centerw, ShiftFromBottom15, ShiftFromTop15, SideRightSpacing20, SideSpacing10, SideSpacing20, SideSpacing25 } from '../styles/typography';
-import { bgcolorWhite, bgcolorWhite2, bgcolortransparent, primaryColor, secondaryBtnColor } from '@styles/style';
+import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10 } from '../styles/typography';
+import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
 import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo } from '@dynamicImportsClass/dynamicImports';
 import FeatureTCView from '@components/shared/FeaturesTCView';
-import { FontWeight } from '@shopify/react-native-skia';
 
 
 type TermsNavigationProp = StackNavigationProp<
@@ -294,13 +293,13 @@ const Terms = ({ navigation }: Props): any => {
                   {t('tNccheckbox2')}{' '}
 
                   <LabelTextTerms onPress={goToPrivacyPolicy} style={styles.privacyText}>
-                    {t('tNcprivacyPolicyTitle')} {' '}
+                    {t('tNcprivacyPolicyTitle')}{' '}
                   </LabelTextTerms>
-                  and {' '}
+                  {t('childInfoAndText')}{' '}
                   <LabelTextTerms onPress={goToTerms} style={styles.privacyText}>
-                    {t('tNcheader')} {' '}
+                    {t('tNcheader')}
                   </LabelTextTerms>
-                  of the application.
+                  .
                 </LabelTextTerms>
               </SideRightSpacing20>
 
@@ -311,7 +310,7 @@ const Terms = ({ navigation }: Props): any => {
               onPress={(): any => {
                 acceptTerms();
               }}>
-              <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
+              <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
             </ButtonPrimary>
           </ButtonRow>
         </SideSpacing10>

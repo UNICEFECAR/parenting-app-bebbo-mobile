@@ -1,29 +1,21 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import LanguageItem from '@components/LanguageItem';
-import {
-  BtnMultiple,
-  ButtonviewClick,
-  ButtonviewNext,
-  ButtonviewPrevious
-} from '@components/shared/ButtonView';
-import { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ButtonText, SelectionView } from '@styles/style';
-import { ShiftFromTopBottom10 } from '@styles/typography';
+import { SelectionView } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, FlatList, I18nManager, LayoutAnimation, Platform, Pressable, View } from 'react-native';
+import { Alert, FlatList, I18nManager, Platform, Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
-import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
+import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
 import { localization } from '@dynamicImportsClass/dynamicImports';
 import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
 import { Flex5 } from '@components/shared/FlexBoxStyle';
-import { ButtonPrimary } from '@components/shared/ButtonGlobal';
+import { ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -210,7 +202,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
               goToConfirmationScreen()
               // props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
             }}>
-              <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
+              <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
             </ButtonPrimary>
           </Flex5>
         </OnboardingContainer>
