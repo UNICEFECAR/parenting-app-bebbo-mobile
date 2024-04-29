@@ -3,9 +3,9 @@ import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import {
-  ButtonContainer,
+  ButtonMangeProfileContainer,
   ButtonPrimary,
-  ButtonText,
+  ButtonUpperCaseText,
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainerFlex,
@@ -13,7 +13,7 @@ import {
   FormInputGroup,
   LabelText
 } from '@components/shared/ChildSetupStyle';
-import { MainContainer } from '@components/shared/Container';
+import { MainContainer, MainManageProfileContainer } from '@components/shared/Container';
 import { FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
@@ -219,7 +219,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         }
         sendData(childData);
       }
-      setDefaultGenderValue(childData && childData.uuid ? genders.find((item: any) => item.id == childData?.gender) : { title: '' })
+      console.log('childadata gender is', genders.find((item: any) => item.id == childData?.gender));
+      setDefaultGenderValue(childData && childData.uuid && childData?.gender !=0 ? genders.find((item: any) => item.id == childData?.gender) : { title: 'Girl' })
       console.log(destPath)
     }, []),
   );
@@ -386,7 +387,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     console.log(insertData, "...insertData")
     childSet.push(insertData);
     setLoading(false);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,'');
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
@@ -471,7 +472,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 </ShiftFromTop10>
               </Pressable>
             )}
-            <MainContainer>
+            <MainManageProfileContainer>
               <FormInputGroup>
                 <ShiftFromTop10>
                   <LabelText>{t('childNameTxt')}</LabelText>
@@ -490,8 +491,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                         }
                       }}
                       value={name}
-                      placeholder={t('childNamePlaceTxt')}
-                      placeholderTextColor={"gray"}
+                      //placeholder={t('childNamePlaceTxt')}
+                      //placeholderTextColor={"#77777779"}
                       allowFontScaling={false}
                     />
                   </FormInputBox>
@@ -524,10 +525,10 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 )}
               </View>
             </CheckboxItem> */}
-            </MainContainer>
+            </MainManageProfileContainer>
           </FlexCol>
           <ShiftFromTop10>
-            <ButtonContainer>
+            <ButtonMangeProfileContainer>
               <ButtonPrimary
                 disabled={
                   !validateForm(
@@ -563,12 +564,12 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
 
                 }}>
                 {childData && childData?.uuid != '' ? (
-                  <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+                  <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
                 ) : (
-                  <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+                  <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
                 )}
               </ButtonPrimary>
-            </ButtonContainer>
+            </ButtonMangeProfileContainer>
           </ShiftFromTop10>
 
 

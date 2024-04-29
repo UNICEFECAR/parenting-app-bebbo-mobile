@@ -426,6 +426,7 @@ const Articles = ({ route, navigation }: any): any => {
   // add minisearch on active child article data 
   useEffect(() => {
     async function initializeSearchIndex() {
+      await new Promise(resolve => setTimeout(resolve, 0));
       let videoArticleDataAllCategory:any;
       if(activeChild!=null && activeChild.taxonomyData!=null && activeChild?.gender!=null){
          videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
@@ -616,7 +617,7 @@ const Articles = ({ route, navigation }: any): any => {
                 multiline={false}
                 // placeholder="Search for Keywords"
                 placeholder={t('articleScreensearchPlaceHolder')}
-                placeholderTextColor={"gray"}
+                placeholderTextColor={"#777779"}
                 allowFontScaling={false}
               />
 

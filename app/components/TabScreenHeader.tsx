@@ -7,7 +7,8 @@ import HeaderNotiIcon from './HeaderNotiIcon';
 import BurgerIcon from './shared/BurgerIcon';
 import {
   HeaderRowView,
-  HeaderTitleView
+  HeaderTitleView,
+  HomeHeaderTitleView
 } from './shared/HeaderContainerStyle';
 const headerHeight = 50;
 const TabScreenHeader = (props: any):any => {
@@ -21,9 +22,9 @@ const TabScreenHeader = (props: any):any => {
           maxHeight: headerHeight,
         }}>
         <BurgerIcon color={textColor}/>
-        <HeaderTitleView>
+        <HomeHeaderTitleView>
           <Heading2w style={{color:textColor}}> {props.title}</Heading2w>
-        </HeaderTitleView>
+        </HomeHeaderTitleView>
         <HeaderNotiIcon color={textColor} isVisibleIcon={true}/>
         <HeaderBabyMenu color={textColor} setProfileLoading={props.setProfileLoading}/>
       </HeaderRowView>
