@@ -16,12 +16,15 @@ export const videoTypeImage = "novideo";
 export const backupGDriveFolderName = 'ParentBuddy';
 export const backupGDriveFileName = 'mybackup.json';
 export const tempRealmFile = RNFS.DocumentDirectoryPath + '/' + 'user1.realm';
+export const tempFuseJsonPath = RNFS.DocumentDirectoryPath + '/' + 'fuse-index.json';
 export const backUpPath = RNFS.DocumentDirectoryPath + '/mybackup.json';
 export const tempbackUpPath = RNFS.TemporaryDirectoryPath + 'mybackup.json';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const shareText = (String(buildFor) != buildForBebbo) ? '\nhttps://www.bebbo.app/foleja/share/' : '\nhttps://www.bebbo.app/share/';
 export const shareTextButton = (String(buildFor) != buildForBebbo) ? 'https://www.bebbo.app/foleja/share/' : 'https://www.bebbo.app/share/';
+export const bebboShareMailId = 'mailto:admin@bebbo.app';
+export const folejaShareMailId = 'mailto:prishtina@unicef.org';
 export const maleData: any = {
   "id": 37,
   "name": "Male",
