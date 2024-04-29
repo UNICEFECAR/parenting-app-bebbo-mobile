@@ -41,34 +41,7 @@ const Aboutus = (): any => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
-  const renderLink = (attribs: any): any => {
-    const { href } = attribs;
-    return (
-      <RenderHTML
-        source={{ html: `<a href="${href}"></a>` }}
-      />
-    );
-  };
-  const renderChildren = (children: any): any => {
-    if (typeof children === 'string') {
-      return children;
-    } else if (Array.isArray(children)) {
-      return children.map((child, index) => {
-        return renderChild(child, index);
-      });
-    } else {
-      return children;
-    }
-  };
-
-  const renderChild = (child: any, index: any): any => {
-    if (typeof child === 'string') {
-      return child;
-    } else {
-      return <RenderHTML key={index} source={{ html: child }} />;
-    }
-  };
-
+  
   return (
     <>
       <View style={[styles.flex1, { backgroundColor: headerColor }]}>

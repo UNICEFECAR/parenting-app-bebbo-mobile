@@ -205,7 +205,7 @@ const localizationall = [
         displayName: 'slovenský',
         languageCode: 'sk',
         locale: 'sk',
-        luxonLocale:'sk-SK ',
+        luxonLocale:'sk-SK',
         pluralShow:true
       }
     ],
