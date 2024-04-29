@@ -58,9 +58,9 @@ const BabyNotification = (): any => {
                         ></ImageIcon>
                       ) : (
                         activeChild.gender != null ?
-                          activeChild.gender == 40 ?
+                          (activeChild.gender == 40 ?
                             <Icon name="ic_baby" size={36} color="#000" /> :
-                            <Icon name="ic_baby_girl" size={36} color="#000" /> :
+                            <Icon name="ic_baby_girl" size={36} color="#000" />) :
                           <Icon name="ic_baby_girl" size={36} color="#000" />
                       )}
                     </OuterIconLeft>

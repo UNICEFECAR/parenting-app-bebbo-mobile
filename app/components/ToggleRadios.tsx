@@ -40,9 +40,7 @@ const ToggleRadios = (props: any): any => {
                   </RadioItem>
                 </Pressable>
                 <View style={styles.lastView}>
-                  {(checkedItem?.title && checkedItem.title == item.title) ? (
-                    <Heading3 style={styles.heading3} numberOfLines={2}>{item.title} </Heading3>
-                  ) : (
+                  { (
                     <Heading3Regular style={styles.heading3} numberOfLines={2}>{item.title} </Heading3Regular>
                   )}
                 </View>

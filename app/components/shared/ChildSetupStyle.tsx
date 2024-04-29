@@ -59,6 +59,12 @@ export const LabelTextTerms = styled.Text`
   text-align:left;
 `;
 
+export const LabelDatePlaceHolderText = styled.Text`
+  color: rgba(119, 119, 121, 0.45);
+  font-size: 14px;
+  fontFamily: roboto-regular;
+`;
+
 export const LabelText = styled(LabelTextVac)`
   text-align:left;
 `;

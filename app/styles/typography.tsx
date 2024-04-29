@@ -77,6 +77,10 @@ export const Heading3w = styled(Heading3)`
 color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 fontFamily: 'roboto';
 `
+export const HeadingHome3w = styled(Heading3)`
+color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+fontFamily: 'roboto';
+`
 
 export const Heading3Center = styled(Heading3)`
 text-align: center;
@@ -111,9 +115,9 @@ export const Heading4 = styled.Text`
   line-height: 18px;
   color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
-  text-align:center;
   
 `;
+
 export const Heading4w = styled(Heading4)`
 color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `
@@ -123,6 +127,10 @@ text-align: center;
 `
 export const Heading4Centerw = styled(Heading4w)`
 text-align: center;
+`
+export const HeadingChatCenterw = styled(Heading4w)`
+text-align: center;
+color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `
 export const Heading4Centerr = styled(Heading4Center)`
 fontFamily: 'roboto-regular';
@@ -148,9 +156,6 @@ fontFamily: 'roboto-bold';
 export const Heading4Regularw = styled(Heading4w)`
 fontFamily: 'roboto-regular';
 `
-
-
-
 
 export const Heading5 = styled.Text`
   font-size: 12px;
