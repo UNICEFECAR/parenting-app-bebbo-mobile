@@ -1,5 +1,5 @@
 import { APP_SHARE, DONATE_OPENED, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-import { buildFor, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
+import { bebboShareMailId, buildFor, buildForBebbo, folejaShareMailId, shareText } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -253,7 +253,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
                           ) : (
                             activeChild.gender != null ?
-                            (activeChild.gender == 40 ?
+                            (activeChild.gender != null && activeChild.gender == 40 ?
                               <Icon name="ic_baby" size={36} color="#000" /> :
                               <Icon name="ic_baby_girl" size={36} color="#000" />) :
                             <Icon name="ic_baby_girl" size={36} color="#000" />
@@ -513,9 +513,9 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                   const eventData = { 'name': EMAIL_SENT }
                   logEvent(eventData, netInfo.isConnected)
                   if (buildFor == String(buildForBebbo)) {
-                    Linking.openURL('mailto:admin@bebbo.app')
+                    Linking.openURL(bebboShareMailId)
                   } else {
-                    Linking.openURL('mailto:prishtina@unicef.org');
+                    Linking.openURL(folejaShareMailId);
                   }
                 }}>
                 <OuterIconRow>
