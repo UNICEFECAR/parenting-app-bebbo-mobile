@@ -274,13 +274,13 @@ const DailyReads = ():any => {
       dailyDataCategorytoDispatch[activeChild.uuid] = {
         advice: [articleDataToShow && articleDataToShow != null ? articleCategoryArrayNew[nextIndex] : 0,
         articleDataToShow1 && articleDataToShow1 != null ? articleCategoryArrayNew[nextIndex + 1] : 0],
-        games: [activityDataToShow && activityDataToShow != null ? activityCategoryArrayNew[nextIndex2]?.id : 0,
-        activityDataToShow1 && activityDataToShow1 != null ? activityCategoryArrayNew[nextIndex2 + 1]?.id : 0
+        games: [activityDataToShow && activityDataToShow != null ? activityCategoryArrayNew[nextIndex2].id : 0,
+        activityDataToShow1 && activityDataToShow1 != null ? activityCategoryArrayNew[nextIndex2 + 1].id : 0
         ],
-        currentadviceid: [articleDataToShow && articleDataToShow != null ? articleDataToShow?.id : 0,
-        articleDataToShow1 && articleDataToShow1 != null ? articleDataToShow1?.id : 0],
-        currentgamesid: [activityDataToShow && activityDataToShow != null ? activityDataToShow?.id : 0,
-        activityDataToShow1 && activityDataToShow1 != null ? activityDataToShow1?.id : 0
+        currentadviceid: [articleDataToShow && articleDataToShow != null ? articleDataToShow.id : 0,
+        articleDataToShow1 && articleDataToShow1 != null ? articleDataToShow1.id : 0],
+        currentgamesid: [activityDataToShow && activityDataToShow != null ? activityDataToShow.id : 0,
+        activityDataToShow1 && activityDataToShow1 != null ? activityDataToShow1.id : 0
         ],
         currentDate: DateTime.now().toISODate(),
         taxonomyid: activeChild.taxonomyData.id,

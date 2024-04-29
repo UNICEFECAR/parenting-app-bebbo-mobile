@@ -140,7 +140,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   );
   const relationshipToParent = useAppSelector(
     (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != ''  ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -356,7 +356,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     childSet.push(insertData);
     
   
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild,name);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild, name);
   }
 
   const themeContext = useContext(ThemeContext);
