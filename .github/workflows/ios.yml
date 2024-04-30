@@ -75,7 +75,6 @@ jobs:
         run: |
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
-        #  cat /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
        
       - name: Putting data google service prod file
         env:
@@ -83,7 +82,6 @@ jobs:
         run: |
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
-        # cat /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
       - name: Install pod dependencies
         run: | 
@@ -130,16 +128,17 @@ jobs:
       - name: Build Archive
         run: |
           xcodebuild -workspace "$WORKSPACE" \
+          -target ParentBuddyAppDev \ 
           -scheme "$SCHEME" \
           -sdk iphoneos \
-          -configuration Debug \
+          -configuration "$CONFIGURATION" \
           -destination generic/platform=iOS \
           -archivePath "$ARCHIVE_PATH" \
-          archive -allowProvisioningUpdates \
+          archive -allowProvisioningUpdates
           PROVISIONING_STYLE="Manual" \
-          PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" \
+          PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
           CODE_SIGN_STYLE="Manual" \
-          CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE"
+          CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE"
 
           
         # xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
@@ -161,9 +160,9 @@ jobs:
        # run: |
         #  xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_STAGING . -exportOptionsPlist $PLIST_PATH_STAGING \
       
-      - name: Export PROD
-        run: |
-          xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
+      # - name: Export PROD
+        # run: |
+          # xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
