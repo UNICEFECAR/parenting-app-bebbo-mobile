@@ -3,6 +3,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonPrimary, ButtonText,
+  ButtonUpperCaseText,
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
@@ -198,7 +199,7 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
                   childSetup();
                 }, 0)
               }}>
-                <ButtonText numberOfLines={2}>{t('letGetStartedText')}</ButtonText>
+                <ButtonUpperCaseText numberOfLines={2}>{t('letGetStartedText')}</ButtonUpperCaseText>
               </ButtonPrimary>
             </View>
           </FlexCol>

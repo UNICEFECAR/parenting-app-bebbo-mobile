@@ -139,7 +139,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '', null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,true);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,true,'');
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
