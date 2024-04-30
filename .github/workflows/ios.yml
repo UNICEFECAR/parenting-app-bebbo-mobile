@@ -12,34 +12,6 @@ on:
       message:
         description: 'Build description'
 
-env:
-
-  WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
-  SCHEME: ${{ 'ParentBuddyAppDev' }}
-  CONFIGURATION: ${{ 'Release' }}
-  ARCHIVE_PATH: ${{ 'ios/build/ParentBuddyApp.xcarchive' }}
-  EXPORT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
-  PLIST_PATH_STAGING: ${{'ios/ParentBuddyAppDev-Info.plist' }}
-  ARTIFACT_NAME: ${{ 'Bebbo.ipa' }}
-  ARTIFACT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
-  APP_NAME_STAGING: ${{ 'ParentBuddyAppDev-iOS/ENV_DEV' }}
-  TESTING_GROUP_STAGING: ${{ 'ENV_DEV' }}
-  UPLOAD_FILE_STAGING: ${{ 'ParentBuddyAppDev/BebboDev.ipa' }}
-
-  DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_APP_DEVELOPMENT_CERTIFICATE }}
-  
-  CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-  DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD_HOC_PROFILE }}
-  KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
-
-  # EXPORT_PATH_PROD: ${{ 'prod/' }}
-  # PLIST_PATH_PROD: ${{'ios/ParentBuddyApp/Info.plist' }}
-  # ARTIFACT_PATH_PROD: ${{ 'prod/' }}
-  # APP_NAME_PROD: ${{ 'ParentBuddyApp-iOS/ENV_PROD' }}
-  # TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
-  # UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
-  # DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
-  # DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
 
   
 jobs:
@@ -59,6 +31,34 @@ jobs:
         run: npm install
       
       - name: 'Create env file'
+        env:
+        WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
+        SCHEME: ${{ 'ParentBuddyAppDev' }}
+        CONFIGURATION: ${{ 'Release' }}
+        ARCHIVE_PATH: ${{ 'ios/build/ParentBuddyApp.xcarchive' }}
+        EXPORT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
+        PLIST_PATH_STAGING: ${{'ios/ParentBuddyAppDev-Info.plist' }}
+        ARTIFACT_NAME: ${{ 'Bebbo.ipa' }}
+        ARTIFACT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
+        APP_NAME_STAGING: ${{ 'ParentBuddyAppDev-iOS/ENV_DEV' }}
+        TESTING_GROUP_STAGING: ${{ 'ENV_DEV' }}
+        UPLOAD_FILE_STAGING: ${{ 'ParentBuddyAppDev/BebboDev.ipa' }}
+
+        DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_APP_DEVELOPMENT_CERTIFICATE }}
+  
+        CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD_HOC_PROFILE }}
+        KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
+
+        # EXPORT_PATH_PROD: ${{ 'prod/' }}
+        # PLIST_PATH_PROD: ${{'ios/ParentBuddyApp/Info.plist' }}
+        # ARTIFACT_PATH_PROD: ${{ 'prod/' }}
+        # APP_NAME_PROD: ${{ 'ParentBuddyApp-iOS/ENV_PROD' }}
+        # TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
+        # UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
+        # DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
+        # DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
+
         run: |
           touch .env
           echo apiUrlDevelop=${{ secrets.APIURLDEVELOP }} >> .env
@@ -109,7 +109,8 @@ jobs:
           security set-keychain-settings -lut 21600 "$KCHAIN_PATH"
           security unlock-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
           # import certificate to keychain
-          security import "$DEV_CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
+          security import $DEV_CERT_PATH -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KCHAIN_PATH
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEY_PWD" $KCHAIN_PATH
           security list-keychain -d user -s "$KCHAIN_PATH"
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
