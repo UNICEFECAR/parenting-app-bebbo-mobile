@@ -32,14 +32,14 @@ env:
   DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD-HOC_PROFILE }}
   KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
 
-  EXPORT_PATH_PROD: ${{ 'prod/' }}
-  PLIST_PATH_PROD: ${{'ios/ParentBuddyApp/Info.plist' }}
-  ARTIFACT_PATH_PROD: ${{ 'prod/' }}
-  APP_NAME_PROD: ${{ 'ParentBuddyApp-iOS/ENV_PROD' }}
-  TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
-  UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
-  DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
-  DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
+  # EXPORT_PATH_PROD: ${{ 'prod/' }}
+  # PLIST_PATH_PROD: ${{'ios/ParentBuddyApp/Info.plist' }}
+  # ARTIFACT_PATH_PROD: ${{ 'prod/' }}
+  # APP_NAME_PROD: ${{ 'ParentBuddyApp-iOS/ENV_PROD' }}
+  # TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
+  # UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
+  # DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
+  # DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
 
   
 jobs:
@@ -55,8 +55,8 @@ jobs:
         with:
           node-version: '16.14.0'
         
-      - name: Install dependencies
-        run: npm install
+    #  - name: Install dependencies
+     #   run: npm install
       
       - name: 'Create env file'
         run: |
@@ -76,31 +76,32 @@ jobs:
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
        
-      - name: Putting data google service prod file
-        env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
-        run: |
-          touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
-          echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+    #  - name: Putting data google service prod file
+     #   env:
+      #    DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
+       # run: |
+        #  touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+         # echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
-      - name: Install pod dependencies
-        run: | 
-          cd ios && pod install
+  #    - name: Install pod dependencies
+   #     run: | 
+    #      cd ios && pod install
 
       - name: Signing & Provisioning
         run: |
           # create variables
-          CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
           DEV_CERT_PATH=$RUNNER_TEMP/dev_certificate.p12
-          PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
           PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
           KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          
+          # CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
+          # PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
   
           # import certificate and provisioning profile from secrets
           #echo -n "$DISTRIBUTION_CERTIFICATE" | base64 --decode --output $CERT_PATH
           #echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 --decode --output $PP_PATH_PROD
-          echo -n "$DEVELOPMENT_CERTIFICATE" | base64 --decode --output $DEV_CERT_PATH
-          echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 --decode --output $PP_PATH_STAGING
+          echo -n "$DEVELOPMENT_CERTIFICATE" | base64 --decode --output "$DEV_CERT_PATH"
+          echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 --decode --output "$PP_PATH_STAGING"
           
           
           # create temporary keychain
@@ -125,17 +126,6 @@ jobs:
         run: |
           mkdir -p build && mkdir -p staging && mkdir -p prod
 
-      # - name: Build Archive
-      #   run: |
-      #     xcodebuild -target ParentBuddyAppDev -configuration "$CONFIGURATION" -archivePath "$ARCHIVE_PATH" \
-      #     archive -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
-      #     PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
-      #     CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE"
-          
-        # -workspace "$WORKSPACE" -scheme "$SCHEME" \
-         # -sdk iphoneos \
-         # -destination generic/platform=iOS \
-          
         # xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
         # archive -archivePath "$ARCHIVE_PATH" -allowProvisioningUpdates
         # PROVISIONING_STYLE="Manual" \
@@ -146,11 +136,9 @@ jobs:
       - name: Build Archive
         run: |
           xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
-          archive -archivePath "$ARCHIVE_PATH" -allowProvisioningUpdates
-          PROVISIONING_STYLE="Manual" \
+          archive -archivePath "$ARCHIVE_PATH" -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
           PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
-          CODE_SIGN_STYLE="Manual" \
-          CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" \
+          CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" 
           
           
       - name: Export STAGING
@@ -165,7 +153,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Bebbo.ipa
-          path: ${{ env.ARTIFACT_PATH_PROD }} 
+          path: ${{ env.ARTIFACT_PATH_STAGING }} 
 
 #            name: ${{ env.ARTIFACT_NAME }}
  #           path: |
