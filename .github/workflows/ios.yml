@@ -145,7 +145,7 @@ jobs:
 
       - name: Build Archive
         run: |
-          xcodebuild -workspace "$WORKPLACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
+          xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
           archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
           PROVISIONING_STYLE="Manual" \
           PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
