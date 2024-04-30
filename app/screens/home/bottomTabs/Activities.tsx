@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import {
   FlatList,
   Keyboard,
+  KeyboardAvoidingView,
   Modal,
   Platform,
   Pressable,
@@ -67,6 +68,9 @@ const styles = StyleSheet.create({
     backgroundColor: activitiesTintcolor,
     flex: 1
   },
+  flex1View: {
+    flex: 1
+  },
   customHeading3: {
     flex: 1,
     paddingLeft: 5,
@@ -85,6 +89,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     position: 'absolute',
     right: 0,
+    bottom: 0,
     top: 51,
     zIndex: 1,
   },
@@ -162,7 +167,7 @@ const Activities = ({ route, navigation }: any): any => {
   const modalScreenText = 'activityModalText';
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState('');
-  const [historyVisible, setHistoryVisible] = useState(true);
+  const [historyVisible, setHistoryVisible] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] = useState([]);
@@ -183,16 +188,11 @@ const Activities = ({ route, navigation }: any): any => {
   };
   const getSearchedKeywords = async (): Promise<any> => {
     const realm = await dataRealmCommon.openRealm();
-
     if (realm != null) {
       console.log('Seach History is...', realm?.objects('ActivitySearchHistory'))
       const unsynchronizedEvents: any = realm.objects('ActivitySearchHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
-      console.log('Seach History is', unsynchronizedEvents)
       setSearchHistory(unsynchronizedEvents);
-
     }
-    console.log('search history.......', searchHistory);
-
   }
 
   useFocusEffect(
@@ -206,6 +206,7 @@ const Activities = ({ route, navigation }: any): any => {
       setModalVisible(activityModalOpened);
     }, [activityModalOpened])
   );
+
   const toTop = (): any => {
     // use current
     // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
@@ -220,27 +221,9 @@ const Activities = ({ route, navigation }: any): any => {
     }
   }
   const setFilteredActivityData = (itemId: any): any => {
-    setHistoryVisible(false);
     if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData.length != 0) {
       if (itemId.length > 0) {
-        let newArticleData:any = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
-        let titleData = [];
-        let bodyData = [];
-        // if (queryText != "" && queryText != undefined && queryText != null) {
-        //   // filter data with title first then after summary or body
-        //   titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-        //   bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-        //   // combine array for article
-        //   const combineArticleData: any[] = titleData.concat(bodyData)
-        //   newArticleData = [...new Set(combineArticleData)];
-
-        //   // filter data with title first then after summary or body
-        //   // videoTitleData = newvideoArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-        //   // videoBodyData = newvideoArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-        //   // // combine array for video article
-        //   // const combineVideoArticleData: any[] = videoTitleData.concat(videoBodyData)
-        //   // newvideoArticleData = [...new Set(combineVideoArticleData)];
-        // }
+        let newArticleData: any = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
         setfilteredData(newArticleData);
         setLoading(false);
         setTimeout(() => {
@@ -264,78 +247,12 @@ const Activities = ({ route, navigation }: any): any => {
     }
     toTop();
   }
-  // const setFilteredActivityData = (itemId: any): any => {
-  //   setHistoryVisible(false)
-  //   if (ActivitiesData && ActivitiesData.length > 0 && ActivitiesData.length != 0) {
-  //     setLoading(true);
-  //     if (itemId.length > 0) {
-  //       let newArticleData:any = ActivitiesDataold.filter((x: any) => itemId.includes(x.activity_category));
-  //       let titleData = [];
-  //       let bodyData = [];
-  //       let videoTitleData = [];
-  //       let videoBodyData = [];
-  //       if (queryText != "" && queryText != undefined && queryText != null) {
-  //         // filter data with title first then after summary or body
-  //         titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-  //         bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-  //         // combine array for article
-  //         const combineArticleData: any[] = titleData.concat(bodyData)
-  //         newArticleData = [...new Set(combineArticleData)];
-
-  //         // filter data with title first then after summary or body
-  //         // videoTitleData = newvideoArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-  //         // videoBodyData = newvideoArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-  //         // // combine array for video article
-  //         // const combineVideoArticleData: any[] = videoTitleData.concat(videoBodyData)
-  //         // newvideoArticleData = [...new Set(combineVideoArticleData)];
-  //       }
-
-  //       //combine-array
-  //      // const combineDartArr = mergearr(newArticleData, newvideoArticleData, false);
-
-  //       setfilteredData(newArticleData);
-
-  //       setLoading(false);
-  //       toTop();
-  //     } else {
-  //       console.log('Articles All data is',ActivitiesData)
-  //       let newArticleData:any = ActivitiesData.length > 0 ? ActivitiesData : [];
-  //       let combineDartArr = [];
-  //       let titleData = [];
-  //       let bodyData = [];
-  //       let videoTitleData = [];
-  //       let videoBodyData = [];
-  //       if (queryText != "" && queryText != undefined && queryText != null) {
-  //         titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-  //         bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-  //         const combineArticleData: any[] = titleData.concat(bodyData)
-  //         newArticleData = [...new Set(combineArticleData)];
-
-  //         // videoTitleData = newvideoArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-  //         // videoBodyData = newvideoArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-  //         // const combineVideoArticleData: any[] = videoTitleData.concat(videoBodyData)
-  //         // newvideoArticleData = [...new Set(combineVideoArticleData)];
-
-  //         // combineDartArr = mergearr(newArticleData, newvideoArticleData, false);
-  //          setfilteredData(newArticleData);
-
-  //       } else {
-  //         setfilteredData(newArticleData);
-  //       }
-
-  //       setLoading(false);
-  //       // setHistoryVisible(false);
-  //       toTop();
-  //     }
-  //   } else {
-  //     setLoading(false);
-  //     setfilteredData([]);
-  //   }
-  // }
 
   useFocusEffect(
     React.useCallback(() => {
-      if (queryText == '') {
+      console.log("useFocusEffect called route.params?.backClicked", route.params?.backClicked);
+      setLoading(true);
+
       async function fetchData(): Promise<any> {
         if (route.params?.categoryArray) {
           setFilterArray(route.params?.categoryArray);
@@ -351,12 +268,9 @@ const Activities = ({ route, navigation }: any): any => {
       } else {
         setLoading(false);
       }
-    }else{
-     fetchData()
-    }
 
-    }, [selectedChildActivitiesData, route.params?.categoryArray, activeChild?.uuid, queryText])
-  );
+    }, [selectedChildActivitiesData, route.params?.categoryArray, languageCode, queryText]))
+
 
   const showSelectedBracketData = (item: any): any => {
     const eventData = { 'name': GAME_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
@@ -364,7 +278,7 @@ const Activities = ({ route, navigation }: any): any => {
 
     setCurrentSelectedChildId(item.id);
     const filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
-    console.log('On age selected',filteredData)
+    console.log('On age selected', filteredData)
     setSelectedChildActivitiesData(filteredData);
   }
   useFocusEffect(
@@ -414,7 +328,7 @@ const Activities = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log('filtered data is', filteredData);
+      console.log('filtered data is', filteredData.length);
       if (filteredData && Array.isArray(filteredData)) {
         if (filteredData.length > 0) {
           setsuggestedGames(
@@ -425,7 +339,7 @@ const Activities = ({ route, navigation }: any): any => {
                 childMilestonedata.findIndex((y: any) => y == x.related_milestone[0]) == -1
             )
           );
-  
+
           setotherGames(
             filteredData.filter(
               (x: any) =>
@@ -438,8 +352,8 @@ const Activities = ({ route, navigation }: any): any => {
       }
     }, [filteredData, childMilestonedata])
   );
-  
-  
+
+
 
   const goToActivityDetail = (item: any): any => {
     const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
@@ -542,33 +456,6 @@ const Activities = ({ route, navigation }: any): any => {
       </ArticleHeading>
     )
   });
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     console.log('UseFocusEffect Articles one');
-  //     if (queryText == '') {
-  //       async function fetchData(): Promise<any> {
-  //         if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
-  //           setFilterArray(route.params?.categoryArray);
-  //           setFilteredActivityData(route.params?.categoryArray);
-  //         }
-  //         else {
-  //           setFilterArray([]);
-  //           setFilteredActivityData([]);
-  //         }
-  //       }
-  //       if (route.params?.backClicked != 'yes') {
-  //         fetchData()
-  //       } else {
-  //         setLoading(false);
-  //         if (route.params?.backClicked == 'yes') {
-  //           navigation.setParams({ backClicked: 'no' })
-  //         }
-  //       }
-  //     }
-
-  //   }, [route.params?.categoryArray, activeChild?.uuid, languageCode, queryText])
-  // );
-
   const [searchIndex, setSearchIndex] = useState<any>(null);
   const suffixes = (term: any, minLength: any): any => {
     if (term == null) { return []; }
@@ -589,7 +476,7 @@ const Activities = ({ route, navigation }: any): any => {
   // add minisearch on active child article data 
   useEffect(() => {
     async function initializeSearchIndex() {
-      await new Promise(resolve => setTimeout(resolve, 0));    
+      await new Promise(resolve => setTimeout(resolve, 0));
       const processedActivities = preprocessActivities(ActivitiesData);
       const searchIndex = new MiniSearch({
         processTerm: (term) => suffixes(term, 3),
@@ -621,32 +508,30 @@ const Activities = ({ route, navigation }: any): any => {
           }
         },
         fields: ['title', 'summary', 'body'],
-        storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body','activity_category', 'equipment', 'type_of_support', 'child_age', 'cover_image', 'related_milestone', 'mandatory', 'embedded_images']
+        storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'activity_category', 'equipment', 'type_of_support', 'child_age', 'cover_image', 'related_milestone', 'mandatory', 'embedded_images']
       });
-
       processedActivities.forEach((item: any) => searchIndex.add(item));
       setSearchIndex(searchIndex);
-
     }
-
     initializeSearchIndex();
   }, []);
- //store previous searched keyword
- const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
-  console.log('Query text need to store is1',keyword)
-  realm.write(() => {
-    const storeKeyword = realm.create('ActivitySearchHistory', {
-      keyword: keyword,
-      createdAt: new Date(),
-    }, Realm.UpdateMode.Modified);
-  });
-}
+
+  //store previous searched keyword
+  const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
+    console.log('Query text need to store is1', keyword)
+    realm.write(() => {
+      const storeKeyword = realm.create('ActivitySearchHistory', {
+        keyword: keyword,
+        createdAt: new Date(),
+      }, Realm.UpdateMode.Modified);
+    });
+  }
   const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false)
     setLoading(true);
     await new Promise(resolve => setTimeout(resolve, 0));
     Keyboard.dismiss();
-    console.log('querytext is',queryText)
+    console.log('querytext is', queryText)
     if (queryText != "" && queryText != undefined && queryText != null) {
       const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
       if (keywords.length > 1) {
@@ -655,8 +540,8 @@ const Activities = ({ route, navigation }: any): any => {
           return results;
         });
         const resultsArrays = await Promise.all(resultsPromises);
-        const aggregatedResults:any = resultsArrays.flat();
-        console.log('results is here...',aggregatedResults.length)
+        const aggregatedResults: any = resultsArrays.flat();
+        console.log('results is here...', aggregatedResults.length)
         setfilteredData(aggregatedResults);
         setLoading(false)
         toTop()
@@ -671,11 +556,11 @@ const Activities = ({ route, navigation }: any): any => {
       const eventData = { 'name': ACTIVITY_SEARCHED, 'params': { activity_searched: queryText } }
       logEvent(eventData, netInfo.isConnected)
       const realm = await dataRealmCommon.openRealm();
-      console.log('Query text need to store is',queryText)
+      console.log('Query text need to store is', queryText)
       storeSearchKeyword(realm, queryText)
 
       // Update search history state
-      const updatedHistoryWithoutClickedItem = searchHistory.filter((item:any) => item !== queryText);
+      const updatedHistoryWithoutClickedItem = searchHistory.filter((item: any) => item !== queryText);
       const updatedHistory = [queryText, ...updatedHistoryWithoutClickedItem.slice(0, 4)];
       const filterredUpdatedHistory = [...new Set(updatedHistory)];
       setSearchHistory(filterredUpdatedHistory);
@@ -690,10 +575,6 @@ const Activities = ({ route, navigation }: any): any => {
 
     }
     else {
-      // artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
-      // newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-      // combineDartArr = mergearr(artData, newvideoArticleData, true);
-      // articleData = [...combineDartArr];
       setFilteredActivityData(filterArray);
       setLoading(false);
     }
@@ -720,190 +601,186 @@ const Activities = ({ route, navigation }: any): any => {
     <>
       <OverlayLoadingComponent loading={loading} />
       <View style={styles.containerView}>
-        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        {/* <ScrollView nestedScrollEnabled={true}> */}
-        <TabScreenHeader
-          title={t('actScreenheaderTitle')}
-          headerColor={headerColor}
-          textColor="#000"
-          setProfileLoading={setProfileLoading}
-        />
-        <FlexCol>
-          <View style={styles.ageBracketView}>
-            <SearchBox>
-              <OuterIconRow>
-
-                <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
-                  e.preventDefault();
-                  Keyboard.dismiss();
-                  await searchList(queryText);
-
-                }}>
-                  <Icon
-                    name="ic_search"
-                    size={20}
-                    color="#000"
-
-                  />
-                </Pressable>
-
-              </OuterIconRow>
-              <SearchInput
-                autoCapitalize="none"
-                autoCorrect={false}
-                clearButtonMode="always"
-                onFocus={(): any => {
-                  setHistoryVisible(true);
-                }}
-                onChangeText={async (queryText: any): Promise<any> => {
-                  console.log('loghererer', queryText)
-                  if (queryText.replace(/\s/g, "") == "") {
-                    searchQueryText(queryText.replace(/\s/g, ''));
-                    setHistoryVisible(true);
-                    //  await searchList(queryText)
-                  } else {
-                    searchQueryText(queryText);
-                    setHistoryVisible(true);
-                  }
-                }}
-                value={queryText}
-
-                onSubmitEditing={async (event: any): Promise<any> => {
-                  console.log("event-", queryText);
-                  setHistoryVisible(false)
-                  Keyboard.dismiss();
-                  await searchList(queryText);
-                }}
-                multiline={false}
-                // placeholder="Search for Keywords"
-                placeholder={t('articleScreensearchPlaceHolder')}
-                placeholderTextColor={"#777779"}
-                allowFontScaling={false}
-              />
-
-              {
-                Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
+        <KeyboardAvoidingView
+          // behavior={Platform.OS === "ios" ? "padding" : "height"}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={(Platform.OS === 'android') ? -200 : 0}
+          style={styles.flex1View}
+        >
+          <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+          {/* <ScrollView nestedScrollEnabled={true}> */}
+          <TabScreenHeader
+            title={t('actScreenheaderTitle')}
+            headerColor={headerColor}
+            textColor="#000"
+            setProfileLoading={setProfileLoading}
+          />
+          <FlexCol>
+            <View style={styles.ageBracketView}>
+              <SearchBox>
                 <OuterIconRow>
 
-                  <IconClearPress onPress={async (): Promise<any> => {
-                    console.log('cleartext')
+                  <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
+                    e.preventDefault();
                     Keyboard.dismiss();
-                    searchQueryText('');
-                    setHistoryVisible(true);
+                    await searchList(queryText);
 
                   }}>
                     <Icon
-                      name="ic_close"
-                      size={10}
-                      color="#fff"
+                      name="ic_search"
+                      size={20}
+                      color="#000"
+
                     />
-                  </IconClearPress>
+                  </Pressable>
 
                 </OuterIconRow>
+                <SearchInput
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  clearButtonMode="always"
+                  onFocus={(): any => {
+                    setHistoryVisible(true);
+                  }}
+                  onChangeText={async (queryText: any): Promise<any> => {
+                    console.log('loghererer', queryText)
+                    if (queryText.replace(/\s/g, "") == "") {
+                      searchQueryText(queryText.replace(/\s/g, ''));
+                      setHistoryVisible(true);
+                      //  await searchList(queryText)
+                    } else {
+                      searchQueryText(queryText);
+                      setHistoryVisible(true);
+                    }
+                  }}
+                  value={queryText}
+
+                  onSubmitEditing={async (event: any): Promise<any> => {
+                    console.log("event-", queryText);
+                    setHistoryVisible(false)
+                    Keyboard.dismiss();
+                    await searchList(queryText);
+                  }}
+                  multiline={false}
+                  // placeholder="Search for Keywords"
+                  placeholder={t('articleScreensearchPlaceHolder')}
+                  placeholderTextColor={"#777779"}
+                  allowFontScaling={false}
+                />
+
+                {
+                  Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
+                  <OuterIconRow>
+                    <IconClearPress onPress={async (): Promise<any> => {
+                      console.log('cleartext')
+                      Keyboard.dismiss();
+                      searchQueryText('');
+                      setHistoryVisible(true);
+
+                    }}>
+                      <Icon
+                        name="ic_close"
+                        size={10}
+                        color="#fff"
+                      />
+                    </IconClearPress>
+
+                  </OuterIconRow>
+                }
+              </SearchBox>
+              {searchHistory.length !== 0 && historyVisible &&
+                <FlatList
+                  data={searchHistory}
+                  renderItem={renderSearchHistoryItem}
+                  keyboardShouldPersistTaps='handled'
+                  keyExtractor={(item, index): any => index.toString()}
+                  style={styles.historyList}
+                />
               }
+              <DividerAct></DividerAct>
+              <AgeBrackets
+                itemColor={headerColorBlack}
+                activatedItemColor={headerColor}
+                currentSelectedChildId={currentSelectedChildId}
+                showSelectedBracketData={showSelectedBracketData}
+                ItemTintColor={backgroundColor}
+              />
+            </View>
 
+            <ActivitiesCategories
+              borderColor={headerColor}
+              filterOnCategory={setFilteredActivityData}
+              fromPage={fromPage}
+              filterArray={filterArray}
+              onFilterArrayChange={onFilterArrayChange}
+            />
+            <DividerAct></DividerAct>
 
+            <FlexCol>
+              {showNoData == true && suggestedGames?.length == 0 && otherGames?.length == 0 ?
+                <Heading4Center>{t('noDataTxt')}</Heading4Center>
+                : null}
 
-
-            </SearchBox>
-            {searchHistory.length !== 0 && historyVisible &&
-
-
-              <FlatList
-                data={searchHistory}
-                renderItem={renderSearchHistoryItem}
-                keyboardShouldPersistTaps='handled'
-                keyExtractor={(item, index): any => index.toString()}
-                style={styles.historyList}
+              <SectionList
+                sections={DATA}
+                // ref={flatListRef}
+                ref={(ref: any): any => (sectionListRef = ref)}
+                keyExtractor={(item: any, index: any): any => String(item?.id) + String(index)}
+                stickySectionHeadersEnabled={false}
+                // initialNumToRender={4}
+                // renderItem={({ item, title }) => <Item item={item} title={title}/>}
+                removeClippedSubviews={true} // Unmount components when outside of window 
+                initialNumToRender={4} // Reduce initial render amount
+                maxToRenderPerBatch={4} // Reduce number in each render batch
+                updateCellsBatchingPeriod={100} // Increase time between renders
+                windowSize={7} // Reduce the window size
+                // renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
+                renderItem={memoizedValue}
+                renderSectionHeader={({ section }): any => (
+                  section.data.length > 0 ?
+                    <HeadingComponent section={section} />
+                    // <Text style={styles.header}>{section.title}</Text> 
+                    : null
+                )}
               />
 
-            }
-            <DividerAct></DividerAct>
-            <AgeBrackets
-              itemColor={headerColorBlack}
-              activatedItemColor={headerColor}
-              currentSelectedChildId={currentSelectedChildId}
-              showSelectedBracketData={showSelectedBracketData}
-              ItemTintColor={backgroundColor}
-            />
-          </View>
-
-          <ActivitiesCategories
-            borderColor={headerColor}
-            filterOnCategory={setFilteredActivityData}
-            fromPage={fromPage}
-            filterArray={filterArray}
-            onFilterArrayChange={onFilterArrayChange}
-          />
-          <DividerAct></DividerAct>
-
-          <FlexCol>
-            {showNoData == true && suggestedGames?.length == 0 && otherGames?.length == 0 ?
-              <Heading4Center>{t('noDataTxt')}</Heading4Center>
-              : null}
-
-            <SectionList
-              sections={DATA}
-              // ref={flatListRef}
-              ref={(ref: any): any => (sectionListRef = ref)}
-              keyExtractor={(item: any, index: any): any => String(item?.id) + String(index)}
-              stickySectionHeadersEnabled={false}
-              // initialNumToRender={4}
-              // renderItem={({ item, title }) => <Item item={item} title={title}/>}
-              removeClippedSubviews={true} // Unmount components when outside of window 
-              initialNumToRender={4} // Reduce initial render amount
-              maxToRenderPerBatch={4} // Reduce number in each render batch
-              updateCellsBatchingPeriod={100} // Increase time between renders
-              windowSize={7} // Reduce the window size
-              // renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
-              renderItem={memoizedValue}
-              renderSectionHeader={({ section }): any => (
-                section.data.length > 0 ?
-                  <HeadingComponent section={section} />
-                  // <Text style={styles.header}>{section.title}</Text> 
-                  : null
-              )}
-            />
-
+            </FlexCol>
           </FlexCol>
-        </FlexCol>
-        <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
-        <Modal
-          animationType="none"
-          transparent={true}
-          visible={modalVisible1}
-          onRequestClose={(): any => {
-            setModalVisible1(false);
-          }}
-          onDismiss={(): any => {
-            setModalVisible1(false);
-          }}>
-          <PopupOverlay>
-            <ModalPopupContainer>
-              <PopupCloseContainer>
-                <PopupClose
-                  onPress={(): any => {
-                    setModalVisible1(false);
-                  }}>
-                  <Icon name="ic_close" size={16} color="#000" />
-                </PopupClose>
-              </PopupCloseContainer>
-              <ModalPopupContent>
-                <Heading4Centerr>
-                  {t('childSetupprematureMessageNext')}
-                </Heading4Centerr>
-              </ModalPopupContent>
-            </ModalPopupContainer>
-          </PopupOverlay>
-        </Modal>
-        <OverlayLoadingComponent loading={profileLoading} />
+          <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
+          <Modal
+            animationType="none"
+            transparent={true}
+            visible={modalVisible1}
+            onRequestClose={(): any => {
+              setModalVisible1(false);
+            }}
+            onDismiss={(): any => {
+              setModalVisible1(false);
+            }}>
+            <PopupOverlay>
+              <ModalPopupContainer>
+                <PopupCloseContainer>
+                  <PopupClose
+                    onPress={(): any => {
+                      setModalVisible1(false);
+                    }}>
+                    <Icon name="ic_close" size={16} color="#000" />
+                  </PopupClose>
+                </PopupCloseContainer>
+                <ModalPopupContent>
+                  <Heading4Centerr>
+                    {t('childSetupprematureMessageNext')}
+                  </Heading4Centerr>
+                </ModalPopupContent>
+              </ModalPopupContainer>
+            </PopupOverlay>
+          </Modal>
+          <OverlayLoadingComponent loading={profileLoading} />
+        </KeyboardAvoidingView>
       </View>
     </>
   );
 };
 
 export default Activities;
-function fetchData() {
-  throw new Error('Function not implemented.');
-}
 
