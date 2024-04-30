@@ -195,21 +195,21 @@ const localizationall = [
       },
     ],
   },
-  // {
-  //   name: 'Slovakia',
-  //   countryId: 151,
-  //   displayName: 'Slovakia (Slovensko)',
-  //   languages: [
-  //     {
-  //       name: 'slovenský',
-  //       displayName: 'slovenský',
-  //       languageCode: 'sk',
-  //       locale: 'sk',
-  //       luxonLocale:'sk-SK ',
-  //       pluralShow:true
-  //     }
-  //   ],
-  // },
+  {
+    name: 'Slovakia',
+    countryId: 151,
+    displayName: 'Slovakia (Slovensko)',
+    languages: [
+      {
+        name: 'slovenský',
+        displayName: 'slovenský',
+        languageCode: 'sk',
+        locale: 'sk',
+        luxonLocale:'sk-SK',
+        pluralShow:true
+      }
+    ],
+  },
   {
     name: 'Tajikistan',
     countryId: 46,

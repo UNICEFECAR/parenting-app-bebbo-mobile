@@ -19,10 +19,12 @@ export const WrapView = styled.View`
   
 `;
 export const PartnerLogo = styled.Image`
-flex:1
+width: 160px;
+  height: 60px;
 `;
 export const SponsorLogo = styled.Image`
-flex:1;
+width: 160px;
+  height: 60px;
 
 `;
 export const StaticLogo = styled.Image`
@@ -37,7 +39,7 @@ export const GoogleLogo = styled.Image`
 `;
 export const LoadingText = styled.Text`
   color: #fff;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
 `;
 

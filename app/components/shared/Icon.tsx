@@ -9,6 +9,7 @@ transform: ${(props:any):any => props.theme.isRTL ? 'scaleX(-1)' : 'scaleX(1)'}
 `;
 export const OuterIconRow = styled.View`
   flex-direction: row;
+  margin-right: 5px;
 `;
 
 export const OuterIconLeft = styled.View`
@@ -51,7 +52,7 @@ export const TickView7 = styled.View`
   border-radius:20px;
 `;
 export const TickView1 = styled.View`
-  padding: 1px 5px;
+  padding: 1px 0px 0px 5px;
   margin:0 0px;
   border-radius:100px;
 `;
@@ -127,7 +128,7 @@ export const IconClearBox = styled(OuterIconDone)`
 `;
 export const IconClearPress = styled.Pressable`
 background-color:${(props:any):any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
-opacity:0.6;
+opacity:0.2;
 border:0px;
 border-radius:100px;
 width:22px;

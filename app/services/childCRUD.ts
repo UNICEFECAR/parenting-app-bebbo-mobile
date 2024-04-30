@@ -25,7 +25,7 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
     parentGender: parentGender != "" && parentGender != undefined && parentGender != null ? parentGender : "all",
     category: articleCategory != undefined && articleCategory != null ? articleCategory : "all"
   }
-  console.log(postData, "..postData..");
+  console.log(postData, "..postData Data is here..");
   return [
     {
       apiEndpoint: appConfig.articles,
@@ -389,12 +389,12 @@ export const getNotificationDateInString = (t: any, birthDate: string, pluralSho
     }
     if (diff.days >= 1 && diff.months == "" && diff.years == "") {
       if (pluralShow == true) {
-        ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25 ? ' ' + t('days5tag') : Math.round(diff.days) == 21 ? ' ' + t('daytag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25 ? ' ' + t('days5tag') : Math.round(diff.days) == 21 ? ' ' + t('daytag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       }
       else {
         ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       }
-    }
+    }  
     if (ageStr == "") {
       ageStr = t('todayTxt');
     } else {
@@ -415,7 +415,7 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
 
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any, isDefaultChild?:boolean, isSibling?:boolean): Promise<any> => {
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any,isDefaultChild?:boolean,isSibling?:boolean, parentName?: any): Promise<any> => {
   let oldBirthDate;
   console.log(editScreen, "..editScreen..", param);
   if (editScreen) {
@@ -446,6 +446,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
+    await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
     await setActiveChild(languageCode, data[0].uuid, dispatch, childAge, false);
     const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));

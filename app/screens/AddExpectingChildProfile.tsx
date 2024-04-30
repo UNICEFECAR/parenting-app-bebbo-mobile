@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonMangeProfileContainer, ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
   FormDateAction,
@@ -7,9 +7,10 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
+  LabelDatePlaceHolderText,
   LabelText,
 } from '@components/shared/ChildSetupStyle';
-import { MainContainer } from '@components/shared/Container';
+import { MainManageProfileContainer } from '@components/shared/Container';
 import Icon, { IconML } from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -43,6 +44,7 @@ import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { setActiveChildData } from '../redux/reducers/childSlice';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { bgcolorWhite } from '@styles/style';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -58,6 +60,9 @@ const styles = StyleSheet.create({
   headerActionView: { padding: 0 },
   headerRowView: {
     maxHeight: 50
+  },
+  headerTitleTextColor: {
+    color: bgcolorWhite
   },
   pressableView: { paddingLeft: 10, paddingRight: 10 },
   textInputML: { width: '100%' }
@@ -173,7 +178,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     });
   };
   return <>
-    <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+    <View style={[styles.flex1, { backgroundColor: bgcolorWhite }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
         style={[styles.headerRowView, { backgroundColor: headerColor }]}>
@@ -186,8 +191,8 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
           </HeaderIconPress>
         </HeaderIconView>
         <HeaderTitleView>
-          <Heading2w numberOfLines={1}>
-            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('editExpectChildAddTxt') : t('expectChildAddTxt')}
+          <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>
+            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt2')}
           </Heading2w>
         </HeaderTitleView>
         <HeaderActionView style={styles.headerActionView}>
@@ -206,13 +211,14 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
         </HeaderActionView>
       </HeaderRowView>
 
-      <MainContainer>
+      <MainManageProfileContainer>
         <FormDateContainer>
           <FormInputGroup onPress={showdobDatepicker}>
             <LabelText> {t('expectChildDueDateTxt')}</LabelText>
             <FormInputBox>
               <FormDateText>
-                <Text>  {plannedTermDate ? formatStringDate(plannedTermDate) : t('expectChildDueDateTxt')}</Text>
+                {plannedTermDate ? <Text>{formatStringDate(plannedTermDate)}</Text> :
+                  ''}
               </FormDateText>
               <FormDateAction>
                 <Icon name="ic_calendar" size={20} color="#000" />
@@ -265,16 +271,16 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
                 }
               }}
               value={name}
-              placeholder={t('expectPreferNamePlacetxt')}
-              placeholderTextColor={"gray"}
+              //placeholder={t('expectPreferNamePlacetxt')}
+              //placeholderTextColor={"#77777779"}
               allowFontScaling={false}
             />
           </FormInputBox>
         </FormContainer>
 
-      </MainContainer>
+      </MainManageProfileContainer>
       <ShiftFromTop10>
-        <ButtonContainer>
+        <ButtonMangeProfileContainer>
           <ButtonPrimary
             disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked ? true : false}
             onPress={(): any => {
@@ -283,9 +289,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
                 AddChild();
               }, 0)
             }}>
-            <ButtonText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
+            <ButtonUpperCaseText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonUpperCaseText>
           </ButtonPrimary>
-        </ButtonContainer>
+        </ButtonMangeProfileContainer>
       </ShiftFromTop10>
     </View>
   </>;

@@ -154,6 +154,8 @@ export const getAllPeriodicSyncData = (): any => {
     console.log("Don't sync");
   }
   else {
+    console.log('ChildList is',childList)
+    if(childList.length>0){
     childList.map((child: any) => {
       const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
       if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
@@ -169,6 +171,7 @@ export const getAllPeriodicSyncData = (): any => {
         }
       }
     })
+  }
     ageBrackets = [...new Set(ageBrackets)];
     if (bufferAgeBracket) {
       ageBrackets = ageBrackets.filter((val: any) => !bufferAgeBracket.includes(val));
