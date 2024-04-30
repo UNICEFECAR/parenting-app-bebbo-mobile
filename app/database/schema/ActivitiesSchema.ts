@@ -52,5 +52,6 @@ export const ActivitiesEntitySchema: ObjectSchema = {
     related_milestone: { type: 'list', objectType: 'int', },
     mandatory: { type: 'int' },
     embedded_images: { type: 'list', objectType: 'string', optional: true },
+   
   }
 };

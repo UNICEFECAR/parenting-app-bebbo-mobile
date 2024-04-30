@@ -77,6 +77,6 @@ export const ArticleEntitySchema: ObjectSchema = {
     licensed: { type: 'int' },
     premature: { type: 'int' },
     mandatory: { type: 'int' },
-    embedded_images: { type: 'list', objectType: 'string', optional: true },
+    embedded_images: { type: 'list', objectType: 'string', optional: true }
   }
 };
