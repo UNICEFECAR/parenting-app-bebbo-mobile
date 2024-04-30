@@ -15,7 +15,7 @@ on:
 env:
 
   WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
-  SCHEME: ${{ 'ParentBuddyApp' }}
+  SCHEME: ${{ 'ParentBuddyAppDev' }}
   CONFIGURATION: ${{ 'Release' }}
   ARCHIVE_PATH: ${{ 'ios/build/ParentBuddyApp.xcarchive' }}
   EXPORT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
@@ -125,12 +125,12 @@ jobs:
         run: |
           mkdir -p build && mkdir -p staging && mkdir -p prod
 
-      - name: Build Archive
-        run: |
-          xcodebuild -target ParentBuddyAppDev -configuration "$CONFIGURATION" -archivePath "$ARCHIVE_PATH" \
-          archive -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
-          PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
-          CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE"
+      # - name: Build Archive
+      #   run: |
+      #     xcodebuild -target ParentBuddyAppDev -configuration "$CONFIGURATION" -archivePath "$ARCHIVE_PATH" \
+      #     archive -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
+      #     PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
+      #     CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE"
           
         # -workspace "$WORKSPACE" -scheme "$SCHEME" \
          # -sdk iphoneos \
@@ -143,12 +143,14 @@ jobs:
         # CODE_SIGN_STYLE="Manual" \
         # CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE"
 
-        # xcodebuild -workspace $WORKPLACE -scheme $SCHEME -configuration $CONFIGURATION \
-        # archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
-        # PROVISIONING_STYLE="Manual" \
-        # PROVISIONING_PROFILE={$DISTRIBUTION_PROFILE_STAGING} \
-        # CODE_SIGN_STYLE="Manual" \
-        # CODE_SIGN_IDENTITY={$DEVELOPMENT_CERTIFICATE} \
+      - name: Build Archive
+        run: |
+          xcodebuild -workspace "$WORKPLACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
+          archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
+          PROVISIONING_STYLE="Manual" \
+          PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
+          CODE_SIGN_STYLE="Manual" \
+          CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" \
           
           
       #- name: Export STAGING
