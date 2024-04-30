@@ -14,12 +14,13 @@ import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { articlesTintcolor } from '@styles/style';
+import { articlesTintcolor, bgColor1, bgcolorWhite2, greyCode } from '@styles/style';
 import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View
+  ActivityIndicator,
+  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ThemeContext } from 'styled-components/native';
@@ -32,9 +33,11 @@ import { logEvent, synchronizeEvents } from '../../../services/EventSyncService'
 import { dataRealmCommon } from '../../../database/dbquery/dataRealmCommon';
 import { HistoryEntity, SearchHistorySchema } from '../../../database/schema/SearchHistorySchema';
 import VectorImage from 'react-native-vector-image';
-import { index } from 'realm';
+import unorm from 'unorm';
+import Fuse from 'fuse.js';
+import MiniSearch from 'minisearch'
 import { ARTICLE_SEARCHED } from '@assets/data/firebaseEvents';
-
+import Intl from 'intl';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
@@ -53,38 +56,32 @@ const styles = StyleSheet.create({
     backgroundColor: articlesTintcolor,
     flex: 1
   },
-  container: {
-    flexDirection: 'column'
-  },
-  divider: {
-    height: 1,
-    backgroundColor: 'grey',
-  },
   flex1View: {
     flex: 1
   },
-  historyList: {
-    position: 'absolute',
-    top: 51,
-    left: 0,
-    right: 0,
-    zIndex: 1,
-    paddingBottom: 20,
-    backgroundColor: '#fff',
-  },
   historyItem: {
-    flexDirection: 'row',
-    padding: 10,
-    marginHorizontal: 10,
+    borderBottomColor: greyCode,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    flexDirection: 'row',
+    marginHorizontal: 10,
+    padding: 10,
+  },
+  historyList: {
+    backgroundColor: bgcolorWhite2,
+    left: 0,
+    paddingBottom: 20,
+    position: 'absolute',
+    right: 0,
+    top: 51,
+    zIndex: 1,
   },
   historyText: {
     fontSize: 14,
     marginHorizontal: 5
   },
   pressablePadding: {
-    padding: 15
+    paddingLeft: 15,
+    paddingVertical: 15
   },
 
 });
@@ -100,6 +97,7 @@ const Articles = ({ route, navigation }: any): any => {
   const [queryText, searchQueryText] = useState('');
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(true);
+  const [loadingArticle, setLoadingArticle] = useState(false);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
   const setIsModalOpened = async (varkey: any): Promise<any> => {
@@ -124,6 +122,7 @@ const Articles = ({ route, navigation }: any): any => {
   const modalScreenText = 'articleModalText';
   const netInfo = useNetInfoHook();
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
+
 
   //merge array 
   const mergearr = (articlearrold: any[], videoartarrold: any[], isSuffle: boolean): any => {
@@ -170,62 +169,53 @@ const Articles = ({ route, navigation }: any): any => {
 
     return combinedarr;
   }
+  const preprocessArticles = (articles: any): any => {
+    return articles.map((article: any) => ({
+      ...article,
+      normalizedTitle: article.title,
+      normalizedSummary: article.summary,
+      normalizedBody: article.body
+    }));
+  };
+
   const getSearchedKeywords = async (): Promise<any> => {
     const realm = await dataRealmCommon.openRealm();
 
     if (realm != null) {
-      console.log('Seach History is...', realm?.objects('SerachHistory'))
-      const unsynchronizedEvents: any = realm.objects('SerachHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
+      console.log('Seach History is...', realm?.objects('SearchHistory'))
+      const unsynchronizedEvents: any = realm.objects('SearchHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
       console.log('Seach History is', unsynchronizedEvents)
       setSearchHistory(unsynchronizedEvents);
 
     }
-    console.log('search history.......', searchHistory)
-    //const realm = await dataRealmCommon.openRealm(); 
-    //const history:any = realm?.objects('SerachHistory');
+    console.log('search history.......', searchHistory);
 
   }
-  // useEffect(() => {
-  //   // Load initial search history from RealmDB
 
-  // }, []);
-  const storeUnsyncedEvent = async (realm: any, keyword: any): Promise<any> => {
-
+  //store previous searched keyword
+  const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
     realm.write(() => {
-      const unsyncedEvent = realm.create('SerachHistory', {
+      const storeKeyword = realm.create('SearchHistory', {
         keyword: keyword,
         createdAt: new Date(),
       }, Realm.UpdateMode.Modified);
-      console.log('EventClick unsyncedEvent for category', unsyncedEvent);
     });
   }
+
   const saveToRealm = async (keyword: string): Promise<any> => {
-    // const realm = await dataRealmCommon.openRealm();
-    // console.log('Realm Data is',realm?.create())
-    // realm?.create('SerachHistory', {
-    //   name: keyword,
-    //   createdAt: new Date(),
-    // });
     const historyData: any = {
       keyword: keyword,
       createdAt: new Date(),
     }
     await dataRealmCommon.create<HistoryEntity>(SearchHistorySchema, historyData);
-    // realm?.write(() => {
-    //   realm.create('SearchHistory', {
-    //     keyword: keyword,
-    //     timestamp: new Date(),
-    //   });
-    // });
   };
+
   useFocusEffect(
     React.useCallback(() => {
-      // whatever
       if (netInfo.isConnected) {
         synchronizeEvents(netInfo.isConnected);
       }
-      // getSearchedKeywords()
-      console.log('UseFouusEffect Articles');
+      getSearchedKeywords()
       setModalVisible(articleModalOpened);
     }, [articleModalOpened])//historyVisible
   );
@@ -262,10 +252,11 @@ const Articles = ({ route, navigation }: any): any => {
   let articleData: any = mergearr(articleDataOld, videoarticleData, true);
   const [filteredData, setfilteredData] = useState<any>([]);
   const [filterArray, setFilterArray] = useState([]);
-  const [loadingArticle, setLoadingArticle] = useState(true);
+
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const videoIsFocused = useIsFocused();
   const goToArticleDetail = (item: any, queryText: string): any => {
+    const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Articles",
@@ -273,7 +264,7 @@ const Articles = ({ route, navigation }: any): any => {
         backgroundColor: backgroundColor,
         detailData: item,
         listCategoryArray: filterArray,
-        queryText: queryText
+        queryText: keywords
       });
   };
   const RenderArticleItem = ({ item, index }: any): any => {
@@ -301,6 +292,7 @@ const Articles = ({ route, navigation }: any): any => {
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
   }
   const setFilteredArticleData = (itemId: any): any => {
+    setHistoryVisible(false)
     if (articleData != null && articleData != undefined && articleData.length > 0) {
       setLoadingArticle(true);
       if (itemId.length > 0) {
@@ -327,17 +319,17 @@ const Articles = ({ route, navigation }: any): any => {
         }
 
         //combine-array
-        const combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
+        const combineDartArr = mergearr(newArticleData, newvideoArticleData, false);
 
-        setfilteredData(combinedartarr);
+        setfilteredData(combineDartArr);
 
         setLoadingArticle(false);
         toTop();
       } else {
         let newArticleData = articleData != '' ? articleData : [];
-        const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+        const videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
         let newvideoArticleData = videoarticleData != '' ? videoarticleData : [];
-        let combinedartarr = [];
+        let combineDartArr = [];
         let titleData = [];
         let bodyData = [];
         let videoTitleData = [];
@@ -353,8 +345,8 @@ const Articles = ({ route, navigation }: any): any => {
           const combineVideoArticleData: any[] = videoTitleData.concat(videoBodyData)
           newvideoArticleData = [...new Set(combineVideoArticleData)];
 
-          combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
-          setfilteredData(combinedartarr);
+          combineDartArr = mergearr(newArticleData, newvideoArticleData, false);
+          setfilteredData(combineDartArr);
 
         } else {
           setfilteredData(newArticleData);
@@ -372,7 +364,32 @@ const Articles = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log('UseFouusEffect Articles one');
+      console.log('UseFocusEffect Articles two');
+      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+        setKeyboardStatus(true);
+      });
+      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+        setKeyboardStatus(false);
+      });
+      return (): any => {
+        {
+          navigation.setParams({ categoryArray: [] })
+          showSubscription.remove();
+          hideSubscription.remove();
+          // route.params?.currentSelectedChildId = 0;
+        }
+      }
+    }, [])
+  );
+
+
+  const onFilterArrayChange = (newFilterArray: any): any => {
+    setFilterArray(newFilterArray)
+  }
+  
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log('UseFocusEffect Articles one');
       if (queryText == '') {
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray && route.params?.categoryArray.length > 0) {
@@ -396,100 +413,131 @@ const Articles = ({ route, navigation }: any): any => {
 
     }, [route.params?.categoryArray, activeChild?.uuid, languageCode, queryText])
   );
-  useFocusEffect(
-    React.useCallback(() => {
-      console.log('UseFouusEffect Articles two');
-      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-        setKeyboardStatus(true);
-        //  setHistoryVisible(true);
-      });
-      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-        setKeyboardStatus(false);
-      });
-      return (): any => {
-        {
-          navigation.setParams({ categoryArray: [] })
-          showSubscription.remove();
-          hideSubscription.remove();
-          // route.params?.currentSelectedChildId = 0;
-        }
-      }
-    }, [])
-  );
 
-
-
-
-  const onFilterArrayChange = (newFilterArray: any): any => {
-
-    setFilterArray(newFilterArray)
+  const [searchIndex, setSearchIndex] = useState<any>(null);
+  const suffixes = (term: any, minLength: any): any => {
+    if (term == null) { return []; }
+    const tokens = [];
+    for (let i = 0; i <= term.length - minLength; i++) {
+      tokens.push(term.slice(i));
+    }
+    return tokens;
   }
-  //code for getting article dynamic data ends here.
+  // add minisearch on active child article data 
+  useEffect(() => {
+    async function initializeSearchIndex() {
+      await new Promise(resolve => setTimeout(resolve, 0));
+      let videoArticleDataAllCategory:any;
+      if(activeChild!=null && activeChild.taxonomyData!=null && activeChild?.gender!=null){
+         videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+      }
+      const combineDartArr = mergearr(articleDataall, videoArticleDataAllCategory, false);
+      articleData = [...combineDartArr];
+      const processedArticles = preprocessArticles(articleData);
+      const searchIndex = new MiniSearch({
+        processTerm: (term) => suffixes(term, 3),
+        extractField: (document, fieldName): any => {
+          const arrFields = fieldName.split(".");
+          if (arrFields.length === 2) {
+            return (document[arrFields[0]] || [])
+              .map((arrField: any) => arrField[arrFields[1]] || "")
+              .join(" ");
+          } else if (arrFields.length === 3) {
+            const tmparr = (document[arrFields[0]] || []).flatMap(
+              (arrField: any) => arrField[arrFields[1]] || []
+            );
+            return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
+          }
+          return fieldName
+            .split(".")
+            .reduce((doc, key) => doc && doc[key], document);
+        },
+        searchOptions: {
+          boost: { title: 2, summary: 1.5, body: 1 },
+          bm25: { k: 1.0, b: 0.7, d: 0.5 },
+          fuzzy: true,
+          // prefix true means it will contain "foo" then search for "foobar"
+          prefix: true,
+          weights: {
+            fuzzy: 0.6,
+            prefix: 0.6
+          }
+        },
+        fields: ['title', 'summary', 'body'],
+        storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'related_articles', 'embedded_images']
+      });
+
+      processedArticles.forEach((item: any) => searchIndex.add(item));
+      setSearchIndex(searchIndex);
+
+    }
+
+    initializeSearchIndex();
+  }, []);
+
   const searchList = async (queryText: any): Promise<any> => {
-    Keyboard.dismiss();
+    setHistoryVisible(false)
     setLoadingArticle(true);
-    console.log('Here log 2')
+    await new Promise(resolve => setTimeout(resolve, 0));
+    Keyboard.dismiss();
     let artData: any;
-    let newvideoArticleData: any;
-    let combinedartarr = [];
-    const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-    let searchTitleData = [];
-    let searchBodyData = [];
-    let searchVideoTitleData = [];
-    let searchVideoBodyData = [];
+    let combineDartArr: [];
+    let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
+      const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
+      if (keywords.length > 1) {
+        const resultsPromises = keywords.map(async (keyword: any) => {
+          const results = searchIndex.search(keyword);
+          return results;
+        });
+        const resultsArrays = await Promise.all(resultsPromises);
+        const aggregatedResults = resultsArrays.flat();
+        setfilteredData(aggregatedResults);
+        setLoadingArticle(false)
+        toTop()
+      } else {
+        const results = searchIndex.search(queryText);
+        console.log('Results Data is', results)
+        console.log('Results length is', results.length)
+        setfilteredData(results);
+        setLoadingArticle(false)
+        toTop()
+      }
       const eventData = { 'name': ARTICLE_SEARCHED, 'params': { article_searched: queryText } }
       logEvent(eventData, netInfo.isConnected)
-      //saveToRealm(queryText);
       const realm = await dataRealmCommon.openRealm();
-      storeUnsyncedEvent(realm, queryText)
+      storeSearchKeyword(realm, queryText)
 
       // Update search history state
-
-      const updatedHistory = [queryText, ...searchHistory.slice(0, 4)];
+      const updatedHistoryWithoutClickedItem = searchHistory.filter(item => item !== queryText);
+      const updatedHistory = [queryText, ...updatedHistoryWithoutClickedItem.slice(0, 4)];
       const filterredUpdatedHistory = [...new Set(updatedHistory)];
-      console.log('updatedHistory', filterredUpdatedHistory)
       setSearchHistory(filterredUpdatedHistory);
 
-
       // Delete older entries beyond the latest 5
-      const olderEntries = realm?.objects<HistoryEntity>('SerachHistory').sorted('createdAt', true).slice(5);
-      console.log('Older Entries', olderEntries)
-      realm?.write(() => {
-        realm.delete(olderEntries);
-      });
+      const olderEntries = realm?.objects<HistoryEntity>('SearchHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
+      if (olderEntries != undefined && olderEntries?.length > 5) {
+        realm?.write(() => {
+          realm.delete(olderEntries);
+        });
+      }
 
-      searchTitleData = articleDataall.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-      searchBodyData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-      const searchArticleData: any[] = searchTitleData.concat(searchBodyData)
-      artData = [...new Set(searchArticleData)];
-
-      searchVideoTitleData = videoarticleDataAllCategory.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-      searchVideoBodyData = videoarticleDataAllCategory.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-      const searchVideoArticleData: any[] = searchVideoTitleData.concat(searchVideoBodyData)
-      newvideoArticleData = [...new Set(searchVideoArticleData)];
-
-      combinedartarr = mergearr(artData, newvideoArticleData, false);
 
     }
     else {
       artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
       newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-      combinedartarr = mergearr(artData, newvideoArticleData, true);
-      // mergearr
+      combineDartArr = mergearr(artData, newvideoArticleData, true);
+      articleData = [...combineDartArr];
+      setFilteredArticleData(filterArray);
+      setLoadingArticle(false);
     }
-
-    articleData = [...combinedartarr];
-    setFilteredArticleData(filterArray);
-
   }
   const renderSearchHistoryItem = ({ item }: { item: string }): any => (
     <Pressable
       onPress={async (): Promise<any> => {
-        console.log('Here log 1', item);
-        searchQueryText(item);
         Keyboard.dismiss();
-        setHistoryVisible(false);
+        searchQueryText(item);
         await searchList(item);
       }}
     >
@@ -506,7 +554,7 @@ const Articles = ({ route, navigation }: any): any => {
 
   return (
     <>
-      <OverlayLoadingComponent loading={loadingArticle} />
+      {loadingArticle && <OverlayLoadingComponent loading={loadingArticle} />}
       <View style={styles.containerView}>
         <KeyboardAvoidingView
           // behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -523,60 +571,11 @@ const Articles = ({ route, navigation }: any): any => {
           />
           <FlexCol>
             <SearchBox>
-
-              <SearchInput
-                autoCapitalize="none"
-                autoCorrect={false}
-                clearButtonMode="always"
-                onChangeText={async (queryText: any): Promise<any> => {
-                  console.log('loghererer', queryText)
-                  if (queryText.replace(/\s/g, "") == "") {
-                    console.log('loghererer1')
-                    searchQueryText(queryText.replace(/\s/g, ''));
-                    //setHistoryVisible(true);
-                    // await searchList(queryText)
-                  } else {
-                    console.log('loghererer2')
-                    searchQueryText(queryText);
-                    //  setHistoryVisible(true);
-                  }
-                }}
-                value={queryText}
-                onSubmitEditing={async (event: any): Promise<any> => {
-                  console.log("event-", event);
-                  Keyboard.dismiss();
-                  await searchList(queryText);
-                }}
-                multiline={false}
-                // placeholder="Search for Keywords"
-                placeholder={t('articleScreensearchPlaceHolder')}
-                placeholderTextColor={"gray"}
-                allowFontScaling={false}
-              />
-
-              {
-                Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
-                <OuterIconRow>
-
-                  <IconClearPress onPress={async (): Promise<any> => {
-                    console.log('cleartext')
-                    searchQueryText('');
-                    await searchList(queryText);
-                    Keyboard.dismiss();
-                  }}>
-                    <Icon
-                      name="ic_close"
-                      size={10}
-                      color="#fff"
-                    />
-                  </IconClearPress>
-
-                </OuterIconRow>
-              }
               <OuterIconRow>
 
                 <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
                   e.preventDefault();
+                  Keyboard.dismiss();
                   await searchList(queryText);
 
                 }}>
@@ -589,21 +588,76 @@ const Articles = ({ route, navigation }: any): any => {
                 </Pressable>
 
               </OuterIconRow>
+              <SearchInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                clearButtonMode="always"
+                onFocus={(): any => {
+                  setHistoryVisible(true);
+                }}
+                onChangeText={async (queryText: any): Promise<any> => {
+                  console.log('loghererer', queryText)
+                  if (queryText.replace(/\s/g, "") == "") {
+                    searchQueryText(queryText.replace(/\s/g, ''));
+                    setHistoryVisible(true);
+                    //  await searchList(queryText)
+                  } else {
+                    searchQueryText(queryText);
+                    setHistoryVisible(true);
+                  }
+                }}
+                value={queryText}
+
+                onSubmitEditing={async (event: any): Promise<any> => {
+                  console.log("event-", queryText);
+                  setHistoryVisible(false)
+                  Keyboard.dismiss();
+                  await searchList(queryText);
+                }}
+                multiline={false}
+                // placeholder="Search for Keywords"
+                placeholder={t('articleScreensearchPlaceHolder')}
+                placeholderTextColor={"#777779"}
+                allowFontScaling={false}
+              />
+
+              {
+                Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
+                <OuterIconRow>
+
+                  <IconClearPress onPress={async (): Promise<any> => {
+                    console.log('cleartext')
+                    Keyboard.dismiss();
+                    searchQueryText('');
+                    setHistoryVisible(true);
+
+                  }}>
+                    <Icon
+                      name="ic_close"
+                      size={10}
+                      color="#fff"
+                    />
+                  </IconClearPress>
+
+                </OuterIconRow>
+              }
+
 
 
 
             </SearchBox>
-            {/* {searchHistory.length!==0 && historyVisible  &&
+            {searchHistory.length !== 0 && historyVisible &&
 
 
               <FlatList
                 data={searchHistory}
                 renderItem={renderSearchHistoryItem}
+                keyboardShouldPersistTaps='handled'
                 keyExtractor={(item, index): any => index.toString()}
                 style={styles.historyList}
               />
 
-            } */}
+            }
             <DividerArt></DividerArt>
             <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
             <DividerArt></DividerArt>
@@ -633,12 +687,9 @@ const Articles = ({ route, navigation }: any): any => {
 
           </FlexCol>
           <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
-
           <OverlayLoadingComponent loading={profileLoading} />
         </KeyboardAvoidingView>
-
       </View>
-
     </>
   );
 };
