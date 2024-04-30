@@ -38,6 +38,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
+import { ViewDetailsEntity } from '../../database/schema/ArticleActivityViewSchema';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -230,9 +231,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       backHandler.remove();
     }
   }, []);
-
   useEffect(() => {
+
     const functionOnLoad = async (): Promise<any> => {
+     
+
       if (fromScreen == "VaccinationTab" || fromScreen == "FirebaseVaccinationTab" || fromScreen == "Articles" || fromScreen == "FirebaseArticles" || fromScreen == "HealthCheckupsTab" || fromScreen == "FirebaseHealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat") {
         console.log(detailData, "..detailData..")
 
@@ -347,6 +350,37 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           }
         }
       }
+
+      const realm = await dataRealmCommon.openRealm();
+      if (fromScreen === 'Activities' || fromScreen === "Articles" || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' ||  fromScreen === 'FavActivities' ||
+      fromScreen === "VaccinationTab" || fromScreen === "FirebaseVaccinationTab" || fromScreen === "FirebaseArticles" || fromScreen === "HealthCheckupsTab" || fromScreen === "FirebaseHealthCheckupsTab" 
+      || fromScreen === "AddChildHealthCheckup" || fromScreen === "AddChildVaccination" || fromScreen === "MileStone" ||  fromScreen === "FavArticles" || fromScreen === "SupportChat") {
+        if (detailData.type == "Article") {
+          const articleVisitCount: any = realm?.objects<ViewDetailsEntity>('ViewDetails').filter((item:any)=>item.id ===detailData.id)
+          console.log('articleVisitCount visit count', articleVisitCount);
+          realm?.write(() => {
+            const articleEvent = realm.create('ViewDetails', {
+              id: detailData?.id,
+              type: 'Article',
+              isViewed: true,
+              viewCount: articleVisitCount.length>0? articleVisitCount[0].viewCount + 1: 1,
+            },Realm.UpdateMode.Modified);
+            console.log('Artcile Evrnt', articleEvent);
+          });
+        } else {
+          const activityVisitCount: any = realm?.objects<ViewDetailsEntity>('ViewDetails').filter((item:any)=>item.id ===detailData.id)
+          console.log('Activity visit count', activityVisitCount,detailData?.id);
+          realm?.write(() => {
+            const activityEvent = realm.create('ViewDetails', {
+              id: detailData?.id,
+              type: 'Activity',
+              isViewed: true,
+              viewCount: activityVisitCount.length>0? activityVisitCount[0].viewCount + 1: 1,
+            },Realm.UpdateMode.Modified);
+            console.log('Activity Evrnt', activityEvent);
+          });
+        }
+      }
     }
     functionOnLoad();
     return (): any => {
@@ -388,31 +422,39 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       // fontFamily: '"Open Sans"' // beware to quote font family name!
     });
 
-  // A method for highlighting specific words within content
-  const highlightWord = (content: string, query: string): string => {
+  const highlightWord = (content: string, query: string[]): any => {
     if (typeof content !== 'string') {
-      return "";
+        return "";
     }
 
-    const regex = new RegExp(`${query}`, 'gi');
-    const highlightedContent = content.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+    let highlightedContent = content; // Initialize with original content
+   
+    query.forEach((item) => {
+        const regex = new RegExp(`${item}`, 'gi');
+        if(item.length>2){
+        highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+        }
+      });
+  
 
     return highlightedContent;
-  }
+}
 
-  const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string): string => {
+
+  const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string[]): string => {
     console.log('JsonContent is', jsonContent)
     const parts = jsonContent.split(/(<img[^>]*>)/i);
 
     // Map each part and add spaces around the word if it is not inside an img tag
     const modifiedParts = parts.map((part: any): any => {
       if (!/<img[^>]*>/i.test(part)) {
-        return highlightWord(part, wordToHighlight);
-      }
+        return highlightWord(part, wordToHighlight); // Pass wordToHighlight array here
+    }
       return part;
     });
     return modifiedParts.join('')
   }
+  
   const highlightedTitle = queryText != undefined
     ? queryText.length !== 0
       ? highlightWord(detailDataToUse?.title, queryText)
@@ -527,27 +569,27 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   renderers={{
                     table,
                     iframe,
-                    a: (htmlAttribs: any,): any => {
-                      const imagePath: any = htmlAttribs.src;
-                      console.log(imagePath, "..imagePath");
-                      if (imagePath != "" && imagePath != null && imagePath != undefined) {
-                        const itemnew: any = {
-                          cover_image: {
-                            url: imagePath
-                          }
-                        };
-                        console.log(itemnew, "..itemnew")
-                        return (
-                          <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
-                        );
-                      }
-                    },
+                    // a: (htmlAttribs: any,): any => {
+                    //   const imagePath: any = htmlAttribs.src;
+                    //   console.log(imagePath, "..imagePath");
+                    //   if (imagePath != "" && imagePath != null && imagePath != undefined) {
+                    //     const itemnew: any = {
+                    //       cover_image: {
+                    //         url: imagePath
+                    //       }
+                    //     };
+                    //     console.log(itemnew, "..itemnew")
+                    //     return (
+                    //       <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                    //     );
+                    //   }
+                    // },
                   }}
                   WebView={WebView}
                   ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{
 
-                  
+
                     table: {
                       cssRules
                       // Put the table config here (previously,

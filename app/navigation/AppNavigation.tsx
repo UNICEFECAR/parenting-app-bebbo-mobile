@@ -6,6 +6,7 @@ import AddSiblingData from '@screens/AddSiblingData';
 import ChildSetup from '@screens/ChildSetup';
 import ChildImportSetup from '@screens/ChildImportSetup';
 import ChildSetupList from '@screens/ChildSetupList';
+import ServiceProviderInfoSetup from '@screens/ServiceProviderInfoSetup';
 import EditParentDetails from '@screens/EditParentDetails';
 import AddNewChildgrowth from '@screens/growth/AddNewChildgrowth';
 import AddNewChildHeight from '@screens/growth/AddNewChildHeight';
@@ -52,6 +53,7 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
+import AddChildSetup from '@screens/AddChildSetup';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -825,11 +827,6 @@ export default (): any => {
             options={{ headerShown: false }}
           />
           <RootStack.Screen
-            name="Walkthrough"
-            component={Walkthrough}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
             name="Terms"
             component={Terms}
             options={{ headerShown: false }}
@@ -849,6 +846,11 @@ export default (): any => {
             component={ChildSetup}
             options={{ headerShown: false }}
           />
+             <RootStack.Screen
+            name="AddChildSetup"
+            component={AddChildSetup}
+            options={{ headerShown: false }}
+          />
           <RootStack.Screen
             name="ChildImportSetup"
             component={ChildImportSetup}
@@ -857,6 +859,11 @@ export default (): any => {
           <RootStack.Screen
             name="ChildSetupList"
             component={ChildSetupList}
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <RootStack.Screen
+            name="ServiceProviderInfoSetup"
+            component={ServiceProviderInfoSetup}
             options={{ headerShown: false, gestureEnabled: false }}
           />
           <RootStack.Screen

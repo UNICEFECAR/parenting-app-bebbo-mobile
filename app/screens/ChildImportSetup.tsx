@@ -8,7 +8,8 @@ import {
 } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-  ButtonPrimary, ButtonRow, ButtonText
+  ButtonPrimary, ButtonRow, ButtonText,
+  ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildContentArea,
@@ -48,12 +49,12 @@ import {
   ShiftFromTop10,
 } from '../styles/typography';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
-import { primaryColor } from '@styles/style';
+import { bgcolorWhite, primaryColor } from '@styles/style';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
 const styles = StyleSheet.create({
   containerView: {
-    backgroundColor: primaryColor,
+    backgroundColor: bgcolorWhite,
     flex: 1
   },
   headingStyle1: {
@@ -78,7 +79,7 @@ const ChildImportSetup = (props: any): any => {
   const [relationshipname, setRelationshipName] = useState('');
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
@@ -322,7 +323,7 @@ const ChildImportSetup = (props: any): any => {
                 }
 
               }}>
-              <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
+              <ButtonUpperCaseText>{t('childSetupcontinueBtnText')}</ButtonUpperCaseText>
             </ButtonPrimary>
           </ButtonRow>
         </SideSpacing25>
