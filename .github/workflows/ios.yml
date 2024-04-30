@@ -101,8 +101,8 @@ jobs:
           # import certificate and provisioning profile from secrets
           echo -n "$DISTRIBUTION_CERTIFICATE" | base64 --decode --output $CERT_PATH
           echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 --decode --output $PP_PATH_PROD
-          #echo -n "$DEVELOPMENT_CERTIFICATE" | base64 --decode --output $DEV_CERT_PATH
-          #echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 --decode --output $PP_PATH_STAGING
+          echo -n "$DEVELOPMENT_CERTIFICATE" | base64 --decode --output $DEV_CERT_PATH
+          echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 --decode --output $PP_PATH_STAGING
           
           
           # create temporary keychain
@@ -115,7 +115,7 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH_PROD ~/Library/MobileDevice/Provisioning\ Profiles
-         # cp $PP_PATH_STAGING ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH_STAGING ~/Library/MobileDevice/Provisioning\ Profiles
   
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.3.app
@@ -129,12 +129,27 @@ jobs:
 
       - name: Build Archive
         run: |
-          xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
-          archive -archivePath "$ARCHIVE_PATH" -allowProvisioningUpdates
+
+          cd packages/app-mobile/ios
+          xcodebuild -workspace "$WORKSPACE" \
+          -scheme "$SCHEME" \
+          -sdk iphoneos \
+          -configuration Debug \
+          -destination generic/platform=iOS \
+          -archivePath "$ARCHIVE_PATH" \
+          archive -allowProvisioningUpdates \
           PROVISIONING_STYLE="Manual" \
-          PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" \
+          PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
           CODE_SIGN_STYLE="Manual" \
-          CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE"
+          CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE"
+
+          
+        # xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
+        # archive -archivePath "$ARCHIVE_PATH" -allowProvisioningUpdates
+        # PROVISIONING_STYLE="Manual" \
+        # PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" \
+        # CODE_SIGN_STYLE="Manual" \
+        # CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE"
 
         # xcodebuild -workspace $WORKPLACE -scheme $SCHEME -configuration $CONFIGURATION \
         # archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
@@ -144,21 +159,19 @@ jobs:
         # CODE_SIGN_IDENTITY={$DISTRIBUTION_CERTIFICATE} \
           
           
-      # - name: Export STAGING
-      #   run: |
-      #     xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_STAGING . -exportOptionsPlist $PLIST_PATH_STAGING \
-      
-      - name: Export PROD
+      - name: Export STAGING
         run: |
-          xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
+          xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_STAGING . -exportOptionsPlist $PLIST_PATH_STAGING \
+      
+      #- name: Export PROD
+       # run: |
+        #  xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH_PROD . -exportOptionsPlist $PLIST_PATH_PROD \
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Bebbo.ipa
-          path:  ${{ env.ARTIFACT_PATH_PROD }}
-            # ${{ env.ARTIFACT_PATH_STAGING }}
-            
+          path: ${{ env.ARTIFACT_PATH_STAGING }} 
 
 #            name: ${{ env.ARTIFACT_NAME }}
  #           path: |
@@ -169,6 +182,6 @@ jobs:
         if: ${{ always() }}
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-            rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
-        # rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
     
