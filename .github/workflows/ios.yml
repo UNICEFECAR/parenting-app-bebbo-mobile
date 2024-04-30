@@ -127,14 +127,10 @@ jobs:
 
       - name: Build Archive
         run: |
-          xcodebuild -target ParentBuddyAppDev \ 
-          -configuration "$CONFIGURATION" \
-          -archivePath "$ARCHIVE_PATH" \
-          archive -allowProvisioningUpdates
-          PROVISIONING_STYLE="Manual" \
+          xcodebuild -target ParentBuddyAppDev -configuration "$CONFIGURATION" -archivePath "$ARCHIVE_PATH" \
+          archive -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
           PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
-          CODE_SIGN_STYLE="Manual" \
-          CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE"
+          CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE"
           
         # -workspace "$WORKSPACE" -scheme "$SCHEME" \
          # -sdk iphoneos \
