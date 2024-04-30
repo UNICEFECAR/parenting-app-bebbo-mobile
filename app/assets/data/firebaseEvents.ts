@@ -9,6 +9,7 @@ export const CHILD_MILESTONE_TRACKED="child_milestone_tracked"; //,{age_id: 'P12
 export const VACCINE_REMINDER_SET="child_vaccine_reminder_set";
 export const HEALTH_CHECKUP_ENTERED="child_health_checkup_entered";//,{age_id: 'P12453"}
 export const GAME_AGEGROUP_SELECTED="game_age_group_selected"//,{age_id: 'P12453"}
+export const ADVICE_AGEGROUP_SELECTED="advice_age_group_selected"//,{age_id: 'P12453"}
 export const CHILD_DEVELOPMENT_AGEGROUP_SELECTED="child_development_age_group_selected"//,{age_id: 'P12453"}
 export const HEALTH_CHECKUP_REMINDER_SET="child_health_checkup_reminder_set";
 export const EXPECTED_CHILD_ENTERED="expected_child_entered";
