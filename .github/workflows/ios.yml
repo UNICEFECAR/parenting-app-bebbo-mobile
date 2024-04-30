@@ -55,8 +55,8 @@ jobs:
         with:
           node-version: '16.14.0'
         
-    #  - name: Install dependencies
-     #   run: npm install
+      - name: Install dependencies
+        run: npm install
       
       - name: 'Create env file'
         run: |
@@ -83,9 +83,9 @@ jobs:
         #  touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
          # echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
-  #    - name: Install pod dependencies
-   #     run: | 
-    #      cd ios && pod install
+      - name: Install pod dependencies
+        run: | 
+          cd ios && pod install
 
       - name: Signing & Provisioning
         run: |
