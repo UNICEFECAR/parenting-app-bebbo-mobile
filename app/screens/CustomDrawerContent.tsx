@@ -1,5 +1,5 @@
 import { APP_SHARE, DONATE_OPENED, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-import { buildFor, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
+import { bebboShareMailId, buildFor, buildForBebbo, folejaShareMailId, shareText } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -57,6 +57,8 @@ import { useAppSelector } from '../../App';
 import { isFutureDate } from '../services/childCRUD';
 import { getVaccinesForPeriodCount } from '../services/notificationService';
 import { formatDate, addSpaceToHtml } from '../services/Utils';
+import { logEvent } from '../services/EventSyncService';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 
 const styles = StyleSheet.create({
   containerView: {
@@ -92,6 +94,7 @@ const styles = StyleSheet.create({
   }
 })
 const CustomDrawerContent = ({ navigation }: any): any => {
+  const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const [aboutAccordValue, onChangeAboutAccordValue] = React.useState(false);
@@ -249,7 +252,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                             <ImageIcon
                               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
                           ) : (
-                            <Icon name="ic_baby" size={25} color='#000' />
+                            activeChild.gender != null ?
+                            (activeChild.gender != null && activeChild.gender == 40 ?
+                              <Icon name="ic_baby" size={36} color="#000" /> :
+                              <Icon name="ic_baby_girl" size={36} color="#000" />) :
+                            <Icon name="ic_baby_girl" size={36} color="#000" />
                           )}
                         </OuterIconLeft15>
                       </OuterIconRow>
@@ -503,8 +510,13 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               </DrawerLinkView>
               <DrawerLinkView
                 onPress={(): any => {
-                  analytics().logEvent(EMAIL_SENT)
-                  Linking.openURL('mailto:admin@bebbo.app');
+                  const eventData = { 'name': EMAIL_SENT }
+                  logEvent(eventData, netInfo.isConnected)
+                  if (buildFor == String(buildForBebbo)) {
+                    Linking.openURL(bebboShareMailId)
+                  } else {
+                    Linking.openURL(folejaShareMailId);
+                  }
                 }}>
                 <OuterIconRow>
                   <OuterIconLeft15>
@@ -607,7 +619,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 {feedbackItem && feedbackItem?.body ?
                   <HTML
                     source={{ html: addSpaceToHtml(feedbackItem?.body) }}
-                    ignoredStyles={['color', 'font-size', 'font-family']}
+                    ignoredStyles={['color', 'fontSize', 'fontFamily']}
                   />
                   : null
                 }
