@@ -352,9 +352,9 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       }
 
       const realm = await dataRealmCommon.openRealm();
-      if (fromScreen === 'Activities' || fromScreen == "Articles" || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' ||  fromScreen === 'FavActivities' ||
-      fromScreen == "VaccinationTab" || fromScreen == "FirebaseVaccinationTab" || fromScreen == "FirebaseArticles" || fromScreen == "HealthCheckupsTab" || fromScreen == "FirebaseHealthCheckupsTab" 
-      || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" ||  fromScreen == "FavArticles" || fromScreen == "SupportChat") {
+      if (fromScreen === 'Activities' || fromScreen === "Articles" || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' ||  fromScreen === 'FavActivities' ||
+      fromScreen === "VaccinationTab" || fromScreen === "FirebaseVaccinationTab" || fromScreen === "FirebaseArticles" || fromScreen === "HealthCheckupsTab" || fromScreen === "FirebaseHealthCheckupsTab" 
+      || fromScreen === "AddChildHealthCheckup" || fromScreen === "AddChildVaccination" || fromScreen === "MileStone" ||  fromScreen === "FavArticles" || fromScreen === "SupportChat") {
         if (detailData.type == "Article") {
           const articleVisitCount: any = realm?.objects<ViewDetailsEntity>('ViewDetails').filter((item:any)=>item.id ===detailData.id)
           console.log('articleVisitCount visit count', articleVisitCount);

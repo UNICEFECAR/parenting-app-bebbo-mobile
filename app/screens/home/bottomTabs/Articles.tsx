@@ -196,7 +196,6 @@ const Articles = ({ route, navigation }: any): any => {
         keyword: keyword,
         createdAt: new Date(),
       }, Realm.UpdateMode.Modified);
-      console.log('Event is', unsyncedEvent);
     });
   }
   const saveToRealm = async (keyword: string): Promise<any> => {

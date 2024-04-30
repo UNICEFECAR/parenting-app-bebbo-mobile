@@ -7,7 +7,7 @@ export type ViewDetailsEntity = {
   viewCount: number;
 };
 export const ArticleActivityViewSchema: ObjectSchema = {
-  name: 'ViewDetails',
+  name: 'ArticleActivityView',
   properties: {
     id: { type: 'int' },
     type: { type: 'string' },
