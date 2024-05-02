@@ -19,6 +19,7 @@ import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
 import { EventSchema } from "../schema/EventSchema";
 import { SearchHistorySchema } from "../schema/SearchHistorySchema";
 import { ActivitySearchHistorySchema } from '../schema/ActivitySearchHistorySchema';
+import { ArticleActivityViewSchema } from '../schema/ArticleActivityViewSchema';
 
 export const dataRealmConfig: Realm.Configuration = {
   path: 'data.realm',
