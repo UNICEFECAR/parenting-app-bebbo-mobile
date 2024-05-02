@@ -292,14 +292,15 @@ const ChildImportSetup = (props: any): any => {
                     console.log("item--", item);
                     if (importResponse.length > 0) {
                       const childList = await getAllChildren(dispatch, childAge, 1);
-                      const Ages = await getAge(childList, childAge);
-                      let apiJsonData;
-                      if (Ages?.length > 0) {
-                        apiJsonData = apiJsonDataGet(String(Ages), "all")
-                      }
-                      else {
-                        apiJsonData = apiJsonDataGet("all", "all")
-                      }
+                      // const Ages = await getAge(childList, childAge);
+                      // let apiJsonData;
+                      // if (Ages?.length > 0) {
+                      //   apiJsonData = apiJsonDataGet(String(Ages), "all")
+                      // }
+                      // else {
+                      //   apiJsonData = apiJsonDataGet("all", "all")
+                      // }
+                      const apiJsonData = apiJsonDataGet("all")
                       const eventData = { 'name': ONBOARDING_CHILD_COUNT, 'params': { child_count: childList?.length } }
                       logEvent(eventData, netInfo.isConnected)
                       // analytics().logEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })

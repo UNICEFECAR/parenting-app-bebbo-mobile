@@ -387,7 +387,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     console.log(insertData, "...insertData")
     childSet.push(insertData);
     setLoading(false);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,'');
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,true,'');
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
