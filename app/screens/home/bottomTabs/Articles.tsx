@@ -354,7 +354,7 @@ const Articles = ({ route, navigation }: any): any => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      if (route.params?.backClicked != 'yes') {
+      if (route.params?.backClicked !== 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
           console.log("if route params 0", route.params);
@@ -586,8 +586,8 @@ const Articles = ({ route, navigation }: any): any => {
                   onFocus={(): any => {
                     setHistoryVisible(true);
                   }}
-                  onChangeText={async (queryText: any): Promise<any> => {
-                    console.log('loghererer', queryText)
+                  onChangeText={(queryText: any): any => {
+                    console.log('searched querytext is', queryText)
                     if (queryText.replace(/\s/g, "") == "") {
                       searchQueryText(queryText.replace(/\s/g, ''));
                       setHistoryVisible(true);
