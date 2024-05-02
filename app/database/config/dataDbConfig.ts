@@ -38,6 +38,7 @@ export const dataRealmConfig: Realm.Configuration = {
     HealthCheckUpsSchema,
     SurveysSchema,
     ActivitiesEntitySchema,
+    ArticleActivityViewSchema,
     StandardDevWeightForHeightSchema,
     StandDevObj,
     StandardDevHeightForAgeSchema,
@@ -46,7 +47,7 @@ export const dataRealmConfig: Realm.Configuration = {
     SearchHistorySchema,
     ActivitySearchHistorySchema
   ],
-  schemaVersion: 9,
+  schemaVersion: 10,
   onMigration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion < 1) {
       // const oldObjects = oldRealm.objects('VariableEntity');
