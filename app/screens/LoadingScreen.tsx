@@ -129,39 +129,39 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       //when downloading all data replace agebrackets
       const Ages = await getAgeWithAgeBrackets(prevPage);
       const newAges = [...new Set([...Ages.alldataarr, ...Ages.deltadataarr])]
-      let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
-      if (Ages.alldataarr?.length > 0 || Ages.deltadataarr?.length > 0) {
-        if (prevPage == "DownloadAllData" && allDataDownloadFlag == true) {
-          if (Ages.alldataarr?.length > 0) {
-            apiJsonDataarticleall = apiJsonDataGet(String(Ages.alldataarr), "all");
-          }
-          if (Ages.deltadataarr?.length > 0) {
-            apiJsonDataarticledelta = apiJsonDataGet(String(Ages.deltadataarr), "all", true, incrementalSyncDT);
-          }
-        }
-        else if (prevPage == "DownloadAllData" && allDataDownloadFlag == false) {
-          apiJsonDataarticleall = apiJsonDataGet("all", "all")
-        } else if (prevPage == "CountryLangChange") {
-          apiJsonDataarticleall = apiJsonDataGet(String(newAges), "all")
-        } else {
-          if (Ages.alldataarr?.length > 0) {
-            apiJsonDataarticleall = apiJsonDataGet(String(Ages.alldataarr), "all");
-          }
-          if (Ages.deltadataarr?.length > 0) {
-            apiJsonDataarticledelta = apiJsonDataGet(String(Ages.deltadataarr), "all", true, incrementalSyncDT);
-          }
-        }
-      } else {
-        apiJsonDataarticleall = apiJsonDataGet("all", "all");
-      }
-
+    // let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
+      // if (Ages.alldataarr?.length > 0 || Ages.deltadataarr?.length > 0) {
+      //   if (prevPage == "DownloadAllData" && allDataDownloadFlag == true) {
+      //     if (Ages.alldataarr?.length > 0) {
+      //       apiJsonDataarticleall = apiJsonDataGet("all");
+      //     }
+      //     if (Ages.deltadataarr?.length > 0) {
+      //       apiJsonDataarticledelta = apiJsonDataGet(true, incrementalSyncDT);
+      //     }
+      //   }
+      //   else if (prevPage == "DownloadAllData" && allDataDownloadFlag == false) {
+      //     apiJsonDataarticleall = apiJsonDataGet("all")
+      //   } else if (prevPage == "CountryLangChange") {
+      //     apiJsonDataarticleall = apiJsonDataGet("all")
+      //   } else {
+      //     if (Ages.alldataarr?.length > 0) {
+      //       apiJsonDataarticleall = apiJsonDataGet("all");
+      //     }
+      //     if (Ages.deltadataarr?.length > 0) {
+      //       apiJsonDataarticledelta = apiJsonDataGet(true, incrementalSyncDT);
+      //     }
+      //   }
+      // } else {
+      //   apiJsonDataarticleall = apiJsonDataGet("all");
+      // }
+      const apiJsonDataarticleall = apiJsonDataGet("all");
       if (apiJsonDataarticleall.length > 0) {
         apiJsonData.push(apiJsonDataarticleall[0]);
       }
-      if (apiJsonDataarticledelta.length > 0) {
-        apiJsonData.push(apiJsonDataarticledelta[0]);
-      }
-      console.log(apiJsonData, "--apiJsonDataarticle---", apiJsonDataarticleall, "---apiJsonDataarticleall---", apiJsonDataarticledelta);
+      // if (apiJsonDataarticledelta.length > 0) {
+      //   apiJsonData.push(apiJsonDataarticledelta[0]);
+      // }
+      console.log(apiJsonData, "--apiJsonDataarticle---", apiJsonDataarticleall, "---apiJsonDataarticleall---");
       if (prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
         console.log("do nothing");
       } else {
@@ -182,36 +182,38 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }
     else if (prevPage == "PeriodicSync") {
       //if flag true for buffer then append those in agebrackets
-      let allAgeBrackets: any[] = [], deltaageBracktes: any[] = [];
-      if (downloadBufferData == true) {
-        if (ageBrackets?.length > 0) {
-          ageBrackets.map((ages: any) => {
-            if (bufferAgeBracket.indexOf(ages) == -1) {
-              allAgeBrackets.push(ages);
-            } else {
-              deltaageBracktes.push(ages);
-            }
-          })
-        }
-      }
-      if (downloadWeeklyData == true) {
-        const Ages = await getAgeWithAgeBrackets(prevPage);
-        //check download all flag
-        if (Ages.alldataarr?.length > 0) {
-          allAgeBrackets = [...new Set([...allAgeBrackets, ...Ages.alldataarr])]
-        }
-        if (Ages.deltadataarr?.length > 0) {
-          deltaageBracktes = [...new Set([...deltaageBracktes, ...Ages.deltadataarr])]
-        }
-      }
-      allAgeBrackets = [...new Set(allAgeBrackets)];
-      let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
-      if (allAgeBrackets.length > 0) {
-        apiJsonDataarticleall = apiJsonDataGet(String(allAgeBrackets), "all")
-      }
-      if (deltaageBracktes.length > 0) {
-        apiJsonDataarticledelta = apiJsonDataGet(String(deltaageBracktes), "all", true, incrementalSyncDT)
-      }
+    //  let allAgeBrackets: any[] = [], deltaageBracktes: any[] = [];
+      // if (downloadBufferData == true) {
+      //   if (ageBrackets?.length > 0) {
+      //     ageBrackets.map((ages: any) => {
+      //       if (bufferAgeBracket.indexOf(ages) == -1) {
+      //         allAgeBrackets.push(ages);
+      //       } else {
+      //         deltaageBracktes.push(ages);
+      //       }
+      //     })
+      //   }
+      // }
+      // if (downloadWeeklyData == true) {
+      //   const Ages = await getAgeWithAgeBrackets(prevPage);
+      //   //check download all flag
+      //   if (Ages.alldataarr?.length > 0) {
+      //     allAgeBrackets = [...new Set([...allAgeBrackets, ...Ages.alldataarr])]
+      //   }
+      //   if (Ages.deltadataarr?.length > 0) {
+      //     deltaageBracktes = [...new Set([...deltaageBracktes, ...Ages.deltadataarr])]
+      //   }
+      // }
+     // allAgeBrackets = [...new Set(allAgeBrackets)];
+      // let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
+      // if (allAgeBrackets.length > 0) {
+        
+      // }
+      // if (deltaageBracktes.length > 0) {
+       
+      // }
+      const apiJsonDataarticleall = apiJsonDataGet("all")
+      const apiJsonDataarticledelta = apiJsonDataGet("all", true, incrementalSyncDT)
       if (apiJsonDataarticleall.length > 0) {
         apiJsonData.push(apiJsonDataarticleall[0]);
       }
@@ -219,22 +221,23 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
         apiJsonData.push(apiJsonDataarticledelta[0]);
       }
       console.log(apiJsonData, "--apiJsonDataarticle sync---", apiJsonDataarticleall, "---apiJsonDataarticleall---", apiJsonDataarticledelta);
-      if (allAgeBrackets.length > 0) {
-        const newAges = [...new Set([...allAgeBrackets, ...bufferAgeBracket])]
-        dispatch(setDownloadedBufferAgeBracket(newAges))
-      }
+      // if (allAgeBrackets.length > 0) {
+      //   const newAges = [...new Set([...allAgeBrackets, ...bufferAgeBracket])]
+      //   dispatch(setDownloadedBufferAgeBracket(newAges))
+      // }
       dispatch(fetchAPI(apiJsonData, prevPage, dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload))
     }
     else if (prevPage == "ImportScreen") {
       //when importing data replace agebrackets
-      const Ages = await getAge(childList, childAge);
-      let apiJsonDataarticle;
-      if (Ages?.length > 0) {
-        apiJsonDataarticle = apiJsonDataGet(String(Ages), "all")
-      }
-      else {
-        apiJsonDataarticle = apiJsonDataGet("all", "all")
-      }
+      // const Ages = await getAge(childList, childAge);
+      // let apiJsonDataarticle;
+      // if (Ages?.length > 0) {
+      //   apiJsonDataarticle = apiJsonDataGet("all")
+      // }
+      // else {
+      //   apiJsonDataarticle = apiJsonDataGet("all")
+      // }
+      const apiJsonDataarticle = apiJsonDataGet("all")
       //Article delete fun if not pinned have to create with ArticleEntitySchema after cvariable success dispatch
       await deleteArticleNotPinned();
       dispatch(setDownloadedBufferAgeBracket([]))
