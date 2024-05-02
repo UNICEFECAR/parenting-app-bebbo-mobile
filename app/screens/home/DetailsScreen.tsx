@@ -38,6 +38,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
+import { ViewDetailsEntity } from '../../database/schema/ArticleActivityViewSchema';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -230,9 +231,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       backHandler.remove();
     }
   }, []);
-
   useEffect(() => {
+
     const functionOnLoad = async (): Promise<any> => {
+     
+
       if (fromScreen == "VaccinationTab" || fromScreen == "FirebaseVaccinationTab" || fromScreen == "Articles" || fromScreen == "FirebaseArticles" || fromScreen == "HealthCheckupsTab" || fromScreen == "FirebaseHealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat") {
         console.log(detailData, "..detailData..")
 
@@ -345,6 +348,37 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             logEvent(eventAdviceCatData, netInfo.isConnected)
             logEvent(eventAdviceDetailsData, netInfo.isConnected)
           }
+        }
+      }
+
+      const realm = await dataRealmCommon.openRealm();
+      if (fromScreen === 'Activities' || fromScreen === "Articles" || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' ||  fromScreen === 'FavActivities' ||
+      fromScreen === "VaccinationTab" || fromScreen === "FirebaseVaccinationTab" || fromScreen === "FirebaseArticles" || fromScreen === "HealthCheckupsTab" || fromScreen === "FirebaseHealthCheckupsTab" 
+      || fromScreen === "AddChildHealthCheckup" || fromScreen === "AddChildVaccination" || fromScreen === "MileStone" ||  fromScreen === "FavArticles" || fromScreen === "SupportChat") {
+        if (detailData.type == "Article") {
+          const articleVisitCount: any = realm?.objects<ViewDetailsEntity>('ViewDetails').filter((item:any)=>item.id ===detailData.id)
+          console.log('articleVisitCount visit count', articleVisitCount);
+          realm?.write(() => {
+            const articleEvent = realm.create('ViewDetails', {
+              id: detailData?.id,
+              type: 'Article',
+              isViewed: true,
+              viewCount: articleVisitCount.length>0? articleVisitCount[0].viewCount + 1: 1,
+            },Realm.UpdateMode.Modified);
+            console.log('Artcile Evrnt', articleEvent);
+          });
+        } else {
+          const activityVisitCount: any = realm?.objects<ViewDetailsEntity>('ViewDetails').filter((item:any)=>item.id ===detailData.id)
+          console.log('Activity visit count', activityVisitCount,detailData?.id);
+          realm?.write(() => {
+            const activityEvent = realm.create('ViewDetails', {
+              id: detailData?.id,
+              type: 'Activity',
+              isViewed: true,
+              viewCount: activityVisitCount.length>0? activityVisitCount[0].viewCount + 1: 1,
+            },Realm.UpdateMode.Modified);
+            console.log('Activity Evrnt', activityEvent);
+          });
         }
       }
     }
@@ -555,7 +589,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{
 
-                  
+
                     table: {
                       cssRules
                       // Put the table config here (previously,

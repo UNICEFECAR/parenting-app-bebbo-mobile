@@ -212,17 +212,18 @@ const ChildSetupList = ({ navigation }: Props): any => {
 
 
   const childSetup = async (): Promise<any> => {
-    const Ages = await getAge(childList, childAge);
-    let apiJsonData;
-    if (Ages?.length > 0) {
-      apiJsonData = apiJsonDataGet(String(Ages), "all")
-    }
-    else {
-      apiJsonData = apiJsonDataGet("all", "all")
-    }
-    const eventData = { 'name': ONBOARDING_CHILD_COUNT, 'params': { child_count: childList?.length } }
-    logEvent(eventData, netInfo.isConnected)
-    console.log('API json data is ', apiJsonData)
+    // const Ages = await getAge(childList, childAge);
+    // let apiJsonData;
+    // if (Ages?.length > 0) {
+    //   apiJsonData = apiJsonDataGet(String(Ages), "all")
+    // }
+    // else {
+    //   apiJsonData = apiJsonDataGet("all", "all")
+    // }
+    const apiJsonData = apiJsonDataGet("all")
+    const eventData= {'name': ONBOARDING_CHILD_COUNT,'params': { child_count: childList?.length }  }
+    logEvent(eventData,netInfo.isConnected)
+   
     navigation.reset({
       index: 0,
       routes: [
