@@ -458,7 +458,7 @@ const Activities = ({ route, navigation }: any): any => {
   });
   const [searchIndex, setSearchIndex] = useState<any>(null);
   const suffixes = (term: any, minLength: any): any => {
-    if (term == null) { return []; }
+    if (term === null) { return []; }
     const tokens = [];
     for (let i = 0; i <= term.length - minLength; i++) {
       tokens.push(term.slice(i));
@@ -476,42 +476,46 @@ const Activities = ({ route, navigation }: any): any => {
   // add minisearch on active child article data 
   useEffect(() => {
     async function initializeSearchIndex() {
-      await new Promise(resolve => setTimeout(resolve, 0));
-      const processedActivities = preprocessActivities(ActivitiesData);
-      const searchIndex = new MiniSearch({
-        processTerm: (term) => suffixes(term, 3),
-        extractField: (document, fieldName): any => {
-          const arrFields = fieldName.split(".");
-          if (arrFields.length === 2) {
-            return (document[arrFields[0]] || [])
-              .map((arrField: any) => arrField[arrFields[1]] || "")
-              .join(" ");
-          } else if (arrFields.length === 3) {
-            const tmparr = (document[arrFields[0]] || []).flatMap(
-              (arrField: any) => arrField[arrFields[1]] || []
-            );
-            return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
-          }
-          return fieldName
-            .split(".")
-            .reduce((doc, key) => doc && doc[key], document);
-        },
-        searchOptions: {
-          boost: { title: 2, summary: 1.5, body: 1 },
-          bm25: { k: 1.0, b: 0.7, d: 0.5 },
-          fuzzy: true,
-          // prefix true means it will contain "foo" then search for "foobar"
-          prefix: true,
-          weights: {
-            fuzzy: 0.6,
-            prefix: 0.6
-          }
-        },
-        fields: ['title', 'summary', 'body'],
-        storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'activity_category', 'equipment', 'type_of_support', 'child_age', 'cover_image', 'related_milestone', 'mandatory', 'embedded_images']
-      });
-      processedActivities.forEach((item: any) => searchIndex.add(item));
-      setSearchIndex(searchIndex);
+      try{
+        await new Promise(resolve => setTimeout(resolve, 0));
+        const processedActivities = preprocessActivities(ActivitiesData);
+        const searchActivittiesData = new MiniSearch({
+          processTerm: (term) => suffixes(term, 3),
+          extractField: (document, fieldName): any => {
+            const arrFields = fieldName.split(".");
+            if (arrFields.length === 2) {
+              return (document[arrFields[0]] || [])
+                .map((arrField: any) => arrField[arrFields[1]] || "")
+                .join(" ");
+            } else if (arrFields.length === 3) {
+              const tmparr = (document[arrFields[0]] || []).flatMap(
+                (arrField: any) => arrField[arrFields[1]] || []
+              );
+              return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
+            }
+            return fieldName
+              .split(".")
+              .reduce((doc, key) => doc && doc[key], document);
+          },
+          searchOptions: {
+            boost: { title: 2, summary: 1.5, body: 1 },
+            bm25: { k: 1.0, b: 0.7, d: 0.5 },
+            fuzzy: true,
+            // prefix true means it will contain "foo" then search for "foobar"
+            prefix: true,
+            weights: {
+              fuzzy: 0.6,
+              prefix: 0.6
+            }
+          },
+          fields: ['title', 'summary', 'body'],
+          storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'activity_category', 'equipment', 'type_of_support', 'child_age', 'cover_image', 'related_milestone', 'mandatory', 'embedded_images']
+        });
+        processedActivities.forEach((item: any) => searchActivittiesData.add(item));
+        setSearchIndex(searchActivittiesData);
+      }catch(error){
+        console.log("Error: Retrieve minisearch data", error)
+      }
     }
     initializeSearchIndex();
   }, []);
@@ -541,7 +545,7 @@ const Activities = ({ route, navigation }: any): any => {
         });
         const resultsArrays = await Promise.all(resultsPromises);
         const aggregatedResults: any = resultsArrays.flat();
-        console.log('results is here...', aggregatedResults.length)
+        console.log('Aggregated results length is', aggregatedResults.length)
         setfilteredData(aggregatedResults);
         setLoading(false)
         toTop()
@@ -602,7 +606,6 @@ const Activities = ({ route, navigation }: any): any => {
       <OverlayLoadingComponent loading={loading} />
       <View style={styles.containerView}>
         <KeyboardAvoidingView
-          // behavior={Platform.OS === "ios" ? "padding" : "height"}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           keyboardVerticalOffset={(Platform.OS === 'android') ? -200 : 0}
           style={styles.flex1View}
@@ -642,12 +645,11 @@ const Activities = ({ route, navigation }: any): any => {
                   onFocus={(): any => {
                     setHistoryVisible(true);
                   }}
-                  onChangeText={async (queryText: any): Promise<any> => {
+                  onChangeText={(queryText: any): any => {
                     console.log('loghererer', queryText)
                     if (queryText.replace(/\s/g, "") == "") {
                       searchQueryText(queryText.replace(/\s/g, ''));
                       setHistoryVisible(true);
-                      //  await searchList(queryText)
                     } else {
                       searchQueryText(queryText);
                       setHistoryVisible(true);
