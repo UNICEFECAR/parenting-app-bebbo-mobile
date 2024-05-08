@@ -83,12 +83,18 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
+  const countrySelectedId = useAppSelector(
+    (state: any) => state.selectedCountry.countrySelectedId,
+  );
 
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
+  );
+  const selectedLocale = useAppSelector(
+    (state: any) => state.selectedCountry.selectedLocale,
   );
   const incrementalSyncDT = useAppSelector((state: any) =>
     (state.utilsData.incrementalSyncDT),
@@ -111,7 +117,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const { t, i18n } = useTranslation();
   console.log(I18nManager.isRTL, "---is rtl val");
   useEffect(() => {
-    console.log('Route Params is here......', languageCode);
+    console.log('Route Params is here......', countrySelectedId,locale,languageCode);
     if (!route.params.language) {
       console.log('Language data not available');
     } else if (Array.isArray(route.params.language)) {
@@ -217,59 +223,55 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       const countrySponsorsData = sponsors.find(
         (country: any) => country.id === selectedCountry.countryId,
       )
-      console.log('Seleted  country is', countrySponsorsData)
-      console.log('selectedCountry  country is', selectedCountry)
+
       setSponsorsData(countrySponsorsData);
       const foundCountry = getCountryByCountryCode(RNLocalize.getCountry());
       console.log('Found country is', foundCountry)
       if (foundCountry != undefined && foundCountry != null) {
-        console.log('params is here', route.params);
-        if (Object.keys(route.params).length !== 0) {
-          setCountryData(selectedCountry);
-          setNewLanguage(route.params.language)
-        } else {
-          console.log('Country is here', selectedDefaultCountry, selectedLanguage,locale,countryId);
-          if (selectedCountry == foundCountry || selectedCountry.countryId == 126) {
+          if (countrySelectedId==0) {
             setCountryData(foundCountry);
             const languagesWithLuxonLocale = foundCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
             if (languagesWithLuxonLocale?.length != 0) {
-              console.log('Country is here new', languagesWithLuxonLocale[0]);
-              setNewLanguage(languagesWithLuxonLocale[0])
+              setNewLanguage(languagesWithLuxonLocale[0]);
             } else {
-              setNewLanguage(foundCountry.languages[0])
-            }
-          } else {
-            setCountryData(selectedCountry);
-            const languagesWithLuxonLocale = selectedCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
-            if (languagesWithLuxonLocale?.length != 0) {
-              console.log('Country is here new', languagesWithLuxonLocale[0]);
-              setNewLanguage(languagesWithLuxonLocale[0])
-            } else {
-              const selectedLanData = selectedCountry?.languages?.filter((lang: any) => lang.languageCode === languageCode);
-              console.log('selected lan data is',selectedLanData);
+              const selectedLanData = foundCountry?.languages?.filter((lang: any) => lang.languageCode === languageCode);
               if(selectedLanData.length>0){
                 setNewLanguage(selectedLanData[0])
               }else{
               setNewLanguage(foundCountry.languages[0])
               }
             }
-          }
-          //   setNewLanguage(foundCountry.languages[0])
+          } else {
+            setCountryData(selectedCountry);
+            const languagesWithLuxonLocale = selectedCountry?.languages?.filter((lang: any) => lang.locale === locale);
+            if (languagesWithLuxonLocale?.length != 0) {
+              setNewLanguage(languagesWithLuxonLocale[0])
+            } else {
+              const selectedLanData = selectedCountry?.languages?.filter((lang: any) => lang.languageCode === languageCode);
+              if(selectedLanData.length>0){
+                setNewLanguage(selectedLanData[0])
+              }else{
+              setNewLanguage(foundCountry.languages[0])
+              }
+            }
         }
       } else {
-        if(selectedCountry?.languages.length > 0){
-          const filteredLanguage = selectedCountry?.languages?.filter((language:any)=>language.languageCode==selectedLanguage);
+        setCountryData(selectedCountry);
+        let filteredLanguage:any= null;
+        if(selectedLocale !== ''){
+         filteredLanguage = selectedCountry?.languages?.filter((lang:any)=>lang.locale === locale);
+        }else{
+          filteredLanguage = selectedCountry?.languages?.filter((lang:any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
+        }
+        if(filteredLanguage.length > 0){
           setNewLanguage(filteredLanguage[0]);
         }else{
-        setNewLanguage(selectedCountry?.languages[0]);
-        }
-        setCountryData(selectedCountry);
+          setNewLanguage(selectedCountry?.languages[0]);
+        } 
       }
     }
   }, [isVisible]);
-  useEffect(() => {
-    console.log('New Language is', newLanguage)
-  }, [newLanguage])
+
   useFocusEffect(
     React.useCallback(() => {
       const backAction = (): any => {

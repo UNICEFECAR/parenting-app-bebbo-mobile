@@ -377,7 +377,8 @@ const ChildProfile = ({ navigation }: Props): any => {
         </HeaderRowView>
         <FlexCol style={styles.flexCol}>
           <AreaContainer>
-            <View style={styles.areaContainerInnerView}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.areaContainerInnerView}>
               <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
@@ -525,6 +526,8 @@ const ChildProfile = ({ navigation }: Props): any => {
               </ShiftFromTop30>
 
             </View>
+          </ScrollView>
+          
           </AreaContainer>
         </FlexCol>
         <OverlayLoadingComponent loading={profileLoading} />

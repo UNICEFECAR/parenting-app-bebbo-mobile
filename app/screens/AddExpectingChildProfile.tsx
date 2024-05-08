@@ -35,6 +35,7 @@ import {
   HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
+  HeaderTitleExpectedView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -190,11 +191,11 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
             <IconML name={'ic_back'} color="#FFF" size={15} />
           </HeaderIconPress>
         </HeaderIconView>
-        <HeaderTitleView>
+        <HeaderTitleExpectedView>
           <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>
             {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt2')}
           </Heading2w>
-        </HeaderTitleView>
+        </HeaderTitleExpectedView>
         <HeaderActionView style={styles.headerActionView}>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
             <Pressable style={styles.pressableView} onPress={(): any => {

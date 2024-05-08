@@ -4,9 +4,11 @@ import { act } from 'react-test-renderer';
 
 interface SelectedLocalizationType {
   countryId: number;
+  countrySelectedId: number;
   languageCode: string;
   luxonLocale: string;
   locale: string;
+  selectedLocale: string;
   pluralShow: boolean;
   sponsors: Array<any>;
   restartOnLangChange: string;
@@ -24,7 +26,9 @@ const initialState: SelectedLocalizationType = {
   restartOnLangChange: 'no',
   AppLayoutDirection: 'ltr',
   AppLayoutDirectionScreen: 'LanguageSelection',
-  AppLayoutDirectionParams: {}
+  AppLayoutDirectionParams: {},
+  countrySelectedId: 0,
+  selectedLocale: ''
 };
 
 export const localizationSlice = createSlice({
@@ -42,9 +46,11 @@ export const localizationSlice = createSlice({
       } else {
         console.log('country default is', action.payload)
           state.countryId = action.payload.countryId;
+          state.countrySelectedId = action.payload.countryId;
           state.languageCode = action.payload.languages[0].languageCode;
           state.luxonLocale = action.payload.languages[0].luxonLocale;
           state.locale = action.payload.languages[0].locale;
+          state.selectedLocale = action.payload.languages[0].locale;
           state.pluralShow = action.payload.languages[0].pluralShow;
       }
     },
