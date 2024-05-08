@@ -356,10 +356,10 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       fromScreen === "VaccinationTab" || fromScreen === "FirebaseVaccinationTab" || fromScreen === "FirebaseArticles" || fromScreen === "HealthCheckupsTab" || fromScreen === "FirebaseHealthCheckupsTab" 
       || fromScreen === "AddChildHealthCheckup" || fromScreen === "AddChildVaccination" || fromScreen === "MileStone" ||  fromScreen === "FavArticles" || fromScreen === "SupportChat") {
         if (detailData.type == "Article") {
-          const articleVisitCount: any = realm?.objects<ViewDetailsEntity>('ViewDetails').filter((item:any)=>item.id ===detailData.id)
+          const articleVisitCount: any = realm?.objects<ViewDetailsEntity>('ArticleActivityView').filter((item:any)=>item.id ===detailData.id)
           console.log('articleVisitCount visit count', articleVisitCount);
           realm?.write(() => {
-            const articleEvent = realm.create('ViewDetails', {
+            const articleEvent = realm.create('ArticleActivityView', {
               id: detailData?.id,
               type: 'Article',
               isViewed: true,
@@ -368,10 +368,10 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             console.log('Artcile Evrnt', articleEvent);
           });
         } else {
-          const activityVisitCount: any = realm?.objects<ViewDetailsEntity>('ViewDetails').filter((item:any)=>item.id ===detailData.id)
+          const activityVisitCount: any = realm?.objects<ViewDetailsEntity>('ArticleActivityView').filter((item:any)=>item.id ===detailData.id)
           console.log('Activity visit count', activityVisitCount,detailData?.id);
           realm?.write(() => {
-            const activityEvent = realm.create('ViewDetails', {
+            const activityEvent = realm.create('ArticleActivityView', {
               id: detailData?.id,
               type: 'Activity',
               isViewed: true,
@@ -430,9 +430,9 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     let highlightedContent = content; // Initialize with original content
    
     query.forEach((item) => {
-        const regex = new RegExp(`${item}`, 'gi');
+        const regex = new RegExp(`\\b(${item.trim()}\\s*)`, 'gi');
         if(item.length>2){
-        highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+          highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$1</span>');
         }
       });
   
