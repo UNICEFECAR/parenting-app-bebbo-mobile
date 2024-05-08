@@ -1,4 +1,4 @@
-import { bothChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+import { bothChildGender, girlChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
@@ -219,8 +219,13 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         }
         sendData(childData);
       }
-      console.log('childadata gender is', genders.find((item: any) => item.id == childData?.gender));
-      setDefaultGenderValue(childData && childData.uuid && childData?.gender !=0 ? genders.find((item: any) => item.id == childData?.gender) : { title: 'Girl' })
+      console.log('childadata gender is', genders);
+      if(childData != undefined && childData != null && childData != '' && childData.uuid != '' && childData?.gender== 0 ) {
+        setDefaultGenderValue(genders.find((item: any) => item.id == girlChildGender))
+      }else{
+        setDefaultGenderValue(genders.find((item: any) => item.id == childData?.gender))
+      }
+      
       console.log(destPath)
     }, []),
   );
@@ -499,7 +504,10 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 </ShiftFromTop10>
               </FormInputGroup>
 
+              {childData && childData?.uuid != '' ? 
+              <ChildDate sendData={sendData} childData={childData} dobMax={new Date()}/>: 
               <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen" />
+            }
 
               <FormContainerFlex>
                 <LabelText>{t('genderLabel')}</LabelText>

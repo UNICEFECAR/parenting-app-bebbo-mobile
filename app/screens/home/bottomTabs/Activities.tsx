@@ -86,10 +86,9 @@ const styles = StyleSheet.create({
   historyList: {
     backgroundColor: bgcolorWhite2,
     left: 0,
-    paddingBottom: 20,
+    //paddingBottom: 20,
     position: 'absolute',
     right: 0,
-    bottom: 0,
     top: 51,
     zIndex: 1,
   },
@@ -166,15 +165,19 @@ const Activities = ({ route, navigation }: any): any => {
   const modalScreenKey = 'IsActivityModalOpened';
   const modalScreenText = 'activityModalText';
   const [modalVisible, setModalVisible] = useState(false);
+  const [isSerachedQueryText, setIsSearchedQueryText] = useState(false);
   const [queryText, searchQueryText] = useState('');
   const [historyVisible, setHistoryVisible] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
+  const [isCurrentChildSelected, setCurrentChildSelected] = useState(true);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] = useState([]);
   const [suggestedGames, setsuggestedGames] = useState([]);
   const [otherGames, setotherGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredData, setfilteredData] = useState([]);
+  const [selectedAgeBracket, setSelectedAgeBracket] = useState<any>();
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [childMilestonedata, setchildMilestonedata] = useState([]);
@@ -220,19 +223,127 @@ const Activities = ({ route, navigation }: any): any => {
       );
     }
   }
-  const setFilteredActivityData = (itemId: any): any => {
+
+  const setFilteredActivityData = async (itemId: any): Promise<any> => {
+    setHistoryVisible(false);
     if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData.length != 0) {
       if (itemId.length > 0) {
         let newArticleData: any = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
-        setfilteredData(newArticleData);
+        let titleData = [];
+        let bodyData = [];
+        if (queryText != "" && queryText != undefined && queryText != null) {
+          // filter data with title first then after summary or body
+          // titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
+          // bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+          // // combine array for article
+          // const combineArticleData: any[] = titleData.concat(bodyData)
+          // newArticleData = [...new Set(combineArticleData)];
+          const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
+          if (keywords.length > 1) {
+            const resultsPromises = keywords.map(async (keyword: any) => {
+              const results = searchIndex.search(keyword);
+              return results;
+            });
+            const resultsArrays = await Promise.all(resultsPromises);
+            const aggregatedResults = resultsArrays.flat();
+            let filteredResults: any = null;
+            if (currentSelectedChildId != 0) {
+              filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId) && itemId.includes(x.activity_category));
+            } else {
+              filteredResults = aggregatedResults.filter((x: any) => itemId.includes(x.activity_category));
+            }
+            //const filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId) && itemId.includes(x.activity_category));
+            setfilteredData(filteredResults);
+            setLoading(false)
+            setIsSearchedQueryText(false)
+            toTop()
+          } else {
+            const results = searchIndex.search(queryText);
+            console.log('LLSLSLs Results length is', results.length)
+            let filteredResults: any = null;
+            if (currentSelectedChildId != 0) {
+              console.log('currentSelectedChildId Results length is', itemId)
+              setSelectedCategoryId(itemId);
+              const categoryFilteredData = results.filter((x: any) => itemId.includes(x.activity_category));
+              console.log('categoryFilteredData Results length is', categoryFilteredData?.length)
+              console.log('categoryFilteredData Results length is....', categoryFilteredData)
+              filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+              console.log('currentSelectedChildId Results length is 1', filteredResults?.length)
+            } else {
+              console.log('currentSelectedChildId Results length is....', currentSelectedChildId)
+              filteredResults = results.filter((x: any) => itemId.includes(x.activity_category));
+            }
+            //const filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId) && itemId.includes(x.activity_category));
+            console.log('LLLSSS filteredResults length is', filteredResults.length)
+            setfilteredData(filteredResults);
+            setLoading(false)
+            setIsSearchedQueryText(false)
+            toTop()
+          }
+        } else {
+          setfilteredData(newArticleData);
+        }
+
         setLoading(false);
+        setIsSearchedQueryText(false)
         setTimeout(() => {
           setshowNoData(true);
         }, 200);
       } else {
-        const newArticleData = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
-        setfilteredData(newArticleData);
+        console.log('selectedChildActivitiesData article data is', selectedChildActivitiesData?.length)
+        let newArticleData: any = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
+        console.log('new article data is', newArticleData?.length)
+        let titleData = [];
+        let bodyData = [];
+        if (queryText != "" && queryText != undefined && queryText != null) {
+          // titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
+          // bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+          // const combineArticleData: any[] = titleData.concat(bodyData)
+          // console.log('new article data is',combineArticleData)
+          // newArticleData = [...new Set(combineArticleData)];
+
+          // setfilteredData(newArticleData);
+
+          const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
+          if (keywords.length > 1) {
+            const resultsPromises = keywords.map(async (keyword: any) => {
+              const results = searchIndex.search(keyword);
+              return results;
+            });
+            const resultsArrays = await Promise.all(resultsPromises);
+            const aggregatedResults = resultsArrays.flat();
+            let filteredResults: any = null;
+            if (currentSelectedChildId != 0) {
+              filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+            } else {
+              filteredResults = aggregatedResults;
+            }
+            //const filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+            setfilteredData(filteredResults);
+            setLoading(false)
+            setIsSearchedQueryText(false)
+            toTop()
+          } else {
+            const results = searchIndex.search(queryText);
+            console.log('sdsd Results length is', results.length)
+            let filteredResults: any = null;
+            if (currentSelectedChildId != 0) {
+              filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+            } else {
+              filteredResults = results;
+            }
+            console.log('sdsd filteredResults length is', filteredResults.length)
+            setfilteredData(filteredResults);
+            setLoading(false)
+            setIsSearchedQueryText(false)
+            toTop()
+          }
+
+        } else {
+          setfilteredData(newArticleData);
+        }
         setLoading(false);
+        setIsSearchedQueryText(false)
         setTimeout(() => {
           setshowNoData(true);
         }, 200);
@@ -241,6 +352,7 @@ const Activities = ({ route, navigation }: any): any => {
     else {
       setfilteredData([]);
       setLoading(false);
+      setIsSearchedQueryText(false)
       setTimeout(() => {
         setshowNoData(true);
       }, 200);
@@ -251,44 +363,78 @@ const Activities = ({ route, navigation }: any): any => {
   useFocusEffect(
     React.useCallback(() => {
       console.log("useFocusEffect called route.params?.backClicked", route.params?.backClicked);
-      setLoading(true);
+      console.log('isCurrentChildSelected is', isCurrentChildSelected)
+      //setLoadingArticle(true);
+      // if (queryText == '') {
+      //   setLoadingArticle(true);
+      //   if (route.params?.categoryArray) {
+      //     setFilterArray(route.params?.categoryArray);
+      //     setFilteredArticleData(route.params?.categoryArray);
+      //   }
+      //   else {
+      //     setFilterArray([]);
+      //     setFilteredArticleData([]);
+      //   }
+      //   setIsSearchedQueryText(false)
 
-      async function fetchData(): Promise<any> {
-        if (route.params?.categoryArray) {
-          setFilterArray(route.params?.categoryArray);
-          setFilteredActivityData(route.params?.categoryArray);
+      // } else {
+      console.log('isSerachedQueryText', isSerachedQueryText)
+      if (isSerachedQueryText || queryText == '') {
+        setLoading(true);
+        async function fetchData(): Promise<any> {
+          console.log('route category data', route.params?.categoryArray)
+          if (route.params?.categoryArray) {
+            setFilterArray(route.params?.categoryArray);
+            setFilteredActivityData(route.params?.categoryArray);
+          }
+          else {
+            console.log('route category data in else')
+            setFilterArray([]);
+            setFilteredActivityData([]);
+          }
         }
-        else {
-          setFilterArray([]);
-          setFilteredActivityData([]);
+        setIsSearchedQueryText(false)
+        if (route.params?.backClicked != 'yes') {
+          fetchData()
+        } else {
+          setLoading(false);
         }
       }
-      if (route.params?.backClicked != 'yes') {
-        fetchData()
-      } else {
-        setLoading(false);
-      }
-
-    }, [selectedChildActivitiesData, route.params?.categoryArray, languageCode, queryText]))
+      //  }
+    }, [selectedChildActivitiesData, route.params?.categoryArray, languageCode, queryText, isSerachedQueryText]))
 
 
   const showSelectedBracketData = (item: any): any => {
-    const eventData = { 'name': GAME_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
-    logEvent(eventData, netInfo.isConnected)
 
-    setCurrentSelectedChildId(item.id);
-    const filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
-    console.log('On age selected', filteredData)
-    setSelectedChildActivitiesData(filteredData);
+    console.log('On age selected activities', item)
+    if (item && item?.id !== null) {
+      const eventData = { 'name': GAME_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
+      logEvent(eventData, netInfo.isConnected)
+      setCurrentSelectedChildId(item.id);
+      setIsSearchedQueryText(true)
+      const filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
+      console.log('On age selected activitites....', filteredData.length)
+      setSelectedChildActivitiesData(filteredData);
+      setCurrentChildSelected(false)
+    } else {
+      console.log('On de selected....', ActivitiesData.length)
+      setCurrentSelectedChildId(0);
+      setIsSearchedQueryText(true)
+      setSelectedChildActivitiesData(ActivitiesData);
+      setCurrentChildSelected(true)
+    }
+
   }
   useFocusEffect(
     React.useCallback(() => {
+      console.log('Applied another focus effect')
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
           console.log("if route params 0", route.params);
           const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
           showSelectedBracketData(firstChildDevData[0]);
+
         }
         else {
           console.log("else if route params 0", route.params, activityTaxonomyId);
@@ -326,33 +472,38 @@ const Activities = ({ route, navigation }: any): any => {
     }, [])
   );
 
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     console.log('filtered data is', filteredData.length);
+  //     if (filteredData && Array.isArray(filteredData)) {
+  //       if (filteredData.length > 0) {
+  //         setsuggestedGames(
+  //           filteredData.filter(
+  //             (x: any) =>
+  //               x.related_milestone && // Check if x.related_milestone is defined
+  //               x.related_milestone.length > 0 && // Check if x.related_milestone has a length property
+  //               childMilestonedata.findIndex((y: any) => y == x.related_milestone[0]) == -1
+  //           )
+  //         );
+
+  //         setotherGames(
+  //           filteredData.filter(
+  //             (x: any) =>
+  //               !x.related_milestone || // Check if x.related_milestone is undefined or empty
+  //               (x.related_milestone.length > 0 &&
+  //                 childMilestonedata.findIndex((y: any) => y == x.related_milestone[0]) > -1)
+  //           )
+  //         );
+  //       }
+  //     }
+  //   }, [filteredData, childMilestonedata])
+  // );
   useFocusEffect(
     React.useCallback(() => {
-      console.log('filtered data is', filteredData.length);
-      if (filteredData && Array.isArray(filteredData)) {
-        if (filteredData.length > 0) {
-          setsuggestedGames(
-            filteredData.filter(
-              (x: any) =>
-                x.related_milestone && // Check if x.related_milestone is defined
-                x.related_milestone.length > 0 && // Check if x.related_milestone has a length property
-                childMilestonedata.findIndex((y: any) => y == x.related_milestone[0]) == -1
-            )
-          );
-
-          setotherGames(
-            filteredData.filter(
-              (x: any) =>
-                !x.related_milestone || // Check if x.related_milestone is undefined or empty
-                (x.related_milestone.length > 0 &&
-                  childMilestonedata.findIndex((y: any) => y == x.related_milestone[0]) > -1)
-            )
-          );
-        }
-      }
+      setsuggestedGames((filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y: any) => y == x.related_milestone[0])) == -1))));
+      setotherGames((filteredData.filter((x: any) => x.related_milestone.length == 0 || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y: any) => y == x.related_milestone[0])) > -1))));
     }, [filteredData, childMilestonedata])
   );
-
 
 
   const goToActivityDetail = (item: any): any => {
@@ -373,6 +524,7 @@ const Activities = ({ route, navigation }: any): any => {
 
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray)
+
   }
   const gotoMilestone = (): any => {
     navigation.navigate('ChildDevelopment',
@@ -476,8 +628,9 @@ const Activities = ({ route, navigation }: any): any => {
   // add minisearch on active child article data 
   useEffect(() => {
     async function initializeSearchIndex() {
-      try{
+      try {
         await new Promise(resolve => setTimeout(resolve, 0));
+        console.log('ActivitiesData all datas', ActivitiesData?.length)
         const processedActivities = preprocessActivities(ActivitiesData);
         const searchActivittiesData = new MiniSearch({
           processTerm: (term) => suffixes(term, 3),
@@ -513,7 +666,7 @@ const Activities = ({ route, navigation }: any): any => {
         });
         processedActivities.forEach((item: any) => searchActivittiesData.add(item));
         setSearchIndex(searchActivittiesData);
-      }catch(error){
+      } catch (error) {
         console.log("Error: Retrieve minisearch data", error)
       }
     }
@@ -535,8 +688,11 @@ const Activities = ({ route, navigation }: any): any => {
     setLoading(true);
     await new Promise(resolve => setTimeout(resolve, 0));
     Keyboard.dismiss();
-    console.log('querytext is', queryText)
+    let artData: any;
+    let combineDartArr: [];
+    let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
+      console.log('on search list method')
       const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
       if (keywords.length > 1) {
         const resultsPromises = keywords.map(async (keyword: any) => {
@@ -544,27 +700,48 @@ const Activities = ({ route, navigation }: any): any => {
           return results;
         });
         const resultsArrays = await Promise.all(resultsPromises);
-        const aggregatedResults: any = resultsArrays.flat();
-        console.log('Aggregated results length is', aggregatedResults.length)
-        setfilteredData(aggregatedResults);
+        const aggregatedResults = resultsArrays.flat();
+        let filteredResults: any = null;
+        if (selectedCategoryId.length > 0) {
+          const categoryFilteredData = aggregatedResults.filter((x: any) => selectedCategoryId.includes(x.activity_category));
+          console.log('in acrticle categoryFilteredData Results length is', categoryFilteredData?.length)
+          console.log('in acrticle categoryFilteredData Results length is....', categoryFilteredData)
+          filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+          console.log('in articlevcurrentSelectedChildId Results length is 1', filteredResults?.length)
+        } else {
+          filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+        }
+        /// const filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+        setfilteredData(filteredResults);
         setLoading(false)
+        setIsSearchedQueryText(false)
         toTop()
       } else {
         const results = searchIndex.search(queryText);
-        console.log('Results Data is', results)
-        console.log('Results length is', results.length)
-        setfilteredData(results);
+        let filteredResults: any = null;
+        console.log('on search list method', selectedCategoryId)
+        if (selectedCategoryId.length > 0) {
+          const categoryFilteredData = results.filter((x: any) => selectedCategoryId.includes(x.activity_category));
+          console.log('in acrticle categoryFilteredData Results length is', categoryFilteredData?.length)
+          console.log('in acrticle categoryFilteredData Results length is....', categoryFilteredData)
+          filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+          console.log('in articlevcurrentSelectedChildId Results length is 1', filteredResults?.length)
+        } else {
+          filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+        }
+        //const filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+        setfilteredData(filteredResults);
         setLoading(false)
+        setIsSearchedQueryText(false)
         toTop()
       }
       const eventData = { 'name': ACTIVITY_SEARCHED, 'params': { activity_searched: queryText } }
       logEvent(eventData, netInfo.isConnected)
       const realm = await dataRealmCommon.openRealm();
-      console.log('Query text need to store is', queryText)
       storeSearchKeyword(realm, queryText)
 
       // Update search history state
-      const updatedHistoryWithoutClickedItem = searchHistory.filter((item: any) => item !== queryText);
+      const updatedHistoryWithoutClickedItem = searchHistory.filter(item => item !== queryText);
       const updatedHistory = [queryText, ...updatedHistoryWithoutClickedItem.slice(0, 4)];
       const filterredUpdatedHistory = [...new Set(updatedHistory)];
       setSearchHistory(filterredUpdatedHistory);
@@ -577,10 +754,17 @@ const Activities = ({ route, navigation }: any): any => {
         });
       }
 
+
     }
     else {
+      console.log('selected data is close')
+      // artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.activity_category));
+      // newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.activity_category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+      // combineDartArr = mergearr(artData, newvideoArticleData, true);
+      // articleData = [...combineDartArr];
       setFilteredActivityData(filterArray);
       setLoading(false);
+      setIsSearchedQueryText(false)
     }
   }
   const renderSearchHistoryItem = ({ item }: { item: string }): any => (
@@ -588,6 +772,7 @@ const Activities = ({ route, navigation }: any): any => {
       onPress={async (): Promise<any> => {
         Keyboard.dismiss();
         searchQueryText(item);
+        setIsSearchedQueryText(true);
         await searchList(item);
       }}
     >
@@ -626,6 +811,7 @@ const Activities = ({ route, navigation }: any): any => {
                   <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
                     e.preventDefault();
                     Keyboard.dismiss();
+                    setIsSearchedQueryText(true);
                     await searchList(queryText);
 
                   }}>
@@ -643,7 +829,7 @@ const Activities = ({ route, navigation }: any): any => {
                   autoCorrect={false}
                   clearButtonMode="always"
                   onFocus={(): any => {
-                    setHistoryVisible(true);
+                    // setHistoryVisible(true);
                   }}
                   onChangeText={(queryText: any): any => {
                     console.log('loghererer', queryText)
@@ -661,6 +847,7 @@ const Activities = ({ route, navigation }: any): any => {
                     console.log("event-", queryText);
                     setHistoryVisible(false)
                     Keyboard.dismiss();
+                    setIsSearchedQueryText(true);
                     await searchList(queryText);
                   }}
                   multiline={false}
@@ -690,15 +877,6 @@ const Activities = ({ route, navigation }: any): any => {
                   </OuterIconRow>
                 }
               </SearchBox>
-              {searchHistory.length !== 0 && historyVisible &&
-                <FlatList
-                  data={searchHistory}
-                  renderItem={renderSearchHistoryItem}
-                  keyboardShouldPersistTaps='handled'
-                  keyExtractor={(item, index): any => index.toString()}
-                  style={styles.historyList}
-                />
-              }
               <DividerAct></DividerAct>
               <AgeBrackets
                 itemColor={headerColorBlack}
@@ -707,17 +885,29 @@ const Activities = ({ route, navigation }: any): any => {
                 showSelectedBracketData={showSelectedBracketData}
                 ItemTintColor={backgroundColor}
               />
+              {searchHistory.length !== 0 && historyVisible &&
+                <View style={styles.historyList}>
+                  <FlatList
+                    data={searchHistory}
+                    renderItem={renderSearchHistoryItem}
+                    keyboardShouldPersistTaps='handled'
+                    contentContainerStyle={{ flex: 1 }}
+                    keyExtractor={(item, index): any => index.toString()}
+                  //style={styles.historyList}
+                  />
+                </View>
+              }
+              <View style={{ backgroundColor: activitiesTintcolor }}>
+                <ActivitiesCategories
+                  borderColor={headerColor}
+                  filterOnCategory={setFilteredActivityData}
+                  fromPage={fromPage}
+                  filterArray={filterArray}
+                  onFilterArrayChange={onFilterArrayChange}
+                />
+                <DividerAct></DividerAct>
+              </View>
             </View>
-
-            <ActivitiesCategories
-              borderColor={headerColor}
-              filterOnCategory={setFilteredActivityData}
-              fromPage={fromPage}
-              filterArray={filterArray}
-              onFilterArrayChange={onFilterArrayChange}
-            />
-            <DividerAct></DividerAct>
-
             <FlexCol>
               {showNoData == true && suggestedGames?.length == 0 && otherGames?.length == 0 ?
                 <Heading4Center>{t('noDataTxt')}</Heading4Center>

@@ -66,6 +66,7 @@ export default class ScrollingButtonMenu extends React.Component {
 
     componentDidMount() {
         const {selected} = this.props;
+        console.log('selected props is',selected)
         if (selected) {
             this.setState({index: selected}, () => {
                 setTimeout(() => {
@@ -141,8 +142,9 @@ export default class ScrollingButtonMenu extends React.Component {
     }
 
     render() {
-        const {items, upperCase, selectedOpacity, activeBackgroundColor, activeColor, buttonStyle, containerStyle, keyboardShouldPersistTaps} = this.props;
+        const {items, upperCase, selectedOpacity, activeBackgroundColor, activeColor, buttonStyle, containerStyle, keyboardShouldPersistTaps, isCurrentChildSelected} = this.props;
         const {index} = this.state;
+        console.log('is child selected', isCurrentChildSelected)
         return (
             <View style={[
                 styles.scrollArea,
@@ -169,7 +171,7 @@ export default class ScrollingButtonMenu extends React.Component {
                                     styles.tabItem,
                                     (index === route.id ? styles.tabItemFocused : {}),
                                     (buttonStyle ? buttonStyle : false),
-                                    (index === route.id && activeBackgroundColor ? {backgroundColor: activeBackgroundColor} : false),
+                                    (index === route.id && activeBackgroundColor && !isCurrentChildSelected ? {backgroundColor: activeBackgroundColor}:false ),
                                 ]}
                                 key={(route.id ? route.id : i).toString()}
                                 onPress={() => this.setState({index: route.id}, () => setTimeout(() => {
@@ -219,6 +221,7 @@ ScrollingButtonMenu.propTypes = {
     selectedOpacity: PropTypes.number,
     containerStyle: PropTypes.object,
     keyboardShouldPersistTaps: PropTypes.string,
+    isCurrentChildSelected: PropTypes.bool,
 };
 
 ScrollingButtonMenu.defaultProps = {

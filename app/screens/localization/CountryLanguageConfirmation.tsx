@@ -44,6 +44,7 @@ import RNRestart from 'react-native-restart';
 import { localization, sponsors } from '@dynamicImportsClass/dynamicImports';
 import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor } from '@styles/style';
+import { ColorChannel } from '@shopify/react-native-skia';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -110,7 +111,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const { t, i18n } = useTranslation();
   console.log(I18nManager.isRTL, "---is rtl val");
   useEffect(() => {
-    console.log('Route Params is here......', route.params);
+    console.log('Route Params is here......', languageCode);
     if (!route.params.language) {
       console.log('Language data not available');
     } else if (Array.isArray(route.params.language)) {
@@ -189,6 +190,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           newCountryLocale = selectedDefaultCountry;
         }
       } else {
+        console.log('My route is',route.params)
         if (Object.keys(route.params).length === 0) {
           console.log('newCountry id is', countryId)
           newCountryLocale = selectedDefaultCountry;
@@ -223,11 +225,10 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       if (foundCountry != undefined && foundCountry != null) {
         console.log('params is here', route.params);
         if (Object.keys(route.params).length !== 0) {
-          // console.log('Country is here');
           setCountryData(selectedCountry);
           setNewLanguage(route.params.language)
         } else {
-          console.log('Country is here', selectedDefaultCountry, selectedLanguage);
+          console.log('Country is here', selectedDefaultCountry, selectedLanguage,locale,countryId);
           if (selectedCountry == foundCountry || selectedCountry.countryId == 126) {
             setCountryData(foundCountry);
             const languagesWithLuxonLocale = foundCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
@@ -244,15 +245,25 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
               console.log('Country is here new', languagesWithLuxonLocale[0]);
               setNewLanguage(languagesWithLuxonLocale[0])
             } else {
+              const selectedLanData = selectedCountry?.languages?.filter((lang: any) => lang.languageCode === languageCode);
+              console.log('selected lan data is',selectedLanData);
+              if(selectedLanData.length>0){
+                setNewLanguage(selectedLanData[0])
+              }else{
               setNewLanguage(foundCountry.languages[0])
+              }
             }
           }
           //   setNewLanguage(foundCountry.languages[0])
         }
       } else {
-        console.log('Test log ', selectedCountry?.languages[0].displayName)
-        setNewLanguage(selectedCountry?.languages[0])
-        setCountryData(selectedCountry)
+        if(selectedCountry?.languages.length > 0){
+          const filteredLanguage = selectedCountry?.languages?.filter((language:any)=>language.languageCode==selectedLanguage);
+          setNewLanguage(filteredLanguage[0]);
+        }else{
+        setNewLanguage(selectedCountry?.languages[0]);
+        }
+        setCountryData(selectedCountry);
       }
     }
   }, [isVisible]);
