@@ -34,14 +34,9 @@ import { logEvent, synchronizeEvents } from '../../../services/EventSyncService'
 import { dataRealmCommon } from '../../../database/dbquery/dataRealmCommon';
 import { HistoryEntity, SearchHistorySchema } from '../../../database/schema/SearchHistorySchema';
 import VectorImage from 'react-native-vector-image';
-import unorm from 'unorm';
-import Fuse from 'fuse.js';
 import MiniSearch from 'minisearch'
 import { ADVICE_AGEGROUP_SELECTED, ARTICLE_SEARCHED } from '@assets/data/firebaseEvents';
-import Intl from 'intl';
 import AgeBrackets from '@components/AgeBrackets';
-import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
@@ -76,7 +71,7 @@ const styles = StyleSheet.create({
   historyList: {
     backgroundColor: bgcolorWhite2,
     left: 0,
-    //paddingBottom: 20,
+    paddingBottom: 10,
     position: 'absolute',
     right: 0,
     top: 51,
@@ -330,104 +325,13 @@ const Articles = ({ route, navigation }: any): any => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
   }
-  // const setFilteredArticleData = (itemId: any): any => {
-  //   console.log('On category filter changes')
-  //   if (articleData != null && articleData != undefined && articleData.length > 0) {
-  //     setLoadingArticle(true);
-  //     console.log('On category filter changes',itemId.length)
-  //     if (itemId.length > 0) {
-  //       let newArticleData = articleDataOld.filter((x: any) => itemId.includes(x.category));
-  //       let newvideoArticleData = videoarticleData.filter((x: any) => itemId.includes(x.category));
-  //       let titleData = [];
-  //       let bodyData = [];
-  //       let videoTitleData = [];
-  //       let videoBodyData = [];
-  //       if (queryText != "" && queryText != undefined && queryText != null) {
-  //         // filter data with title first then after summary or body
-  //         titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-  //         bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-  //         // combine array for article
-  //         const combineArticleData: any[] = titleData.concat(bodyData)
-  //         newArticleData = [...new Set(combineArticleData)];
-
-  //         // filter data with title first then after summary or body
-  //         videoTitleData = newvideoArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-  //         videoBodyData = newvideoArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-  //         // combine array for video article
-  //         const combineVideoArticleData: any[] = videoTitleData.concat(videoBodyData)
-  //         newvideoArticleData = [...new Set(combineVideoArticleData)];
-  //       }
-  //       console.log('On category filter changes newArticleData',newArticleData?.length)
-  //       console.log('On category filter changes newArticleData',newvideoArticleData?.length)
-  //       //combine-array
-  //       const combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
-  //       console.log('On category filter changes combinedartarr',combinedartarr?.length)
-  //       const filteredResults = combinedartarr.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-  //       console.log('On category filter changes filteredResults',filteredResults?.length)
-  //       setfilteredData(filteredResults);
-
-  //       setLoadingArticle(false);
-  //       toTop();
-  //     } else {
-  //       let newArticleData = articleData != '' ? articleData : [];
-  //       const videoarticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-  //       let newvideoArticleData = videoarticleData != '' ? videoarticleData : [];
-  //       let combinedartarr = [];
-  //       let titleData = [];
-  //       let bodyData = [];
-  //       let videoTitleData = [];
-  //       let videoBodyData = [];
-  //       if (queryText != "" && queryText != undefined && queryText != null) {
-  //         // titleData = articleDataall.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-  //         // bodyData = articleDataall.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-  //         // const combineArticleData: any[] = titleData.concat(bodyData)
-  //         // newArticleData = [...new Set(combineArticleData)];
-
-  //         // videoTitleData = newvideoArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-  //         // videoBodyData = newvideoArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-  //         // const combineVideoArticleData: any[] = videoTitleData.concat(videoBodyData)
-  //         // newvideoArticleData = [...new Set(combineVideoArticleData)];
-  //         // console.log('As On category filter changes newArticleData',newArticleData?.length)
-  //         // console.log('As On category filter changes newArticleData',newvideoArticleData?.length)
-  //         // combinedartarr = mergearr(newArticleData, newvideoArticleData, false);
-
-  //         // console.log('As On category filter changes combinedartarr',combinedartarr?.length)
-  //         // const filteredResults = combinedartarr.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-  //         // console.log('As On category filter changes filteredResults',filteredResults?.length)
-  //         // setfilteredData(filteredResults);
-  //         console.log('Hrre check wuerytext',queryText)
-  //         searchList(queryText)
-
-  //       } else {
-  //         console.log('Hrre check wuerytext..',queryText)
-  //         const filteredResults = newArticleData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-  //         setfilteredData(filteredResults);
-  //       }
-
-  //       setLoadingArticle(false);
-  //       // setHistoryVisible(false);
-  //       toTop();
-  //     }
-  //   } else {
-  //     setLoadingArticle(false);
-  //     setfilteredData([]);
-  //   }
-  // }
 
   const setFilteredArticleData = async (itemId: any): Promise<any> => {
     setHistoryVisible(false);
     if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData.length != 0) {
       if (itemId.length > 0) {
         let newArticleData: any = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.category));
-        let titleData = [];
-        let bodyData = [];
         if (queryText != "" && queryText != undefined && queryText != null) {
-          // filter data with title first then after summary or body
-          // titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-          // bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          // // combine array for article
-          // const combineArticleData: any[] = titleData.concat(bodyData)
-          // newArticleData = [...new Set(combineArticleData)];
           const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
@@ -486,14 +390,6 @@ const Articles = ({ route, navigation }: any): any => {
         let titleData = [];
         let bodyData = [];
         if (queryText != "" && queryText != undefined && queryText != null) {
-          // titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-          // bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          // const combineArticleData: any[] = titleData.concat(bodyData)
-          // console.log('new article data is',combineArticleData)
-          // newArticleData = [...new Set(combineArticleData)];
-
-          // setfilteredData(newArticleData);
-
           const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
@@ -568,30 +464,7 @@ const Articles = ({ route, navigation }: any): any => {
       }
     }, [])
   );
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     if (route.params?.backClicked !== 'yes') {
-  //       setshowNoData(false);
-  //       if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
-  //         console.log("if route params 0", route.params);
-  //         const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
-  //         showSelectedBracketData(firstChildDevData[0]);
-  //       }
-  //       else {
-  //         console.log("else if route params 0", route.params, activityTaxonomyId);
 
-  //         const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
-  //         showSelectedBracketData(firstChildDevData[0]);
-  //       }
-  //     } else {
-  //       setLoadingArticle(false);
-  //       if (route.params?.backClicked == 'yes') {
-  //         navigation.setParams({ backClicked: 'no' })
-  //       }
-  //     }
-
-  //   }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId, activityTaxonomyId])
-  // );
   useEffect(() => {
     console.log('reefrence for flatlist is', flatListHistoryRef.current)
     const handleClickOutside = (event: any) => {
@@ -641,31 +514,6 @@ const Articles = ({ route, navigation }: any): any => {
     console.log('onFilterArrayChange is selected', newFilterArray?.length)
     setFilterArray(newFilterArray)
   }
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     console.log("useFocusEffect called route.params?.backClicked", route.params?.backClicked);
-  //     setLoadingArticle(true);
-
-  //     async function fetchData(): Promise<any> {
-  //       if (route.params?.categoryArray) {
-  //         console.log('On cate')
-  //         setFilterArray(route.params?.categoryArray);
-  //         setFilteredArticleData(route.params?.categoryArray);
-  //       }
-  //       else {
-  //         setFilterArray([]);
-  //         setFilteredArticleData([]);
-  //       }
-  //     }
-  //     if (route.params?.backClicked != 'yes') {
-  //       fetchData()
-  //     } else {
-  //       setLoadingArticle(false);
-  //     }
-
-  //   }, [selectedChildActivitiesData, route.params?.categoryArray, languageCode, queryText]))
-
 
   useFocusEffect(
     React.useCallback(() => {
@@ -723,13 +571,6 @@ const Articles = ({ route, navigation }: any): any => {
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
-        // await new Promise(resolve => setTimeout(resolve, 0));
-        // let videoArticleDataAllCategory: any;
-        // if (activeChild != null && activeChild.taxonomyData != null && activeChild?.gender != null) {
-        //   videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-        // }
-        // const combineDartArr = await mergearr(articleDataall, videoArticleDataAllCategory, false);
-        // const articlesData = [...combineDartArr];
         console.log('articles all datas',articleData.length)
         const processedArticles = preprocessArticles(articleData);
         const searchIndex = new MiniSearch({
@@ -851,11 +692,6 @@ const Articles = ({ route, navigation }: any): any => {
 
     }
     else {
-      console.log('selected data is close')
-      // artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
-      // newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-      // combineDartArr = mergearr(artData, newvideoArticleData, true);
-      // articleData = [...combineDartArr];
       setFilteredArticleData(filterArray);
       setLoadingArticle(false);
       setIsSearchedQueryText(false)
