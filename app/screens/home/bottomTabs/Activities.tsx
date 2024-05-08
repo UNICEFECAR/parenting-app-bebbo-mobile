@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   historyList: {
     backgroundColor: bgcolorWhite2,
     left: 0,
-    //paddingBottom: 20,
+    paddingBottom: 10,
     position: 'absolute',
     right: 0,
     top: 51,
@@ -232,12 +232,6 @@ const Activities = ({ route, navigation }: any): any => {
         let titleData = [];
         let bodyData = [];
         if (queryText != "" && queryText != undefined && queryText != null) {
-          // filter data with title first then after summary or body
-          // titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-          // bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          // // combine array for article
-          // const combineArticleData: any[] = titleData.concat(bodyData)
-          // newArticleData = [...new Set(combineArticleData)];
           const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
@@ -296,14 +290,6 @@ const Activities = ({ route, navigation }: any): any => {
         let titleData = [];
         let bodyData = [];
         if (queryText != "" && queryText != undefined && queryText != null) {
-          // titleData = newArticleData.filter((element: any) => element.title.toLowerCase().includes(queryText.toLowerCase()));
-          // bodyData = newArticleData.filter((element: any) => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
-          // const combineArticleData: any[] = titleData.concat(bodyData)
-          // console.log('new article data is',combineArticleData)
-          // newArticleData = [...new Set(combineArticleData)];
-
-          // setfilteredData(newArticleData);
-
           const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
@@ -362,23 +348,6 @@ const Activities = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log("useFocusEffect called route.params?.backClicked", route.params?.backClicked);
-      console.log('isCurrentChildSelected is', isCurrentChildSelected)
-      //setLoadingArticle(true);
-      // if (queryText == '') {
-      //   setLoadingArticle(true);
-      //   if (route.params?.categoryArray) {
-      //     setFilterArray(route.params?.categoryArray);
-      //     setFilteredArticleData(route.params?.categoryArray);
-      //   }
-      //   else {
-      //     setFilterArray([]);
-      //     setFilteredArticleData([]);
-      //   }
-      //   setIsSearchedQueryText(false)
-
-      // } else {
-      console.log('isSerachedQueryText', isSerachedQueryText)
       if (isSerachedQueryText || queryText == '') {
         setLoading(true);
         async function fetchData(): Promise<any> {
@@ -472,32 +441,6 @@ const Activities = ({ route, navigation }: any): any => {
     }, [])
   );
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     console.log('filtered data is', filteredData.length);
-  //     if (filteredData && Array.isArray(filteredData)) {
-  //       if (filteredData.length > 0) {
-  //         setsuggestedGames(
-  //           filteredData.filter(
-  //             (x: any) =>
-  //               x.related_milestone && // Check if x.related_milestone is defined
-  //               x.related_milestone.length > 0 && // Check if x.related_milestone has a length property
-  //               childMilestonedata.findIndex((y: any) => y == x.related_milestone[0]) == -1
-  //           )
-  //         );
-
-  //         setotherGames(
-  //           filteredData.filter(
-  //             (x: any) =>
-  //               !x.related_milestone || // Check if x.related_milestone is undefined or empty
-  //               (x.related_milestone.length > 0 &&
-  //                 childMilestonedata.findIndex((y: any) => y == x.related_milestone[0]) > -1)
-  //           )
-  //         );
-  //       }
-  //     }
-  //   }, [filteredData, childMilestonedata])
-  // );
   useFocusEffect(
     React.useCallback(() => {
       setsuggestedGames((filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y: any) => y == x.related_milestone[0])) == -1))));
@@ -757,11 +700,6 @@ const Activities = ({ route, navigation }: any): any => {
 
     }
     else {
-      console.log('selected data is close')
-      // artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.activity_category));
-      // newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.activity_category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-      // combineDartArr = mergearr(artData, newvideoArticleData, true);
-      // articleData = [...combineDartArr];
       setFilteredActivityData(filterArray);
       setLoading(false);
       setIsSearchedQueryText(false)
