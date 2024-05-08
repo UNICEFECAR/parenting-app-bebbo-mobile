@@ -471,8 +471,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                 if (validated == true) {
                   setTimeout(() => {
                     setLoading(false);
-                    console.log('parentalRole', userRelationToParent)
-                    if (relationshipname == 'service provider') {
+                    if (relationshipname == relationshipToParent[3].name) {
                       AddChild(true);
                     } else {
                       navigation.navigate('AddChildSetup', {
