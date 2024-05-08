@@ -302,8 +302,6 @@ const Terms = ({ navigation }: Props): any => {
                   .
                 </LabelTextTerms>
               </SideRightSpacing20>
-
-              {/* <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToTerms} style={styles.checkboxStyle}>{t('tncCheckBoxText')}</CheckboxItemText></LabelText> */}
             </FormOuterCheckbox>
             <ButtonPrimary
               disabled={isButtonDisabled}
