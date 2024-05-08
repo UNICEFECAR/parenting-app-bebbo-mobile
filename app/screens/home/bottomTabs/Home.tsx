@@ -32,6 +32,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {
   Heading1Centerr, Heading3Centerr, Heading3Regular, Heading4Center, ShiftFromTop20,
+  ShiftFromTop25,
   ShiftFromTopBottom10,
   SideSpacing25
 } from '@styles/typography';
@@ -153,7 +154,7 @@ const Home = ({ route, navigation }: any): any => {
 
   };
   useEffect(() => {
-    
+
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -244,25 +245,25 @@ const Home = ({ route, navigation }: any): any => {
   const relbebboprod = '1.1.5';
   const relfolejadev = '0.2.0';
   const relfolejaprod = '1.1.0';
- 
+
   useLayoutEffect(
     React.useCallback(() => {
       const task = InteractionManager.runAfterInteractions(() => {
         if (netInfo.isConnected) {
           synchronizeEvents(netInfo.isConnected);
         }
-       
+
         // Expensive task
       });
-  
+
       return () => task.cancel();
     }, [])
   );
-  useEffect(()=>{
-     console.log('Active child is',activeChild)
-  },[isFoucused])
-  useEffect(()=>{
-   // setModalVisible(false);
+  useEffect(() => {
+    console.log('Active child is', activeChild)
+  }, [isFoucused])
+  useEffect(() => {
+    // setModalVisible(false);
 
     async function fetchNetInfo(): Promise<any> {
       console.log(bufferAgeBracket, "---userIsOnboarded----", userIsOnboarded);
@@ -352,8 +353,8 @@ const Home = ({ route, navigation }: any): any => {
                 saveinDB: true,
               },
             ];
-           // const apiJsonDataarticleall = apiJsonDataGet(String(bufferAgeBracket), "all");
-           const apiJsonDataarticleall = apiJsonDataGet("all");
+            // const apiJsonDataarticleall = apiJsonDataGet(String(bufferAgeBracket), "all");
+            const apiJsonDataarticleall = apiJsonDataGet("all");
             if (apiJsonDataarticleall.length > 0) {
               apiJsonDatarelatedvideoart.push(apiJsonDataarticleall[0])
             }
@@ -472,7 +473,7 @@ const Home = ({ route, navigation }: any): any => {
     else {
       fetchNetInfo();
     }
-  },[netInfo.isConnected])
+  }, [netInfo.isConnected])
   const ondobChange = (event: any, selectedDate: any): any => {
     setShow(Platform.OS === 'ios');
     setdate1(selectedDate);
@@ -496,7 +497,7 @@ const Home = ({ route, navigation }: any): any => {
           textColor="#FFF"
           setProfileLoading={setProfileLoading}
         />
- 
+
         {
           (netInfo && netInfo.isConnected == false) ?
             <OfflineBar><Heading3Centerr>{t('noInternet')}</Heading3Centerr></OfflineBar> : null
@@ -504,7 +505,7 @@ const Home = ({ route, navigation }: any): any => {
         <ScrollView style={styles.scrollView}>
           <FlexCol>
             <BabyNotification />
-           
+
 
             {show && (
               <DateTimePicker
@@ -530,16 +531,17 @@ const Home = ({ route, navigation }: any): any => {
                 display="spinner"
                 onChange={ondobChange2}
               />
-            )}  
-           <DailyReads />
-           <FeatureDivideArea>
+            )}
+            <DailyReads />
+            <FeatureDivideArea>
               <DailyHomeNotification />
             </FeatureDivideArea>
-           <ChildInfo
-              headerColor={headerColorChildInfo}
-              backgroundColor={backgroundColorChildInfo}
-            />
-           
+            <ShiftFromTop25>
+              <ChildInfo
+                headerColor={headerColorChildInfo}
+                backgroundColor={backgroundColorChildInfo}
+              />
+            </ShiftFromTop25>
             <ChildMilestones />
             <PlayingTogether />
             <AdviceAndArticles />
