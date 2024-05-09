@@ -108,12 +108,12 @@ jobs:
           security set-keychain-settings -lut 21600 "$KCHAIN_PATH"
           security unlock-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
           # import certificate to keychain
-          security import $DEV_CERT_PATH -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KCHAIN_PATH
-          security set-key-partition-list -S apple-tool:,apple: -k "$KEY_PWD" $KCHAIN_PATH
+          security import "$DEV_CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEY_PWD" "$KCHAIN_PATH"
           security list-keychain -d user -s "$KCHAIN_PATH"
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH_STAGING ~/Library/MobileDevice/Provisioning\ Profiles
+          cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
           # cp $PP_PATH_PROD ~/Library/MobileDevice/Provisioning\ Profiles
           
       - name: Select Xcode
