@@ -24,10 +24,9 @@ env:
         APP_NAME_STAGING: ${{ 'ParentBuddyAppDev-iOS/ENV_DEV' }}
         TESTING_GROUP_STAGING: ${{ 'ENV_DEV' }}
         UPLOAD_FILE_STAGING: ${{ 'ParentBuddyAppDev/BebboDev.ipa' }}
-
-        echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -d > "$DEV_CERT_PATH"
+        DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_DEVELOPMENT_CERTIFICATE }}
         CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-        echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -d > "$PP_PATH_STAGING"
+        DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
         KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
 
         # EXPORT_PATH_PROD: ${{ 'prod/' }}
@@ -98,8 +97,10 @@ jobs:
           # import certificate and provisioning profile from secrets
           #echo -n "$DISTRIBUTION_CERTIFICATE" | base64 --decode --output $CERT_PATH
           #echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 --decode --output $PP_PATH_PROD
-          echo -n "$DEVELOPMENT_CERTIFICATE" | base64 --decode --output "$DEV_CERT_PATH"
-          echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 --decode --output "$PP_PATH_STAGING"
+          # echo -n "$DEVELOPMENT_CERTIFICATE" | base64 --decode --output "$DEV_CERT_PATH"
+          echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -d > "$DEV_CERT_PATH"
+          #echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 --decode --output "$PP_PATH_STAGING"
+          echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -d > "$PP_PATH_STAGING"
           
           
           # create temporary keychain
