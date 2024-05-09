@@ -52,8 +52,8 @@ jobs:
         with:
           node-version: '21.2.0'
         
-#      - name: Install dependencies
- #       run: npm install
+      - name: Install dependencies
+        run: npm install
       
       - name: 'Create env file'
         run: |
@@ -80,9 +80,9 @@ jobs:
         #  touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
          # echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
-#      - name: Install pod dependencies
- #       run: | 
-  #        cd ios && pod install
+      - name: Install pod dependencies
+        run: | 
+          cd ios && pod install
 
       - name: Signing & Provisioning
         run: |
@@ -99,10 +99,10 @@ jobs:
           #echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 --decode --output $PP_PATH_PROD
           # echo -n "$DEVELOPMENT_CERTIFICATE" | base64 --decode --output "$DEV_CERT_PATH"
           echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -d -o "$DEV_CERT_PATH"
-          cat "$DEV_CERT_PATH"
+          #cat "$DEV_CERT_PATH"
           #echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 --decode --output "$PP_PATH_STAGING"
           echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -d -o "$PP_PATH_STAGING"
-          cat "$PP_PATH_STAGING"
+          #cat "$PP_PATH_STAGING"
           
           
           
