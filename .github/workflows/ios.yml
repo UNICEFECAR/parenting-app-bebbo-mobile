@@ -24,9 +24,9 @@ env:
         APP_NAME_STAGING: ${{ 'ParentBuddyAppDev-iOS/ENV_DEV' }}
         TESTING_GROUP_STAGING: ${{ 'ENV_DEV' }}
         UPLOAD_FILE_STAGING: ${{ 'ParentBuddyAppDev/BebboDev.ipa' }}
-        DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_DEVELOPMENT_CERTIFICATE }}
+        DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_APP_DEVELOPMENT_CERTIFICATE }}
         CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-        DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
+        DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD_HOC_PROFILE }}
         KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
 
         # EXPORT_PATH_PROD: ${{ 'prod/' }}
@@ -52,8 +52,8 @@ jobs:
         with:
           node-version: '21.2.0'
         
-      - name: Install dependencies
-        run: npm install
+#      - name: Install dependencies
+ #       run: npm install
       
       - name: 'Create env file'
         run: |
@@ -80,9 +80,9 @@ jobs:
         #  touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
          # echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
-      - name: Install pod dependencies
-        run: | 
-          cd ios && pod install
+#      - name: Install pod dependencies
+ #       run: | 
+  #        cd ios && pod install
 
       - name: Signing & Provisioning
         run: |
@@ -91,8 +91,8 @@ jobs:
           PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
           KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
           
-          # CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
-          # PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
+          #CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
+          #PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
   
           # import certificate and provisioning profile from secrets
           #echo -n "$DISTRIBUTION_CERTIFICATE" | base64 --decode --output $CERT_PATH
@@ -109,11 +109,11 @@ jobs:
           # create temporary keychain
           security create-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
           security set-keychain-settings -lut 21600 "$KCHAIN_PATH"
-          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" "$KCHAIN_PATH"
 
           security unlock-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
           # import certificate to keychain
           security import "$DEV_CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" "$KCHAIN_PATH"
           security list-keychain -d user -s "$KCHAIN_PATH"
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
