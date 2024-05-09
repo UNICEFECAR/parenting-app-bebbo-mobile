@@ -25,10 +25,9 @@ env:
         TESTING_GROUP_STAGING: ${{ 'ENV_DEV' }}
         UPLOAD_FILE_STAGING: ${{ 'ParentBuddyAppDev/BebboDev.ipa' }}
 
-        DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_APP_DEVELOPMENT_CERTIFICATE }}
-  
+        echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -d > "$DEV_CERT_PATH"
         CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-        DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD_HOC_PROFILE }}
+        echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -d > "$PP_PATH_STAGING"
         KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
 
         # EXPORT_PATH_PROD: ${{ 'prod/' }}
