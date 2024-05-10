@@ -92,7 +92,6 @@ export const localizationSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ): any => {
-      console.log('Hiiiiiiiiii', action.payload);
       state.AppLayoutDirectionParams = action.payload;
     },
   },

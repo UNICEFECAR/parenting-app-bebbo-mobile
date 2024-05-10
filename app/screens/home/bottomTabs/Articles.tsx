@@ -15,13 +15,13 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { articleColor, articlesTintcolor, bgColor1, bgcolorWhite2, greyCode } from '@styles/style';
-import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
+import { Heading3, Heading4Center, Heading6Bold, ShiftFromBottom10, ShiftFromTopBottom5, SideRightSpacing20, SideSpacing10 } from '@styles/typography';
 import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   Dimensions,
-  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View
+  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ThemeContext } from 'styled-components/native';
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
   historyList: {
     backgroundColor: bgcolorWhite2,
     left: 0,
-    paddingBottom: 10,
     position: 'absolute',
+    paddingBottom: 10,
     right: 0,
     top: 51,
     zIndex: 1,
@@ -104,9 +104,8 @@ const Articles = ({ route, navigation }: any): any => {
   const [flatListHeight, setFlatListHeight] = useState(0);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
-  const flatListHistoryRef = useRef<any>(null);
-  const windowWidthstyle = Dimensions.get('window').width;
-  const windowHeightstyle = Dimensions.get('window').height;
+  const windowWidthStyle = Dimensions.get('window').width;
+  const windowHeightStyle = Dimensions.get('window').height;
   const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
@@ -186,16 +185,10 @@ const Articles = ({ route, navigation }: any): any => {
 
   const getSearchedKeywords = async (): Promise<any> => {
     const realm = await dataRealmCommon.openRealm();
-
     if (realm != null) {
-      console.log('Seach History is...', realm?.objects('SearchHistory'))
       const unsynchronizedEvents: any = realm.objects('SearchHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
-      console.log('Seach History is', unsynchronizedEvents)
       setSearchHistory(unsynchronizedEvents);
-
     }
-    console.log('search history.......', searchHistory);
-
   }
 
   //store previous searched keyword
@@ -246,11 +239,6 @@ const Articles = ({ route, navigation }: any): any => {
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
   const articleDataOld = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
-  const ActivitiesDataold = useAppSelector(
-    (state: any) =>
-      state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
-  );
-  const ActivitiesData = randomArrayShuffle(ActivitiesDataold)
   const VideoArticlesDataall = useAppSelector(
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
@@ -281,19 +269,15 @@ const Articles = ({ route, navigation }: any): any => {
   };
 
   const showSelectedBracketData = (item: any): any => {
-
-    console.log('On age selected', item)
     if (item && item?.id !== null) {
       const eventData = { 'name': ADVICE_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
       logEvent(eventData, netInfo.isConnected)
       setCurrentSelectedChildId(item.id);
       setIsSearchedQueryText(true)
       const filteredData = articleData.filter((x: any) => x.child_age.includes(item.id));
-      console.log('On age selected....', filteredData.length)
       setSelectedChildActivitiesData(filteredData);
       setCurrentChildSelected(false)
     } else {
-      console.log('On de selected....', articleData.length)
       setCurrentSelectedChildId(0);
       setIsSearchedQueryText(true)
       setSelectedChildActivitiesData(articleData);
@@ -346,29 +330,20 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = aggregatedResults.filter((x: any) => itemId.includes(x.category));
             }
-            //const filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId) && itemId.includes(x.category));
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
             toTop()
           } else {
             const results = searchIndex.search(queryText);
-            console.log('LLSLSLs Results length is', results.length)
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
-              console.log('currentSelectedChildId Results length is', itemId)
               setSelectedCategoryId(itemId);
               const categoryFilteredData = results.filter((x: any) => itemId.includes(x.category));
-              console.log('categoryFilteredData Results length is', categoryFilteredData?.length)
-              console.log('categoryFilteredData Results length is....', categoryFilteredData)
               filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-              console.log('currentSelectedChildId Results length is 1', filteredResults?.length)
             } else {
-              console.log('currentSelectedChildId Results length is....', currentSelectedChildId)
               filteredResults = results.filter((x: any) => itemId.includes(x.category));
             }
-            //const filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId) && itemId.includes(x.category));
-            console.log('LLLSSS filteredResults length is', filteredResults.length)
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
@@ -384,11 +359,7 @@ const Articles = ({ route, navigation }: any): any => {
           setshowNoData(true);
         }, 200);
       } else {
-        console.log('selectedChildActivitiesData article data is', selectedChildActivitiesData?.length)
         let newArticleData: any = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
-        console.log('new article data is', newArticleData?.length)
-        let titleData = [];
-        let bodyData = [];
         if (queryText != "" && queryText != undefined && queryText != null) {
           const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
           if (keywords.length > 1) {
@@ -404,21 +375,18 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = aggregatedResults;
             }
-            //const filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
             toTop()
           } else {
             const results = searchIndex.search(queryText);
-            console.log('sdsd Results length is', results.length)
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
             } else {
               filteredResults = results;
             }
-            console.log('sdsd filteredResults length is', filteredResults.length)
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
@@ -447,7 +415,6 @@ const Articles = ({ route, navigation }: any): any => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('UseFocusEffect Articles two');
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
       });
@@ -465,28 +432,8 @@ const Articles = ({ route, navigation }: any): any => {
     }, [])
   );
 
-  useEffect(() => {
-    console.log('reefrence for flatlist is', flatListHistoryRef.current)
-    const handleClickOutside = (event: any) => {
-      if (flatListHistoryRef.current && !flatListHistoryRef.current.contains(event.target)) {
-        setHistoryVisible(false); // Hide dropdown if click is outside
-      }
-    };
-
-    // if (historyVisible) {
-    //   document.addEventListener('mousedown', handleClickOutside);
-    // } else {
-    //   document.removeEventListener('mousedown', handleClickOutside);
-    // }
-
-    // return () => {
-    //   document.removeEventListener('mousedown', handleClickOutside);
-    // };
-
-  }, [searchHistory, flatListHistoryRef])
   useFocusEffect(
     React.useCallback(() => {
-      console.log('Applied another focus effect')
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
@@ -497,7 +444,6 @@ const Articles = ({ route, navigation }: any): any => {
         }
         else {
           console.log("else if route params 0", route.params, activityTaxonomyId);
-
           const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
           showSelectedBracketData(firstChildDevData[0]);
         }
@@ -511,39 +457,19 @@ const Articles = ({ route, navigation }: any): any => {
     }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId, activityTaxonomyId])
   );
   const onFilterArrayChange = (newFilterArray: any): any => {
-    console.log('onFilterArrayChange is selected', newFilterArray?.length)
     setFilterArray(newFilterArray)
   }
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log("useFocusEffect called route.params?.backClicked", route.params?.backClicked);
-      console.log('isCurrentChildSelected is', isCurrentChildSelected)
-      //setLoadingArticle(true);
-      // if (queryText == '') {
-      //   setLoadingArticle(true);
-      //   if (route.params?.categoryArray) {
-      //     setFilterArray(route.params?.categoryArray);
-      //     setFilteredArticleData(route.params?.categoryArray);
-      //   }
-      //   else {
-      //     setFilterArray([]);
-      //     setFilteredArticleData([]);
-      //   }
-      //   setIsSearchedQueryText(false)
-
-      // } else {
-      console.log('isSerachedQueryText', isSerachedQueryText)
       if (isSerachedQueryText || queryText == '') {
         setLoadingArticle(true);
         async function fetchData(): Promise<any> {
-          console.log('route category data', route.params?.categoryArray)
           if (route.params?.categoryArray) {
             setFilterArray(route.params?.categoryArray);
             setFilteredArticleData(route.params?.categoryArray);
           }
           else {
-            console.log('route category data in else')
             setFilterArray([]);
             setFilteredArticleData([]);
           }
@@ -555,7 +481,6 @@ const Articles = ({ route, navigation }: any): any => {
           setLoadingArticle(false);
         }
       }
-      //  }
     }, [selectedChildActivitiesData, route.params?.categoryArray, languageCode, queryText, isSerachedQueryText]))
 
   const [searchIndex, setSearchIndex] = useState<any>(null);
@@ -571,7 +496,6 @@ const Articles = ({ route, navigation }: any): any => {
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
-        console.log('articles all datas',articleData.length)
         const processedArticles = preprocessArticles(articleData);
         const searchIndex = new MiniSearch({
           processTerm: (term) => suffixes(term, 3),
@@ -623,11 +547,7 @@ const Articles = ({ route, navigation }: any): any => {
     setLoadingArticle(true);
     await new Promise(resolve => setTimeout(resolve, 0));
     Keyboard.dismiss();
-    let artData: any;
-    let combineDartArr: [];
-    let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
-      console.log('on search list method')
       const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
       if (keywords.length > 1) {
         const resultsPromises = keywords.map(async (keyword: any) => {
@@ -639,14 +559,10 @@ const Articles = ({ route, navigation }: any): any => {
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = aggregatedResults.filter((x: any) => selectedCategoryId.includes(x.category));
-          console.log('in acrticle categoryFilteredData Results length is', categoryFilteredData?.length)
-          console.log('in acrticle categoryFilteredData Results length is....', categoryFilteredData)
           filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-          console.log('in articlevcurrentSelectedChildId Results length is 1', filteredResults?.length)
         } else {
           filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         }
-        /// const filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         setfilteredData(filteredResults);
         setLoadingArticle(false)
         setIsSearchedQueryText(false)
@@ -654,17 +570,12 @@ const Articles = ({ route, navigation }: any): any => {
       } else {
         const results = searchIndex.search(queryText);
         let filteredResults: any = null;
-        console.log('on search list method', selectedCategoryId)
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = results.filter((x: any) => selectedCategoryId.includes(x.category));
-          console.log('in acrticle categoryFilteredData Results length is', categoryFilteredData?.length)
-          console.log('in acrticle categoryFilteredData Results length is....', categoryFilteredData)
           filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-          console.log('in articlevcurrentSelectedChildId Results length is 1', filteredResults?.length)
         } else {
           filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         }
-        //const filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         setfilteredData(filteredResults);
         setLoadingArticle(false)
         setIsSearchedQueryText(false)
@@ -703,6 +614,7 @@ const Articles = ({ route, navigation }: any): any => {
       onPress={async (): Promise<any> => {
         Keyboard.dismiss();
         searchQueryText(item);
+        setHistoryVisible(false);
         setIsSearchedQueryText(true);
         await searchList(item);
       }}
@@ -762,20 +674,20 @@ const Articles = ({ route, navigation }: any): any => {
                   autoCorrect={false}
                   clearButtonMode="always"
                   onFocus={(): any => {
+                    console.log('Onfocus of textinput')
                     setHistoryVisible(true);
-                  }}
-                  isFocused={(item: any) => {
-                    console.log('is focus', item)
                   }}
                   onChangeText={(queryText: any): any => {
                     console.log('searched querytext is', queryText)
                     if (queryText.replace(/\s/g, "") == "") {
+                      console.log('closed click')
                       searchQueryText(queryText.replace(/\s/g, ''));
-                      setHistoryVisible(true);
                       //  await searchList(queryText)
                     } else {
                       searchQueryText(queryText);
-                      setHistoryVisible(true);
+                      if (!historyVisible) {
+                        setHistoryVisible(true);
+                      }
                     }
                   }}
                   value={queryText}
@@ -786,7 +698,6 @@ const Articles = ({ route, navigation }: any): any => {
                     Keyboard.dismiss();
                     setIsSearchedQueryText(true)
                     await searchList(queryText);
-                    // setIsSearchedQueryText(true);
                   }}
                   multiline={false}
                   // placeholder="Search for Keywords"
@@ -796,20 +707,22 @@ const Articles = ({ route, navigation }: any): any => {
                 />
                 {
                   Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
-                  <OuterIconRow>
-                    <IconClearPress onPress={async (): Promise<any> => {
-                      console.log('cleartext')
-                      Keyboard.dismiss();
-                      searchQueryText('');
-                      setHistoryVisible(true);
-                    }}>
-                      <Icon
-                        name="ic_close"
-                        size={10}
-                        color="#fff"
-                      />
-                    </IconClearPress>
-                  </OuterIconRow>
+                  <SideSpacing10>
+                    <OuterIconRow>
+                      <IconClearPress onPress={async (): Promise<any> => {
+                        console.log('cleartext')
+                        Keyboard.dismiss();
+                        searchQueryText('');
+                        // setHistoryVisible(true);
+                      }}>
+                        <Icon
+                          name="ic_close"
+                          size={10}
+                          color="#fff"
+                        />
+                      </IconClearPress>
+                    </OuterIconRow>
+                  </SideSpacing10>
                 }
               </SearchBox>
               <DividerArt></DividerArt>
@@ -822,50 +735,46 @@ const Articles = ({ route, navigation }: any): any => {
                 ItemTintColor={backgroundColor}
               />
               {searchHistory.length !== 0 && historyVisible &&
-                <View style={styles.historyList}>
-                  <FlatList
-                    ref={flatListHistoryRef}
-                    data={searchHistory}
-                    renderItem={renderSearchHistoryItem}
-                    keyboardShouldPersistTaps='handled'
-                    contentContainerStyle={{ flex: 1 }}
-                    keyExtractor={(item, index): any => index.toString()}
-                  //style={styles.historyList}
-                  />
-                </View>
-
+                  <View style={styles.historyList}>
+                    <FlatList
+                      data={searchHistory}
+                      keyboardShouldPersistTaps="handled"
+                      renderItem={renderSearchHistoryItem}
+                      contentContainerStyle={{ flex: 1 }}
+                      keyExtractor={(item, index): any => index.toString()}
+                    />
+                  </View>
               }
               <View style={{ backgroundColor: articlesTintcolor }}>
                 <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
                 <DividerArt></DividerArt>
               </View>
-
             </View>
-
-
-            {filteredData.length > 0 ?
-              <FlatList
-                ref={flatListRef}
-                data={filteredData}
-                onScroll={(e): any => {
-                  console.log(e);
-                  if (keyboardStatus == true) {
-                    Keyboard.dismiss();
-                  }
-                }}
-                nestedScrollEnabled={true}
-                // keyboardDismissMode={"on-drag"}
-                // keyboardShouldPersistTaps='always'
-                removeClippedSubviews={true} // Unmount components when outside of window 
-                initialNumToRender={4} // Reduce initial render amount
-                maxToRenderPerBatch={4} // Reduce number in each render batch
-                updateCellsBatchingPeriod={100} // Increase time between renders
-                windowSize={7} // Reduce the window size
-                // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
-                renderItem={memoizedValue}
-                keyExtractor={(item): any => item.id.toString()}
-              />
-              : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
+            {
+              filteredData.length > 0 ?
+                <FlatList
+                  ref={flatListRef}
+                  data={filteredData}
+                  onScroll={(e): any => {
+                    console.log(e);
+                    if (keyboardStatus == true) {
+                      Keyboard.dismiss();
+                    }
+                  }}
+                  nestedScrollEnabled={true}
+                  // keyboardDismissMode={"on-drag"}
+                  // keyboardShouldPersistTaps='always'
+                  removeClippedSubviews={true} // Unmount components when outside of window 
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                  // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
+                  renderItem={memoizedValue}
+                  keyExtractor={(item): any => item.id.toString()}
+                />
+                : <Heading4Center>{t('noDataTxt')}</Heading4Center>
+            }
 
           </FlexCol>
           <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>

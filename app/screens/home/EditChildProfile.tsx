@@ -207,11 +207,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     handleBack();
   }, []);
   useFocusEffect(
-
     React.useCallback(() => {
-
-      console.log('childData is', childData)
-      console.log('childData is profiles', childData)
       if (childData != undefined && childData != null && childData != '' && childData.uuid != '') {
         setphotoUri(childData.photoUri);
         if (childData.photoUri != '' && childData.photoUri != null && childData.photoUri != undefined) {
@@ -219,13 +215,11 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         }
         sendData(childData);
       }
-      console.log('childadata gender is', genders);
-      if(childData != undefined && childData != null && childData != '' && childData.uuid != '' && childData?.gender== 0 ) {
-        setDefaultGenderValue(genders.find((item: any) => item.id == girlChildGender))
-      }else{
-        setDefaultGenderValue(genders.find((item: any) => item.id == childData?.gender))
+      if (childData != null && childData.uuid !== '' && childData?.gender === 0) {
+        setDefaultGenderValue(genders.find((item: any) => item.id === girlChildGender))
+      } else {
+        setDefaultGenderValue(genders.find((item: any) => item.id === childData?.gender))
       }
-      
       console.log(destPath)
     }, []),
   );
