@@ -5,37 +5,36 @@ import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FDirRow } from './shared/FlexBoxStyle';
 import Icon from './shared/Icon';
 import { RadioBoxContainer, RadioInnerBox, RadioOuter } from './shared/radio';
-const styles=StyleSheet.create({
-  checkbox:{borderRadius: 50, borderWidth: 1},
-  checkboxItem:{borderRadius: 50},
-  heading3:{flexShrink:1},
-  lastView:{flexDirection:'row',flex:1}
-  })
-  
-const ToggleRadiosBgColor = (props: any):any => {
-  const {options,tickColor,tickbgColor,defaultValue} = props;
-  const [checkedItem, setCheckedItem] = useState(defaultValue?defaultValue:null);
-  useEffect(()=>{
-      setCheckedItem(defaultValue);
-  },[defaultValue])
+const styles = StyleSheet.create({
+  checkbox: { borderRadius: 50, borderWidth: 1 },
+  checkboxItem: { borderRadius: 50 },
+  heading3: { flexShrink: 1 },
+  lastView: { flexDirection: 'row', flex: 1 }
+})
+
+const ToggleRadiosBgColor = (props: any): any => {
+  const { options, tickColor, tickbgColor, defaultValue } = props;
+  const [checkedItem, setCheckedItem] = useState(defaultValue ? defaultValue : null);
+  useEffect(() => {
+    setCheckedItem(defaultValue);
+  }, [defaultValue])
   return (
     <>
-    <RadioBoxContainer>
-      <FDirRow>
-        {options.map((item: typeof options[0], index: number) => {
-          return (
-            
+      <RadioBoxContainer>
+        <FDirRow>
+          {options.map((item: typeof options[0], index: number) => {
+            return (
               <RadioOuter key={index}
-                >
+              >
                 <RadioInnerBox
-                  onPress={():any => {
+                  onPress={(): any => {
                     setCheckedItem(item);
                     props.getCheckedItem(item);
                   }}>
                   <CheckboxItem>
                     <View>
-                    {(checkedItem?.title && checkedItem.title == item.title) ? (
-                        <CheckboxActive style={[styles.checkboxItem,{backgroundColor:tickbgColor}]}>
+                      {(checkedItem?.title && checkedItem.title == item.title) ? (
+                        <CheckboxActive style={[styles.checkboxItem, { backgroundColor: tickbgColor }]}>
                           <Icon name="ic_tick" size={12} color={tickColor} />
                         </CheckboxActive>
                       ) : (
@@ -44,9 +43,8 @@ const ToggleRadiosBgColor = (props: any):any => {
                       )}
                     </View>
                   </CheckboxItem>
-                  
                   <View style={styles.lastView}>
-                  {(checkedItem?.title && checkedItem.title == item.title) ? (
+                    {(checkedItem?.title && checkedItem.title == item.title) ? (
                       <Heading3 style={styles.heading3} numberOfLines={2}>{item.title} </Heading3>
                     ) : (
                       <Heading3Regular style={styles.heading3} numberOfLines={2}>{item.title} </Heading3Regular>
@@ -54,10 +52,9 @@ const ToggleRadiosBgColor = (props: any):any => {
                   </View>
                 </RadioInnerBox>
               </RadioOuter>
-              
-          );
-        })}
-      </FDirRow></RadioBoxContainer>
+            );
+          })}
+        </FDirRow></RadioBoxContainer>
     </>
   );
 };

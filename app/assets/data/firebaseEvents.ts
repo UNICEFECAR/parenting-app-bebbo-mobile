@@ -33,3 +33,4 @@ export const EMAIL_SENT="email_sent";//Email Sent
 export const DONATE_OPENED="donate_opened";//Donate Event
 export const ARTICLE_SEARCHED="article_searched";//Article Searched Event
 export const ACTIVITY_SEARCHED="activity_searched";//Activity Searched Event
+export const TERMS_ACCEPTED="terms_accepted";//Terms accepted Event
