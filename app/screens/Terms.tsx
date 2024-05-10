@@ -23,7 +23,9 @@ import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
 import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo } from '@dynamicImportsClass/dynamicImports';
 import FeatureTCView from '@components/shared/FeaturesTCView';
-
+import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
+import { logEvent } from '../services/EventSyncService';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -76,14 +78,12 @@ const styles = StyleSheet.create({
 const Terms = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
-  const termsTextColor = themeContext?.colors?.TERMS_TEXTCOLOR;
-
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
-  const [toggleCheckBox2, setToggleCheckBox2] = useState(true);
   const isButtonDisabled = (toggleCheckBox == false)
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
+  const netInfo = useNetInfoHook();
+  
   const goToPrivacyPolicy = (): any => {
     navigation.navigate('PrivacyPolicy');
   };
@@ -216,6 +216,8 @@ const Terms = ({ navigation }: Props): any => {
   const acceptTerms = async (): Promise<any> => {
     if (acceptTermsFlag == false) {
       dispatch(setAcceptTerms(true));
+      const eventData = { 'name': TERMS_ACCEPTED}
+      logEvent(eventData, netInfo.isConnected)
     }
     navigation.navigate('LoadingScreen', {
       apiJsonData: apiJsonData,
