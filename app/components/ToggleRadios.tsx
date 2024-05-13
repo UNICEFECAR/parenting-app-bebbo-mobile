@@ -1,4 +1,4 @@
-import { Heading3, Heading3Regular } from '@styles/typography';
+import {  Heading4Centerr } from '@styles/typography';
 import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
@@ -28,6 +28,7 @@ const ToggleRadios = (props: any): any => {
               <RadioOuter key={index}
               >
                 <Pressable
+                style={{flexDirection:'row'}}
                   onPress={(): any => {
                     setCheckedItem(item);
                     props.getCheckedItem(item);
@@ -38,12 +39,13 @@ const ToggleRadios = (props: any): any => {
                     </View>
 
                   </RadioItem>
-                </Pressable>
+            
                 <View style={styles.lastView}>
                   { (
-                    <Heading3Regular style={styles.heading3} numberOfLines={2}>{item.title} </Heading3Regular>
+                     <Heading4Centerr style={styles.heading3} numberOfLines={2}>{item.title} </Heading4Centerr>
                   )}
                 </View>
+                </Pressable>
               </RadioOuter>
 
             );
