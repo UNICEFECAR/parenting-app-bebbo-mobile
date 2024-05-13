@@ -82,12 +82,18 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
+  const countrySelectedId = useAppSelector(
+    (state: any) => state.selectedCountry.countrySelectedId,
+  );
 
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
+  );
+  const selectedLocale = useAppSelector(
+    (state: any) => state.selectedCountry.selectedLocale,
   );
   const incrementalSyncDT = useAppSelector((state: any) =>
     (state.utilsData.incrementalSyncDT),
@@ -110,7 +116,6 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const { t, i18n } = useTranslation();
   console.log(I18nManager.isRTL, "---is rtl val");
   useEffect(() => {
-    console.log('Route Params is here......', route.params);
     if (!route.params.language) {
       console.log('Language data not available');
     } else if (Array.isArray(route.params.language)) {
@@ -129,7 +134,6 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     return languageCode;
   };
   const getCountryByCountryCode = (countryCode: any): any => {
-    console.log('Here Country code is', countryCode)
     const normalizedCountryCode = countryCode.toLowerCase(); // Normalize to lowercase for case-insensitive comparison
     for (const country of localization) {
       for (const language of country.languages) {
@@ -190,15 +194,10 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         }
       } else {
         if (Object.keys(route.params).length === 0) {
-          console.log('newCountry id is', countryId)
           newCountryLocale = selectedDefaultCountry;
           newCountryId = countryId;
         } else {
-          //  setCountry(props.route.params.country)
-          // newCountryId = route.params.country.countryId;
-          console.log('Language is from params', route.params.language)
           if (route.params != undefined) {
-            console.log('Language is from params', route.params.country.countryId)
             newCountryLocale = route.params.language.luxonLocale;
             newCountryId = route.params.country.countryId;
           } else {
@@ -215,50 +214,55 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       const countrySponsorsData = sponsors.find(
         (country: any) => country.id === selectedCountry.countryId,
       )
-      console.log('Seleted  country is', countrySponsorsData)
-      console.log('selectedCountry  country is', selectedCountry)
+
       setSponsorsData(countrySponsorsData);
       const foundCountry = getCountryByCountryCode(RNLocalize.getCountry());
       console.log('Found country is', foundCountry)
       if (foundCountry != undefined && foundCountry != null) {
-        console.log('params is here', route.params);
-        if (Object.keys(route.params).length !== 0) {
-          // console.log('Country is here');
-          setCountryData(selectedCountry);
-          setNewLanguage(route.params.language)
-        } else {
-          console.log('Country is here', selectedDefaultCountry, selectedLanguage);
-          if (selectedCountry == foundCountry || selectedCountry.countryId == 126) {
-            setCountryData(foundCountry);
-            const languagesWithLuxonLocale = foundCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
-            if (languagesWithLuxonLocale?.length != 0) {
-              console.log('Country is here new', languagesWithLuxonLocale[0]);
-              setNewLanguage(languagesWithLuxonLocale[0])
-            } else {
-              setNewLanguage(foundCountry.languages[0])
-            }
+        if (countrySelectedId == 0) {
+          setCountryData(foundCountry);
+          const languagesWithLuxonLocale = foundCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
+          if (languagesWithLuxonLocale?.length != 0) {
+            setNewLanguage(languagesWithLuxonLocale[0]);
           } else {
-            setCountryData(selectedCountry);
-            const languagesWithLuxonLocale = selectedCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
-            if (languagesWithLuxonLocale?.length != 0) {
-              console.log('Country is here new', languagesWithLuxonLocale[0]);
-              setNewLanguage(languagesWithLuxonLocale[0])
+            const selectedLanData = foundCountry?.languages?.filter((lang: any) => lang.languageCode === languageCode);
+            if (selectedLanData?.length > 0) {
+              setNewLanguage(selectedLanData[0])
             } else {
-              setNewLanguage(foundCountry.languages[0])
+              setNewLanguage(foundCountry?.languages[0])
             }
           }
-          //   setNewLanguage(foundCountry.languages[0])
+        } else {
+          setCountryData(selectedCountry);
+          const languagesWithLuxonLocale = selectedCountry?.languages?.filter((lang: any) => lang.locale === locale);
+          if (languagesWithLuxonLocale?.length != 0) {
+            setNewLanguage(languagesWithLuxonLocale[0])
+          } else {
+            const selectedLanData = selectedCountry?.languages?.filter((lang: any) => lang.languageCode === languageCode);
+            if (selectedLanData.length > 0) {
+              setNewLanguage(selectedLanData[0])
+            } else {
+              setNewLanguage(foundCountry?.languages[0])
+            }
+          }
         }
       } else {
-        console.log('Test log ', selectedCountry?.languages[0].displayName)
-        setNewLanguage(selectedCountry?.languages[0])
-        setCountryData(selectedCountry)
+        setCountryData(selectedCountry);
+        let filteredLanguage: any = null;
+        if (selectedLocale !== '') {
+          filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.locale === locale);
+        } else {
+          filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
+        }
+        if (filteredLanguage?.length > 0) {
+          setNewLanguage(filteredLanguage[0]);
+        } else {
+          setNewLanguage(selectedCountry?.languages[0]);
+        }
       }
     }
   }, [isVisible]);
-  useEffect(() => {
-    console.log('New Language is', newLanguage)
-  }, [newLanguage])
+
   useFocusEffect(
     React.useCallback(() => {
       const backAction = (): any => {
@@ -313,14 +317,11 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         ],
       });
     } else {
-      console.log(newLanguage, "..newLanguage");
       if (Object.keys(route.params).length !== 0) {
-        console.log(route.params, "routeparams");
         dispatch(onLocalizationSelect(route.params));
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
         analytics().setUserProperties({ country: route.params.country.displayName, language: newLanguage.displayName })
       } else {
-        console.log(countryData, "countryData");
         dispatch(onLocalizationSelect(countryData));
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
         analytics().setUserProperties({ country: countryData.displayName, language: newLanguage.displayName })

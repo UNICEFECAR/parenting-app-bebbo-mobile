@@ -14,13 +14,14 @@ import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { articlesTintcolor, bgColor1, bgcolorWhite2, greyCode } from '@styles/style';
-import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
+import { articleColor, articlesTintcolor, bgColor1, bgcolorWhite2, greyCode } from '@styles/style';
+import { Heading3, Heading4Center, Heading6Bold, ShiftFromBottom10, ShiftFromTopBottom5, SideRightSpacing20, SideSpacing10 } from '@styles/typography';
 import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
-  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View
+  Dimensions,
+  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ThemeContext } from 'styled-components/native';
@@ -33,13 +34,9 @@ import { logEvent, synchronizeEvents } from '../../../services/EventSyncService'
 import { dataRealmCommon } from '../../../database/dbquery/dataRealmCommon';
 import { HistoryEntity, SearchHistorySchema } from '../../../database/schema/SearchHistorySchema';
 import VectorImage from 'react-native-vector-image';
-import unorm from 'unorm';
-import Fuse from 'fuse.js';
 import MiniSearch from 'minisearch'
 import { ADVICE_AGEGROUP_SELECTED, ARTICLE_SEARCHED } from '@assets/data/firebaseEvents';
-import Intl from 'intl';
 import AgeBrackets from '@components/AgeBrackets';
-import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
@@ -74,9 +71,8 @@ const styles = StyleSheet.create({
   historyList: {
     backgroundColor: bgcolorWhite2,
     left: 0,
-    paddingBottom: 20,
     position: 'absolute',
-    bottom: 0,
+    paddingBottom: 10,
     right: 0,
     top: 51,
     zIndex: 1,
@@ -101,11 +97,15 @@ export type ArticleCategoriesProps = {
 const Articles = ({ route, navigation }: any): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState('');
+  const [isSerachedQueryText, setIsSearchedQueryText] = useState(false);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
   const [loadingArticle, setLoadingArticle] = useState(false);
+  const [flatListHeight, setFlatListHeight] = useState(0);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
+  const windowWidthStyle = Dimensions.get('window').width;
+  const windowHeightStyle = Dimensions.get('window').height;
   const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
@@ -130,7 +130,7 @@ const Articles = ({ route, navigation }: any): any => {
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   //merge array 
-  const mergearr = (articlearrold: any[], videoartarrold: any[], isSuffle: boolean): any => {
+  const mergearr = (articlearrold: any[], videoartarrold: any[], isSuffle: boolean) => {
     let combinedarr: any[] = [];
     let i = 0;
     let j = 0;
@@ -185,16 +185,10 @@ const Articles = ({ route, navigation }: any): any => {
 
   const getSearchedKeywords = async (): Promise<any> => {
     const realm = await dataRealmCommon.openRealm();
-
     if (realm != null) {
-      console.log('Seach History is...', realm?.objects('SearchHistory'))
       const unsynchronizedEvents: any = realm.objects('SearchHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
-      console.log('Seach History is', unsynchronizedEvents)
       setSearchHistory(unsynchronizedEvents);
-
     }
-    console.log('search history.......', searchHistory);
-
   }
 
   //store previous searched keyword
@@ -245,7 +239,6 @@ const Articles = ({ route, navigation }: any): any => {
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
   const articleDataOld = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
-
   const VideoArticlesDataall = useAppSelector(
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
@@ -257,7 +250,9 @@ const Articles = ({ route, navigation }: any): any => {
   const [showNoData, setshowNoData] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
+  const [isCurrentChildSelected, setCurrentChildSelected] = useState(true);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const videoIsFocused = useIsFocused();
   const goToArticleDetail = (item: any, queryText: string): any => {
@@ -272,14 +267,23 @@ const Articles = ({ route, navigation }: any): any => {
         queryText: keywords
       });
   };
-  const showSelectedBracketData = (item: any): any => {
-    const eventData = { 'name': ADVICE_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
-    logEvent(eventData, netInfo.isConnected)
 
-    setCurrentSelectedChildId(item.id);
-    const filteredData = articleData.filter((x: any) => x.child_age.includes(item.id));
-    console.log('On age selected', filteredData)
-    setSelectedChildActivitiesData(filteredData);
+  const showSelectedBracketData = (item: any): any => {
+    if (item && item?.id !== null) {
+      const eventData = { 'name': ADVICE_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
+      logEvent(eventData, netInfo.isConnected)
+      setCurrentSelectedChildId(item.id);
+      setIsSearchedQueryText(true)
+      const filteredData = articleData.filter((x: any) => x.child_age.includes(item.id));
+      setSelectedChildActivitiesData(filteredData);
+      setCurrentChildSelected(false)
+    } else {
+      setCurrentSelectedChildId(0);
+      setIsSearchedQueryText(true)
+      setSelectedChildActivitiesData(articleData);
+      setCurrentChildSelected(true)
+    }
+
   }
   const RenderArticleItem = ({ item, index }: any): any => {
     return (
@@ -305,37 +309,112 @@ const Articles = ({ route, navigation }: any): any => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
   }
-  const setFilteredArticleData = (itemId: any): any => {
-    if (selectedChildActivitiesData != null && selectedChildActivitiesData != undefined && selectedChildActivitiesData.length > 0) {
-      setLoadingArticle(true);
-      if (itemId.length > 0) {
-        let newArticleData = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.category));
-        let newvideoArticleData = videoarticleData.filter((x: any) => itemId.includes(x.category));
-        //combine-array
-        const combineDartArr = mergearr(newArticleData, newvideoArticleData, false);
-        setfilteredData(combineDartArr);
-        setLoadingArticle(false);
-        toTop();
-      } else {
-        let newArticleData = selectedChildActivitiesData.length != 0 ? selectedChildActivitiesData : [];
-        const videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-        let newvideoArticleData = videoArticleDataAllCategory != '' ? videoArticleDataAllCategory : [];
-        let combineDartArr = [];
-        combineDartArr = mergearr(newArticleData, newvideoArticleData, false);
-        setfilteredData(newArticleData);
-        setLoadingArticle(false);
-        toTop();
-      }
-    } else {
-      setLoadingArticle(false);
-      setfilteredData([]);
-    }
-    toTop()
-  }
 
+  const setFilteredArticleData = async (itemId: any): Promise<any> => {
+    setHistoryVisible(false);
+    if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData.length != 0) {
+      if (itemId.length > 0) {
+        let newArticleData: any = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.category));
+        if (queryText != "" && queryText != undefined && queryText != null) {
+          const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
+          if (keywords.length > 1) {
+            const resultsPromises = keywords.map(async (keyword: any) => {
+              const results = searchIndex.search(keyword);
+              return results;
+            });
+            const resultsArrays = await Promise.all(resultsPromises);
+            const aggregatedResults = resultsArrays.flat();
+            let filteredResults: any = null;
+            if (currentSelectedChildId != 0) {
+              filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId) && itemId.includes(x.category));
+            } else {
+              filteredResults = aggregatedResults.filter((x: any) => itemId.includes(x.category));
+            }
+            setfilteredData(filteredResults);
+            setLoadingArticle(false)
+            setIsSearchedQueryText(false)
+            toTop()
+          } else {
+            const results = searchIndex.search(queryText);
+            let filteredResults: any = null;
+            if (currentSelectedChildId != 0) {
+              setSelectedCategoryId(itemId);
+              const categoryFilteredData = results.filter((x: any) => itemId.includes(x.category));
+              filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+            } else {
+              filteredResults = results.filter((x: any) => itemId.includes(x.category));
+            }
+            setfilteredData(filteredResults);
+            setLoadingArticle(false)
+            setIsSearchedQueryText(false)
+            toTop()
+          }
+        } else {
+          setfilteredData(newArticleData);
+        }
+
+        setLoadingArticle(false);
+        setIsSearchedQueryText(false)
+        setTimeout(() => {
+          setshowNoData(true);
+        }, 200);
+      } else {
+        let newArticleData: any = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
+        if (queryText != "" && queryText != undefined && queryText != null) {
+          const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
+          if (keywords.length > 1) {
+            const resultsPromises = keywords.map(async (keyword: any) => {
+              const results = searchIndex.search(keyword);
+              return results;
+            });
+            const resultsArrays = await Promise.all(resultsPromises);
+            const aggregatedResults = resultsArrays.flat();
+            let filteredResults: any = null;
+            if (currentSelectedChildId != 0) {
+              filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+            } else {
+              filteredResults = aggregatedResults;
+            }
+            setfilteredData(filteredResults);
+            setLoadingArticle(false)
+            setIsSearchedQueryText(false)
+            toTop()
+          } else {
+            const results = searchIndex.search(queryText);
+            let filteredResults: any = null;
+            if (currentSelectedChildId != 0) {
+              filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+            } else {
+              filteredResults = results;
+            }
+            setfilteredData(filteredResults);
+            setLoadingArticle(false)
+            setIsSearchedQueryText(false)
+            toTop()
+          }
+
+        } else {
+          setfilteredData(newArticleData);
+        }
+        setLoadingArticle(false);
+        setIsSearchedQueryText(false)
+        setTimeout(() => {
+          setshowNoData(true);
+        }, 200);
+      }
+    }
+    else {
+      setfilteredData([]);
+      setLoadingArticle(false);
+      setIsSearchedQueryText(false)
+      setTimeout(() => {
+        setshowNoData(true);
+      }, 200);
+    }
+    toTop();
+  }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('UseFocusEffect Articles two');
       const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
       });
@@ -352,18 +431,19 @@ const Articles = ({ route, navigation }: any): any => {
       }
     }, [])
   );
+
   useFocusEffect(
     React.useCallback(() => {
-      if (route.params?.backClicked !== 'yes') {
+      if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
           console.log("if route params 0", route.params);
           const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
           showSelectedBracketData(firstChildDevData[0]);
+
         }
         else {
           console.log("else if route params 0", route.params, activityTaxonomyId);
-
           const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
           showSelectedBracketData(firstChildDevData[0]);
         }
@@ -376,33 +456,32 @@ const Articles = ({ route, navigation }: any): any => {
 
     }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId, activityTaxonomyId])
   );
-
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray)
   }
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log("useFocusEffect called route.params?.backClicked", route.params?.backClicked);
-      setLoadingArticle(true);
-
-      async function fetchData(): Promise<any> {
-        if (route.params?.categoryArray) {
-          setFilterArray(route.params?.categoryArray);
-          setFilteredArticleData(route.params?.categoryArray);
+      if (isSerachedQueryText || queryText == '') {
+        setLoadingArticle(true);
+        async function fetchData(): Promise<any> {
+          if (route.params?.categoryArray) {
+            setFilterArray(route.params?.categoryArray);
+            setFilteredArticleData(route.params?.categoryArray);
+          }
+          else {
+            setFilterArray([]);
+            setFilteredArticleData([]);
+          }
         }
-        else {
-          setFilterArray([]);
-          setFilteredArticleData([]);
+        setIsSearchedQueryText(false)
+        if (route.params?.backClicked != 'yes') {
+          fetchData()
+        } else {
+          setLoadingArticle(false);
         }
       }
-      if (route.params?.backClicked != 'yes') {
-        fetchData()
-      } else {
-        setLoadingArticle(false);
-      }
-
-    }, [selectedChildActivitiesData, route.params?.categoryArray, languageCode, queryText]))
+    }, [selectedChildActivitiesData, route.params?.categoryArray, languageCode, queryText, isSerachedQueryText]))
 
   const [searchIndex, setSearchIndex] = useState<any>(null);
   const suffixes = (term: any, minLength: any): any => {
@@ -416,63 +495,58 @@ const Articles = ({ route, navigation }: any): any => {
   // add minisearch on active child article data 
   useEffect(() => {
     async function initializeSearchIndex() {
-      await new Promise(resolve => setTimeout(resolve, 0));
-      let videoArticleDataAllCategory: any;
-      if (activeChild != null && activeChild.taxonomyData != null && activeChild?.gender != null) {
-        videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+      try {
+        const processedArticles = preprocessArticles(articleData);
+        const searchIndex = new MiniSearch({
+          processTerm: (term) => suffixes(term, 3),
+          extractField: (document, fieldName): any => {
+            const arrFields = fieldName.split(".");
+            if (arrFields.length === 2) {
+              return (document[arrFields[0]] || [])
+                .map((arrField: any) => arrField[arrFields[1]] || "")
+                .join(" ");
+            } else if (arrFields.length === 3) {
+              const tmparr = (document[arrFields[0]] || []).flatMap(
+                (arrField: any) => arrField[arrFields[1]] || []
+              );
+              return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
+            }
+            return fieldName
+              .split(".")
+              .reduce((doc, key) => doc && doc[key], document);
+          },
+          searchOptions: {
+            boost: { title: 2, summary: 1.5, body: 1 },
+            bm25: { k: 1.0, b: 0.7, d: 0.5 },
+            fuzzy: true,
+            // prefix true means it will contain "foo" then search for "foobar"
+            prefix: true,
+            weights: {
+              fuzzy: 0.6,
+              prefix: 0.6
+            }
+          },
+          fields: ['title', 'summary', 'body'],
+          storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'related_articles', 'embedded_images']
+        });
+
+        processedArticles.forEach((item: any) => searchIndex.add(item));
+        console.log('processedArticles is', processedArticles?.length)
+        setSearchIndex(searchIndex);
+      } catch (error) {
+        console.log("Error: Retrieve minisearch data", error)
       }
-      const combineDartArr = mergearr(articleDataall, videoArticleDataAllCategory, false);
-      articleData = [...combineDartArr];
-      const processedArticles = preprocessArticles(articleData);
-      const searchIndex = new MiniSearch({
-        processTerm: (term) => suffixes(term, 3),
-        extractField: (document, fieldName): any => {
-          const arrFields = fieldName.split(".");
-          if (arrFields.length === 2) {
-            return (document[arrFields[0]] || [])
-              .map((arrField: any) => arrField[arrFields[1]] || "")
-              .join(" ");
-          } else if (arrFields.length === 3) {
-            const tmparr = (document[arrFields[0]] || []).flatMap(
-              (arrField: any) => arrField[arrFields[1]] || []
-            );
-            return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
-          }
-          return fieldName
-            .split(".")
-            .reduce((doc, key) => doc && doc[key], document);
-        },
-        searchOptions: {
-          boost: { title: 2, summary: 1.5, body: 1 },
-          bm25: { k: 1.0, b: 0.7, d: 0.5 },
-          fuzzy: true,
-          // prefix true means it will contain "foo" then search for "foobar"
-          prefix: true,
-          weights: {
-            fuzzy: 0.6,
-            prefix: 0.6
-          }
-        },
-        fields: ['title', 'summary', 'body'],
-        storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'related_articles', 'embedded_images']
-      });
-
-      processedArticles.forEach((item: any) => searchIndex.add(item));
-      setSearchIndex(searchIndex);
-
     }
-
     initializeSearchIndex();
   }, []);
+
+
 
   const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false)
     setLoadingArticle(true);
     await new Promise(resolve => setTimeout(resolve, 0));
     Keyboard.dismiss();
-    let artData: any;
-    let combineDartArr: [];
-    let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
       const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
       if (keywords.length > 1) {
@@ -482,15 +556,29 @@ const Articles = ({ route, navigation }: any): any => {
         });
         const resultsArrays = await Promise.all(resultsPromises);
         const aggregatedResults = resultsArrays.flat();
-        setfilteredData(aggregatedResults);
+        let filteredResults: any = null;
+        if (selectedCategoryId.length > 0) {
+          const categoryFilteredData = aggregatedResults.filter((x: any) => selectedCategoryId.includes(x.category));
+          filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+        } else {
+          filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+        }
+        setfilteredData(filteredResults);
         setLoadingArticle(false)
+        setIsSearchedQueryText(false)
         toTop()
       } else {
         const results = searchIndex.search(queryText);
-        console.log('Results Data is', results)
-        console.log('Results length is', results.length)
-        setfilteredData(results);
+        let filteredResults: any = null;
+        if (selectedCategoryId.length > 0) {
+          const categoryFilteredData = results.filter((x: any) => selectedCategoryId.includes(x.category));
+          filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+        } else {
+          filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+        }
+        setfilteredData(filteredResults);
         setLoadingArticle(false)
+        setIsSearchedQueryText(false)
         toTop()
       }
       const eventData = { 'name': ARTICLE_SEARCHED, 'params': { article_searched: queryText } }
@@ -515,19 +603,19 @@ const Articles = ({ route, navigation }: any): any => {
 
     }
     else {
-      artData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
-      newvideoArticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-      combineDartArr = mergearr(artData, newvideoArticleData, true);
-      articleData = [...combineDartArr];
       setFilteredArticleData(filterArray);
       setLoadingArticle(false);
+      setIsSearchedQueryText(false)
     }
   }
+
   const renderSearchHistoryItem = ({ item }: { item: string }): any => (
     <Pressable
       onPress={async (): Promise<any> => {
         Keyboard.dismiss();
         searchQueryText(item);
+        setHistoryVisible(false);
+        setIsSearchedQueryText(true);
         await searchList(item);
       }}
     >
@@ -560,13 +648,15 @@ const Articles = ({ route, navigation }: any): any => {
             setProfileLoading={setProfileLoading}
           />
           <FlexCol>
-            <View style={styles.ageBracketView}>
+
+            <View style={[styles.ageBracketView]}>
               <SearchBox>
                 <OuterIconRow>
 
                   <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
                     e.preventDefault();
                     Keyboard.dismiss();
+                    setIsSearchedQueryText(true);
                     await searchList(queryText);
 
                   }}>
@@ -584,17 +674,20 @@ const Articles = ({ route, navigation }: any): any => {
                   autoCorrect={false}
                   clearButtonMode="always"
                   onFocus={(): any => {
+                    console.log('Onfocus of textinput')
                     setHistoryVisible(true);
                   }}
                   onChangeText={(queryText: any): any => {
                     console.log('searched querytext is', queryText)
                     if (queryText.replace(/\s/g, "") == "") {
+                      console.log('closed click')
                       searchQueryText(queryText.replace(/\s/g, ''));
-                      setHistoryVisible(true);
                       //  await searchList(queryText)
                     } else {
                       searchQueryText(queryText);
-                      setHistoryVisible(true);
+                      if (!historyVisible) {
+                        setHistoryVisible(true);
+                      }
                     }
                   }}
                   value={queryText}
@@ -603,6 +696,7 @@ const Articles = ({ route, navigation }: any): any => {
                     console.log("event-", queryText);
                     setHistoryVisible(false)
                     Keyboard.dismiss();
+                    setIsSearchedQueryText(true)
                     await searchList(queryText);
                   }}
                   multiline={false}
@@ -613,65 +707,74 @@ const Articles = ({ route, navigation }: any): any => {
                 />
                 {
                   Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
-                  <OuterIconRow>
-                    <IconClearPress onPress={async (): Promise<any> => {
-                      console.log('cleartext')
-                      Keyboard.dismiss();
-                      searchQueryText('');
-                      setHistoryVisible(true);
-                    }}>
-                      <Icon
-                        name="ic_close"
-                        size={10}
-                        color="#fff"
-                      />
-                    </IconClearPress>
-                  </OuterIconRow>
+                  <SideSpacing10>
+                    <OuterIconRow>
+                      <IconClearPress onPress={async (): Promise<any> => {
+                        console.log('cleartext')
+                        Keyboard.dismiss();
+                        searchQueryText('');
+                        // setHistoryVisible(true);
+                      }}>
+                        <Icon
+                          name="ic_close"
+                          size={10}
+                          color="#fff"
+                        />
+                      </IconClearPress>
+                    </OuterIconRow>
+                  </SideSpacing10>
                 }
               </SearchBox>
-              {searchHistory.length !== 0 && historyVisible &&
-                <FlatList
-                  data={searchHistory}
-                  renderItem={renderSearchHistoryItem}
-                  keyboardShouldPersistTaps='handled'
-                  keyExtractor={(item, index): any => index.toString()}
-                  style={styles.historyList}
-                />
-              }
               <DividerArt></DividerArt>
               <AgeBrackets
                 itemColor={headerColorBlack}
                 activatedItemColor={headerColor}
                 currentSelectedChildId={currentSelectedChildId}
                 showSelectedBracketData={showSelectedBracketData}
+                isCurrentChildSelected={isCurrentChildSelected}
                 ItemTintColor={backgroundColor}
               />
+              {searchHistory.length !== 0 && historyVisible &&
+                  <View style={styles.historyList}>
+                    <FlatList
+                      data={searchHistory}
+                      keyboardShouldPersistTaps="handled"
+                      renderItem={renderSearchHistoryItem}
+                      contentContainerStyle={{ flex: 1 }}
+                      keyExtractor={(item, index): any => index.toString()}
+                    />
+                  </View>
+              }
+              <View style={{ backgroundColor: articlesTintcolor }}>
+                <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
+                <DividerArt></DividerArt>
+              </View>
             </View>
-            <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange} />
-            <DividerArt></DividerArt>
-            {filteredData.length > 0 ?
-              <FlatList
-                ref={flatListRef}
-                data={filteredData}
-                onScroll={(e): any => {
-                  console.log(e);
-                  if (keyboardStatus == true) {
-                    Keyboard.dismiss();
-                  }
-                }}
-                nestedScrollEnabled={true}
-                // keyboardDismissMode={"on-drag"}
-                // keyboardShouldPersistTaps='always'
-                removeClippedSubviews={true} // Unmount components when outside of window 
-                initialNumToRender={4} // Reduce initial render amount
-                maxToRenderPerBatch={4} // Reduce number in each render batch
-                updateCellsBatchingPeriod={100} // Increase time between renders
-                windowSize={7} // Reduce the window size
-                // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
-                renderItem={memoizedValue}
-                keyExtractor={(item): any => item.id.toString()}
-              />
-              : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
+            {
+              filteredData.length > 0 ?
+                <FlatList
+                  ref={flatListRef}
+                  data={filteredData}
+                  onScroll={(e): any => {
+                    console.log(e);
+                    if (keyboardStatus == true) {
+                      Keyboard.dismiss();
+                    }
+                  }}
+                  nestedScrollEnabled={true}
+                  // keyboardDismissMode={"on-drag"}
+                  // keyboardShouldPersistTaps='always'
+                  removeClippedSubviews={true} // Unmount components when outside of window 
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                  // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
+                  renderItem={memoizedValue}
+                  keyExtractor={(item): any => item.id.toString()}
+                />
+                : <Heading4Center>{t('noDataTxt')}</Heading4Center>
+            }
 
           </FlexCol>
           <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>

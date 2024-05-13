@@ -1,7 +1,7 @@
 import Icon from '@components/shared/Icon';
 import React, { useEffect, useState } from 'react';
 import { Pressable, View } from 'react-native';
-import Radio, { RadioActive, RadioItem, RadioItemText } from './shared/radio';
+import Radio, { RadioActive, RadioCountryItem, RadioItem, RadioItemText } from './shared/radio';
 
 const LanguageItem = ({ item, currentItem, setLanguage }: any): any => {
   const [isActive, setIsActive] = useState(false);
@@ -19,12 +19,12 @@ const LanguageItem = ({ item, currentItem, setLanguage }: any): any => {
         onPress={(): any => {
           setLanguage(item);
         }}>
-        <RadioItem>
+        <RadioCountryItem>
           <View>
             {isActive ? <RadioActive><Icon name="ic_tick" size={12} color="#fff" /></RadioActive> : <Radio></Radio>}
           </View>
           <RadioItemText isActive={isActive}>{item.displayName}</RadioItemText>
-        </RadioItem>
+        </RadioCountryItem>
       </Pressable>
     </>
   );
