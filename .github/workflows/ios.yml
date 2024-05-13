@@ -3,14 +3,12 @@ on:
   # create:
   #   tags:
   #     - v*
-  push:
-    branches: 
-      - Development
+  # push:
+  #   branches: 
+  #     - Development
     
   workflow_dispatch:
-    inputs:
-      message:
-        description: 'Build description'
+
 
 env:
         WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
