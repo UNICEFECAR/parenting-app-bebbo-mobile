@@ -30,7 +30,7 @@ jobs:
         run: gem install fastlane -NV
 
       - name: Authenticate with Apple Developer Portal
-        run: fastlane run produce username:'iosdevs@datamatics.com' app_name:'Bebbo' bundle_identifier:'com.datamatics.bebbo'
+        run: fastlane run username:'iosdevs@datamatics.com' app_name:'Bebbo' app_identifier:'com.datamatics.bebbo'
 
       - name: Build iOS app
         run: fastlane run gym
