@@ -1,0 +1,37 @@
+name: iOS Build using Fastlane
+on:
+  # create:
+  #   tags:
+  #     - v*
+  push:
+    branches: 
+      - Development
+    
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Build description'
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Fastlane
+        run: gem install fastlane -NV
+
+      - name: Authenticate with Apple Developer Portal
+        run: fastlane run produce username:'iosdevs@datamatics.com' app_name:'Bebbo' bundle_identifier:'com.datamatics.bebbo'
+
+      - name: Build iOS app
+        run: fastlane run gym
