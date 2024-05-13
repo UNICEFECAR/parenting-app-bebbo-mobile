@@ -22,7 +22,6 @@ import PrivacyPolicy from '@screens/PrivacyPolicy';
 import Terms from '@screens/Terms';
 import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
-import Walkthrough from '@screens/Walkthrough';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, AppState, Linking, Platform } from 'react-native';

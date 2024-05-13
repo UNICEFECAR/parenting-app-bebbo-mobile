@@ -68,6 +68,10 @@ export const LabelDatePlaceHolderText = styled.Text`
 export const LabelText = styled(LabelTextVac)`
   text-align:left;
 `;
+export const LabelChildText = styled(LabelTextVac)`
+  text-align:left;
+  margin-top: 3px;
+`;
 export const LinkText = styled.Text`
   font-size: 16px;
   text-align: center;
@@ -156,6 +160,17 @@ export const FormInputBox = styled.View`
   margin-top:10;
   border-color:'#CCCCCC';
   border-width:1px;
+  justify-content:space-between;
+  height:52px;
+  padding:5px 12px;
+
+`;
+export const FormInputBoxWithoutLine = styled.View`
+  flex-direction: row;
+  background-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:4px;
+  align-items:center;
+  margin-top:10;
   justify-content:space-between;
   height:52px;
   padding:5px 12px;

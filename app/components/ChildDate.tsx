@@ -19,6 +19,7 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
+  LabelChildText,
   LabelDatePlaceHolderText,
   LabelText,
   LabelText1,
@@ -167,7 +168,7 @@ const ChildDate = (props: any): any => {
         {Platform.OS != 'ios' ? (
           <FormInputGroup>
             <FormPrematureContainer>
-              <LabelText>{prevScreen == 'EditScreen' ? t('childSetupdobLabel') : t('childSetupdobSelector')}</LabelText>
+              <LabelText>{prevScreen == 'EditScreen' ? t('addAnotherChildSetupDobLabel') : t('childSetupdobLabel')}</LabelText>
               <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
               </FormInfoPress></FormInfoLabel>
@@ -204,7 +205,7 @@ const ChildDate = (props: any): any => {
         ) : (
           <FormInputGroup>
             <FormPrematureContainer>
-              <LabelText>{prevScreen == 'EditScreen' ? t('childSetupdobSelector') : t('childSetupdobLabel')}</LabelText>
+              <LabelText>{prevScreen == 'EditScreen' ? t('addAnotherChildSetupDobLabel') : t('childSetupdobLabel')}</LabelText>
               <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
               </FormInfoPress></FormInfoLabel>
@@ -241,8 +242,11 @@ const ChildDate = (props: any): any => {
           </FormInputGroup>
         )}
 
+        {prevScreen != 'EditScreen' &&
         <FormPrematureContainer>
-          <Pressable onPress={(): any => {
+          <Pressable 
+          style={{flexDirection:'row'}}
+          onPress={(): any => {
             if (!disablePrematureCheck) {
               props.sendData({
                 birthDate: doborExpectedDate,
@@ -268,17 +272,15 @@ const ChildDate = (props: any): any => {
                 )}
               </View>
             </CheckboxItem>
+            <LabelChildText>{t('childSetupprematureLabel')}</LabelChildText>
           </Pressable>
-
-          <LabelText>{t('childSetupprematureLabel')}</LabelText>
-
-
           <FormInfoLabel>
             <FormInfoPress onPress={(): any => setModalVisible(true)}>
               <Icon name="ic_info" size={15} color="#070707" />
             </FormInfoPress>
           </FormInfoLabel>
         </FormPrematureContainer>
+        }
 
         {toggleCheckBox && !disablePrematureCheck ? (
           <>

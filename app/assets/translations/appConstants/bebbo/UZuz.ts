@@ -30,6 +30,7 @@ const UZuz = {
               loadingText: "Kontent yuklanmoqda…",
               childSetupheader: "REMOVED_FACEBOOK_APP_ID1 dan maksimal darajada foydalaning!",
               childSetupdobLabel: "Bolaning tug'ilgan kuni yoki rejalashtirilgan tug'ilish sanasi qachon?",
+              addAnotherChildSetupDobLabel: "Bolaning tug'ilgan kuni qachon??",
               childSetupdobSelector: "Bolaning tugʻilgan/tugʻilishi kutilayotgan sanasini kiriting",
               childSetupdueLabel: "Bolaning rejalashtirilgan tug'ilish sanasi qachon edi?",
               childSetupdueSelector: "Dastlab taxmin qilingan sanani kiriting",
