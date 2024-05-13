@@ -3,9 +3,9 @@ on:
   # create:
   #   tags:
   #     - v*
-  # push:
-  #   branches: 
-  #     - Development
+  push:
+    branches: 
+      - Development
     
   workflow_dispatch:
 
