@@ -124,7 +124,7 @@ jobs:
           cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles
           
       - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_15.3.app
+        run: sudo xcode-select -switch /Applications/Xcode_14.app
      
       - name: Xcode Version
         run: /usr/bin/xcodebuild -version
