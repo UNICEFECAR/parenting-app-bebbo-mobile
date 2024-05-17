@@ -130,12 +130,17 @@ jobs:
         run: |
           mkdir -p build && mkdir -p staging && mkdir -p prod
 
-  
 
-      - name: Build Archive
-        run: |
-          xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
-          PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" 
+      - name: Clean project
+        run: xcodebuild clean -scheme "$SCHEME" -project ParentBuddyApp.xcodeproj
+
+      - name: Build Project
+        run: xcodebuild build -scheme "$SCHEME" -project ParentBuddyApp.xcodeproj -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14 Pro Max"
+
+
+      # - name: Build Archive
+      #   run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
+      #     PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" 
 
         # CODE_SIGNING_ALLOWED=NO \   archive -archivePath "$ARCHIVE_PATH"
           
