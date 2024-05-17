@@ -121,7 +121,7 @@ jobs:
           cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles
           
       - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_14.app
+        run: sudo xcode-select -switch /Applications/Xcode_15.1.app
      
       - name: Xcode Version
         run: /usr/bin/xcodebuild -version
@@ -134,8 +134,10 @@ jobs:
 
       - name: Build Archive
         run: |
-          xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
-          archive -archivePath "$ARCHIVE_PATH" CODE_SIGNING_ALLOWED=NO
+          xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
+          PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" 
+
+        # CODE_SIGNING_ALLOWED=NO \   archive -archivePath "$ARCHIVE_PATH"
           
         # xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME_PROD" -configuration "$CONFIGURATION" \
           # archive -archivePath "$ARCHIVE_PATH" -allowProvisioningUpdates \
