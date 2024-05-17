@@ -132,10 +132,10 @@ jobs:
 
 
       - name: Clean project
-        run: xcodebuild clean -scheme "$SCHEME" -project ParentBuddyApp.xcodeproj
+        run: xcodebuild clean -scheme "$SCHEME" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
 
       - name: Build Project
-        run: xcodebuild build -scheme "$SCHEME" -project ParentBuddyApp.xcodeproj -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14 Pro Max"
+        run: xcodebuild build -scheme "$SCHEME" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14 Pro Max"
 
 
       # - name: Build Archive
