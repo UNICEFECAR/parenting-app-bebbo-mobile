@@ -51,8 +51,8 @@ jobs:
         with:
           node-version: '21.2.0'
         
-      - name: Install dependencies
-        run: npm install
+     # - name: Install dependencies
+      #  run: npm install
       
       - name: 'Create env file'
         run: |
@@ -79,9 +79,9 @@ jobs:
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
-      - name: Install pod dependencies
-        run: | 
-          cd ios && pod install
+     # - name: Install pod dependencies
+      #  run: | 
+       #   cd ios && pod install
 
       
       - name: Install the Apple certificate and provisioning profile
@@ -97,8 +97,8 @@ jobs:
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 
           # import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o "$CERTIFICATE_PATH"
-          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o "$PP_PATH"
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 -decode -o "$CERTIFICATE_PATH"
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 -decode -o "$PP_PATH"
 
           # create temporary keychain
           security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
@@ -177,6 +177,6 @@ jobs:
         if: ${{ always() }}
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
+        # rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
     
