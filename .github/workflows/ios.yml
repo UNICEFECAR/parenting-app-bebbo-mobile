@@ -166,8 +166,7 @@ jobs:
         run: xcodebuild clean -scheme "$SCHEME" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
 
       - name: Build Project
-        run: xcodebuild build -scheme "$SCHEME" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj \
-          -sdk iphonesimulator -destination 'platform=iOS,name=iPhone'
+        run: xcodebuild build -scheme "$SCHEME" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj -destination 'platform=iOS,name=iPhone'
        
 
       # - name: Build Archive
@@ -213,6 +212,6 @@ jobs:
         if: ${{ always() }}
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
         # rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
     
