@@ -140,8 +140,9 @@ jobs:
        
 
       - name: Build Archive
-        run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO OTHER_SWIFT_FLAGS=-no-verify-emitter-module-interface EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64
-
+        run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64
+        
+        #OTHER_SWIFT_FLAGS=-no-verify-emitter-module-interface 
           
         # -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
           # PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" 
