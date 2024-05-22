@@ -130,6 +130,9 @@ jobs:
       - name: Clean project
         run: xcodebuild clean -scheme "$SCHEME" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
 
+      - name: Clear Derived Data
+        run : rm -rf ~/Library/Developer/Xcode/DerivedData
+        
       # - name: Build Project
       #   run: xcodebuild build -scheme "$SCHEME" \
       #     -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj \
