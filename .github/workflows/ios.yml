@@ -81,7 +81,7 @@ jobs:
 
       - name: Install pod dependencies
         run: | 
-          cd ios && pod install
+          cd ios && pod install --repo-update &&  npx react-native run-ios
 
       - name: Signing & Provisioning
         run: |
