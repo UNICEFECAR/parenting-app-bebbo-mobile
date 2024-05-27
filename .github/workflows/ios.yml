@@ -79,6 +79,10 @@ jobs:
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+        
       - name: Install pod dependencies
         run: | 
           cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
