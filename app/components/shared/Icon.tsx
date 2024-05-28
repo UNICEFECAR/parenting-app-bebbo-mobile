@@ -128,7 +128,7 @@ export const IconClearBox = styled(OuterIconDone)`
 `;
 export const IconClearPress = styled.Pressable`
 background-color:${(props:any):any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
-opacity:0.2;
+opacity:0.4;
 border:0px;
 border-radius:100px;
 width:22px;

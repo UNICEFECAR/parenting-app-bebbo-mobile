@@ -142,6 +142,14 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       });
 
     }
+    else if (fromScreen == "Articles") {
+      navigation.navigate({
+        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+        params: { categoryArray: listCategoryArray, currentSelectedChildId: currentSelectedChildId, backClicked: 'yes' },
+        merge: true,
+      });
+
+    }
     else if (fromScreen == "FirebaseActivities") {
       navigation.navigate('Home', {
         screen: "Activities",
@@ -430,9 +438,9 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     let highlightedContent = content; // Initialize with original content
    
     query.forEach((item) => {
-        const regex = new RegExp(`\\b(${item.trim()}\\s*)`, 'gi');
+      const regex = new RegExp(`${item.trim()}`, 'gi');
         if(item.length>2){
-          highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$1</span>');
+          highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
         }
       });
   

@@ -55,7 +55,7 @@
     "react-i18next": "^13.3.1",
     "react-native": "^0.72.5",
     "react-native-actions-sheet": "^0.8.29",
-    "react-native-aes-crypto": "^3.0.1",
+    "react-native-aes-crypto": "^3.0.2",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-config": "^1.5.1",
     "react-native-document-picker": "^9.0.1",
@@ -104,14 +104,14 @@
     "unorm": "^1.6.0",
     "uuid": "^9.0.1",
     "victory-native": "36.8.1",
-    "yargs-parser": "^21.1.1"
+    "yargs-parser": "^21.1.1",
+    "react-native-outside-press": "1.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.23.2",
     "@react-native-community/eslint-config": "^3.2.0",
-    "@types/flexsearch": "^0.7.6",
     "@types/jest": "^29.5.5",
     "@types/react-native": "^0.72.5",
     "@types/react-native-vector-icons": "^6.4.15",
