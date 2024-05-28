@@ -30,13 +30,13 @@ const AgeBrackets = (props: any):any => {
     <ScrollingButtonMenu
                 items={childAge}
                 onPress={(item: any):any => {
-                    //showSelectedBracketData(item)
-                    handleAgeBracketPress(item)
+                    showSelectedBracketData(item)
+                   // handleAgeBracketPress(item)
                 }}
                 selected={currentSelectedChildId}
                 activeBackgroundColor={activatedItemColor}
                 activeColor={itemColor}
-                isCurrentChildSelected={isCurrentChildSelected}
+                //isCurrentChildSelected={isCurrentChildSelected}
                 buttonStyle={{backgroundColor:ItemTintColor}}
             />
     </>

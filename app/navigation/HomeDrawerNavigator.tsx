@@ -14,10 +14,9 @@ const HomeDrawerNavigator =
 export default ():any => {
   return (
     <HomeDrawerNavigator.Navigator
-    
     screenOptions={{
-      unmountOnBlur:true,
-      headerShown:false
+     unmountOnBlur:true,
+      headerShown:false,
     }}
    detachInactiveScreens={true}
     backBehavior={'initialRoute'}

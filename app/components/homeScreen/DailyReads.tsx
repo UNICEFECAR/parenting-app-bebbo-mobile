@@ -19,6 +19,7 @@ import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../
 import LoadableImage from '../../services/LoadableImage';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
+import { isFutureDate } from '../../services/childCRUD';
 
 const styles = StyleSheet.create({
   cardImage: {
@@ -60,8 +61,13 @@ const DailyReads = ():any => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
+  const childAge = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
+  let ArticlesData = articleData.filter((x: any) => x.child_age.includes(activityTaxonomyId));
   const activityCategoryArray = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
@@ -166,7 +172,6 @@ const DailyReads = ():any => {
   });
 
   useEffect(() => {
-
     let dailyDataCategory: any, showedDailyDataCategory: any;
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
       dailyDataCategory = { advice: 0, games: 0, currentadviceid: 0, currentgamesid: 0, currentDate: '', taxonomyid: activeChild.taxonomyData.id, prematureTaxonomyId: activityTaxonomyId };
@@ -208,11 +213,18 @@ const DailyReads = ():any => {
     console.log('My saved dailyCategoryData is', dailyDataCategory.currentDate < nowDate)
     if (dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)) {
       console.log('First time here');
-      const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => articleData.find((f: any) => f.category === i))
+      let filteredArticles;
+      const isPremature = isFutureDate(activeChild.birthDate);
+      if(isPremature){
+        filteredArticles = ArticlesData.filter((article:any) => article.premature === 1).sort((a:any, b:any) => new Date(b.created_at) - new Date(a.created_at));
+        ArticlesData = filteredArticles;
+        console.log('Active child Child Age is data',filteredArticles)
+        }
+      const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i))
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id))
       const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
       const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
-      let categoryArticleData = articleData.filter((x: any) => x.category == articleCategoryArrayNew[nextIndex]);
+      let categoryArticleData = ArticlesData.filter((x: any) => x.category == articleCategoryArrayNew[nextIndex]);
       const obj1 = categoryArticleData.filter((i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id));
       let advicearray: any = [];
       if (obj1.length == 0) {
@@ -269,6 +281,8 @@ const DailyReads = ():any => {
       }
       setDataToShowInList(articleListData);
       setActivityDataToShowInList(activityListData);
+      console.log('articleListData is to show',articleListData)
+      console.log('activityListData is to show',activityListData)
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
       const showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
       dailyDataCategorytoDispatch[activeChild.uuid] = {
@@ -290,14 +304,22 @@ const DailyReads = ():any => {
       showedDailyDataCategorytoDispatch[activeChild.uuid] = { advice: advicearray, games: gamesarray }
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
       dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
+      console.log('first tmooo time here', showedDailyDataCategorytoDispatch);
     } else {
       console.log('second time here', articleData.length);
       const articleDataList: any = [];
       const activityDataList: any = [];
 
       const articleDataToShow:any = [];
+      const isPremature = isFutureDate(activeChild.birthDate);
+      let filteredArticles;
+      if(isPremature){
+        filteredArticles = ArticlesData.filter((article:any) => article.premature === 1).sort((a:any, b:any) => new Date(b.created_at) - new Date(a.created_at));
+        ArticlesData = filteredArticles;
+        console.log('Active child Child Age is data',filteredArticles)
+        }
       dailyDataCategory.currentadviceid.forEach((id: any) => {
-        const filteredArticle = articleData.find((x: any) => x.id === id);
+        const filteredArticle = ArticlesData.find((x: any) => x.id === id);
         if (filteredArticle) {
           articleDataToShow.push(filteredArticle);
         }
@@ -323,7 +345,8 @@ const DailyReads = ():any => {
       activityDataToShow.forEach((activity: any) => {
         activityDataList.push(activity);
       });
-
+    console.log('artcledata to show',articleDataList)
+    console.log('activityDataList to show',activityDataList)
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList)
 
