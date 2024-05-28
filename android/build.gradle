@@ -32,7 +32,8 @@ buildscript {
 allprojects {
     configurations.all {
         resolutionStrategy {
-
+            // versions used by 0.67
+            force "com.facebook.soloader:soloader:0.10.4"
             // Manually set the react-native version to resolve this upstream issue: https://github.com/facebook/react-native/issues/35210
             def REACT_NATIVE_VERSION = new File(['node', '--print',"JSON.parse(require('fs').readFileSync(require.resolve('react-native/package.json'), 'utf-8')).version"].execute(null, rootDir).text.trim())
             force "com.facebook.react:react-native:" + REACT_NATIVE_VERSION
@@ -43,6 +44,10 @@ allprojects {
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url("$rootDir/../node_modules/react-native/android")
+        }
+           maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../node_modules/jsc-android/dist")
         }
     }
 }

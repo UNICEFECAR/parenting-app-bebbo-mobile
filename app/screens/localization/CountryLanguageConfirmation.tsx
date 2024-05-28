@@ -115,20 +115,20 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
 
   const { t, i18n } = useTranslation();
   console.log(I18nManager.isRTL, "---is rtl val");
-  useEffect(() => {
-    if (!route.params.language) {
-      console.log('Language data not available');
-    } else if (Array.isArray(route.params.language)) {
-      route.params.language.length > 0 ? setNewLanguage(route.params.language[0]) : setNewLanguage(null);
-    } else if (typeof route.params.language === 'object') {
-      setNewLanguage(route.params.language);
-    } else {
-      console.log('Invalid language data');
-    }
-    return (): any => {
-      dispatch(setrestartOnLangChange('no'));
-    }
-  }, [route.params]);
+  // useEffect(() => {
+  //   if (!route.params.language) {
+  //     console.log('Language data not available');
+  //   } else if (Array.isArray(route.params.language)) {
+  //     route.params.language.length > 0 ? setNewLanguage(route.params.language[0]) : setNewLanguage(null);
+  //   } else if (typeof route.params.language === 'object') {
+  //     setNewLanguage(route.params.language);
+  //   } else {
+  //     console.log('Invalid language data');
+  //   }
+  //   return (): any => {
+  //     dispatch(setrestartOnLangChange('no'));
+  //   }
+  // }, [route.params]);
   const extractLanguageCode = (languageTag: string): string => {
     const [languageCode] = languageTag.split('-');
     return languageCode;
@@ -247,13 +247,16 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           }
         }
       } else {
+        console.log('selectedCountry country is', selectedCountry)
         setCountryData(selectedCountry);
         let filteredLanguage: any = null;
+        console.log('selectedLocale is', selectedLocale,newLanguage)
         if (selectedLocale !== '') {
-          filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.locale === locale);
+          filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.locale === selectedLocale);
         } else {
           filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
         }
+        console.log('filteredLanguage country is', filteredLanguage)
         if (filteredLanguage?.length > 0) {
           setNewLanguage(filteredLanguage[0]);
         } else {
@@ -322,7 +325,12 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
         analytics().setUserProperties({ country: route.params.country.displayName, language: newLanguage.displayName })
       } else {
-        dispatch(onLocalizationSelect(countryData));
+        console.log('countyData is',countryData);
+        console.log('newLanguage is',newLanguage);
+        const languageSelected = selectedLocale!==''?selectedLocale:locale;
+        const filteredLan = countryData?.languages?.filter((lang:any)=>lang.locale==newLanguage?.locale);
+        dispatch(onLocalizationSelect({"languages":filteredLan,"countryId": countryData?.countryId}));
+       // dispatch(onLocalizationSelect(countryData));
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
         analytics().setUserProperties({ country: countryData.displayName, language: newLanguage.displayName })
       }

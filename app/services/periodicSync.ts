@@ -154,7 +154,6 @@ export const getAllPeriodicSyncData = (): any => {
     console.log("Don't sync");
   }
   else {
-    console.log('ChildList is',childList)
     if(childList.length>0){
     childList.map((child: any) => {
       const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
