@@ -38,7 +38,6 @@ import MiniSearch from 'minisearch'
 import { ADVICE_AGEGROUP_SELECTED, ARTICLE_SEARCHED } from '@assets/data/firebaseEvents';
 import AgeBrackets from '@components/AgeBrackets';
 import OutsidePressHandler from 'react-native-outside-press';
-import { searchRealmCommon } from '../../../database/dbquery/searchRealmCommon';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {

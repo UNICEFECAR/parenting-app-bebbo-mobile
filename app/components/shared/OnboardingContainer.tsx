@@ -2,7 +2,7 @@
 import styled from 'styled-components/native';
 const OnboardingContainer = styled.View`
   width: 100%;
-  flex: 1;
+  flex:1;
   flex-direction: column;
   background-color: ${(props: any): any => props.theme?.colors?.PRIMARY_REDESIGN_COLOR};
   padding: 0 25px;
@@ -42,11 +42,13 @@ flex:1;
 
 `
 export const LocalizationContainer = styled.View`
-flex:1;
+flex:1.3;
+align-items:stretch;
+justify-content: center;
 `
 
 export const LocalizationRow = styled.View`
-flex: 0.7;
+flex:0.7;
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;

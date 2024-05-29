@@ -68,6 +68,10 @@ export const LabelDatePlaceHolderText = styled.Text`
 export const LabelText = styled(LabelTextVac)`
   text-align:left;
 `;
+export const LabelWithInfoText = styled(LabelTextVac)`
+  text-align:left;
+  flex:2;
+`;
 export const LabelChildText = styled(LabelTextVac)`
   text-align:left;
   margin-top: 3px;
