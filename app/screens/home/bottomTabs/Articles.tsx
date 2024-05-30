@@ -236,9 +236,6 @@ const Articles = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const searchResultIndexedData = useAppSelector(
-    (state: any) => state.searchIndex.searchIndex,
-  );
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
@@ -330,15 +327,6 @@ const Articles = ({ route, navigation }: any): any => {
   //   //   fields: ['title', 'summary', 'body'],
   //   // });
   // }, [searchResultIndexedData])
-
-  const getMinisearchResults = async (): Promise<any> => {
-    const realm = await searchRealmCommon.openRealm();
-    if (realm != null) {
-      const unsynchronizedEvents: any = realm.objects('ArticleMiniSearchEntity');
-      setSearchIndexedData(unsynchronizedEvents);
-      // setSearchHistory(unsynchronizedEvents);
-    }
-  }
 
   const RenderArticleItem = ({ item, index }: any): any => {
     return (
@@ -545,49 +533,25 @@ const Articles = ({ route, navigation }: any): any => {
     }
     toTop();
   }
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-  //       setKeyboardStatus(true);
-  //     });
-  //     const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-  //       setKeyboardStatus(false);
-  //     });
-  //     return (): any => {
-  //       {
-  //         navigation.setParams({ categoryArray: [] })
-  //         showSubscription.remove();
-  //         hideSubscription.remove();
-  //         // route.params?.currentSelectedChildId = 0;
-  //       }
-  //     }
-  //   }, [])
-  // );
+  useFocusEffect(
+    React.useCallback(() => {
+      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+        setKeyboardStatus(true);
+      });
+      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+        setKeyboardStatus(false);
+      });
+      return (): any => {
+        {
+          navigation.setParams({ categoryArray: [] })
+          showSubscription.remove();
+          hideSubscription.remove();
+          // route.params?.currentSelectedChildId = 0;
+        }
+      }
+    }, [])
+  );
 
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     if (route.params?.backClicked != 'yes') {
-  //       setshowNoData(false);
-  //       if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
-  //         console.log("if route params 0", route.params);
-  //         const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
-  //         showSelectedBracketData(firstChildDevData[0]);
-
-  //       }
-  //       else {
-  //         console.log("else if route params 0", route.params, activityTaxonomyId);
-  //         const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
-  //         showSelectedBracketData(firstChildDevData[0]);
-  //       }
-  //     } else {
-  //       setLoadingArticle(false);
-  //       if (route.params?.backClicked == 'yes') {
-  //         navigation.setParams({ backClicked: 'no' })
-  //       }
-  //     }
-
-  //   }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId, activityTaxonomyId])
-  // );
   useFocusEffect(
     React.useCallback(() => {
       if (route.params?.backClicked != 'yes') {

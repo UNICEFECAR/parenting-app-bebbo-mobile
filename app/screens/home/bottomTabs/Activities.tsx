@@ -188,6 +188,7 @@ const Activities = ({ route, navigation }: any): any => {
   const [loading, setLoading] = useState(false);
   const [filteredData, setfilteredData] = useState([]);
   const [selectedAgeBracket, setSelectedAgeBracket] = useState<any>();
+  const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [childMilestonedata, setchildMilestonedata] = useState([]);
@@ -348,7 +349,24 @@ const Activities = ({ route, navigation }: any): any => {
     }
     toTop();
   }
-
+  useFocusEffect(
+    React.useCallback(() => {
+      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+        setKeyboardStatus(true);
+      });
+      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+        setKeyboardStatus(false);
+      });
+      return (): any => {
+        {
+          navigation.setParams({ categoryArray: [] })
+          showSubscription.remove();
+          hideSubscription.remove();
+          // route.params?.currentSelectedChildId = 0;
+        }
+      }
+    }, [])
+  );
   useFocusEffect(
     React.useCallback(() => {
       if (isSerachedQueryText || queryText == '') {
@@ -857,6 +875,11 @@ const Activities = ({ route, navigation }: any): any => {
                 ref={(ref: any): any => (sectionListRef = ref)}
                 keyExtractor={(item: any, index: any): any => String(item?.id) + String(index)}
                 stickySectionHeadersEnabled={false}
+                onScroll={(e: any) => {
+                  if (keyboardStatus == true) {
+                    Keyboard.dismiss();
+                  }
+                }}
                 // initialNumToRender={4}
                 // renderItem={({ item, title }) => <Item item={item} title={title}/>}
                 removeClippedSubviews={true} // Unmount components when outside of window 
