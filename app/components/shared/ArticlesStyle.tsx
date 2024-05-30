@@ -31,7 +31,7 @@ export const SearchBox = styled.View`
   flex-direction:row;
   background:${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
   align-items:center;
-  padding:0;
+  padding-right:10px;
   height:50px;
   width:100%;
 `;
