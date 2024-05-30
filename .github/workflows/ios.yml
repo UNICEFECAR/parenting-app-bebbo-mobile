@@ -158,11 +158,11 @@ jobs:
           #     fi
           #   fi"}]' /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj/project.pbxproj
 
-      - name: Add Build Phase Script
-        env:
-          JSON_String: '[{"name": "Run Script","shellPath": "/bin/sh", "script": "if [[ \"$CONFIGURATION\" == \"Release\" ]]; then SCRIPT_PATH=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\" if [[ -d \"${SCRIPT_PATH}\" ]]; then find \"${SCRIPT_PATH}\" -name \"*.swiftmodule\" -type d | while read -r module; do find \"${module}\" -name \"*.swiftdoc\" -or -name \"*.swiftinterface\" -or -name \"*.swiftmodule\" | while read -r file; do echo \"Copying $file\" cp \"${file}\" \"${module}\" done done fi fi"}]'
-        run: |
-           plutil -insert scripts -json "$JSON_String" /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj/project.pbxproj
+      # - name: Add Build Phase Script
+      #   env:
+      #     JSON_String: '[{"name": "Run Script","shellPath": "/bin/sh", "script": "if [[ \"$CONFIGURATION\" == \"Release\" ]]; then SCRIPT_PATH=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\" if [[ -d \"${SCRIPT_PATH}\" ]]; then find \"${SCRIPT_PATH}\" -name \"*.swiftmodule\" -type d | while read -r module; do find \"${module}\" -name \"*.swiftdoc\" -or -name \"*.swiftinterface\" -or -name \"*.swiftmodule\" | while read -r file; do echo \"Copying $file\" cp \"${file}\" \"${module}\" done done fi fi"}]'
+      #   run: |
+      #      plutil -insert scripts -json "$JSON_String" /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj/project.pbxproj
            
         # '[{"name": "Run Script","shellPath": "/bin/sh", "script": "if [[ \"$CONFIGURATION\" == \"Release\" ]]; then SCRIPT_PATH=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\" if [[ -d \"${SCRIPT_PATH}\" ]]; then find \"${SCRIPT_PATH}\" -name \'*.swiftmodule\' -type d | while read -r module; do find \"${module}\" -name \'*.swiftdoc\' -or -name \'*.swiftinterface\' -or -name \'*.swiftmodule\' | while read -r file; do echo \"Copying $file\" cp \"${file}\" \"${module}\" done done fi fi"}]' 
 
