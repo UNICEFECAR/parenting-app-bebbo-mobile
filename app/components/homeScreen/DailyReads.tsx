@@ -214,8 +214,7 @@ const DailyReads = ():any => {
     if (dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)) {
       console.log('First time here');
       let filteredArticles;
-      const isPremature = isFutureDate(activeChild.birthDate);
-      if(isPremature){
+      if(activeChild.isPremature === 'true'){
         filteredArticles = ArticlesData.filter((article:any) => article.premature === 1).sort((a:any, b:any) => new Date(b.created_at) - new Date(a.created_at));
         ArticlesData = filteredArticles;
         console.log('Active child Child Age is data',filteredArticles)
@@ -311,9 +310,8 @@ const DailyReads = ():any => {
       const activityDataList: any = [];
 
       const articleDataToShow:any = [];
-      const isPremature = isFutureDate(activeChild.birthDate);
       let filteredArticles;
-      if(isPremature){
+      if(activeChild.isPremature === 'true'){
         filteredArticles = ArticlesData.filter((article:any) => article.premature === 1).sort((a:any, b:any) => new Date(b.created_at) - new Date(a.created_at));
         ArticlesData = filteredArticles;
         console.log('Active child Child Age is data',filteredArticles)
