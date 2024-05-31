@@ -88,13 +88,15 @@ jobs:
 
       - name: Modify Podfile for Modular Headers
         run: |
+          cd ios  # Update this path if necessary
           sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
 
         
       - name: Install pod dependencies
         run: | 
-          cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
-
+           rm -rf Pods Podfile.lock && pod install --repo-update
+        # cd ios &&
+        
       - name: Signing & Provisioning
         run: |
           # create variables
