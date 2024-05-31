@@ -169,7 +169,7 @@ jobs:
       - name: Copy TOCropViewControllerBundle.bundle Manually
         run: |
           mkdir -p /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController
-          cp -R Pods/TOCropViewController/TOCropViewControllerBundle.bundle /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController/
+          cp -R /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/Pods/TOCropViewController/TOCropViewControllerBundle.bundle /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController/
 
 
       - name: Build Archive
