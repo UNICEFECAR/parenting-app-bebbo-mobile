@@ -94,7 +94,7 @@ jobs:
         
       - name: Install pod dependencies
         run: | 
-           rm -rf Pods Podfile.lock && pod install --repo-update
+           cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
         # cd ios &&
         
       - name: Signing & Provisioning
