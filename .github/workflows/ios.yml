@@ -181,10 +181,10 @@ jobs:
       #     mkdir -p /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController
       #     cp -R /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/Pods/TOCropViewController/TOCropViewControllerBundle.bundle /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController/
 
-      - name: Add TOCropViewControllerBundle.bundle to Project
-        run: |
-          cd /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios
-          xcodebuild -project ParentBuddyApp.xcodeproj -target ParentBuddyApp -configuration Release -scheme "$SCHEME" -destination generic/platform=iOS build
+      #- name: Add TOCropViewControllerBundle.bundle to Project
+      #  run: |
+      #    cd /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios
+      #    xcodebuild -project ParentBuddyApp.xcodeproj -target ParentBuddyApp -configuration Release -scheme "$SCHEME" -destination generic/platform=iOS build
           
       - name: Build Archive
         run: |
