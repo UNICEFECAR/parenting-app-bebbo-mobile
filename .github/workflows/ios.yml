@@ -181,9 +181,19 @@ jobs:
       #     mkdir -p /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController
       #     cp -R /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/Pods/TOCropViewController/TOCropViewControllerBundle.bundle /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController/
 
+      - name: Add TOCropViewControllerBundle.bundle to Project
+        run: |
+          cd /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios
+          xcodebuild -project ParentBuddyApp.xcodeproj -target ParentBuddyApp -configuration Release -scheme "$SCHEME" -destination generic/platform=iOS build
+          
       - name: Build Archive
-        run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64 ONLY_ACTIVE_ARCH=YES OTHER_SWIFT_FLAGS=no-verify-emitter-module-interface SWIFT_VERSION=5.0 EMBEDDED_CONTENT_CONTAINS_SWIFT=YES EXPANDED_CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-        timeout-minutes: 10
+        run: |
+          xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' \
+          ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO \
+          EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64 ONLY_ACTIVE_ARCH=YES \
+          OTHER_SWIFT_FLAGS=no-verify-emitter-module-interface SWIFT_VERSION=5.0 \
+          EMBEDDED_CONTENT_CONTAINS_SWIFT=YES EXPANDED_CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         
         #OTHER_SWIFT_FLAGS=-no-verify-emitter-module-interface 
           
