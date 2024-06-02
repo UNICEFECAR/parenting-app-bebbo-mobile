@@ -1,14 +1,10 @@
 name: iOS Build
 on:
-  # create:
-  #   tags:
-  #     - v*
   push:
     branches: 
       - Development
     
   workflow_dispatch:
-
 
 env:
         WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
@@ -89,6 +85,7 @@ jobs:
         run: |
           cd ios  # Update this path if necessary
           sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
+          cat Podfile
 
         
       - name: Install pod dependencies
@@ -103,12 +100,12 @@ jobs:
           PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
           KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
           
-          # CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
-          # PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
+          CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
+          PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
   
           # import certificate and provisioning profile from secrets
-          # echo -n "$DISTRIBUTION_CERTIFICATE" | base64 --decode --output "$CERT_PATH"
-          # echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 --decode --output "$PP_PATH_PROD"
+          echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o "$CERT_PATH"
+          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 Dd -o "$PP_PATH_PROD"
           
           echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -Dd -o "$DEV_CERT_PATH"
           echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -Dd -o "$PP_PATH_STAGING"
@@ -120,14 +117,14 @@ jobs:
           
           # import certificate to keychain
           security import "$DEV_CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
-          # security import "$CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
+          security import "$CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
           security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" "$KCHAIN_PATH"
           security list-keychain -d user -s "$KCHAIN_PATH"
           
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
-          # cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles
+          cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles
           
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.1.app
@@ -141,7 +138,7 @@ jobs:
 
 
       - name: Clean project
-        run: xcodebuild clean -scheme "$SCHEME" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
+        run: xcodebuild clean -scheme "$SCHEME_PROD" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
 
       - name: Clear Derived Data
         run : rm -rf ~/Library/Developer/Xcode/DerivedData
@@ -180,15 +177,18 @@ jobs:
       #     mkdir -p /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController
       #     cp -R /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/Pods/TOCropViewController/TOCropViewControllerBundle.bundle /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController/
 
-      - name: Add TOCropViewControllerBundle.bundle to Project
-        run: |
-          cd /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios
-          xcodebuild -project ParentBuddyApp.xcodeproj -target ParentBuddyApp -configuration Release -scheme "$SCHEME" -destination generic/platform=iOS build
+      # - name: Add TOCropViewControllerBundle.bundle to Project
+      #   run: |
+      #     cd /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios
+      #     xcodebuild -project ParentBuddyApp.xcodeproj -target ParentBuddyApp -configuration Release -scheme "$SCHEME" -destination generic/platform=iOS build
           
-      - name: Build Archive
-        run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64 ONLY_ACTIVE_ARCH=YES OTHER_SWIFT_FLAGS=no-verify-emitter-module-interface SWIFT_VERSION=5.0 EMBEDDED_CONTENT_CONTAINS_SWIFT=YES EXPANDED_CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-        timeout-minutes: 10
+      # - name: Build Archive
+      #   run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64 ONLY_ACTIVE_ARCH=YES OTHER_SWIFT_FLAGS=no-verify-emitter-module-interface SWIFT_VERSION=5.0 EMBEDDED_CONTENT_CONTAINS_SWIFT=YES EXPANDED_CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+      #   timeout-minutes: 10
         
+      - name: Build Archive
+        run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME_PROD" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64 ONLY_ACTIVE_ARCH=YES OTHER_SWIFT_FLAGS=no-verify-emitter-module-interface SWIFT_VERSION=5.0 EMBEDDED_CONTENT_CONTAINS_SWIFT=YES EXPANDED_CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+        timeout-minutes: 10
         #OTHER_SWIFT_FLAGS=-no-verify-emitter-module-interface 
           
         # -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
@@ -210,19 +210,19 @@ jobs:
           # CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" 
           
           
-      - name: Export STAGING
-        run: |
-          xcodebuild -exportArchive -archivePath "$ARCHIVE_PATH" -exportPath "$EXPORT_PATH_STAGING" . -exportOptionsPlist "$PLIST_PATH_STAGING"
-      
-      # - name: Export PROD
+      # - name: Export STAGING
       #   run: |
-      #     xcodebuild -exportArchive -archivePath "$ARCHIVE_PATH" -exportPath "$EXPORT_PATH_PROD" . -exportOptionsPlist "$PLIST_PATH_PROD"
+      #     xcodebuild -exportArchive -archivePath "$ARCHIVE_PATH" -exportPath "$EXPORT_PATH_STAGING" . -exportOptionsPlist "$PLIST_PATH_STAGING"
+      
+      - name: Export PROD
+        run: |
+          xcodebuild -exportArchive -archivePath "$ARCHIVE_PATH" -exportPath "$EXPORT_PATH_PROD" . -exportOptionsPlist "$PLIST_PATH_PROD"
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Bebbo.ipa
-          path: ${{ env.ARTIFACT_PATH_STAGING }} 
+          path: ${{ env.ARTIFACT_PATH_PROD }} 
 
 #            name: ${{ env.ARTIFACT_NAME }}
  #           path: |
@@ -234,5 +234,5 @@ jobs:
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
           rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
-        # rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
     
