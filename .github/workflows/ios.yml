@@ -144,10 +144,10 @@ jobs:
       - name: Clear Derived Data
         run : rm -rf ~/Library/Developer/Xcode/DerivedData
         
-      - name: Build
-        run: |
-          cd ios && xcodebuild -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0
-        timeout-minutes: 10
+      # - name: Build
+      #   run: |
+      #     cd ios && xcodebuild -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0
+      #   timeout-minutes: 10
 
       - name: Print Folder
         run: ls -l ./ios
@@ -157,7 +157,7 @@ jobs:
 
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive"
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive"
         timeout-minutes: 10
 
       - name: Print Folder
@@ -171,16 +171,16 @@ jobs:
 
       - name: Export PROD
         run: |
-          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$EXPORT_PATH_PROD" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"
+          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"
         
       - name: Print Export Prod
-        run: ls -l $EXPORT_PATH_PROD
+        run: ls -l $ARTIFACT_PATH_STAGING
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Bebbo.ipa
-          path: ${{ env.ARTIFACT_PATH_PROD }} 
+          path: ${{ env.ARTIFACT_PATH_STAGING }} 
 
 #            name: ${{ env.ARTIFACT_NAME }}
  #           path: |
