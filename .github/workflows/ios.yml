@@ -157,7 +157,7 @@ jobs:
 
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive"
         timeout-minutes: 10
 
       - name: Print Folder
@@ -171,7 +171,7 @@ jobs:
 
       - name: Export PROD
         run: |
-          cd ios && xcodebuild -exportArchive -archivePath "ParentBuddyApp.xcarchive" -exportPath "$EXPORT_PATH_PROD" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"
+          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$EXPORT_PATH_PROD" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"
         
       - name: Print Export Prod
         run: ls -l $EXPORT_PATH_PROD
