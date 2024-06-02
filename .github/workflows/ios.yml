@@ -137,7 +137,6 @@ jobs:
         run: |
           cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
 
-
       - name: Clean project
         run: xcodebuild clean -scheme "$SCHEME_PROD" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
 
@@ -149,32 +148,33 @@ jobs:
       #     cd ios && xcodebuild -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0
       #   timeout-minutes: 10
 
-      - name: Print Folder
-        run: ls -l ./ios
+      # - name: Print Folder
+      #   run: ls -l ./ios
 
-      - name: Print Folder
-        run: ls -l ./ios/ParentBuddyApp
+      # - name: Print Folder
+      #   run: ls -l ./ios/ParentBuddyApp
 
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive"
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_IDENTITY="iPhone Distribution" 
+          PROVISIONING_PROFILE_SPECIFIER="Datamatics Distrubution"
         timeout-minutes: 10
 
-      - name: Print Folder
-        run: ls -l ./ios
+      # - name: Print Folder
+      #   run: ls -l ./ios
 
-      - name: Print Folder
-        run: ls -l ./ios/ParentBuddyApp
+      # - name: Print Folder
+      #   run: ls -l ./ios/ParentBuddyApp
         
-      - name: Print Folder
-        run: ls -l ./ios/build
+      # - name: Print Folder
+      #   run: ls -l ./ios/build
 
       - name: Export PROD
         run: |
           cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"
         
-      - name: Print Export Prod
-        run: ls -l $ARTIFACT_PATH_STAGING
+      # - name: Print Export Prod
+      #   run: ls -l $ARTIFACT_PATH_STAGING
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
