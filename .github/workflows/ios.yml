@@ -99,7 +99,7 @@ jobs:
           # create variables
           DEV_CERT_PATH=$RUNNER_TEMP/dev_certificate.p12
           PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
-          KCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          KCHAIN_PATH=$RUNNER_TEMP/build.keychain
           
           CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
           PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
@@ -121,7 +121,7 @@ jobs:
           security import "$CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
           security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" "$KCHAIN_PATH"
           security list-keychain -d user -s "$KCHAIN_PATH"
-          
+
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
