@@ -218,7 +218,7 @@ jobs:
       #     xcodebuild -exportArchive -archivePath "$ARCHIVE_PATH" -exportPath "$EXPORT_PATH_STAGING" . -exportOptionsPlist "$PLIST_PATH_STAGING"
 
       - name: Build Archive
-        run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME_PROD" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "$ARCHIVE_PATH" clean archive
+        run:  xcodebuild archive -workspace "$WORKSPACE" -scheme "$SCHEME_PROD" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "$ARCHIVE_PATH"
         timeout-minutes: 10
 
       - name: Print Folder
