@@ -155,11 +155,17 @@ jobs:
       - name: Print Folder
         run: ls -l ./ios/ParentBuddyApp
 
-      # - name: Build Archive
-      #   run: |
-      #     cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "ParentBuddyApp.xcarchive"
-      #   timeout-minutes: 10
+      - name: Build Archive
+        run: |
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0
+        timeout-minutes: 10
 
+      - name: Print Folder
+        run: ls -l ./ios
+
+      - name: Print Folder
+        run: ls -l ./ios/ParentBuddyApp
+        
       - name: Print Folder
         run: ls -l ./ios/build
 
