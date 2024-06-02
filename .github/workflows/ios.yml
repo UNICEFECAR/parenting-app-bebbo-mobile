@@ -135,7 +135,7 @@ jobs:
       
       - name: Create build folder
         run: |
-          mkdir -p build && mkdir -p staging && mkdir -p prod
+          cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
 
 
       - name: Clean project
@@ -144,81 +144,17 @@ jobs:
       - name: Clear Derived Data
         run : rm -rf ~/Library/Developer/Xcode/DerivedData
         
-      # - name: Build Project
-      #   run: xcodebuild build -scheme "$SCHEME" \
-      #     -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj \
-      #     -destination 'platform=iOS,name=iPhone' BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
+      - name: Build
+        run: |
+          cd ios && xcodebuild -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0
+        timeout-minutes: 10
 
-      # - name: Add Build Phase Script
-      #   run: |
-          # plutil -insert 'scripts' -json '[{"name":"Run Script", "shellPath":"/bin/sh", 
-          # "script": "
-          #   if [[ "$CONFIGURATION" == "Release" ]]; then 
-          #     SCRIPT_PATH="${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}"
-          #     if [[ -d "${SCRIPT_PATH}" ]]; then
-          #       find "${SCRIPT_PATH}" -name '*.swiftmodule' -type d | while read -r module; do
-          #         find "${module}" -name '*.swiftdoc' -or -name '*.swiftinterface' -or -name '*.swiftmodule' | while read -r file; do
-          #           echo "Copying $file"
-          #           cp "${file}" "${module}"
-          #         done
-          #       done
-          #     fi
-          #   fi"}]' /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj/project.pbxproj
-
-      # - name: Add Build Phase Script
-      #   env:
-      #     JSON_String: '[{"name": "Run Script","shellPath": "/bin/sh", "script": "if [[ \"$CONFIGURATION\" == \"Release\" ]]; then SCRIPT_PATH=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\" if [[ -d \"${SCRIPT_PATH}\" ]]; then find \"${SCRIPT_PATH}\" -name \"*.swiftmodule\" -type d | while read -r module; do find \"${module}\" -name \"*.swiftdoc\" -or -name \"*.swiftinterface\" -or -name \"*.swiftmodule\" | while read -r file; do echo \"Copying $file\" cp \"${file}\" \"${module}\" done done fi fi"}]'
-      #   run: |
-      #      plutil -insert scripts -json "$JSON_String" /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj/project.pbxproj
-           
-        # '[{"name": "Run Script","shellPath": "/bin/sh", "script": "if [[ \"$CONFIGURATION\" == \"Release\" ]]; then SCRIPT_PATH=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\" if [[ -d \"${SCRIPT_PATH}\" ]]; then find \"${SCRIPT_PATH}\" -name \'*.swiftmodule\' -type d | while read -r module; do find \"${module}\" -name \'*.swiftdoc\' -or -name \'*.swiftinterface\' -or -name \'*.swiftmodule\' | while read -r file; do echo \"Copying $file\" cp \"${file}\" \"${module}\" done done fi fi"}]' 
-
-      # - name: Copy TOCropViewControllerBundle.bundle Manually
-      #   run: |
-      #     mkdir -p /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController
-      #     cp -R /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/Pods/TOCropViewController/TOCropViewControllerBundle.bundle /Users/runner/Library/Developer/Xcode/DerivedData/App-abwvqgcawojhvddcniluuwylvyqn/Build/Products/Release-iphoneos/TOCropViewController/
-
-      # - name: Add TOCropViewControllerBundle.bundle to Project
-      #   run: |
-      #     cd /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios
-      #     xcodebuild -project ParentBuddyApp.xcodeproj -target ParentBuddyApp -configuration Release -scheme "$SCHEME" -destination generic/platform=iOS build
-          
-      # - name: Build Archive
-      #   run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64 ONLY_ACTIVE_ARCH=YES OTHER_SWIFT_FLAGS=no-verify-emitter-module-interface SWIFT_VERSION=5.0 EMBEDDED_CONTENT_CONTAINS_SWIFT=YES EXPANDED_CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-      #   timeout-minutes: 10
-
-        #ENABLE_BITCODE=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO EXCLUDED_ARCHS[sdk=iphonesimulator*]=arm64 ONLY_ACTIVE_ARCH=YES OTHER_SWIFT_FLAGS=no-verify-emitter-module-interface SWIFT_VERSION=5.0 EMBEDDED_CONTENT_CONTAINS_SWIFT=YES EXPANDED_CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-      # - name: Build Archive
-      #   run:  xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME_PROD" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -derivedDataPath '$ARCHIVE_PATH' clean build
-      #   timeout-minutes: 10
-        
-        #OTHER_SWIFT_FLAGS=-no-verify-emitter-module-interface 
-          
-        # -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
-          # PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" 
-
-        # CODE_SIGNING_ALLOWED=NO \   archive -archivePath "$ARCHIVE_PATH"
-          
-        # xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME_PROD" -configuration "$CONFIGURATION" \
-          # archive -archivePath "$ARCHIVE_PATH" -allowProvisioningUpdates \
-          # PROVISIONING_STYLE="Manual" \
-          # PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" \
-          # CODE_SIGN_STYLE="Manual" \
-          # CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE"
-          
-          
-          # xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration "$CONFIGURATION" \
-          # archive -archivePath "$ARCHIVE_PATH" -allowProvisioningUpdates PROVISIONING_STYLE="Manual" \
-          # PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" \
-          # CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DEVELOPMENT_CERTIFICATE" 
-          
-          
-      # - name: Export STAGING
-      #   run: |
-      #     xcodebuild -exportArchive -archivePath "$ARCHIVE_PATH" -exportPath "$EXPORT_PATH_STAGING" . -exportOptionsPlist "$PLIST_PATH_STAGING"
+      - name: Print Folder
+        run: ls -l ./ios/build
 
       - name: Build Archive
-        run:  xcodebuild archive -workspace "$WORKSPACE" -scheme "$SCHEME_PROD" -configuration "$CONFIGURATION" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "$ARCHIVE_PATH"
+        run: |
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "ParentBuddyApp.xcarchive"
         timeout-minutes: 10
 
       - name: Print Folder
@@ -226,7 +162,7 @@ jobs:
 
       - name: Export PROD
         run: |
-          xcodebuild -exportArchive -archivePath "$ARCHIVE_PATH" -exportPath "$EXPORT_PATH_PROD" . -exportOptionsPlist "$PLIST_PATH_PROD"
+          cd ios && xcodebuild -exportArchive -archivePath "ParentBuddyApp.xcarchive" -exportPath "$EXPORT_PATH_PROD" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"
         
       - name: Print Export Prod
         run: ls -l $EXPORT_PATH_PROD
