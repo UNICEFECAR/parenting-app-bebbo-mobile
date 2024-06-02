@@ -6,6 +6,7 @@ on:
     
   workflow_dispatch:
 
+
 env:
         WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
         SCHEME: ${{ 'ParentBuddyAppDev' }}
@@ -105,7 +106,7 @@ jobs:
   
           # import certificate and provisioning profile from secrets
           echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o "$CERT_PATH"
-          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 Dd -o "$PP_PATH_PROD"
+          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o "$PP_PATH_PROD"
           
           echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -Dd -o "$DEV_CERT_PATH"
           echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -Dd -o "$PP_PATH_STAGING"
