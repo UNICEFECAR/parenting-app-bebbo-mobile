@@ -137,44 +137,16 @@ jobs:
         run: |
           cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
 
-      # - name: Clean project
-      #   run: xcodebuild clean -scheme "$SCHEME_PROD" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
-
-      # - name: Clear Derived Data
-      #   run : rm -rf ~/Library/Developer/Xcode/DerivedData
-        
-      # - name: Build
-      #   run: |
-      #     cd ios && xcodebuild -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -destination 'platform=iOS,name=iPhone' -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0
-      #   timeout-minutes: 10
-
-      # - name: Print Folder
-      #   run: ls -l ./ios
-
-      # - name: Print Folder
-      #   run: ls -l ./ios/ParentBuddyApp
 
       - name: Build Archive
         run: |
           cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_IDENTITY="iPhone Distribution" -allowProvisioningUpdates \
-          PROVISIONING_STYLE=”Manual” PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE=”Manual” CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE"
+          PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE"
           timeout-minutes: 10
 
-      # - name: Print Folder
-      #   run: ls -l ./ios
-
-      # - name: Print Folder
-      #   run: ls -l ./ios/ParentBuddyApp
-        
-      # - name: Print Folder
-      #   run: ls -l ./ios/build
-      # enterpriseProfileName=`/usr/libexec/plistbuddy -c Print:Name /dev/stdin <<< l\`security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision\``
-      - name: Export PROD
+      - name: Export Archive
         run: |
           cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"  
-        
-      # - name: Print Export Prod
-      #   run: ls -l $ARTIFACT_PATH_STAGING
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
@@ -182,8 +154,6 @@ jobs:
           name: Bebbo.ipa
           path: ${{ env.ARTIFACT_PATH_STAGING }} 
 
-#            name: ${{ env.ARTIFACT_NAME }}
- #           path: |
               #${{ env.ARTIFACT_PATH_STAGING }}
               #${{ env.ARTIFACT_PATH_PROD }}
 
