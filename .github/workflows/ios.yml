@@ -32,7 +32,6 @@ env:
         UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
         DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
         DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
-
   
 jobs:
   build:
@@ -60,7 +59,6 @@ jobs:
           echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
           echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
        
-                
       - name: Putting data google service Dev file
         env:
           DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
@@ -88,11 +86,9 @@ jobs:
           sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
           cat Podfile
 
-        
       - name: Install pod dependencies
         run: | 
            cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
-        # cd ios &&
         
       - name: Signing & Provisioning
         run: |
@@ -141,7 +137,7 @@ jobs:
 
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive"
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
         # timeout-minutes: 15
 
       - name: Export Archive
