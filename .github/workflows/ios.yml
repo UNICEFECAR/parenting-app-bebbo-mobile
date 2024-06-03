@@ -167,12 +167,10 @@ jobs:
         
       # - name: Print Folder
       #   run: ls -l ./ios/build
-
+      # enterpriseProfileName=`/usr/libexec/plistbuddy -c Print:Name /dev/stdin <<< l\`security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision\``
       - name: Export PROD
         run: |
-          enterpriseProvisioningProfile= ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
-          enterpriseProfileName=`/usr/libexec/plistbuddy -c Print:Name /dev/stdin <<< l\`security cms -D -i $enterpriseProvisioningProfile\``
-          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist" -exportProvisioningProfile "$enterpriseProfileName"
+          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist" -exportProvisioningProfile "Bebbo_Datamatics_Enterprise"
         
       # - name: Print Export Prod
       #   run: ls -l $ARTIFACT_PATH_STAGING
