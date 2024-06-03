@@ -156,8 +156,8 @@ jobs:
 
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE_SPECIFIER="Bebbo_Datamatics_Enterprise"
-        timeout-minutes: 10
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE_SPECIFIER="Bebbo_Development_for_Git"
+          timeout-minutes: 10
 
       # - name: Print Folder
       #   run: ls -l ./ios
@@ -170,7 +170,7 @@ jobs:
       # enterpriseProfileName=`/usr/libexec/plistbuddy -c Print:Name /dev/stdin <<< l\`security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision\``
       - name: Export PROD
         run: |
-          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist" -allowProvisioningUpdates 
+          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"  
         
       # - name: Print Export Prod
       #   run: ls -l $ARTIFACT_PATH_STAGING
