@@ -137,11 +137,11 @@ jobs:
         run: |
           cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
 
-      - name: Clean project
-        run: xcodebuild clean -scheme "$SCHEME_PROD" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
+      # - name: Clean project
+      #   run: xcodebuild clean -scheme "$SCHEME_PROD" -project /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyApp.xcodeproj
 
-      - name: Clear Derived Data
-        run : rm -rf ~/Library/Developer/Xcode/DerivedData
+      # - name: Clear Derived Data
+      #   run : rm -rf ~/Library/Developer/Xcode/DerivedData
         
       # - name: Build
       #   run: |
@@ -156,7 +156,7 @@ jobs:
 
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE_SPECIFIER="Datamatics Distrubution"
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE_SPECIFIER="Bebbo_Datamatics_Enterprise"
         timeout-minutes: 10
 
       # - name: Print Folder
@@ -189,7 +189,7 @@ jobs:
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
-          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+          security delete-keychain $RUNNER_TEMP/build.keychain
           rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
           rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
     
