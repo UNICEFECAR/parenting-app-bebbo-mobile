@@ -170,7 +170,7 @@ jobs:
       # enterpriseProfileName=`/usr/libexec/plistbuddy -c Print:Name /dev/stdin <<< l\`security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision\``
       - name: Export PROD
         run: |
-          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist" -exportProvisioningProfile "Bebbo_Datamatics_Enterprise"
+          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist" -allowProvisioningUpdates 
         
       # - name: Print Export Prod
       #   run: ls -l $ARTIFACT_PATH_STAGING
