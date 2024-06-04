@@ -138,7 +138,7 @@ jobs:
 
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" -provisioningProfile="Bebbo_Datamatics_Enterprise"
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" -provisioningProfile="Bebbo_Development_for_Git"
         # timeout-minutes: 15
 
       - name: Export Archive
