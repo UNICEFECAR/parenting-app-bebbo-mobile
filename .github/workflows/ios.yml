@@ -143,7 +143,7 @@ jobs:
 
       - name: Export Archive
         run: |
-          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist"
+          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" -exportOptionsPlist "./ParentBuddyApp/Info.plist"
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
