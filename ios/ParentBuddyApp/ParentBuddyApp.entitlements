@@ -4,10 +4,5 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
-	<key>com.apple.developer.associated-domains</key>
-	<array>
-		<string>applinks:www.bebbo.app</string>
-		<string>applinks:bebboapp.page.link</string>
-	</array>
 </dict>
 </plist>
