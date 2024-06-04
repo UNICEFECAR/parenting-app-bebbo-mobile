@@ -89,48 +89,53 @@ jobs:
           sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
           cat Podfile
 
-
       - name: Remove Background modes
         run: |
           cd ios && /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyAppDev-Info.plist || echo "UIBackgroundModes key not found from dev or already removed."
           /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyApp/Info.plist || echo "UIBackgroundModes key not found in main or already removed."
-          
 
       - name: Remove associated-domains
         run: |
           cd ios && /usr/libexec/PlistBuddy -c "Delete :com.apple.developer.associated-domains" ParentBuddyApp/ParentBuddyApp.entitlements || echo "associated-domains key not found or already removed."
 
+      - name: Authenticate with Apple Developer account
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
+        run: |
+          echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
+          security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
-      # - name: Prepare exportOptions.plist
-      #   run: |
-      #     cd ios
-      #     cat > exportOptionsUpdated.plist <<EOL
-      #       <?xml version="1.0" encoding="UTF-8"?>
-      #       <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      #       <plist version="1.0">
-      #       <dict>
-      #           <key>method</key>
-      #           <string>app-store</string>
-      #           <key>provisioningProfiles</key>
-      #           <dict>
-      #               <key>com.datamatics.bebbo</key>
-      #               <string>$PROVISIONING_PROFILE_NAME</string>
-      #           </dict>
-      #           <key>signingStyle</key>
-      #           <string>automatic</string>
-      #           <key>stripSwiftSymbols</key>
-      #           <true/>
-      #           <key>teamID</key>
-      #           <string>$TEAM_ID</string>
-      #       </dict>
-      #       </plist>
-      #       EOL
-      
       - name: Prepare exportOptions.plist
         run: |
-          cd ios && sed -e "s/\${PROVISIONING_PROFILE_NAME}/$PROVISIONING_PROFILE_NAME/" \
-          -e "s/\${TEAM_ID}/$TEAM_ID/" \
-          "exportOptions.plist" > "exportOptionsUpdated.plist"
+          cd ios
+          cat > exportOptionsUpdated.plist <<EOL
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+                <key>method</key>
+                <string>app-store</string>
+                <key>provisioningProfiles</key>
+                <dict>
+                    <key>com.datamatics.bebbo</key>
+                    <string>$PROVISIONING_PROFILE_NAME</string>
+                </dict>
+                <key>signingStyle</key>
+                <string>automatic</string>
+                <key>stripSwiftSymbols</key>
+                <true/>
+                <key>teamID</key>
+                <string>$TEAM_ID</string>
+            </dict>
+            </plist>
+            EOL
+      
+      # - name: Prepare exportOptions.plist
+      #   run: |
+      #     cd ios && sed -e "s/\${PROVISIONING_PROFILE_NAME}/$PROVISIONING_PROFILE_NAME/" \
+      #     -e "s/\${TEAM_ID}/$TEAM_ID/" \
+      #     "exportOptions.plist" > "exportOptionsUpdated.plist"
 
       - name: Install pod dependencies
         run: | 
