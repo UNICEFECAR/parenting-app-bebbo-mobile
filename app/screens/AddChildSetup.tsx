@@ -55,7 +55,7 @@ import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 import BackgroundColors from '@components/shared/BackgroundColors';
 import { logEvent } from '../services/EventSyncService';
-import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
+import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
@@ -344,7 +344,13 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     }else{
         defaultName= name;
     }
-    const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    let insertData:any = null;
+    if(isDefaultChild){
+      insertData = await getNewChild('', "true", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    }else{
+      insertData = await getNewChild('', "false", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    }
+    
     const childSet: Array<any> = [];
     childSet.push(insertData);
     if (isDefaultChild) {
@@ -352,6 +358,8 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
         const eventData = { 'name': EXPECTED_CHILD_ENTERED }
         logEvent(eventData, netInfo.isConnected)
       }
+      const eventData = { 'name': ONBOARDING_SKIPPED }
+      logEvent(eventData, netInfo.isConnected);
       await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childSet);
   
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
@@ -515,9 +523,9 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                   setTimeout(() => {
                     console.log('Relationship name', relationshipName, relationship)
                     if (relationshipName == 'service provider') {
-
                       AddChild(false,true);
                     } else {
+                      console.log('Child is created here');
                       // const currentDate = new Date();
                       // setBirthDate(currentDate)
                       AddChild(true,true);

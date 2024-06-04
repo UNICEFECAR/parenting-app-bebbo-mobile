@@ -1,4 +1,4 @@
-import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
+import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
 import { appConfig, articleCategory, boyChildGender } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
@@ -35,7 +35,7 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
     }
   ];
 }
-export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any, createdAt?: any): Promise<ChildEntity> => {
+export const getNewChild = async (uuidGet: string, autoChild?: string,isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any, createdAt?: any): Promise<ChildEntity> => {
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
     childName: (name != "" && name != null && name != undefined) ? name.trim() : '',
@@ -48,7 +48,8 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
     updatedAt: new Date(),
     measurementPlace: "doctor",
     isMigrated: false,
-    isExpected: (isExpected != '' && isExpected != null && isExpected != undefined) ? isExpected : "false"
+    isExpected: (isExpected != '' && isExpected != null && isExpected != undefined) ? isExpected : "false",
+    autoChild: (autoChild != '' && autoChild != null && autoChild != undefined) ? autoChild : "false"
   };
 
 }
@@ -173,14 +174,15 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         child.parent_gender = userParentalRole[0].value
       }
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
-      console.log("allDatatoStore AddEditChild1--", allDatatoStore);
+      console.log("allDatatoStore AddEditChild1--", child);
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
         is_premature: child.isPremature,
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
-        parent_gender: child.parent_gender
+        parent_gender: child.parent_gender,
+        auto_child:child.autoChild
       }) // relationship_with_child:monther/father
 
 
@@ -218,12 +220,14 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         console.log("allDatatoStore AddEditChild2--", allDatatoStore);
         dispatch(setActiveChildData(child));
+        const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
         analytics().setUserProperties({
           ageid: String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
-          parent_gender: child.parent_gender
+          parent_gender: child.parent_gender,
+          auto_child:child.autoChild
         }) // relationship_with_child:monther/father
 
       }
@@ -231,6 +235,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
   }
   else {
     let child = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    console.log('chiild adta is',child)
     child = child.find((record: any, index: number) => index === 0);
     if (child.birthDate != null && child.birthDate != undefined && child.birthDate != "") {
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", child.uuid);
@@ -260,6 +265,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
     }
     if (child) {
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
+      const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
       console.log("allDatatoStore AddEditChild3--", allDatatoStore);
       console.log("taxonomy data is", child);
       dispatch(setActiveChildData(child));
@@ -268,7 +274,8 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         is_premature: child.isPremature,
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
-        parent_gender: child.parent_gender
+        parent_gender: child.parent_gender,
+        auto_child:child.autoChild
       }) // relationship_with_child:monther/father
     }
   }
@@ -417,7 +424,7 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
 
 export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any,isDefaultChild?:boolean,isSibling?:boolean, parentName?: any): Promise<any> => {
   let oldBirthDate;
-  console.log(editScreen, "..editScreen..", param);
+  console.log(editScreen, "..editScreen..", data[0]);
   if (editScreen) {
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
     console.log(oldChild, "..oldChild..");
@@ -437,6 +444,8 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   //new child add from 
   if (param == 0) {
     if(isDefaultChild){
+      const eventData = { 'name': ONBOARDING_SKIPPED } 
+      logEvent(eventData, netInfo.isConnected);
       navigation.navigate('ServiceProviderInfoSetup')
     }else{
       navigation.navigate('ChildSetupList');
@@ -555,7 +564,8 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
     is_premature: child.isPremature,
     child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
     relationship_with_child: userRelationToParent,
-    parent_gender: child.parent_gender
+    parent_gender: child.parent_gender,
+    auto_child:child.autoChild
   }) // relationship_with_child:monther/father
 }
 export const getAllConfigData = async (dispatch: any): Promise<any> => {
