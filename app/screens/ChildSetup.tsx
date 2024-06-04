@@ -350,8 +350,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     } else {
       defaultName = name;
     }
-
-    const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    const insertData: any = await getNewChild('',"true", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
     addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild,false, name);
