@@ -135,7 +135,13 @@ jobs:
       
       - name: Remove Background modes
         run: |
-          cd ios && /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyAppDev-Info.plist || echo "UIBackgroundModes key not found or already removed." 
+          cd ios && /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyAppDev-Info.plist || echo "UIBackgroundModes key not found or already removed."
+          /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyApp/Info.plist || echo "UIBackgroundModes key not found or already removed."
+          
+
+      - name: Remove associated-domains
+        run: |
+          cd ios && /usr/libexec/PlistBuddy -c "Delete :com.apple.developer.associated-domains" ios/ParentBuddyApp/ParentBuddyApp.entitlements || echo "associated-domains key not found or already removed."
 
         #PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE" -allowProvisioningUpdates
         # cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
