@@ -89,13 +89,13 @@ jobs:
 
       - name: Remove Background modes
         run: |
-          cd ios && /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyAppDev-Info.plist || echo "UIBackgroundModes key not found or already removed."
-          /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyApp/Info.plist || echo "UIBackgroundModes key not found or already removed."
+          cd ios && /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyAppDev-Info.plist || echo "UIBackgroundModes key not found from dev or already removed."
+          /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyApp/Info.plist || echo "UIBackgroundModes key not found in main or already removed."
           
 
       - name: Remove associated-domains
         run: |
-          cd ios && /usr/libexec/PlistBuddy -c "Delete :com.apple.developer.associated-domains" ios/ParentBuddyApp/ParentBuddyApp.entitlements || echo "associated-domains key not found or already removed."
+          cd ios && /usr/libexec/PlistBuddy -c "Delete :com.apple.developer.associated-domains" ParentBuddyApp/ParentBuddyApp.entitlements || echo "associated-domains key not found or already removed."
 
 
       - name: Install pod dependencies
