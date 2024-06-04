@@ -13,7 +13,7 @@ env:
         CONFIGURATION: ${{ 'Release' }}
         ARCHIVE_PATH: ${{ './build/ParentBuddyApp.xcarchive' }}
         EXPORT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
-        PLIST_PATH_STAGING: ${{'ios/ParentBuddyAppDev-Info.plist' }}
+        PLIST_PATH_STAGING: ${{'ParentBuddyAppDev-Info.plist' }}
         ARTIFACT_NAME: ${{ 'Bebbo.ipa' }}
         ARTIFACT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
         APP_NAME_STAGING: ${{ 'ParentBuddyAppDev-iOS/ENV_DEV' }}
