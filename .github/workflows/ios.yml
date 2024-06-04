@@ -132,6 +132,10 @@ jobs:
       - name: Create build folder
         run: |
           cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
+      
+      - name: Remove Background modes
+        run: |
+          cd ios && /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyAppDev-Info.plist || echo "UIBackgroundModes key not found or already removed." 
 
         #PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE" -allowProvisioningUpdates
         # cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
@@ -143,7 +147,9 @@ jobs:
 
       - name: Export Archive
         run: |
-          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" -exportOptionsPlist "./ParentBuddyApp/Info.plist"
+          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" -exportOptionsPlist "PLIST_PATH_STAGING"
+          
+        # "./ParentBuddyApp/Info.plist"
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
