@@ -194,7 +194,7 @@ jobs:
         
       - name: Build Archive
         run: |
-          cd ios && xcodebuild \
+          cd ios && xcodebuild archive \
           -workspace "ParentBuddyApp.xcworkspace" \
           -scheme "ParentBuddyAppDev" \
           -sdk iphoneos \
@@ -205,7 +205,6 @@ jobs:
           DEVELOPMENT_TEAM="$TEAM_ID" \
           PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_NAME" \
           CODE_SIGN_STYLE=Manual \
-          clean archive \
           -allowProvisioningUpdates
 
         # -provisioningProfile="Bebbo_Datamatics_Enterprise" 
