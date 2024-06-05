@@ -39,7 +39,7 @@ env:
 jobs:
   build:
     runs-on: macOS-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
@@ -197,14 +197,13 @@ jobs:
       
       - name: Export Archive
         run: |
-          cd ios && xcodebuild -allowProvisioningUpdates -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" -exportOptionsPlist "exportOptionsUpdated.plist"
+          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" -exportOptionsPlist "exportOptionsUpdated.plist"
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Bebbo.ipa
           path: ${{ env.ARTIFACT_PATH_STAGING }} 
-
               #${{ env.ARTIFACT_PATH_STAGING }}
               #${{ env.ARTIFACT_PATH_PROD }}
 
