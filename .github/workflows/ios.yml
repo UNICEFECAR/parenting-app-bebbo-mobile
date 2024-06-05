@@ -201,7 +201,7 @@ jobs:
           -archivePath "./build/ParentBuddyApp.xcarchive" \
           -configuration "Release" \
           -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 \
-          CODE_SIGN_IDENTITY="Bebbo_Datamatics_Enterprise"
+          CODE_SIGN_IDENTITY="iPhone Distribution"
           DEVELOPMENT_TEAM="$TEAM_ID" \
           PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_NAME" \
           CODE_SIGN_STYLE=Manual \
