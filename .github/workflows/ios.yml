@@ -158,15 +158,6 @@ jobs:
           cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
           cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
 
-          # cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
-
-
-
-          # UUID=$(security cms -D -i "$PP_PATH_STAGING" | plutil -extract UUID raw -)
-          # mv "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
-
-          # UUID=$(security cms -D -i "$PP_PATH_STAGING" | plutil -extract UUID raw -)
-          # mv "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
 
       - name: Prepare exportOptions.plist
         run: |
@@ -192,11 +183,11 @@ jobs:
             </plist>
             EOL
           
-      - name: check Profile
-        run: find ~/Library/MobileDevice/Provisioning\ Profiles -name "*.mobileprovision" -exec security cms -D -i {} \; | grep -A1 -E 'application-identifier|UUID' | awk -F'[<>]' 'NR%3==1{uuid=$3} NR%3==2{app=$3} NR%3==0{print app","uuid}' | sed 's/string//g'
+      # - name: check Profile
+      #   run: find ~/Library/MobileDevice/Provisioning\ Profiles -name "*.mobileprovision" -exec security cms -D -i {} \; | grep -A1 -E 'application-identifier|UUID' | awk -F'[<>]' 'NR%3==1{uuid=$3} NR%3==2{app=$3} NR%3==0{print app","uuid}' | sed 's/string//g'
 
-      - name: check Profile
-        run: cat ./ios/exportOptionsUpdated.plist
+      # - name: check Profile
+      #   run: cat ./ios/exportOptionsUpdated.plist
           
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.1.app
@@ -214,7 +205,7 @@ jobs:
         
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive"
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD"
         
       # - name: Build Archive
       #   run: |
@@ -254,5 +245,5 @@ jobs:
         run: |
           security delete-keychain $RUNNER_TEMP/build.keychain
           rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
     
