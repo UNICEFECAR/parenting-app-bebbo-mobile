@@ -178,6 +178,11 @@ jobs:
               <true/>
               <key>teamID</key>
               <string>$TEAM_ID</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                <key>com.datamatics.bebbo</key>
+                <string>iOS Distribution: Datamatics Global Services Limited</string>
+              </dict>
             </dict>
             </plist>
             EOL
