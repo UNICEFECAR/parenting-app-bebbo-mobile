@@ -34,7 +34,6 @@ env:
         DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
         PROVISIONING_PROFILE_NAME: ${{ secrets.PROVISIONING_PROFILE_NAME }}
         TEAM_ID: ${{ secrets.TEAM_ID }}
-          
   
 jobs:
   build:
@@ -89,27 +88,27 @@ jobs:
           sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
           cat Podfile
 
-      - name: Remove Background modes
-        run: |
-          cd ios && /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyAppDev-Info.plist || echo "UIBackgroundModes key not found from dev or already removed."
-          /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyApp/Info.plist || echo "UIBackgroundModes key not found in main or already removed."
+      # - name: Remove Background modes
+      #   run: |
+      #     cd ios && /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyAppDev-Info.plist || echo "UIBackgroundModes key not found from dev or already removed."
+      #     /usr/libexec/PlistBuddy -c "Delete :UIBackgroundModes" ParentBuddyApp/Info.plist || echo "UIBackgroundModes key not found in main or already removed."
 
-      - name: Remove associated-domains
-        run: |
-          cd ios && /usr/libexec/PlistBuddy -c "Delete :com.apple.developer.associated-domains" ParentBuddyApp/ParentBuddyApp.entitlements || echo "associated-domains key not found or already removed."
+      # - name: Remove associated-domains
+      #   run: |
+      #     cd ios && /usr/libexec/PlistBuddy -c "Delete :com.apple.developer.associated-domains" ParentBuddyApp/ParentBuddyApp.entitlements || echo "associated-domains key not found or already removed."
 
       # - name: Install pod dependencies
       #   run: | 
       #     cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
         
-      - name: Authenticate with Apple Developer account
-        env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
-        run: |
-          echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
-          security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
+      # - name: Authenticate with Apple Developer account
+      #   env:
+      #     APPLE_ID: ${{ secrets.APPLE_ID }}
+      #     APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
+      #   run: |
+      #     echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
+      #     security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
       
       # - name: Prepare exportOptions.plist
@@ -135,8 +134,8 @@ jobs:
           echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -Dd -o "$DEV_CERT_PATH"
           echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -Dd -o "$PP_PATH_STAGING"
           
-          uuid=`grep UUID -A1 -a $PP_PATH_PROD | grep -io "[-A-F0-9]\{36\}"`
-          echo "Dist uuid=$uuid" >> $GITHUB_OUTPUT
+          # uuid=`grep UUID -A1 -a $PP_PATH_PROD | grep -io "[-A-F0-9]\{36\}"`
+          # echo "Dist uuid=$uuid" >> $GITHUB_OUTPUT
           
           # uuid=`grep UUID -A1 -a $PP_PATH_STAGING | grep -io "[-A-F0-9]\{36\}"`
           # echo "Dev uuid=$uuid" >> $GITHUB_OUTPUT
@@ -156,7 +155,7 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
-          cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
+          cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles
 
 
       - name: Prepare exportOptions.plist
@@ -205,7 +204,7 @@ jobs:
         
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD"
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD"
         
       # - name: Build Archive
       #   run: |
@@ -245,5 +244,5 @@ jobs:
         run: |
           security delete-keychain $RUNNER_TEMP/build.keychain
           rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
     
