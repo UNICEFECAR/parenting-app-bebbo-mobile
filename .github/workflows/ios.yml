@@ -97,9 +97,9 @@ jobs:
       #   run: |
       #     cd ios && /usr/libexec/PlistBuddy -c "Delete :com.apple.developer.associated-domains" ParentBuddyApp/ParentBuddyApp.entitlements || echo "associated-domains key not found or already removed."
 
-      # - name: Install pod dependencies
-      #   run: | 
-      #     cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
+      - name: Install pod dependencies
+        run: | 
+          cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
         
       # - name: Authenticate with Apple Developer account
