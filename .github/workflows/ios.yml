@@ -111,30 +111,6 @@ jobs:
           echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
           security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
-      - name: Prepare exportOptions.plist
-        run: |
-          cd ios
-          cat > exportOptionsUpdated.plist <<EOL
-            <?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-            <plist version="1.0">
-            <dict>
-                <key>method</key>
-                <string>app-store</string>
-                <key>provisioningProfiles</key>
-                <dict>
-                    <key>com.datamatics.bebbo</key>
-                    <string>$PROVISIONING_PROFILE_NAME</string>
-                </dict>
-                <key>signingStyle</key>
-                <string>automatic</string>
-                <key>stripSwiftSymbols</key>
-                <true/>
-                <key>teamID</key>
-                <string>$TEAM_ID</string>
-            </dict>
-            </plist>
-            EOL
       
       # - name: Prepare exportOptions.plist
       #   run: |
@@ -192,24 +168,53 @@ jobs:
           # UUID=$(security cms -D -i "$PP_PATH_STAGING" | plutil -extract UUID raw -)
           # mv "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
 
+      - name: Prepare exportOptions.plist
+        run: |
+          cd ios
+          cat > exportOptionsUpdated.plist <<EOL
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+              <key>compileBitcode</key>
+              <false/>
+              <key>destination</key>
+              <string>export</string>
+              <key>method</key>
+              <string>enterprise</string>
+              <key>signingStyle</key>
+              <string>automatic</string>
+              <key>stripSwiftSymbols</key>
+              <true/>
+              <key>teamID</key>
+              <string>$TEAM_ID</string>
+            </dict>
+            </plist>
+            EOL
           
       - name: check Profile
         run: find ~/Library/MobileDevice/Provisioning\ Profiles -name "*.mobileprovision" -exec security cms -D -i {} \; | grep -A1 -E 'application-identifier|UUID' | awk -F'[<>]' 'NR%3==1{uuid=$3} NR%3==2{app=$3} NR%3==0{print app","uuid}' | sed 's/string//g'
 
+      - name: check Profile
+        run: cat ./ios/exportOptionsUpdated.plist
           
-      # - name: Select Xcode
-      #   run: sudo xcode-select -switch /Applications/Xcode_15.1.app
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_15.1.app
      
-      # - name: Xcode Version
-      #   run: /usr/bin/xcodebuild -version
+      - name: Xcode Version
+        run: /usr/bin/xcodebuild -version
       
-      # - name: Create build folder
-      #   run: |
-      #     cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
+      - name: Create build folder
+        run: |
+          cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
      
-      #   #PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE" -allowProvisioningUpdates
-      #   # cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
-      #   # archive 
+        #PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE" -allowProvisioningUpdates
+        # cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
+        # archive 
+        
+      - name: Build Archive
+        run: |
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" PROVISIONING_PROFILE=${{ steps.profile.outputs.uuid }}
         
       # - name: Build Archive
       #   run: |
@@ -226,23 +231,23 @@ jobs:
       #     CODE_SIGN_STYLE=Manual \
       #     -allowProvisioningUpdates
 
-      #   # -provisioningProfile="Bebbo_Datamatics_Enterprise" 
+        # -provisioningProfile="Bebbo_Datamatics_Enterprise" 
       
-      # - name: Export Archive
-      #   run: |
-      #     cd ios && xcodebuild -allowProvisioningUpdates \
-      #     -exportArchive \
-      #     -archivePath "./build/ParentBuddyApp.xcarchive" \
-      #     -exportPath "$ARTIFACT_PATH_STAGING" \
-      #     -exportOptionsPlist "exportOptionsUpdated.plist"
+      - name: Export Archive
+        run: |
+          cd ios && xcodebuild -allowProvisioningUpdates \
+          -exportArchive \
+          -archivePath "./build/ParentBuddyApp.xcarchive" \
+          -exportPath "$ARTIFACT_PATH_STAGING" \
+          -exportOptionsPlist "exportOptionsUpdated.plist"
         
-      # - name: Upload Artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Bebbo.ipa
-      #     path: $ARTIFACT_PATH_STAGING
-      #         #${{ env.ARTIFACT_PATH_STAGING }}
-      #         #${{ env.ARTIFACT_PATH_PROD }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Bebbo.ipa
+          path: $ARTIFACT_PATH_STAGING
+              #${{ env.ARTIFACT_PATH_STAGING }}
+              #${{ env.ARTIFACT_PATH_PROD }}
 
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
