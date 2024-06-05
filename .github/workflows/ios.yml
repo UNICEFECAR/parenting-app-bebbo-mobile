@@ -98,9 +98,9 @@ jobs:
         run: |
           cd ios && /usr/libexec/PlistBuddy -c "Delete :com.apple.developer.associated-domains" ParentBuddyApp/ParentBuddyApp.entitlements || echo "associated-domains key not found or already removed."
 
-      - name: Install pod dependencies
-        run: | 
-          cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
+      # - name: Install pod dependencies
+      #   run: | 
+      #     cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
         
       - name: Authenticate with Apple Developer account
@@ -191,6 +191,10 @@ jobs:
 
           # UUID=$(security cms -D -i "$PP_PATH_STAGING" | plutil -extract UUID raw -)
           # mv "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
+
+          
+      - name: check Profile
+        run: find ~/Library/MobileDevice/Provisioning\ Profiles -name "*.mobileprovision" -exec security cms -D -i {} \; | grep -A1 -E 'application-identifier|UUID' | awk -F'[<>]' 'NR%3==1{uuid=$3} NR%3==2{app=$3} NR%3==0{print app","uuid}' | sed 's/string//g'
 
           
       # - name: Select Xcode
