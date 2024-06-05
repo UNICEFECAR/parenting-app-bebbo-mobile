@@ -159,6 +159,13 @@ jobs:
           echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -Dd -o "$DEV_CERT_PATH"
           echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -Dd -o "$PP_PATH_STAGING"
           
+          uuid=`grep UUID -A1 -a $PP_PATH_PROD | grep -io "[-A-F0-9]\{36\}"`
+          echo "Dist uuid=$uuid" >> $GITHUB_OUTPUT
+          
+          # uuid=`grep UUID -A1 -a $PP_PATH_STAGING | grep -io "[-A-F0-9]\{36\}"`
+          # echo "Dev uuid=$uuid" >> $GITHUB_OUTPUT
+
+          
           # create temporary keychain
           security create-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
           security set-keychain-settings -lut 21600 "$KCHAIN_PATH"
@@ -173,57 +180,65 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
-          cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles
+          cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
 
-          UUID=$(security cms -D -i "$PP_PATH_STAGING" | plutil -extract UUID raw -)
-          mv "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+          # cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
+
+
+
+          # UUID=$(security cms -D -i "$PP_PATH_STAGING" | plutil -extract UUID raw -)
+          # mv "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
+
+          # UUID=$(security cms -D -i "$PP_PATH_STAGING" | plutil -extract UUID raw -)
+          # mv "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.mobileprovision
+
           
-      - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_15.1.app
+      # - name: Select Xcode
+      #   run: sudo xcode-select -switch /Applications/Xcode_15.1.app
      
-      - name: Xcode Version
-        run: /usr/bin/xcodebuild -version
+      # - name: Xcode Version
+      #   run: /usr/bin/xcodebuild -version
       
-      - name: Create build folder
-        run: |
-          cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
+      # - name: Create build folder
+      #   run: |
+      #     cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
      
-        #PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE" -allowProvisioningUpdates
-        # cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
-        # archive 
+      #   #PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE" -allowProvisioningUpdates
+      #   # cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
+      #   # archive 
         
-      - name: Build Archive
-        run: |
-          cd ios && xcodebuild archive \
-          -workspace "ParentBuddyApp.xcworkspace" \
-          -scheme "ParentBuddyAppDev" \
-          -sdk iphoneos \
-          -archivePath "./build/ParentBuddyApp.xcarchive" \
-          -configuration "Release" \
-          -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 \
-          CODE_SIGN_IDENTITY="iPhone Distribution"
-          DEVELOPMENT_TEAM="$TEAM_ID" \
-          PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_NAME" \
-          CODE_SIGN_STYLE=Manual \
-          -allowProvisioningUpdates
+      # - name: Build Archive
+      #   run: |
+      #     cd ios && xcodebuild archive \
+      #     -workspace "ParentBuddyApp.xcworkspace" \
+      #     -scheme "ParentBuddyAppDev" \
+      #     -sdk iphoneos \
+      #     -archivePath "./build/ParentBuddyApp.xcarchive" \
+      #     -configuration "Release" \
+      #     -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 \
+      #     CODE_SIGN_IDENTITY="iPhone Distribution"
+      #     DEVELOPMENT_TEAM="$TEAM_ID" \
+      #     PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_NAME" \
+      #     CODE_SIGN_STYLE=Manual \
+      #     -allowProvisioningUpdates
 
-        # -provisioningProfile="Bebbo_Datamatics_Enterprise" 
+      #   # -provisioningProfile="Bebbo_Datamatics_Enterprise" 
       
-      - name: Export Archive
-        run: |
-          cd ios && xcodebuild -allowProvisioningUpdates \
-          -exportArchive \
-          -archivePath "./build/ParentBuddyApp.xcarchive" \
-          -exportPath "$ARTIFACT_PATH_STAGING" \
-          -exportOptionsPlist "exportOptionsUpdated.plist"
+      # - name: Export Archive
+      #   run: |
+      #     cd ios && xcodebuild -allowProvisioningUpdates \
+      #     -exportArchive \
+      #     -archivePath "./build/ParentBuddyApp.xcarchive" \
+      #     -exportPath "$ARTIFACT_PATH_STAGING" \
+      #     -exportOptionsPlist "exportOptionsUpdated.plist"
         
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: Bebbo.ipa
-          path: $ARTIFACT_PATH_STAGING
-              #${{ env.ARTIFACT_PATH_STAGING }}
-              #${{ env.ARTIFACT_PATH_PROD }}
+      # - name: Upload Artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: Bebbo.ipa
+      #     path: $ARTIFACT_PATH_STAGING
+      #         #${{ env.ARTIFACT_PATH_STAGING }}
+      #         #${{ env.ARTIFACT_PATH_PROD }}
 
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
