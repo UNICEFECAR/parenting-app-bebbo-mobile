@@ -26,38 +26,38 @@ jobs:
         with:
           node-version: '21.2.0'
         
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
       
-      - name: 'Create env file'
-        run: |
-          touch .env
-          echo apiUrlDevelop=${{ secrets.APIURLDEVELOP }} >> .env
-          echo facebookAppDisplayName=${{ secrets.FACEBOOKAPPDISPLAYNAME }} >> .env
-          echo facebookAppId=${{ secrets.FACEBOOKAPPID }} >> .env
-          echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
-          echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
-          echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
+      # - name: 'Create env file'
+      #   run: |
+      #     touch .env
+      #     echo apiUrlDevelop=${{ secrets.APIURLDEVELOP }} >> .env
+      #     echo facebookAppDisplayName=${{ secrets.FACEBOOKAPPDISPLAYNAME }} >> .env
+      #     echo facebookAppId=${{ secrets.FACEBOOKAPPID }} >> .env
+      #     echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
+      #     echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
+      #     echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
        
-      - name: Putting data google service Dev file
-        env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
-        run: |
-          touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
-          echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+      # - name: Putting data google service Dev file
+      #   env:
+      #     DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
+      #   run: |
+      #     touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+      #     echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
        
       # - name: Install CocoaPods
       #   run: |
       #     sudo gem install cocoapods
 
-      - name: Set environment variable for modular headers
-        run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
+      # - name: Set environment variable for modular headers
+      #   run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
 
-      - name: Modify Podfile for Modular Headers
-        run: |
-          cd ios  # Update this path if necessary
-          sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
-          cat Podfile
+      # - name: Modify Podfile for Modular Headers
+      #   run: |
+      #     cd ios  # Update this path if necessary
+      #     sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
+      #     cat Podfile
 
       # - name: Install pod dependencies
       #   run: | 
@@ -74,15 +74,15 @@ jobs:
       - name: Signing & Provisioning
         run: |
           # Decode and install certificate
-          echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o certificate.p12
-          security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
-          security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/login.keychain-db
+          # echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o certificate.p12
+          # security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          # security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/login.keychain-db
 
           # Install provisioning profile
-          # echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
-          # mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          # UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
-          # mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
+          mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
           
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
