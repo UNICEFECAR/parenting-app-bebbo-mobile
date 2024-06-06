@@ -92,8 +92,8 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $RUNNER_TEMP/provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
           
-          UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
-          mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+          UUID=$(security cms -D -i $RUNNER_TEMP/provisioning_profile.mobileprovision | plutil -extract UUID raw -)
+          mv $RUNNER_TEMP/provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
 
       # - name: Prepare exportOptions.plist
       #   run: | 
