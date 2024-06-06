@@ -22,9 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
        
-      - uses: actions/setup-node@master
-        with:
-          node-version: '21.2.0'
+      # - uses: actions/setup-node@master
+      #   with:
+      #     node-version: '21.2.0'
         
       # - name: Install dependencies
       #   run: npm install
@@ -140,8 +140,10 @@ jobs:
               </dict>
             </plist>
             EOL
-            
-            # Confirm exportOptions.plist creation
+
+      - name: Prepare exportOptions.plist
+        run: | 
+          cd ios
             if [ -f exportOptions.plist ]; then
               echo "exportOptions.plist created successfully."
               cat exportOptions.plist  # Optionally print the contents for verification
