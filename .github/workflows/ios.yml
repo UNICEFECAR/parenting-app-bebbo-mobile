@@ -46,9 +46,9 @@ jobs:
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
        
-      - name: Install CocoaPods
-        run: |
-          sudo gem install cocoapods
+      # - name: Install CocoaPods
+      #   run: |
+      #     sudo gem install cocoapods
 
       - name: Set environment variable for modular headers
         run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
@@ -59,17 +59,17 @@ jobs:
           sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
           cat Podfile
 
-      - name: Install pod dependencies
-        run: | 
-          cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
+      # - name: Install pod dependencies
+      #   run: | 
+      #     cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
-      - name: Authenticate with Apple Developer account
-        env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
-        run: |
-          echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
-          security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
+      # - name: Authenticate with Apple Developer account
+      #   env:
+      #     APPLE_ID: ${{ secrets.APPLE_ID }}
+      #     APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
+      #   run: |
+      #     echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
+      #     security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
       - name: Signing & Provisioning
         run: |
@@ -79,15 +79,14 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/login.keychain-db
 
           # Install provisioning profile
-          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
-          mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+          # echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
+          # mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          # UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
+          # mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
           
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
           security delete-keychain ~/Library/Keychains/login.keychain-db
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/provisioning_profile.mobileprovision
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles
 
