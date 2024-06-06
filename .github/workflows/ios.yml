@@ -26,50 +26,50 @@ jobs:
         with:
           node-version: '21.2.0'
         
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
       
-      # - name: 'Create env file'
-      #   run: |
-      #     touch .env
-      #     echo apiUrlDevelop=${{ secrets.APIURLDEVELOP }} >> .env
-      #     echo facebookAppDisplayName=${{ secrets.FACEBOOKAPPDISPLAYNAME }} >> .env
-      #     echo facebookAppId=${{ secrets.FACEBOOKAPPID }} >> .env
-      #     echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
-      #     echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
-      #     echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo apiUrlDevelop=${{ secrets.APIURLDEVELOP }} >> .env
+          echo facebookAppDisplayName=${{ secrets.FACEBOOKAPPDISPLAYNAME }} >> .env
+          echo facebookAppId=${{ secrets.FACEBOOKAPPID }} >> .env
+          echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
+          echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
+          echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
        
-      # - name: Putting data google service Dev file
-      #   env:
-      #     DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
-      #   run: |
-      #     touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
-      #     echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+      - name: Putting data google service Dev file
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
+        run: |
+          touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+          echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
        
-      # - name: Install CocoaPods
-      #   run: |
-      #     sudo gem install cocoapods
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
 
-      # - name: Set environment variable for modular headers
-      #   run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
+      - name: Set environment variable for modular headers
+        run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
 
-      # - name: Modify Podfile for Modular Headers
-      #   run: |
-      #     cd ios  # Update this path if necessary
-      #     sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
-      #     cat Podfile
+      - name: Modify Podfile for Modular Headers
+        run: |
+          cd ios  # Update this path if necessary
+          sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
+          cat Podfile
 
-      # - name: Install pod dependencies
-      #   run: | 
-      #     cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
+      - name: Install pod dependencies
+        run: | 
+          cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
-      # - name: Authenticate with Apple Developer account
-      #   env:
-      #     APPLE_ID: ${{ secrets.APPLE_ID }}
-      #     APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
-      #   run: |
-      #     echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
-      #     security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
+      - name: Authenticate with Apple Developer account
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
+        run: |
+          echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
+          security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
       - name: Create and unlock keychain
         run: |
@@ -82,23 +82,94 @@ jobs:
         run: |
           # Decode and install certificate
           echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o certificate.p12
-          # security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
-          # security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/login.keychain-db
-
           security import certificate.p12 -k ~/Library/Keychains/build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/build.keychain
 
-
-          # security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k ~/Library/Keychains/build.keychain
-          # security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" ~/Library/Keychains/build.keychain
-          # security list-keychain -d user -s ~/Library/Keychains/build.keychain
-
           # Install provisioning profile
-          # echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
-          # mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          # UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
-          # mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
+          mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+
+      - name: Prepare exportOptions.plist
+        run: | 
+          cd ios &&
+          cat > exportOptions.plist <<EOL
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+              <key>compileBitcode</key>
+              <false/>
+              <key>destination</key>
+              <string>export</string>
+              <key>method</key>
+              <string>enterprise</string>
+              <key>signingStyle</key>
+              <string>automatic</string>
+              <key>stripSwiftSymbols</key>
+              <true/>
+              <key>teamID</key>
+              <string>$TEAM_ID</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                <key>com.datamatics.bebbo</key>
+                <string>iOS Distribution: Datamatics Global Services Limited</string>
+              </dict>
+            </dict>
+            </plist>
+            EOL
           
+      # - name: check Profile
+      #   run: find ~/Library/MobileDevice/Provisioning\ Profiles -name "*.mobileprovision" -exec security cms -D -i {} \; | grep -A1 -E 'application-identifier|UUID' | awk -F'[<>]' 'NR%3==1{uuid=$3} NR%3==2{app=$3} NR%3==0{print app","uuid}' | sed 's/string//g'
+
+      # - name: check Profile
+      #   run: cat ./ios/exportOptionsUpdated.plist
+          
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_15.1.app
+     
+      - name: Xcode Version
+        run: /usr/bin/xcodebuild -version
+      
+      - name: Create build folder
+        run: |
+          cd ./ios && mkdir -p build && mkdir -p staging
+     
+      - name: Build Archive
+        run: |
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" -allowProvisioningUpdates
+        
+      # - name: Build Archive
+      #   run: |
+      #     cd ios && xcodebuild archive \
+      #     -workspace "ParentBuddyApp.xcworkspace" \
+      #     -scheme "ParentBuddyAppDev" \
+      #     -sdk iphoneos \
+      #     -archivePath "./build/ParentBuddyApp.xcarchive" \
+      #     -configuration "Release" \
+      #     -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 \
+      #     CODE_SIGN_IDENTITY="iPhone Distribution"
+      #     DEVELOPMENT_TEAM="$TEAM_ID" \
+      #     PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_NAME" \
+      #     CODE_SIGN_STYLE=Manual \
+      #     -allowProvisioningUpdates
+        # -provisioningProfile="Bebbo_Datamatics_Enterprise" 
+      
+      - name: Export Archive
+        run: |
+          cd ios &&
+          xcodebuild -exportArchive -allowProvisioningUpdates \
+          -archivePath "./build/ParentBuddyApp.xcarchive" \
+          -exportPath "$ARTIFACT_PATH_STAGING" \
+          -exportOptionsPlist "exportOptions.plist"
+        
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Bebbo.ipa
+          path: $ARTIFACT_PATH_STAGING
+      
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
