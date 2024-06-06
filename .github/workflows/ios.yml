@@ -74,19 +74,25 @@ jobs:
       - name: Signing & Provisioning
         run: |
           # Decode and install certificate
-          # echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o certificate.p12
+          echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o certificate.p12
           # security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
           # security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/login.keychain-db
 
+          security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k ~/Library/Keychains/build.keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" ~/Library/Keychains/build.keychain
+          security list-keychain -d user -s ~/Library/Keychains/build.keychain
+
           # Install provisioning profile
-          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
-          mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+          # echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
+          # mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          # UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
+          # mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
           
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
+          security delete-keychain ~/Library/Keychains/build.keychain
           security delete-keychain ~/Library/Keychains/login.keychain-db
-          rm ~/Library/MobileDevice/Provisioning\ Profiles
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/provisioning_profile.mobileprovision
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
 
