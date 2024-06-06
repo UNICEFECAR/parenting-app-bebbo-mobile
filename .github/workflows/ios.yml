@@ -88,12 +88,12 @@ jobs:
       - name: Install Provisioning
         run: |
           # Install provisioning profile
-          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
+          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o $RUNNER_TEMP/provisioning_profile.mobileprovision
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $RUNNER_TEMP/provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
+          
           UUID=$(security cms -D -i provisioning_profile.mobileprovision | plutil -extract UUID raw -)
           mv provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
-          cp provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
 
       # - name: Prepare exportOptions.plist
       #   run: | 
