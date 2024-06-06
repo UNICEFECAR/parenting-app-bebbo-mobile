@@ -144,7 +144,7 @@ jobs:
       - name: Prepare exportOptions.plist
         run: | 
           cd ios &&
-          cat > exportOptionsUpdated.plist <<EOL
+          cat > exportOptions.plist <<EOL
             <?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
             <plist version="1.0">
@@ -212,7 +212,7 @@ jobs:
           xcodebuild -exportArchive -allowProvisioningUpdates \
           -archivePath "./build/ParentBuddyApp.xcarchive" \
           -exportPath "$ARTIFACT_PATH_STAGING" \
-          -exportOptionsPlist "exportOptionsUpdated.plist"
+          -exportOptionsPlist "exportOptions.plist"
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
