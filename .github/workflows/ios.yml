@@ -26,42 +26,42 @@ jobs:
         with:
           node-version: '21.2.0'
         
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
       
-      # - name: 'Create env file'
-      #   run: |
-      #     touch .env
-      #     echo apiUrlDevelop=${{ secrets.APIURLDEVELOP }} >> .env
-      #     echo facebookAppDisplayName=${{ secrets.FACEBOOKAPPDISPLAYNAME }} >> .env
-      #     echo facebookAppId=${{ secrets.FACEBOOKAPPID }} >> .env
-      #     echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
-      #     echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
-      #     echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo apiUrlDevelop=${{ secrets.APIURLDEVELOP }} >> .env
+          echo facebookAppDisplayName=${{ secrets.FACEBOOKAPPDISPLAYNAME }} >> .env
+          echo facebookAppId=${{ secrets.FACEBOOKAPPID }} >> .env
+          echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
+          echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
+          echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
        
-      # - name: Putting data google service Dev file
-      #   env:
-      #     DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
-      #   run: |
-      #     touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
-      #     echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+      - name: Putting data google service Dev file
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
+        run: |
+          touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
+          echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
        
-      # - name: Install CocoaPods
-      #   run: |
-      #     sudo gem install cocoapods
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
 
-      # - name: Set environment variable for modular headers
-      #   run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
+      - name: Set environment variable for modular headers
+        run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
 
-      # - name: Modify Podfile for Modular Headers
-      #   run: |
-      #     cd ios  # Update this path if necessary
-      #     sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
-      #     cat Podfile
+      - name: Modify Podfile for Modular Headers
+        run: |
+          cd ios  # Update this path if necessary
+          sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
+          cat Podfile
 
-      # - name: Install pod dependencies
-      #   run: | 
-      #     cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
+      - name: Install pod dependencies
+        run: | 
+          cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
       # - name: Authenticate with Apple Developer account
       #   env:
@@ -103,63 +103,63 @@ jobs:
             exit 1
           fi
       
-          # List installed profiles for verification
-          echo "Listing installed provisioning profiles:"
-          ls ~/Library/MobileDevice/Provisioning\ Profiles
+          # # List installed profiles for verification
+          # echo "Listing installed provisioning profiles:"
+          # ls ~/Library/MobileDevice/Provisioning\ Profiles
       
-          # Display information about the installed profile
-          security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+          # # Display information about the installed profile
+          # security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
           
-      # - name: Prepare exportOptions.plist
-      #   run: | 
-      #     cd ios &&
-      #     cat > exportOptions.plist <<EOL
-      #       <?xml version="1.0" encoding="UTF-8"?>
-      #       <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      #       <plist version="1.0">
-      #       <dict>
-      #         <key>compileBitcode</key>
-      #         <false/>
-      #         <key>destination</key>
-      #         <string>export</string>
-      #         <key>method</key>
-      #         <string>enterprise</string>
-      #         <key>signingStyle</key>
-      #         <string>automatic</string>
-      #         <key>stripSwiftSymbols</key>
-      #         <true/>
-      #         <key>teamID</key>
-      #         <string>$TEAM_ID</string>
-      #         <key>provisioningProfiles</key>
-      #         <dict>
-      #           <key>com.datamatics.bebbo</key>
-      #           <string>iOS Distribution: Datamatics Global Services Limited</string>
-      #         </dict>
-      #       </dict>
-      #       </plist>
-      #       EOL
+      - name: Prepare exportOptions.plist
+        run: | 
+          cd ios &&
+          cat > exportOptions.plist <<EOL
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+              <key>compileBitcode</key>
+              <false/>
+              <key>destination</key>
+              <string>export</string>
+              <key>method</key>
+              <string>enterprise</string>
+              <key>signingStyle</key>
+              <string>automatic</string>
+              <key>stripSwiftSymbols</key>
+              <true/>
+              <key>teamID</key>
+              <string>$TEAM_ID</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                <key>com.datamatics.bebbo</key>
+                <string>iOS Distribution: Datamatics Global Services Limited</string>
+              </dict>
+            </dict>
+            </plist>
+            EOL
          
-      # - name: Select Xcode
-      #   run: sudo xcode-select -switch /Applications/Xcode_15.1.app
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_15.1.app
      
-      # - name: Xcode Version
-      #   run: /usr/bin/xcodebuild -version
+      - name: Xcode Version
+        run: /usr/bin/xcodebuild -version
       
-      # - name: Create build folder
-      #   run: |
-      #     cd ./ios && mkdir -p build && mkdir -p staging
+      - name: Create build folder
+        run: |
+          cd ./ios && mkdir -p build && mkdir -p staging
      
-      # - name: Build Archive
-      #   run: |
-      #     cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" -allowProvisioningUpdates
+      - name: Build Archive
+        run: |
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" -allowProvisioningUpdates
         
-      # - name: Export Archive
-      #   run: |
-      #     cd ios &&
-      #     xcodebuild -exportArchive -allowProvisioningUpdates \
-      #     -archivePath "./build/ParentBuddyApp.xcarchive" \
-      #     -exportPath "$ARTIFACT_PATH_STAGING" \
-      #     -exportOptionsPlist "exportOptions.plist"
+      - name: Export Archive
+        run: |
+          cd ios &&
+          xcodebuild -exportArchive -allowProvisioningUpdates \
+          -archivePath "./build/ParentBuddyApp.xcarchive" \
+          -exportPath "$ARTIFACT_PATH_STAGING" \
+          -exportOptionsPlist "exportOptions.plist"
         
       # - name: Upload Artifacts
       #   uses: actions/upload-artifact@v3
