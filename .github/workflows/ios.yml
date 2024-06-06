@@ -125,12 +125,6 @@ jobs:
           # echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -Dd -o "$DEV_CERT_PATH"
           # echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -Dd -o "$PP_PATH_STAGING"
           
-          # uuid=`grep UUID -A1 -a $PP_PATH_PROD | grep -io "[-A-F0-9]\{36\}"`
-          # echo "Dist uuid=$uuid" >> $GITHUB_OUTPUT
-          
-          # uuid=`grep UUID -A1 -a $PP_PATH_STAGING | grep -io "[-A-F0-9]\{36\}"`
-          # echo "Dev uuid=$uuid" >> $GITHUB_OUTPUT
-
           # create temporary keychain
           security create-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
           security set-keychain-settings -lut 21600 "$KCHAIN_PATH"
@@ -215,8 +209,7 @@ jobs:
       - name: Export Archive
         run: |
           cd ios &&
-          xcodebuild -allowProvisioningUpdates \
-          -exportArchive \
+          xcodebuild -exportArchive \
           -archivePath "./build/ParentBuddyApp.xcarchive" \
           -exportPath "$ARTIFACT_PATH_STAGING" \
           -exportOptionsPlist "exportOptionsUpdated.plist"
