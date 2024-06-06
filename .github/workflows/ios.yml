@@ -19,17 +19,18 @@ env:
         APP_NAME_STAGING: ${{ 'ParentBuddyAppDev-iOS/ENV_DEV' }}
         TESTING_GROUP_STAGING: ${{ 'ENV_DEV' }}
         UPLOAD_FILE_STAGING: ${{ 'ParentBuddyAppDev/BebboDev.ipa' }}
-        DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_APP_DEVELOPMENT_CERTIFICATE }}
+        # DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_APP_DEVELOPMENT_CERTIFICATE }}
+        # DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD_HOC_PROFILE }}
+        
         CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-        DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD_HOC_PROFILE }}
         KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
-        SCHEME_PROD: ${{ 'ParentBuddyApp' }}
-        EXPORT_PATH_PROD: ${{ 'prod/' }}
-        PLIST_PATH_PROD: ${{'ios/ParentBuddyApp/Info.plist' }}
-        ARTIFACT_PATH_PROD: ${{ 'prod/' }}
-        APP_NAME_PROD: ${{ 'ParentBuddyApp-iOS/ENV_PROD' }}
-        TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
-        UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
+        # SCHEME_PROD: ${{ 'ParentBuddyApp' }}
+        # EXPORT_PATH_PROD: ${{ 'prod/' }}
+        # PLIST_PATH_PROD: ${{'ios/ParentBuddyApp/Info.plist' }}
+        # ARTIFACT_PATH_PROD: ${{ 'prod/' }}
+        # APP_NAME_PROD: ${{ 'ParentBuddyApp-iOS/ENV_PROD' }}
+        # TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
+        # UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
         DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
         DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
         PROVISIONING_PROFILE_NAME: ${{ secrets.PROVISIONING_PROFILE_NAME }}
@@ -68,12 +69,12 @@ jobs:
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
        
-      - name: Putting data google service prod file
-        env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
-        run: |
-          touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
-          echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+      # - name: Putting data google service prod file
+      #   env:
+      #     DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
+      #   run: |
+      #     touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+      #     echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
 
       - name: Install CocoaPods
         run: |
@@ -101,7 +102,6 @@ jobs:
         run: | 
           cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
-        
       - name: Authenticate with Apple Developer account
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
@@ -110,29 +110,21 @@ jobs:
           echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
           security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
-      
-      # - name: Prepare exportOptions.plist
-      #   run: |
-      #     cd ios && sed -e "s/\${PROVISIONING_PROFILE_NAME}/$PROVISIONING_PROFILE_NAME/" \
-      #     -e "s/\${TEAM_ID}/$TEAM_ID/" \
-      #     "exportOptions.plist" > "exportOptionsUpdated.plist"
-
       - name: Signing & Provisioning
         run: |
           # create variables
-          DEV_CERT_PATH=$RUNNER_TEMP/dev_certificate.p12
-          PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
-          KCHAIN_PATH=$RUNNER_TEMP/build.keychain
-          
+          # DEV_CERT_PATH=$RUNNER_TEMP/dev_certificate.p12
+          # PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
           CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
           PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
+          KCHAIN_PATH=$RUNNER_TEMP/build.keychain
   
           # import certificate and provisioning profile from secrets
           echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o "$CERT_PATH"
           echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o "$PP_PATH_PROD"
           
-          echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -Dd -o "$DEV_CERT_PATH"
-          echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -Dd -o "$PP_PATH_STAGING"
+          # echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -Dd -o "$DEV_CERT_PATH"
+          # echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -Dd -o "$PP_PATH_STAGING"
           
           # uuid=`grep UUID -A1 -a $PP_PATH_PROD | grep -io "[-A-F0-9]\{36\}"`
           # echo "Dist uuid=$uuid" >> $GITHUB_OUTPUT
@@ -140,27 +132,25 @@ jobs:
           # uuid=`grep UUID -A1 -a $PP_PATH_STAGING | grep -io "[-A-F0-9]\{36\}"`
           # echo "Dev uuid=$uuid" >> $GITHUB_OUTPUT
 
-          
           # create temporary keychain
           security create-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
           security set-keychain-settings -lut 21600 "$KCHAIN_PATH"
           security unlock-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
           
           # import certificate to keychain
-          security import "$DEV_CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
+          # security import "$DEV_CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
           security import "$CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
           security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" "$KCHAIN_PATH"
           security list-keychain -d user -s "$KCHAIN_PATH"
 
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
           cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles
+          # cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
 
 
       - name: Prepare exportOptions.plist
-        run: |
-          cd ios
+        run: | 
           cat > exportOptionsUpdated.plist <<EOL
             <?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -201,15 +191,11 @@ jobs:
       
       - name: Create build folder
         run: |
-          cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
+          cd ./ios && mkdir -p build && mkdir -p staging
      
-        #PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE" -allowProvisioningUpdates
-        # cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
-        # archive 
-        
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive"
+          xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive"
         
       # - name: Build Archive
       #   run: |
@@ -225,12 +211,11 @@ jobs:
       #     PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_NAME" \
       #     CODE_SIGN_STYLE=Manual \
       #     -allowProvisioningUpdates
-
         # -provisioningProfile="Bebbo_Datamatics_Enterprise" 
       
       - name: Export Archive
         run: |
-          cd ios && xcodebuild -allowProvisioningUpdates \
+          xcodebuild -allowProvisioningUpdates \
           -exportArchive \
           -archivePath "./build/ParentBuddyApp.xcarchive" \
           -exportPath "$ARTIFACT_PATH_STAGING" \
@@ -241,13 +226,10 @@ jobs:
         with:
           name: Bebbo.ipa
           path: $ARTIFACT_PATH_STAGING
-              #${{ env.ARTIFACT_PATH_STAGING }}
-              #${{ env.ARTIFACT_PATH_PROD }}
 
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
           security delete-keychain $RUNNER_TEMP/build.keychain
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
           rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
-    
+        # rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
