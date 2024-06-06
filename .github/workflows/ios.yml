@@ -71,6 +71,13 @@ jobs:
       #     echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
       #     security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
+      - name: Create and unlock keychain
+        run: |
+          security create-keychain -p $KEY_PWD build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p $KEY_PWD build.keychain
+          security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
+
       - name: Signing & Provisioning
         run: |
           # Decode and install certificate
@@ -78,9 +85,13 @@ jobs:
           # security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
           # security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/login.keychain-db
 
-          security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k ~/Library/Keychains/build.keychain
-          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" ~/Library/Keychains/build.keychain
-          security list-keychain -d user -s ~/Library/Keychains/build.keychain
+          security import certificate.p12 -k ~/Library/Keychains/build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/build.keychain
+
+
+          # security import certificate.p12 -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k ~/Library/Keychains/build.keychain
+          # security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" ~/Library/Keychains/build.keychain
+          # security list-keychain -d user -s ~/Library/Keychains/build.keychain
 
           # Install provisioning profile
           # echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o provisioning_profile.mobileprovision
