@@ -63,13 +63,13 @@ jobs:
         run: | 
           cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
-      # - name: Authenticate with Apple Developer account
-      #   env:
-      #     APPLE_ID: ${{ secrets.APPLE_ID }}
-      #     APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
-      #   run: |
-      #     echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
-      #     security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
+      - name: Authenticate with Apple Developer account
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
+        run: |
+          echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
+          security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
       - name: Create and unlock keychain
         run: |
@@ -130,15 +130,27 @@ jobs:
               <true/>
               <key>teamID</key>
               <string>$TEAM_ID</string>
+              <key>signingCertificate</key>
+              <string>Apple Distribution</string>
               <key>provisioningProfiles</key>
               <dict>
                 <key>com.datamatics.bebbo</key>
                 <string>iOS Distribution: Datamatics Global Services Limited</string>
               </dict>
-            </dict>
+              </dict>
             </plist>
             EOL
-         
+            
+            # Confirm exportOptions.plist creation
+            if [ -f exportOptions.plist ]; then
+              echo "exportOptions.plist created successfully."
+              cat exportOptions.plist  # Optionally print the contents for verification
+            else
+              echo "Failed to create exportOptions.plist."
+              exit 1
+            fi
+
+        
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.1.app
      
@@ -161,11 +173,11 @@ jobs:
           -exportPath "$ARTIFACT_PATH_STAGING" \
           -exportOptionsPlist "exportOptions.plist"
         
-      # - name: Upload Artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Bebbo.ipa
-      #     path: $ARTIFACT_PATH_STAGING
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Bebbo.ipa
+          path: $ARTIFACT_PATH_STAGING
       
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
