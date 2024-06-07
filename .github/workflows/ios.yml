@@ -80,7 +80,7 @@ jobs:
           security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
 
           # // Add my keychain file to list of keychain
-          security list-keychains -s  \$(echo \$(echo security list-keychains | xargs build.keychain) | xargs -n1 | sort -u | xargs)
+          security list-keychains -s "echo 'echo security list-keychains | xargs build.keychain' | xargs -n1 | sort -u | xargs"
            
           # // Lock keychain, just in case it was already unlock, gui user and ssh user from Jenkins unlock request are not playing well together, go figure why, one hell of Apple way
           security lock-keychain build.keychain
