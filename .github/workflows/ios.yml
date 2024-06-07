@@ -12,6 +12,7 @@ env:
         KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
         DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
         DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
+        DISTRIBUTION_PROFILE_BUILD: ${{secrets.APPLE_APP_DEVELOPMENT_CERTIFICATE }}
         TEAM_ID: ${{ secrets.TEAM_ID }}
 jobs:
   build:
@@ -87,7 +88,7 @@ jobs:
           security import certificate.p12 -k ~/Library/Keychains/build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/build.keychain
       
-      - name: Install Provisioning
+      - name: Install Provisioning Export
         run: |
           # Install provisioning profile
           echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o $RUNNER_TEMP/provisioning_profile.mobileprovision
@@ -105,13 +106,24 @@ jobs:
             exit 1
           fi
       
-          # # List installed profiles for verification
-          # echo "Listing installed provisioning profiles:"
-          # ls ~/Library/MobileDevice/Provisioning\ Profiles
-      
-          # # Display information about the installed profile
-          # security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+       - name: Install Provisioning build
+        run: |
+          # Install provisioning profile
+          echo -n "$DISTRIBUTION_PROFILE_BUILD" | base64 -Dd -o $RUNNER_TEMP/provisioning_profile_build.mobileprovision
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
           
+          UUID1=$(security cms -D -i $RUNNER_TEMP/provisioning_profile_build.mobileprovision | plutil -extract UUID raw -)
+          mv $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID1.mobileprovision
+          
+          # Confirm installation
+          if [ -f ~/Library/MobileDevice/Provisioning\ Profiles/$UUID1.mobileprovision ]; then
+            echo "Provisioning profile build installed successfully."
+          else
+            echo "Failed to install provisioning profile for build."
+            exit 1
+          fi
+         
       - name: Prepare exportOptions.plist
         run: | 
           cd ios &&
