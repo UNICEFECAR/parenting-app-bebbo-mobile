@@ -106,7 +106,7 @@ jobs:
             exit 1
           fi
       
-       - name: Install Provisioning build
+      - name: Install Provisioning build
         run: |
           # Install provisioning profile
           echo -n "$DISTRIBUTION_PROFILE_BUILD" | base64 -Dd -o $RUNNER_TEMP/provisioning_profile_build.mobileprovision
