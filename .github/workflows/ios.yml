@@ -167,8 +167,10 @@ jobs:
         run: |
           cd ios && xcodebuild -verbose -exportArchive -allowProvisioningUpdates \
           -archivePath "./build/ParentBuddyApp.xcarchive" \
-          -exportPath "$ARTIFACT_PATH_STAGING" \
-          -exportOptionsPlist "exportOptions.plist"
+          -exportPath "ParentBuddyAppDev/Bebbo.ipa" \
+          -exportOptionsPlist "exportOptions.plist" \
+          -exportProvisioningProfile "Bebbo_Datamatics_Enterprise" \
+          -exportFormat ipa 
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
