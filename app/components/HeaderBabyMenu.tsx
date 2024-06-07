@@ -172,7 +172,7 @@ const HeaderBabyMenu = (props: any): any => {
                 ></ImageIcon>
               ) : (
                 genderName !== '' ?
-                  (genderName === 'Boy' ?
+                  (genderName === t('chilGender1') ?
                     <Icon name="ic_baby" size={36} color="#000" /> :
                     <Icon name="ic_baby_girl" size={36} color="#000" />) :
                   <Icon name="ic_baby_girl" size={36} color="#000" />
@@ -182,7 +182,7 @@ const HeaderBabyMenu = (props: any): any => {
               <ProfileSectionView>
                 <Heading3>{data.childName}
                   {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName}</Heading5> : 
-                  <Heading5 style={styles.heading5Fontwg}>{', ' + 'Girl'}</Heading5>
+                  <Heading5 style={styles.heading5Fontwg}>{', ' + t('chilGender2')}</Heading5>
                   }
                 </Heading3>
               </ProfileSectionView>
@@ -215,7 +215,7 @@ const HeaderBabyMenu = (props: any): any => {
                 ></ImageIcon>
               ) : (
                 genderName !== '' ?
-                  (genderName === 'Boy' ?
+                  (genderName === t('chilGender1') ?
                     <Icon name="ic_baby" size={36} color="#000" /> :
                     <Icon name="ic_baby_girl" size={36} color="#000" />) :
                   <Icon name="ic_baby_girl" size={36} color="#000" />
@@ -265,9 +265,6 @@ const HeaderBabyMenu = (props: any): any => {
       </View>
     );
   };
-  useEffect(() => {
-    console.log('Active ChildDetails dta', activeChild)
-  }, [])
   return (
     <>
       <Modal
