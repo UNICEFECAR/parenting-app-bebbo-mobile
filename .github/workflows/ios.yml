@@ -80,28 +80,28 @@ jobs:
           security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
 
           # // Add my keychain file to list of keychain
-          security list-keychains -s "echo 'echo security list-keychains | xargs build.keychain' | xargs -n1 | sort -u | xargs"
+          security list-keychains -s "echo 'echo security list-keychains | xargs ~/Library/Keychains/build.keychain' | xargs -n1 | sort -u | xargs"
            
           # // Lock keychain, just in case it was already unlock, gui user and ssh user from Jenkins unlock request are not playing well together, go figure why, one hell of Apple way
-          security lock-keychain build.keychain
+          security lock-keychain ~/Library/Keychains/build.keychain
            
           # // Do the same for the login keychain
           security lock-keychain login
            
           # // Unlock my keychain
-          security unlock-keychain -p $KEY_PWD build.keychain
+          security unlock-keychain -p $KEY_PWD ~/Library/Keychains/build.keychain
            
           # // Unlock login.keychain too, I have no idea why thi is required but you have to do it, another of Apple secrets
           security unlock-keychain -p $KEY_PWD login
            
           # // Keep keychain unlock
-          security set-keychain-settings build.keychain
+          security set-keychain-settings ~/Library/Keychains/build.keychain
            
           # // Allow apple signing tool to access keychain
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEY_PWD build.keychain
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEY_PWD ~/Library/Keychains/build.keychain
            
           # // Set my keychain as the default one
-          security default-keychain -s build.keychain
+          security default-keychain -s ~/Library/Keychains/build.keychain
                      
       - name: Install Certificate
         run: |
