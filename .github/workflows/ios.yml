@@ -179,16 +179,14 @@ jobs:
         run: |
           cd ios && xcodebuild -verbose -exportArchive -allowProvisioningUpdates \
           -archivePath "./build/ParentBuddyApp.xcarchive" \
-          -exportPath "ParentBuddyAppDev/Bebbo.ipa" \
+          -exportPath "ParentBuddyAppDev/" \
           -exportOptionsPlist "exportOptions.plist" 
-        # -exportProvisioningProfile "Bebbo_Datamatics_Enterprise" \
-        # -exportFormat ipa 
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Bebbo.ipa
-          path: $ARTIFACT_PATH_STAGING
+          path: "ios/ParentBuddyAppDev/"
       
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
