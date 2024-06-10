@@ -52,12 +52,6 @@ jobs:
           DESTINATION_DIR_PATH: "/Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/node_modules/react-native-vector-icons/Fonts/fontello.ttf"
         run: |
           cp $SOURCE_FILE_PATH $DESTINATION_DIR_PATH
-          if [ -f $DESTINATION_DIR_PATH ]; then
-            echo "File copied successfully"
-          else
-            echo "Failed to copy file"
-            exit 1
-          fi
 
       - name: Install CocoaPods
         run: |
@@ -70,7 +64,7 @@ jobs:
         run: |
           cd ios  # Update this path if necessary
           sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
-          cat Podfile
+       # cat Podfile
 
       - name: Install pod dependencies
         run: | 
@@ -109,14 +103,6 @@ jobs:
           
           UUID=$(security cms -D -i $RUNNER_TEMP/provisioning_profile.mobileprovision | plutil -extract UUID raw -)
           mv $RUNNER_TEMP/provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
-          
-          # Confirm installation
-          if [ -f ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision ]; then
-            echo "Provisioning profile installed successfully."
-          else
-            echo "Failed to install provisioning profile."
-            exit 1
-          fi
       
       - name: Install Provisioning build
         run: |
@@ -128,14 +114,6 @@ jobs:
           UUID1=$(security cms -D -i $RUNNER_TEMP/provisioning_profile_build.mobileprovision | plutil -extract UUID raw -)
           mv $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID1.mobileprovision
           
-          # Confirm installation
-          if [ -f ~/Library/MobileDevice/Provisioning\ Profiles/$UUID1.mobileprovision ]; then
-            echo "Provisioning profile build installed successfully."
-          else
-            echo "Failed to install provisioning profile for build."
-            exit 1
-          fi
-         
       - name: Prepare exportOptions.plist
         run: | 
           cd ios &&
@@ -162,16 +140,16 @@ jobs:
             </plist>
             EOL
 
-      - name: Prepare exportOptions.plist
-        run: | 
-          cd ios
-            if [ -f exportOptions.plist ]; then
-              echo "exportOptions.plist created successfully."
-              cat exportOptions.plist  # Optionally print the contents for verification
-            else
-              echo "Failed to create exportOptions.plist."
-              exit 1
-            fi
+      # - name: Prepare exportOptions.plist
+      #   run: | 
+      #     cd ios
+      #       if [ -f exportOptions.plist ]; then
+      #         echo "exportOptions.plist created successfully."
+      #         cat exportOptions.plist  # Optionally print the contents for verification
+      #       else
+      #         echo "Failed to create exportOptions.plist."
+      #         exit 1
+      #       fi
         
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.1.app
@@ -195,7 +173,7 @@ jobs:
           -exportOptionsPlist "exportOptions.plist" 
         
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Bebbo.ipa
           path: "ios/ParentBuddyAppDev/"
