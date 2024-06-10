@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 
 env:
-        ARTIFACT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
         CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
         KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
         DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
@@ -46,7 +45,20 @@ jobs:
         run: |
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
-       
+      
+      - name: Copy fontello icon
+        env:
+          SOURCE_FILE_PATH: "/Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/app/assets/fonts/fontello.ttf"
+          DESTINATION_DIR_PATH: "/Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/node_modules/react-native-vector-icons/Fonts/fontello.ttf"
+        run: |
+          cp $SOURCE_FILE_PATH $DESTINATION_DIR_PATH
+          if [ -f $DESTINATION_DIR_PATH ]; then
+            echo "File copied successfully"
+          else
+            echo "Failed to copy file"
+            exit 1
+          fi
+
       - name: Install CocoaPods
         run: |
           sudo gem install cocoapods
