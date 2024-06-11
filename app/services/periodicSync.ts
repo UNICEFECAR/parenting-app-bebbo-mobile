@@ -49,45 +49,9 @@ export const getAllPeriodicSyncData = (): any => {
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.vaccinePinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childGrowthPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthcheckupPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.faqPinnedContent,
-      method: 'get',
-      postdata: incrementalSyncDT['faqPinnedContentDatetime'] != '' ? { datetime: incrementalSyncDT['faqPinnedContentDatetime'] } : {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestoneRelatedArticle,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
       apiEndpoint: appConfig.faqs,
       method: 'get',
       postdata: incrementalSyncDT['faqsDatetime'] != '' ? { datetime: incrementalSyncDT['faqsDatetime'] } : {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.faqUpdatedPinnedContent,
-      method: 'get',
-      postdata: incrementalSyncDT['faqUpdatedPinnedContentDatetime'] != '' ? { datetime: incrementalSyncDT['faqUpdatedPinnedContentDatetime'] } : incrementalSyncDT['faqPinnedContentDatetime'] != '' ? { datetime: incrementalSyncDT['faqPinnedContentDatetime'] } : {},
       saveinDB: true,
     },
     {
