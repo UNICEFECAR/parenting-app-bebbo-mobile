@@ -23,7 +23,7 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
     childGender: 'all',
     childAge: "all", //childAge != "" && childAge != undefined && childAge != null ? childAge : "all"
     parentGender: parentGender != "" && parentGender != undefined && parentGender != null ? parentGender : "all",
-    category: articleCategory != undefined && articleCategory != null ? articleCategory : "all"
+    category: "all" //articleCategory != undefined && articleCategory != null ? articleCategory : "all"
   }
   console.log(postData, "..postData Data is here..");
   return [

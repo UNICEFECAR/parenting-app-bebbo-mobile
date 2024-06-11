@@ -67,12 +67,6 @@ export const appConfig = {
   vaccinations: 'vaccinations',
   healthCheckupData: 'health-checkup-data',
   pinnedContent: 'pinned-contents',
-  vaccinePinnedContent: 'pinnedvaccinations',
-  childGrowthPinnedContent: 'child_growth',
-  healthcheckupPinnedContent: 'health_check_ups',
-  faqPinnedContent: 'faq',
-  faqUpdatedPinnedContent: 'updatedfaq',
-  milestoneRelatedArticle: 'milestonerelatedarticle',
   checkUpdate: 'check-update',
   faqs: 'faqs',
   archive: 'archive',
@@ -86,24 +80,6 @@ export const finalUrl = (apiEndpoint: string, selectedCountry: number | undefine
   }
   if (apiEndpoint == appConfig.checkUpdate) {
     return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
-  }
-  if (apiEndpoint == appConfig.vaccinePinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/vaccinations';
-  }
-  if (apiEndpoint == appConfig.childGrowthPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
-  }
-  if (apiEndpoint == appConfig.healthcheckupPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
-  }
-  if (apiEndpoint == appConfig.faqPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
-  }
-  if (apiEndpoint == appConfig.milestoneRelatedArticle) {
-    return apiUrlDevelop + '/related-article-contents/' + selectedLang + '/milestone';
-  }
-  if (apiEndpoint == appConfig.faqUpdatedPinnedContent) {
-    return apiUrlDevelop + '/updated-pinned-contents/' + selectedLang + '/faq';
   }
   return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang;
 }
@@ -178,36 +154,6 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.vaccinePinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childGrowthPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthcheckupPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.faqPinnedContent,
-      method: 'get',
-      postdata: isDatetimeReq == true && dateTimeObj['faqPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqPinnedContentDatetime'] } : {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestoneRelatedArticle,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
       apiEndpoint: appConfig.standardDeviation,
       method: 'get',
       postdata: {},
@@ -221,12 +167,7 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
     }
   ];
   if (isDatetimeReq == true) {
-    allApiObject.push({
-      apiEndpoint: appConfig.faqUpdatedPinnedContent,
-      method: 'get',
-      postdata: isDatetimeReq == true && dateTimeObj['faqUpdatedPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqUpdatedPinnedContentDatetime'] } : dateTimeObj['faqPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqPinnedContentDatetime'] } : {},
-      saveinDB: true,
-    },
+    allApiObject.push(
       {
         apiEndpoint: appConfig.archive,
         method: 'get',
