@@ -148,7 +148,7 @@ const DailyReads = (): any => {
             </DailyTag>
             {/*Parent Share , View Details*/}
             {isAdvice ? <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteadvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} /> :
-              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoritegames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} />}
+              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoritegames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />}
           </DailyBox>
         </Pressable>
       </View>

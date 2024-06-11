@@ -173,36 +173,6 @@ const Terms = ({ navigation }: Props): any => {
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.vaccinePinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childGrowthPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthcheckupPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.faqPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestoneRelatedArticle,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
       apiEndpoint: appConfig.standardDeviation,
       method: 'get',
       postdata: {},
@@ -231,107 +201,12 @@ const Terms = ({ navigation }: Props): any => {
 
   return (
     <>
-      {/* <View style={styles.containerView}>
-        <FocusAwareStatusBar
-          animated={true}
-          backgroundColor={headerColor}
-        />
-        <OnboardingContainer>
-          <OnboardingTermsHead>
-            <OverlayLoadingComponent loading={loading} />
-
-            <View style={styles.vectorImageView}>
-              <VectorImage source={item.image} />
-            </View>
-
-            <ShiftFromTop15>
-              <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>
-            </ShiftFromTop15>
-
-
-            <View style={styles.containerView2}>
-              <FeatureTCView
-                title={t('walkthroughTextstitle3').toString()}
-                subTitle={t('walkthroughTextssubtitle3').toString()}
-                iconname={item.advice}
-              />
-              <FeatureTCView
-                title={t('walkthroughTextstitle2').toString()}
-                subTitle={t('walkthroughTextssubtitle2').toString()}
-                iconname={item.tools}
-              />
-              <FeatureTCView
-                title={t('walkthroughTextstitle1').toString()}
-                subTitle={t('walkthroughTextssubtitle1').toString()}
-                iconname={item.activity}
-              />
-
-            </View>
-
-
-
-          </OnboardingTermsHead>
-
-
-
-        </OnboardingContainer>
-        <OnboardingContent>
-          <SideSpacing10>
-            <ShiftFromTop40>
-              <ButtonRow>
-                <FormOuterCheckbox
-                  onPress={(): any => {
-                    setToggleCheckBox(!toggleCheckBox);
-                  }}>
-                  <CheckboxItem>
-                    <View>
-                      {toggleCheckBox ? (
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#fff" />
-                        </CheckboxActive>
-                      ) : (
-                        <Checkbox></Checkbox>
-                      )}
-                    </View>
-                  </CheckboxItem>
-
-
-                  <SideRightSpacing20>
-                    <LabelTextTerms>
-                      {t('tNccheckbox2')}{' '}
-
-                      <LabelTextTerms onPress={goToPrivacyPolicy} style={styles.privacyText}>
-                        {t('tNcprivacyPolicyTitle')}{' '}
-                      </LabelTextTerms>
-                      {t('childInfoAndText')}{' '}
-                      <LabelTextTerms onPress={goToTerms} style={styles.privacyText}>
-                        {t('tNcheader')}
-                      </LabelTextTerms>
-                      .
-                    </LabelTextTerms>
-                  </SideRightSpacing20>
-                </FormOuterCheckbox>
-                <ButtonPrimary
-                  disabled={isButtonDisabled}
-                  onPress={(): any => {
-                    acceptTerms();
-                  }}>
-                  <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
-                </ButtonPrimary>
-              </ButtonRow>
-            </ShiftFromTop40>
-
-          </SideSpacing10>
-        </OnboardingContent>
-        
-      </View> */}
       <View style={styles.containerView}>
         <FocusAwareStatusBar
           animated={true}
           backgroundColor={headerColor}
         />
         <OverlayLoadingComponent loading={loading} />
-
         <View style={styles.vectorImageView}>
           <VectorImage source={item.image} />
         </View>
