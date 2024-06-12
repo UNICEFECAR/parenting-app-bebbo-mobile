@@ -66,8 +66,6 @@ import { bgcolorWhite2 } from '@styles/style';
 import { ToastAndroidLocal } from '../../../android/sharedAndroid.android';
 import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
 import { useIsFocused } from '@react-navigation/native';
-import ChildPinnedArticleInfo from '@components/homeScreen/ChildPinnedArticleInfo';
-import { HomeSearchBox, SearchBox, SearchInput } from '@components/shared/ArticlesStyle';
 
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -81,7 +79,6 @@ const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   // console.log(route.params,"home params")
   const themeContext = useContext(ThemeContext);
-  const [queryText, searchQueryText] = useState('');
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const headerColorChildInfo = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -154,7 +151,7 @@ const Home = ({ route, navigation }: any): any => {
 
   };
   useEffect(() => {
-
+    
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -197,6 +194,7 @@ const Home = ({ route, navigation }: any): any => {
       });
     }
   }
+  
   const onNoForceUpdate = (): any => {
     if (netInfo.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
       setTimeout(() => {
@@ -245,26 +243,22 @@ const Home = ({ route, navigation }: any): any => {
   const relbebboprod = '1.1.5';
   const relfolejadev = '0.2.0';
   const relfolejaprod = '1.1.0';
-
+ 
   useLayoutEffect(
     React.useCallback(() => {
       const task = InteractionManager.runAfterInteractions(() => {
         if (netInfo.isConnected) {
           synchronizeEvents(netInfo.isConnected);
         }
-
+       
         // Expensive task
       });
-
+  
       return () => task.cancel();
     }, [])
   );
-  useEffect(() => {
-    console.log('Active child is', activeChild)
-  }, [isFoucused])
-  useEffect(() => {
-    // setModalVisible(false);
-
+  useEffect(()=>{
+   // setModalVisible(false);
     async function fetchNetInfo(): Promise<any> {
       console.log(bufferAgeBracket, "---userIsOnboarded----", userIsOnboarded);
       console.log(VersionInfo.appVersion, "--appVersion", VersionInfo.buildVersion, VersionInfo.bundleIdentifier);
@@ -314,46 +308,7 @@ const Home = ({ route, navigation }: any): any => {
           }
 
           if (isRelatedVideoArticleUpdateReq == null || isRelatedVideoArticleUpdateReq == undefined || isRelatedVideoArticleUpdateReq == 'true') {
-
-            const apiJsonDatarelatedvideoart = [
-              {
-                apiEndpoint: appConfig.vaccinePinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.childGrowthPinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.healthcheckupPinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.faqPinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.faqUpdatedPinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.milestoneRelatedArticle,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-            ];
-            // const apiJsonDataarticleall = apiJsonDataGet(String(bufferAgeBracket), "all");
+            const apiJsonDatarelatedvideoart = [];
             const apiJsonDataarticleall = apiJsonDataGet("all");
             if (apiJsonDataarticleall.length > 0) {
               apiJsonDatarelatedvideoart.push(apiJsonDataarticleall[0])
@@ -473,7 +428,7 @@ const Home = ({ route, navigation }: any): any => {
     else {
       fetchNetInfo();
     }
-  }, [netInfo.isConnected])
+  },[netInfo.isConnected])
   const ondobChange = (event: any, selectedDate: any): any => {
     setShow(Platform.OS === 'ios');
     setdate1(selectedDate);
@@ -485,7 +440,6 @@ const Home = ({ route, navigation }: any): any => {
 
     dispatch(setSyncDate({ key: 'monthlyDownloadDate', value: DateTime.fromJSDate(new Date(selectedDate)).toMillis() }));
   }
-
   return (
     <>
       <>

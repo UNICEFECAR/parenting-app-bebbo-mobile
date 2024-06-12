@@ -224,7 +224,11 @@ const ChildSetup = ({ navigation }: Props): any => {
       setIsImportRunning(false);
       setLoading(false);
       navigation.navigate('ChildImportSetup', {
-        importResponse: JSON.stringify(importedData)
+        importResponse: JSON.stringify(importedData),
+        parentName: name,
+        relationData: relationship,
+        relationshipNameData: relationshipname,
+        userRelationToParentData: userRelationToParent,
       });
       if (importedrealm) {
         importedrealm.close();
@@ -334,7 +338,11 @@ const ChildSetup = ({ navigation }: Props): any => {
       setIsImportRunning(false);
       setLoading(false);
       navigation.navigate('ChildImportSetup', {
-        importResponse: JSON.stringify(importResponse)
+        importResponse: JSON.stringify(importResponse),
+        parentName: name,
+        relationData: relationship,
+        relationshipNameData: relationshipname,
+        userRelationToParentData: userRelationToParent,
       });
     }
     else {

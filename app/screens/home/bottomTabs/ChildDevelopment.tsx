@@ -125,6 +125,20 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   //      //setModalVisible(childDevModalOpened);
   //    },[]) 
   //  )
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchData = async (): Promise<any> => {
+        // const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
+        // const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        // setchildMilestonedata(childData[0].checkedMilestones)
+      }
+      fetchData()
+      return (): any => {
+        console.log("unmount activity", route.params);
+        navigation.setParams({ currentSelectedChildId: 0 });
+      };
+    }, [])
+  );
   useEffect(() => {
     setComponentColors({
       headerColor: themeContext?.colors.CHILDDEVELOPMENT_COLOR,

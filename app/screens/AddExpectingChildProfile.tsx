@@ -137,10 +137,15 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     }
   }, []);
   const AddChild = async (): Promise<any> => {
-    const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '', null);
+    let insertData: any;
+    if (name == '' || name == null) {
+      insertData = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, t('childInfoBabyText'), '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, t('childInfoBabyText'), '', '', null);
+    } else {
+      insertData = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '', null);
+    }
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,true,'');
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false, true, '');
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
@@ -283,7 +288,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
       <ShiftFromTop10>
         <ButtonMangeProfileContainer>
           <ButtonPrimary
-            disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked ? true : false}
+            disabled={plannedTermDate == null || plannedTermDate == undefined || clicked ? true : false}
             onPress={(): any => {
               setClicked(true);
               setTimeout(() => {

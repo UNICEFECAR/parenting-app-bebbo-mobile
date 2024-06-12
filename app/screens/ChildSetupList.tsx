@@ -168,7 +168,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
     return (
       <ChildListingBox key={index}>
         {gender && gender !== '' && gender !== 0 && gender !== undefined ?
-          (gender === 'Girl' ?
+          (gender === t('chilGender2') ?
             <Icon name="ic_baby_girl" size={40} color='#000' />
             : <Icon name="ic_baby" size={40} color='#000' />)
           : <Icon name="ic_baby_girl" size={40} color='#000' />}

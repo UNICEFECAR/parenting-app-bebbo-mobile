@@ -215,7 +215,7 @@ const ChildProfile = ({ navigation }: Props): any => {
               data.photoUri != '' ?
                 <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
                 </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
-                  (genderName === 'Girl' ?
+                  (genderName === t('chilGender2') ?
                     <Icon name="ic_baby_girl" size={40} color='#000' />
                     : <Icon name="ic_baby" size={40} color='#000' />)
                   : <Icon name="ic_baby_girl" size={40} color='#000' />
@@ -278,7 +278,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                 data.photoUri != '' ?
                   <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
                   </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
-                  (genderName === 'Girl' ?
+                  (genderName === t('chilGender2') ?
                     <Icon name="ic_baby_girl" size={40} color='#000' />
                     : <Icon name="ic_baby" size={40} color='#000' />)
                   : <Icon name="ic_baby_girl" size={40} color='#000' />
@@ -386,7 +386,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                     let genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
                     console.log('genderLocal is', genderLocal)
                     if (genderLocal == '') {
-                      genderLocal = 'Girl';
+                      genderLocal = t('chilGender2');
                     }
                     return renderChildProfile(dispatch, item, index, genderLocal, navigation);
                   })
