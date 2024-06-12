@@ -56,6 +56,7 @@ export const RadioOuter = styled.View`
  flex-direction:row;
  flex:1;
  justify-content:center;
+ align-items:center;
  padding:0 10px;
 
  

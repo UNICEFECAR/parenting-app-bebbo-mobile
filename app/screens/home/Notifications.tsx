@@ -8,7 +8,7 @@ import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonText } from '@components/shared/ButtonGlobal';
 import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { DrawerActions, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { bgcolorWhite, bgcolorWhite2 } from '@styles/style';
 import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
@@ -64,7 +64,14 @@ const Notifications = ():any => {
     });
       return true;
   }
+  useFocusEffect(
+    React.useCallback(() => {
+      navigation.dispatch(DrawerActions.closeDrawer());
+    }, [navigation])
+  );
+
   useEffect(() => {
+   // navigation.dispatch(DrawerActions.closeDrawer());
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,

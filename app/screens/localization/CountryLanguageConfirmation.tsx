@@ -115,20 +115,20 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
 
   const { t, i18n } = useTranslation();
   console.log(I18nManager.isRTL, "---is rtl val");
-  useEffect(() => {
-    if (!route.params.language) {
-      console.log('Language data not available');
-    } else if (Array.isArray(route.params.language)) {
-      route.params.language.length > 0 ? setNewLanguage(route.params.language[0]) : setNewLanguage(null);
-    } else if (typeof route.params.language === 'object') {
-      setNewLanguage(route.params.language);
-    } else {
-      console.log('Invalid language data');
-    }
-    return (): any => {
-      dispatch(setrestartOnLangChange('no'));
-    }
-  }, [route.params]);
+  // useEffect(() => {
+  //   if (!route.params.language) {
+  //     console.log('Language data not available');
+  //   } else if (Array.isArray(route.params.language)) {
+  //     route.params.language.length > 0 ? setNewLanguage(route.params.language[0]) : setNewLanguage(null);
+  //   } else if (typeof route.params.language === 'object') {
+  //     setNewLanguage(route.params.language);
+  //   } else {
+  //     console.log('Invalid language data');
+  //   }
+  //   return (): any => {
+  //     dispatch(setrestartOnLangChange('no'));
+  //   }
+  // }, [route.params]);
   const extractLanguageCode = (languageTag: string): string => {
     const [languageCode] = languageTag.split('-');
     return languageCode;
@@ -247,13 +247,16 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           }
         }
       } else {
+        console.log('selectedCountry country is', selectedCountry)
         setCountryData(selectedCountry);
         let filteredLanguage: any = null;
+        console.log('selectedLocale is', selectedLocale, newLanguage)
         if (selectedLocale !== '') {
-          filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.locale === locale);
+          filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.locale === selectedLocale);
         } else {
           filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
         }
+        console.log('filteredLanguage country is', filteredLanguage)
         if (filteredLanguage?.length > 0) {
           setNewLanguage(filteredLanguage[0]);
         } else {
@@ -322,7 +325,12 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
         analytics().setUserProperties({ country: route.params.country.displayName, language: newLanguage.displayName })
       } else {
-        dispatch(onLocalizationSelect(countryData));
+        console.log('countyData is', countryData);
+        console.log('newLanguage is', newLanguage);
+        const languageSelected = selectedLocale !== '' ? selectedLocale : locale;
+        const filteredLan = countryData?.languages?.filter((lang: any) => lang.locale == newLanguage?.locale);
+        dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": countryData?.countryId }));
+        // dispatch(onLocalizationSelect(countryData));
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
         analytics().setUserProperties({ country: countryData.displayName, language: newLanguage.displayName })
       }
@@ -345,61 +353,61 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     <>
       <>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} key={newLanguage} />
-        <OnboardingContainer>
+      
+          <OnboardingContainer>
 
-          <OnboardingconfirmationHead>
-            <Text style={styles.welcomeText}>{t('welcomeText')}</Text>
-            <Icon name="ic_country" size={100} color="#00AEEF" />
-            <OnboardingshiftHead>
-              <Heading2Centerw>{t('countryLangSelection')}</Heading2Centerw>
-            </OnboardingshiftHead>
-            <Heading4Centerr>{t('checkonce')}</Heading4Centerr>
-          </OnboardingconfirmationHead>
+            <OnboardingconfirmationHead>
+              <Text style={styles.welcomeText}>{t('welcomeText')}</Text>
+              <Icon name="ic_country" size={100} color="#00AEEF" />
+              <OnboardingshiftHead>
+                <Heading2Centerw>{t('countryLangSelection')}</Heading2Centerw>
+              </OnboardingshiftHead>
+              <Heading4Centerr>{t('checkonce')}</Heading4Centerr>
+            </OnboardingconfirmationHead>
 
-
-          <OnboardingContent>
 
             <LocalizationContainer>
-              <LocalizationRow>
-                <LocalizationCol>
-                  <LocalizationcontentHead>
-                    <Heading3Regular>{t('country')}</Heading3Regular>
-                  </LocalizationcontentHead>
-                  <LocalizationcontentResult>
-                    <Heading3>{countryData?.displayName}</Heading3>
-                  </LocalizationcontentResult>
-                </LocalizationCol>
+                <LocalizationRow>
+                  <LocalizationCol>
+                    <LocalizationcontentHead>
+                      <Heading3Regular>{t('country')}</Heading3Regular>
+                    </LocalizationcontentHead>
+                    <LocalizationcontentResult>
+                      <Heading3>{countryData?.displayName}</Heading3>
+                    </LocalizationcontentResult>
+                  </LocalizationCol>
 
-                <LocalizationWithoutBorderCol>
-                  <LocalizationcontentHead>
-                    <Heading3Regular>{t('language')}</Heading3Regular>
-                  </LocalizationcontentHead>
-                  <LocalizationcontentResult>
-                    <Heading3>{Array.isArray(route.params.language) ? language[0].displayName : newLanguage?.displayName}</Heading3>
-                  </LocalizationcontentResult>
-                </LocalizationWithoutBorderCol>
-                <LocalizationAction>
-                </LocalizationAction>
-              </LocalizationRow>
-              <ShiftFromTop25>
-                <ButtonWithBorder onPress={(): any => navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
-                  <OuterIconRow>
-                    <OuterIconLeft>
-                      <IconML name="ic_edit" size={16} color={secondaryBtnColor} />
-                    </OuterIconLeft>
-                    <ButtonTextLg>{t('editCountryLang')}</ButtonTextLg>
-                  </OuterIconRow>
-                </ButtonWithBorder>
-              </ShiftFromTop25>
+                  <LocalizationWithoutBorderCol>
+                    <LocalizationcontentHead>
+                      <Heading3Regular>{t('language')}</Heading3Regular>
+                    </LocalizationcontentHead>
+                    <LocalizationcontentResult>
+                      <Heading3>{Array.isArray(route.params.language) ? language[0].displayName : newLanguage?.displayName}</Heading3>
+                    </LocalizationcontentResult>
+                  </LocalizationWithoutBorderCol>
+                  <LocalizationAction>
+                  </LocalizationAction>
+                </LocalizationRow>
+                <ShiftFromTop25>
+                  <ButtonWithBorder onPress={(): any => navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
+                    <OuterIconRow>
+                      <OuterIconLeft>
+                        <IconML name="ic_edit" size={16} color={secondaryBtnColor} />
+                      </OuterIconLeft>
+                      <ButtonTextLg>{t('editCountryLang')}</ButtonTextLg>
+                    </OuterIconRow>
+                  </ButtonWithBorder>
+                </ShiftFromTop25>
 
-              <Flex1>
-                <ButtonPrimary onPress={(): any => saveSelection()}>
-                  <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
-                </ButtonPrimary>
-              </Flex1>
-            </LocalizationContainer>
-          </OnboardingContent>
-        </OnboardingContainer>
+                <Flex1>
+                  <ButtonPrimary onPress={(): any => saveSelection()}>
+                    <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
+                  </ButtonPrimary>
+                </Flex1>
+              </LocalizationContainer>
+          </OnboardingContainer>
+      
+
       </>
     </>
   );
