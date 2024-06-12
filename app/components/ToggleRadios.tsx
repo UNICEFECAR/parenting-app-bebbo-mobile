@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   checkbox: { borderRadius: 50, borderWidth: 1 },
   checkboxItem: { borderRadius: 50 },
   heading3: { flexShrink: 1 },
-  lastView: { flexDirection: 'row', flex: 1, margin: 12 }
+  lastView: { flexDirection: 'row', flex: 1, marginHorizontal: 12 }
 })
 
 const ToggleRadios = (props: any): any => {
@@ -28,7 +28,7 @@ const ToggleRadios = (props: any): any => {
               <RadioOuter key={index}
               >
                 <Pressable
-                style={{flexDirection:'row'}}
+                style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}
                   onPress={(): any => {
                     setCheckedItem(item);
                     props.getCheckedItem(item);
