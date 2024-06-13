@@ -14,6 +14,7 @@ import LoadableImage from '../../services/LoadableImage';
 import { randomArrayShuffle } from '../../services/Utils';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
 import ShareFavButtons from './ShareFavButtons';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
 const RelatedArticles = (props: RelatedArticlesProps): any => {
   const { relatedArticles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
   const { t } = useTranslation();
+  const netInfo = useNetInfoHook();
   let relartlength = relatedArticles ? relatedArticles.length : 0;
   const articleDataold = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
@@ -116,7 +118,8 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
         detailData: item,
         listCategoryArray: listCategoryArray ? listCategoryArray : [],
         currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0,
-        fromCd: fromScreen == "ChildDevelopment" || fromScreen == "Home" ? true :false
+        fromCd: fromScreen == "ChildDevelopment" || fromScreen == "Home" ? true :false,
+        netInfo: netInfo
       });
   };
   const RenderRelatedArticleItem = ({item, index}: any): any => {

@@ -10,6 +10,7 @@ import LoadableImage from '../../services/LoadableImage';
 import { randomArrayShuffle } from '../../services/Utils';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
 import ShareFavButtons from './ShareFavButtons';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -66,7 +67,7 @@ const RelatedActivities = (props:RelatedActivityProps):any => {
     state.childData.childDataSet.favoritegames
   );
   const {t} = useTranslation();
- 
+  const netInfo = useNetInfoHook();
   
   const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
   useEffect(() => {    
@@ -107,7 +108,8 @@ const RelatedActivities = (props:RelatedActivityProps):any => {
       detailData:item,
       listCategoryArray: listCategoryArray ? listCategoryArray: null,
       selectedChildActivitiesData: selectedChildActivitiesData,
-      currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
+      currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0,
+      netInfo: netInfo
      });
   };
   const RenderActivityItem = React.memo(({item, index}:any) => {

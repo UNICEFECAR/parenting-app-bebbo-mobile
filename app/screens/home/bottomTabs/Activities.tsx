@@ -477,7 +477,8 @@ const Activities = ({ route, navigation }: any): any => {
         listCategoryArray: filterArray,
         selectedChildActivitiesData: selectedChildActivitiesData,
         currentSelectedChildId: currentSelectedChildId,
-        queryText: keywords
+        queryText: keywords,
+        netInfo: netInfo
       });
   };
 

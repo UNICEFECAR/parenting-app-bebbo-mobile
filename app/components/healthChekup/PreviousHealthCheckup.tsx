@@ -32,11 +32,13 @@ import {
   ButtonTextMdLine, ButtonTextSmLineL
 } from '../shared/ButtonGlobal';
 import Icon, { IconViewAlert } from '../shared/Icon';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const styles=StyleSheet.create({
   iconStyle:{alignSelf: 'center'},
   radioActive:{backgroundColor: greenColor, borderRadius: 50}
 })
 const PreviousHealthCheckup = (props: any): any => {
+  const netInfo = useNetInfoHook();
   const {item, backgroundColor} = props;
   const {t} = useTranslation();
   const navigation = useNavigation<any>();
@@ -51,6 +53,7 @@ const PreviousHealthCheckup = (props: any): any => {
       headerColor: artHeaderColor,
       backgroundColor: artBackgroundColor,
       detailData: pinnedArticleId,
+      netInfo: netInfo
     });
   }
   };

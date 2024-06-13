@@ -49,7 +49,7 @@ min-height:40px;
 /*Button Text */
 export const ButtonText = styled.Text`
   text-align: center;
-  color: ${(props:any):any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
+  color: ${(props: any): any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
@@ -126,7 +126,12 @@ export const ButtonRow = styled.View`
   width:100%;
 justify-content: center;
 `;
-
+export const ButtonTermsRow = styled.View`
+  padding:15px 0;
+  margin-bottom:30px;
+  width:100%;
+justify-content: center;
+`;
 export const ButtonLinkRow = styled(ButtonRow)`
   
   flex-direction:row;
