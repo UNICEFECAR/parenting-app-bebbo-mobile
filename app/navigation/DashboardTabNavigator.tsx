@@ -16,6 +16,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Modal,
+  Platform,
   Pressable,
   StyleSheet, TouchableOpacity
 } from 'react-native';
@@ -145,6 +146,7 @@ export default ():any => {
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
             unmountOnBlur: true,
+           // unmountOnBlur: Platform.OS == 'ios' ? true : false,
             headerShown:false
           }} />
         <DashboardBottomTab.Screen name="Activities" component={Activities} initialParams={{ categoryArray: [], currentSelectedChildId: 0, backClicked: 'no' }}
@@ -173,13 +175,13 @@ export default ():any => {
             },
           })}
         />
-        <DashboardBottomTab.Screen name="Articles" component={Articles} initialParams={{ categoryArray: [], backClicked: 'no' }}
+        <DashboardBottomTab.Screen name="Articles" component={Articles} initialParams={{ categoryArray: [], currentSelectedChildId: 0, backClicked: 'no' }}
           options={{
             tabBarLabel: t('tabbarLabel4'),
             tabBarIcon: ({ color, size }:any):any => (
               <Icon name="ic_articles" color={color} size={size} />
             ),
-            unmountOnBlur: true,
+           // unmountOnBlur: true,
             headerShown:false
           }} />
         <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment} initialParams={{ currentSelectedChildId: 0 }}
@@ -188,6 +190,7 @@ export default ():any => {
             tabBarIcon: ({ color, size }:any):any => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),
+            //unmountOnBlur: Platform.OS == 'ios' ? true : false,
             unmountOnBlur: true,
             headerShown:false
           }} />

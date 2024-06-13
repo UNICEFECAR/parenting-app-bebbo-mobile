@@ -6,37 +6,17 @@ on:
     
   workflow_dispatch:
 
-
 env:
-        WORKSPACE: ${{ 'ios/ParentBuddyApp.xcworkspace' }}
-        SCHEME: ${{ 'ParentBuddyAppDev' }}
-        CONFIGURATION: ${{ 'Release' }}
-        ARCHIVE_PATH: ${{ './build/ParentBuddyApp.xcarchive' }}
-        EXPORT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
-        PLIST_PATH_STAGING: ${{'ios/ParentBuddyAppDev-Info.plist' }}
-        ARTIFACT_NAME: ${{ 'Bebbo.ipa' }}
-        ARTIFACT_PATH_STAGING: ${{ 'ParentBuddyAppDev/' }}
-        APP_NAME_STAGING: ${{ 'ParentBuddyAppDev-iOS/ENV_DEV' }}
-        TESTING_GROUP_STAGING: ${{ 'ENV_DEV' }}
-        UPLOAD_FILE_STAGING: ${{ 'ParentBuddyAppDev/BebboDev.ipa' }}
-        DEVELOPMENT_CERTIFICATE: ${{ secrets.APPLE_APP_DEVELOPMENT_CERTIFICATE }}
         CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-        DISTRIBUTION_PROFILE_STAGING: ${{ secrets.APPLE_AD_HOC_PROFILE }}
         KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
-        SCHEME_PROD: ${{ 'ParentBuddyApp' }}
-        EXPORT_PATH_PROD: ${{ 'prod/' }}
-        PLIST_PATH_PROD: ${{'ios/ParentBuddyApp/Info.plist' }}
-        ARTIFACT_PATH_PROD: ${{ 'prod/' }}
-        APP_NAME_PROD: ${{ 'ParentBuddyApp-iOS/ENV_PROD' }}
-        TESTING_GROUP_PROD: ${{ 'ENV_PROD' }}
-        UPLOAD_FILE_PROD: ${{ 'prod/Bebbo.ipa' }}
         DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
-        DISTRIBUTION_PROFILE_PROD: ${{secrets.APPLE_DISTRIBUTION_PROFILE }}
-  
+        DISTRIBUTION_PROFILE_PROD: ${{ secrets.APPLE_DISTRIBUTION_PROFILE }}
+        DISTRIBUTION_PROFILE_BUILD: ${{ secrets.APPLE_AD_HOC_PROFILE }}
+        TEAM_ID: ${{ secrets.TEAM_ID }}
 jobs:
   build:
     runs-on: macOS-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
@@ -65,13 +45,13 @@ jobs:
         run: |
           touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
           echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
-       
-      - name: Putting data google service prod file
+      
+      - name: Copy fontello icon
         env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
+          SOURCE_FILE_PATH: "/Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/app/assets/fonts/fontello.ttf"
+          DESTINATION_DIR_PATH: "/Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/node_modules/react-native-vector-icons/Fonts/fontello.ttf"
         run: |
-          touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
-          echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+          cp $SOURCE_FILE_PATH $DESTINATION_DIR_PATH
 
       - name: Install CocoaPods
         run: |
@@ -84,45 +64,93 @@ jobs:
         run: |
           cd ios  # Update this path if necessary
           sed -i '' '1s/^/if ENV["USE_MODULAR_HEADERS"] == "true"\nuse_modular_headers!\nend\n\n/' Podfile
-          cat Podfile
+       # cat Podfile
 
       - name: Install pod dependencies
         run: | 
-           cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
-        
-      - name: Signing & Provisioning
-        run: |
-          # create variables
-          DEV_CERT_PATH=$RUNNER_TEMP/dev_certificate.p12
-          PP_PATH_STAGING=$RUNNER_TEMP/dist_pp_adc.mobileprovision
-          KCHAIN_PATH=$RUNNER_TEMP/build.keychain
-          
-          CERT_PATH=$RUNNER_TEMP/dist_certificate.p12
-          PP_PATH_PROD=$RUNNER_TEMP/dist_pp.mobileprovision
-  
-          # import certificate and provisioning profile from secrets
-          echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o "$CERT_PATH"
-          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o "$PP_PATH_PROD"
-          
-          echo -n "$DEVELOPMENT_CERTIFICATE" | base64 -Dd -o "$DEV_CERT_PATH"
-          echo -n "$DISTRIBUTION_PROFILE_STAGING" | base64 -Dd -o "$PP_PATH_STAGING"
-          
-          # create temporary keychain
-          security create-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
-          security set-keychain-settings -lut 21600 "$KCHAIN_PATH"
-          security unlock-keychain -p "$KEY_PWD" "$KCHAIN_PATH"
-          
-          # import certificate to keychain
-          security import "$DEV_CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
-          security import "$CERT_PATH" -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KCHAIN_PATH"
-          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEY_PWD" "$KCHAIN_PATH"
-          security list-keychain -d user -s "$KCHAIN_PATH"
+          cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
-          # apply provisioning profile
+      - name: Authenticate with Apple Developer account
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
+        run: |
+          echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
+          security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
+
+      - name: Create and unlock keychain
+        run: |
+          security create-keychain -p $KEY_PWD build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p $KEY_PWD build.keychain
+          security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
+          security list-keychains -d user
+          security show-keychain-info build.keychain || echo "Keychain info not available"
+
+      - name: Install Certificate
+        run: |
+          # Decode and install certificate
+          echo -n "$DISTRIBUTION_CERTIFICATE" | base64 -Dd -o certificate.p12
+          security import certificate.p12 -k ~/Library/Keychains/build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k $CERTIFICATE_PASSWORD ~/Library/Keychains/build.keychain
+      
+      - name: Install Provisioning Export
+        run: |
+          # Install provisioning profile
+          echo -n "$DISTRIBUTION_PROFILE_PROD" | base64 -Dd -o $RUNNER_TEMP/provisioning_profile.mobileprovision
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp "$PP_PATH_STAGING" ~/Library/MobileDevice/Provisioning\ Profiles
-          cp "$PP_PATH_PROD" ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $RUNNER_TEMP/provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
           
+          UUID=$(security cms -D -i $RUNNER_TEMP/provisioning_profile.mobileprovision | plutil -extract UUID raw -)
+          mv $RUNNER_TEMP/provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
+      
+      - name: Install Provisioning build
+        run: |
+          # Install provisioning profile
+          echo -n "$DISTRIBUTION_PROFILE_BUILD" | base64 -Dd -o $RUNNER_TEMP/provisioning_profile_build.mobileprovision
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
+          
+          UUID1=$(security cms -D -i $RUNNER_TEMP/provisioning_profile_build.mobileprovision | plutil -extract UUID raw -)
+          mv $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID1.mobileprovision
+          
+      - name: Prepare exportOptions.plist
+        run: | 
+          cd ios &&
+          cat > exportOptions.plist <<EOL
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+              <dict>
+                <key>compileBitcode</key>
+              	<false/>
+              	<key>destination</key>
+              	<string>export</string>
+              	<key>method</key>
+              	<string>enterprise</string>
+              	<key>signingStyle</key>
+              	<string>automatic</string>
+              	<key>stripSwiftSymbols</key>
+              	<true/>
+              	<key>teamID</key>
+              	<string>$TEAM_ID</string>
+              	<key>thinning</key>
+              	<string>&lt;none&gt;</string>
+              </dict>
+            </plist>
+            EOL
+
+      # - name: Prepare exportOptions.plist
+      #   run: | 
+      #     cd ios
+      #       if [ -f exportOptions.plist ]; then
+      #         echo "exportOptions.plist created successfully."
+      #         cat exportOptions.plist  # Optionally print the contents for verification
+      #       else
+      #         echo "Failed to create exportOptions.plist."
+      #         exit 1
+      #       fi
+        
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.1.app
      
@@ -131,32 +159,28 @@ jobs:
       
       - name: Create build folder
         run: |
-          cd ./ios && mkdir -p build && mkdir -p staging && mkdir -p prod
-
-        #PROVISIONING_STYLE="Manual" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_STAGING" CODE_SIGN_STYLE="Manual" CODE_SIGN_IDENTITY="$DISTRIBUTION_CERTIFICATE" -allowProvisioningUpdates
-
+          cd ./ios && mkdir -p build && mkdir -p staging
+     
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="$DISTRIBUTION_PROFILE_PROD" 
-        # timeout-minutes: 15
-
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" -allowProvisioningUpdates -quiet -hideShellScriptEnvironment 
+        
       - name: Export Archive
         run: |
-          cd ios && xcodebuild -exportArchive -archivePath "./build/ParentBuddyApp.xcarchive" -exportPath "$ARTIFACT_PATH_STAGING" . -exportOptionsPlist "./ParentBuddyApp/Info.plist" -allowProvisioningUpdates
+          cd ios && xcodebuild -verbose -exportArchive -allowProvisioningUpdates \
+          -archivePath "./build/ParentBuddyApp.xcarchive" \
+          -exportPath "ParentBuddyAppDev/" \
+          -exportOptionsPlist "exportOptions.plist" 
         
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Bebbo.ipa
-          path: ${{ env.ARTIFACT_PATH_STAGING }} 
-
-              #${{ env.ARTIFACT_PATH_STAGING }}
-              #${{ env.ARTIFACT_PATH_PROD }}
-
+          path: "ios/ParentBuddyAppDev/"
+      
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
-          security delete-keychain $RUNNER_TEMP/build.keychain
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp_adc.mobileprovision
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/dist_pp.mobileprovision
-    
+          security delete-keychain ~/Library/Keychains/build.keychain
+          security delete-keychain ~/Library/Keychains/login.keychain-db
+          rm -f /Library/MobileDevice/Provisioning\ Profiles/*
