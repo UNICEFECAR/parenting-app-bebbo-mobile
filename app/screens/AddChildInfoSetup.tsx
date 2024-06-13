@@ -337,12 +337,9 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
     } else {
       defaultName = name;
     }
-    let insertData:any = null;
-    if(isDefaultChild){
-      insertData = await getNewChild('', "true", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
-    }else{
-      insertData = await getNewChild('', "false", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
-    }
+    let insertData: any = null;
+    const isDefault = isDefaultChild ? "true" : "false";
+    insertData = await getNewChild('', isDefault, isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
     if (isDefaultChild) {

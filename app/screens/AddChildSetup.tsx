@@ -178,7 +178,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   useEffect(() => {
     setRelationship(route?.params.relationship)
     setRelationshipName(route?.params.relationshipName)
-    console.log('Setuser relationship to parent',route?.params.parentName)
+    console.log('Setuser relationship to parent', route?.params.parentName)
     setUserRelationToParent(route?.params.userRelationToParent)
     setParentName(route?.params.parentName);
   }, [route?.params])
@@ -336,21 +336,18 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   }
 
 
-  const AddChild = async (isDefaultChild: boolean,isDefaultName: boolean): Promise<any> => {
+  const AddChild = async (isDefaultChild: boolean, isDefaultName: boolean): Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    let defaultName ;
-    if(isDefaultName){
+    let defaultName;
+    if (isDefaultName) {
       defaultName = t('childInfoBabyText');
-    }else{
-        defaultName= name;
+    } else {
+      defaultName = name;
     }
-    let insertData:any = null;
-    if(isDefaultChild){
-      insertData = await getNewChild('', "true", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
-    }else{
-      insertData = await getNewChild('', "false", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
-    }
-    
+    let insertData: any = null;
+    const isDefault = isDefaultChild ? "true" : "false";
+    insertData = await getNewChild('', isDefault, isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+
     const childSet: Array<any> = [];
     childSet.push(insertData);
     if (isDefaultChild) {
@@ -361,19 +358,19 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       const eventData = { 'name': ONBOARDING_SKIPPED }
       logEvent(eventData, netInfo.isConnected);
       await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childSet);
-  
+
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", childSet[0].uuid);
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
       await setActiveChild(languageCode, childSet[0].uuid, dispatch, childAge, false);
-    // dispatch(setActiveChildData(childSet[0].uuid))
+      // dispatch(setActiveChildData(childSet[0].uuid))
       const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
       await dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-     console.log('childAge is',childAge,childSet)
+      console.log('childAge is', childAge, childSet)
       const Ages = await getAge(childSet, childAge);
-      console.log('childAge is Ageds',Ages)
+      console.log('childAge is Ageds', Ages)
       let apiJsonData;
       if (Ages?.length > 0) {
         apiJsonData = apiJsonDataGet(String(Ages), "all")
@@ -381,7 +378,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       else {
         apiJsonData = apiJsonDataGet("all", "all")
       }
-      console.log('child API json data is ',apiJsonData)
+      console.log('child API json data is ', apiJsonData)
       navigation.reset({
         index: 0,
         routes: [
@@ -393,7 +390,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       });
       //addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
     } else {
-      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,isDefaultChild,parentName);
+      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild, parentName);
     }
   }
 
@@ -458,7 +455,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                   }}
                   value={name}
                   //placeholder={t('childNamePlaceTxt')}
-                 // placeholderTextColor={"#77777779"}
+                  // placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
@@ -496,7 +493,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                   if (validated == true) {
                     setTimeout(() => {
                       setLoading(false);
-                      AddChild(false,false);
+                      AddChild(false, false);
                     }, 0)
                   }
                   else {
@@ -523,12 +520,12 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                   setTimeout(() => {
                     console.log('Relationship name', relationshipName, relationship)
                     if (relationshipName == 'service provider') {
-                      AddChild(false,true);
+                      AddChild(false, true);
                     } else {
                       console.log('Child is created here');
                       // const currentDate = new Date();
                       // setBirthDate(currentDate)
-                      AddChild(true,true);
+                      AddChild(true, true);
                     }
                     //setLoading(true);
                     // AddChild();

@@ -25,7 +25,6 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
     parentGender: parentGender != "" && parentGender != undefined && parentGender != null ? parentGender : "all",
     category: articleCategory != undefined && articleCategory != null ? articleCategory : "all"
   }
-  console.log(postData, "..postData Data is here..");
   return [
     {
       apiEndpoint: appConfig.articles,
@@ -174,7 +173,6 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         child.parent_gender = userParentalRole[0].value
       }
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
-      console.log("allDatatoStore AddEditChild1--", child);
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
@@ -218,7 +216,6 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       }
       if (child) {
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
-        console.log("allDatatoStore AddEditChild2--", allDatatoStore);
         dispatch(setActiveChildData(child));
         const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
         analytics().setUserProperties({
@@ -235,7 +232,6 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
   }
   else {
     let child = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    console.log('chiild adta is',child)
     child = child.find((record: any, index: number) => index === 0);
     if (child.birthDate != null && child.birthDate != undefined && child.birthDate != "") {
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", child.uuid);
@@ -266,8 +262,6 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
     if (child) {
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
-      console.log("allDatatoStore AddEditChild3--", allDatatoStore);
-      console.log("taxonomy data is", child);
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
@@ -281,7 +275,6 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
   }
   const notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
-  console.log("check local notification log1---");
   if (activeset == true) {
     return "activeset";
   }
@@ -424,10 +417,8 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
 
 export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any,isDefaultChild?:boolean,isSibling?:boolean, parentName?: any): Promise<any> => {
   let oldBirthDate;
-  console.log(editScreen, "..editScreen..", data[0]);
   if (editScreen) {
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
-    console.log(oldChild, "..oldChild..");
     if (oldChild?.length > 0) {
       oldChild = oldChild.map((item: any) => item)[0];
       oldBirthDate = oldChild.birthDate;
@@ -450,7 +441,6 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     }else{
       navigation.navigate('ChildSetupList');
     }
-   console.log('UUID is',data[0])
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
@@ -474,7 +464,6 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   //child add from edit/add expecting
   else {
     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-    console.log(currentActiveChildId, "..currentActiveChildId..");
     const ageLimit = [];
     const startDate = new Date(oldBirthDate)
     const someDate = new Date(data[0].birthDate)
@@ -639,7 +628,6 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
 
           const storedata = store.getState();
           const allDatatoStore = await getAllDataToStore(storedata.selectedCountry.languageCode, dispatch, "AddEditChild", activeChild);
-          console.log("allDatatoStore AddEditChild4--", allDatatoStore);
           dispatch(setActiveChildData(activeChild));
         }
       }
@@ -678,7 +666,6 @@ export const deleteChild = async (navigation:any,languageCode: any, _index: numb
     LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
   })
   const createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
-  console.log(createresult, "..createresult..")
   if (createresult == 'success') {
     if (Platform.OS === 'android') {
       ToastAndroidLocal.showWithGravityAndOffset(

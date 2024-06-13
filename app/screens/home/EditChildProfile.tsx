@@ -350,10 +350,11 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   }
   const AddChild = async (): Promise<any> => {
     // if dob /plannedTermDate changes, append notifications to current child's notifications in slice
+    const isDefaultChild = "false";
     const insertData: any = editScreen
       ? await getNewChild(
         uuid,
-        "false",
+        isDefaultChild,
         isExpected,
         plannedTermDate,
         isPremature,
