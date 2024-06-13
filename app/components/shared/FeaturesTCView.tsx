@@ -12,14 +12,15 @@ const Title = styled.Text`
 const SubTitle = styled.Text`
   font-size: 14px;
   margin-left: 15px;
-  margin-top:5px;
-  line-height:16px;
+  margin-right: 8px;
+  margin-top: 5px;
+  line-height: 16px;
   color: ${(props: any): any => props.theme.colors.TERMS_TEXTCOLOR};
 `;
 const MainContainer = styled.View`
   padding-top: 15px;
   padding-bottom: 5px;
-  padding-right:50px;
+  padding-right: 50px;
   flex-direction: row;
   align-items: center;
 `;

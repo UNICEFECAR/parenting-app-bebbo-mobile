@@ -1,12 +1,9 @@
 import { ADVICE_SHARED, GAME_SHARED } from '@assets/data/firebaseEvents';
 import { articleCategoryArray, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
-import { BgSecondaryTint } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
-import { FDirRow } from '@components/shared/FlexBoxStyle';
-import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import { DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading3w, Heading4, HeadingHome3w, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading2, HeadingHome3w, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +16,7 @@ import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../
 import LoadableImage from '../../services/LoadableImage';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
+import ShareFavButtons from '@components/shared/ShareFavButtons';
 
 const styles = StyleSheet.create({
   cardImage: {
@@ -27,12 +25,12 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: '100%'
   },
-  flatlistOuterView:{ marginLeft: -7, marginRight: -7,marginTop:10 },
+  flatlistOuterView: { marginLeft: -7, marginRight: -7, marginTop: 10 },
   linearGradient: {
     flex: 1,
   }
 });
-const DailyReads = ():any => {
+const DailyReads = (): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -60,8 +58,13 @@ const DailyReads = ():any => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
+  const childAge = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
+  let ArticlesData = articleData.filter((x: any) => x.child_age.includes(activityTaxonomyId));
   const activityCategoryArray = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
@@ -75,21 +78,27 @@ const DailyReads = ():any => {
   const showedDailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
+  const favoriteadvices = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoriteadvices
+  );
+  const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
+  );
   const [dataToShowInList, setDataToShowInList] = useState([]);
   const [activityDataToShowInList, setActivityDataToShowInList] = useState([]);
-  const goToArticleDetail = (item:any):any => {
-    console.log(Object.prototype.hasOwnProperty.call(item,'activity_category'),"..ds")
+  const goToArticleDetail = (item: any): any => {
+    console.log(Object.prototype.hasOwnProperty.call(item, 'activity_category'), "..ds")
     navigation.navigate('DetailsScreen', {
-      fromScreen:  Object.prototype.hasOwnProperty.call(item,'activity_category') ? 'HomeAct' : 'HomeArt',
-      headerColor: Object.prototype.hasOwnProperty.call(item,'activity_category') ? actHeaderColor : artHeaderColor,
-      backgroundColor: Object.prototype.hasOwnProperty.call(item,'activity_category') ? actBackgroundColor : artBackgroundColor,
+      fromScreen: Object.prototype.hasOwnProperty.call(item, 'activity_category') ? 'HomeAct' : 'HomeArt',
+      headerColor: Object.prototype.hasOwnProperty.call(item, 'activity_category') ? actHeaderColor : artHeaderColor,
+      backgroundColor: Object.prototype.hasOwnProperty.call(item, 'activity_category') ? actBackgroundColor : artBackgroundColor,
       detailData: item,
       selectedChildActivitiesData: ActivitiesData,
-      fromAdditionalScreen:'DailyScreen'
+      fromAdditionalScreen: 'DailyScreen'
     });
   }
-  const onShare = async (item: any):Promise<any> => {
-    const isAdvice = Object.prototype.hasOwnProperty.call(item,'activity_category') ? false : true;
+  const onShare = async (item: any): Promise<any> => {
+    const isAdvice = Object.prototype.hasOwnProperty.call(item, 'activity_category') ? false : true;
     const suburl = isAdvice ? "/article/" : "/activity/";
     const mainUrl = shareTextButton + languageCode + suburl + item.id;
     try {
@@ -97,13 +106,13 @@ const DailyReads = ():any => {
         message: item.title + '\n' + t('appShareText') + '\n' + mainUrl
       });
       if (result.action === Share.sharedAction) {
-       
+
         if (isAdvice) {
-          const adviceEventData= {'name': ADVICE_SHARED,'params':{ advise_id: item?.id } }
-          logEvent(adviceEventData,netInfo.isConnected)
+          const adviceEventData = { 'name': ADVICE_SHARED, 'params': { advise_id: item?.id } }
+          logEvent(adviceEventData, netInfo.isConnected)
         } else {
-          const gameEventData= {'name': GAME_SHARED,'params':{ game_id: item?.id } }
-          logEvent(gameEventData,netInfo.isConnected)
+          const gameEventData = { 'name': GAME_SHARED, 'params': { game_id: item?.id } }
+          logEvent(gameEventData, netInfo.isConnected)
         }
 
       } else if (result.action === Share.dismissedAction) {
@@ -114,9 +123,10 @@ const DailyReads = ():any => {
     }
   };
   const RenderDailyReadItem = React.memo(({ item, index }: any) => {
+    const isAdvice = Object.prototype.hasOwnProperty.call(item, 'activity_category') ? false : true;
     return (
       <View>
-        <Pressable onPress={():any => { goToArticleDetail(item) }} key={index}>
+        <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}>
           <DailyBox>
             <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}>
             </LoadableImage>
@@ -137,28 +147,8 @@ const DailyReads = ():any => {
               <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
             </DailyTag>
             {/*Parent Share , View Details*/}
-            <DailyAction>
-              <Pressable onPress={():any => { onShare(item) }}>
-                <FDirRow>
-                  <OuterIconRow>
-                    <OuterIconLeft>
-                      <Icon name="ic_sb_shareapp" size={24} color="#000" />
-                    </OuterIconLeft>
-                  </OuterIconRow>
-                  <Heading4>{t('homeScreenshareText')}</Heading4>
-                </FDirRow>
-              </Pressable>
-              <Pressable onPress={():any => { goToArticleDetail(item) }}>
-                <FDirRow>
-                  <OuterIconRow>
-                    <OuterIconLeft>
-                      <Icon name="ic_view" size={13} color="#000" />
-                    </OuterIconLeft>
-                  </OuterIconRow>
-                  <Heading4>{t('homeScreenviewDetailsText')}</Heading4>
-                </FDirRow>
-              </Pressable>
-            </DailyAction>
+            {isAdvice ? <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteadvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} /> :
+              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoritegames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />}
           </DailyBox>
         </Pressable>
       </View>
@@ -166,7 +156,6 @@ const DailyReads = ():any => {
   });
 
   useEffect(() => {
-
     let dailyDataCategory: any, showedDailyDataCategory: any;
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
       dailyDataCategory = { advice: 0, games: 0, currentadviceid: 0, currentgamesid: 0, currentDate: '', taxonomyid: activeChild.taxonomyData.id, prematureTaxonomyId: activityTaxonomyId };
@@ -208,11 +197,17 @@ const DailyReads = ():any => {
     console.log('My saved dailyCategoryData is', dailyDataCategory.currentDate < nowDate)
     if (dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)) {
       console.log('First time here');
-      const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => articleData.find((f: any) => f.category === i))
+      let filteredArticles;
+      if (activeChild.isPremature === 'true') {
+        filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
+        ArticlesData = filteredArticles;
+        console.log('Active child Child Age is data', filteredArticles)
+      }
+      const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i))
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id))
       const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
       const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
-      let categoryArticleData = articleData.filter((x: any) => x.category == articleCategoryArrayNew[nextIndex]);
+      let categoryArticleData = ArticlesData.filter((x: any) => x.category == articleCategoryArrayNew[nextIndex]);
       const obj1 = categoryArticleData.filter((i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id));
       let advicearray: any = [];
       if (obj1.length == 0) {
@@ -269,6 +264,8 @@ const DailyReads = ():any => {
       }
       setDataToShowInList(articleListData);
       setActivityDataToShowInList(activityListData);
+      console.log('articleListData is to show', articleListData)
+      console.log('activityListData is to show', activityListData)
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
       const showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
       dailyDataCategorytoDispatch[activeChild.uuid] = {
@@ -290,20 +287,27 @@ const DailyReads = ():any => {
       showedDailyDataCategorytoDispatch[activeChild.uuid] = { advice: advicearray, games: gamesarray }
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
       dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
+      console.log('first tmooo time here', showedDailyDataCategorytoDispatch);
     } else {
       console.log('second time here', articleData.length);
       const articleDataList: any = [];
       const activityDataList: any = [];
 
-      const articleDataToShow:any = [];
+      const articleDataToShow: any = [];
+      let filteredArticles;
+      if (activeChild.isPremature === 'true') {
+        filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
+        ArticlesData = filteredArticles;
+        console.log('Active child Child Age is data', filteredArticles)
+      }
       dailyDataCategory.currentadviceid.forEach((id: any) => {
-        const filteredArticle = articleData.find((x: any) => x.id === id);
+        const filteredArticle = ArticlesData.find((x: any) => x.id === id);
         if (filteredArticle) {
           articleDataToShow.push(filteredArticle);
         }
       });
 
-      const activityDataToShow:any = [];
+      const activityDataToShow: any = [];
       dailyDataCategory.currentgamesid.forEach((id: any) => {
         const filteredActivity = ActivitiesData.find((x: any) => x.id === id);
         if (filteredActivity) {
@@ -323,7 +327,8 @@ const DailyReads = ():any => {
       activityDataToShow.forEach((activity: any) => {
         activityDataList.push(activity);
       });
-
+      console.log('artcledata to show', articleDataList)
+      console.log('activityDataList to show', activityDataList)
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList)
 
@@ -332,26 +337,26 @@ const DailyReads = ():any => {
   return (
     <>
       <MainContainer>
-          <ShiftFromTopBottom10>
-            <Heading2>{t('homeScreendailyReadsTitle')}</Heading2>
-          </ShiftFromTopBottom10>
-          <View style={styles.flatlistOuterView}>
-            <FlatList
-              data={dataToShowInList}
-              horizontal
-              renderItem={({ item, index }:any):any => <RenderDailyReadItem item={item} index={index} />}
-              keyExtractor={(item:any):any => item?.id}
-            />
-          </View>
-          <View style={styles.flatlistOuterView}>
-            <FlatList
-              data={activityDataToShowInList}
-              horizontal
-              renderItem={({ item, index }:any):any => <RenderDailyReadItem item={item} index={index} />}
-              keyExtractor={(item:any):any => item?.id}
-            />
-          </View>
-        </MainContainer>
+        <ShiftFromTopBottom10>
+          <Heading2>{t('homeScreendailyReadsTitle')}</Heading2>
+        </ShiftFromTopBottom10>
+        <View style={styles.flatlistOuterView}>
+          <FlatList
+            data={dataToShowInList}
+            horizontal
+            renderItem={({ item, index }: any): any => <RenderDailyReadItem item={item} index={index} />}
+            keyExtractor={(item: any): any => item?.id}
+          />
+        </View>
+        <View style={styles.flatlistOuterView}>
+          <FlatList
+            data={activityDataToShowInList}
+            horizontal
+            renderItem={({ item, index }: any): any => <RenderDailyReadItem item={item} index={index} />}
+            keyExtractor={(item: any): any => item?.id}
+          />
+        </View>
+      </MainContainer>
     </>
   );
 };

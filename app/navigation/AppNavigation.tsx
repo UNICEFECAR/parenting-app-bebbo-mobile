@@ -1,5 +1,5 @@
 import analytics from '@react-native-firebase/analytics';
-import { NavigationContainer } from '@react-navigation/native';
+import { DrawerActions, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddSiblingData from '@screens/AddSiblingData';
@@ -149,8 +149,9 @@ export default (): any => {
   }
   useEffect(() => {
     // ... handle deep link
+    console.log('User is deepliong sxlkc');
     callUrl(linkedURL);
-  }, [linkedURL, resetURL, userIsOnboarded])
+  }, [linkedURL, resetURL, userIsOnboarded]) //resetURL,
 
 
   useEffect(() => {
@@ -197,7 +198,7 @@ export default (): any => {
 
       return (): any => {
         eventListener.remove()
-       // AppState.removeEventListener('change', updateTrackingStatus)
+        // AppState.removeEventListener('change', updateTrackingStatus)
       }
     }
   }, [AppState.currentState])
@@ -644,7 +645,15 @@ export default (): any => {
   }
   useEffect(() => {
     // console.log('useEffectonMessage');
-
+    // if (userIsOnboarded == true) {
+    //   setTimeout(() => {
+    //     SplashScreen.hide();
+    //   }, 0);
+    // } else {
+    //   setTimeout(() => {
+    //     SplashScreen.hide();
+    //   }, 2000);
+    // }
     messaging().onNotificationOpenedApp(remoteMessage => {
       if (remoteMessage) {
         // background click noti
@@ -654,7 +663,6 @@ export default (): any => {
       }
 
     });
-
     // Check whether an initial notification is available
     messaging()
       .getInitialNotification()
@@ -666,6 +674,24 @@ export default (): any => {
           }
         }
       });
+    // setTimeout(() => {
+    //   SplashScreen.hide();
+    // }, 2000);
+    if (userIsOnboarded == true) {
+      if (Platform.OS == 'android') {
+        setTimeout(() => {
+          SplashScreen.hide();
+        }, 0);
+      } else {
+        setTimeout(() => {
+          SplashScreen.hide();
+        }, 500);
+      }
+    } else {
+      setTimeout(() => {
+        SplashScreen.hide();
+      }, 2000);
+    }
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       try {
         // console.log('Remote notification', JSON.stringify(remoteMessage))
@@ -673,9 +699,6 @@ export default (): any => {
         console.log(err)
       }
     });
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 2000);
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       //type article/activities
       //foreground call
@@ -800,7 +823,8 @@ export default (): any => {
         onStateChange={async (): Promise<any> => {
           const previousRouteName = routeNameRef.current;
           const currentRouteName = navigationRef.current.getCurrentRoute().name;
-
+          console.log(`Previous route: ${previousRouteName}`);
+          console.log(`Current route: ${currentRouteName}`);
           if (previousRouteName !== currentRouteName) {
             analytics().logScreenView({
               screen_name: currentRouteName,
@@ -818,7 +842,7 @@ export default (): any => {
               userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
               : AppLayoutDirectionScreen
           }
-          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false, headerShown:false}}
+          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false, headerShown: false }}
         >
           <RootStack.Screen
             name="Localization"
@@ -845,7 +869,7 @@ export default (): any => {
             component={ChildSetup}
             options={{ headerShown: false }}
           />
-             <RootStack.Screen
+          <RootStack.Screen
             name="AddChildSetup"
             component={AddChildSetup}
             options={{ headerShown: false }}

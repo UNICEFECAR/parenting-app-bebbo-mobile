@@ -26,14 +26,14 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View, ScrollView, Alert, Platform, StyleSheet } from 'react-native';
+import { Pressable, Text, View, ScrollView, Alert, Platform, StyleSheet, ToastAndroid } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { backup } from '../services/backup';
 import { addChild, apiJsonDataGet, getAge, getNewChild, isFutureDate, setActiveChild } from '../services/childCRUD';
-import { validateForm } from '../services/Utils';
+import { notiPermissionUtil, validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3,
@@ -59,6 +59,7 @@ import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebas
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
+import { ToastAndroidLocal } from '../android/sharedAndroid.android';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -233,11 +234,26 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     }
   }
   const importDataAndroid = async (): Promise<any> => {
-    const dataset = await ScopedStorage.openDocument(true, 'utf8');
+    const dataset: any = await ScopedStorage.openDocument(true, 'utf8');
     let oldChildrenData: any = null;
     let importedrealm: any = null;
+    ToastAndroidLocal.showWithGravityAndOffset(
+      dataset,
+      ToastAndroidLocal.LONG,
+      ToastAndroidLocal.BOTTOM,
+      25,
+      50
+    );
     if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
+
       if (dataset.name.endsWith('.json')) {
+        // ToastAndroidLocal.showWithGravityAndOffset(
+        //   dataset.data,
+        //   ToastAndroidLocal.LONG,
+        //   ToastAndroidLocal.BOTTOM,
+        //   25,
+        //   50
+        // );
         const decryptedData = decryptData(dataset.data, encryptionsKey)
           .then((text: any) => {
             return text;
@@ -368,16 +384,18 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       // dispatch(setActiveChildData(childSet[0].uuid))
       const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
       await dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+      notiPermissionUtil();
       console.log('childAge is', childAge, childSet)
-      const Ages = await getAge(childSet, childAge);
-      console.log('childAge is Ageds', Ages)
+      //const Ages = await getAge(childSet, childAge);
+      //console.log('childAge is Ageds',Ages)
       let apiJsonData;
-      if (Ages?.length > 0) {
-        apiJsonData = apiJsonDataGet(String(Ages), "all")
-      }
-      else {
-        apiJsonData = apiJsonDataGet("all", "all")
-      }
+      // if (Ages?.length > 0) {
+      //   apiJsonData = apiJsonDataGet(String(Ages), "all")
+      // }
+      // else {
+      //   apiJsonData = apiJsonDataGet("all", "all")
+      // }
+      apiJsonData = apiJsonDataGet("all", "all")
       console.log('child API json data is ', apiJsonData)
       navigation.reset({
         index: 0,
@@ -390,7 +408,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       });
       //addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
     } else {
-      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild, parentName);
+      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild, false, parentName);
     }
   }
 

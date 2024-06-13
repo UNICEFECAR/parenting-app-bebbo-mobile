@@ -23,7 +23,7 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
     childGender: 'all',
     childAge: "all", //childAge != "" && childAge != undefined && childAge != null ? childAge : "all"
     parentGender: parentGender != "" && parentGender != undefined && parentGender != null ? parentGender : "all",
-    category: articleCategory != undefined && articleCategory != null ? articleCategory : "all"
+    category: "all" //articleCategory != undefined && articleCategory != null ? articleCategory : "all"
   }
   return [
     {
@@ -417,6 +417,7 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
 
 export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any,isDefaultChild?:boolean,isSibling?:boolean, parentName?: any): Promise<any> => {
   let oldBirthDate;
+  console.log(editScreen, "..editScreen..", data[0].isExpected);
   if (editScreen) {
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
     if (oldChild?.length > 0) {

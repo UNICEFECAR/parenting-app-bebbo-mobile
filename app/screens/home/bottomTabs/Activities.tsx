@@ -12,7 +12,7 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
+import { Heading3, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5, SideSpacing10 } from '@styles/typography';
 import React, { useContext, useMemo, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -21,10 +21,12 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Modal,
+  NativeEventEmitter,
+  NativeModules,
   Platform,
   Pressable,
   SectionList,
-  StyleSheet, Text, View
+  StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
@@ -45,6 +47,7 @@ import { dataRealmCommon } from '../../../database/dbquery/dataRealmCommon';
 import MiniSearch from 'minisearch';
 import { ActivityHistoryEntity } from '../../../database/schema/ActivitySearchHistorySchema';
 import VectorImage from 'react-native-vector-image';
+import OutsidePressHandler from 'react-native-outside-press';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -91,6 +94,10 @@ const styles = StyleSheet.create({
     right: 0,
     top: 51,
     zIndex: 1,
+  },
+  historyItemClickList: {
+    flex: 1,
+    marginTop: 110
   },
   historyText: {
     fontSize: 14,
@@ -146,6 +153,9 @@ const Activities = ({ route, navigation }: any): any => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
+  // const miniSearchIndexedData = useAppSelector(
+  //   (state: any) => state.searchIndex.searchActivityIndex
+  // );
   const ActivitiesData = randomArrayShuffle(ActivitiesDataold)
   const activityCategoryData = useAppSelector(
     (state: any) =>
@@ -175,13 +185,18 @@ const Activities = ({ route, navigation }: any): any => {
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] = useState([]);
   const [suggestedGames, setsuggestedGames] = useState([]);
   const [otherGames, setotherGames] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [filteredData, setfilteredData] = useState([]);
   const [selectedAgeBracket, setSelectedAgeBracket] = useState<any>();
+  const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [childMilestonedata, setchildMilestonedata] = useState([]);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
+
+  const { NativeModule } = NativeModules;
+
+
   const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
@@ -192,7 +207,6 @@ const Activities = ({ route, navigation }: any): any => {
   const getSearchedKeywords = async (): Promise<any> => {
     const realm = await dataRealmCommon.openRealm();
     if (realm != null) {
-      console.log('Seach History is...', realm?.objects('ActivitySearchHistory'))
       const unsynchronizedEvents: any = realm.objects('ActivitySearchHistory').sorted('createdAt', true).slice(0, 5).map(entry => entry.keyword);
       setSearchHistory(unsynchronizedEvents);
     }
@@ -200,12 +214,12 @@ const Activities = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
+      console.log('is child premature', activeChild.isPremature)
       // whatever
       if (netInfo.isConnected) {
         synchronizeEvents(netInfo.isConnected);
       }
       getSearchedKeywords();
-      console.log('UseFouusEffect Activities');
       setModalVisible(activityModalOpened);
     }, [activityModalOpened])
   );
@@ -253,22 +267,15 @@ const Activities = ({ route, navigation }: any): any => {
             toTop()
           } else {
             const results = searchIndex.search(queryText);
-            console.log('LLSLSLs Results length is', results.length)
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
-              console.log('currentSelectedChildId Results length is', itemId)
               setSelectedCategoryId(itemId);
               const categoryFilteredData = results.filter((x: any) => itemId.includes(x.activity_category));
-              console.log('categoryFilteredData Results length is', categoryFilteredData?.length)
-              console.log('categoryFilteredData Results length is....', categoryFilteredData)
               filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-              console.log('currentSelectedChildId Results length is 1', filteredResults?.length)
             } else {
-              console.log('currentSelectedChildId Results length is....', currentSelectedChildId)
               filteredResults = results.filter((x: any) => itemId.includes(x.activity_category));
             }
             //const filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId) && itemId.includes(x.activity_category));
-            console.log('LLLSSS filteredResults length is', filteredResults.length)
             setfilteredData(filteredResults);
             setLoading(false)
             setIsSearchedQueryText(false)
@@ -284,9 +291,8 @@ const Activities = ({ route, navigation }: any): any => {
           setshowNoData(true);
         }, 200);
       } else {
-        console.log('selectedChildActivitiesData article data is', selectedChildActivitiesData?.length)
+
         let newArticleData: any = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
-        console.log('new article data is', newArticleData?.length)
         let titleData = [];
         let bodyData = [];
         if (queryText != "" && queryText != undefined && queryText != null) {
@@ -311,14 +317,12 @@ const Activities = ({ route, navigation }: any): any => {
             toTop()
           } else {
             const results = searchIndex.search(queryText);
-            console.log('sdsd Results length is', results.length)
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
             } else {
               filteredResults = results;
             }
-            console.log('sdsd filteredResults length is', filteredResults.length)
             setfilteredData(filteredResults);
             setLoading(false)
             setIsSearchedQueryText(false)
@@ -345,11 +349,28 @@ const Activities = ({ route, navigation }: any): any => {
     }
     toTop();
   }
-
+  useFocusEffect(
+    React.useCallback(() => {
+      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+        setKeyboardStatus(true);
+      });
+      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+        setKeyboardStatus(false);
+      });
+      return (): any => {
+        {
+          navigation.setParams({ categoryArray: [] })
+          showSubscription.remove();
+          hideSubscription.remove();
+          // route.params?.currentSelectedChildId = 0;
+        }
+      }
+    }, [])
+  );
   useFocusEffect(
     React.useCallback(() => {
       if (isSerachedQueryText || queryText == '') {
-        setLoading(true);
+        //setLoading(true);
         async function fetchData(): Promise<any> {
           console.log('route category data', route.params?.categoryArray)
           if (route.params?.categoryArray) {
@@ -374,29 +395,25 @@ const Activities = ({ route, navigation }: any): any => {
 
 
   const showSelectedBracketData = (item: any): any => {
-
-    console.log('On age selected activities', item)
     if (item && item?.id !== null) {
       const eventData = { 'name': GAME_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
       logEvent(eventData, netInfo.isConnected)
       setCurrentSelectedChildId(item.id);
       setIsSearchedQueryText(true)
       const filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
-      console.log('On age selected activitites....', filteredData.length)
       setSelectedChildActivitiesData(filteredData);
       setCurrentChildSelected(false)
-    } else {
-      console.log('On de selected....', ActivitiesData.length)
-      setCurrentSelectedChildId(0);
-      setIsSearchedQueryText(true)
-      setSelectedChildActivitiesData(ActivitiesData);
-      setCurrentChildSelected(true)
     }
+    //  else {
+    //   setCurrentSelectedChildId(0);
+    //   setIsSearchedQueryText(true)
+    //   setSelectedChildActivitiesData(ActivitiesData);
+    //   setCurrentChildSelected(true)
+    // }
 
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('Applied another focus effect')
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
@@ -568,12 +585,10 @@ const Activities = ({ route, navigation }: any): any => {
       normalizedBody: activity.body
     }));
   };
-  // add minisearch on active child article data 
+  //add minisearch on active child article data 
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
-        await new Promise(resolve => setTimeout(resolve, 0));
-        console.log('ActivitiesData all datas', ActivitiesData?.length)
         const processedActivities = preprocessActivities(ActivitiesData);
         const searchActivittiesData = new MiniSearch({
           processTerm: (term) => suffixes(term, 3),
@@ -607,7 +622,8 @@ const Activities = ({ route, navigation }: any): any => {
           fields: ['title', 'summary', 'body'],
           storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'activity_category', 'equipment', 'type_of_support', 'child_age', 'cover_image', 'related_milestone', 'mandatory', 'embedded_images']
         });
-        processedActivities.forEach((item: any) => searchActivittiesData.add(item));
+        //processedActivities.forEach((item: any) => searchActivittiesData.add(item));
+        searchActivittiesData.addAllAsync(processedActivities);
         setSearchIndex(searchActivittiesData);
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error)
@@ -615,10 +631,12 @@ const Activities = ({ route, navigation }: any): any => {
     }
     initializeSearchIndex();
   }, []);
+  // useEffect(() => {
+  //   console.log('Minisearch is for geames', miniSearchIndexedData)
+  // })
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
-    console.log('Query text need to store is1', keyword)
     realm.write(() => {
       const storeKeyword = realm.create('ActivitySearchHistory', {
         keyword: keyword,
@@ -635,7 +653,6 @@ const Activities = ({ route, navigation }: any): any => {
     let combineDartArr: [];
     let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
-      console.log('on search list method')
       const keywords = queryText.trim().toLowerCase().split(' ').filter((word: any) => word.trim() !== '');
       if (keywords.length > 1) {
         const resultsPromises = keywords.map(async (keyword: any) => {
@@ -647,10 +664,7 @@ const Activities = ({ route, navigation }: any): any => {
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = aggregatedResults.filter((x: any) => selectedCategoryId.includes(x.activity_category));
-          console.log('in acrticle categoryFilteredData Results length is', categoryFilteredData?.length)
-          console.log('in acrticle categoryFilteredData Results length is....', categoryFilteredData)
           filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-          console.log('in articlevcurrentSelectedChildId Results length is 1', filteredResults?.length)
         } else {
           filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         }
@@ -662,15 +676,13 @@ const Activities = ({ route, navigation }: any): any => {
       } else {
         const results = searchIndex.search(queryText);
         let filteredResults: any = null;
-        console.log('on search list method', selectedCategoryId)
+        console.log('selectedCategoryId length', selectedCategoryId)
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = results.filter((x: any) => selectedCategoryId.includes(x.activity_category));
-          console.log('in acrticle categoryFilteredData Results length is', categoryFilteredData?.length)
-          console.log('in acrticle categoryFilteredData Results length is....', categoryFilteredData)
           filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
-          console.log('in articlevcurrentSelectedChildId Results length is 1', filteredResults?.length)
         } else {
-          filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
+          console.log('in else of search result', selectedCategoryId)
+          filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));//results;
         }
         //const filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         setfilteredData(filteredResults);
@@ -742,110 +754,116 @@ const Activities = ({ route, navigation }: any): any => {
             setProfileLoading={setProfileLoading}
           />
           <FlexCol>
-            <View style={styles.ageBracketView}>
-              <SearchBox>
-                <OuterIconRow>
-
-                  <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
-                    e.preventDefault();
-                    Keyboard.dismiss();
-                    setIsSearchedQueryText(true);
-                    await searchList(queryText);
-
-                  }}>
-                    <Icon
-                      name="ic_search"
-                      size={20}
-                      color="#000"
-
-                    />
-                  </Pressable>
-
-                </OuterIconRow>
-                <SearchInput
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  clearButtonMode="always"
-                  onFocus={(): any => {
-                    // setHistoryVisible(true);
-                  }}
-                  onChangeText={(queryText: any): any => {
-                    console.log('loghererer', queryText)
-                    if (queryText.replace(/\s/g, "") == "") {
-                      searchQueryText(queryText.replace(/\s/g, ''));
-                      setHistoryVisible(true);
-                    } else {
-                      searchQueryText(queryText);
-                      setHistoryVisible(true);
-                    }
-                  }}
-                  value={queryText}
-
-                  onSubmitEditing={async (event: any): Promise<any> => {
-                    console.log("event-", queryText);
-                    setHistoryVisible(false)
-                    Keyboard.dismiss();
-                    setIsSearchedQueryText(true);
-                    await searchList(queryText);
-                  }}
-                  multiline={false}
-                  // placeholder="Search for Keywords"
-                  placeholder={t('articleScreensearchPlaceHolder')}
-                  placeholderTextColor={"#777779"}
-                  allowFontScaling={false}
-                />
-
-                {
-                  Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
+            <OutsidePressHandler
+              onOutsidePress={() => {
+                setHistoryVisible(false)
+              }}
+            >
+              <View style={styles.ageBracketView}>
+                <SearchBox>
                   <OuterIconRow>
-                    <IconClearPress onPress={async (): Promise<any> => {
-                      console.log('cleartext')
+
+                    <Pressable style={styles.pressablePadding} onPress={async (e): Promise<any> => {
+                      e.preventDefault();
                       Keyboard.dismiss();
-                      searchQueryText('');
-                      setHistoryVisible(true);
+                      setIsSearchedQueryText(true);
+                      await searchList(queryText);
 
                     }}>
                       <Icon
-                        name="ic_close"
-                        size={10}
-                        color="#fff"
+                        name="ic_search"
+                        size={20}
+                        color="#000"
+
                       />
-                    </IconClearPress>
+                    </Pressable>
 
                   </OuterIconRow>
-                }
-              </SearchBox>
-              <DividerAct></DividerAct>
-              <AgeBrackets
-                itemColor={headerColorBlack}
-                activatedItemColor={headerColor}
-                currentSelectedChildId={currentSelectedChildId}
-                showSelectedBracketData={showSelectedBracketData}
-                ItemTintColor={backgroundColor}
-              />
-              {searchHistory.length !== 0 && historyVisible &&
-                <View style={styles.historyList}>
-                  <FlatList
-                    data={searchHistory}
-                    renderItem={renderSearchHistoryItem}
-                    keyboardShouldPersistTaps='handled'
-                    contentContainerStyle={{ flex: 1 }}
-                    keyExtractor={(item, index): any => index.toString()}
-                  //style={styles.historyList}
+                  <SearchInput
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    clearButtonMode="always"
+                    onFocus={(): any => {
+                      setHistoryVisible(true);
+                    }}
+                    onChangeText={(queryText: any): any => {
+                      if (queryText.replace(/\s/g, "") == "") {
+                        searchQueryText(queryText.replace(/\s/g, ''));
+                        setHistoryVisible(true);
+                      } else {
+                        searchQueryText(queryText);
+                        setHistoryVisible(true);
+                      }
+                    }}
+                    value={queryText}
+
+                    onSubmitEditing={async (event: any): Promise<any> => {
+                      console.log("event-", queryText);
+                      setHistoryVisible(false)
+                      Keyboard.dismiss();
+                      setIsSearchedQueryText(true);
+                      await searchList(queryText);
+                    }}
+                    multiline={false}
+                    // placeholder="Search for Keywords"
+                    placeholder={t('articleScreensearchPlaceHolder')}
+                    placeholderTextColor={"#777779"}
+                    allowFontScaling={false}
                   />
-                </View>
-              }
-              <View style={{ backgroundColor: activitiesTintcolor }}>
-                <ActivitiesCategories
-                  borderColor={headerColor}
-                  filterOnCategory={setFilteredActivityData}
-                  fromPage={fromPage}
-                  filterArray={filterArray}
-                  onFilterArrayChange={onFilterArrayChange}
-                />
+
+                  {
+                    Platform.OS == 'android' && queryText.replace(/\s/g, "") != "" &&
+                    <SideSpacing10>
+                      <OuterIconRow>
+                        <IconClearPress onPress={async (): Promise<any> => {
+                          console.log('cleartext')
+                          Keyboard.dismiss();
+                          searchQueryText('');
+                        }}>
+                          <Icon
+                            name="ic_close"
+                            size={12}
+                            color="#fff"
+                          />
+                        </IconClearPress>
+
+                      </OuterIconRow>
+                    </SideSpacing10>
+
+                  }
+                </SearchBox>
                 <DividerAct></DividerAct>
+                <AgeBrackets
+                  itemColor={headerColorBlack}
+                  activatedItemColor={headerColor}
+                  currentSelectedChildId={currentSelectedChildId}
+                  showSelectedBracketData={showSelectedBracketData}
+                  ItemTintColor={backgroundColor}
+                />
+                {searchHistory.length !== 0 && historyVisible &&
+                  <View style={styles.historyList}>
+                    <FlatList
+                      data={searchHistory}
+                      keyboardShouldPersistTaps="handled"
+                      renderItem={renderSearchHistoryItem}
+                      contentContainerStyle={{ flex: 1 }}
+                      keyExtractor={(item, index): any => index.toString()}
+                    />
+                  </View>
+                }
+                <View style={{ backgroundColor: activitiesTintcolor }}>
+                  <ActivitiesCategories
+                    borderColor={headerColor}
+                    filterOnCategory={setFilteredActivityData}
+                    fromPage={fromPage}
+                    filterArray={filterArray}
+                    onFilterArrayChange={onFilterArrayChange}
+                  />
+                  <DividerAct></DividerAct>
+                </View>
               </View>
-            </View>
+            </OutsidePressHandler>
+
             <FlexCol>
               {showNoData == true && suggestedGames?.length == 0 && otherGames?.length == 0 ?
                 <Heading4Center>{t('noDataTxt')}</Heading4Center>
@@ -857,6 +875,11 @@ const Activities = ({ route, navigation }: any): any => {
                 ref={(ref: any): any => (sectionListRef = ref)}
                 keyExtractor={(item: any, index: any): any => String(item?.id) + String(index)}
                 stickySectionHeadersEnabled={false}
+                onScroll={(e: any) => {
+                  if (keyboardStatus == true) {
+                    Keyboard.dismiss();
+                  }
+                }}
                 // initialNumToRender={4}
                 // renderItem={({ item, title }) => <Item item={item} title={title}/>}
                 removeClippedSubviews={true} // Unmount components when outside of window 
