@@ -159,7 +159,8 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       headerColor: componentColors?.artHeaderColor,
       backgroundColor: componentColors?.artBackgroundColor,
       detailData: selectedPinnedArticleData,
-      currentSelectedChildId: currentSelectedChildId
+      currentSelectedChildId: currentSelectedChildId,
+      netInfo: netInfo
     });
   };
   const toTop = (): any => {

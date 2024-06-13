@@ -2,9 +2,10 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonPrimary, ButtonRow,
+  ButtonTermsRow,
   ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
-import Checkbox, { CheckboxActive, CheckboxItem, FormOuterCheckbox } from '@components/shared/CheckboxStyle';
+import Checkbox, { CheckboxActive, CheckboxItem, FormOuterCheckbox, FormOuterTermsCheckbox } from '@components/shared/CheckboxStyle';
 import { LabelTextTerms } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer, { OnboardingContent, OnboardingTermsHead } from '@components/shared/OnboardingContainer';
@@ -26,6 +27,7 @@ import FeatureTCView from '@components/shared/FeaturesTCView';
 import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
 import { logEvent } from '../services/EventSyncService';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
+import { ScrollView } from 'react-native-gesture-handler';
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -201,15 +203,19 @@ const Terms = ({ navigation }: Props): any => {
 
   return (
     <>
-      <View style={styles.containerView}>
+      <ScrollView 
+      contentContainerStyle ={styles.containerView}>
         <FocusAwareStatusBar
           animated={true}
           backgroundColor={headerColor}
         />
         <OverlayLoadingComponent loading={loading} />
-        <View style={styles.vectorImageView}>
-          <VectorImage source={item.image} />
+        <View style={{ marginTop: 30 }}>
+          <View style={styles.vectorImageView}>
+            <VectorImage source={item.image} />
+          </View>
         </View>
+
 
         <ShiftFromTop15>
           <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>
@@ -236,8 +242,8 @@ const Terms = ({ navigation }: Props): any => {
         </View>
         <View>
           <SideSpacing10>
-            <ButtonRow>
-              <FormOuterCheckbox
+            <ButtonTermsRow>
+              <FormOuterTermsCheckbox
                 onPress={(): any => {
                   setToggleCheckBox(!toggleCheckBox);
                 }}>
@@ -268,7 +274,7 @@ const Terms = ({ navigation }: Props): any => {
                     .
                   </LabelTextTerms>
                 </SideRightSpacing20>
-              </FormOuterCheckbox>
+              </FormOuterTermsCheckbox>
               <ButtonPrimary
                 disabled={isButtonDisabled}
                 onPress={(): any => {
@@ -276,7 +282,7 @@ const Terms = ({ navigation }: Props): any => {
                 }}>
                 <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
               </ButtonPrimary>
-            </ButtonRow>
+            </ButtonTermsRow>
 
           </SideSpacing10>
         </View>
@@ -284,7 +290,7 @@ const Terms = ({ navigation }: Props): any => {
 
 
 
-      </View>
+      </ScrollView>
     </>
   );
 };
