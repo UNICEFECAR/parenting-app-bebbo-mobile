@@ -39,7 +39,7 @@ import {
 } from '@components/shared/SettingsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { DrawerActions, useFocusEffect, useIsFocused, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1,
@@ -143,6 +143,7 @@ const SettingScreen = (props: any): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
+  const navigation = useNavigation<any>();
   const actionSheetRef = createRef<any>();
   const actionSheetRefImport = createRef<any>();
   const countryId = useAppSelector(
@@ -598,6 +599,7 @@ const SettingScreen = (props: any): any => {
 
 
   useEffect(() => {
+    navigation.dispatch(DrawerActions.closeDrawer());
     const selectedCountry: any = localization.find(
       (country: any) => country.countryId === countryId,
     );

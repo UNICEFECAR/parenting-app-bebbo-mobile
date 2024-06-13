@@ -3,6 +3,7 @@ import {
   bothParentGender,
   femaleData,
   maleData,
+  regexpEmojiPresentation,
   relationShipFatherId,
   relationShipMotherId,
 } from '@assets/translations/appOfflineData/apiConstants';
@@ -47,11 +48,13 @@ import {
   Heading3Centerw,
   ShiftFromTopBottom20,
   ShiftFromTop10,
+  ShiftFromTop20,
 } from '../styles/typography';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import { bgcolorWhite, primaryColor } from '@styles/style';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
+import TextInputML from '@components/shared/TextInputML';
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor: bgcolorWhite,
@@ -67,7 +70,10 @@ const styles = StyleSheet.create({
   scrollViewStyle: {
     padding: 0,
     paddingTop: 0
-  }
+  },
+  textInputStyle: {
+    width: '100%'
+  },
 })
 const ChildImportSetup = (props: any): any => {
   const netInfo = useNetInfoHook();
@@ -77,6 +83,7 @@ const ChildImportSetup = (props: any): any => {
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState('');
+  const [name, setName] = React.useState('');
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
@@ -117,6 +124,15 @@ const ChildImportSetup = (props: any): any => {
       backHandler.remove();
     }
   }, []);
+
+  useEffect(() => {
+    const propsData = props?.route?.params;
+    setRelationship(propsData?.relationData);
+    setRelationshipName(propsData?.relationshipNameData);
+    setUserRelationToParent(propsData?.userRelationToParentData);
+    setName(propsData?.parentName);
+  }, [props?.route?.params])
+
   const getCheckedParentItem = (checkedItem: any): any => {
     if (
       typeof checkedItem.id === 'string' ||
@@ -162,36 +178,60 @@ const ChildImportSetup = (props: any): any => {
                   <ShiftFromTopBottom20>
                     <Heading3Centerw style={styles.headingStyle2}>{t('updateImportText')}</Heading3Centerw>
                   </ShiftFromTopBottom20>
-                  <FormInputGroup
-                    onPress={(): any => {
-                      actionSheetRef.current?.setModalVisible(true);
-                    }}>
-                    <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
+                  <ShiftFromTop20>
+                    <LabelText>{t('parentNameText')}</LabelText>
                     <FormInputBox>
-                      <FormDateText>
-                        <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text>
-                      </FormDateText>
-                      <FormDateAction>
-                        <Icon name="ic_angle_down" size={10} color="#000" />
-                      </FormDateAction>
+                      <TextInputML
+                        style={styles.textInputStyle}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        maxLength={30}
+                        clearButtonMode="always"
+                        onChangeText={(value: any): any => {
+                          if (value.replace(/\s/g, "") == "") {
+                            setName(value.replace(/\s/g, ''));
+                          } else {
+                            setName(value.replace(regexpEmojiPresentation, ''));
+                          }
+                        }}
+                        value={name}
+                        //placeholder={t('parentNamePlaceTxt')}
+                        //placeholderTextColor={"#77777779"}
+                        allowFontScaling={false}
+                      />
                     </FormInputBox>
-                  </FormInputGroup>
-
-                  <View>
-                    {
-                      userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
-                        <FormContainer1>
-                          <LabelText>{t('parentGender')}</LabelText>
-                          <ToggleRadios
-                            options={relationshipData}
-                            tickbgColor={headerColor}
-                            tickColor={'#FFF'}
-                            getCheckedItem={getCheckedParentItem}
-                          />
-                        </FormContainer1>
-                        : null
-                    }
-                  </View>
+                  </ShiftFromTop20>
+                  <ShiftFromTop20>
+                    <FormInputGroup
+                      onPress={(): any => {
+                        actionSheetRef.current?.setModalVisible(true);
+                      }}>
+                      <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
+                      <FormInputBox>
+                        <FormDateText>
+                          <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text>
+                        </FormDateText>
+                        <FormDateAction>
+                          <Icon name="ic_angle_down" size={10} color="#000" />
+                        </FormDateAction>
+                      </FormInputBox>
+                    </FormInputGroup>
+                    <View>
+                      {
+                        userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
+                          <FormContainer1>
+                            <LabelText>{t('parentGender')}</LabelText>
+                            <ToggleRadios
+                              options={relationshipData}
+                              tickbgColor={headerColor}
+                              tickColor={'#FFF'}
+                              getCheckedItem={getCheckedParentItem}
+                            />
+                          </FormContainer1>
+                          : null
+                      }
+                    </View>
+                  </ShiftFromTop20>
                 </View>
               </ChildSection>
 
@@ -247,7 +287,7 @@ const ChildImportSetup = (props: any): any => {
         <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
-              disabled={relationship == null || relationship == "" || relationship == undefined || userRelationToParent == undefined ? true : false}
+              disabled={relationship == null || name == "" || relationship == "" || relationship == undefined || userRelationToParent == undefined ? true : false}
               onPress={async (e: any): Promise<any> => {
                 e.stopPropagation();
                 if (importResponse) {
@@ -265,6 +305,7 @@ const ChildImportSetup = (props: any): any => {
                       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
                       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
                       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
+                      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", name);
                       if (counter == 0) {
                         if (childId?.length > 0) {
                           childId = childId[0].value;
