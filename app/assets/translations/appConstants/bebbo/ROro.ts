@@ -399,7 +399,7 @@ const ROro = {
                 addChildText: "Adăugați detaliile copilului dvs.",
                 addBasicParentsInfo: "Adaugă informații de bază despre tine.",
                 addBasicChildInfo:"Adaugă informații de bază despre copilul tău. Dacă ai mai mulți copii, îi poți adăuga mai târziu.",
-                parentNameText: "Care este numele sau nickname-ul tău?",
+                parentNameText: "Care este numele tău?",
                 notiTimeAgoTxt: "{{ageStr}} în urmă",
                 todayTxt: "astăzi",
                 fiveYearsGreater: "Valorile standard de creștere sunt disponibile numai pentru copiii cu vârsta cuprinsă între 0 și 5 ani și, prin urmare, graficele de creștere nu sunt aplicabile pentru copiii cu vârsta mai mare de 5 ani",
