@@ -29,7 +29,7 @@ const UZru = {
                 tNcacceptbtn: "Я принимаю условия и положения",
                 loadingText: "Загрузка контента…",
                 childSetupheader: "Получите максимум от Беббо!",
-                childSetupdobLabel: "Когда наступает день рождения или срок родов ребенка?",
+                childSetupdobLabel: "Когда день рождения илипредполагаемая дата рождения ребенка?",
                 addAnotherChildSetupDobLabel: "Когда день рождения ребенка?",
                 childSetupdobSelector: "Введите дату рождения/предполагаемую дату родов",
                 childSetupdueLabel: "Какова была предполагаемая дата рождения ребенка?",
