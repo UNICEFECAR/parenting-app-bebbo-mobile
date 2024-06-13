@@ -13,6 +13,11 @@ export const FormOuterCheckbox = styled.Pressable`
   align-items: flex-start;
   flex-direction: row;
 `;
+export const FormOuterTermsCheckbox = styled.Pressable`
+  margin-bottom: 30px;
+  align-items: flex-start;
+  flex-direction: row;
+`;
 export const CheckboxActive = styled(Checkbox)`
   align-items: center;
   line-height: 20px;

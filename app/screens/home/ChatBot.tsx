@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from '../../../App';
 import ThreeDotsLoader from '../../services/ThreeDotsLoader';
 import { imgLogoChatbotNew } from '@dynamicImportsClass/dynamicImports';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   flexShrink1: { flexShrink: 1 },
@@ -42,6 +43,7 @@ interface ChatBotData {
 const BotBubble = (props: any): any => {
   const { message, steps, stepindex, loading } = props;
   const { t } = useTranslation();
+  const netInfo = useNetInfoHook();
   const navigation = useNavigation<any>();
   const [answer2visible, setanswer2visible] = useState(false);
   const allConfigData = useAppSelector((state: any) =>
@@ -125,6 +127,7 @@ const BotBubble = (props: any): any => {
                         headerColor: '',
                         backgroundColor: '',
                         detailData: steps.textToShow.related_article,
+                        netInfo: netInfo
                         // setFilteredArticleData: setFilteredArticleData
                       });
 

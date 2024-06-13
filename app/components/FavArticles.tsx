@@ -62,6 +62,7 @@ const FavArticles = (): any => {
         headerColor: artHeaderColor,
         backgroundColor: artBackgroundColor,
         detailData: item,
+        netInfo: netInfo
       });
   };
   useFocusEffect(
