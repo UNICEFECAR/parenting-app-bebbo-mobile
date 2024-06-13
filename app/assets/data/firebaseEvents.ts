@@ -34,4 +34,4 @@ export const DONATE_OPENED="donate_opened";//Donate Event
 export const ARTICLE_SEARCHED="article_searched";//Article Searched Event
 export const ACTIVITY_SEARCHED="activity_searched";//Activity Searched Event
 export const TERMS_ACCEPTED="terms_accepted";//Terms accepted Event
-export const ONBOARDING_SKIPPED="onboarding_skipped";//Terms accepted Event
+export const ONBOARDING_SKIPPED="onboarding_skipped";//Onboarding Skipped Event
