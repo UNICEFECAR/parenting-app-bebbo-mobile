@@ -34,7 +34,7 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
     }
   ];
 }
-export const getNewChild = async (uuidGet: string, autoChild?: string,isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any, createdAt?: any): Promise<ChildEntity> => {
+export const getNewChild = async (uuidGet: string, autoChild?: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any, createdAt?: any): Promise<ChildEntity> => {
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
     childName: (name != "" && name != null && name != undefined) ? name.trim() : '',
@@ -180,7 +180,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender,
-        auto_child:child.autoChild
+        auto_child: child.autoChild
       }) // relationship_with_child:monther/father
 
 
@@ -224,7 +224,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
           child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
           parent_gender: child.parent_gender,
-          auto_child:child.autoChild
+          auto_child: child.autoChild
         }) // relationship_with_child:monther/father
 
       }
@@ -269,7 +269,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender,
-        auto_child:child.autoChild
+        auto_child: child.autoChild
       }) // relationship_with_child:monther/father
     }
   }
@@ -389,12 +389,12 @@ export const getNotificationDateInString = (t: any, birthDate: string, pluralSho
     }
     if (diff.days >= 1 && diff.months == "" && diff.years == "") {
       if (pluralShow == true) {
-      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25 ? ' ' + t('days5tag') : Math.round(diff.days) == 21 ? ' ' + t('daytag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+        ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25 ? ' ' + t('days5tag') : Math.round(diff.days) == 21 ? ' ' + t('daytag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       }
       else {
         ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       }
-    }  
+    }
     if (ageStr == "") {
       ageStr = t('todayTxt');
     } else {
@@ -415,7 +415,7 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
 
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any,isDefaultChild?:boolean,isSibling?:boolean, parentName?: any): Promise<any> => {
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any, isDefaultChild?: boolean, isSibling?: boolean, parentName?: any): Promise<any> => {
   let oldBirthDate;
   console.log(editScreen, "..editScreen..", data[0].isExpected);
   if (editScreen) {
@@ -435,11 +435,11 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
   //new child add from 
   if (param == 0) {
-    if(isDefaultChild){
-      const eventData = { 'name': ONBOARDING_SKIPPED } 
+    if (isDefaultChild) {
+      const eventData = { 'name': ONBOARDING_SKIPPED }
       logEvent(eventData, netInfo.isConnected);
       navigation.navigate('ServiceProviderInfoSetup')
-    }else{
+    } else {
       navigation.navigate('ChildSetupList');
     }
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
@@ -512,21 +512,21 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       let apiJsonData;
       //  apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
       if (taxonomyData?.length > 0) {
-          apiJsonData = apiJsonDataGet("all");
+        apiJsonData = apiJsonDataGet("all");
         if (currentActiveChildId?.length > 0) {
           currentActiveChildId = currentActiveChildId[0].value;
           if (currentActiveChildId == data[0].uuid) {
             setActiveChild(languageCode, data[0].uuid, dispatch, childAge, false);
           }
         }
-        if(!isSibling) {
-        navigation.navigate('LoadingScreen', {
-          apiJsonData: apiJsonData,
-          prevPage: 'AddEditChild'
-        });
-      }else{
-        navigation.navigate('ChildProfileScreen');
-      }
+        if (!isSibling) {
+          navigation.navigate('LoadingScreen', {
+            apiJsonData: apiJsonData,
+            prevPage: 'AddEditChild'
+          });
+        } else {
+          navigation.navigate('ChildProfileScreen');
+        }
       }
 
     }
@@ -555,7 +555,7 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
     child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
     relationship_with_child: userRelationToParent,
     parent_gender: child.parent_gender,
-    auto_child:child.autoChild
+    auto_child: child.autoChild
   }) // relationship_with_child:monther/father
 }
 export const getAllConfigData = async (dispatch: any): Promise<any> => {
@@ -653,7 +653,7 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
 }
 
 
-export const deleteChild = async (navigation:any,languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, childAge: any, t: any,childList:any): Promise<any> => {
+export const deleteChild = async (navigation: any, languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, childAge: any, t: any, childList: any): Promise<any> => {
   const currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterCondition);
   if (oldChild?.length > 0) {
