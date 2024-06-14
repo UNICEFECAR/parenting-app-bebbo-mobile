@@ -350,9 +350,11 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   }
   const AddChild = async (): Promise<any> => {
     // if dob /plannedTermDate changes, append notifications to current child's notifications in slice
+    const isDefaultChild = "false";
     const insertData: any = editScreen
       ? await getNewChild(
         uuid,
+        isDefaultChild,
         isExpected,
         plannedTermDate,
         isPremature,
@@ -364,6 +366,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       )
       : await getNewChild(
         uuid,
+        '',
         isExpected,
         plannedTermDate,
         isPremature,
@@ -386,6 +389,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     console.log(insertData, "...insertData")
     childSet.push(insertData);
     setLoading(false);
+    console.log('Edited data is',childSet)
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,true,'');
   };
 

@@ -51,7 +51,7 @@ import { bgcolorWhite2 } from '@styles/style';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 import { logEvent } from '../services/EventSyncService';
-import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
+import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
@@ -329,18 +329,22 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
   }
 
 
-  const AddChild = async (isDefaultChild: boolean,isDefaultName: boolean): Promise<any> => {
+  const AddChild = async (isDefaultChild: boolean, isDefaultName: boolean): Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    let defaultName ;
-    if(isDefaultName){
-       defaultName='Baby';
-    }else{
-        defaultName= name;
+    let defaultName;
+    if (isDefaultName) {
+      defaultName = 'Baby';
+    } else {
+      defaultName = name;
     }
-    const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    let insertData: any = null;
+    const isDefault = isDefaultChild ? "true" : "false";
+    insertData = await getNewChild('', isDefault, isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
     if (isDefaultChild) {
+      const eventData = { 'name': ONBOARDING_SKIPPED }
+      logEvent(eventData, netInfo.isConnected)
       if (childSet[0].isExpected == true || childSet[0].isExpected == 'true') {
         const eventData = { 'name': EXPECTED_CHILD_ENTERED }
         logEvent(eventData, netInfo.isConnected)
@@ -352,7 +356,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", childSet[0].uuid);
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", isUserEnteredChildData);
       await setActiveChild(languageCode, childSet[0].uuid, dispatch, childAge, false);
-    // dispatch(setActiveChildData(childSet[0].uuid))
+      // dispatch(setActiveChildData(childSet[0].uuid))
       const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
       await dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
       // console.log('childAge is',childAge,childSet)
@@ -366,7 +370,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
       //   apiJsonData = apiJsonDataGet("all", "all")
       // }
       const apiJsonData = apiJsonDataGet("all")
-      console.log('child API json data is ',apiJsonData)
+      console.log('child API json data is ', apiJsonData)
       navigation.reset({
         index: 0,
         routes: [
@@ -378,7 +382,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
       });
       //addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
     } else {
-      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo,isDefaultChild,false);
+      addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild, false);
     }
   }
 
@@ -481,7 +485,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
                   if (validated == true) {
                     setTimeout(() => {
                       setLoading(false);
-                      AddChild(false,false);
+                      AddChild(false, false);
                     }, 0)
                   }
                   else {
@@ -506,19 +510,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
 
                   e.stopPropagation();
                   setTimeout(() => {
-                    console.log('Relationship name', relationshipname, relationship)
-                    if (relationshipname == 'service provider') {
-                     // AddChild(true);
-                      setName('Child')
-                      AddChild(false,true);
-                      navigation.navigate('ServiceProviderInfoSetup')
-                    } else {
-                      // const currentDate = new Date();
-                      // setBirthDate(currentDate)
-                      AddChild(true,true);
-                    }
-                    //setLoading(true);
-                    // AddChild();
+                    AddChild(true, true);
                   }, 0)
                 }}>
                   <Heading3BoldCenterrw style={styles.uploadTextStyle}>

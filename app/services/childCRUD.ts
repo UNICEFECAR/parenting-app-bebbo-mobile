@@ -1,4 +1,4 @@
-import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
+import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
 import { appConfig, articleCategory, boyChildGender } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
@@ -25,7 +25,6 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
     parentGender: parentGender != "" && parentGender != undefined && parentGender != null ? parentGender : "all",
     category: "all" //articleCategory != undefined && articleCategory != null ? articleCategory : "all"
   }
-  console.log(postData, "..postData Data is here..");
   return [
     {
       apiEndpoint: appConfig.articles,
@@ -35,7 +34,7 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
     }
   ];
 }
-export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any, createdAt?: any): Promise<ChildEntity> => {
+export const getNewChild = async (uuidGet: string, autoChild?: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any, createdAt?: any): Promise<ChildEntity> => {
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
     childName: (name != "" && name != null && name != undefined) ? name.trim() : '',
@@ -48,7 +47,8 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
     updatedAt: new Date(),
     measurementPlace: "doctor",
     isMigrated: false,
-    isExpected: (isExpected != '' && isExpected != null && isExpected != undefined) ? isExpected : "false"
+    isExpected: (isExpected != '' && isExpected != null && isExpected != undefined) ? isExpected : "false",
+    autoChild: (autoChild != '' && autoChild != null && autoChild != undefined) ? autoChild : "false"
   };
 
 }
@@ -173,14 +173,14 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         child.parent_gender = userParentalRole[0].value
       }
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
-      console.log("allDatatoStore AddEditChild1--", allDatatoStore);
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
         is_premature: child.isPremature,
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
-        parent_gender: child.parent_gender
+        parent_gender: child.parent_gender,
+        auto_child: child.autoChild
       }) // relationship_with_child:monther/father
 
 
@@ -216,14 +216,15 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       }
       if (child) {
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
-        console.log("allDatatoStore AddEditChild2--", allDatatoStore);
         dispatch(setActiveChildData(child));
+        const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
         analytics().setUserProperties({
           ageid: String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
-          parent_gender: child.parent_gender
+          parent_gender: child.parent_gender,
+          auto_child: child.autoChild
         }) // relationship_with_child:monther/father
 
       }
@@ -260,21 +261,20 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
     }
     if (child) {
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
-      console.log("allDatatoStore AddEditChild3--", allDatatoStore);
-      console.log("taxonomy data is", child);
+      const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
         is_premature: child.isPremature,
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
-        parent_gender: child.parent_gender
+        parent_gender: child.parent_gender,
+        auto_child: child.autoChild
       }) // relationship_with_child:monther/father
     }
   }
   const notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
-  console.log("check local notification log1---");
   if (activeset == true) {
     return "activeset";
   }
@@ -389,12 +389,12 @@ export const getNotificationDateInString = (t: any, birthDate: string, pluralSho
     }
     if (diff.days >= 1 && diff.months == "" && diff.years == "") {
       if (pluralShow == true) {
-      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25 ? ' ' + t('days5tag') : Math.round(diff.days) == 21 ? ' ' + t('daytag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+        ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25 ? ' ' + t('days5tag') : Math.round(diff.days) == 21 ? ' ' + t('daytag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       }
       else {
         ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       }
-    }  
+    }
     if (ageStr == "") {
       ageStr = t('todayTxt');
     } else {
@@ -415,12 +415,11 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any): any => {
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
 
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any,isDefaultChild?:boolean,isSibling?:boolean, parentName?: any): Promise<any> => {
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, childAge: any, relationship?: any, userRelationToParent?: any, netInfo?: any, isDefaultChild?: boolean, isSibling?: boolean, parentName?: any): Promise<any> => {
   let oldBirthDate;
   console.log(editScreen, "..editScreen..", data[0].isExpected);
   if (editScreen) {
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
-    console.log(oldChild, "..oldChild..");
     if (oldChild?.length > 0) {
       oldChild = oldChild.map((item: any) => item)[0];
       oldBirthDate = oldChild.birthDate;
@@ -436,12 +435,13 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
   //new child add from 
   if (param == 0) {
-    if(isDefaultChild){
+    if (isDefaultChild) {
+      const eventData = { 'name': ONBOARDING_SKIPPED }
+      logEvent(eventData, netInfo.isConnected);
       navigation.navigate('ServiceProviderInfoSetup')
-    }else{
+    } else {
       navigation.navigate('ChildSetupList');
     }
-   console.log('UUID is',data[0])
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
@@ -465,7 +465,6 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   //child add from edit/add expecting
   else {
     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-    console.log(currentActiveChildId, "..currentActiveChildId..");
     const ageLimit = [];
     const startDate = new Date(oldBirthDate)
     const someDate = new Date(data[0].birthDate)
@@ -513,21 +512,21 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       let apiJsonData;
       //  apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
       if (taxonomyData?.length > 0) {
-          apiJsonData = apiJsonDataGet("all");
+        apiJsonData = apiJsonDataGet("all");
         if (currentActiveChildId?.length > 0) {
           currentActiveChildId = currentActiveChildId[0].value;
           if (currentActiveChildId == data[0].uuid) {
             setActiveChild(languageCode, data[0].uuid, dispatch, childAge, false);
           }
         }
-        if(!isSibling) {
-        navigation.navigate('LoadingScreen', {
-          apiJsonData: apiJsonData,
-          prevPage: 'AddEditChild'
-        });
-      }else{
-        navigation.navigate('ChildProfileScreen');
-      }
+        if (!isSibling) {
+          navigation.navigate('LoadingScreen', {
+            apiJsonData: apiJsonData,
+            prevPage: 'AddEditChild'
+          });
+        } else {
+          navigation.navigate('ChildProfileScreen');
+        }
       }
 
     }
@@ -555,7 +554,8 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
     is_premature: child.isPremature,
     child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
     relationship_with_child: userRelationToParent,
-    parent_gender: child.parent_gender
+    parent_gender: child.parent_gender,
+    auto_child: child.autoChild
   }) // relationship_with_child:monther/father
 }
 export const getAllConfigData = async (dispatch: any): Promise<any> => {
@@ -629,7 +629,6 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
 
           const storedata = store.getState();
           const allDatatoStore = await getAllDataToStore(storedata.selectedCountry.languageCode, dispatch, "AddEditChild", activeChild);
-          console.log("allDatatoStore AddEditChild4--", allDatatoStore);
           dispatch(setActiveChildData(activeChild));
         }
       }
@@ -654,7 +653,7 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
 }
 
 
-export const deleteChild = async (navigation:any,languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, childAge: any, t: any,childList:any): Promise<any> => {
+export const deleteChild = async (navigation: any, languageCode: any, _index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, childAge: any, t: any, childList: any): Promise<any> => {
   const currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterCondition);
   if (oldChild?.length > 0) {
@@ -668,7 +667,6 @@ export const deleteChild = async (navigation:any,languageCode: any, _index: numb
     LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
   })
   const createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
-  console.log(createresult, "..createresult..")
   if (createresult == 'success') {
     if (Platform.OS === 'android') {
       ToastAndroidLocal.showWithGravityAndOffset(

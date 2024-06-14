@@ -678,6 +678,7 @@ class UserRealmCommon extends Component {
             isMigrated: entity.isMigrated || false,
             favoriteadvices: entity.favoriteadvices || [],
             favoritegames: entity.favoritegames || [],
+            autoChild: entity.autoChild || false,
         }));
         return childData;
     }
