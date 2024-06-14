@@ -247,13 +247,6 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     if (dataset && dataset.data != "" && dataset.data != null && dataset.data != undefined) {
      
       if (dataset.name.endsWith('.json')) {
-        // ToastAndroidLocal.showWithGravityAndOffset(
-        //   dataset.data,
-        //   ToastAndroidLocal.LONG,
-        //   ToastAndroidLocal.BOTTOM,
-        //   25,
-        //   50
-        // );
         const decryptedData = decryptData(dataset.data, encryptionsKey)
           .then((text: any) => {
             return text;
