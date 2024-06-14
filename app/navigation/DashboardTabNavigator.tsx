@@ -23,7 +23,7 @@ import {
 import { ThemeContext } from 'styled-components/native';
 import { DashboardBottomTabParamList } from './types';
 const styles = StyleSheet.create({
-  bottomtabIconStyle:{alignContent: 'center'},
+  bottomtabIconStyle: { alignContent: 'center' },
   centeredView: {
     flex: 1,
     justifyContent: 'flex-end'
@@ -35,7 +35,7 @@ export type ToolsRootStackParamList = {
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
 const secondStack = createStackNavigator<any>();
-const secondaryRoot = ():any => {
+const secondaryRoot = (): any => {
   return (
     <secondStack.Navigator
       initialRouteName="ChildgrowthTab"
@@ -47,7 +47,7 @@ const secondaryRoot = ():any => {
   );
 }
 
-export default ():any => {
+export default (): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
@@ -60,27 +60,27 @@ export default ():any => {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={():any => {
+        onRequestClose={(): any => {
           setModalVisible(false);
         }}
-        onDismiss={():any => {
+        onDismiss={(): any => {
           setModalVisible(false);
         }}>
         <Pressable
           style={styles.centeredView}
-          onPress={():any => {
+          onPress={(): any => {
             setModalVisible(false);
           }}
         >
           <TouchableOpacity
 
-            onPress={():any => {
+            onPress={(): any => {
               console.log("pressed")
 
             }}
             activeOpacity={1}>
             <BottomBarBg>
-              <Pressable onPress={():any => { setModalVisible(false); navigation.navigate("Tools", { screen: 'VaccinationTab' }) }}>
+              <Pressable onPress={(): any => { setModalVisible(false); navigation.navigate("Tools", { screen: 'VaccinationTab' }) }}>
                 <BottomBarList>
                   <FDirRow>
                     <OuterIconRow>
@@ -92,9 +92,10 @@ export default ():any => {
                   </FDirRow>
                 </BottomBarList>
               </Pressable>
-              <Pressable onPress={():any => { 
+              <Pressable onPress={(): any => {
                 setModalVisible(false);
-                 navigation.navigate("Tools", { screen: 'HealthCheckupsTab' }) }}>
+                navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })
+              }}>
                 <BottomBarList>
                   <FDirRow>
                     <OuterIconRow>
@@ -107,7 +108,7 @@ export default ():any => {
                   </FDirRow>
                 </BottomBarList>
               </Pressable>
-              <Pressable onPress={():any => { setModalVisible(false); navigation.navigate("Tools", { screen: 'ChildgrowthTab' }) }}>
+              <Pressable onPress={(): any => { setModalVisible(false); navigation.navigate("Tools", { screen: 'ChildgrowthTab' }) }}>
                 <BottomBarList>
                   <FDirRow>
                     <OuterIconRow>
@@ -142,34 +143,33 @@ export default ():any => {
         <DashboardBottomTab.Screen name="Home" component={Home}
           options={{
             tabBarLabel: t('tabbarLabel1'),
-            tabBarIcon: ({ color, size }:any):any => (
+            tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
             unmountOnBlur: true,
-           // unmountOnBlur: Platform.OS == 'ios' ? true : false,
-            headerShown:false
+            headerShown: false
           }} />
         <DashboardBottomTab.Screen name="Activities" component={Activities} initialParams={{ categoryArray: [], currentSelectedChildId: 0, backClicked: 'no' }}
           options={{
             tabBarLabel: t('tabbarLabel2'),
-            tabBarIcon: ({ color, size }:any):any => (
+            tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_activities" color={color} size={size} />
             ),
-            headerShown:false
+            headerShown: false
           }} />
         <DashboardBottomTab.Screen
           component={secondaryRoot}
           name="Tools"
           options={{
             tabBarLabel: t('tabbarLabel3'),
-            tabBarIcon: ({ color, size }:any):any=> (
+            tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_sb_tools" color={color} size={size} style={styles.bottomtabIconStyle} />
             ),
             unmountOnBlur: true,
-            headerShown:false
+            headerShown: false
           }}
-          listeners={():any => ({
-            tabPress: (e: any):any => {
+          listeners={(): any => ({
+            tabPress: (e: any): any => {
               setModalVisible(true);
               e.preventDefault();
             },
@@ -178,21 +178,20 @@ export default ():any => {
         <DashboardBottomTab.Screen name="Articles" component={Articles} initialParams={{ categoryArray: [], currentSelectedChildId: 0, backClicked: 'no' }}
           options={{
             tabBarLabel: t('tabbarLabel4'),
-            tabBarIcon: ({ color, size }:any):any => (
+            tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_articles" color={color} size={size} />
             ),
-           // unmountOnBlur: true,
-            headerShown:false
+            // unmountOnBlur: true,
+            headerShown: false
           }} />
         <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment} initialParams={{ currentSelectedChildId: 0 }}
           options={{
             tabBarLabel: t('tabbarLabel5'),
-            tabBarIcon: ({ color, size }:any):any => (
+            tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),
-            //unmountOnBlur: Platform.OS == 'ios' ? true : false,
             unmountOnBlur: true,
-            headerShown:false
+            headerShown: false
           }} />
       </DashboardBottomTab.Navigator>
     </>
