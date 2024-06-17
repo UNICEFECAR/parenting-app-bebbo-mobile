@@ -256,7 +256,6 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         } else {
           filteredLanguage = selectedCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
         }
-        console.log('filteredLanguage country is', filteredLanguage)
         if (filteredLanguage?.length > 0) {
           setNewLanguage(filteredLanguage[0]);
         } else {

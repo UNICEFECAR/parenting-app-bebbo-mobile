@@ -29,6 +29,7 @@ import {
   ButtonVaccination
 } from '../../shared/ButtonGlobal';
 import Icon, { IconViewAlert, IconViewBg } from '../../shared/Icon';
+import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 const styles = StyleSheet.create({
   alignCenter: { alignSelf: 'center' },
   radioActive: { backgroundColor: greenColor, borderRadius: 50 },
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
 const UpcomingVaccines = (props: any): any => {
   const { item, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
+  const netInfo = useNetInfoHook();
   const navigation = useNavigation<any>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const activeChild = useAppSelector((state: any) =>
@@ -76,6 +78,7 @@ const UpcomingVaccines = (props: any): any => {
         headerColor: headerColor,
         backgroundColor: backgroundColor,
         detailData: pinnedArticleId,
+        netInfo: netInfo
       });
     }
   };

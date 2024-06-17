@@ -27,6 +27,7 @@ import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate } from '../../../services/Utils';
 import Icon, { IconViewAlert } from '../../shared/Icon';
 import { StackNavigationProp } from '@react-navigation/stack';
+import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 const styles=StyleSheet.create({
   alignCenter:{alignSelf: 'center' },
   radioActive:{backgroundColor: greenColor, borderRadius: 50 },
@@ -46,6 +47,7 @@ export type PreviousNew1RootStackParamList = {
 const PreviousVaccines = (props: any): any => {
   const { item, headerColor, backgroundColor } = props;
   const { t } = useTranslation();
+  const netInfo = useNetInfoHook();
   //const navigation = useNavigation<any>();
   const navigation = useNavigation<StackNavigationProp<PreviousRootStackParamList>>();
   const navigation1 = useNavigation<StackNavigationProp<PreviousNewRootStackParamList>>();
@@ -63,6 +65,7 @@ const PreviousVaccines = (props: any): any => {
         headerColor: headerColor,
         backgroundColor: backgroundColor,
         detailData: pinnedArticleId,
+        netInfo: netInfo
       });
     }
   };

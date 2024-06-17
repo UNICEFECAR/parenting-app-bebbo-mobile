@@ -21,6 +21,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { getAllConfigData } from '../../services/childCRUD';
 import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const windowWidth = Dimensions.get('window').width;
 const styles=StyleSheet.create({
   flexShrink1:{flexShrink:1},
@@ -29,6 +30,7 @@ const styles=StyleSheet.create({
 const ChildInfo = (props: any):any => {
   const {t} = useTranslation();
   const navigation = useNavigation<any>();
+  const netInfo = useNetInfoHook();
   const { headerColor, backgroundColor} = props;
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
@@ -91,7 +93,8 @@ const goToVideoArticleDetails = ():any => {
     fromScreen: 'Home',
     headerColor: headerColor,
     backgroundColor: backgroundColor,
-    detailData: selectedPinnedArticleData
+    detailData: selectedPinnedArticleData,
+    netInfo: netInfo
   });
 }
   return (

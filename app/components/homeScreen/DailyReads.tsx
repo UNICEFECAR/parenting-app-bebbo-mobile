@@ -11,7 +11,7 @@ import { Alert, FlatList, Pressable, Share, StyleSheet, Text, View } from 'react
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../../App';
+import { RootState, useAppDispatch, useAppSelector } from '../../../App';
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../redux/reducers/articlesSlice';
 import LoadableImage from '../../services/LoadableImage';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
@@ -58,10 +58,21 @@ const DailyReads = (): any => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
-  const childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
+  const childAge = useAppSelector((state: RootState) => {
+    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData;
+
+    if (!allTaxonomyData) {
+      return [];
+    }
+
+    try {
+      const parsedData = JSON.parse(allTaxonomyData);
+      return parsedData.child_age || [];
+    } catch (error) {
+      console.error("Failed to parse allTaxonomyData:", error);
+      return [];
+    }
+  });
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
   let ArticlesData = articleData.filter((x: any) => x.child_age.includes(activityTaxonomyId));
@@ -78,10 +89,10 @@ const DailyReads = (): any => {
   const showedDailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
-  const favoriteadvices = useAppSelector((state: any) =>
+  const favoriteAdvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices
   );
-  const favoritegames = useAppSelector((state: any) =>
+  const favoriteGames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
   const [dataToShowInList, setDataToShowInList] = useState([]);
@@ -94,7 +105,8 @@ const DailyReads = (): any => {
       backgroundColor: Object.prototype.hasOwnProperty.call(item, 'activity_category') ? actBackgroundColor : artBackgroundColor,
       detailData: item,
       selectedChildActivitiesData: ActivitiesData,
-      fromAdditionalScreen: 'DailyScreen'
+      fromAdditionalScreen: 'DailyScreen',
+      netInfo: netInfo
     });
   }
   const onShare = async (item: any): Promise<any> => {
@@ -122,8 +134,11 @@ const DailyReads = (): any => {
       Alert.alert(t('generalError'));
     }
   };
+  const isFavourite = (list: any[], itemId: any): boolean => list.some((x) => x === itemId);
   const RenderDailyReadItem = React.memo(({ item, index }: any) => {
     const isAdvice = Object.prototype.hasOwnProperty.call(item, 'activity_category') ? false : true;
+    const list = isAdvice ? favoriteAdvices : favoriteGames;
+    const isFav = isFavourite(list, item?.id);
     return (
       <View>
         <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}>
@@ -147,8 +162,12 @@ const DailyReads = (): any => {
               <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
             </DailyTag>
             {/*Parent Share , View Details*/}
-            {isAdvice ? <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteadvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} /> :
-              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoritegames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />}
+            <ShareFavButtons
+              backgroundColor="#FFF"
+              item={item}
+              isFavourite={isFav}
+              isAdvice={isAdvice}
+            />;
           </DailyBox>
         </Pressable>
       </View>
@@ -201,7 +220,6 @@ const DailyReads = (): any => {
       if (activeChild.isPremature === 'true') {
         filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
         ArticlesData = filteredArticles;
-        console.log('Active child Child Age is data', filteredArticles)
       }
       const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i))
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id))

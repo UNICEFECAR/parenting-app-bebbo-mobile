@@ -394,7 +394,7 @@ const RSsr = {
               importOnboardingText: "REMOVED_FACEBOOK_APP_ID1 ne prikuplja vaše lične podatke.",
               importOnboardingText1: "Informacije koje unesete se čuvaju na vašem telefonu ili u vašem ličnom skladištu.",
               importOnboardingText2: "Ako ste koristili REMOVED_FACEBOOK_APP_ID1 na drugom uređaju i izvezli svoje informacije, možete uneti datoteku na ovaj uređaj.",
-              OnboardingImportButton: "Pošalji",
+              OnboardingImportButton: "Uvezi",
               ORkeyText: "Ili",
               addChildText: "Dodajte podatke o detetu",
               addBasicParentsInfo: "Dodajte osnovne informacije o sebi..",

@@ -396,7 +396,7 @@ const MEcnr = {
                 importOnboardingText: "REMOVED_FACEBOOK_APP_ID1 ne prikuplja i ne čuva Vaše lične podatke.",
                 importOnboardingText1: "Informacije koje unesete u aplikaciju čuvaju se na Vašem telefonu ili u Vašem ličnom skladištu podataka.",
                 importOnboardingText2: "Ako ste koristili REMOVED_FACEBOOK_APP_ID1 na drugom uređaju i izvezli svoje informacije, datoteku sada možete otpremiti na ovaj uređaj.",
-                OnboardingImportButton: "Otpremite sada",
+                OnboardingImportButton: "Prenesite podatke",
                 ORkeyText: "ILI",
                 addChildText: "Dodajte podatke o djetetu",
                 addBasicParentsInfo: "Dodajte osnovne informacije o sebi.",

@@ -9,6 +9,7 @@ import React, { useContext, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const styles=StyleSheet.create({
   checkboxStyle:{borderWidth: 1}
   })
@@ -17,6 +18,7 @@ const VaccineItem = (props: any): any => {
   const {item, onToggleVaccine, fromScreen,backgroundActiveColor} = props;
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation<any>();
+  const netInfo = useNetInfoHook();
   const headerColor = themeContext?.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = (pinnedArticleId: any): any => {
@@ -26,6 +28,7 @@ const VaccineItem = (props: any): any => {
       headerColor: headerColor,
       backgroundColor: backgroundColor,
       detailData: pinnedArticleId,
+      netInfo: netInfo
     });
   }
   };

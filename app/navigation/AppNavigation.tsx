@@ -151,7 +151,7 @@ export default (): any => {
     // ... handle deep link
     console.log('User is deepliong sxlkc');
     callUrl(linkedURL);
-  }, [linkedURL, resetURL, userIsOnboarded]) //resetURL,
+  }, [linkedURL, resetURL, userIsOnboarded])
 
 
   useEffect(() => {
@@ -644,16 +644,6 @@ export default (): any => {
     }
   }
   useEffect(() => {
-    // console.log('useEffectonMessage');
-    // if (userIsOnboarded == true) {
-    //   setTimeout(() => {
-    //     SplashScreen.hide();
-    //   }, 0);
-    // } else {
-    //   setTimeout(() => {
-    //     SplashScreen.hide();
-    //   }, 2000);
-    // }
     messaging().onNotificationOpenedApp(remoteMessage => {
       if (remoteMessage) {
         // background click noti
@@ -674,24 +664,16 @@ export default (): any => {
           }
         }
       });
-    // setTimeout(() => {
-    //   SplashScreen.hide();
-    // }, 2000);
-    if (userIsOnboarded == true) {
-      if (Platform.OS == 'android') {
-        setTimeout(() => {
-          SplashScreen.hide();
-        }, 0);
-      } else {
-        setTimeout(() => {
-          SplashScreen.hide();
-        }, 500);
-      }
-    } else {
-      setTimeout(() => {
-        SplashScreen.hide();
-      }, 2000);
+    let hideDelay = 2000;
+
+    if (userIsOnboarded) {
+      hideDelay = Platform.OS === 'android' ? 0 : 500;
     }
+
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, hideDelay);
+
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       try {
         // console.log('Remote notification', JSON.stringify(remoteMessage))
