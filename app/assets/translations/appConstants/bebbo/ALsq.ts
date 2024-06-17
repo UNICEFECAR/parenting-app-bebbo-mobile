@@ -391,7 +391,7 @@ const ALsq = {
               parentGender: "Gjinia",
               successOnboardingImport: "Të dhënat e fëmijës u importuan me sukses",
               updateImportText: "Ju lutemi të plotësoni të dhënat për të vazhduar",
-              importOnboardingText1: "Informacioni që fut në aplikacion ruhet në telefonin tuaj ose në hapësirën tuaj ruajtëse personale.",
+              importOnboardingText1: "Informacionet që futni në aplikacion ruhen në telefonin tuaj ose në hapësirën tuaj ruajtëse personale.",
               importOnboardingText2: "Nëse keni përdorur Bebbo në një pajisje tjetër dhe keni eksportuar informacionin tuaj, mund ta ngarkoni skedarin në këtë pajisje tani.",
               importOnboardingText: "Bebbo nuk mbledh të dhënat tuaja personale.",
               OnboardingImportButton: "Ngarko tani",
