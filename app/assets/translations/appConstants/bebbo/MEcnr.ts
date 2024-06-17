@@ -396,7 +396,7 @@ const MEcnr = {
                 importOnboardingText: "Bebbo ne prikuplja i ne čuva Vaše lične podatke.",
                 importOnboardingText1: "Informacije koje unesete u aplikaciju čuvaju se na Vašem telefonu ili u Vašem ličnom skladištu podataka.",
                 importOnboardingText2: "Ako ste koristili Bebbo na drugom uređaju i izvezli svoje informacije, datoteku sada možete otpremiti na ovaj uređaj.",
-                OnboardingImportButton: "Otpremite sada",
+                OnboardingImportButton: "Prenesite podatke",
                 ORkeyText: "ILI",
                 addChildText: "Dodajte podatke o djetetu",
                 addBasicParentsInfo: "Dodajte osnovne informacije o sebi.",

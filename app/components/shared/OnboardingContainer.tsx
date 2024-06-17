@@ -17,6 +17,7 @@ export const OnboardingconfirmationHead = styled.View`
   align-content:center;
   background-color: ${(props: any): any => props.theme?.colors?.PRIMARY_REDESIGN_COLOR};
   padding:0 10px;
+  margin-top: 15px;
   text-align:center;
 `;
 export const OnboardingTermsHead = styled.View`

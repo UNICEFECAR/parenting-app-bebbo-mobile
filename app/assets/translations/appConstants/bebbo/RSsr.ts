@@ -394,7 +394,7 @@ const RSsr = {
               importOnboardingText: "Bebbo ne prikuplja vaše lične podatke.",
               importOnboardingText1: "Informacije koje unesete se čuvaju na vašem telefonu ili u vašem ličnom skladištu.",
               importOnboardingText2: "Ako ste koristili Bebbo na drugom uređaju i izvezli svoje informacije, možete uneti datoteku na ovaj uređaj.",
-              OnboardingImportButton: "Pošalji",
+              OnboardingImportButton: "Uvezi",
               ORkeyText: "Ili",
               addChildText: "Dodajte podatke o detetu",
               addBasicParentsInfo: "Dodajte osnovne informacije o sebi..",
