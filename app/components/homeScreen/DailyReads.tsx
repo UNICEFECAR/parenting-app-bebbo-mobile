@@ -137,8 +137,6 @@ const DailyReads = (): any => {
   const isFavourite = (list: any[], itemId: any): boolean => list.some((x) => x === itemId);
   const RenderDailyReadItem = React.memo(({ item, index }: any) => {
     const isAdvice = Object.prototype.hasOwnProperty.call(item, 'activity_category') ? false : true;
-    const list = isAdvice ? favoriteAdvices : favoriteGames;
-    const isFav = isFavourite(list, item?.id);
     return (
       <View>
         <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}>
@@ -162,12 +160,8 @@ const DailyReads = (): any => {
               <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
             </DailyTag>
             {/*Parent Share , View Details*/}
-            <ShareFavButtons
-              backgroundColor="#FFF"
-              item={item}
-              isFavourite={isFav}
-              isAdvice={isAdvice}
-            />;
+            {isAdvice ? <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteAdvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} /> :
+              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteGames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />}
           </DailyBox>
         </Pressable>
       </View>
