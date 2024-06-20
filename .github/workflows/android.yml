@@ -58,6 +58,8 @@ jobs:
         echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
         echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
         echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
+        echo encryptionsKey=${{ secrets.ENCRYPTIONS_KEY }} >> .env
+        echo encryptionsIVKey=${{ secrets.ENCRYPTIONS_IV_KEY }} >> .env
         cat .env
              
     - name: Create file
