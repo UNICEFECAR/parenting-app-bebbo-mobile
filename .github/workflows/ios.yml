@@ -38,6 +38,9 @@ jobs:
           echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
           echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
           echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
+          echo encryptionsKey=${{ secrets.ENCRYPTIONS_KEY }} >> .env
+          echo encryptionsIVKey=${{ secrets.ENCRYPTIONS_IV_KEY }} >> .env
+          
        
       - name: Putting data google service Dev file
         env:
