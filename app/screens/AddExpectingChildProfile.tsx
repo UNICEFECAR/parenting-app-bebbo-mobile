@@ -139,9 +139,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
   const AddChild = async (): Promise<any> => {
     let insertData: any;
     if (name == '' || name == null) {
-      insertData = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, t('childInfoBabyText'), '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, t('childInfoBabyText'), '', '', null);
+      insertData = editScreen ? await getNewChild(childData?.uuid, '', "true", null, '', plannedTermDate, t('childInfoBabyText'), '', '', childData?.createdAt) : await getNewChild('', '', "true", null, '', plannedTermDate, t('childInfoBabyText'), '', '', null);
     } else {
-      insertData = editScreen ? await getNewChild(childData?.uuid,'', "true", null, '', plannedTermDate, name, '', childData?.createdAt) : await getNewChild('','', "true", null, '', plannedTermDate, name, '', '', null);
+      insertData = editScreen ? await getNewChild(childData?.uuid, '', "true", null, '', plannedTermDate, name, '', childData?.createdAt) : await getNewChild('', '', "true", null, '', plannedTermDate, name, '', '', null);
     }
     const childSet: Array<any> = [];
     childSet.push(insertData);
