@@ -217,6 +217,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       }
       if (childData != null && childData.uuid !== '' && childData?.gender === 0) {
         setDefaultGenderValue(genders.find((item: any) => item.id === girlChildGender))
+        setGender(girlChildGender);
       } else {
         setDefaultGenderValue(genders.find((item: any) => item.id === childData?.gender))
       }

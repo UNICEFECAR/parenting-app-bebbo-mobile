@@ -406,6 +406,7 @@ const Notifications = ():any => {
                     maxToRenderPerBatch={8} // Reduce number in each render batch
                     updateCellsBatchingPeriod={100} // Increase time between renders
                     windowSize={30} // Reduce the window size
+                    scrollIndicatorInsets={{ right: 1 }}
                     renderItem={({item, index}):any =>  <NotificationItem
                             item={item}
                             itemIndex={index}
