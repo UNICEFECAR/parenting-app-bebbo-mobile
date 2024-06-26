@@ -278,7 +278,7 @@ const Terms = ({ navigation }: Props): any => {
                 </FormOuterTermsCheckbox>
                 <ButtonPrimary
                   disabled={isButtonDisabled}
-                  onPress={(): any => {
+                  onPress={() => {
                     acceptTerms();
                   }}>
                   <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
