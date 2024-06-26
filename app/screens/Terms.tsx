@@ -1,22 +1,21 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonRow,
+  ButtonPrimary,
   ButtonTermsRow,
   ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
-import Checkbox, { CheckboxActive, CheckboxItem, FormOuterCheckbox, FormOuterTermsCheckbox } from '@components/shared/CheckboxStyle';
+import Checkbox, { CheckboxActive, CheckboxItem, FormOuterTermsCheckbox } from '@components/shared/CheckboxStyle';
 import { LabelTextTerms } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
-import OnboardingContainer, { OnboardingContent, OnboardingTermsHead } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../App';
+import { store, useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
 import { Heading2Centerw, ShiftFromTop15, ShiftFromTop30, ShiftFromTop40, ShiftFromTop50, SideRightSpacing20, SideSpacing10 } from '../styles/typography';
@@ -27,7 +26,9 @@ import FeatureTCView from '@components/shared/FeaturesTCView';
 import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
 import { logEvent } from '../services/EventSyncService';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
-import { ScrollView } from 'react-native-gesture-handler';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -96,15 +97,19 @@ const Terms = ({ navigation }: Props): any => {
   const goToTerms = (): any => {
     navigation.navigate('TermsPage');
   };
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
-  );
+
   const dispatch = useAppDispatch();
+
+  const languageCode = useAppSelector(
+    (state: any) =>
+      state.selectedCountry.languageCode
+  );
   useFocusEffect(
     React.useCallback(() => {
       setLoading(false);
     }, [languageCode])
   );
+
   useFocusEffect(
     React.useCallback(() => {
       setTimeout(() => {
@@ -203,93 +208,85 @@ const Terms = ({ navigation }: Props): any => {
 
   return (
     <>
-      <ScrollView 
-      contentContainerStyle ={styles.containerView}>
-        <FocusAwareStatusBar
-          animated={true}
-          backgroundColor={headerColor}
-        />
-        <OverlayLoadingComponent loading={loading} />
-        <View style={{ marginTop: 30 }}>
-          <View style={styles.vectorImageView}>
-            <VectorImage source={item.image} />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        alwaysBounceHorizontal={false}
+        contentContainerStyle={{ flex: 1 }}>
+        <View style={styles.containerView}>
+          <FocusAwareStatusBar
+            animated={true}
+            backgroundColor={headerColor}
+          />
+          <OverlayLoadingComponent loading={loading} />
+          <View style={{ marginTop: 30 }}>
+            <View style={styles.vectorImageView}>
+              <VectorImage source={item.image} />
+            </View>
+          </View>
+          <ShiftFromTop15>
+            <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>
+          </ShiftFromTop15>
+          <View style={styles.containerView2}>
+            <FeatureTCView
+              title={t('walkthroughTextstitle3').toString()}
+              subTitle={t('walkthroughTextssubtitle3').toString()}
+              iconname={item.advice}
+            />
+            <FeatureTCView
+              title={t('walkthroughTextstitle2').toString()}
+              subTitle={t('walkthroughTextssubtitle2').toString()}
+              iconname={item.tools}
+            />
+            <FeatureTCView
+              title={t('walkthroughTextstitle1').toString()}
+              subTitle={t('walkthroughTextssubtitle1').toString()}
+              iconname={item.activity}
+            />
+          </View>
+          <View>
+            <SideSpacing10>
+              <ButtonTermsRow>
+                <FormOuterTermsCheckbox
+                  onPress={(): any => {
+                    setToggleCheckBox(!toggleCheckBox);
+                  }}>
+                  <CheckboxItem>
+                    <View>
+                      {toggleCheckBox ? (
+                        <CheckboxActive>
+                          <Icon name="ic_tick" size={12} color="#fff" />
+                        </CheckboxActive>
+                      ) : (
+                        <Checkbox></Checkbox>
+                      )}
+                    </View>
+                  </CheckboxItem>
+                  <SideRightSpacing20>
+                    <LabelTextTerms>
+                      {t('tNccheckbox2')}{' '}
+                      <LabelTextTerms onPress={goToPrivacyPolicy} style={styles.privacyText}>
+                        {t('tNcprivacyPolicyTitle')}{' '}
+                      </LabelTextTerms>
+                      {t('childInfoAndText')}{' '}
+                      <LabelTextTerms onPress={goToTerms} style={styles.privacyText}>
+                        {t('tNcheader')}
+                      </LabelTextTerms>
+                      .
+                    </LabelTextTerms>
+                  </SideRightSpacing20>
+                </FormOuterTermsCheckbox>
+                <ButtonPrimary
+                  disabled={isButtonDisabled}
+                  onPress={() => {
+                    acceptTerms();
+                  }}>
+                  <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
+                </ButtonPrimary>
+              </ButtonTermsRow>
+            </SideSpacing10>
           </View>
         </View>
-
-
-        <ShiftFromTop15>
-          <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>
-        </ShiftFromTop15>
-
-
-        <View style={styles.containerView2}>
-          <FeatureTCView
-            title={t('walkthroughTextstitle3').toString()}
-            subTitle={t('walkthroughTextssubtitle3').toString()}
-            iconname={item.advice}
-          />
-          <FeatureTCView
-            title={t('walkthroughTextstitle2').toString()}
-            subTitle={t('walkthroughTextssubtitle2').toString()}
-            iconname={item.tools}
-          />
-          <FeatureTCView
-            title={t('walkthroughTextstitle1').toString()}
-            subTitle={t('walkthroughTextssubtitle1').toString()}
-            iconname={item.activity}
-          />
-
-        </View>
-        <View>
-          <SideSpacing10>
-            <ButtonTermsRow>
-              <FormOuterTermsCheckbox
-                onPress={(): any => {
-                  setToggleCheckBox(!toggleCheckBox);
-                }}>
-                <CheckboxItem>
-                  <View>
-                    {toggleCheckBox ? (
-                      <CheckboxActive>
-                        <Icon name="ic_tick" size={12} color="#fff" />
-                      </CheckboxActive>
-                    ) : (
-                      <Checkbox></Checkbox>
-                    )}
-                  </View>
-                </CheckboxItem>
-
-
-                <SideRightSpacing20>
-                  <LabelTextTerms>
-                    {t('tNccheckbox2')}{' '}
-
-                    <LabelTextTerms onPress={goToPrivacyPolicy} style={styles.privacyText}>
-                      {t('tNcprivacyPolicyTitle')}{' '}
-                    </LabelTextTerms>
-                    {t('childInfoAndText')}{' '}
-                    <LabelTextTerms onPress={goToTerms} style={styles.privacyText}>
-                      {t('tNcheader')}
-                    </LabelTextTerms>
-                    .
-                  </LabelTextTerms>
-                </SideRightSpacing20>
-              </FormOuterTermsCheckbox>
-              <ButtonPrimary
-                disabled={isButtonDisabled}
-                onPress={(): any => {
-                  acceptTerms();
-                }}>
-                <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
-              </ButtonPrimary>
-            </ButtonTermsRow>
-
-          </SideSpacing10>
-        </View>
-
-
-
-
       </ScrollView>
     </>
   );
