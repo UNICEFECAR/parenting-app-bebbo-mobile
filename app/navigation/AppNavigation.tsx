@@ -664,15 +664,15 @@ export default (): any => {
           }
         }
       });
-    let hideDelay = 2000;
-
-    if (userIsOnboarded) {
-      hideDelay = Platform.OS === 'android' ? 0 : 500;
-    }
+    
+    // let hideDelay = 2000;
+    // if (userIsOnboarded) {
+    //   hideDelay = Platform.OS === 'android' ? 0 : 500;
+    // }
 
     setTimeout(() => {
       SplashScreen.hide();
-    }, hideDelay);
+    }, 2000);
 
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       try {
