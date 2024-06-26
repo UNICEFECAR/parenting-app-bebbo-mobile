@@ -1,5 +1,5 @@
 import { ADVICE_SHARED, GAME_SHARED } from '@assets/data/firebaseEvents';
-import { articleCategoryArray, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
+import { shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
 import { MainContainer } from '@components/shared/Container';
 import { DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
@@ -43,12 +43,16 @@ const DailyReads = (): any => {
   const articleDataall = useAppSelector(
     (state: any) => state.articlesData.article.articles != '' ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth
       ? state.bandWidthData.lowbandWidth
       : false,
   );
-  const articleData = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category))
+  const articleData = articleDataall.filter((x: any) => taxonomyIds?.articleCategoryArray.includes(x.category))
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -215,7 +219,7 @@ const DailyReads = (): any => {
         filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
         ArticlesData = filteredArticles;
       }
-      const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i))
+      const articleCategoryArrayNew = taxonomyIds?.articleCategoryArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i))
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id))
       const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
       const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;

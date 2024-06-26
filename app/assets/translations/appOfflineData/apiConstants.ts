@@ -1,13 +1,14 @@
-import { apiUrlDevelop } from "react-native-dotenv";
+import { apiUrlDevelop, apiBabuniUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
 export const destinationFolder = RNFS.DocumentDirectoryPath + '/content/';
 export const buildForFoleja = 'foleja'; //'foleja'
 export const buildForBebbo = 'bebbo'; //'foleja'
-export const buildFor = buildForBebbo; //'foleja'
+export const buildForBangla = 'bangla'; //'foleja'
+export const buildFor = buildForBangla; //'foleja'
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
-export const articleCategory = '4,1,55,56,3,2';
-export const articleCategoryArray = [4, 1, 55, 56, 3, 2];
+export const articleCategoryIdArray = [376, 386, 391, 396, 401, 406];
+export const articleCategoryArray = ['health_and_wellbeing', 'nutrition_and_breastfeeding', 'parenting_corner', 'play_and_learning', 'responsive_parenting', 'safety_and_protection'];
 export const regexpEmojiPresentation = /[^\p{L} ]/gu;
 export const luxonDefaultLocale = "en-US";
 export const videoTypeVimeo = "vimeo";
@@ -21,28 +22,59 @@ export const backUpPath = RNFS.DocumentDirectoryPath + '/mybackup.json';
 export const tempbackUpPath = RNFS.TemporaryDirectoryPath + 'mybackup.json';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
-export const shareText = (String(buildFor) != buildForBebbo) ? '\nhttps://www.bebbo.app/foleja/share/' : '\nhttps://www.bebbo.app/share/';
-export const shareTextButton = (String(buildFor) != buildForBebbo) ? 'https://www.bebbo.app/foleja/share/' : 'https://www.bebbo.app/share/';
+export const shareText = (String(buildFor) != buildForBebbo) ? '\nhttps://www.bebbo.app/foleja/share/' : (String(buildFor) != buildForFoleja) ? '\nhttps://www.bebbo.app/share/' : '\nhttps://www.babuni.app/share/' ;
+export const shareTextButton = (String(buildFor) != buildForBebbo) ? 'https://www.bebbo.app/foleja/share/' : (String(buildFor) != buildForFoleja) ? 'https://www.bebbo.app/share/' : 'https://www.babuni.app/share/' ;
 export const bebboShareMailId = 'mailto:admin@bebbo.app';
 export const folejaShareMailId = 'mailto:prishtina@unicef.org';
+export const banglaShareMailId = 'mailto:info@babuni.app';
 export const maleData: any = {
-  "id": 37,
+  "id": 611,
   "name": "Male",
   "unique_name": "male"
 };
-export const relationShipMotherId = 109801;
-export const relationShipFatherId = 109806;
-export const relationShipOtherCaregiverId = 109811;
-export const relationShipServiceProviderId = 109816;
+export const relationShipMotherId = 626;
+export const relationShipFatherId = 631;
+export const relationShipOtherCaregiverId = 636;
+export const relationShipServiceProviderId = 641;
 export const femaleData: any = {
-  "id": 38,
+  "id": 616,
   "name": "Female",
   "unique_name": "female"
 };
-export const bothParentGender = 60;
-export const bothChildGender = 59;
-export const girlChildGender = 41;
-export const boyChildGender = 40;
+export const childGenderUniqueName = {
+  bothChildGender: 'both',
+  girlChildGender: 'girl',
+  boyChildGender: 'boy'
+}
+export const relationshipUniqueName = {
+  relationShipMotherId: 'mother',
+  relationShipFatherId: 'father',
+  relationShipOtherCaregiverId: 'other_caregiver',
+  relationShipServiceProviderId: 'service_provider'
+}
+export const parentGenderUniqueName = {
+  bothParentGender: 'both',
+  maleParentGender: 'male',
+  femaleParentGender: 'female'
+}
+export const articleCategoryoUniqueNameObj = [
+  { name: 'playingAndLearning', unique_name: 'play_and_learning', image: 'ic_artl_play' },
+  { name: 'healthAndWellbeingid', unique_name: 'health_and_wellbeing', image: 'ic_artl_health' },
+  { name: 'safetyAndProtection', unique_name: 'safety_and_protection', image: 'ic_artl_safety' },
+  { name: 'responsiveParenting', unique_name: 'responsive_parenting', image: 'ic_artl_responsive' },
+  { name: 'parentingCorner', unique_name: 'parenting_corner', image: 'ic_artl_parenting' },
+  { name: 'nutritionAndBreastfeeding', unique_name: 'nutrition_and_breastfeeding', image: 'ic_artl_nutrition' },
+]
+export const activityCategoryUniqueNameObj = [
+  { name: 'Socio-emotional', unique_name: 'socio_ emotional', image: 'ic_act_emotional' },
+  { name: 'Language and communication', unique_name: 'language_and_communication', image: 'ic_act_language' },
+  { name: 'Cognitive', unique_name: 'cognitive', image: 'ic_act_cognitive' },
+  { name: 'Motor', unique_name: 'motor', image: 'ic_act_movement' },
+]
+export const bothParentGender = 621;
+export const bothChildGender = 536;
+export const girlChildGender = 531;
+export const boyChildGender = 526;
 export const weightGrowthType = 32786;
 export const heightGrowthType = 6461;
 const today = new Date();
@@ -67,21 +99,48 @@ export const appConfig = {
   vaccinations: 'vaccinations',
   healthCheckupData: 'health-checkup-data',
   pinnedContent: 'pinned-contents',
+  vaccinePinnedContent: 'pinnedvaccinations',
+  childGrowthPinnedContent: 'child_growth',
+  healthcheckupPinnedContent: 'health_check_ups',
+  faqPinnedContent: 'faq',
+  faqUpdatedPinnedContent: 'updatedfaq',
+  milestoneRelatedArticle: 'milestonerelatedarticle',
   checkUpdate: 'check-update',
   faqs: 'faqs',
   archive: 'archive',
 }
 export const finalUrl = (apiEndpoint: string, selectedCountry: number | undefined, selectedLang: string): any => {
+  const isBuildForBabuni = buildFor == String(buildForBangla);
+  const apiURLDevelop = isBuildForBabuni ? apiBabuniUrlDevelop :apiUrlDevelop;
+  console.log('API URL is',apiURLDevelop)
   if (apiEndpoint == appConfig.sponsors) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
+    return apiURLDevelop + '/' + apiEndpoint + '/' + selectedCountry;
   }
   if (apiEndpoint == appConfig.taxonomies) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang + '/all';
+    return apiURLDevelop + '/' + apiEndpoint + '/' + selectedLang + '/all';
   }
   if (apiEndpoint == appConfig.checkUpdate) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
+    return apiURLDevelop + '/' + apiEndpoint + '/' + selectedCountry;
   }
-  return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang;
+  if (apiEndpoint == appConfig.vaccinePinnedContent) {
+    return apiURLDevelop + '/pinned-contents/' + selectedLang + '/vaccinations';
+  }
+  if (apiEndpoint == appConfig.childGrowthPinnedContent) {
+    return apiURLDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
+  }
+  if (apiEndpoint == appConfig.healthcheckupPinnedContent) {
+    return apiURLDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
+  }
+  if (apiEndpoint == appConfig.faqPinnedContent) {
+    return apiURLDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
+  }
+  if (apiEndpoint == appConfig.milestoneRelatedArticle) {
+    return apiURLDevelop + '/related-article-contents/' + selectedLang + '/milestone';
+  }
+  if (apiEndpoint == appConfig.faqUpdatedPinnedContent) {
+    return apiURLDevelop + '/updated-pinned-contents/' + selectedLang + '/faq';
+  }
+  return apiURLDevelop + '/' + apiEndpoint + '/' + selectedLang;
 }
 
 
@@ -154,6 +213,36 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
       saveinDB: true,
     },
     {
+      apiEndpoint: appConfig.vaccinePinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childGrowthPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.healthcheckupPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.faqPinnedContent,
+      method: 'get',
+      postdata: isDatetimeReq == true && dateTimeObj['faqPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqPinnedContentDatetime'] } : {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.milestoneRelatedArticle,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
       apiEndpoint: appConfig.standardDeviation,
       method: 'get',
       postdata: {},
@@ -167,6 +256,12 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
     }
   ];
   if (isDatetimeReq == true) {
+    // {
+    //   apiEndpoint: appConfig.faqUpdatedPinnedContent,
+    //   method: 'get',
+    //   postdata: isDatetimeReq == true && dateTimeObj['faqUpdatedPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqUpdatedPinnedContentDatetime'] } : dateTimeObj['faqPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqPinnedContentDatetime'] } : {},
+    //   saveinDB: true,
+    // },
     allApiObject.push(
       {
         apiEndpoint: appConfig.archive,
@@ -178,19 +273,20 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
   return allApiObject;
 }
 export const articleCategoryobj = [
-  { name: 'playingAndLearning', id: 55, image: 'ic_artl_play' },
-  { name: 'healthAndWellbeingid', id: 2, image: 'ic_artl_health' },
-  { name: 'safetyAndProtection', id: 3, image: 'ic_artl_safety' },
-  { name: 'responsiveParenting', id: 56, image: 'ic_artl_responsive' },
-  { name: 'parentingCorner', id: 4, image: 'ic_artl_parenting' },
-  { name: 'nutritionAndBreastfeeding', id: 1, image: 'ic_artl_nutrition' },
+  { name: 'playingAndLearning', id: 396, image: 'ic_artl_play' },
+  { name: 'healthAndWellbeingid', id: 376, image: 'ic_artl_health' },
+  { name: 'safetyAndProtection', id: 406, image: 'ic_artl_safety' },
+  { name: 'responsiveParenting', id: 401, image: 'ic_artl_responsive' },
+  { name: 'parentingCorner', id: 391, image: 'ic_artl_parenting' },
+  { name: 'nutritionAndBreastfeeding', id: 386, image: 'ic_artl_nutrition' },
 ]
 export const activityCategoryobj = [
-  { name: 'Socio-emotional', id: 6431, image: 'ic_act_emotional' },
-  { name: 'Language and communication', id: 6441, image: 'ic_act_language' },
-  { name: 'Cognitive', id: 6436, image: 'ic_act_cognitive' },
-  { name: 'Motor', id: 6421, image: 'ic_act_movement' },
+  { name: 'Socio-emotional', id: 546, image: 'ic_act_emotional' },
+  { name: 'Language and communication', id: 556, image: 'ic_act_language' },
+  { name: 'Cognitive', id: 551, image: 'ic_act_cognitive' },
+  { name: 'Motor', id: 541, image: 'ic_act_movement' },
 ]
+
 export const basicPagesUniqueName = {
   aboutus: 'about_us',
   terms: 'terms_and_conditions',

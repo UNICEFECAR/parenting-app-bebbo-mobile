@@ -1,4 +1,4 @@
-import { articleCategoryobj } from '@assets/translations/appOfflineData/apiConstants';
+import { articleCategoryoUniqueNameObj } from '@assets/translations/appOfflineData/apiConstants';
 import { ArticleCategoriesProps } from '@screens/home/bottomTabs/Articles';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -45,7 +45,7 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
     Array.from({ length: Math.ceil(arr.length / size) }, (v: any, i: any) =>
       arr.slice(i * size, i * size + size)
     );
-  const articleBrackets = chunk(articleCategoryobj, 2)
+  const articleBrackets = chunk(articleCategoryoUniqueNameObj, 2)
   return (
     <>
       <ArticleFilter key={props.filterArray.length}>
@@ -54,17 +54,17 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
             return (<View key={i} style={styles.innerView}>
               {
                 articleCategoryInner.map((item) => {
-                  return (<Pressable style={styles.pressableView} key={item.id} onPress={(): any => {
-                    props.filterOnCategory(getFilterArray(item.id, props.filterArray))
+                  return (<Pressable style={styles.pressableView} key={item.unique_name} onPress={(): any => {
+                    props.filterOnCategory(getFilterArray(item.unique_name, props.filterArray))
                   }}>
-                    <FilterBox style={props.filterArray.includes(item.id) ? styles.filterBoxbg1 : styles.filterBoxbg2}  >
+                    <FilterBox style={props.filterArray.includes(item.unique_name) ? styles.filterBoxbg1 : styles.filterBoxbg2}  >
                       <OuterIconRow>
                         <OuterIconLeft>
                           <Icon
                             style={styles.iconStyle} name={item.image} size={20} color="#000" />
                         </OuterIconLeft>
                       </OuterIconRow>
-                      <FilterText numberOfLines={2}>{categoryData.filter((x: any) => x.id == item.id)[0].name}</FilterText>
+                      <FilterText numberOfLines={2}>{categoryData.filter((x: any) => x.unique_name == item.unique_name)[0].name}</FilterText>
                     </FilterBox>
                   </Pressable>)
                 })

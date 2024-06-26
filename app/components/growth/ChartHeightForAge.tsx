@@ -1,4 +1,4 @@
-import { boyChildGender, girlChildGender, weightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
+import {  weightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
 import { FlexCol, FlexColChart, FlexRowEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
@@ -27,6 +27,10 @@ const ChartHeightForAge = (props: any): any => {
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const navigation = useNavigation<any>();
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -48,17 +52,17 @@ const ChartHeightForAge = (props: any): any => {
   let obj: any;
   let standardDeviation: any;
    // if (activeChild?.gender == '40' || activeChild?.gender == '') {
-  if (activeChild?.gender == boyChildGender || activeChild?.gender == '') {
+  if (activeChild?.gender == taxonomyIds?.boyChildGender || activeChild?.gender == '') {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == weightGrowthType && item.child_gender == boyChildGender,
+      (item) => item.growth_type == weightGrowthType && item.child_gender == taxonomyIds?.boyChildGender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'height');
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item) => item.growth_type == weightGrowthType && item.child_gender == girlChildGender,
+      (item) => item.growth_type == weightGrowthType && item.child_gender == taxonomyIds?.girlChildGender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'height');
