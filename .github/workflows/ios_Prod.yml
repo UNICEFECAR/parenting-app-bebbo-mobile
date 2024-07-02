@@ -58,6 +58,9 @@ jobs:
       - name: Install CocoaPods
         run: |
           sudo gem install cocoapods
+      
+      - name: Install App Store Connect CLI
+        run: sudo gem install fastlane
 
       - name: Set environment variable for modular headers
         run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
@@ -136,6 +139,11 @@ jobs:
               	<true/>
               	<key>teamID</key>
               	<string>$TEAM_ID</string>
+                <key>provisioningProfiles</key>
+                <dict>
+                    <key>org.unicef.ecar.bebbo</key>
+                    <string>Bebbo_Production_Unicef</string>
+                </dict>
               	<key>thinning</key>
               	<string>&lt;none&gt;</string>
               </dict>
@@ -162,12 +170,24 @@ jobs:
           -archivePath "./build/ParentBuddyApp.xcarchive" \
           -exportPath "ParentBuddyApp/" \
           -exportOptionsPlist "exportOptions.plist" 
+
+      - name: Upload to TestFlight
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID_PROD }}
+          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD_PROD }}
+        run: |
+          xcrun altool --upload-app \
+                     -t ios \
+                     -f ParentBuddyApp/ParentBuddyApp.ipa \
+                     -u $APPLE_ID \
+                     -p $APP_SPECIFIC_PASSWORD \
+                     --output-format xml
         
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: Bebbo.ipa
-          path: "ios/ParentBuddyApp/"
+      # - name: Upload Artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: Bebbo.ipa
+      #     path: "ios/ParentBuddyApp/"
       
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
