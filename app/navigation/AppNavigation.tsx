@@ -37,7 +37,7 @@ import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
-import { restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
 import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
@@ -53,6 +53,7 @@ import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 import AddChildSetup from '@screens/AddChildSetup';
+import { localization } from '@dynamicImportsClass/dynamicImports';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -101,6 +102,20 @@ export default (): any => {
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
   );
+  const apiJsonData = [
+    {
+      apiEndpoint: appConfig.taxonomies,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.basicPages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+  ];
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
@@ -149,6 +164,7 @@ export default (): any => {
   }
   useEffect(() => {
     // ... handle deep link
+    
     callUrl(linkedURL);
   }, [linkedURL, resetURL, userIsOnboarded])
 
@@ -815,7 +831,7 @@ export default (): any => {
         <RootStack.Navigator
           initialRouteName={
             restartOnLangChange != 'yes' ?
-              userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
+            userIsOnboarded == true ? 'HomeDrawerNavigator' : localization?.length===1 && localization[0]?.languages?.length===1?'LoadingScreen':'Localization'
               : AppLayoutDirectionScreen
           }
           screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false, headerShown:false}}
@@ -873,6 +889,7 @@ export default (): any => {
           <RootStack.Screen
             name="LoadingScreen"
             component={LoadingScreen}
+            initialParams={{ apiJsonData: apiJsonData, prevPage: 'CountryLanguageSelection' }}
             options={{ headerShown: false, gestureEnabled: false }}
           />
           <RootStack.Screen

@@ -1,5 +1,5 @@
 import { APP_SHARE, DONATE_OPENED, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-import { bebboShareMailId, buildFor, buildForBebbo, folejaShareMailId, shareText } from '@assets/translations/appOfflineData/apiConstants';
+import { banglaShareMailId, bebboShareMailId, buildFor, buildForBangla, buildForBebbo, folejaShareMailId, shareText } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -514,7 +514,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                   logEvent(eventData, netInfo.isConnected)
                   if (buildFor == String(buildForBebbo)) {
                     Linking.openURL(bebboShareMailId)
-                  } else {
+                  }if (buildFor == String(buildForBangla)) {
+                    Linking.openURL(banglaShareMailId)
+                  } 
+                  else {
                     Linking.openURL(folejaShareMailId);
                   }
                 }}>
@@ -541,6 +544,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                   if (Platform.OS === 'android') {
                     if (String(buildFor) == buildForBebbo) {
                       Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo')
+                    }else if (String(buildFor) == buildForBangla) {
+                      Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni')
                     }
                     else {
                       Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.kosovo.foleja')
