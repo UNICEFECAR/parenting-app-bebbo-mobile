@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1540"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "&quot;${SRCROOT}/../node_modules/react-native-config/ios/ReactNativeConfig/BuildXCConfig.rb&quot; &quot;${SRCROOT}/..&quot; &quot;${SRCROOT}/tmp.xcconfig&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
-                     BuildableName = "Foleja.app"
-                     BlueprintName = "ParentBuddyAppXk"
-                     ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -32,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
-               BuildableName = "Foleja.app"
-               BlueprintName = "ParentBuddyAppXk"
+               BlueprintIdentifier = "3205C07E2C11DC5A002309EA"
+               BuildableName = "Babuni.app"
+               BlueprintName = "ParentBuddyAppBangla"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,12 +27,11 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -62,15 +44,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
-            BuildableName = "Foleja.app"
-            BlueprintName = "ParentBuddyAppXk"
+            BlueprintIdentifier = "3205C07E2C11DC5A002309EA"
+            BuildableName = "Babuni.app"
+            BlueprintName = "ParentBuddyAppBangla"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -79,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
-            BuildableName = "Foleja.app"
-            BlueprintName = "ParentBuddyAppXk"
+            BlueprintIdentifier = "3205C07E2C11DC5A002309EA"
+            BuildableName = "Babuni.app"
+            BlueprintName = "ParentBuddyAppBangla"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

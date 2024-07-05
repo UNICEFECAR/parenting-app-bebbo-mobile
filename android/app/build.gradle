@@ -145,6 +145,14 @@ android {
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD_FOLEJA
             }
         }
+         bangla {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE_BANGLA')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE_BANGLA)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD_BANGLA
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS_BANGLA
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD_BANGLA
+            }
+        }
     }
     defaultConfig {
         applicationId "org.unicef.ecar.bebbo"
@@ -204,6 +212,24 @@ android {
             versionCode 2
             versionName "0.3.1"
             signingConfig signingConfigs.xk
+        }
+        bangla {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'org.unicef.bangladesh.babuni'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.bangla
+        }
+        banglastaging {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'com.datamatics.bangla'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.bangla
         }
     }
 

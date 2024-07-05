@@ -1,9 +1,10 @@
-import { apiUrlDevelop } from "react-native-dotenv";
+import { apiUrlDevelop, apiBabuniUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
 export const destinationFolder = RNFS.DocumentDirectoryPath + '/content/';
 export const buildForFoleja = 'foleja'; //'foleja'
 export const buildForBebbo = 'bebbo'; //'foleja'
-export const buildFor = buildForBebbo; //'foleja'
+export const buildForBangla = 'bangla'; //'foleja'
+export const buildFor = buildForBangla; //'foleja'
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
 export const articleCategory = '4,1,55,56,3,2';
@@ -25,6 +26,7 @@ export const shareText = (String(buildFor) != buildForBebbo) ? '\nhttps://www.be
 export const shareTextButton = (String(buildFor) != buildForBebbo) ? 'https://www.bebbo.app/foleja/share/' : 'https://www.bebbo.app/share/';
 export const bebboShareMailId = 'mailto:admin@bebbo.app';
 export const folejaShareMailId = 'mailto:prishtina@unicef.org';
+export const banglaShareMailId = 'mailto: info@babuni.app';
 export const maleData: any = {
   "id": 37,
   "name": "Male",
@@ -78,34 +80,37 @@ export const appConfig = {
   archive: 'archive',
 }
 export const finalUrl = (apiEndpoint: string, selectedCountry: number | undefined, selectedLang: string): any => {
+  const isBuildForBabuni = buildFor == String(buildForBangla);
+  const apiURLDevelop = isBuildForBabuni ? apiBabuniUrlDevelop :apiUrlDevelop;
+  console.log('API URL is',apiURLDevelop)
   if (apiEndpoint == appConfig.sponsors) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
+    return apiURLDevelop + '/' + apiEndpoint + '/' + selectedCountry;
   }
   if (apiEndpoint == appConfig.taxonomies) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang + '/all';
+    return apiURLDevelop + '/' + apiEndpoint + '/' + selectedLang + '/all';
   }
   if (apiEndpoint == appConfig.checkUpdate) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
+    return apiURLDevelop + '/' + apiEndpoint + '/' + selectedCountry;
   }
   if (apiEndpoint == appConfig.vaccinePinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/vaccinations';
+    return apiURLDevelop + '/pinned-contents/' + selectedLang + '/vaccinations';
   }
   if (apiEndpoint == appConfig.childGrowthPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
+    return apiURLDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
   }
   if (apiEndpoint == appConfig.healthcheckupPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
+    return apiURLDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
   }
   if (apiEndpoint == appConfig.faqPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
+    return apiURLDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
   }
   if (apiEndpoint == appConfig.milestoneRelatedArticle) {
-    return apiUrlDevelop + '/related-article-contents/' + selectedLang + '/milestone';
+    return apiURLDevelop + '/related-article-contents/' + selectedLang + '/milestone';
   }
   if (apiEndpoint == appConfig.faqUpdatedPinnedContent) {
-    return apiUrlDevelop + '/updated-pinned-contents/' + selectedLang + '/faq';
+    return apiURLDevelop + '/updated-pinned-contents/' + selectedLang + '/faq';
   }
-  return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang;
+  return apiURLDevelop + '/' + apiEndpoint + '/' + selectedLang;
 }
 
 
@@ -221,12 +226,13 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
     }
   ];
   if (isDatetimeReq == true) {
-    allApiObject.push({
-      apiEndpoint: appConfig.faqUpdatedPinnedContent,
-      method: 'get',
-      postdata: isDatetimeReq == true && dateTimeObj['faqUpdatedPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqUpdatedPinnedContentDatetime'] } : dateTimeObj['faqPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqPinnedContentDatetime'] } : {},
-      saveinDB: true,
-    },
+    // {
+    //   apiEndpoint: appConfig.faqUpdatedPinnedContent,
+    //   method: 'get',
+    //   postdata: isDatetimeReq == true && dateTimeObj['faqUpdatedPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqUpdatedPinnedContentDatetime'] } : dateTimeObj['faqPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqPinnedContentDatetime'] } : {},
+    //   saveinDB: true,
+    // },
+    allApiObject.push(
       {
         apiEndpoint: appConfig.archive,
         method: 'get',

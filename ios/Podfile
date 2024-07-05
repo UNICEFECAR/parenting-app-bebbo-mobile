@@ -83,7 +83,7 @@ def shared_pods
   # Flipper pods
  # add_flipper_pods!
 end
-
+use_modular_headers!
 target 'ParentBuddyApp' do
   config = use_native_modules!
 
@@ -115,6 +115,12 @@ target 'ParentBuddyApp' do
     shared_pods
   end
   target 'ParentBuddyAppXkDev' do
+    shared_pods
+  end
+  target 'ParentBuddyAppBangla' do
+    shared_pods
+  end
+  target 'ParentBuddyAppBanglaDev' do
     shared_pods
   end
   # post_install do |installer|

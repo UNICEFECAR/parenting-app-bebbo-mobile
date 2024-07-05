@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 import FastImage from 'react-native-fast-image';
 import RNFS from 'react-native-fs';
 import { store } from "../../App";
-import { appConfig, finalUrl } from '../assets/translations/appOfflineData/apiConstants';
+import { appConfig, buildFor, buildForBangla, buildForBebbo, finalUrl } from '../assets/translations/appOfflineData/apiConstants';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../database/schema/ActivitiesSchema';
@@ -23,6 +23,7 @@ import {  setAllLocalNotificationGenerateType, setAllNotificationData } from '..
 import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 import LocalNotifications from './LocalNotifications';
+import { localization } from '../bangla/dynamicImports';
 
 
 export const client =
@@ -30,9 +31,11 @@ export const client =
 
 const commonApiService: CommonApiInterface = async (apiEndpoint: string, methodname: any, postdata: object) => {
   const storedata = store.getState();
-  
-  const selectedCountry = storedata.selectedCountry.countryId;
-  const selectedLang = storedata.selectedCountry.languageCode;
+  const selectedCountry = (String(buildFor) != buildForBangla) ? storedata.selectedCountry.countryId : localization[0]?.countryId;
+  //const selectedCountry = storedata.selectedCountry.countryId;
+  const selectedLang = (String(buildFor) != buildForBangla) ? storedata.selectedCountry.languageCode : localization[0]?.languages[0].languageCode;
+  console.log('API call Selected Langugae is',selectedLang)
+  console.log('API call Selected selectedCountry is',selectedCountry)
   const newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
   const responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
