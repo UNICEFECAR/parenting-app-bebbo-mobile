@@ -75,13 +75,13 @@ jobs:
         run: | 
           cd ios && rm -rf Pods Podfile.lock && pod install --repo-update
 
-      # - name: Authenticate with Apple Developer account
-      #   env:
-      #     APPLE_ID: ${{ secrets.APPLE_ID_PROD }}
-      #     APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD_PROD }}
-      #   run: |
-      #     echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
-      #     security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
+      - name: Authenticate with Apple Developer account
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID_PROD }}
+          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD_PROD }}
+        run: |
+          echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
+          security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
 
       - name: Create and unlock keychain
         run: |
