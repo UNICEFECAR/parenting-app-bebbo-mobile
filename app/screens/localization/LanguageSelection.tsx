@@ -127,11 +127,11 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       }
 
       const selectedCountry = localization.find(
-        (country: any) => country.countryId === newCountryId,
+        (country: any) => country.CountryID === newCountryId,
       );
 
       const countrySponsorsData = sponsors.find(
-        (country: any) => country.id === selectedCountry.countryId,
+        (country: any) => country.id === selectedCountry.CountryID,
       )
       console.log('Seleted  country is', countrySponsorsData)
       console.log('selectedCountry country is', selectedCountry)

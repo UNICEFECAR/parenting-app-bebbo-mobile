@@ -49,11 +49,11 @@ import i18n, {
           
           const bestLng = RNLocalize.findBestLanguageTag(AVALAILABLE_LANG_CODES);
          const langCodeNew = findLangCode(bestLng?.languageTag);
-         const lang2 = langCodeNew ?langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
+         const lang2 = langCodeNew ?langCodeNew : 'en';
          const country = localization.find((x:any) => x.languages.some((item:any) => item.locale === lang2));
         const language = localization.reduce((prev: any, product: any) => prev || product.languages.find((item:any) => item.locale === lang2), undefined);
         store.dispatch(onLocalizationSelect({country,language}))
-          callback(langCodeNew ?? localization[localization.length-1]?.languages[0]?.locale);
+          callback(langCodeNew ?? 'en');
           return;
         }
         callback(lng);
