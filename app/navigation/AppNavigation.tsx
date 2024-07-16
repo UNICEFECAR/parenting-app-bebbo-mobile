@@ -1,5 +1,5 @@
 import analytics from '@react-native-firebase/analytics';
-import { DrawerActions, NavigationContainer } from '@react-navigation/native';
+import { DrawerActions, NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddSiblingData from '@screens/AddSiblingData';
@@ -37,7 +37,7 @@ import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
-import { restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
 import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
@@ -53,12 +53,17 @@ import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 import AddChildSetup from '@screens/AddChildSetup';
+import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const userIsOnboarded = useAppSelector(
     (state: any) =>
       state.utilsData.userIsOnboarded
+  );
+  const userIsFirstTime = useAppSelector(
+    (state: any) =>
+      state.utilsData.userIsFirstTime
   );
   const child_age = useAppSelector(
     (state: any) =>
@@ -83,6 +88,7 @@ export default (): any => {
     (state: any) => state.selectedCountry.countryId,
   );
   const [netState, setNetState] = React.useState('');
+  const [loading, setLoading] = React.useState(true);
   const dispatch = useAppDispatch();
   const netInfo = useNetInfoHook();
   const activeChild = useAppSelector((state: any) =>
@@ -147,9 +153,48 @@ export default (): any => {
       resetURL();
     }
   }
+  const apiJsonData = [
+    {
+      apiEndpoint: appConfig.countryGroups,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    }
+  ];
+  
+
+  // useEffect(() => {
+  //   console.log('userIsFirstTime is', userIsFirstTime);
+
+  //   async function setCountries() {
+  //     try {
+  //       if (!userIsFirstTime) {
+  //         await dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, '', apiJsonData, netInfo.isConnected));
+  //         console.log('wdwdwdwdwdwd',loading)
+  //         setLoading(false);
+  //         console.log('after wdwdwdwdwdwd',loading)
+  //       }
+  //     } catch (e:any) {
+  //       console.log("Error");
+  //       console.log(e.message);
+  //     } finally {
+  //       console.log('afterwdwdwdwdwdwd',loading)
+  //       setLoading(false);
+  //     }
+  //   }
+  //   setCountries();
+  //   console.log('loading is', loading);
+   
+  // }, [userIsFirstTime, dispatch]);
+  useEffect(() => {
+    console.log('userIsFirstTime is',userIsFirstTime)
+    if(!userIsFirstTime){
+    dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, activeChild, apiJsonData, netInfo.isConnected))
+    }
+  }, [])
+  
   useEffect(() => {
     // ... handle deep link
-    console.log('User is deepliong sxlkc');
     callUrl(linkedURL);
   }, [linkedURL, resetURL, userIsOnboarded])
 
@@ -797,6 +842,7 @@ export default (): any => {
 
   return (
     <SafeAreaProvider>
+      
       <NavigationContainer
         ref={navigationRef}
         onReady={(): any => {
@@ -953,7 +999,6 @@ export default (): any => {
           />
         </RootStack.Navigator>
       </NavigationContainer>
-      <OverlayLoadingComponent loading={profileLoading} />
     </SafeAreaProvider>
   );
 };

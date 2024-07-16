@@ -18,9 +18,9 @@ import downloadImages from '../downloadImages/ImageStorage';
 import { CommonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setchatBotData, setDownloadedBufferAgeBracket } from '../redux/reducers/childSlice';
-import { setSponsorStore } from '../redux/reducers/localizationSlice';
+import { setCountriesStore, setSponsorStore } from '../redux/reducers/localizationSlice';
 import {  setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
-import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
+import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate, setuserIsFirstTime } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 import LocalNotifications from './LocalNotifications';
 
@@ -105,6 +105,73 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
   navigation.navigate('Terms');
+}
+export const onCountryApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string):Promise<any> => {
+  console.log('Response for country is', response)
+  if (response && response[0] && response[0].apiEndpoint == appConfig.countryGroups) {
+    response = response[0];
+   
+    if(response.data && response.data.status && response.data.status == 200)
+    {
+      console.log('type of sponser data for country is', typeof response.data.data)
+      console.log('sponser data for country is',  response.data.data)
+      console.log('sponser data for country issdsd',  response.data?.data[0])
+      dispatch(setuserIsFirstTime(true));
+      const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
+      console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
+      navigation.push('Localization'); 
+      // const partnerObj = response.data.data.map((val: any) => {
+      //   if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
+      //   {
+      //     return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
+      //   }else {
+      //     return null;
+      //   }
+      // })
+      // const logoObj = response.data.data.map((val: any) => {
+      //   if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
+      //   {
+      //     return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
+      //   }else {
+      //     return null;
+      //   }
+      // })
+      // const sponsarsObj:any={};
+      // if(logoObj && logoObj != null && logoObj[0])
+      // {
+      //   const ImageArray = [];
+      //   ImageArray.push(logoObj[0].country_national_partner)
+      //   const imagesDownloadResult = await downloadImages(ImageArray);
+      //   if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+      //     sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+      //   }
+      //   else{
+      //     sponsarsObj.country_national_partner=null;
+      //   }
+      // }
+      // else{
+      //   sponsarsObj.country_national_partner=null;
+      // }
+      // if(partnerObj && partnerObj != null && partnerObj[0])
+      // {
+      //   const ImageArray = [];
+      //   ImageArray.push(partnerObj[0].country_sponsor_logo)
+      //   const imagesDownloadResult = await downloadImages(ImageArray);
+      //   if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+      //     sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+      //   }
+      //   else{
+      //     sponsarsObj.country_sponsor_logo=null;
+      //   }
+      // }
+      // else{
+      //    sponsarsObj.country_sponsor_logo=null;
+      //  }
+      // dispatch(setSponsorStore(sponsarsObj));
+    }
+  }
+
+ // navigation.navigate('Walkthrough');
 }
 export const onOnLoadApiSuccess = async (_response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string):Promise<any> => {
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);

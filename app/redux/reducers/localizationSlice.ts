@@ -11,18 +11,20 @@ interface SelectedLocalizationType {
   selectedLocale: string;
   pluralShow: boolean;
   sponsors: Array<any>;
+  countries: string;
   restartOnLangChange: string;
   AppLayoutDirection: string;
   AppLayoutDirectionScreen: string;
   AppLayoutDirectionParams: any;
 }
 const initialState: SelectedLocalizationType = {
-  countryId: localization[localization.length - 1].countryId, //126
-  languageCode: localization[localization.length - 1].languages[0].languageCode, //'en'
-  luxonLocale: localization[localization.length - 1].languages[0].luxonLocale, //'en'
-  locale: localization[localization.length - 1]?.languages[0]?.locale, //'en'
-  pluralShow: localization[localization.length - 1]?.languages[0]?.pluralShow,//false
+  countryId: 126, //localization[localization.length - 1].countryId, //126
+  languageCode: 'en', //localization[localization.length - 1].languages[0].languageCode, //'en'
+  luxonLocale: 'en', //'en'
+  locale: 'en', //localization[localization.length - 1]?.languages[0]?.locale, //'en'
+  pluralShow: false,//localization[localization.length - 1]?.languages[0]?.pluralShow,//false
   sponsors: [],
+  countries: '',
   restartOnLangChange: 'no',
   AppLayoutDirection: 'ltr',
   AppLayoutDirectionScreen: 'LanguageSelection',
@@ -38,15 +40,15 @@ export const localizationSlice = createSlice({
     onLocalizationSelect: (state, action: PayloadAction<any>): any => {
       console.log('LanguageCode is', action.payload)
       if (action?.payload?.language?.languageCode != undefined) {
-        state.countryId = action.payload.country.countryId;
+        state.countryId = action.payload.country.CountryID;
         state.languageCode = action.payload.language.languageCode;
         state.luxonLocale = action.payload.language.luxonLocale;
         state.locale = action.payload.language.locale;
         state.pluralShow = action.payload.language.pluralShow;
       } else {
         console.log('country default is', action.payload)
-          state.countryId = action.payload.countryId;
-          state.countrySelectedId = action.payload.countryId;
+          state.countryId = action.payload.CountryID;
+          state.countrySelectedId = action.payload.CountryID;
           state.languageCode = action.payload.languages[0].languageCode;
           state.luxonLocale = action.payload.languages[0].luxonLocale;
           state.locale = action.payload.languages[0].locale;
@@ -63,6 +65,15 @@ export const localizationSlice = createSlice({
       action: PayloadAction<any>,
     ): any => {
       state.sponsors = action.payload;
+    },
+    setCountriesStore: (
+      state,
+      action: PayloadAction<any>,
+    ): any => {
+      (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.countries = action.payload;
+      //(typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : action.payload = action.payload;
+       console.log('type of data', action.payload)
     },
     setChildStore: (
       state,
@@ -97,6 +108,6 @@ export const localizationSlice = createSlice({
   },
 });
 
-export const { onLocalizationSelect, setChildStore, setSponsorStore, oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams } = localizationSlice.actions;
+export const { onLocalizationSelect,setCountriesStore, setChildStore, setSponsorStore, oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams } = localizationSlice.actions;
 
 export default localizationSlice.reducer;

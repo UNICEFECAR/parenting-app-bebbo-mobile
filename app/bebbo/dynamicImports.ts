@@ -17,6 +17,7 @@ export const cameraProfileImage=cameraProfile;
 export const imgLogoChatbotNew=imgLogoChatbotNew1;
 export const AVAILABLE_LANGUAGES =require('../localization/Available_lang_bebbo').default;
 export const taxonomydata =require('@offlinedata/bebbo/taxonomies').taxonomydata;
+export const countryData =require('@offlinedata/bebbo/countryData').countryData;
 export const ActivitiesData =require('@offlinedata/bebbo/ActivitiesData').ActivitiesData;
 export const articledata = require('@offlinedata/bebbo/article').articledata;
 export const basicPagesData =require('@offlinedata/bebbo/basicPages').basicPagesData;

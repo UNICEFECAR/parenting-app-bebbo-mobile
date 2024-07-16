@@ -1,7 +1,7 @@
 import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
-import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onSponsorApiSuccess, retryAlert } from '../../services/commonApiService';
+import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onCountryApiSuccess,retryAlert } from '../../services/commonApiService';
 import { ApiJsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
 import { receiveAPIFailure } from './sagaSlice';
@@ -10,6 +10,7 @@ type commonApiServiceResponse = SagaReturnType<typeof commonApiService>
 function* apiCall(data: ApiJsonArray, dispatch: any): any {
   console.log("in api call", data);
   try {
+    console.log("in api call", data);
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
 
     if (response.status != 200) {
@@ -47,8 +48,9 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
     //dispatch action for sponsor page
     yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
   }
-  else if (prevPage == 'CountryLanguageSelection') {
-    yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
+  else if (prevPage == '') {
+    console.log('Dsxucgfsid')
+    yield call(onCountryApiSuccess, response, dispatch, navigation, languageCode, prevPage)
   }
   else if (prevPage == 'ChildSetup') {
     yield call(onChildSetupApiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)

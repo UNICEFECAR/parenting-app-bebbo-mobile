@@ -51,6 +51,7 @@ export const fiveYearFromNow = today;
 export const restOfTheWorldCountryId = 126;
 export const videoArticleMandatory = 0;
 export const maxArticleSize = 5;
+export const bebboName = 'Bebbo';
 export const appConfig = {
   articles: 'articles',
   videoArticles: 'video-articles',
@@ -70,8 +71,13 @@ export const appConfig = {
   checkUpdate: 'check-update',
   faqs: 'faqs',
   archive: 'archive',
+  countryGroups: 'country-groups',
 }
 export const finalUrl = (apiEndpoint: string, selectedCountry: number | undefined, selectedLang: string): any => {
+  console.log('sfsfslfjslf')
+  if (apiEndpoint == appConfig.countryGroups) {
+    return apiUrlDevelop + '/' + apiEndpoint + '/' + bebboName;
+  }
   if (apiEndpoint == appConfig.sponsors) {
     return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
   }
@@ -89,6 +95,12 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
   const allApiObject = [
     {
       apiEndpoint: appConfig.sponsors,
+      method: 'get',
+      postdata: {},
+      saveinDB: false,
+    },
+    {
+      apiEndpoint: appConfig.countryGroups,
       method: 'get',
       postdata: {},
       saveinDB: false,
