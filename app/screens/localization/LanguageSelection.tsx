@@ -29,11 +29,15 @@ type Props = {
 };
 const LanguageSelection = ({ route, navigation }: Props): any => {
   const [language, setLanguage] = useState<any>();
+  const allCountries = useAppSelector(
+    (state: any) =>
+      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
+  );
   console.log("in lang file ---", route?.params);
   let country: any, languagenew: any;
   if (buildFor == buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
     console.log("in if--");
-    country = localization[localization.length - 1];
+    country = allCountries[allCountries.length - 1];
     languagenew = null;
   } else {
     country = route?.params?.country;
@@ -78,6 +82,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
+  
   const extractLanguageCode = (languageTag: string): string => {
     const [languageCode] = languageTag.split('-');
     return languageCode;
@@ -126,16 +131,15 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         }
       }
 
-      const selectedCountry = localization.find(
+      const selectedCountry = allCountries.find(
         (country: any) => country.CountryID === newCountryId,
       );
 
-      const countrySponsorsData = sponsors.find(
-        (country: any) => country.id === selectedCountry.CountryID,
-      )
-      console.log('Seleted  country is', countrySponsorsData)
+      // const countrySponsorsData = allCountries.find(
+      //   (country: any) => country.id === selectedCountry.CountryID,
+      // )
       console.log('selectedCountry country is', selectedCountry)
-      setSponsorsData(countrySponsorsData);
+      setSponsorsData(route?.params?.country);
     }
   }, [isVisible]);
   const renderItem = ({ item, index }: any): any => (
@@ -233,9 +237,9 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       console.log(route.params.country.languages[0], "routeparams");
       const filteredLan = route.params?.country?.languages?.filter((lang:any)=>lang.languageCode==language.languageCode);
       console.log('filtered language is',filteredLan)
-      dispatch(onLocalizationSelect({"languages":filteredLan,"countryId": route.params.country?.countryId}));
+      dispatch(onLocalizationSelect({"languages":filteredLan,"countryId": route.params.country?.CountryID}));
       dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-      analytics().setUserProperties({ country: route.params.country.displayName, language: language.displayName })
+      analytics().setUserProperties({ country: route.params.country.name, language: language.displayName })
     } else {
       console.log(country, "countryData");
       dispatch(onLocalizationSelect(country));
