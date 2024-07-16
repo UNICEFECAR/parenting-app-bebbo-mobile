@@ -47,8 +47,8 @@ export const localizationSlice = createSlice({
         state.pluralShow = action.payload.language.pluralShow;
       } else {
         console.log('country default is', action.payload)
-          state.countryId = action.payload.CountryID;
-          state.countrySelectedId = action.payload.CountryID;
+          state.countryId = action.payload.countryId;
+          state.countrySelectedId = action.payload.countryId;
           state.languageCode = action.payload.languages[0].languageCode;
           state.luxonLocale = action.payload.languages[0].luxonLocale;
           state.locale = action.payload.languages[0].locale;
