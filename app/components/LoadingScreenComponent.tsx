@@ -113,9 +113,10 @@ const LoadingScreenComponent = (props: any): any => {
   const prevPage = props.prevPage;
 
   React.useEffect(() => {
-    const countrySponsor1 = sponsorsData.find(sponsor => sponsor.id === props.sponsors.id);
-    setCountrySponsor(countrySponsor1)
-  }, [sponsorsData, countrySponsor])
+    console.log('Sponsers ist',sponsors)
+   // const countrySponsor1 = sponsorsData.find(sponsor => sponsor.id === props.sponsors.id);
+    setCountrySponsor(sponsors)
+  }, [countrySponsor])
   return (
     <LoadingContainer>
       <MainView>
@@ -132,17 +133,17 @@ const LoadingScreenComponent = (props: any): any => {
               </View>
               <PartnerLogo
                 style={styles.partnerLogoView}
-                source={sponsors?.country_national_partner != null ? countrySponsor?.partnerImage : require('')}
+                source={sponsors?.country_national_partner != null ? { uri: sponsors?.country_national_partner?.url } : require('')}
               />
               <SponsorLogo
                 style={styles.partnerLogoView}
-                source={sponsors?.country_sponsor_logo != null ? countrySponsor?.sponserImage : require('')}
+                source={sponsors?.country_sponsor_logo != null ? { uri: sponsors?.country_sponsor_logo?.url }  : require('')}
               />
               <WrapView>
                 <StaticLogo
                   source={
 
-                    require('../assets/loading/unicef_logo.png')}
+                    sponsors?.unicef_logo != null ? { uri: sponsors.unicef_logo?.url }  : require('')}
                 />
               </WrapView>
 

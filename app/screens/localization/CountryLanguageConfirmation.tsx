@@ -265,12 +265,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       const selectedCountry = allCountries.find(
         (country: any) => country.CountryID === newCountryId.toString(),
       )
-      console.log('newCountryId country is', selectedCountry)
-      const countrySponsorsData = allCountries.find(
-        (country: any) => country.CountryID === selectedCountry.CountryID,
-      )
 
-      setSponsorsData(countrySponsorsData);
+      setSponsorsData(selectedCountry);
       const foundCountry = getCountryByCountryCode(RNLocalize.getCountry());
       console.log('Found country is', foundCountry)
       if (foundCountry != undefined && foundCountry != null) {
