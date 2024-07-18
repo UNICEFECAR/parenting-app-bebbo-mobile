@@ -18,11 +18,11 @@ interface SelectedLocalizationType {
   AppLayoutDirectionParams: any;
 }
 const initialState: SelectedLocalizationType = {
-  countryId: 126, //localization[localization.length - 1].countryId, //126
-  languageCode: 'en', //localization[localization.length - 1].languages[0].languageCode, //'en'
-  luxonLocale: 'en', //'en'
-  locale: 'en', //localization[localization.length - 1]?.languages[0]?.locale, //'en'
-  pluralShow: false,//localization[localization.length - 1]?.languages[0]?.pluralShow,//false
+  countryId: localization[localization.length - 1].countryId, //126
+  languageCode: localization[localization.length - 1].languages[0].languageCode, //'en'
+  luxonLocale: 'en',
+  locale: localization[localization.length - 1]?.languages[0]?.locale, //'en'
+  pluralShow: localization[localization.length - 1]?.languages[0]?.pluralShow,//false
   sponsors: [],
   countries: '',
   restartOnLangChange: 'no',
@@ -40,7 +40,7 @@ export const localizationSlice = createSlice({
     onLocalizationSelect: (state, action: PayloadAction<any>): any => {
       console.log('LanguageCode is', action.payload)
       if (action?.payload?.language?.languageCode != undefined) {
-        state.countryId = action.payload.country.CountryID;
+        state.countryId = action.payload.country.countryId;
         state.languageCode = action.payload.language.languageCode;
         state.luxonLocale = action.payload.language.luxonLocale;
         state.locale = action.payload.language.locale;

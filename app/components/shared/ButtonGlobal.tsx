@@ -49,12 +49,22 @@ min-height:40px;
 /*Button Text */
 export const ButtonText = styled.Text`
   text-align: center;
-  color: ${(props: any): any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
+  color: ${(props:any):any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
   
 `;
+
+export const ButtonErrorText = styled.Text`
+  text-align: center;
+  color: #00000;
+  font-family: 'roboto-bold';
+  font-size:16px;
+  line-height:20px;
+  
+`;
+
 
 export const ButtonUpperCaseText = styled.Text`
   text-align: center;

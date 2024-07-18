@@ -30,31 +30,3 @@ export const standardDevData =require('@offlinedata/bebbo/standardDevData').stan
 export const SurveyData =require('@offlinedata/bebbo/SurveyData').SurveyData;
 export const vaccineData =require('@offlinedata/bebbo/vaccineData').vaccineData;
 export const VideoArticleData =require('@offlinedata/bebbo/VideoArticleData').VideoArticleData;
-import northMacedoniaPartnerLogo from '@assets/appOfflineImages/northmacedonia/partner/1.png';
-export const nmPartnerLogo=northMacedoniaPartnerLogo;
-import northMacedinaSponserLogo from '@assets/appOfflineImages/northmacedonia/sponser/2.png';
-export const nmSponserLogo=northMacedinaSponserLogo;
-import albaniaPartnerLogo from '@assets/appOfflineImages/albania/partner/IPH.png';
-export const albaniaPartnerLogo1=albaniaPartnerLogo;
-import belarusPartnerLogo from '@assets/appOfflineImages/belarus/partner/Минобр.png';
-export const blPartnerLogo=belarusPartnerLogo;
-import belarusSponserLogo from '@assets/appOfflineImages/belarus/sponser/Минздрав.png';
-export const blSponserLogo=belarusSponserLogo;
-import kyrgyzstanPartnerLogo from '@assets/appOfflineImages/kyrgyzstan/partner/LogoMoESKGWhiteSide.png';
-export const kgPartnerLogo=kyrgyzstanPartnerLogo;
-import montenegroPartnerLogo from '@assets/appOfflineImages/montenegro/partner/MoHMontenegroLogo_0.png';
-export const mnPartnerLogo=montenegroPartnerLogo;
-import montenegroSponsorLogo from '@assets/appOfflineImages/montenegro/sponser/EUlogozaaplikaciju.png';
-export const mnSponserLogo=montenegroSponsorLogo;
-import serbiaPartnerLogo from '@assets/appOfflineImages/serbia/partner/GZZJZNtionalPartner1000WideWith.png';
-export const sbPartnerLogo=serbiaPartnerLogo;
-import serbiaSponserLogo from '@assets/appOfflineImages/serbia/sponser/nordeusFondacijaLogo1000Wide.png';
-export const sbSponserLogo=serbiaSponserLogo;
-import slovakiaPartnerLogo from '@assets/appOfflineImages/slovakia/partner/PEDIATRIlogarium01av.png'
-export const skPartnerLogo=slovakiaPartnerLogo;
-import tajikistanPartnerLogo from '@assets/appOfflineImages/tajikistan/partner/MOH_Tajikistan_Logo_TAJ.png'
-export const tjkPartnerLogo=tajikistanPartnerLogo;
-import uzbekistanPartnerLogo from '@assets/appOfflineImages/uzbekistan/partner/newMinistry161121Test2.png';
-export const uzPartnerLogo=uzbekistanPartnerLogo;
-import uzbekistanSponserLogo from '@assets/appOfflineImages/uzbekistan/sponser/Untitled.png';
-export const uzSponserLogo=uzbekistanSponserLogo;

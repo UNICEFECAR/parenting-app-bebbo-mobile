@@ -234,7 +234,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   } else {
     console.log(language, "..newLanguage");
     if (Object.keys(route.params).length !== 0) {
-      console.log(route.params.country.languages[0], "routeparams");
+      console.log(route.params.country?.CountryID, "routeparams is");
       const filteredLan = route.params?.country?.languages?.filter((lang:any)=>lang.languageCode==language.languageCode);
       console.log('filtered language is',filteredLan)
       dispatch(onLocalizationSelect({"languages":filteredLan,"countryId": route.params.country?.CountryID}));

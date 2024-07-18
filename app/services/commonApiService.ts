@@ -56,9 +56,7 @@ export const updateIncrementalSyncDT = async(response: any, dispatch: any, _navi
   const articleresp = response.find((y:any)=>y.apiEndpoint == appConfig.articles);
   const videoarticleresp = response.find((y:any)=>y.apiEndpoint == appConfig.videoArticles);
   const activitiesresp = response.find((y:any)=>y.apiEndpoint == appConfig.activities);
-  const faqpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqPinnedContent);
   const faqsresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqs);
-  const faqupdatedpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqUpdatedPinnedContent);
   const archiveresp = response.find((y:any)=>y.apiEndpoint == appConfig.archive);
   if(articleresp && articleresp != null && articleresp.data) {
     if(prevPage != "AddEditChild") {
@@ -71,15 +69,10 @@ export const updateIncrementalSyncDT = async(response: any, dispatch: any, _navi
   if(activitiesresp && activitiesresp != null && activitiesresp.data) {
     dispatch(setIncrementalSyncDT({key: 'activitiesDatetime', value: activitiesresp.data.datetime}));
   }
-  if(faqpinnedresp && faqpinnedresp != null && faqpinnedresp.data) {
-    dispatch(setIncrementalSyncDT({key: 'faqPinnedContentDatetime', value: faqpinnedresp.data.datetime}));
-  }
   if(faqsresp && faqsresp != null && faqsresp.data) {
     dispatch(setIncrementalSyncDT({key: 'faqsDatetime', value: faqsresp.data.datetime}));
   }
-  if(faqupdatedpinnedresp && faqupdatedpinnedresp != null && faqupdatedpinnedresp.data) {
-    dispatch(setIncrementalSyncDT({key: 'faqUpdatedPinnedContentDatetime', value: faqupdatedpinnedresp.data.datetime}));
-  }
+
   if(archiveresp && archiveresp != null && archiveresp.data) {
     dispatch(setIncrementalSyncDT({key: 'archiveDatetime', value: archiveresp.data.datetime}));
   }
@@ -119,7 +112,7 @@ export const onCountryApiSuccess = async (response: any, dispatch: any, navigati
       dispatch(setuserIsFirstTime(true));
       const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
       console.log("allDatatoStore ",prevPage,"--",allDatatoStore);
-      navigation.push('Localization'); 
+      //navigation.push('Localization'); 
       // const partnerObj = response.data.data.map((val: any) => {
       //   if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
       //   {
