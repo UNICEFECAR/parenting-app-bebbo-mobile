@@ -24,7 +24,7 @@ import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, AppState, Linking, Platform } from 'react-native';
+import { ActivityIndicator, Alert, AppState, Linking, Platform, Text } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -47,13 +47,13 @@ import { PERMISSIONS, RESULTS, request, check } from 'react-native-permissions';
 import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 //import DynamicLinks from '@react-native-firebase/dynamic-links';
 import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 import AddChildSetup from '@screens/AddChildSetup';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
+import { localization } from '@dynamicImportsClass/dynamicImports';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -102,10 +102,18 @@ export default (): any => {
   const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
+  const apiStatus = useAppSelector((state) => state.failedOnloadApiObjReducer.status);
+  console.log('api status is',apiStatus)
+  const apiData = useAppSelector((state) => state.failedOnloadApiObjReducer.data);
+  const apiError = useAppSelector((state) => state.failedOnloadApiObjReducer.error);
   const surveyData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
+  );
+  const allCountries = useAppSelector(
+    (state: any) =>
+      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
   );
   const callUrl = (url: any): any => {
     if (url) {
@@ -186,12 +194,13 @@ export default (): any => {
   //   console.log('loading is', loading);
    
   // }, [userIsFirstTime, dispatch]);
+
   useEffect(() => {
     console.log('userIsFirstTime is',userIsFirstTime)
     if(!userIsFirstTime){
     dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, activeChild, apiJsonData, netInfo.isConnected))
     }
-  }, [])
+  }, [dispatch])
   
   useEffect(() => {
     // ... handle deep link
@@ -839,10 +848,22 @@ export default (): any => {
     fetchNetInfoSet();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
+  // const dataStatus = useAppSelector((state) => state.data.status);
+  // const data = useAppSelector((state) => state.data.data);
 
+  // if (dataStatus !== 200) {
+  //   return <ActivityIndicator size="large" color="#0000ff" />;
+  // }
+  // if (apiStatus === 'loading') {
+  //   return <ActivityIndicator size="large" color="#0000ff" />;
+  // }
+
+  // if (apiStatus === 'failed') {
+  //   return <Text>Error: {apiError}</Text>;
+  // }
   return (
     <SafeAreaProvider>
-      
+      {apiData &&
       <NavigationContainer
         ref={navigationRef}
         onReady={(): any => {
@@ -867,7 +888,7 @@ export default (): any => {
         <RootStack.Navigator
           initialRouteName={
             restartOnLangChange != 'yes' ?
-              userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
+            userIsOnboarded == true ? 'HomeDrawerNavigator' : allCountries?.length===1 && allCountries[0]?.languages?.length===1?'LoadingScreen':'Localization'
               : AppLayoutDirectionScreen
           }
           screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false, headerShown: false }}
@@ -998,7 +1019,7 @@ export default (): any => {
             component={AddChildHealthCheckup}
           />
         </RootStack.Navigator>
-      </NavigationContainer>
+      </NavigationContainer>}
     </SafeAreaProvider>
   );
 };
