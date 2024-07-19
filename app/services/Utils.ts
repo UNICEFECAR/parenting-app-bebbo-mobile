@@ -513,6 +513,7 @@ const checkFileExistence = async (filePath:string) => {
 //child data get
 export const getChild = async (child: any, genders: any): Promise<any> => {
     try {
+        const autoChild: any = child.autoChild == "true" ? "true" : "false"; 
         const checkPhotoUri = child.photoUri!=null? CHILDREN_PATH +child.photoUri : CHILDREN_PATH;
         const photoUri  = await RNFS.exists(String(checkPhotoUri));     
         const childmeasures  = await formatImportedMeasures(child.measures)
@@ -562,7 +563,8 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
         isPremature: isPremature,
         isExpected: inFuture == true ? 'true' : 'false',
         favoriteadvices: favoriteadvices,
-        favoritegames: favoritegames
+        favoritegames: favoritegames,
+        autoChild: autoChild
     };
     } catch (error) {
         console.error('Error in getChild:', error);
