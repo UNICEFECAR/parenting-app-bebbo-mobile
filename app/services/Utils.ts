@@ -512,9 +512,14 @@ const checkFileExistence = async (filePath:string) => {
   
 //child data get
 export const getChild = async (child: any, genders: any): Promise<any> => {
+    console.log("getChild child - ", child);
+    console.log("getChild genders - ", genders);
+    
     try {
         const checkPhotoUri = child.photoUri!=null? CHILDREN_PATH +child.photoUri : CHILDREN_PATH;
-        const photoUri  = await RNFS.exists(String(checkPhotoUri));     
+        console.log("checkPhotoUri---", checkPhotoUri);
+        const photoUri  = await RNFS.exists(String(checkPhotoUri));   
+        console.log("photoUri---", photoUri);  
         const childmeasures  = await formatImportedMeasures(child.measures)
         console.log("reminders output---", childmeasures);
         const childreminders = await formatImportedReminders(child.reminders)
@@ -562,13 +567,13 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
         isPremature: isPremature,
         isExpected: inFuture == true ? 'true' : 'false',
         favoriteadvices: favoriteadvices,
-        favoritegames: favoritegames
+        favoritegames: favoritegames,
+        autoChild: 'false',
     };
     } catch (error) {
         console.error('Error in getChild:', error);
         throw error; // Re-throw the error for handling in the calling function
     }
 }
-
 
 

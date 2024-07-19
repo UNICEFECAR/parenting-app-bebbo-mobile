@@ -29,9 +29,16 @@ const HeaderNotiIcon = (props: any): any => {
   const localNotificationGenerateType = useAppSelector((state: any) => state.notificationData.localNotificationGenerateType);
 
   const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
+    {
+      try {
+        state.childData.childDataSet.activeChild != ''
+        ? JSON.parse(state.childData.childDataSet.activeChild)
+        : []
+      } catch (error) {
+        console.log("HeaderNotiIcon catch", error);
+        
+      }
+    }
   );
   const dispatch = useAppDispatch();
   const childAge = useAppSelector(
@@ -168,7 +175,7 @@ const HeaderNotiIcon = (props: any): any => {
     React.useCallback(() => {
       // Your dismiss logic here 
       if (allnotis.length > 0) {
-        const currentChildNotis = allnotis?.find((item: any) => item.childuuid == activeChild.uuid)
+        const currentChildNotis = allnotis?.find((item: any) => item.childuuid == activeChild?.uuid)
         //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
         if (!isFutureDate(activeChild?.birthDate)) {
           if (currentChildNotis) {
@@ -202,7 +209,7 @@ const HeaderNotiIcon = (props: any): any => {
                 currentChildallnoti.push(item)
               })
             }
-            const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+            const childBirthDate = DateTime.fromJSDate(new Date(activeChild?.birthDate)).toMillis();
             //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
             const toDay = DateTime.fromJSDate(new Date()).toMillis();
             const combinedNotis = currentChildallnoti.sort(
@@ -218,7 +225,7 @@ const HeaderNotiIcon = (props: any): any => {
         }
       }
 
-    }, [activeChild.uuid, allnotis]),
+    }, [activeChild?.uuid, allnotis]),
   );
   useFocusEffect(
     React.useCallback(() => {
@@ -326,13 +333,13 @@ const HeaderNotiIcon = (props: any): any => {
     // LocalNotifications.getAllScheduledLocalNotifications();
     // LocalNotifications.getDeliveredNotifications();
     const fetchDataFav = async (): Promise<any> => {
-      const filterQuery = 'uuid == "' + activeChild.uuid + '"';
+      const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
       dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
       dispatch(setFavouriteGames(childData[0].favoritegames));
     }
     fetchDataFav()
-  }, [activeChild.uuid]);
+  }, [activeChild?.uuid]);
   const navigation = useNavigation<any>();
   return (
     <>

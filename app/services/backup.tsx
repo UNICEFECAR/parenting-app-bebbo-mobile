@@ -96,7 +96,8 @@ class Backup {
     }
     public async importFromFile(oldChildrenData: any, navigation: any, genders: any, dispatch: any, childAge: any, langCode: any): Promise<any> {
         console.log("oldchildrenresponse nwq",oldChildrenData)
-        if (oldChildrenData?.length > 0) {
+        try {
+            if (oldChildrenData?.length > 0) {
             const resolvedPromises = oldChildrenData.map(async (item: any) => {
                 console.log('here log')
                 if (item.birthDate != null && item.birthDate != undefined) {
@@ -105,31 +106,43 @@ class Backup {
                     console.log('here log itemnew',itemnew)
                      const childData: any = [];
                      childData.push(itemnew);
-                     await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                    //await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                    return userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData).then(function(results){
+                        console.log("results>>", results);
+                        return results
+                     })
+                     
                 }
             });
+ 
             const notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
+ 
             await Promise.all(resolvedPromises).then(async (item:any) => {
-                console.log("importfromfile--", item);
-                const allChildren = await getAllChildren(dispatch, childAge, 1);
+                console.log("importfromfile--", item[0]);
+                const allChildren:any = await getAllChildren(dispatch, childAge, 1);
+                console.log('here log allChildren',allChildren)
                 let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                 this.closeImportedRealm();
-
-                if (allChildren.length > 0) {
+                console.log('here log childId',childId)
+                
+                if (allChildren?.length > 0) {
                     if (childId?.length > 0) {
                         childId = childId[0].value;
                         const activeChildData = allChildren.filter((x: any) => x.uuid == childId);
-                        if (activeChildData.length > 0) {
+                        if (activeChildData?.length > 0) {
+                            console.log("before setActiveChild");
                             await setActiveChild(langCode, childId, dispatch, childAge, false);
+                            console.log("setActiveChild", childId);
                             navigation.navigate('LoadingScreen', {
                                 apiJsonData: [],
                                 prevPage: 'ImportScreen'
                             });
                             try {
                                 Realm.deleteFile({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                                console.log("success");
                             } catch (error) {
-                                console.log("error");
+                                console.log("error", error);
                             }
                             return "Imported";
                         }
@@ -159,7 +172,7 @@ class Backup {
                             console.log("error");
                         }
                         return "Imported";
-
+ 
                     }
                 }
                 else {
@@ -169,9 +182,14 @@ class Backup {
                 console.log("error-", error);
                 return new Error('No Import Succeded');
             })
-
-
+ 
+ 
         }
+ 
+    } catch (error) {
+           console.log("importFromFile error", error);
+            
+    }
     }
     public async import1(navigation: any, langCode: any, dispatch: any, childAge: any, genders: any): Promise<any> {
         console.log("import1-", navigation, langCode, dispatch, childAge, genders);
@@ -366,7 +384,7 @@ class Backup {
                         return new Error('No Data');
                     }
                 }).catch(error => {
-                    console.log("error-", error);
+                    console.log("Seconderror-", error);
                     return new Error('No Import Succeded');
                 })
 

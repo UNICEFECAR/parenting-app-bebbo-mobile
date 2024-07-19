@@ -116,17 +116,21 @@ class UserRealmCommon extends Component {
             if (realm) {
                 realm.write(() => {
                     records.forEach(record => {
-                        realm?.create<Entity>(entitySchema.name, record, "modified");
+                        console.log("create record:", record);
+                        realm?.create<Entity>(entitySchema.name, record, true);
                     })
                     result = records;
-                    return result;
+                    console.log("create result:", result);
                 });
+                return result;
             }
             else {
                 result = [];
                 return result;
             }
         } catch (e) {
+            console.log("create e:", e);
+            //Subhasis: it has tobe a throw instead of a return
             result = [];
             return result;
         }

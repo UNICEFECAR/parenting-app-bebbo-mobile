@@ -658,19 +658,23 @@ const SettingScreen = (props: any): any => {
         console.log(user1Path, "..user1Path")
         oldChildrenData = importedrealm.objects('ChildEntity');
       }
-
+ 
       console.log(oldChildrenData, "..newoldChildrenData..")
       setIsImportRunning(true);
       if (oldChildrenData.length > 0) {
         await userRealmCommon.openRealm();
         await userRealmCommon.deleteAllAtOnce();
+        try {
         console.log("oldchildrenresponse",oldChildrenData)
         const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
         console.log(importResponse, "..importResponse");
+        } catch (error) {
+          console.log(error, "..importResponse error");
+        }
       }
       setIsImportRunning(false);
       actionSheetRefImport.current?.setModalVisible(false);
-
+ 
     }
   }
   const importDataIOS = async (): Promise<any> => {

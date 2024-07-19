@@ -245,10 +245,12 @@ export const utilsSlice = createSlice({
      })
       
     },
-    setInfoModalOpened:( state:any,
-      action: PayloadAction<any>,):any=>{
+    setInfoModalOpened:(state:any = initialState,
+      action: PayloadAction<any>):any=>{
         console.log("payload is",action.payload)
-        state[action.payload.key]=action.payload.value;
+        console.log("previous state ",state[action.payload.key])
+        state[action.payload.key]= action.payload.value;
+        console.log("current state",state[action.payload.key])
       },
     setIncrementalSyncDT:( state:any,
       action: PayloadAction<any>,):any=>{
