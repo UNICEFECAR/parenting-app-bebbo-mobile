@@ -65,7 +65,6 @@ import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { store, useAppDispatch, useAppSelector } from '../../../App';
-import { localization } from '@dynamicImportsClass/dynamicImports';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
@@ -185,11 +184,21 @@ const SettingScreen = (props: any): any => {
   }
 
   const encryptData = (text: string, key: any): any => {
+    console.log("encryptData", text);
+    console.log("encryptData key", key);
+    
     return AesCrypto.encrypt(text, key, encryptionsIVKey, 'aes-256-cbc').then((cipher: any) => ({
       cipher
     }));
   }
   const decryptData = (text: string, key: any): any => {
+    console.log("decryptData", text);
+    console.log("decryptData key", key);
+    console.log(
+      "decryptData IV key"
+      ,
+      encryptionsIVKey
+      );
     return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
   }
   const exportDataAndroid = async (cipher: string): Promise<any> => {
@@ -214,6 +223,8 @@ const SettingScreen = (props: any): any => {
     }
   }
   const exportDataIOS = async (cipher: string): Promise<any> => {
+    console.log("exportDataIOS", cipher);
+    
     RNFS.writeFile(tempbackUpPath, cipher, 'utf8').then(async (res: any) => {
       console.log(res, "..res..")
       const shareOptions = {
@@ -620,19 +631,19 @@ const SettingScreen = (props: any): any => {
   //   toggleSwitch();
   // }, []);
   useEffect(() => {
-    console.log('Selected country for bangladesh is...', allCountries[0]?.languages[0]);
+    console.log('Selected country is...', allCountries);
     if (allCountries?.length===1 && allCountries[0]?.languages?.length===1) {
       setCountry(allCountries[0]);
       // const selectedLanguage: any = selectedCountry.languages.find(
       //   (language: any) => language.languageCode === languageCode,
       // );
-      setlanguage(localization[0]?.languages[0]);
+      setlanguage(allCountries[0]?.languages[0]);
     } else {
       console.log('Selected country for countryId is', countryId);
       const selectedCountry: any = allCountries.find(
         (country: any) => country.CountryID === countryId,
       );
-      console.log('Selected country for bangladesh is', selectedCountry);
+      console.log('Selected country is', selectedCountry);
       setCountry(selectedCountry);
       const selectedLanguage: any = selectedCountry?.languages?.find(
         (language: any) => language.languageCode === languageCode,
@@ -695,10 +706,14 @@ const SettingScreen = (props: any): any => {
       if (oldChildrenData.length > 0) {
         await userRealmCommon.openRealm();
         await userRealmCommon.deleteAllAtOnce();
+        try {
         console.log("oldchildrenresponse",oldChildrenData)
         const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
        
         console.log(importResponse, "..importResponse");
+        } catch (error) {
+          console.log(error, "..importResponse error");
+        }
       }
       setIsImportRunning(false);
       actionSheetRefImport.current?.setModalVisible(false);
@@ -706,6 +721,7 @@ const SettingScreen = (props: any): any => {
     }
   }
   const importDataIOS = async (): Promise<any> => {
+    console.log('<<<<<importDataIOS>>>>>>')
     DocumentPicker.pick({
       allowMultiSelection: false,
       type: DocumentPicker.types.allFiles,
@@ -1242,7 +1258,7 @@ const SettingScreen = (props: any): any => {
                     setModalVisible(false);
                     props.navigation.navigate('Localization',
                       {
-                        screen: localization.length == 1 ? 'LanguageSelection' : 'CountrySelection',
+                        screen: allCountries.length == 1 ? 'LanguageSelection' : 'CountrySelection',
                         params: { country: null, language: null }
                       });
                   }}>

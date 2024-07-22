@@ -58,16 +58,11 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const isFocused = useIsFocused();
   const incrementalSyncDT = useAppSelector((state: any) =>
     (state.utilsData.incrementalSyncDT),
   );
   const apiJsonData = [
-    {
-      apiEndpoint: appConfig.taxonomies,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
     {
       apiEndpoint: appConfig.basicPages,
       method: 'get',
@@ -82,7 +77,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
-  
+
   const extractLanguageCode = (languageTag: string): string => {
     const [languageCode] = languageTag.split('-');
     return languageCode;
@@ -122,7 +117,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         if (Object.keys(route.params).length === 0) {
           newCountryId = countryId;
         } else {
-          
+
           if (route.params != undefined) {
             newCountryId = route.params.country.countryId;
           } else {
@@ -202,61 +197,61 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     //   language,
     // })
     i18n.changeLanguage(language.locale)
-    .then(() => {
-      if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
-        if (AppLayoutDirection == 'ltr') {
-          //remove rtl on backhandler
-          Platform.OS == 'ios' ? setTimeout(() => {
-            I18nManager.forceRTL(true);
-            RNRestart.Restart();
-          }, 100) :
-            setTimeout(() => {
+      .then(() => {
+        if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
+          if (AppLayoutDirection == 'ltr') {
+            //remove rtl on backhandler
+            Platform.OS == 'ios' ? setTimeout(() => {
               I18nManager.forceRTL(true);
-              RNRestart.Restart()
-            }, 0);
+              RNRestart.Restart();
+            }, 100) :
+              setTimeout(() => {
+                I18nManager.forceRTL(true);
+                RNRestart.Restart()
+              }, 0);
+          } else {
+            I18nManager.forceRTL(true);
+          }
         } else {
-          I18nManager.forceRTL(true);
+          I18nManager.forceRTL(false);
         }
-      } else {
-        I18nManager.forceRTL(false);
-      }
-    })
+      })
 
-  if (userIsOnboarded == true && (language.languageCode == languageCode)) {
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: 'HomeDrawerNavigator',
-        },
-      ],
-    });
-  } else {
-    console.log(language, "..newLanguage");
-    if (Object.keys(route.params).length !== 0) {
-      console.log(route.params.country?.CountryID, "routeparams is");
-      const filteredLan = route.params?.country?.languages?.filter((lang:any)=>lang.languageCode==language.languageCode);
-      console.log('filtered language is',filteredLan)
-      dispatch(onLocalizationSelect({"languages":filteredLan,"countryId": route.params.country?.CountryID}));
-      dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-      analytics().setUserProperties({ country: route.params.country.name, language: language.displayName })
+    if (userIsOnboarded == true && (language.languageCode == languageCode)) {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'HomeDrawerNavigator',
+          },
+        ],
+      });
     } else {
-      console.log(country, "countryData");
-      dispatch(onLocalizationSelect(country));
-      dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-      analytics().setUserProperties({ country: country.displayName, language: language.displayName })
-    }
+      console.log(language, "..newLanguage");
+      if (Object.keys(route.params).length !== 0) {
+        console.log(route.params.country?.CountryID, "routeparams is");
+        const filteredLan = route.params?.country?.languages?.filter((lang: any) => lang.languageCode == language.languageCode);
+        console.log('filtered language is', filteredLan)
+        dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": route.params.country?.CountryID }));
+        dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
+        analytics().setUserProperties({ country: route.params.country.name, language: language.displayName })
+      } else {
+        console.log(country, "countryData");
+        dispatch(onLocalizationSelect(country));
+        dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
+        analytics().setUserProperties({ country: country.displayName, language: language.displayName })
+      }
 
-    // if (userIsOnboarded == true) {
-    //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
-    // }
-    console.log('Sponsors Data for countryList', sponsorsData)
-    dispatch(setSponsorStore(sponsorsData));
-    navigation.navigate('LoadingScreen', {
-      apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
-      prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
-    });
-  }
+      // if (userIsOnboarded == true) {
+      //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
+      // }
+      console.log('Sponsors Data for countryList', sponsorsData)
+      dispatch(setSponsorStore(sponsorsData));
+      navigation.navigate('LoadingScreen', {
+        apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
+        prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
+      });
+    }
   }
   const goToConfirmationScreen = (): any => {
     let newLanguage: any = null
@@ -270,8 +265,8 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         if (buildFor == buildForBebbo) {
           const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
           const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
-          console.log('rest of the world title',newLanguage)
-          console.log('rotwLanguagelocaleru of the world title',rotwLanguagelocaleru)
+          console.log('rest of the world title', newLanguage)
+          console.log('rotwLanguagelocaleru of the world title', rotwLanguagelocaleru)
           if (newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {
             Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
               [
@@ -301,10 +296,13 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
           <Pressable
             onPress={(e: any): any => {
               console.log('Back icon click')
-              navigation.navigate('CountrySelection', {
-                country,
-                language,
-              })
+              {
+                route?.params?.isFromCountry ? navigation.navigate('CountryLanguageConfirmation') : 
+                navigation.navigate('CountrySelection', {
+                  country,
+                  language,
+                })
+              }
             }}
           >
             <OnboardingStyle
@@ -324,7 +322,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
 
           <Flex5>
             <ButtonPrimary onPress={(): any => {
-             goToConfirmationScreen()
+              goToConfirmationScreen()
               // props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
             }}>
               <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>

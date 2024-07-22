@@ -23,8 +23,8 @@ export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const shareText = (String(buildFor) != buildForBebbo) ? '\nhttps://www.bebbo.app/foleja/share/' : '\nhttps://www.bebbo.app/share/';
 export const shareTextButton = (String(buildFor) != buildForBebbo) ? 'https://www.bebbo.app/foleja/share/' : 'https://www.bebbo.app/share/';
-export const bebboShareMailId = 'mailto:admin@bebbo.app';
-export const folejaShareMailId = 'mailto:prishtina@unicef.org';
+// export const bebboShareMailId = 'mailto:admin@bebbo.app';
+// export const folejaShareMailId = 'mailto:prishtina@unicef.org';
 export const maleData: any = {
   "id": 37,
   "name": "Male",
@@ -52,6 +52,7 @@ export const restOfTheWorldCountryId = 126;
 export const videoArticleMandatory = 0;
 export const maxArticleSize = 5;
 export const bebboName = 'Bebbo';
+export const folejaName = 'Foleja';
 export const appConfig = {
   articles: 'articles',
   videoArticles: 'video-articles',
@@ -74,9 +75,15 @@ export const appConfig = {
   countryGroups: 'country-groups',
 }
 export const finalUrl = (apiEndpoint: string, selectedCountry: number | undefined, selectedLang: string): any => {
-  console.log('sfsfslfjslf')
   if (apiEndpoint == appConfig.countryGroups) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + bebboName;
+    let apiFinalURL;
+    if(buildFor === String(buildForFoleja)){
+      apiFinalURL = apiUrlDevelop + '/' + apiEndpoint + '/' + folejaName
+    }else{
+      apiFinalURL = apiUrlDevelop + '/' + apiEndpoint + '/' + bebboName
+    }
+    console.log('Build foleja api url is',apiFinalURL)
+    return apiFinalURL;
   }
   if (apiEndpoint == appConfig.sponsors) {
     return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
