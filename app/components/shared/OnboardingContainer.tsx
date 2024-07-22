@@ -64,7 +64,7 @@ flex:0.7;
   border-radius: 4px;
 `;
 
-export const LocalizationCol = styled.View`
+export const LocalizationCol = styled.Pressable`
 flex:3;
 flex-direction: row;
 align-items:center;
@@ -73,7 +73,7 @@ border-color: rgba(0,0,0,.15);
 padding:4px 15px 0px;
 `
 
-export const LocalizationWithoutBorderCol = styled.View`
+export const LocalizationWithoutBorderCol = styled.Pressable`
 flex:1.4;
 flex-direction: row;
 align-items:center;
