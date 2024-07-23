@@ -602,8 +602,8 @@ const SettingScreen = (props: any): any => {
       (country: any) => country.countryId === countryId,
     );
     setCountry(selectedCountry);
-    const selectedLanguage: any = selectedCountry.languages.find(
-      (language: any) => language.languageCode === languageCode,
+    const selectedLanguage: any = selectedCountry?.languages?.find(
+      (language: any) => language?.languageCode === languageCode,
     );
     setlanguage(selectedLanguage);
     toggleSwitch();
@@ -982,7 +982,7 @@ const SettingScreen = (props: any): any => {
                   <Heading3Regular>{t('country')}</Heading3Regular>
                 </Flex2>
                 <Flex3>
-                  <Heading3>{country.displayName}</Heading3>
+                  <Heading3>{country?.displayName}</Heading3>
                 </Flex3>
               </FDirRow>
             </ShiftFromTopBottom5>
@@ -992,7 +992,7 @@ const SettingScreen = (props: any): any => {
                   <Heading3Regular>{t('language')}</Heading3Regular>
                 </Flex2>
                 <Flex3>
-                  <Heading3>{language.displayName}</Heading3>
+                  <Heading3>{language?.displayName}</Heading3>
                 </Flex3>
               </FDirRow>
             </ShiftFromTopBottom5>

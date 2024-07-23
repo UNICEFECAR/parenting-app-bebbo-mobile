@@ -27,6 +27,7 @@ import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate } from '../../../services/Utils';
 import Icon, { IconViewAlert } from '../../shared/Icon';
 import { StackNavigationProp } from '@react-navigation/stack';
+import useDigitConverter from '../../../customHooks/useDigitConvert';
 const styles=StyleSheet.create({
   alignCenter:{alignSelf: 'center' },
   radioActive:{backgroundColor: greenColor, borderRadius: 50 },
@@ -46,6 +47,7 @@ export type PreviousNew1RootStackParamList = {
 const PreviousVaccines = (props: any): any => {
   const { item, headerColor, backgroundColor } = props;
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
   //const navigation = useNavigation<any>();
   const navigation = useNavigation<StackNavigationProp<PreviousRootStackParamList>>();
   const navigation1 = useNavigation<StackNavigationProp<PreviousNewRootStackParamList>>();
@@ -166,9 +168,9 @@ const PreviousVaccines = (props: any): any => {
             <ToolsHeadingView>
               <Heading2>{item.periodName}</Heading2>
               <Heading5>
-                {t('vaccinesTxt')}{':'}{totalVC} {' | '}
-                {t('vaccinesDoneTxt')}{':'}{doneVc ? doneVc.length : 0} {' | '}
-                {t('vaccinesPendingTxt')}{':'}{totalVC - (doneVc ? doneVc.length : 0)}
+                {t('vaccinesTxt')}{':'}{convertDigits(totalVC)} {' | '}
+                {t('vaccinesDoneTxt')}{':'}{doneVc ? convertDigits(doneVc.length || '0') : convertDigits('0')} {' | '}
+                {t('vaccinesPendingTxt')}{':'}{convertDigits(totalVC - (doneVc ? doneVc.length : '0'))}
               </Heading5>
             </ToolsHeadingView>
             <ToolsActionView>

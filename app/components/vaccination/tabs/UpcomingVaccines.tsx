@@ -18,6 +18,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useAppSelector } from '../../../../App';
+import useDigitConverter from '../../../customHooks/useDigitConvert';
 import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../../../services/Utils';
 import {
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
 const UpcomingVaccines = (props: any): any => {
   const { item, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
   const navigation = useNavigation<any>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const activeChild = useAppSelector((state: any) =>
@@ -175,10 +177,10 @@ const UpcomingVaccines = (props: any): any => {
               <ToolsHeadingView>
                 <Heading2>{item?.periodName}</Heading2>
                 <Heading5>
-                  {t('vaccinesTxt')}{':'}{totalVC}
+                  {t('vaccinesTxt')}{':'}{convertDigits(totalVC)}
                   {' | '}
-                  {t('vaccinesDoneTxt')}{':'}{doneVc ? doneVc.length : 0} {' | '}
-                  {t('vaccinesPendingTxt')}{':'}{totalVC - (doneVc ? doneVc.length : 0)}
+                  {t('vaccinesDoneTxt')}{':'}{doneVc ? convertDigits(doneVc.length || '0') : convertDigits('0')} {' | '}
+                  {t('vaccinesPendingTxt')}{':'}{convertDigits(totalVC - (doneVc ? doneVc.length : 0))}
                 </Heading5>
               </ToolsHeadingView>
               <ToolsActionView>

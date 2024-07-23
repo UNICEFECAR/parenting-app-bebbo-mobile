@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
+import useDigitConverter from '../customHooks/useDigitConvert';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { setFavouriteAdvices, setFavouriteGames } from '../redux/reducers/childSlice';
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 const HeaderNotiIcon = (props: any): any => {
+  const {convertDigits} = useDigitConverter()
   const allnotis = useAppSelector((state: any) => state.notificationData.notifications);
   const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
   const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
@@ -343,7 +345,7 @@ const HeaderNotiIcon = (props: any): any => {
             {notifications.length > 0 ?
               <BubbleContainer style={styles.bubbleContainer}>
                 <BubbleView1>
-                  <Heading6w>{notifications.length}</Heading6w>
+                  <Heading6w>{convertDigits(notifications.length)}</Heading6w>
                 </BubbleView1>
               </BubbleContainer>
               : null}

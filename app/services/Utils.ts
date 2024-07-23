@@ -24,6 +24,7 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
 import PushNotification from 'react-native-push-notification';
+import moment from "moment";
 const requestNotificationPermission= async (): Promise<any>=>{
     const status= await requestNotifications([]);
     console.log(status,"..status..");
@@ -224,7 +225,7 @@ export const formatDate = (dateData: any): any => {
     // const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     // const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     const dateView = getTwoDigits(dateData.day) + "." + getTwoDigits(dateData.month) + "." + dateData.year;
-    return dateView;
+    return moment(dateView,'DD.MM.YYYY').format('DD.MM.YYYY');
 }
 export const formatStringDate = (dateData: any): any => {
     dateData = DateTime.fromJSDate(new Date(dateData));
@@ -243,7 +244,7 @@ export const formatStringDate = (dateData: any): any => {
     // const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     // const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     const dateView = getTwoDigits(dateData.day) + "." + getTwoDigits(dateData.month) + "." + dateData.year;
-    return dateView;
+    return moment(dateView,'DD.MM.YYYY').format('DD.MM.YYYY');
 }
 
 
@@ -572,3 +573,44 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
 
 
 
+export type DigitLanguage = 'bn' | 'hin' | 'ur' | 'ar' | 'tr';
+
+
+
+export function convertDigits(inputString: any, targetLanguage: DigitLanguage): string {
+    const digitMap: Record<DigitLanguage, string[]> = {
+        'bn': ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'],
+        'hin': ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'],
+        'ur': ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'],
+        'ar': ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'],
+        'tr': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], // Turkish uses Latin digits
+    };
+    if(!inputString) return ''
+
+    // Convert input string to lowercase for case-insensitive comparison
+    const lowerTarget = targetLanguage?.toLowerCase?.() as DigitLanguage;
+
+    // Check if the target language is supported
+    if (!digitMap[lowerTarget]) {
+        console.log('Unsupported language');
+    }
+
+    // Get the digit array for the target language
+    const targetDigits = digitMap[lowerTarget];
+
+    // Replace digits in the input string
+    let result = '';
+    for (let char of inputString.toString?.()) {
+        // Check if the character is a digit (0-9)
+        if (/[0-9]/.test(char)) {
+            // Find the corresponding digit in the target language
+            const index = parseInt(char); // Convert character to integer
+            result += targetDigits[index];
+        } else {
+            // If the character is not a digit, keep it unchanged
+            result += char;
+        }
+    }
+
+    return result;
+}
