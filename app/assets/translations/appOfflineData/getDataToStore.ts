@@ -76,7 +76,6 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     //     dataToStore = databaseData2;
     // }
     const dataToStore = databaseData2;
-    console.log('Datasrore is',dataToStore)
     console.log('offlineData is',offlineData)
     console.log('stringify offlineData is',JSON.stringify(offlineData))
     if (dataToStore?.length > 0) {

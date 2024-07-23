@@ -74,29 +74,26 @@ export const appConfig = {
   archive: 'archive',
   countryGroups: 'country-groups',
 }
-export const finalUrl = (apiEndpoint: string, selectedCountry: number | undefined, selectedLang: string): any => {
-  if (apiEndpoint == appConfig.countryGroups) {
-    let apiFinalURL;
-    if(buildFor === String(buildForFoleja)){
-      apiFinalURL = apiUrlDevelop + '/' + apiEndpoint + '/' + folejaName
-    }else{
-      apiFinalURL = apiUrlDevelop + '/' + apiEndpoint + '/' + bebboName
-    }
-    console.log('Build foleja api url is',apiFinalURL)
-    return apiFinalURL;
-  }
-  if (apiEndpoint == appConfig.sponsors) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
-  }
-  if (apiEndpoint == appConfig.taxonomies) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang + '/all';
-  }
-  if (apiEndpoint == appConfig.checkUpdate) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
-  }
-  return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang;
-}
+export const finalUrl = (
+  apiEndpoint: string,
+  selectedCountry: number | undefined,
+  selectedLang: string
+): string => {
+  const baseUrl = `${apiUrlDevelop}/${apiEndpoint}`;
 
+  switch (apiEndpoint) {
+    case appConfig.countryGroups:
+      return `${baseUrl}/${buildFor === String(buildForFoleja) ? folejaName : bebboName}`;
+    case appConfig.sponsors:
+      return `${baseUrl}/${selectedCountry}`;
+    case appConfig.taxonomies:
+      return `${baseUrl}/${selectedLang}/all`;
+    case appConfig.checkUpdate:
+      return `${baseUrl}/${selectedCountry}`;
+    default:
+      return `${baseUrl}/${selectedLang}`;
+  }
+};
 
 export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
   const allApiObject = [
