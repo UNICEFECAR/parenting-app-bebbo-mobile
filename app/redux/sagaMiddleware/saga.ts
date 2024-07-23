@@ -52,7 +52,6 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
     yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
   }
   else if (prevPage == '') {
-    console.log('Dsxucgfsid')
     yield call(onCountryApiSuccess, response, dispatch, navigation, languageCode, prevPage)
   }
   else if (prevPage == 'ChildSetup') {

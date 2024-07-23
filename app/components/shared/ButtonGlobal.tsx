@@ -58,7 +58,7 @@ export const ButtonText = styled.Text`
 
 export const ButtonErrorText = styled.Text`
   text-align: center;
-  color: #00000;
+  color: #000000;
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;

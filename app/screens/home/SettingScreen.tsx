@@ -153,9 +153,14 @@ const SettingScreen = (props: any): any => {
     (state: any) => state.selectedCountry.countryId,
   );
   const allCountries = useAppSelector(
-    (state: any) =>
-      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
-  );
+    (state: any) => {
+     try {
+       state.selectedCountry.countries !== '' ? JSON.parse(state.selectedCountry.countries) : [];
+     } catch (error) {
+       console.error('Failed to parse countries JSON:', error);
+       return [];
+     }
+   });
   const [profileLoading, setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -184,21 +189,11 @@ const SettingScreen = (props: any): any => {
   }
 
   const encryptData = (text: string, key: any): any => {
-    console.log("encryptData", text);
-    console.log("encryptData key", key);
-    
     return AesCrypto.encrypt(text, key, encryptionsIVKey, 'aes-256-cbc').then((cipher: any) => ({
       cipher
     }));
   }
   const decryptData = (text: string, key: any): any => {
-    console.log("decryptData", text);
-    console.log("decryptData key", key);
-    console.log(
-      "decryptData IV key"
-      ,
-      encryptionsIVKey
-      );
     return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
   }
   const exportDataAndroid = async (cipher: string): Promise<any> => {
@@ -616,22 +611,7 @@ const SettingScreen = (props: any): any => {
     );
   }
 
-
-  // useEffect(() => {
-  //   navigation.dispatch(DrawerActions.closeDrawer());
-  //   console.log('CountryId is',countryId)
-  //   const selectedCountry: any = allCountries.find(
-  //     (country: any) => country.CountryID === countryId,
-  //   );
-  //   setCountry(selectedCountry);
-  //   const selectedLanguage: any = selectedCountry.languages.find(
-  //     (language: any) => language.languageCode === languageCode,
-  //   );
-  //   setlanguage(selectedLanguage);
-  //   toggleSwitch();
-  // }, []);
   useEffect(() => {
-    console.log('Selected country is...', allCountries);
     if (allCountries?.length===1 && allCountries[0]?.languages?.length===1) {
       setCountry(allCountries[0]);
       // const selectedLanguage: any = selectedCountry.languages.find(
@@ -712,7 +692,7 @@ const SettingScreen = (props: any): any => {
        
         console.log(importResponse, "..importResponse");
         } catch (error) {
-          console.log(error, "..importResponse error");
+          console.error('importResponse error', error);
         }
       }
       setIsImportRunning(false);
@@ -758,7 +738,7 @@ const SettingScreen = (props: any): any => {
               
               await RNFS.writeFile(tempRealmFile, JSON.stringify(importedJsonData), "utf8");
             } catch (error) {
-              //console.log("error catch", error);
+              console.log("In Write file", error);
               
             }
             
@@ -787,7 +767,7 @@ const SettingScreen = (props: any): any => {
               const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
               
             } catch (error) {
-              console.log(error, "..importResponse error");
+              console.error(error, "..importResponse error");
             }
             
           }
