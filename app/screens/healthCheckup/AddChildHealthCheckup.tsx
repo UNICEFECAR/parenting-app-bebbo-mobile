@@ -128,6 +128,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
 
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const onBackPress = (): any => {
@@ -526,7 +527,11 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       });
     });
     if (vcPeriod?.vaccines?.length > 0) {
+<<<<<<< HEAD
       allPreviousPendingVaccines = [...allPreviousPendingVaccines, ...vcPeriod?.vaccines];
+=======
+      allPreviousPendingVaccines = [...allPreviousPendingVaccines, ...vcPeriod.vaccines];
+>>>>>>> a073a4bd (- Bengali numerals, date and count conversion)
     }
     const isAllMeasured = [...allPreviousPendingVaccines].every((el) => {
       return el.isMeasured == true;
@@ -652,6 +657,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                             }
                             mode={'date'}
                             display="spinner"
+                            locale={locale}
                             maximumDate={new Date()}
                             minimumDate={new Date(minChildGrwothDate)}
                             onChange={onmeasureDateChange}
@@ -680,6 +686,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                           onCancel={(): any => {
                             setMeasureDatePickerVisibility(false);
                           }}
+                          locale={locale}
                           maximumDate={new Date()}
                           minimumDate={new Date(minChildGrwothDate)}
                         />

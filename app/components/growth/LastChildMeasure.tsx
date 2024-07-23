@@ -3,8 +3,9 @@ import { BannerContainer1 } from '@components/shared/Container';
 import {
   FDirRowStart,
   Flex1,
+  Flex_5,
   Flex2,
-  Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart
+  Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart,
 } from '@components/shared/FlexBoxStyle';
 import Icon, { IconViewAlert, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, { ModalPopupContent, PopupClose, PopupCloseContainer, PopupOverlay } from '@components/shared/ModalPopupStyle';
@@ -18,7 +19,7 @@ import {
   Heading4Regular,
   Heading5,
   Heading5Bold,
-  ShiftFromTop20
+  ShiftFromTop20,
 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
@@ -26,6 +27,7 @@ import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-svg';
 import { useAppSelector } from '../../../App';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { getCurrentChildAgeInYears } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
 })
 const LastChildMeasure = ():any => {
   const {t} = useTranslation();
+  const {convertDigits} = useDigitConverter()
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -93,6 +96,8 @@ const LastChildMeasure = ():any => {
     days = Math.round(convertInDays)
   }
   console.log(days,"....",activeChild.taxonomyData.days_from,activeChild.taxonomyData.days_to);
+  const weight =  childmeasures[childmeasures.length - 1]?.weight
+  const height = childmeasures[childmeasures.length - 1]?.height
   return (
     <>
       <BannerContainer1>
@@ -138,31 +143,23 @@ const LastChildMeasure = ():any => {
         <ShiftFromTop20>
           <FlexDirRowSpace>
             <Flex2>
-              <FlexDirRowSpace>
+              <FlexDirRowSpace alignItems="flex-start">
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenwText')}</Heading4Regular>
                   <Heading2>
-                    {
-                      childmeasures[childmeasures.length - 1]
-                        ?.weight
-                    }{' '}
-                    {t('growthScreenkgText')}
+                    {convertDigits(weight ? weight : '0') }{' '}{t('growthScreenkgText')}
                   </Heading2>
                 </FlexDirColStart>
 
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenhText')}</Heading4Regular>
                   <Heading2>
-                    {
-                      childmeasures[childmeasures.length - 1]
-                        ?.height
-                    }{' '}
-                    {t('growthScreencmText')}
+                    {convertDigits(height || '0')}{' '}{t('growthScreencmText')}
                   </Heading2>
                 </FlexDirColStart>
               </FlexDirRowSpace>
             </Flex2>
-            <Flex1>
+            <Flex_5> 
               <FlexDirRowEnd>
               <ButtonEditPress
                 onPress={():any => {
@@ -180,7 +177,7 @@ const LastChildMeasure = ():any => {
                     /></ButtonTextMdLine>
               </ButtonEditPress>
               </FlexDirRowEnd>
-            </Flex1>
+            </Flex_5>
           </FlexDirRowSpace>
           {/* <Text>{days+"hi"}</Text>
           <Text>{activeChild.taxonomyData.days_from+"hi"}</Text> */}

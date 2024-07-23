@@ -34,6 +34,7 @@ import ModalPopupContainer, {
 import Icon from '@components/shared/Icon';
 import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 type VaccinationNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -54,6 +55,7 @@ const stylesLocal = StyleSheet.create({
 })
 const Vaccination = ({ navigation, route }: Props): any => {
   const themeContext = useContext(ThemeContext);
+  const {convertDigits} = useDigitConverter()
   const headerColor = themeContext?.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext?.colors.VACCINATION_TINTCOLOR;
   const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
@@ -226,7 +228,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
                 <VacSummaryPress onPress={(): any => setSelectedIndex(0)}>
                   <VacSummaryBox>
                     <Heading2>
-                      {totalUpcomingVaccines ? totalUpcomingVaccines : 0}
+                      {totalUpcomingVaccines ? convertDigits(totalUpcomingVaccines) : convertDigits('0')}
                     </Heading2>
                     {/* added 1 for current period */}
                     <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
@@ -235,14 +237,14 @@ const Vaccination = ({ navigation, route }: Props): any => {
                 <VacSummaryPress onPress={(): any => setSelectedIndex(1)}>
                   <VacSummaryBox>
                     <Heading2>
-                      {overDuePreviousVCcount ? overDuePreviousVCcount : 0}
+                      {overDuePreviousVCcount ? convertDigits(overDuePreviousVCcount) : convertDigits('0')}
                     </Heading2>
                     <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
                   </VacSummaryBox>
                 </VacSummaryPress>
                 <VacSummaryPress onPress={(): any => setSelectedIndex(1)}>
                   <VacSummaryBox>
-                    <Heading2>{doneVCcount ? doneVCcount : 0}</Heading2>
+                    <Heading2>{doneVCcount ? convertDigits(doneVCcount) : convertDigits('0')}</Heading2>
                     <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
                   </VacSummaryBox>
                 </VacSummaryPress>
