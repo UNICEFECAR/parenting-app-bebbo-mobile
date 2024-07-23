@@ -59,6 +59,7 @@ import { getVaccinesForPeriodCount } from '../services/notificationService';
 import { formatDate, addSpaceToHtml } from '../services/Utils';
 import { logEvent } from '../services/EventSyncService';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
+import useDigitConverter from '../customHooks/useDigitConvert';
 
 const styles = StyleSheet.create({
   containerView: {
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
 const CustomDrawerContent = ({ navigation }: any): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const [aboutAccordValue, onChangeAboutAccordValue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
@@ -312,7 +314,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenunotiTxt')}</Heading4>
             {notifications.length > 0 ? <BubbleContainer>
               <BubbleView>
-                <Heading5>{notifications.length}</Heading5>
+                <Heading5>{convertDigits(notifications.length)}</Heading5>
               </BubbleView>
             </BubbleContainer>
               : null}

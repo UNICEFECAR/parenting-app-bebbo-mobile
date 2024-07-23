@@ -9,6 +9,7 @@ import i18n, {
   import { store } from '../../App';
   import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
   import { localization, AVAILABLE_LANGUAGES } from '@dynamicImportsClass/dynamicImports';
+import { convertDigits } from '../services/Utils';
   
   console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
   const localisationnew = [...localization];
@@ -64,7 +65,7 @@ import i18n, {
     },
   };
   const trimwhiteSpace = (str:any):any => {
-    return str.length ? str.trim(): str
+    return str.length ? str.trim()  : str
   }
   i18n
     .use(languageDetector)
@@ -72,8 +73,8 @@ import i18n, {
     .use({
       type: 'postProcessor',
       name: 'trimwhitespace',
-      process: function (value: any) {
-        return trimwhiteSpace(value);
+      process: function (value: any,key: string | string[], options: any) {
+        return convertDigits(trimwhiteSpace(value),options.lng);
       }
     })
     .init({

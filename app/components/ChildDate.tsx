@@ -38,6 +38,7 @@ import ModalPopupContainer, {
 } from './shared/ModalPopupStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { greyCode } from '@styles/style';
+import { useAppSelector } from '../../App';
 const styles = StyleSheet.create({
   disabledCheckBox: {
     backgroundColor: greyCode,
@@ -58,6 +59,7 @@ const ChildDate = (props: any): any => {
   const [showdue, setdueShow] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [dobModalVisible, setDobModalVisible] = useState(false);
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
 
   const isFutureDate = (date: Date): any => {
     return (
@@ -190,6 +192,7 @@ const ChildDate = (props: any): any => {
                       value={
                         doborExpectedDate != null ? doborExpectedDate : new Date()
                       }
+                      locale={locale}
                       mode={'date'}
                       display="spinner"
                       onChange={ondobChange}
@@ -228,6 +231,7 @@ const ChildDate = (props: any): any => {
                         onCancel={(): any => {
                           setDobDatePickerVisibility(false);
                         }}
+                        locale={locale}
                         minimumDate={new Date(dobMin)}
                         maximumDate={new Date(dobMax)} />
                     )}
@@ -316,6 +320,7 @@ const ChildDate = (props: any): any => {
                                   .toISODate(),
                               )
                             }
+                            locale={locale}
                             // minimumDate={{}}
                             // maximumDate={{}}
                             onChange={ondueDateChange}
@@ -359,6 +364,7 @@ const ChildDate = (props: any): any => {
                                 .toISODate(),
                             )
                           }
+                          locale={locale}
                           maximumDate={
                             new Date(
                               DateTime.fromJSDate(doborExpectedDate as Date)

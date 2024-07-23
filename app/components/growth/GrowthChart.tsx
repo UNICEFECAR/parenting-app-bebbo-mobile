@@ -19,6 +19,7 @@ import {
 } from 'victory-native';
 import { VictoryScatterProps } from 'victory-scatter';
 import { VictoryTooltipProps } from 'victory-tooltip';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 import { convertMeasuresData } from '../../services/growthService';
 export interface LineChartData {
   x: number;
@@ -131,6 +132,7 @@ const victoryStyles: VictoryStyles = {
 const GrowthChart = (props: any):any => {
   const {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
+  const {convertDigits} = useDigitConverter()
    const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
   const labelX = props.chartType == chartTypes.WeightForHeight ? t('growthScreencmText'):t('month') ;
   const labelY = props.chartType == chartTypes.WeightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
@@ -179,7 +181,7 @@ useEffect(() => {
   });
   const {topArea, bottomArea, middleArea} = bgObj;
   const ChartClick=Platform.OS=="android"?Svg:View;
-
+console.log(labelX,'---------->',labelY)
   return (
     <>
    <View style={styles.mainView}>
@@ -201,6 +203,7 @@ useEffect(() => {
           style={victoryStyles.VictoryAxis}
           label={labelX}
           axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-180 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth-75: windowHeight-70}/>}
+          tickFormat={(t) => convertDigits(t)}
         />
         {/* ********* AXIS VERTICAL ********* */}
         <VictoryAxis
@@ -208,6 +211,7 @@ useEffect(() => {
           axisLabelComponent={<VictoryLabel  y={deviceOrientation === 'portrait' ? 15 :30} />}
           dependentAxis
           label={labelY}
+          tickFormat={(t) => convertDigits(t)}
         />
         {/* ********* TOP AREA ********* */}
         <VictoryArea
