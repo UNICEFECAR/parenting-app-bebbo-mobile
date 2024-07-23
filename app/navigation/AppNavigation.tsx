@@ -103,7 +103,7 @@ export default (): any => {
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
   const apiStatus = useAppSelector((state) => state.failedOnloadApiObjReducer.status);
-  console.log('api status is',apiStatus)
+  console.log('api status is', apiStatus)
   const apiData = useAppSelector((state) => state.failedOnloadApiObjReducer.data);
   const apiError = useAppSelector((state) => state.failedOnloadApiObjReducer.error);
   const surveyData = useAppSelector((state: any) =>
@@ -170,38 +170,13 @@ export default (): any => {
     }
   ];
   
-
-  // useEffect(() => {
-  //   console.log('userIsFirstTime is', userIsFirstTime);
-
-  //   async function setCountries() {
-  //     try {
-  //       if (!userIsFirstTime) {
-  //         await dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, '', apiJsonData, netInfo.isConnected));
-  //         console.log('wdwdwdwdwdwd',loading)
-  //         setLoading(false);
-  //         console.log('after wdwdwdwdwdwd',loading)
-  //       }
-  //     } catch (e:any) {
-  //       console.log("Error");
-  //       console.log(e.message);
-  //     } finally {
-  //       console.log('afterwdwdwdwdwdwd',loading)
-  //       setLoading(false);
-  //     }
-  //   }
-  //   setCountries();
-  //   console.log('loading is', loading);
-   
-  // }, [userIsFirstTime, dispatch]);
-
   useEffect(() => {
-    console.log('userIsFirstTime is',userIsFirstTime)
-    if(!userIsFirstTime){
-    dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, activeChild, apiJsonData, netInfo.isConnected))
+    console.log('userIsFirstTime is', userIsFirstTime)
+    if (!userIsFirstTime) {
+      dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, activeChild, apiJsonData, netInfo.isConnected))
     }
   }, [dispatch])
-  
+
   useEffect(() => {
     // ... handle deep link
     callUrl(linkedURL);
@@ -718,7 +693,7 @@ export default (): any => {
           }
         }
       });
-    
+
     // let hideDelay = 2000;
     // if (userIsOnboarded) {
     //   hideDelay = Platform.OS === 'android' ? 0 : 500;
@@ -848,178 +823,166 @@ export default (): any => {
     fetchNetInfoSet();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
-  // const dataStatus = useAppSelector((state) => state.data.status);
-  // const data = useAppSelector((state) => state.data.data);
 
-  // if (dataStatus !== 200) {
-  //   return <ActivityIndicator size="large" color="#0000ff" />;
-  // }
-  // if (apiStatus === 'loading') {
-  //   return <ActivityIndicator size="large" color="#0000ff" />;
-  // }
-
-  // if (apiStatus === 'failed') {
-  //   return <Text>Error: {apiError}</Text>;
-  // }
   return (
     <SafeAreaProvider>
       {apiData &&
-      <NavigationContainer
-        ref={navigationRef}
-        onReady={(): any => {
-          routeNameRef.current = navigationRef.current.getCurrentRoute().name;
-        }}
-        onStateChange={async (): Promise<any> => {
-          const previousRouteName = routeNameRef.current;
-          const currentRouteName = navigationRef.current.getCurrentRoute().name;
-          console.log(`Previous route: ${previousRouteName}`);
-          console.log(`Current route: ${currentRouteName}`);
-          if (previousRouteName !== currentRouteName) {
-            analytics().logScreenView({
-              screen_name: currentRouteName,
-              screen_class: currentRouteName,
-            });
-            const eventData = { 'name': currentRouteName + "_opened" }
-            logEvent(eventData, netInfo.isConnected)
-          }
-          routeNameRef.current = currentRouteName;
-        }}
-      >
-        <RootStack.Navigator
-          initialRouteName={
-            restartOnLangChange != 'yes' ?
-            userIsOnboarded == true ? 'HomeDrawerNavigator' : allCountries?.length===1 && allCountries[0]?.languages?.length===1?'LoadingScreen':'Localization'
-              : AppLayoutDirectionScreen
-          }
-          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false, headerShown: false }}
+        <NavigationContainer
+          ref={navigationRef}
+          onReady={(): any => {
+            routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+          }}
+          onStateChange={async (): Promise<any> => {
+            const previousRouteName = routeNameRef.current;
+            const currentRouteName = navigationRef.current.getCurrentRoute().name;
+            console.log(`Previous route: ${previousRouteName}`);
+            console.log(`Current route: ${currentRouteName}`);
+            if (previousRouteName !== currentRouteName) {
+              analytics().logScreenView({
+                screen_name: currentRouteName,
+                screen_class: currentRouteName,
+              });
+              const eventData = { 'name': currentRouteName + "_opened" }
+              logEvent(eventData, netInfo.isConnected)
+            }
+            routeNameRef.current = currentRouteName;
+          }}
         >
-          <RootStack.Screen
-            name="Localization"
-            component={LocalizationNavigation}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
-            name="Terms"
-            component={Terms}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
-            name="TermsPage"
-            component={TermsPage}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
-            name="PrivacyPolicy"
-            component={PrivacyPolicy}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
-            name="ChildSetup"
-            component={ChildSetup}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
-            name="AddChildSetup"
-            component={AddChildSetup}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
-            name="ChildImportSetup"
-            component={ChildImportSetup}
-            options={{ headerShown: false, gestureEnabled: false }}
-          />
-          <RootStack.Screen
-            name="ChildSetupList"
-            component={ChildSetupList}
-            options={{ headerShown: false, gestureEnabled: false }}
-          />
-          <RootStack.Screen
-            name="ServiceProviderInfoSetup"
-            component={ServiceProviderInfoSetup}
-            options={{ headerShown: false, gestureEnabled: false }}
-          />
-          <RootStack.Screen
-            name="AddSiblingDataScreen"
-            component={AddSiblingData}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
-            name="LoadingScreen"
-            component={LoadingScreen}
-            options={{ headerShown: false, gestureEnabled: false }}
-          />
-          <RootStack.Screen
-            name="HomeDrawerNavigator"
-            options={{ headerShown: false }}
-            component={HomeDrawerNavigator}
-          />
-          <RootStack.Screen
-            name="EditChildProfile"
-            options={{ headerShown: false }}
-            component={EditChildProfile}
-          />
-          <RootStack.Screen
-            name="AddExpectingChildProfile"
-            options={{ headerShown: false }}
-            component={AddExpectingChildProfile}
-          />
-          <RootStack.Screen
-            name="EditParentDetails"
-            options={{ headerShown: false }}
-            component={EditParentDetails}
-          />
-          <RootStack.Screen
-            name="AddNewChildgrowth"
-            options={{ headerShown: false }}
-            component={AddNewChildgrowth}
-          />
-          <RootStack.Screen
-            name="AddNewChildWeight"
-            options={{ headerShown: false }}
-            component={AddNewChildWeight}
-          />
-          <RootStack.Screen
-            name="AddNewChildHeight"
-            options={{ headerShown: false }}
-            component={AddNewChildHeight}
-          />
-          <RootStack.Screen
-            name="AllChildgrowthMeasures"
-            options={{ headerShown: false }}
-            component={AllChildgrowthMeasures}
-          />
-          <RootStack.Screen
-            name="ChartFullScreen"
-            options={{ headerShown: false, gestureEnabled: true }}
-            component={ChartFullScreen}
-          />
-          <RootStack.Screen
-            name="DetailsScreen"
-            options={{ headerShown: false }}
-            component={DetailsScreen}
-          />
-          <RootStack.Screen
-            name="ChildProfileScreen"
-            options={{ headerShown: false }}
-            component={ChildProfile}
-          />
-          <RootStack.Screen
-            name="AddChildVaccination"
-            options={{ headerShown: false }}
-            component={AddChildVaccination}
-          />
-          <RootStack.Screen
-            name="AddReminder"
-            options={{ headerShown: false }}
-            component={AddReminder}
-          />
-          <RootStack.Screen
-            name="AddChildHealthCheckup"
-            options={{ headerShown: false }}
-            component={AddChildHealthCheckup}
-          />
-        </RootStack.Navigator>
-      </NavigationContainer>}
+          <RootStack.Navigator
+            initialRouteName={
+              restartOnLangChange != 'yes' ?
+                userIsOnboarded == true ? 'HomeDrawerNavigator' : allCountries?.length === 1 && allCountries[0]?.languages?.length === 1 ? 'LoadingScreen' : 'Localization'
+                : AppLayoutDirectionScreen
+            }
+            screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false, headerShown: false }}
+          >
+            <RootStack.Screen
+              name="Localization"
+              component={LocalizationNavigation}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+              name="Terms"
+              component={Terms}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+              name="TermsPage"
+              component={TermsPage}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+              name="PrivacyPolicy"
+              component={PrivacyPolicy}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+              name="ChildSetup"
+              component={ChildSetup}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+              name="AddChildSetup"
+              component={AddChildSetup}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+              name="ChildImportSetup"
+              component={ChildImportSetup}
+              options={{ headerShown: false, gestureEnabled: false }}
+            />
+            <RootStack.Screen
+              name="ChildSetupList"
+              component={ChildSetupList}
+              options={{ headerShown: false, gestureEnabled: false }}
+            />
+            <RootStack.Screen
+              name="ServiceProviderInfoSetup"
+              component={ServiceProviderInfoSetup}
+              options={{ headerShown: false, gestureEnabled: false }}
+            />
+            <RootStack.Screen
+              name="AddSiblingDataScreen"
+              component={AddSiblingData}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+              name="LoadingScreen"
+              component={LoadingScreen}
+              options={{ headerShown: false, gestureEnabled: false }}
+            />
+            <RootStack.Screen
+              name="HomeDrawerNavigator"
+              options={{ headerShown: false }}
+              component={HomeDrawerNavigator}
+            />
+            <RootStack.Screen
+              name="EditChildProfile"
+              options={{ headerShown: false }}
+              component={EditChildProfile}
+            />
+            <RootStack.Screen
+              name="AddExpectingChildProfile"
+              options={{ headerShown: false }}
+              component={AddExpectingChildProfile}
+            />
+            <RootStack.Screen
+              name="EditParentDetails"
+              options={{ headerShown: false }}
+              component={EditParentDetails}
+            />
+            <RootStack.Screen
+              name="AddNewChildgrowth"
+              options={{ headerShown: false }}
+              component={AddNewChildgrowth}
+            />
+            <RootStack.Screen
+              name="AddNewChildWeight"
+              options={{ headerShown: false }}
+              component={AddNewChildWeight}
+            />
+            <RootStack.Screen
+              name="AddNewChildHeight"
+              options={{ headerShown: false }}
+              component={AddNewChildHeight}
+            />
+            <RootStack.Screen
+              name="AllChildgrowthMeasures"
+              options={{ headerShown: false }}
+              component={AllChildgrowthMeasures}
+            />
+            <RootStack.Screen
+              name="ChartFullScreen"
+              options={{ headerShown: false, gestureEnabled: true }}
+              component={ChartFullScreen}
+            />
+            <RootStack.Screen
+              name="DetailsScreen"
+              options={{ headerShown: false }}
+              component={DetailsScreen}
+            />
+            <RootStack.Screen
+              name="ChildProfileScreen"
+              options={{ headerShown: false }}
+              component={ChildProfile}
+            />
+            <RootStack.Screen
+              name="AddChildVaccination"
+              options={{ headerShown: false }}
+              component={AddChildVaccination}
+            />
+            <RootStack.Screen
+              name="AddReminder"
+              options={{ headerShown: false }}
+              component={AddReminder}
+            />
+            <RootStack.Screen
+              name="AddChildHealthCheckup"
+              options={{ headerShown: false }}
+              component={AddChildHealthCheckup}
+            />
+          </RootStack.Navigator>
+        </NavigationContainer>}
     </SafeAreaProvider>
   );
 };
