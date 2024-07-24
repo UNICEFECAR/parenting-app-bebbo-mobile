@@ -1,5 +1,5 @@
 import { APP_SHARE, DONATE_OPENED, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-import { bebboShareMailId, buildFor, buildForBebbo, folejaShareMailId, shareText } from '@assets/translations/appOfflineData/apiConstants';
+import { buildFor, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -48,7 +48,7 @@ import {
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, Modal, Platform, Pressable, ScrollView, Share, StyleSheet, View } from 'react-native';
 import HTML from 'react-native-render-html';
@@ -114,6 +114,15 @@ const CustomDrawerContent = ({ navigation }: any): any => {
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
   );
+  const allCountries = useAppSelector(
+    (state: any) =>
+      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
+  );
+  const countryId = useAppSelector(
+    (state: any) => state.selectedCountry.countryId,
+  );
+  const [countryEmail, setCountryEmail] = React.useState('');
+
   const feedbackItem = surveryData.find((item: any) => item.type == "feedback")
   const userGuideItem = surveryData.find((item: any) => item.type == "user_guide")
   const donateItem = surveryData.find((item: any) => item.type == "donate")
@@ -150,6 +159,13 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
   );
+  useEffect(()=>{
+    const selectedCountry = allCountries.find(
+      (country: any) => country.CountryID === countryId.toString(),
+    )
+    setCountryEmail(selectedCountry?.country_email);
+    console.log('Selected country from drawer',selectedCountry)
+  },[])
   useFocusEffect(
     React.useCallback(() => {
       if (isOpen) {
@@ -512,11 +528,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 onPress={(): any => {
                   const eventData = { 'name': EMAIL_SENT }
                   logEvent(eventData, netInfo.isConnected)
-                  if (buildFor == String(buildForBebbo)) {
-                    Linking.openURL(bebboShareMailId)
-                  } else {
-                    Linking.openURL(folejaShareMailId);
-                  }
+                  console.log('Country email is',countryEmail);
+                  Linking.openURL(countryEmail);
                 }}>
                 <OuterIconRow>
                   <OuterIconLeft15>
