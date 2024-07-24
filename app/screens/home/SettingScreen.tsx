@@ -636,7 +636,7 @@ const SettingScreen = (props: any): any => {
         const decryptedData = decryptData(dataset.data, encryptionsKey)
           .then((text: any) => {
             console.log('decryptData',text)
-            return text;
+            return text.replace(/[\x00-\x1F\x7F]/g,'');
           })
           .catch((error: any) => {
             console.log("Decrypted error", error);
