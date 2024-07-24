@@ -8,7 +8,7 @@ const OnboardingContainer = styled.View`
   padding: 0 25px;
 `;
 
-export const OnboardingconfirmationHead = styled.View`
+export const OnboardingConfirmationHead = styled.View`
   width: 100%;
   flex: 1;
   flex-direction: column;
@@ -32,7 +32,7 @@ export const OnboardingTermsHead = styled.View`
   text-align:center;
 `;
 
-export const OnboardingshiftHead = styled.View`
+export const OnboardingShiftHead = styled.View`
 margin-top:22px;
 margin-bottom:20px;
 padding: 0 28px;
@@ -90,11 +90,11 @@ justify-content:center;
 `
 
 
-export const LocalizationcontentHead = styled.View`
+export const LocalizationContentHead = styled.View`
 flex:1;
 align-items:flex-start;
 `
-export const LocalizationcontentResult = styled.View`
+export const LocalizationContentResult = styled.View`
 flex:2;
 align-items:flex-start;
 `

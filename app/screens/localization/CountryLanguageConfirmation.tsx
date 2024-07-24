@@ -12,12 +12,12 @@ import OnboardingContainer, {
   LocalizationCol,
   LocalizationWithoutBorderCol,
   LocalizationContainer,
-  LocalizationcontentHead,
-  LocalizationcontentResult,
+  LocalizationContentHead,
+  LocalizationContentResult,
   LocalizationRow,
-  OnboardingconfirmationHead,
+  OnboardingConfirmationHead,
   OnboardingContent,
-  OnboardingshiftHead
+  OnboardingShiftHead
 } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
@@ -241,8 +241,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           setNewLanguage(selectedCountry?.languages[0]);
         }
       }
-  
-  }
+
+    }
   }, [isVisible]);
 
   useFocusEffect(
@@ -340,35 +340,42 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
 
         <OnboardingContainer>
 
-          <OnboardingconfirmationHead>
+          <OnboardingConfirmationHead>
             <Text style={styles.welcomeText}>{t('welcomeText')}</Text>
             <Icon name="ic_country" size={100} color="#00AEEF" />
-            <OnboardingshiftHead>
+            <OnboardingShiftHead>
               <Heading2Centerw>{t('countryLangSelection')}</Heading2Centerw>
-            </OnboardingshiftHead>
+            </OnboardingShiftHead>
             <Heading4Centerr>{t('checkonce')}</Heading4Centerr>
-          </OnboardingconfirmationHead>
+          </OnboardingConfirmationHead>
 
 
           <LocalizationContainer>
             <LocalizationRow>
 
               <LocalizationCol onPress={(): any => navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
-                <LocalizationcontentHead>
+                <LocalizationContentHead>
                   <Heading3Regular>{t('country')}</Heading3Regular>
-                </LocalizationcontentHead>
-                <LocalizationcontentResult>
+                </LocalizationContentHead>
+                <LocalizationContentResult>
                   <Heading3>{countryData?.name}</Heading3>
-                </LocalizationcontentResult>
+                </LocalizationContentResult>
               </LocalizationCol>
 
-              <LocalizationWithoutBorderCol onPress={(): any => popAndPush(navigation, 'LanguageSelection', { country: countryData, language: newLanguage, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null, isFromCountry: true })}>
-                <LocalizationcontentHead>
+              <LocalizationWithoutBorderCol onPress={() =>
+                popAndPush(navigation, 'LanguageSelection', {
+                  country: countryData,
+                  language: newLanguage,
+                  luxonLocale: luxonLanLocale ?? null,
+                  deviceLanCode: deviceLanCode ?? null,
+                  isFromCountry: true
+                })}>
+                <LocalizationContentHead>
                   <Heading3Regular>{t('language')}</Heading3Regular>
-                </LocalizationcontentHead>
-                <LocalizationcontentResult>
+                </LocalizationContentHead>
+                <LocalizationContentResult>
                   <Heading3>{Array.isArray(route.params.language) ? language[0].displayName : newLanguage?.displayName}</Heading3>
-                </LocalizationcontentResult>
+                </LocalizationContentResult>
               </LocalizationWithoutBorderCol>
 
               <LocalizationAction>
