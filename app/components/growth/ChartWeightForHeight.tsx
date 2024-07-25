@@ -1,4 +1,4 @@
-import { boyChildGender, girlChildGender, heightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
+import { heightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
 import { FlexCol, FlexColChart, FlexColEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
@@ -11,7 +11,7 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
-import standardDevData1 from '@assets/translations/appOfflineData/standardDeviation.json';
+import standardDevData1 from '@assets/translations/appOfflineData/standardDeviationNew.json';
 export const standardDevDataLoad=standardDevData1;
 const styles = StyleSheet.create({
   flexColChart:{
@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
 const ChartWeightForHeight = (props: any): any => {
   const navigation = useNavigation<any>();
   const themeContext = useContext(ThemeContext);
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const activeChild = useAppSelector((state: any) =>
@@ -50,17 +54,17 @@ const ChartWeightForHeight = (props: any): any => {
   //console.log(standardDevData,"..standardDevData..")
   let obj: any;
   let standardDeviation: any;
-  if (activeChild?.gender == boyChildGender || activeChild?.gender == '') {
+  if (activeChild?.gender == taxonomyIds?.boyChildGender || activeChild?.gender == '') {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item: any) => item.growth_type == heightGrowthType && item.child_gender == boyChildGender,
+      (item: any) => item.growth_type == heightGrowthType && item.child_gender == taxonomyIds?.boyChildGender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'weight');
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item: any) => item.growth_type == heightGrowthType && item.child_gender == girlChildGender,
+      (item: any) => item.growth_type == heightGrowthType && item.child_gender == taxonomyIds?.girlChildGender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'weight');

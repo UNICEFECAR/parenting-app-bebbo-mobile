@@ -174,6 +174,10 @@ const ChildProfile = ({ navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const userRelationToParent =
     allConfigData?.length > 0
       ? allConfigData.filter((item: any) => item.key === 'userRelationToParent')
@@ -183,8 +187,8 @@ const ChildProfile = ({ navigation }: Props): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
 
-  const relationshipValue = relationshipData.length > 0 && userParentalRoleData.length > 0 ? relationshipData.find((o: any) => String(o.id) === userParentalRoleData[0].value) : '';
-  const relationshipToParent = relationshipToParentGlobal.length > 0 && userRelationToParent.length > 0 ? relationshipToParentGlobal.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
+  const relationshipValue = relationshipData.length > 0 && userParentalRoleData.length > 0 ? relationshipData.find((o: any) => String(o.unique_name) === userParentalRoleData[0].value) : '';
+  const relationshipToParent = relationshipToParentGlobal.length > 0 && userRelationToParent.length > 0 ? relationshipToParentGlobal.find((o: any) => String(o.unique_name) === userRelationToParent[0].value) : '';
   const windowHeight = Dimensions.get('window').height;
 
   const SortedchildList = [...childList].sort((a: any, b: any): any => {
@@ -304,7 +308,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                     <Pressable onPress={(): any => {
                       setProfileLoading(true);
                       setTimeout(async () => {
-                        const setData = await setActiveChild(languageCode, data.uuid, dispatch, childAge, true);
+                        const setData = await setActiveChild(languageCode, data.uuid, dispatch, childAge, true, taxonomyIds?.boyChildGender);
 
                         getAllChildren(dispatch, childAge, 0);
                         if (setData == "activeset") {
@@ -438,13 +442,13 @@ const ChildProfile = ({ navigation }: Props): any => {
                       onPress={(): any => {
                         navigation.navigate('EditParentDetails', {
                           userParentalRoleData:
-                            userParentalRoleData?.length > 0
-                              ? userParentalRoleData[0].value
+                          relationshipToParent!=undefined && relationshipToParent!=null
+                              ? relationshipToParent?.id
                               : '',
                           parentEditName:
                             userNameData?.length > 0 ? userNameData[0].value : '',
-                          userRelationToParentEdit: userRelationToParent?.length > 0
-                            ? userRelationToParent[0].value
+                          userRelationToParentEdit: relationshipValue!=undefined && relationshipValue!=null
+                            ? relationshipValue.id
                             : '',
                         });
                       }}>

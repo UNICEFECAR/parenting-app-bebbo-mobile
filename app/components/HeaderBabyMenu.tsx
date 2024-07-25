@@ -149,6 +149,10 @@ const HeaderBabyMenu = (props: any): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const SortedchildList = [...childList].sort((a: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
@@ -348,7 +352,7 @@ const HeaderBabyMenu = (props: any): any => {
             <ImageIcon
               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
           ) : (
-            activeChild.gender != '' ? activeChild.gender == '40' ? <Icon name="ic_baby" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} />
+            activeChild.gender != '' ? activeChild.gender == taxonomyIds?.boyChildGender? <Icon name="ic_baby" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} />
           )}
         </HeaderActionBox>
       </HeaderActionView>

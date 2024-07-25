@@ -1,11 +1,11 @@
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
-import { appConfig, articleCategory, boyChildGender } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
 import { Alert, Platform } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
-import { store } from '../../App';
+import { store, useAppSelector } from '../../App';
 import { ToastAndroidLocal } from '../android/sharedAndroid.android';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -17,13 +17,12 @@ import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 import LocalNotifications from './LocalNotifications';
 import { logEvent } from './EventSyncService';
-
 export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeObj?: any): any => {
   const postData = {
     childGender: 'all',
     childAge: "all", //childAge != "" && childAge != undefined && childAge != null ? childAge : "all"
     parentGender: parentGender != "" && parentGender != undefined && parentGender != null ? parentGender : "all",
-    category: articleCategory != undefined && articleCategory != null ? articleCategory : "all"
+    category: "all" //articleCategory != undefined && articleCategory != null ? articleCategory : "all"
   }
   console.log(postData, "..postData Data is here..");
   return [
@@ -137,7 +136,7 @@ export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,
     }
   }
 }
-export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any, activeset?: any): Promise<any> => {
+export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any, activeset?: any, boyChildGender?: any): Promise<any> => {
 
   const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
   let userRelationToParent = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userRelationToParent'");
@@ -178,7 +177,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
         is_premature: child.isPremature,
-        child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+        child_gender: child.gender == boyChildGender ? "boy" : "girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender
       }) // relationship_with_child:monther/father
@@ -221,7 +220,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         analytics().setUserProperties({
           ageid: String(child.taxonomyData.id),
           is_premature: child.isPremature,
-          child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+          child_gender: child.gender == boyChildGender ? "boy" : "girl",
           relationship_with_child: userRelationToParent,
           parent_gender: child.parent_gender
         }) // relationship_with_child:monther/father
@@ -266,7 +265,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
         is_premature: child.isPremature,
-        child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+        child_gender: child.gender == boyChildGender ? "boy" : "girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender
       }) // relationship_with_child:monther/father
@@ -441,7 +440,8 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     }else{
       navigation.navigate('ChildSetupList');
     }
-   console.log('UUID is',data[0])
+   console.log('userParentalRole is',relationship,parentName)
+   console.log('userRelationToParent is',String(userRelationToParent))
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
@@ -547,13 +547,13 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
 }
 
-export const updateActiveChild = (child: any, key: any, value: any, dispatch: any, userRelationToParent: any): any => {
+export const updateActiveChild = (child: any, key: any, value: any, dispatch: any, userRelationToParent: any, boyChildGender: any): any => {
   child[key] = value;
   dispatch(setActiveChildData(child));
   analytics().setUserProperties({
     ageid: String(child.taxonomyData.id),
     is_premature: child.isPremature,
-    child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+    child_gender: child.gender == boyChildGender ? "boy" : "girl",
     relationship_with_child: userRelationToParent,
     parent_gender: child.parent_gender
   }) // relationship_with_child:monther/father
