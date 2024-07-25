@@ -368,6 +368,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       item => item['isMeasured'] == true
     ).map(({ uuid }) => ({ uuid }))
     const allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine, ...modifiedTakenVaccines];
+    console.log('allVaccines is',allVaccines?.length,isVaccineMeasured)
     const measurementDateParam = editMeasurementDate
       ? dateTouched
         ? measureDate?.toMillis()
@@ -409,17 +410,20 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
           doctorComment: remarkTxt,
           measurementPlace: 0,
         };
+        console.log('Add healdth checkup is',growthValues)
         const updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
         );
+        console.log('updateresult healdth checkup is',updateresult)
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
           const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: activeChild.uuid };
           dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
           setModalVisible(false);
+          console.log('hellosososfo')
         }
         setClicked(false);
         navigation.goBack();
@@ -523,7 +527,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       });
     });
     if (vcPeriod?.vaccines?.length > 0) {
-      allPreviousPendingVaccines = [...allPreviousPendingVaccines, ...vcPeriod.vaccines];
+      allPreviousPendingVaccines = [...allPreviousPendingVaccines, ...vcPeriod?.vaccines];
     }
     const isAllMeasured = [...allPreviousPendingVaccines].every((el) => {
       return el.isMeasured == true;

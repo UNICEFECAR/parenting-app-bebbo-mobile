@@ -1,4 +1,4 @@
-import { articleCategoryArray, bothChildGender, maxArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
+import { articleCategoryIdArray, maxArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -225,6 +225,10 @@ const Articles = ({ route, navigation }: any): any => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -233,18 +237,19 @@ const Articles = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  const articleDataOld = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
+  const articleDataOld = articleDataall.filter((x: any) => taxonomyIds?.articleCategoryArray?.includes(x.category));
   const VideoArticlesDataall = useAppSelector(
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
-  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && articleCategoryArray.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
-
+  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && taxonomyIds?.articleCategoryArray?.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == taxonomyIds?.bothChildGender));
+  useEffect(()=>{
+     console.log('Article Data old is',taxonomyIds?.articleCategoryArray)
+  },[])
   let articleData: any = mergearr(articleDataOld, videoarticleData, true);
   const [filteredData, setfilteredData] = useState<any>([]);
   const [showNoData, setshowNoData] = useState(false);

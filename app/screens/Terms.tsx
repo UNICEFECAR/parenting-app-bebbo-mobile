@@ -11,13 +11,13 @@ import OnboardingContainer, { OnboardingTermsHead } from '@components/shared/Onb
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
-import { setAcceptTerms } from '../redux/reducers/utilsSlice';
+import { setAcceptTerms, setTaxonomyIds } from '../redux/reducers/utilsSlice';
 import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10 } from '../styles/typography';
 import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     fontWeight: "700"
   },
   scrollViewStyle: {
-    padding: 0
+    padding: 0,
   },
   vectorImageView: {
     marginTop:50
@@ -93,12 +93,20 @@ const Terms = ({ navigation }: Props): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const taxonomyAllData = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData) : [],
+  );
   const dispatch = useAppDispatch();
   useFocusEffect(
     React.useCallback(() => {
       setLoading(false);
     }, [languageCode])
   );
+  useEffect(()=>{
+      console.log('taxonomyAllData is',taxonomyAllData?.relationship_to_parent)
+      dispatch(setTaxonomyIds(taxonomyAllData))
+  },[])
   useFocusEffect(
     React.useCallback(() => {
       setTimeout(() => {

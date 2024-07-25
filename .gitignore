@@ -40,6 +40,7 @@ debug.keystore
 *.keystore
 ios/GoogleServices/Production/GoogleService-Info.plist
 ios/GoogleServices/Xk/GoogleService-Info.plist
+ios/GoogleServices/Bangla/GoogleService-Info.plist
 ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 ios/ParentBuddyApp.xcodeproj/xcuserdata/kalyanikaushik.xcuserdatad/xcschemes/xcschememanagement.plist
 ios/GoogleServices/Xk/GoogleService-Info_old.plist
@@ -48,7 +49,10 @@ ios/ParentBuddyApp/Info.plist
 ios/ParentBuddyAppXk-Info.plist
 ios/ParentBuddyApp/Info.plist
 ios/ParentBuddyAppXk-Info.plist
+ios/ParentBuddyAppBangla-Info.plist
+ios/ParentBuddyAppBanglaDev-Info.plist
 ios/GoogleServices/Development/GoogleService-Info.plist
+ios/GoogleServices/Bangla/GoogleService-Info.plist
 ios/ParentBuddyApp/Info.plist
 ios/GoogleServices/XkDevelopment/GoogleService-Info.plist
 android/app/src/prod/res/values/strings.xml
