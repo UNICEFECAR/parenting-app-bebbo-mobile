@@ -1,6 +1,6 @@
-import { articleCategoryobj } from '@assets/translations/appOfflineData/apiConstants';
+import { articleCategoryobj, articleCategoryoUniqueNameObj } from '@assets/translations/appOfflineData/apiConstants';
 import { ArticleCategoriesProps } from '@screens/home/bottomTabs/Articles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useAppSelector } from '../../App';
 import { ArticleFilter, FilterBox, FilterText } from './shared/FilterStyle';
@@ -29,6 +29,10 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const getFilterArray = (itemId: any, filterArray: any[]): any => {
     if (!filterArray.includes(itemId)) {
       filterArray.push(itemId);
@@ -45,7 +49,16 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
     Array.from({ length: Math.ceil(arr.length / size) }, (v: any, i: any) =>
       arr.slice(i * size, i * size + size)
     );
-  const articleBrackets = chunk(articleCategoryobj, 2)
+  const categoryIds = taxonomyIds?.articleCategoryArray;
+
+  articleCategoryoUniqueNameObj.forEach((item, index) => {
+    if (categoryIds[index] !== undefined) {
+      item.id = categoryIds[index];
+    }
+  });
+
+  console.log('articleCategoryoUniqueNameObj data is',articleCategoryoUniqueNameObj);
+  const articleBrackets = chunk(articleCategoryoUniqueNameObj, 2)
   return (
     <>
       <ArticleFilter key={props.filterArray.length}>

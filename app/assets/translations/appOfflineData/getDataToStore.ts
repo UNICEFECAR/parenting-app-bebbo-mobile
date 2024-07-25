@@ -17,7 +17,7 @@ import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthCheckupsData, setAllMileStonesData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
-import { appConfig, bothChildGender, bothParentGender } from "./apiConstants";
+import { appConfig } from "./apiConstants";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: any, sortBy?: any, currentChildData?: any): Promise<any> => {
@@ -73,6 +73,7 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     //     dataToStore = databaseData2;
     // }
     const dataToStore = databaseData2;
+    console.log('Taxonomy data set is',dataToStore)
     if (dataToStore?.length > 0) {
         dispatch(setAllHardcodedData(dataToStore))
         return dataToStore;

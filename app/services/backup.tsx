@@ -94,7 +94,7 @@ class Backup {
             delete this.importedrealm;
         }
     }
-    public async importFromFile(oldChildrenData: any, navigation: any, genders: any, dispatch: any, childAge: any, langCode: any): Promise<any> {
+    public async importFromFile(oldChildrenData: any, navigation: any, genders: any, dispatch: any, childAge: any, langCode: any, taxonomyIds?:any): Promise<any> {
         console.log("oldchildrenresponse nwq",oldChildrenData)
         if (oldChildrenData?.length > 0) {
             const resolvedPromises = oldChildrenData.map(async (item: any) => {
@@ -121,7 +121,7 @@ class Backup {
                         childId = childId[0].value;
                         const activeChildData = allChildren.filter((x: any) => x.uuid == childId);
                         if (activeChildData.length > 0) {
-                            await setActiveChild(langCode, childId, dispatch, childAge, false);
+                            await setActiveChild(langCode, childId, dispatch, childAge, false, taxonomyIds?.boyChildGender);
                             navigation.navigate('LoadingScreen', {
                                 apiJsonData: [],
                                 prevPage: 'ImportScreen'
@@ -134,7 +134,7 @@ class Backup {
                             return "Imported";
                         }
                         else {
-                            await setActiveChild(langCode, '', dispatch, childAge, false);
+                            await setActiveChild(langCode, '', dispatch, childAge, false, taxonomyIds?.boyChildGender);
                             navigation.navigate('LoadingScreen', {
                                 apiJsonData: [],
                                 prevPage: 'ImportScreen'
@@ -148,7 +148,7 @@ class Backup {
                         }
                     }
                     else {
-                        await setActiveChild(langCode, '', dispatch, childAge, false);
+                        await setActiveChild(langCode, '', dispatch, childAge, false, taxonomyIds?.boyChildGender);
                         navigation.navigate('LoadingScreen', {
                             apiJsonData: [],
                             prevPage: 'ImportScreen'
@@ -245,7 +245,7 @@ class Backup {
 
         }
     }
-    public async import(navigation: any, langCode: any, dispatch: any, childAge: any, genders: any): Promise<any> {
+    public async import(navigation: any, langCode: any, dispatch: any, childAge: any, genders: any, taxonomyIds?:any): Promise<any> {
         const tokens = await googleAuth.getTokens();
 
         // Sign in if neccessary-
@@ -336,7 +336,7 @@ class Backup {
                             childId = childId[0].value;
                             const activeChildData = allChildren.filter((x: any) => x.uuid == childId);
                             if (activeChildData.length > 0) {
-                                await setActiveChild(langCode, childId, dispatch, childAge, false);
+                                await setActiveChild(langCode, childId, dispatch, childAge, false, taxonomyIds?.boyChildGender);
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -344,7 +344,7 @@ class Backup {
                                 return "Imported";
                             }
                             else {
-                                await setActiveChild(langCode, '', dispatch, childAge, false);
+                                await setActiveChild(langCode, '', dispatch, childAge, false, taxonomyIds?.boyChildGender);
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -353,7 +353,7 @@ class Backup {
                             }
                         }
                         else {
-                            await setActiveChild(langCode, '', dispatch, childAge, false);
+                            await setActiveChild(langCode, '', dispatch, childAge, false, taxonomyIds?.boyChildGender);
                             navigation.navigate('LoadingScreen', {
                                 apiJsonData: [],
                                 prevPage: 'ImportScreen'

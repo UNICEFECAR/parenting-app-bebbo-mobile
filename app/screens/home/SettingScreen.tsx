@@ -128,6 +128,10 @@ const SettingScreen = (props: any): any => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const allDataDownloadFlag = useAppSelector((state: any) =>
     (state.utilsData.allDataDownloadFlag),
   );
@@ -170,7 +174,7 @@ const SettingScreen = (props: any): any => {
 
   const importAllData = async (): Promise<any> => {
     setIsImportRunning(true);
-    await backup.import(props.navigation, languageCode, dispatch, childAge, genders);
+    await backup.import(props.navigation, languageCode, dispatch, childAge, genders, taxonomyIds);
     setIsImportRunning(false);
     actionSheetRefImport.current?.setModalVisible(false);
   }
@@ -187,7 +191,7 @@ const SettingScreen = (props: any): any => {
     const file = await ScopedStorage.openDocumentTree(true);
     const uri: any = await ScopedStorage.getPersistedUriPermissions();
     try {
-      const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
+      const fileDownload: any = await ScopedStorage.writeFile(file.uri, JSON.stringify(cipher), "mybackup.json", "*/*", 'utf8', false);
       const uri1: any = await ScopedStorage.getPersistedUriPermissions();
       console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
       if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
@@ -256,7 +260,7 @@ const SettingScreen = (props: any): any => {
               exportDataAndroid(cipher.cipher);
             }
             else {
-              console.log('cipher is',cipher.cipher)
+              console.log('cipher is', cipher.cipher)
               exportDataIOS(cipher.cipher);
             }
           })
@@ -598,21 +602,32 @@ const SettingScreen = (props: any): any => {
 
 
   useEffect(() => {
-    const selectedCountry: any = localization.find(
-      (country: any) => country.countryId === countryId,
-    );
-    setCountry(selectedCountry);
-    const selectedLanguage: any = selectedCountry.languages.find(
-      (language: any) => language.languageCode === languageCode,
-    );
-    setlanguage(selectedLanguage);
+    console.log('Selected country for bangladesh is...', localization[0]?.languages[0]);
+    if (localization?.length===1 && localization[0]?.languages?.length===1) {
+      setCountry(localization[0]);
+      // const selectedLanguage: any = selectedCountry.languages.find(
+      //   (language: any) => language.languageCode === languageCode,
+      // );
+      setlanguage(localization[0]?.languages[0]);
+    } else {
+      console.log('Selected country for countryId is', countryId);
+      const selectedCountry: any = localization.find(
+        (country: any) => country?.countryId === countryId,
+      );
+      console.log('Selected country for bangladesh is', selectedCountry);
+      setCountry(selectedCountry);
+      const selectedLanguage: any = selectedCountry?.languages?.find(
+        (language: any) => language.languageCode === languageCode,
+      );
+      setlanguage(selectedLanguage);
+    }
     toggleSwitch();
   }, []);
   useEffect(() => {
     if (isFocused) {
       toggleSwitch();
     }
-  }, [isFocused,developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag]);
+  }, [isFocused, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag]);
 
   const handleError = (err: any): any => {
     console.log(err, "..err")
@@ -633,14 +648,14 @@ const SettingScreen = (props: any): any => {
       if (dataset.name.endsWith(".json")) {
         const decryptedData = decryptData(dataset.data, encryptionsKey)
           .then((text: any) => {
-            console.log('decryptData',text)
+            console.log('decryptData', text)
             return text;
           })
           .catch((error: any) => {
             console.log("Decrypted error", error);
             throw error;
           });
-         
+
         await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
         const importedJsonData = JSON.parse(await decryptedData);
         oldChildrenData = importedJsonData;
@@ -662,7 +677,7 @@ const SettingScreen = (props: any): any => {
       if (oldChildrenData.length > 0) {
         await userRealmCommon.openRealm();
         await userRealmCommon.deleteAllAtOnce();
-        console.log("oldchildrenresponse",oldChildrenData)
+        console.log("oldchildrenresponse", oldChildrenData)
         const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
         console.log(importResponse, "..importResponse");
       }
@@ -683,7 +698,7 @@ const SettingScreen = (props: any): any => {
             const decryptFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8').then((edata: any) => {
               return decryptData(edata, encryptionsKey)
                 .then((text: any) => {
-                  console.log('decryptData',text)
+                  console.log('decryptData', text)
                   return text;
                 })
                 .catch((error: any) => {
@@ -694,12 +709,12 @@ const SettingScreen = (props: any): any => {
               console.error('Error:', error);
               throw error;
             });
-            console.log('ios data is',decryptFileContent)
+            console.log('ios data is', decryptFileContent)
             const importedJsonData = JSON.parse(decryptFileContent);
-            console.log('importedJsonData data is',importedJsonData)
+            console.log('importedJsonData data is', importedJsonData)
             oldChildrenData = importedJsonData;
             await RNFS.writeFile(tempRealmFile, JSON.stringify(importedJsonData), "utf8");
-           
+
           } else {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
             await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
@@ -712,18 +727,18 @@ const SettingScreen = (props: any): any => {
             console.log(user1Path, "..user1Path")
             oldChildrenData = importedrealm.objects('ChildEntity');
           }
-      
+
           console.log(oldChildrenData, "..newoldChildrenData..")
           setIsImportRunning(true);
           if (oldChildrenData.length > 0) {
             await userRealmCommon.openRealm();
             await userRealmCommon.deleteAllAtOnce();
-            const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+            const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode, taxonomyIds);
             console.log(importResponse, "..importResponse");
           }
           setIsImportRunning(false);
           actionSheetRefImport.current?.setModalVisible(false);
-          
+
         }
 
       })
@@ -752,8 +767,8 @@ const SettingScreen = (props: any): any => {
         />
 
         <ScrollView
-        scrollIndicatorInsets={{right:1}}
-        style={[styles.flex1, styles.bgColorWhite]}>
+          scrollIndicatorInsets={{ right: 1 }}
+          style={[styles.flex1, styles.bgColorWhite]}>
           <MainContainer>
             <SettingHeading>
               <Heading1>{t('settingScreennotiHeaderText')}</Heading1>
@@ -969,11 +984,11 @@ const SettingScreen = (props: any): any => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <IconAreaPress onPress={(): any => {
+                {localization?.length!==1 && localization?.languages?.length!==1 && <IconAreaPress onPress={(): any => {
                   setModalVisible(true)
                 }}>
                   <Icon name="ic_edit" size={16} color="#000" />
-                </IconAreaPress>
+                </IconAreaPress>}
               </FlexDirRowSpace>
             </SettingHeading>
             <ShiftFromTopBottom5>
