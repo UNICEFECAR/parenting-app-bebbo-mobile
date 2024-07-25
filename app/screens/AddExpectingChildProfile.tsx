@@ -199,7 +199,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
-            {childData && childData?.uuid != '' ? (
+            {childData?.uuid ? (
               <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>{t('babyNotificationUpdateBtn')} </Heading2w>
             ) : (
               <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>{t('expectChildAddTxt2')}</Heading2w>
