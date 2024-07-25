@@ -54,7 +54,7 @@ const HealthCheckups = ({navigation,route}: Props):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext?.colors.HEALTHCHECKUP_TINTCOLOR;
-  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
   const {
     upcomingPeriods,
@@ -81,11 +81,16 @@ const HealthCheckups = ({navigation,route}: Props):any => {
   //   }, [hcuModalOpened])
   //  );
   useEffect(()=>{
+    console.log('upcomingPeriods',upcomingPeriods)
+    console.log('previousPeriods',previousPeriods)
     setModalVisible(hcuModalOpened)
   },[hcuModalOpened]);
   
  
- 
+  useEffect(()=>{
+    console.log('upcomingPeriods',upcomingPeriods)
+    console.log('previousPeriods',previousPeriods)
+  },[]);
   const reminders = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild).reminders
@@ -145,7 +150,6 @@ const HealthCheckups = ({navigation,route}: Props):any => {
     }
   };
   const getVaccinationPeriod = ():any => {
-
     if(upcomingPeriods[0]?.vaccination_opens <= childAgeIndays && upcomingPeriods[0]?.vaccination_ends > childAgeIndays)
     {
      return upcomingPeriods[0]

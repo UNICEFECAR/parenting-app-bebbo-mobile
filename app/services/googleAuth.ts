@@ -26,7 +26,10 @@ class GoogleAuth {
     public configure():any {
         GoogleSignin.configure({
             scopes: ['https://www.googleapis.com/auth/drive'], // what API you want to access on behalf of the user, default is email and profile
-      });
+            webClientId: '422491588953-ncd8nue3q96hqk5u0f9hc3ocl4hp5b3d.apps.googleusercontent.com',
+            iosClientId: '422491588953-hnkrjokocj5vm3k1ebbbga02vdmehpn7.apps.googleusercontent.com', // iOS client ID
+            offlineAccess: true,
+        });
         
     }
 

@@ -1,11 +1,4 @@
 import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
-import {
-  bothParentGender,
-  femaleData,
-  maleData,
-  relationShipFatherId,
-  relationShipMotherId,
-} from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonPrimary, ButtonRow, ButtonText,
@@ -79,6 +72,10 @@ const ChildImportSetup = (props: any): any => {
   const [relationshipname, setRelationshipName] = useState('');
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const genders = useAppSelector(
     (state: any) =>
@@ -96,7 +93,7 @@ const ChildImportSetup = (props: any): any => {
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
   relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != bothParentGender;
+    return e.unique_name != taxonomyIds?.bothParentGender;
   });
 
   const relationshipToParent = useAppSelector(
@@ -104,6 +101,9 @@ const ChildImportSetup = (props: any): any => {
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
   useEffect(() => {
+    console.log('relationshipToParent', taxonomyIds)
+    console.log('User paranetal role', userRelationToParent)
+    console.log('relationshipToParent', relationshipToParent)
     const backAction = (): any => {
       return true;
     };
@@ -122,9 +122,9 @@ const ChildImportSetup = (props: any): any => {
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
     ) {
-      setRelationship(checkedItem.id);
+      setRelationship(checkedItem.unique_name);
     } else {
-      setRelationship(String(checkedItem.id));
+      setRelationship(checkedItem.unique_name);
     }
   };
   useFocusEffect(
@@ -179,7 +179,7 @@ const ChildImportSetup = (props: any): any => {
 
                   <View>
                     {
-                      userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
+                      userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != taxonomyIds?.relationShipMotherId && userRelationToParent != taxonomyIds?.relationShipFatherId ?
                         <FormContainer1>
                           <LabelText>{t('parentGender')}</LabelText>
                           <ToggleRadios
@@ -208,25 +208,25 @@ const ChildImportSetup = (props: any): any => {
                 <ChildRelationList key={index}>
                   <Pressable
                     onPress={(): any => {
-                      setUserRelationToParent(item.id);
-                      if (item.id == relationShipMotherId) {
-                        if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
-                          setRelationship(femaleData.id);
+                      setUserRelationToParent(item.unique_name);
+                      if (item.unique_name == taxonomyIds?.relationShipMotherId) {
+                        if (typeof taxonomyIds?.femaleData.unique_name === 'string' || taxonomyIds?.femaleData.unique_name instanceof String) {
+                          setRelationship(taxonomyIds?.femaleData?.unique_name);
                         }
                         else {
-                          setRelationship(String(femaleData.id));
+                          setRelationship(String(taxonomyIds?.femaleData?.unique_name));
                         }
                       }
-                      else if (item.id == relationShipFatherId) {
-                        if (typeof maleData.id === 'string' || maleData.id instanceof String) {
-                          setRelationship(maleData.id);
+                      else if (item.unique_name == taxonomyIds?.relationShipFatherId) {
+                        if (typeof taxonomyIds?.maleData.unique_name === 'string' || taxonomyIds?.maleData.unique_name instanceof String) {
+                          setRelationship(taxonomyIds?.maleData.unique_name);
                         }
                         else {
-                          setRelationship(String(maleData.id));
+                          setRelationship(String(taxonomyIds?.maleData.unique_name));
                         }
                       }
                       else {
-                        if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
+                        if (userRelationToParent == taxonomyIds?.relationShipMotherId || userRelationToParent == taxonomyIds?.relationShipFatherId) {
                           setRelationship('');
                         }
                       }
@@ -260,6 +260,8 @@ const ChildImportSetup = (props: any): any => {
                       const itemnew = await getChild(item, genders);
                       const childData: any = [];
                       childData.push(itemnew);
+                      console.log('relationship',relationship)
+                      console.log('relationship',String(userRelationToParent))
                       await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
                       let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
@@ -270,14 +272,14 @@ const ChildImportSetup = (props: any): any => {
                           childId = childId[0].value;
                           const activeChildData = importResponse.filter((x: any) => x.uuid == childId);
                           if (activeChildData.length > 0) {
-                            await setActiveChild(languageCode, childId, dispatch, childAge, false);
+                            await setActiveChild(languageCode, childId, dispatch, childAge, false, taxonomyIds?.boyChildGender);
                           }
                           else {
-                            await setActiveChild(languageCode, '', dispatch, childAge, false);
+                            await setActiveChild(languageCode, '', dispatch, childAge, false, taxonomyIds?.boyChildGender);
                           }
                         }
                         else {
-                          await setActiveChild(languageCode, '', dispatch, childAge, false);
+                          await setActiveChild(languageCode, '', dispatch, childAge, false, taxonomyIds?.boyChildGender);
                         }
                         counter++;
                       }

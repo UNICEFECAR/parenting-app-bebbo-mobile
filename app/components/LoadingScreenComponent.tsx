@@ -1,11 +1,12 @@
 import { buildFor, buildForBebbo } from '@assets/translations/appOfflineData/apiConstants';
-import { bebboLogoShape, nmPartnerLogo, nmSponserLogo, albaniaPartnerLogo1, blSponserLogo, blPartnerLogo, kgPartnerLogo, mnSponserLogo, mnPartnerLogo, sbPartnerLogo, sbSponserLogo, skPartnerLogo, tjkPartnerLogo, uzSponserLogo, uzPartnerLogo } from '@dynamicImportsClass/dynamicImports';
+import { bebboLogoShape, banPartnerLogo, banSponserLogo, nmPartnerLogo, nmSponserLogo, albaniaPartnerLogo1, blSponserLogo, blPartnerLogo, kgPartnerLogo, mnSponserLogo, mnPartnerLogo, sbPartnerLogo, sbSponserLogo, skPartnerLogo, tjkPartnerLogo, uzSponserLogo, uzPartnerLogo, sponsors } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { FlexDirCol } from './shared/FlexBoxStyle';
+
 
 
 import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
@@ -60,15 +61,21 @@ const styles = StyleSheet.create({
 });
 const sponsorsData = [
   {
-    id: 6,
-    sponserImage: null,
-    partnerImage: albaniaPartnerLogo1
+    id: 1,
+    sponserImage: banSponserLogo,
+    partnerImage: banPartnerLogo
   },
   {
     id: 36,
     sponserImage: nmSponserLogo,
     partnerImage: nmPartnerLogo
   },
+  {
+    id: 6,
+    sponserImage: null,
+    partnerImage: albaniaPartnerLogo1
+  },
+
   {
     id: 106,
     sponserImage: blSponserLogo,
@@ -104,17 +111,18 @@ const sponsorsData = [
     sponserImage: uzSponserLogo,
     partnerImage: uzPartnerLogo
   },
+
 ]
 const LoadingScreenComponent = (props: any): any => {
   const { t } = useTranslation();
-  const sponsors = props.sponsors;
   const [logoname, setLogoName] = React.useState('')
   const [countrySponsor, setCountrySponsor] = React.useState<any>(null)
   const prevPage = props.prevPage;
 
   React.useEffect(() => {
-    const countrySponsor1 = sponsorsData.find(sponsor => sponsor.id === props.sponsors.id);
-    setCountrySponsor(countrySponsor1)
+      const countrySponsor1 = sponsorsData.find(sponsor => sponsor.id === props.sponsors.id);
+      setCountrySponsor(countrySponsor1)
+  
   }, [sponsorsData, countrySponsor])
   return (
     <LoadingContainer>
@@ -132,11 +140,11 @@ const LoadingScreenComponent = (props: any): any => {
               </View>
               <PartnerLogo
                 style={styles.partnerLogoView}
-                source={sponsors?.country_national_partner != null ? countrySponsor?.partnerImage : require('')}
+                source={sponsors?.country_national_partner != null ? countrySponsor?.partnerImage : props.sponsors.length == 0 ? sponsorsData[0]?.partnerImage : require('')}
               />
               <SponsorLogo
                 style={styles.partnerLogoView}
-                source={sponsors?.country_sponsor_logo != null ? countrySponsor?.sponserImage : require('')}
+                source={sponsors?.country_sponsor_logo != null ? countrySponsor?.sponserImage : props.sponsors.length == 0  ? sponsorsData[0]?.sponserImage : require('')}
               />
               <WrapView>
                 <StaticLogo

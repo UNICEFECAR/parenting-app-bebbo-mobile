@@ -5,7 +5,7 @@ const localizationbangla = [
     displayName: 'Bangladesh (বাংলাদেশ)',
     languages: [
       {
-        name: 'Bengali',
+        name: 'Bangla',
         displayName: 'বাংলা',
         languageCode: 'bn',
         locale: 'bn',

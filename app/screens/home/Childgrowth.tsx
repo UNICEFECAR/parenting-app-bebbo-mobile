@@ -81,7 +81,7 @@ const Childgrowth = ({navigation}: any):any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
-  const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading,setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
