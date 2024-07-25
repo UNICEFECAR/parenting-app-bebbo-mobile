@@ -417,7 +417,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                     shadowColor="#fff"
                     bgColor={componentColors?.backgroundColor}
                   >
-                    <Text style={styles.font18}>{convertDigits(milestonePercent)}{'%'}</Text>
+                    <Text style={styles.font18}>{convertDigits(milestonePercent?.toString())}{'%'}</Text>
                   </ProgressCircle>
                 </FlexDirRowSpace>
               </DevelopmentStatus>
