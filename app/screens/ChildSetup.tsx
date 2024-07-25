@@ -1,4 +1,4 @@
-import { bothChildGender, bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { regexpEmojiPresentation, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -124,6 +124,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState('');
+  const [relationshipUniqueName, setRelationshipUniqueName] = useState('');
   const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isImportRunning, setIsImportRunning] = useState(false);
@@ -142,6 +143,18 @@ const ChildSetup = ({ navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
+  const relationShipMotherId = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds.relationShipMotherId,
+  );
+  const relationShipFatherId = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds.relationShipFatherId,
+  );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -149,6 +162,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
+
   const actionSheetRef = createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
@@ -163,19 +177,18 @@ const ChildSetup = ({ navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
-
   genders = genders?.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != bothChildGender;
+    return e.unique_name != taxonomyIds?.bothChildGender;
   });
   relationshipData = relationshipData?.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != bothParentGender;
+    return e.unique_name != taxonomyIds?.bothParentGender;
   });
   const onImportCancel = (): any => {
     setImportAlertVisible(false);
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('relationshipToParent is', relationshipToParent)
+      console.log('relationshipToMother is', relationShipFatherId, relationShipMotherId)
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
@@ -195,12 +208,12 @@ const ChildSetup = ({ navigation }: Props): any => {
   };
   const getCheckedParentItem = (checkedItem: any): any => {
     if (
-      typeof checkedItem.id === 'string' ||
-      checkedItem.id instanceof String
+      typeof checkedItem.unique_name === 'string' ||
+      checkedItem.unique_name instanceof String
     ) {
-      setRelationship(checkedItem.id);
+      setRelationship(checkedItem.unique_name);
     } else {
-      setRelationship(String(checkedItem.id));
+      setRelationship(String(checkedItem.unique_name));
     }
   };
   const handleError = (err: any): any => {
@@ -354,6 +367,8 @@ const ChildSetup = ({ navigation }: Props): any => {
     const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
+    console.log('User Relation to parent',userRelationToParent)
+    console.log('Relation ship is',relationship)
     addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild,false, name);
   }
 
@@ -546,30 +561,31 @@ const ChildSetup = ({ navigation }: Props): any => {
               <ChildRelationList key={index}>
                 <Pressable
                   onPress={(): any => {
-                    setUserRelationToParent(item.id);
-                    if (item.id == relationShipMotherId) {
-                      if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
-                        setRelationship(femaleData.id);
+                    setUserRelationToParent(item.unique_name);
+                    if (item.unique_name == taxonomyIds?.relationShipMotherId) {
+                      if (typeof taxonomyIds?.femaleData?.unique_name === 'string' || taxonomyIds?.femaleData?.unique_name instanceof String) {
+                        setRelationship(taxonomyIds?.femaleData.unique_name);
                       }
                       else {
-                        setRelationship(String(femaleData.id));
+                        setRelationship(String(taxonomyIds?.femaleData?.unique_name));
                       }
                     }
-                    else if (item.id == relationShipFatherId) {
-                      if (typeof maleData.id === 'string' || maleData.id instanceof String) {
-                        setRelationship(maleData.id);
+                    else if (item.unique_name == taxonomyIds?.relationShipFatherId) {
+                      if (typeof taxonomyIds?.maleData.unique_name === 'string' || taxonomyIds?.maleData.unique_name instanceof String) {
+                        setRelationship(taxonomyIds?.maleData.unique_name);
                       }
                       else {
-                        setRelationship(String(maleData.id));
+                        setRelationship(String(taxonomyIds?.maleData.unique_name));
                       }
                     }
                     else {
-                      if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
+                      if (userRelationToParent == taxonomyIds?.relationShipMotherId || userRelationToParent == taxonomyIds?.relationShipFatherId) {
                         setRelationship('');
                       }
                     }
                     console.log('relationship name', item.name)
                     setRelationshipName(item.name);
+                    setRelationshipUniqueName(item.unique_name);
                     actionSheetRef.current?.setModalVisible(false);
                   }}>
                   <Heading3>{console.log(item.name)}
@@ -663,3 +679,4 @@ const ChildSetup = ({ navigation }: Props): any => {
 };
 
 export default ChildSetup;
+

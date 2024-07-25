@@ -37,7 +37,7 @@ import { useTranslation } from 'react-i18next';
 import { I18nManager, Platform, BackHandler, Text, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, buildFor, buildForBangla, buildForFoleja } from '../../assets/translations/appOfflineData/apiConstants';
 import { oncountrtIdChange, onLocalizationSelect, setAppLayoutDirectionParams, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
@@ -381,7 +381,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                 <LocalizationAction>
                 </LocalizationAction>
               </LocalizationRow>
-              <ShiftFromTop25>
+             <ShiftFromTop25>
                 <ButtonWithBorder onPress={(): any => navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
                   <OuterIconRow>
                     <OuterIconLeft>
@@ -390,7 +390,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                     <ButtonTextLg>{t('editCountryLang')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonWithBorder>
-              </ShiftFromTop25>
+              </ShiftFromTop25> 
+              {/* //{ buildFor != String(buildForBangla) && } */}
 
               <Flex1>
                 <ButtonPrimary onPress={(): any => saveSelection()}>

@@ -1,4 +1,4 @@
-import { bothChildGender, girlChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+import {  regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
@@ -142,12 +142,17 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
-
-  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: { id: number }, i: any, a: any) {
-    console.log(i, a);
-    return e.id != bothChildGender;
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
+  // genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: { id: st }, i: any, a: any) {
+  //   console.log(i, a);
+  //   return e.unique_name != taxonomyIds?.bothChildGender;
+  // });
+  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+    return e.unique_name != taxonomyIds?.bothChildGender;
   });
-
   const imageOptions = [
     { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
     { id: 1, iconName: 'ic_camera', name: t('cameraOption2') },
@@ -216,7 +221,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         sendData(childData);
       }
       if (childData != null && childData.uuid !== '' && childData?.gender === 0) {
-        setDefaultGenderValue(genders.find((item: any) => item.id === girlChildGender))
+        setDefaultGenderValue(genders.find((item: any) => item.unique_name === taxonomyIds?.girlChildGender))
       } else {
         setDefaultGenderValue(genders.find((item: any) => item.id === childData?.gender))
       }

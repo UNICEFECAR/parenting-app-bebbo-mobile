@@ -23,7 +23,7 @@ import {  setAllLocalNotificationGenerateType, setAllNotificationData } from '..
 import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 import LocalNotifications from './LocalNotifications';
-import { localization } from '../bangla/dynamicImports';
+import { localization } from '@dynamicImportsClass/dynamicImports';
 
 
 export const client =

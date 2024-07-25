@@ -54,17 +54,17 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
         EntitySchema = ArticleEntitySchema;
         pinnedArticle = "";
     }
-    else if (response.payload.apiEndpoint == appConfig.vaccinePinnedContent ||
-        response.payload.apiEndpoint == appConfig.childGrowthPinnedContent ||
-        response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent ||
-        response.payload.apiEndpoint == appConfig.faqPinnedContent ||
-        response.payload.apiEndpoint == appConfig.faqUpdatedPinnedContent ||
-        response.payload.apiEndpoint == appConfig.milestoneRelatedArticle) {
-        insertData = response.payload.data.data;
-        Entity = Entity as ArticleEntity;
-        EntitySchema = ArticleEntitySchema;
-        pinnedArticle = isArticlePinned;
-    }
+    // else if (response.payload.apiEndpoint == appConfig.vaccinePinnedContent ||
+    //     response.payload.apiEndpoint == appConfig.childGrowthPinnedContent ||
+    //     response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent ||
+    //     response.payload.apiEndpoint == appConfig.faqPinnedContent ||
+    //     response.payload.apiEndpoint == appConfig.faqUpdatedPinnedContent ||
+    //     response.payload.apiEndpoint == appConfig.milestoneRelatedArticle) {
+    //     insertData = response.payload.data.data;
+    //     Entity = Entity as ArticleEntity;
+    //     EntitySchema = ArticleEntitySchema;
+    //     pinnedArticle = isArticlePinned;
+    // }
     else if (response.payload.apiEndpoint == appConfig.archive) {
         insertData = response.payload.data.data;
         Entity = Entity as VideoArticleEntity;
