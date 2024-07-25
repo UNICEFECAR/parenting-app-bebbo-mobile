@@ -219,7 +219,7 @@ class Backup {
                 const fileContent = await RNFS.readFile(RNFS.DocumentDirectoryPath + '/' + 'user1.realm', 'utf8');
                 const decryptedData = this.decryptData(fileContent, encryptionsKey)
                 .then((text: any) => {
-                  return text;
+                  return text.replace(/[\x00-\x1F\x7F]/g,'');
                 })
                 .catch((error: any) => {
                   console.log("Decrypted error", error);
@@ -291,7 +291,7 @@ class Backup {
                 const fileContent = await RNFS.readFile(RNFS.DocumentDirectoryPath + '/' + 'user1.realm', 'utf8');
                 const decryptedData = this.decryptData(fileContent, encryptionsKey)
                 .then((text: any) => {
-                  return text;
+                    return text.replace(/[\x00-\x1F\x7F]/g,'');
                 })
                 .catch((error: any) => {
                   console.log("Decrypted error", error);
