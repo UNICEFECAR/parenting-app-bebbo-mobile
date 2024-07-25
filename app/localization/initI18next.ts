@@ -9,8 +9,8 @@ import i18n, {
   import { store } from '../../App';
   import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
   import { localization, AVAILABLE_LANGUAGES } from '@dynamicImportsClass/dynamicImports';
-import { convertDigits } from '../services/Utils';
-  
+  import { convertDigits } from '../services/Utils';
+
   console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
   const localisationnew = [...localization];
   const findAllByKey:any = (obj: object | null, keyToFind: string) => {
@@ -19,11 +19,11 @@ import { convertDigits } from '../services/Utils';
       .reduce((acc, [key, value]) => (key === keyToFind)
         ? acc.concat(value)
         : (typeof value === 'object')
-        ? acc.concat(findAllByKey(value, keyToFind))
-        : acc
-      , [])
-    }
+          ? acc.concat(findAllByKey(value, keyToFind))
+          : acc
+        , [])
   }
+}
 
   const findLangCode = (languageTag: string | undefined):any => {
     const obj = localisationnew.reduce((prev, product):any => prev || product.languages.find((item:any) => item.luxonLocale === languageTag && item.locale != 'RSen'), undefined);
@@ -65,7 +65,7 @@ import { convertDigits } from '../services/Utils';
     },
   };
   const trimwhiteSpace = (str:any):any => {
-    return str.length ? str.trim()  : str
+    return str.length ? str.trim(): str
   }
   i18n
     .use(languageDetector)
@@ -81,11 +81,11 @@ import { convertDigits } from '../services/Utils';
       compatibilityJSON: 'v3',
       resources: AVAILABLE_LANGUAGES,
     //   load: 'currentOnly',
-      react: {
-        useSuspense: false,
-      },
-      interpolation: {
-        escapeValue: false,
-      },
-      postProcess: ["trimwhitespace"]
-    });
+    react: {
+      useSuspense: false,
+    },
+    interpolation: {
+      escapeValue: false,
+    },
+    postProcess: ["trimwhitespace"]
+  });
