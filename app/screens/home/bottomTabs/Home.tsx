@@ -66,8 +66,6 @@ import { bgcolorWhite2 } from '@styles/style';
 import { ToastAndroidLocal } from '../../../android/sharedAndroid.android';
 import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
 import { useIsFocused } from '@react-navigation/native';
-import ChildPinnedArticleInfo from '@components/homeScreen/ChildPinnedArticleInfo';
-import { HomeSearchBox, SearchBox, SearchInput } from '@components/shared/ArticlesStyle';
 
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -353,7 +351,7 @@ const Home = ({ route, navigation }: any): any => {
                 saveinDB: true,
               },
             ];
-            // const apiJsonDataarticleall = apiJsonDataGet(String(bufferAgeBracket), "all");
+  
             const apiJsonDataarticleall = apiJsonDataGet("all");
             if (apiJsonDataarticleall.length > 0) {
               apiJsonDatarelatedvideoart.push(apiJsonDataarticleall[0])
