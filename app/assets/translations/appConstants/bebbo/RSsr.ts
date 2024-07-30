@@ -356,7 +356,7 @@ const RSsr = {
               SyncOnLoadCancelPopUpBtn: "Otkažite",
               SyncOnLoadRetryBtn: "Sinhronizujte",
               cdNoti1: "{{childName}} je u razvojnom periodu {{periodName}} - pratite razvoj vašeg deteta",
-              cdNoti2: "Proverite koje razvojne prekretnice je {{childnName}} ostvario/la u periodu {{periodName}}",
+              cdNoti2: "Proverite koje razvojne prekretnice je {{childName}} ostvario/la u periodu {{periodName}}",
               gwNoti1: "{{childName}} raste - osvežite mere rasta vašeg deteta",
               hcNoti1: "U periodu {{periodName}}, {{childName}} treba da obavi preventivni pedijatrijski pregled. Zakažite posetu izabranom pedijatru",
               vcNoti1: "U ovom periodu, {{periodName}}, {{childName}} treba da primi vakcinu(e):  ",
