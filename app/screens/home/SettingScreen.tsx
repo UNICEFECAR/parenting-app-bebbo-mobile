@@ -150,20 +150,15 @@ const SettingScreen = (props: any): any => {
   const actionSheetRef = createRef<any>();
   const actionSheetRefImport = createRef<any>();
   const countryId = useAppSelector(
-    (state: any) => state.selectedCountry.countryId,
+    (state: any) => state.selectedCountry?.countryId,
   );
   const allCountries = useAppSelector(
-    (state: any) => {
-     try {
-       state.selectedCountry.countries !== '' ? JSON.parse(state.selectedCountry.countries) : [];
-     } catch (error) {
-       console.error('Failed to parse countries JSON:', error);
-       return [];
-     }
-   });
+    (state: any) =>
+      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
+  );
   const [profileLoading, setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
+    (state: any) => state.selectedCountry?.languageCode,
   );
   const netInfo = useNetInfoHook();
   const weeklyDownloadDate = useAppSelector(
@@ -620,13 +615,14 @@ const SettingScreen = (props: any): any => {
       setlanguage(allCountries[0]?.languages[0]);
     } else {
       console.log('Selected country for countryId is', countryId);
-      const selectedCountry: any = allCountries.find(
-        (country: any) => country.CountryID === countryId,
+      console.log('allCountries country for countryId is', allCountries);
+      const selectedCountry: any = allCountries?.find(
+        (country: any) => country?.CountryID === countryId,
       );
       console.log('Selected country is', selectedCountry);
       setCountry(selectedCountry);
       const selectedLanguage: any = selectedCountry?.languages?.find(
-        (language: any) => language.languageCode === languageCode,
+        (language: any) => language?.languageCode === languageCode,
       );
       setlanguage(selectedLanguage);
     }
@@ -1035,7 +1031,7 @@ const SettingScreen = (props: any): any => {
                   <Heading3Regular>{t('country')}</Heading3Regular>
                 </Flex2>
                 <Flex3>
-                  <Heading3>{country.name}</Heading3>
+                  <Heading3>{country?.name}</Heading3>
                 </Flex3>
               </FDirRow>
             </ShiftFromTopBottom5>
@@ -1045,7 +1041,7 @@ const SettingScreen = (props: any): any => {
                   <Heading3Regular>{t('language')}</Heading3Regular>
                 </Flex2>
                 <Flex3>
-                  <Heading3>{language.displayName}</Heading3>
+                  <Heading3>{language?.displayName}</Heading3>
                 </Flex3>
               </FDirRow>
             </ShiftFromTopBottom5>
