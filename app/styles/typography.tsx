@@ -266,6 +266,9 @@ margin-top:40px;
 export const ShiftFromTop50 = styled.View`
 margin-top:50px;
 `
+export const ShiftFromTopPercentage = styled.View`
+margin-top:25%;
+`
 export const ShiftFromTopBottom5 = styled.View`
 margin-bottom:5px;
 margin-top:5px;
