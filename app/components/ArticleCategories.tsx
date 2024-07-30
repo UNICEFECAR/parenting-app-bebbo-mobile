@@ -77,7 +77,7 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
                             style={styles.iconStyle} name={item.image} size={20} color="#000" />
                         </OuterIconLeft>
                       </OuterIconRow>
-                      <FilterText numberOfLines={2}>{categoryData.filter((x: any) => x.id == item.id)[0].name}</FilterText>
+                      <FilterText numberOfLines={2}>{categoryData?.filter((x: any) => x.id == item.id)[0]?.name}</FilterText>
                     </FilterBox>
                   </Pressable>)
                 })

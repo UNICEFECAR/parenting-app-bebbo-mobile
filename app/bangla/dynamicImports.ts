@@ -29,8 +29,8 @@ export const standardDevData =require('@offlinedata/bangla/standardDevData').sta
 export const SurveyData =require('@offlinedata/bangla/SurveyData').SurveyData;
 export const vaccineData =require('@offlinedata/bangla/vaccineData').vaccineData;
 export const VideoArticleData =require('@offlinedata/bangla/VideoArticleData').VideoArticleData;
-import banglaPartnerLogo from '@assets/appOfflineImages/bangla/partner/BSA_logo.png';
+import banglaPartnerLogo from '@assets/appOfflineImages/bangla/partner/MoH_bangladesh.png';
 export const bnPartnerLogo=banglaPartnerLogo;
-import banglaSponserLogo from '@assets/appOfflineImages/bangla/sponser/MoH_bangladesh.png';
+import banglaSponserLogo from '@assets/appOfflineImages/bangla/sponser/BSA_logo.png';
 export const nmSponserLogo=banglaSponserLogo;
 
