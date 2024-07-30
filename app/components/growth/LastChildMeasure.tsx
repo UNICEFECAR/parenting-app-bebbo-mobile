@@ -5,7 +5,7 @@ import {
   Flex1,
   Flex_5,
   Flex2,
-  Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart
+  Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart,
 } from '@components/shared/FlexBoxStyle';
 import Icon, { IconViewAlert, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, { ModalPopupContent, PopupClose, PopupCloseContainer, PopupOverlay } from '@components/shared/ModalPopupStyle';
@@ -19,7 +19,7 @@ import {
   Heading4Regular,
   Heading5,
   Heading5Bold,
-  ShiftFromTop20
+  ShiftFromTop20,
 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
@@ -143,7 +143,7 @@ const LastChildMeasure = ():any => {
         <ShiftFromTop20>
           <FlexDirRowSpace>
             <Flex2>
-              <FlexDirRowSpace>
+              <FlexDirRowSpace alignItems="flex-start">
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenwText')}</Heading4Regular>
                   <Heading2>
