@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "patch-package",
     "cc": "rimraf node_modules/.cache/babel-loader/*,",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
