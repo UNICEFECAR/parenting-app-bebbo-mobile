@@ -18,7 +18,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms, setTaxonomyIds } from '../redux/reducers/utilsSlice';
-import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10 } from '../styles/typography';
+import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10, ShiftFromTop50 ,ShiftFromTopPercentage} from '../styles/typography';
 import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
 import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo } from '@dynamicImportsClass/dynamicImports';
@@ -26,7 +26,7 @@ import FeatureTCView from '@components/shared/FeaturesTCView';
 import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
 import { logEvent } from '../services/EventSyncService';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
-
+import { moderateScale } from "../services/responsive";
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -280,6 +280,7 @@ const Terms = ({ navigation }: Props): any => {
          
         </OnboardingContainer>
         <SideSpacing10>
+        <ShiftFromTopPercentage>
         <ButtonRow>
             <FormOuterCheckbox
               onPress={(): any => {
@@ -321,6 +322,7 @@ const Terms = ({ navigation }: Props): any => {
               <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
             </ButtonPrimary>
           </ButtonRow>
+          </ShiftFromTopPercentage>
         </SideSpacing10>
         </View>
     </>

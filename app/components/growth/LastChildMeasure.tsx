@@ -3,6 +3,7 @@ import { BannerContainer1 } from '@components/shared/Container';
 import {
   FDirRowStart,
   Flex1,
+  Flex_5,
   Flex2,
   Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart
 } from '@components/shared/FlexBoxStyle';
@@ -146,19 +147,19 @@ const LastChildMeasure = ():any => {
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenwText')}</Heading4Regular>
                   <Heading2>
-                    {convertDigits(weight ? weight : '') }{' '}{t('growthScreenkgText')}
+                    {convertDigits(weight ? weight : '0') }{' '}{t('growthScreenkgText')}
                   </Heading2>
                 </FlexDirColStart>
 
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenhText')}</Heading4Regular>
                   <Heading2>
-                    {convertDigits(height)}{' '}{t('growthScreencmText')}
+                    {convertDigits(height || '0')}{' '}{t('growthScreencmText')}
                   </Heading2>
                 </FlexDirColStart>
               </FlexDirRowSpace>
             </Flex2>
-            <Flex1>
+            <Flex_5> 
               <FlexDirRowEnd>
               <ButtonEditPress
                 onPress={():any => {
@@ -176,7 +177,7 @@ const LastChildMeasure = ():any => {
                     /></ButtonTextMdLine>
               </ButtonEditPress>
               </FlexDirRowEnd>
-            </Flex1>
+            </Flex_5>
           </FlexDirRowSpace>
           {/* <Text>{days+"hi"}</Text>
           <Text>{activeChild.taxonomyData.days_from+"hi"}</Text> */}

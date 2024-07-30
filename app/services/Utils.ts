@@ -258,8 +258,8 @@ export const formatStringTime = (dateData: any): any => {
 
     const formattedTime = getTwoDigits(hour) + ":" + getTwoDigits(minute)
 
-    //console.log(formattedTime);
-    return formattedTime;
+    console.log(formattedTime);
+    return moment(formattedTime,'hh:mm').format('hh:mm');
 }
 export const removeParams = (sParam: any): any => {
     if (sParam.indexOf("?") != -1) {

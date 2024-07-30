@@ -82,6 +82,9 @@ export const FDirRowStart = styled(FDirRow)`
 align-items:flex-start;
 `;
 
+export const Flex_5 = styled.View`
+flex:.5;
+`;
 export const Flex1 = styled.View`
 flex:1;
 `;
