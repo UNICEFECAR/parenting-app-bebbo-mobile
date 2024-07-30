@@ -65,7 +65,6 @@ import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { store, useAppDispatch, useAppSelector } from '../../../App';
-import { localization } from '@dynamicImportsClass/dynamicImports';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
@@ -80,6 +79,7 @@ import { bgcolorWhite2 } from '@styles/style';
 import { logEvent } from '../../services/EventSyncService';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
+import configureAppStore from '../../redux/store';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -112,6 +112,9 @@ const SettingScreen = (props: any): any => {
   const dispatch = useAppDispatch();
   const growthEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.growthEnabled),
+  );
+  const childList = useAppSelector(
+    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
   const developmentEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.developmentEnabled),
@@ -149,6 +152,15 @@ const SettingScreen = (props: any): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
+  const allCountries = useAppSelector(
+    (state: any) => {
+     try {
+       state.selectedCountry.countries !== '' ? JSON.parse(state.selectedCountry.countries) : [];
+     } catch (error) {
+       console.error('Failed to parse countries JSON:', error);
+       return [];
+     }
+   });
   const [profileLoading, setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -206,6 +218,8 @@ const SettingScreen = (props: any): any => {
     }
   }
   const exportDataIOS = async (cipher: string): Promise<any> => {
+    console.log("exportDataIOS", cipher);
+    
     RNFS.writeFile(tempbackUpPath, cipher, 'utf8').then(async (res: any) => {
       console.log(res, "..res..")
       const shareOptions = {
@@ -597,17 +611,25 @@ const SettingScreen = (props: any): any => {
     );
   }
 
-
   useEffect(() => {
-    navigation.dispatch(DrawerActions.closeDrawer());
-    const selectedCountry: any = localization.find(
-      (country: any) => country.countryId === countryId,
-    );
-    setCountry(selectedCountry);
-    const selectedLanguage: any = selectedCountry.languages.find(
-      (language: any) => language.languageCode === languageCode,
-    );
-    setlanguage(selectedLanguage);
+    if (allCountries?.length===1 && allCountries[0]?.languages?.length===1) {
+      setCountry(allCountries[0]);
+      // const selectedLanguage: any = selectedCountry.languages.find(
+      //   (language: any) => language.languageCode === languageCode,
+      // );
+      setlanguage(allCountries[0]?.languages[0]);
+    } else {
+      console.log('Selected country for countryId is', countryId);
+      const selectedCountry: any = allCountries.find(
+        (country: any) => country.CountryID === countryId,
+      );
+      console.log('Selected country is', selectedCountry);
+      setCountry(selectedCountry);
+      const selectedLanguage: any = selectedCountry?.languages?.find(
+        (language: any) => language.languageCode === languageCode,
+      );
+      setlanguage(selectedLanguage);
+    }
     toggleSwitch();
   }, []);
   useEffect(() => {
@@ -665,9 +687,14 @@ const SettingScreen = (props: any): any => {
       if (oldChildrenData.length > 0) {
         await userRealmCommon.openRealm();
         await userRealmCommon.deleteAllAtOnce();
+        try {
         console.log("oldchildrenresponse",oldChildrenData)
         const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+       
         console.log(importResponse, "..importResponse");
+        } catch (error) {
+          console.error('importResponse error', error);
+        }
       }
       setIsImportRunning(false);
       actionSheetRefImport.current?.setModalVisible(false);
@@ -675,62 +702,83 @@ const SettingScreen = (props: any): any => {
     }
   }
   const importDataIOS = async (): Promise<any> => {
+    console.log('<<<<<importDataIOS>>>>>>')
     DocumentPicker.pick({
       allowMultiSelection: false,
       type: DocumentPicker.types.allFiles,
     })
       .then(async (res: any) => {
+        //console.log('<<<<<importDataIOS>>>>>>', res)
         let oldChildrenData: any = []
         if (res.length > 0 && res[0].uri) {
           if (res[0].name.endsWith(".json")) {
             const decryptFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8').then((edata: any) => {
+              //console.log("edata", edata);
+              //console.log("encryptionsKey", encryptionsKey);
+              
               return decryptData(edata, encryptionsKey)
                 .then((text: any) => {
-                  console.log('decryptData',text)
-                  return text.replace(/[\x00-\x1F\x7F]/g,'');
+                  //console.log('decryptData',text)
+                  return text;
                 })
                 .catch((error: any) => {
-                  console.log("Decrypted error", error);
-                  Alert.alert('', t('generalErrorTitle'));
+                  //console.log("Decrypted error", error);
                   throw error;
+                  Alert.alert('', t('generalErrorTitle'));
                 });
             }).catch((error) => {
-              console.error('Error:', error);
+              //console.error('Error:', error);
               Alert.alert('', t('generalErrorTitle'));
               throw error;
-            }); 
-            console.log('ios data is',decryptFileContent)
+            });
+            //console.log('ios data is',decryptFileContent)
             const importedJsonData = JSON.parse(decryptFileContent);
             console.log('importedJsonData data is',importedJsonData)
             oldChildrenData = importedJsonData;
-            await RNFS.writeFile(tempRealmFile, JSON.stringify(importedJsonData), "utf8");
+            console.log("oldChildrenData-if", oldChildrenData);
+            try {
+              //console.log("tempRealmFile", tempRealmFile);
+              
+              await RNFS.writeFile(tempRealmFile, JSON.stringify(importedJsonData), "utf8");
+            } catch (error) {
+              console.log("In Write file", error);
+              
+            }
+            
            
           } else {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
             await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
             let importedrealm = await new Realm({ path: 'user1.realm' });
             if (importedrealm) {
+              //console.log( "importedrealm")
               importedrealm.close();
             }
             importedrealm = await new Realm({ path: 'user1.realm' });
             const user1Path = importedrealm.path;
-            console.log(user1Path, "..user1Path")
+            //console.log(user1Path, "..user1Path")
             oldChildrenData = importedrealm.objects('ChildEntity');
           }
       
           console.log(oldChildrenData, "..newoldChildrenData..")
           setIsImportRunning(true);
           if (oldChildrenData.length > 0) {
-            await userRealmCommon.openRealm();
-            await userRealmCommon.deleteAllAtOnce();
-            const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
-            console.log(importResponse, "..importResponse");
+            try {
+              console.log("..importResponse");
+              await userRealmCommon.openRealm();
+              await userRealmCommon.deleteAllAtOnce();
+              const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+              
+            } catch (error) {
+              console.error(error, "..importResponse error");
+            }
+            
           }
           setIsImportRunning(false);
           actionSheetRefImport.current?.setModalVisible(false);
           
         }
-
+ 
       })
       .catch(handleError);
   }
@@ -974,11 +1022,11 @@ const SettingScreen = (props: any): any => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <IconAreaPress onPress={(): any => {
+                {allCountries?.length!==1 && allCountries?.languages?.length!==1 && <IconAreaPress onPress={(): any => {
                   setModalVisible(true)
                 }}>
                   <Icon name="ic_edit" size={16} color="#000" />
-                </IconAreaPress>
+                </IconAreaPress>}
               </FlexDirRowSpace>
             </SettingHeading>
             <ShiftFromTopBottom5>
@@ -987,7 +1035,7 @@ const SettingScreen = (props: any): any => {
                   <Heading3Regular>{t('country')}</Heading3Regular>
                 </Flex2>
                 <Flex3>
-                  <Heading3>{country.displayName}</Heading3>
+                  <Heading3>{country.name}</Heading3>
                 </Flex3>
               </FDirRow>
             </ShiftFromTopBottom5>
@@ -1193,7 +1241,7 @@ const SettingScreen = (props: any): any => {
                     setModalVisible(false);
                     props.navigation.navigate('Localization',
                       {
-                        screen: localization.length == 1 ? 'LanguageSelection' : 'CountrySelection',
+                        screen: allCountries.length == 1 ? 'LanguageSelection' : 'CountrySelection',
                         params: { country: null, language: null }
                       });
                   }}>
@@ -1208,7 +1256,7 @@ const SettingScreen = (props: any): any => {
         <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>
-  ); 
+  );
 };
 
 export default SettingScreen;
