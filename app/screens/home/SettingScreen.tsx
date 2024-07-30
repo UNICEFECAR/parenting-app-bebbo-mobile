@@ -615,7 +615,6 @@ const SettingScreen = (props: any): any => {
       setlanguage(allCountries[0]?.languages[0]);
     } else {
       console.log('Selected country for countryId is', countryId);
-      console.log('allCountries country for countryId is', allCountries);
       const selectedCountry: any = allCountries?.find(
         (country: any) => country?.CountryID === countryId,
       );
