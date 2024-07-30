@@ -265,7 +265,6 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     } else {
       newLanguage = language?.[0]
     }
-    debugger
     i18n.changeLanguage(newLanguage?.locale)
       .then(() => {
         if (buildFor == buildForBebbo) {
