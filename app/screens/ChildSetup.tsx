@@ -289,7 +289,7 @@ const ChildSetup = ({ navigation }: Props): any => {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8');
             const decryptedData = decryptData(exportedFileContent, encryptionsKey)
               .then((text: any) => {
-                return text;
+                return text.replace(/[\x00-\x1F\x7F]/g,'');
               })
               .catch((error: any) => {
                 console.log("Decrypted error", error);

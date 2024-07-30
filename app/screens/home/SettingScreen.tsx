@@ -662,6 +662,7 @@ const SettingScreen = (props: any): any => {
           })
           .catch((error: any) => {
             console.log("Decrypted error", error);
+            Alert.alert('', t('generalErrorTitle'));
             throw error;
           });
          
@@ -723,9 +724,11 @@ const SettingScreen = (props: any): any => {
                 .catch((error: any) => {
                   //console.log("Decrypted error", error);
                   throw error;
+                  Alert.alert('', t('generalErrorTitle'));
                 });
             }).catch((error) => {
               //console.error('Error:', error);
+              Alert.alert('', t('generalErrorTitle'));
               throw error;
             });
             //console.log('ios data is',decryptFileContent)
