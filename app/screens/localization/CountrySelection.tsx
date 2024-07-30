@@ -36,6 +36,10 @@ const CountrySelection = (props: any): any => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  const allCountries = useAppSelector(
+    (state: any) =>
+      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
+  );
 
   const userIsOnboarded = useAppSelector(
     (state: any) =>
@@ -43,6 +47,7 @@ const CountrySelection = (props: any): any => {
   );
 
   useEffect(() => {
+    console.log('All allCountries datas',allCountries)
     if (props.route?.params?.country == country) {
       if (props.route?.params?.language != undefined) {
         setSelectedLanguage(props.route?.params?.language)
@@ -63,7 +68,7 @@ const CountrySelection = (props: any): any => {
     };
 
     const getCountryByCountryCode = (countryCode: any): any => {
-      for (const country of localization) {
+      for (const country of allCountries) {
         for (const language of country.languages) {
           const [languageCodeFromLuxon, countryCodeFromLuxon] = language.luxonLocale.split('-');
           if (countryCodeFromLuxon === countryCode) {
@@ -83,7 +88,7 @@ const CountrySelection = (props: any): any => {
       let newCountryLocale: any;
       if (userIsOnboarded == true) {
         if (props.route.params.country && props.route.params.country != null && props.route.params.country != undefined) {
-          newCountryId = props.route.params.country.countryId;
+          newCountryId = props.route.params.country.CountryID;
           newCountryLocale = props.route.params.country.luxonLocale;
           setCountry(props.route.params.country)
         } else {
@@ -96,7 +101,8 @@ const CountrySelection = (props: any): any => {
           newCountryId = countryId;
         } else {
           //  setCountry(props.route.params.country)
-          newCountryId = props.route.params.country.countryId;
+          newCountryId = props.route.params.country.CountryID;
+          console.log('wewewe country is',newCountryId)
           if (props.route.params.language != undefined) {
             newCountryLocale = props.route.params.language.luxonLocale;
           } else {
@@ -104,9 +110,9 @@ const CountrySelection = (props: any): any => {
           }
         }
       }
-
-      const selectedCountry = localization.find(
-        (country: any) => country.countryId === newCountryId,
+      console.log('newCountryId country is',newCountryId)
+      const selectedCountry = allCountries.find(
+        (country: any) => country.CountryID === newCountryId,
       );
       const foundCountry = getCountryByCountryCode(RNLocalize.getCountry());
       if (foundCountry != undefined && foundCountry != null) {
@@ -116,6 +122,7 @@ const CountrySelection = (props: any): any => {
           setCountry(selectedCountry)
         }
       } else {
+        console.log('Selected country is',selectedCountry)
         setCountry(selectedCountry)
       }
 
@@ -159,16 +166,16 @@ const CountrySelection = (props: any): any => {
           <SelectionView>
             {userIsOnboarded == true ?
               <FlatList
-                data={localization}
+                data={allCountries}
                 renderItem={renderItem}
-                keyExtractor={(item): any => item.countryId.toString()}
+                keyExtractor={(item): any => item.CountryID}
               /> :
               <FlatList
                 inverted
-                data={localization}
+                data={allCountries}
                 contentContainerStyle={{ flexDirection: 'column-reverse' }}
                 renderItem={renderItem}
-                keyExtractor={(item): any => item.countryId.toString()}
+                keyExtractor={(item): any => item.CountryID}
               />}
           </SelectionView>
           {/* {country ? (

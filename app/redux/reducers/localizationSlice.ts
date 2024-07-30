@@ -11,6 +11,7 @@ interface SelectedLocalizationType {
   selectedLocale: string;
   pluralShow: boolean;
   sponsors: Array<any>;
+  countries: string;
   restartOnLangChange: string;
   AppLayoutDirection: string;
   AppLayoutDirectionScreen: string;
@@ -19,10 +20,11 @@ interface SelectedLocalizationType {
 const initialState: SelectedLocalizationType = {
   countryId: localization[localization.length - 1].countryId, //126
   languageCode: localization[localization.length - 1].languages[0].languageCode, //'en'
-  luxonLocale: localization[localization.length - 1].languages[0].luxonLocale, //'en'
+  luxonLocale: 'en',
   locale: localization[localization.length - 1]?.languages[0]?.locale, //'en'
   pluralShow: localization[localization.length - 1]?.languages[0]?.pluralShow,//false
   sponsors: [],
+  countries: '',
   restartOnLangChange: 'no',
   AppLayoutDirection: 'ltr',
   AppLayoutDirectionScreen: 'LanguageSelection',
@@ -64,6 +66,15 @@ export const localizationSlice = createSlice({
     ): any => {
       state.sponsors = action.payload;
     },
+    setCountriesStore: (
+      state,
+      action: PayloadAction<any>,
+    ): any => {
+      (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.countries = action.payload;
+      //(typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : action.payload = action.payload;
+       console.log('type of data', action.payload)
+    },
     setChildStore: (
       state,
       action: PayloadAction<any>,
@@ -97,6 +108,6 @@ export const localizationSlice = createSlice({
   },
 });
 
-export const { onLocalizationSelect, setChildStore, setSponsorStore, oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams } = localizationSlice.actions;
+export const { onLocalizationSelect,setCountriesStore, setChildStore, setSponsorStore, oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams } = localizationSlice.actions;
 
 export default localizationSlice.reducer;

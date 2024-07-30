@@ -23,8 +23,8 @@ export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const shareText = (String(buildFor) != buildForBebbo) ? '\nhttps://www.bebbo.app/foleja/share/' : '\nhttps://www.bebbo.app/share/';
 export const shareTextButton = (String(buildFor) != buildForBebbo) ? 'https://www.bebbo.app/foleja/share/' : 'https://www.bebbo.app/share/';
-export const bebboShareMailId = 'mailto:admin@bebbo.app';
-export const folejaShareMailId = 'mailto:prishtina@unicef.org';
+// export const bebboShareMailId = 'mailto:admin@bebbo.app';
+// export const folejaShareMailId = 'mailto:prishtina@unicef.org';
 export const maleData: any = {
   "id": 37,
   "name": "Male",
@@ -51,6 +51,8 @@ export const fiveYearFromNow = today;
 export const restOfTheWorldCountryId = 126;
 export const videoArticleMandatory = 0;
 export const maxArticleSize = 5;
+export const bebboName = 'Bebbo';
+export const folejaName = 'Foleja';
 export const appConfig = {
   articles: 'articles',
   videoArticles: 'video-articles',
@@ -70,25 +72,39 @@ export const appConfig = {
   checkUpdate: 'check-update',
   faqs: 'faqs',
   archive: 'archive',
+  countryGroups: 'country-groups',
 }
-export const finalUrl = (apiEndpoint: string, selectedCountry: number | undefined, selectedLang: string): any => {
-  if (apiEndpoint == appConfig.sponsors) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
-  }
-  if (apiEndpoint == appConfig.taxonomies) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang + '/all';
-  }
-  if (apiEndpoint == appConfig.checkUpdate) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
-  }
-  return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang;
-}
+export const finalUrl = (
+  apiEndpoint: string,
+  selectedCountry: number | undefined,
+  selectedLang: string
+): string => {
+  const baseUrl = `${apiUrlDevelop}/${apiEndpoint}`;
 
+  switch (apiEndpoint) {
+    case appConfig.countryGroups:
+      return `${baseUrl}/${buildFor === String(buildForFoleja) ? folejaName : bebboName}`;
+    case appConfig.sponsors:
+      return `${baseUrl}/${selectedCountry}`;
+    case appConfig.taxonomies:
+      return `${baseUrl}/${selectedLang}/all`;
+    case appConfig.checkUpdate:
+      return `${baseUrl}/${selectedCountry}`;
+    default:
+      return `${baseUrl}/${selectedLang}`;
+  }
+};
 
 export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
   const allApiObject = [
     {
       apiEndpoint: appConfig.sponsors,
+      method: 'get',
+      postdata: {},
+      saveinDB: false,
+    },
+    {
+      apiEndpoint: appConfig.countryGroups,
       method: 'get',
       postdata: {},
       saveinDB: false,

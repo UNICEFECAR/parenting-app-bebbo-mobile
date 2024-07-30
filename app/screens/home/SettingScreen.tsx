@@ -1208,7 +1208,7 @@ const SettingScreen = (props: any): any => {
         <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>
-  );
+  ); 
 };
 
 export default SettingScreen;
