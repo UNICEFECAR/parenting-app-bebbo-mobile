@@ -1,3 +1,4 @@
+import { CountryItem } from '@components/CountryItem';
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../../../database/schema/ActivitiesSchema";
@@ -18,7 +19,9 @@ import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthC
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { appConfig, bothChildGender, bothParentGender } from "./apiConstants";
-import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
+import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData, countryData } from '@dynamicImportsClass/dynamicImports';
+import { Country, CountrySchema } from "../../../database/schema/CountrySchema";
+import { setCountriesStore } from '../../../redux/reducers/localizationSlice';
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: any, sortBy?: any, currentChildData?: any): Promise<any> => {
     // return new Promise((resolve) => {
@@ -73,6 +76,8 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     //     dataToStore = databaseData2;
     // }
     const dataToStore = databaseData2;
+    console.log('offlineData is',offlineData)
+    console.log('stringify offlineData is',JSON.stringify(offlineData))
     if (dataToStore?.length > 0) {
         dispatch(setAllHardcodedData(dataToStore))
         return dataToStore;
@@ -99,6 +104,12 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
             "taxonomyData": activeChild.taxonomyData
         }
         await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+        return "success";
+    }
+    else if (prevPage == "") {
+        let Entity: any;
+        console.log('Prevpage is',prevPage);
+        await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         return "success";
     }
     else if (prevPage == "Terms") {
@@ -141,6 +152,10 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
     }
     else if (apiEndpoint == appConfig.taxonomies) {
         await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
+        return "success";
+    }
+    else if (apiEndpoint == appConfig.countryGroups) {
+        await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         return "success";
     }
     else if (apiEndpoint == appConfig.dailyMessages) {

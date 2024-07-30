@@ -7,10 +7,10 @@
 
 // declare const global: {HermesInternal: null | {}};
 import 'react-native-gesture-handler';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonErrorText, ButtonPrimary } from '@components/shared/ButtonGlobal';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { Action, ThunkAction } from '@reduxjs/toolkit';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ActivityIndicator, StyleSheet, Text,
   View
@@ -29,8 +29,8 @@ import {
 import { PersistGate } from 'redux-persist/integration/react';
 import persistStore from 'redux-persist/lib/persistStore';
 import { ThemeProvider } from 'styled-components/native';
-import './app/localization/initI18next';
 import AppNavigation from './app/navigation/AppNavigation';
+import './app/localization/initI18next';
 import configureAppStore from './app/redux/store';
 import { googleAuth } from './app/services/googleAuth';
 import { appTheme } from './app/styles/theme';
@@ -62,7 +62,7 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
         onPress={() => {
           props.resetError();
         }}>
-        <ButtonText>{('Try again')}</ButtonText>
+        <ButtonErrorText>{('Try again')}</ButtonErrorText>
       </ButtonPrimary>
     </View>
   );

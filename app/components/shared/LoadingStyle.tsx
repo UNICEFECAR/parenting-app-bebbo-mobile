@@ -20,16 +20,16 @@ export const WrapView = styled.View`
 `;
 export const PartnerLogo = styled.Image`
 width: 160px;
-  height: 60px;
+  height: 70px;
 `;
 export const SponsorLogo = styled.Image`
 width: 160px;
-  height: 60px;
+  height: 70px;
 
 `;
 export const StaticLogo = styled.Image`
-  width: 115px;
-  height: 60px;
+  width: 160px;
+  height: 70px;
  
 `;
 export const GoogleLogo = styled.Image`

@@ -5,7 +5,7 @@ import { DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@
 import { useNavigation } from '@react-navigation/native';
 import { Heading2, HeadingHome3w, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, FlatList, Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -58,21 +58,6 @@ const DailyReads = (): any => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
-  const childAge = useAppSelector((state: RootState) => {
-    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData;
-
-    if (!allTaxonomyData) {
-      return [];
-    }
-
-    try {
-      const parsedData = JSON.parse(allTaxonomyData);
-      return parsedData.child_age || [];
-    } catch (error) {
-      console.error("Failed to parse allTaxonomyData:", error);
-      return [];
-    }
-  });
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
   let ArticlesData = articleData.filter((x: any) => x.child_age.includes(activityTaxonomyId));
@@ -109,34 +94,8 @@ const DailyReads = (): any => {
       netInfo: netInfo
     });
   }
-  const onShare = async (item: any): Promise<any> => {
-    const isAdvice = Object.prototype.hasOwnProperty.call(item, 'activity_category') ? false : true;
-    const suburl = isAdvice ? "/article/" : "/activity/";
-    const mainUrl = shareTextButton + languageCode + suburl + item.id;
-    try {
-      const result = await Share.share({
-        message: item.title + '\n' + t('appShareText') + '\n' + mainUrl
-      });
-      if (result.action === Share.sharedAction) {
 
-        if (isAdvice) {
-          const adviceEventData = { 'name': ADVICE_SHARED, 'params': { advise_id: item?.id } }
-          logEvent(adviceEventData, netInfo.isConnected)
-        } else {
-          const gameEventData = { 'name': GAME_SHARED, 'params': { game_id: item?.id } }
-          logEvent(gameEventData, netInfo.isConnected)
-        }
-
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      Alert.alert(t('generalError'));
-    }
-  };
-  const isFavourite = (list: any[], itemId: any): boolean => list.some((x) => x === itemId);
-  const RenderDailyReadItem = React.memo(({ item, index }: any) => {
-    const isAdvice = Object.prototype.hasOwnProperty.call(item, 'activity_category') ? false : true;
+  const RenderDailyReadItem = React.memo(({ item, index, isAdvice }: any) => {
     return (
       <View>
         <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}>
@@ -186,10 +145,7 @@ const DailyReads = (): any => {
         currentgamesid = 0;
       }
       const newcurrentdate = gamid == 0 || advid == 0 ? '' : dailyDataCategoryall[activeChild.uuid].currentDate;
-      console.log('newcurrentdate dailyCategoryData is', newcurrentdate)
       dailyDataCategory = { advice: advid, games: gamid, currentadviceid: currentadviceid, currentgamesid: currentgamesid, currentDate: newcurrentdate, taxonomyid: activeChild.taxonomyData.id, prematureTaxonomyId: activityTaxonomyId };
-
-      console.log('dailyDataCategory dailyCategoryData is', dailyDataCategory)
     }
     if (showedDailyDataCategoryall[activeChild.uuid] === undefined) {
       showedDailyDataCategory = { advice: [], games: [] };
@@ -205,103 +161,103 @@ const DailyReads = (): any => {
       showedDailyDataCategory = { advice: advicearr, games: gamesarr };
     }
     const nowDate = DateTime.now().toISODate();
-    console.log('My saved dailyCategoryData is', dailyDataCategory)
-    console.log('My saved dailyCategoryData is', dailyDataCategory.currentDate == '')
-    console.log('My saved dailyCategoryData is', dailyDataCategory.currentDate < nowDate)
     if (dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)) {
-      console.log('First time here');
       let filteredArticles;
       if (activeChild.isPremature === 'true') {
         filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
         ArticlesData = filteredArticles;
       }
-      const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i))
-      const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id))
+      const articleListData: any = [];
+      const activityListData: any = [];
+      const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i));
+      const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id));
       const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
       const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
       let categoryArticleData = ArticlesData.filter((x: any) => x.category == articleCategoryArrayNew[nextIndex]);
       const obj1 = categoryArticleData.filter((i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id));
       let advicearray: any = [];
-      if (obj1.length == 0) {
+
+      if (obj1.length === 0) {
         const abc = showedDailyDataCategory.advice.filter((i: any) => !categoryArticleData.find((f: any) => f.id === i));
-        advicearray = [...abc]
+        advicearray = [...abc];
       } else {
-        advicearray = [...showedDailyDataCategory.advice]
+        advicearray = [...showedDailyDataCategory.advice];
       }
+
       categoryArticleData = categoryArticleData.filter((i: any) => !advicearray.find((f: any) => f === i.id));
-      //const articleDataToShow = categoryArticleData[Math.floor(Math.random() * categoryArticleData.length)];
-      const index1 = Math.floor(Math.random() * categoryArticleData.length);
-      const articleDataToShow = categoryArticleData[index1];
-      // Remove the selected article from the array
-      categoryArticleData.splice(index1, 1);
-      //const articleDataToShow = categoryArticleData[Math.floor(Math.random() * categoryArticleData.length)];
-      // Randomly select the second article from the updated array
-      const index2 = Math.floor(Math.random() * categoryArticleData.length);
-      const articleDataToShow1 = categoryArticleData[index2];
 
+      // Select up to 2 items from categoryArticleData
+      let articleDataToShow: any[] = [];
+      const count = Math.min(2, categoryArticleData.length);
 
+      for (let i = 0; i < count; i++) {
+        const index = Math.floor(Math.random() * categoryArticleData.length);
+        articleDataToShow.push(categoryArticleData[index]);
+        categoryArticleData.splice(index, 1);
+      }
+
+      if (articleDataToShow.length > 0) {
+        articleDataToShow.forEach((article) => {
+          advicearray.push(article.id);
+          articleListData.push(article);
+        });
+      }
       const currentIndex2 = activityCategoryArrayNew.findIndex((_item: any) => _item.id === dailyDataCategory.games);
-      const nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
+      let nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
       let categoryActivityData = ActivitiesData.filter((x: any) => x.activity_category == activityCategoryArrayNew[nextIndex2].id);
+      if (categoryActivityData.length < 2) {
+        const additionalItems = ActivitiesData.filter((x: any) => x.activity_category !== activityCategoryArrayNew[nextIndex2].id);
+        categoryActivityData = categoryActivityData.concat(additionalItems.slice(0, 2 - categoryActivityData.length));
+    }
       const obj2 = categoryActivityData.filter((i: any) => !showedDailyDataCategory.games.find((f: any) => f === i.id));
       let gamesarray: any = [];
-      if (obj2.length == 0) {
+      if (obj2.length === 0) {
         const abc = showedDailyDataCategory.games.filter((i: any) => !categoryActivityData.find((f: any) => f.id === i));
-        gamesarray = [...abc]
+        gamesarray = [...abc];
       } else {
-        gamesarray = [...showedDailyDataCategory.games]
+        gamesarray = [...showedDailyDataCategory.games];
       }
       categoryActivityData = categoryActivityData.filter((i: any) => !gamesarray.find((f: any) => f === i.id));
-      console.log('First time here', categoryActivityData.length);
-      //const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
-      const indexNew = Math.floor(Math.random() * categoryActivityData.length);
-      const activityDataToShow = categoryActivityData[indexNew];
-      categoryActivityData.splice(indexNew, 1);
 
-      const indexNew2 = Math.floor(Math.random() * categoryActivityData.length);
-      const activityDataToShow1 = categoryActivityData[indexNew2];
-      const articleListData: any = [];
-      const activityListData: any = [];
-      if (articleDataToShow != null && articleDataToShow != undefined) {
-        advicearray.push(articleDataToShow?.id);
-        advicearray.push(articleDataToShow1?.id);
-        articleListData.push(articleDataToShow);
-        articleListData.push(articleDataToShow1);
+      // Select up to 2 items from categoryActivityData
+      let activityDataToShow: any[] = [];
+      const count1 = Math.min(2, categoryActivityData.length);
+
+      for (let i = 0; i < count1; i++) {
+        const index = Math.floor(Math.random() * categoryActivityData.length);
+        activityDataToShow.push(categoryActivityData[index]);
+        categoryActivityData.splice(index, 1);
       }
-      if (activityDataToShow != null && activityDataToShow != undefined) {
-        gamesarray.push(activityDataToShow?.id);
-        gamesarray.push(activityDataToShow1?.id);
-        activityListData.push(activityDataToShow);
-        activityListData.push(activityDataToShow1);
+
+      if (activityDataToShow.length > 0) {
+        activityDataToShow.forEach((activity) => {
+          gamesarray.push(activity.id);
+          activityListData.push(activity);
+        });
       }
       setDataToShowInList(articleListData);
       setActivityDataToShowInList(activityListData);
-      console.log('articleListData is to show', articleListData)
-      console.log('activityListData is to show', activityListData)
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
       const showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
+      const selectedAdviceCategories = articleDataToShow.map((_article, index) => articleCategoryArrayNew[nextIndex + index] || 0);
+      const selectedAdviceIds = articleDataToShow.map((article) => article.id || 0);
+
+      const selectedGameCategories = activityDataToShow.map((_activity, index) => activityCategoryArrayNew[nextIndex2 + index]?.id || 0);
+      const selectedGameIds = activityDataToShow.map((activity) => activity.id || 0);
+
       dailyDataCategorytoDispatch[activeChild.uuid] = {
-        advice: [articleDataToShow && articleDataToShow != null ? articleCategoryArrayNew[nextIndex] : 0,
-        articleDataToShow1 && articleDataToShow1 != null ? articleCategoryArrayNew[nextIndex + 1] : 0],
-        games: [activityDataToShow && activityDataToShow != null ? activityCategoryArrayNew[nextIndex2].id : 0,
-        activityDataToShow1 && activityDataToShow1 != null ? activityCategoryArrayNew[nextIndex2 + 1].id : 0
-        ],
-        currentadviceid: [articleDataToShow && articleDataToShow != null ? articleDataToShow.id : 0,
-        articleDataToShow1 && articleDataToShow1 != null ? articleDataToShow1.id : 0],
-        currentgamesid: [activityDataToShow && activityDataToShow != null ? activityDataToShow.id : 0,
-        activityDataToShow1 && activityDataToShow1 != null ? activityDataToShow1.id : 0
-        ],
+        advice: selectedAdviceCategories,
+        games: selectedGameCategories,
+        currentadviceid: selectedAdviceIds,
+        currentgamesid: selectedGameIds,
         currentDate: DateTime.now().toISODate(),
         taxonomyid: activeChild.taxonomyData.id,
         prematureTaxonomyId: activityTaxonomyId
       };
-
       showedDailyDataCategorytoDispatch[activeChild.uuid] = { advice: advicearray, games: gamesarray }
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
       dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
-      console.log('first tmooo time here', showedDailyDataCategorytoDispatch);
     } else {
-      console.log('second time here', articleData.length);
       const articleDataList: any = [];
       const activityDataList: any = [];
 
@@ -310,7 +266,6 @@ const DailyReads = (): any => {
       if (activeChild.isPremature === 'true') {
         filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
         ArticlesData = filteredArticles;
-        console.log('Active child Child Age is data', filteredArticles)
       }
       dailyDataCategory.currentadviceid.forEach((id: any) => {
         const filteredArticle = ArticlesData.find((x: any) => x.id === id);
@@ -339,13 +294,17 @@ const DailyReads = (): any => {
       activityDataToShow.forEach((activity: any) => {
         activityDataList.push(activity);
       });
-      console.log('artcledata to show', articleDataList)
-      console.log('activityDataList to show', activityDataList)
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList)
 
     }
   }, [activeChild.uuid, activityTaxonomyId]);
+  const keyExtractor = useCallback((item: any) => item?.id, []);
+
+  const renderItem = useCallback((item: any, index: any, isAdvice: boolean) => {
+    return <RenderDailyReadItem item={item} index={index} isAdvice={isAdvice} />;
+  }, []);
+
   return (
     <>
       <MainContainer>
@@ -353,20 +312,23 @@ const DailyReads = (): any => {
           <Heading2>{t('homeScreendailyReadsTitle')}</Heading2>
         </ShiftFromTopBottom10>
         <View style={styles.flatlistOuterView}>
-          <FlatList
-            data={dataToShowInList}
+          <FlatList data={dataToShowInList}
             horizontal
-            renderItem={({ item, index }: any): any => <RenderDailyReadItem item={item} index={index} />}
-            keyExtractor={(item: any): any => item?.id}
+            renderItem={({ item, index }: any): any => renderItem(item, index, true)}
+            keyExtractor={(item: any): any => keyExtractor(item)}
+            windowSize={5}
+            initialNumToRender={10}
           />
         </View>
         <View style={styles.flatlistOuterView}>
-          <FlatList
-            data={activityDataToShowInList}
+          <FlatList data={activityDataToShowInList}
             horizontal
-            renderItem={({ item, index }: any): any => <RenderDailyReadItem item={item} index={index} />}
-            keyExtractor={(item: any): any => item?.id}
+            renderItem={({ item, index }: any): any => renderItem(item, index, false)}
+            keyExtractor={(item: any): any => keyExtractor(item)}
+            windowSize={5}
+            initialNumToRender={10}
           />
+
         </View>
       </MainContainer>
     </>

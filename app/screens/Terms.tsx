@@ -132,6 +132,12 @@ const Terms = ({ navigation }: Props): any => {
   );
   const apiJsonData = [
     {
+      apiEndpoint: appConfig.taxonomies,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
       apiEndpoint: appConfig.videoArticles,
       method: 'get',
       postdata: {},

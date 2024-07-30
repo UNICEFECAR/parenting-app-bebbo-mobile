@@ -20,6 +20,7 @@ import { EventSchema } from "../schema/EventSchema";
 import { SearchHistorySchema } from "../schema/SearchHistorySchema";
 import { ActivitySearchHistorySchema } from '../schema/ActivitySearchHistorySchema';
 import { ArticleActivityViewSchema } from '../schema/ArticleActivityViewSchema';
+import { CountrySchema, LanguageSchema, PartnerSchema } from '../schema/CountrySchema';
 
 export const dataRealmConfig: Realm.Configuration = {
   path: 'data.realm',
@@ -45,7 +46,10 @@ export const dataRealmConfig: Realm.Configuration = {
     FAQsSchema,
     EventSchema,
     SearchHistorySchema,
-    ActivitySearchHistorySchema
+    ActivitySearchHistorySchema,
+    CountrySchema,
+    LanguageSchema,
+    PartnerSchema
   ],
   schemaVersion: 10,
   onMigration: (oldRealm, newRealm) => {
