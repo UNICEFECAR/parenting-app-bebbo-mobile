@@ -39,9 +39,20 @@ const BabyNotification = (): any => {
   const isFutureDate = (date: Date): any => {
     return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
   };
-  useEffect(() => {
-    console.log('Active child geneder is', activeChild.gender==40)
-  }, [])
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
+  const genders = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  );
+  const [activeChildGenderData, setActiveChildGenderData] = React.useState<any>();
+  useEffect(()=>{
+    const gender = genders.find((g:any) => g.id === activeChild?.gender);
+    console.log('Activechild gender is',gender);
+    setActiveChildGenderData(gender);
+  },[activeChild?.gender])
   return (
     <>
       <>
@@ -57,8 +68,8 @@ const BabyNotification = (): any => {
                           source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
                         ></ImageIcon>
                       ) : (
-                        activeChild.gender != null ?
-                          (activeChild.gender == 40 ?
+                        activeChildGenderData != null && activeChildGenderData?.unique_name ?
+                          (activeChildGenderData?.unique_name == taxonomyIds?.boyChildGender ?
                             <Icon name="ic_baby" size={36} color="#000" /> :
                             <Icon name="ic_baby_girl" size={36} color="#000" />) :
                           <Icon name="ic_baby_girl" size={36} color="#000" />

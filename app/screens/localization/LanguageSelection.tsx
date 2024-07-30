@@ -19,6 +19,9 @@ import { ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlo
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import analytics from '@react-native-firebase/analytics';
 import { useIsFocused } from '@react-navigation/native';
+import moment from 'moment'
+import 'moment/locale/bn-bd'  // import for bangla language
+import 'moment/locale/bn' 
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'CountryLanguageConfirmation'
@@ -131,7 +134,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       );
 
       const countrySponsorsData = sponsors.find(
-        (country: any) => country.id === selectedCountry.countryId,
+        (country: any) => country.id === selectedCountry?.countryId,
       )
       console.log('Seleted  country is', countrySponsorsData)
       console.log('selectedCountry country is', selectedCountry)
@@ -199,6 +202,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     // })
     i18n.changeLanguage(language.locale)
     .then(() => {
+      moment.locale(language?.locale)
       if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
         if (AppLayoutDirection == 'ltr') {
           //remove rtl on backhandler
@@ -259,9 +263,10 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     if (language?.locale != undefined) {
       newLanguage = language
     } else {
-      newLanguage = language[0]
+      newLanguage = language?.[0]
     }
-    i18n.changeLanguage(newLanguage.locale)
+    debugger
+    i18n.changeLanguage(newLanguage?.locale)
       .then(() => {
         if (buildFor == buildForBebbo) {
           const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;

@@ -11,6 +11,8 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
+// import standardDevData1 from '@assets/translations/appOfflineData/standardDeviation.json';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 import standardDevData1 from '@assets/translations/appOfflineData/standardDeviationNew.json';
 export const standardDevDataLoad=standardDevData1;
 const styles = StyleSheet.create({

@@ -143,6 +143,8 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
+  
   const deleteVaccination = async (): Promise<any> => {
     if (editVCDate) {
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVCDate)), activeChild)
@@ -539,6 +541,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                             editVaccineDate ? new Date(editVaccineDate) : new Date()
                           }
                           mode={'date'}
+                          locale={locale}
                           display="spinner"
                           maximumDate={new Date()}
                           minimumDate={new Date(minChildGrwothDate)}
@@ -563,6 +566,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                       <DateTimePickerModal
                         isVisible={isMeasureDatePickerVisible}
                         mode="date"
+                        locale={locale}
                         onConfirm={handleMeasureConfirm}
                         date={editVaccineDate ? new Date(editVaccineDate) : new Date()}
                         onCancel={(): any => {

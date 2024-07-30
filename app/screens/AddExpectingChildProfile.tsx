@@ -80,6 +80,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const [name, setName] = React.useState("");
@@ -237,6 +238,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
                 maximumDate={new Date(dobMax)}
                 value={plannedTermDate != null ? plannedTermDate : new Date()}
                 mode={'date'}
+                locale={locale}
                 display="spinner"
                 onChange={ondobChange}
               />
@@ -244,6 +246,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
               <DateTimePickerModal
                 isVisible={isDobDatePickerVisible}
                 mode="date"
+                locale={locale}
                 onConfirm={handleDobConfirm}
                 date={plannedTermDate != null ? plannedTermDate : new Date(DateTime.local().plus({ days: 1 }).toISODate())}
                 onCancel={(): any => {

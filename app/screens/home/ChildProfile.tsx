@@ -206,7 +206,7 @@ const ChildProfile = ({ navigation }: Props): any => {
       setISChildSwitch(false);
     }
   }, [SortedchildList, isChildSwitch])
-  const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string, navigationCustom: any): any => (
+  const renderChildProfile = (dispatch: any, data: any, index: number, genderName: any, navigationCustom: any): any => (
     <View key={data.uuid}>
       {currentActiveChild != '' &&
         currentActiveChild != null &&
@@ -219,7 +219,7 @@ const ChildProfile = ({ navigation }: Props): any => {
               data.photoUri != '' ?
                 <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
                 </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
-                  (genderName === 'Girl' ?
+                  (genderName?.unique_name === taxonomyIds?.girlChildGender  ?
                     <Icon name="ic_baby_girl" size={40} color='#000' />
                     : <Icon name="ic_baby" size={40} color='#000' />)
                   : <Icon name="ic_baby_girl" size={40} color='#000' />
@@ -228,7 +228,7 @@ const ChildProfile = ({ navigation }: Props): any => {
           <ProfileTextView style={styles.profileTextView}>
             <ProfileSectionView>
               <Heading3 style={styles.flexShrink1}>{data.childName}{genderName != '' && genderName != null && genderName != undefined ?
-                <Text style={styles.headingText1}>{', ' + genderName}</Text> : null}
+                <Text style={styles.headingText1}>{', ' + genderName?.name}</Text> : <Text style={styles.headingText1}>{', ' + t('chilGender2')}</Text>}
               </Heading3>
             </ProfileSectionView>
             <Heading5>
@@ -282,7 +282,7 @@ const ChildProfile = ({ navigation }: Props): any => {
                 data.photoUri != '' ?
                   <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
                   </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
-                  (genderName === 'Girl' ?
+                  (genderName?.unique_name === taxonomyIds?.girlChildGender  ?
                     <Icon name="ic_baby_girl" size={40} color='#000' />
                     : <Icon name="ic_baby" size={40} color='#000' />)
                   : <Icon name="ic_baby_girl" size={40} color='#000' />
@@ -290,7 +290,7 @@ const ChildProfile = ({ navigation }: Props): any => {
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView style={styles.alignItemsStart}>
-                <Heading3>{data.childName}{genderName != '' && genderName != null && genderName != undefined ? <Text style={styles.fontText}>{', ' + genderName}</Text> : null}
+                <Heading3>{data.childName}{genderName != '' && genderName != null && genderName != undefined ? <Text style={styles.fontText}>{', ' + genderName?.name}</Text> : null}
                 </Heading3>
 
               </ProfileSectionView>
@@ -387,10 +387,10 @@ const ChildProfile = ({ navigation }: Props): any => {
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
                     console.log('Gender is', item.gender, genders)
-                    let genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)).name : '';
+                    let genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)) : '';
                     console.log('genderLocal is', genderLocal)
-                    if (genderLocal == '') {
-                      genderLocal = 'Girl';
+                    if (genderLocal == '' && genderLocal== undefined) {
+                      genderLocal = t('chilGender2');
                     }
                     return renderChildProfile(dispatch, item, index, genderLocal, navigation);
                   })

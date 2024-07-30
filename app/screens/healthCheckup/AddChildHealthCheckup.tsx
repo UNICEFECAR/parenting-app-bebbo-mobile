@@ -128,6 +128,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
 
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const onBackPress = (): any => {
@@ -652,6 +653,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                             }
                             mode={'date'}
                             display="spinner"
+                            locale={locale}
                             maximumDate={new Date()}
                             minimumDate={new Date(minChildGrwothDate)}
                             onChange={onmeasureDateChange}
@@ -680,6 +682,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                           onCancel={(): any => {
                             setMeasureDatePickerVisibility(false);
                           }}
+                          locale={locale}
                           maximumDate={new Date()}
                           minimumDate={new Date(minChildGrwothDate)}
                         />
