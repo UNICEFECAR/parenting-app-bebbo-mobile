@@ -8,6 +8,7 @@ import {
   View,
   ViewStyle
 } from 'react-native';
+import { convertDigits } from '../services/Utils';
 
 const { width } = Dimensions.get('screen');
 const { height } = Dimensions.get('screen');
@@ -108,6 +109,7 @@ type Props = {
    */
   onChangeValue: Function;
   initialValue: number;
+  locale:any
 };
 interface State {
   value: number;
@@ -213,10 +215,11 @@ class Ruler extends React.Component<Props, State> {
       stepHeight,
       normalColor,
       normalHeight,
+      locale
     } = this.props;
 
     // Create an array to make a ruler
-
+    console.log("---------------------",this.props?.locale)
     return (
       <View
         style={[styles.mainViewOuter,{
@@ -247,7 +250,7 @@ class Ruler extends React.Component<Props, State> {
               {i % step === Number(0.0) ? (
                 <View style={styles.textOuterView}>
                   <Text style={styles.textView}>
-                    {Number(stepPreFix * i).toFixed(2)}
+                    {convertDigits (Number(stepPreFix * i).toFixed(2),locale)}
                   </Text>
                 </View>
               ) : null}
@@ -377,6 +380,7 @@ Ruler.defaultProps = {
   normalHeight: 20,
   backgroundColor: '#FFFFFF',
   initialValue: 0,
+  locale:'bn'
 };
 
 export default Ruler;

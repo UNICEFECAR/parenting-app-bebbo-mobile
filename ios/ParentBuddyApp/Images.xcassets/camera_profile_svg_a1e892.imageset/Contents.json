@@ -1,23 +1,15 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "camera_profile.svg",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "camera_profile 1.svg",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "camera_profile 2.svg",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename": "light.pdf",
+      "idiom": "universal"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
+  },
+  "properties": {
+    "preserves-vector-representation": true
   }
 }

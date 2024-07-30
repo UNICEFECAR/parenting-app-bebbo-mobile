@@ -19,6 +19,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, StyleSheet, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -37,6 +38,10 @@ type Props = {
 
 const AddNewChildHeight = ({ navigation, route }: Props):any => {
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
+  const locale = useAppSelector((state: any) =>
+  state.selectedCountry?.locale,
+);
   const [headerColor, setHeaderColor] = useState();
   const [tintColor, setTintColor] = useState();
   const [modalVisible, setModalVisible] = useState(true);
@@ -78,7 +83,7 @@ const AddNewChildHeight = ({ navigation, route }: Props):any => {
   const getHeightValue = ():any => {
     const h =
       (!isNaN(height) ? height : 0) + (!isNaN(height1) ? 0.01 * height1 : 0);
-    return h.toFixed(2);
+    return convertDigits(h.toFixed(2));
   };
   return (
     <>
@@ -169,6 +174,7 @@ const AddNewChildHeight = ({ navigation, route }: Props):any => {
                   stepHeight={40}
                   normalColor="#999999"
                   normalHeight={20}
+                  locale={locale}
                   backgroundColor={'#FFF'}
                 />
                 <View style={styles.marginBottom20}></View>
@@ -188,6 +194,7 @@ const AddNewChildHeight = ({ navigation, route }: Props):any => {
                   indicatorHeight={100}
                   indicatorBottom={0}
                   step={10}
+                  locale={locale}
                   stepPreFix={secondScalePrefix}
                   stepColor="#333333"
                   stepHeight={40}

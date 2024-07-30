@@ -24,6 +24,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, StyleSheet, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -40,6 +41,10 @@ const styles=StyleSheet.create({
 })
 const AddNewChildWeight = ({ navigation, route }: Props):any => {
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
+  const locale = useAppSelector((state: any) =>
+  state.selectedCountry?.locale,
+);
   const [headerColor, setHeaderColor] = useState();
   const [tintColor, setTintColor] = useState();
   const [modalVisible, setModalVisible] = useState(true);
@@ -90,7 +95,7 @@ const AddNewChildWeight = ({ navigation, route }: Props):any => {
   const getWeightValue = ():any => {
     const w =
       (!isNaN(weight) ? weight : 0) + (!isNaN(weight1) ? 0.01 * weight1 : 0);
-    return w.toFixed(2);
+      return convertDigits(w.toFixed(2));
   };
   return (
     <>
@@ -182,6 +187,7 @@ const AddNewChildWeight = ({ navigation, route }: Props):any => {
                   stepHeight={40}
                   normalColor="#999999"
                   normalHeight={20}
+                  locale={locale}
                   backgroundColor={'#FFF'}
                 />
                 <Ruler
@@ -205,6 +211,7 @@ const AddNewChildWeight = ({ navigation, route }: Props):any => {
                   stepHeight={40}
                   normalColor="#999999"
                   normalHeight={20}
+                  locale={locale}
                   backgroundColor={tintColor}
                 />
               </View>

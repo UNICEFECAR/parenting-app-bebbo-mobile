@@ -87,7 +87,7 @@ const Home = ({ route, navigation }: any): any => {
   const [show, setShow] = useState(false);
   const [date2, setdate2] = useState<Date | null>(null);
   const [show2, setShow2] = useState(false);
-
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
 
   const backgroundColorChildInfo =
     themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
@@ -512,6 +512,7 @@ const Home = ({ route, navigation }: any): any => {
                 value={
                   date1 != null || date1 != undefined ? date1 : new Date()
                 }
+                locale={locale}
                 mode={'date'}
                 display="spinner"
                 onChange={ondobChange}
@@ -525,6 +526,7 @@ const Home = ({ route, navigation }: any): any => {
                 value={
                   date2 != null || date2 != undefined ? date2 : new Date()
                 }
+                locale={locale}
                 mode={'date'}
                 display="spinner"
                 onChange={ondobChange2}

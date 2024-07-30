@@ -1,5 +1,5 @@
 import { buildFor, buildForBebbo } from '@assets/translations/appOfflineData/apiConstants';
-import { bebboLogoShape, banPartnerLogo, banSponserLogo, nmPartnerLogo, nmSponserLogo, albaniaPartnerLogo1, blSponserLogo, blPartnerLogo, kgPartnerLogo, mnSponserLogo, mnPartnerLogo, sbPartnerLogo, sbSponserLogo, skPartnerLogo, tjkPartnerLogo, uzSponserLogo, uzPartnerLogo, sponsors } from '@dynamicImportsClass/dynamicImports';
+import { bebboLogoShape, bnPartnerLogo, bnSponserLogo, nmPartnerLogo, nmSponserLogo, albaniaPartnerLogo1, blSponserLogo, blPartnerLogo, kgPartnerLogo, mnSponserLogo, mnPartnerLogo, sbPartnerLogo, sbSponserLogo, skPartnerLogo, tjkPartnerLogo, uzSponserLogo, uzPartnerLogo, sponsors } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
 const sponsorsData = [
   {
     id: 1,
-    sponserImage: banSponserLogo,
-    partnerImage: banPartnerLogo
+    sponserImage: bnSponserLogo,
+    partnerImage: bnPartnerLogo
   },
   {
     id: 36,
