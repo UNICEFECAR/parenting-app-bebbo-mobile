@@ -1,15 +1,16 @@
-import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
+import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, onSponsorApiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
-import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onSponsorApiSuccess, retryAlert } from '../../services/commonApiService';
+import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onCountryApiSuccess,retryAlert } from '../../services/commonApiService';
 import { ApiJsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
-import { receiveAPIFailure } from './sagaSlice';
+import { fetchAPIStart, receiveAPIFailure, receiveAPISuccess } from './sagaSlice';
 let errorArr: any[] = [];
 type commonApiServiceResponse = SagaReturnType<typeof commonApiService>
 function* apiCall(data: ApiJsonArray, dispatch: any): any {
   console.log("in api call", data);
   try {
+   
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
 
     if (response.status != 200) {
@@ -49,6 +50,9 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
   }
   else if (prevPage == 'CountryLanguageSelection') {
     yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
+  }
+  else if (prevPage == '') {
+    yield call(onCountryApiSuccess, response, dispatch, navigation, languageCode, prevPage)
   }
   else if (prevPage == 'ChildSetup') {
     yield call(onChildSetupApiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
@@ -106,6 +110,7 @@ function* onFetchAPI(value: any): any {
   errorArr = [];
   try {
     // API Request
+    yield put(fetchAPIStart());
 
     let response: commonApiServiceResponse = yield all(
       payload.map((data: ApiJsonArray) =>
@@ -120,6 +125,7 @@ function* onFetchAPI(value: any): any {
     }
     else {
       yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
+      yield put(receiveAPISuccess(response));
     }
   } catch (e) {
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
@@ -127,6 +133,7 @@ function* onFetchAPI(value: any): any {
     }
     else {
       yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
+      
     }
   }
 }
