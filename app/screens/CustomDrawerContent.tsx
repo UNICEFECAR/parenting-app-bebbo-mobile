@@ -445,7 +445,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             {favoritescount > 0 ?
               <BubbleContainer>
                 <BubbleView>
-                  <Heading5>{favoritescount}</Heading5>
+                  <Heading5>{convertDigits(favoritescount)}</Heading5>
                 </BubbleView>
               </BubbleContainer>
               : null
