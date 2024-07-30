@@ -215,7 +215,7 @@ const {width,height}= Dimensions.get('window');
             style={[styles.scrollView,{
               backgroundColor: backgroundColor        
             }]}>
-           {(activeChild?.gender == '') ?  <BabyNotification /> : null}
+           {(activeChild?.gender === '') ?  <BabyNotification /> : null}
             {measures.length == 0 ? (
               <>
                 <FlexDirCol>
