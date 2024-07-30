@@ -94,7 +94,7 @@ npm install
 pod install
 ```
 Before running iOS App on Device, necessary certificate setup from Apple developer account is required.
-After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp). In Project use below targets. Project Target is only for mac users.
+After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp). You can use the below targets.
 
   **Project Target:**
    1. ParentBuddyApp - Bebbo Production target
@@ -145,10 +145,10 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
      
      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/ReadMe/Copy_Input_Crashalytics_File.png)      
 
-4. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
-Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons. We need the fontello.ttf file in the node modules to be used only for iOS.
+4. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
+Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
 
-5. For Android, Add keystore files into \android\app folder to generate Android build.
+5. For Android, add keystore files into \android\app folder to generate Android build.
 
 6. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
@@ -205,92 +205,92 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
 
    **1.** Follow below steps for **Bebbo Prod and ProdStaging**:
    
-      * In apiConstants.ts change buildFor const value to buildForBebbo as follows :
+      * In apiConstants.ts change buildFor const value to buildForBebbo as follows:
          
          ```
          export const buildFor = buildForBebbo;
          ```
  
-      * In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows :
+      * In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows:
        
         ```
          "@dynamicImportsClass/*": ["./app/bebbo/*"]
          ```
        
-      * In metro.config.js keep blacklistRe value to /xk\/.*/ as follows : 
+      * In metro.config.js keep blacklistRe value to /xk\/.*/ as follows: 
        
          ```
          blacklistRE: blacklist([/xk\/.*/])
          ```
        
-      * In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : 
+      * In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows: 
         
         ```
         '@dynamicImportsClass': './app/bebbo'
         ```
        
-      * Run below command to generate vector images based on flavour folders for both Android and iOS :
+      * Run below command to generate vector images based on flavour folders:
        
          ```
          npx react-native-vector-image generate
          ```
         
-      * Create .env file at project root and add below 6 variables in it. The variables below contain sample data for example purposes. :
+      * Create .env file at project root and add below 6 variables in it.
+        The variables below contain sample data for example purposes. Do not copy values between brackets:
          
         ```
-        apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
-        facebookAppDisplayName=AppDisplayName (For Facebook Analytics.Get these details from Facebook developer console)
-        facebookAppId=9856432678543908 (For Facebook Analytics.Get these details from Facebook developer console)
-        facebookClientToken=f67tr342356dsa233987kl56784v (For Facebook Analytics.Get these details from Facebook developer 
-        console)
-        projectNumber=453789238965(For Google SignIn. Get it from step 5)
-        clientIdKey= bhjr6wdgddvv3k87tteq9fds6po3nm7 (For Google SignIn. Get it from step 5)
+        apiUrlDevelop = 'https://bebbo.app/api' (Server api endPoint)
+        facebookAppDisplayName=Bebbo (For Facebook Analytics. Get these details from Facebook developer console.)
+        facebookAppId=9856432678543908 (For Facebook Analytics. Get these details from Facebook developer console.)
+        facebookClientToken=f67tr342356dsa233987kl56784v (For Facebook Analytics. Get these details from Facebook developer console.)
+        projectNumber=453789238965 (For Google SignIn. Get it from step 5.)
+        clientIdKey= bhjr6wdgddvv3k87tteq9fds6po3nm7 (For Google SignIn. Get it from step 5.)
         encryptionsKey=d64e6a977f5643er90h8y5jk123n8bd88630jh56d34ddec874566342209y34 (Key for encryption)
         encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)
         ```
 
     **2.** Follow below steps for **Foleja Prod and ProdStaging**:
    
-      * In apiConstants.ts change buildFor const value to buildForFoleja as follows :
+      * In apiConstants.ts change buildFor const value to buildForFoleja as follows:
          
          ```
          export const buildFor = buildForFoleja;
          ```
  
-      * In tsconfig.json keep dynamicImportsClass value to ./app/xk/* as follows :
+      * In tsconfig.json keep dynamicImportsClass value to ./app/xk/* as follows:
        
         ```
          "@dynamicImportsClass/*": ["./app/xk/*"]
          ```
        
-      * In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows : 
+      * In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows: 
        
          ```
          blacklistRE: blacklist([/bebbo\/.*/])
          ```
        
-      * In babel.config.js keep dynamicImportsClass value to ./app/xk as follows : 
+      * In babel.config.js keep dynamicImportsClass value to ./app/xk as follows: 
         
         ```
         '@dynamicImportsClass': './app/xk'
         ```
        
-      * Run below command to generate vector images based on flavour folders for both Android and iOS :
+      * Run below command to generate vector images based on flavour folders:
        
          ```
          npx react-native-vector-image generate
          ```
         
-      * Create .env file at project root and add below 6 variables in it. The variables below contain sample data for example purposes. :
+      * Create .env file at project root and add below 6 variables in it.
+        The variables below contain sample data for example purposes. Do not copy values between brackets:
          
         ```
-        apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
-        facebookAppDisplayName=AppDisplayName (For Facebook Analytics.Get these details from Facebook developer console)
-        facebookAppId=9856432678543908 (For Facebook Analytics.Get these details from Facebook developer console)
-        facebookClientToken=f67tr342356dsa233987kl56784v (For Facebook Analytics.Get these details from Facebook developer 
-        console)
-        projectNumber=453789238965(For Google SignIn. Get it from step 5)
-        clientIdKey= bhjr6wdgddvv3k87tteq9fds6po3nm7 (For Google SignIn. Get it from step 5)
+        apiUrlDevelop = 'https://hostname.com/api' (Server api endPoint)
+        facebookAppDisplayName=AppDisplayName (For Facebook Analytics. Get these details from Facebook developer console.)
+        facebookAppId=9856432678543908 (For Facebook Analytics. Get these details from Facebook developer console.)
+        facebookClientToken=f67tr342356dsa233987kl56784v (For Facebook Analytics. Get these details from Facebook developer console.)
+        projectNumber=453789238965 (For Google SignIn. Get it from step 5.)
+        clientIdKey= bhjr6wdgddvv3k87tteq9fds6po3nm7 (For Google SignIn. Get it from step 5.)
         encryptionsKey=d64e6a977f5643er90h8y5jk123n8bd88630jh56d34ddec874566342209y34 (Key for encryption)
         encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)
         ```
