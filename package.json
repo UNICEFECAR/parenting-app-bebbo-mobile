@@ -128,6 +128,7 @@
     "metro-react-native-babel-preset": "0.76.8",
     "prettier": "^2.4.1",
     "react-native-codegen": "^0.70.7",
+    "react-native-svg-transformer": "^1.5.0",
     "react-test-renderer": "18.2.0",
     "remote-redux-devtools": "^0.5.16",
     "typescript": "4.8.4"

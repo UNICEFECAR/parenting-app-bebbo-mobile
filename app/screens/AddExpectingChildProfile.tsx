@@ -58,7 +58,7 @@ type Props = {
 };
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
-  headerActionView: { padding: 0 },
+  padding0: { padding: 0 },
   headerRowView: {
     maxHeight: 50
   },
@@ -147,7 +147,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     childSet.push(insertData);
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false, true, '');
   }
-  const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
+  const deleteExpectedRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
@@ -187,35 +187,41 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     <View style={[styles.flex1, { backgroundColor: bgcolorWhite }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
-        style={[styles.headerRowView, { backgroundColor: headerColor }]}>
-        <HeaderIconView>
-          <HeaderIconPress
-            onPress={(): any => {
-              navigation.goBack();
-            }}>
-            <IconML name={'ic_back'} color="#FFF" size={15} />
-          </HeaderIconPress>
-        </HeaderIconView>
-        <HeaderTitleExpectedView>
-          <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>
-            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('babyNotificationUpdateBtn') : t('expectChildAddTxt2')}
-          </Heading2w>
-        </HeaderTitleExpectedView>
-        <HeaderActionView style={styles.headerActionView}>
+          style={[styles.headerRowView, {
+            backgroundColor: headerColor,
+          }]}>
+          <HeaderIconView>
+            <HeaderIconPress
+              onPress={(): any => {
+                navigation.goBack();
+              }}>
+              <IconML name={'ic_back'} color="#FFF" size={15} />
+            </HeaderIconPress>
+          </HeaderIconView>
+          <HeaderTitleView>
+            {childData?.uuid ? (
+              <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>{t('babyNotificationUpdateBtn')} </Heading2w>
+            ) : (
+              <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>{t('expectChildAddTxt2')}</Heading2w>
+            )}
+          </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
-            <Pressable style={styles.pressableView} onPress={(): any => {
-              if (childData?.index == undefined) {
-                deleteRecord(0, dispatch, childData?.uuid, childList)
-              } else {
-                deleteRecord(childData?.index, dispatch, childData?.uuid, childList)
+            <HeaderActionView style={styles.padding0}>
+              <Pressable style={styles.pressableView} onPress={(): any => {
+                console.log('ChildData position', childData)
+                if (childData?.index == undefined) {
+                  deleteExpectedRecord(0, dispatch, childData?.uuid, childList)
+                } else {
+                  deleteExpectedRecord(childData?.index, dispatch, childData?.uuid, childList)
+                }
+                // deleteRecord(childData?.index, dispatch, childData?.uuid)
               }
-            }
-            }>
-              <Icon name={'ic_trash'} size={20} color="#FFF" />
-            </Pressable>
+              }>
+                <Icon name={'ic_trash'} size={20} color="#FFF" />
+              </Pressable>
+            </HeaderActionView>
           ) : null}
-        </HeaderActionView>
-      </HeaderRowView>
+        </HeaderRowView>
 
       <MainManageProfileContainer>
         <FormDateContainer>
