@@ -698,7 +698,7 @@ const SettingScreen = (props: any): any => {
               console.error('Error:', error);
               Alert.alert('', t('generalErrorTitle'));
               throw error;
-            });
+            }); 
             console.log('ios data is',decryptFileContent)
             const importedJsonData = JSON.parse(decryptFileContent);
             console.log('importedJsonData data is',importedJsonData)
