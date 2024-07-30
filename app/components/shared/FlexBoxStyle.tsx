@@ -10,10 +10,9 @@ align-items:center;
 `;
 
 export const FlexDirRowSpace = styled.View`
-flex-direction:row;
-justify-content:space-between;
-align-items:center;
-
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: ${(props:any) => props.alignItems || 'center'};
 `;
 export const FlexFDirRowSpace = styled(FlexDirRowSpace)`
 flex:1;

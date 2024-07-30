@@ -83,7 +83,7 @@ const AddNewChildHeight = ({ navigation, route }: Props):any => {
   const getHeightValue = ():any => {
     const h =
       (!isNaN(height) ? height : 0) + (!isNaN(height1) ? 0.01 * height1 : 0);
-    return convertDigits(h.toFixed(2));
+    return h.toFixed(2);
   };
   return (
     <>
@@ -150,7 +150,7 @@ const AddNewChildHeight = ({ navigation, route }: Props):any => {
               <View style={styles.overflowHidden}>
                 <ShiftFromTopBottom20>
                   <Heading1Center>
-                    {getHeightValue()} {t('growthScreencmText')}
+                    {convertDigits(getHeightValue())} {t('growthScreencmText')}
                   </Heading1Center>
                 </ShiftFromTopBottom20>
                 <Ruler
