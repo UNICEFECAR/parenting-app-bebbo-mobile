@@ -95,7 +95,7 @@ const AddNewChildWeight = ({ navigation, route }: Props):any => {
   const getWeightValue = ():any => {
     const w =
       (!isNaN(weight) ? weight : 0) + (!isNaN(weight1) ? 0.01 * weight1 : 0);
-      return convertDigits(w.toFixed(2));
+      return w.toFixed(2);
   };
   return (
     <>
@@ -163,7 +163,7 @@ const AddNewChildWeight = ({ navigation, route }: Props):any => {
               <View style={styles.overflowHidden}>
                 <ShiftFromTopBottom20>
                   <Heading1Center>
-                    {getWeightValue()} {t('growthScreenkgText')}
+                    {convertDigits(getWeightValue())} {t('growthScreenkgText')}
                   </Heading1Center>
                 </ShiftFromTopBottom20>
                 <Ruler
