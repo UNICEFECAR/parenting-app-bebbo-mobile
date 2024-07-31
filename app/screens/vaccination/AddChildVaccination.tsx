@@ -53,6 +53,7 @@ import {
   ShiftFromTopBottom10
 } from '@styles/typography';
 import { DateTime } from 'luxon';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -110,6 +111,7 @@ const styles = StyleSheet.create({
 const AddChildVaccination = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
   const { vcPeriod, editVaccineDate } = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.VACCINATION_COLOR;
@@ -658,7 +660,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                             <FlexFDirRowSpace>
                               <Heading3 style={styles.headingFlexShrink} numberOfLines={2}>
                                 {weightValue
-                                  ? weightValue
+                                  ? convertDigits(weightValue || "0")
                                   : t('growthScreenwText')}
 
                               </Heading3>
@@ -681,7 +683,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                             <FlexFDirRowSpace>
                               <Heading3 style={styles.headingFlexShrink} numberOfLines={2}>
                                 {heightValue
-                                  ? heightValue
+                                  ? convertDigits(heightValue || '0')
                                   : t('growthScreenhText')}
                               </Heading3>
                               <Heading4Regular>
