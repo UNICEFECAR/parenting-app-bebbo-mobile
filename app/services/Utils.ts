@@ -525,8 +525,8 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
         console.log("reminders output---", childmeasures);
         const childreminders = await formatImportedReminders(child.reminders)
         console.log("reminders output---", childreminders);
-        const isPremature: any = child.isPremature == "true" ? "true" : "false";
-        const autoChild: any = child.autoChild == "true" ? "true" : "false";
+        const isPremature: any = child?.isPremature == "true" ? "true" : "false";
+        const autoChild: any = child?.autoChild == "true" ? "true" : "false";
         const childName: any = ("name" in child) === true ? child.name : ("childName" in child) === true ? child.childName : ""
         console.log(isPremature, "..isPremature..");
         let genderValue: any = child.gender;
