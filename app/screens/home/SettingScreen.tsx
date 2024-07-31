@@ -152,10 +152,15 @@ const SettingScreen = (props: any): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry?.countryId,
   );
-  const allCountries = useAppSelector(
-    (state: any) =>
-      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
-  );
+  const allCountries = useAppSelector( 
+    (state: any) => { 
+     try { 
+       return state.selectedCountry?.countries !== '' ? JSON.parse(state.selectedCountry?.countries) : []; 
+     } catch (error) { 
+       console.error('Failed to parse countries JSON:', error); 
+       return []; 
+     } 
+   });
   const [profileLoading, setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry?.languageCode,
