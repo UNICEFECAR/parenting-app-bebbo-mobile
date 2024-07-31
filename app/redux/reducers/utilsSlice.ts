@@ -247,7 +247,7 @@ export const utilsSlice = createSlice({
       })
 
     },
-    setInfoModalOpened: (state: any,
+    setInfoModalOpened: (state: any=initialState,
       action: PayloadAction<any>,): any => {
       console.log("payload is", action.payload)
       state[action.payload.key] = action.payload.value;
