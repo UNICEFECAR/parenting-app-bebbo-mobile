@@ -519,7 +519,6 @@ const checkFileExistence = async (filePath:string) => {
 //child data get
 export const getChild = async (child: any, genders: any): Promise<any> => {
     try {
-        const autoChild: boolean = child.autoChild === "true";
         const checkPhotoUri = child.photoUri!=null? CHILDREN_PATH +child.photoUri : CHILDREN_PATH;
         const photoUri  = await RNFS.exists(String(checkPhotoUri));     
         const childmeasures:any  = await formatImportedMeasures(child.measures)
