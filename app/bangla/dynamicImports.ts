@@ -32,5 +32,4 @@ export const VideoArticleData =require('@offlinedata/bangla/VideoArticleData').V
 import banglaPartnerLogo from '@assets/appOfflineImages/bangla/partner/MoH_bangladesh.png';
 export const bnPartnerLogo=banglaPartnerLogo;
 import banglaSponserLogo from '@assets/appOfflineImages/bangla/sponser/BSA_logo.png';
-export const nmSponserLogo=banglaSponserLogo;
-
+export const bnSponserLogo=banglaSponserLogo;

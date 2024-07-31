@@ -7,7 +7,7 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:www.babuni.app</string>
-		<string>applinks:bebboapp.page.link</string>
+		<string>applinks:babuniapp.page.link</string>
 	</array>
 </dict>
 </plist>

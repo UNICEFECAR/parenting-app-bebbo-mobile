@@ -246,7 +246,6 @@ const ChildDate = (props: any): any => {
           </FormInputGroup>
         )}
 
-        {prevScreen != 'EditScreen' &&
         <FormPrematureContainer>
           <Pressable 
           style={{flexDirection:'row'}}
@@ -284,7 +283,7 @@ const ChildDate = (props: any): any => {
             </FormInfoPress>
           </FormInfoLabel>
         </FormPrematureContainer>
-        }
+       
 
         {toggleCheckBox && !disablePrematureCheck ? (
           <>

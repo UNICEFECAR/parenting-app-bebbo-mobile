@@ -48,7 +48,7 @@ import {
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, Modal, Platform, Pressable, ScrollView, Share, StyleSheet, View } from 'react-native';
 import HTML from 'react-native-render-html';
@@ -126,6 +126,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames ? state.childData.childDataSet.favoritegames : []
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const [favoritescount, setfavoritescount] = useState(0);
   const isOpen = useDrawerStatus() === "open";
   useFocusEffect(
@@ -152,6 +156,16 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
   );
+  const genders = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  );
+  const [activeChildGenderData, setActiveChildGenderData] = React.useState<any>();
+  useEffect(()=>{
+    const gender = genders.find((g:any) => g.id === activeChild?.gender);
+    console.log('Activechild gender is',gender);
+    setActiveChildGenderData(gender);
+  },[activeChild?.gender])
   useFocusEffect(
     React.useCallback(() => {
       if (isOpen) {
@@ -254,8 +268,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                             <ImageIcon
                               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
                           ) : (
-                            activeChild.gender != null ?
-                            (activeChild.gender != null && activeChild.gender == 40 ?
+                            activeChildGenderData != null ?
+                            (activeChildGenderData?.unique_name != null && genders.find((g:any) => g.id === activeChild?.gender)?.unique_name == taxonomyIds?.boyChildGender  ?
                               <Icon name="ic_baby" size={36} color="#000" /> :
                               <Icon name="ic_baby_girl" size={36} color="#000" />) :
                             <Icon name="ic_baby_girl" size={36} color="#000" />
@@ -555,6 +569,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                   } else {
                     if (String(buildFor) == buildForBebbo) {
                       Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review')
+                    }else if (String(buildFor) == buildForBangla) {
+                      Linking.openURL('itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review');
                     }
                     else {
                       Linking.openURL('itms://itunes.apple.com/xk/app/apple-store/id1607980150?action=write-review');
