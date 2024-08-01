@@ -303,8 +303,8 @@ const DailyReads = (): any => {
 
   const renderItem = useCallback((item: any, index: any, isAdvice: boolean) => {
     return <RenderDailyReadItem item={item} index={index} isAdvice={isAdvice} />;
-  }, []);
-
+  }, [favoriteAdvices,favoriteGames]);
+  
   return (
     <>
       <MainContainer>

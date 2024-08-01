@@ -119,7 +119,9 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     for (const country of allCountries) {
       if (country.languages) { // Ensure country.languages is not null or undefined
         for (const language of country.languages) {
-          if (language.languageCode.toLowerCase().includes(normalizedCountryCode)) {
+          if(!language.languageCode.toLowerCase().includes('-') && language.languageCode.toLowerCase().includes(normalizedCountryCode)){
+            return country;
+          } else if (language.languageCode?.toLowerCase()?.split("-")[0]?.includes(normalizedCountryCode)) {
             return country;
           }
         }
