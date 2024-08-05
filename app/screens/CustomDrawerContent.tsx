@@ -528,8 +528,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 onPress={(): any => {
                   const eventData = { 'name': EMAIL_SENT }
                   logEvent(eventData, netInfo.isConnected)
-                  console.log('Country email is',countryEmail);
-                  Linking.openURL(countryEmail);
+                  console.log('Country email is',`mailto:${countryEmail}`);
+                  Linking.openURL(`mailto:${countryEmail}`).catch((err) => console.log("-------------->",err));
                 }}>
                 <OuterIconRow>
                   <OuterIconLeft15>
