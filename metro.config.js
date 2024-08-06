@@ -9,7 +9,7 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 
 const blacklist = require('metro-config/src/defaults/exclusionList')
 const config = {
-    resetCache: true,
+    resetCache:true,
     transformer: {
       getTransformOptions: async () => ({
         transform: {
@@ -19,8 +19,9 @@ const config = {
       }),
     },
     resolver: {
-    blacklistRE: blacklist([/xk\/.*/]),
+    blacklistRE: blacklist([/xk\/.*/,/bebbo\/.*/]),
     }
   };
   
+
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
