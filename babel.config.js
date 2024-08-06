@@ -35,7 +35,7 @@ module.exports = (api) => {
           '@styles': './app/styles',
           '@navigation': './app/navigation',
           '@offlinedata': './app/assets/translations/appOfflineData',
-          '@dynamicImportsClass': './app/bangla',
+          '@dynamicImportsClass': './app/bebbo',
         },
       },
     ],

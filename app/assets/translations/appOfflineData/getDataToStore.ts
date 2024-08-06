@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import { CountryItem } from '@components/CountryItem';
+>>>>>>> origin/tmp-remove-hist-ga
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../../../database/schema/ActivitiesSchema";
@@ -17,8 +21,15 @@ import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthCheckupsData, setAllMileStonesData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
+<<<<<<< HEAD
 import { appConfig } from "./apiConstants";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
+=======
+import { appConfig, bothChildGender, bothParentGender } from "./apiConstants";
+import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData, countryData } from '@dynamicImportsClass/dynamicImports';
+import { Country, CountrySchema } from "../../../database/schema/CountrySchema";
+import { setCountriesStore } from '../../../redux/reducers/localizationSlice';
+>>>>>>> origin/tmp-remove-hist-ga
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: any, sortBy?: any, currentChildData?: any): Promise<any> => {
     // return new Promise((resolve) => {
@@ -73,7 +84,12 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     //     dataToStore = databaseData2;
     // }
     const dataToStore = databaseData2;
+<<<<<<< HEAD
     console.log('Taxonomy data set is',dataToStore)
+=======
+    console.log('offlineData is',offlineData)
+    console.log('stringify offlineData is',JSON.stringify(offlineData))
+>>>>>>> origin/tmp-remove-hist-ga
     if (dataToStore?.length > 0) {
         dispatch(setAllHardcodedData(dataToStore))
         return dataToStore;
@@ -102,6 +118,15 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
         await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
         return "success";
     }
+<<<<<<< HEAD
+=======
+    else if (prevPage == "") {
+        let Entity: any;
+        console.log('Prevpage is',prevPage);
+        await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
+        return "success";
+    }
+>>>>>>> origin/tmp-remove-hist-ga
     else if (prevPage == "Terms") {
         let Entity: any;
         await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
@@ -144,6 +169,13 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
         await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
         return "success";
     }
+<<<<<<< HEAD
+=======
+    else if (apiEndpoint == appConfig.countryGroups) {
+        await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
+        return "success";
+    }
+>>>>>>> origin/tmp-remove-hist-ga
     else if (apiEndpoint == appConfig.dailyMessages) {
         await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
         return "success";

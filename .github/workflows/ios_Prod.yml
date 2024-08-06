@@ -8,10 +8,10 @@ on:
 env:
         CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
         KEY_PWD: ${{ secrets.APPLE_KEY_PWD }}
-        DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE }}
-        DISTRIBUTION_PROFILE_PROD: ${{ secrets.APPLE_DISTRIBUTION_PROFILE }}
-        DISTRIBUTION_PROFILE_BUILD: ${{ secrets.APPLE_AD_HOC_PROFILE }}
-        TEAM_ID: ${{ secrets.TEAM_ID }}
+        DISTRIBUTION_CERTIFICATE: ${{ secrets.APPLE_APP_DISTRIBUTION_CERTIFICATE_PROD }}
+        DISTRIBUTION_PROFILE_PROD: ${{ secrets.APPLE_DISTRIBUTION_PROFILE_PROD }}
+        DISTRIBUTION_PROFILE_BUILD: ${{ secrets.APPLE_AD_HOC_PROFILE_PROD }}
+        TEAM_ID: ${{ secrets.TEAM_ID_PROD }}
 jobs:
   build:
     runs-on: macOS-latest
@@ -36,18 +36,18 @@ jobs:
           echo facebookAppId=${{ secrets.FACEBOOKAPPID }} >> .env
           echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
           echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
-          echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
+          echo clientIdKey=${{ secrets.CLIENTIDKEY_PROD }} >> .env
           echo encryptionsKey=${{ secrets.ENCRYPTIONS_KEY }} >> .env
           echo encryptionsIVKey=${{ secrets.ENCRYPTIONS_IV_KEY }} >> .env
           
        
-      - name: Putting data google service Dev file
+      - name: Putting data google service prod file
         env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_DEV }}
+          DATA: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
         run: |
-          touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
-          echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Development/GoogleService-Info.plist
-      
+          touch /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+          echo -n $DATA | base64 -d > /Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/ios/GoogleServices/Production/GoogleService-Info.plist
+          
       - name: Copy fontello icon
         env:
           SOURCE_FILE_PATH: "/Users/runner/work/parenting-app-bebbo-mobile/parenting-app-bebbo-mobile/app/assets/fonts/fontello.ttf"
@@ -58,6 +58,9 @@ jobs:
       - name: Install CocoaPods
         run: |
           sudo gem install cocoapods
+      
+      - name: Install App Store Connect CLI
+        run: sudo gem install fastlane
 
       - name: Set environment variable for modular headers
         run: echo "USE_MODULAR_HEADERS=true" >> $GITHUB_ENV
@@ -74,8 +77,8 @@ jobs:
 
       - name: Authenticate with Apple Developer account
         env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
+          APPLE_ID: ${{ secrets.APPLE_ID_PROD }}
+          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD_PROD }}
         run: |
           echo "machine apple.com login $APPLE_ID password $APP_SPECIFIC_PASSWORD" > ~/.netrc
           security add-internet-password -a $APPLE_ID -s idmsa.apple.com -w $APP_SPECIFIC_PASSWORD -T /usr/bin/security
@@ -106,15 +109,15 @@ jobs:
           UUID=$(security cms -D -i $RUNNER_TEMP/provisioning_profile.mobileprovision | plutil -extract UUID raw -)
           mv $RUNNER_TEMP/provisioning_profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID.mobileprovision
       
-      - name: Install Provisioning build
-        run: |
-          # Install provisioning profile
-          echo -n "$DISTRIBUTION_PROFILE_BUILD" | base64 -Dd -o $RUNNER_TEMP/provisioning_profile_build.mobileprovision
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
+      # - name: Install Provisioning build
+      #   run: |
+      #     # Install provisioning profile
+      #     echo -n "$DISTRIBUTION_PROFILE_BUILD" | base64 -Dd -o $RUNNER_TEMP/provisioning_profile_build.mobileprovision
+      #     mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+      #     cp $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
           
-          UUID1=$(security cms -D -i $RUNNER_TEMP/provisioning_profile_build.mobileprovision | plutil -extract UUID raw -)
-          mv $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID1.mobileprovision
+      #     UUID1=$(security cms -D -i $RUNNER_TEMP/provisioning_profile_build.mobileprovision | plutil -extract UUID raw -)
+      #     mv $RUNNER_TEMP/provisioning_profile_build.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$UUID1.mobileprovision
           
       - name: Prepare exportOptions.plist
         run: | 
@@ -129,30 +132,24 @@ jobs:
               	<key>destination</key>
               	<string>export</string>
               	<key>method</key>
-              	<string>enterprise</string>
+              	<string>app-store</string>
               	<key>signingStyle</key>
               	<string>automatic</string>
               	<key>stripSwiftSymbols</key>
               	<true/>
               	<key>teamID</key>
               	<string>$TEAM_ID</string>
+                <key>provisioningProfiles</key>
+                <dict>
+                    <key>org.unicef.ecar.bebbo</key>
+                    <string>Bebbo_Production_Unicef</string>
+                </dict>
               	<key>thinning</key>
               	<string>&lt;none&gt;</string>
               </dict>
             </plist>
             EOL
 
-      # - name: Prepare exportOptions.plist
-      #   run: | 
-      #     cd ios
-      #       if [ -f exportOptions.plist ]; then
-      #         echo "exportOptions.plist created successfully."
-      #         cat exportOptions.plist  # Optionally print the contents for verification
-      #       else
-      #         echo "Failed to create exportOptions.plist."
-      #         exit 1
-      #       fi
-        
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.1.app
      
@@ -165,20 +162,32 @@ jobs:
      
       - name: Build Archive
         run: |
-          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyAppDev" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" -allowProvisioningUpdates -quiet -hideShellScriptEnvironment 
+          cd ios && xcodebuild archive -workspace "ParentBuddyApp.xcworkspace" -scheme "ParentBuddyApp" -configuration "Release" -sdk iphoneos -UseModernBuildSystem=0 IPHONEOS_DEPLOYMENT_TARGET=12.0 -archivePath "./build/ParentBuddyApp.xcarchive" -allowProvisioningUpdates -quiet -hideShellScriptEnvironment 
         
       - name: Export Archive
         run: |
           cd ios && xcodebuild -verbose -exportArchive -allowProvisioningUpdates \
           -archivePath "./build/ParentBuddyApp.xcarchive" \
-          -exportPath "ParentBuddyAppDev/" \
+          -exportPath "ParentBuddyApp/" \
           -exportOptionsPlist "exportOptions.plist" 
+
+      - name: Upload to TestFlight
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID_PROD }}
+          APP_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD_PROD }}
+        run: |
+          xcrun altool --upload-app \
+                     -t ios \
+                     -f ParentBuddyApp/ParentBuddyApp.ipa \
+                     -u $APPLE_ID \
+                     -p $APP_SPECIFIC_PASSWORD \
+                     --output-format xml
         
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: Bebbo.ipa
-          path: "ios/ParentBuddyAppDev/"
+      # - name: Upload Artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: Bebbo.ipa
+      #     path: "ios/ParentBuddyApp/"
       
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
