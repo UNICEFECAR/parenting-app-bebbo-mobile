@@ -527,11 +527,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       });
     });
     if (vcPeriod?.vaccines?.length > 0) {
-<<<<<<< HEAD
       allPreviousPendingVaccines = [...allPreviousPendingVaccines, ...vcPeriod?.vaccines];
-=======
-      allPreviousPendingVaccines = [...allPreviousPendingVaccines, ...vcPeriod.vaccines];
->>>>>>> a073a4bd (- Bengali numerals, date and count conversion)
     }
     const isAllMeasured = [...allPreviousPendingVaccines].every((el) => {
       return el.isMeasured == true;

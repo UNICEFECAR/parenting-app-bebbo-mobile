@@ -2579,6 +2579,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Production_Unicef;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Babuni App Distribution";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2612,6 +2613,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Production_Unicef;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Babuni App Distribution";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

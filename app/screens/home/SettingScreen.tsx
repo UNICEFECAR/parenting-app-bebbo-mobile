@@ -602,7 +602,6 @@ const SettingScreen = (props: any): any => {
 
 
   useEffect(() => {
-<<<<<<< HEAD
     console.log('Selected country for bangladesh is...', localization[0]?.languages[0]);
     if (localization?.length===1 && localization[0]?.languages?.length===1) {
       setCountry(localization[0]);
@@ -622,16 +621,6 @@ const SettingScreen = (props: any): any => {
       );
       setlanguage(selectedLanguage);
     }
-=======
-    const selectedCountry: any = localization.find(
-      (country: any) => country.countryId === countryId,
-    );
-    setCountry(selectedCountry);
-    const selectedLanguage: any = selectedCountry?.languages?.find(
-      (language: any) => language?.languageCode === languageCode,
-    );
-    setlanguage(selectedLanguage);
->>>>>>> a073a4bd (- Bengali numerals, date and count conversion)
     toggleSwitch();
   }, []);
   useEffect(() => {
