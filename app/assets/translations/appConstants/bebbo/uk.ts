@@ -11,7 +11,7 @@ const uk = {
                 country: "Країна",
                 language: "Мова",
                 walkthroughTextstitle0: "Ласкаво просимо, батьки!",
-                walkthroughTextssubtitle0: "Відкрийте для себе Bebbo — все, що потрібно батькам для підтримки розвитку дитини",
+                walkthroughTextssubtitle0: "Відкрийте для себе Bebbo",
                 walkthroughTextstitle1: "Ігри ",
                 walkthroughTextssubtitle1: "щоб допомогти вашій дитині щодня дізнаватися щось нове",
                 walkthroughTextstitle2: "Інструменти",

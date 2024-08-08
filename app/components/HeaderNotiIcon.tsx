@@ -27,18 +27,10 @@ const HeaderNotiIcon = (props: any): any => {
   const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
   const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
   const localNotificationGenerateType = useAppSelector((state: any) => state.notificationData.localNotificationGenerateType);
-
   const activeChild = useAppSelector((state: any) =>
-    {
-      try {
         state.childData.childDataSet.activeChild != ''
         ? JSON.parse(state.childData.childDataSet.activeChild)
-        : []
-      } catch (error) {
-        console.log("HeaderNotiIcon catch", error);
-        
-      }
-    }
+      : [],
   );
   const dispatch = useAppDispatch();
   const childAge = useAppSelector(
@@ -175,7 +167,7 @@ const HeaderNotiIcon = (props: any): any => {
     React.useCallback(() => {
       // Your dismiss logic here 
       if (allnotis.length > 0) {
-        const currentChildNotis = allnotis?.find((item: any) => item.childuuid == activeChild?.uuid)
+        const currentChildNotis = allnotis?.find((item: any) => item.childuuid == activeChild.uuid)
         //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
         if (!isFutureDate(activeChild?.birthDate)) {
           if (currentChildNotis) {
@@ -335,8 +327,8 @@ const HeaderNotiIcon = (props: any): any => {
     const fetchDataFav = async (): Promise<any> => {
       const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
-      dispatch(setFavouriteGames(childData[0].favoritegames));
+      Object.keys(childData[0]?.favoriteadvices)?.length > 0 && dispatch(setFavouriteAdvices(childData[0]?.favoriteadvices));
+      Object.keys(childData[0]?.favoritegames)?.length > 0 && dispatch(setFavouriteGames(childData[0].favoritegames));
     }
     fetchDataFav()
   }, [activeChild?.uuid]);
@@ -360,5 +352,4 @@ const HeaderNotiIcon = (props: any): any => {
   );
 };
 export default HeaderNotiIcon;
-
 

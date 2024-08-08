@@ -11,7 +11,7 @@ const TJtg = {
                 country: "Кишвар",
                 language: "Забон",
                 walkthroughTextstitle0: "Салом, падару модар!",
-                walkthroughTextssubtitle0: "Ин Беббо аст - ҳама он чизе, ки шумо бояд дар бораи камолот ва инкишофи фарзанди худ донед",
+                walkthroughTextssubtitle0: "Ин Беббо аст",
                 walkthroughTextstitle1: "Машғулият",
                 walkthroughTextssubtitle1: "Машғулиятҳое, ки ба рушди фарзанди шумо ҳамарӯза мусоидат мекунанд",
                 walkthroughTextstitle2: "Воситаҳо",

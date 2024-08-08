@@ -34,15 +34,16 @@ import {
 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { I18nManager, Platform, BackHandler, Text, StyleSheet, View } from 'react-native';
+import { I18nManager, Platform, BackHandler, Text, StyleSheet, View, Alert } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, buildFor, buildForBebbo } from '../../assets/translations/appOfflineData/apiConstants';
 import { oncountrtIdChange, onLocalizationSelect, setAppLayoutDirectionParams, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
 import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor } from '@styles/style';
+import { localization } from '@dynamicImportsClass/dynamicImports';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -119,7 +120,9 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     for (const country of allCountries) {
       if (country.languages) { // Ensure country.languages is not null or undefined
         for (const language of country.languages) {
-          if (language.languageCode.toLowerCase().includes(normalizedCountryCode)) {
+          if(!language.languageCode.toLowerCase().includes('-') && language.languageCode.toLowerCase().includes(normalizedCountryCode)){
+            return country;
+          } else if (language.languageCode?.toLowerCase()?.split("-")[0]?.includes(normalizedCountryCode)) {
             return country;
           }
         }
@@ -266,11 +269,11 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     }, []),
   );
 
+  const rtlConditions = (language: any): any => {
 
-  const saveSelection = (): any => {
-    i18n.changeLanguage(newLanguage.locale)
+    i18n.changeLanguage(language.locale)
       .then(() => {
-        if (newLanguage?.locale == 'GRarb' || newLanguage?.locale == 'GRda') {
+        if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
           if (AppLayoutDirection == 'ltr') {
             //remove rtl on backhandler
             Platform.OS == 'ios' ? setTimeout(() => {
@@ -289,42 +292,68 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         }
       })
 
-    if (userIsOnboarded == true && (newLanguage.languageCode == languageCode)) {
-      navigation.reset({
-        index: 0,
-        routes: [
-          {
-            name: 'HomeDrawerNavigator',
-          },
-        ],
-      });
-    } else {
-      if (Object.keys(route.params).length !== 0) {
-        dispatch(onLocalizationSelect(route.params));
-        dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-        analytics().setUserProperties({ country: route.params.country.name, language: newLanguage.displayName })
+      if (userIsOnboarded == true && (newLanguage.languageCode == languageCode)) {
+        navigation.reset({
+          index: 0,
+          routes: [
+            {
+              name: 'HomeDrawerNavigator',
+            },
+          ],
+        });
       } else {
-        console.log('countyData is', countryData);
-        console.log('newLanguage is', newLanguage);
-        const languageSelected = selectedLocale !== '' ? selectedLocale : locale;
-        const filteredLan = countryData?.languages?.filter((lang: any) => lang.locale == newLanguage?.locale);
-        console.log('filteredLan is', filteredLan);
-        dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": countryData?.CountryID }));
-        // dispatch(onLocalizationSelect(countryData));
-        dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-        analytics().setUserProperties({ country: countryData.name, language: newLanguage.displayName })
+        if (Object.keys(route.params).length !== 0) {
+          dispatch(onLocalizationSelect(route.params));
+          dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
+          analytics().setUserProperties({ country: route.params.country.name, language: newLanguage.displayName })
+        } else {
+          console.log('countyData is', countryData);
+          console.log('newLanguage is', newLanguage);
+          const languageSelected = selectedLocale !== '' ? selectedLocale : locale;
+          const filteredLan = countryData?.languages?.filter((lang: any) => lang.locale == newLanguage?.locale);
+          console.log('filteredLan is', filteredLan);
+          dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": countryData?.CountryID }));
+          // dispatch(onLocalizationSelect(countryData));
+          dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
+          analytics().setUserProperties({ country: countryData.name, language: newLanguage.displayName })
+        }
+  
+        // if (userIsOnboarded == true) {
+        //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
+        // }
+        console.log('Sponsors Data for countryList', sponsorsData)
+        dispatch(setSponsorStore(sponsorsData));
+        navigation.navigate('LoadingScreen', {
+          apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
+          prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
+        });
       }
-
-      // if (userIsOnboarded == true) {
-      //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
-      // }
-      console.log('Sponsors Data for countryList', sponsorsData)
-      dispatch(setSponsorStore(sponsorsData));
-      navigation.navigate('LoadingScreen', {
-        apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
-        prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
-      });
-    }
+  }
+  const saveSelection = (): any => {
+    i18n.changeLanguage(newLanguage.locale)
+      .then(() => {
+        if (buildFor == buildForBebbo) {
+          const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
+          const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
+          console.log('rest of the world title', newLanguage)
+          console.log('rotwLanguagelocaleru of the world title', rotwLanguagelocaleru)
+          if (newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {
+            Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
+              [
+                {
+                  text: t('restOfTheWorldOkTitle'), onPress: async (): Promise<any> => {
+                    rtlConditions(newLanguage)
+                  }
+                }
+              ]
+            );
+          } else {
+            rtlConditions(newLanguage);
+          }
+        } else {
+          rtlConditions(newLanguage);
+        }
+      })
   };
 
   const themeContext = useContext(ThemeContext);

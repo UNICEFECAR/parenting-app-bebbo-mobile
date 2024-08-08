@@ -119,8 +119,8 @@ const DailyReads = (): any => {
               <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
             </DailyTag>
             {/*Parent Share , View Details*/}
-            {isAdvice ? <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteAdvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} /> :
-              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteGames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />}
+            {isAdvice ? <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteAdvices?.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} /> :
+              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteGames?.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />}
           </DailyBox>
         </Pressable>
       </View>
@@ -303,7 +303,7 @@ const DailyReads = (): any => {
 
   const renderItem = useCallback((item: any, index: any, isAdvice: boolean) => {
     return <RenderDailyReadItem item={item} index={index} isAdvice={isAdvice} />;
-  }, []);
+  }, [favoriteAdvices,favoriteGames]);
 
   return (
     <>

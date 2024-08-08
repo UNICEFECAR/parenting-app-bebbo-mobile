@@ -11,7 +11,7 @@ const MEcnr = {
                 country: "Zemlja",
                 language: "Jezik",
                 walkthroughTextstitle0: "Dobro došli, roditelji!",
-                walkthroughTextssubtitle0: "Otkrijte Bebbo – sve što Vam je kao roditelju potrebno da biste podržali razvoj svog djeteta",
+                walkthroughTextssubtitle0: "Otkrijte Bebbo",
                 walkthroughTextstitle1: "Igre",
                 walkthroughTextssubtitle1: "koje će Vašem djetetu pomoći da svakog dana uči nove stvari",
                 walkthroughTextstitle2: "Alati",
