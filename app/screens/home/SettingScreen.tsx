@@ -1,5 +1,5 @@
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { allApisObject, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -80,6 +80,7 @@ import { logEvent } from '../../services/EventSyncService';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 import configureAppStore from '../../redux/store';
+import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -171,6 +172,11 @@ const SettingScreen = (props: any): any => {
   );
   const monthlyDownloadDate = useAppSelector(
     (state: any) => state.utilsData.monthlyDownloadDate,
+  );
+  const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
   );
   const incrementalSyncDT = useAppSelector((state: any) =>
     (state.utilsData.incrementalSyncDT),
@@ -533,6 +539,19 @@ const SettingScreen = (props: any): any => {
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
+  
+  
+  useEffect(() => {
+    const apiJsonData = [
+      {
+        apiEndpoint: appConfig.countryGroups,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      }
+    ];
+      dispatch(fetchAPI(apiJsonData, '', dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected))
+  }, [])
   const toggleAllNotis = (): any => {
     if (isEnabled == true) {
       const obj = { key: 'growthEnabled', value: false };
@@ -719,7 +738,7 @@ const SettingScreen = (props: any): any => {
               return decryptData(edata, encryptionsKey)
                 .then((text: any) => {
                   //console.log('decryptData',text)
-                  return text;
+                  return text.replace(/[\x00-\x1F\x7F]/g,'');
                 })
                 .catch((error: any) => {
                   //console.log("Decrypted error", error);

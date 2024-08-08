@@ -145,6 +145,18 @@ const CountrySelection = (props: any): any => {
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
 
+
+  const renderHeader = () => {
+    return (
+      <ButtonLinkRow>
+              <ButtonPrimary onPress={():any =>{
+                props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
+              }}>
+                <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
+              </ButtonPrimary>
+            </ButtonLinkRow>
+    )
+  }
   return (
     <>
       <>
@@ -169,13 +181,14 @@ const CountrySelection = (props: any): any => {
                 data={allCountries}
                 renderItem={renderItem}
                 keyExtractor={(item): any => item.CountryID}
+                ListFooterComponent={renderHeader}
               /> :
               <FlatList
-                inverted
-                data={allCountries}
+                data={allCountries?.reverse()}
                 contentContainerStyle={{ flexDirection: 'column-reverse' }}
                 renderItem={renderItem}
                 keyExtractor={(item): any => item.CountryID}
+                ListFooterComponent={renderHeader}
               />}
           </SelectionView>
           {/* {country ? (
@@ -203,13 +216,7 @@ const CountrySelection = (props: any): any => {
             </ButtonviewPrevious>
           )} */}
 
-        <ButtonLinkRow>
-              <ButtonPrimary onPress={():any =>{
-                props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
-              }}>
-                <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
-              </ButtonPrimary>
-            </ButtonLinkRow>
+        
         </OnboardingContainer>
       
       </>

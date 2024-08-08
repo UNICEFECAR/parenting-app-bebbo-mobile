@@ -11,7 +11,7 @@ const uk = {
                 country: "Країна",
                 language: "Мова",
                 walkthroughTextstitle0: "Ласкаво просимо, батьки!",
-                walkthroughTextssubtitle0: "Відкрийте для себе REMOVED_FACEBOOK_APP_ID1 — все, що потрібно батькам для підтримки розвитку дитини",
+                walkthroughTextssubtitle0: "Відкрийте для себе REMOVED_FACEBOOK_APP_ID1",
                 walkthroughTextstitle1: "Ігри ",
                 walkthroughTextssubtitle1: "щоб допомогти вашій дитині щодня дізнаватися щось нове",
                 walkthroughTextstitle2: "Інструменти",

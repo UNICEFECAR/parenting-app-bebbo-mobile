@@ -11,7 +11,7 @@ const BGbg = {
                 country: "Държава",
                 language: "Език",
                 walkthroughTextstitle0: "Здравейте, родители!",
-                walkthroughTextssubtitle0: "Открийте Беббо - всичко, което ви е нужно като родител, за да подкрепяте развитието на детето си",
+                walkthroughTextssubtitle0: "Открийте Беббо",
                 walkthroughTextstitle1: "Игри",
                 walkthroughTextssubtitle1: "за да помагате на детето си да учи нови неща всеки ден",
                 walkthroughTextstitle2: "Инструменти",

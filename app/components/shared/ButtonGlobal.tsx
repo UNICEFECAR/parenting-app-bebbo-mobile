@@ -145,7 +145,7 @@ justify-content: center;
 export const ButtonLinkRow = styled(ButtonRow)`
   
   flex-direction:row;
-  margin:0;
+  margin-top:25px;
   padding-verticle: 10px;
   margin-bottom:15px;
 `;
