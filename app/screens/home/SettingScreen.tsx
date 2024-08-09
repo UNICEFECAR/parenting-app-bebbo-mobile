@@ -640,12 +640,12 @@ const SettingScreen = (props: any): any => {
     } else {
       console.log('Selected country for countryId is', countryId);
       const selectedCountry: any = allCountries?.find(
-        (country: any) => country?.CountryID === countryId,
+        (country: any) => country?.CountryID == countryId,
       );
-      console.log('Selected country is', selectedCountry);
+      console.log(allCountries,'Selected country is', selectedCountry);
       setCountry(selectedCountry);
       const selectedLanguage: any = selectedCountry?.languages?.find(
-        (language: any) => language?.languageCode === languageCode,
+        (language: any) => language?.languageCode == languageCode,
       );
       setlanguage(selectedLanguage);
     }

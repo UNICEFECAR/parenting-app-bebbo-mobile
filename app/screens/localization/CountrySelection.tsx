@@ -188,7 +188,7 @@ const CountrySelection = (props: any): any => {
                 contentContainerStyle={{ flexDirection: 'column-reverse' }}
                 renderItem={renderItem}
                 keyExtractor={(item): any => item.CountryID}
-                ListFooterComponent={renderHeader}
+                ListHeaderComponent={renderHeader}
               />}
           </SelectionView>
           {/* {country ? (
