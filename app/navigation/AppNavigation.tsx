@@ -24,7 +24,7 @@ import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Alert, AppState, Linking, Platform, Text } from 'react-native';
+import { ActivityIndicator, Alert, AppState, I18nManager, Linking, Platform, Text } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -38,7 +38,7 @@ import { RootStackParamList } from './types';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
 import { appConfig, restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
-import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
+import { oncountrtIdChange, onLocalizationSelect, setSponsorStore } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
 import messaging from '@react-native-firebase/messaging';
@@ -54,6 +54,7 @@ import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 import AddChildSetup from '@screens/AddChildSetup';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 import { localization } from '@dynamicImportsClass/dynamicImports';
+import i18next from 'i18next';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -824,6 +825,15 @@ export default (): any => {
   }, [netState]);
   const routeNameRef = React.useRef<any>();
 
+  const apiJsonDataLoading = [
+    {
+      apiEndpoint: appConfig.basicPages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+  ];
+
   return (
     <SafeAreaProvider>
       {apiData &&
@@ -910,6 +920,12 @@ export default (): any => {
               name="LoadingScreen"
               component={LoadingScreen}
               options={{ headerShown: false, gestureEnabled: false }}
+              initialParams={{ 
+                apiJsonData:apiJsonDataLoading,
+                prevPage:'CountryLanguageSelection',
+                isFirst: true
+
+              }}
             />
             <RootStack.Screen
               name="HomeDrawerNavigator"

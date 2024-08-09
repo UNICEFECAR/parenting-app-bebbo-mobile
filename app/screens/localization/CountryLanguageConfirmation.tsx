@@ -120,7 +120,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     for (const country of allCountries) {
       if (country.languages) { // Ensure country.languages is not null or undefined
         for (const language of country.languages) {
-          if(!language.languageCode.toLowerCase().includes('-') && language.languageCode.toLowerCase().includes(normalizedCountryCode)){
+          if (!language.languageCode.toLowerCase().includes('-') && language.languageCode.toLowerCase().includes(normalizedCountryCode)) {
             return country;
           } else if (language.languageCode?.toLowerCase()?.split("-")[0]?.includes(normalizedCountryCode)) {
             return country;
@@ -199,7 +199,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       )
 
       setSponsorsData(selectedCountry);
-      const foundCountry = getCountryByCountryCode(RNLocalize.getCountry());
+      const foundCountry = allCountries.length === 1 ? allCountries?.[0] : getCountryByCountryCode(RNLocalize.getCountry());
       console.log('Found country is', foundCountry)
       if (foundCountry != undefined && foundCountry != null) {
         if (countrySelectedId == 0) {
@@ -292,42 +292,42 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         }
       })
 
-      if (userIsOnboarded == true && (newLanguage.languageCode == languageCode)) {
-        navigation.reset({
-          index: 0,
-          routes: [
-            {
-              name: 'HomeDrawerNavigator',
-            },
-          ],
-        });
+    if (userIsOnboarded == true && (newLanguage.languageCode == languageCode)) {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'HomeDrawerNavigator',
+          },
+        ],
+      });
+    } else {
+      if (Object.keys(route.params).length !== 0) {
+        dispatch(onLocalizationSelect(route.params));
+        dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
+        analytics().setUserProperties({ country: route.params.country.name, language: newLanguage.displayName })
       } else {
-        if (Object.keys(route.params).length !== 0) {
-          dispatch(onLocalizationSelect(route.params));
-          dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-          analytics().setUserProperties({ country: route.params.country.name, language: newLanguage.displayName })
-        } else {
-          console.log('countyData is', countryData);
-          console.log('newLanguage is', newLanguage);
-          const languageSelected = selectedLocale !== '' ? selectedLocale : locale;
-          const filteredLan = countryData?.languages?.filter((lang: any) => lang.locale == newLanguage?.locale);
-          console.log('filteredLan is', filteredLan);
-          dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": countryData?.CountryID }));
-          // dispatch(onLocalizationSelect(countryData));
-          dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-          analytics().setUserProperties({ country: countryData.name, language: newLanguage.displayName })
-        }
-  
-        // if (userIsOnboarded == true) {
-        //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
-        // }
-        console.log('Sponsors Data for countryList', sponsorsData)
-        dispatch(setSponsorStore(sponsorsData));
-        navigation.navigate('LoadingScreen', {
-          apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
-          prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
-        });
+        console.log('countyData is', countryData);
+        console.log('newLanguage is', newLanguage);
+        const languageSelected = selectedLocale !== '' ? selectedLocale : locale;
+        const filteredLan = countryData?.languages?.filter((lang: any) => lang.locale == newLanguage?.locale);
+        console.log('filteredLan is', filteredLan);
+        dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": countryData?.CountryID }));
+        // dispatch(onLocalizationSelect(countryData));
+        dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
+        analytics().setUserProperties({ country: countryData.name, language: newLanguage.displayName })
       }
+
+      // if (userIsOnboarded == true) {
+      //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
+      // }
+      console.log('Sponsors Data for countryList', sponsorsData)
+      dispatch(setSponsorStore(sponsorsData));
+      navigation.navigate('LoadingScreen', {
+        apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
+        prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
+      });
+    }
   }
   const saveSelection = (): any => {
     i18n.changeLanguage(newLanguage.locale)
@@ -362,6 +362,17 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     navigation.dispatch(StackActions.pop(1)); // Pop the current screen
     navigation.dispatch(StackActions.push(routeName, params)); // Push the new screen
   };
+
+  const onEditLang = () => {
+    if (allCountries.length == 1 && allCountries[0].languages?.length === 1) {
+      saveSelection()
+    } else if (allCountries.length == 1) {
+      navigation.navigate('LanguageSelection', { country: countryData, language: newLanguage })
+    } else {
+      navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })
+    }
+  }
+
   return (
     <>
       <>
@@ -411,7 +422,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
               </LocalizationAction>
             </LocalizationRow>
             <ShiftFromTop25>
-              <ButtonWithBorder onPress={(): any => navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })}>
+              <ButtonWithBorder onPress={onEditLang}>
                 <OuterIconRow>
                   <OuterIconLeft>
                     <IconML name="ic_edit" size={16} color={secondaryBtnColor} />
