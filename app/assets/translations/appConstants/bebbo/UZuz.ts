@@ -295,7 +295,7 @@ const UZuz = {
               parentNameTxt: "Ota-onaning ismi",
               parentPlaceNameTxt: "Ismingizni kiriting",
               editParentTxt: "Ota -ona haqidagi ma'lumotlarni tahrirlash",
-              notiDelSelected: "Tanlangan ({{count}}) ta maʼlumotni oʻchirish",
+              notiDelSelected: "({{count}}) ta maʼlumotni oʻchirish",
               onBirthDay: "Tugʻilish",
               month: "Oy",
               localizationChangeModalText: "Agar yangi mamlakat tanlansa, kontent o'zgarishi mumkin. Agar o'sha mamlakatda yangi til tanlansa, kontent o'zgarmaydi, ma'lumotlar tanlangan tilda ko'rsatiladi, xolos",

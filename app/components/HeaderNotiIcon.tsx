@@ -288,7 +288,7 @@ const HeaderNotiIcon = (props: any): any => {
       dispatch(setAllScheduledLocalNotificationData([]));
       dispatch(setAllLocalNotificationData(newAllChildNotis));
       const localnotiFlagObj = { generateFlag: false, generateType: 'add', childuuid: 'all' };
-      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
     return (): any => {
       setFlagValue(false);
@@ -325,10 +325,20 @@ const HeaderNotiIcon = (props: any): any => {
     // LocalNotifications.getAllScheduledLocalNotifications();
     // LocalNotifications.getDeliveredNotifications();
     const fetchDataFav = async (): Promise<any> => {
-      const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
-      const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      Object.keys(childData[0]?.favoriteadvices)?.length > 0 && dispatch(setFavouriteAdvices(childData[0]?.favoriteadvices));
-      Object.keys(childData[0]?.favoritegames)?.length > 0 && dispatch(setFavouriteGames(childData[0].favoritegames));
+      try {
+        const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
+        const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        
+          // Object.keys(childData[0]?.favoriteadvices)?.length > 0 && dispatch(setFavouriteAdvices(childData[0]?.favoriteadvices));
+          // Object.keys(childData[0]?.favoritegames)?.length > 0 && dispatch(setFavouriteGames(childData[0].favoritegames));
+          console.log("fetchDataFav childdata",childData[0])
+          childData[0]?.favoriteadvices && dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)|| []));
+          childData[0]?.favoritegames && dispatch(setFavouriteGames(Object.values(childData[0]?.favoritegames) || []));  
+        
+      } catch(err){
+        console.log("fetchDataFav catch ",err)
+      }
+      
     }
     fetchDataFav()
   }, [activeChild?.uuid]);

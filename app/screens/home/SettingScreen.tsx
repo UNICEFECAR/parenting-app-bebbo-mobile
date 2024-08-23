@@ -203,10 +203,11 @@ const SettingScreen = (props: any): any => {
     return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
   }
   const exportDataAndroid = async (cipher: string): Promise<any> => {
-    const file = await ScopedStorage.openDocumentTree(true);
+    // const file = await ScopedStorage.openDocumentTree(true);
     const uri: any = await ScopedStorage.getPersistedUriPermissions();
     try {
-      const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
+      // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
+      const fileDownload: any = await ScopedStorage.createDocument("mybackup","application/json",JSON.stringify(cipher), 'utf8');
       const uri1: any = await ScopedStorage.getPersistedUriPermissions();
       console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
       if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
@@ -551,7 +552,7 @@ const SettingScreen = (props: any): any => {
       }
     ];
       dispatch(fetchAPI(apiJsonData, '', dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected))
-  }, [])
+  }, [dispatch,navigation])
   const toggleAllNotis = (): any => {
     if (isEnabled == true) {
       const obj = { key: 'growthEnabled', value: false };
@@ -681,7 +682,7 @@ const SettingScreen = (props: any): any => {
           })
           .catch((error: any) => {
             console.log("Decrypted error", error);
-            Alert.alert('', t('generalErrorTitle'));
+            Alert.alert(error, t('generalErrorTitle'));
             throw error;
           });
          
@@ -727,14 +728,13 @@ const SettingScreen = (props: any): any => {
       type: DocumentPicker.types.allFiles,
     })
       .then(async (res: any) => {
-        //console.log('<<<<<importDataIOS>>>>>>', res)
+        console.log('<<<<<importDataIOS>>>>>>', res)
         let oldChildrenData: any = []
         if (res.length > 0 && res[0].uri) {
           if (res[0].name.endsWith(".json")) {
             const decryptFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8').then((edata: any) => {
-              //console.log("edata", edata);
-              //console.log("encryptionsKey", encryptionsKey);
-              
+              console.log("edata", edata);
+              console.log("encryptionsKey", encryptionsKey);
               return decryptData(edata, encryptionsKey)
                 .then((text: any) => {
                   //console.log('decryptData',text)

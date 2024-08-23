@@ -102,14 +102,14 @@ export const onCountryApiSuccess = async (response: any, dispatch: any, navigati
   console.log('Response for country is', response)
   if (response && response[0] && response[0].apiEndpoint == appConfig.countryGroups) {
     response = response[0];
-
     if (response.data && response.data.status && response.data.status == 200) {
       console.log('type of sponser data for country is', typeof response.data.data)
       console.log('sponser data for country is', response.data.data)
       console.log('sponser data for country issdsd', response.data?.data[0])
       dispatch(setuserIsFirstTime(true));
+      dispatch(setCountriesStore(response.data?.data))
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, prevPage);
-      console.log("allDatatoStore ", prevPage, "--", allDatatoStore);
+      console.log("allDatatoStore ", prevPage, "--", allDatatoStore,languageCode);
     }
   }
 
