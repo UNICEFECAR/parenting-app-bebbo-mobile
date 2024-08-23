@@ -36,7 +36,7 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
       item.vaccination_closes = (index == sortedGroupForPeriod.length - 1) ? maxPeriodDays : sortedGroupForPeriod[index + 1].vaccination_opens;
     })
     sortedGroupForPeriod.forEach((item: any) => {
-      console.log(DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (item?.vaccination_opens) }),"notificationDate")
+      // console.log(DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (item?.vaccination_opens) }),"notificationDate")
       noti.push({
         "days_from": item?.vaccination_opens,
         "days_to": item?.vaccination_closes,

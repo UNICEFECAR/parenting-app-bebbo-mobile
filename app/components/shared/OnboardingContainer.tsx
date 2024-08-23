@@ -77,7 +77,7 @@ export const LocalizationWithoutBorderCol = styled.Pressable`
 flex:1.4;
 flex-direction: row;
 align-items:center;
-margin-top:12px;
+margin-top:15px;
 padding:4px 15px 0px;
 `
 

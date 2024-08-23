@@ -104,7 +104,7 @@ export default (): any => {
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
   const apiStatus = useAppSelector((state) => state.failedOnloadApiObjReducer.status);
-  console.log('api status is', apiStatus)
+  // console.log('api status is', apiStatus)
   const apiData = useAppSelector((state) => state.failedOnloadApiObjReducer.data);
   const apiError = useAppSelector((state) => state.failedOnloadApiObjReducer.error);
   const surveyData = useAppSelector((state: any) =>

@@ -330,11 +330,11 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     }
   }
   const saveSelection = (): any => {
-    i18n.changeLanguage(newLanguage.locale)
+    i18n.changeLanguage(newLanguage?.locale || "en")
       .then(() => {
         if (buildFor == buildForBebbo) {
-          const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
-          const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
+          const rotwLanguagelocaleen = localization[localization?.length - 1].languages[0].locale;
+          const rotwLanguagelocaleru = localization[localization?.length - 1].languages[1].locale;
           console.log('rest of the world title', newLanguage)
           console.log('rotwLanguagelocaleru of the world title', rotwLanguagelocaleru)
           if (newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {
@@ -364,10 +364,10 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   };
 
   const onEditLang = () => {
-    if (allCountries.length == 1 && allCountries[0].languages?.length === 1) {
+    if (allCountries?.length == 1 && allCountries?.[0]?.languages?.length === 1) {
       saveSelection()
-    } else if (allCountries.length == 1) {
-      navigation.navigate('LanguageSelection', { country: countryData, language: newLanguage })
+    } else if (allCountries?.length == 1) {
+      navigation.navigate('LanguageSelection', { country: countryData, language: newLanguage,isFromCountry:true })
     } else {
       navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })
     }

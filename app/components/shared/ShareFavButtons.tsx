@@ -3,7 +3,7 @@ import { shareTextButton } from '@assets/translations/appOfflineData/apiConstant
 import { Heading4 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Share, StyleSheet } from 'react-native';
+import { Alert, Share, StyleSheet,View,Text } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -73,7 +73,7 @@ const languageCode = useAppSelector(
     if(isAdvice){
     await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-    dispatch(setFavouriteAdvices(childData[0]?.favoriteadvices));
+    dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)));
     const favAdviceData= {'name': FAVOURITE_ADVICE_ADDED,'params':{ advise_id: item?.id } }
     logEvent(favAdviceData,netInfo.isConnected)
     }else{
@@ -92,8 +92,7 @@ const languageCode = useAppSelector(
       
       await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      console.log('childdata is....',childData[0])
-      dispatch(setFavouriteAdvices(childData[0]?.favoriteadvices));
+      dispatch(Object.values(setFavouriteAdvices(childData[0]?.favoriteadvices)));
   
       }else{
         await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
