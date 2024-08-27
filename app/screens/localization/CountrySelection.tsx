@@ -186,8 +186,8 @@
                   data={allCountries}
                   extraData={allCountries}
                   renderItem={renderItem}
-                  initialNumToRender={10}
-                  windowSize={10}
+                  initialNumToRender={20}
+                  windowSize={20}
                   showsVerticalScrollIndicator={false}
                   keyExtractor={(item): any => item.CountryID}
                   contentContainerStyle={contentContainer}
@@ -199,8 +199,8 @@
                   extraData={allCountries}
                   contentContainerStyle={{ flexDirection: 'column-reverse' }}
                   renderItem={renderItem}
-                  initialNumToRender={10}
-                  windowSize={10}
+                  initialNumToRender={20}
+                  windowSize={20}
                   showsVerticalScrollIndicator={false}
                   keyExtractor={(item): any => item.CountryID}
                   ListHeaderComponent={ allCountries.length <= 12 && renderHeader}
