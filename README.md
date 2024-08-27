@@ -78,6 +78,7 @@ Several third party libraries and services are incorporated. These are the most 
 
 * Either Mac or Windows can be used for development.
 * Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
+* Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to Set up Environment for React Native Development.
 
 ## Install Bebbo in localhost
 
@@ -151,59 +152,59 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
 5. For Android, add keystore files into \android\app folder to generate Android build.
       To add a keystore file to your Android project’s `android/app` folder and configure it for signing, follow these steps:
 
-### 1. **Obtain or Create a Keystore File**
+    5.1. *Obtain or Create a Keystore File*
+    
+    If you don’t already have a keystore file, you need to generate one. You can use the `keytool` command to create it:
+    
+    - Open a terminal or command prompt.
+    - Run the following command to generate a new keystore file:
+    
+      ```bash
+      keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
+      ```
+    
+    - Follow the prompts to enter details such as passwords, organizational information, etc.
 
-If you don’t already have a keystore file, you need to generate one. You can use the `keytool` command to create it:
+    5.2. *Add the Keystore File to Your Project*
+    
+    - *Navigate to Your Project Directory:*
+      - Open your project in your file explorer or terminal.
+      - Go to the `android/app` directory of your project.
+    
+    - *Copy the Keystore File:*
+      - Move or copy your `my-release-key.jks` file into the `android/app` directory.
 
-- Open a terminal or command prompt.
-- Run the following command to generate a new keystore file:
-
-  ```bash
-  keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
-  ```
-
-- Follow the prompts to enter details such as passwords, organizational information, etc.
-
-### 2. **Add the Keystore File to Your Project**
-
-- **Navigate to Your Project Directory:**
-  - Open your project in your file explorer or terminal.
-  - Go to the `android/app` directory of your project.
-
-- **Copy the Keystore File:**
-  - Move or copy your `my-release-key.jks` file into the `android/app` directory.
-
-### 3. **Configure Gradle for Signing**
-
-- **Open the `build.gradle` File:**
-  - In your project, navigate to `android/app/build.gradle`.
-
-- **Add Signing Configuration:**
-  - Modify the `build.gradle` file to include signing configuration. Add the following code inside the `android` block:
-
-    ```groovy
-    android {
-        ...
-        signingConfigs {
-            release {
-                if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                    storeFile file(MYAPP_RELEASE_STORE_FILE)
-                    storePassword MYAPP_RELEASE_STORE_PASSWORD
-                    keyAlias MYAPP_RELEASE_KEY_ALIAS
-                    keyPassword MYAPP_RELEASE_KEY_PASSWORD
+    5.3. *Configure Gradle for Signing*
+    
+    - *Open the `build.gradle` File:*
+      - In your project, navigate to `android/app/build.gradle`.
+    
+    - *Add Signing Configuration:*
+      - Modify the `build.gradle` file to include signing configuration. Add the following code inside the `android` block:
+    
+        ```groovy
+        android {
+            ...
+            signingConfigs {
+                release {
+                    if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                        storeFile file(MYAPP_RELEASE_STORE_FILE)
+                        storePassword MYAPP_RELEASE_STORE_PASSWORD
+                        keyAlias MYAPP_RELEASE_KEY_ALIAS
+                        keyPassword MYAPP_RELEASE_KEY_PASSWORD
+                    }
+                }
+            }
+            buildTypes {
+                release {
+                    signingConfig signingConfigs.release
+                    // Optional: Enable ProGuard to shrink and obfuscate code
+                    minifyEnabled false
+                    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
                 }
             }
         }
-        buildTypes {
-            release {
-                signingConfig signingConfigs.release
-                // Optional: Enable ProGuard to shrink and obfuscate code
-                minifyEnabled false
-                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            }
-        }
-    }
-    ```
+        ```
 
 - **Add Signing Properties:**
   - Create or update the `gradle.properties` file located in the `android/` directory of your project (if the file doesn’t exist, create it).
