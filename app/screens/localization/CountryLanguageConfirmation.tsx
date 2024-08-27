@@ -292,7 +292,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         }
       })
 
-    if (userIsOnboarded == true && (newLanguage.languageCode == languageCode)) {
+    if (userIsOnboarded == true && (newLanguage?.languageCode == languageCode)) {
       navigation.reset({
         index: 0,
         routes: [
@@ -305,17 +305,17 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       if (Object.keys(route.params).length !== 0) {
         dispatch(onLocalizationSelect(route.params));
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-        analytics().setUserProperties({ country: route.params.country.name, language: newLanguage.displayName })
+        analytics().setUserProperties({ country: route.params?.country?.name, language: newLanguage?.displayName })
       } else {
         console.log('countyData is', countryData);
         console.log('newLanguage is', newLanguage);
         const languageSelected = selectedLocale !== '' ? selectedLocale : locale;
-        const filteredLan = countryData?.languages?.filter((lang: any) => lang.locale == newLanguage?.locale);
+        const filteredLan = countryData?.languages?.filter((lang: any) => lang?.locale == newLanguage?.locale);
         console.log('filteredLan is', filteredLan);
         dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": countryData?.CountryID }));
         // dispatch(onLocalizationSelect(countryData));
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-        analytics().setUserProperties({ country: countryData.name, language: newLanguage.displayName })
+        analytics().setUserProperties({ country: countryData?.name, language: newLanguage?.displayName })
       }
 
       // if (userIsOnboarded == true) {
@@ -414,7 +414,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                   <Heading3Regular>{t('language')}</Heading3Regular>
                 </LocalizationContentHead>
                 <LocalizationContentResult>
-                  <Heading3>{Array.isArray(route.params.language) ? language[0].displayName : newLanguage?.displayName}</Heading3>
+                  <Heading3>{Array.isArray(route.params.language) ? language[0]?.displayName : newLanguage?.displayName}</Heading3>
                 </LocalizationContentResult>
               </LocalizationWithoutBorderCol>
 
