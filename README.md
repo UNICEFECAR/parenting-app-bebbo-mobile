@@ -47,7 +47,7 @@ The app can also operate in an offline mode in environments with limited interne
 * [NPM](https://nodejs.org/en/)
     * NPM (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
         * Node version - 21.7.3
-        * NPM version  - 10.3.0
+        * NPM version  - 10.8.2
 <!--
 * [Storybook](https://storybook.js.org/)
     * Storybook was used to create visual tests for many components and services used in the application.
