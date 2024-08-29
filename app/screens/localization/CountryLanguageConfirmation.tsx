@@ -199,7 +199,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       )
 
       setSponsorsData(selectedCountry);
-      const foundCountry = allCountries.length === 1 ? allCountries?.[0] : getCountryByCountryCode(RNLocalize.getCountry());
+      const foundCountry = allCountries?.length === 1 ? allCountries?.[0] : getCountryByCountryCode(RNLocalize.getCountry());
       console.log('Found country is', foundCountry)
       if (foundCountry != undefined && foundCountry != null) {
         if (countrySelectedId == 0) {
@@ -329,7 +329,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       });
     }
   }
-  const saveSelection = (): any => {
+  const saveSelection = (): void => {
     i18n.changeLanguage(newLanguage?.locale || "en")
       .then(() => {
         if (buildFor == buildForBebbo) {
@@ -341,8 +341,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
             Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
               [
                 {
-                  text: t('restOfTheWorldOkTitle'), onPress: async (): Promise<any> => {
-                    rtlConditions(newLanguage)
+                  text: t('restOfTheWorldOkTitle'), onPress: async (): Promise<void> => {
+                    await rtlConditions(newLanguage)
                   }
                 }
               ]
@@ -367,9 +367,16 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     if (allCountries?.length == 1 && allCountries?.[0]?.languages?.length === 1) {
       saveSelection()
     } else if (allCountries?.length == 1) {
-      navigation.navigate('LanguageSelection', { country: countryData, language: newLanguage,isFromCountry:true })
+      navigation.navigate('LanguageSelection', { 
+        country: countryData,
+        language: newLanguage,
+        isFromCountry:true 
+      })
     } else {
-      navigation.navigate('CountrySelection', { country: countryData, language: newLanguage })
+      navigation.navigate('CountrySelection', { 
+        country: countryData,
+        language: newLanguage
+      })
     }
   }
 

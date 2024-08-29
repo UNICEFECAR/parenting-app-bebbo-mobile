@@ -191,11 +191,9 @@
 		E81798CA2C64B0E600BE2C1E /* liblottie-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "liblottie-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81798CC2C64B0E600BE2C1E /* liblottie-react-native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "liblottie-react-native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81798CE2C64B0E600BE2C1E /* libreact-native-lottie-splash-screen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-lottie-splash-screen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8F4DF342C7DD2930054CFAA /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E8F4DF352C7DD2F20054CFAA /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		E8F4DF362C7DD2F20054CFAA /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		E8F4DF372C7DD30F0054CFAA /* ro-MD */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-MD"; path = "ro-MD.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		E8F4DF382C7DD30F0054CFAA /* ro-MD */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-MD"; path = "ro-MD.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E8F4DF392C7F0B920054CFAA /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E8F4DF3A2C7F0BC10054CFAA /* ro-MD */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-MD"; path = "ro-MD.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E8F4DF3B2C7F0C070054CFAA /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9425AEFEF25A885A00867F2 /* Pods-ParentBuddyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp/Pods-ParentBuddyApp.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -698,9 +696,9 @@
 				"sr-Latn-XK",
 				"sq-XK",
 				uk,
-				sk,
 				"ro-RO",
 				"ro-MD",
+				sk,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1848,8 +1846,9 @@
 				BF838CE827A43A7600CC12B9 /* tg-TJ */,
 				BF838CE927A43A7700CC12B9 /* uz-UZ */,
 				BFB0EA2627EAFC0D004ECAC1 /* uk */,
-				E8F4DF352C7DD2F20054CFAA /* ro-RO */,
-				E8F4DF372C7DD30F0054CFAA /* ro-MD */,
+				E8F4DF392C7F0B920054CFAA /* ro-RO */,
+				E8F4DF3A2C7F0BC10054CFAA /* ro-MD */,
+				E8F4DF3B2C7F0C070054CFAA /* sk */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1860,9 +1859,6 @@
 				BF838CD827A43A2C00CC12B9 /* en */,
 				BF838CEB27A441FC00CC12B9 /* sr-Latn-XK */,
 				BF838CEC27A4423D00CC12B9 /* sq-XK */,
-				E8F4DF342C7DD2930054CFAA /* sk */,
-				E8F4DF362C7DD2F20054CFAA /* ro-RO */,
-				E8F4DF382C7DD30F0054CFAA /* ro-MD */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

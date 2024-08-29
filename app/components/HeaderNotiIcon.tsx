@@ -335,8 +335,8 @@ const HeaderNotiIcon = (props: any): any => {
           childData[0]?.favoriteadvices && dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)|| []));
           childData[0]?.favoritegames && dispatch(setFavouriteGames(Object.values(childData[0]?.favoritegames) || []));  
         
-      } catch(err){
-        console.log("fetchDataFav catch ",err)
+      } catch(err:any){
+        console.error("Error in fetchDataFav:", err.message || err);
       }
       
     }

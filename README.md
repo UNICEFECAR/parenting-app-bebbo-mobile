@@ -78,7 +78,7 @@ Several third party libraries and services are incorporated. These are the most 
 
 * Either Mac or Windows can be used for development.
 * Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
-* Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to Set up Environment for React Native Development.
+* Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to set up environment for React Native development.
 
 ## Install Bebbo in localhost
 
@@ -150,9 +150,9 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
 Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
 
 5. For Android, add keystore files into \android\app folder to generate Android build.
-      To add a keystore file to your Android project’s `android/app` folder and configure it for signing, follow these steps:
+      To add a keystore file to your Android project’s `android/app` folder and configure it for signing, Follow the following steps to add keystore file.:
 
-    5.1. *Obtain or Create a Keystore File*
+    5.1. *Obtain or create a keystore file*
     
     If you don’t already have a keystore file, you need to generate one. You can use the `keytool` command to create it:
     
@@ -165,7 +165,7 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
     
     - Follow the prompts to enter details such as passwords, organizational information, etc.
 
-    5.2. *Add the Keystore File to Your Project*
+    5.2. *Add a keystore file to the project*
     
     - *Navigate to Your Project Directory:*
       - Open your project in your file explorer or terminal.

@@ -209,7 +209,7 @@ const HeaderBabyMenu = (props: any): any => {
         ) : (
           <ProfileListView>
             <ProfileIconView>
-              {(data.photoUri != '' && data.photoUri != null) ? (
+              {(data.photoUri) ? (
                 <ImageIcon
                   source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
