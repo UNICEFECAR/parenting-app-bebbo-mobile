@@ -11,7 +11,7 @@ const MKmk = {
                 country: "Земја",
                 language: "Јазик",
                 walkthroughTextstitle0: "Драги родители,",
-                walkthroughTextssubtitle0: "запознајте се со REMOVED_FACEBOOK_APP_ID1 – апликација која ќе ви помогне да го поддржите развојот на вашето дете",
+                walkthroughTextssubtitle0: "Запознајте се со REMOVED_FACEBOOK_APP_ID1",
                 walkthroughTextstitle1: "Игри",
                 walkthroughTextssubtitle1: "за да му помогнете на вашето дете да учи нови нешта секој ден",
                 walkthroughTextstitle2: "Алатки",

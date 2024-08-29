@@ -11,7 +11,7 @@ const KGky = {
                 country: "Өлкө",
                 language: "Тил",
                 walkthroughTextstitle0: "Кош келиңиздер, ата-энелер!",
-                walkthroughTextssubtitle0: "Беббо сиздин жардамчыңыз, бул жерден балаңыздын өнүгүүсү жөнүндө керектүү маалыматты табасыз.",
+                walkthroughTextssubtitle0: "Беббо сиздин жардамчыңыз",
                 walkthroughTextstitle1: "Оюндар",
                 walkthroughTextssubtitle1: "балаңызга жаңы нерселерди үйрөнгөнгө жардам берет",
                 walkthroughTextstitle2: "Куралдар",

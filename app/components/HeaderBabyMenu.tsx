@@ -166,7 +166,7 @@ const HeaderBabyMenu = (props: any): any => {
           currentActiveChild == data.uuid ? (
           <ProfileListViewSelected>
             <ProfileIconView>
-              {data.photoUri != '' ? (
+              {(data.photoUri != '' && data.photoUri != null) ? (
                 <ImageIcon
                   source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
@@ -209,7 +209,7 @@ const HeaderBabyMenu = (props: any): any => {
         ) : (
           <ProfileListView>
             <ProfileIconView>
-              {data.photoUri != '' ? (
+              {(data.photoUri) ? (
                 <ImageIcon
                   source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
@@ -341,7 +341,7 @@ const HeaderBabyMenu = (props: any): any => {
               getAllConfigData(dispatch);
             }
           }}>
-          {activeChild.photoUri != '' ? (
+          {(activeChild.photoUri != '' && activeChild.photoUri != null) ? (
             <ImageIcon
               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
           ) : (
