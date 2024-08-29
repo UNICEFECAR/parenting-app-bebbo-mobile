@@ -308,6 +308,8 @@ class Backup {
                   console.log("Decrypted error", error);
                   throw error;
                 });
+                await userRealmCommon.openRealm();
+                await userRealmCommon.deleteAllAtOnce();
                 const jsonParseFileData = JSON.parse(await decryptedData);
                 oldChildrenData = jsonParseFileData;
             } else {

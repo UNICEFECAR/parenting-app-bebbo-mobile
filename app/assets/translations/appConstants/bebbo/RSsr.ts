@@ -11,7 +11,7 @@ const RSsr = {
               country: "Zemlja",
               language: "Jezik",
               walkthroughTextstitle0: "Dobro došli, roditelji!",
-              walkthroughTextssubtitle0: "Otkrijte Bebbo – sve što Vam kao roditelju treba da podržite razvoj svog deteta",
+              walkthroughTextssubtitle0: "Otkrijte Bebbo",
               walkthroughTextstitle1: "Igre",
               walkthroughTextssubtitle1: "koje Vašem detetu pomažu da svakog dana nauči nešto novo",
               walkthroughTextstitle2: "Alati",

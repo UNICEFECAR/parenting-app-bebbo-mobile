@@ -52,7 +52,7 @@ const BabyNotification = (): any => {
                 <FlexDirRow>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      {activeChild.photoUri != '' ? (
+                      {activeChild.photoUri != '' && activeChild.photoUri != null ? (
                         <ImageIcon
                           source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
                         ></ImageIcon>

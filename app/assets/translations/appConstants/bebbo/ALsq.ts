@@ -11,7 +11,7 @@ const ALsq = {
               country: "Shteti",
               language: "Gjuha",
               walkthroughTextstitle0: "Mirë se erdhët Prindër!",
-              walkthroughTextssubtitle0: "Zbuloni Bebbo-n, gjithçka që ju nevojitet si prindër për të mbështetur zhvillimin e fëmijës tuaj",
+              walkthroughTextssubtitle0: "Zbuloni Bebbo-n",
               walkthroughTextstitle1: "Lojëra",
               walkthroughTextssubtitle1: "për të ndihmuar fëmijën tuaj që të mësojë gjëra të reja çdo ditë",
               walkthroughTextstitle2: "Mjete",

@@ -50,7 +50,7 @@
     "lottie-react-native": "^5.1.6",
     "luxon": "^3.4.3",
     "minisearch": "^6.3.0",
-    "npm": "^9.6.7",
+    "npm": "^10.8.2",
     "patch-package": "^8.0.0",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
@@ -76,6 +76,7 @@
     "react-native-lottie-splash-screen": "^1.1.2",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-orientation-locker": "^1.5.0",
+    "react-native-outside-press": "1.2.2",
     "react-native-permissions": "^3.10.0",
     "react-native-popup-menu": "^0.16.1",
     "react-native-progress-circle": "git+https://github.com/NehaRuparelgit/react-native-progress-circle.git",
@@ -106,8 +107,7 @@
     "unorm": "^1.6.0",
     "uuid": "^9.0.1",
     "victory-native": "36.8.1",
-    "yargs-parser": "^21.1.1",
-    "react-native-outside-press": "1.2.2"
+    "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",

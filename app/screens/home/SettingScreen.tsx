@@ -1,5 +1,5 @@
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { allApisObject, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -80,6 +80,7 @@ import { logEvent } from '../../services/EventSyncService';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
 import configureAppStore from '../../redux/store';
+import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -172,6 +173,11 @@ const SettingScreen = (props: any): any => {
   const monthlyDownloadDate = useAppSelector(
     (state: any) => state.utilsData.monthlyDownloadDate,
   );
+  const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
   const incrementalSyncDT = useAppSelector((state: any) =>
     (state.utilsData.incrementalSyncDT),
   );
@@ -197,10 +203,11 @@ const SettingScreen = (props: any): any => {
     return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
   }
   const exportDataAndroid = async (cipher: string): Promise<any> => {
-    const file = await ScopedStorage.openDocumentTree(true);
+    // const file = await ScopedStorage.openDocumentTree(true);
     const uri: any = await ScopedStorage.getPersistedUriPermissions();
     try {
-      const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
+      // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
+      const fileDownload: any = await ScopedStorage.createDocument("mybackup","application/json",JSON.stringify(cipher), 'utf8');
       const uri1: any = await ScopedStorage.getPersistedUriPermissions();
       console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
       if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
@@ -533,6 +540,19 @@ const SettingScreen = (props: any): any => {
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
+  
+  
+  useEffect(() => {
+    const apiJsonData = [
+      {
+        apiEndpoint: appConfig.countryGroups,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      }
+    ];
+      dispatch(fetchAPI(apiJsonData, '', dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected))
+  }, [dispatch,navigation])
   const toggleAllNotis = (): any => {
     if (isEnabled == true) {
       const obj = { key: 'growthEnabled', value: false };
@@ -621,12 +641,12 @@ const SettingScreen = (props: any): any => {
     } else {
       console.log('Selected country for countryId is', countryId);
       const selectedCountry: any = allCountries?.find(
-        (country: any) => country?.CountryID === countryId,
+        (country: any) => country?.CountryID == countryId,
       );
-      console.log('Selected country is', selectedCountry);
+      console.log(allCountries,'Selected country is', selectedCountry);
       setCountry(selectedCountry);
       const selectedLanguage: any = selectedCountry?.languages?.find(
-        (language: any) => language?.languageCode === languageCode,
+        (language: any) => language?.languageCode == languageCode,
       );
       setlanguage(selectedLanguage);
     }
@@ -662,7 +682,7 @@ const SettingScreen = (props: any): any => {
           })
           .catch((error: any) => {
             console.log("Decrypted error", error);
-            Alert.alert('', t('generalErrorTitle'));
+            Alert.alert(error, t('generalErrorTitle'));
             throw error;
           });
          
@@ -708,18 +728,15 @@ const SettingScreen = (props: any): any => {
       type: DocumentPicker.types.allFiles,
     })
       .then(async (res: any) => {
-        //console.log('<<<<<importDataIOS>>>>>>', res)
+        console.log('<<<<<importDataIOS>>>>>>', res)
         let oldChildrenData: any = []
         if (res.length > 0 && res[0].uri) {
           if (res[0].name.endsWith(".json")) {
             const decryptFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8').then((edata: any) => {
-              //console.log("edata", edata);
-              //console.log("encryptionsKey", encryptionsKey);
-              
               return decryptData(edata, encryptionsKey)
                 .then((text: any) => {
                   //console.log('decryptData',text)
-                  return text;
+                  return text.replace(/[\x00-\x1F\x7F]/g,'');
                 })
                 .catch((error: any) => {
                   //console.log("Decrypted error", error);

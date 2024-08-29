@@ -11,7 +11,7 @@ const KGru = {
                 country: "Страна",
                 language: "Язык",
                 walkthroughTextstitle0: "Добро пожаловать, родители!",
-                walkthroughTextssubtitle0: "Беббо ваш помощник - здесь вы найдете все, что нужно знать о развитии ребенка.",
+                walkthroughTextssubtitle0: "Беббо ваш помощник",
                 walkthroughTextstitle1: "Игры",
                 walkthroughTextssubtitle1: "помогут вашему ребенку учиться новому",
                 walkthroughTextstitle2: "Инструменты",

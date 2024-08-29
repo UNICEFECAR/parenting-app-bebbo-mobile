@@ -15,6 +15,9 @@ export const OuterIconRow = styled.View`
 export const OuterIconLeft = styled.View`
   margin-right: 8px;
 `;
+export const OuterIconLeft1 = styled.View`
+  margin-right: 2px;
+`;
 export const OuterIconLeft15 = styled.View`
   margin-right: 15px;
 `;

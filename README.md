@@ -47,7 +47,7 @@ The app can also operate in an offline mode in environments with limited interne
 * [NPM](https://nodejs.org/en/)
     * NPM (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
         * Node version - 21.7.3
-        * NPM version  - 10.3.0
+        * NPM version  - 10.8.2
 <!--
 * [Storybook](https://storybook.js.org/)
     * Storybook was used to create visual tests for many components and services used in the application.
@@ -78,6 +78,7 @@ Several third party libraries and services are incorporated. These are the most 
 
 * Either Mac or Windows can be used for development.
 * Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
+* Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to set up environment for React Native development.
 
 ## Install Bebbo in localhost
 
@@ -149,6 +150,75 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
 Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
 
 5. For Android, add keystore files into \android\app folder to generate Android build.
+      To add a keystore file to your Android project’s `android/app` folder and configure it for signing, Follow the following steps to add keystore file.:
+
+    5.1. *Obtain or create a keystore file*
+    
+    If you don’t already have a keystore file, you need to generate one. You can use the `keytool` command to create it:
+    
+    - Open a terminal or command prompt.
+    - Run the following command to generate a new keystore file:
+    
+      ```bash
+      keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
+      ```
+    
+    - Follow the prompts to enter details such as passwords, organizational information, etc.
+
+    5.2. *Add a keystore file to the project*
+    
+    - *Navigate to Your Project Directory:*
+      - Open your project in your file explorer or terminal.
+      - Go to the `android/app` directory of your project.
+    
+    - *Copy the Keystore File:*
+      - Move or copy your `my-release-key.jks` file into the `android/app` directory.
+
+    5.3. *Configure Gradle for Signing*
+    
+    - *Open the `build.gradle` File:*
+      - In your project, navigate to `android/app/build.gradle`.
+    
+    - *Add Signing Configuration:*
+      - Modify the `build.gradle` file to include signing configuration. Add the following code inside the `android` block:
+    
+        ```groovy
+        android {
+            ...
+            signingConfigs {
+                release {
+                    if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                        storeFile file(MYAPP_RELEASE_STORE_FILE)
+                        storePassword MYAPP_RELEASE_STORE_PASSWORD
+                        keyAlias MYAPP_RELEASE_KEY_ALIAS
+                        keyPassword MYAPP_RELEASE_KEY_PASSWORD
+                    }
+                }
+            }
+            buildTypes {
+                release {
+                    signingConfig signingConfigs.release
+                    // Optional: Enable ProGuard to shrink and obfuscate code
+                    minifyEnabled false
+                    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                }
+            }
+        }
+        ```
+
+- **Add Signing Properties:**
+  - Create or update the `gradle.properties` file located in the `android/` directory of your project (if the file doesn’t exist, create it).
+
+  - Add the following properties to `gradle.properties`:
+
+    ```properties
+    MYAPP_RELEASE_STORE_FILE=my-release-key.jks
+    MYAPP_RELEASE_KEY_ALIAS=my-key-alias
+    MYAPP_RELEASE_STORE_PASSWORD=your-store-password
+    MYAPP_RELEASE_KEY_PASSWORD=your-key-password
+    ```
+
+    Replace `your-store-password` and `your-key-password` with the actual passwords you used when creating the keystore.
 
 6. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
@@ -294,6 +364,67 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
         encryptionsKey=d64e6a977f5643er90h8y5jk123n8bd88630jh56d34ddec874566342209y34 (Key for encryption)
         encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)
         ```
+        
+---
+
+## Steps to Generate Required Keys and Tokens
+
+### 1. Create Facebook App ID and Client Token
+
+#### Create a Facebook Developer Account
+- Visit [Facebook for Developers](https://developers.facebook.com/).
+- Log in with your Facebook account or create a new account.
+
+#### Create a New App
+- Navigate to "My Apps" and click "Create App."
+- Select the appropriate app type, such as "Consumer."
+- Enter the app name as "Bebbo" and follow the instructions to complete the setup.
+
+#### Obtain the Facebook App ID
+- Once the app is created, the **App ID** will be visible on your app dashboard. This is your `facebookAppId`.
+
+#### Generate a Client Token
+- Go to "Settings" > "Basic" in your app dashboard.
+- Scroll down to find the "Client Token" section. Click "Show" to view and copy your `facebookClientToken`.
+
+### 2. Generate Google Client ID
+
+#### Create a Google Developer Account
+- Visit the [Google Cloud Console](https://console.cloud.google.com/).
+- Sign in with your Google account.
+
+#### Create a New Project
+- In the Google Cloud Console, click "Select a Project" > "New Project."
+- Name your project (e.g., "Bebbo Production") and click "Create."
+
+#### Enable Google Sign-In API
+- Navigate to "APIs & Services" > "Library."
+- Search for "Google Sign-In API" and enable it for your project.
+
+#### Create OAuth 2.0 Client ID
+- Go to "APIs & Services" > "Credentials."
+- Click "Create Credentials" and choose "OAuth 2.0 Client ID."
+- Configure the consent screen and then generate your `clientIdKey`.
+
+### 3. Generate AES-256 Encryption Key and IV Key
+
+#### Generate Encryption Key
+You can use various tools or libraries to generate a 256-bit encryption key. Here’s how to do it using OpenSSL:
+
+```bash
+openssl rand -hex 32
+```
+- The output will be a 64-character hexadecimal string. This is your `encryptionsKey`.
+
+#### Generate Initialization Vector (IV)
+Similarly, generate a 128-bit IV:
+
+```bash
+openssl rand -hex 16
+```
+- The output will be a 32-character hexadecimal string. This is your `encryptionsIVKey`.
+
+---
   ## How to run
   After you install the application you can create build files for various flavors with below npx commands.
 	

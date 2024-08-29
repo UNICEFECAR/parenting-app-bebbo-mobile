@@ -11,7 +11,7 @@ const sk = {
               "country": "Krajina",
               "language": "Jazyk",
               "walkthroughTextstitle0": "Vitajte, rodičia!",
-              "walkthroughTextssubtitle0": "Objavte Bebbo - všetko, čo potrebujete ako rodič, aby ste podporili vývin Vášho dieťaťa",
+              "walkthroughTextssubtitle0": "Objavte Bebbo",
               "walkthroughTextstitle1": "Hry",
               "walkthroughTextssubtitle1": "aby ste pomohli Vášmu dieťaťu učiť sa nové veci každý deň",
               "walkthroughTextstitle2": "Moje dieťa",

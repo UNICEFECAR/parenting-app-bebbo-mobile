@@ -212,7 +212,7 @@ const ChildProfile = ({ navigation }: Props): any => {
 
           <ProfileIconView>
             {
-              data.photoUri != '' ?
+              (data.photoUri != '' && data.photoUri != null) ?
                 <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
                 </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
                   (genderName === t('chilGender2') ?
@@ -275,7 +275,7 @@ const ChildProfile = ({ navigation }: Props): any => {
           <ProfileListInner>
             <ProfileIconView>
               {
-                data.photoUri != '' ?
+                (data.photoUri != '' && data.photoUri != null) ?
                   <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
                   </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
                   (genderName === t('chilGender2') ?

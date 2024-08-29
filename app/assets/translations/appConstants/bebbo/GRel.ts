@@ -11,7 +11,7 @@ const GRel = {
                 country: "Χώρα",
                 language: "Γλώσσα",
                 walkthroughTextstitle0: "Καλως ήρθατε γονείς!",
-                walkthroughTextssubtitle0: "Ανακαλύψτε το Bebbo- όλα όσα χρειάζεστε ως γονέας για να υποστηρίξετε την ανάπτυξη του παιδιού σας",
+                walkthroughTextssubtitle0: "Ανακαλύψτε το Bebbo",
                 walkthroughTextstitle1: "Παιχνίδια",
                 walkthroughTextssubtitle1: "Βοηθήστε το παιδί σας να μάθει καινούργια πράγματα κάθε μέρα",
                 walkthroughTextstitle2: "Εργαλεία",
