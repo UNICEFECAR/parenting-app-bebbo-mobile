@@ -170,7 +170,6 @@
           <Pressable
               onPress={(e: any): any => {
                 console.log('Back icon click')
-                // navigation.navigate('CountryLanguageConfirmation')
                 navigation.goBack()
               }}
             >
@@ -206,34 +205,8 @@
                   ListHeaderComponent={ allCountries.length <= 12 && renderHeader}
                 />}
           </SelectionView>
-          {/* {country ? (
-            <ButtonSection>
-              <ShiftFromTopBottom10>
-                <ButtonviewNext>
-                  <ButtonviewClick
-                    onPress={(): any => {
-
-                        props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
-                      }
-                      }>
-                      <IconML name="ic_angle_right" size={32} color="#000" />
-                    </ButtonviewClick>
-                  </ButtonviewNext>
-                </ShiftFromTopBottom10>
-              </ButtonSection>
-            ) : (
-              <ButtonviewPrevious>
-                <ButtonviewClick onPress={(): any => {
-                  console.log("pressed")
-                }}>
-                  <IconML name="ic_angle_right" size={32} color="#000" />
-                </ButtonviewClick>
-              </ButtonviewPrevious>
-            )} */}
           {allCountries.length > 12 &&  renderHeader()}
-          
           </OnboardingContainer>
-        
         </>
       </>
     );

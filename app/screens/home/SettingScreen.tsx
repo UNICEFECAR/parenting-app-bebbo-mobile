@@ -733,8 +733,6 @@ const SettingScreen = (props: any): any => {
         if (res.length > 0 && res[0].uri) {
           if (res[0].name.endsWith(".json")) {
             const decryptFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8').then((edata: any) => {
-              console.log("edata", edata);
-              console.log("encryptionsKey", encryptionsKey);
               return decryptData(edata, encryptionsKey)
                 .then((text: any) => {
                   //console.log('decryptData',text)

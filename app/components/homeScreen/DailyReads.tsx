@@ -291,7 +291,7 @@ const DailyReads = (): any => {
         }
       });
 
-      if (articleDataToShow.length === 0 && articleDataToShow.length === 0) {
+      if (articleDataToShow.length === 0 && activityDataToShow.length === 0) {
         dispatch(setDailyArticleGamesCategory({}));
         dispatch(setShowedDailyDataCategory({}));
       }
