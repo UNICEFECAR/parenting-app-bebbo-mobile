@@ -1,9 +1,9 @@
-import { ADVICE_SHARED, GAME_SHARED } from '@assets/data/firebaseEvents';
+import { ADVICE_SHARED, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARED } from '@assets/data/firebaseEvents';
 import { articleCategoryArray, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
 import { MainContainer } from '@components/shared/Container';
-import { DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
+import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, HeadingHome3w, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading2, Heading4, HeadingHome3w, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +17,13 @@ import LoadableImage from '../../services/LoadableImage';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
+import { connect } from 'react-redux';
+import { FDirRow } from '@components/shared/FlexBoxStyle';
+import Icon, { OuterIconLeft, OuterIconLeft1, OuterIconRow } from '@components/shared/Icon';
+import styled from 'styled-components/native';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { setFavouriteAdvices, setFavouriteGames } from '../../redux/reducers/childSlice';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 
 const styles = StyleSheet.create({
   cardImage: {
@@ -28,7 +35,9 @@ const styles = StyleSheet.create({
   flatlistOuterView: { marginLeft: -7, marginRight: -7, marginTop: 10 },
   linearGradient: {
     flex: 1,
-  }
+  },
+  alignItemsFlexEnd: { alignItems: "flex-end" },
+  flexShrink1: { flexShrink: 1 }
 });
 const DailyReads = (): any => {
   const netInfo = useNetInfoHook();
@@ -97,7 +106,7 @@ const DailyReads = (): any => {
 
   const RenderDailyReadItem = React.memo(({ item, index, isAdvice }: any) => {
     return (
-      <View>
+      <View key={`${index}-index`}>
         <Pressable onPress={(): any => { goToArticleDetail(item) }} key={index}>
           <DailyBox>
             <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}>
@@ -119,8 +128,8 @@ const DailyReads = (): any => {
               <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
             </DailyTag>
             {/*Parent Share , View Details*/}
-            {isAdvice ? <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteAdvices.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} /> :
-              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteGames.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />}
+            {isAdvice ? <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteAdvices?.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={true} /> :
+              <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite={((favoriteGames?.findIndex((x: any) => x == item?.id)) > -1) ? true : false} isAdvice={false} />}
           </DailyBox>
         </Pressable>
       </View>
@@ -208,7 +217,7 @@ const DailyReads = (): any => {
       if (categoryActivityData.length < 2) {
         const additionalItems = ActivitiesData.filter((x: any) => x.activity_category !== activityCategoryArrayNew[nextIndex2].id);
         categoryActivityData = categoryActivityData.concat(additionalItems.slice(0, 2 - categoryActivityData.length));
-    }
+      }
       const obj2 = categoryActivityData.filter((i: any) => !showedDailyDataCategory.games.find((f: any) => f === i.id));
       let gamesarray: any = [];
       if (obj2.length === 0) {
@@ -239,8 +248,8 @@ const DailyReads = (): any => {
       setActivityDataToShowInList(activityListData);
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
       const showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
-      const selectedAdviceCategories = articleDataToShow.map((_article, index) => articleCategoryArrayNew[nextIndex + index] || 0);
-      const selectedAdviceIds = articleDataToShow.map((article) => article.id || 0);
+      const selectedAdviceCategories = articleDataToShow?.map((_article, index) => articleCategoryArrayNew[nextIndex + index] || 0);
+      const selectedAdviceIds = articleDataToShow?.map((article) => article.id || 0);
 
       const selectedGameCategories = activityDataToShow.map((_activity, index) => activityCategoryArrayNew[nextIndex2 + index]?.id || 0);
       const selectedGameIds = activityDataToShow.map((activity) => activity.id || 0);
@@ -298,12 +307,12 @@ const DailyReads = (): any => {
       setActivityDataToShowInList(activityDataList)
 
     }
-  }, [activeChild.uuid, activityTaxonomyId]);
+  }, [activeChild?.uuid, activityTaxonomyId]);
   const keyExtractor = useCallback((item: any) => item?.id, []);
 
   const renderItem = useCallback((item: any, index: any, isAdvice: boolean) => {
     return <RenderDailyReadItem item={item} index={index} isAdvice={isAdvice} />;
-  }, []);
+  }, [favoriteAdvices, favoriteGames]);
 
   return (
     <>

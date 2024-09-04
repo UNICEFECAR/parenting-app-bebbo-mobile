@@ -4,7 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, I18nManager, Platform } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
@@ -30,7 +30,10 @@ import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import { apiJsonDataGet, getAge } from '../services/childCRUD';
 import { deleteArticleNotPinned } from '../services/commonApiService';
 import KeepAwake from '@sayem314/react-native-keep-awake';
-
+import { clientIdKey } from 'react-native-dotenv';
+import RNRestart from 'react-native-restart';
+import i18next from 'i18next';
+import { onLocalizationSelect, setSponsorStore } from '../redux/reducers/localizationSlice';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -50,10 +53,31 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
-  const { apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadBufferData, ageBrackets, forceupdatetime } = route.params;
+  const {
+    apiJsonData = null,
+    prevPage = null,
+    downloadWeeklyData = null,
+    downloadMonthlyData = null,
+    downloadBufferData = null,
+    ageBrackets = null,
+    forceupdatetime = null,
+    isFirst = false
+  } = route.params || {};
   const sponsors = useAppSelector(
     (state: any) => state.selectedCountry.sponsors,
   );
+  const allCountries = useAppSelector(
+    (state: any) =>
+      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
+  );
+
+  const AppLayoutDirectionScreen = useAppSelector(
+    (state: any) => state.selectedCountry.AppLayoutDirectionScreen,
+  );
+  const AppLayoutDirection = useAppSelector(
+    (state: any) => state.selectedCountry.AppLayoutDirection,
+  );
+
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -278,6 +302,35 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       backHandler.remove();
     }
   }, []);
+
+  useEffect(() => {
+    if(allCountries?.length === 1 && allCountries[0]?.languages?.length === 1 && isFirst){
+      const language = allCountries[0]?.languages?.[0]
+      i18next.changeLanguage(language.locale)
+      .then(() => {
+        if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
+          if (AppLayoutDirection == 'ltr') {
+            //remove rtl on backhandler
+            Platform.OS == 'ios' ? setTimeout(() => {
+              I18nManager.forceRTL(true);
+              RNRestart.Restart();
+            }, 100) :
+              setTimeout(() => {
+                I18nManager.forceRTL(true);
+                RNRestart.Restart()
+              }, 0);
+          } else {
+            I18nManager.forceRTL(true);
+          }
+        } else {
+          I18nManager.forceRTL(false);
+        }
+      })
+      
+      dispatch(setSponsorStore(allCountries[0]));
+      dispatch(onLocalizationSelect({ "languages": allCountries[0]?.languages, "countryId": allCountries[0]?.CountryID }));
+    }
+  },[isFirst])
 
 
   const themeContext = useContext(ThemeContext);

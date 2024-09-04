@@ -11,7 +11,7 @@ const BYru = {
                 country: "Страна",
                 language: "Язык",
                 walkthroughTextstitle0: "Привет, родители!",
-                walkthroughTextssubtitle0: "Перед вами Беббо — все, что вам нужно знать о росте и развитии вашего ребенка",
+                walkthroughTextssubtitle0: "Перед вами Беббо",
                 walkthroughTextstitle1: "Занятия",
                 walkthroughTextssubtitle1: "и игры, стимулирующие развитие",
                 walkthroughTextstitle2: "Инструменты",
