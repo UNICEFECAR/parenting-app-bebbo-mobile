@@ -76,8 +76,8 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     //     dataToStore = databaseData2;
     // }
     const dataToStore = databaseData2;
-    console.log('offlineData is',offlineData)
-    console.log('stringify offlineData is',JSON.stringify(offlineData))
+    // console.log('offlineData is',offlineData)
+    // console.log('stringify offlineData is',JSON.stringify(offlineData))
     if (dataToStore?.length > 0) {
         dispatch(setAllHardcodedData(dataToStore))
         return dataToStore;
@@ -108,8 +108,8 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
     }
     else if (prevPage == "") {
         let Entity: any;
-        console.log('Prevpage is',prevPage);
-        await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
+        console.log(countryData,'Prevpage is',prevPage,languageCode);
+        // await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         return "success";
     }
     else if (prevPage == "Terms") {

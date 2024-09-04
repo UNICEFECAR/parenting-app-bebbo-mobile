@@ -217,7 +217,7 @@ const getTwoDigits = (number: any): string => {
 }
 export const formatDate = (dateData: any): any => {
     dateData = DateTime.fromJSDate(new Date(dateData));
-    console.log(dateData, "..before")
+    // console.log(dateData, "..before")
     // if (typeof dateData == "number") {
     //     dateData = DateTime.fromMillis(dateData)
     // }

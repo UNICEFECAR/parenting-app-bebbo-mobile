@@ -11,7 +11,7 @@ const ROro = {
                 country: "Țară",
                 language: "Limbă",
                 walkthroughTextstitle0: "Bine ați venit, părinți!",
-                walkthroughTextssubtitle0: "Descoperiți Bebbo - tot ceea ce aveți nevoie ca părinte pentru a susține dezvoltarea copilului dvs.",
+                walkthroughTextssubtitle0: "Descoperiți Bebbo ",
                 walkthroughTextstitle1: "Jocuri ",
                 walkthroughTextssubtitle1: "pentru a vă ajuta copilul să învețe lucruri noi în fiecare zi",
                 walkthroughTextstitle2: "Instrumente",

@@ -157,6 +157,10 @@ const UpcomingVaccines = (props: any): any => {
               backgroundColor: backgroundColor
             }}>
             <ToolsIconView>
+            <ToolsHeadPress
+              onPress={(): any => {
+                setIsOpen(!isOpen);
+              }}>
               {item?.vaccines.every((el: any) => {
                 return el.isMeasured == true;
               }) ? (
@@ -170,6 +174,7 @@ const UpcomingVaccines = (props: any): any => {
                   color="#000"
                 />
               )}
+              </ToolsHeadPress>
             </ToolsIconView>
             <ToolsHeadPress
               onPress={(): any => {

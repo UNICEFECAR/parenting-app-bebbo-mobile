@@ -11,7 +11,7 @@ const BYbe = {
                 country: "Краіна",
                 language: "Мова",
                 walkthroughTextstitle0: "Прывітанне, бацькі!",
-                walkthroughTextssubtitle0: "Перад вамі Bebbo — дадатак, дзе ёсць усё, што вам трэба ведаць пра рост і развіццё вашага дзіцяці",
+                walkthroughTextssubtitle0: "Перад вамі Bebbo",
                 walkthroughTextstitle1: "Заняткі",
                 walkthroughTextssubtitle1: "і гульні, якія стымулююць развіццё",
                 walkthroughTextstitle2: "Інструменты",

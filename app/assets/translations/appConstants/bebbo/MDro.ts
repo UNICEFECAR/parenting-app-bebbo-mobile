@@ -12,7 +12,7 @@ const MDro = {
                 country: "Țară",
                 language: "Limbă",
                 walkthroughTextstitle0: "Bun venit părinților!",
-                walkthroughTextssubtitle0: "Descoperiți Bebbo – resursa de care aveți nevoie ca părinte pentru a sprijini dezvoltarea copilului dvs.",
+                walkthroughTextssubtitle0: "Descoperiți Bebbo",
                 walkthroughTextstitle1: "Jocuri ",
                 walkthroughTextssubtitle1: "pentru a vă ajuta copilul să învețe lucruri noi în fiecare zi",
                 walkthroughTextstitle2: "Instrumente",
