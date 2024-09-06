@@ -92,7 +92,7 @@ const languageCode = useAppSelector(
       
       await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      dispatch(Object.values(setFavouriteAdvices(childData[0]?.favoriteadvices)));
+      dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)));
   
       }else{
         await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
