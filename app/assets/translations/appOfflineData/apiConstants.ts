@@ -104,6 +104,12 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
       saveinDB: false,
     },
     {
+      apiEndpoint: appConfig.articles,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
       apiEndpoint: appConfig.countryGroups,
       method: 'get',
       postdata: {},

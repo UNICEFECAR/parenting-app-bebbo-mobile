@@ -172,10 +172,10 @@ const DailyReads = (): any => {
     const nowDate = DateTime.now().toISODate();
     if (dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)) {
       let filteredArticles;
-      if (activeChild.isPremature === 'true') {
-        filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
-        ArticlesData = filteredArticles;
-      }
+      // if (activeChild.isPremature === 'true') {
+      //   filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
+      //   ArticlesData = filteredArticles;
+      // }
       const articleListData: any = [];
       const activityListData: any = [];
       const articleCategoryArrayNew = articleCategoryArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i));
@@ -272,10 +272,10 @@ const DailyReads = (): any => {
 
       const articleDataToShow: any = [];
       let filteredArticles;
-      if (activeChild.isPremature === 'true') {
-        filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
-        ArticlesData = filteredArticles;
-      }
+      // if (activeChild.isPremature === 'true') {
+      //   filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
+      //   ArticlesData = filteredArticles;
+      // }
       dailyDataCategory.currentadviceid.forEach((id: any) => {
         const filteredArticle = ArticlesData.find((x: any) => x.id === id);
         if (filteredArticle) {
