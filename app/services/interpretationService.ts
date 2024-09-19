@@ -8,8 +8,8 @@ export interface InterpretationText {
 }
 export const getInterpretationWeightForHeight = (standardDeviation: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity):any => {
     let childAgeId:any;
-    if(childTaxonomyData.prematureTaxonomyId!=null && childTaxonomyData.prematureTaxonomyId!="" && childTaxonomyData.prematureTaxonomyId!=undefined){
-        childAgeId=childTaxonomyData.prematureTaxonomyId;
+    if(childTaxonomyData?.prematureTaxonomyId!=null && childTaxonomyData?.prematureTaxonomyId!="" && childTaxonomyData?.prematureTaxonomyId!=undefined){
+        childAgeId=childTaxonomyData?.prematureTaxonomyId;
     }
     else{
         childAgeId=childTaxonomyData.id;
@@ -67,8 +67,8 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
 }
 export const getInterpretationHeightForAge = (standardDeviation: any, childBirthDate: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity):any => {
     let childAgeId:any;
-    if(childTaxonomyData.prematureTaxonomyId!=null && childTaxonomyData.prematureTaxonomyId!="" && childTaxonomyData.prematureTaxonomyId!=undefined){
-    childAgeId=childTaxonomyData.prematureTaxonomyId;
+    if(childTaxonomyData?.prematureTaxonomyId!=null && childTaxonomyData?.prematureTaxonomyId!="" && childTaxonomyData?.prematureTaxonomyId!=undefined){
+    childAgeId=childTaxonomyData?.prematureTaxonomyId;
     }
     else{
         childAgeId=childTaxonomyData.id;

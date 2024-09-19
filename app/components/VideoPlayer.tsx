@@ -164,6 +164,7 @@ const VideoPlayer = (props: any):any => {
                              cc_lang_pref: "us",
                             controls: true,
                         }}
+                        webViewStyle={{opacity: 0.99}}
                     />
                     </View>
                     </>
