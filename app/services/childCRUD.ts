@@ -125,7 +125,7 @@ export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,
     }
     if (taxonomyData?.length > 0) {
       if (prematureTaxonomyData && prematureTaxonomyData.length > 0) {
-        taxonomyData[0].prematureTaxonomyId = prematureTaxonomyData[0].id;
+        taxonomyData[0].prematureTaxonomyId = prematureTaxonomyData[0]?.id;
       }
       else {
         taxonomyData[0].prematureTaxonomyId = null;

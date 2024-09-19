@@ -100,19 +100,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     packagingOptions {
-        pickFirst 'lib/x86/libfbjni.so'
-        pickFirst 'lib/x86_64/libfbjni.so'
-        pickFirst 'lib/armeabi-v7a/libfbjni.so'
-        pickFirst 'lib/arm64-v8a/libfbjni.so'
-        pickFirst 'lib/armeabi-v7a/libfbjni.so'
-        pickFirst 'lib/arm64-v8a/libfbjni.so'
-        pickFirst 'lib/arm64-v8a/libc++_shared.so'
-        pickFirst 'lib/x86/libc++_shared.so'
-        pickFirst 'lib/x86_64/libc++_shared.so'
-        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
-        pickFirst 'lib/arm64-v8a/libjscexecutor.so'
+        pickFirst 'lib/*/libfbjni.so'
+        pickFirst 'lib/*/libc++_shared.so'
+        pickFirst 'lib/*/libjscexecutor.so'
+        pickFirst 'lib/*/libjsc.so'
     }
-    
+
     splits {
         abi {
             reset()
@@ -174,8 +167,8 @@ android {
             applicationId 'org.unicef.ecar.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 25
-            versionName "2.1.2"
+            versionCode 26
+            versionName "2.2.1"
             signingConfig signingConfigs.release
         }
         prodstaging {
@@ -227,13 +220,13 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     // Firebase libraries (using the Firebase BoM for consistency - see https://firebase.google.com/docs/android/learn-more#bom)
-    implementation platform("com.google.firebase:firebase-bom:29.0.3")
+    implementation platform('com.google.firebase:firebase-bom:32.2.0') // or the latest BOM version
     implementation "com.google.firebase:firebase-perf"
     implementation "com.google.firebase:firebase-crashlytics"
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation project(':react-native-lottie-splash-screen')
     implementation 'com.google.android.gms:play-services-base:18.2.0'
-     // Android support library
+    // Android support library
     implementation 'com.android.support:support-core-utils:28.0.0'
     // Multi Dex Support: https://developer.android.com/studio/build/multidex#mdex-gradle
     implementation 'com.android.support:multidex:1.0.3'
@@ -260,7 +253,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 project.ext.vectoricons = [
-    iconFontNames: [ 'fontello.ttf' ] // Name of the font files you want to copy
+        iconFontNames: [ 'fontello.ttf' ] // Name of the font files you want to copy
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

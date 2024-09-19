@@ -67,7 +67,7 @@ const DailyReads = (): any => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId != null && activeChild?.taxonomyData?.prematureTaxonomyId != undefined && activeChild?.taxonomyData?.prematureTaxonomyId != "" ? activeChild?.taxonomyData?.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
   let ArticlesData = articleData.filter((x: any) => x.child_age.includes(activityTaxonomyId));
   const activityCategoryArray = useAppSelector(
@@ -90,6 +90,7 @@ const DailyReads = (): any => {
     state.childData.childDataSet.favoritegames
   );
   const [dataToShowInList, setDataToShowInList] = useState([]);
+  const [fetchAgain, setFetchAgain] = useState(false);
   const [activityDataToShowInList, setActivityDataToShowInList] = useState([]);
   const goToArticleDetail = (item: any): any => {
     console.log(Object.prototype.hasOwnProperty.call(item, 'activity_category'), "..ds")
@@ -103,6 +104,10 @@ const DailyReads = (): any => {
       netInfo: netInfo
     });
   }
+
+  useEffect(() => {
+    return () => setFetchAgain(false)
+  },[])
 
   const RenderDailyReadItem = React.memo(({ item, index, isAdvice }: any) => {
     return (
@@ -149,7 +154,7 @@ const DailyReads = (): any => {
         advid = 0;
         currentadviceid = 0;
       }
-      if (dailyDataCategoryall[activeChild.uuid].prematureTaxonomyId != activityTaxonomyId) {
+      if (dailyDataCategoryall[activeChild.uuid]?.prematureTaxonomyId != activityTaxonomyId) {
         gamid = 0;
         currentgamesid = 0;
       }
@@ -164,7 +169,7 @@ const DailyReads = (): any => {
       if (dailyDataCategoryall[activeChild.uuid].taxonomyid != activeChild.taxonomyData.id) {
         advicearr = [];
       }
-      if (dailyDataCategoryall[activeChild.uuid].prematureTaxonomyId != activityTaxonomyId) {
+      if (dailyDataCategoryall[activeChild.uuid]?.prematureTaxonomyId != activityTaxonomyId) {
         gamesarr = [];
       }
       showedDailyDataCategory = { advice: advicearr, games: gamesarr };
@@ -276,7 +281,7 @@ const DailyReads = (): any => {
       //   filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
       //   ArticlesData = filteredArticles;
       // }
-      dailyDataCategory.currentadviceid.forEach((id: any) => {
+      dailyDataCategory?.currentadviceid?.forEach?.((id: any) => {
         const filteredArticle = ArticlesData.find((x: any) => x.id === id);
         if (filteredArticle) {
           articleDataToShow.push(filteredArticle);
@@ -284,7 +289,7 @@ const DailyReads = (): any => {
       });
 
       const activityDataToShow: any = [];
-      dailyDataCategory.currentgamesid.forEach((id: any) => {
+      dailyDataCategory?.currentgamesid?.forEach?.((id: any) => {
         const filteredActivity = ActivitiesData.find((x: any) => x.id === id);
         if (filteredActivity) {
           activityDataToShow.push(filteredActivity);
@@ -307,13 +312,20 @@ const DailyReads = (): any => {
       setActivityDataToShowInList(activityDataList)
 
     }
-  }, [activeChild?.uuid, activityTaxonomyId]);
+  }, [activeChild?.uuid, activityTaxonomyId,fetchAgain]);
   const keyExtractor = useCallback((item: any) => item?.id, []);
 
   const renderItem = useCallback((item: any, index: any, isAdvice: boolean) => {
     return <RenderDailyReadItem item={item} index={index} isAdvice={isAdvice} />;
   }, [favoriteAdvices, favoriteGames]);
 
+  const renderEmptyList = () => {
+      if(dataToShowInList?.length == 0 && !fetchAgain){
+        setFetchAgain(true)
+      }
+      return null
+  }
+  
   return (
     <>
       <MainContainer>
@@ -327,6 +339,7 @@ const DailyReads = (): any => {
             keyExtractor={(item: any): any => keyExtractor(item)}
             windowSize={5}
             initialNumToRender={10}
+            ListEmptyComponent={() => renderEmptyList()}
           />
         </View>
         <View style={styles.flatlistOuterView}>

@@ -165,7 +165,7 @@ const Activities = ({ route, navigation }: any): any => {
     (state: any) =>
       state.utilsData.MileStonesData != '' ? JSON.parse(state.utilsData.MileStonesData) : [],
   );
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId != null && activeChild?.taxonomyData?.prematureTaxonomyId != undefined && activeChild?.taxonomyData?.prematureTaxonomyId != "" ? activeChild?.taxonomyData?.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
