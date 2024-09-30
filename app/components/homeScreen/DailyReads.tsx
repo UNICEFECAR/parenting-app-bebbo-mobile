@@ -218,9 +218,9 @@ const DailyReads = (): any => {
       }
       const currentIndex2 = activityCategoryArrayNew.findIndex((_item: any) => _item.id === dailyDataCategory.games);
       let nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
-      let categoryActivityData = ActivitiesData.filter((x: any) => x.activity_category == activityCategoryArrayNew[nextIndex2].id);
+      let categoryActivityData = ActivitiesData.filter((x: any) => x.activity_category == activityCategoryArrayNew[nextIndex2]?.id);
       if (categoryActivityData.length < 2) {
-        const additionalItems = ActivitiesData.filter((x: any) => x.activity_category !== activityCategoryArrayNew[nextIndex2].id);
+        const additionalItems = ActivitiesData.filter((x: any) => x.activity_category !== activityCategoryArrayNew[nextIndex2]?.id);
         categoryActivityData = categoryActivityData.concat(additionalItems.slice(0, 2 - categoryActivityData.length));
       }
       const obj2 = categoryActivityData.filter((i: any) => !showedDailyDataCategory.games.find((f: any) => f === i.id));
@@ -254,10 +254,10 @@ const DailyReads = (): any => {
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
       const showedDailyDataCategorytoDispatch: any = { ...showedDailyDataCategoryall };
       const selectedAdviceCategories = articleDataToShow?.map((_article, index) => articleCategoryArrayNew[nextIndex + index] || 0);
-      const selectedAdviceIds = articleDataToShow?.map((article) => article.id || 0);
+      const selectedAdviceIds = articleDataToShow?.map((article) => article?.id || 0);
 
       const selectedGameCategories = activityDataToShow.map((_activity, index) => activityCategoryArrayNew[nextIndex2 + index]?.id || 0);
-      const selectedGameIds = activityDataToShow.map((activity) => activity.id || 0);
+      const selectedGameIds = activityDataToShow.map((activity) => activity?.id || 0);
 
       dailyDataCategorytoDispatch[activeChild.uuid] = {
         advice: selectedAdviceCategories,
@@ -265,7 +265,7 @@ const DailyReads = (): any => {
         currentadviceid: selectedAdviceIds,
         currentgamesid: selectedGameIds,
         currentDate: DateTime.now().toISODate(),
-        taxonomyid: activeChild.taxonomyData.id,
+        taxonomyid: activeChild?.taxonomyData?.id,
         prematureTaxonomyId: activityTaxonomyId
       };
       showedDailyDataCategorytoDispatch[activeChild.uuid] = { advice: advicearray, games: gamesarray }
