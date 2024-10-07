@@ -45,6 +45,7 @@ import { logEvent } from '../services/EventSyncService';
 import { setActiveChildData } from '../redux/reducers/childSlice';
 import { Flex1, FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
 import { ScrollView } from 'react-native-gesture-handler';
+import { requestExactAlarmPermission } from '../services/exactAlarmService';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -103,6 +104,17 @@ const ChildSetupList = ({ navigation }: Props): any => {
   const onLayout = (event: any): any => {
     setParentViewHeight(event.nativeEvent.layout.height);
   }
+  useEffect(() => {
+    const checkExactAlarmPermission = async () => {
+      const hasPermission = await requestExactAlarmPermission();
+      if (!hasPermission) {
+        console.log('Redirected to enable exact alarm permission');
+      }
+    };
+
+    checkExactAlarmPermission();
+  }, []);
+
   useEffect(() => {
     if (isFocused) {
       getAllChildren(dispatch, childAge, 0);
