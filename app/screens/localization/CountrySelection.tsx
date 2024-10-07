@@ -112,7 +112,7 @@
         }
         console.log('newCountryId country is',newCountryId)
         const selectedCountry = allCountries.find(
-          (country: any) => country.CountryID === newCountryId,
+          (country: any) => country.CountryID == newCountryId,
         );
         const foundCountry = getCountryByCountryCode(RNLocalize.getCountry());
         if (foundCountry != undefined && foundCountry != null) {

@@ -109,7 +109,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       let newCountryLocale: any;
       if (userIsOnboarded == true) {
         if (route.params.country && route.params.country != null && route.params.country != undefined) {
-          newCountryId = route.params.country.countryId
+          newCountryId = route.params.country?.countryId
         } else {
           newCountryId = countryId;
         }
@@ -119,7 +119,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         } else {
 
           if (route.params != undefined) {
-            newCountryId = route.params.country.countryId;
+            newCountryId = route.params.country?.countryId;
           } else {
             newCountryId = countryId;
           }
@@ -127,7 +127,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       }
 
       const selectedCountry = allCountries.find(
-        (country: any) => country.CountryID === newCountryId,
+        (country: any) => country.CountryID == newCountryId,
       );
 
       // const countrySponsorsData = allCountries.find(

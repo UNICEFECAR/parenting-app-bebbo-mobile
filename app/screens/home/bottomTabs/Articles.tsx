@@ -236,7 +236,7 @@ const Articles = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId != null && activeChild?.taxonomyData?.prematureTaxonomyId != undefined && activeChild?.taxonomyData?.prematureTaxonomyId != "" ? activeChild?.taxonomyData?.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );

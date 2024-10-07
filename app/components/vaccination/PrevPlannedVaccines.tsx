@@ -13,7 +13,7 @@ const PrevPlannedVaccines = (props: any):any => {
   //remove first period which is the current period
   let allPreviousPendingVaccines: any[] = [];
   previousPeriods.forEach((period:any) => {
-    period.vaccines.forEach((vItem: any) => {
+    period?.vaccines?.forEach((vItem: any) => {
       if(vItem.isMeasured ==false){
         allPreviousPendingVaccines.push(vItem);
       }
