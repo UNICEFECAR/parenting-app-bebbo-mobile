@@ -123,9 +123,9 @@ const PrivacyPolicy = ({navigation}: Props):any => {
                 //   }
                 // },
               }}
-              WebView={WebView}
+              WebView={() => <WebView renderToHardwareTextureAndroid={true} />}
               renderersProps={{
-                iframe: { webViewProps: { allowsFullscreenVideo: true } }
+                iframe: { webViewProps: { allowsFullscreenVideo: true} }
               }}
             />
             : null 

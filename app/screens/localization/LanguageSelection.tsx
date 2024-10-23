@@ -17,6 +17,7 @@ import { allApisObject, appConfig, buildFor, buildForBebbo, buildForFoleja } fro
 import { Flex5 } from '@components/shared/FlexBoxStyle';
 import { ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
+import crashlytics from '@react-native-firebase/crashlytics';
 import analytics from '@react-native-firebase/analytics';
 import { useIsFocused } from '@react-navigation/native';
 type LanguageSelectionNavigationProp = StackNavigationProp<
@@ -105,7 +106,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   }, [route?.params?.language]);
   useEffect(() => {
     if (isVisible) {
-      let newCountryId: any;
+    let newCountryId: any;
       let newCountryLocale: any;
       if (userIsOnboarded == true) {
         if (route.params.country && route.params.country != null && route.params.country != undefined) {
@@ -196,7 +197,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     //   country,
     //   language,
     // })
-    i18n.changeLanguage(language.locale)
+    i18n.changeLanguage(language?.locale || 'en')
       .then(() => {
         if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
           if (AppLayoutDirection == 'ltr') {
@@ -217,7 +218,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         }
       })
 
-    if (userIsOnboarded == true && (language.languageCode == languageCode)) {
+    if (userIsOnboarded == true && (language?.languageCode == languageCode)) {
       navigation.reset({
         index: 0,
         routes: [
@@ -229,17 +230,17 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     } else {
       console.log(language, "..newLanguage");
       if (Object.keys(route.params).length !== 0) {
-        console.log(route.params.country?.CountryID, "routeparams is");
-        const filteredLan = route.params?.country?.languages?.filter((lang: any) => lang.languageCode == language.languageCode);
+        console.log(route.params?.country?.CountryID, "routeparams is");
+        const filteredLan = route.params?.country?.languages?.filter((lang: any) => lang?.languageCode == language?.languageCode);
         console.log('filtered language is', filteredLan)
         dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": route.params.country?.CountryID }));
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-        analytics().setUserProperties({ country: route.params.country.name, language: language.displayName })
+        analytics().setUserProperties({ country: route.params?.country?.name, language: language?.displayName })
       } else {
         console.log(country, "countryData");
         dispatch(onLocalizationSelect(country));
         dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
-        analytics().setUserProperties({ country: country.displayName, language: language.displayName })
+        analytics().setUserProperties({ country: country?.displayName, language: language?.displayName })
       }
 
       // if (userIsOnboarded == true) {
@@ -247,24 +248,31 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       // }
       console.log('Sponsors Data for countryList', sponsorsData)
       dispatch(setSponsorStore(sponsorsData));
-      navigation.navigate('LoadingScreen', {
+      const params = {
         apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
         prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
-      });
+      }
+      navigation.navigate("LoadingScreen", params );
     }
   }
   const goToConfirmationScreen = (): any => {
-    let newLanguage: any = null
+    let newLanguage: any = null;
     if (language?.locale != undefined) {
-      newLanguage = language
+      newLanguage = language;
+    } else if (Array.isArray(language) && language.length > 0) {
+      newLanguage = language[0];
     } else {
-      newLanguage = language[0]
+      // throw new Error('Language is not defined or empty'); when we have error handling if language is undefined or empty
+      crashlytics().recordError('Language is not defined or empty'+JSON.stringify(language));
+      console.log('Language is not defined or empty');
+      
+      return;
     }
-    i18n.changeLanguage(newLanguage.locale)
+    i18n.changeLanguage(newLanguage?.locale || 'en')
       .then(() => {
         if (buildFor == buildForBebbo) {
-          const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
-          const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
+          const rotwLanguagelocaleen = localization[localization.length - 1]?.languages[0]?.locale;
+          const rotwLanguagelocaleru = localization[localization.length - 1]?.languages[1]?.locale;
           console.log('rest of the world title', newLanguage)
           console.log('rotwLanguagelocaleru of the world title', rotwLanguagelocaleru)
           if (newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {
@@ -321,10 +329,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
           </SelectionView>
 
           <Flex5>
-            <ButtonPrimary onPress={(): any => {
-              goToConfirmationScreen()
-              // props.navigation.navigate('LanguageSelection', { country: country, language: language, luxonlocale: luxonLanLocale != undefined ? luxonLanLocale : null, deviceLanCode: deviceLanCode != undefined ? deviceLanCode : null })
-            }}>
+            <ButtonPrimary onPress={(): any => goToConfirmationScreen()}>
               <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
             </ButtonPrimary>
           </Flex5>

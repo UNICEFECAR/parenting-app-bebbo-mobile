@@ -233,7 +233,7 @@ const Terms = ({ navigation }: Props): any => {
           <OverlayLoadingComponent loading={loading} />
           <View style={{ marginTop: 30 }}>
             <View style={styles.vectorImageView}>
-              <VectorImage source={item.image} />
+              {item.image && <VectorImage source={item.image} />}
             </View>
           </View>
           <ShiftFromTop15>

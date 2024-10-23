@@ -515,7 +515,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           br: { height: 0 },
           iframe: { maxWidth: '100%', height: 200 }
         }}
-        WebView={WebView}
+        WebView={() => <WebView renderToHardwareTextureAndroid={true} />}
         ignoredDomTags={IGNORED_TAGS}
       />
     </View>

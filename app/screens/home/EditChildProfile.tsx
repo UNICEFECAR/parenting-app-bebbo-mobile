@@ -367,7 +367,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       )
       : await getNewChild(
         uuid,
-        '',
+        isDefaultChild,
         isExpected,
         plannedTermDate,
         isPremature,
