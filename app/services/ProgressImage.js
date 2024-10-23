@@ -219,7 +219,7 @@ export const createImageProgress = ImageComponent =>
 
       return (
         <View style={style} ref={this.handleRef}>
-          <ImageComponent
+          {source && <ImageComponent
             {...props}
             key={sourceKey}
             onLoadStart={this.handleLoadStart}
@@ -229,7 +229,7 @@ export const createImageProgress = ImageComponent =>
             onLoadEnd={this.handleLoadEnd}
             source={source}
             style={[StyleSheet.absoluteFill, imageStyle]}
-          />
+          />}
           {indicatorElement}
           {children}
         </View>

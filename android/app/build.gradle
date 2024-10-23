@@ -102,8 +102,10 @@ android {
     packagingOptions {
         pickFirst 'lib/*/libfbjni.so'
         pickFirst 'lib/*/libc++_shared.so'
-        pickFirst 'lib/*/libjscexecutor.so'
-        pickFirst 'lib/*/libjsc.so'
+//        pickFirst 'lib/*/libjscexecutor.so' // comment due to conflict with hermes
+//        pickFirst 'lib/*/libjsc.so' // comment due to conflict with hermes
+//        pickFirst 'lib/*/libc.so' // should not be included due to conflict because it's part of android architecture
+        pickFirst 'lib/*/libhermes.so'
     }
 
     splits {
@@ -167,8 +169,8 @@ android {
             applicationId 'org.unicef.ecar.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 29
-            versionName "2.2.2"
+            versionCode 33
+            versionName "2.2.3"
             signingConfig signingConfigs.release
         }
         prodstaging {
@@ -230,7 +232,7 @@ dependencies {
     implementation 'com.android.support:support-core-utils:28.0.0'
     // Multi Dex Support: https://developer.android.com/studio/build/multidex#mdex-gradle
     implementation 'com.android.support:multidex:1.0.3'
-      
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
