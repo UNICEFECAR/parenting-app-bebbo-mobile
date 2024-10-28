@@ -2,12 +2,15 @@ import { NativeModules } from 'react-native';
 
 const { ExactAlarmModule } = NativeModules;
 
-export const requestExactAlarmPermission = async () => {
+export const requestExactAlarmPermission = async (): Promise<boolean> => {
   try {
-    const granted = await ExactAlarmModule.requestExactAlarmPermission();
-    return granted; // true if permission is already granted
-  } catch (error) {
-    console.log('Error requesting exact alarm permission:', error);
+    // Request permission from the native module
+    const permissionGranted = await ExactAlarmModule.requestExactAlarmPermission();
+    // Return true if permission is granted, otherwise false
+    return permissionGranted;
+  } catch (error: any) {
+    console.log('Error requesting exact alarm permission:', error.message || error);    
+    // Return false to indicate failure in obtaining permission
     return false;
   }
 };

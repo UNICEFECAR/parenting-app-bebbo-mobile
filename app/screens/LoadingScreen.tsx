@@ -114,7 +114,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
         if (childAgedays) {
           if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
-            const i = childAge.findIndex((_item: any) => _item?.id === child?.taxonomyData?.id);
+            const i = childAge.findIndex((item: any) => item?.id === child?.taxonomyData?.id);
             if (i > -1 && i < childAge.length - 1) {
               const nextchildAgeData = childAge[i + 1];
               if (nextchildAgeData.age_bracket.length > 0) {
