@@ -72,7 +72,7 @@ const ChartHeightForAge = (props: any): any => {
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
   const item: any = getInterpretationHeightForAge(
     standardDeviation,
-    activeChild?.taxonomyData?.prematureTaxonomyId!=null && activeChild?.taxonomyData?.prematureTaxonomyId!="" && activeChild?.taxonomyData?.prematureTaxonomyId!=undefined? activeChild.plannedTermDate:childBirthDate,
+    activeChild?.taxonomyData?.prematureTaxonomyId ? activeChild.plannedTermDate : childBirthDate,
     childTaxonomyData,
     lastMeasurements,
   );

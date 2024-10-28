@@ -131,7 +131,7 @@ const victoryStyles: VictoryStyles = {
 const GrowthChart = (props: any):any => {
   const {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
-   const childBirthDate =activeChild?.taxonomyData?.prematureTaxonomyId!=null && activeChild?.taxonomyData?.prematureTaxonomyId!="" && activeChild?.taxonomyData?.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
+  const childBirthDate = activeChild?.taxonomyData?.prematureTaxonomyId ? activeChild.plannedTermDate : activeChild.birthDate; 
   const labelX = props.chartType == chartTypes.WeightForHeight ? t('growthScreencmText'):t('month') ;
   const labelY = props.chartType == chartTypes.WeightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
 const [deviceOrientation, setDeviceOrientation] = useState(
