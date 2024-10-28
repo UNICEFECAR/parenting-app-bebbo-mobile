@@ -48,7 +48,7 @@ export const getNewChild = async (uuidGet: string, autoChild?: string, isExpecte
     measurementPlace: "doctor",
     isMigrated: false,
     isExpected: (isExpected != '' && isExpected != null && isExpected != undefined) ? isExpected : "false",
-    // autoChild: (autoChild != '' && autoChild != null && autoChild != undefined) ? autoChild : "false"
+    autoChild: (autoChild != '' && autoChild != null && autoChild != undefined) ? autoChild : "false"
   };
 
 }
@@ -217,14 +217,14 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       if (child) {
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         dispatch(setActiveChildData(child));
-        // const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
+        const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
         analytics().setUserProperties({
           ageid: String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
           parent_gender: child.parent_gender,
-          // auto_child: child.autoChild
+          auto_child: child.autoChild
         }) // relationship_with_child:monther/father
 
       }
@@ -261,7 +261,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
     }
     if (child) {
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
-      // const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
+      const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
         ageid: String(child.taxonomyData.id),
@@ -269,7 +269,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender,
-        // auto_child: child.autoChild
+        auto_child: child.autoChild
       }) // relationship_with_child:monther/father
     }
   }
@@ -431,7 +431,12 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       const eventData = { 'name': EXPECTED_CHILD_ENTERED }
       logEvent(eventData, netInfo.isConnected)
     }
-    await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
+    try {
+      await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
+    } catch (error) {
+      Alert.alert('Error', 'Error in creating child'+JSON.stringify(error));
+    }
+    
   }
   //new child add from 
   if (param == 0) {
@@ -555,7 +560,7 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
     child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
     relationship_with_child: userRelationToParent,
     parent_gender: child.parent_gender,
-    // auto_child: child.autoChild
+    auto_child: child.autoChild
   }) // relationship_with_child:monther/father
 }
 export const getAllConfigData = async (dispatch: any): Promise<any> => {
