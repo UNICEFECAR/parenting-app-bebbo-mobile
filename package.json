@@ -99,7 +99,7 @@
     "react-native-webview": "^13.6.2",
     "react-native-youtube-iframe": "^2.3.0",
     "react-redux": "^9.1.0",
-    "realm": "^12.6.0",
+    "realm": "^12.13.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
