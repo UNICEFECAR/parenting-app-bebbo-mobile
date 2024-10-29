@@ -140,8 +140,8 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any, prematu
   // noti.push(//at the begginning of the period
   //if> 3months then add noti
   //check gap between days_to and days_from
-  const childBirthDatePlanned = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != "" && child?.taxonomyData?.prematureTaxonomyId != undefined ? child.plannedTermDate : child.birthDate;
-  const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != undefined && child?.taxonomyData?.prematureTaxonomyId != "" ? child?.taxonomyData?.prematureTaxonomyId : child?.taxonomyData.id;
+  const childBirthDatePlanned = child?.taxonomyData?.prematureTaxonomyId ?? child?.birthDate;
+  const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId ?? child?.taxonomyData?.id;
 
   if ((childDaysTo - childDaysFrom) <= oneMonthDays) {
     noti.push(
@@ -307,7 +307,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
-  const childBirthDatePlanned = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != "" && child?.taxonomyData?.prematureTaxonomyId != undefined ? child.plannedTermDate : child.birthDate;
+  const childBirthDatePlanned = child?.taxonomyData?.prematureTaxonomyId ?? child.birthDate;
   const childAgeInDaysForCD = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(childBirthDatePlanned)).toMillis(),
   );
@@ -400,14 +400,16 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
 }
 export const getChildNotification = (child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any, growthEnabledFlag: boolean, developmentEnabledFlag: boolean, vchcEnabledFlag: boolean): any => {
   if (child.birthDate != null && child.birthDate != undefined) {
-    const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != undefined && child?.taxonomyData?.prematureTaxonomyId != "" ? child?.taxonomyData?.prematureTaxonomyId : child?.taxonomyData.id;
+    const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId || child?.taxonomyData?.id;
 
     const prematurechildgwperiod = childAge.find((item: any) => String(item.id) == String(activityTaxonomyId));
     const childAgeInDays = getCurrentChildAgeInDays(
       DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
     );
-    const childDaysTo = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != undefined && child?.taxonomyData?.prematureTaxonomyId != "" ? prematurechildgwperiod.days_to : child.taxonomyData.days_to;
-    const childDaysFrom = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != undefined && child?.taxonomyData?.prematureTaxonomyId != "" ? prematurechildgwperiod.days_from : child.taxonomyData.days_from;
+
+    const childDaysTo = child?.taxonomyData?.prematureTaxonomyId ? prematurechildgwperiod.days_to : child.taxonomyData.days_to;
+    const childDaysFrom = child?.taxonomyData?.prematureTaxonomyId ? prematurechildgwperiod.days_from : child.taxonomyData.days_from;
+
     if (!isFutureDate(child?.birthDate)) {
       console.log(allVaccinePeriods,typeof allVaccinePeriods,"..getChildNotificationallVaccinePeriods.length")
  
@@ -694,8 +696,10 @@ const generatenotiId = (localNotifications: any, allNotis: any): any => {
 }
 export const createAllLocalNotificatoins = (child: any, childAge: any, developmentEnabledFlag: boolean, growthEnabledFlag: boolean, vchcEnabledFlag: boolean, t: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any, allVaccineData: any, localNotifications: any): any => {
   const allNotis: any[] = [];
-  const childBirthDatePlanned = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != "" && child?.taxonomyData?.prematureTaxonomyId != undefined ? child.plannedTermDate : child.birthDate;
-  const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != undefined && child?.taxonomyData?.prematureTaxonomyId != "" ? child?.taxonomyData?.prematureTaxonomyId : child?.taxonomyData.id;
+
+  const childBirthDatePlanned = child?.taxonomyData?.prematureTaxonomyId ?? child.plannedTermDate;
+  const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId ?? child?.taxonomyData.id;
+
   const childAgeObj = childAge.sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );

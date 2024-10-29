@@ -28,30 +28,23 @@ public class ExactAlarmModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void requestExactAlarmPermission(Promise promise) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {  // Android 13 and above
-            AlarmManager alarmManager = (AlarmManager) reactContext.getSystemService(Context.ALARM_SERVICE);
-            if (alarmManager.canScheduleExactAlarms()) {
-                promise.resolve(true); // Permission already granted
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                AlarmManager alarmManager = (AlarmManager) reactContext.getSystemService(Context.ALARM_SERVICE);
+                if (alarmManager.canScheduleExactAlarms()) {
+                    promise.resolve(true); // Permission already granted
+                } else {
+                    // Redirect user to system settings to enable SCHEDULE_EXACT_ALARM permission
+                    Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    reactContext.startActivity(intent); // Open settings to request permission
+                    promise.resolve(false); // Redirecting user to enable the permission
+                }
             } else {
-                // Redirect user to system settings to enable SCHEDULE_EXACT_ALARM permission
-                Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                reactContext.startActivity(intent); // Open settings to request permission
-                promise.resolve(false); // Redirecting user to enable the permission
+                promise.resolve(true); // Permission not needed for versions below Android 12
             }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {  // Android 12
-            AlarmManager alarmManager = (AlarmManager) reactContext.getSystemService(Context.ALARM_SERVICE);
-            if (alarmManager.canScheduleExactAlarms()) {
-                promise.resolve(true); // Permission already granted
-            } else {
-                // For Android 12, request permission similarly
-                Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                reactContext.startActivity(intent); // Open settings to request permission
-                promise.resolve(false); // Redirecting user to enable the permission
-            }
-        } else {
-            promise.resolve(true); // Permission not needed for versions below Android 12
+        } catch (Exception e) {
+            promise.reject("ERROR", e.getMessage()); // Handle exception if permission check fails
         }
     }
 }
