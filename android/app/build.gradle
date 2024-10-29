@@ -102,9 +102,6 @@ android {
     packagingOptions {
         pickFirst 'lib/*/libfbjni.so'
         pickFirst 'lib/*/libc++_shared.so'
-//        pickFirst 'lib/*/libjscexecutor.so' // comment due to conflict with hermes
-//        pickFirst 'lib/*/libjsc.so' // comment due to conflict with hermes
-//        pickFirst 'lib/*/libc.so' // should not be included due to conflict because it's part of android architecture
         pickFirst 'lib/*/libhermes.so'
     }
 
