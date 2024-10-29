@@ -74,7 +74,7 @@ const App = () => {
     // SplashScreen.hide();
     googleAuth.configure();
   });
-  console.log('hiiii--------------------------------------')
+  
   return (
     <EventProvider>
       <ErrorBoundary FallbackComponent={CustomFallback}>
