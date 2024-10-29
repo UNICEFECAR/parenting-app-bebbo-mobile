@@ -67,7 +67,7 @@ const DailyReads = (): any => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
-  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId != null && activeChild?.taxonomyData?.prematureTaxonomyId != undefined && activeChild?.taxonomyData?.prematureTaxonomyId != "" ? activeChild?.taxonomyData?.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId ?? activeChild?.taxonomyData?.id;
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
   let ArticlesData = articleData.filter((x: any) => x.child_age.includes(activityTaxonomyId));
   const activityCategoryArray = useAppSelector(
@@ -177,6 +177,8 @@ const DailyReads = (): any => {
     const nowDate = DateTime.now().toISODate();
     if (dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)) {
       let filteredArticles;
+
+      // comment this code temporary due to premature taxonomy is not available in the data
       // if (activeChild.isPremature === 'true') {
       //   filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
       //   ArticlesData = filteredArticles;
