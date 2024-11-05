@@ -65,21 +65,33 @@ export default class ScrollingButtonMenu extends React.Component {
     
 
     componentDidMount() {
-        const { selected } = this.props;
+        const {selected} = this.props;
+        console.log('selected props is',selected)
         if (selected) {
-            this.setState({ index: selected }, this._scrollTo);
+            this.setState({index: selected}, () => {
+                setTimeout(() => {
+                        this._scrollTo();
+                
+                }, 0);
+            });
         }
     }
 
     _scrollTo() {
-        const { index, scrollindex } = this.state;
-        if (index !== scrollindex) {
+        const {index,scrollindex} = this.state;
+        if(index != scrollindex)
+        {
             const screen1 = screenWidth / 2;
             const elementOffset = this.dataSourceCords[index];
-            if (elementOffset !== undefined && typeof this.scroll.scrollTo === 'function') {
+            if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
                 const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
-                this.scroll.scrollTo({ y: 0, x, animated: true });
-                this.setState({ scrollindex: index, scrollindexarrow: index });
+                this.scroll.scrollTo({
+                    y: 0,
+                    x: x,
+                    animated: true,
+                });
+                this.setState({scrollindex : index});
+                this.setState({scrollindexarrow : index});
             }
         }
     }

@@ -131,6 +131,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
 
     return null; // Return null if country not found
   };
+  console.log("=====>",allCountries)
 
   useFocusEffect(
     React.useCallback(() => {
@@ -270,7 +271,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   );
 
   const rtlConditions = (language: any): any => {
-
+    console.log(language, '[language]')
     i18n.changeLanguage(language.locale)
       .then(() => {
         if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
@@ -330,12 +331,13 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     }
   }
   const saveSelection = (): void => {
+    console.log(buildFor,buildForBebbo,newLanguage,localization)
     i18n.changeLanguage(newLanguage?.locale || "en")
       .then(() => {
         if (buildFor == buildForBebbo) {
-          const rotwLanguagelocaleen = localization[localization?.length - 1].languages[0].locale;
-          const rotwLanguagelocaleru = localization[localization?.length - 1].languages[1].locale;
-          console.log('rest of the world title', newLanguage)
+          const rotwLanguagelocaleen = localization[localization?.length - 1].languages[0]?.locale;
+          const rotwLanguagelocaleru = localization[localization?.length - 1].languages[1]?.locale;
+          console.log(localization,'rest of the world title', newLanguage)
           console.log('rotwLanguagelocaleru of the world title', rotwLanguagelocaleru)
           if (newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {
             Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
@@ -353,7 +355,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         } else {
           rtlConditions(newLanguage);
         }
-      })
+      }).catch((err) => console.log(err) )
   };
 
   const themeContext = useContext(ThemeContext);

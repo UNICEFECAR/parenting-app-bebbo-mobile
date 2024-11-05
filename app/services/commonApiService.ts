@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 import FastImage from 'react-native-fast-image';
 import RNFS from 'react-native-fs';
 import { store } from "../../App";
-import { appConfig, finalUrl } from '../assets/translations/appOfflineData/apiConstants';
+import { appConfig, buildFor, buildForBangla, buildForBebbo, finalUrl } from '../assets/translations/appOfflineData/apiConstants';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../database/schema/ActivitiesSchema';
@@ -23,6 +23,7 @@ import { setAllLocalNotificationGenerateType, setAllNotificationData } from '../
 import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate, setuserIsFirstTime } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 import LocalNotifications from './LocalNotifications';
+import { localization } from '@dynamicImportsClass/dynamicImports';
 
 
 export const client =
@@ -36,6 +37,7 @@ const commonApiService: CommonApiInterface = async (apiEndpoint: string, methodn
   const newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
   const responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
+  console.log(newurl,'[API]',responseData)
   return await axiosService({
     method: methodname,
     url: newurl,
@@ -44,11 +46,13 @@ const commonApiService: CommonApiInterface = async (apiEndpoint: string, methodn
     .then((response: any) => {
       responseData.data = response.data
       responseData.status = response.status
+      console.log(newurl,'==========1',responseData)
       return responseData;
     })
     .catch((err: any) => {
       responseData.data = err?.message
       responseData.status = err?.response?.status;
+      console.log(newurl,'==========2',responseData)
       return responseData;
     });
 }
@@ -56,11 +60,13 @@ export const updateIncrementalSyncDT = async (response: any, dispatch: any, _nav
   const articleresp = response.find((y: any) => y.apiEndpoint == appConfig.articles);
   const videoarticleresp = response.find((y: any) => y.apiEndpoint == appConfig.videoArticles);
   const activitiesresp = response.find((y: any) => y.apiEndpoint == appConfig.activities);
-  const faqsresp = response.find((y: any) => y.apiEndpoint == appConfig.faqs);
-  const archiveresp = response.find((y: any) => y.apiEndpoint == appConfig.archive);
-  if (articleresp && articleresp != null && articleresp.data) {
-    if (prevPage != "AddEditChild") {
-      dispatch(setIncrementalSyncDT({ key: 'articlesDatetime', value: articleresp.data.datetime }));
+  // const faqpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqPinnedContent);
+  const faqsresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqs);
+  // const faqupdatedpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqUpdatedPinnedContent);
+  const archiveresp = response.find((y:any)=>y.apiEndpoint == appConfig.archive);
+  if(articleresp && articleresp != null && articleresp.data) {
+    if(prevPage != "AddEditChild") {
+      dispatch(setIncrementalSyncDT({key: 'articlesDatetime', value: articleresp.data.datetime}));
     }
   }
   if (videoarticleresp && videoarticleresp != null && videoarticleresp.data) {
@@ -69,12 +75,17 @@ export const updateIncrementalSyncDT = async (response: any, dispatch: any, _nav
   if (activitiesresp && activitiesresp != null && activitiesresp.data) {
     dispatch(setIncrementalSyncDT({ key: 'activitiesDatetime', value: activitiesresp.data.datetime }));
   }
-  if (faqsresp && faqsresp != null && faqsresp.data) {
-    dispatch(setIncrementalSyncDT({ key: 'faqsDatetime', value: faqsresp.data.datetime }));
+  // if(faqpinnedresp && faqpinnedresp != null && faqpinnedresp.data) {
+  //   dispatch(setIncrementalSyncDT({key: 'faqPinnedContentDatetime', value: faqpinnedresp.data.datetime}));
+  // }
+  if(faqsresp && faqsresp != null && faqsresp.data) {
+    dispatch(setIncrementalSyncDT({key: 'faqsDatetime', value: faqsresp.data.datetime}));
   }
-
-  if (archiveresp && archiveresp != null && archiveresp.data) {
-    dispatch(setIncrementalSyncDT({ key: 'archiveDatetime', value: archiveresp.data.datetime }));
+  // if(faqupdatedpinnedresp && faqupdatedpinnedresp != null && faqupdatedpinnedresp.data) {
+  //   dispatch(setIncrementalSyncDT({key: 'faqUpdatedPinnedContentDatetime', value: faqupdatedpinnedresp.data.datetime}));
+  // }
+  if(archiveresp && archiveresp != null && archiveresp.data) {
+    dispatch(setIncrementalSyncDT({key: 'archiveDatetime', value: archiveresp.data.datetime}));
   }
 }
 export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any, languageCode: string, prevPage: string, activeChild: any, oldErrorObj: any): Promise<any> => {

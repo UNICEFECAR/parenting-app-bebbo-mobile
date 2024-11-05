@@ -263,8 +263,9 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     i18n.changeLanguage(newLanguage.locale)
       .then(() => {
         if (buildFor == buildForBebbo) {
-          const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
-          const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
+          console.log(localization)
+          const rotwLanguagelocaleen = localization[localization.length - 1].languages[0]?.locale;
+          const rotwLanguagelocaleru = localization[localization.length - 1].languages[1]?.locale;
           console.log('rest of the world title', newLanguage)
           console.log('rotwLanguagelocaleru of the world title', rotwLanguagelocaleru)
           if (newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {

@@ -48,10 +48,15 @@ ios/ParentBuddyApp/Info.plist
 ios/ParentBuddyAppXk-Info.plist
 ios/ParentBuddyApp/Info.plist
 ios/ParentBuddyAppXk-Info.plist
+ios/ParentBuddyAppBangla-Info.plist
+ios/ParentBuddyAppBanglaDev-Info.plist
 ios/GoogleServices/Development/GoogleService-Info.plist
+ios/GoogleServices/Bangla/GoogleService-Info.plist
 ios/ParentBuddyApp/Info.plist
 ios/GoogleServices/XkDevelopment/GoogleService-Info.plist
+ios/GoogleServices/BanglaDevelopment/GoogleService-Info.plist
 android/app/src/prod/res/values/strings.xml
+ios/build/
 # react-native-config codegen
 ios/tmp.xcconfig
 

@@ -16,6 +16,7 @@ import {
   View
 } from 'react-native';
 import ErrorBoundary from 'react-native-error-boundary';
+import 'react-native-gesture-handler';
 import Orientation from 'react-native-orientation-locker';
 import { MenuProvider } from 'react-native-popup-menu';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

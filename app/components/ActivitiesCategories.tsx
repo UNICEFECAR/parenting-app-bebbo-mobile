@@ -63,6 +63,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
             arr.slice(i * size, i * size + size)
         );
     const activityBrackets = chunk(activityCategoryobj, 2)
+    console.log(activityCategoryobj,activityBrackets,"===========",activityCategoryData)
     return (
         <>
             <ActivityFilter key={props.filterArray.length}>
@@ -72,6 +73,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
                             return (<View key={i} style={styles.innerView} >
                                 {
                                     activityCategoryInner.map((item) => {
+                                        console.log("iiite",item)
                                         return (<Pressable style={styles.pressableView} key={item.id} onPress={async (): Promise<any> => {
                                             props.filterOnCategory(getFilterArray(item.id, props.filterArray))
                                         }}>
@@ -82,7 +84,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
                                                     </OuterIconLeft>
                                                 </OuterIconRow>
 
-                                                <FilterText numberOfLines={2}>{activityCategoryData.filter((x: any) => x.id == item.id)[0].name}</FilterText>
+                                                <FilterText numberOfLines={2}>{activityCategoryData.filter((x: any) => x.id == item.id)[0]?.name || ''}</FilterText>
                                             </FilterBox>
                                         </Pressable>)
                                     })

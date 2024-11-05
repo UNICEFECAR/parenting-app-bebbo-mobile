@@ -15,7 +15,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "BF838CED27A7E21500CC12B9"
-                     BuildableName = "ParentBuddyAppDev.app"
+                     BuildableName = "Bebbo.app"
                      BlueprintName = "ParentBuddyAppDev"
                      ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
                   </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BF838CED27A7E21500CC12B9"
-               BuildableName = "ParentBuddyAppDev.app"
+               BuildableName = "Bebbo.app"
                BlueprintName = "ParentBuddyAppDev"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
             </BuildableReference>
@@ -63,14 +63,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BF838CED27A7E21500CC12B9"
-            BuildableName = "ParentBuddyAppDev.app"
+            BuildableName = "Bebbo.app"
             BlueprintName = "ParentBuddyAppDev"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BF838CED27A7E21500CC12B9"
-            BuildableName = "ParentBuddyAppDev.app"
+            BuildableName = "Bebbo.app"
             BlueprintName = "ParentBuddyAppDev"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
