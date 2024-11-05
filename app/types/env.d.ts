@@ -1,5 +1,6 @@
 declare module 'react-native-dotenv' {
     export const apiUrlDevelop: string;
+    export const apiREMOVED_FACEBOOK_APP_ID1UrlDevelop: string;
     export const encryptionsKey: string;
     export const encryptionsIVKey: string;
   }

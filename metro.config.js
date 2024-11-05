@@ -19,7 +19,7 @@ const config = {
       }),
     },
     resolver: {
-    blacklistRE: blacklist([/xk\/.*/]),
+    blacklistRE: blacklist([/xk\/.*/,/bangla\/.*/]),
     }
   };
   

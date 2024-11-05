@@ -25,6 +25,7 @@ import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
 import PushNotification from 'react-native-push-notification';
 import { Country, CountrySchema } from "../database/schema/CountrySchema";
+import moment from "moment";
 const requestNotificationPermission= async (): Promise<any>=>{
     const status= await requestNotifications([]);
     console.log(status,"..status..");
@@ -55,17 +56,6 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
         EntitySchema = ArticleEntitySchema;
         pinnedArticle = "";
     }
-    else if (response.payload.apiEndpoint == appConfig.vaccinePinnedContent ||
-        response.payload.apiEndpoint == appConfig.childGrowthPinnedContent ||
-        response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent ||
-        response.payload.apiEndpoint == appConfig.faqPinnedContent ||
-        response.payload.apiEndpoint == appConfig.faqUpdatedPinnedContent ||
-        response.payload.apiEndpoint == appConfig.milestoneRelatedArticle) {
-        insertData = response.payload.data.data;
-        Entity = Entity as ArticleEntity;
-        EntitySchema = ArticleEntitySchema;
-        pinnedArticle = isArticlePinned;
-    }
     else if (response.payload.apiEndpoint == appConfig.archive) {
         insertData = response.payload.data.data;
         Entity = Entity as VideoArticleEntity;
@@ -88,11 +78,6 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
         insertData = response.payload.data.data;
         Entity = Entity as BasicPagesEntity;
         EntitySchema = BasicPagesSchema;
-    }
-    else if (response.payload.apiEndpoint == appConfig.countryGroups) {
-        insertData = response.payload.data.data;
-        Entity = Entity as Country;
-        EntitySchema = CountrySchema;
     }
     else if (response.payload.apiEndpoint == appConfig.taxonomies) {
         const { ...allData } = response.payload.data.data;
@@ -230,7 +215,7 @@ export const formatDate = (dateData: any): any => {
     // const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     // const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     const dateView = getTwoDigits(dateData.day) + "." + getTwoDigits(dateData.month) + "." + dateData.year;
-    return dateView;
+    return moment(dateView,'DD.MM.YYYY').format('DD.MM.YYYY');
 }
 export const formatStringDate = (dateData: any): any => {
     dateData = DateTime.fromJSDate(new Date(dateData));
@@ -249,7 +234,7 @@ export const formatStringDate = (dateData: any): any => {
     // const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     // const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     const dateView = getTwoDigits(dateData.day) + "." + getTwoDigits(dateData.month) + "." + dateData.year;
-    return dateView;
+    return moment(dateView,'DD.MM.YYYY').format('DD.MM.YYYY');
 }
 
 
@@ -263,8 +248,8 @@ export const formatStringTime = (dateData: any): any => {
 
     const formattedTime = getTwoDigits(hour) + ":" + getTwoDigits(minute)
 
-    //console.log(formattedTime);
-    return formattedTime;
+    console.log(formattedTime);
+    return moment(formattedTime,'hh:mm').format('hh:mm');
 }
 export const removeParams = (sParam: any): any => {
     if (sParam.indexOf("?") != -1) {
@@ -581,3 +566,47 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
 
 
 
+type DigitLanguage = 'bn' | 'hin' | 'urd' | 'ar' | 'tr' | 'en';
+
+
+
+export function convertDigits(inputString: any, targetLanguage: DigitLanguage): string {
+    const digitMap: Record<DigitLanguage, string[]> = {
+        'bn': ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'],
+        'hin': ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'],
+        'urd': ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'],
+        'ar': ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'],
+        'tr': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+        'en': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], // Turkish uses Latin digits
+        // Add more languages and their digit mappings as needed
+    };
+    if(!inputString) return ''
+
+    // Convert input string to lowercase for case-insensitive comparison
+    const lowerTarget = targetLanguage?.toLowerCase?.() as DigitLanguage;
+
+    // Check if the target language is supported
+    if (!digitMap[lowerTarget]) {
+        console.log('Unsupported language');
+        return inputString;
+    } 
+
+    // Get the digit array for the target language
+    const targetDigits = digitMap[lowerTarget];
+
+    // Replace digits in the input string
+    let result = '';
+    for (let char of inputString.toString?.()) {
+        // Check if the character is a digit (0-9)
+        if (/[0-9]/.test(char)) {
+            // Find the corresponding digit in the target language
+            const index = parseInt(char); // Convert character to integer
+            result += targetDigits[index];
+        } else {
+            // If the character is not a digit, keep it unchanged
+            result += char;
+        }
+    }
+
+    return result;
+}

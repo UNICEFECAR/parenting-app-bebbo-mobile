@@ -5,7 +5,7 @@ import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
 import { Alert, Platform } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
-import { store } from '../../App';
+import { store, useAppSelector } from '../../App';
 import { ToastAndroidLocal } from '../android/sharedAndroid.android';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -137,7 +137,7 @@ export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,
     }
   }
 }
-export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any, activeset?: any): Promise<any> => {
+export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any, activeset?: any, boyChildGender?: any): Promise<any> => {
 
   const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
   let userRelationToParent = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userRelationToParent'");
@@ -546,7 +546,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
 }
 
-export const updateActiveChild = (child: any, key: any, value: any, dispatch: any, userRelationToParent: any): any => {
+export const updateActiveChild = (child: any, key: any, value: any, dispatch: any, userRelationToParent: any, boyChildGender: any): any => {
   child[key] = value;
   dispatch(setActiveChildData(child));
   analytics().setUserProperties({

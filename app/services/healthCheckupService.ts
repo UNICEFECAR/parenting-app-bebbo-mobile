@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from "../../App";
 import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { formatStringDate } from './Utils';
-export const getAllHealthCheckupPeriods = ():any => {
+import { useEffect } from 'react';
+import { t } from 'i18next';
+export const getAllHealthCheckupPeriods = (): any => {
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -77,15 +79,30 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any):any=>{
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
-  const getVaccinesForHCPeriod = (growthPeriodID:any):any => {
-    const vaccinesforHC = allVaccinePeriods.filter((item:any) => item.growth_period == growthPeriodID);
-    vaccinesforHC?.forEach((vaccine:any) => {
-      const vaccineMeasured = vaccineMeasuredInfo(vaccine.uuid);
-      vaccine.isMeasured = vaccineMeasured ? true : false;
-      vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
-    })
+  const getVaccinesForHCPeriod = (growthPeriodID: any): any => {
+    let vaccinesforHC: any = null;
+    console.log('allVaccinePeriods periods is hererere', allVaccinePeriods);
+    if(growthPeriodID==0){
+      vaccinesforHC = allVaccinePeriods;
+      vaccinesforHC?.forEach((vaccine: any) => {
+        const vaccineMeasured = vaccineMeasuredInfo(vaccine.uuid);
+        vaccine.isMeasured = vaccineMeasured ? true : false;
+        vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
+      })
+      return vaccinesforHC;
+    }else{
+      vaccinesforHC = allVaccinePeriods?.filter((item: any) => item?.growth_period == growthPeriodID);
+      vaccinesforHC?.forEach((vaccine: any) => {
+        const vaccineMeasured = vaccineMeasuredInfo(vaccine.uuid);
+        vaccine.isMeasured = vaccineMeasured ? true : false;
+        vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
+      })
+      
+      return vaccinesforHC;
+    }
 
-    return vaccinesforHC;
+    
+     
   }
   const allHealthCheckupsData = useAppSelector(
     (state: any) =>
@@ -95,8 +112,8 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any):any=>{
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number):any => {
     // console.log("currentIndex--",currentIndex)
     const { t } = useTranslation();
-    if (hcItem) {
-      const measure = allMeasurements.filter((measure:any) => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))
+    if (hcItem!='') {
+      const measure = allMeasurements.filter((measure: any) => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))
       let regularMeasure: any = {};
       if (measure.length > 1) {
        for (let i = 0; i <= measure.length - 2; i++) {
@@ -127,34 +144,90 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any):any=>{
       }
       //  calculate is additional measure for the period
       return measure ? regularMeasure : null; // if no measure for the period return null, show pending vaccines
+    } else {
+      // const measure = allMeasurements;
+      // additionalMeasures.push(allMeasurements)
+      // return measure;
+
+      const measure = allMeasurements;
+      let regularMeasure: any = {};
+      if (measure.length >= 1) {
+        for (let i = 0; i < measure.length; i++) {
+          const item = {
+            created_at: measure[i].measurementDate,
+            growthMeasures: measure[i],
+            growth_period: 0,
+            id: measure[i].uuid,
+            pinned_article: 0,
+            title: t('hcSummaryHeader'),
+            isAdditional: true,
+            type: 'isAdditional',
+            updated_at: measure[i].measurementDate,
+            vaccination_ends: 0,
+            vaccination_opens: 0,
+            vaccines: [], // no vaccines planned for additional health checkup
+          }
+          additionalMeasures.push(item)
+        }
+        console.log('Addition health checkup is',additionalMeasures)
+    
+        regularMeasure = measure[0];
+        regularMeasure["isAdditional"] = true
+      } else if (measure.length > 0) {
+        regularMeasure = measure[0];
+        regularMeasure["isAdditional"] = true
+      } else {
+        regularMeasure = {};
+        regularMeasure["isAdditional"] = true
+      }
+      //  calculate is additional measure for the period
+      return measure ? regularMeasure : null; // if no measure for the period return null, show pending vaccines
     }
   }
 
-  allHealthCheckupsData.map((hcItem: any) => {
-    hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
-    const item = allGrowthPeriods.find((item:any) => Number(item.id) == Number(hcItem.growth_period));
-    if (item) {
-      hcItem.vaccination_opens = item?.vaccination_opens;
-    }
-  })
+  // if(allHealthCheckupsData.length==0){
+  //   allHealthCheckupsData = allMeasures;
+  // }
+
+  if (allHealthCheckupsData.length == 0) {
+     getVaccinesForHCPeriod(6466)
+  } else {
+    allHealthCheckupsData?.map((hcItem: any) => {
+
+      hcItem.vaccines = getVaccinesForHCPeriod(hcItem?.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
+      const item = allGrowthPeriods.find((item: any) => Number(item.id) == Number(hcItem.growth_period));
+      if (item) {
+        hcItem.vaccination_opens = item?.vaccination_opens;
+      }
+    })
+  }
 
   let allHealthCheckupsDataNew =  allHealthCheckupsData.sort(
     (a: any, b: any) =>  Number(b.vaccination_opens) > Number(a.vaccination_opens)?1:-1,
   );
   allHealthCheckupsDataNew = allHealthCheckupsDataNew.reverse();
-  allHealthCheckupsDataNew.forEach((hcItem: any, index: number) => {
-  hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
-  const item = allGrowthPeriods.find((item:any) => Number(item.id) == Number(hcItem.growth_period));
-    if (item) {
-      hcItem.vaccination_opens = item?.vaccination_opens;
-      hcItem.vaccination_ends = index < allHealthCheckupsDataNew.length-1 ?  allHealthCheckupsDataNew[index + 1]?.vaccination_opens :maxPeriodDays;
-     }
-    const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
-    hcItem.growthMeasures = measuresForHCPeriod;
-  });
+  if (allHealthCheckupsDataNew.length == 0) {
+    console.log('Before measures period')
+    allHealthCheckupsDataNew = getMeasuresForHCPeriod('', 0);
+    console.log('After measures period',allHealthCheckupsDataNew)
+  } else {
+    allHealthCheckupsDataNew?.forEach((hcItem: any, index: number) => {
+      hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
+      const item = allGrowthPeriods.find((item: any) => Number(item.id) == Number(hcItem.growth_period));
+      if (item) {
+        hcItem.vaccination_opens = item?.vaccination_opens;
+        hcItem.vaccination_ends = index < allHealthCheckupsDataNew.length - 1 ? allHealthCheckupsDataNew[index + 1]?.vaccination_opens : maxPeriodDays;
+      }
+      const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
+      hcItem.growthMeasures = measuresForHCPeriod;
+    });
+  }
 
-  const sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures].sort(
-    (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ?1:-1,
+  console.log('allHealthCheckupsDataNew is',allHealthCheckupsDataNew)
+  console.log('additionalMeasures is',additionalMeasures)
+ allHealthCheckupsDataNew = [allHealthCheckupsDataNew];
+  const sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures]?.sort(
+    (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ? 1 : -1,
   );
   let upcomingPeriods = sortedGroupsForPeriods.filter(
     (period: any) => period?.vaccination_opens > childAgeIndays,
