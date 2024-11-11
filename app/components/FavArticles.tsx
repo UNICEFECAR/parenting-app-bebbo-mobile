@@ -48,7 +48,7 @@ const FavArticles = (): any => {
       : false,
   );
   const favoriteadvices = useAppSelector((state: any) =>
-    state.childData?.childDataSet?.favoriteadvices
+    state.childData.childDataSet.favoriteadvices
   );
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
@@ -62,7 +62,6 @@ const FavArticles = (): any => {
         headerColor: artHeaderColor,
         backgroundColor: artBackgroundColor,
         detailData: item,
-        netInfo: netInfo
       });
   };
   useFocusEffect(

@@ -86,6 +86,10 @@ const ChildImportSetup = (props: any): any => {
   const [name, setName] = React.useState('');
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const genders = useAppSelector(
     (state: any) =>
@@ -103,7 +107,7 @@ const ChildImportSetup = (props: any): any => {
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
   relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != bothParentGender;
+    return e.unique_name != taxonomyIds?.bothParentGender;
   });
 
   const relationshipToParent = useAppSelector(
@@ -138,9 +142,9 @@ const ChildImportSetup = (props: any): any => {
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
     ) {
-      setRelationship(checkedItem.id);
+      setRelationship(checkedItem.unique_name);
     } else {
-      setRelationship(String(checkedItem.id));
+      setRelationship(checkedItem.unique_name);
     }
   };
   useFocusEffect(
@@ -218,7 +222,7 @@ const ChildImportSetup = (props: any): any => {
                     </FormInputGroup>
                     <View>
                       {
-                        userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
+                        userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent !=  taxonomyIds?.relationShipFatherId ?
                           <FormContainer1>
                             <LabelText>{t('parentGender')}</LabelText>
                             <ToggleRadios
@@ -248,25 +252,25 @@ const ChildImportSetup = (props: any): any => {
                 <ChildRelationList key={index}>
                   <Pressable
                     onPress={(): any => {
-                      setUserRelationToParent(item.id);
-                      if (item.id == relationShipMotherId) {
-                        if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
-                          setRelationship(femaleData.id);
+                      setUserRelationToParent(item.unique_name);
+                      if (item.unique_name == taxonomyIds?.relationShipMotherId) {
+                        if (typeof taxonomyIds?.femaleData.unique_name === 'string' || taxonomyIds?.femaleData.unique_name instanceof String) {
+                          setRelationship(taxonomyIds?.femaleData?.unique_name);
                         }
                         else {
-                          setRelationship(String(femaleData.id));
+                          setRelationship(String(taxonomyIds?.femaleData?.unique_name));
                         }
                       }
-                      else if (item.id == relationShipFatherId) {
-                        if (typeof maleData.id === 'string' || maleData.id instanceof String) {
-                          setRelationship(maleData.id);
+                      else if (item.unique_name == taxonomyIds?.relationShipFatherId) {
+                        if (typeof taxonomyIds?.maleData.unique_name === 'string' || taxonomyIds?.maleData.unique_name instanceof String) {
+                          setRelationship(taxonomyIds?.maleData.unique_name);
                         }
                         else {
-                          setRelationship(String(maleData.id));
+                          setRelationship(String(taxonomyIds?.maleData.unique_name));
                         }
                       }
                       else {
-                        if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
+                        if (userRelationToParent == taxonomyIds?.relationShipMotherId || userRelationToParent == taxonomyIds?.relationShipFatherId) {
                           setRelationship('');
                         }
                       }
@@ -287,7 +291,7 @@ const ChildImportSetup = (props: any): any => {
         <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
-              disabled={relationship == null || name == "" || relationship == "" || relationship == undefined || userRelationToParent == undefined ? true : false}
+              disabled={relationship == null || relationship == "" || relationship == undefined || userRelationToParent == undefined ? true : false}
               onPress={async (e: any): Promise<any> => {
                 e.stopPropagation();
                 if (importResponse) {
@@ -311,14 +315,14 @@ const ChildImportSetup = (props: any): any => {
                           childId = childId[0].value;
                           const activeChildData = importResponse.filter((x: any) => x.uuid == childId);
                           if (activeChildData.length > 0) {
-                            await setActiveChild(languageCode, childId, dispatch, childAge, false);
+                            await setActiveChild(languageCode, childId, dispatch, childAge, false, taxonomyIds?.boyChildGender);
                           }
                           else {
-                            await setActiveChild(languageCode, '', dispatch, childAge, false);
+                            await setActiveChild(languageCode, '', dispatch, childAge, false, taxonomyIds?.boyChildGender);
                           }
                         }
                         else {
-                          await setActiveChild(languageCode, '', dispatch, childAge, false);
+                          await setActiveChild(languageCode, '', dispatch, childAge, false, taxonomyIds?.boyChildGender);
                         }
                         counter++;
                       }

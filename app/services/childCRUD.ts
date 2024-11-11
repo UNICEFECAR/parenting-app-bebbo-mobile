@@ -1,5 +1,5 @@
 import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
-import { appConfig, articleCategory, boyChildGender } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
@@ -125,7 +125,7 @@ export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,
     }
     if (taxonomyData?.length > 0) {
       if (prematureTaxonomyData && prematureTaxonomyData.length > 0) {
-        taxonomyData[0].prematureTaxonomyId = prematureTaxonomyData[0].id;
+        taxonomyData[0].prematureTaxonomyId = prematureTaxonomyData[0]?.id;
       }
       else {
         taxonomyData[0].prematureTaxonomyId = null;
@@ -431,7 +431,12 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       const eventData = { 'name': EXPECTED_CHILD_ENTERED }
       logEvent(eventData, netInfo.isConnected)
     }
-    await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
+    try {
+      await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
+    } catch (error) {
+      Alert.alert('Error', 'Error in creating child'+JSON.stringify(error));
+    }
+    
   }
   //new child add from 
   if (param == 0) {
@@ -560,7 +565,8 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
 }
 export const getAllConfigData = async (dispatch: any): Promise<any> => {
   const allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
-  allJsonDatanew.removeAllListeners();
+  console.log("=====2",allJsonDatanew)
+  allJsonDatanew?.removeAllListeners?.();
   const configAllData: any = [];
   allJsonDatanew.map((value: ConfigSettingsEntity) => {
     configAllData.push(value);
@@ -574,8 +580,9 @@ export const calc = async (value: any, childAge: any): Promise<any> => {
 
 export const getAllChildrenDetails = async (dispatch: any, childAge: any, param: any): Promise<any> => {
   const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  console.log("=====",allJsonDatanew)
   let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-  allJsonDatanew.removeAllListeners();
+  allJsonDatanew?.removeAllListeners?.();
   let childAllData: any = [];
   if (allJsonDatanew?.length > 0) {
     childAllData = [];
@@ -612,8 +619,9 @@ export const getAllChildrenDetails = async (dispatch: any, childAge: any, param:
 export const getAllChildren = async (dispatch: any, childAge: any, param: any): Promise<any> => {
   try {
     const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    console.log("=====1",allJsonDatanew)
     let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-    allJsonDatanew.removeAllListeners();
+    allJsonDatanew?.removeAllListeners?.();
     let childAllData: any = [];
     if (allJsonDatanew?.length > 0) {
       childAllData = [];

@@ -132,6 +132,10 @@ const SettingScreen = (props: any): any => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const allDataDownloadFlag = useAppSelector((state: any) =>
     (state.utilsData.allDataDownloadFlag),
   );
@@ -189,7 +193,7 @@ const SettingScreen = (props: any): any => {
 
   const importAllData = async (): Promise<any> => {
     setIsImportRunning(true);
-    await backup.import(props.navigation, languageCode, dispatch, childAge, genders);
+    await backup.import(props.navigation, languageCode, dispatch, childAge, genders, taxonomyIds);
     setIsImportRunning(false);
     actionSheetRefImport.current?.setModalVisible(false);
   }

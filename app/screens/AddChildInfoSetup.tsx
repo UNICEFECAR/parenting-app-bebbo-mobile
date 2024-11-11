@@ -143,12 +143,16 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
-
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   genders = genders.map((item: any) => ({ ...item, title: item.name })).filter(function (filterItem: any) {
-    return filterItem.id != bothChildGender;
+    return filterItem.unique_name != taxonomyIds?.bothChildGender;
   });
+ 
   relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != bothParentGender;
+    return e.unique_name != taxonomyIds?.bothParentGender;
   });
   const onImportCancel = (): any => {
     setImportAlertVisible(false);

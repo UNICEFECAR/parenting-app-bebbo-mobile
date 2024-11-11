@@ -149,6 +149,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
   const vchcEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.vchcEnabled),
   );
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
 
   //if measureDate is luxon today, then set measureTime to hours,minutes,seconds
 
@@ -486,6 +487,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       value={
                         editReminderItem ? new Date(measureDate) : new Date()
                       }
+                      locale={locale}
                       mode={'date'}
                       display="spinner"
                       minimumDate={new Date()}
@@ -510,6 +512,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                   <DateTimePickerModal
                     isVisible={isMeasureDatePickerVisible}
                     mode="date"
+                    locale={locale}
                     onConfirm={handleMeasureDateConfirm}
                     date={editReminderItem ? new Date(measureDate) : new Date()}
                     onCancel={(): any => {
@@ -544,6 +547,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                           editReminderItem ? new Date(measureTime) : new Date()
                         }
                         mode={'time'}
+                        locale={locale}
                         display="spinner"
                         is24Hour={true}
                         minimumDate={minmeasureTime}
@@ -573,6 +577,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                     <DateTimePickerModal
                       isVisible={isMeasureTimePickerVisible}
                       mode="time"
+                      locale={locale}
                       onConfirm={handleMeasureTimeConfirm}
                       date={editReminderItem ? new Date(measureTime) : new Date()}
                       onCancel={(): any => {
@@ -619,6 +624,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       }
                       mode={'date'}
                       display="spinner"
+                      locale={locale}
                       minimumDate={new Date()}
                       maximumDate={new Date(measureDate)}
                       onChange={onmeasureChangeDefined}
@@ -641,6 +647,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                   <DateTimePickerModal
                     isVisible={isMeasureDatePickerVisibleDefined}
                     mode="date"
+                    locale={locale}
                     onConfirm={handleMeasureDateConfirmDefined}
                     date={editReminderItem ? new Date(measureDateDefined) : new Date()}
                     onCancel={(): any => {
@@ -676,6 +683,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                         }
                         mode={'time'}
                         display="spinner"
+                        locale={locale}
                         is24Hour={true}
                         minimumDate={new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
                         maximumDate={measureTime ? new Date(measureTime) : new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
@@ -705,6 +713,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                     <DateTimePickerModal
                       isVisible={isMeasureTimePickerVisibleDefined}
                       mode="time"
+                      locale={locale}
                       onConfirm={handleMeasureTimeConfirmDefined}
                       date={editReminderItem ? new Date(measureTimeDefined) : new Date()}
                       onCancel={(): any => {

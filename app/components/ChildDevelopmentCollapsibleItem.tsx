@@ -31,7 +31,6 @@ import { PopupCloseVideo, PopupCloseContainer } from '@components/shared/ModalPo
 import { isFutureDate } from '../services/childCRUD';
 import { bgColor1 } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
-import useNetInfoHook from '../customHooks/useNetInfoHook';
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: 'flex-start' },
   checkboxStyle: { borderWidth: 1 },
@@ -60,7 +59,6 @@ const styles = StyleSheet.create({
   pressableView: { flexDirection: 'row', flex: 1 }
 });
 const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
-  const netInfo = useNetInfoHook();
   const { item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent, currentSelectedChildId } = props;
   const navigation = useNavigation<any>();
   const { t } = useTranslation()
@@ -146,8 +144,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
         headerColor: artHeaderColor,
         backgroundColor: artBackgroundColor,
         detailData: articleId[0],
-        currentSelectedChildId: currentSelectedChildId,
-        netInfo: netInfo
+        currentSelectedChildId: currentSelectedChildId
       });
   }
   const gotoActivity = (activityData: any): any => {
@@ -158,8 +155,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
         backgroundColor: actBackgroundColor,
         detailData: activityData,
         selectedChildActivitiesData: currentSelectedChildId,
-        currentSelectedChildId: currentSelectedChildId,
-        netInfo: netInfo
+        currentSelectedChildId: currentSelectedChildId
       });
   }
   const openVideo = (): any => {

@@ -1,4 +1,4 @@
-import { activityCategoryobj } from '@assets/translations/appOfflineData/apiConstants';
+import { activityCategoryobj, activityCategoryUniqueNameObj } from '@assets/translations/appOfflineData/apiConstants';
 import React from 'react';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Pressable, StyleSheet, View } from "react-native";
@@ -47,6 +47,10 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
         (state: any) =>
             JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
     );
+    const taxonomyIds = useAppSelector(
+        (state: any) =>
+          state.utilsData.taxonomyIds,
+      );
     const getFilterArray = (itemId: any, filterArray: any[]): any => {
         if (!filterArray.includes(itemId)) {
             filterArray.push(itemId);
@@ -62,8 +66,16 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
         Array.from({ length: Math.ceil(arr.length / size) }, (v: any, i: any) =>
             arr.slice(i * size, i * size + size)
         );
-    const activityBrackets = chunk(activityCategoryobj, 2)
-    console.log(activityCategoryobj,activityBrackets,"===========",activityCategoryData)
+    const categoryIds = taxonomyIds?.activityCategoryArray;
+
+    activityCategoryUniqueNameObj.forEach((item, index) => {
+        if (categoryIds[index] !== undefined) {
+            item.id = categoryIds[index];
+        }
+    });
+
+    console.log('activityCategoryUniqueNameObj data is', activityCategoryUniqueNameObj);
+    const activityBrackets = chunk(activityCategoryUniqueNameObj, 2)
     return (
         <>
             <ActivityFilter key={props.filterArray.length}>
@@ -73,7 +85,6 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
                             return (<View key={i} style={styles.innerView} >
                                 {
                                     activityCategoryInner.map((item) => {
-                                        console.log("iiite",item)
                                         return (<Pressable style={styles.pressableView} key={item.id} onPress={async (): Promise<any> => {
                                             props.filterOnCategory(getFilterArray(item.id, props.filterArray))
                                         }}>
@@ -84,7 +95,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
                                                     </OuterIconLeft>
                                                 </OuterIconRow>
 
-                                                <FilterText numberOfLines={2}>{activityCategoryData.filter((x: any) => x.id == item.id)[0]?.name || ''}</FilterText>
+                                                <FilterText numberOfLines={2}>{activityCategoryData?.filter((x: any) => x.id == item.id)[0]?.name}</FilterText>
                                             </FilterBox>
                                         </Pressable>)
                                     })

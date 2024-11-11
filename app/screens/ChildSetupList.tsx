@@ -27,7 +27,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { primaryColor, secondaryBtnColor } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, BackHandler, Dimensions, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -45,6 +45,7 @@ import { logEvent } from '../services/EventSyncService';
 import { setActiveChildData } from '../redux/reducers/childSlice';
 import { Flex1, FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
 import { ScrollView } from 'react-native-gesture-handler';
+import { requestExactAlarmPermission } from '../services/exactAlarmService';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -88,6 +89,10 @@ const ChildSetupList = ({ navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -103,6 +108,17 @@ const ChildSetupList = ({ navigation }: Props): any => {
   const onLayout = (event: any): any => {
     setParentViewHeight(event.nativeEvent.layout.height);
   }
+  useEffect(() => {
+    const checkExactAlarmPermission = async () => {
+      const hasPermission = await requestExactAlarmPermission();
+      if (!hasPermission) {
+        console.log('Redirected to enable exact alarm permission');
+      }
+    };
+
+    Platform.OS == 'android' && checkExactAlarmPermission();
+  }, []);
+
   useEffect(() => {
     if (isFocused) {
       getAllChildren(dispatch, childAge, 0);
@@ -167,14 +183,14 @@ const ChildSetupList = ({ navigation }: Props): any => {
     console.log('Gender is', gender)
     return (
       <ChildListingBox key={index}>
-        {gender && gender !== '' && gender !== 0 && gender !== undefined ?
-          (gender === t('chilGender2') ?
+        {gender && gender !== '' && gender !== undefined ?
+          (gender?.unique_name === taxonomyIds?.girlChildGender ?
             <Icon name="ic_baby_girl" size={40} color='#000' />
             : <Icon name="ic_baby" size={40} color='#000' />)
           : <Icon name="ic_baby_girl" size={40} color='#000' />}
         <ChildColArea1>
 
-          <ChildListTitle >{data.childName}{(gender != '' && gender != 0 && gender != undefined) ? <Text style={styles.textStyle}>, {gender}</Text> : null}</ChildListTitle>
+          <ChildListTitle >{data.childName}{(gender != '' && gender != undefined) ? <Text style={styles.textStyle}>, {gender?.name}</Text> : null}</ChildListTitle>
           <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}</Heading5>
         </ChildColArea1>
         <ChildColArea2>
@@ -261,7 +277,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
                   {
                     childList.length > 0 ? (
                       childList.map((item: ChildEntity, index: number) => {
-                        const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)).name : '';
+                        console.log('here gender locale is',genders)
+                        const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)) : '';
+                        console.log('here genderLocal locale is',genderLocal)
                         return renderDailyReadItem(dispatch, item, index, genderLocal);
                       })
                     ) :

@@ -25,7 +25,7 @@ const useDigitConverter = (): {
         // Add more languages and their digit mappings as needed
     };
 
-    const [language, setLanguage] = useState<DigitLanguage>('en'); // Default language is Bangla
+    const [language, setLanguage] = useState<DigitLanguage>('bn'); // Default language is Bangla
     
     const convertDigits = (inputString: any): string => {
         if(!inputString) return ''

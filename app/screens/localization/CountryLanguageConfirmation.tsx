@@ -44,7 +44,9 @@ import RNRestart from 'react-native-restart';
 import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor } from '@styles/style';
 import { localization } from '@dynamicImportsClass/dynamicImports';
-
+import moment from 'moment'
+import 'moment/locale/bn-bd'  // import for bangla language
+import 'moment/locale/bn' 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Terms'

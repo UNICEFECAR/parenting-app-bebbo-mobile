@@ -23,12 +23,10 @@ import {
   LabelDatePlaceHolderText,
   LabelText,
   LabelText1,
-  LabelTextTerms,
-  LabelWithInfoText
+  LabelTextTerms
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
   FormDobInfoPress,
-  FormInfoButtonPress,
   FormInfoLabel, FormInfoPress
 } from './shared/FormPrematureContainer';
 import { FlexFDirRowSpace, FlexRow } from './shared/FlexBoxStyle';
@@ -40,6 +38,7 @@ import ModalPopupContainer, {
 } from './shared/ModalPopupStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { greyCode } from '@styles/style';
+import { useAppSelector } from '../../App';
 const styles = StyleSheet.create({
   disabledCheckBox: {
     backgroundColor: greyCode,
@@ -60,6 +59,7 @@ const ChildDate = (props: any): any => {
   const [showdue, setdueShow] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [dobModalVisible, setDobModalVisible] = useState(false);
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
 
   const isFutureDate = (date: Date): any => {
     return (
@@ -170,10 +170,10 @@ const ChildDate = (props: any): any => {
         {Platform.OS != 'ios' ? (
           <FormInputGroup>
             <FormPrematureContainer>
-              <LabelWithInfoText>{prevScreen == 'EditScreen' ? t('addAnotherChildSetupDobLabel') : t('childSetupdobLabel')}</LabelWithInfoText>
-              <FormInfoLabel><FormInfoButtonPress onPress={(): any => setDobModalVisible(true)}>
+              <LabelText>{prevScreen == 'EditScreen' ? t('addAnotherChildSetupDobLabel') : t('childSetupdobLabel')}</LabelText>
+              <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
-              </FormInfoButtonPress></FormInfoLabel>
+              </FormInfoPress></FormInfoLabel>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
               <FormInputBox>
@@ -192,6 +192,7 @@ const ChildDate = (props: any): any => {
                       value={
                         doborExpectedDate != null ? doborExpectedDate : new Date()
                       }
+                      locale={locale}
                       mode={'date'}
                       display="spinner"
                       onChange={ondobChange}
@@ -207,10 +208,10 @@ const ChildDate = (props: any): any => {
         ) : (
           <FormInputGroup>
             <FormPrematureContainer>
-              <LabelWithInfoText>{prevScreen == 'EditScreen' ? t('addAnotherChildSetupDobLabel') : t('childSetupdobLabel')}</LabelWithInfoText>
-              <FormInfoLabel><FormInfoButtonPress onPress={(): any => setDobModalVisible(true)}>
+              <LabelText>{prevScreen == 'EditScreen' ? t('addAnotherChildSetupDobLabel') : t('childSetupdobLabel')}</LabelText>
+              <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
                 <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
-              </FormInfoButtonPress></FormInfoLabel>
+              </FormInfoPress></FormInfoLabel>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
               <View style={{ marginTop: -10 }}>
@@ -230,6 +231,7 @@ const ChildDate = (props: any): any => {
                         onCancel={(): any => {
                           setDobDatePickerVisibility(false);
                         }}
+                        locale={locale}
                         minimumDate={new Date(dobMin)}
                         maximumDate={new Date(dobMax)} />
                     )}
@@ -244,7 +246,6 @@ const ChildDate = (props: any): any => {
           </FormInputGroup>
         )}
 
-        
         <FormPrematureContainer>
           <Pressable 
           style={{flexDirection:'row'}}
@@ -282,7 +283,7 @@ const ChildDate = (props: any): any => {
             </FormInfoPress>
           </FormInfoLabel>
         </FormPrematureContainer>
-      
+       
 
         {toggleCheckBox && !disablePrematureCheck ? (
           <>
@@ -318,6 +319,7 @@ const ChildDate = (props: any): any => {
                                   .toISODate(),
                               )
                             }
+                            locale={locale}
                             // minimumDate={{}}
                             // maximumDate={{}}
                             onChange={ondueDateChange}
@@ -361,6 +363,7 @@ const ChildDate = (props: any): any => {
                                 .toISODate(),
                             )
                           }
+                          locale={locale}
                           maximumDate={
                             new Date(
                               DateTime.fromJSDate(doborExpectedDate as Date)

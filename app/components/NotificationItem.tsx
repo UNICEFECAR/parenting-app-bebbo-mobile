@@ -738,10 +738,10 @@ const NotificationItem = (props: any):any => {
           <NotifiContent>
             {item.isRead == true ?
               <Heading4Regular>{t(item.title, {
-                reminderDateTime: formatStringDate(item.periodName) + ", " + formatStringTime(item.growth_period)
+                reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)
               })}</Heading4Regular> :
               <Heading4Bold>{t(item.title, {
-                reminderDateTime: formatStringDate(item.periodName) + ", " + formatStringTime(item.growth_period)
+                reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)
               })}</Heading4Bold>
             }
 

@@ -58,6 +58,7 @@ const styles=StyleSheet.create({
 const EditParentDetails = ({ route, navigation }: Props): any => {
   const { userParentalRoleData, userRelationToParentEdit, parentEditName } = route.params;
   const [relationship, setRelationship] = useState(userParentalRoleData ? userParentalRoleData : "");
+  const [relationshipUniqueName, setRelationshipUniqueName] = useState();
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipName, setRelationshipName] = useState("");
   const [defaultGenderValue, setDefaultGenderValue] = React.useState<any>(null);
@@ -65,13 +66,17 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const relationshipToParentGlobal = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
-  const relationshipToParent = relationshipToParentGlobal.length > 0 && userRelationToParentEdit != "" ? relationshipToParentGlobal.find((o: any) => String(o.id) === userRelationToParentEdit) : '';
+
   relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != bothParentGender;
+    return e.unique_name != taxonomyIds?.bothParentGender;
   });
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
@@ -79,13 +84,17 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
   const { t } = useTranslation();
   const [parentName, setParentName] = React.useState(parentEditName ? parentEditName : "");
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const relationshipToParent = relationshipToParentGlobal.length > 0 && userParentalRoleData != "" ? relationshipToParentGlobal.find((o: any) => o.id === userParentalRoleData) : '';
+   const relationshipValue = relationshipData.find((item:any) => item.id === userRelationToParentEdit);
+  // console.log('result is',relationshipToParent);
   useFocusEffect(
     React.useCallback(() => {
       setRelationshipName(relationshipToParent != "" && relationshipToParent != null && relationshipToParent != undefined ? relationshipToParent.name : '');
-      setUserRelationToParent(relationshipToParent != "" && relationshipToParent != null && relationshipToParent != undefined ? relationshipToParent.id : '');
-      setDefaultGenderValue(userParentalRoleData != ''
-        ? relationshipData.find((item: any) => item.id == relationship)
+      setUserRelationToParent(relationshipToParent != "" && relationshipToParent != null && relationshipToParent != undefined ? relationshipToParent.unique_name : '');
+      setDefaultGenderValue(userRelationToParentEdit != ''
+        ? relationshipData.find((item: any) => item.id == userRelationToParentEdit)
         : { title: '' })
+        setRelationshipUniqueName(relationshipValue.unique_name);
     }, [])
   );
   useEffect(() => {
@@ -120,7 +129,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
      await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
     userRelationToParent = userRelationToParent.length > 0 ? userRelationToParent[0].value : '';
-    updateActiveChild(activeChild, "parent_gender", relationship, dispatch, String(userRelationToParent));
+    updateActiveChild(activeChild, "parent_gender", relationship, dispatch, String(userRelationToParent),taxonomyIds?.boyChildGender);
     navigation.navigate('ChildProfileScreen');
   }
   const getCheckedParentItem = (checkedItem: any): any => {
@@ -129,8 +138,10 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
       checkedItem.id instanceof String
     ) {
       setRelationship(checkedItem.id);
+      setRelationshipUniqueName(checkedItem.unique_name);
     } else {
       setRelationship(String(checkedItem.id));
+      setRelationshipUniqueName(checkedItem.unique_name);
     }
   };
   return <>
@@ -192,27 +203,27 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
                   <ChildRelationList key={index}>
                     <Pressable
                       onPress={(): any => {
-                        setUserRelationToParent(item.id);
+                        setUserRelationToParent(item.unique_name);
 
-                        if (item.id == relationShipMotherId) {
-                          if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
-                            setRelationship(femaleData.id);
+                        if (item.unique_name == taxonomyIds?.relationShipMotherId) {
+                          if (typeof taxonomyIds?.femaleData.unique_name === 'string' || taxonomyIds?.femaleData.unique_name instanceof String) {
+                            setRelationship(taxonomyIds?.femaleData.unique_name);
                           }
                           else {
-                            setRelationship(String(femaleData.id));
+                            setRelationship(String(taxonomyIds?.femaleData.unique_name));
                           }
                         }
-                        else if (item.id == relationShipFatherId) {
-                          if (typeof maleData.id === 'string' || maleData.id instanceof String) {
-                            setRelationship(maleData.id);
+                        else if (item.unique_name == taxonomyIds?.relationShipFatherId) {
+                          if (typeof taxonomyIds?.maleData.unique_name === 'string' || taxonomyIds?.maleData.unique_name instanceof String) {
+                            setRelationship(taxonomyIds?.maleData.unique_name);
                           }
                           else {
-                            setRelationship(String(maleData.id));
+                            setRelationship(String(taxonomyIds?.maleData.unique_name));
                           }
                         }
                         else {
-                          console.log("22", userRelationToParent, item.id);
-                          if (item.id == relationShipMotherId || item.id == relationShipFatherId) {
+                          console.log("22", userRelationToParent, item.unique_name);
+                          if (item.id == taxonomyIds?.relationShipMotherId || item.id == taxonomyIds?.relationShipFatherId) {
                             setRelationship('');
                           }
                         }
@@ -255,7 +266,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
             disabled={
               relationship == "" || relationship == null || relationship == undefined || parentName == null || parentName == undefined || parentName == "" ? true : false}
             onPress={(): any => {
-              saveParentData(relationship, parentName, userRelationToParent);
+              saveParentData(relationshipUniqueName, parentName, userRelationToParent);
             }}>
             <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
           </ButtonPrimary>

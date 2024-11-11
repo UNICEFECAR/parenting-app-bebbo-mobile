@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 const CustomFallback = (props: { error: Error; resetError: Function }) => {
   crashlytics().recordError(props.error);
   return (
-    <View>
+    <View style={{marginTop:"15%"}}>
       <Text>Something happened!</Text>
       <Text>{props.error.toString()}</Text>
       <ButtonPrimary
@@ -75,6 +75,7 @@ const App = () => {
     // SplashScreen.hide();
     googleAuth.configure();
   });
+  
   return (
     <EventProvider>
       <ErrorBoundary FallbackComponent={CustomFallback}>
