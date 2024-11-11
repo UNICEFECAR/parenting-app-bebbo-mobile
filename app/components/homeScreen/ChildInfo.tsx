@@ -62,7 +62,7 @@ const PinnedChildDevData = useAppSelector(
     state.utilsData.VideoArticlesData != '' ?JSON.parse(state.utilsData.VideoArticlesData):[],
   );
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState<any>();
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId ?? activeChild?.taxonomyData?.id;
   useEffect(() => {
     getAllConfigData(dispatch);
   },[]);

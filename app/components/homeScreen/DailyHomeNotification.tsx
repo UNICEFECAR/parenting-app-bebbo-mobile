@@ -46,8 +46,8 @@ const DailyHomeNotification = ():any => {
           // Set next daily message
           if(currentMessageIndex>-1 && records[currentMessageIndex + 1]){
             const newNotification = {
-              messageId: records[currentMessageIndex + 1].id,
-              messageText: records[currentMessageIndex + 1].title,
+              messageId: records[currentMessageIndex + 1]?.id,
+              messageText: records[currentMessageIndex + 1]?.title,
               day: currentDate.day,
               month: currentDate.month,
               year: currentDate.year,
@@ -57,8 +57,8 @@ const DailyHomeNotification = ():any => {
           }
           else{
             const firstNotification = {
-              messageId: records.length>0 ? records[0].id : '',
-              messageText: records.length>0? records[0].title : '',
+              messageId: records.length>0 ? records[0]?.id : '',
+              messageText: records.length>0? records[0]?.title : '',
               day: currentDate.day,
               month: currentDate.month,
               year: currentDate.year,
@@ -74,8 +74,8 @@ const DailyHomeNotification = ():any => {
       } else {
        //DAILY MESSAGE VARIABLE WAS NEVER SET
         const firstNotification = {
-          messageId: records.length>0 ? records[0].id : '',
-          messageText: records.length>0? records[0].title : '',
+          messageId: records.length>0 ? records[0]?.id : '',
+          messageText: records.length>0? records[0]?.title : '',
           day: currentDate.day,
           month: currentDate.month,
           year: currentDate.year,
@@ -86,8 +86,8 @@ const DailyHomeNotification = ():any => {
     }else{
       if (records.length > 0) {
       const firstNotification = {
-        messageId: records ? records[0].id : '',
-        messageText: records ? records[0].title : '',
+        messageId: records ? records[0]?.id : '',
+        messageText: records ? records[0]?.title : '',
         day: currentDate.day,
         month: currentDate.month,
         year: currentDate.year,

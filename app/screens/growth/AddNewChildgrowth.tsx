@@ -88,11 +88,12 @@ import {
   setInitialWeightValues
 } from '../../services/growthService';
 import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
-import { formatStringDate } from '../../services/Utils';
+import { convertDigits, formatStringDate } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
 import { setAllLocalNotificationGenerateType } from '../../redux/reducers/notificationSlice';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
 const AddNewChildgrowth = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
   const { editMeasurementDate } = route.params;
   const [showDelete, setShowDelete] = useState<boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
@@ -130,6 +132,8 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
   const [remarkTxt, handleDoctorRemark] = useState<string>('');
   const [measurePlace, setMeasurePlace] = useState<number>();
   const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(null);
+
+  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
   const getCheckedGrowthPlace = (checkedItem: any): any => {
     setMeasurePlace(checkedItem.id);
   };
@@ -629,6 +633,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                               editMeasurementDate ? new Date(editMeasurementDate) : new Date()
                             }
                             mode={'date'}
+                            locale={locale}
                             display="spinner"
                             maximumDate={new Date()}
                             minimumDate={new Date(minChildGrwothDate)}
@@ -654,6 +659,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                         <DateTimePickerModal
                           isVisible={isMeasureDatePickerVisible}
                           mode="date"
+                          locale={locale}
                           onConfirm={handleMeasureConfirm}
                           date={editMeasurementDate ? new Date(editMeasurementDate) : new Date()}
                           onCancel={(): any => {
@@ -704,7 +710,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                           }}>
                           <FlexFDirRowSpace>
                             <Heading3>
-                              {weightValue ? weightValue : t('growthScreenwText')}
+                              {weightValue ? convertDigits(weightValue) : t('growthScreenwText')}
                             </Heading3>
                             <Heading4Regular>
                               {t('growthScreenkgText')}
@@ -724,7 +730,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                           }}>
                           <FlexFDirRowSpace>
                             <Heading3>
-                              {heightValue ? heightValue : t('growthScreenhText')}
+                              {heightValue ? convertDigits(heightValue)   : t('growthScreenhText')}
                             </Heading3>
                             <Heading4Regular>
                               {t('growthScreencmText')}

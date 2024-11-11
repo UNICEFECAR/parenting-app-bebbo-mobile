@@ -3,16 +3,12 @@ import React from 'react';
 import { Pressable, View } from 'react-native';
 import Radio, { RadioActive, RadioCountryItem, RadioItemText } from './shared/radio';
 
-const CountryItem = ({ item, currentItem, setCountry }: any): any => {
-
-  const isActive = item && currentItem && item.CountryID === currentItem.CountryID;
-  console.log(`isActive: ${isActive}`);
-  console.log('current item', currentItem)
-  // console.log('selected item', item, isActive)
+const CountryItem = ({item, currentItem, setCountry}:any):any => {
+  const isActive: boolean = item === currentItem ? true : false;
   return (
     <>
       <Pressable
-        onPress={(): any => {
+        onPress={():any => {
           setCountry(item);
         }}>
         <RadioCountryItem>
@@ -25,7 +21,7 @@ const CountryItem = ({ item, currentItem, setCountry }: any): any => {
               <Radio></Radio>
             )}
           </View>
-          <RadioItemText isActive={isActive}>{item.name}</RadioItemText>
+          <RadioItemText isActive={isActive}>{item.displayName}</RadioItemText>
         </RadioCountryItem>
       </Pressable>
     </>

@@ -57,7 +57,9 @@ export const FDirCol = styled.View`
 flex-direction:column;
 `;
 
-
+export const Flex_5 = styled.View`
+flex:.5;
+`;
 export const FlexDirRowStart = styled(FlexDirRow)`
 align-items:flex-start;
 `;

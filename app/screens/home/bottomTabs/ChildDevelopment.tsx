@@ -38,6 +38,7 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { bgcolorWhite2 } from '@styles/style';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { logEvent, synchronizeEvents } from '../../../services/EventSyncService';
+import useDigitConverter from '../../../customHooks/useDigitConvert';
 const styles = StyleSheet.create({
   bgWhite: { backgroundColor: bgcolorWhite2 },
   flex1: { flex: 1 },
@@ -50,6 +51,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
   const themeContext = useContext(ThemeContext);
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
   const dispatch = useAppDispatch();
   const [profileLoading, setProfileLoading] = React.useState(false);
   const ChildDevData = useAppSelector(
@@ -125,20 +127,6 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   //      //setModalVisible(childDevModalOpened);
   //    },[]) 
   //  )
-  useFocusEffect(
-    React.useCallback(() => {
-      const fetchData = async (): Promise<any> => {
-        // const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
-        // const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-        // setchildMilestonedata(childData[0].checkedMilestones)
-      }
-      fetchData()
-      return (): any => {
-        console.log("unmount activity", route.params);
-        navigation.setParams({ currentSelectedChildId: 0 });
-      };
-    }, [])
-  );
   useEffect(() => {
     setComponentColors({
       headerColor: themeContext?.colors.CHILDDEVELOPMENT_COLOR,
@@ -159,8 +147,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       headerColor: componentColors?.artHeaderColor,
       backgroundColor: componentColors?.artBackgroundColor,
       detailData: selectedPinnedArticleData,
-      currentSelectedChildId: currentSelectedChildId,
-      netInfo: netInfo
+      currentSelectedChildId: currentSelectedChildId
     });
   };
   const toTop = (): any => {
@@ -430,7 +417,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                     shadowColor="#fff"
                     bgColor={componentColors?.backgroundColor}
                   >
-                    <Text style={styles.font18}>{milestonePercent}{'%'}</Text>
+                    <Text style={styles.font18}>{convertDigits(milestonePercent?.toString())}{'%'}</Text>
                   </ProgressCircle>
                 </FlexDirRowSpace>
               </DevelopmentStatus>

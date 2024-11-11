@@ -46,10 +46,10 @@ type Props = {
 
 const LoadingScreen = ({ route, navigation }: Props): any => {
   const dispatch = useAppDispatch();
-  const childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
+  const childAge = useAppSelector((state: any) => {
+    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData;
+    return allTaxonomyData ? JSON.parse(allTaxonomyData).child_age : [];
+  });
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
@@ -114,7 +114,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
         if (childAgedays) {
           if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
-            const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
+            const i = childAge.findIndex((item: any) => item?.id === child?.taxonomyData?.id);
             if (i > -1 && i < childAge.length - 1) {
               const nextchildAgeData = childAge[i + 1];
               if (nextchildAgeData.age_bracket.length > 0) {
@@ -304,8 +304,10 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
   }, []);
 
   useEffect(() => {
+    
     if(allCountries?.length === 1 && allCountries[0]?.languages?.length === 1 && isFirst){
       const language = allCountries[0]?.languages?.[0]
+      console.log(language, "allCountries in loading screen", isFirst)
       i18next.changeLanguage(language.locale)
       .then(() => {
         if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
@@ -332,7 +334,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }
   },[isFirst])
 
-
+  console.log('Sponsers List Data is',allCountries)
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
   return (

@@ -38,7 +38,7 @@ import { RootStackParamList } from './types';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
 import { appConfig, restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
-import { oncountrtIdChange, onLocalizationSelect, setSponsorStore } from '../redux/reducers/localizationSlice';
+import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
 import messaging from '@react-native-firebase/messaging';
@@ -47,14 +47,13 @@ import { PERMISSIONS, RESULTS, request, check } from 'react-native-permissions';
 import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 //import DynamicLinks from '@react-native-firebase/dynamic-links';
 import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 import AddChildSetup from '@screens/AddChildSetup';
-import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 import { localization } from '@dynamicImportsClass/dynamicImports';
-import i18next from 'i18next';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -67,8 +66,10 @@ export default (): any => {
       state.utilsData.userIsFirstTime
   );
   const child_age = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+    (state: any) => {
+      const allTaxonomyData = JSON.parse(state?.utilsData.taxonomy?.allTaxonomyData || '{}');
+      return allTaxonomyData.child_age || [];
+    }
   );
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth
@@ -116,6 +117,7 @@ export default (): any => {
     (state: any) =>
       state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
   );
+  console.log('allCountries', allCountries)
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
@@ -429,6 +431,7 @@ export default (): any => {
       createLocalNotificationListeners();
     }
   }, [userIsOnboarded]);
+    
   const redirectPayload = (remoteMessage: any): any => {
     if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
       if (navigationRef) {

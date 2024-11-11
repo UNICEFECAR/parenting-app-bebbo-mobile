@@ -12,7 +12,6 @@ import LoadableImage from '../services/LoadableImage';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
 import { FlexCol } from './shared/FlexBoxStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
-import useNetInfoHook from '../customHooks/useNetInfoHook';
 
 const ContainerView = styled.View`
   flex: 1;
@@ -30,7 +29,6 @@ const styles = StyleSheet.create({
 });
 
 const FavActivities = (): any => {
-  const netInfo = useNetInfoHook();
   const navigation = useNavigation<any>()
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -70,7 +68,6 @@ const FavActivities = (): any => {
         detailData: item,
         listCategoryArray: [],
         selectedChildActivitiesData: ActivitiesData,
-        netInfo: netInfo
       });
   };
   useFocusEffect(

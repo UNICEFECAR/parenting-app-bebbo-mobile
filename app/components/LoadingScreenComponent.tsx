@@ -1,4 +1,5 @@
-import { bebboLogoShape} from '@dynamicImportsClass/dynamicImports';
+import { buildFor, buildForBebbo } from '@assets/translations/appOfflineData/apiConstants';
+import { bebboLogoShape, bnPartnerLogo, bnSponserLogo, nmPartnerLogo, nmSponserLogo, albaniaPartnerLogo1, blSponserLogo, blPartnerLogo, kgPartnerLogo, mnSponserLogo, mnPartnerLogo, sbPartnerLogo, sbSponserLogo, skPartnerLogo, tjkPartnerLogo, uzSponserLogo, uzPartnerLogo, sponsors } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -7,7 +8,9 @@ import VectorImage from 'react-native-vector-image';
 import { FlexDirCol } from './shared/FlexBoxStyle';
 
 
+
 import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
+import Image from './shared/Image';
 
 const item = {
   image: bebboLogoShape,
@@ -56,15 +59,71 @@ const styles = StyleSheet.create({
   },
   vectorImageView: { marginBottom: 15 }
 });
+const sponsorsData = [
+  {
+    id: 1,
+    sponserImage: bnSponserLogo,
+    partnerImage: bnPartnerLogo
+  },
+  {
+    id: 36,
+    sponserImage: nmSponserLogo,
+    partnerImage: nmPartnerLogo
+  },
+  {
+    id: 6,
+    sponserImage: null,
+    partnerImage: albaniaPartnerLogo1
+  },
+
+  {
+    id: 106,
+    sponserImage: blSponserLogo,
+    partnerImage: blPartnerLogo
+  },
+  {
+    id: 26,
+    sponserImage: null,
+    partnerImage: kgPartnerLogo
+  },
+  {
+    id: 31,
+    sponserImage: mnSponserLogo,
+    partnerImage: mnPartnerLogo
+  },
+  {
+    id: 41,
+    sponserImage: sbSponserLogo,
+    partnerImage: sbPartnerLogo
+  },
+  {
+    id: 151,
+    sponserImage: null,
+    partnerImage: skPartnerLogo
+  },
+  {
+    id: 46,
+    sponserImage: null,
+    partnerImage: tjkPartnerLogo
+  },
+  {
+    id: 51,
+    sponserImage: uzSponserLogo,
+    partnerImage: uzPartnerLogo
+  },
+
+]
 const LoadingScreenComponent = (props: any): any => {
   const { t } = useTranslation();
-  const sponsors = props.sponsors;
+  const [logoname, setLogoName] = React.useState('')
   const [countrySponsor, setCountrySponsor] = React.useState<any>(null)
+  const prevPage = props.prevPage;
 
   React.useEffect(() => {
-    console.log('Sponsers ist',sponsors)
-    setCountrySponsor(sponsors)
-  }, [countrySponsor])
+      const countrySponsor1 = sponsorsData.find(sponsor => sponsor.id === props.sponsors.id);
+      setCountrySponsor(countrySponsor1)
+  
+  }, [sponsorsData, countrySponsor])
   return (
     <LoadingContainer>
       <MainView>
@@ -81,17 +140,17 @@ const LoadingScreenComponent = (props: any): any => {
               </View>
               <PartnerLogo
                 style={styles.partnerLogoView}
-                source={sponsors?.country_national_partner?.url != '' ? { uri: sponsors?.country_national_partner?.url } : require('')}
+                source={sponsors?.country_national_partner != null ? countrySponsor?.partnerImage : props.sponsors.length == 0 ? sponsorsData[0]?.partnerImage : require('')}
               />
               <SponsorLogo
                 style={styles.partnerLogoView}
-                source={sponsors?.country_sponsor_logo?.url != '' ? { uri: sponsors?.country_sponsor_logo?.url }  : require('')}
+                source={sponsors?.country_sponsor_logo != null ? countrySponsor?.sponserImage : props.sponsors.length == 0  ? sponsorsData[0]?.sponserImage : require('')}
               />
               <WrapView>
                 <StaticLogo
                   source={
 
-                    sponsors?.unicef_logo?.url != '' ? { uri: sponsors.unicef_logo?.url }  : require('')}
+                    require('../assets/loading/unicef_logo.png')}
                 />
               </WrapView>
 
