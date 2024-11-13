@@ -1,4 +1,4 @@
-import { articleCategoryArray, maxArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
+import { articleCategoryArray,articleCategoryIdArray, bothChildGender, maxArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -244,15 +244,13 @@ const Articles = ({ route, navigation }: any): any => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  const articleDataOld = articleDataall.filter((x: any) => articleCategoryArray.includes(x.category));
+  const articleDataOld = articleDataall.filter((x: any) => articleCategoryIdArray.includes(x.category));
   const VideoArticlesDataall = useAppSelector(
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
   const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && taxonomyIds?.articleCategoryArray?.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == taxonomyIds?.bothChildGender));
-  useEffect(()=>{
-     console.log('Article Data old is',taxonomyIds?.articleCategoryArray)
-  },[])
+  
   let articleData: any = mergearr(articleDataOld, videoarticleData, true);
   const [filteredData, setfilteredData] = useState<any>([]);
   const [showNoData, setshowNoData] = useState(false);
@@ -939,4 +937,3 @@ const Articles = ({ route, navigation }: any): any => {
 };
 
 export default Articles;
-

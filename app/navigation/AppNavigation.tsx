@@ -54,6 +54,7 @@ import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 import AddChildSetup from '@screens/AddChildSetup';
 import { localization } from '@dynamicImportsClass/dynamicImports';
+import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -117,7 +118,7 @@ export default (): any => {
     (state: any) =>
       state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
   );
-  console.log('allCountries', allCountries)
+
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
@@ -829,6 +830,12 @@ export default (): any => {
   const routeNameRef = React.useRef<any>();
 
   const apiJsonDataLoading = [
+    {
+      apiEndpoint: appConfig.taxonomies,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
     {
       apiEndpoint: appConfig.basicPages,
       method: 'get',

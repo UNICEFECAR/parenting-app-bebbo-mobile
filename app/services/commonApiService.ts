@@ -46,13 +46,11 @@ const commonApiService: CommonApiInterface = async (apiEndpoint: string, methodn
     .then((response: any) => {
       responseData.data = response.data
       responseData.status = response.status
-      console.log(newurl,'==========1',responseData)
       return responseData;
     })
     .catch((err: any) => {
       responseData.data = err?.message
       responseData.status = err?.response?.status;
-      console.log(newurl,'==========2',responseData)
       return responseData;
     });
 }

@@ -75,7 +75,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
     });
 
     console.log('activityCategoryUniqueNameObj data is', activityCategoryUniqueNameObj);
-    const activityBrackets = chunk(activityCategoryUniqueNameObj, 2)
+    const activityBrackets = chunk(activityCategoryobj, 2)
     return (
         <>
             <ActivityFilter key={props.filterArray.length}>

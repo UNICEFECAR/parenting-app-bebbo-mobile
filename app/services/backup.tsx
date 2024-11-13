@@ -94,7 +94,7 @@ class Backup {
             delete this.importedrealm;
         }
     }
-    public async importFromFile(oldChildrenData: any, navigation: any, genders: any, dispatch: any, childAge: any, langCode: any): Promise<any> {
+    public async importFromFile(oldChildrenData: any, navigation: any, genders: any, dispatch: any, childAge: any, langCode: any, taxonomyIds?:any): Promise<any> {
         console.log("oldchildrenresponse nwq",oldChildrenData)
         try {
             if (oldChildrenData?.length > 0) {

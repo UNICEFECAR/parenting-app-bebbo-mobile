@@ -25,9 +25,11 @@ const styles = StyleSheet.create({
 
 })
 import { DateTime } from 'luxon';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 const BabyNotification = (): any => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const {convertDigits} = useDigitConverter()
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -93,11 +95,11 @@ const BabyNotification = (): any => {
                                 activeChild.birthDate != null &&
                                   activeChild.birthDate != '' &&
                                   activeChild.birthDate != undefined
-                                  ? getCurrentChildAgeInMonths(
+                                  ? convertDigits(getCurrentChildAgeInMonths(
                                     t,
                                     DateTime.fromJSDate(new Date(activeChild.birthDate)),
                                     pluralShow
-                                  )
+                                  ))
                                   : '',
                             }) : t('expectedChildDobLabel')
                         }

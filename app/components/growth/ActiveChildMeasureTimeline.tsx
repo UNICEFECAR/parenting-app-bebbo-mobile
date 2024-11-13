@@ -26,6 +26,7 @@ import Timeline from 'react-native-timeline-flatlist';
 import { ThemeContext } from 'styled-components/native';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { formatStringDate } from '../../services/Utils';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 const styles = StyleSheet.create({
   btnTextDeco: {
     textDecorationLine:"none"
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
 })
 const ActiveChildMeasureTimeline = (props: any):any => {
   const {activeChild} = props;
+  const {convertDigits} = useDigitConverter()
   const navigation = useNavigation<any>();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
@@ -104,10 +106,10 @@ const ActiveChildMeasureTimeline = (props: any):any => {
     const title = (
       <FDirRow>
         <Heading3>
-          {renderTitle(
+          {convertDigits(renderTitle(
             sectionID,
             rowData.titleDateInMonth ? rowData.titleDateInMonth : 0,
-          )}{' '}
+          ))}{' '}
         </Heading3>
         <Heading5>{rowData.measurementDate}</Heading5>
       </FDirRow>
@@ -123,14 +125,14 @@ const ActiveChildMeasureTimeline = (props: any):any => {
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenwText')}</Heading4Regular>
                   <Heading2>
-                    {rowData.weight} {t('growthScreenkgText')}
+                    {convertDigits(rowData.weight)} {t('growthScreenkgText')}
                   </Heading2>
                 </FlexDirColStart>
 
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenhText')}</Heading4Regular>
                   <Heading2>
-                    {rowData.height} {t('growthScreencmText')}
+                    {convertDigits(rowData.height)} {t('growthScreencmText')}
                   </Heading2>
                 </FlexDirColStart>
               </FlexFDirRowSpace>

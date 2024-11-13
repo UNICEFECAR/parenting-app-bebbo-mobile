@@ -17,6 +17,8 @@ export const cameraProfileImage=cameraProfile;
 export const imgLogoChatbotNew=imgLogoChatbotNew1;
 export const AVAILABLE_LANGUAGES =require('../localization/Available_lang_bangla').default;
 export const taxonomydata =require('@offlinedata/bangla/taxonomies').taxonomydata;
+
+export const countryData =require('@offlinedata/bangla/countryData').countryData;
 export const ActivitiesData =require('@offlinedata/bangla/ActivitiesData').ActivitiesData;
 export const articledata = require('@offlinedata/bangla/article').articledata;
 export const basicPagesData =require('@offlinedata/bangla/basicPages').basicPagesData;

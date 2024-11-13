@@ -181,7 +181,6 @@ useEffect(() => {
   });
   const {topArea, bottomArea, middleArea} = bgObj;
   const ChartClick=Platform.OS=="android"?Svg:View;
-console.log(labelX,'---------->',bgObj)
   return (
     <>
    <View style={styles.mainView}>
