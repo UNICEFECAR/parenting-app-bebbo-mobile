@@ -32,7 +32,7 @@ flex:1;
 `;
 
 export const FilterText = styled.Text`  
-font-size:10px;
+font-size:14px;
 flex:1;
 font-weight:bold;
 color:${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};

@@ -139,7 +139,7 @@ export default class ScrollingButtonMenu extends React.Component {
     render() {
         const {items, upperCase, selectedOpacity, activeBackgroundColor, activeColor, buttonStyle, containerStyle, keyboardShouldPersistTaps, isCurrentChildSelected} = this.props;
         const {index} = this.state;
-        console.log('is child selected', isCurrentChildSelected)
+        
         return (
             <View style={[
                 styles.scrollArea,

@@ -199,12 +199,20 @@ const SettingScreen = (props: any): any => {
   }
 
   const encryptData = (text: string, key: any): any => {
-    return AesCrypto.encrypt(text, key, encryptionsIVKey, 'aes-256-cbc').then((cipher: any) => ({
+    console.log(text,'..text,key,encryptionsIVKey..',encryptionsIVKey.replace("//:completeSettings = none",''));
+    return AesCrypto.encrypt(text, key, encryptionsIVKey.replace("//:completeSettings = none",''), 'aes-256-cbc').then((cipher: any) => ({
       cipher
-    }));
+    })).catch((error: any) => {
+      console.log(error, "..error..");
+      setIsExportRunning(false);
+    });
   }
   const decryptData = (text: string, key: any): any => {
-    return AesCrypto.decrypt(text, key, encryptionsIVKey, 'aes-256-cbc');
+    console.log(encryptionsIVKey)
+    return AesCrypto.decrypt(text, key, encryptionsIVKey.replace("//:completeSettings = none",""), 'aes-256-cbc').catch((error: any) => {
+      console.log(error, "..error..");
+      setIsImportRunning(false);
+    });;
   }
   const exportDataAndroid = async (cipher: string): Promise<any> => {
     // const file = await ScopedStorage.openDocumentTree(true);
@@ -213,7 +221,7 @@ const SettingScreen = (props: any): any => {
       // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
       const fileDownload: any = await ScopedStorage.createDocument("mybackup","application/json",JSON.stringify(cipher), 'utf8');
       const uri1: any = await ScopedStorage.getPersistedUriPermissions();
-      console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
+      
       if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
         Alert.alert('', t('settingExportSuccess'));
         setIsExportRunning(false);
@@ -274,7 +282,8 @@ const SettingScreen = (props: any): any => {
   const exportFile = async (): Promise<any> => {
     //need to add code.
     setIsExportRunning(true);
-    userRealmCommon.exportUserRealmDataToJson()
+    try {
+      userRealmCommon.exportUserRealmDataToJson()
       .then(async (jsonData: any) => {
         encryptData(JSON.stringify(jsonData), encryptionsKey)
           .then(async (cipher: any) => {
@@ -289,10 +298,14 @@ const SettingScreen = (props: any): any => {
 
       })
       .catch(error => {
-        console.error('Error exporting data:', error);
+        console.log('Error exporting data:', error);
         setIsExportRunning(false);
         Alert.alert('', t('settingExportError'));
       });
+    }catch(err){
+      console.log('Error',err)
+    }
+    
 
 
   }
@@ -713,7 +726,7 @@ const SettingScreen = (props: any): any => {
         await userRealmCommon.deleteAllAtOnce();
         try {
         console.log("oldchildrenresponse",oldChildrenData)
-        const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+        const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode,taxonomyIds);
        
         console.log(importResponse, "..importResponse");
         } catch (error) {
@@ -788,7 +801,7 @@ const SettingScreen = (props: any): any => {
               console.log("..importResponse");
               await userRealmCommon.openRealm();
               await userRealmCommon.deleteAllAtOnce();
-              const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode);
+              const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode,taxonomyIds);
               
             } catch (error) {
               console.error(error, "..importResponse error");

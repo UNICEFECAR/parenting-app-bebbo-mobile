@@ -82,7 +82,7 @@
     "react-native-popup-menu": "^0.16.1",
     "react-native-progress-circle": "git+https://github.com/NehaRuparelgit/react-native-progress-circle.git",
     "react-native-push-notification": "^8.1.1",
-    "react-native-reanimated": "^3.10.1",
+    "react-native-reanimated": "3.10.1",
     "react-native-render-html": "^6.3.4",
     "react-native-restart": "0.0.27",
     "react-native-safe-area-context": "^3.2.0",

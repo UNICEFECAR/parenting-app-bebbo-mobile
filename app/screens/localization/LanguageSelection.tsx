@@ -34,7 +34,6 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     (state: any) =>
       state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
   );
-  console.log("in lang file ---", route?.params);
   let country: any, languagenew: any;
   if (buildFor == buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
     console.log("in if--");

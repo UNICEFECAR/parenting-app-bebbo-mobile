@@ -1,5 +1,5 @@
 import { APP_SHARE, DONATE_OPENED, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-import { buildFor, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
+import { buildFor, buildForBangla, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -170,6 +170,12 @@ const CustomDrawerContent = ({ navigation }: any): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
   const [activeChildGenderData, setActiveChildGenderData] = React.useState<any>();
+  useEffect(()=>{
+    const selectedCountry = allCountries.find(
+      (country: any) => country.CountryID === countryId.toString(),
+    )
+    setCountryEmail(selectedCountry?.country_email);
+  },[])
   useEffect(()=>{
     const gender = genders.find((g:any) => g.id === activeChild?.gender);
     console.log('Activechild gender is',gender);

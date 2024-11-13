@@ -26,9 +26,6 @@ function* apiCall(data: ApiJsonArray, dispatch: any): any {
           // console.log("errorArr after insert---",errorArr)
         }
       }
-      else {
-        console.log("in else");
-      }
     }
     return response;
   } catch (e) {
@@ -117,7 +114,7 @@ function* onFetchAPI(value: any): any {
         call(apiCall, data, dispatch)
       )
     )
-    response = response.filter((el: any) => {
+    response = response?.filter((el: any) => {
       return el != null;
     });
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {

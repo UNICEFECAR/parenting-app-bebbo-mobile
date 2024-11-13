@@ -11,14 +11,14 @@ import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { store, useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
-import { setAcceptTerms } from '../redux/reducers/utilsSlice';
-import { Heading2Centerw, ShiftFromTop15, ShiftFromTop30, ShiftFromTop40, ShiftFromTop50, SideRightSpacing20, SideSpacing10 } from '../styles/typography';
+import { setAcceptTerms, setTaxonomyIds } from '../redux/reducers/utilsSlice';
+import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10, ShiftFromTop50 ,ShiftFromTopPercentage} from '../styles/typography';
 import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
 import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo } from '@dynamicImportsClass/dynamicImports';
@@ -101,15 +101,23 @@ const Terms = ({ navigation }: Props): any => {
   const dispatch = useAppDispatch();
 
   const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  
+  const taxonomyAllData = useAppSelector(
     (state: any) =>
-      state.selectedCountry.languageCode
+      state.utilsData.taxonomy.allTaxonomyData ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData) : [],
   );
   useFocusEffect(
     React.useCallback(() => {
       setLoading(false);
     }, [languageCode])
   );
-
+  useEffect(()=>{
+      if(taxonomyAllData?.relationship_to_parent){
+        dispatch(setTaxonomyIds(taxonomyAllData))
+      }
+  },[])
   useFocusEffect(
     React.useCallback(() => {
       setTimeout(() => {

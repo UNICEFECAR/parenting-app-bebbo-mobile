@@ -135,14 +135,15 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
   const actionSheetRefImport = createRef<any>();
   const netInfo = useNetInfoHook();
-  let relationshipData = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
-  );
-  const relationshipToParent = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
-  );
+  let relationshipData = useAppSelector((state: any) => {
+    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData || {};
+    return allTaxonomyData !== '' ? JSON.parse(allTaxonomyData).parent_gender : [];
+  }) || [];
+
+  let relationshipToParent = useAppSelector((state: any) => {
+    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData || {};
+    return allTaxonomyData !== '' ? JSON.parse(allTaxonomyData).relationship_to_parent : [];
+  });
   const taxonomyIds = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomyIds,

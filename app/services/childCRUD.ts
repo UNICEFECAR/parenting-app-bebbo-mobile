@@ -565,7 +565,6 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
 }
 export const getAllConfigData = async (dispatch: any): Promise<any> => {
   const allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
-  console.log("=====2",allJsonDatanew)
   allJsonDatanew?.removeAllListeners?.();
   const configAllData: any = [];
   allJsonDatanew.map((value: ConfigSettingsEntity) => {
@@ -580,7 +579,6 @@ export const calc = async (value: any, childAge: any): Promise<any> => {
 
 export const getAllChildrenDetails = async (dispatch: any, childAge: any, param: any): Promise<any> => {
   const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-  console.log("=====",allJsonDatanew)
   let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   allJsonDatanew?.removeAllListeners?.();
   let childAllData: any = [];
@@ -619,7 +617,6 @@ export const getAllChildrenDetails = async (dispatch: any, childAge: any, param:
 export const getAllChildren = async (dispatch: any, childAge: any, param: any): Promise<any> => {
   try {
     const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    console.log("=====1",allJsonDatanew)
     let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
     allJsonDatanew?.removeAllListeners?.();
     let childAllData: any = [];

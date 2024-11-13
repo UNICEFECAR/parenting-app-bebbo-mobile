@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   containerView: {
     marginLeft:'auto',
     marginRight:'auto',
-    maxWidth:280,
+    maxWidth:'100%',
     minHeight: 120,
     padding: 10
     ,width:'100%',
@@ -28,13 +28,12 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   title: {
-    flex: 2,
-    fontSize: 10,
+    flex: 4,
+    fontSize: 14,
     fontWeight: 'bold',
     justifyContent: 'flex-start',
     margin: 0,
     textAlign: 'left',
-    width: 120
   }
 });
 const ButtonItem = (props: any):any => {
@@ -132,4 +131,3 @@ const NotificationsCategories = (props: any):any => {
   );
 };
 export default NotificationsCategories;
-

@@ -74,7 +74,7 @@ const DailyReads = (): any => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
   );
-  console.log(ActivitiesData)
+  // console.log(ActivitiesData)
   const dailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.dailyDataCategory,
   );
@@ -141,7 +141,7 @@ const DailyReads = (): any => {
       </View>
     );
   });
-console.log('[]',articleDataall)
+
   useEffect(() => {
     let dailyDataCategory: any, showedDailyDataCategory: any;
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
@@ -253,7 +253,7 @@ console.log('[]',articleDataall)
           activityListData.push(activity);
         });
       }
-      console.log('[list]1',articleListData)
+  
       setDataToShowInList(articleListData);
       setActivityDataToShowInList(activityListData);
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
@@ -313,7 +313,7 @@ console.log('[]',articleDataall)
       activityDataToShow.forEach((activity: any) => {
         activityDataList.push(activity);
       });
-      console.log('[list]',articleDataList)
+      
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList)
 

@@ -330,8 +330,8 @@ const HeaderNotiIcon = (props: any): any => {
     const fetchDataFav = async (): Promise<any> => {
       const filterQuery = 'uuid == "' + activeChild.uuid + '"';
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
-      dispatch(setFavouriteGames(childData[0].favoritegames));
+      childData[0]?.favoriteadvices && dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)|| []));
+      childData[0]?.favoritegames && dispatch(setFavouriteGames(Object.values(childData[0]?.favoritegames) || []));
     }
     fetchDataFav()
   }, [activeChild.uuid]);

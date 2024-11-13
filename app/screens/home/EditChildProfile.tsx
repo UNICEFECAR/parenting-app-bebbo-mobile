@@ -229,9 +229,6 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     }, []),
   );
 
-  console.log("=========>",genders)
-
-
   const onChildPhotoChange = async (image: ImageObject,
   ): Promise<any> => {
     // Create Documents/children folder if it doesnt exist

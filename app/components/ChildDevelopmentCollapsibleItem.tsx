@@ -31,6 +31,7 @@ import { PopupCloseVideo, PopupCloseContainer } from '@components/shared/ModalPo
 import { isFutureDate } from '../services/childCRUD';
 import { bgColor1 } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
+import useDigitConverter from '../customHooks/useDigitConvert';
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: 'flex-start' },
   checkboxStyle: { borderWidth: 1 },
@@ -80,6 +81,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const {convertDigits} = useDigitConverter()
   const [selVideoArticleData, setselVideoArticleData] = useState<any>();
   const [selActivitiesData, setselActivitiesData] = useState<any>();
   const [selVideoImage, setselVideoImage] = useState('');
@@ -192,7 +194,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                 setIsOPen(!isOPen);
               }}>
               <Heading4Regular style={styles.heading4Regular}>
-                {item?.title}
+                {convertDigits(item?.title)}
               </Heading4Regular>
               <Icon
                 style={styles.iconStyle}
@@ -280,7 +282,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                       <Flex5>
                         <ShiftFromBottom5>
                           <Heading4Regular>
-                            {selActivitiesData?.title}
+                            {convertDigits(selActivitiesData?.title)}
                           </Heading4Regular>
                         </ShiftFromBottom5>
                         {selActivitiesData ?

@@ -10,7 +10,7 @@ export const isArticlePinned = '1';
 export const articleCategory = '4,1,55,56,3,2';
 export const articleCategoryIdArray = buildFor != buildForBangla ? [4, 1, 55, 56, 3, 2] : [376, 386, 391, 396, 401, 406];
 export const articleCategoryArray = ['health_and_wellbeing', 'nutrition_and_breastfeeding', 'parenting_corner', 'play_and_learning', 'responsive_parenting', 'safety_and_protection'];
-export const activityCategoryArray = ['socio_ emotional', 'language_and_communication', 'cognitive', 'motor'];
+export const activityCategoryArray = ['socio_emotional', 'language_and_communication', 'cognitive', 'motor'];
 export const regexpEmojiPresentation = /[^\p{L} ]/gu;
 export const luxonDefaultLocale = "en-US";
 export const videoTypeVimeo = "vimeo";
@@ -132,7 +132,6 @@ export const finalUrl = (
 
   switch (apiEndpoint) {
     case appConfig.countryGroups:
-      // console.log(apiEndpoint,"[=========>URL]",`${baseUrl}/${buildFor === String(buildForBangla) ? babuniName : bebboName}`)
       return `${baseUrl}/${buildFor === String(buildForBangla) ? babuniName : bebboName}`;
     case appConfig.sponsors:
       return `${baseUrl}/${selectedCountry}`;
@@ -141,7 +140,6 @@ export const finalUrl = (
     case appConfig.checkUpdate:
       return `${baseUrl}/${selectedCountry}`;
     default:
-      // console.log("[=========>URL]",`${baseUrl}/${selectedLang}`)
       return `${baseUrl}/${selectedLang}`;
   }
 };

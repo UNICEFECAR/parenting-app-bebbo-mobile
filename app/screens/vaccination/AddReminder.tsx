@@ -414,6 +414,8 @@ const AddReminder = ({ route, navigation }: Props): any => {
             const eventData = { 'name': HEALTH_CHECKUP_REMINDER_SET }
             logEvent(eventData, netInfo.isConnected)
           }
+        } else {
+          setClicked(false);
         }
       } else {
         setClicked(false);
@@ -748,7 +750,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                   saveReminder().then(() => {
                     console.log("in then");
                   });
-                }, 0)
+                }, 100)
               }}>
               <ButtonText numberOfLines={2}>{buttonTitle}</ButtonText>
             </ButtonTertiary>

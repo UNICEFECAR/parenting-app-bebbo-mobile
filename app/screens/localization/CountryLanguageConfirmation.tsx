@@ -133,7 +133,6 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
 
     return null; // Return null if country not found
   };
-  console.log("=====>",allCountries)
 
   useFocusEffect(
     React.useCallback(() => {
@@ -294,8 +293,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           I18nManager.forceRTL(false);
         }
       })
-
-    if (userIsOnboarded == true && (newLanguage?.languageCode == languageCode)) {
+    moment.locale(newLanguage.languageCode)
+    if (userIsOnboarded == true && (newLanguage.languageCode == languageCode)) {
       navigation.reset({
         index: 0,
         routes: [

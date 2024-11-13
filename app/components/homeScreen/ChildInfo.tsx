@@ -67,14 +67,18 @@ const PinnedChildDevData = useAppSelector(
     getAllConfigData(dispatch);
   },[]);
   useEffect(() => {
+    
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(activityTaxonomyId))[0];
     filteredData = {...filteredData,name:activeChild.taxonomyData.name};
+    
     const selectedChildDevData = filteredData;
-    if(activeChildGender == "" || activeChildGender == 0 || activeChildGender == 40 || activeChildGender == 59) //for boy,other and blank
+    console.log(PinnedChildDevData.map((i: { id: any; })=> i.id),activityTaxonomyId,"activeChild",activeChildGender,selectedChildDevData.boy_video_article);
+    if(activeChildGender == "" || activeChildGender == 0 || activeChildGender == 40 || activeChildGender == 59 || activeChildGender == 526) //for boy,other and blank
     {
       const filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.boy_video_article)[0];
+      console.log(activeChild,"activeChild",filteredPinnedData);
       setSelectedPinnedArticleData(filteredPinnedData);
-    }else if(activeChildGender =="41") //for girl
+    }else if(activeChildGender =="41" || activeChildGender == 531) //for girl
     {
       const filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
       setSelectedPinnedArticleData(filteredPinnedData);
