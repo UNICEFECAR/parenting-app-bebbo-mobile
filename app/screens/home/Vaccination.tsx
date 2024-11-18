@@ -231,7 +231,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
                       {totalUpcomingVaccines ? convertDigits(totalUpcomingVaccines) : convertDigits('0')}
                     </Heading2>
                     {/* added 1 for current period */}
-                    <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
+                    <Heading4Center><Heading4Regular>{t('vcStatus1')}</Heading4Regular></Heading4Center>
                   </VacSummaryBox>
                 </VacSummaryPress>
                 <VacSummaryPress onPress={(): any => setSelectedIndex(1)}>
@@ -239,13 +239,13 @@ const Vaccination = ({ navigation, route }: Props): any => {
                     <Heading2>
                       {overDuePreviousVCcount ? convertDigits(overDuePreviousVCcount) : convertDigits('0')}
                     </Heading2>
-                    <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
+                    <Heading4Center><Heading4Regular>{t('vcStatus2')}</Heading4Regular></Heading4Center>
                   </VacSummaryBox>
                 </VacSummaryPress>
                 <VacSummaryPress onPress={(): any => setSelectedIndex(1)}>
                   <VacSummaryBox>
                     <Heading2>{doneVCcount ? convertDigits(doneVCcount) : convertDigits('0')}</Heading2>
-                    <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
+                    <Heading4Center><Heading4Regular>{t('vcStatus3')}</Heading4Regular></Heading4Center>
                   </VacSummaryBox>
                 </VacSummaryPress>
               </View>

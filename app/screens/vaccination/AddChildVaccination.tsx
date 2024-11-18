@@ -711,6 +711,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                     clearButtonMode="always"
                     defaultValue={remarkTxt}
                     multiline={true}
+                    blurOnSubmit={true}
                     onChangeText={(text): any => handleDoctorRemark(text)}
                     placeholder={t('vcDoctorRemarkPlaceHolder')}
                     placeholderTextColor={"gray"}

@@ -784,6 +784,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                       clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}
+                      blurOnSubmit={true}
                       onChangeText={(text:any): any => handleDoctorRemark(text)}
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
