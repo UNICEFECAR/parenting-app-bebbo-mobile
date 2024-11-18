@@ -34,7 +34,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     (state: any) =>
       state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
   );
-  console.log("in lang file ---", route?.params);
+  
   let country: any, languagenew: any;
   if (buildFor == buildForREMOVED_FACEBOOK_APP_ID1 && (route.params == null || route.params == undefined || route.params?.country == null)) {
     console.log("in if--");
@@ -120,7 +120,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         } else {
 
           if (route.params != undefined) {
-            newCountryId = route.params.country?.countryId;
+            newCountryId = route.params?.country?.countryId;
           } else {
             newCountryId = countryId;
           }

@@ -15,7 +15,7 @@ public class ExactAlarmModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
 
-    ExactAlarmModule(ReactApplicationContext context) {
+    public ExactAlarmModule(ReactApplicationContext context) {
         super(context);
         this.reactContext = context;
     }
@@ -29,22 +29,30 @@ public class ExactAlarmModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void requestExactAlarmPermission(Promise promise) {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) { // Android 12+
                 AlarmManager alarmManager = (AlarmManager) reactContext.getSystemService(Context.ALARM_SERVICE);
-                if (alarmManager.canScheduleExactAlarms()) {
-                    promise.resolve(true); // Permission already granted
+                if (alarmManager != null && alarmManager.canScheduleExactAlarms()) {
+                    promise.resolve(true); // Permission granted
                 } else {
-                    // Redirect user to system settings to enable SCHEDULE_EXACT_ALARM permission
+                    // Redirect user to system settings to enable the permission
                     Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    reactContext.startActivity(intent); // Open settings to request permission
-                    promise.resolve(false); // Redirecting user to enable the permission
+                    reactContext.startActivity(intent);
+                    promise.resolve(false); // Redirecting user
                 }
             } else {
-                promise.resolve(true); // Permission not needed for versions below Android 12
+                promise.resolve(true); // Permission not required for Android versions < 12
             }
+        } catch (SecurityException e) {
+            promise.reject("SECURITY_EXCEPTION", "Failed to request exact alarm permission: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            promise.reject("ILLEGAL_STATE_EXCEPTION", "Invalid state for requesting exact alarm permission: " + e.getMessage());
+        } catch (UnsupportedOperationException e) {
+            promise.reject("UNSUPPORTED_OPERATION", "Exact alarms are not supported on this device: " + e.getMessage());
+        } catch (NullPointerException e) {
+            promise.reject("NULL_POINTER_EXCEPTION", "A null pointer error occurred: " + e.getMessage());
         } catch (Exception e) {
-            promise.reject("ERROR", e.getMessage()); // Handle exception if permission check fails
+            promise.reject("ERROR", "Unexpected error: " + e.getMessage());
         }
     }
 }
