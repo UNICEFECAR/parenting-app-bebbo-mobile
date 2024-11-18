@@ -760,6 +760,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
+                      blurOnSubmit={true}
                       placeholderTextColor={"#77777779"}
                       allowFontScaling={false}
                     />
