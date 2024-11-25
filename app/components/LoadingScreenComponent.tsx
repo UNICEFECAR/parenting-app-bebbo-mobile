@@ -8,6 +8,7 @@ import { FlexDirCol } from './shared/FlexBoxStyle';
 
 
 import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
+import { useAppSelector } from '../../App';
 
 const item = {
   image: bebboLogoShape,
@@ -58,13 +59,9 @@ const styles = StyleSheet.create({
 });
 const LoadingScreenComponent = (props: any): any => {
   const { t } = useTranslation();
-  const sponsors = props.sponsors;
-  const [countrySponsor, setCountrySponsor] = React.useState<any>(null)
-
-  React.useEffect(() => {
-    console.log('Sponsers ist',sponsors)
-    setCountrySponsor(sponsors)
-  }, [countrySponsor])
+  const sponsors = useAppSelector(
+    (state: any) => state.selectedCountry.sponsors,
+  );
   return (
     <LoadingContainer>
       <MainView>
@@ -88,11 +85,11 @@ const LoadingScreenComponent = (props: any): any => {
                 source={sponsors?.country_sponsor_logo?.url != '' ? { uri: sponsors?.country_sponsor_logo?.url }  : require('')}
               />
               <WrapView>
-                <StaticLogo
+               {sponsors?.unicef_logo?.url && <StaticLogo
                   source={
 
                     sponsors?.unicef_logo?.url != '' ? { uri: sponsors.unicef_logo?.url }  : require('')}
-                />
+                />}
               </WrapView>
 
             </FlexDirCol>

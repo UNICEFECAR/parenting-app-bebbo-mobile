@@ -171,7 +171,20 @@ export default (): any => {
       method: 'get',
       postdata: {},
       saveinDB: true,
-    }
+    },
+    {
+      apiEndpoint: appConfig.sponsors,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.taxonomies,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    
   ];
   
   useEffect(() => {
@@ -832,6 +845,12 @@ export default (): any => {
   const apiJsonDataLoading = [
     {
       apiEndpoint: appConfig.taxonomies,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.sponsors,
       method: 'get',
       postdata: {},
       saveinDB: true,
