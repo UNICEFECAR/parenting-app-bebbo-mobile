@@ -157,9 +157,9 @@ const VideoPlayer = (props: any):any => {
                         onError={onError}
                         
                         webViewProps={{
-                             allowsInlineMediaPlayback: true,
+                            allowsInlineMediaPlayback: true,
                             allowsFullscreenVideo: true,
-                            androidLayerType: 'software',
+                            androidLayerType: 'hardware',
                             
                         }}
                         initialPlayerParams={{

@@ -106,6 +106,9 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       saveinDB: true,
     },
   ];
+  const sponsors = useAppSelector(
+    (state: any) => state.selectedCountry.sponsors,
+  );
   const allCountries = useAppSelector(
     (state: any) =>
       state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
@@ -323,8 +326,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       // if (userIsOnboarded == true) {
       //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
       // }
-      console.log('Sponsors Data for countryList', sponsorsData)
-      dispatch(setSponsorStore(sponsorsData));
+
+      dispatch(setSponsorStore(sponsorsData || allCountries[0]));
       navigation.navigate('LoadingScreen', {
         apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
         prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
@@ -332,7 +335,6 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     }
   }
   const saveSelection = (): void => {
-    console.log(buildFor,buildForBebbo,newLanguage,localization)
     i18n.changeLanguage(newLanguage?.locale || "en")
       .then(() => {
         if (buildFor == buildForBebbo) {

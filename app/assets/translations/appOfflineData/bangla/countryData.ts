@@ -14,7 +14,11 @@ export const countryData: any = {
               "name": "MoH bangladesh.png",
               "alt": "ministry of health Bangladesh"
             },
-            "unicef_logo": null,
+            "unicef_logo": {
+              "url": "https://www.babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2024-11/Bengali_white_vertical_RGB.png?itok=JLjee2NA",
+              "name": "Bengali_white_vertical_RGB.png",
+              "alt": "UNICEF logo in Bengali"
+            },
             "content_toggle": "",
             "app_name": "Babuni",
             "languages": [
