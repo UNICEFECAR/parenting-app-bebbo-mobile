@@ -1,10 +1,11 @@
+import { Alert } from "react-native";
 import { apiUrlDevelop, apiREMOVED_FACEBOOK_APP_ID1UrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
 export const destinationFolder = RNFS.DocumentDirectoryPath + '/content/';
 export const buildForREMOVED_FACEBOOK_APP_ID1 = 'foleja'; //'foleja'
 export const buildForREMOVED_FACEBOOK_APP_ID1 = 'bebbo'; //'beb
 export const buildForBangla = 'bangla'; //'bangla'
-export const buildFor = buildForBangla; //'foleja'
+export const buildFor = buildForREMOVED_FACEBOOK_APP_ID1; //'foleja'
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
 export const articleCategory = '4,1,55,56,3,2';
@@ -132,7 +133,8 @@ export const finalUrl = (
 
   switch (apiEndpoint) {
     case appConfig.countryGroups:
-      return `${baseUrl}/${buildFor === String(buildForBangla) ? babuniName : bebboName}`;
+      // Alert.alert(`${baseUrl}/${buildFor === String(buildForBangla) ? babuniName : folejaName }`)
+      return `${baseUrl}/${buildFor === String(buildForBangla) ? babuniName : folejaName }`;
     case appConfig.sponsors:
       return `${baseUrl}/${selectedCountry}`;
     case appConfig.taxonomies:

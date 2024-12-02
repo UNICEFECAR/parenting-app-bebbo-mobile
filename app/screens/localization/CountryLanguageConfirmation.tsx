@@ -47,6 +47,7 @@ import { localization } from '@dynamicImportsClass/dynamicImports';
 import moment from 'moment'
 import 'moment/locale/bn-bd'  // import for bangla language
 import 'moment/locale/bn' 
+import 'moment/locale/sq' 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Terms'
