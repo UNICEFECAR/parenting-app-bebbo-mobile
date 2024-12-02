@@ -1,10 +1,11 @@
+import { Alert } from "react-native";
 import { apiUrlDevelop, apiBabuniUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
 export const destinationFolder = RNFS.DocumentDirectoryPath + '/content/';
 export const buildForFoleja = 'foleja'; //'foleja'
 export const buildForBebbo = 'bebbo'; //'beb
 export const buildForBangla = 'bangla'; //'bangla'
-export const buildFor = buildForBangla; //'foleja'
+export const buildFor = buildForFoleja; //'foleja'
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
 export const articleCategory = '4,1,55,56,3,2';
@@ -132,7 +133,8 @@ export const finalUrl = (
 
   switch (apiEndpoint) {
     case appConfig.countryGroups:
-      return `${baseUrl}/${buildFor === String(buildForBangla) ? babuniName : bebboName}`;
+      // Alert.alert(`${baseUrl}/${buildFor === String(buildForBangla) ? babuniName : folejaName }`)
+      return `${baseUrl}/${buildFor === String(buildForBangla) ? babuniName : folejaName }`;
     case appConfig.sponsors:
       return `${baseUrl}/${selectedCountry}`;
     case appConfig.taxonomies:
