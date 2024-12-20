@@ -1,4 +1,5 @@
-import { boyChildGender, girlChildGender, heightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
+// import { boyChildGender, girlChildGender, heightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
 import { FlexCol, FlexColChart, FlexColEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
@@ -59,14 +60,14 @@ const ChartWeightForHeight = (props: any): any => {
   if (activeChild?.gender == taxonomyIds?.boyChildGender || activeChild?.gender == '') {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item: any) => item.growth_type == heightGrowthType && item.child_gender == taxonomyIds?.boyChildGender,
+      (item: any) => item.growth_type == appConfig.heightGrowthType && item.child_gender == taxonomyIds?.boyChildGender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'weight');
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item: any) => item.growth_type == heightGrowthType && item.child_gender == taxonomyIds?.girlChildGender,
+      (item: any) => item.growth_type == appConfig.heightGrowthType && item.child_gender == taxonomyIds?.girlChildGender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'weight');

@@ -16,12 +16,12 @@ import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { store, useAppDispatch, useAppSelector } from '../../App';
-import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import { setAcceptTerms, setTaxonomyIds } from '../redux/reducers/utilsSlice';
-import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10, ShiftFromTop50 ,ShiftFromTopPercentage} from '../styles/typography';
+import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10, ShiftFromTop50 ,ShiftFromTopPercentage} from '@styles/typography';
 import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
-import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo } from '@dynamicImportsClass/dynamicImports';
+import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo,bebboLogoShape } from '../instance';
 import FeatureTCView from '@components/shared/FeaturesTCView';
 import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
 import { logEvent } from '../services/EventSyncService';
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 0
   },
   vectorImageView: {
-    marginTop: 20
+    marginTop: 20,
   },
   contentDataView: {
     justifyContent: 'center',
@@ -140,73 +140,73 @@ const Terms = ({ navigation }: Props): any => {
   );
   const apiJsonData = [
     {
-      apiEndpoint: appConfig.taxonomies,
+      apiEndpoint: appConfig.apiConfig.taxonomies,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.videoArticles,
+      apiEndpoint: appConfig.apiConfig.videoArticles,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.dailyMessages,
+      apiEndpoint: appConfig.apiConfig.dailyMessages,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.activities,
+      apiEndpoint: appConfig.apiConfig.activities,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.surveys,
+      apiEndpoint: appConfig.apiConfig.surveys,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.milestones,
+      apiEndpoint: appConfig.apiConfig.milestones,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.childDevelopmentData,
+      apiEndpoint: appConfig.apiConfig.childDevelopmentData,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.vaccinations,
+      apiEndpoint: appConfig.apiConfig.vaccinations,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.healthCheckupData,
+      apiEndpoint: appConfig.apiConfig.healthCheckupData,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.standardDeviation,
+      apiEndpoint: appConfig.apiConfig.standardDeviation,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.faqs,
+      apiEndpoint: appConfig.apiConfig.faqs,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.articles,
+      apiEndpoint: appConfig.apiConfig.articles,
       method: 'get',
       postdata: {},
       saveinDB: true,
@@ -240,9 +240,9 @@ const Terms = ({ navigation }: Props): any => {
           />
           <OverlayLoadingComponent loading={loading} />
           <View style={{ marginTop: 30 }}>
-            <View style={styles.vectorImageView}>
-              {item.image && <VectorImage source={item.image} />}
-            </View>
+          <View style={styles.vectorImageView}>
+                {item.image && <VectorImage source={bebboLogoShapeNew} />}
+              </View>
           </View>
           <ShiftFromTop15>
             <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>

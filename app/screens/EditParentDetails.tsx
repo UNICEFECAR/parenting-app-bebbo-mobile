@@ -1,4 +1,5 @@
-import { bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
+// import { regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonMangeProfileContainer, ButtonPrimary, ButtonText, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import {
@@ -33,7 +34,7 @@ import { updateActiveChild } from '../services/childCRUD';
 import {
   Heading2w,
   Heading3, ShiftFromTop10
-} from '../styles/typography';
+} from '@styles/typography';
 import { bgcolorWhite } from '@styles/style';
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -181,7 +182,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
         </FormInputGroup>
         <View>
           {
-            userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
+            userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != appConfig.relationShipMotherId && userRelationToParent != appConfig.relationShipFatherId ?
               <FormContainer1>
                 <LabelText>{t('parentGender')}</LabelText>
                 <ToggleRadios
@@ -250,7 +251,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
                 if (value.replace(/\s/g, "") == "") {
                   setParentName(value.replace(/\s/g, ''));
                 } else {
-                  setParentName(value.replace(regexpEmojiPresentation, ''));
+                  setParentName(value.replace(appConfig.regexpEmojiPresentation, ''));
                 }
               }}
               value={parentName}

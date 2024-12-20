@@ -37,17 +37,18 @@ import { useTranslation } from 'react-i18next';
 import { I18nManager, Platform, BackHandler, Text, StyleSheet, View, Alert } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { allApisObject, appConfig, buildFor, buildForBebbo } from '../../assets/translations/appOfflineData/apiConstants';
+// import { allApisObject, apiConfig, buildFor, buildForBebbo } from '../../assets/translations/appOfflineData/apiConstants';
+import {  appConfig,localization } from '../../instance';
 import { oncountrtIdChange, onLocalizationSelect, setAppLayoutDirectionParams, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
 import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor } from '@styles/style';
-import { localization } from '@dynamicImportsClass/dynamicImports';
+// import { localization } from '@dynamicImportsClass/dynamicImports';
 import moment from 'moment'
 import 'moment/locale/bn-bd'  // import for bangla language
 import 'moment/locale/bn' 
-import 'moment/locale/sq' 
+// import 'moment/locale/sq' 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Terms'
@@ -101,7 +102,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   );
   const apiJsonData = [
     {
-      apiEndpoint: appConfig.basicPages,
+      apiEndpoint: appConfig.apiConfig.basicPages,
       method: 'get',
       postdata: {},
       saveinDB: true,
@@ -212,7 +213,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           setCountryData(foundCountry);
           const languagesWithLuxonLocale = foundCountry?.languages?.filter((lang: any) => lang.luxonLocale === selectedDefaultCountry || extractLanguageCode(lang.luxonLocale) === selectedLanguage);
           if (languagesWithLuxonLocale?.length != 0) {
-            setNewLanguage(languagesWithLuxonLocale[0]);
+            setNewLanguage(languagesWithLuxonLocale?.[0] || {});
           } else {
             const selectedLanData = foundCountry?.languages?.filter((lang: any) => lang.languageCode === languageCode);
             if (selectedLanData?.length > 0) {
@@ -225,7 +226,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           setCountryData(selectedCountry);
           const languagesWithLuxonLocale = selectedCountry?.languages?.filter((lang: any) => lang.locale === locale);
           if (languagesWithLuxonLocale?.length != 0) {
-            setNewLanguage(languagesWithLuxonLocale[0])
+            setNewLanguage(languagesWithLuxonLocale?.[0] || {})
           } else {
             const selectedLanData = selectedCountry?.languages?.filter((lang: any) => lang.languageCode === languageCode);
             if (selectedLanData.length > 0) {
@@ -330,7 +331,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
 
       dispatch(setSponsorStore(sponsorsData || allCountries[0]));
       navigation.navigate('LoadingScreen', {
-        apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
+        apiJsonData: userIsOnboarded == true ? appConfig.allApisObject(false, incrementalSyncDT) : apiJsonData,
         prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
       });
     }
@@ -338,7 +339,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const saveSelection = (): void => {
     i18n.changeLanguage(newLanguage?.locale || "en")
       .then(() => {
-        if (buildFor == buildForBebbo) {
+        if (appConfig.buildFor == appConfig.buildForBebbo) {
           const rotwLanguagelocaleen = localization[localization?.length - 1].languages[0]?.locale;
           const rotwLanguagelocaleru = localization[localization?.length - 1].languages[1]?.locale;
           console.log(localization,'rest of the world title', newLanguage)

@@ -37,7 +37,7 @@ import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
-import { appConfig, restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
+import {appConfig}  from '../instance';
 import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
@@ -53,8 +53,8 @@ import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 import AddChildSetup from '@screens/AddChildSetup';
-import { localization } from '@dynamicImportsClass/dynamicImports';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
+import { apiUrlDevelop, apiBabuniUrlDevelop } from 'react-native-dotenv';
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -167,19 +167,19 @@ export default (): any => {
   }
   const apiJsonData = [
     {
-      apiEndpoint: appConfig.countryGroups,
+      apiEndpoint: appConfig.apiConfig.countryGroups,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.sponsors,
+      apiEndpoint: appConfig.apiConfig.sponsors,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.taxonomies,
+      apiEndpoint: appConfig.apiConfig.taxonomies,
       method: 'get',
       postdata: {},
       saveinDB: true,
@@ -188,8 +188,8 @@ export default (): any => {
   ];
   
   useEffect(() => {
-    console.log('userIsFirstTime is', userIsFirstTime)
     if (!userIsFirstTime) {
+      console.log(apiJsonData,'-----------', userIsFirstTime,apiUrlDevelop)
       dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, activeChild, apiJsonData, netInfo.isConnected))
     }
   }, [dispatch])
@@ -816,7 +816,7 @@ export default (): any => {
   useEffect(() => {
     dispatch(setchatBotData([]));
     if (countryId == 1) {
-      dispatch(oncountrtIdChange(restOfTheWorldCountryId));
+      dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
     }
     const notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
@@ -844,19 +844,19 @@ export default (): any => {
 
   const apiJsonDataLoading = [
     {
-      apiEndpoint: appConfig.taxonomies,
+      apiEndpoint: appConfig.apiConfig.taxonomies,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.sponsors,
+      apiEndpoint: appConfig.apiConfig.sponsors,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.basicPages,
+      apiEndpoint: appConfig.apiConfig.basicPages,
       method: 'get',
       postdata: {},
       saveinDB: true,

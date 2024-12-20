@@ -1,4 +1,5 @@
-import { bothChildGender, maxRelatedArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
+// import { bothChildGender, maxRelatedArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
 import VideoPlayer from '@components/VideoPlayer';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
@@ -61,7 +62,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
-  const videoarticleDataold = VideoArticlesDataall.filter((x: any) => x.mandatory == videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == bothChildGender));
+  const videoarticleDataold = VideoArticlesDataall.filter((x: any) => x.mandatory == appConfig.videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == appConfig.bothChildGender));
   const videoarticleData = randomArrayShuffle(videoarticleDataold);
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -84,8 +85,8 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
             relatedData = videoarticleData.filter((x: any) => JSON.parse(JSON.stringify(relatedArticles)).includes(x.id));
           }
           relartlength = relatedData.length;
-          if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
-            const catartlength = maxRelatedArticleSize - relartlength;
+          if (relartlength < appConfig.maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
+            const catartlength = appConfig.maxRelatedArticleSize - relartlength;
             const filteredArtData = videoarticleData.filter((x: any) => {
               const i = relatedData.findIndex((_item: any) => _item.id === x.id);
               return x.category == category && x.id !== currentId && i == -1
@@ -97,10 +98,10 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
         }
         // if(category!=5){
         // go not calclualte for growth screen
-        else if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
+        else if (relartlength < appConfig.maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
           
           const relatedData: any = [];
-          const catartlength = maxRelatedArticleSize - relartlength;
+          const catartlength = appConfig.maxRelatedArticleSize - relartlength;
           
           const filteredArtData = videoarticleData.filter((x: any) => {
             const i = relatedData.findIndex((_item: any) => _item.id === x.id);

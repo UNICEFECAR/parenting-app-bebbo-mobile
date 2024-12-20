@@ -1,7 +1,7 @@
 import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, onHomeVideoartapiSuccess, onSponsorApiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
-import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onCountryApiSuccess,retryAlert } from '../../services/commonApiService';
+import commonApiService, { cancelRetryAlert, onChildSetupApiSuccess, onOnLoadApiSuccess, onCountryApiSuccess, retryAlert } from '../../services/commonApiService';
 import { ApiJsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
 import { fetchAPIStart, receiveAPIFailure, receiveAPISuccess } from './sagaSlice';
@@ -10,9 +10,9 @@ type commonApiServiceResponse = SagaReturnType<typeof commonApiService>
 function* apiCall(data: ApiJsonArray, dispatch: any): any {
   console.log("in api call", data);
   try {
-   
-    const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
 
+    const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
+    console.log("----------------------------", response);
     if (response.status != 200) {
       errorArr.push(data);
     } else {
@@ -130,7 +130,7 @@ function* onFetchAPI(value: any): any {
     }
     else {
       yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
-      
+
     }
   }
 }

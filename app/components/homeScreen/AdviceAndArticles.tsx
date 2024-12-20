@@ -25,7 +25,7 @@ const AdviceAndArticles = (): any => {
                 <FlexDirRow>
                   <Pressable onPress={(): any => navigation.navigate('Articles')}>
                     <FeatureImageBox>
-                      <VectorImage source={require('@assets/svg/ic_article_color.svg')} />
+                      <VectorImage source={require('@images/ic_article_color.svg')} />
                     </FeatureImageBox>
                   </Pressable>
                   <FeatureContentBox>

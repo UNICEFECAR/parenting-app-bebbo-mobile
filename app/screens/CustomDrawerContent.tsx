@@ -1,5 +1,6 @@
 import { APP_SHARE, DONATE_OPENED, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-import { buildFor, buildForBangla, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
+// import { buildFor, buildForBangla, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
+import {  appConfig } from '../instance';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -237,8 +238,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
     }, [isOpen, activeChild.uuid, allnotis]),
   );
   const onShare = async (): Promise<any> => {
-    const localeData = (String(buildFor) != buildForBebbo) ? languageCode : "";
-    const messageData = t('appShareText') + shareText + localeData;
+    const localeData = (String(appConfig.buildFor) != appConfig.buildForBebbo) ? languageCode : "";
+    const messageData = t('appShareText') + appConfig.shareText + localeData;
     console.log(messageData, "..messageData..");
     try {
       const result = await Share.share({
@@ -567,18 +568,18 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               <DrawerLinkView
                 onPress={(): any => {
                   if (Platform.OS === 'android') {
-                    if (String(buildFor) == buildForBebbo) {
+                    if (String(appConfig.buildFor) == appConfig.buildForBebbo) {
                       Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo')
-                    }else if (String(buildFor) == buildForBangla) {
+                    }else if (String(appConfig.buildFor) == appConfig.buildForBangla) {
                       Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni')
                     }
                     else {
                       Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.kosovo.foleja')
                     }
                   } else {
-                    if (String(buildFor) == buildForBebbo) {
+                    if (String(appConfig.buildFor) == appConfig.buildForBebbo) {
                       Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review')
-                    }else if (String(buildFor) == buildForBangla) {
+                    }else if (String(appConfig.buildFor) == appConfig.buildForBangla) {
                       Linking.openURL('itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review');
                     }
                     else {

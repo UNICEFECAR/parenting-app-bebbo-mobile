@@ -1,5 +1,5 @@
 import { GROWTH_MEASUREMENT_ADDED, HEALTH_CHECKUP_ENTERED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
-import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonColTwo,
@@ -780,7 +780,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                     <TextInputML style={styles.textInputMl}
                       autoCapitalize="none"
                       autoCorrect={false}
-                      maxLength={maxCharForRemarks}
+                      maxLength={appConfig.maxCharForRemarks}
                       clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}

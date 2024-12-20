@@ -1,4 +1,5 @@
-import { bothChildGender, bothParentGender, regexpEmojiPresentation, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+// import { regexpEmojiPresentation, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -41,7 +42,7 @@ import {
   ShiftFromTop25,
   Heading2Centerw,
   Heading3BoldCenterrw,
-} from '../styles/typography';
+} from '@styles/typography';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import * as ScopedStorage from "react-native-scoped-storage";
@@ -219,7 +220,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
         importedrealm.close();
       }
       try {
-        Realm.deleteFile({ path: tempRealmFile });
+        Realm.deleteFile({ path: appConfig.tempRealmFile });
       } catch (error) {
         //console.log(error);
       }
@@ -244,11 +245,11 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
             throw error;
           });
         const importedJsonData = JSON.parse(await decryptedData);
-        await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+        await RNFS.writeFile(appConfig.tempRealmFile, JSON.stringify(decryptedData), "utf8");
         oldChildrenData = importedJsonData;
       } else {
         const base64Dataset = await ScopedStorage.openDocument(true, 'base64');
-        await RNFS.writeFile(tempRealmFile, base64Dataset.data, "base64");
+        await RNFS.writeFile(appConfig.tempRealmFile, base64Dataset.data, "base64");
         importedrealm = await new Realm({ path: 'user1.realm' });
         const user1Path = importedrealm.path;
         console.log(user1Path, "..user1Path");
@@ -281,11 +282,11 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
                 throw error;
               });
             const importedData = JSON.parse(await decryptedData);
-            await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+            await RNFS.writeFile(appConfig.tempRealmFile, JSON.stringify(decryptedData), "utf8");
             oldChildrenData = importedData;
           } else {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
-            await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
+            await RNFS.writeFile(appConfig.tempRealmFile, exportedFileContent, "base64");
             importedrealm = await new Realm({ path: 'user1.realm' });
             if (importedrealm) {
               importedrealm.close();
@@ -446,7 +447,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
-                      setName(value.replace(regexpEmojiPresentation, ''));
+                      setName(value.replace(appConfig.regexpEmojiPresentation, ''));
                     }
                   }}
                   value={name}

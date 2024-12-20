@@ -1,4 +1,4 @@
-import { bothChildGender, bothParentGender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -60,7 +60,7 @@ import {
   ShiftFromTop40,
   ShiftFromTop25,
   Heading4Centerrw,
-} from '../styles/typography';
+} from '@styles/typography';
 import AlertModal from '@components/AlertModal';
 import { BannerContainer } from '@components/shared/Container';
 import { SettingHeading, SettingShareData, SettingOptions } from '@components/shared/SettingsStyle';
@@ -73,7 +73,6 @@ import TextInputML from '@components/shared/TextInputML';
 import { bgcolorWhite2, primaryColor } from '@styles/style';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
-import BackgroundColors from '@components/shared/BackgroundColors';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -248,7 +247,7 @@ const ChildSetup = ({ navigation }: Props): any => {
         importedrealm.close();
       }
       try {
-        Realm.deleteFile({ path: tempRealmFile });
+        Realm.deleteFile({ path: appConfig.tempRealmFile });
       } catch (error) {
         //console.log(error);
       }
@@ -273,11 +272,11 @@ const ChildSetup = ({ navigation }: Props): any => {
             throw error;
           });
         const importedJsonData = JSON.parse(await decryptedData);
-        await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+        await RNFS.writeFile(appConfig.tempRealmFile, JSON.stringify(decryptedData), "utf8");
         oldChildrenData = importedJsonData;
       } else {
         const base64Dataset = await ScopedStorage.openDocument(true, 'base64');
-        await RNFS.writeFile(tempRealmFile, base64Dataset.data, "base64");
+        await RNFS.writeFile(appConfig.tempRealmFile, base64Dataset.data, "base64");
         importedrealm = await new Realm({ path: 'user1.realm' });
         const user1Path = importedrealm.path;
         console.log(user1Path, "..user1Path");
@@ -310,11 +309,11 @@ const ChildSetup = ({ navigation }: Props): any => {
                 throw error;
               });
             const importedData = JSON.parse(await decryptedData);
-            await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+            await RNFS.writeFile(appConfig.tempRealmFile, JSON.stringify(decryptedData), "utf8");
             oldChildrenData = importedData;
           } else {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
-            await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
+            await RNFS.writeFile(appConfig.tempRealmFile, exportedFileContent, "base64");
             importedrealm = await new Realm({ path: 'user1.realm' });
             if (importedrealm) {
               importedrealm.close();
@@ -418,7 +417,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
-                      setName(value.replace(regexpEmojiPresentation, ''));
+                      setName(value.replace(appConfig.regexpEmojiPresentation, ''));
                     }
                   }}
                   value={name}
@@ -635,7 +634,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                     }
                   }, 350);
                 }}>
-                  <VectorImage source={require('@assets/svg/ic_file.svg')} />
+                  <VectorImage source={require('@images/ic_file.svg')} />
                   <ShiftFromTopBottom5>
                     <Heading4Regular>
                       {t('importBtntxt')}
@@ -662,7 +661,7 @@ const ChildSetup = ({ navigation }: Props): any => {
 
                 }}>
                   <VectorImage
-                    source={require('@assets/svg/ic_gdrive.svg')}
+                    source={require('@images/ic_gdrive.svg')}
                   />
                   <ShiftFromTopBottom5>
                     <Heading4Regular>

@@ -1,4 +1,4 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
 /**
  * Metro configuration
@@ -6,21 +6,31 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  *
  * @type {import('metro-config').MetroConfig}
  */
+const path = require('path');
+
+process.env.FLAVOR = process.env.FLAVOR || 'bebbo'; // Default to 'bebbo'
+const exclusionList = require('metro-config/src/defaults/exclusionList');
 
 const blacklist = require('metro-config/src/defaults/exclusionList')
 const config = {
-    resetCache: true,
-    transformer: {
-      getTransformOptions: async () => ({
-        transform: {
-          experimentalImportSupport: false,
-          inlineRequires: true,
-        },
-      }),
+  resetCache: true,
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true,
+      },
+    }),
+  },
+  resolver: {
+    blacklistRE: exclusionList([
+      /app\/instance\/.*\/styles\/package\.json/, // Exclude conflicting package.json files
+      /app\/instance\/.*\/assets\/images\/package\.json/,
+    ]),
+    extraNodeModules: {
+      'react-native-dotenv': path.resolve(__dirname, `.env.${process.env.FLAVOR}`),
     },
-    resolver: {
-    blacklistRE: blacklist([/bangla\/.*/,/bebbo\/.*/]),
-    }
-  };
-  
+  }
+};
+
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);

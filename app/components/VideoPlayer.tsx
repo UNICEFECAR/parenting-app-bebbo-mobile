@@ -1,4 +1,5 @@
-import { videoTypeImage, videoTypeVimeo, videoTypeYoutube } from "@assets/translations/appOfflineData/apiConstants";
+// import { videoTypeImage, videoTypeVimeo, videoTypeYoutube } from "@assets/translations/appOfflineData/apiConstants";
+import { appConfig } from "../instance";
 import React, { useCallback, useState } from "react";
 import { ActivityIndicator, Dimensions, Image, StyleSheet, View } from "react-native";
 import WebView from "react-native-webview";
@@ -45,13 +46,13 @@ const VideoPlayer = (props: any):any => {
     const [playing, setPlaying] = useState(false);
     const [loading, setLoading] = useState(true);
     let videoId: string;
-    let videoType = videoTypeImage;
+    let videoType = appConfig.videoTypeImage;
     const onReady = useCallback(() => {
       setLoading(false);
     }, []);
     const onError = useCallback(() => {
       setLoading(false);
-      videoType = videoTypeImage;
+      videoType = appConfig.videoTypeImage;
     }, []);
     const windowWidth = Dimensions.get('window').width;
     const displaySpinner=():any=>{
@@ -63,11 +64,11 @@ const VideoPlayer = (props: any):any => {
     const netInfo = useNetInfoHook();
     if(props.selectedPinnedArticleData && props.selectedPinnedArticleData != {})
     {
-        videoType = props.selectedPinnedArticleData.cover_video && props.selectedPinnedArticleData.cover_video?.site && props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == videoTypeVimeo ? videoTypeVimeo : videoTypeYoutube) : videoTypeImage
+        videoType = props.selectedPinnedArticleData.cover_video && props.selectedPinnedArticleData.cover_video?.site && props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == appConfig.videoTypeVimeo ? appConfig.videoTypeVimeo : appConfig.videoTypeYoutube) : appConfig.videoTypeImage
     }
-    if (videoType == videoTypeVimeo) {
+    if (videoType == appConfig.videoTypeVimeo) {
         videoId = getVimeoId(props.selectedPinnedArticleData?.cover_video?.url)
-    } else if (videoType == videoTypeYoutube) {
+    } else if (videoType == appConfig.videoTypeYoutube) {
         videoId = getYoutubeId(props.selectedPinnedArticleData?.cover_video?.url)
     }
     const getVimeoHtml = ():any => {
@@ -129,12 +130,12 @@ const VideoPlayer = (props: any):any => {
     }
     return (
         <>
-            {videoType == videoTypeImage || netInfo.isConnected == false ?
+            {videoType == appConfig.videoTypeImage || netInfo.isConnected == false ?
                 ( <View style={styles.typeImageView}><Image
                     source={require('@assets/trash/defaultArticleImage.png')}
                     style={styles.typeImageImg}
                 /></View>) :
-                (<>{videoType == videoTypeVimeo ?
+                (<>{videoType == appConfig.videoTypeVimeo ?
                     <WebView
                         startInLoadingState={true}
                         containerStyle={styles.containerStyle}

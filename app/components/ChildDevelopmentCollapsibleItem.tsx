@@ -1,4 +1,5 @@
-import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
+// import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, } from '../instance';
 import { useNavigation } from '@react-navigation/native';
 import {
   Heading4,
@@ -108,8 +109,8 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
           destFilename: imageName
         })
         await downloadImages(imageArray);
-        if (await RNFS.exists(destinationFolder + '/' + imageName)) {
-          setselActivityImage(encodeURI("file://" + destinationFolder + imageName));
+        if (await RNFS.exists(appConfig.destinationFolder + '/' + imageName)) {
+          setselActivityImage(encodeURI("file://" + appConfig.destinationFolder + imageName));
         } else {
           setselActivityImage('');
         }
@@ -124,8 +125,8 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
 
         })
         await downloadImages(imageArray);
-        if (await RNFS.exists(destinationFolder + '/' + imageName)) {
-          setselVideoImage(encodeURI("file://" + destinationFolder + imageName));
+        if (await RNFS.exists(appConfig.destinationFolder + '/' + imageName)) {
+          setselVideoImage(encodeURI("file://" + appConfig.destinationFolder + imageName));
         } else {
           setselVideoImage('');
         }
@@ -222,7 +223,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                         />
                         <VectorImage
                           style={styles.close}
-                          source={require('@assets/svg/play_icon.svg')}
+                          source={require('@images/play_icon.svg')}
                         />
                       </Pressable>
                     </>

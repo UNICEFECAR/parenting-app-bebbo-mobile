@@ -18,8 +18,8 @@ import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthCheckupsData, setAllMileStonesData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
-import { appConfig, bothChildGender, bothParentGender } from "./apiConstants";
-import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData, countryData } from '@dynamicImportsClass/dynamicImports';
+import { appConfig } from "../../../instance";
+import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData, countryData } from '../../../instance';
 import { Country, CountrySchema } from "../../../database/schema/CountrySchema";
 import { setCountriesStore } from '../../../redux/reducers/localizationSlice';
 
@@ -146,60 +146,60 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
 export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode: string, dispatch: any, _prevPage: string, activeChild?: any): Promise<any> => {
     // return new Promise(async (resolve) => {
     let Entity: any;
-    if (apiEndpoint == appConfig.basicPages) {
+    if (apiEndpoint == appConfig.apiConfig.basicPages) {
         await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.taxonomies) {
+    else if (apiEndpoint == appConfig.apiConfig.taxonomies) {
         await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.countryGroups) {
+    else if (apiEndpoint == appConfig.apiConfig.countryGroups) {
         await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         return "success";
     }
-    else if (apiEndpoint == appConfig.dailyMessages) {
+    else if (apiEndpoint == appConfig.apiConfig.dailyMessages) {
         await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
         return "success";
     }
-    else if (apiEndpoint == appConfig.standardDeviation) {
+    else if (apiEndpoint == appConfig.apiConfig.standardDeviation) {
         await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
         await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.vaccinations) {
+    else if (apiEndpoint == appConfig.apiConfig.vaccinations) {
         await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.healthCheckupData) {
+    else if (apiEndpoint == appConfig.apiConfig.healthCheckupData) {
         await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.childDevelopmentData) {
+    else if (apiEndpoint == appConfig.apiConfig.childDevelopmentData) {
         await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.milestones) {
+    else if (apiEndpoint == appConfig.apiConfig.milestones) {
         await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.videoArticles) {
+    else if (apiEndpoint == appConfig.apiConfig.videoArticles) {
         await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.activities) {
+    else if (apiEndpoint == appConfig.apiConfig.activities) {
         await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.surveys) {
+    else if (apiEndpoint == appConfig.apiConfig.surveys) {
         await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.faqs) {
+    else if (apiEndpoint == appConfig.apiConfig.faqs) {
         await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
         return "success";
     }
-    else if (apiEndpoint == appConfig.articles) {
+    else if (apiEndpoint == appConfig.apiConfig.articles) {
         const currentChildData = {
             "gender": activeChild.gender,
             "parent_gender": activeChild.parent_gender,

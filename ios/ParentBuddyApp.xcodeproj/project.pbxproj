@@ -754,6 +754,7 @@
 				3205C0992C11DC5A002309EA /* Bundle React Native code and images */,
 				73004A1089182904B9056BE1 /* [CP] Embed Pods Frameworks */,
 				1D88A06C4CEB2B557D3FA8AC /* [CP] Copy Pods Resources */,
+				E8D23BCC2D10765C00ABC8C5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -868,7 +869,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = K288UMKCNF;
 						LastSwiftMigration = 1250;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -2323,6 +2324,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppTests/Pods-ParentBuddyApp-ParentBuddyAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E8D23BCC2D10765C00ABC8C5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport FLAVOR=babuni\n";
+		};
 		F70C2921E2FDF0160BC6EC10 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2588,8 +2606,8 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K288UMKCNF;
@@ -2692,7 +2710,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
 				PRODUCT_NAME = ParentBuddyApp;
-				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Production_Unicef;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2709,8 +2727,8 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K288UMKCNF;
@@ -2752,7 +2770,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
 				PRODUCT_NAME = ParentBuddyApp;
-				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Production_Unicef;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_VERSION = 5.0;
@@ -2875,7 +2893,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				ENABLE_BITCODE = NO;
@@ -2997,7 +3015,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
@@ -3238,10 +3256,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -3304,10 +3319,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3749,6 +3761,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 93BCKGKLMZ;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
 				INFOPLIST_FILE = "ParentBuddyAppXkDev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

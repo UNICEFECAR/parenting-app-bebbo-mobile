@@ -1,5 +1,5 @@
 import { ADVICE_SHARED, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARED } from '@assets/data/firebaseEvents';
-import { shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
 import { Heading4 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -45,7 +45,7 @@ const languageCode = useAppSelector(
 
    const onShare = async ():Promise<any> => {
    const suburl=isAdvice?"/article/":"/activity/";
-   const mainUrl=shareTextButton+languageCode+suburl+item.id;
+   const mainUrl=appConfig.shareTextButton+languageCode+suburl+item.id;
    console.log('onshare click')
     try {
       const result = await Share.share({

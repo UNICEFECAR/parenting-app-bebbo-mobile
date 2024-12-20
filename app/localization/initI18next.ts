@@ -3,33 +3,33 @@ import i18n, {
   Services,
   InitOptions,
 } from 'i18next';
-import {initReactI18next} from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as RNLocalize from 'react-native-localize';
 import { store } from '../../App';
 import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
-import { localization, AVAILABLE_LANGUAGES } from '@dynamicImportsClass/dynamicImports';
+import { localization, AVAILABLE_LANGUAGES } from '../instance/index';
 
-console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
+console.log("AVAILABLE_LANGUAGES--", AVAILABLE_LANGUAGES);
 const localisationnew = [...localization];
-const findAllByKey:any = (obj: object | null, keyToFind: string) => {
-  if(obj){
-   return Object.entries(obj)
-    .reduce((acc, [key, value]) => (key === keyToFind)
-      ? acc.concat(value)
-      : (typeof value === 'object')
-      ? acc.concat(findAllByKey(value, keyToFind))
-      : acc
-    , [])
+const findAllByKey: any = (obj: object | null, keyToFind: string) => {
+  if (obj) {
+    return Object.entries(obj)
+      .reduce((acc, [key, value]) => (key === keyToFind)
+        ? acc.concat(value)
+        : (typeof value === 'object')
+          ? acc.concat(findAllByKey(value, keyToFind))
+          : acc
+        , [])
   }
 }
 
-const findLangCode = (languageTag: string | undefined):any => {
-  const obj = localisationnew.reduce((prev, product):any => prev || product.languages.find((item:any) => item.luxonLocale === languageTag && item.locale != 'RSen'), undefined);
+const findLangCode = (languageTag: string | undefined): any => {
+  const obj = localisationnew.reduce((prev, product): any => prev || product.languages.find((item: any) => item.luxonLocale === languageTag && item.locale != 'RSen'), undefined);
   const obj2 = obj ? obj.locale : obj;
   return obj2;
 }
-const AVALAILABLE_LANG_CODES:any = findAllByKey(localisationnew,'luxonLocale');
+const AVALAILABLE_LANG_CODES: any = findAllByKey(localisationnew, 'luxonLocale');
 const languageDetector: LanguageDetectorAsyncModule = {
   type: 'languageDetector',
   // If this is set to true, your detect function receives a callback function that you should call with your language,

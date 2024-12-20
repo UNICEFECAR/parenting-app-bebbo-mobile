@@ -1,5 +1,6 @@
 
-import { bothChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+// import { bothChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonRow, ButtonText, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
@@ -23,7 +24,7 @@ import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { addChild, getNewChild } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
-import { Heading1Centerw, ShiftFromTop20, ShiftFromTop5, SideSpacing25 } from '../styles/typography';
+import { Heading1Centerw, ShiftFromTop20, ShiftFromTop5, SideSpacing25 } from '@styles/typography';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -70,7 +71,7 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
   );
 
   genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.id != bothChildGender;
+    return e.id != appConfig.bothChildGender;
   });
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
@@ -148,7 +149,7 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
-                      setName(value.replace(regexpEmojiPresentation, ''));
+                      setName(value.replace(appConfig.regexpEmojiPresentation, ''));
                     }
                   }}
                   value={name}

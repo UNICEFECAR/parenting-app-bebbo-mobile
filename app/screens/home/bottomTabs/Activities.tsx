@@ -240,7 +240,7 @@ const Activities = ({ route, navigation }: any): any => {
 
   const setFilteredActivityData = async (itemId: any): Promise<any> => {
     setHistoryVisible(false);
-    if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData.length != 0) {
+    if (selectedChildActivitiesData && selectedChildActivitiesData?.length > 0 && selectedChildActivitiesData?.length != 0) {
       if (itemId.length > 0) {
         let newArticleData: any = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
         let titleData = [];
@@ -730,7 +730,7 @@ const Activities = ({ route, navigation }: any): any => {
 
       <View style={styles.historyItem}>
         <View>
-          <VectorImage source={require('@assets/svg/history.svg')} />
+          <VectorImage source={require('@images/history.svg')} />
         </View>
 
         <Text style={styles.historyText}>{item}</Text>

@@ -1,4 +1,5 @@
-import { maxRelatedArticleSize } from '@assets/translations/appOfflineData/apiConstants';
+// import { maxRelatedArticleSize } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -83,7 +84,7 @@ const RelatedActivities = (props:RelatedActivityProps):any => {
           actualselectedChildActivitiesData = randomArrayShuffle([...selectedChildActivitiesDatanew]);
         }
       // go not calclualte for growth screen
-          const catartlength = maxRelatedArticleSize;
+          const catartlength = appConfig.maxRelatedArticleSize;
            if(currentId && currentId!="" && actualselectedChildActivitiesData)
           {
             const filteredArtData = actualselectedChildActivitiesData.filter((x: any)=> {

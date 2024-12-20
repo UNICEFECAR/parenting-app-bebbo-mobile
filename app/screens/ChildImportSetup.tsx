@@ -1,12 +1,11 @@
 import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
+// import {
+//   regexpEmojiPresentation,
+//   relationShipMotherId,
+// } from '@assets/translations/appOfflineData/apiConstants';
 import {
-  bothParentGender,
-  femaleData,
-  maleData,
-  regexpEmojiPresentation,
-  relationShipFatherId,
-  relationShipMotherId,
-} from '@assets/translations/appOfflineData/apiConstants';
+  appConfig,
+} from '../instance';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonPrimary, ButtonRow, ButtonText,
@@ -49,7 +48,7 @@ import {
   ShiftFromTopBottom20,
   ShiftFromTop10,
   ShiftFromTop20,
-} from '../styles/typography';
+} from '@styles/typography';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import { bgcolorWhite, primaryColor } from '@styles/style';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
@@ -195,7 +194,7 @@ const ChildImportSetup = (props: any): any => {
                           if (value.replace(/\s/g, "") == "") {
                             setName(value.replace(/\s/g, ''));
                           } else {
-                            setName(value.replace(regexpEmojiPresentation, ''));
+                            setName(value.replace(appConfig.regexpEmojiPresentation, ''));
                           }
                         }}
                         value={name}
@@ -222,7 +221,7 @@ const ChildImportSetup = (props: any): any => {
                     </FormInputGroup>
                     <View>
                       {
-                        userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent !=  taxonomyIds?.relationShipFatherId ?
+                        userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != appConfig.relationShipMotherId && userRelationToParent !=  taxonomyIds?.relationShipFatherId ?
                           <FormContainer1>
                             <LabelText>{t('parentGender')}</LabelText>
                             <ToggleRadios

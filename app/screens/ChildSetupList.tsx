@@ -39,7 +39,7 @@ import {
   Heading5,
   ShiftFromBottom10,
   ShiftFromTop30
-} from '../styles/typography';
+} from '@styles/typography';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
 import { setActiveChildData } from '../redux/reducers/childSlice';

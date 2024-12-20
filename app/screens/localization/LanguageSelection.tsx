@@ -12,8 +12,9 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
 import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
-import { localization, sponsors } from '@dynamicImportsClass/dynamicImports';
-import { allApisObject, appConfig, buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
+// import { localization, sponsors } from '@dynamicImportsClass/dynamicImports';
+// import { allApisObject, appConfig, buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig,localization} from '../../instance';
 import { Flex5 } from '@components/shared/FlexBoxStyle';
 import { ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
@@ -35,7 +36,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
   );
   let country: any, languagenew: any;
-  if (buildFor == buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
+  if (appConfig.buildFor == appConfig.buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
     console.log("in if--");
     country = allCountries[allCountries.length - 1];
     languagenew = null;
@@ -64,7 +65,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   );
   const apiJsonData = [
     {
-      apiEndpoint: appConfig.basicPages,
+      apiEndpoint: appConfig.apiConfig.basicPages,
       method: 'get',
       postdata: {},
       saveinDB: true,
@@ -87,7 +88,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       setLanguage(route?.params?.language)
     } else {
       console.log('languages for foleja is', languages)
-      if (buildFor == String(buildForFoleja)) {
+      if (appConfig.buildFor == String(appConfig.buildForFoleja)) {
         setLanguage(languages[0])
       } else {
         const languagesWithLuxonLocale = country?.languages?.filter((lang: any) => lang.luxonLocale === route.params.luxonlocale || extractLanguageCode(lang.luxonLocale) === route.params.deviceLanCode);
@@ -248,7 +249,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       console.log('Sponsors Data for countryList', sponsorsData)
       dispatch(setSponsorStore(sponsorsData));
       const params = {
-        apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
+        apiJsonData: userIsOnboarded == true ? appConfig.allApisObject(false, incrementalSyncDT) : apiJsonData,
         prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
       }
       navigation.navigate("LoadingScreen", params );
@@ -269,7 +270,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     }
     i18n.changeLanguage(newLanguage?.locale || 'en')
       .then(() => {
-        if (buildFor == buildForBebbo) {
+        if (appConfig.buildFor == appConfig.buildForBebbo) {
           const rotwLanguagelocaleen = localization[localization.length - 1]?.languages[0]?.locale;
           const rotwLanguagelocaleru = localization[localization.length - 1]?.languages[1]?.locale;
           console.log('rest of the world title', newLanguage)

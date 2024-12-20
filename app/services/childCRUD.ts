@@ -1,5 +1,5 @@
 import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
-import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
@@ -27,7 +27,7 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
   }
   return [
     {
-      apiEndpoint: appConfig.articles,
+      apiEndpoint: appConfig.apiConfig.articles,
       method: 'get',
       postdata: isDatetimeReq == true && dateTimeObj.articlesDatetime != '' ? { ...postData, datetime: dateTimeObj.articlesDatetime } : { ...postData },
       saveinDB: true,

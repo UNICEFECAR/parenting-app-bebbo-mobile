@@ -1,4 +1,4 @@
-import  {localization}  from '@dynamicImportsClass/dynamicImports';
+import  {localization}  from '../instance';
 import { createStackNavigator } from '@react-navigation/stack';
 import CountryLanguageConfirmation from '@screens/localization/CountryLanguageConfirmation';
 import CountrySelection from '@screens/localization/CountrySelection';

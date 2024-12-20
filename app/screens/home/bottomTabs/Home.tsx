@@ -1,5 +1,5 @@
 import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
-import { allApisObject, appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import {  appConfig } from '../../../instance';
 import { getDataToStore } from '@assets/translations/appOfflineData/getDataToStore';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
@@ -27,7 +27,7 @@ import ModalPopupContainer, {
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { articledata, VideoArticleData } from '@dynamicImportsClass/dynamicImports';
+import { articledata, VideoArticleData } from '../../../instance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {
@@ -171,7 +171,7 @@ const Home = ({ route, navigation }: any): any => {
   );
   const forceUpdateApis = (forceupdatetime: any): any => {
     navigation.navigate('LoadingScreen', {
-      apiJsonData: allApisObject(true, incrementalSyncDT),
+      apiJsonData: appConfig.allApisObject(true, incrementalSyncDT),
       prevPage: 'ForceUpdate',
       forceupdatetime: forceupdatetime
     });
@@ -229,7 +229,7 @@ const Home = ({ route, navigation }: any): any => {
 
   const forceUpdateData = [
     {
-      apiEndpoint: appConfig.checkUpdate,
+      apiEndpoint: appConfig.apiConfig.checkUpdate,
       method: 'get',
       postdata: {},
       saveinDB: false,
@@ -282,7 +282,7 @@ const Home = ({ route, navigation }: any): any => {
           if (isVideoArticleUpdateReq == null || isVideoArticleUpdateReq == undefined || isVideoArticleUpdateReq == 'true') {
             const apiJsonDatavideoart = [
               {
-                apiEndpoint: appConfig.videoArticles,
+                apiEndpoint: appConfig.apiConfig.videoArticles,
                 method: 'get',
                 postdata: {},
                 saveinDB: true,
@@ -364,7 +364,7 @@ const Home = ({ route, navigation }: any): any => {
         if (netInfo.isConnected && showDownloadPopup) {
           const apiJsonDatasurvey = [
             {
-              apiEndpoint: appConfig.surveys,
+              apiEndpoint: appConfig.apiConfig.surveys,
               method: 'get',
               postdata: {},
               saveinDB: true,
@@ -380,7 +380,7 @@ const Home = ({ route, navigation }: any): any => {
                   text: t('forceUpdateOkBtn'), onPress: (): any => {
 
                     navigation.navigate('LoadingScreen', {
-                      apiJsonData: allApisObject(false, incrementalSyncDT),
+                      apiJsonData: appConfig.allApisObject(false, incrementalSyncDT),
                       prevPage: 'CountryLangChange'
                     });
                   }

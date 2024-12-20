@@ -84,21 +84,21 @@ const UserGuide = ():any => {
   const data = [
     {
       title: t('walkthroughTextstitle1'),
-      image: require('@assets/svg/ic_activity_color.svg'),
+      image: require('@images/ic_activity_color.svg'),
       colors: ['#0FD87E', '#CFF7E5'],
       textcolor:'#000',
       subtitle: t('walkthroughTextssubtitle1'),
     },
     {
       title: t('walkthroughTextstitle2'),
-      image: require('@assets/svg/ic_tools_color.svg'),
+      image: require('@images/ic_tools_color.svg'),
       colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
       textcolor:'#000',
       subtitle: t('walkthroughTextssubtitle2'),
     },
     {
       title: t('walkthroughTextstitle3'),
-      image: require('@assets/svg/ic_article_color.svg'),
+      image: require('@images/ic_article_color.svg'),
       colors: ['#FF8D6B', '#FFD2C4'],
       textcolor:'#000',
       subtitle:t('walkthroughTextssubtitle3'),

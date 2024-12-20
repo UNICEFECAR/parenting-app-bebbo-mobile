@@ -5,7 +5,7 @@ import RNFS from 'react-native-fs';
 import { requestNotifications } from "react-native-permissions";
 import { ObjectSchema, PrimaryKey } from "realm";
 import { v4 as uuidv4 } from 'uuid';
-import { appConfig, isArticlePinned, luxonDefaultLocale } from "../assets/translations/appOfflineData/apiConstants";
+import { appConfig } from "../instance";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../database/schema/ActivitiesSchema";
 import { ArticleEntity, ArticleEntitySchema } from "../database/schema/ArticleSchema";
@@ -26,20 +26,20 @@ import { isFutureDate } from "./childCRUD";
 import PushNotification from 'react-native-push-notification';
 import { Country, CountrySchema } from "../database/schema/CountrySchema";
 import moment from "moment";
-const requestNotificationPermission= async (): Promise<any>=>{
-    const status= await requestNotifications([]);
-    console.log(status,"..status..");
-   
-  }
-export const  notiPermissionUtil= async ():Promise<any>=>{
-    setTimeout(()=>{
-        if(Platform.OS=="android"){
-          requestNotificationPermission();
+const requestNotificationPermission = async (): Promise<any> => {
+    const status = await requestNotifications([]);
+    console.log(status, "..status..");
+
+}
+export const notiPermissionUtil = async (): Promise<any> => {
+    setTimeout(() => {
+        if (Platform.OS == "android") {
+            requestNotificationPermission();
         }
-        else{
-          PushNotification.requestPermissions(); 
-        }  
-      },100);
+        else {
+            PushNotification.requestPermissions();
+        }
+    }, 100);
 }
 export const addApiDataInRealm = async (response: any): Promise<any> => {
     // return new Promise(async (resolve, reject) => {
@@ -50,13 +50,13 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     let Entity: any;
     let insertData = [];
     let pinnedArticle = "";
-    if (response.payload.apiEndpoint == appConfig.articles) {
+    if (response.payload.apiEndpoint == appConfig.apiConfig.articles) {
         insertData = response.payload.data.data;
         Entity = Entity as ArticleEntity;
         EntitySchema = ArticleEntitySchema;
         pinnedArticle = "";
     }
-    else if (response.payload.apiEndpoint == appConfig.archive) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.archive) {
         insertData = response.payload.data.data;
         Entity = Entity as VideoArticleEntity;
         EntitySchema = VideoArticleEntitySchema;
@@ -64,67 +64,67 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
         EntitySchema3 = ActivitiesEntitySchema;
         EntitySchema4 = FAQsSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.videoArticles) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.videoArticles) {
         insertData = response.payload.data.data;
         Entity = Entity as VideoArticleEntity;
         EntitySchema = VideoArticleEntitySchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.dailyMessages) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.dailyMessages) {
         insertData = response.payload.data.data;
         Entity = Entity as DailyHomeMessagesEntity;
         EntitySchema = DailyHomeMessagesSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.basicPages) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.basicPages) {
         insertData = response.payload.data.data;
         Entity = Entity as BasicPagesEntity;
         EntitySchema = BasicPagesSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.taxonomies) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.taxonomies) {
         const { ...allData } = response.payload.data.data;
         insertData.push({ langCode: response.payload.data.langcode, allData: JSON.stringify(allData), standardDevData: JSON.stringify(response.payload.data.data.standard_deviation) });
         Entity = Entity as TaxonomyEntity;
         EntitySchema = TaxonomySchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.activities) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.activities) {
         insertData = response.payload.data.data;
         Entity = Entity as ActivitiesEntity;
         EntitySchema = ActivitiesEntitySchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.surveys) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.surveys) {
         insertData = response.payload.data.data;
         Entity = Entity as SurveysEntity;
         EntitySchema = SurveysSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.milestones) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.milestones) {
         insertData = response.payload.data.data;
         Entity = Entity as MilestonesEntity;
         EntitySchema = MilestonesSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.childDevelopmentData) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.childDevelopmentData) {
         insertData = response.payload.data.data;
         Entity = Entity as ChildDevelopmentEntity;
         EntitySchema = ChildDevelopmentSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.childGrowthData) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.childGrowthData) {
         insertData = response.payload.data.data;
         Entity = Entity as ChildGrowthEntity;
         EntitySchema = ChildGrowthSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.vaccinations) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.vaccinations) {
         insertData = response.payload.data.data;
         Entity = Entity as VaccinationEntity;
         EntitySchema = VaccinationSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.healthCheckupData) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.healthCheckupData) {
         insertData = response.payload.data.data;
         Entity = Entity as HealthCheckUpsEntity;
         EntitySchema = HealthCheckUpsSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.standardDeviation) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.standardDeviation) {
         insertData = response.payload.data.data;
         EntitySchema = StandardDevWeightForHeightSchema;
     }
-    else if (response.payload.apiEndpoint == appConfig.faqs) {
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.faqs) {
         insertData = response.payload.data.data;
         Entity = Entity as FAQsEntity;
         EntitySchema = FAQsSchema;
@@ -141,7 +141,7 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
             return '';
         }
     }
-    else if (EntitySchema == VideoArticleEntitySchema && response.payload.apiEndpoint == appConfig.archive) {
+    else if (EntitySchema == VideoArticleEntitySchema && response.payload.apiEndpoint == appConfig.apiConfig.archive) {
         try {
             await dataRealmCommon.deleteDeltaData(EntitySchema.name, EntitySchema2.name, EntitySchema3.name, EntitySchema4.name, insertData);
             return "successinsert";
@@ -215,7 +215,7 @@ export const formatDate = (dateData: any): any => {
     // const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     // const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     const dateView = getTwoDigits(dateData.day) + "." + getTwoDigits(dateData.month) + "." + dateData.year;
-    return moment(dateView,'DD.MM.YYYY').format('DD.MM.YYYY');
+    return moment(dateView, 'DD.MM.YYYY').format('DD.MM.YYYY');
 }
 export const formatStringDate = (dateData: any): any => {
     dateData = DateTime.fromJSDate(new Date(dateData));
@@ -234,7 +234,7 @@ export const formatStringDate = (dateData: any): any => {
     // const month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     // const year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     const dateView = getTwoDigits(dateData.day) + "." + getTwoDigits(dateData.month) + "." + dateData.year;
-    return moment(dateView,'DD.MM.YYYY').format('DD.MM.YYYY');
+    return moment(dateView, 'DD.MM.YYYY').format('DD.MM.YYYY');
 }
 
 
@@ -249,7 +249,7 @@ export const formatStringTime = (dateData: any): any => {
     const formattedTime = getTwoDigits(hour) + ":" + getTwoDigits(minute)
 
     console.log(formattedTime);
-    return moment(formattedTime,'hh:mm').format('hh:mm');
+    return moment(formattedTime, 'hh:mm').format('hh:mm');
 }
 export const removeParams = (sParam: any): any => {
     if (sParam.indexOf("?") != -1) {
@@ -261,7 +261,7 @@ export const removeParams = (sParam: any): any => {
     }
 }
 export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any): any => {
-    console.log('Check button here',relationship,gender,birthDate,param,name)
+    console.log('Check button here', relationship, gender, birthDate, param, name)
     if (birthDate == null || birthDate == undefined) {
         return false;
     }
@@ -307,12 +307,12 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
         }
     }
 }
-export const validateParentsForm = (param: any,  relationship: any,  name?: any,): any => {
+export const validateParentsForm = (param: any, relationship: any, name?: any,): any => {
     if (name == '' || name == null || name == undefined) {
         return false;
     }
-     if (param == 0) {
-        if (relationship == '' || relationship == null || relationship == undefined ) {
+    if (param == 0) {
+        if (relationship == '' || relationship == null || relationship == undefined) {
             return false;
         }
     }
@@ -330,9 +330,9 @@ export const validateParentsForm = (param: any,  relationship: any,  name?: any,
     }
 
 }
-export const trimWhiteSpacePayload = (str:any):any => {
-    return str.length ? str.trim(): str
-  }
+export const trimWhiteSpacePayload = (str: any): any => {
+    return str.length ? str.trim() : str
+}
 export const randomArrayShuffle = (array: any): any => {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -389,11 +389,11 @@ export const getVimeoId = (url: string): string => {
 
     return rval;
 }
-const formatImportedMeasures = async (measures: any): Promise<any>=> {
+const formatImportedMeasures = async (measures: any): Promise<any> => {
     console.log(' here us')
     console.log('measurement length is', measures.length)
     //imported from old app
-    if (measures.length ==0) {
+    if (measures.length == 0) {
         console.log('here us1...')
         return measures;
     } else {
@@ -455,7 +455,7 @@ const callAsyncOperationdatetime = async (rem: any): Promise<any> => {
 
 const formatImportedReminders = async (reminders: any): Promise<any> => {
     console.log('remideer length is', reminders.length)
-    if (reminders.length==0) {
+    if (reminders.length == 0) {
         // in old app reminders were string, new app has reminders array
         return reminders;
     } else {
@@ -485,28 +485,28 @@ const formatImportedReminders = async (reminders: any): Promise<any> => {
         }
     }
 }
-const checkFileExistence = async (filePath:string) => {
+const checkFileExistence = async (filePath: string) => {
     console.log('Existskkkkkkk');
     try {
-      const exists = await RNFS.exists(filePath);
-      console.log('Exists:', exists);
-  
-      if (exists) {
-        console.log('File exists');
-      } else {
-        console.log('File does not exist');
-      }
+        const exists = await RNFS.exists(filePath);
+        console.log('Exists:', exists);
+
+        if (exists) {
+            console.log('File exists');
+        } else {
+            console.log('File does not exist');
+        }
     } catch (error) {
-      console.log('Error:', error);
+        console.log('Error:', error);
     }
-  };
-  
+};
+
 //child data get
 export const getChild = async (child: any, genders: any): Promise<any> => {
     try {
-        const checkPhotoUri = child.photoUri!=null? CHILDREN_PATH +child.photoUri : CHILDREN_PATH;
-        const photoUri  = await RNFS.exists(String(checkPhotoUri));     
-        const childmeasures:any  = await formatImportedMeasures(child.measures)
+        const checkPhotoUri = child.photoUri != null ? CHILDREN_PATH + child.photoUri : CHILDREN_PATH;
+        const photoUri = await RNFS.exists(String(checkPhotoUri));
+        const childmeasures: any = await formatImportedMeasures(child.measures)
         console.log("reminders output---", childmeasures);
         const childreminders = await formatImportedReminders(child.reminders)
         console.log("reminders output---", childreminders);
@@ -536,28 +536,28 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
         }
         console.log('Child fav games and articles', favoriteadvices, favoritegames)
         const inFuture = isFutureDate(child.birthDate);
-         //planned will be date of birth se aage ka and birthdate ka diff 4weeks and above hai then premature true
-    return {
-        uuid: child.uuid,
-        childName: childName,
-        gender: genderValue,
-        photoUri: photoUri ? child.photoUri : "",
-        createdAt: child.createdAt,
-        updatedAt: child.updatedAt,
-        plannedTermDate: child.plannedTermDate,
-        birthDate: child.birthDate,
-        babyRating: child.babyRating,
-        measures: childmeasures,
-        comment: child.comment,
-        checkedMilestones: child.checkedMilestones,
-        reminders: childreminders,
-        isMigrated: true,
-        isPremature: isPremature,
-        isExpected: inFuture == true ? 'true' : 'false',
-        favoriteadvices: favoriteadvices,
-        favoritegames: favoritegames,
-        autoChild: autoChild
-    };
+        //planned will be date of birth se aage ka and birthdate ka diff 4weeks and above hai then premature true
+        return {
+            uuid: child.uuid,
+            childName: childName,
+            gender: genderValue,
+            photoUri: photoUri ? child.photoUri : "",
+            createdAt: child.createdAt,
+            updatedAt: child.updatedAt,
+            plannedTermDate: child.plannedTermDate,
+            birthDate: child.birthDate,
+            babyRating: child.babyRating,
+            measures: childmeasures,
+            comment: child.comment,
+            checkedMilestones: child.checkedMilestones,
+            reminders: childreminders,
+            isMigrated: true,
+            isPremature: isPremature,
+            isExpected: inFuture == true ? 'true' : 'false',
+            favoriteadvices: favoriteadvices,
+            favoritegames: favoritegames,
+            autoChild: autoChild
+        };
     } catch (error) {
         console.error('Error in getChild:', error);
         throw error; // Re-throw the error for handling in the calling function
@@ -580,16 +580,16 @@ export function convertDigits(inputString: any, targetLanguage: DigitLanguage): 
         'en': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], // Turkish uses Latin digits
         // Add more languages and their digit mappings as needed
     };
-    if(!inputString) return ''
+    if (!inputString) return ''
 
     // Convert input string to lowercase for case-insensitive comparison
     const lowerTarget = targetLanguage?.toLowerCase?.() as DigitLanguage;
 
     // Check if the target language is supported
     if (!digitMap[lowerTarget]) {
-        console.log('Unsupported language');
+        // console.log('Unsupported language');
         return inputString;
-    } 
+    }
 
     // Get the digit array for the target language
     const targetDigits = digitMap[lowerTarget];

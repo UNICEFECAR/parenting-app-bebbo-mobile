@@ -1,4 +1,5 @@
-import { activityCategoryobj, activityCategoryUniqueNameObj } from '@assets/translations/appOfflineData/apiConstants';
+// import { activityCategoryobj, activityCategoryUniqueNameObj } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import React from 'react';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Pressable, StyleSheet, View } from "react-native";
@@ -68,14 +69,14 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
         );
     const categoryIds = taxonomyIds?.activityCategoryArray;
 
-    activityCategoryUniqueNameObj.forEach((item, index) => {
+    appConfig.activityCategoryUniqueNameObj.forEach((item, index) => {
         if (categoryIds[index] !== undefined) {
             item.id = categoryIds[index];
         }
     });
 
-    console.log('activityCategoryUniqueNameObj data is', activityCategoryUniqueNameObj);
-    const activityBrackets = chunk(activityCategoryobj, 2)
+    console.log('activityCategoryUniqueNameObj data is', appConfig.activityCategoryUniqueNameObj);
+    const activityBrackets = chunk(appConfig.activityCategoryobj, 2)
     return (
         <>
             <ActivityFilter key={props.filterArray.length}>

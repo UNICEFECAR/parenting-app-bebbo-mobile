@@ -24,7 +24,7 @@ const ChildMilestones = (): any => {
                 <Pressable onPress={(): any => navigation.navigate('ChildDevelopment')}>
                   <FeatureImageBox>
                     <VectorImage
-                      source={require('@assets/svg/ic_development_color.svg')}
+                      source={require('@images/ic_development_color.svg')}
                     />
                   </FeatureImageBox>
                 </Pressable>

@@ -1,5 +1,6 @@
 import { HEALTH_CHECKUP_REMINDER_SET, VACCINE_REMINDER_SET } from '@assets/data/firebaseEvents';
-import { fiveYearFromNow } from '@assets/translations/appOfflineData/apiConstants';
+// import { fiveYearFromNow } from '@assets/translations/appOfflineData/apiConstants';
+import {  appConfig } from '../../instance';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonColTwo,
@@ -493,7 +494,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       mode={'date'}
                       display="spinner"
                       minimumDate={new Date()}
-                      maximumDate={fiveYearFromNow}
+                      maximumDate={appConfig.fiveYearFromNow}
                       onChange={onmeasureChange}
                     />
                   )}
@@ -521,7 +522,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       setMeasureDatePickerVisibility(false);
                     }}
                     minimumDate={new Date()}
-                    maximumDate={fiveYearFromNow}
+                    maximumDate={appConfig.fiveYearFromNow}
                   />
 
                 </FormDateText>

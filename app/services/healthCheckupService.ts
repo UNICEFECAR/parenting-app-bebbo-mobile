@@ -1,4 +1,5 @@
-import { maxPeriodDays } from '@assets/translations/appOfflineData/apiConstants';
+// import { maxPeriodDays } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import { DateTime } from "luxon";
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from "../../App";
@@ -216,7 +217,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds:any):any=>{
       const item = allGrowthPeriods.find((item: any) => Number(item.id) == Number(hcItem.growth_period));
       if (item) {
         hcItem.vaccination_opens = item?.vaccination_opens;
-        hcItem.vaccination_ends = index < allHealthCheckupsDataNew.length - 1 ? allHealthCheckupsDataNew[index + 1]?.vaccination_opens : maxPeriodDays;
+        hcItem.vaccination_ends = index < allHealthCheckupsDataNew.length - 1 ? allHealthCheckupsDataNew[index + 1]?.vaccination_opens : appConfig.maxPeriodDays;
       }
       const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
       hcItem.growthMeasures = measuresForHCPeriod;
