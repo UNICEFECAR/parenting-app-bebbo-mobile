@@ -2,7 +2,8 @@ import { googleAuth } from "./googleAuth";
 import { googleDrive } from "./googleDrive";
 import RNFS from 'react-native-fs';
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
-import { backupGDriveFileName, backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
+// import { backupGDriveFileName, backupGDriveFolderName } from "../instance";
+import { appConfig } from "../instance";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
 import { getAllChildren, setActiveChild } from "./childCRUD";
@@ -47,7 +48,7 @@ class Backup {
         }
 
         const backupFolderId = await googleDrive.safeCreateFolder({
-            name: backupGDriveFolderName,
+            name: appConfig.backupGDriveFolderName,
             parentFolderId: 'root'
         });
         if (backupFolderId instanceof Error) {
@@ -57,7 +58,7 @@ class Backup {
         // Get backup file ID if exists on GDrive
         let backupFileId: string | null = null;
         const backupFiles = await googleDrive.list({
-            filter: `trashed=false and (name contains '${backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
+            filter: `trashed=false and (name contains '${appConfig.backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
         });
         if (Array.isArray(backupFiles) && backupFiles.length > 0) {
             backupFileId = backupFiles[0].id;
@@ -72,7 +73,7 @@ class Backup {
                 this.encryptData(JSON.stringify(jsonData), encryptionsKey)
                 .then(async (cipher: any) => {
                     const response = await googleDrive.createFileMultipart({
-                        name: backupGDriveFileName,
+                        name: appConfig.backupGDriveFileName,
                         content: cipher.cipher,
                         parentFolderId: backupFolderId,
                         isBase64: false,
@@ -196,7 +197,7 @@ class Backup {
 
         // Get backupFolderId
         const backupFolderId = await googleDrive.safeCreateFolder({
-            name: backupGDriveFolderName,
+            name: appConfig.backupGDriveFolderName,
             parentFolderId: 'root'
         });
         if (backupFolderId instanceof Error) {
@@ -208,7 +209,7 @@ class Backup {
         let backupFileName: string | null = null;
 
         const backupFiles = await googleDrive.list({
-            filter: `trashed=false and (name contains '${backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
+            filter: `trashed=false and (name contains '${appConfig.backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
         });
         if (Array.isArray(backupFiles) && backupFiles.length > 0) {
             backupFileId = backupFiles[0].id;
@@ -267,7 +268,7 @@ class Backup {
 
         // Get backupFolderId
         const backupFolderId = await googleDrive.safeCreateFolder({
-            name: backupGDriveFolderName,
+            name: appConfig.backupGDriveFolderName,
             parentFolderId: 'root'
         });
         if (backupFolderId instanceof Error) {
@@ -279,7 +280,7 @@ class Backup {
         let backupFileName: string | null = null;
 
         const backupFiles = await googleDrive.list({
-            filter: `trashed=false and (name contains '${backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
+            filter: `trashed=false and (name contains '${appConfig.backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
         });
         if (Array.isArray(backupFiles) && backupFiles.length > 0) {
             backupFileId = backupFiles[0].id;

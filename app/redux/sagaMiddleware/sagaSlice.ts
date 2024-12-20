@@ -1,5 +1,5 @@
 
-import { appConfig } from "@assets/translations/appOfflineData/apiConstants";
+import { appConfig } from "../../instance";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -20,7 +20,7 @@ export const sagaSlice = createSlice({
       state.data = action.payload;
     },
     receiveAPIFailure: (state, action):any => {
-      action.payload.errorArr = action.payload.errorArr.filter((_item: any) => _item.apiEndpoint !== appConfig.surveys);
+      action.payload.errorArr = action.payload.errorArr.filter((_item: any) => _item.apiEndpoint !== appConfig.apiConfig.surveys);
       //write code to check if element already in array.
       if (action.payload?.fromPage == "OnLoad") {
         state.errorObj = []

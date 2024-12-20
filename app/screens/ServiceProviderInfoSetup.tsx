@@ -33,7 +33,7 @@ import {
   Heading3Centerw,
   Heading5,
   ShiftFromTop30
-} from '../styles/typography';
+} from '@styles/typography';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { logEvent } from '../services/EventSyncService';
 import { FlexCol } from '@components/shared/FlexBoxStyle';

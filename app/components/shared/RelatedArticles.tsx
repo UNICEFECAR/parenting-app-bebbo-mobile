@@ -1,4 +1,4 @@
-import { maxRelatedArticleSize } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
 import { useFocusEffect } from '@react-navigation/native';
 import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
@@ -84,8 +84,8 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
             console.log('relatedData data from database',relatedData)
           }
           relartlength = relatedData.length;
-           if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
-            const catartlength = maxRelatedArticleSize - relartlength;
+           if (relartlength < appConfig.maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
+            const catartlength = appConfig.maxRelatedArticleSize - relartlength;
             const filteredArtData = articleData.filter((x: any) => {
               const i = relatedData.findIndex((_item: any) => _item.id === x.id);
               return x.category == category && x.id !== currentId && i == -1
@@ -96,9 +96,9 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
           }
         }
         // go not calclualte for growth screen
-        else if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
+        else if (relartlength < appConfig.maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
          const relatedData: any = [];
-          const catartlength = maxRelatedArticleSize - relartlength;
+          const catartlength = appConfig.maxRelatedArticleSize - relartlength;
           const filteredArtData = articleData.filter((x: any) => {
             const i = relatedData.findIndex((_item: any) => _item.id === x.id);
             return x.category == category && x.id !== currentId && i == -1

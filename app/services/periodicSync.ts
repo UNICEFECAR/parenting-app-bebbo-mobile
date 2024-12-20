@@ -1,4 +1,4 @@
-import { appConfig, firstPeriodicSyncDays, secondPeriodicSyncDays } from "@assets/translations/appOfflineData/apiConstants";
+import { appConfig } from "../instance";
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 
@@ -29,7 +29,7 @@ export const getAllPeriodicSyncData = (): any => {
   );
   const apiJsonDataFirstSync = [
     {
-      apiEndpoint: appConfig.taxonomies,
+      apiEndpoint: appConfig.apiConfig.taxonomies,
       method: 'get',
       postdata: {},
       saveinDB: true,
@@ -37,25 +37,25 @@ export const getAllPeriodicSyncData = (): any => {
     //FAQ content
     //Chat questions list
     {
-      apiEndpoint: appConfig.videoArticles,
+      apiEndpoint: appConfig.apiConfig.videoArticles,
       method: 'get',
       postdata: incrementalSyncDT['videoArticlesDatetime'] != '' ? { datetime: incrementalSyncDT['videoArticlesDatetime'] } : {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.activities,
+      apiEndpoint: appConfig.apiConfig.activities,
       method: 'get',
       postdata: incrementalSyncDT['activitiesDatetime'] != '' ? { datetime: incrementalSyncDT['activitiesDatetime'] } : {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.faqs,
+      apiEndpoint: appConfig.apiConfig.faqs,
       method: 'get',
       postdata: incrementalSyncDT['faqsDatetime'] != '' ? { datetime: incrementalSyncDT['faqsDatetime'] } : {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.archive,
+      apiEndpoint: appConfig.apiConfig.archive,
       method: 'get',
       postdata: incrementalSyncDT['archiveDatetime'] != '' ? { datetime: incrementalSyncDT['archiveDatetime'] } : incrementalSyncDT['faqPinnedContentDatetime'] != '' ? { datetime: incrementalSyncDT['faqPinnedContentDatetime'] } : {},
       saveinDB: true,
@@ -63,49 +63,49 @@ export const getAllPeriodicSyncData = (): any => {
   ];
   const apiJsonDataSecondSync = [
     {
-      apiEndpoint: appConfig.sponsors,
+      apiEndpoint: appConfig.apiConfig.sponsors,
       method: 'get',
       postdata: {},
       saveinDB: false,
     },
     {
-      apiEndpoint: appConfig.basicPages,
+      apiEndpoint: appConfig.apiConfig.basicPages,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.dailyMessages,
+      apiEndpoint: appConfig.apiConfig.dailyMessages,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.milestones,
+      apiEndpoint: appConfig.apiConfig.milestones,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.childDevelopmentData,
+      apiEndpoint: appConfig.apiConfig.childDevelopmentData,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.vaccinations,
+      apiEndpoint: appConfig.apiConfig.vaccinations,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.healthCheckupData,
+      apiEndpoint: appConfig.apiConfig.healthCheckupData,
       method: 'get',
       postdata: {},
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.standardDeviation,
+      apiEndpoint: appConfig.apiConfig.standardDeviation,
       method: 'get',
       postdata: {},
       saveinDB: true,
@@ -118,23 +118,23 @@ export const getAllPeriodicSyncData = (): any => {
     console.log("Don't sync");
   }
   else {
-    if(childList.length>0){
-    childList.map((child: any) => {
-      const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
-      if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
-        const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
-        // i > -1 && i < childAge.length
-        if (i > -1 && i < childAge.length - 1) {
-          const nextchildAgeData = childAge[i + 1];
-          if (nextchildAgeData.age_bracket.length > 0) {
-            nextchildAgeData.age_bracket.map((ages: any) => {
-              ageBrackets.push(ages);
-            })
+    if (childList.length > 0) {
+      childList.map((child: any) => {
+        const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
+        if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
+          const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
+          // i > -1 && i < childAge.length
+          if (i > -1 && i < childAge.length - 1) {
+            const nextchildAgeData = childAge[i + 1];
+            if (nextchildAgeData.age_bracket.length > 0) {
+              nextchildAgeData.age_bracket.map((ages: any) => {
+                ageBrackets.push(ages);
+              })
+            }
           }
         }
-      }
-    })
-  }
+      })
+    }
     ageBrackets = [...new Set(ageBrackets)];
     if (bufferAgeBracket) {
       ageBrackets = ageBrackets.filter((val: any) => !bufferAgeBracket.includes(val));
@@ -145,7 +145,7 @@ export const getAllPeriodicSyncData = (): any => {
       downloadBufferData = false
     }
     const weeklydiffdays = (DateTime.now()).diff((DateTime.fromMillis(weeklyDownloadDate)), 'days').toObject().days;
-    if (weeklydiffdays && weeklydiffdays > firstPeriodicSyncDays) {
+    if (weeklydiffdays && weeklydiffdays > appConfig.firstPeriodicSyncDays) {
       downloadWeeklyData = true;
       apiJsonDataFirstSync.map((value: any) => {
         const i = apiJsonData.findIndex(_item => _item.apiEndpoint === value.apiEndpoint);
@@ -158,7 +158,7 @@ export const getAllPeriodicSyncData = (): any => {
     }
 
     const monthlydiffdays = (DateTime.now()).diff((DateTime.fromMillis(monthlyDownloadDate)), 'days').toObject().days;
-    if (monthlydiffdays && monthlydiffdays > secondPeriodicSyncDays) {
+    if (monthlydiffdays && monthlydiffdays > appConfig.secondPeriodicSyncDays) {
       downloadMonthlyData = true;
       apiJsonDataSecondSync.map((value: any) => {
         const i = apiJsonData.findIndex(_item => _item.apiEndpoint === value.apiEndpoint);

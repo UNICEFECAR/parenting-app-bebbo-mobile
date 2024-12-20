@@ -1,4 +1,4 @@
-import { boyChildGender, girlChildGender, weightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
 import { FlexCol, FlexColChart, FlexRowEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
@@ -55,14 +55,14 @@ const taxonomyIds = useAppSelector(
   if (activeChild?.gender == taxonomyIds?.boyChildGender || activeChild?.gender == '') {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == weightGrowthType && item.child_gender == taxonomyIds?.boyChildGender,
+      (item) => item.growth_type == appConfig.weightGrowthType && item.child_gender == taxonomyIds?.boyChildGender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'height');
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item) => item.growth_type == weightGrowthType && item.child_gender == taxonomyIds?.girlChildGender,
+      (item) => item.growth_type == appConfig.weightGrowthType && item.child_gender == taxonomyIds?.girlChildGender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'height');

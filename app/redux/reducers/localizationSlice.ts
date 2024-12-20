@@ -1,4 +1,4 @@
-import { localization } from '@dynamicImportsClass/dynamicImports';
+// import { localization } from '@dynamicImportsClass/dynamicImports';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { act } from 'react-test-renderer';
 
@@ -18,11 +18,11 @@ interface SelectedLocalizationType {
   AppLayoutDirectionParams: any;
 }
 const initialState: SelectedLocalizationType = {
-  countryId: localization[localization.length - 1].countryId, //126
-  languageCode: localization[localization.length - 1].languages[0].languageCode, //'en'
+  countryId:  126,
+  languageCode: 'en', //'en'
   luxonLocale: 'en',
-  locale: localization[localization.length - 1]?.languages[0]?.locale, //'en'
-  pluralShow: localization[localization.length - 1]?.languages[0]?.pluralShow,//false
+  locale:'en', //'en'
+  pluralShow:false,//false
   sponsors: [],
   countries: '',
   restartOnLangChange: 'no',

@@ -27,7 +27,7 @@ import {
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { addChild, deleteChild, deleteChildNew, getAllChildren, getNewChild, setActiveChild } from '../services/childCRUD';
+import { addChild, deleteChild, getNewChild } from '../services/childCRUD';
 import { DateTime } from 'luxon';
 import { dobMax } from '@types/types';
 import {
@@ -39,7 +39,8 @@ import {
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+// import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import TextInputML from '@components/shared/TextInputML';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { setActiveChildData } from '../redux/reducers/childSlice';
@@ -283,7 +284,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
                 if (value.replace(/\s/g, "") == "") {
                   setName(value.replace(/\s/g, ''));
                 } else {
-                  setName(value.replace(regexpEmojiPresentation, ''));
+                  setName(value.replace(appConfig.regexpEmojiPresentation, ''));
                 }
               }}
               value={name}

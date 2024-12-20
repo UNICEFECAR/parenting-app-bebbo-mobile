@@ -157,7 +157,7 @@ const {width,height}= Dimensions.get('window');
       <>
         <View
           style={styles.vectorImageView}>
-          <VectorImage source={require('@assets/svg/chart.svg')} />
+          <VectorImage source={require('@images/chart.svg')} />
         </View>
       </>
     );

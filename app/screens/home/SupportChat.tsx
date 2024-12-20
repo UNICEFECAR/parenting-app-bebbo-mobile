@@ -436,7 +436,7 @@ const SupportChat = ({ navigation }: Props): any => {
         />
         <FlexCol>
           <ImageBackground
-            source={Platform.OS === 'android' ? require('@assets/svg/img-bg-chatbot.png') : require('@assets/svg/img-bg-chatbot-ios.png')}
+            source={Platform.OS === 'android' ? require('@images/img-bg-chatbot.png') : require('@images/img-bg-chatbot-ios.png')}
             resizeMode="repeat" style={styles.imageBg}>
             <ChatContainer>
               {steps.length > 0 ?

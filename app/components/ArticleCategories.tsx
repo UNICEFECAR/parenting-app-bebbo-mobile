@@ -1,4 +1,5 @@
-import { articleCategoryobj } from '@assets/translations/appOfflineData/apiConstants';
+// import { articleCategoryobj } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instance';
 import { ArticleCategoriesProps } from '@screens/home/bottomTabs/Articles';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -45,7 +46,7 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
     Array.from({ length: Math.ceil(arr.length / size) }, (v: any, i: any) =>
       arr.slice(i * size, i * size + size)
     );
-  const articleBrackets = chunk(articleCategoryobj, 2)
+  const articleBrackets = chunk(appConfig.articleCategoryobj, 2)
   return (
     <>
       <ArticleFilter key={props.filterArray.length}>

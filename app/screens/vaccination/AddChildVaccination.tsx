@@ -1,5 +1,6 @@
 import { VACCINE_ADDED } from '@assets/data/firebaseEvents';
-import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
+// import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonColTwo,
@@ -707,7 +708,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                   <TextInputML style={styles.textInputStyle}
                     autoCapitalize="none"
                     autoCorrect={false}
-                    maxLength={maxCharForRemarks}
+                    maxLength={appConfig.maxCharForRemarks}
                     clearButtonMode="always"
                     defaultValue={remarkTxt}
                     multiline={true}

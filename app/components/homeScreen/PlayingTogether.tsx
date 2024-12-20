@@ -26,7 +26,7 @@ const PlayingTogether = (): any => {
                 <FlexDirRow>
                   <Pressable onPress={(): any => navigation.navigate('Activities')}>
                     <FeatureImageBox>
-                      <VectorImage source={require('@assets/svg/ic_activity_color.svg')} />
+                      <VectorImage source={require('@images/ic_activity_color.svg')} />
                     </FeatureImageBox>
                   </Pressable>
                   <FeatureContentBox>

@@ -1,4 +1,4 @@
-  import { localization } from '@dynamicImportsClass/dynamicImports';
+  // import { localization } from '@dynamicImportsClass/dynamicImports';
   import CountryItem from '@components/CountryItem';
   import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
   import OnboardingContainer from '@components/shared/OnboardingContainer';

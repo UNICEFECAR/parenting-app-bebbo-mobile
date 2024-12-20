@@ -1,4 +1,5 @@
-import { basicPagesUniqueName, relationshipUniqueName, bothChildGender, childGenderUniqueName, parentGenderUniqueName, femaleData, articleCategoryArray, activityCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instance';
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface HardcodedDataType {
@@ -253,31 +254,31 @@ export const utilsSlice = createSlice({
       action: PayloadAction<any>,): any => {
       console.log('action taxonomy ids payload is....', action.payload)
       action.payload?.relationship_to_parent?.map((x: any) => {
-        if (x.unique_name == relationshipUniqueName.relationShipMotherId) {
+        if (x.unique_name == appConfig.relationshipUniqueName.relationShipMotherId) {
           state.taxonomyIds.relationShipMotherId = x.unique_name;
-        } else if (x.unique_name == relationshipUniqueName.relationShipFatherId) {
+        } else if (x.unique_name == appConfig.relationshipUniqueName.relationShipFatherId) {
           state.taxonomyIds.relationShipFatherId = x.unique_name;
-        } else if (x.unique_name == relationshipUniqueName.relationShipOtherCaregiverId) {
+        } else if (x.unique_name == appConfig.relationshipUniqueName.relationShipOtherCaregiverId) {
           state.taxonomyIds.relationShipOtherCaregiverId = x.unique_name;
-        } else if (x.unique_name == relationshipUniqueName.relationShipOtherCaregiverId) {
+        } else if (x.unique_name == appConfig.relationshipUniqueName.relationShipOtherCaregiverId) {
           state.taxonomyIds.relationShipOtherCaregiverId = x.unique_name;
         }
       })
       action.payload?.child_gender?.map((x: any) => {
-        if (x.unique_name == childGenderUniqueName.bothChildGender) {
+        if (x.unique_name == appConfig.childGenderUniqueName.bothChildGender) {
           state.taxonomyIds.bothChildGender = x.unique_name;
-        } else if (x.unique_name == childGenderUniqueName.girlChildGender) {
+        } else if (x.unique_name == appConfig.childGenderUniqueName.girlChildGender) {
           state.taxonomyIds.girlChildGender = x.unique_name;
-        } else if (x.unique_name == childGenderUniqueName.boyChildGender) {
+        } else if (x.unique_name == appConfig.childGenderUniqueName.boyChildGender) {
           state.taxonomyIds.boyChildGender = x.unique_name;
         }
       })
       action.payload?.parent_gender?.map((x: any) => {
-        if (x.unique_name == parentGenderUniqueName.bothParentGender) {
+        if (x.unique_name == appConfig.parentGenderUniqueName.bothParentGender) {
           state.taxonomyIds.bothParentGender = x.unique_name;
-        } else if (x.unique_name == parentGenderUniqueName.maleParentGender) {
+        } else if (x.unique_name == appConfig.parentGenderUniqueName.maleParentGender) {
           state.taxonomyIds.maleData = x;
-        } else if (x.unique_name == parentGenderUniqueName.femaleParentGender) {
+        } else if (x.unique_name == appConfig.parentGenderUniqueName.femaleParentGender) {
           state.taxonomyIds.femaleData = x;
         }
       })
@@ -290,8 +291,8 @@ export const utilsSlice = createSlice({
         acc[activity_category.unique_name] = activity_category.id;
         return acc;
       }, {});
-      state.taxonomyIds.articleCategoryArray = articleCategoryArray.map(uniqueName => categoryLookup[uniqueName]);
-      state.taxonomyIds.activityCategoryArray = activityCategoryArray.map(uniqueName => activityCategoryLookup[uniqueName]);
+      state.taxonomyIds.articleCategoryArray = appConfig.articleCategoryArray.map(uniqueName => categoryLookup[uniqueName]);
+      state.taxonomyIds.activityCategoryArray = appConfig.activityCategoryArray.map(uniqueName => activityCategoryLookup[uniqueName]);
     },
     setAllTermsData: (
       state,
@@ -299,18 +300,18 @@ export const utilsSlice = createSlice({
     ): any => {
       (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
       action.payload.map((x: any) => {
-        if (x.unique_name == basicPagesUniqueName.aboutus) {
+        if (x.unique_name == appConfig.basicPagesUniqueName.aboutus) {
           state.aboutus.id = x.id;
           state.aboutus.title = x.title;
           state.aboutus.body = x.body;
           state.aboutus.unique_name = x.unique_name;
-        } else if (x.unique_name == basicPagesUniqueName.terms) {
+        } else if (x.unique_name == appConfig.basicPagesUniqueName.terms) {
           state.terms.id = x.id;
           state.terms.title = x.title;
           state.terms.body = x.body;
           state.terms.unique_name = x.unique_name;
         }
-        else if (x.unique_name == basicPagesUniqueName.privacypolicy) {
+        else if (x.unique_name == appConfig.basicPagesUniqueName.privacypolicy) {
           state.privacypolicy.id = x.id;
           state.privacypolicy.title = x.title;
           state.privacypolicy.body = x.body;

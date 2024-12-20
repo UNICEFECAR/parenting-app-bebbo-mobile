@@ -20,19 +20,19 @@ const Tools = ():any => {
           <ToolBox>
           
           <ToolPress onPress={():any => navigation.navigate("Tools", { screen: 'VaccinationTab' })}>
-              <VectorImage source={require('@assets/svg/ic_vaccination_color.svg')} />
+              <VectorImage source={require('@images/ic_vaccination_color.svg')} />
               <ToolBoxText>
               <Heading3Center>{t('homeScreenvc')}</Heading3Center>
               </ToolBoxText>
             </ToolPress>
             <ToolPress onPress={():any => navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}>
-              <VectorImage source={require('@assets/svg/ic_health_color.svg')} />
+              <VectorImage source={require('@images/ic_health_color.svg')} />
               <ToolBoxText>
               <Heading3Center>{t('homeScreenhc')}</Heading3Center>
               </ToolBoxText>
             </ToolPress>
             <ToolPress onPress={():any => navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}>
-              <VectorImage source={require('@assets/svg/ic_growth_color.svg')} />
+              <VectorImage source={require('@images/ic_growth_color.svg')} />
               <ToolBoxText>
               <Heading3Center>{t('homeScreencg')}</Heading3Center>
               </ToolBoxText>

@@ -4,7 +4,7 @@ import {
     ListQueryBuilder
 } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
-import { backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
+import { appConfig } from "../instance";
 
 const _urlFiles = "https://www.googleapis.com/drive/v3";
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
@@ -229,7 +229,7 @@ class GoogleDrive {
         try {
             const filenew = await gdrive.files.createIfNotExists({
                 q: new ListQueryBuilder()
-                    .e("name", backupGDriveFolderName)
+                    .e("name", appConfig.backupGDriveFolderName)
                     .and()
                     .e("trashed", false)
                     .and()
@@ -239,7 +239,7 @@ class GoogleDrive {
             },
                 gdrive.files.newMetadataOnlyUploader()
                     .setRequestBody({
-                        name: backupGDriveFolderName,
+                        name: appConfig.backupGDriveFolderName,
                         mimeType: MimeTypes.FOLDER,
                         parents: ["root"]
                     }

@@ -73,10 +73,13 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4  } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
+// import {
+//   maxCharForRemarks,
+//   measurementPlaces
+// } from '../../assets/translations/appOfflineData/apiConstants';
 import {
-  maxCharForRemarks,
-  measurementPlaces
-} from '../../assets/translations/appOfflineData/apiConstants';
+  appConfig,
+} from '../../instance';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import {
   ChildEntity,
@@ -123,7 +126,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
     editMeasurementDate ? editMeasurementDate : null,
   );
   const [clicked, setClicked] = useState(false);
-  const measurePlaces = measurementPlaces([
+  const measurePlaces = appConfig.measurementPlaces([
     t('growthScreendoctorMeasurePlace'),
     t('growthScreenhomeMeasurePlace'),
   ]);
@@ -752,7 +755,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                     <TextInputML style={styles.textInputMl}
                       autoCapitalize="none"
                       autoCorrect={false}
-                      maxLength={maxCharForRemarks}
+                      maxLength={appConfig.maxCharForRemarks}
                       clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}

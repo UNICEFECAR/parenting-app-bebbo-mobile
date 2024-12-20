@@ -1,4 +1,4 @@
-import { bebboLogoShape} from '@dynamicImportsClass/dynamicImports';
+import { bebboLogoShape,bebboLogoShapeNew} from '../instance';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -11,7 +11,7 @@ import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, Stat
 import { useAppSelector } from '../../App';
 
 const item = {
-  image: bebboLogoShape,
+  image: bebboLogoShapeNew,
   colors: ['#2B2F84', '#1F50A0', '#00AEEF'],
 };
 

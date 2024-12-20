@@ -20,7 +20,8 @@ import { useTranslation } from 'react-i18next';
 import { Dimensions, StyleSheet } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { getAllConfigData } from '../../services/childCRUD';
-import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
+// import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig} from '../../instance';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const windowWidth = Dimensions.get('window').width;
 const styles=StyleSheet.create({
@@ -86,7 +87,7 @@ const PinnedChildDevData = useAppSelector(
   },[activeChild.uuid,activityTaxonomyId]);
 const showAndParentText = ():any => {
   if(userRelationToParent?.length > 0 && 
-    (parseInt(userRelationToParent[0].value) == relationShipOtherCaregiverId || parseInt(userRelationToParent[0].value) == relationShipServiceProviderId)) {
+    (parseInt(userRelationToParent[0].value) == appConfig.relationShipOtherCaregiverId || parseInt(userRelationToParent[0].value) == appConfig.relationShipServiceProviderId)) {
       return false
   }else {
     return true

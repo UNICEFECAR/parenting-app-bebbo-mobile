@@ -1,5 +1,7 @@
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+// import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import {  appConfig } from '../../instance';
+
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -239,11 +241,11 @@ const SettingScreen = (props: any): any => {
   const exportDataIOS = async (cipher: string): Promise<any> => {
     console.log("exportDataIOS", cipher);
     
-    RNFS.writeFile(tempbackUpPath, cipher, 'utf8').then(async (res: any) => {
+    RNFS.writeFile(appConfig.tempbackUpPath, cipher, 'utf8').then(async (res: any) => {
       console.log(res, "..res..")
       const shareOptions = {
         title: 'Backup File',
-        url: tempbackUpPath,
+        url: appConfig.tempbackUpPath,
         saveToFiles: true,
         failOnCancel: false
       };
@@ -252,10 +254,10 @@ const SettingScreen = (props: any): any => {
         setIsExportRunning(false);
         if (ShareResponse && ShareResponse.success) {
           Alert.alert('', t('settingExportSuccess'));
-          await RNFS.exists(tempbackUpPath).then((exists) => {
+          await RNFS.exists(appConfig.tempbackUpPath).then((exists) => {
             console.log(String(exists), "..exists..")
             if (exists) {
-              RNFS.unlink(tempbackUpPath).then(() => {
+              RNFS.unlink(appConfig.tempbackUpPath).then(() => {
                 //RNFS.scanFile(tempbackUpPath);
               })
             }
@@ -562,7 +564,7 @@ const SettingScreen = (props: any): any => {
   useEffect(() => {
     const apiJsonData = [
       {
-        apiEndpoint: appConfig.countryGroups,
+        apiEndpoint: appConfig.apiConfig.countryGroups,
         method: 'get',
         postdata: {},
         saveinDB: true,
@@ -617,7 +619,7 @@ const SettingScreen = (props: any): any => {
         {
           text: t('downloadUpdateContinueBtn'), onPress: async (): Promise<any> => {
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: allApisObject(true, incrementalSyncDT),
+              apiJsonData: appConfig.allApisObject(true, incrementalSyncDT),
               prevPage: 'DownloadUpdate'
             });
           }
@@ -639,7 +641,7 @@ const SettingScreen = (props: any): any => {
         {
           text: t('downloadAllContinueBtn'), onPress: async (): Promise<any> => {
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: allDataDownloadFlag == false ? allApisObject(false, incrementalSyncDT) : allApisObject(true, incrementalSyncDT),
+              apiJsonData: allDataDownloadFlag == false ? appConfig.allApisObject(false, incrementalSyncDT) : appConfig.allApisObject(true, incrementalSyncDT),
               prevPage: 'DownloadAllData'
             });
           }
@@ -703,12 +705,12 @@ const SettingScreen = (props: any): any => {
             throw error;
           });
          
-        await RNFS.writeFile(tempRealmFile, JSON.stringify(decryptedData), "utf8");
+        await RNFS.writeFile(appConfig.tempRealmFile, JSON.stringify(decryptedData), "utf8");
         const importedJsonData = JSON.parse(await decryptedData);
         oldChildrenData = importedJsonData;
       } else {
         const base64Dataset = await ScopedStorage.openDocument(true, 'base64');
-        await RNFS.writeFile(tempRealmFile, base64Dataset.data, 'base64');
+        await RNFS.writeFile(appConfig.tempRealmFile, base64Dataset.data, 'base64');
         let importedrealm = await new Realm({ path: 'user1.realm' });
         if (importedrealm) {
           importedrealm.close();
@@ -773,7 +775,7 @@ const SettingScreen = (props: any): any => {
             try {
               //console.log("tempRealmFile", tempRealmFile);
               
-              await RNFS.writeFile(tempRealmFile, JSON.stringify(importedJsonData), "utf8");
+              await RNFS.writeFile(appConfig.tempRealmFile, JSON.stringify(importedJsonData), "utf8");
             } catch (error) {
               console.log("In Write file", error);
               
@@ -782,7 +784,7 @@ const SettingScreen = (props: any): any => {
            
           } else {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
-            await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
+            await RNFS.writeFile(appConfig.tempRealmFile, exportedFileContent, "base64");
             let importedrealm = await new Realm({ path: 'user1.realm' });
             if (importedrealm) {
               //console.log( "importedrealm")
@@ -1136,7 +1138,7 @@ const SettingScreen = (props: any): any => {
                         console.warn(err);
                       }
                     }}>
-                      <VectorImage source={require('@assets/svg/ic_file.svg')} />
+                      <VectorImage source={require('@images/ic_file.svg')} />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
                           {t('settingScreenshareBtntxt')}
@@ -1158,7 +1160,7 @@ const SettingScreen = (props: any): any => {
 
                     }}>
                       <VectorImage
-                        source={require('@assets/svg/ic_gdrive.svg')}
+                        source={require('@images/ic_gdrive.svg')}
                       />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
@@ -1206,7 +1208,7 @@ const SettingScreen = (props: any): any => {
 
                     }}>
 
-                      <VectorImage source={require('@assets/svg/ic_file.svg')} />
+                      <VectorImage source={require('@images/ic_file.svg')} />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
                           {t('importBtntxt')}
@@ -1230,7 +1232,7 @@ const SettingScreen = (props: any): any => {
 
                     }}>
                       <VectorImage
-                        source={require('@assets/svg/ic_gdrive.svg')}
+                        source={require('@images/ic_gdrive.svg')}
                       />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>

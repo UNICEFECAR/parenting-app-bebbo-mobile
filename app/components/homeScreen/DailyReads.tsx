@@ -1,5 +1,6 @@
 import { ADVICE_SHARED, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARED } from '@assets/data/firebaseEvents';
-import { articleCategoryArray,articleCategoryIdArray, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
+// import { articleCategoryArray,articleCategoryIdArray, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig} from '../../instance';
 import { MainContainer } from '@components/shared/Container';
 import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
@@ -57,7 +58,7 @@ const DailyReads = (): any => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
-  const articleData = articleDataall.filter((x: any) => articleCategoryIdArray.includes(x.category))
+  const articleData = articleDataall.filter((x: any) => appConfig.articleCategoryIdArray.includes(x.category))
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -186,7 +187,7 @@ const DailyReads = (): any => {
       // }
       const articleListData: any = [];
       const activityListData: any = [];
-      const articleCategoryArrayNew = articleCategoryIdArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i));
+      const articleCategoryArrayNew = appConfig.articleCategoryIdArray.filter((i: any) => ArticlesData.find((f: any) => f.category === i));
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) => ActivitiesData.find((f: any) => f.activity_category === i.id));
       console.log('[1]',articleCategoryArrayNew)
       const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);

@@ -1,4 +1,4 @@
-import { bothChildGender, girlChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+import {  appConfig } from '../../instance';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
@@ -70,7 +70,7 @@ import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { bgcolorWhite, childProfileBgColor, secondaryBtnColor } from '@styles/style';
 import Checkbox, { CheckboxActive, CheckboxItem } from '@components/shared/CheckboxStyle';
 import VectorImage from 'react-native-vector-image';
-import { cameraProfileImage } from '@dynamicImportsClass/dynamicImports';
+import { cameraProfileImage } from '../../instance';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -141,6 +141,11 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   let genders = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  );
+
+  let all = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData,
   );
   const taxonomyIds = useAppSelector(
     (state: any) =>
@@ -225,7 +230,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       } else {
         setDefaultGenderValue(genders.find((item: any) => item.id === childData?.gender))
       }
-      console.log(destPath)
+      console.log(taxonomyIds,'--------------------',all)
     }, []),
   );
 
@@ -494,7 +499,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                         if (value.replace(/\s/g, "") == "") {
                           setName(value.replace(/\s/g, ''));
                         } else {
-                          setName(value.replace(regexpEmojiPresentation, ''));
+                          setName(value.replace(appConfig.regexpEmojiPresentation, ''));
                         }
                       }}
                       value={name}

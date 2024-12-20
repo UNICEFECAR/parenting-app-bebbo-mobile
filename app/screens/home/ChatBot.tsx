@@ -13,7 +13,7 @@ import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContain
 import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from '../../../App';
 import ThreeDotsLoader from '../../services/ThreeDotsLoader';
-import { imgLogoChatbotNew } from '@dynamicImportsClass/dynamicImports';
+import { imgLogoChatbotNew } from '../../instance';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const styles = StyleSheet.create({
   flex1: { flex: 1 },

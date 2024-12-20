@@ -34,7 +34,7 @@ const useDigitConverter = (): {
 
         // Check if the target language is supported
         if (!digitMap[lowerTarget]) {
-            console.log('Unsupported language');
+            // console.log('Unsupported language');
             return inputString;
         } 
 
