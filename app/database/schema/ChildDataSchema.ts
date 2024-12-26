@@ -97,6 +97,7 @@ export const ChildEntitySchema: ObjectSchema = {
     favoriteadvices: { type: "list", objectType: 'int', optional: true },
     favoritegames: { type: "list", objectType: 'int', optional: true },
     autoChild: { type: "string", optional: false },
+    
   }
 };
 

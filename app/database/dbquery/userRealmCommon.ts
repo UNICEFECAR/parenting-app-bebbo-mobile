@@ -8,6 +8,7 @@ import { ActivitiesEntity, ActivitiesEntitySchema } from '../schema/ActivitiesSc
 import { ArticleEntity, ArticleEntitySchema } from '../schema/ArticleSchema';
 import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
 import { dataRealmCommon } from './dataRealmCommon';
+import { Alert } from 'react-native';
 const deleteRealmFilesBeforeOpen = false;
 
 class UserRealmCommon extends Component {
@@ -42,6 +43,7 @@ class UserRealmCommon extends Component {
                         resolve(realm);
                     })
                     .catch(error => {
+                        Alert.alert('Error', 'Error opening user realm'+JSON.stringify(error));
                         resolve(error);
                     });
             }
@@ -114,7 +116,7 @@ class UserRealmCommon extends Component {
         try {
             const realm = await this.openRealm();
             if (realm) {
-                realm.write(() => {
+                realm?.write(() => {
                     records.forEach(record => {
                                              realm?.create<Entity>(entitySchema.name, record, true);
                     })
@@ -166,7 +168,7 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     console.log("write")
                     if (obj[0].reminders.length > 0) {
-                        const updateItemIndex = obj[0].reminders.findIndex((item: any) => {
+                        const updateItemIndex = obj[0]?.reminders?.findIndex((item: any) => {
                             return item.uuid == reminder.uuid
                         });
                         obj[0].reminders.splice(updateItemIndex, 1);
@@ -195,7 +197,7 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     console.log("write")
                     if (obj[0].reminders.length > 0) {
-                        const updateItemIndex = obj[0].reminders.findIndex((item: any) => {
+                        const updateItemIndex = obj[0]?.reminders?.findIndex((item: any) => {
                             return item.uuid == reminder.uuid
                         });
                         if (updateItemIndex != -1) {
@@ -230,7 +232,7 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     console.log("write")
                     if (obj[0].measures.length > 0) {
-                        const updateItemIndex = obj[0].measures.findIndex((item: any) => {
+                        const updateItemIndex = obj[0]?.measures?.findIndex((item: any) => {
                             return item.uuid == measure.uuid
                         });
                         obj[0].measures.splice(updateItemIndex, 1);
@@ -259,16 +261,16 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     console.log("write")
                     if (obj[0].measures.length > 0) {
-                        const updateItemIndex = obj[0].measures.findIndex((item: any) => {
+                        const updateItemIndex = obj[0]?.measures?.findIndex((item: any) => {
                             return item.uuid == measures.uuid
                         });
                         if (updateItemIndex != -1) {
                             obj[0].measures[updateItemIndex] = measures
                         } else {
-                            obj[0].measures.push(measures);
+                            obj[0]?.measures.push(measures);
                         }
                     } else {
-                        obj[0].measures.push(measures);
+                        obj[0]?.measures.push(measures);
                     }
                 });
                 result = obj[0].measures
@@ -290,7 +292,7 @@ class UserRealmCommon extends Component {
         try {
             const realm = await this.openRealm();
             if (realm) {
-                realm.write(() => {
+                realm?.write(() => {
                     records.forEach((record: any) => {
                         record.updatedAt = new Date();
                         realm?.create<Entity>(entitySchema.name, record, "modified");
@@ -319,16 +321,16 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     console.log("write")
                     if (obj[0].checkedMilestones.length > 0) {
-                        const updateItemIndex = obj[0].checkedMilestones.findIndex((item: any) => {
+                        const updateItemIndex = obj[0]?.checkedMilestones?.findIndex((item: any) => {
                             return item == milestoneId
                         });
                         if (updateItemIndex == -1) {
-                            obj[0].checkedMilestones.push(milestoneId);
+                            obj[0].checkedMilestones?.push(milestoneId);
                         } else {
-                            obj[0].checkedMilestones.splice(updateItemIndex, 1);
+                            obj[0].checkedMilestones?.splice(updateItemIndex, 1);
                         }
                     } else {
-                        obj[0].checkedMilestones.push(milestoneId);
+                        obj[0].checkedMilestones?.push(milestoneId);
                     }
                 });
                 result = 'success';
@@ -355,7 +357,7 @@ class UserRealmCommon extends Component {
                     console.log("write")
                     if (favoritetype == 'advices') {
                         if (obj[0].favoriteadvices.length > 0) {
-                            const updateItemIndex = obj[0].favoriteadvices.findIndex((item: any) => {
+                            const updateItemIndex = obj[0]?.favoriteadvices?.findIndex((item: any) => {
                                 return item == favoriteid
                             });
                             if (updateItemIndex == -1) {
@@ -368,7 +370,7 @@ class UserRealmCommon extends Component {
                         }
                     } else if (favoritetype == 'games') {
                         if (obj[0].favoritegames.length > 0) {
-                            const updateItemIndex = obj[0].favoritegames.findIndex((item: any) => {
+                            const updateItemIndex = obj[0]?.favoritegames?.findIndex((item: any) => {
                                 return item == favoriteid
                             });
                             if (updateItemIndex == -1) {
@@ -411,7 +413,7 @@ class UserRealmCommon extends Component {
                             let favoritegames = child.favoritegames;
                             favoritegames = [...favoritegames, 1234];
                             if (favoriteadvices.length > 0) {
-                                const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
+                                const filterQuery = favoriteadvices?.map((x: any) => `id = '${x}'`).join(' OR ');
                                 const artobj: any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
                                 const finaladvicesobj = favoriteadvices.filter((i: any) => artobj.find((f: any) => f.id === i));
                                 child.favoriteadvices = finaladvicesobj;
@@ -573,7 +575,7 @@ class UserRealmCommon extends Component {
                     console.log("write")
                     if (obj[0].measures.length > 0) {
                         obj[0].measures.map((itemnew: any) => {
-                            const updateItemIndex = obj[0].measures.findIndex((item: any, index: any) => {
+                            const updateItemIndex = obj[0]?.measures?.findIndex((item: any, index: any) => {
                                 const measuredays = getDiffinDays(param, item.measurementDate);
                                 return measuredays < 0;
                             });
@@ -607,7 +609,7 @@ class UserRealmCommon extends Component {
                 realm?.write(() => {
                     console.log("write")
                     if (obj[0].reminders.length > 0) {
-                        const updateItemIndex = obj[0].reminders.findIndex(async (item: any) => {
+                        const updateItemIndex = obj[0]?.reminders?.findIndex(async (item: any) => {
                             const reminderDate: any = DateTime.fromMillis(item.reminderDate);
                             const newreminderDate: any = new Date(reminderDate);
                             const hours = new Date(item.reminderTime).getHours()
@@ -678,7 +680,7 @@ class UserRealmCommon extends Component {
             isMigrated: entity.isMigrated || false,
             favoriteadvices: entity.favoriteadvices || [],
             favoritegames: entity.favoritegames || [],
-            autoChild: entity.autoChild || false,
+            autoChild: entity.autoChild || 'false',
         }));
         return childData;
     }

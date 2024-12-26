@@ -429,6 +429,7 @@ export default (): any => {
       createLocalNotificationListeners();
     }
   }, [userIsOnboarded]);
+    
   const redirectPayload = (remoteMessage: any): any => {
     if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
       if (navigationRef) {

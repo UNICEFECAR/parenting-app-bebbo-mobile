@@ -9,8 +9,8 @@ export const requestExactAlarmPermission = async (): Promise<boolean> => {
     // Return true if permission is granted, otherwise false
     return permissionGranted;
   } catch (error: any) {
-    console.log('Error requesting exact alarm permission:', error.message || error);    
     // Return false to indicate failure in obtaining permission
+    console.error('Error requesting exact alarm permission:', error.message || error);    
     return false;
   }
 };

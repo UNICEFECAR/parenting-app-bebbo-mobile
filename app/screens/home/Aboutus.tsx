@@ -104,7 +104,7 @@ const Aboutus = (): any => {
                   // },
                   
                 }}
-                WebView={WebView}
+                WebView={() => <WebView renderToHardwareTextureAndroid={true} />}
                 renderersProps={{
                   iframe: { webViewProps: { allowsFullscreenVideo: true } }
                 }}
