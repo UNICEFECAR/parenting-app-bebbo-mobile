@@ -196,6 +196,12 @@ const Terms = ({ navigation }: Props): any => {
       method: 'get',
       postdata: {},
       saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.articles,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
     }
     // survey,child dev,vaccine,healthcheckup,growth,activities,
     // pinned for all 4 tools

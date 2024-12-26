@@ -32,6 +32,7 @@ const ru = {
                 childSetupdobLabel: "Когда предполагаемая дата рождения ребенка?",
                 childSetupdobSelector: "Введите дату рождения/предполагаемую дату родов",
                 childSetupdueLabel: "Какая была предполагаемая дата рождения ребенка?",
+                addAnotherChildSetupDobLabel: "Когда день рождения ребенка?",
                 childSetupdueSelector: "Введите первоначально предполагаемый срок",
                 childSetupprematureLabel: "Ребенок родился недоношенным",
                 childSetupprematureMessage: "Ребенок, родившийся до 37-й недели срока, считается недоношенным.",

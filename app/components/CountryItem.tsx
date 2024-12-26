@@ -6,8 +6,8 @@ import Radio, { RadioActive, RadioCountryItem, RadioItemText } from './shared/ra
 const CountryItem = ({ item, currentItem, setCountry }: any): any => {
 
   const isActive = item && currentItem && item.CountryID === currentItem.CountryID;
-  console.log(`isActive: ${isActive}`);
-  console.log('current item', currentItem)
+  // console.log(`isActive: ${isActive}`);
+  // console.log('current item', currentItem)
   // console.log('selected item', item, isActive)
   return (
     <>

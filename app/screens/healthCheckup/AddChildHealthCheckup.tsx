@@ -521,7 +521,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
         allPreviousPendingVaccines.push(vItem);
       });
     });
-    if (vcPeriod.vaccines.length > 0) {
+    if (vcPeriod?.vaccines.length > 0) {
       allPreviousPendingVaccines = [...allPreviousPendingVaccines, ...vcPeriod.vaccines];
     }
     const isAllMeasured = [...allPreviousPendingVaccines].every((el) => {

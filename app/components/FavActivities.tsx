@@ -59,7 +59,9 @@ const FavActivities = (): any => {
     state.childData.childDataSet.favoritegames
   );
   const [favGamesToShow, setfavGamesToShow] = useState([]);
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId ?? activeChild?.taxonomyData?.id;
+
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId));
   const goToActivityDetail = (item: any): any => {
     navigation.navigate('DetailsScreen',
