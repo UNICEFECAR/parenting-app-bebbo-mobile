@@ -77,7 +77,7 @@ const LoadingScreenComponent = (props: any): any => {
             style={styles.outerView}>
             <FlexDirCol>
               <View style={styles.vectorImageView}>
-                <VectorImage source={item.image} />
+                {item.image && <VectorImage source={item.image} />}
               </View>
               <PartnerLogo
                 style={styles.partnerLogoView}

@@ -27,7 +27,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { primaryColor, secondaryBtnColor } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, BackHandler, Dimensions, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -112,7 +112,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
       }
     };
 
-    checkExactAlarmPermission();
+    Platform.OS == 'android' && checkExactAlarmPermission();
   }, []);
 
   useEffect(() => {
