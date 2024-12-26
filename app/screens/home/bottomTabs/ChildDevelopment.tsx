@@ -100,7 +100,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const [listLoading, setListLoading] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const flatListRef = useRef<any>();
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId ?? activeChild?.taxonomyData?.id;
 
   const setIsModalOpened = (varkey: any): any => {
     if (modalVisible == true) {

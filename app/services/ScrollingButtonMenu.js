@@ -76,7 +76,7 @@ export default class ScrollingButtonMenu extends React.Component {
         if (index !== scrollindex) {
             const screen1 = screenWidth / 2;
             const elementOffset = this.dataSourceCords[index];
-            if (elementOffset !== undefined && typeof this.scroll.scrollTo === 'function') {
+            if (elementOffset !== undefined && typeof this.scroll?.scrollTo === 'function') {
                 const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
                 this.scroll.scrollTo({ y: 0, x, animated: true });
                 this.setState({ scrollindex: index, scrollindexarrow: index });
@@ -96,9 +96,9 @@ export default class ScrollingButtonMenu extends React.Component {
         }
         const screen1 = screenWidth / 2;
         const elementOffset = this.dataSourceCords[newindex];
-        if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
+        if (elementOffset !== undefined && typeof this.scroll?.scrollTo == 'function') {
             const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
-            this.scroll.scrollTo({
+            this.scroll?.scrollTo({
                 y: 0,
                 x: x,
                 animated: true,
@@ -120,7 +120,7 @@ export default class ScrollingButtonMenu extends React.Component {
         const elementOffset = this.dataSourceCords[newindex];
         if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
             const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
-            this.scroll.scrollTo({
+            this.scroll?.scrollTo({
                 y: 0,
                 x: x,
                 animated: true,
