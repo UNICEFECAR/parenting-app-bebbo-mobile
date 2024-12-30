@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "@styles/*": [
+                "app/instance/merhabaBebek/styles/*"
+            ],
+            "@images/*": [
+                "app/instance/merhabaBebek/assets/images/*"
+            ]
+        }
+    }
+}

@@ -145,6 +145,14 @@ android {
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD_BANGLA
             }
         }
+        merhababebek {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE_MERHABA_BEBEK')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE_MERHABA_BEBEK)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD__MERHABA_BEBEK
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS_MERHABA_BEBEK
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD__MERHABA_BEBEK
+            }
+        }
     }
     defaultConfig {
         applicationId "org.unicef.ecar.bebbo"
@@ -213,6 +221,15 @@ android {
             versionCode 1
             versionName "1.0.0"
             signingConfig signingConfigs.bangla
+        }
+         merhababebek {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'org.unicef.ecar.merhababebek'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.merhababebek
         }
         banglastaging {
             minSdkVersion rootProject.ext.minSdkVersion

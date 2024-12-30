@@ -11,8 +11,8 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationHeightForAge } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
-import standardDevData1 from '@assets/translations/appOfflineData/standardDeviationNew.json';
-export const standardDevDataLoad=standardDevData1;
+import {standardDevDataForChart} from "../../instance/index"
+export const standardDevDataLoad=standardDevDataForChart;
 const styles = StyleSheet.create({
   fullScreenPressable:{
     marginTop: 5,

@@ -15,20 +15,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { store, useAppDispatch, useAppSelector } from '../../App';
+import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../instance';
 import { setAcceptTerms, setTaxonomyIds } from '../redux/reducers/utilsSlice';
-import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10, ShiftFromTop50 ,ShiftFromTopPercentage} from '@styles/typography';
+import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10, ShiftFromTop50, ShiftFromTopPercentage } from '@styles/typography';
 import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
-import { activityLogo, adviceLogo, bebboLogoShapeNew, toolsLogo,bebboLogoShape } from '../instance';
+import { activityLogo, adviceLogo, toolsLogo, bebboLogoShape, imgLogoChatbotNew } from '../instance';
+const flavor = process.env.FLAVOR || 'bebbo';
+const BebboLogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape.svg`)
 import FeatureTCView from '@components/shared/FeaturesTCView';
 import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
 import { logEvent } from '../services/EventSyncService';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
-import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
-import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
-
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -39,7 +38,7 @@ type Props = {
   navigation: TermsNavigationProp;
 };
 const item = {
-  image: bebboLogoShapeNew,
+  image: imgLogoChatbotNew,
   advice: adviceLogo,
   tools: toolsLogo,
   activity: activityLogo
@@ -103,7 +102,7 @@ const Terms = ({ navigation }: Props): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  
+
   const taxonomyAllData = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData) : [],
@@ -240,9 +239,9 @@ const Terms = ({ navigation }: Props): any => {
           />
           <OverlayLoadingComponent loading={loading} />
           <View style={{ marginTop: 30 }}>
-          <View style={styles.vectorImageView}>
-                {item.image && <VectorImage source={bebboLogoShapeNew} />}
-              </View>
+            <View style={styles.vectorImageView}>
+              {item.image && <VectorImage source={BebboLogoShapeNew} />}
+            </View>
           </View>
           <ShiftFromTop15>
             <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>

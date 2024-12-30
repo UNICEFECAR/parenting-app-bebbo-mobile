@@ -1,6 +1,6 @@
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
 // import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
-import {  appConfig } from '../../instance';
+import { appConfig } from '../../instance';
 
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
@@ -159,15 +159,15 @@ const SettingScreen = (props: any): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry?.countryId,
   );
-  const allCountries = useAppSelector( 
-    (state: any) => { 
-     try { 
-       return state.selectedCountry?.countries !== '' ? JSON.parse(state.selectedCountry?.countries) : []; 
-     } catch (error) { 
-       console.error('Failed to parse countries JSON:', error); 
-       return []; 
-     } 
-   });
+  const allCountries = useAppSelector(
+    (state: any) => {
+      try {
+        return state.selectedCountry?.countries !== '' ? JSON.parse(state.selectedCountry?.countries) : [];
+      } catch (error) {
+        console.error('Failed to parse countries JSON:', error);
+        return [];
+      }
+    });
   const [profileLoading, setProfileLoading] = React.useState(false);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry?.languageCode,
@@ -201,8 +201,8 @@ const SettingScreen = (props: any): any => {
   }
 
   const encryptData = (text: string, key: any): any => {
-    console.log(text,'..text,key,encryptionsIVKey..',encryptionsIVKey.replace("//:completeSettings = none",''));
-    return AesCrypto.encrypt(text, key, encryptionsIVKey.replace("//:completeSettings = none",''), 'aes-256-cbc').then((cipher: any) => ({
+    console.log(text, '..text,key,encryptionsIVKey..', encryptionsIVKey.replace("//:completeSettings = none", ''));
+    return AesCrypto.encrypt(text, key, encryptionsIVKey.replace("//:completeSettings = none", ''), 'aes-256-cbc').then((cipher: any) => ({
       cipher
     })).catch((error: any) => {
       console.log(error, "..error..");
@@ -211,7 +211,7 @@ const SettingScreen = (props: any): any => {
   }
   const decryptData = (text: string, key: any): any => {
     console.log(encryptionsIVKey)
-    return AesCrypto.decrypt(text, key, encryptionsIVKey.replace("//:completeSettings = none",""), 'aes-256-cbc').catch((error: any) => {
+    return AesCrypto.decrypt(text, key, encryptionsIVKey.replace("//:completeSettings = none", ""), 'aes-256-cbc').catch((error: any) => {
       console.log(error, "..error..");
       setIsImportRunning(false);
     });;
@@ -221,9 +221,9 @@ const SettingScreen = (props: any): any => {
     const uri: any = await ScopedStorage.getPersistedUriPermissions();
     try {
       // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*",  'utf8', false);
-      const fileDownload: any = await ScopedStorage.createDocument("mybackup","application/json",JSON.stringify(cipher), 'utf8');
+      const fileDownload: any = await ScopedStorage.createDocument("mybackup", "application/json", JSON.stringify(cipher), 'utf8');
       const uri1: any = await ScopedStorage.getPersistedUriPermissions();
-      
+
       if (fileDownload != "" && fileDownload != null && fileDownload != undefined) {
         Alert.alert('', t('settingExportSuccess'));
         setIsExportRunning(false);
@@ -240,7 +240,7 @@ const SettingScreen = (props: any): any => {
   }
   const exportDataIOS = async (cipher: string): Promise<any> => {
     console.log("exportDataIOS", cipher);
-    
+
     RNFS.writeFile(appConfig.tempbackUpPath, cipher, 'utf8').then(async (res: any) => {
       console.log(res, "..res..")
       const shareOptions = {
@@ -286,28 +286,28 @@ const SettingScreen = (props: any): any => {
     setIsExportRunning(true);
     try {
       userRealmCommon.exportUserRealmDataToJson()
-      .then(async (jsonData: any) => {
-        encryptData(JSON.stringify(jsonData), encryptionsKey)
-          .then(async (cipher: any) => {
-            if (Platform.OS === "android") {
-              exportDataAndroid(cipher.cipher);
-            }
-            else {
-              console.log('cipher is',cipher.cipher)
-              exportDataIOS(cipher.cipher);
-            }
-          })
+        .then(async (jsonData: any) => {
+          encryptData(JSON.stringify(jsonData), encryptionsKey)
+            .then(async (cipher: any) => {
+              if (Platform.OS === "android") {
+                exportDataAndroid(cipher.cipher);
+              }
+              else {
+                console.log('cipher is', cipher.cipher)
+                exportDataIOS(cipher.cipher);
+              }
+            })
 
-      })
-      .catch(error => {
-        console.log('Error exporting data:', error);
-        setIsExportRunning(false);
-        Alert.alert('', t('settingExportError'));
-      });
-    }catch(err){
-      console.log('Error',err)
+        })
+        .catch(error => {
+          console.log('Error exporting data:', error);
+          setIsExportRunning(false);
+          Alert.alert('', t('settingExportError'));
+        });
+    } catch (err) {
+      console.log('Error', err)
     }
-    
+
 
 
   }
@@ -559,8 +559,8 @@ const SettingScreen = (props: any): any => {
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
   }
-  
-  
+
+
   useEffect(() => {
     const apiJsonData = [
       {
@@ -570,8 +570,8 @@ const SettingScreen = (props: any): any => {
         saveinDB: true,
       }
     ];
-      dispatch(fetchAPI(apiJsonData, '', dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected))
-  }, [dispatch,navigation])
+    dispatch(fetchAPI(apiJsonData, '', dispatch, navigation, languageCode, activeChild, apiJsonData, netInfo.isConnected))
+  }, [dispatch, navigation])
   const toggleAllNotis = (): any => {
     if (isEnabled == true) {
       const obj = { key: 'growthEnabled', value: false };
@@ -651,7 +651,7 @@ const SettingScreen = (props: any): any => {
   }
 
   useEffect(() => {
-    if (allCountries?.length===1 && allCountries[0]?.languages?.length===1) {
+    if (allCountries?.length === 1 && allCountries[0]?.languages?.length === 1) {
       setCountry(allCountries[0]);
       // const selectedLanguage: any = selectedCountry.languages.find(
       //   (language: any) => language.languageCode === languageCode,
@@ -662,7 +662,7 @@ const SettingScreen = (props: any): any => {
       const selectedCountry: any = allCountries?.find(
         (country: any) => country?.CountryID == countryId,
       );
-      console.log(allCountries,'Selected country is', selectedCountry);
+      console.log(allCountries, 'Selected country is', selectedCountry);
       setCountry(selectedCountry);
       const selectedLanguage: any = selectedCountry?.languages?.find(
         (language: any) => language?.languageCode == languageCode,
@@ -675,7 +675,7 @@ const SettingScreen = (props: any): any => {
     if (isFocused) {
       toggleSwitch();
     }
-  }, [isFocused,developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag]);
+  }, [isFocused, developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag]);
 
   const handleError = (err: any): any => {
     console.log(err, "..err")
@@ -696,15 +696,15 @@ const SettingScreen = (props: any): any => {
       if (dataset.name.endsWith(".json")) {
         const decryptedData = decryptData(dataset.data, encryptionsKey)
           .then((text: any) => {
-            console.log('decryptData',text)
-            return text.replace(/[\x00-\x1F\x7F]/g,'');
+            console.log('decryptData', text)
+            return text.replace(/[\x00-\x1F\x7F]/g, '');
           })
           .catch((error: any) => {
             console.log("Decrypted error", error);
             Alert.alert(error, t('generalErrorTitle'));
             throw error;
           });
-         
+
         await RNFS.writeFile(appConfig.tempRealmFile, JSON.stringify(decryptedData), "utf8");
         const importedJsonData = JSON.parse(await decryptedData);
         oldChildrenData = importedJsonData;
@@ -727,10 +727,10 @@ const SettingScreen = (props: any): any => {
         await userRealmCommon.openRealm();
         await userRealmCommon.deleteAllAtOnce();
         try {
-        console.log("oldchildrenresponse",oldChildrenData)
-        const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode,taxonomyIds);
-       
-        console.log(importResponse, "..importResponse");
+          console.log("oldchildrenresponse", oldChildrenData)
+          const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode, taxonomyIds);
+
+          console.log(importResponse, "..importResponse");
         } catch (error) {
           console.error('importResponse error', error);
         }
@@ -755,7 +755,7 @@ const SettingScreen = (props: any): any => {
               return decryptData(edata, encryptionsKey)
                 .then((text: any) => {
                   //console.log('decryptData',text)
-                  return text.replace(/[\x00-\x1F\x7F]/g,'');
+                  return text.replace(/[\x00-\x1F\x7F]/g, '');
                 })
                 .catch((error: any) => {
                   //console.log("Decrypted error", error);
@@ -769,19 +769,19 @@ const SettingScreen = (props: any): any => {
             });
             //console.log('ios data is',decryptFileContent)
             const importedJsonData = JSON.parse(decryptFileContent);
-            console.log('importedJsonData data is',importedJsonData)
+            console.log('importedJsonData data is', importedJsonData)
             oldChildrenData = importedJsonData;
             console.log("oldChildrenData-if", oldChildrenData);
             try {
               //console.log("tempRealmFile", tempRealmFile);
-              
+
               await RNFS.writeFile(appConfig.tempRealmFile, JSON.stringify(importedJsonData), "utf8");
             } catch (error) {
               console.log("In Write file", error);
-              
+
             }
-            
-           
+
+
           } else {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
             await RNFS.writeFile(appConfig.tempRealmFile, exportedFileContent, "base64");
@@ -795,7 +795,7 @@ const SettingScreen = (props: any): any => {
             //console.log(user1Path, "..user1Path")
             oldChildrenData = importedrealm.objects('ChildEntity');
           }
-      
+
           console.log(oldChildrenData, "..newoldChildrenData..")
           setIsImportRunning(true);
           if (oldChildrenData.length > 0) {
@@ -803,18 +803,18 @@ const SettingScreen = (props: any): any => {
               console.log("..importResponse");
               await userRealmCommon.openRealm();
               await userRealmCommon.deleteAllAtOnce();
-              const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode,taxonomyIds);
-              
+              const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, childAge, languageCode, taxonomyIds);
+
             } catch (error) {
               console.error(error, "..importResponse error");
             }
-            
+
           }
           setIsImportRunning(false);
           actionSheetRefImport.current?.setModalVisible(false);
-          
+
         }
- 
+
       })
       .catch(handleError);
   }
@@ -841,8 +841,8 @@ const SettingScreen = (props: any): any => {
         />
 
         <ScrollView
-        scrollIndicatorInsets={{right:1}}
-        style={[styles.flex1, styles.bgColorWhite]}>
+          scrollIndicatorInsets={{ right: 1 }}
+          style={[styles.flex1, styles.bgColorWhite]}>
           <MainContainer>
             <SettingHeading>
               <Heading1>{t('settingScreennotiHeaderText')}</Heading1>
@@ -1058,7 +1058,7 @@ const SettingScreen = (props: any): any => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                {allCountries?.length!==1 && allCountries?.languages?.length!==1 && <IconAreaPress onPress={(): any => {
+                {allCountries?.length !== 1 && allCountries?.languages?.length !== 1 && <IconAreaPress onPress={(): any => {
                   setModalVisible(true)
                 }}>
                   <Icon name="ic_edit" size={16} color="#000" />

@@ -37,7 +37,7 @@ import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
-import {appConfig}  from '../instance';
+import { appConfig } from '../instance';
 import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
@@ -184,12 +184,12 @@ export default (): any => {
       postdata: {},
       saveinDB: true,
     },
-    
+
   ];
-  
+
   useEffect(() => {
     if (!userIsFirstTime) {
-      console.log(apiJsonData,'-----------', userIsFirstTime,apiUrlDevelop)
+      console.log(apiJsonData, '-----------', userIsFirstTime, apiUrlDevelop)
       dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, activeChild, apiJsonData, netInfo.isConnected))
     }
   }, [dispatch])
@@ -445,7 +445,7 @@ export default (): any => {
       createLocalNotificationListeners();
     }
   }, [userIsOnboarded]);
-    
+
   const redirectPayload = (remoteMessage: any): any => {
     if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
       if (navigationRef) {
@@ -949,9 +949,9 @@ export default (): any => {
               name="LoadingScreen"
               component={LoadingScreen}
               options={{ headerShown: false, gestureEnabled: false }}
-              initialParams={{ 
-                apiJsonData:apiJsonDataLoading,
-                prevPage:'CountryLanguageSelection',
+              initialParams={{
+                apiJsonData: apiJsonDataLoading,
+                prevPage: 'CountryLanguageSelection',
                 isFirst: true
 
               }}

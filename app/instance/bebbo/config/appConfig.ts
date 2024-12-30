@@ -136,7 +136,7 @@ const config = {
   afterDays: 5,
   beforeDays: 6,
   maxPeriodDays: 2920,
-  maxWeight: 28,
+  maxWeight: 33,
   maxHeight: 125,
   finalUrl: (
     apiEndpoint: string,

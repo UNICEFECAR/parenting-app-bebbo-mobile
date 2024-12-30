@@ -47,8 +47,10 @@ import { secondaryBtnColor } from '@styles/style';
 // import { localization } from '@dynamicImportsClass/dynamicImports';
 import moment from 'moment'
 import 'moment/locale/bn-bd'  // import for bangla language
-import 'moment/locale/bn' 
+import 'moment/locale/bn'
+
 // import 'moment/locale/sq' 
+import 'moment/locale/tr' 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Terms'

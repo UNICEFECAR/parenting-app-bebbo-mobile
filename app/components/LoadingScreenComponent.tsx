@@ -1,4 +1,4 @@
-import { bebboLogoShape,bebboLogoShapeNew} from '../instance';
+import { bebboLogoShape, bebboLogoShapeNew } from '../instance';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -55,7 +55,12 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'contain'
   },
-  vectorImageView: { marginBottom: 15 }
+  vectorImageView: { marginBottom: 15 },
+  logoImage: {
+    width: 200,  // Desired width
+    height: 200, // Desired height
+    resizeMode: 'contain'
+  }
 });
 const LoadingScreenComponent = (props: any): any => {
   const { t } = useTranslation();
@@ -74,7 +79,7 @@ const LoadingScreenComponent = (props: any): any => {
             style={styles.outerView}>
             <FlexDirCol>
               <View style={styles.vectorImageView}>
-                {item.image && <VectorImage source={item.image} />}
+                {item.image && <VectorImage style={styles.logoImage} source={item.image} />}
               </View>
               <PartnerLogo
                 style={styles.partnerLogoView}
@@ -82,13 +87,13 @@ const LoadingScreenComponent = (props: any): any => {
               />
               <SponsorLogo
                 style={styles.partnerLogoView}
-                source={sponsors?.country_sponsor_logo?.url != '' ? { uri: sponsors?.country_sponsor_logo?.url }  : require('')}
+                source={sponsors?.country_sponsor_logo?.url != '' ? { uri: sponsors?.country_sponsor_logo?.url } : require('')}
               />
               <WrapView>
-               {sponsors?.unicef_logo?.url && <StaticLogo
+                {sponsors?.unicef_logo?.url && <StaticLogo
                   source={
 
-                    sponsors?.unicef_logo?.url != '' ? { uri: sponsors.unicef_logo?.url }  : require('')}
+                    sponsors?.unicef_logo?.url != '' ? { uri: sponsors.unicef_logo?.url } : require('')}
                 />}
               </WrapView>
 
