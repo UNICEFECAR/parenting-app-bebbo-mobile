@@ -30,7 +30,8 @@ const config = {
     extraNodeModules: {
       'react-native-dotenv': path.resolve(__dirname, `.env.${process.env.FLAVOR}`),
     },
-  }
+  },
+  resetCache: true,
 };
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);

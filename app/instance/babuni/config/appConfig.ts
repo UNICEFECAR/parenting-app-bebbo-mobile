@@ -145,7 +145,7 @@ const config = {
   afterDays: 5,
   beforeDays: 6,
   maxPeriodDays: 2920,
-  maxWeight: 28,
+  maxWeight: 33,
   maxHeight: 125,
   finalUrl: (
     apiEndpoint: string,
@@ -155,6 +155,7 @@ const config = {
     const baseUrl = `${apiUrlDevelop}/${apiEndpoint}`;
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
+        alert(`${apiUrlDevelop}/${apiEndpoint}`)
         return `${baseUrl}/${config.flavorName}`;
       case config.apiConfig.sponsors:
         return `${baseUrl}/${selectedCountry}`;

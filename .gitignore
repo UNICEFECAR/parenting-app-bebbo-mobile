@@ -14,6 +14,7 @@ buck-out/
 !debug.keystore
 # .env added
 .env
+.env.*
 *.lock
 ios/PodFile.lock
 package-lock.json
@@ -44,6 +45,7 @@ ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks
 ios/ParentBuddyApp.xcodeproj/xcuserdata/kalyanikaushik.xcuserdatad/xcschemes/xcschememanagement.plist
 ios/GoogleServices/Xk/GoogleService-Info_old.plist
 ios/GoogleServices/Production/GoogleService-Info_new.plist
+ios/GoogleServices/MerhabaBebek/GoogleService-Info.plist
 ios/ParentBuddyApp/Info.plist
 ios/ParentBuddyAppXk-Info.plist
 ios/ParentBuddyApp/Info.plist
@@ -64,3 +66,4 @@ ios/tmp.xcconfig
 .envxk
 .envxkdev
 .envbebbodev
+.env.babuni

@@ -26,5 +26,6 @@ export const SurveyData = require(`./${flavor}/assets/offlinecontent/SurveyData`
 export const vaccineData = require(`./${flavor}/assets/offlinecontent/vaccineData`).vaccineData;
 export const VideoArticleData = require(`./${flavor}/assets/offlinecontent/VideoArticleData`).VideoArticleData;
 export const appConfig = require(`./${flavor}/config/appConfig`).default;
+export const standardDevDataForChart = require(`./${flavor}/assets/standardDeviation.json`);
 
 

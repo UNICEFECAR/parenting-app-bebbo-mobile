@@ -6,8 +6,8 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:www.bebbo.app</string>
-		<string>applinks:bebboapp.page.link</string>
+		<string>applinks:www.REMOVED_FACEBOOK_APP_ID1.app</string>
+		<string>applinks:.REMOVED_FACEBOOK_APP_ID1.page.link</string>
 	</array>
 </dict>
 </plist>
