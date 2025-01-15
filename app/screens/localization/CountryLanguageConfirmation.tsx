@@ -26,10 +26,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2Centerw,
   Heading3,
-  Heading3Centerw,
   Heading3Regular,
   Heading4Centerr,
-  Heading4Centerw,
   ShiftFromTop25
 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
@@ -37,20 +35,18 @@ import { useTranslation } from 'react-i18next';
 import { I18nManager, Platform, BackHandler, Text, StyleSheet, View, Alert } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-// import { allApisObject, apiConfig, buildFor, buildForBebbo } from '../../assets/translations/appOfflineData/apiConstants';
-import {  appConfig,localization } from '../../instance';
-import { oncountrtIdChange, onLocalizationSelect, setAppLayoutDirectionParams, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { appConfig, localization } from '../../instance';
+import { onLocalizationSelect, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
 import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor } from '@styles/style';
-// import { localization } from '@dynamicImportsClass/dynamicImports';
 import moment from 'moment'
 import 'moment/locale/bn-bd'  // import for bangla language
-import 'moment/locale/bn'
-
-// import 'moment/locale/sq' 
-import 'moment/locale/tr' 
+import 'moment/locale/bn' // import for bangla language
+// import 'moment/locale/sq'
+import 'moment/locale/tr'
+import { getLanguageCode } from '../../services/Utils';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Terms'
@@ -300,7 +296,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           I18nManager.forceRTL(false);
         }
       })
-    moment.locale(newLanguage.languageCode)
+
+    moment.locale(getLanguageCode(newLanguage?.languageCode))
     if (userIsOnboarded == true && (newLanguage.languageCode == languageCode)) {
       navigation.reset({
         index: 0,
@@ -341,10 +338,10 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const saveSelection = (): void => {
     i18n.changeLanguage(newLanguage?.locale || "en")
       .then(() => {
-        if (appConfig.buildFor == appConfig.buildForBebbo) {
+        if (countryData?.CountryID == appConfig.restOfTheWorldCountryId) {
           const rotwLanguagelocaleen = localization[localization?.length - 1].languages[0]?.locale;
           const rotwLanguagelocaleru = localization[localization?.length - 1].languages[1]?.locale;
-          console.log(localization,'rest of the world title', newLanguage)
+          console.log(localization, 'rest of the world title', countryData)
           console.log('rotwLanguagelocaleru of the world title', rotwLanguagelocaleru)
           if (newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {
             Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
@@ -362,7 +359,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         } else {
           rtlConditions(newLanguage);
         }
-      }).catch((err) => console.log(err) )
+      }).catch((err) => console.log(err))
+
   };
 
   const themeContext = useContext(ThemeContext);
@@ -376,13 +374,13 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     if (allCountries?.length == 1 && allCountries?.[0]?.languages?.length === 1) {
       saveSelection()
     } else if (allCountries?.length == 1) {
-      navigation.navigate('LanguageSelection', { 
+      navigation.navigate('LanguageSelection', {
         country: countryData,
         language: newLanguage,
-        isFromCountry:true 
+        isFromCountry: true
       })
     } else {
-      navigation.navigate('CountrySelection', { 
+      navigation.navigate('CountrySelection', {
         country: countryData,
         language: newLanguage
       })

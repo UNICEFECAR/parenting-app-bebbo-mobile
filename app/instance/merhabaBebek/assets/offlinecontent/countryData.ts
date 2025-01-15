@@ -22,9 +22,9 @@ export const countryData: any = {
           "name": "Türkiye",
           "displayName": "Türkçe",
           "languageCode": "tr",
-          "locale": "",
-          "luxonLocale": "",
-          "pluralShow": ""
+          "locale": "tr",
+          "luxonLocale": "tr",
+          "pluralShow": false
         }
       ]
     }

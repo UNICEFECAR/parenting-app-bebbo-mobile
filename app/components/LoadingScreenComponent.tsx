@@ -1,17 +1,17 @@
-import { bebboLogoShape, bebboLogoShapeNew } from '../instance';
+import { bebboLogoShape } from '../instance';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { FlexDirCol } from './shared/FlexBoxStyle';
-
-
+const flavor = process.env.FLAVOR || 'bebbo';
+const BebboLogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`)
 import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
 import { useAppSelector } from '../../App';
 
 const item = {
-  image: bebboLogoShapeNew,
+  image: BebboLogoShapeNew,
   colors: ['#2B2F84', '#1F50A0', '#00AEEF'],
 };
 

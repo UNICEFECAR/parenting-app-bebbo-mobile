@@ -112,11 +112,11 @@ const Terms = ({ navigation }: Props): any => {
       setLoading(false);
     }, [languageCode])
   );
-  useEffect(()=>{
-      if(taxonomyAllData?.relationship_to_parent){
-        dispatch(setTaxonomyIds(taxonomyAllData))
-      }
-  },[])
+  useEffect(() => {
+    if (taxonomyAllData?.relationship_to_parent) {
+      dispatch(setTaxonomyIds(taxonomyAllData))
+    }
+  }, [])
   useFocusEffect(
     React.useCallback(() => {
       setTimeout(() => {

@@ -53,17 +53,17 @@ import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { formatStringDate } from '../../services/Utils';
 import { bgcolorWhite2 } from '@styles/style';
 
-const styles= StyleSheet.create({
-  flex1:{flex:1},
-  marginTop15:{marginTop: 15},
-  maxHeight:{
+const styles = StyleSheet.create({
+  flex1: { flex: 1 },
+  marginTop15: { marginTop: 15 },
+  maxHeight: {
     maxHeight: 50,
   },
-  scrollView:{
+  scrollView: {
     flex: 9,
     maxHeight: '100%'
   },
-  vectorImageView:{
+  vectorImageView: {
     alignItems: 'center',
     backgroundColor: bgcolorWhite2,
     borderRadius: 4,
@@ -71,11 +71,11 @@ const styles= StyleSheet.create({
     padding: 15,
   }
 })
-const Childgrowth = ({navigation}: any):any => {
-  const {t} = useTranslation();
+const Childgrowth = ({ navigation }: any): any => {
+  const { t } = useTranslation();
   const data = [
-    {title: t('growthScreenweightForHeight')},
-    {title: t('growthScreenheightForAge')},
+    { title: t('growthScreenweightForHeight') },
+    { title: t('growthScreenheightForAge') },
   ];
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const themeContext = useContext(ThemeContext);
@@ -83,76 +83,76 @@ const Childgrowth = ({navigation}: any):any => {
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const [modalVisible, setModalVisible] = React.useState(true);
-  const [profileLoading,setProfileLoading] = React.useState(false);
+  const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
-  const setIsModalOpened = async (varkey: any):Promise<any> => {
-    const obj = {key: varkey, value: !modalVisible};
+  const setIsModalOpened = async (varkey: any): Promise<any> => {
+    const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
   const growthModalOpened = useAppSelector((state: any) =>
-      (state.utilsData.IsGrowthModalOpened),
-    );
-    
-    const pluralShow = useAppSelector(
-      (state: any) => state.selectedCountry.pluralShow,
-    );
+    (state.utilsData.IsGrowthModalOpened),
+  );
 
-    useEffect(()=>{
-      setModalVisible(growthModalOpened)
-    },[growthModalOpened]);
-    
+  const pluralShow = useAppSelector(
+    (state: any) => state.selectedCountry.pluralShow,
+  );
+
+  useEffect(() => {
+    setModalVisible(growthModalOpened)
+  }, [growthModalOpened]);
+
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  let measures:any=[];
+  let measures: any = [];
   let days = 0;
-  if(activeChild?.measures.length>0){
-     measures = activeChild.measures.filter((item: any) => item.isChildMeasured == true);
-    }
-//Code for Growth text hiding condition starts here
-  if(measures.length > 0){
-      let measurementDate: DateTime = DateTime.local();
-      let childmeasures = measures.map((item: MeasuresEntity) => {
-        if (item.measurementDate) {
-          measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
-        }
-
-        let month: any = 0;
-
-        if (activeChild?.birthDate) {
-          const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
-          month = Math.round(measurementDate.diff(birthDay, 'month').months);
-        }
-        return {
-          uuid:item.uuid,
-          weight: item.weight ? parseFloat(item.weight) : 0,
-          height: item.height ? parseFloat(item.height) : 0,
-          measurementDate: formatStringDate(item?.measurementDate),
-          dateToMilis: measurementDate.toMillis(),
-          isChildMeasured:item.isChildMeasured,
-          titleDateInMonth: month,
-          measurementPlace:item.measurementPlace,
-          doctorComment:item.doctorComment,
-          didChildGetVaccines:item.didChildGetVaccines,
-          vaccineIds:item.vaccineIds,
-        };
-      });
-
-      childmeasures = childmeasures.sort(
-        (a: any, b: any) => a.dateToMilis - b.dateToMilis,
-      );
-        const lastmeasurementDate =  DateTime.fromMillis(childmeasures[
-          childmeasures.length - 1
-        ]?.dateToMilis)
-        const date = DateTime.fromISO(activeChild.birthDate);
-        const convertInDays = lastmeasurementDate.diff(date, "days").days;
-        if (convertInDays !== undefined) {days = Math.round(convertInDays)}
+  if (activeChild?.measures.length > 0) {
+    measures = activeChild.measures.filter((item: any) => item.isChildMeasured == true);
+  }
+  //Code for Growth text hiding condition starts here
+  if (measures.length > 0) {
+    let measurementDate: DateTime = DateTime.local();
+    let childmeasures = measures.map((item: MeasuresEntity) => {
+      if (item.measurementDate) {
+        measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
       }
-    //Code for Growth text hiding condition ends here
-const {width,height}= Dimensions.get('window');
-  const renderDummyChart = ():any => {
+
+      let month: any = 0;
+
+      if (activeChild?.birthDate) {
+        const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+        month = Math.round(measurementDate.diff(birthDay, 'month').months);
+      }
+      return {
+        uuid: item.uuid,
+        weight: item.weight ? parseFloat(item.weight) : 0,
+        height: item.height ? parseFloat(item.height) : 0,
+        measurementDate: formatStringDate(item?.measurementDate),
+        dateToMilis: measurementDate.toMillis(),
+        isChildMeasured: item.isChildMeasured,
+        titleDateInMonth: month,
+        measurementPlace: item.measurementPlace,
+        doctorComment: item.doctorComment,
+        didChildGetVaccines: item.didChildGetVaccines,
+        vaccineIds: item.vaccineIds,
+      };
+    });
+
+    childmeasures = childmeasures.sort(
+      (a: any, b: any) => a.dateToMilis - b.dateToMilis,
+    );
+    const lastmeasurementDate = DateTime.fromMillis(childmeasures[
+      childmeasures.length - 1
+    ]?.dateToMilis)
+    const date = DateTime.fromISO(activeChild.birthDate);
+    const convertInDays = lastmeasurementDate.diff(date, "days").days;
+    if (convertInDays !== undefined) { days = Math.round(convertInDays) }
+  }
+  //Code for Growth text hiding condition ends here
+  const { width, height } = Dimensions.get('window');
+  const renderDummyChart = (): any => {
     return (
       <>
         <View
@@ -164,21 +164,21 @@ const {width,height}= Dimensions.get('window');
   };
   return (
     <>
-    <Modal
+      <Modal
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={():any => {
+        onRequestClose={(): any => {
           console.log("in onRequestClose");
         }}
-        onDismiss={():any => {
+        onDismiss={(): any => {
           console.log("in onDismiss");
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={():any => {
+                onPress={(): any => {
                   setModalVisible(false);
                   setIsModalOpened('IsGrowthModalOpened');
                 }}>
@@ -189,20 +189,20 @@ const {width,height}= Dimensions.get('window');
               <Heading4Centerr>
                 {t('growthModalText')}
               </Heading4Centerr>
-              </ModalPopupContent>
-              <FDirRow>
+            </ModalPopupContent>
+            <FDirRow>
               <ButtonModal
-                onPress={():any => {
+                onPress={(): any => {
                   setIsModalOpened('IsGrowthModalOpened');
                 }}>
                 <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
               </ButtonModal>
-              </FDirRow>
-            
+            </FDirRow>
+
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={[styles.flex1,{backgroundColor:headerColor,width:width,height:height}]}>
+      <View style={[styles.flex1, { backgroundColor: headerColor, width: width, height: height }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
           <TabScreenHeader
@@ -212,33 +212,33 @@ const {width,height}= Dimensions.get('window');
             setProfileLoading={setProfileLoading}
           />
           <ScrollView
-            style={[styles.scrollView,{
-              backgroundColor: backgroundColor        
+            style={[styles.scrollView, {
+              backgroundColor: backgroundColor
             }]}>
             {measures.length == 0 ? (
               <>
                 <FlexDirCol>
                   <ShiftFromBottom5>
-                    <Heading3 style={styles.marginTop15}>                  
-                      { activeChild.birthDate != null && activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate) ? 
-                      t('babyNotificationbyAge', {
-                        childName:
-                          activeChild.childName != null &&
-                          activeChild.childName != '' &&
-                          activeChild.childName != undefined
-                            ? activeChild.childName
-                            : '',
-                        ageInMonth:
-                          activeChild.birthDate != null &&
-                          activeChild.birthDate != '' &&
-                          activeChild.birthDate != undefined
-                            ? getCurrentChildAgeInMonths(
+                    <Heading3 style={styles.marginTop15}>
+                      {activeChild.birthDate != null && activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate) ?
+                        t('babyNotificationbyAge', {
+                          childName:
+                            activeChild.childName != null &&
+                              activeChild.childName != '' &&
+                              activeChild.childName != undefined
+                              ? activeChild.childName
+                              : '',
+                          ageInMonth:
+                            activeChild.birthDate != null &&
+                              activeChild.birthDate != '' &&
+                              activeChild.birthDate != undefined
+                              ? getCurrentChildAgeInMonths(
                                 t,
                                 DateTime.fromJSDate(new Date(activeChild.birthDate)),
                                 pluralShow
                               )
-                            : '',
-                      }):t('expectedChildDobLabel')
+                              : '',
+                        }) : t('expectedChildDobLabel')
                       }
 
                     </Heading3>
@@ -255,70 +255,70 @@ const {width,height}= Dimensions.get('window');
                 </FlexDirCol>
                 {renderDummyChart()}
               </>
-            ) : width<height ?(
+            ) : width < height ? (
               <MainContainer>
                 <GrowthIntroductory activeChild={activeChild} />
 
                 <LastChildMeasure />
 
-                <> 
-                <FlexCol>
-                  <BgContainer>
-                    <FlexCol>
-                    <TabBarContainerBrd
-                      style={styles.maxHeight}>
-                      {data.map((item, itemindex) => {
-                        return (
-                          <Pressable
-                          key={itemindex}
-                          style={[styles.flex1, {
-                            backgroundColor:
-                              itemindex == selectedIndex
-                                ? tabBackgroundColor
-                                : backgroundColor,
-                          }]}
-                          onPress={(): any => {
-                            setSelectedIndex(itemindex);
-                          }}>
-                          <TabBarDefault
-                            style={[
-                              {
-                                backgroundColor:
-                                  itemindex == selectedIndex
-                                    ? tabBackgroundColor
-                                    : headerColor,
-                              },
-                            ]}>
-                            {itemindex == selectedIndex ? <Heading4Centerr numberOfLines={2}>{item.title}</Heading4Centerr>
-                              : <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>}
-                          </TabBarDefault>
-                        </Pressable>
-                        );
-                      })}
-                    </TabBarContainerBrd>
-                    </FlexCol>
-                    <FlexCol>
-                    <SideSpacing10>
+                <>
+                  <FlexCol>
+                    <BgContainer>
                       <FlexCol>
-                      {selectedIndex == 0 ? <ChartWeightForHeight days={days} /> : null}
-                      {selectedIndex == 1 ? <ChartHeightForAge days={days} /> : null}
+                        <TabBarContainerBrd
+                          style={styles.maxHeight}>
+                          {data.map((item, itemindex) => {
+                            return (
+                              <Pressable
+                                key={itemindex}
+                                style={[styles.flex1, {
+                                  backgroundColor:
+                                    itemindex == selectedIndex
+                                      ? tabBackgroundColor
+                                      : backgroundColor,
+                                }]}
+                                onPress={(): any => {
+                                  setSelectedIndex(itemindex);
+                                }}>
+                                <TabBarDefault
+                                  style={[
+                                    {
+                                      backgroundColor:
+                                        itemindex == selectedIndex
+                                          ? tabBackgroundColor
+                                          : headerColor,
+                                    },
+                                  ]}>
+                                  {itemindex == selectedIndex ? <Heading4Centerr numberOfLines={2}>{item.title}</Heading4Centerr>
+                                    : <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>}
+                                </TabBarDefault>
+                              </Pressable>
+                            );
+                          })}
+                        </TabBarContainerBrd>
                       </FlexCol>
-                    </SideSpacing10>
-                    </FlexCol>
-                  </BgContainer>
+                      <FlexCol>
+                        <SideSpacing10>
+                          <FlexCol>
+                            {selectedIndex == 0 ? <ChartWeightForHeight days={days} /> : null}
+                            {selectedIndex == 1 ? <ChartHeightForAge days={days} /> : null}
+                          </FlexCol>
+                        </SideSpacing10>
+                      </FlexCol>
+                    </BgContainer>
                   </FlexCol>
                 </>
 
-               
+
               </MainContainer>
             ) : null}
           </ScrollView>
-          <ButtonContainer style={{backgroundColor: backgroundColor}}>
+          <ButtonContainer style={{ backgroundColor: backgroundColor }}>
             <ShiftFromTop10>
               <ButtonPrimary
                 disabled={isFutureDate(activeChild?.birthDate)}
-                style={{backgroundColor: headerColor}}
-                onPress={():any => {
+                style={{ backgroundColor: headerColor }}
+                onPress={(): any => {
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreenaddNewBtntxt'),
                   });
@@ -328,7 +328,7 @@ const {width,height}= Dimensions.get('window');
             </ShiftFromTop10>
           </ButtonContainer>
         </FlexCol>
-        <OverlayLoadingComponent loading={profileLoading}/>
+        <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>
   );

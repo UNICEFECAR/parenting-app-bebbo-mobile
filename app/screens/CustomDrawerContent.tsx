@@ -1,6 +1,6 @@
 import { APP_SHARE, DONATE_OPENED, EMAIL_SENT, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
 // import { buildFor, buildForBangla, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
-import {  appConfig } from '../instance';
+import { appConfig } from '../instance';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 const CustomDrawerContent = ({ navigation }: any): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
-  const {convertDigits} = useDigitConverter()
+  const { convertDigits } = useDigitConverter()
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const [aboutAccordValue, onChangeAboutAccordValue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
@@ -171,17 +171,17 @@ const CustomDrawerContent = ({ navigation }: any): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
   const [activeChildGenderData, setActiveChildGenderData] = React.useState<any>();
-  useEffect(()=>{
+  useEffect(() => {
     const selectedCountry = allCountries.find(
       (country: any) => country.CountryID === countryId.toString(),
     )
     setCountryEmail(selectedCountry?.country_email);
-  },[])
-  useEffect(()=>{
-    const gender = genders.find((g:any) => g.id === activeChild?.gender);
-    console.log('Activechild gender is',gender);
+  }, [])
+  useEffect(() => {
+    const gender = genders.find((g: any) => g.id === activeChild?.gender);
+    console.log('Activechild gender is', gender);
     setActiveChildGenderData(gender);
-  },[activeChild?.gender])
+  }, [activeChild?.gender])
   useFocusEffect(
     React.useCallback(() => {
       if (isOpen) {
@@ -204,16 +204,16 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               }
               if (currentChildNotis.vcnotis) {
                 currentChildNotis.vcnotis.forEach((item: any) => {
-                  if(item.title=="vcNoti1"){
-                    const vcNotisExists= getVaccinesForPeriodCount(allVaccineData, item.growth_period);
-                    console.log(vcNotisExists,"..vcNotisExists..")
-                    if(vcNotisExists!="" && vcNotisExists!=null && vcNotisExists!=undefined){
-                    currentChildallnoti.push(item)
+                  if (item.title == "vcNoti1") {
+                    const vcNotisExists = getVaccinesForPeriodCount(allVaccineData, item.growth_period);
+                    console.log(vcNotisExists, "..vcNotisExists..")
+                    if (vcNotisExists != "" && vcNotisExists != null && vcNotisExists != undefined) {
+                      currentChildallnoti.push(item)
                     }
-                    }
-                    else{
-                      currentChildallnoti.push(item);
-                    }
+                  }
+                  else {
+                    currentChildallnoti.push(item);
+                  }
                 })
               }
               if (currentChildNotis.reminderNotis) {
@@ -285,10 +285,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
                           ) : (
                             activeChildGenderData != null ?
-                            (activeChildGenderData?.unique_name != null && genders.find((g:any) => g.id === activeChild?.gender)?.unique_name == taxonomyIds?.boyChildGender  ?
-                              <Icon name="ic_baby" size={36} color="#000" /> :
-                              <Icon name="ic_baby_girl" size={36} color="#000" />) :
-                            <Icon name="ic_baby_girl" size={36} color="#000" />
+                              (activeChildGenderData?.unique_name != null && genders.find((g: any) => g.id === activeChild?.gender)?.unique_name == taxonomyIds?.boyChildGender ?
+                                <Icon name="ic_baby" size={36} color="#000" /> :
+                                <Icon name="ic_baby_girl" size={36} color="#000" />) :
+                              <Icon name="ic_baby_girl" size={36} color="#000" />
                           )}
                         </OuterIconLeft15>
                       </OuterIconRow>
@@ -544,7 +544,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 onPress={(): any => {
                   const eventData = { 'name': EMAIL_SENT }
                   logEvent(eventData, netInfo.isConnected)
-                  console.log('Country email is',countryEmail);
+                  console.log('Country email is', countryEmail);
                   Linking.openURL(`mailto:${countryEmail}`);
                 }}>
                 <OuterIconRow>
@@ -568,18 +568,18 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               <DrawerLinkView
                 onPress={(): any => {
                   if (Platform.OS === 'android') {
-                    if (String(appConfig.buildFor) == appConfig.buildForBebbo) {
+                    if (String(appConfig.buildFor) == 'bebbo') {
                       Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo')
-                    }else if (String(appConfig.buildFor) == appConfig.buildForBangla) {
+                    } else if (String(appConfig.buildFor) == 'babuni') {
                       Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni')
                     }
                     else {
                       Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.kosovo.foleja')
                     }
                   } else {
-                    if (String(appConfig.buildFor) == appConfig.buildForBebbo) {
+                    if (String(appConfig.buildFor) == 'bebbo') {
                       Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review')
-                    }else if (String(appConfig.buildFor) == appConfig.buildForBangla) {
+                    } else if (String(appConfig.buildFor) == 'babuni') {
                       Linking.openURL('itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review');
                     }
                     else {
@@ -587,7 +587,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     }
                   }
                 }}>
-                  <OuterIconRow>
+                <OuterIconRow>
                   <OuterIconLeft15>
                     <Icon name="ic_sb_loveapp" size={25} color="#000" />
                   </OuterIconLeft15>

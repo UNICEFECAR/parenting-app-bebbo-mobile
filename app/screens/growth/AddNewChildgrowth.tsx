@@ -91,7 +91,7 @@ import {
   setInitialWeightValues
 } from '../../services/growthService';
 import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
-import { convertDigits, formatStringDate } from '../../services/Utils';
+import { convertDigits, formatStringDate, getLanguageCode } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
 import { setAllLocalNotificationGenerateType } from '../../redux/reducers/notificationSlice';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
@@ -136,7 +136,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
   const [measurePlace, setMeasurePlace] = useState<number>();
   const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(null);
 
-  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
+  const locale = useAppSelector((state: any) => getLanguageCode(state.selectedCountry?.languageCode));
   const getCheckedGrowthPlace = (checkedItem: any): any => {
     setMeasurePlace(checkedItem.id);
   };

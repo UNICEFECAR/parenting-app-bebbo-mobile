@@ -501,6 +501,18 @@ const checkFileExistence = async (filePath: string) => {
     }
 };
 
+export const getLanguageCode = (languageCode: string) => {
+    const validLanguageCodes = moment.locales()
+    const processedCode = languageCode.includes('-')
+        ? languageCode.split('-')[1]
+        : languageCode;
+
+    // Check if the processed code exists in the valid language codes list
+    return validLanguageCodes.includes(languageCode) || validLanguageCodes.includes(processedCode)
+        ? languageCode
+        : "en";
+}
+
 //child data get
 export const getChild = async (child: any, genders: any): Promise<any> => {
     try {

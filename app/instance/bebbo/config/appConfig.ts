@@ -94,6 +94,14 @@ const config = {
     { name: 'Cognitive', id: 6436, image: 'ic_act_cognitive' },
     { name: 'Motor', id: 6421, image: 'ic_act_movement' },
   ],
+  articleCategoryobj: [
+    { name: 'playingAndLearning', id: 55, image: 'ic_artl_play' },
+    { name: 'healthAndWellbeingid', id: 2, image: 'ic_artl_health' },
+    { name: 'safetyAndProtection', id: 3, image: 'ic_artl_safety' },
+    { name: 'responsiveParenting', id: 56, image: 'ic_artl_responsive' },
+    { name: 'parentingCorner', id: 4, image: 'ic_artl_parenting' },
+    { name: 'nutritionAndBreastfeeding', id: 1, image: 'ic_artl_nutrition' },
+  ],
   bothParentGender: 60,
   bothChildGender: 41,
   boyChildGender: 40,
@@ -147,6 +155,7 @@ const config = {
 
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
+        alert(`${baseUrl}/${config.flavorName}`)
         return `${baseUrl}/${config.flavorName}`;
       case config.apiConfig.sponsors:
         return `${baseUrl}/${selectedCountry}`;

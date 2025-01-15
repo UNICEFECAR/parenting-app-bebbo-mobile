@@ -18,11 +18,11 @@ interface SelectedLocalizationType {
   AppLayoutDirectionParams: any;
 }
 const initialState: SelectedLocalizationType = {
-  countryId:  126,
+  countryId: 126,
   languageCode: 'en', //'en'
   luxonLocale: 'en',
-  locale:'en', //'en'
-  pluralShow:false,//false
+  locale: 'en', //'en'
+  pluralShow: false,//false
   sponsors: [],
   countries: '',
   restartOnLangChange: 'no',
@@ -47,13 +47,13 @@ export const localizationSlice = createSlice({
         state.pluralShow = action.payload.language.pluralShow;
       } else {
         console.log('country default is', action.payload)
-          state.countryId = action.payload.countryId;
-          state.countrySelectedId = action.payload.countryId;
-          state.languageCode = action.payload.languages[0].languageCode;
-          state.luxonLocale = action.payload.languages[0].luxonLocale;
-          state.locale = action.payload.languages[0].locale;
-          state.selectedLocale = action.payload.languages[0].locale;
-          state.pluralShow = action.payload.languages[0].pluralShow;
+        state.countryId = action.payload.countryId;
+        state.countrySelectedId = action.payload.countryId;
+        state.languageCode = action.payload.languages[0].languageCode;
+        state.luxonLocale = action.payload.languages[0].luxonLocale;
+        state.locale = action.payload.languages[0].locale;
+        state.selectedLocale = action.payload.languages[0].locale;
+        state.pluralShow = action.payload.languages[0].pluralShow;
       }
     },
     oncountrtIdChange: (state, action: PayloadAction<any>): any => {
@@ -108,6 +108,6 @@ export const localizationSlice = createSlice({
   },
 });
 
-export const { onLocalizationSelect,setCountriesStore, setChildStore, setSponsorStore, oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams } = localizationSlice.actions;
+export const { onLocalizationSelect, setCountriesStore, setChildStore, setSponsorStore, oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams } = localizationSlice.actions;
 
 export default localizationSlice.reducer;

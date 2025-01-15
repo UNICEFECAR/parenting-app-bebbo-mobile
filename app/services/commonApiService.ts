@@ -6,7 +6,6 @@ import { Alert } from "react-native";
 import FastImage from 'react-native-fast-image';
 import RNFS from 'react-native-fs';
 import { store } from "../../App";
-// import { appConfig, buildFor, buildForBangla, buildForBebbo, finalUrl } from '../assets/translations/appOfflineData/apiConstants';
 import { appConfig } from '../instance';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -103,6 +102,7 @@ export const onAddEditChildSuccess = async (response: any, dispatch: any, naviga
   navigation.navigate('ChildProfileScreen');
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any, languageCode: string, prevPage: string): Promise<any> => {
+
   const allDatatoStore = await getAllDataToStore(languageCode, dispatch, prevPage);
   console.log("allDatatoStore ", prevPage, "--", allDatatoStore);
   navigation.navigate('Terms');
@@ -224,8 +224,13 @@ export const downloadArticleImages = async (): Promise<any> => {
 }
 export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any, languageCode: string, prevPage: string, activeChild: any, oldErrorObj: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any): Promise<any> => {
   const resolvedPromises = oldErrorObj.map(async (x: any) => {
-    const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint, languageCode, dispatch, prevPage, activeChild);
-    return allDatatoStore;
+    try {
+      const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint, languageCode, dispatch, prevPage, activeChild);
+      return allDatatoStore;
+    } catch (error) {
+      console.log('0000', error)
+    }
+
 
   })
   const forceUpdateData = [

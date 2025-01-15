@@ -84,7 +84,7 @@ import {
 } from '../../services/growthService';
 import { getAllHealthCheckupPeriods } from '../../services/healthCheckupService';
 import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
-import { formatStringDate } from '../../services/Utils';
+import { formatStringDate, getLanguageCode } from '../../services/Utils';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
 const styles = StyleSheet.create({
@@ -128,7 +128,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
+  const locale = useAppSelector((state: any) => getLanguageCode(state.selectedCountry?.languageCode));
 
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const onBackPress = (): any => {

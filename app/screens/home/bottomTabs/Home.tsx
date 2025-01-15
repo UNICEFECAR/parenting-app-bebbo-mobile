@@ -1,5 +1,5 @@
 import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
-import {  appConfig } from '../../../instance';
+import { appConfig } from '../../../instance';
 import { getDataToStore } from '@assets/translations/appOfflineData/getDataToStore';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
@@ -58,7 +58,7 @@ import { fetchAPI } from '../../../redux/sagaMiddleware/sagaActions';
 import { apiJsonDataGet } from '../../../services/childCRUD';
 import commonApiService from '../../../services/commonApiService';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
-import { addSpaceToHtml } from '../../../services/Utils';
+import { addSpaceToHtml, getLanguageCode } from '../../../services/Utils';
 import VersionInfo from 'react-native-version-info';
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
@@ -86,7 +86,7 @@ const Home = ({ route, navigation }: any): any => {
   const [show, setShow] = useState(false);
   const [date2, setdate2] = useState<Date | null>(null);
   const [show2, setShow2] = useState(false);
-  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
+  const locale = useAppSelector((state: any) => getLanguageCode(state.selectedCountry?.languageCode));
 
   const backgroundColorChildInfo =
     themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
@@ -151,7 +151,7 @@ const Home = ({ route, navigation }: any): any => {
 
   };
   useEffect(() => {
-    
+
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -194,7 +194,7 @@ const Home = ({ route, navigation }: any): any => {
       });
     }
   }
-  
+
   const onNoForceUpdate = (): any => {
     if (netInfo.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
       setTimeout(() => {
@@ -243,22 +243,22 @@ const Home = ({ route, navigation }: any): any => {
   const relbebboprod = '1.1.5';
   const relfolejadev = '0.2.0';
   const relfolejaprod = '1.1.0';
- 
+
   useLayoutEffect(
     React.useCallback(() => {
       const task = InteractionManager.runAfterInteractions(() => {
         if (netInfo.isConnected) {
           synchronizeEvents(netInfo.isConnected);
         }
-       
+
         // Expensive task
       });
-  
+
       return () => task.cancel();
     }, [])
   );
-  useEffect(()=>{
-   // setModalVisible(false);
+  useEffect(() => {
+    // setModalVisible(false);
     async function fetchNetInfo(): Promise<any> {
       console.log(bufferAgeBracket, "---userIsOnboarded----", userIsOnboarded);
       console.log(VersionInfo.appVersion, "--appVersion", VersionInfo.buildVersion, VersionInfo.bundleIdentifier);
@@ -428,7 +428,7 @@ const Home = ({ route, navigation }: any): any => {
     else {
       fetchNetInfo();
     }
-  },[netInfo.isConnected])
+  }, [netInfo.isConnected])
   const ondobChange = (event: any, selectedDate: any): any => {
     setShow(Platform.OS === 'ios');
     setdate1(selectedDate);

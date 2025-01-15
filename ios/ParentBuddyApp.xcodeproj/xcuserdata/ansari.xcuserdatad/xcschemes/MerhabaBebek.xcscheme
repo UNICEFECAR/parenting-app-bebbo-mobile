@@ -54,7 +54,7 @@
          <EnvironmentVariable
             key = "FLAVOR"
             value = "merhabaBebek"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>

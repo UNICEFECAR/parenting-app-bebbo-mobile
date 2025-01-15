@@ -108,7 +108,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
     }
     else if (prevPage == "") {
         let Entity: any;
-        console.log(countryData,'Prevpage is',prevPage,languageCode);
+        console.log(countryData, 'Prevpage is', prevPage, languageCode);
         // await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         return "success";
     }
@@ -147,65 +147,135 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
     // return new Promise(async (resolve) => {
     let Entity: any;
     if (apiEndpoint == appConfig.apiConfig.basicPages) {
-        await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
+        try {
+            await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.taxonomies) {
-        await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
+        try {
+            await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.countryGroups) {
-        await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
+        try {
+            await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.dailyMessages) {
-        await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
+        try {
+            await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.standardDeviation) {
-        await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
-        await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
+        try {
+            await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
+            await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.vaccinations) {
-        await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
+        try {
+            await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.healthCheckupData) {
-        await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
+        try {
+            await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.childDevelopmentData) {
-        await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
+        try {
+            await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.milestones) {
-        await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
+        try {
+            await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.videoArticles) {
-        await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
+        try {
+            await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.activities) {
-        await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
+        try {
+            await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.surveys) {
-        await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
+        try {
+            await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.faqs) {
-        await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
+        try {
+            await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
+        } catch (error) {
+            console.log('error', error)
+        }
+
         return "success";
     }
     else if (apiEndpoint == appConfig.apiConfig.articles) {
-        const currentChildData = {
-            "gender": activeChild.gender,
-            "parent_gender": activeChild.parent_gender,
-            "taxonomyData": activeChild.taxonomyData
+        try {
+            const currentChildData = {
+                "gender": activeChild.gender,
+                "parent_gender": activeChild.parent_gender,
+                "taxonomyData": activeChild.taxonomyData
+            }
+            await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+        } catch (error) {
+            console.log('error', error)
         }
-        await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+
         return "success";
     } else {
         return "success";

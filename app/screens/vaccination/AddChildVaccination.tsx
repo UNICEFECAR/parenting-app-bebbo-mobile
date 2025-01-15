@@ -76,7 +76,7 @@ import {
   setInitialWeightValues
 } from '../../services/growthService';
 import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
-import { formatStringDate } from '../../services/Utils';
+import { formatStringDate, getLanguageCode } from '../../services/Utils';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
 import ToggleRadiosBgColor from '@components/ToggleRadiosBgColor';
@@ -146,7 +146,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
+  const locale = useAppSelector((state: any) => getLanguageCode(state.selectedCountry?.languageCode));
   
   const deleteVaccination = async (): Promise<any> => {
     if (editVCDate) {

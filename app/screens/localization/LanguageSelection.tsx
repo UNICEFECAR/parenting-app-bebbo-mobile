@@ -11,16 +11,16 @@ import { Alert, FlatList, I18nManager, Platform, Pressable } from 'react-native'
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
-import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
-// import { localization, sponsors } from '@dynamicImportsClass/dynamicImports';
-// import { allApisObject, appConfig, buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig,localization} from '../../instance';
+import { onLocalizationSelect, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { appConfig, localization } from '../../instance';
 import { Flex5 } from '@components/shared/FlexBoxStyle';
 import { ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import crashlytics from '@react-native-firebase/crashlytics';
 import analytics from '@react-native-firebase/analytics';
 import { useIsFocused } from '@react-navigation/native';
+import moment from 'moment';
+import { getLanguageCode } from '../../services/Utils';
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'CountryLanguageConfirmation'
@@ -106,7 +106,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   }, [route?.params?.language]);
   useEffect(() => {
     if (isVisible) {
-    let newCountryId: any;
+      let newCountryId: any;
       let newCountryLocale: any;
       if (userIsOnboarded == true) {
         if (route.params.country && route.params.country != null && route.params.country != undefined) {
@@ -197,6 +197,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     //   country,
     //   language,
     // })
+    moment.locale(getLanguageCode(language?.languageCode))
     i18n.changeLanguage(language?.locale || 'en')
       .then(() => {
         if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
@@ -252,7 +253,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         apiJsonData: userIsOnboarded == true ? appConfig.allApisObject(false, incrementalSyncDT) : apiJsonData,
         prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
       }
-      navigation.navigate("LoadingScreen", params );
+      navigation.navigate("LoadingScreen", params);
     }
   }
   const goToConfirmationScreen = (): any => {
@@ -263,14 +264,14 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       newLanguage = language[0];
     } else {
       // throw new Error('Language is not defined or empty'); when we have error handling if language is undefined or empty
-      crashlytics().recordError('Language is not defined or empty'+JSON.stringify(language));
+      crashlytics().recordError('Language is not defined or empty' + JSON.stringify(language));
       console.log('Language is not defined or empty');
-      
+
       return;
     }
     i18n.changeLanguage(newLanguage?.locale || 'en')
       .then(() => {
-        if (appConfig.buildFor == appConfig.buildForBebbo) {
+        if (countryId == appConfig.restOfTheWorldCountryId) {
           const rotwLanguagelocaleen = localization[localization.length - 1]?.languages[0]?.locale;
           const rotwLanguagelocaleru = localization[localization.length - 1]?.languages[1]?.locale;
           console.log('rest of the world title', newLanguage)
@@ -305,11 +306,11 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
             onPress={(e: any): any => {
               console.log('Back icon click')
               {
-                route?.params?.isFromCountry ? navigation.navigate('CountryLanguageConfirmation') : 
-                navigation.navigate('CountrySelection', {
-                  country,
-                  language,
-                })
+                route?.params?.isFromCountry ? navigation.navigate('CountryLanguageConfirmation') :
+                  navigation.navigate('CountrySelection', {
+                    country,
+                    language,
+                  })
               }
             }}
           >

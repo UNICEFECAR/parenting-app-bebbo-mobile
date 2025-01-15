@@ -27,6 +27,8 @@ class GoogleAuth {
         console.log('google initilize')
         GoogleSignin.configure({
             scopes: ['https://www.googleapis.com/auth/drive.file'], // what API you want to access on behalf of the user, default is email and profile
+            webClientId: "1049214335867-tgk9d5o11osc3nr3bfi79v972imqjdfl.apps.googleusercontent.com",
+            iosClientId: "1049214335867-mq9ccbn4bed77detsln9b8m2nfoa0t48.apps.googleusercontent.com"
         });
 
     }
