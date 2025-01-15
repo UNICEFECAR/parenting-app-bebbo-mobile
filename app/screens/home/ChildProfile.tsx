@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   profileListDefault: { flexDirection: 'column', flex: 1 },
   profileTextView: { paddingRight: 5 },
   textDecorationNone: { textDecorationLine: "none" }
-
 })
 type NotificationsNavigationProp =
   StackNavigationProp<any>;

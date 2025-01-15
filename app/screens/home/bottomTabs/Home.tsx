@@ -460,7 +460,6 @@ const Home = ({ route, navigation }: any): any => {
           <FlexCol>
             <BabyNotification />
 
-
             {show && (
               <DateTimePicker
                 testID="dobdatePicker"

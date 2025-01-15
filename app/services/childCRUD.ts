@@ -420,6 +420,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   console.log(editScreen, "..editScreen..", data[0].isExpected);
   if (editScreen) {
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
+    console.log(oldChild, "..oldChild..");
     if (oldChild?.length > 0) {
       oldChild = oldChild.map((item: any) => item)[0];
       oldBirthDate = oldChild.birthDate;

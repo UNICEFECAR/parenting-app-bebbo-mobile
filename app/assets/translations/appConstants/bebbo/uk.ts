@@ -2,7 +2,7 @@ const uk = {
         translation: {
                 countryLangSelection: "Ви вибрали країну та мову",
                 editCountryLang: "Редагувати",
-                continueCountryLang: "ПРОДОВЖИТИ",
+                continueCountryLang: "Продовжити",
                 selectYourCountry: "Виберіть країну",
                 selectYourLang: "Виберіть мову",
                 goToLanguageSelection: "Перейти до вибору мови",
