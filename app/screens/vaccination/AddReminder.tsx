@@ -65,7 +65,7 @@ import {
 import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import LocalNotifications from '../../services/LocalNotifications';
-import { formatStringDate, formatStringTime } from '../../services/Utils';
+import { formatStringDate, formatStringTime, getLanguageCode } from '../../services/Utils';
 import * as RNLocalize from 'react-native-localize';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
@@ -150,7 +150,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
   const vchcEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.vchcEnabled),
   );
-  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
+  const locale = useAppSelector((state: any) => getLanguageCode(state.selectedCountry?.languageCode));
 
   //if measureDate is luxon today, then set measureTime to hours,minutes,seconds
 

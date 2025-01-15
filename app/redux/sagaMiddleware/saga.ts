@@ -34,34 +34,87 @@ function* apiCall(data: ApiJsonArray, dispatch: any): any {
   }
 }
 function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any): any {
-  const payload = { errorArr: errorArr, fromPage: prevPage }
-  yield put(receiveAPIFailure(payload))
+
   // }
-  yield call(updateIncrementalSyncDT, response, dispatch, navigation, languageCode, prevPage);
+  try {
+    const payload = { errorArr: errorArr, fromPage: prevPage }
+    yield put(receiveAPIFailure(payload))
+    yield call(updateIncrementalSyncDT, response, dispatch, navigation, languageCode, prevPage);
+  } catch (error) {
+    console.log('error1', error)
+  }
   if (prevPage == 'Terms') {
+    try {
+      const payload = { errorArr: errorArr, fromPage: prevPage }
+      yield call(onOnLoadApiSuccess, response, dispatch, navigation, languageCode, prevPage);
+    } catch (error) {
+      console.log('error2', error)
+    }
     //dispatch action for terms page
-    yield call(onOnLoadApiSuccess, response, dispatch, navigation, languageCode, prevPage);
+
   } else if (prevPage == 'AddEditChild') {
+    try {
+      const payload = { errorArr: errorArr, fromPage: prevPage }
+      yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
+    } catch (error) {
+      console.log('error3', error)
+    }
     //dispatch action for sponsor page
-    yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
+
   }
   else if (prevPage == 'CountryLanguageSelection') {
-    yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
+    try {
+      const payload = { errorArr: errorArr, fromPage: prevPage }
+      yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
+    } catch (error) {
+      console.log('error4', error)
+    }
+
   }
   else if (prevPage == '') {
-    yield call(onCountryApiSuccess, response, dispatch, navigation, languageCode, prevPage)
+    try {
+      const payload = { errorArr: errorArr, fromPage: prevPage }
+      yield call(onCountryApiSuccess, response, dispatch, navigation, languageCode, prevPage)
+    } catch (error) {
+      console.log('error5', error)
+    }
+
   }
   else if (prevPage == 'ChildSetup') {
-    yield call(onChildSetupApiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
+    try {
+      const payload = { errorArr: errorArr, fromPage: prevPage }
+      yield call(onChildSetupApiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
+    } catch (error) {
+      console.log('error6', error)
+    }
+
   }
   else if (prevPage == 'Home' || prevPage == 'CountryLangChange' || prevPage == 'PeriodicSync' || prevPage == 'ImportScreen' || prevPage == 'DownloadUpdate' || prevPage == 'ForceUpdate' || prevPage == 'DownloadAllData') {
-    yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload)
+    try {
+      const payload = { errorArr: errorArr, fromPage: prevPage }
+      yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload)
+    } catch (error) {
+      console.log('error7', error)
+    }
+
   }
   else if (prevPage == 'Survey') {
-    yield call(onHomeSurveyapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
+    try {
+      const payload = { errorArr: errorArr, fromPage: prevPage }
+      yield call(onHomeSurveyapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
+    } catch (error) {
+      console.log('error8', error)
+    }
+
   }
   else if (prevPage == 'VideoArticle' || prevPage == 'RelatedVideoArticle') {
-    yield call(onHomeVideoartapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
+    try {
+      const payload = { errorArr: errorArr, fromPage: prevPage }
+      yield call(onHomeVideoartapiSuccess, response, dispatch, navigation, languageCode, prevPage, activeChild, oldErrorObj)
+    } catch (error) {
+      console.log('error9', error)
+    }
+
   }
 }
 
@@ -125,6 +178,8 @@ function* onFetchAPI(value: any): any {
       yield put(receiveAPISuccess(response));
     }
   } catch (e) {
+    console.log(value)
+    console.log('----------', e)
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
       yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
     }

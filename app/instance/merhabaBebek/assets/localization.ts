@@ -1,4 +1,4 @@
-const localizationbangla = [
+const localization = [
   {
     name: 'Türkiye',
     countryId: 1,
@@ -16,5 +16,5 @@ const localizationbangla = [
   }
 
 ];
-export default localizationbangla;
+export default localization;
 

@@ -189,7 +189,6 @@ export default (): any => {
 
   useEffect(() => {
     if (!userIsFirstTime) {
-      console.log(apiJsonData, '-----------', userIsFirstTime, apiUrlDevelop)
       dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, activeChild, apiJsonData, netInfo.isConnected))
     }
   }, [dispatch])

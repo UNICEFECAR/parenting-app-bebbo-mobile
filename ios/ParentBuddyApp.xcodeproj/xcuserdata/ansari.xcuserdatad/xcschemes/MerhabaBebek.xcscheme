@@ -54,7 +54,7 @@
          <EnvironmentVariable
             key = "FLAVOR"
             value = "REMOVED_FACEBOOK_APP_ID1"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>

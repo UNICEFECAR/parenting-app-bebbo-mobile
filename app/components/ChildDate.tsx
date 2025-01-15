@@ -7,7 +7,7 @@ import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-import { formatStringDate } from '../services/Utils';
+import { formatStringDate, getLanguageCode } from '../services/Utils';
 import Checkbox, {
   CheckboxActive,
   CheckboxItem,
@@ -59,8 +59,7 @@ const ChildDate = (props: any): any => {
   const [showdue, setdueShow] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [dobModalVisible, setDobModalVisible] = useState(false);
-  const locale = useAppSelector((state: any) => state.selectedCountry?.locale);
-
+  const locale = useAppSelector((state: any) => getLanguageCode(state.selectedCountry?.languageCode));
   const isFutureDate = (date: Date): any => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
@@ -247,20 +246,20 @@ const ChildDate = (props: any): any => {
         )}
 
         <FormPrematureContainer>
-          <Pressable 
-          style={{flexDirection:'row'}}
-          onPress={(): any => {
-            if (!disablePrematureCheck) {
-              props.sendData({
-                birthDate: doborExpectedDate,
-                plannedTermDate: null,
-                isPremature: !toggleCheckBox,
-                isExpected: isExpected,
-              });
-              setToggleCheckBox(!toggleCheckBox);
-              setdueDate(null);
-            }
-          }}>
+          <Pressable
+            style={{ flexDirection: 'row' }}
+            onPress={(): any => {
+              if (!disablePrematureCheck) {
+                props.sendData({
+                  birthDate: doborExpectedDate,
+                  plannedTermDate: null,
+                  isPremature: !toggleCheckBox,
+                  isExpected: isExpected,
+                });
+                setToggleCheckBox(!toggleCheckBox);
+                setdueDate(null);
+              }
+            }}>
             <CheckboxItem>
               <View>
                 {toggleCheckBox ? (
@@ -283,7 +282,7 @@ const ChildDate = (props: any): any => {
             </FormInfoPress>
           </FormInfoLabel>
         </FormPrematureContainer>
-       
+
 
         {toggleCheckBox && !disablePrematureCheck ? (
           <>
