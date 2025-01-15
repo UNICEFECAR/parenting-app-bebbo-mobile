@@ -78,7 +78,6 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
-
   const extractLanguageCode = (languageTag: string): string => {
     const [languageCode] = languageTag.split('-');
     return languageCode;
