@@ -19,7 +19,7 @@ import {
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { FeatureDivideArea, HomeSurveyBox, OfflineBar } from '@components/shared/HomeScreenStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconClearPress, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -32,13 +32,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {
   Heading1Centerr, Heading3Centerr, Heading3Regular, Heading4Center, ShiftFromTop20,
+  ShiftFromTop25,
   ShiftFromTopBottom10,
   SideSpacing25
 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { InteractionManager } from 'react-native';
+import { InteractionManager, Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -68,7 +69,11 @@ import { useIsFocused } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
-  scrollView: { backgroundColor: bgcolorWhite2, flex: 5 }
+  pressablePadding: {
+    paddingLeft: 15,
+    paddingVertical: 15
+  },
+  scrollView: { backgroundColor: bgcolorWhite2, flex: 5 },
 })
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
@@ -189,6 +194,7 @@ const Home = ({ route, navigation }: any): any => {
       });
     }
   }
+  
   const onNoForceUpdate = (): any => {
     if (netInfo.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
       setTimeout(() => {
@@ -302,46 +308,8 @@ const Home = ({ route, navigation }: any): any => {
           }
 
           if (isRelatedVideoArticleUpdateReq == null || isRelatedVideoArticleUpdateReq == undefined || isRelatedVideoArticleUpdateReq == 'true') {
-
-            const apiJsonDatarelatedvideoart = [
-              {
-                apiEndpoint: appConfig.vaccinePinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.childGrowthPinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.healthcheckupPinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.faqPinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.faqUpdatedPinnedContent,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-              {
-                apiEndpoint: appConfig.milestoneRelatedArticle,
-                method: 'get',
-                postdata: {},
-                saveinDB: true,
-              },
-            ];
-            const apiJsonDataarticleall = apiJsonDataGet(String(bufferAgeBracket), "all");
+            const apiJsonDatarelatedvideoart = [];
+            const apiJsonDataarticleall = apiJsonDataGet("all");
             if (apiJsonDataarticleall.length > 0) {
               apiJsonDatarelatedvideoart.push(apiJsonDataarticleall[0])
             }
@@ -472,7 +440,6 @@ const Home = ({ route, navigation }: any): any => {
 
     dispatch(setSyncDate({ key: 'monthlyDownloadDate', value: DateTime.fromJSDate(new Date(selectedDate)).toMillis() }));
   }
-
   return (
     <>
       <>
@@ -492,10 +459,6 @@ const Home = ({ route, navigation }: any): any => {
         <ScrollView style={styles.scrollView}>
           <FlexCol>
             <BabyNotification />
-            <ChildInfo
-              headerColor={headerColorChildInfo}
-              backgroundColor={backgroundColorChildInfo}
-            />
 
             {show && (
               <DateTimePicker
@@ -526,6 +489,12 @@ const Home = ({ route, navigation }: any): any => {
             <FeatureDivideArea>
               <DailyHomeNotification />
             </FeatureDivideArea>
+            <ShiftFromTop25>
+              <ChildInfo
+                headerColor={headerColorChildInfo}
+                backgroundColor={backgroundColorChildInfo}
+              />
+            </ShiftFromTop25>
             <ChildMilestones />
             <PlayingTogether />
             <AdviceAndArticles />

@@ -24,6 +24,7 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
 import PushNotification from 'react-native-push-notification';
+import { Country, CountrySchema } from "../database/schema/CountrySchema";
 const requestNotificationPermission= async (): Promise<any>=>{
     const status= await requestNotifications([]);
     console.log(status,"..status..");
@@ -87,6 +88,11 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
         insertData = response.payload.data.data;
         Entity = Entity as BasicPagesEntity;
         EntitySchema = BasicPagesSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.countryGroups) {
+        insertData = response.payload.data.data;
+        Entity = Entity as Country;
+        EntitySchema = CountrySchema;
     }
     else if (response.payload.apiEndpoint == appConfig.taxonomies) {
         const { ...allData } = response.payload.data.data;
@@ -211,7 +217,7 @@ const getTwoDigits = (number: any): string => {
 }
 export const formatDate = (dateData: any): any => {
     dateData = DateTime.fromJSDate(new Date(dateData));
-    console.log(dateData, "..before")
+    // console.log(dateData, "..before")
     // if (typeof dateData == "number") {
     //     dateData = DateTime.fromMillis(dateData)
     // }
@@ -270,6 +276,7 @@ export const removeParams = (sParam: any): any => {
     }
 }
 export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any): any => {
+    console.log('Check button here',relationship,gender,birthDate,param,name)
     if (birthDate == null || birthDate == undefined) {
         return false;
     }
@@ -314,6 +321,29 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
             return true;
         }
     }
+}
+export const validateParentsForm = (param: any,  relationship: any,  name?: any,): any => {
+    if (name == '' || name == null || name == undefined) {
+        return false;
+    }
+     if (param == 0) {
+        if (relationship == '' || relationship == null || relationship == undefined ) {
+            return false;
+        }
+    }
+
+    if (param == 3) {
+        if (relationship == '' || relationship == null || relationship == undefined) {
+            return false;
+        }
+    }
+    if (param == 4) {
+        console.log("param 4");
+    }
+    else {
+        return true;
+    }
+
 }
 export const trimWhiteSpacePayload = (str:any):any => {
     return str.length ? str.trim(): str
@@ -491,11 +521,12 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
     try {
         const checkPhotoUri = child.photoUri!=null? CHILDREN_PATH +child.photoUri : CHILDREN_PATH;
         const photoUri  = await RNFS.exists(String(checkPhotoUri));     
-        const childmeasures  = await formatImportedMeasures(child.measures)
+        const childmeasures:any  = await formatImportedMeasures(child.measures)
         console.log("reminders output---", childmeasures);
         const childreminders = await formatImportedReminders(child.reminders)
         console.log("reminders output---", childreminders);
-        const isPremature: any = child.isPremature == "true" ? "true" : "false";
+        const isPremature: any = child?.isPremature == "true" ? "true" : "false";
+        const autoChild: any = child?.autoChild == "true" ? "true" : "false";
         const childName: any = ("name" in child) === true ? child.name : ("childName" in child) === true ? child.childName : ""
         console.log(isPremature, "..isPremature..");
         let genderValue: any = child.gender;
@@ -518,6 +549,7 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
         } else {
             favoritegames = [];
         }
+        console.log('Child fav games and articles', favoriteadvices, favoritegames)
         const inFuture = isFutureDate(child.birthDate);
          //planned will be date of birth se aage ka and birthdate ka diff 4weeks and above hai then premature true
     return {
@@ -538,7 +570,8 @@ export const getChild = async (child: any, genders: any): Promise<any> => {
         isPremature: isPremature,
         isExpected: inFuture == true ? 'true' : 'false',
         favoriteadvices: favoriteadvices,
-        favoritegames: favoritegames
+        favoritegames: favoritegames,
+        autoChild: autoChild
     };
     } catch (error) {
         console.error('Error in getChild:', error);

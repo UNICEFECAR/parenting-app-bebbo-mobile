@@ -5,7 +5,8 @@ const ChildSetupContainer = styled.View`
 
 /*Styling for Child Iput Date */
 export const FormDateContainer = styled.View`
-width:100%;margin-top:10px;
+width:100%;
+margin-top:10px;
 `
 export const CustomScrollView = styled.ScrollView`
 flex:1;
@@ -30,6 +31,12 @@ export const ChildCenterView = styled.View`
   justify-content: center;
   flex-direction: column;
 `;
+export const ChildTabView = styled.View`
+  flex: 1;
+  justify-content: center;
+  margin-top:30px;
+  flex-direction: row;
+`;
 
 export const ChildAddTop = styled.View`
   flex: 1;
@@ -38,20 +45,48 @@ export const ChildAddTop = styled.View`
 `;
 
 export const ChildContentArea = styled.View`
-  flex: 1;
   flex-direction: row;
 `;
 
 export const LabelTextVac = styled.Text`
-  color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
-  font-size: 16px;
+  color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+  font-size: 14px;
 `;
-export const LabelText = styled(LabelTextVac)`
-  margin-bottom: 7px;
+
+export const LabelTextTerms = styled.Text`
+  color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+  font-size: 14px;
   text-align:left;
 `;
+
+export const LabelDatePlaceHolderText = styled.Text`
+  color: rgba(119, 119, 121, 0.45);
+  font-size: 14px;
+  fontFamily: roboto-regular;
+`;
+
+export const LabelText = styled(LabelTextVac)`
+  text-align:left;
+`;
+export const LabelWithInfoText = styled(LabelTextVac)`
+  text-align:left;
+  flex:2;
+`;
+export const LabelChildText = styled(LabelTextVac)`
+  text-align:left;
+  margin-top: 3px;
+`;
+export const LinkText = styled.Text`
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px; /* Adjusted margin-top */
+  color: blue; /* Change the color as needed */
+`;
+
+export const LinkContainer = styled.View`
+  flex-direction: row;
+`;
 export const LabelText1 = styled(LabelTextVac)`
-margin-bottom: 7px;
 text-align:left;
 `;
 export const ChildSection = styled.View`
@@ -61,6 +96,7 @@ export const ChildSection = styled.View`
 `;
 export const ChildListingArea = styled.View`
   width: 100%;
+  margin-top:20px;
   flex-direction: column;
   justify-content: flex-start;
 `;
@@ -80,6 +116,7 @@ export const ChildListTitle = styled.Text`
 
 export const ChildColArea1 = styled.View`
   flex: 1;
+  margin-start:10px;
 `;
 export const ChildColArea2 = styled.View`
   flex: 1;
@@ -124,6 +161,20 @@ export const FormInputBox = styled.View`
   background-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius:4px;
   align-items:center;
+  margin-top:10;
+  border-color:'#CCCCCC';
+  border-width:1px;
+  justify-content:space-between;
+  height:52px;
+  padding:5px 12px;
+
+`;
+export const FormInputBoxWithoutLine = styled.View`
+  flex-direction: row;
+  background-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:4px;
+  align-items:center;
+  margin-top:10;
   justify-content:space-between;
   height:52px;
   padding:5px 12px;
@@ -162,28 +213,34 @@ padding-bottom:7px;
 
 
 export const OrView = styled.View`
-position:relative;
-z-index:11;
 justify-content:center;
 align-items:center;
 margin:15px 0
 `;
+
 export const OrHeadingView = styled.View`
-padding:5px 0;
-min-width:50px;
-background-color:${(props:any):any => props.theme.colors.PRIMARY_COLOR};
+flex:2;
+flex-direction: row;
+margin-horizontal:20px;
+margin-top:30px;
+margin-end:20px;
 `;
 
 
-export const OrDivider = styled.View`
-position:absolute;
-width:100%;
-height:1px;
-background-color:#fff;
-top:50%;
-left:0;
-z-index:0;
+export const ParentSetUpDivider = styled.View`
+flex:1;
+border-color:#1CABE2;
+background-color:#1CABE2;
+border-radius:4px;
+height:3px;
+`;
 
+export const ChildSetupDivider = styled.View`
+flex:1;
+border-color:#777779;
+background-color:#777779;
+border-radius:4px;
+height:3px;
 `;
 /*Form Styling*/
 export default ChildSetupContainer;

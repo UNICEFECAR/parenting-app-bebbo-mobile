@@ -14,7 +14,7 @@ import {
 } from 'react-native-popup-menu';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
-import { getNotificationDateInString } from '../services/childCRUD';
+//import { getNotificationDateInString } from '../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../services/Utils';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
@@ -216,12 +216,7 @@ const NotificationItem = (props: any):any => {
 
 
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate)} - {
-                    getNotificationDateInString(
-                      t,
-                      DateTime.fromJSDate(new Date(item.notificationDate)),
-                      pluralShow
-                    )}</Heading6>
+                  <Heading6>  {formatStringDate(item.notificationDate)}</Heading6>
                 </ShiftFromTop5>
                 <ShiftFromTop10>
                   <Pressable onPress={():any => gotoPage(item)}>
@@ -327,12 +322,7 @@ const NotificationItem = (props: any):any => {
                       : '',periodName: item.periodName })}</Heading4Bold>
                 }
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate)} - {
-                    getNotificationDateInString(
-                      t,
-                      DateTime.fromJSDate(new Date(item.notificationDate)),
-                      pluralShow
-                    )}</Heading6>
+                  <Heading6>  {formatStringDate(item.notificationDate)} </Heading6>
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
@@ -445,12 +435,7 @@ const NotificationItem = (props: any):any => {
                 }
 
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate)} - {
-                    getNotificationDateInString(
-                      t,
-                      DateTime.fromJSDate(new Date(item.notificationDate)),
-                      pluralShow
-                    )}</Heading6>
+                  <Heading6>  {formatStringDate(item.notificationDate)} </Heading6>
                 </ShiftFromTop5>
                 <ShiftFromTop10>
                   <Pressable onPress={():any => gotoPage(item)}>
@@ -558,12 +543,7 @@ const NotificationItem = (props: any):any => {
                         : '',periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
-                    <Heading6>  {formatStringDate(item.notificationDate)} - {
-                      getNotificationDateInString(
-                        t,
-                        DateTime.fromJSDate(new Date(item.notificationDate)),
-                        pluralShow
-                      )}</Heading6>
+                    <Heading6>  {formatStringDate(item.notificationDate)} </Heading6>
                    </ShiftFromTop5>
                   <ShiftFromTop10>
                     <Pressable onPress={():any => gotoPage(item)}>
@@ -666,12 +646,7 @@ const NotificationItem = (props: any):any => {
                         : '',periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
-                    <Heading6>  {formatStringDate(item.notificationDate)} - {
-                      getNotificationDateInString(
-                        t,
-                        DateTime.fromJSDate(new Date(item.notificationDate)),
-                        pluralShow
-                      )}</Heading6>
+                    <Heading6>  {formatStringDate(item.notificationDate)} </Heading6>
                   </ShiftFromTop5>
                   <ShiftFromTop10>
                     <Pressable onPress={():any => gotoPage(item)}>
@@ -763,20 +738,15 @@ const NotificationItem = (props: any):any => {
           <NotifiContent>
             {item.isRead == true ?
               <Heading4Regular>{t(item.title, {
-                reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)
+                reminderDateTime: formatStringDate(item.periodName) + ", " + formatStringTime(item.growth_period)
               })}</Heading4Regular> :
               <Heading4Bold>{t(item.title, {
-                reminderDateTime: formatStringDate(item.periodName) + "," + formatStringTime(item.growth_period)
+                reminderDateTime: formatStringDate(item.periodName) + ", " + formatStringTime(item.growth_period)
               })}</Heading4Bold>
             }
 
             <ShiftFromTop5>
-              <Heading6>  {formatStringDate(item.notificationDate)} - {
-                getNotificationDateInString(
-                  t,
-                  DateTime.fromJSDate(new Date(item.notificationDate)),
-                  pluralShow
-                )}</Heading6>
+              <Heading6>  {formatStringDate(item.notificationDate)} </Heading6>
             </ShiftFromTop5>
             <ShiftFromTop10>
               <Pressable onPress={():any => gotoPage(item)}>

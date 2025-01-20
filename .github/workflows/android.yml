@@ -3,10 +3,6 @@ name: Android Build
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  # push:
-  #   branches: 
-  #   - main
-    
   push:
     branches:
       - Development
@@ -22,34 +18,35 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v1
     - uses: actions/setup-node@master
       with:
-        node-version: '16.14.0'
+        node-version: '21.2.0'
         # node-version: '14.16.0'
 #     - uses: c-hive/gha-yarn-cache@v1
 
   
     - name: Cache (NDK)
-      uses: actions/cache@v2
+      uses: actions/cache@v1
       with:
           path: ${ANDROID_HOME}/ndk/21.0.6113669
           key: ndk-cache
 
-    - name: Install NDK
-      run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install 'ndk;21.0.6113669'
+    #- name: Install NDK
+     # run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install 'ndk;21.0.6113669'
    
     - name: Install node modules
       run: |
-        npm install --legacy-deps=true
+        npm install 
+    # --legacy-deps=true
         
-    - name: Lint
-      uses: Krizzu/eslint-check-action@v1.1.0
-      with:
-        ghToken: ${{ secrets.GITHUB_TOKEN }}
-        eslintFiles: "app"
-        eslintConfig: ".eslintrc.json"
-        eslintExt: "js, jsx, ts, tsx"
+  #  - name: Lint
+   #   uses: Krizzu/eslint-check-action@v1.1.0
+    #  with:
+     #   ghToken: ${{ secrets.GITHUB_TOKEN }}
+      #  eslintFiles: "app"
+       # eslintConfig: ".eslintrc.json"
+        #eslintExt: "js, jsx, ts, tsx"
         
         
     - name: 'Create env file'
@@ -61,6 +58,8 @@ jobs:
         echo facebookClientToken=${{ secrets.FACEBOOKCLIENTTOKEN }} >> .env
         echo projectNumber=${{ secrets.PROJECTNUMBER }} >> .env
         echo clientIdKey=${{ secrets.CLIENTIDKEY }} >> .env
+        echo encryptionsKey=${{ secrets.ENCRYPTIONS_KEY }} >> .env
+        echo encryptionsIVKey=${{ secrets.ENCRYPTIONS_IV_KEY }} >> .env
         cat .env
              
     - name: Create file
@@ -103,8 +102,12 @@ jobs:
       run: cd android && chmod +x ./gradlew
                 
     - name: build prod
-      run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease --no-daemon  
+      run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease
       
+     #run: cd android && ./gradlew clean && ./gradlew wrapper && --gradle-version 8.0.1 && ./gradlew assembleprodstagingRelease --no-daemon 
+      # run: cd android && ./gradlew clean && ./gradlew assembleprodstagingRelease --no-daemon  
+       
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:

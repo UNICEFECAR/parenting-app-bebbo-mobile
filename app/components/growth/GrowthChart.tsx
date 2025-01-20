@@ -131,7 +131,7 @@ const victoryStyles: VictoryStyles = {
 const GrowthChart = (props: any):any => {
   const {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
-   const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
+  const childBirthDate = activeChild?.taxonomyData?.prematureTaxonomyId ? activeChild.plannedTermDate : activeChild.birthDate; 
   const labelX = props.chartType == chartTypes.WeightForHeight ? t('growthScreencmText'):t('month') ;
   const labelY = props.chartType == chartTypes.WeightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
 const [deviceOrientation, setDeviceOrientation] = useState(
@@ -266,7 +266,7 @@ useEffect(() => {
                   const selectedDataIndex = pressedProps.index;
                   return [
                     {
-                      eventKey: 'all',
+                      eventKey: selectedDataIndex,
                       target: 'labels',
                       mutation: (props: any):any => {
                         let activeState: boolean | null = true;
@@ -279,7 +279,7 @@ useEffect(() => {
                       },
                     },
                     {
-                      eventKey: 'all',
+                      eventKey: selectedDataIndex,
                       target: 'data',
                       mutation: (props: any):any => {
                         const stroke = props.style && props.style.stroke;
@@ -306,7 +306,7 @@ useEffect(() => {
                   const selectedDataIndex = pressedProps.index;
                   return [
                     {
-                      eventKey: 'all',
+                      eventKey: selectedDataIndex,
                       target: 'labels',
                       mutation: (props: any):any => {
                         return props.index === selectedDataIndex
@@ -315,7 +315,7 @@ useEffect(() => {
                       },
                     },
                     {
-                      eventKey: 'all',
+                      eventKey: selectedDataIndex,
                       target: 'data',
                       mutation: (props: any):any => {
                          return props.index === selectedDataIndex

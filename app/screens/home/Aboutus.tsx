@@ -5,30 +5,30 @@ import iframe from '@native-html/iframe-plugin';
 import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import HTML from 'react-native-render-html';
+import HTML, { RenderHTML } from 'react-native-render-html';
 import WebView from 'react-native-webview';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import RenderImage from '../../services/RenderImage';
 import { addSpaceToHtml } from '../../services/Utils';
-const styles=StyleSheet.create({
-flex1:{flex: 1},
-fontStyle:{ color: bgcolorBlack2, fontSize: 16 },
-headerView:{
-  flexDirection: 'row',
-  maxHeight: 50
-},
-innerView:{
-  backgroundColor: bgcolorWhite2,
-  flexDirection: 'column',
-  paddingBottom: 15
-},
-scrollView:{ paddingBottom: 100, paddingHorizontal: 10, paddingTop: 20 }
+const styles = StyleSheet.create({
+  flex1: { flex: 1 },
+  fontStyle: { color: bgcolorBlack2, fontSize: 16 },
+  headerView: {
+    flexDirection: 'row',
+    maxHeight: 50
+  },
+  innerView: {
+    backgroundColor: bgcolorWhite2,
+    flexDirection: 'column',
+    paddingBottom: 15
+  },
+  scrollView: { paddingBottom: 100, paddingHorizontal: 10, paddingTop: 20 }
 
 })
-const Aboutus = ():any => {
+const Aboutus = (): any => {
   const themeContext = useContext(ThemeContext);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const { t } = useTranslation();
@@ -41,9 +41,10 @@ const Aboutus = ():any => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
+  
   return (
     <>
-      <View style={[styles.flex1,{ backgroundColor: headerColor }]}>
+      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <View
@@ -60,7 +61,7 @@ const Aboutus = ():any => {
 
           <ScrollView contentContainerStyle={styles.scrollView}>
             {aboutusdata != "" ?
-              <HTML
+              <RenderHTML
                 source={{ html: addSpaceToHtml(aboutusdata) }}
                 baseStyle={styles.fontStyle}
                 ignoredStyles={['color', 'fontSize', 'fontFamily']}
@@ -79,23 +80,31 @@ const Aboutus = ():any => {
                 }}
                 renderers={{
                   iframe,
-                  a: (attribs: any):any => {
-                    const imagePath: any = attribs.src;
-                    console.log(imagePath, "..imagePath");
-                    if (imagePath != "" && imagePath != null && imagePath != undefined) {
-                      const itemnew: any = {
-                        cover_image: {
-                          url: imagePath
-                        }
-                      };
-                      return (
-                        <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                  // img: (attribs:any):any => {
+                  //   const { href } = attribs;
+                  //   if (href) {
+                  //     // Render hyperlink
+                  //     return renderLink(attribs);
+                  //   }
+                  // },
+                  // a: (attribs: any): any => {
+                  //   const imagePath: any = attribs.src;
+                  //   console.log(imagePath, "..imagePath");
+                  //   if (imagePath != "" && imagePath != null && imagePath != undefined) {
+                  //     const itemnew: any = {
+                  //       cover_image: {
+                  //         url: imagePath
+                  //       }
+                  //     };
+                  //     return (
+                  //       <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
 
-                      );
-                    }
-                  },
+                  //     );
+                  //   }
+                  // },
+                  
                 }}
-                WebView={WebView}
+                WebView={() => <WebView renderToHardwareTextureAndroid={true} />}
                 renderersProps={{
                   iframe: { webViewProps: { allowsFullscreenVideo: true } }
                 }}

@@ -41,6 +41,7 @@ import {
   ButtonTextSmLineL
 } from '../shared/ButtonGlobal';
 import Icon, { IconViewBg } from '../shared/Icon';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const styles=StyleSheet.create({
   dirView:{flex:6,flexDirection:"row"},
   iconStyle:{ alignSelf: 'center' },
@@ -52,6 +53,7 @@ const UpcomingHealthCheckup = (props: any): any => {
   const { item, childAgeIndays, headerColor, backgroundColor, currentPeriodId } = props;
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
+  const netInfo = useNetInfoHook();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const themeContext = useContext(ThemeContext);
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
@@ -87,6 +89,7 @@ const UpcomingHealthCheckup = (props: any): any => {
         headerColor: artHeaderColor,
         backgroundColor: artBackgroundColor,
         detailData: pinnedArticleId,
+        netInfo: netInfo
       });
     }
   };
