@@ -13,7 +13,7 @@ import {
 import {
   FormContainerFlex,
   FormDateAction, FormDateText1,
-  FormInputBox,
+  FormInputBoxWithoutLine,
   FormInputGroup,
   FormInputText,
   TextAreaBox
@@ -39,7 +39,6 @@ import {
   RadioOuter
 } from '@components/shared/radio';
 import TextInputML from '@components/shared/TextInputML';
-import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import TakenVaccines from '@components/vaccination/TakenVaccines';
@@ -78,6 +77,7 @@ import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDa
 import { formatStringDate } from '../../services/Utils';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
+import ToggleRadiosBgColor from '@components/ToggleRadiosBgColor';
 
 const styles = StyleSheet.create({
   constinerView: {
@@ -523,7 +523,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
               }}
               >
                 {Platform.OS != 'ios' ? (
-                  <FormInputBox>
+                  <FormInputBoxWithoutLine>
                     <FormDateText1>
                       <Text>
                         {' '}
@@ -549,9 +549,9 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                     <FormDateAction>
                       <Icon name="ic_calendar" size={20} color="#000" />
                     </FormDateAction>
-                  </FormInputBox>
+                  </FormInputBoxWithoutLine>
                 ) : (
-                  <FormInputBox>
+                  <FormInputBoxWithoutLine>
                     <FormDateText1>
                       <Text>
                         {' '}
@@ -576,7 +576,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                     <FormDateAction>
                       <Icon name="ic_calendar" size={20} color="#000" />
                     </FormDateAction>
-                  </FormInputBox>
+                  </FormInputBoxWithoutLine>
                 )}
               </FormInputGroup>
               {takenVaccine?.length > 0 ?
@@ -624,7 +624,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                 <FormInputText>
                   <Heading3>{t('vcChildMeasureQ')}</Heading3>
                 </FormInputText>
-                <ToggleRadios
+                <ToggleRadiosBgColor
                   options={isMeasuredOptions}
                   defaultValue={defaultMeasured}
                   tickbgColor={headerColor}

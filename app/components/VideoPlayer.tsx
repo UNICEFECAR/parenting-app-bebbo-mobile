@@ -143,6 +143,7 @@ const VideoPlayer = (props: any):any => {
                         source={{ html: getVimeoHtml() }}
                         renderLoading={displaySpinner}
                         allowsFullscreenVideo={true}
+                        renderToHardwareTextureAndroid={true}
                     />
                     :
                     <>
@@ -155,15 +156,18 @@ const VideoPlayer = (props: any):any => {
                         height={windowWidth*0.563}
                         onReady={onReady}
                         onError={onError}
+                        
                         webViewProps={{
                              allowsInlineMediaPlayback: true,
                             allowsFullscreenVideo: true,
-                            androidLayerType: 'hardware',
+                            androidLayerType: 'software',
+                            
                         }}
                         initialPlayerParams={{
                              cc_lang_pref: "us",
                             controls: true,
                         }}
+                        webViewStyle={{opacity: 0.99}}
                     />
                     </View>
                     </>

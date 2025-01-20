@@ -100,7 +100,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const [listLoading, setListLoading] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const flatListRef = useRef<any>();
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId ?? activeChild?.taxonomyData?.id;
 
   const setIsModalOpened = (varkey: any): any => {
     if (modalVisible == true) {
@@ -125,6 +125,20 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   //      //setModalVisible(childDevModalOpened);
   //    },[]) 
   //  )
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchData = async (): Promise<any> => {
+        // const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
+        // const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        // setchildMilestonedata(childData[0].checkedMilestones)
+      }
+      fetchData()
+      return (): any => {
+        console.log("unmount activity", route.params);
+        navigation.setParams({ currentSelectedChildId: 0 });
+      };
+    }, [])
+  );
   useEffect(() => {
     setComponentColors({
       headerColor: themeContext?.colors.CHILDDEVELOPMENT_COLOR,
@@ -145,7 +159,8 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       headerColor: componentColors?.artHeaderColor,
       backgroundColor: componentColors?.artBackgroundColor,
       detailData: selectedPinnedArticleData,
-      currentSelectedChildId: currentSelectedChildId
+      currentSelectedChildId: currentSelectedChildId,
+      netInfo: netInfo
     });
   };
   const toTop = (): any => {

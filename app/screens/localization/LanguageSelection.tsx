@@ -1,28 +1,25 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import LanguageItem from '@components/LanguageItem';
-import {
-  BtnMultiple,
-  ButtonviewClick,
-  ButtonviewNext,
-  ButtonviewPrevious
-} from '@components/shared/ButtonView';
-import { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
-import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, FlatList, I18nManager, LayoutAnimation, Platform, View } from 'react-native';
+import { Alert, FlatList, I18nManager, Platform, Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
-import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
-import { localization } from '@dynamicImportsClass/dynamicImports';
-import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
-
+import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { localization, sponsors } from '@dynamicImportsClass/dynamicImports';
+import { allApisObject, appConfig, buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
+import { Flex5 } from '@components/shared/FlexBoxStyle';
+import { ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
+import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
+import crashlytics from '@react-native-firebase/crashlytics';
+import analytics from '@react-native-firebase/analytics';
+import { useIsFocused } from '@react-navigation/native';
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'CountryLanguageConfirmation'
@@ -33,22 +30,48 @@ type Props = {
 };
 const LanguageSelection = ({ route, navigation }: Props): any => {
   const [language, setLanguage] = useState<any>();
-  console.log("in lang file ---", route.params);
+  const allCountries = useAppSelector(
+    (state: any) =>
+      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
+  );
+  
   let country: any, languagenew: any;
   if (buildFor == buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
     console.log("in if--");
-    country = localization[localization.length - 1];
+    country = allCountries[allCountries.length - 1];
     languagenew = null;
   } else {
-    country = route.params.country;
-    languagenew = route.params.language;
+    country = route?.params?.country;
+    languagenew = route?.params?.language;
   }
+  const [sponsorsData, setSponsorsData] = useState<any>();
+  const countryId = useAppSelector(
+    (state: any) => state.selectedCountry.countryId,
+  );
+  const userIsOnboarded = useAppSelector(
+    (state: any) =>
+      state.utilsData.userIsOnboarded
+  );
   const languages = country?.languages;
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
+  const isVisible = useIsFocused();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const isFocused = useIsFocused();
+  const incrementalSyncDT = useAppSelector((state: any) =>
+    (state.utilsData.incrementalSyncDT),
+  );
+  const apiJsonData = [
+    {
+      apiEndpoint: appConfig.basicPages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+  ];
+
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
   );
@@ -63,22 +86,57 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     if (route?.params?.language != undefined) {
       setLanguage(route?.params?.language)
     } else {
-      console.log('languages for foleja is',languages)
-      if (buildFor == String(buildForFoleja)){
+      console.log('languages for foleja is', languages)
+      if (buildFor == String(buildForFoleja)) {
         setLanguage(languages[0])
-      }else{
-        const languagesWithLuxonLocale = country.languages.filter((lang: any) => lang.luxonLocale === route.params.luxonlocale || extractLanguageCode(lang.luxonLocale) === route.params.deviceLanCode);
-        if (languagesWithLuxonLocale.length != 0) {
+      } else {
+        const languagesWithLuxonLocale = country?.languages?.filter((lang: any) => lang.luxonLocale === route.params.luxonlocale || extractLanguageCode(lang.luxonLocale) === route.params.deviceLanCode);
+
+        if (languagesWithLuxonLocale?.length != 0) {
           setLanguage(languagesWithLuxonLocale)
         } else {
           setLanguage(languages[0])
         }
+
       }
-    
-    
+
+
     }
   }, [route?.params?.language]);
+  useEffect(() => {
+    if (isVisible) {
+    let newCountryId: any;
+      let newCountryLocale: any;
+      if (userIsOnboarded == true) {
+        if (route.params.country && route.params.country != null && route.params.country != undefined) {
+          newCountryId = route.params.country?.countryId
+        } else {
+          newCountryId = countryId;
+        }
+      } else {
+        if (Object.keys(route.params).length === 0) {
+          newCountryId = countryId;
+        } else {
 
+          if (route.params != undefined) {
+            newCountryId = route.params?.country?.countryId;
+          } else {
+            newCountryId = countryId;
+          }
+        }
+      }
+
+      const selectedCountry = allCountries.find(
+        (country: any) => country.CountryID == newCountryId,
+      );
+
+      // const countrySponsorsData = allCountries.find(
+      //   (country: any) => country.id === selectedCountry.CountryID,
+      // )
+      console.log('selectedCountry country is', selectedCountry)
+      setSponsorsData(route?.params?.country);
+    }
+  }, [isVisible]);
   const renderItem = ({ item, index }: any): any => (
     <LanguageItem
       item={item}
@@ -88,69 +146,134 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     />
   );
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const rtlConditions = (language: any): any => {
 
-    if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
-      if (AppLayoutDirection == 'ltr') {
-        dispatch(setrestartOnLangChange('yes'));
-        dispatch(setAppLayoutDirection('rtl'));
-        dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
-        dispatch(setAppLayoutDirectionParams({
-          country,
-          language,
-        }));
-        Platform.OS == 'ios' ? setTimeout(() => {
-          I18nManager.forceRTL(true);
-          RNRestart.Restart();
-        }, 100) :
-          setTimeout(() => {
-            I18nManager.forceRTL(true);
-            RNRestart.Restart();
-          }, 0);
-      } else {
-        I18nManager.forceRTL(true);
-      }
-    } else {
-      if (AppLayoutDirection == 'rtl') {
+    // if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
+    //   if (AppLayoutDirection == 'ltr') {
+    //     dispatch(setrestartOnLangChange('yes'));
+    //     dispatch(setAppLayoutDirection('rtl'));
+    //     dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+    //     dispatch(setAppLayoutDirectionParams({
+    //       country,
+    //       language,
+    //     }));
+    //     Platform.OS == 'ios' ? setTimeout(() => {
+    //       I18nManager.forceRTL(true);
+    //       RNRestart.Restart();
+    //     }, 100) :
+    //       setTimeout(() => {
+    //         I18nManager.forceRTL(true);
+    //         RNRestart.Restart();
+    //       }, 0);
+    //   } else {
+    //     I18nManager.forceRTL(true);
+    //   }
+    // } else {
+    //   if (AppLayoutDirection == 'rtl') {
 
-        dispatch(setrestartOnLangChange('yes'));
-        dispatch(setAppLayoutDirection('ltr'));
-        dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
-        dispatch(setAppLayoutDirectionParams({
-          country,
-          language,
-        }));
-        Platform.OS == 'ios' ?
-          setTimeout(() => {
-            I18nManager.forceRTL(false);
-            RNRestart.Restart();
-          }, 100) :
-          setTimeout(() => {
-            I18nManager.forceRTL(false);
-            RNRestart.Restart();
-          }, 0);
+    //     dispatch(setrestartOnLangChange('yes'));
+    //     dispatch(setAppLayoutDirection('ltr'));
+    //     dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+    //     dispatch(setAppLayoutDirectionParams({
+    //       country,
+    //       language,
+    //     }));
+    //     Platform.OS == 'ios' ?
+    //       setTimeout(() => {
+    //         I18nManager.forceRTL(false);
+    //         RNRestart.Restart();
+    //       }, 100) :
+    //       setTimeout(() => {
+    //         I18nManager.forceRTL(false);
+    //         RNRestart.Restart();
+    //       }, 0);
+    //   } else {
+    //     I18nManager.forceRTL(false);
+    //   }
+    // }
+    // navigation.navigate('CountryLanguageConfirmation', {
+    //   country,
+    //   language,
+    // })
+    i18n.changeLanguage(language?.locale || 'en')
+      .then(() => {
+        if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
+          if (AppLayoutDirection == 'ltr') {
+            //remove rtl on backhandler
+            Platform.OS == 'ios' ? setTimeout(() => {
+              I18nManager.forceRTL(true);
+              RNRestart.Restart();
+            }, 100) :
+              setTimeout(() => {
+                I18nManager.forceRTL(true);
+                RNRestart.Restart()
+              }, 0);
+          } else {
+            I18nManager.forceRTL(true);
+          }
+        } else {
+          I18nManager.forceRTL(false);
+        }
+      })
+
+    if (userIsOnboarded == true && (language?.languageCode == languageCode)) {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'HomeDrawerNavigator',
+          },
+        ],
+      });
+    } else {
+      console.log(language, "..newLanguage");
+      if (Object.keys(route.params).length !== 0) {
+        console.log(route.params?.country?.CountryID, "routeparams is");
+        const filteredLan = route.params?.country?.languages?.filter((lang: any) => lang?.languageCode == language?.languageCode);
+        console.log('filtered language is', filteredLan)
+        dispatch(onLocalizationSelect({ "languages": filteredLan, "countryId": route.params.country?.CountryID }));
+        dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
+        analytics().setUserProperties({ country: route.params?.country?.name, language: language?.displayName })
       } else {
-        I18nManager.forceRTL(false);
+        console.log(country, "countryData");
+        dispatch(onLocalizationSelect(country));
+        dispatch(setInfoModalOpened({ key: 'dailyMessageNotification', value: '' }));
+        analytics().setUserProperties({ country: country?.displayName, language: language?.displayName })
       }
+
+      // if (userIsOnboarded == true) {
+      //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
+      // }
+      console.log('Sponsors Data for countryList', sponsorsData)
+      dispatch(setSponsorStore(sponsorsData));
+      const params = {
+        apiJsonData: userIsOnboarded == true ? allApisObject(false, incrementalSyncDT) : apiJsonData,
+        prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
+      }
+      navigation.navigate("LoadingScreen", params );
     }
-    navigation.navigate('CountryLanguageConfirmation', {
-      country,
-      language,
-    })
   }
   const goToConfirmationScreen = (): any => {
-    let newLanguage: any = null
+    let newLanguage: any = null;
     if (language?.locale != undefined) {
-      newLanguage = language
+      newLanguage = language;
+    } else if (Array.isArray(language) && language.length > 0) {
+      newLanguage = language[0];
     } else {
-      newLanguage = language[0]
+      // throw new Error('Language is not defined or empty'); when we have error handling if language is undefined or empty
+      crashlytics().recordError('Language is not defined or empty'+JSON.stringify(language));
+      console.log('Language is not defined or empty');
+      
+      return;
     }
-    i18n.changeLanguage(newLanguage.locale)
+    i18n.changeLanguage(newLanguage?.locale || 'en')
       .then(() => {
         if (buildFor == buildForBebbo) {
-          const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
-          const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
+          const rotwLanguagelocaleen = localization[localization.length - 1]?.languages[0]?.locale;
+          const rotwLanguagelocaleru = localization[localization.length - 1]?.languages[1]?.locale;
+          console.log('rest of the world title', newLanguage)
+          console.log('rotwLanguagelocaleru of the world title', rotwLanguagelocaleru)
           if (newLanguage?.locale == rotwLanguagelocaleen || newLanguage?.locale == rotwLanguagelocaleru) {
             Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
               [
@@ -177,10 +300,24 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       <>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <OnboardingContainer>
-          <OnboardingStyle
-            title={t('selectYourLang').toString()}
-            iconname="ic_act_language"
-          />
+          <Pressable
+            onPress={(e: any): any => {
+              console.log('Back icon click')
+              {
+                route?.params?.isFromCountry ? navigation.navigate('CountryLanguageConfirmation') : 
+                navigation.navigate('CountrySelection', {
+                  country,
+                  language,
+                })
+              }
+            }}
+          >
+            <OnboardingStyle
+              title={t('selectYourLang').toString()}
+              iconname="ic_back"
+            />
+          </Pressable>
+
 
           <SelectionView>
             <FlatList
@@ -189,42 +326,12 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
               keyExtractor={(item): any => item.languageCode.toString()}
             />
           </SelectionView>
-          <ShiftFromTopBottom10>
-            <BtnMultiple>
-              {localization.length > 1 ?
-                <ButtonviewNext>
-                  <ButtonviewClick onPress={(): any => {
-                    navigation.navigate('CountrySelection', {
-                      country,
-                      language,
-                    })
-                  }}>
-                    <IconML name="ic_angle_left" size={32} color="#000" />
-                  </ButtonviewClick>
-                </ButtonviewNext>
-                : <View></View>
-              }
-              {language ? (
-                <ButtonviewNext>
-                  <ButtonviewClick
-                    onPress={(): any => {
-                      goToConfirmationScreen()
-                    }
-                    }>
-                    <IconML name="ic_angle_right" size={32} color="#000" />
-                  </ButtonviewClick>
-                </ButtonviewNext>
-              ) : <ButtonviewPrevious>
-                <ButtonviewClick
-                  onPress={(): any => {
-                    console.log("pressed")
-                  }
-                  }>
-                  <IconML name="ic_angle_right" size={32} color="#000" />
-                </ButtonviewClick>
-              </ButtonviewPrevious>}
-            </BtnMultiple>
-          </ShiftFromTopBottom10>
+
+          <Flex5>
+            <ButtonPrimary onPress={(): any => goToConfirmationScreen()}>
+              <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
+            </ButtonPrimary>
+          </Flex5>
         </OnboardingContainer>
       </>
     </>

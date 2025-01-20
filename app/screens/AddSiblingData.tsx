@@ -2,7 +2,7 @@
 import { bothChildGender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonPrimary, ButtonRow, ButtonText, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import { ChildAddTop, FormContainer1, FormInputBox, LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -12,7 +12,7 @@ import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { primaryColor } from '@styles/style';
+import { bgcolorWhite2, primaryColor } from '@styles/style';
 import { dobMax } from '@types/types';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -23,7 +23,7 @@ import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { addChild, getNewChild } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
-import { Heading1Centerw, ShiftFromTop5, SideSpacing25 } from '../styles/typography';
+import { Heading1Centerw, ShiftFromTop20, ShiftFromTop5, SideSpacing25 } from '../styles/typography';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -36,7 +36,7 @@ type Props = {
 };
 const styles = StyleSheet.create({
   containerView: {
-    backgroundColor: primaryColor,
+    backgroundColor: bgcolorWhite2,
     flex: 1
   },
   scrollViewStyle: {
@@ -107,13 +107,13 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
   const AddChild = async (): Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     const defaultName = name;
-    const insertData: any = editScreen ? await getNewChild(uuid, isExpected, plannedTermDate, isPremature, birthDate, name, '', gender, createdAt) : await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, createdAt)
+    const insertData: any = editScreen ? await getNewChild(uuid,'', isExpected, plannedTermDate, isPremature, birthDate, name, '', gender, createdAt) : await getNewChild('', '',isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, createdAt)
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 1, childSet, dispatch, navigation, childAge, null, null, netInfo);
+    addChild(languageCode, editScreen, 1, childSet, dispatch, navigation, childAge, null, null, netInfo,false,true,'');
   }
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   return <>
     <View style={styles.containerView}>
 
@@ -129,13 +129,13 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
                     onPress={(): any => {
                       navigation.goBack();
                     }}>
-                    <Icon name="ic_close" size={20} color="#FFF" />
+                    <Icon name="ic_close" size={20} color="#000" />
                   </Pressable>
                 </ShiftFromTop5>
               </ChildAddTop>
             </OnboardingHeading>
             <ChildDate sendData={sendData} childData={childData} dobMax={dobMax} prevScreen="Onboarding" />
-            <ShiftFromTop5>
+            <ShiftFromTop20>
               <LabelText>{t('childNameTxt')}</LabelText>
               <FormInputBox>
                 <TextInputML
@@ -152,12 +152,12 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
                     }
                   }}
                   value={name}
-                  placeholder={t('childNamePlaceTxt')}
-                  placeholderTextColor={"gray"}
+                  //placeholder={t('childNamePlaceTxt')}
+                  //placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
-            </ShiftFromTop5>
+            </ShiftFromTop20>
             {
               birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
                 <FormContainer1>
@@ -172,12 +172,7 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
                 </FormContainer1>
                 : null}
           </View>
-
-
-        </OnboardingContainer>
-      </ScrollView>
-      <SideSpacing25>
-        <ButtonRow>
+          <ButtonRow>
           <ButtonPrimary
             disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(2, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(4, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
             onPress={(): any => {
@@ -197,10 +192,13 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
 
 
             }}>
-            <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
+            <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
           </ButtonPrimary>
         </ButtonRow>
-      </SideSpacing25>
+
+        </OnboardingContainer>
+      </ScrollView>
+     
     </View>
   </>;
 };

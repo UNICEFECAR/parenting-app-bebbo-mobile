@@ -96,7 +96,8 @@ class Backup {
     }
     public async importFromFile(oldChildrenData: any, navigation: any, genders: any, dispatch: any, childAge: any, langCode: any): Promise<any> {
         console.log("oldchildrenresponse nwq",oldChildrenData)
-        if (oldChildrenData?.length > 0) {
+        try {
+            if (oldChildrenData?.length > 0) {
             const resolvedPromises = oldChildrenData.map(async (item: any) => {
                 console.log('here log')
                 if (item.birthDate != null && item.birthDate != undefined) {
@@ -105,22 +106,27 @@ class Backup {
                     console.log('here log itemnew',itemnew)
                      const childData: any = [];
                      childData.push(itemnew);
-                     await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                    //await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                    return userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData).then(function(results){
+                        console.log("results>>", results);
+                        return results
+                     })
+                     
                 }
             });
             const notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
             await Promise.all(resolvedPromises).then(async (item:any) => {
-                console.log("importfromfile--", item);
-                const allChildren = await getAllChildren(dispatch, childAge, 1);
+                const allChildren:any = await getAllChildren(dispatch, childAge, 1);
+               
                 let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                 this.closeImportedRealm();
-
-                if (allChildren.length > 0) {
+                
+                if (allChildren?.length > 0) {
                     if (childId?.length > 0) {
                         childId = childId[0].value;
                         const activeChildData = allChildren.filter((x: any) => x.uuid == childId);
-                        if (activeChildData.length > 0) {
+                        if (activeChildData?.length > 0) {
                             await setActiveChild(langCode, childId, dispatch, childAge, false);
                             navigation.navigate('LoadingScreen', {
                                 apiJsonData: [],
@@ -172,6 +178,11 @@ class Backup {
 
 
         }
+
+    } catch (error) {
+           console.log("importFromFile error", error);
+            
+    }
     }
     public async import1(navigation: any, langCode: any, dispatch: any, childAge: any, genders: any): Promise<any> {
         console.log("import1-", navigation, langCode, dispatch, childAge, genders);
@@ -219,7 +230,7 @@ class Backup {
                 const fileContent = await RNFS.readFile(RNFS.DocumentDirectoryPath + '/' + 'user1.realm', 'utf8');
                 const decryptedData = this.decryptData(fileContent, encryptionsKey)
                 .then((text: any) => {
-                  return text;
+                  return text.replace(/[\x00-\x1F\x7F]/g,'');
                 })
                 .catch((error: any) => {
                   console.log("Decrypted error", error);
@@ -291,12 +302,14 @@ class Backup {
                 const fileContent = await RNFS.readFile(RNFS.DocumentDirectoryPath + '/' + 'user1.realm', 'utf8');
                 const decryptedData = this.decryptData(fileContent, encryptionsKey)
                 .then((text: any) => {
-                  return text;
+                    return text.replace(/[\x00-\x1F\x7F]/g,'');
                 })
                 .catch((error: any) => {
                   console.log("Decrypted error", error);
                   throw error;
                 });
+                await userRealmCommon.openRealm();
+                await userRealmCommon.deleteAllAtOnce();
                 const jsonParseFileData = JSON.parse(await decryptedData);
                 oldChildrenData = jsonParseFileData;
             } else {
@@ -316,7 +329,10 @@ class Backup {
                         const itemnew = await getChild(item, genders);
                         const childData: any = [];
                         childData.push(itemnew);
-                        await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                        //await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                        return userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData).then(function(results){
+                            return results
+                         })
                     }
                 });
                 const notiFlagObj = { key: 'generateNotifications', value: true };

@@ -1,7 +1,8 @@
 import {
   ButtonPrimary,
   ButtonSpacing,
-  ButtonText
+  ButtonText,
+  ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import VideoPlayer from '@components/VideoPlayer';
@@ -20,6 +21,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { getAllConfigData } from '../../services/childCRUD';
 import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 const windowWidth = Dimensions.get('window').width;
 const styles=StyleSheet.create({
   flexShrink1:{flexShrink:1},
@@ -28,6 +30,7 @@ const styles=StyleSheet.create({
 const ChildInfo = (props: any):any => {
   const {t} = useTranslation();
   const navigation = useNavigation<any>();
+  const netInfo = useNetInfoHook();
   const { headerColor, backgroundColor} = props;
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
@@ -59,7 +62,7 @@ const PinnedChildDevData = useAppSelector(
     state.utilsData.VideoArticlesData != '' ?JSON.parse(state.utilsData.VideoArticlesData):[],
   );
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState<any>();
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId ?? activeChild?.taxonomyData?.id;
   useEffect(() => {
     getAllConfigData(dispatch);
   },[]);
@@ -90,19 +93,14 @@ const goToVideoArticleDetails = ():any => {
     fromScreen: 'Home',
     headerColor: headerColor,
     backgroundColor: backgroundColor,
-    detailData: selectedPinnedArticleData
+    detailData: selectedPinnedArticleData,
+    netInfo: netInfo
   });
 }
   return (
     <>
     
       <MainContainer key={selectedPinnedArticleData?.id}>
-               
-          <ShiftFromBottom10>
-          <Heading2Center>
-            {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:t('childInfoBabyText'),parentName:userNameData?.length > 0 ? t('childInfoAndText') + ' ' + userNameData[0].value : showAndParentText() ? t('childInfoAndText') + ' ' + t('childInfoParentText') : ''})} 
-           </Heading2Center>
-          </ShiftFromBottom10>
           {selectedPinnedArticleData ?
           <>
           <ShiftFromBottom10 style={styles.shiftFromBottom}>
@@ -118,15 +116,8 @@ const goToVideoArticleDetails = ():any => {
             </Heading4Centerr>
               : null}
           </ShiftFromTopBottom10>
-          {/* <ShiftFromBottom10>
-            <ButtonSpacing>
-              <SideSpacing25>
-           
-            </SideSpacing25>
-            </ButtonSpacing>
-          </ShiftFromBottom10> */}
            <ButtonPrimary onPress={goToVideoArticleDetails}>
-              <ButtonText numberOfLines={2}>{t('homeScreenchildBtnText')}</ButtonText>
+              <ButtonUpperCaseText numberOfLines={2}>{t('homeScreenchildBtnText')}</ButtonUpperCaseText>
              
             </ButtonPrimary>
         </>

@@ -100,6 +100,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     packagingOptions {
+<<<<<<< HEAD
+        pickFirst 'lib/*/libfbjni.so'
+        pickFirst 'lib/*/libc++_shared.so'
+        pickFirst 'lib/*/libhermes.so'
+    }
+
+=======
         pickFirst 'lib/x86/libfbjni.so'
         pickFirst 'lib/x86_64/libfbjni.so'
         pickFirst 'lib/armeabi-v7a/libfbjni.so'
@@ -113,6 +120,7 @@ android {
         pickFirst 'lib/arm64-v8a/libjscexecutor.so'
     }
     
+>>>>>>> d279a7a02ed9c7fe948207411f120fcee453fa29
     splits {
         abi {
             reset()
@@ -174,8 +182,13 @@ android {
             applicationId 'org.unicef.ecar.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
+<<<<<<< HEAD
+            versionCode 36
+            versionName "2.2.3"
+=======
             versionCode 16
             versionName "1.1.10"
+>>>>>>> d279a7a02ed9c7fe948207411f120fcee453fa29
             signingConfig signingConfigs.release
         }
         prodstaging {
@@ -183,8 +196,13 @@ android {
             applicationId 'com.datamatics.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
+<<<<<<< HEAD
+            versionCode 9
+            versionName "2.1.0"
+=======
             versionCode 8
             versionName "2.0.0"
+>>>>>>> d279a7a02ed9c7fe948207411f120fcee453fa29
             signingConfig signingConfigs.release
         }
         xk {
@@ -227,17 +245,29 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     // Firebase libraries (using the Firebase BoM for consistency - see https://firebase.google.com/docs/android/learn-more#bom)
+<<<<<<< HEAD
+    implementation platform('com.google.firebase:firebase-bom:32.2.0') // or the latest BOM version
+=======
     implementation platform("com.google.firebase:firebase-bom:29.0.3")
+>>>>>>> d279a7a02ed9c7fe948207411f120fcee453fa29
     implementation "com.google.firebase:firebase-perf"
     implementation "com.google.firebase:firebase-crashlytics"
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation project(':react-native-lottie-splash-screen')
     implementation 'com.google.android.gms:play-services-base:18.2.0'
+<<<<<<< HEAD
+    // Android support library
+    implementation 'com.android.support:support-core-utils:28.0.0'
+    // Multi Dex Support: https://developer.android.com/studio/build/multidex#mdex-gradle
+    implementation 'com.android.support:multidex:1.0.3'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+=======
      // Android support library
     implementation 'com.android.support:support-core-utils:28.0.0'
     // Multi Dex Support: https://developer.android.com/studio/build/multidex#mdex-gradle
     implementation 'com.android.support:multidex:1.0.3'
       
+>>>>>>> d279a7a02ed9c7fe948207411f120fcee453fa29
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
@@ -260,7 +290,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 project.ext.vectoricons = [
-    iconFontNames: [ 'fontello.ttf' ] // Name of the font files you want to copy
+        iconFontNames: [ 'fontello.ttf' ] // Name of the font files you want to copy
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

@@ -3,14 +3,16 @@ import styled from 'styled-components/native';
 
 export const ButtonText = styled.Text`
   text-align: center;
-  color: #000;
+  color: #fff;
+  text-transform: uppercase; 
+  font-weight:700;
 `;
 export const SelectionView = styled.View`
   flex: 1;
 `;
 export const bgColor1='rgba(0,0,0,0.7)';
 export const bgcolorWhite='white';
-export const bgcolorWhite2='#fff';
+export const bgcolorWhite2='#FAFAFA';
 export const bgcolorBlack='black';
 export const bgcolorBlack2='#000';
 export const bgcolortransparent='transparent';
@@ -31,3 +33,7 @@ export const primaryColor= '#2B2F84';
 export const secondaryColor= '#00AEEF';
 export const lightShadeColor= '#F7F6F4';
 export const vaccinationColor= '#00A8A8';
+export const childListBgColor = "#B3E7FA";
+export const childProfileBgColor = "#EFEFEF";
+export const secondaryBtnColor = "#1CABE2";
+

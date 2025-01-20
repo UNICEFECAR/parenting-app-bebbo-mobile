@@ -70,6 +70,7 @@ export type ChildEntity = {
   isMigrated?: boolean;
   favoriteadvices?: number[];
   favoritegames?: number[];
+  autoChild?: string;
 };
 
 export const ChildEntitySchema: ObjectSchema = {
@@ -95,6 +96,8 @@ export const ChildEntitySchema: ObjectSchema = {
     isMigrated: { type: 'bool', optional: true },
     favoriteadvices: { type: "list", objectType: 'int', optional: true },
     favoritegames: { type: "list", objectType: 'int', optional: true },
+    autoChild: { type: "string", optional: false },
+    
   }
 };
 

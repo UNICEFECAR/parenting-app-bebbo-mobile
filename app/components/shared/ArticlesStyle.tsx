@@ -31,13 +31,23 @@ export const SearchBox = styled.View`
   flex-direction:row;
   background:${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
   align-items:center;
+  padding-right:10px;
+  height:50px;
+  width:100%;
+`;
+
+export const HomeSearchBox = styled.View`
+  flex-direction:row;
+  background:${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  align-items:center;
   padding:0;
   height:50px;
+  border-color: '#777779';
+  border-bottom-width: 1px;
   width:100%;
 `;
 export const SearchInput = styled.TextInput`
   flex:1;
-  padding:0 15px;
 
   text-align:${(props:any):any => props.theme.isRTL ? 'right' : 'left'};
 `;

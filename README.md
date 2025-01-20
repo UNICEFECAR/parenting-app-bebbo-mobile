@@ -46,8 +46,8 @@ The app can also operate in an offline mode in environments with limited interne
     * The same source code compiles into iOS and Android applications.
 * [NPM](https://nodejs.org/en/)
     * NPM (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
-        * Node version - 21.2.0
-        * NPM version  - 10.3.0
+        * Node version - 21.7.3
+        * NPM version  - 10.8.2
 <!--
 * [Storybook](https://storybook.js.org/)
     * Storybook was used to create visual tests for many components and services used in the application.
@@ -78,6 +78,7 @@ Several third party libraries and services are incorporated. These are the most 
 
 * Either Mac or Windows can be used for development.
 * Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
+* Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to set up environment for React Native development.
 
 ## Install Bebbo in localhost
 
@@ -94,7 +95,7 @@ npm install
 pod install
 ```
 Before running iOS App on Device, necessary certificate setup from Apple developer account is required.
-After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp). In Project use below targets.
+After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp). You can use the below targets.
 
   **Project Target:**
    1. ParentBuddyApp - Bebbo Production target
@@ -145,10 +146,81 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
      
      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/ReadMe/Copy_Input_Crashalytics_File.png)      
 
-4. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
-Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons
+4. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
+Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
 
-5. Configure Firebase services
+5. For Android, add keystore files into \android\app folder to generate Android build.
+      To add a keystore file to your Android project’s `android/app` folder and configure it for signing, Follow the following steps to add keystore file.:
+
+    5.1. *Obtain or create a keystore file*
+    
+    If you don’t already have a keystore file, you need to generate one. You can use the `keytool` command to create it:
+    
+    - Open a terminal or command prompt.
+    - Run the following command to generate a new keystore file:
+    
+      ```bash
+      keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
+      ```
+    
+    - Follow the prompts to enter details such as passwords, organizational information, etc.
+
+    5.2. *Add a keystore file to the project*
+    
+    - *Navigate to Your Project Directory:*
+      - Open your project in your file explorer or terminal.
+      - Go to the `android/app` directory of your project.
+    
+    - *Copy the Keystore File:*
+      - Move or copy your `my-release-key.jks` file into the `android/app` directory.
+
+    5.3. *Configure Gradle for Signing*
+    
+    - *Open the `build.gradle` File:*
+      - In your project, navigate to `android/app/build.gradle`.
+    
+    - *Add Signing Configuration:*
+      - Modify the `build.gradle` file to include signing configuration. Add the following code inside the `android` block:
+    
+        ```groovy
+        android {
+            ...
+            signingConfigs {
+                release {
+                    if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                        storeFile file(MYAPP_RELEASE_STORE_FILE)
+                        storePassword MYAPP_RELEASE_STORE_PASSWORD
+                        keyAlias MYAPP_RELEASE_KEY_ALIAS
+                        keyPassword MYAPP_RELEASE_KEY_PASSWORD
+                    }
+                }
+            }
+            buildTypes {
+                release {
+                    signingConfig signingConfigs.release
+                    // Optional: Enable ProGuard to shrink and obfuscate code
+                    minifyEnabled false
+                    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                }
+            }
+        }
+        ```
+
+- **Add Signing Properties:**
+  - Create or update the `gradle.properties` file located in the `android/` directory of your project (if the file doesn’t exist, create it).
+
+  - Add the following properties to `gradle.properties`:
+
+    ```properties
+    MYAPP_RELEASE_STORE_FILE=my-release-key.jks
+    MYAPP_RELEASE_KEY_ALIAS=my-key-alias
+    MYAPP_RELEASE_STORE_PASSWORD=your-store-password
+    MYAPP_RELEASE_KEY_PASSWORD=your-key-password
+    ```
+
+    Replace `your-store-password` and `your-key-password` with the actual passwords you used when creating the keystore.
+
+6. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
     - Add iOS and Android apps to Firebase project the standard way
     - Use Firebase wizards to create these:
@@ -191,7 +263,7 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
        https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/XkDevelopment
        ```
                
-6. Configure google Signin and GDrive Import/Export
+7. Configure google Signin and GDrive Import/Export
     * Configure Google Signin and GDrive Import/Export
     * Enable Google Drive API from Cloud Console.
     * Choose Scope For Drive Access
@@ -199,93 +271,160 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
      and add in .env file as  projectNumber and clientIdKey.
        * Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
 
-7. Steps required while creating Flavour builds for both Bebbo and Foleja. 
+8. Steps required while creating Flavour builds for both Bebbo and Foleja. 
 
    **1.** Follow below steps for **Bebbo Prod and ProdStaging**:
    
-      * In apiConstants.ts change buildFor const value to buildForBebbo as follows :
+      * In apiConstants.ts change buildFor const value to buildForBebbo as follows:
          
          ```
          export const buildFor = buildForBebbo;
          ```
  
-      * In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows :
+      * In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows:
        
         ```
          "@dynamicImportsClass/*": ["./app/bebbo/*"]
          ```
        
-      * In metro.config.js keep blacklistRe value to /xk\/.*/ as follows : 
+      * In metro.config.js keep blacklistRe value to /xk\/.*/ as follows: 
        
          ```
          blacklistRE: blacklist([/xk\/.*/])
          ```
        
-      * In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : 
+      * In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows: 
         
         ```
         '@dynamicImportsClass': './app/bebbo'
         ```
        
-      * Run below command to generate vector images based on flavour folders :
+      * Run below command to generate vector images based on flavour folders:
        
          ```
          npx react-native-vector-image generate
          ```
         
-      * Create .env file at project root and add below 6 variables in it :
+      * Create .env file at project root and add below 6 variables in it.
+        The variables below contain sample data for example purposes. Do not copy values between brackets:
          
         ```
-        apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
-        facebookAppDisplayName=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-        facebookAppId=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-        facebookClientToken=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-        projectNumber=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
-        clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
+        apiUrlDevelop = 'https://bebbo.app/api' (Server api endPoint)
+        facebookAppDisplayName=Bebbo (For Facebook Analytics. Get these details from Facebook developer console.)
+        facebookAppId=9856432678543908 (For Facebook Analytics. Get these details from Facebook developer console.)
+        facebookClientToken=f67tr342356dsa233987kl56784v (For Facebook Analytics. Get these details from Facebook developer console.)
+        projectNumber=453789238965 (For Google SignIn. Get it from step 5.)
+        clientIdKey= bhjr6wdgddvv3k87tteq9fds6po3nm7 (For Google SignIn. Get it from step 5.)
+        encryptionsKey=d64e6a977f5643er90h8y5jk123n8bd88630jh56d34ddec874566342209y34 (Key for encryption)
+        encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)
         ```
 
     **2.** Follow below steps for **Foleja Prod and ProdStaging**:
    
-      * In apiConstants.ts change buildFor const value to buildForFoleja as follows :
+      * In apiConstants.ts change buildFor const value to buildForFoleja as follows:
          
          ```
          export const buildFor = buildForFoleja;
          ```
  
-      * In tsconfig.json keep dynamicImportsClass value to ./app/xk/* as follows :
+      * In tsconfig.json keep dynamicImportsClass value to ./app/xk/* as follows:
        
         ```
          "@dynamicImportsClass/*": ["./app/xk/*"]
          ```
        
-      * In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows : 
+      * In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows: 
        
          ```
          blacklistRE: blacklist([/bebbo\/.*/])
          ```
        
-      * In babel.config.js keep dynamicImportsClass value to ./app/xk as follows : 
+      * In babel.config.js keep dynamicImportsClass value to ./app/xk as follows: 
         
         ```
         '@dynamicImportsClass': './app/xk'
         ```
        
-      * Run below command to generate vector images based on flavour folders :
+      * Run below command to generate vector images based on flavour folders:
        
          ```
          npx react-native-vector-image generate
          ```
         
-      * Create .env file at project root and add below 6 variables in it :
+      * Create .env file at project root and add below 6 variables in it.
+        The variables below contain sample data for example purposes. Do not copy values between brackets:
          
         ```
-        apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
-        facebookAppDisplayName=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-        facebookAppId=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-        facebookClientToken=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-        projectNumber=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
-        clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
+        apiUrlDevelop = 'https://hostname.com/api' (Server api endPoint)
+        facebookAppDisplayName=AppDisplayName (For Facebook Analytics. Get these details from Facebook developer console.)
+        facebookAppId=9856432678543908 (For Facebook Analytics. Get these details from Facebook developer console.)
+        facebookClientToken=f67tr342356dsa233987kl56784v (For Facebook Analytics. Get these details from Facebook developer console.)
+        projectNumber=453789238965 (For Google SignIn. Get it from step 5.)
+        clientIdKey= bhjr6wdgddvv3k87tteq9fds6po3nm7 (For Google SignIn. Get it from step 5.)
+        encryptionsKey=d64e6a977f5643er90h8y5jk123n8bd88630jh56d34ddec874566342209y34 (Key for encryption)
+        encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)
         ```
+        
+---
+
+## Steps to Generate Required Keys and Tokens
+
+### 1. Create Facebook App ID and Client Token
+
+#### Create a Facebook Developer Account
+- Visit [Facebook for Developers](https://developers.facebook.com/).
+- Log in with your Facebook account or create a new account.
+
+#### Create a New App
+- Navigate to "My Apps" and click "Create App."
+- Select the appropriate app type, such as "Consumer."
+- Enter the app name as "Bebbo" and follow the instructions to complete the setup.
+
+#### Obtain the Facebook App ID
+- Once the app is created, the **App ID** will be visible on your app dashboard. This is your `facebookAppId`.
+
+#### Generate a Client Token
+- Go to "Settings" > "Basic" in your app dashboard.
+- Scroll down to find the "Client Token" section. Click "Show" to view and copy your `facebookClientToken`.
+
+### 2. Generate Google Client ID
+
+#### Create a Google Developer Account
+- Visit the [Google Cloud Console](https://console.cloud.google.com/).
+- Sign in with your Google account.
+
+#### Create a New Project
+- In the Google Cloud Console, click "Select a Project" > "New Project."
+- Name your project (e.g., "Bebbo Production") and click "Create."
+
+#### Enable Google Sign-In API
+- Navigate to "APIs & Services" > "Library."
+- Search for "Google Sign-In API" and enable it for your project.
+
+#### Create OAuth 2.0 Client ID
+- Go to "APIs & Services" > "Credentials."
+- Click "Create Credentials" and choose "OAuth 2.0 Client ID."
+- Configure the consent screen and then generate your `clientIdKey`.
+
+### 3. Generate AES-256 Encryption Key and IV Key
+
+#### Generate Encryption Key
+You can use various tools or libraries to generate a 256-bit encryption key. Here’s how to do it using OpenSSL:
+
+```bash
+openssl rand -hex 32
+```
+- The output will be a 64-character hexadecimal string. This is your `encryptionsKey`.
+
+#### Generate Initialization Vector (IV)
+Similarly, generate a 128-bit IV:
+
+```bash
+openssl rand -hex 16
+```
+- The output will be a 32-character hexadecimal string. This is your `encryptionsIVKey`.
+
+---
   ## How to run
   After you install the application you can create build files for various flavors with below npx commands.
 	

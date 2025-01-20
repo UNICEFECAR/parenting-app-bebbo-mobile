@@ -38,6 +38,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
+import { ViewDetailsEntity } from '../../database/schema/ArticleActivityViewSchema';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -67,8 +68,8 @@ export type RelatedArticlesProps = {
   queryText?: any;
 }
 const DetailsScreen = ({ route, navigation }: any): any => {
-  const netInfo = useNetInfoHook();
-  const { fromCd, headerColor, fromScreen, backgroundColor, detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId, fromAdditionalScreen, queryText } = route.params;
+  //const netInfo = useNetInfoHook();
+  const { fromCd, headerColor, fromScreen, backgroundColor, detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId, fromAdditionalScreen, queryText, netInfo } = route.params;
   //console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor, newBackgroundColor;
   if (fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
@@ -134,6 +135,14 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       });
     }
     else if (fromScreen == "Activities") {
+      navigation.navigate({
+        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+        params: { categoryArray: listCategoryArray, currentSelectedChildId: currentSelectedChildId, backClicked: 'yes' },
+        merge: true,
+      });
+
+    }
+    else if (fromScreen == "Articles") {
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: { categoryArray: listCategoryArray, currentSelectedChildId: currentSelectedChildId, backClicked: 'yes' },
@@ -230,9 +239,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       backHandler.remove();
     }
   }, []);
-
   useEffect(() => {
+
     const functionOnLoad = async (): Promise<any> => {
+     
+
       if (fromScreen == "VaccinationTab" || fromScreen == "FirebaseVaccinationTab" || fromScreen == "Articles" || fromScreen == "FirebaseArticles" || fromScreen == "HealthCheckupsTab" || fromScreen == "FirebaseHealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat") {
         console.log(detailData, "..detailData..")
 
@@ -241,30 +252,36 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           if (articleData && articleData.length > 0) {
             setDetailDataToUse(articleData[0]);
             if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+              console.log('Game Details screen opened from actvties',fromScreen,articleData[0]?.id,articleData[0]?.activity_category);
               const eventGameCatData = { 'name': GAME_CATEGORY_SELECTED + "_" + articleData[0]?.activity_category }
-              const eventGameDetailsData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: articleData[0]?.id, game_category_id: articleData[0]?.activity_category } }
-              logEvent(eventGameCatData, netInfo.isConnected)
-              logEvent(eventGameDetailsData, netInfo.isConnected)
+              const eventData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: articleData[0]?.id, game_category_id: articleData[0]?.activity_category } }
+              await logEvent(eventGameCatData, netInfo.isConnected);
+              console.log('Params game pass for firebase event number type',eventData);
+              await logEvent(eventData, netInfo.isConnected)
             } else {
               const eventAdviceCatData = { 'name': ADVICE_CATEGORY_SELECTED + "_" + articleData[0]?.category }
-              const eventAdviceDetailsData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: articleData[0]?.id, advice_catergory_id: articleData[0]?.category } }
-              logEvent(eventAdviceCatData, netInfo.isConnected)
-              logEvent(eventAdviceDetailsData, netInfo.isConnected)
+              const eventData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: articleData[0]?.id, advice_catergory_id: articleData[0]?.category } }
+              console.log('Params advice pass for firebase event number type',eventData);
+              await logEvent(eventAdviceCatData, netInfo.isConnected)
+              await logEvent(eventData, netInfo.isConnected)
             }
           } else {
             const videoarticleData = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema, 'id == "' + detailData + '"');
             if (videoarticleData && videoarticleData.length > 0) {
               setDetailDataToUse(videoarticleData[0]);
               if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+                console.log('Game Details screen video opened from actvties',fromScreen,videoarticleData[0]?.id,videoarticleData[0]?.activity_category);
                 const eventGameCatData = { 'name': GAME_CATEGORY_SELECTED + "_" + videoarticleData[0]?.activity_category }
-                const eventGameDetailsData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: videoarticleData[0]?.id, game_category_id: videoarticleData[0]?.activity_category } }
-                logEvent(eventGameCatData, netInfo.isConnected)
-                logEvent(eventGameDetailsData, netInfo.isConnected)
+                const eventData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: videoarticleData[0]?.id, game_category_id: videoarticleData[0]?.activity_category } }
+                console.log('Params game pass for firebase event number type video',eventData);
+                await logEvent(eventGameCatData, netInfo.isConnected)
+                await logEvent(eventData, netInfo.isConnected)
               } else {
                 const eventAdviceCatData = { 'name': ADVICE_CATEGORY_SELECTED + "_" + videoarticleData[0]?.category }
-                const eventAdviceDetailsData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: videoarticleData[0]?.id, advice_catergory_id: videoarticleData[0]?.category } }
-                logEvent(eventAdviceCatData, netInfo.isConnected)
-                logEvent(eventAdviceDetailsData, netInfo.isConnected)
+                const eventData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: videoarticleData[0]?.id, advice_catergory_id: videoarticleData[0]?.category } }
+                await logEvent(eventAdviceCatData, netInfo.isConnected)
+                console.log('Params advice pass for firebase event number type video',eventData);
+                await logEvent(eventData, netInfo.isConnected)
               }
             } else {
               //show alert and back function
@@ -278,15 +295,19 @@ const DetailsScreen = ({ route, navigation }: any): any => {
         } else if (typeof detailData == "object") {
           setDetailDataToUse(detailData);
           if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+            console.log('Game Details screen opened from actvties detailData',fromScreen,detailData?.id,detailData?.activity_category);
             const eventGameCatData = { 'name': GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category }
-            const eventGameDetailsData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }
-            logEvent(eventGameCatData, netInfo.isConnected)
-            logEvent(eventGameDetailsData, netInfo.isConnected)
+            const eventData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }
+            await logEvent(eventGameCatData, netInfo.isConnected)
+            console.log('Params game pass for firebase event number type object',eventData);
+            await logEvent(eventData, netInfo.isConnected)
           } else {
             const eventAdviceCatData = { 'name': ADVICE_CATEGORY_SELECTED + "_" + detailData?.category }
-            const eventAdviceDetailsData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }
-            logEvent(eventAdviceCatData, netInfo.isConnected)
-            logEvent(eventAdviceDetailsData, netInfo.isConnected)
+            const eventData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }
+            await logEvent(eventAdviceCatData, netInfo.isConnected)
+            console.log('Params adevice pass for firebase event number type netinfo',netInfo);
+            console.log('Params adevice pass for firebase event number type object',eventData);
+            await logEvent(eventData, netInfo.isConnected)
           }
         }
 
@@ -297,15 +318,18 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             if (activityData && activityData.length > 0) {
               setDetailDataToUse(activityData[0]);
               if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+                console.log('Game Details screen opened from actvties activityData home',fromScreen,activityData[0]?.id,activityData[0]?.activity_category);
                 const eventGameCatData = { 'name': GAME_CATEGORY_SELECTED + "_" + activityData[0]?.activity_category }
-                const eventGameDetailsData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: activityData[0]?.id, game_category_id: activityData[0]?.activity_category } }
-                logEvent(eventGameCatData, netInfo.isConnected)
-                logEvent(eventGameDetailsData, netInfo.isConnected)
+                const eventData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: activityData[0]?.id, game_category_id: activityData[0]?.activity_category } }
+                await logEvent(eventGameCatData, netInfo.isConnected)
+                console.log('Params game pass for firebase event number type object home',eventData);
+                await logEvent(eventData, netInfo.isConnected)
               } else {
                 const eventAdviceCatData = { 'name': ADVICE_CATEGORY_SELECTED + "_" + activityData[0]?.category }
-                const eventAdviceDetailsData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: activityData[0]?.id, advice_catergory_id: activityData[0]?.category } }
-                logEvent(eventAdviceCatData, netInfo.isConnected)
-                logEvent(eventAdviceDetailsData, netInfo.isConnected)
+                const eventData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: activityData[0]?.id, advice_catergory_id: activityData[0]?.category } }
+                await logEvent(eventAdviceCatData, netInfo.isConnected)
+                console.log('Params advice pass for firebase event number type object home',eventData);
+                await logEvent(eventData, netInfo.isConnected)
               }
             }
             else {
@@ -320,31 +344,69 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           else {
             setDetailDataToUse(detailData);
             if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+              console.log('Game Details detailData screen opened from actvties activityData home',fromScreen,detailData?.id,detailData?.activity_category);
               const eventGameCatData = { 'name': GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category }
-              const eventGameDetailsData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }
-              logEvent(eventGameCatData, netInfo.isConnected)
-              logEvent(eventGameDetailsData, netInfo.isConnected)
+              const eventData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }
+              await logEvent(eventGameCatData, netInfo.isConnected)
+              console.log('Params data is',eventData);
+              await logEvent(eventData, netInfo.isConnected)
             } else {
+              console.log('Game Details detailData screen opened from advice activityData home...',fromScreen,detailData?.id,detailData?.activity_category);
               const eventAdviceCatData = { 'name': ADVICE_CATEGORY_SELECTED + "_" + detailData?.category }
-              const eventAdviceDetailsData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }
-              logEvent(eventAdviceCatData, netInfo.isConnected)
-              logEvent(eventAdviceDetailsData, netInfo.isConnected)
+              const eventData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }
+              await logEvent(eventAdviceCatData, netInfo.isConnected)
+              await logEvent(eventData, netInfo.isConnected)
             }
           }
         }
         else {
           setDetailDataToUse(detailData);
           if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
+            console.log('Game Details q2detailData screen opened from actvties activityData home',fromScreen,detailData?.id,detailData?.activity_category);
             const eventGameCatData = { 'name': GAME_CATEGORY_SELECTED + "_" + detailData?.activity_category }
-            const eventGameDetailsData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }
-            logEvent(eventGameCatData, netInfo.isConnected)
-            logEvent(eventGameDetailsData, netInfo.isConnected)
+            const eventData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: detailData?.id, game_category_id: detailData?.activity_category } }
+            await logEvent(eventGameCatData, netInfo.isConnected)
+            console.log('Params game pass for firebase event number type object otherway',eventData);
+            await logEvent(eventData, netInfo.isConnected)
           } else {
+            console.log('Game Details detailData screen opened from advice activityData home..',fromScreen,detailData?.id,detailData?.activity_category);
             const eventAdviceCatData = { 'name': ADVICE_CATEGORY_SELECTED + "_" + detailData?.category }
-            const eventAdviceDetailsData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }
-            logEvent(eventAdviceCatData, netInfo.isConnected)
-            logEvent(eventAdviceDetailsData, netInfo.isConnected)
+            const eventData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: detailData?.id, advice_catergory_id: detailData?.category } }
+            await logEvent(eventAdviceCatData, netInfo.isConnected)
+            console.log('Params advice pass for firebase event number type object otherway',eventData);
+            await logEvent(eventData, netInfo.isConnected)
           }
+        }
+      }
+
+      const realm = await dataRealmCommon.openRealm();
+      if (fromScreen === 'Activities' || fromScreen === "Articles" || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' ||  fromScreen === 'FavActivities' ||
+      fromScreen === "VaccinationTab" || fromScreen === "FirebaseVaccinationTab" || fromScreen === "FirebaseArticles" || fromScreen === "HealthCheckupsTab" || fromScreen === "FirebaseHealthCheckupsTab" 
+      || fromScreen === "AddChildHealthCheckup" || fromScreen === "AddChildVaccination" || fromScreen === "MileStone" ||  fromScreen === "FavArticles" || fromScreen === "SupportChat") {
+        if (detailData.type == "Article") {
+          const articleVisitCount: any = realm?.objects<ViewDetailsEntity>('ArticleActivityView').filter((item:any)=>item.id ===detailData.id)
+          console.log('articleVisitCount visit count', articleVisitCount);
+          realm?.write(() => {
+            const articleEvent = realm.create('ArticleActivityView', {
+              id: detailData?.id,
+              type: 'Article',
+              isViewed: true,
+              viewCount: articleVisitCount.length>0? articleVisitCount[0].viewCount + 1: 1,
+            },Realm.UpdateMode.Modified);
+            console.log('Artcile Evrnt', articleEvent);
+          });
+        } else {
+          const activityVisitCount: any = realm?.objects<ViewDetailsEntity>('ArticleActivityView').filter((item:any)=>item.id ===detailData.id)
+          console.log('Activity visit count', activityVisitCount,detailData?.id);
+          realm?.write(() => {
+            const activityEvent = realm.create('ArticleActivityView', {
+              id: detailData?.id,
+              type: 'Activity',
+              isViewed: true,
+              viewCount: activityVisitCount.length>0? activityVisitCount[0].viewCount + 1: 1,
+            },Realm.UpdateMode.Modified);
+            console.log('Activity Evrnt', activityEvent);
+          });
         }
       }
     }
@@ -388,31 +450,39 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       // fontFamily: '"Open Sans"' // beware to quote font family name!
     });
 
-  // A method for highlighting specific words within content
-  const highlightWord = (content: string, query: string): string => {
+  const highlightWord = (content: string, query: string[]): any => {
     if (typeof content !== 'string') {
-      return "";
+        return "";
     }
 
-    const regex = new RegExp(`${query}`, 'gi');
-    const highlightedContent = content.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+    let highlightedContent = content; // Initialize with original content
+   
+    query.forEach((item) => {
+      const regex = new RegExp(`${item.trim()}`, 'gi');
+        if(item.length>2){
+          highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+        }
+      });
+  
 
     return highlightedContent;
-  }
+}
 
-  const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string): string => {
+
+  const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string[]): string => {
     console.log('JsonContent is', jsonContent)
     const parts = jsonContent.split(/(<img[^>]*>)/i);
 
     // Map each part and add spaces around the word if it is not inside an img tag
     const modifiedParts = parts.map((part: any): any => {
       if (!/<img[^>]*>/i.test(part)) {
-        return highlightWord(part, wordToHighlight);
-      }
+        return highlightWord(part, wordToHighlight); // Pass wordToHighlight array here
+    }
       return part;
     });
     return modifiedParts.join('')
   }
+  
   const highlightedTitle = queryText != undefined
     ? queryText.length !== 0
       ? highlightWord(detailDataToUse?.title, queryText)
@@ -445,7 +515,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           br: { height: 0 },
           iframe: { maxWidth: '100%', height: 200 }
         }}
-        WebView={WebView}
+        WebView={() => <WebView renderToHardwareTextureAndroid={true} />}
         ignoredDomTags={IGNORED_TAGS}
       />
     </View>
@@ -527,27 +597,26 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   renderers={{
                     table,
                     iframe,
-                    a: (htmlAttribs: any,): any => {
-                      const imagePath: any = htmlAttribs.src;
-                      console.log(imagePath, "..imagePath");
-                      if (imagePath != "" && imagePath != null && imagePath != undefined) {
-                        const itemnew: any = {
-                          cover_image: {
-                            url: imagePath
-                          }
-                        };
-                        console.log(itemnew, "..itemnew")
-                        return (
-                          <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
-                        );
-                      }
-                    },
+                    // a: (htmlAttribs: any,): any => {
+                    //   const imagePath: any = htmlAttribs.src;
+                    //   console.log(imagePath, "..imagePath");
+                    //   if (imagePath != "" && imagePath != null && imagePath != undefined) {
+                    //     const itemnew: any = {
+                    //       cover_image: {
+                    //         url: imagePath
+                    //       }
+                    //     };
+                    //     console.log(itemnew, "..itemnew")
+                    //     return (
+                    //       <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                    //     );
+                    //   }
+                    // },
                   }}
                   WebView={WebView}
                   ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{
 
-                  
                     table: {
                       cssRules
                       // Put the table config here (previously,

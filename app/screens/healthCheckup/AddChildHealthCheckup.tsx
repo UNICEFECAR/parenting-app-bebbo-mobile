@@ -12,7 +12,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainerFlex, FormDateAction, FormDateText1,
-  FormInputBox,
+  FormInputBoxWithoutLine,
   FormInputGroup,
   FormInputText,
   TextAreaBox
@@ -42,7 +42,7 @@ import {
   RadioOuter
 } from '@components/shared/radio';
 import TextInputML from '@components/shared/TextInputML';
-import ToggleRadios from '@components/ToggleRadios';
+import ToggleRadiosBgColor from '@components/ToggleRadiosBgColor';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import TakenVaccines from '@components/vaccination/TakenVaccines';
@@ -521,7 +521,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
         allPreviousPendingVaccines.push(vItem);
       });
     });
-    if (vcPeriod.vaccines.length > 0) {
+    if (vcPeriod?.vaccines.length > 0) {
       allPreviousPendingVaccines = [...allPreviousPendingVaccines, ...vcPeriod.vaccines];
     }
     const isAllMeasured = [...allPreviousPendingVaccines].every((el) => {
@@ -536,7 +536,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
           <FormInputText>
             <Heading3>{t('hcChildVaccineQ')}</Heading3>
           </FormInputText>
-          <ToggleRadios
+          <ToggleRadiosBgColor
             options={isMeasuredOptions}
             defaultValue={defaultVaccineMeasured}
             tickbgColor={headerColor}
@@ -631,7 +631,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                   }
                 }}>
                   {Platform.OS != 'ios' ? (
-                    <FormInputBox>
+                    <FormInputBoxWithoutLine>
                       <FormDateText1>
                         <Text>
                           {' '}
@@ -657,9 +657,9 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                       <FormDateAction>
                         <Icon name="ic_calendar" size={20} color="#000" />
                       </FormDateAction>
-                    </FormInputBox>
+                    </FormInputBoxWithoutLine>
                   ) : (
-                    <FormInputBox>
+                    <FormInputBoxWithoutLine>
                       <FormDateText1>
                         <Text>
                           {' '}
@@ -684,7 +684,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                       <FormDateAction>
                         <Icon name="ic_calendar" size={20} color="#000" />
                       </FormDateAction>
-                    </FormInputBox>
+                    </FormInputBoxWithoutLine>
                   )}
                 </FormInputGroup>
 
@@ -693,7 +693,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                   <FormInputText>
                     <Heading3>{t('vcChildMeasureQ')}</Heading3>
                   </FormInputText>
-                  <ToggleRadios
+                  <ToggleRadiosBgColor
                     options={isMeasuredOptions}
                     defaultValue={defaultMeasured}
                     tickbgColor={headerColor}
@@ -785,7 +785,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
-                      placeholderTextColor={"gray"}
+                      placeholderTextColor={"#77777779"}
                       allowFontScaling={false}
                     />
                   </TextAreaBox>

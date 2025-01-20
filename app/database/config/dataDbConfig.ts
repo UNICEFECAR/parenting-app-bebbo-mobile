@@ -18,6 +18,9 @@ import { VaccinationSchema } from "../schema/VaccinationSchema";
 import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
 import { EventSchema } from "../schema/EventSchema";
 import { SearchHistorySchema } from "../schema/SearchHistorySchema";
+import { ActivitySearchHistorySchema } from '../schema/ActivitySearchHistorySchema';
+import { ArticleActivityViewSchema } from '../schema/ArticleActivityViewSchema';
+import { CountrySchema, LanguageSchema, PartnerSchema } from '../schema/CountrySchema';
 
 export const dataRealmConfig: Realm.Configuration = {
   path: 'data.realm',
@@ -36,14 +39,19 @@ export const dataRealmConfig: Realm.Configuration = {
     HealthCheckUpsSchema,
     SurveysSchema,
     ActivitiesEntitySchema,
+    ArticleActivityViewSchema,
     StandardDevWeightForHeightSchema,
     StandDevObj,
     StandardDevHeightForAgeSchema,
     FAQsSchema,
     EventSchema,
-    SearchHistorySchema
+    SearchHistorySchema,
+    ActivitySearchHistorySchema,
+    CountrySchema,
+    LanguageSchema,
+    PartnerSchema
   ],
-  schemaVersion: 9,
+  schemaVersion: 10,
   onMigration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion < 1) {
       // const oldObjects = oldRealm.objects('VariableEntity');

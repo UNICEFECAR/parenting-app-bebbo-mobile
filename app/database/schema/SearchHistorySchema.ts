@@ -5,7 +5,7 @@ import { ObjectSchema } from "realm";
     createdAt: Date;
   };
   export const SearchHistorySchema: ObjectSchema = {
-    name: 'SerachHistory',
+    name: 'SearchHistory',
     properties: {
       keyword: { type: 'string' },
       createdAt: { type: "date" },

@@ -20,8 +20,14 @@ export default ():any => {
   );
   return (
     <LocalizationStack.Navigator 
-      initialRouteName= {restartOnLangChange != 'yes' ? localization.length == 1 ? "LanguageSelection" : "CountrySelection" : AppLayoutDirectionScreen}
+      initialRouteName= {"CountryLanguageConfirmation"}
     >
+       <LocalizationStack.Screen
+        name="CountryLanguageConfirmation"
+        component={CountryLanguageConfirmation}
+        options={{headerShown: false}}
+        initialParams={AppLayoutDirectionParams}
+      />
       <LocalizationStack.Screen
         name="CountrySelection"
         component={CountrySelection}
@@ -32,12 +38,7 @@ export default ():any => {
         component={LanguageSelection}
         options={{headerShown: false}}
       />
-      <LocalizationStack.Screen
-        name="CountryLanguageConfirmation"
-        component={CountryLanguageConfirmation}
-        options={{headerShown: false}}
-        initialParams={AppLayoutDirectionParams}
-      />
+     
     </LocalizationStack.Navigator>
   );
 };

@@ -12,7 +12,7 @@ import {
 import {
   FormDateAction,
   FormDateText,
-  FormInputBox,
+  FormInputBoxWithoutLine,
   FormInputGroup
 } from '@components/shared/ChildSetupStyle';
 import {
@@ -472,7 +472,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
           </ShiftFromBottom10>
           <FormInputGroup onPress={showmeasureDatepicker}>
             {Platform.OS != 'ios' ? (
-              <FormInputBox>
+              <FormInputBoxWithoutLine>
                 <FormDateText>
                   <Text>
                     {measureDate
@@ -497,9 +497,9 @@ const AddReminder = ({ route, navigation }: Props): any => {
                 <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />
                 </FormDateAction>
-              </FormInputBox>
+              </FormInputBoxWithoutLine>
             ) : (
-              <FormInputBox>
+              <FormInputBoxWithoutLine>
                 <FormDateText>
                   <Text>
                     {measureDate
@@ -523,13 +523,13 @@ const AddReminder = ({ route, navigation }: Props): any => {
                 <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />
                 </FormDateAction>
-              </FormInputBox>
+              </FormInputBoxWithoutLine>
             )}
           </FormInputGroup>
           <ShiftFromTop20>
             <FormInputGroup onPress={showmeasureTimepicker}>
               {Platform.OS != 'ios' ? (
-                <FormInputBox>
+                <FormInputBoxWithoutLine>
                   <FormDateText>
                     <Text>
                       {measureTime
@@ -560,9 +560,9 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       />
                     </IconViewBorder>
                   </FormDateAction>
-                </FormInputBox>
+                </FormInputBoxWithoutLine>
               ) : (
-                <FormInputBox>
+                <FormInputBoxWithoutLine>
                   <FormDateText>
                     <Text>
                       {measureTime
@@ -592,7 +592,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       />
                     </IconViewBorder>
                   </FormDateAction>
-                </FormInputBox>
+                </FormInputBoxWithoutLine>
               )}
             </FormInputGroup>
           </ShiftFromTop20>
@@ -603,7 +603,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
           </ShiftFromBottom10>
           <FormInputGroup onPress={showmeasureDatepickerDefined}>
             {Platform.OS != 'ios' ? (
-              <FormInputBox>
+              <FormInputBoxWithoutLine>
                 <FormDateText>
                   <Text>
                     {measureDateDefined
@@ -628,9 +628,9 @@ const AddReminder = ({ route, navigation }: Props): any => {
                 <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />
                 </FormDateAction>
-              </FormInputBox>
+              </FormInputBoxWithoutLine>
             ) : (
-              <FormInputBox>
+              <FormInputBoxWithoutLine>
                 <FormDateText>
                   <Text>
                     {measureDateDefined
@@ -654,13 +654,13 @@ const AddReminder = ({ route, navigation }: Props): any => {
                 <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />
                 </FormDateAction>
-              </FormInputBox>
+              </FormInputBoxWithoutLine>
             )}
           </FormInputGroup>
           <ShiftFromTop20>
             <FormInputGroup onPress={showmeasureTimepickerDefined}>
               {Platform.OS != 'ios' ? (
-                <FormInputBox>
+                <FormInputBoxWithoutLine>
                   <FormDateText>
                     <Text>
                       {measureTimeDefined
@@ -692,9 +692,9 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       />
                     </IconViewBorder>
                   </FormDateAction>
-                </FormInputBox>
+                </FormInputBoxWithoutLine>
               ) : (
-                <FormInputBox>
+                <FormInputBoxWithoutLine>
                   <FormDateText>
                     <Text>
                       {measureTimeDefined
@@ -725,7 +725,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       />
                     </IconViewBorder>
                   </FormDateAction>
-                </FormInputBox>
+                </FormInputBoxWithoutLine>
               )}
             </FormInputGroup>
           </ShiftFromTop20>

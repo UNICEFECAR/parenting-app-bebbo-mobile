@@ -8,8 +8,8 @@ import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonText } from '@components/shared/ButtonGlobal';
 import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { bgcolorWhite2 } from '@styles/style';
+import { DrawerActions, useFocusEffect, useNavigation } from '@react-navigation/native';
+import { bgcolorWhite, bgcolorWhite2 } from '@styles/style';
 import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -25,6 +25,9 @@ const styles=StyleSheet.create(
     flex1:{flex:1},
     flex2:{ flex: 2},
     flex7:{ flex: 7},
+    headerTitleTextColor: {
+      color: bgcolorWhite
+    },
     mainOuterView:{ flex:1,flexDirection: 'column', backgroundColor:bgcolorWhite2},
     marginTop10:{marginTop:10},
     maxHeight50:{maxHeight: 50},
@@ -61,7 +64,14 @@ const Notifications = ():any => {
     });
       return true;
   }
+  useFocusEffect(
+    React.useCallback(() => {
+      navigation.dispatch(DrawerActions.closeDrawer());
+    }, [navigation])
+  );
+
   useEffect(() => {
+   // navigation.dispatch(DrawerActions.closeDrawer());
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
@@ -354,7 +364,7 @@ const Notifications = ():any => {
             <BurgerIcon />
 
             <HeaderTitleView style={styles.flex2}>
-              <Heading2w>{t('notiScreenheaderTitle')}</Heading2w>
+              <Heading2w style={styles.headerTitleTextColor}>{t('notiScreenheaderTitle')}</Heading2w>
             </HeaderTitleView>
 
             <OuterIconRow>
@@ -396,6 +406,7 @@ const Notifications = ():any => {
                     maxToRenderPerBatch={8} // Reduce number in each render batch
                     updateCellsBatchingPeriod={100} // Increase time between renders
                     windowSize={30} // Reduce the window size
+                    scrollIndicatorInsets={{ right: 1 }}
                     renderItem={({item, index}):any =>  <NotificationItem
                             item={item}
                             itemIndex={index}

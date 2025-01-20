@@ -3,14 +3,14 @@ import { shareTextButton } from '@assets/translations/appOfflineData/apiConstant
 import { Heading4 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Share, StyleSheet } from 'react-native';
+import { Alert, Share, StyleSheet,View,Text } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { setFavouriteAdvices, setFavouriteGames } from '../../redux/reducers/childSlice';
 import { FDirRow } from './FlexBoxStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from './Icon';
+import Icon, { OuterIconLeft, OuterIconRow,OuterIconLeft1 } from './Icon';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { logEvent } from '../../services/EventSyncService';
 export const ShareFavBox = styled.View`
@@ -73,7 +73,7 @@ const languageCode = useAppSelector(
     if(isAdvice){
     await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-    dispatch(setFavouriteAdvices(childData[0]?.favoriteadvices));
+    dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)));
     const favAdviceData= {'name': FAVOURITE_ADVICE_ADDED,'params':{ advise_id: item?.id } }
     logEvent(favAdviceData,netInfo.isConnected)
     }else{
@@ -92,8 +92,7 @@ const languageCode = useAppSelector(
       
       await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      console.log('childdata is....',childData[0])
-      dispatch(setFavouriteAdvices(childData[0]?.favoriteadvices));
+      dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)));
   
       }else{
         await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
@@ -107,9 +106,9 @@ const languageCode = useAppSelector(
         <ShareFavPress onPress={():any => onShare()} >
           <FDirRow>
             <OuterIconRow>
-              <OuterIconLeft>
+              <OuterIconLeft1>
                 <Icon name="ic_sb_shareapp" size={25} color="#000" />
-              </OuterIconLeft>
+              </OuterIconLeft1>
             </OuterIconRow>
             <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('actScreenshareText')}</Heading4>
           </FDirRow>
@@ -119,9 +118,9 @@ const languageCode = useAppSelector(
              (<ShareFavPress onPress={():any => unFavHandler()} style={styles.alignItemsFlexEnd}>
               <FDirRow>
                 <OuterIconRow>
-                  <OuterIconLeft>
+                  <OuterIconLeft1>
                     <Icon name="ic_trash" size={25} color="#000" />
-                  </OuterIconLeft>
+                  </OuterIconLeft1>
                 </OuterIconRow>
                 <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('favScreenremoveText')}</Heading4>
               </FDirRow>
@@ -129,9 +128,9 @@ const languageCode = useAppSelector(
              (<ShareFavPress onPress={():any => unFavHandler()} style={styles.alignItemsFlexEnd}>
                 <FDirRow>
                   <OuterIconRow>
-                    <OuterIconLeft>
+                    <OuterIconLeft1>
                       <Icon name="ic_sb_favorites_filled" size={25} color="#000" />
-                    </OuterIconLeft>
+                    </OuterIconLeft1>
                   </OuterIconRow>
                   <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
                 </FDirRow>
@@ -142,9 +141,9 @@ const languageCode = useAppSelector(
             (<ShareFavPress onPress={():any =>onFavClick()} style={styles.alignItemsFlexEnd}>
               <FDirRow>
                 <OuterIconRow>
-                  <OuterIconLeft>
+                  <OuterIconLeft1>
                     <Icon name="ic_sb_favorites" size={25} color="#000" />
-                  </OuterIconLeft>
+                  </OuterIconLeft1>
                 </OuterIconRow>
                 <Heading4 style={styles.flexShrink1} numberOfLines={1}>{t('actScreenaddtoFavText')}</Heading4>
               </FDirRow>

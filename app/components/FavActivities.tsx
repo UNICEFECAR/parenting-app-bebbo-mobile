@@ -12,6 +12,7 @@ import LoadableImage from '../services/LoadableImage';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
 import { FlexCol } from './shared/FlexBoxStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 
 const ContainerView = styled.View`
   flex: 1;
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
 });
 
 const FavActivities = (): any => {
+  const netInfo = useNetInfoHook();
   const navigation = useNavigation<any>()
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -57,7 +59,9 @@ const FavActivities = (): any => {
     state.childData.childDataSet.favoritegames
   );
   const [favGamesToShow, setfavGamesToShow] = useState([]);
-  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+
+  const activityTaxonomyId = activeChild?.taxonomyData?.prematureTaxonomyId ?? activeChild?.taxonomyData?.id;
+
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId));
   const goToActivityDetail = (item: any): any => {
     navigation.navigate('DetailsScreen',
@@ -68,6 +72,7 @@ const FavActivities = (): any => {
         detailData: item,
         listCategoryArray: [],
         selectedChildActivitiesData: ActivitiesData,
+        netInfo: netInfo
       });
   };
   useFocusEffect(

@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonMangeProfileContainer, ButtonPrimary, ButtonUpperCaseText } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
   FormDateAction,
@@ -7,9 +7,10 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
+  LabelDatePlaceHolderText,
   LabelText,
 } from '@components/shared/ChildSetupStyle';
-import { MainContainer } from '@components/shared/Container';
+import { MainManageProfileContainer } from '@components/shared/Container';
 import Icon, { IconML } from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -34,6 +35,7 @@ import {
   HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
+  HeaderTitleExpectedView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -43,6 +45,7 @@ import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { setActiveChildData } from '../redux/reducers/childSlice';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { bgcolorWhite } from '@styles/style';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -55,9 +58,12 @@ type Props = {
 };
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
-  headerActionView: { padding: 0 },
+  padding0: { padding: 0 },
   headerRowView: {
     maxHeight: 50
+  },
+  headerTitleTextColor: {
+    color: bgcolorWhite
   },
   pressableView: { paddingLeft: 10, paddingRight: 10 },
   textInputML: { width: '100%' }
@@ -131,12 +137,18 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     }
   }, []);
   const AddChild = async (): Promise<any> => {
-    const insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '', childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '', null);
+    let insertData: any;
+    if (name == '' || name == null) {
+      insertData = editScreen ? await getNewChild(childData?.uuid, '', "true", null, '', plannedTermDate, t('childInfoBabyText'), '', '', childData?.createdAt) : await getNewChild('', '', "true", null, '', plannedTermDate, t('childInfoBabyText'), '', '', null);
+    } else {
+      insertData = editScreen ? await getNewChild(childData?.uuid, '', "true", null, '', plannedTermDate, name, '','', childData?.createdAt) : await getNewChild('', '', "true", null, '', plannedTermDate, name, '', '', null);
+    }
+    
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false, true, '');
   }
-  const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
+  const deleteExpectedRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
     return new Promise((resolve, reject) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
@@ -173,46 +185,53 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
     });
   };
   return <>
-    <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+    <View style={[styles.flex1, { backgroundColor: bgcolorWhite }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
-        style={[styles.headerRowView, { backgroundColor: headerColor }]}>
-        <HeaderIconView>
-          <HeaderIconPress
-            onPress={(): any => {
-              navigation.goBack();
-            }}>
-            <IconML name={'ic_back'} color="#FFF" size={15} />
-          </HeaderIconPress>
-        </HeaderIconView>
-        <HeaderTitleView>
-          <Heading2w numberOfLines={1}>
-            {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined ? t('editExpectChildAddTxt') : t('expectChildAddTxt')}
-          </Heading2w>
-        </HeaderTitleView>
-        <HeaderActionView style={styles.headerActionView}>
+          style={[styles.headerRowView, {
+            backgroundColor: headerColor,
+          }]}>
+          <HeaderIconView>
+            <HeaderIconPress
+              onPress={(): any => {
+                navigation.goBack();
+              }}>
+              <IconML name={'ic_back'} color="#FFF" size={15} />
+            </HeaderIconPress>
+          </HeaderIconView>
+          <HeaderTitleView>
+            {childData?.uuid ? (
+              <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>{t('babyNotificationUpdateBtn')} </Heading2w>
+            ) : (
+              <Heading2w style={styles.headerTitleTextColor} numberOfLines={1}>{t('expectChildAddTxt2')}</Heading2w>
+            )}
+          </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
-            <Pressable style={styles.pressableView} onPress={(): any => {
-              if (childData?.index == undefined) {
-                deleteRecord(0, dispatch, childData?.uuid, childList)
-              } else {
-                deleteRecord(childData?.index, dispatch, childData?.uuid, childList)
+            <HeaderActionView style={styles.padding0}>
+              <Pressable style={styles.pressableView} onPress={(): any => {
+                console.log('ChildData position', childData)
+                if (childData?.index == undefined) {
+                  deleteExpectedRecord(0, dispatch, childData?.uuid, childList)
+                } else {
+                  deleteExpectedRecord(childData?.index, dispatch, childData?.uuid, childList)
+                }
+                // deleteRecord(childData?.index, dispatch, childData?.uuid)
               }
-            }
-            }>
-              <Icon name={'ic_trash'} size={20} color="#FFF" />
-            </Pressable>
+              }>
+                <Icon name={'ic_trash'} size={20} color="#FFF" />
+              </Pressable>
+            </HeaderActionView>
           ) : null}
-        </HeaderActionView>
-      </HeaderRowView>
+        </HeaderRowView>
 
-      <MainContainer>
+      <MainManageProfileContainer>
         <FormDateContainer>
           <FormInputGroup onPress={showdobDatepicker}>
             <LabelText> {t('expectChildDueDateTxt')}</LabelText>
             <FormInputBox>
               <FormDateText>
-                <Text>  {plannedTermDate ? formatStringDate(plannedTermDate) : t('expectChildDueDateTxt')}</Text>
+                {plannedTermDate ? <Text>{formatStringDate(plannedTermDate)}</Text> :
+                  ''}
               </FormDateText>
               <FormDateAction>
                 <Icon name="ic_calendar" size={20} color="#000" />
@@ -265,27 +284,27 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
                 }
               }}
               value={name}
-              placeholder={t('expectPreferNamePlacetxt')}
-              placeholderTextColor={"gray"}
+              //placeholder={t('expectPreferNamePlacetxt')}
+              //placeholderTextColor={"#77777779"}
               allowFontScaling={false}
             />
           </FormInputBox>
         </FormContainer>
 
-      </MainContainer>
+      </MainManageProfileContainer>
       <ShiftFromTop10>
-        <ButtonContainer>
+        <ButtonMangeProfileContainer>
           <ButtonPrimary
-            disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked ? true : false}
+            disabled={plannedTermDate == null || plannedTermDate == undefined || clicked ? true : false}
             onPress={(): any => {
               setClicked(true);
               setTimeout(() => {
                 AddChild();
               }, 0)
             }}>
-            <ButtonText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
+            <ButtonUpperCaseText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonUpperCaseText>
           </ButtonPrimary>
-        </ButtonContainer>
+        </ButtonMangeProfileContainer>
       </ShiftFromTop10>
     </View>
   </>;

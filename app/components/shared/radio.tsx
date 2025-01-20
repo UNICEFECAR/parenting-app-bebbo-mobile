@@ -4,6 +4,8 @@ const Radio = styled.View`
   width: 20px;
   height: 20px;
   border-radius:100px;
+  border-width:1px;
+  border-color:#2D2926;
 `;
 
 export const RadioActive = styled(Radio)`
@@ -11,15 +13,16 @@ export const RadioActive = styled(Radio)`
   line-height: 20px;
   flex-direction: row;
   text-align: center;
+  border-width:0px;
   justify-content:center;
-  background-color: ${(props:any):any => props.theme?.colors?.PRIMARY_TINTCOLOR};
+  background-color: ${(props:any):any => props.theme?.colors?.SECONDARY_RE_COLOR};
 `;
 
 export const RadioItemText = styled.Text`
   text-align: left;
   font-size: 16px;
   line-height: 20px;
-  color: #fff;
+  color: #2D2926;
   flex: 9;
   margin-left: 15px;
   fontFamily: ${(props: any):any =>
@@ -32,8 +35,14 @@ export const RadioItem = styled.View`
   flex-direction: row;
   align-items: center;
   padding: 15px 0;
-  border-color: rgba(255, 255, 255, 0.3);
-  border-bottom-width: 0.5px;
+`;
+
+export const RadioCountryItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 0;
+  border-color: rgba(200, 191, 191, 0.7);
+  border-bottom-width: 1px;
   border-radius:4px;
 `;
 
@@ -46,7 +55,9 @@ export const RadioOuter = styled.View`
  flex-direction:row;
  flex:1;
  justify-content:center;
+ align-items:center;
  padding:0 10px;
+
  
 `;
 export const RadioInnerBox = styled.Pressable`
@@ -56,6 +67,7 @@ export const RadioInnerBox = styled.Pressable`
   align-items:center;
   justify-content:flex-start;
   border-radius:4px;
+  border-color:#2D2926;
   padding:5px 10px;
   height:52px;
   

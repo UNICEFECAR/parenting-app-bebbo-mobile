@@ -3,11 +3,14 @@ import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonPrimaryMd, ButtonRow, ButtonText
+  ButtonPrimary,
+  ButtonUpperCaseText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
   ChildRelationList,
+  ChildSetupDivider,
+  ChildTabView,
   FormContainer1,
   FormDateAction,
   FormDateText,
@@ -17,6 +20,7 @@ import {
   OrDivider,
   OrHeadingView,
   OrView,
+  ParentSetUpDivider,
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -37,7 +41,7 @@ import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { backup } from '../services/backup';
 import { addChild, getNewChild, isFutureDate } from '../services/childCRUD';
-import { validateForm } from '../services/Utils';
+import { validateForm, validateParentsForm } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3,
@@ -49,6 +53,13 @@ import {
   Heading1,
   Heading4Regular,
   ShiftFromTopBottom5,
+  Heading3w,
+  ShiftFromTop50,
+  Heading3Centerrw,
+  Heading3BoldCenterrw,
+  ShiftFromTop40,
+  ShiftFromTop25,
+  Heading4Centerrw,
 } from '../styles/typography';
 import AlertModal from '@components/AlertModal';
 import { BannerContainer } from '@components/shared/Container';
@@ -59,9 +70,10 @@ import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from 'react-native-fs';
 import TextInputML from '@components/shared/TextInputML';
-import { primaryColor } from '@styles/style';
+import { bgcolorWhite2, primaryColor } from '@styles/style';
 import AesCrypto from 'react-native-aes-crypto';
 import { encryptionsIVKey, encryptionsKey } from 'react-native-dotenv';
+import BackgroundColors from '@components/shared/BackgroundColors';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -73,11 +85,12 @@ type Props = {
 };
 const styles = StyleSheet.create({
   containerView: {
-    backgroundColor: primaryColor,
+    backgroundColor: bgcolorWhite2,
     flex: 1
   },
   flex2Style: {
-    alignItems: 'flex-start'
+    alignItems: 'center',
+    marginVertical: 20
   },
   flexRow1: {
     marginTop: 10
@@ -88,6 +101,22 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     width: '100%'
+  },
+  textParentInfoStyle: {
+    textAlign: 'center'
+  },
+  importTextStyle: {
+    fontWeight: 700
+  },
+  uploadTextStyle: {
+    color: "#1CABE2"
+  },
+  orDividerStyle: {
+    width: 172,
+    alignSelf: 'center',
+  },
+  dividerStyle: {
+    marginEnd: 20
   }
 })
 const ChildSetup = ({ navigation }: Props): any => {
@@ -95,7 +124,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState('');
-  const [birthDate, setBirthDate] = useState<Date>();
+  const [birthDate, setBirthDate] = useState<Date>(new Date());
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isPremature, setIsPremature] = useState<string>('false');
@@ -107,11 +136,11 @@ const ChildSetup = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   let relationshipData = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ''? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
   const relationshipToParent = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent : [],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -135,10 +164,10 @@ const ChildSetup = ({ navigation }: Props): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
 
-  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+  genders = genders?.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != bothChildGender;
   });
-  relationshipData = relationshipData.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
+  relationshipData = relationshipData?.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
     return e.id != bothParentGender;
   });
   const onImportCancel = (): any => {
@@ -146,7 +175,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log('taxonomyData is',relationshipToParent)
+      console.log('relationshipToParent is', relationshipToParent)
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
@@ -195,7 +224,11 @@ const ChildSetup = ({ navigation }: Props): any => {
       setIsImportRunning(false);
       setLoading(false);
       navigation.navigate('ChildImportSetup', {
-        importResponse: JSON.stringify(importedData)
+        importResponse: JSON.stringify(importedData),
+        parentName: name,
+        relationData: relationship,
+        relationshipNameData: relationshipname,
+        userRelationToParentData: userRelationToParent,
       });
       if (importedrealm) {
         importedrealm.close();
@@ -219,7 +252,7 @@ const ChildSetup = ({ navigation }: Props): any => {
       if (dataset.name.endsWith('.json')) {
         const decryptedData = decryptData(dataset.data, encryptionsKey)
           .then((text: any) => {
-            return text;
+            return text.replace(/[\x00-\x1F\x7F]/g,'');
           })
           .catch((error: any) => {
             console.log("Decrypted error", error);
@@ -256,7 +289,7 @@ const ChildSetup = ({ navigation }: Props): any => {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8');
             const decryptedData = decryptData(exportedFileContent, encryptionsKey)
               .then((text: any) => {
-                return text;
+                return text.replace(/[\x00-\x1F\x7F]/g,'');
               })
               .catch((error: any) => {
                 console.log("Decrypted error", error);
@@ -282,7 +315,6 @@ const ChildSetup = ({ navigation }: Props): any => {
           setLoading(true);
           setIsImportRunning(true);
           handleImportedData(oldChildrenData, importedrealm)
-          
         }
 
       })
@@ -305,7 +337,11 @@ const ChildSetup = ({ navigation }: Props): any => {
       setIsImportRunning(false);
       setLoading(false);
       navigation.navigate('ChildImportSetup', {
-        importResponse: JSON.stringify(importResponse)
+        importResponse: JSON.stringify(importResponse),
+        parentName: name,
+        relationData: relationship,
+        relationshipNameData: relationshipname,
+        userRelationToParentData: userRelationToParent,
       });
     }
     else {
@@ -313,26 +349,34 @@ const ChildSetup = ({ navigation }: Props): any => {
       setIsImportRunning(false);
     }
   }
-
-
-  const AddChild = async (): Promise<any> => {
+  const AddChild = async (isDefaultChild: boolean): Promise<any> => {
     await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    const defaultName = name;
-    const insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    let defaultName;
+    if (isDefaultChild) {
+      defaultName = t('childInfoBabyText');
+    } else {
+      defaultName = name;
+    }
+    const insertData: any = await getNewChild('',"true", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild,false, name);
   }
 
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   return <>
     <View style={styles.containerView}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <ScrollView contentContainerStyle={styles.scrollViewStyle}>
         <OnboardingContainer>
           <OverlayLoadingComponent loading={loading} />
+          <OrHeadingView>
+            <ParentSetUpDivider style={styles.dividerStyle}></ParentSetUpDivider>
+            <ChildSetupDivider></ChildSetupDivider>
+          </OrHeadingView>
           <OnboardingHeading>
+
             <ChildCenterView>
               <Heading1Centerw>
                 {t('childSetupheader')}
@@ -342,12 +386,12 @@ const ChildSetup = ({ navigation }: Props): any => {
           </OnboardingHeading>
 
           <FlexCol>
-            <Heading2w>
-              {t('addChildText')}
-            </Heading2w>
-            <ChildDate sendData={sendData} dobMax={dobMax} prevScreen="Onboarding" />
-            <ShiftFromTop20>
-              <LabelText>{t('childNameTxt')}</LabelText>
+            <Heading3w style={styles.textParentInfoStyle}>
+              {t('addBasicParentsInfo')}
+            </Heading3w>
+            {/* <ChildDate sendData={sendData} dobMax={dobMax} prevScreen="Onboarding" /> */}
+            <ShiftFromTop50>
+              <LabelText>{t('parentNameText')}</LabelText>
               <FormInputBox>
                 <TextInputML
                   style={styles.textInputStyle}
@@ -355,7 +399,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                   autoCorrect={false}
                   maxLength={30}
                   clearButtonMode="always"
-                  onChangeText={(value:any): any => {
+                  onChangeText={(value: any): any => {
                     if (value.replace(/\s/g, "") == "") {
                       setName(value.replace(/\s/g, ''));
                     } else {
@@ -363,13 +407,14 @@ const ChildSetup = ({ navigation }: Props): any => {
                     }
                   }}
                   value={name}
-                  placeholder={t('childNamePlaceTxt')}
-                  placeholderTextColor={"gray"}
+                  //placeholder={t('parentNamePlaceTxt')}
+                  //placeholderTextColor={"#77777779"}
                   allowFontScaling={false}
                 />
               </FormInputBox>
-            </ShiftFromTop20>
-            {
+            </ShiftFromTop50>
+
+            {/* {
               birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
                 <FormContainer1>
                   <LabelText>{t('genderLabel')}</LabelText>
@@ -381,19 +426,20 @@ const ChildSetup = ({ navigation }: Props): any => {
                   />
                 </FormContainer1>
                 : null
-            }
+            } */}
 
 
             <ShiftFromTop20>
               <FormInputGroup
                 onPress={(): any => {
-                  console.log('actionsheet visiblity',actionSheetRef.current)
+                  console.log('actionsheet visiblity', actionSheetRef.current)
                   actionSheetRef.current?.setModalVisible(true);
                 }}>
                 <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text>
+                   {/*  <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text> */}
+                   <Text>{relationshipname ? relationshipname : ''}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_angle_down" size={10} color="#000" />
@@ -419,9 +465,41 @@ const ChildSetup = ({ navigation }: Props): any => {
             </View>
 
           </FlexCol>
+          <ShiftFromTop25>
+            <ButtonPrimary
+              disabled={!validateParentsForm(0, relationship, name)}
+              onPress={(e: any): any => {
+                e.stopPropagation();
+                setLoading(true);
+                let validated: any = false;
+                validated = validateParentsForm(0, relationship, name);
+
+                if (validated == true) {
+                  setTimeout(() => {
+                    setLoading(false);
+                    if (relationshipname == relationshipToParent[3].name) {
+                      AddChild(true);
+                    } else {
+                      navigation.navigate('AddChildSetup', {
+                        birthDate: birthDate,
+                        relationship: relationship,
+                        relationshipname: relationshipname,
+                        userRelationToParent: userRelationToParent,
+                        parentName: name
+                      })
+                    }
+                  }, 0)
+                }
+                else {
+                  console.log("in else");
+                }
+              }}>
+              <ButtonUpperCaseText>{t('childSetupcontinueBtnText')}</ButtonUpperCaseText>
+            </ButtonPrimary>
+          </ShiftFromTop25>
 
           <FlexCol>
-            <FlexRow>
+            {/* <FlexRow>
               <Flex1>
                 <OrView>
                   <OrDivider><Text></Text></OrDivider>
@@ -431,24 +509,35 @@ const ChildSetup = ({ navigation }: Props): any => {
 
                 </OrView>
               </Flex1>
-            </FlexRow>
-            <FlexRow style={styles.flexRow1}>
+            </FlexRow> */}
+            <FlexRow>
               <Flex2 style={styles.flex2Style}>
-                <Heading4Regularw>{t('importOnboardingText')}</Heading4Regularw>
+                <Heading4Centerrw style={styles.importTextStyle}>{t('importOnboardingText')}</Heading4Centerrw>
+                <Heading4Centerrw>{t('importOnboardingText1')}</Heading4Centerrw>
               </Flex2>
-              <Flex1>
-                <ButtonPrimaryMd
-                  disabled={isImportRunning}
-                  onPress={(e:any): any => {
 
-                    e.stopPropagation();
-                    actionSheetRefImport.current?.setModalVisible(true);
-                  }}>
-                  <ButtonText>{t('OnboardingImportButton')}</ButtonText>
-                </ButtonPrimaryMd>
-              </Flex1>
             </FlexRow>
+            <FlexCol>
+              <ShiftFromTop20>
+                <ParentSetUpDivider style={styles.orDividerStyle}></ParentSetUpDivider>
+                <Heading3BoldCenterrw style={styles.flex2Style}>{t('ORkeyText')}</Heading3BoldCenterrw>
+              </ShiftFromTop20>
 
+
+            </FlexCol>
+            <Pressable onPress={(e: any): any => {
+
+              e.stopPropagation();
+              actionSheetRefImport.current?.setModalVisible(true);
+            }}>
+              <Heading3BoldCenterrw style={styles.uploadTextStyle}>
+                {t('OnboardingImportButton')}
+              </Heading3BoldCenterrw>
+
+            </Pressable>
+            <Flex2 style={styles.flex2Style}>
+              <Heading4Centerrw>{t('importOnboardingText2')}</Heading4Centerrw>
+            </Flex2>
           </FlexCol>
 
 
@@ -457,48 +546,48 @@ const ChildSetup = ({ navigation }: Props): any => {
       </ScrollView>
       <ActionSheet ref={actionSheetRef}>
 
-          <View style={{marginBottom:20}}>
-            {relationshipToParent.map((item: any, index: any) => {
-              return (
-                <ChildRelationList key={index}>
-                  <Pressable
-                    onPress={(): any => {
-                      setUserRelationToParent(item.id);
-                      if (item.id == relationShipMotherId) {
-                        if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
-                          setRelationship(femaleData.id);
-                        }
-                        else {
-                          setRelationship(String(femaleData.id));
-                        }
-                      }
-                      else if (item.id == relationShipFatherId) {
-                        if (typeof maleData.id === 'string' || maleData.id instanceof String) {
-                          setRelationship(maleData.id);
-                        }
-                        else {
-                          setRelationship(String(maleData.id));
-                        }
+        <View style={{ marginBottom: 20 }}>
+          {relationshipToParent?.map((item: any, index: any) => {
+            return (
+              <ChildRelationList key={index}>
+                <Pressable
+                  onPress={(): any => {
+                    setUserRelationToParent(item.id);
+                    if (item.id == relationShipMotherId) {
+                      if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
+                        setRelationship(femaleData.id);
                       }
                       else {
-                        if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
-                          setRelationship('');
-                        }
+                        setRelationship(String(femaleData.id));
                       }
-                      console.log('relationship name', item.name)
-                      setRelationshipName(item.name);
-                      actionSheetRef.current?.setModalVisible(false);
-                    }}>
-                    <Heading3>{console.log(item.name)}
-                      {item.name}
-                    </Heading3>
-                  </Pressable>
-                </ChildRelationList>
-              );
-            })}
+                    }
+                    else if (item.id == relationShipFatherId) {
+                      if (typeof maleData.id === 'string' || maleData.id instanceof String) {
+                        setRelationship(maleData.id);
+                      }
+                      else {
+                        setRelationship(String(maleData.id));
+                      }
+                    }
+                    else {
+                      if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
+                        setRelationship('');
+                      }
+                    }
+                    console.log('relationship name', item.name)
+                    setRelationshipName(item.name);
+                    actionSheetRef.current?.setModalVisible(false);
+                  }}>
+                  <Heading3>{console.log(item.name)}
+                    {item.name}
+                  </Heading3>
+                </Pressable>
+              </ChildRelationList>
+            );
+          })}
 
-          </View>
-        </ActionSheet>
+        </View>
+      </ActionSheet>
       <ActionSheet ref={actionSheetRefImport}>
         <BannerContainer>
           <SettingHeading>
@@ -572,34 +661,6 @@ const ChildSetup = ({ navigation }: Props): any => {
           </SettingShareData>
         </BannerContainer>
       </ActionSheet>
-      <SideSpacing25>
-        <ButtonRow>
-          <ButtonPrimary
-            disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
-            onPress={(e:any): any => {
-              e.stopPropagation();
-              setLoading(true);
-              let validated: any = false;
-              if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
-                validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender);
-              }
-              else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
-                validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
-              }
-              if (validated == true) {
-                setTimeout(() => {
-                  setLoading(false);
-                  AddChild();
-                }, 0)
-              }
-              else {
-                console.log("in else");
-              }
-            }}>
-            <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
-          </ButtonPrimary>
-        </ButtonRow>
-      </SideSpacing25>
       <AlertModal loading={isImportAlertVisible} disabled={isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={importAllData} onCancel={onImportCancel}></AlertModal>
 
     </View>

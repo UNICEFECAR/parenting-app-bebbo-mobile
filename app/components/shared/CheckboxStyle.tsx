@@ -4,9 +4,17 @@ const Checkbox = styled.View`
   height: 20px;
   border-radius:4px;
   background-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-width:1px;
+  border-color:#2D2926;
 `;
 export const FormOuterCheckbox = styled.Pressable`
   margin-top: 10px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+  flex-direction: row;
+`;
+export const FormOuterTermsCheckbox = styled.Pressable`
+  margin-bottom: 30px;
   align-items: flex-start;
   flex-direction: row;
 `;
@@ -15,8 +23,9 @@ export const CheckboxActive = styled(Checkbox)`
   line-height: 20px;
   flex-direction: row;
   justify-content: center;
+  border-width:0px;
   text-align: center;
-  background-color: ${(props:any):any => props.theme.colors.PRIMARY_TINTCOLOR};
+  background-color: ${(props:any):any => props.theme.colors.SECONDARY_RE_COLOR};
 `;
 
 export const CheckboxDevActive = styled(CheckboxActive)`
@@ -37,7 +46,7 @@ export const CheckboxItemText = styled.Text`
   text-align: left;
   font-size: 16px;
   line-height: 20px;
-  color: #fff;
+  color: #777779;
   flex: 9;
   margin-left: 15px;
   fontFamily: roboto-regular;

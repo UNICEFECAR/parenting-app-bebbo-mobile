@@ -59,3 +59,7 @@ ios/tmp.xcconfig
 .envxk
 .envxkdev
 .envbebbodev
+
+
+# sonar qube 
+.scannerwork

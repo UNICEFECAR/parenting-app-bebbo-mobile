@@ -16,12 +16,15 @@ export const videoTypeImage = "novideo";
 export const backupGDriveFolderName = 'ParentBuddy';
 export const backupGDriveFileName = 'mybackup.json';
 export const tempRealmFile = RNFS.DocumentDirectoryPath + '/' + 'user1.realm';
+export const tempFuseJsonPath = RNFS.DocumentDirectoryPath + '/' + 'fuse-index.json';
 export const backUpPath = RNFS.DocumentDirectoryPath + '/mybackup.json';
 export const tempbackUpPath = RNFS.TemporaryDirectoryPath + 'mybackup.json';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const shareText = (String(buildFor) != buildForBebbo) ? '\nhttps://www.bebbo.app/foleja/share/' : '\nhttps://www.bebbo.app/share/';
 export const shareTextButton = (String(buildFor) != buildForBebbo) ? 'https://www.bebbo.app/foleja/share/' : 'https://www.bebbo.app/share/';
+// export const bebboShareMailId = 'mailto:admin@bebbo.app';
+// export const folejaShareMailId = 'mailto:prishtina@unicef.org';
 export const maleData: any = {
   "id": 37,
   "name": "Male",
@@ -48,6 +51,8 @@ export const fiveYearFromNow = today;
 export const restOfTheWorldCountryId = 126;
 export const videoArticleMandatory = 0;
 export const maxArticleSize = 5;
+export const bebboName = 'Bebbo';
+export const folejaName = 'Foleja';
 export const appConfig = {
   articles: 'articles',
   videoArticles: 'video-articles',
@@ -64,47 +69,31 @@ export const appConfig = {
   vaccinations: 'vaccinations',
   healthCheckupData: 'health-checkup-data',
   pinnedContent: 'pinned-contents',
-  vaccinePinnedContent: 'pinnedvaccinations',
-  childGrowthPinnedContent: 'child_growth',
-  healthcheckupPinnedContent: 'health_check_ups',
-  faqPinnedContent: 'faq',
-  faqUpdatedPinnedContent: 'updatedfaq',
-  milestoneRelatedArticle: 'milestonerelatedarticle',
   checkUpdate: 'check-update',
   faqs: 'faqs',
   archive: 'archive',
+  countryGroups: 'country-groups',
 }
-export const finalUrl = (apiEndpoint: string, selectedCountry: number | undefined, selectedLang: string): any => {
-  if (apiEndpoint == appConfig.sponsors) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
-  }
-  if (apiEndpoint == appConfig.taxonomies) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang + '/all';
-  }
-  if (apiEndpoint == appConfig.checkUpdate) {
-    return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedCountry;
-  }
-  if (apiEndpoint == appConfig.vaccinePinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/vaccinations';
-  }
-  if (apiEndpoint == appConfig.childGrowthPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
-  }
-  if (apiEndpoint == appConfig.healthcheckupPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
-  }
-  if (apiEndpoint == appConfig.faqPinnedContent) {
-    return apiUrlDevelop + '/pinned-contents/' + selectedLang + '/' + apiEndpoint;
-  }
-  if (apiEndpoint == appConfig.milestoneRelatedArticle) {
-    return apiUrlDevelop + '/related-article-contents/' + selectedLang + '/milestone';
-  }
-  if (apiEndpoint == appConfig.faqUpdatedPinnedContent) {
-    return apiUrlDevelop + '/updated-pinned-contents/' + selectedLang + '/faq';
-  }
-  return apiUrlDevelop + '/' + apiEndpoint + '/' + selectedLang;
-}
+export const finalUrl = (
+  apiEndpoint: string,
+  selectedCountry: number | undefined,
+  selectedLang: string
+): string => {
+  const baseUrl = `${apiUrlDevelop}/${apiEndpoint}`;
 
+  switch (apiEndpoint) {
+    case appConfig.countryGroups:
+      return `${baseUrl}/${buildFor === String(buildForFoleja) ? folejaName : bebboName}`;
+    case appConfig.sponsors:
+      return `${baseUrl}/${selectedCountry}`;
+    case appConfig.taxonomies:
+      return `${baseUrl}/${selectedLang}/all`;
+    case appConfig.checkUpdate:
+      return `${baseUrl}/${selectedCountry}`;
+    default:
+      return `${baseUrl}/${selectedLang}`;
+  }
+};
 
 export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
   const allApiObject = [
@@ -113,6 +102,18 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
       method: 'get',
       postdata: {},
       saveinDB: false,
+    },
+    {
+      apiEndpoint: appConfig.articles,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.countryGroups,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
     },
     {
       apiEndpoint: appConfig.taxonomies,
@@ -175,36 +176,6 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.vaccinePinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childGrowthPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthcheckupPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.faqPinnedContent,
-      method: 'get',
-      postdata: isDatetimeReq == true && dateTimeObj['faqPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqPinnedContentDatetime'] } : {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestoneRelatedArticle,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
       apiEndpoint: appConfig.standardDeviation,
       method: 'get',
       postdata: {},
@@ -218,12 +189,7 @@ export const allApisObject = (isDatetimeReq: any, dateTimeObj: any): any => {
     }
   ];
   if (isDatetimeReq == true) {
-    allApiObject.push({
-      apiEndpoint: appConfig.faqUpdatedPinnedContent,
-      method: 'get',
-      postdata: isDatetimeReq == true && dateTimeObj['faqUpdatedPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqUpdatedPinnedContentDatetime'] } : dateTimeObj['faqPinnedContentDatetime'] != '' ? { datetime: dateTimeObj['faqPinnedContentDatetime'] } : {},
-      saveinDB: true,
-    },
+    allApiObject.push(
       {
         apiEndpoint: appConfig.archive,
         method: 'get',

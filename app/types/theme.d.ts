@@ -6,6 +6,9 @@ declare module 'styled-components/native' {
 
     colors: {
         PRIMARY_COLOR: string;
+        SECONDARY_RE_COLOR: string;
+        PRIMARY_REDESIGN_COLOR: string;
+        PRIMARY_RE_TEXTCOLOR: string;
         PRIMARY_TINTCOLOR: string;
         SECONDARY_COLOR: string;
         SECONDARY_TINTCOLOR: string;
@@ -22,7 +25,8 @@ declare module 'styled-components/native' {
         ARTICLES_COLOR:string;
         ARTICLES_TINTCOLOR: string;
         PRIMARY_TEXTCOLOR: string;
-        SECONDARY_TEXTCOLOR: string;
+        TERMS_TEXTCOLOR: string; 
+        SECONDARY_TEXTCOLOR: string; 
         LIGHTSHADE_COLOR: string;
     };
     fonts:{

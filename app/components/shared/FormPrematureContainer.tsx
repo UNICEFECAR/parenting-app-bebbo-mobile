@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 const FormPrematureContainer = styled.View`
   width: 100%;
-  height: 40px;
   flex-direction: row;
   align-items: center;
 `;
@@ -15,6 +14,11 @@ export const FormInfoLabel = styled.View`
 export const FormInfoPress = styled.Pressable`
   padding: 10px 10px;
 `;
+
+export const FormInfoButtonPress = styled.Pressable`
+  padding: 0px 2px 10px;
+`;
+
 export const FormDobInfoPress = styled.Pressable`
 padding: 10px 10px;
 `;

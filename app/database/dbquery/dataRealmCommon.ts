@@ -264,9 +264,9 @@ class DataRealmCommon {
     public async getFilteredData<Entity>(entitySchema: ObjectSchema, filterData: any): Promise<any> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
-            console.log('Error is here on getFiltered data',filterData)
+            // console.log('Error is here on getFiltered data',filterData)
             try {
-                console.log('Error is here on getFiltered data success');
+                // console.log('Error is here on getFiltered data success');
                 const realm = await this.openRealm();
                 if (realm) {
                     const obj = realm?.objects<Entity>(entitySchema.name).filtered(filterData);

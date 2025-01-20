@@ -99,7 +99,7 @@ const InfiniteScrollList = (props : any):any => {
             onRefresh={():any => onRefresh()}
             refreshing={refresh}
             renderItem={renderArticleItem}
-            keyExtractor={(item:any):any => item.id.toString()}
+            keyExtractor={(item:any):any => item?.id?.toString()}
             onMomentumScrollBegin={():any => {
               onEndReachedCalledDuringMomentum = false;
             }}

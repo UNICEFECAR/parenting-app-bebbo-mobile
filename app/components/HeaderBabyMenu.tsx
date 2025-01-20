@@ -12,7 +12,7 @@ import {
   ShiftFromBottom10
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
@@ -29,10 +29,8 @@ import { getStatusBarHeight } from '../services/StatusBarHeight';
 import { formatDate } from '../services/Utils';
 import {
   ButtonContainer,
-  ButtonLinkPress,
   ButtonPrimary,
-  ButtonText,
-  ButtonTextLine
+  ButtonUpperCaseText
 } from './shared/ButtonGlobal';
 import { FDirRow, FlexColEnd } from './shared/FlexBoxStyle';
 import { HeaderActionBox, HeaderActionView } from './shared/HeaderContainerStyle';
@@ -168,18 +166,24 @@ const HeaderBabyMenu = (props: any): any => {
           currentActiveChild == data.uuid ? (
           <ProfileListViewSelected>
             <ProfileIconView>
-              {data.photoUri != '' ? (
+              {(data.photoUri != '' && data.photoUri != null) ? (
                 <ImageIcon
                   source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
               ) : (
-                <Icon name="ic_baby" size={30} color="#000" />
+                genderName !== '' ?
+                  (genderName === t('chilGender1') ?
+                    <Icon name="ic_baby" size={36} color="#000" /> :
+                    <Icon name="ic_baby_girl" size={36} color="#000" />) :
+                  <Icon name="ic_baby_girl" size={36} color="#000" />
               )}
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>{data.childName}
-                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName}</Heading5> : null}
+                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName}</Heading5> : 
+                  <Heading5 style={styles.heading5Fontwg}>{', ' + t('chilGender2')}</Heading5>
+                  }
                 </Heading3>
               </ProfileSectionView>
               <Heading5>
@@ -205,12 +209,16 @@ const HeaderBabyMenu = (props: any): any => {
         ) : (
           <ProfileListView>
             <ProfileIconView>
-              {data.photoUri != '' ? (
+              {(data.photoUri) ? (
                 <ImageIcon
                   source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
               ) : (
-                <Icon name="ic_baby" size={30} color="#000" />
+                genderName !== '' ?
+                  (genderName === t('chilGender1') ?
+                    <Icon name="ic_baby" size={36} color="#000" /> :
+                    <Icon name="ic_baby_girl" size={36} color="#000" />) :
+                  <Icon name="ic_baby_girl" size={36} color="#000" />
               )}
             </ProfileIconView>
 
@@ -292,12 +300,12 @@ const HeaderBabyMenu = (props: any): any => {
 
 
             <ButtonPrimary
-            disabled={false}
+              disabled={false}
               onPress={(): any => {
                 setModalVisible(false);
                 navigation.navigate('ChildProfileScreen')
               }}>
-              <ButtonText numberOfLines={2}>{t('manageProfileTxt')}</ButtonText>
+              <ButtonUpperCaseText numberOfLines={2}>{t('manageProfileTxt')}</ButtonUpperCaseText>
             </ButtonPrimary>
           </ButtonContainer>
         </View>
@@ -333,11 +341,11 @@ const HeaderBabyMenu = (props: any): any => {
               getAllConfigData(dispatch);
             }
           }}>
-          {activeChild.photoUri != '' ? (
+          {(activeChild.photoUri != '' && activeChild.photoUri != null) ? (
             <ImageIcon
               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
           ) : (
-            <Icon name="ic_baby" size={25} color={props.color || '#FFF'} />
+            activeChild.gender != '' ? activeChild.gender == '40' ? <Icon name="ic_baby" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} />
           )}
         </HeaderActionBox>
       </HeaderActionView>

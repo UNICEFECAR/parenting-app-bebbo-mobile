@@ -13,7 +13,7 @@ import {
   FormContainer,
   FormDateAction,
   FormDateText,
-  FormInputBox,
+  FormInputBoxWithoutLine,
   FormInputGroup,
   FormInputText,
   TextAreaBox
@@ -43,7 +43,7 @@ import {
   RadioInnerBox,
   RadioOuter
 } from '@components/shared/radio';
-import ToggleRadios from '@components/ToggleRadios';
+import ToggleRadiosBgColor from '@components/ToggleRadiosBgColor';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -613,7 +613,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                     {t('growthScreendateMeasurementText')}
                   </FormInputText>
                   {Platform.OS != 'ios' ? (
-                    <FormInputBox>
+                    <FormInputBoxWithoutLine>
                       <FormDateText>
                         <Text>
                           {' '}
@@ -639,9 +639,9 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                       <FormDateAction>
                         <Icon name="ic_calendar" size={20} color="#000" />
                       </FormDateAction>
-                    </FormInputBox>
+                    </FormInputBoxWithoutLine>
                   ) : (
-                    <FormInputBox>
+                    <FormInputBoxWithoutLine>
                       <FormDateText>
                         <Text>
                           {' '}
@@ -667,7 +667,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                       <FormDateAction>
                         <Icon name="ic_calendar" size={20} color="#000" />
                       </FormDateAction>
-                    </FormInputBox>
+                    </FormInputBoxWithoutLine>
 
                   )}
                 </FormInputGroup>
@@ -677,7 +677,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                     <Heading3>{t('growthScreenwhereMeasured')}</Heading3>
                   </FormInputText>
 
-                  <ToggleRadios
+                  <ToggleRadiosBgColor
                     options={measurePlaces}
                     defaultValue={defaultMeasurePlace}
                     tickbgColor={headerColor}
@@ -754,7 +754,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
-                      placeholderTextColor={"gray"}
+                      placeholderTextColor={"#77777779"}
                       allowFontScaling={false}
                     />
                   </TextAreaBox>

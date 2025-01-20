@@ -1,7 +1,7 @@
 import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
-import { Heading4Centerr, ShiftFromTop15 } from '@styles/typography';
+import { Heading4Centerr, ShiftFromTop10, ShiftFromTop15 } from '@styles/typography';
 import { dobMin, maxDue, minDue } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
@@ -19,14 +19,19 @@ import {
   FormDateText,
   FormInputBox,
   FormInputGroup,
+  LabelChildText,
+  LabelDatePlaceHolderText,
   LabelText,
-  LabelText1
+  LabelText1,
+  LabelTextTerms,
+  LabelWithInfoText
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
   FormDobInfoPress,
-  FormInfoLabel,FormInfoPress
+  FormInfoButtonPress,
+  FormInfoLabel, FormInfoPress
 } from './shared/FormPrematureContainer';
-import { FlexFDirRowSpace } from './shared/FlexBoxStyle';
+import { FlexFDirRowSpace, FlexRow } from './shared/FlexBoxStyle';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -40,37 +45,37 @@ const styles = StyleSheet.create({
     backgroundColor: greyCode,
     opacity: 0.5,
   },
-  flexRow:{flexDirection:"row"},
-  formDateText:{flex:1,flexDirection:"row"}
+  flexRow: { flexDirection: "row" },
+  formDateText: { flex: 1, flexDirection: "row" }
 });
-const ChildDate = (props: any):any => {
-  const {dobMax,prevScreen} = props;
+const ChildDate = (props: any): any => {
+  const { dobMax, prevScreen } = props;
   let birthDate: any,
     isPremature: any,
     plannedTermDate: any = null;
-  const {childData} = props;
+  const { childData } = props;
   const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
   const [isDueDatePickerVisible, setDueDatePickerVisibility] = useState(false);
   const [dueDate, setdueDate] = useState<Date | null>(null);
   const [showdue, setdueShow] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [dobModalVisible, setDobModalVisible] = useState(false);
- 
-  const isFutureDate = (date: Date):any => {
+
+  const isFutureDate = (date: Date): any => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [isExpected, setIsExpected] = useState(false);
   const [doborExpectedDate, setdoborExpectedDate] = useState<Date | null>(null);
   const [showdob, setdobShow] = useState<boolean>(false);
-  const [disablePrematureCheck, setdisablePrematureCheck] =useState<boolean>(false);
+  const [disablePrematureCheck, setdisablePrematureCheck] = useState<boolean>(false);
   useFocusEffect(
     React.useCallback(() => {
-     
-     if (birthDate == '' || birthDate == null || birthDate == undefined) {
+
+      if (birthDate == '' || birthDate == null || birthDate == undefined) {
         setdisablePrematureCheck(true);
       }
       if (childData != null) {
@@ -94,8 +99,8 @@ const ChildDate = (props: any):any => {
       }
     }, []),
   );
-  
-  const ondueDateChange = (event:any,selectedDate: any):any => {
+
+  const ondueDateChange = (event: any, selectedDate: any): any => {
     const currentDate = selectedDate;
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
@@ -106,8 +111,8 @@ const ChildDate = (props: any):any => {
       isExpected: isExpected,
     });
   };
-  const ondobChange = (event:any,selectedDate: any):any => {
-    if(new Date(selectedDate) < new Date(dobMin)){
+  const ondobChange = (event: any, selectedDate: any): any => {
+    if (new Date(selectedDate) < new Date(dobMin)) {
       selectedDate = new Date(dobMin);
     }
     const currentDate = selectedDate || doborExpectedDate;
@@ -135,27 +140,27 @@ const ChildDate = (props: any):any => {
       });
     }
   };
-  const handleDobConfirm = (event:any):any => {
-    const date=event;
-    ondobChange(event,date);
+  const handleDobConfirm = (event: any): any => {
+    const date = event;
+    ondobChange(event, date);
     setDobDatePickerVisibility(false);
   };
-  const handleDueConfirm = (event:any):any => {
-    const date=event;
-    ondueDateChange(event,date);
+  const handleDueConfirm = (event: any): any => {
+    const date = event;
+    ondueDateChange(event, date);
     setDueDatePickerVisibility(false);
   };
- 
-  const showdobDatepicker = ():any => {
+
+  const showdobDatepicker = (): any => {
     setdobShow(true);
-    if(Platform.OS == 'ios'){
-    setDobDatePickerVisibility(true);
+    if (Platform.OS == 'ios') {
+      setDobDatePickerVisibility(true);
     }
   };
- 
-  const showdueDatepicker = ():any => {
+
+  const showdueDatepicker = (): any => {
     setdueShow(true);
-    if(Platform.OS == 'ios'){
+    if (Platform.OS == 'ios') {
       setDueDatePickerVisibility(true);
     }
   };
@@ -164,57 +169,58 @@ const ChildDate = (props: any):any => {
       <FormDateContainer>
         {Platform.OS != 'ios' ? (
           <FormInputGroup>
-             <FormPrematureContainer>
-              <FormOuterCheckbox  onPress={showdobDatepicker}><LabelText1>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText1></FormOuterCheckbox> 
-              <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
-                <Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/>
-                </FormInfoPress></FormInfoLabel>
-                </FormPrematureContainer>
-            <Pressable  onPress={showdobDatepicker}>
-            <FormInputBox>
-            <FlexFDirRowSpace>
-                <Text>
-                  {doborExpectedDate
-                    ? formatStringDate(doborExpectedDate)
-                    : prevScreen=='EditScreen'?  t('childSetupdobText'):t('childSetupdobSelector')}
-                </Text>
-                {showdob && (
-                  <DateTimePicker
-                    testID="dobdatePicker"
-                    dateFormat={'day month year'}
-                    minimumDate={new Date(dobMin)}
-                    maximumDate={new Date(dobMax)}
-                    value={
-                      doborExpectedDate != null ? doborExpectedDate : new Date()
-                    }
-                    mode={'date'}
-                   display="spinner"
-                    onChange={ondobChange}
-                  />
-                )}
-              </FlexFDirRowSpace>
-              <FormDateAction>
-                <Icon name="ic_calendar" size={20} color="#000" />
-              </FormDateAction>
-            </FormInputBox>
+            <FormPrematureContainer>
+              <LabelWithInfoText>{prevScreen == 'EditScreen' ? t('addAnotherChildSetupDobLabel') : t('childSetupdobLabel')}</LabelWithInfoText>
+              <FormInfoLabel><FormInfoButtonPress onPress={(): any => setDobModalVisible(true)}>
+                <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
+              </FormInfoButtonPress></FormInfoLabel>
+            </FormPrematureContainer>
+            <Pressable onPress={showdobDatepicker}>
+              <FormInputBox>
+                <FlexFDirRowSpace>
+                  {doborExpectedDate ?
+                    <LabelTextTerms>
+                      {formatStringDate(doborExpectedDate)}
+                    </LabelTextTerms> :
+                    ''}
+                  {showdob && (
+                    <DateTimePicker
+                      testID="dobdatePicker"
+                      dateFormat={'day month year'}
+                      minimumDate={new Date(dobMin)}
+                      maximumDate={new Date(dobMax)}
+                      value={
+                        doborExpectedDate != null ? doborExpectedDate : new Date()
+                      }
+                      mode={'date'}
+                      display="spinner"
+                      onChange={ondobChange}
+                    />
+                  )}
+                </FlexFDirRowSpace>
+                <FormDateAction>
+                  <Icon name="ic_calendar" size={20} color="#000" />
+                </FormDateAction>
+              </FormInputBox>
             </Pressable>
           </FormInputGroup>
         ) : (
-          <FormInputGroup> 
-                <FormPrematureContainer>
-                <FormOuterCheckbox  onPress={showdobDatepicker}><LabelText1>{prevScreen == 'EditScreen' ? t('editChildDobLabel') : t('childSetupdobLabel')}</LabelText1></FormOuterCheckbox>
-                <FormInfoLabel><FormInfoPress onPress={(): any => setDobModalVisible(true)}>
-                  <Icon name="ic_info" size={15} color="#FFF" onPress={(): any => setDobModalVisible(true)}/>
-                  </FormInfoPress></FormInfoLabel>
-                  </FormPrematureContainer>
-                <Pressable  onPress={showdobDatepicker}>
+          <FormInputGroup>
+            <FormPrematureContainer>
+              <LabelWithInfoText>{prevScreen == 'EditScreen' ? t('addAnotherChildSetupDobLabel') : t('childSetupdobLabel')}</LabelWithInfoText>
+              <FormInfoLabel><FormInfoButtonPress onPress={(): any => setDobModalVisible(true)}>
+                <Icon name="ic_info" size={15} color="#070707" onPress={(): any => setDobModalVisible(true)} />
+              </FormInfoButtonPress></FormInfoLabel>
+            </FormPrematureContainer>
+            <Pressable onPress={showdobDatepicker}>
+              <View style={{ marginTop: -10 }}>
                 <FormInputBox>
                   <FlexFDirRowSpace>
-                    <Text>
-                      {doborExpectedDate
-                        ? formatStringDate(doborExpectedDate)
-                        : prevScreen == 'EditScreen' ? t('childSetupdobText') : t('childSetupdobSelector')}
-                    </Text>
+                    {doborExpectedDate ?
+                      <LabelTextTerms>
+                        {formatStringDate(doborExpectedDate)}
+                      </LabelTextTerms> :
+                      ''}
                     {showdob && (
                       <DateTimePickerModal
                         isVisible={isDobDatePickerVisible}
@@ -223,7 +229,7 @@ const ChildDate = (props: any):any => {
                         onConfirm={handleDobConfirm}
                         onCancel={(): any => {
                           setDobDatePickerVisibility(false);
-                        } }
+                        }}
                         minimumDate={new Date(dobMin)}
                         maximumDate={new Date(dobMax)} />
                     )}
@@ -232,24 +238,28 @@ const ChildDate = (props: any):any => {
                     <Icon name="ic_calendar" size={20} color="#000" />
                   </FormDateAction>
                 </FormInputBox>
-                </Pressable>
-              </FormInputGroup>
-       )}
+              </View>
 
+            </Pressable>
+          </FormInputGroup>
+        )}
+
+        
         <FormPrematureContainer>
-          <FormOuterCheckbox
-            onPress={():any => {
-             if (!disablePrematureCheck) {
-                props.sendData({
-                  birthDate: doborExpectedDate,
-                  plannedTermDate: null,
-                  isPremature: !toggleCheckBox,
-                  isExpected: isExpected,
-                });
-                setToggleCheckBox(!toggleCheckBox);
-                setdueDate(null);
-              }
-            }}>
+          <Pressable 
+          style={{flexDirection:'row'}}
+          onPress={(): any => {
+            if (!disablePrematureCheck) {
+              props.sendData({
+                birthDate: doborExpectedDate,
+                plannedTermDate: null,
+                isPremature: !toggleCheckBox,
+                isExpected: isExpected,
+              });
+              setToggleCheckBox(!toggleCheckBox);
+              setdueDate(null);
+            }
+          }}>
             <CheckboxItem>
               <View>
                 {toggleCheckBox ? (
@@ -257,22 +267,22 @@ const ChildDate = (props: any):any => {
                     style={
                       disablePrematureCheck ? styles.disabledCheckBox : null
                     }>
-                    <Icon name="ic_tick" size={12} color="#000" />
+                    <Icon name="ic_tick" size={12} color="#fff" />
                   </CheckboxActive>
                 ) : (
                   <Checkbox></Checkbox>
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('childSetupprematureLabel')}</LabelText>
-          </FormOuterCheckbox>
-
+            <LabelChildText>{t('childSetupprematureLabel')}</LabelChildText>
+          </Pressable>
           <FormInfoLabel>
-            <FormInfoPress onPress={():any => setModalVisible(true)}>
-              <Icon name="ic_info" size={15} color="#FFF" />
+            <FormInfoPress onPress={(): any => setModalVisible(true)}>
+              <Icon name="ic_info" size={15} color="#070707" />
             </FormInfoPress>
           </FormInfoLabel>
         </FormPrematureContainer>
+      
 
         {toggleCheckBox && !disablePrematureCheck ? (
           <>
@@ -280,37 +290,84 @@ const ChildDate = (props: any):any => {
               {Platform.OS != 'ios' ? (
                 <FormInputGroup onPress={showdueDatepicker}>
                   <LabelText>{t('childSetupdueLabel')}</LabelText>
+                  <ShiftFromTop10>
+                    <FormInputBox>
+                      <FormDateText style={styles.formDateText}>
+                        {dueDate ?
+                          <LabelTextTerms>
+                            {formatStringDate(dueDate)}
+                          </LabelTextTerms> :
+                          ''}
+                        {showdue && (
+                          <DateTimePicker
+                            testID="duedatePicker"
+                            value={dueDate != null ? dueDate : new Date()}
+                            mode={'date'}
+                            display="spinner"
+                            minimumDate={
+                              new Date(
+                                DateTime.fromJSDate(doborExpectedDate as Date)
+                                  .plus({ weeks: minDue })
+                                  .toISODate(),
+                              )
+                            }
+                            maximumDate={
+                              new Date(
+                                DateTime.fromJSDate(doborExpectedDate as Date)
+                                  .plus({ months: maxDue })
+                                  .toISODate(),
+                              )
+                            }
+                            // minimumDate={{}}
+                            // maximumDate={{}}
+                            onChange={ondueDateChange}
+                          />
+                        )}
+                      </FormDateText>
+                      <FormDateAction>
+                        <Icon name="ic_calendar" size={20} color="#000" />
+                      </FormDateAction>
+                    </FormInputBox>
+                  </ShiftFromTop10>
+
+                </FormInputGroup>
+              ) : (
+                <FormInputGroup onPress={showdueDatepicker}>
+                  <LabelText>{t('childSetupdueLabel')}</LabelText>
                   <FormInputBox>
-                    <FormDateText  style={styles.formDateText}>
-                      <Text>
-                        {' '}
-                        {dueDate
-                          ? formatStringDate(dueDate)
-                          : t('childSetupdueSelector')}
-                      </Text>
+                    <FormDateText style={styles.formDateText}>
+                      {dueDate ?
+                        <LabelTextTerms>
+                          {formatStringDate(dueDate)}
+                        </LabelTextTerms> :
+                        ''}
                       {showdue && (
-                        <DateTimePicker
-                          testID="duedatePicker"
-                          value={dueDate != null ? dueDate : new Date()}
-                          mode={'date'}
-                         display="spinner"
+                        <DateTimePickerModal
+                          isVisible={isDueDatePickerVisible}
+                          mode="date"
+                          date={dueDate != null ? dueDate : new Date(
+                            DateTime.fromJSDate(doborExpectedDate as Date)
+                              .plus({ weeks: minDue })
+                              .toISODate(),
+                          )}
+                          onConfirm={handleDueConfirm}
+                          onCancel={(): any => {
+                            setDueDatePickerVisibility(false);
+                          }}
                           minimumDate={
                             new Date(
                               DateTime.fromJSDate(doborExpectedDate as Date)
-                                .plus({weeks: minDue})
+                                .plus({ weeks: minDue })
                                 .toISODate(),
                             )
                           }
                           maximumDate={
                             new Date(
                               DateTime.fromJSDate(doborExpectedDate as Date)
-                                .plus({months: maxDue})
+                                .plus({ months: maxDue })
                                 .toISODate(),
                             )
                           }
-                          // minimumDate={{}}
-                          // maximumDate={{}}
-                          onChange={ondueDateChange}
                         />
                       )}
                     </FormDateText>
@@ -319,53 +376,6 @@ const ChildDate = (props: any):any => {
                     </FormDateAction>
                   </FormInputBox>
                 </FormInputGroup>
-              ) : (
-                <FormInputGroup onPress={showdueDatepicker}>
-                <LabelText>{t('childSetupdueLabel')}</LabelText>
-                <FormInputBox>
-                  <FormDateText style={styles.formDateText}>
-                    <Text>
-                      {' '}
-                      {dueDate
-                        ? formatStringDate(dueDate)
-                        : t('childSetupdueSelector')}
-                    </Text>
-                    {showdue && (
-                     <DateTimePickerModal
-                      isVisible={isDueDatePickerVisible}
-                      mode="date"
-                      date={dueDate != null ? dueDate : new Date(
-                        DateTime.fromJSDate(doborExpectedDate as Date)
-                          .plus({weeks: minDue})
-                          .toISODate(),
-                      )}
-                      onConfirm={handleDueConfirm}
-                      onCancel={():any => {
-                        setDueDatePickerVisibility(false);
-                      }}
-                      minimumDate={
-                        new Date(
-                          DateTime.fromJSDate(doborExpectedDate as Date)
-                            .plus({weeks: minDue})
-                            .toISODate(),
-                        )
-                      }
-                      maximumDate={
-                        new Date(
-                          DateTime.fromJSDate(doborExpectedDate as Date)
-                            .plus({months: maxDue})
-                            .toISODate(),
-                        )
-                      }
-                    />
-                    )}
-                  </FormDateText>
-                  <FormDateAction>
-                    <Icon name="ic_calendar" size={20} color="#000" />
-                  </FormDateAction>
-                </FormInputBox>
-              </FormInputGroup>
-     
               )}
             </ShiftFromTop15>
           </>
@@ -375,17 +385,17 @@ const ChildDate = (props: any):any => {
         animationType="none"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={():any => {
+        onRequestClose={(): any => {
           setModalVisible(false);
         }}
-        onDismiss={():any => {
+        onDismiss={(): any => {
           setModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={():any => {
+                onPress={(): any => {
                   setModalVisible(false);
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />
@@ -403,17 +413,17 @@ const ChildDate = (props: any):any => {
         animationType="none"
         transparent={true}
         visible={dobModalVisible}
-        onRequestClose={():any => {
+        onRequestClose={(): any => {
           setDobModalVisible(false);
         }}
-        onDismiss={():any => {
+        onDismiss={(): any => {
           setDobModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
             <PopupCloseContainer>
               <PopupClose
-                onPress={():any => {
+                onPress={(): any => {
                   setDobModalVisible(false);
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />

@@ -55,42 +55,31 @@ export default class ScrollingButtonMenu extends React.Component {
             dataSourceCords2:[]
         };
     }
-     componentDidUpdate() {
-        const {selected} = this.props;
-        if (this.props.selected != this.state.index) {
-            this.setState({index: selected}, () => {
-                        this._scrollTo();
-            });
+   
+    componentDidUpdate(prevProps) {
+        const { selected } = this.props;
+        if (selected !== this.state.index && selected !== prevProps.selected) {
+            this.setState({ index: selected }, this._scrollTo);
         }
     }
+    
 
     componentDidMount() {
-        const {selected} = this.props;
+        const { selected } = this.props;
         if (selected) {
-            this.setState({index: selected}, () => {
-                setTimeout(() => {
-                        this._scrollTo();
-                
-                }, 0);
-            });
+            this.setState({ index: selected }, this._scrollTo);
         }
     }
 
     _scrollTo() {
-        const {index,scrollindex} = this.state;
-        if(index != scrollindex)
-        {
+        const { index, scrollindex } = this.state;
+        if (index !== scrollindex) {
             const screen1 = screenWidth / 2;
             const elementOffset = this.dataSourceCords[index];
-            if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
+            if (elementOffset !== undefined && typeof this.scroll?.scrollTo === 'function') {
                 const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
-                this.scroll.scrollTo({
-                    y: 0,
-                    x: x,
-                    animated: true,
-                });
-                this.setState({scrollindex : index});
-                this.setState({scrollindexarrow : index});
+                this.scroll?.scrollTo({ y: 0, x, animated: true });
+                this.setState({ scrollindex: index, scrollindexarrow: index });
             }
         }
     }
@@ -98,18 +87,18 @@ export default class ScrollingButtonMenu extends React.Component {
     rightArrow(items) {
         const {scrollindexarrow} = this.state;
         let newindex;
-        if(scrollindexarrow == '' || scrollindexarrow == 0)
+        if(!scrollindexarrow || scrollindexarrow == 0)
         {
-            newindex = items[0 + 2].id;
+            newindex = items[0 + 2]?.id;
         }else {
             const innerindex = ((items.findIndex(x => x.id == scrollindexarrow) + 2) < items.length) ? (items.findIndex(x => x.id == scrollindexarrow) + 2) : (items.length - 1)
             newindex = items[innerindex].id
         }
         const screen1 = screenWidth / 2;
         const elementOffset = this.dataSourceCords[newindex];
-        if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
+        if (elementOffset !== undefined && typeof this.scroll?.scrollTo == 'function') {
             const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
-            this.scroll.scrollTo({
+            this.scroll?.scrollTo({
                 y: 0,
                 x: x,
                 animated: true,
@@ -120,18 +109,18 @@ export default class ScrollingButtonMenu extends React.Component {
     leftArrow(items) {
         const {scrollindexarrow} = this.state;
         let newindex;
-        if(scrollindexarrow == '' || scrollindexarrow == 0)
+        if(!scrollindexarrow || scrollindexarrow == 0)
         {
-            newindex = items[0].id;
+            newindex = items[0]?.id;
         }else {
             const innerindex = ((items.findIndex(x => x.id == scrollindexarrow) - 2) >= 0) ? (items.findIndex(x => x.id == scrollindexarrow) - 2) : (0)
             newindex = items[innerindex].id
         }
         const screen1 = screenWidth / 2;
         const elementOffset = this.dataSourceCords[newindex];
-        if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
+        if (elementOffset !== undefined && typeof this.scroll?.scrollTo == 'function') {
             const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
-            this.scroll.scrollTo({
+            this.scroll?.scrollTo?.({
                 y: 0,
                 x: x,
                 animated: true,
@@ -141,8 +130,9 @@ export default class ScrollingButtonMenu extends React.Component {
     }
 
     render() {
-        const {items, upperCase, selectedOpacity, activeBackgroundColor, activeColor, buttonStyle, containerStyle, keyboardShouldPersistTaps} = this.props;
+        const {items, upperCase, selectedOpacity, activeBackgroundColor, activeColor, buttonStyle, containerStyle, keyboardShouldPersistTaps, isCurrentChildSelected} = this.props;
         const {index} = this.state;
+        
         return (
             <View style={[
                 styles.scrollArea,
@@ -163,16 +153,16 @@ export default class ScrollingButtonMenu extends React.Component {
                     keyboardShouldPersistTaps={keyboardShouldPersistTaps}
                 >
                     {
-                        items.map((route, i) => (
+                      (items?.length > 0) &&  items?.map((route, i) => (
                             <TouchableOpacity
                                 style={[
                                     styles.tabItem,
-                                    (index === route.id ? styles.tabItemFocused : {}),
+                                    (index === route?.id ? styles.tabItemFocused : {}),
                                     (buttonStyle ? buttonStyle : false),
-                                    (index === route.id && activeBackgroundColor ? {backgroundColor: activeBackgroundColor} : false),
+                                    (index === route.id && activeBackgroundColor && !isCurrentChildSelected ? {backgroundColor: activeBackgroundColor}:false ),
                                 ]}
-                                key={(route.id ? route.id : i).toString()}
-                                onPress={() => this.setState({index: route.id}, () => setTimeout(() => {
+                                key={(route?.id ? route?.id : i).toString()}
+                                onPress={() => this.setState({index: route?.id}, () => setTimeout(() => {
                                         this._scrollTo();
                                         return this.props.onPress(route);
                                     }, 0),
@@ -190,8 +180,8 @@ export default class ScrollingButtonMenu extends React.Component {
                             >
                                 <Text style={[
                                     styles.tabItemText,
-                                    (index == route.id ? styles.tabItemTextFocused : {}),
-                                    (index == route.id && activeColor ? {color: activeColor} : false),
+                                    (index == route?.id ? styles.tabItemTextFocused : {}),
+                                    (index == route?.id && activeColor ? {color: activeColor} : false),
                                 ]}>
                                     {upperCase ? route.name.toUpperCase() : route.name}
                                 </Text>
@@ -219,6 +209,7 @@ ScrollingButtonMenu.propTypes = {
     selectedOpacity: PropTypes.number,
     containerStyle: PropTypes.object,
     keyboardShouldPersistTaps: PropTypes.string,
+    isCurrentChildSelected: PropTypes.bool,
 };
 
 ScrollingButtonMenu.defaultProps = {

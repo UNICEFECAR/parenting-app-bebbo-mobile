@@ -27,10 +27,9 @@ const HeaderNotiIcon = (props: any): any => {
   const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
   const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
   const localNotificationGenerateType = useAppSelector((state: any) => state.notificationData.localNotificationGenerateType);
-
   const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
+        state.childData.childDataSet.activeChild != ''
+        ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
   const dispatch = useAppDispatch();
@@ -132,7 +131,7 @@ const HeaderNotiIcon = (props: any): any => {
                 //generate for new notifications
                 const allreminderNotis: any = []
                 const reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis, vchcEnabledFlag);
-                reminderNotis.reverse().forEach((item) => {
+                reminderNotis.reverse().forEach((item: any) => {
                   allreminderNotis.push(item)
                 })
                 allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: allreminderNotis })
@@ -202,7 +201,7 @@ const HeaderNotiIcon = (props: any): any => {
                 currentChildallnoti.push(item)
               })
             }
-            const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+            const childBirthDate = DateTime.fromJSDate(new Date(activeChild?.birthDate)).toMillis();
             //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
             const toDay = DateTime.fromJSDate(new Date()).toMillis();
             const combinedNotis = currentChildallnoti.sort(
@@ -218,7 +217,7 @@ const HeaderNotiIcon = (props: any): any => {
         }
       }
 
-    }, [activeChild.uuid, allnotis]),
+    }, [activeChild?.uuid, allnotis]),
   );
   useFocusEffect(
     React.useCallback(() => {
@@ -289,7 +288,7 @@ const HeaderNotiIcon = (props: any): any => {
       dispatch(setAllScheduledLocalNotificationData([]));
       dispatch(setAllLocalNotificationData(newAllChildNotis));
       const localnotiFlagObj = { generateFlag: false, generateType: 'add', childuuid: 'all' };
-      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+     dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
     }
     return (): any => {
       setFlagValue(false);
@@ -326,13 +325,23 @@ const HeaderNotiIcon = (props: any): any => {
     // LocalNotifications.getAllScheduledLocalNotifications();
     // LocalNotifications.getDeliveredNotifications();
     const fetchDataFav = async (): Promise<any> => {
-      const filterQuery = 'uuid == "' + activeChild.uuid + '"';
-      const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
-      dispatch(setFavouriteGames(childData[0].favoritegames));
+      try {
+        const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
+        const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        
+          // Object.keys(childData[0]?.favoriteadvices)?.length > 0 && dispatch(setFavouriteAdvices(childData[0]?.favoriteadvices));
+          // Object.keys(childData[0]?.favoritegames)?.length > 0 && dispatch(setFavouriteGames(childData[0].favoritegames));
+          console.log("fetchDataFav childdata",childData[0])
+          childData[0]?.favoriteadvices && dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)|| []));
+          childData[0]?.favoritegames && dispatch(setFavouriteGames(Object.values(childData[0]?.favoritegames) || []));  
+        
+      } catch(err:any){
+        console.error("Error in fetchDataFav:", err.message || err);
+      }
+      
     }
     fetchDataFav()
-  }, [activeChild.uuid]);
+  }, [activeChild?.uuid]);
   const navigation = useNavigation<any>();
   return (
     <>
@@ -353,5 +362,4 @@ const HeaderNotiIcon = (props: any): any => {
   );
 };
 export default HeaderNotiIcon;
-
 
