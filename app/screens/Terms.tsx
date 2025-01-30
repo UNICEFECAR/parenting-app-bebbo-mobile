@@ -23,7 +23,7 @@ import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
 import VectorImage from 'react-native-vector-image';
 import { activityLogo, adviceLogo, toolsLogo, bebboLogoShape, imgLogoChatbotNew } from '../instance';
 const flavor = process.env.FLAVOR || 'bebbo';
-const BebboLogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape.svg`)
+const BebboLogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`)
 import FeatureTCView from '@components/shared/FeaturesTCView';
 import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
 import { logEvent } from '../services/EventSyncService';

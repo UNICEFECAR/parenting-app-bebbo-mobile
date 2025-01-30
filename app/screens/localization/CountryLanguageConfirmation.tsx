@@ -42,9 +42,11 @@ import RNRestart from 'react-native-restart';
 import * as RNLocalize from "react-native-localize";
 import { secondaryBtnColor } from '@styles/style';
 import moment from 'moment'
+import 'moment/min/locales'
 import 'moment/locale/bn-bd'  // import for bangla language
 import 'moment/locale/bn' // import for bangla language
-// import 'moment/locale/sq'
+import 'moment/locale/sq'
+import 'moment/locale/sr'
 import 'moment/locale/tr'
 import { getLanguageCode } from '../../services/Utils';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
@@ -296,8 +298,9 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           I18nManager.forceRTL(false);
         }
       })
-
-    moment.locale(getLanguageCode(newLanguage?.languageCode))
+    console.log(getLanguageCode(newLanguage?.languageCode))
+    const sLng = getLanguageCode(newLanguage?.languageCode)
+    moment.locale(sLng)
     if (userIsOnboarded == true && (newLanguage.languageCode == languageCode)) {
       navigation.reset({
         index: 0,

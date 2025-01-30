@@ -35,7 +35,7 @@ flex:1;
 `;
 
 export const FlexColChart = styled(FlexCol)`
-background-color: ${(props:any):any => props.theme?.colors?.CHILDGROWTH_TINTCOLOR};
+background-color: ${(props: any): any => props.theme?.colors?.CHILDGROWTH_TINTCOLOR};
 marginLeft: -20px;
 marginRight: -20px;
 `;

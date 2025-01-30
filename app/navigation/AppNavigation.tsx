@@ -54,7 +54,11 @@ import TermsPage from '@screens/TermsPage';
 import { logEvent, synchronizeEvents } from '../services/EventSyncService';
 import AddChildSetup from '@screens/AddChildSetup';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
-import { apiUrlDevelop, apiBabuniUrlDevelop } from 'react-native-dotenv';
+import moment from 'moment'
+import 'moment/locale/bn-bd'  // import for bangla language
+import 'moment/locale/bn' // import for bangla language
+// import 'moment/locale/sq'
+import 'moment/locale/tr'
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);

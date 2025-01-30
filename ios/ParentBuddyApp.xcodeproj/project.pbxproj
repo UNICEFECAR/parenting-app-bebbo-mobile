@@ -192,7 +192,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ParentBuddyAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParentBuddyAppTests.m; sourceTree = "<group>"; };
 		1253F56D682F6F72C0F73F4E /* libPods-ParentBuddyApp-ParentBuddyAppBanglaDev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-ParentBuddyAppBanglaDev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* ParentBuddyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Bebbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bebbo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ParentBuddyApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ParentBuddyApp/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ParentBuddyApp/Images.xcassets; sourceTree = "<group>"; };
@@ -306,6 +306,8 @@
 		E81D24762D1975DB009BE118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist_MerhabaBebek/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E81D247F2D197771009BE118 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E81D24822D1977F0009BE118 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E865079D2D439E450040298D /* ParentBuddyAppBangla.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = ParentBuddyAppBangla.entitlements; path = ParentBuddyApp/ParentBuddyAppBangla.entitlements; sourceTree = "<group>"; };
+		E865079E2D439ED80040298D /* MerhabaBebek.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = MerhabaBebek.entitlements; path = ParentBuddyApp/MerhabaBebek.entitlements; sourceTree = "<group>"; };
 		E86B42B42D26C4E2002350FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E86B42B52D26C4E2002350FC /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		E86B42B92D26C50B002350FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -447,6 +449,8 @@
 		13B07FAE1A68108700A75B9A /* ParentBuddyApp */ = {
 			isa = PBXGroup;
 			children = (
+				E865079E2D439ED80040298D /* MerhabaBebek.entitlements */,
+				E865079D2D439E450040298D /* ParentBuddyAppBangla.entitlements */,
 				E81D247B2D1975FB009BE118 /* InfoPlist_MerhabaBebek */,
 				329F419F2C522D52005683FC /* InfoPlist_Babuni */,
 				32EB84382C12DD3200B8A367 /* LottieSplash */,
@@ -646,7 +650,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* ParentBuddyApp.app */,
+				13B07F961A680F5B00A75B9A /* Bebbo.app */,
 				00E356EE1AD99517003FC87E /* ParentBuddyAppTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* ParentBuddyApp-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* ParentBuddyApp-tvOSTests.xctest */,
@@ -810,7 +814,7 @@
 			);
 			name = ParentBuddyApp;
 			productName = ParentBuddyApp;
-			productReference = 13B07F961A680F5B00A75B9A /* ParentBuddyApp.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Bebbo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* ParentBuddyApp-tvOS */ = {
@@ -2974,7 +2978,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
@@ -3066,16 +3070,17 @@
 					"\"$(PODS_TARGET_SRCROOT)/include/\"",
 				);
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Bebbo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 2.2.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
-				PRODUCT_NAME = ParentBuddyApp;
+				PRODUCT_NAME = Bebbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
@@ -3095,7 +3100,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				EXCLUDED_ARCHS = "";
@@ -3126,16 +3131,17 @@
 					"$(BUILT_PRODUCTS_DIR)/Release-iphonesimulator",
 				);
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Bebbo;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 2.2.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
-				PRODUCT_NAME = ParentBuddyApp;
+				PRODUCT_NAME = Bebbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
@@ -3256,7 +3262,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppBangla.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -3378,7 +3384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppBangla.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -4154,7 +4160,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/MerhabaBebek.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -4276,7 +4282,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/MerhabaBebek.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;

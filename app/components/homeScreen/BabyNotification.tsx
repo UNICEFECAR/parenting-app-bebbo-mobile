@@ -29,7 +29,7 @@ import useDigitConverter from '../../customHooks/useDigitConvert';
 const BabyNotification = (): any => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const {convertDigits} = useDigitConverter()
+  const { convertDigits } = useDigitConverter()
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -50,11 +50,11 @@ const BabyNotification = (): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
   const [activeChildGenderData, setActiveChildGenderData] = React.useState<any>();
-  useEffect(()=>{
-    const gender = genders.find((g:any) => g.id === activeChild?.gender);
-    console.log('Activechild gender is',gender);
+  useEffect(() => {
+    const gender = genders.find((g: any) => g.id === activeChild?.gender);
+    console.log('Activechild gender is', gender);
     setActiveChildGenderData(gender);
-  },[activeChild?.gender])
+  }, [activeChild?.gender])
   return (
     <>
       <>
@@ -65,16 +65,16 @@ const BabyNotification = (): any => {
                 <FlexDirRow>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      {activeChild.photoUri != '' ? (
+                      {activeChild.photoUri ? (
                         <ImageIcon
                           source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
                         ></ImageIcon>
                       ) : (
-                        activeChildGenderData != null && activeChildGenderData?.unique_name ?
-                          (activeChildGenderData?.unique_name == taxonomyIds?.boyChildGender ?
-                            <Icon name="ic_baby" size={36} color="#000" /> :
-                            <Icon name="ic_baby_girl" size={36} color="#000" />) :
-                          <Icon name="ic_baby_girl" size={36} color="#000" />
+                        <Icon
+                          name={activeChildGenderData?.unique_name === taxonomyIds?.boyChildGender ? "ic_baby" : "ic_baby_girl"}
+                          size={36}
+                          color="#000"
+                        />
                       )}
                     </OuterIconLeft>
                   </OuterIconRow>

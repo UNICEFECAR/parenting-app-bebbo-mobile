@@ -2,7 +2,7 @@ import {
     GoogleSignin,
     User,
 } from '@react-native-google-signin/google-signin';
-
+import { projectNumber, webId, iosId } from 'react-native-dotenv';
 /**
  * Authenticate with Google.
  */
@@ -24,11 +24,11 @@ class GoogleAuth {
      * Must be called before any other method.
      */
     public configure(): any {
-        console.log('google initilize')
+        console.log(webId, 'google initilize', iosId)
         GoogleSignin.configure({
             scopes: ['https://www.googleapis.com/auth/drive.file'], // what API you want to access on behalf of the user, default is email and profile
-            webClientId: "1049214335867-tgk9d5o11osc3nr3bfi79v972imqjdfl.apps.googleusercontent.com",
-            iosClientId: "1049214335867-mq9ccbn4bed77detsln9b8m2nfoa0t48.apps.googleusercontent.com"
+            webClientId: `${projectNumber}-${webId}.apps.googleusercontent.com`,
+            iosClientId: `${projectNumber}-${iosId}.apps.googleusercontent.com`
         });
 
     }

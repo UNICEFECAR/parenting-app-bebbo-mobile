@@ -434,12 +434,13 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     try {
       await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
     } catch (error) {
-      Alert.alert('Error', 'Error in creating child'+JSON.stringify(error));
+      Alert.alert('Error', 'Error in creating child' + JSON.stringify(error));
     }
-    
+
   }
   //new child add from 
   if (param == 0) {
+    console.log('sssssss')
     if (isDefaultChild) {
       const eventData = { 'name': ONBOARDING_SKIPPED }
       logEvent(eventData, netInfo.isConnected);
@@ -473,6 +474,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     const ageLimit = [];
     const startDate = new Date(oldBirthDate)
     const someDate = new Date(data[0].birthDate)
+    console.log(data, '=======', dateTimesAreSameDay(startDate, someDate))
     if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate) == false) {
       // regenerate notifications for new dob child
       const storedata = store.getState();
@@ -515,6 +517,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       const taxonomyData = await checkBetween(0, ageLimit, childAge);
       let apiJsonData;
+      console.log('---------', taxonomyData)
       //  apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
       if (taxonomyData?.length > 0) {
         apiJsonData = apiJsonDataGet("all");
@@ -530,6 +533,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
             prevPage: 'AddEditChild'
           });
         } else {
+          console.log('===>1')
           navigation.navigate('ChildProfileScreen');
         }
       }
@@ -542,6 +546,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
           setActiveChild(languageCode, data[0].uuid, dispatch, childAge, false);
         }
       }
+      console.log('===>2')
       navigation.navigate('ChildProfileScreen');
     }
     const notiFlagObj = { key: 'generateNotifications', value: true };
@@ -655,7 +660,7 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
       }
     }
   } catch (error) {
-    console.log('getAllChildren catch',error)
+    console.log('getAllChildren catch', error)
   }
 }
 

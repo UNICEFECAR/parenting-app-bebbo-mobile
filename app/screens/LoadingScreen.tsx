@@ -33,6 +33,8 @@ import KeepAwake from '@sayem314/react-native-keep-awake';
 import RNRestart from 'react-native-restart';
 import i18next from 'i18next';
 import { onLocalizationSelect, setSponsorStore } from '../redux/reducers/localizationSlice';
+import moment from 'moment';
+import { getLanguageCode } from '../services/Utils';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -309,6 +311,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       console.log(language, "allCountries in loading screen", isFirst)
       i18next.changeLanguage(language.locale)
         .then(() => {
+          moment.locale(getLanguageCode(language?.languageCode))
           if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
             if (AppLayoutDirection == 'ltr') {
               //remove rtl on backhandler

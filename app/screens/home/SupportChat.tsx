@@ -4,7 +4,7 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1Centerr, Heading4Center } from '@styles/typography';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, FlatList, ImageBackground, Linking, Modal, Platform, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -66,6 +66,11 @@ const SupportChat = ({ navigation }: Props): any => {
       ? JSON.parse(state.utilsData.faqsData)
       : state.utilsData.faqsData,
   );
+
+  useLayoutEffect(() => {
+    navigation.closeDrawer()
+  }, [])
+
   function parseWithFunctions(obj: any): any {
     return JSON.parse(obj, (k, v) => {
       if (typeof v === 'string' && k == 'nextStepFunc') {
@@ -74,12 +79,12 @@ const SupportChat = ({ navigation }: Props): any => {
       return v;
     });
   }
-  const chatBotData = useAppSelector((state: any) =>{
-    console.log('ChildData is',state.childData.childDataSet.chatBotData)
-    console.log('all texonomy data',state.utilsData.taxonomy?.allTaxonomyData)
+  const chatBotData = useAppSelector((state: any) => {
+    console.log('ChildData is', state.childData.childDataSet.chatBotData)
+    console.log('all texonomy data', state.utilsData.taxonomy?.allTaxonomyData)
     state.childData.childDataSet.chatBotData != '' ? parseWithFunctions(state.childData.childDataSet.chatBotData) : state.childData.childDataSet.chatBotData
   }
-    );
+  );
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [scrollLoad, setScrollLoad] = React.useState(true);
   const surveryData = useAppSelector((state: any) =>
@@ -121,11 +126,11 @@ const SupportChat = ({ navigation }: Props): any => {
   }
 
   const categorySelection = (stepIndex: any, optionIndex: any, steps2: any): any => {
-    console.log('hellooooo index is',stepIndex)
+    console.log('hellooooo index is', stepIndex)
     let localsteps = [...steps2];
-    console.log('steps index is',stepIndex)
-    console.log('optionIndex index is',optionIndex)
-    console.log('steps2 is',steps2)
+    console.log('steps index is', stepIndex)
+    console.log('optionIndex index is', optionIndex)
+    console.log('steps2 is', steps2)
     //changing answer value from null to option value
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
     //changing showNextStep to true of the nextStep id
@@ -367,8 +372,8 @@ const SupportChat = ({ navigation }: Props): any => {
   }, [steps]);
 
   const setOnloadChatBotData = (chatBotData: any, stepsjson: any): any => {
-    console.log('ChatbotData',chatBotData)
-    console.log('stepsjson',stepsjson)
+    console.log('ChatbotData', chatBotData)
+    console.log('stepsjson', stepsjson)
     if (chatBotData && chatBotData.length > 0) {
       setsteps((chatBotData));
     } else {
@@ -378,16 +383,16 @@ const SupportChat = ({ navigation }: Props): any => {
         const localstepsjson = [...stepsjson];
         localstepsjson[1].showNextStep = true;
         setsteps(localstepsjson);
-        console.log('setsteps is 1',steps)
+        console.log('setsteps is 1', steps)
       }, delayOfConcurrentSteps);
     }
   }
- 
+
   // useEffect(()=>{
   //   console.log('stepsjson123',stepsjson)
   //   async function fetchData(): Promise<any> {
   //     setOnloadChatBotData(chatBotData, stepsjson);
-     
+
   //   }
   //   fetchData()
   //  })
@@ -395,8 +400,8 @@ const SupportChat = ({ navigation }: Props): any => {
     try {
       // Fetch necessary data (using Redux or other methods)
       // Update the steps state with the fetched chat steps
-      console.log('chatBotData',chatBotData)
-      console.log('stepsjson',stepsjson)
+      console.log('chatBotData', chatBotData)
+      console.log('stepsjson', stepsjson)
       setOnloadChatBotData(chatBotData, stepsjson);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -407,7 +412,7 @@ const SupportChat = ({ navigation }: Props): any => {
   // useEffect(() => {
   //   fetchData(); // Fetch data on component mount
   // }, []);// Add stepsjson to the dependency array
-  
+
   useEffect(() => {
     async function fetchData(): Promise<any> {
       setOnloadChatBotData(chatBotData, stepsjson);
@@ -415,10 +420,10 @@ const SupportChat = ({ navigation }: Props): any => {
     fetchData()
   }, []);
   const scrollToIndexFailed = (error: any): any => {
-    console.log('Scrolled failed while initial',error)
-   // const offset = error.averageItemLength * error.index;
+    console.log('Scrolled failed while initial', error)
+    // const offset = error.averageItemLength * error.index;
     //flatListRef?.current?.scrollToOffset({ offset });
-    setTimeout(() => flatListRef?.current?.scrollToIndex({ animated: true,index: steps.length - 1 }), 10); // You may choose to skip this line if the above typically works well because your average item height is accurate.
+    setTimeout(() => flatListRef?.current?.scrollToIndex({ animated: true, index: steps.length - 1 }), 10); // You may choose to skip this line if the above typically works well because your average item height is accurate.
   }
 
   return (
@@ -441,51 +446,51 @@ const SupportChat = ({ navigation }: Props): any => {
             <ChatContainer>
               {steps.length > 0 ?
                 <FlatList
-                ref={flatListRef}
-                data={steps}
-                onScroll={(e): any => {
-                  console.log("on scroll Error e-", e);
-                }}
-                nestedScrollEnabled={true}
-                initialScrollIndex={Math.max(steps.length - 1, 0)}
-                removeClippedSubviews={true}
-                initialNumToRender={75}
-                maxToRenderPerBatch={75}
-                updateCellsBatchingPeriod={100}
-                scrollIndicatorInsets={{ right: 1 }}
-                windowSize={90}
-                getItemLayout={(data, index):any => {
-                  return {
+                  ref={flatListRef}
+                  data={steps}
+                  onScroll={(e): any => {
+                    console.log("on scroll Error e-", e);
+                  }}
+                  nestedScrollEnabled={true}
+                  initialScrollIndex={Math.max(steps.length - 1, 0)}
+                  removeClippedSubviews={true}
+                  initialNumToRender={75}
+                  maxToRenderPerBatch={75}
+                  updateCellsBatchingPeriod={100}
+                  scrollIndicatorInsets={{ right: 1 }}
+                  windowSize={90}
+                  getItemLayout={(data, index): any => {
+                    return {
                       length: windowWidthstyle,
                       offset: windowHeightstyle * index,
                       index
-                  };
-              }}
-                renderItem={({ item, index }: any):any => (
-                  <ChatBot
-                    item={item}
-                    index={index}
-                    steps={steps}
-                    stepsjson={stepsjson}
-                    categorySelection={categorySelection}
-                    dynamicStepSelection={dynamicStepSelection}
-                    backToStep={backToStep}
-                    backToHomeScreen={backToHomeScreen}
-                    showFeedbackLink={showFeedbackLink}
-                    noDataStep={noDataStep}
-                  />
-                )}
-                keyExtractor={(item: any, index: any): any => index.toString()}
-                onScrollToIndexFailed={(info: { averageItemLength: number; highestMeasuredFrameIndex: number; index: number }):any => {
-                  console.log('Scrolled failed while initial', info);
-                  setTimeout(() => {
-                    const offset = info.averageItemLength * info.index;
-                    flatListRef?.current?.scrollToOffset({ offset, animated: true });
-                  }, 10);
-                  setTimeout(() => flatListRef?.current?.scrollToIndex({ animated: true,index: steps.length - 1 }), 10);
-                }}
-              />
-              
+                    };
+                  }}
+                  renderItem={({ item, index }: any): any => (
+                    <ChatBot
+                      item={item}
+                      index={index}
+                      steps={steps}
+                      stepsjson={stepsjson}
+                      categorySelection={categorySelection}
+                      dynamicStepSelection={dynamicStepSelection}
+                      backToStep={backToStep}
+                      backToHomeScreen={backToHomeScreen}
+                      showFeedbackLink={showFeedbackLink}
+                      noDataStep={noDataStep}
+                    />
+                  )}
+                  keyExtractor={(item: any, index: any): any => index.toString()}
+                  onScrollToIndexFailed={(info: { averageItemLength: number; highestMeasuredFrameIndex: number; index: number }): any => {
+                    console.log('Scrolled failed while initial', info);
+                    setTimeout(() => {
+                      const offset = info.averageItemLength * info.index;
+                      flatListRef?.current?.scrollToOffset({ offset, animated: true });
+                    }, 10);
+                    setTimeout(() => flatListRef?.current?.scrollToIndex({ animated: true, index: steps.length - 1 }), 10);
+                  }}
+                />
+
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
 
             </ChatContainer>

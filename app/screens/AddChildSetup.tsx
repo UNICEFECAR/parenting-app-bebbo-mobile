@@ -378,7 +378,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", childSet[0].uuid);
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
       await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
-      await setActiveChild(languageCode, childSet[0].uuid, dispatch, childAge, false,taxonomyIds?.boyChildGender);
+      await setActiveChild(languageCode, childSet[0].uuid, dispatch, childAge, false, taxonomyIds?.boyChildGender);
       // dispatch(setActiveChildData(childSet[0].uuid))
       const localnotiFlagObj = { generateFlag: true, generateType: 'add', childuuid: 'all' };
       await dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));

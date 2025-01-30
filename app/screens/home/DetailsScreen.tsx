@@ -89,7 +89,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
 
   const [detailDataToUse, setDetailDataToUse] = useState<any>({});
-
+  console.log('-------->', detailDataToUse)
   const adviceval = fromScreen === 'Activities' || fromScreen === "FirebaseActivities" || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ? false : true;
   const onHeaderBack = (): any => {
     console.log(fromScreen, "/", fromCd);
@@ -242,7 +242,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   useEffect(() => {
 
     const functionOnLoad = async (): Promise<any> => {
-     
+
 
       if (fromScreen == "VaccinationTab" || fromScreen == "FirebaseVaccinationTab" || fromScreen == "Articles" || fromScreen == "FirebaseArticles" || fromScreen == "HealthCheckupsTab" || fromScreen == "FirebaseHealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat") {
         console.log(detailData, "..detailData..")
@@ -252,16 +252,16 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           if (articleData && articleData.length > 0) {
             setDetailDataToUse(articleData[0]);
             if (fromScreen === 'Activities' || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities') {
-              console.log('Game Details screen opened from actvties',fromScreen,articleData[0]?.id,articleData[0]?.activity_category);
+              console.log('Game Details screen opened from actvties', fromScreen, articleData[0]?.id, articleData[0]?.activity_category);
               const eventGameCatData = { 'name': GAME_CATEGORY_SELECTED + "_" + articleData[0]?.activity_category }
               const eventData = { 'name': GAME_DETAILS_OPENED, 'params': { game_id: articleData[0]?.id, game_category_id: articleData[0]?.activity_category } }
               await logEvent(eventGameCatData, netInfo.isConnected);
-              console.log('Params game pass for firebase event number type',eventData);
+              console.log('Params game pass for firebase event number type', eventData);
               await logEvent(eventData, netInfo.isConnected)
             } else {
               const eventAdviceCatData = { 'name': ADVICE_CATEGORY_SELECTED + "_" + articleData[0]?.category }
               const eventData = { 'name': ADVICE_DETAILS_OPENED, 'params': { advise_id: articleData[0]?.id, advice_catergory_id: articleData[0]?.category } }
-              console.log('Params advice pass for firebase event number type',eventData);
+              console.log('Params advice pass for firebase event number type', eventData);
               await logEvent(eventAdviceCatData, netInfo.isConnected)
               await logEvent(eventData, netInfo.isConnected)
             }
@@ -363,31 +363,31 @@ const DetailsScreen = ({ route, navigation }: any): any => {
       }
 
       const realm = await dataRealmCommon.openRealm();
-      if (fromScreen === 'Activities' || fromScreen === "Articles" || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' ||  fromScreen === 'FavActivities' ||
-      fromScreen === "VaccinationTab" || fromScreen === "FirebaseVaccinationTab" || fromScreen === "FirebaseArticles" || fromScreen === "HealthCheckupsTab" || fromScreen === "FirebaseHealthCheckupsTab" 
-      || fromScreen === "AddChildHealthCheckup" || fromScreen === "AddChildVaccination" || fromScreen === "MileStone" ||  fromScreen === "FavArticles" || fromScreen === "SupportChat") {
+      if (fromScreen === 'Activities' || fromScreen === "Articles" || fromScreen === 'FirebaseActivities' || fromScreen === 'MileStoneActivity' || fromScreen === 'FavActivities' ||
+        fromScreen === "VaccinationTab" || fromScreen === "FirebaseVaccinationTab" || fromScreen === "FirebaseArticles" || fromScreen === "HealthCheckupsTab" || fromScreen === "FirebaseHealthCheckupsTab"
+        || fromScreen === "AddChildHealthCheckup" || fromScreen === "AddChildVaccination" || fromScreen === "MileStone" || fromScreen === "FavArticles" || fromScreen === "SupportChat") {
         if (detailData.type == "Article") {
-          const articleVisitCount: any = realm?.objects<ViewDetailsEntity>('ArticleActivityView').filter((item:any)=>item.id ===detailData.id)
+          const articleVisitCount: any = realm?.objects<ViewDetailsEntity>('ArticleActivityView').filter((item: any) => item.id === detailData.id)
           console.log('articleVisitCount visit count', articleVisitCount);
           realm?.write(() => {
             const articleEvent = realm.create('ArticleActivityView', {
               id: detailData?.id,
               type: 'Article',
               isViewed: true,
-              viewCount: articleVisitCount.length>0? articleVisitCount[0].viewCount + 1: 1,
-            },Realm.UpdateMode.Modified);
+              viewCount: articleVisitCount.length > 0 ? articleVisitCount[0].viewCount + 1 : 1,
+            }, Realm.UpdateMode.Modified);
             console.log('Artcile Evrnt', articleEvent);
           });
         } else {
-          const activityVisitCount: any = realm?.objects<ViewDetailsEntity>('ArticleActivityView').filter((item:any)=>item.id ===detailData.id)
-          console.log('Activity visit count', activityVisitCount,detailData?.id);
+          const activityVisitCount: any = realm?.objects<ViewDetailsEntity>('ArticleActivityView').filter((item: any) => item.id === detailData.id)
+          console.log('Activity visit count', activityVisitCount, detailData?.id);
           realm?.write(() => {
             const activityEvent = realm.create('ArticleActivityView', {
               id: detailData?.id,
               type: 'Activity',
               isViewed: true,
-              viewCount: activityVisitCount.length>0? activityVisitCount[0].viewCount + 1: 1,
-            },Realm.UpdateMode.Modified);
+              viewCount: activityVisitCount.length > 0 ? activityVisitCount[0].viewCount + 1 : 1,
+            }, Realm.UpdateMode.Modified);
             console.log('Activity Evrnt', activityEvent);
           });
         }
@@ -435,21 +435,21 @@ const DetailsScreen = ({ route, navigation }: any): any => {
 
   const highlightWord = (content: string, query: string[]): any => {
     if (typeof content !== 'string') {
-        return "";
+      return "";
     }
 
     let highlightedContent = content; // Initialize with original content
-   
+
     query.forEach((item) => {
       const regex = new RegExp(`${item.trim()}`, 'gi');
-        if(item.length>2){
-          highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
-        }
-      });
-  
+      if (item.length > 2) {
+        highlightedContent = highlightedContent.replace(regex, '<span style="background-color: rgba(255, 141, 107, 0.4);">$&</span>');
+      }
+    });
+
 
     return highlightedContent;
-}
+  }
 
 
   const highlightTextWithoutImages = (jsonContent: string, wordToHighlight: string[]): string => {
@@ -460,12 +460,12 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     const modifiedParts = parts.map((part: any): any => {
       if (!/<img[^>]*>/i.test(part)) {
         return highlightWord(part, wordToHighlight); // Pass wordToHighlight array here
-    }
+      }
       return part;
     });
     return modifiedParts.join('')
   }
-  
+
   const highlightedTitle = queryText != undefined
     ? queryText.length !== 0
       ? highlightWord(detailDataToUse?.title, queryText)

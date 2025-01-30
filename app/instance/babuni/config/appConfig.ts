@@ -1,4 +1,4 @@
-import { apiUrlDevelop, apiBabuniUrlDevelop } from 'react-native-dotenv';
+import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 
 const config = {
@@ -95,12 +95,12 @@ const config = {
     { name: 'Motor', id: 541, image: 'ic_act_movement' },
   ],
   articleCategoryobj: [
-    { name: 'playingAndLearning', id: 55, image: 'ic_artl_play' },
-    { name: 'healthAndWellbeingid', id: 2, image: 'ic_artl_health' },
-    { name: 'safetyAndProtection', id: 3, image: 'ic_artl_safety' },
-    { name: 'responsiveParenting', id: 56, image: 'ic_artl_responsive' },
-    { name: 'parentingCorner', id: 4, image: 'ic_artl_parenting' },
-    { name: 'nutritionAndBreastfeeding', id: 1, image: 'ic_artl_nutrition' },
+    { name: 'playingAndLearning', id: 396, image: 'ic_artl_play' },
+    { name: 'healthAndWellbeingid', id: 376, image: 'ic_artl_health' },
+    { name: 'safetyAndProtection', id: 406, image: 'ic_artl_safety' },
+    { name: 'responsiveParenting', id: 401, image: 'ic_artl_responsive' },
+    { name: 'parentingCorner', id: 391, image: 'ic_artl_parenting' },
+    { name: 'nutritionAndBreastfeeding', id: 386, image: 'ic_artl_nutrition' },
   ],
   bothParentGender: 621,
   bothChildGender: 536,

@@ -2,24 +2,24 @@ import { DateTime } from "luxon";
 import { apiUrlDevelop } from "react-native-dotenv";
 import { useAppSelector } from "../../App";
 
-export const getAllVaccinePeriods = ():any => {
+export const getAllVaccinePeriods = (): any => {
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
   //filter measures by didChildGetVaccines
-  const vaccineMeasures = activeChild?.measures.filter((item:any) => item.didChildGetVaccines == true);
+  const vaccineMeasures = activeChild?.measures.filter((item: any) => item.didChildGetVaccines == true);
   const measuredVaccines: any[] = [];
-  vaccineMeasures.forEach((measure:any) => {
+  vaccineMeasures.forEach((measure: any) => {
     const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? JSON.parse(measure.vaccineIds) : [];
     if (vaccinesForAmeasure) {
-      vaccinesForAmeasure.forEach((vaccine:any) => {
+      vaccinesForAmeasure.forEach((vaccine: any) => {
         measuredVaccines.push({ uuid: vaccine.uuid, measurementDate: measure.measurementDate });
       });
     }
   });
-  const vaccineMeasuredInfo = (vaccine:any):any => {
+  const vaccineMeasuredInfo = (vaccine: any): any => {
     return (measuredVaccines.find(item => String(item.uuid) == String(vaccine.uuid)))
   }
   const birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
@@ -31,17 +31,16 @@ export const getAllVaccinePeriods = ():any => {
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
   const allGrowthPeriods = taxonomy.growth_period
-  const getVaccineInfo = (periodID:any):any => {
-    return allGrowthPeriods.find((item:any) => item.id == periodID);
+  const getVaccineInfo = (periodID: any): any => {
+    return allGrowthPeriods.find((item: any) => item.id == periodID);
   }
   const allVaccinePeriods = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
-  const group_to_growthPeriod = allVaccinePeriods.reduce(function (obj:any, item:any) {
-     obj[item.growth_period] = obj[item.growth_period] || [];
-     console.log(item,"...itemData..",apiUrlDevelop)
-    obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at,old_calendar: item.old_calendar });
+  const group_to_growthPeriod = allVaccinePeriods.reduce(function (obj: any, item: any) {
+    obj[item.growth_period] = obj[item.growth_period] || [];
+    obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at, old_calendar: item.old_calendar });
     return obj;
   }, {});
   const groupsForPeriods: any = Object.keys(group_to_growthPeriod).map(function (key) {
@@ -54,18 +53,18 @@ export const getAllVaccinePeriods = ():any => {
       item.vaccination_opens = period.vaccination_opens;
     }
     item?.vaccines.forEach((vaccine: any) => {
-       const vaccineMeasured = vaccineMeasuredInfo(vaccine);
-       vaccine.isMeasured = vaccineMeasured ? true : false;
+      const vaccineMeasured = vaccineMeasuredInfo(vaccine);
+      vaccine.isMeasured = vaccineMeasured ? true : false;
       vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
     })
   })
   const sortedGroupsForPeriods = [...groupsForPeriods].sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
   );
-  const isUpComingPeriod = (vaccination_opens: number):any => {
+  const isUpComingPeriod = (vaccination_opens: number): any => {
     return vaccination_opens > childAgeIndays ? true : false;
   };
-  const isPreviousPeriod = (vaccination_opens: number):any => {
+  const isPreviousPeriod = (vaccination_opens: number): any => {
     return vaccination_opens <= childAgeIndays ? true : false;
   };
   sortedGroupsForPeriods.forEach((period) => {
@@ -88,23 +87,23 @@ export const getAllVaccinePeriods = ():any => {
   let overDuePreviousVCcount, doneVCcount, totalUpcomingVaccines, totalPreviousVaccines;
   if (upcomingPeriods?.length > 0) {
     totalUpcomingVaccines = upcomingPeriods?.map((item) => {
-      return item?.vaccines.filter((item:any) => {
-        return item?.isMeasured == false && item.old_calendar==0;
+      return item?.vaccines.filter((item: any) => {
+        return item?.isMeasured == false && item.old_calendar == 0;
       }).length;
     }).reduce((accumulator, current) => {
       return accumulator + current;
     });
   }
   if (previousPeriods?.length > 0) {
-    totalPreviousVaccines = previousPeriods?.map((item:any) => {
+    totalPreviousVaccines = previousPeriods?.map((item: any) => {
       return item?.vaccines.length;
     }).reduce((accumulator, current) => {
       return accumulator + current;
     });
   }
-   if (sortedGroupsForPeriods?.length > 0) {
+  if (sortedGroupsForPeriods?.length > 0) {
     doneVCcount = sortedGroupsForPeriods.map((item) => {
-      return item.vaccines.filter((item:any) => {
+      return item.vaccines.filter((item: any) => {
         return item.isMeasured;
       }).length;
     }).reduce((accumulator, current) => {
@@ -113,8 +112,8 @@ export const getAllVaccinePeriods = ():any => {
   }
   if (previousPeriods?.length > 0) {
     overDuePreviousVCcount = previousPeriods.map((item) => {
-      return item.vaccines.filter((item:any) => {
-        return !item.isMeasured && item.old_calendar==0;
+      return item.vaccines.filter((item: any) => {
+        return !item.isMeasured && item.old_calendar == 0;
       }).length;
     }).reduce((accumulator, current) => {
       return accumulator + current;

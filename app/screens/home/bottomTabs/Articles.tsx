@@ -176,6 +176,8 @@ const Articles = ({ route, navigation }: any): any => {
       }
     });
 
+    // console.log('[===]', combinedarr.filter(i => i.cover_video))
+
     return combinedarr;
   }
   const preprocessArticles = (articles: any): any => {
@@ -250,8 +252,9 @@ const Articles = ({ route, navigation }: any): any => {
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
-  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == appConfig.videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && taxonomyIds?.articleCategoryArray?.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == taxonomyIds?.bothChildGender));
-  
+  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == appConfig.videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && taxonomyIds?.articleCategoryArray?.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == appConfig?.bothChildGender));
+  console.log('=========', videoarticleData)
+
   let articleData: any = mergearr(articleDataOld, videoarticleData, true);
   const [filteredData, setfilteredData] = useState<any>([]);
   const [showNoData, setshowNoData] = useState(false);
@@ -280,7 +283,7 @@ const Articles = ({ route, navigation }: any): any => {
   };
 
   const showSelectedBracketData = async (item: any): Promise<any> => {
-    console.log('Child id is',item.id)
+    console.log('Child id is', item.id)
     if (item && item?.id !== null) {
       const eventData = { 'name': ADVICE_AGEGROUP_SELECTED, 'params': { age_id: item.id } }
       logEvent(eventData, netInfo.isConnected)
@@ -462,6 +465,7 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = aggregatedResults.filter((x: any) => itemId.includes(x.category));
             }
+            console.log('[]1', filteredResults)
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
@@ -476,12 +480,14 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = results.filter((x: any) => itemId.includes(x.category));
             }
+            console.log('[]2', filteredResults)
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
             toTop()
           }
         } else {
+          console.log('[]3', newArticleData)
           setfilteredData(newArticleData);
         }
 
@@ -507,6 +513,8 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = aggregatedResults;
             }
+            console.log('[]4', filteredResults)
+
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
@@ -519,6 +527,8 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = results;
             }
+            console.log('[]5', filteredResults)
+
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
@@ -526,6 +536,10 @@ const Articles = ({ route, navigation }: any): any => {
           }
 
         } else {
+
+
+          console.log('[]6', newArticleData)
+
           setfilteredData(newArticleData);
         }
         setLoadingArticle(false);
@@ -649,10 +663,10 @@ const Articles = ({ route, navigation }: any): any => {
             }
           },
           fields: ['title', 'summary', 'body'],
-          storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'related_articles', 'embedded_images']
+          storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'cover_video', 'related_articles', 'embedded_images']
         });
 
-       // processedArticles.forEach((item: any) => searchIndex.add(item));
+        // processedArticles.forEach((item: any) => searchIndex.add(item));
         console.log('processedArticles is', processedArticles?.length);
         searchIndexData.addAllAsync(processedArticles);
         setSearchIndex(searchIndexData);
@@ -721,6 +735,8 @@ const Articles = ({ route, navigation }: any): any => {
         } else {
           filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         }
+        // console.log('[===]0', filteredResults.filter(i => i.cover_video))
+        console.log('[]7', filteredResults)
         setfilteredData(filteredResults);
         setLoadingArticle(false)
         setIsSearchedQueryText(false)
@@ -728,13 +744,15 @@ const Articles = ({ route, navigation }: any): any => {
       } else {
         const results = searchIndex.search(queryText);
         let filteredResults: any = null;
-        console.log('selectedchild id is',currentSelectedChildId)
+        console.log('selectedchild id is', currentSelectedChildId)
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = results.filter((x: any) => selectedCategoryId.includes(x.category));
           filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         } else {
           filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         }
+        console.log('[===]1', filteredResults.filter(i => i.cover_video))
+        console.log('[]8', filteredResults)
         setfilteredData(filteredResults);
         setLoadingArticle(false)
         setIsSearchedQueryText(false)

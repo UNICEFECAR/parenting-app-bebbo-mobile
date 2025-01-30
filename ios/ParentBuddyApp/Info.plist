@@ -23,6 +23,10 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb$(facebookAppId)</string>
@@ -33,7 +37,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
+				<string>com.googleusercontent.apps.185520625819-2paqi14b84eaov6d69t2d2tnno5fri3p</string>
 			</array>
 		</dict>
 		<dict>
@@ -69,6 +73,8 @@
 	<string>$(facebookClientToken)</string>
 	<key>FacebookDisplayName</key>
 	<string>$(facebookAppDisplayName)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -125,8 +131,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>
 </plist>

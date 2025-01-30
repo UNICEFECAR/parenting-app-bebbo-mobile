@@ -1,4 +1,4 @@
-import { apiUrlDevelop, apiBabuniUrlDevelop } from 'react-native-dotenv';
+import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 
 const config = {
@@ -103,7 +103,8 @@ const config = {
     { name: 'nutritionAndBreastfeeding', id: 1, image: 'ic_artl_nutrition' },
   ],
   bothParentGender: 60,
-  bothChildGender: 41,
+  bothChildGender: 59,
+  girlChildGender: 41,
   boyChildGender: 40,
   weightGrowthType: 32786,
   heightGrowthType: 6461,

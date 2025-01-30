@@ -261,7 +261,7 @@ export const removeParams = (sParam: any): any => {
     }
 }
 export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any): any => {
-    console.log('Check button here', relationship, gender, birthDate, param, name)
+    // console.log('Check button here', relationship, gender, birthDate, param, name)
     if (birthDate == null || birthDate == undefined) {
         return false;
     }
@@ -501,16 +501,57 @@ const checkFileExistence = async (filePath: string) => {
     }
 };
 
-export const getLanguageCode = (languageCode: string) => {
-    const validLanguageCodes = moment.locales()
+export const getLanguageCode = (languageCode: string): string => {
+    const validLanguageCodes = moment.locales(); // Moment.js locales
+    const localeList = [
+        { name: "Kosovo", lcode: "xk-sq", locale: "sq" },
+        { name: "Kosovo", lcode: "xk-rs", locale: "sr" },
+        { name: "Bangladesh", lcode: "bn", locale: "bn" },
+        { name: "Albania (Shqipëria)", lcode: "al-sq", locale: "sq" },
+        { name: "Belarus (Беларусь)", lcode: "by-be", locale: "be" },
+        { name: "Belarus (Беларусь)", lcode: "by-ru", locale: "ru" },
+        { name: "Bulgaria (България)", lcode: "bg-bg", locale: "bg" },
+        { name: "Greece (Ελλάδα)", lcode: "gr-el", locale: "el" },
+        { name: "Kyrgyzstan (Кыргызстан)", lcode: "kg-ky", locale: "ky" },
+        { name: "Kyrgyzstan (Кыргызстан)", lcode: "kg-ru", locale: "ru" },
+        { name: "Moldova (Moldova)", lcode: "md-ro", locale: "ro" },
+        { name: "Montenegro (Crna Gora)", lcode: "me-cnr", locale: "me" },
+        { name: "North Macedonia (Северна Македонија)", lcode: "mk-mk", locale: "sq" },
+        { name: "North Macedonia (Северна Македонија)", lcode: "mk-sq", locale: "mk" },
+        { name: "Romania (România)", lcode: "ro-ro", locale: "ro" },
+        { name: "Serbia (Srbija)", lcode: "rs-sr", locale: "sr" },
+        { name: "Serbia (Srbija)", lcode: "rs-en", locale: "en" },
+        { name: "Slovakia (Slovensko)", lcode: "sk", locale: "sk" },
+        { name: "Tajikistan (Тоҷикистон)", lcode: "tj-tg", locale: "tg" },
+        { name: "Tajikistan (Тоҷикистон)", lcode: "tj-ru", locale: "ru" },
+        { name: "Ukraine (Україна)", lcode: "uk", locale: "uk" },
+        { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-uz", locale: "uz" },
+        { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-ru", locale: "ru" },
+        { name: "English", lcode: "en", locale: "en" },
+        { name: "Russian", lcode: "ru", locale: "ru" },
+        { name: "Türkiye", lcode: "tr", locale: "tr" },
+    ];
+
+    // Process the input code
     const processedCode = languageCode.includes('-')
-        ? languageCode.split('-')[1]
+        ? languageCode.split('-')[1] // Extract part after '-'
         : languageCode;
 
-    // Check if the processed code exists in the valid language codes list
-    return validLanguageCodes.includes(languageCode) || validLanguageCodes.includes(processedCode)
-        ? languageCode
-        : "en";
+    // Check if the languageCode or processedCode is valid
+    if (validLanguageCodes.includes(languageCode) || validLanguageCodes.includes(processedCode)) {
+        // console.log("============", processedCode)
+        return processedCode;
+    }
+
+    // Search for a matching locale in localeList based on the lcode
+    const match = localeList.find((entry) => entry.lcode === languageCode);
+    if (match) {
+        // console.log("============", match.locale)
+        return match.locale; // Return the matching locale
+    }
+
+    // Fallback to "en" if no match is found
+    return "en";
 }
 
 //child data get
