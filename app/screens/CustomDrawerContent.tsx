@@ -270,7 +270,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
         <ScrollView style={styles.scrollViewStyle}>
           <Flex1>
             <Pressable
-              onPress={(): any => navigation.navigate('ChildProfileScreen')}
+              onPress={(): any => {
+
+                navigation.navigate('ChildProfileScreen')
+                navigation.closeDrawer()
+              }}
               style={{
                 backgroundColor: headerColor,
               }}>
@@ -280,15 +284,20 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     <FlexDirRow>
                       <OuterIconRow>
                         <OuterIconLeft15>
-                          {activeChild.photoUri != '' ? (
+                          {activeChild.photoUri ? (
                             <ImageIcon
                               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
                           ) : (
-                            activeChildGenderData != null ?
-                              (activeChildGenderData?.unique_name != null && genders.find((g: any) => g.id === activeChild?.gender)?.unique_name == taxonomyIds?.boyChildGender ?
-                                <Icon name="ic_baby" size={36} color="#000" /> :
-                                <Icon name="ic_baby_girl" size={36} color="#000" />) :
-                              <Icon name="ic_baby_girl" size={36} color="#000" />
+                            <Icon
+                              name={
+                                activeChildGenderData &&
+                                  genders.find((g: any) => g.id === activeChild?.gender)?.unique_name === taxonomyIds?.boyChildGender
+                                  ? "ic_baby"
+                                  : "ic_baby_girl"
+                              }
+                              size={36}
+                              color="#000"
+                            />
                           )}
                         </OuterIconLeft15>
                       </OuterIconRow>
@@ -322,7 +331,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           </Flex1>
 
           <DrawerLinkView
-            onPress={(): any => navigation.navigate('Home', { screen: 'Home' })}>
+            onPress={(): any => {
+              navigation.navigate('Home', { screen: 'Home' })
+              navigation.closeDrawer()
+            }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_home" size={25} color="#000" />
@@ -334,7 +346,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
 
 
           <DrawerLinkView
-            onPress={(): any => navigation.navigate('NotificationsScreen')}>
+            onPress={(): any => {
+              navigation.navigate('NotificationsScreen')
+              navigation.closeDrawer()
+            }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_notification" size={25} color="#000" />
@@ -368,9 +383,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           {accordvalue ? (
             <>
               <SubDrawerLinkView
-                onPress={(): any =>
+                onPress={(): any => {
                   navigation.navigate('Home', { screen: 'ChildDevelopment' })
-                }>
+                  navigation.closeDrawer()
+                }}>
                 <FDirRow>
                   <BgDevelopment>
                     <NavIconSpacing>
@@ -392,6 +408,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                       screen: 'VaccinationTab',
                     },
                   });
+                  navigation.closeDrawer();
                 }
                 }>
                 <FDirRow>
@@ -415,6 +432,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                       screen: 'HealthCheckupsTab',
                     },
                   });
+                  navigation.closeDrawer();
                 }
                 }>
                 <FDirRow>
@@ -438,6 +456,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                       screen: 'ChildgrowthTab',
                     },
                   });
+                  navigation.closeDrawer();
                 }
                 }>
                 <FDirRow>
@@ -455,7 +474,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               </SubDrawerLinkView>
             </>
           ) : null}
-          <DrawerLinkView onPress={(): any => navigation.navigate('SupportChat')}>
+          <DrawerLinkView onPress={(): any => {
+            navigation.navigate('SupportChat', { tabIndex: 0, backClicked: 'no' })
+            navigation.closeDrawer();
+          }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_chat" size={25} color="#000" />
@@ -464,7 +486,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
 
             <Heading4 style={styles.headingFlexShrink}>{t('drawerMenuchatTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={(): any => navigation.navigate('Favourites', { tabIndex: 0, backClicked: 'no' })}>
+          <DrawerLinkView onPress={(): any => {
+
+            navigation.navigate('Favourites', { tabIndex: 0, backClicked: 'no' })
+            navigation.closeDrawer()
+          }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_favorites" size={25} color="#000" />
@@ -481,7 +507,10 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               : null
             }
           </DrawerLinkView>
-          <DrawerLinkView onPress={(): any => navigation.navigate('SettingsScreen')}>
+          <DrawerLinkView onPress={(): any => {
+            navigation.navigate('SettingsScreen')
+            navigation.closeDrawer();
+          }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_settings" size={25} color="#000" />
@@ -530,9 +559,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           {aboutAccordValue ? (
             <>
               <DrawerLinkView
-                onPress={(): any =>
+                onPress={(): any => {
+
                   navigation.navigate('AboutusScreen')
-                }>
+                  navigation.closeDrawer()
+                }}>
                 <OuterIconRow>
                   <OuterIconLeft15>
                     <Icon name="ic_sb_about" size={25} color="#000" />
@@ -595,8 +626,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 <Heading4 style={styles.headingFlexShrink}>{t('drawerMenurateTxt')}</Heading4>
               </DrawerLinkView>
               <DrawerLinkView
-                onPress={(): any =>
-                  navigation.navigate('PrivacyPolicy')
+                onPress={(): any => { navigation.navigate('PrivacyPolicy'); navigation.closeDrawer(); }
                 }>
                 <OuterIconRow>
                   <OuterIconLeft15>
@@ -677,4 +707,4 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   );
 };
 
-export default CustomDrawerContent;
+export default React.memo(CustomDrawerContent);

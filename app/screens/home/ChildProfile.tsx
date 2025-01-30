@@ -130,7 +130,6 @@ const ChildProfile = ({ navigation }: Props): any => {
 
   useEffect(() => {
     const backAction = (): any => {
-      //console.log("11")
       navigation.goBack();
       return true;
     };
@@ -192,14 +191,10 @@ const ChildProfile = ({ navigation }: Props): any => {
   const windowHeight = Dimensions.get('window').height;
 
   const SortedchildList = [...childList].sort((a: any, b: any): any => {
-    console.log(b);
     if (a.uuid == currentActiveChild) return -1;
   });
+  console.log('=====', SortedchildList)
   useEffect(() => {
-    console.log('relationshipData to parent data', relationshipData)
-    console.log('Relationship to parent data', relationshipToParent)
-    console.log('relationshipValue to parent data', relationshipValue)
-    console.log('userParentalRoleData to parent data', userParentalRoleData)
     if (isChildSwitch) {
 
       dispatch(setAllChildData(SortedchildList))
@@ -216,13 +211,15 @@ const ChildProfile = ({ navigation }: Props): any => {
 
           <ProfileIconView>
             {
-              data.photoUri != '' ?
-                <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
-                </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
-                  (genderName?.unique_name === taxonomyIds?.girlChildGender  ?
-                    <Icon name="ic_baby_girl" size={40} color='#000' />
-                    : <Icon name="ic_baby" size={40} color='#000' />)
-                  : <Icon name="ic_baby_girl" size={40} color='#000' />
+              data.photoUri ? (
+                <ImageIcon source={{ uri: `file://${CHILDREN_PATH}${data.photoUri}` }} style={styles.imageIcon} />
+              ) : (
+                <Icon
+                  name={genderName?.unique_name === taxonomyIds?.girlChildGender ? "ic_baby_girl" : "ic_baby"}
+                  size={40}
+                  color="#000"
+                />
+              )
             }
           </ProfileIconView>
           <ProfileTextView style={styles.profileTextView}>
@@ -279,13 +276,15 @@ const ChildProfile = ({ navigation }: Props): any => {
           <ProfileListInner>
             <ProfileIconView>
               {
-                data.photoUri != '' ?
-                  <ImageIcon source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }} style={styles.imageIcon}>
-                  </ImageIcon> : genderName && genderName !== '' && genderName !== undefined ?
-                  (genderName?.unique_name === taxonomyIds?.girlChildGender  ?
-                    <Icon name="ic_baby_girl" size={40} color='#000' />
-                    : <Icon name="ic_baby" size={40} color='#000' />)
-                  : <Icon name="ic_baby_girl" size={40} color='#000' />
+                data.photoUri ? (
+                  <ImageIcon source={{ uri: `file://${CHILDREN_PATH}${data.photoUri}` }} style={styles.imageIcon} />
+                ) : (
+                  <Icon
+                    name={genderName?.unique_name === taxonomyIds?.girlChildGender ? "ic_baby_girl" : "ic_baby"}
+                    size={40}
+                    color="#000"
+                  />
+                )
               }
             </ProfileIconView>
             <ProfileTextView>
@@ -381,22 +380,22 @@ const ChildProfile = ({ navigation }: Props): any => {
         </HeaderRowView>
         <FlexCol style={styles.flexCol}>
           <AreaContainer>
-          <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.areaContainerInnerView}>
-              <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
-                {SortedchildList.length > 0
-                  ? SortedchildList.map((item: any, index: number) => {
-                    console.log('Gender is', item.gender, genders)
-                    let genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)) : '';
-                    console.log('genderLocal is', genderLocal)
-                    if (genderLocal == '' && genderLocal== undefined) {
-                      genderLocal = t('chilGender2');
-                    }
-                    return renderChildProfile(dispatch, item, index, genderLocal, navigation);
-                  })
-                  : null}
-              </ScrollView>
-              {/* <ProfileLinkRow onLayout={onLayout1}
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <View style={styles.areaContainerInnerView}>
+                <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
+                  {SortedchildList.length > 0
+                    ? SortedchildList.map((item: any, index: number) => {
+
+                      let genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == parseInt(item.gender)) : '';
+
+                      if (genderLocal == '' && genderLocal == undefined) {
+                        genderLocal = t('chilGender2');
+                      }
+                      return renderChildProfile(dispatch, item, index, genderLocal, navigation);
+                    })
+                    : null}
+                </ScrollView>
+                {/* <ProfileLinkRow onLayout={onLayout1}
                 style={{
                   backgroundColor: secopndaryTintColor,
 
@@ -431,107 +430,107 @@ const ChildProfile = ({ navigation }: Props): any => {
                 </ProfileLinkCol>
               </ProfileLinkRow> */}
 
-              <ParentListView style={{ backgroundColor: secopndaryTintColor }} onLayout={onLayout}>
-                <ProfileContentView>
-                  <ProfileTextView>
-                    <Heading3>{t('parentDetailsTxt')}</Heading3>
-                  </ProfileTextView>
-                  <ProfileActionView>
-                    <ButtonLinkPress
-                      style={styles.buttonLinkPress}
-                      onPress={(): any => {
-                        navigation.navigate('EditParentDetails', {
-                          userParentalRoleData:
-                          relationshipToParent!=undefined && relationshipToParent!=null
-                              ? relationshipToParent?.id
+                <ParentListView style={{ backgroundColor: secopndaryTintColor }} onLayout={onLayout}>
+                  <ProfileContentView>
+                    <ProfileTextView>
+                      <Heading3>{t('parentDetailsTxt')}</Heading3>
+                    </ProfileTextView>
+                    <ProfileActionView>
+                      <ButtonLinkPress
+                        style={styles.buttonLinkPress}
+                        onPress={(): any => {
+                          navigation.navigate('EditParentDetails', {
+                            userParentalRoleData:
+                              relationshipToParent != undefined && relationshipToParent != null
+                                ? relationshipToParent?.id
+                                : '',
+                            parentEditName:
+                              userNameData?.length > 0 ? userNameData[0].value : '',
+                            userRelationToParentEdit: relationshipValue != undefined && relationshipValue != null
+                              ? relationshipValue.id
                               : '',
-                          parentEditName:
-                            userNameData?.length > 0 ? userNameData[0].value : '',
-                          userRelationToParentEdit: relationshipValue!=undefined && relationshipValue!=null
-                            ? relationshipValue.id
-                            : '',
-                        });
-                      }}>
-                      <Text numberOfLines={2} style={styles.textDecorationNone}> <Icon
-                        name="ic_edit"
-                        size={16}
-                        color="#000"
+                          });
+                        }}>
+                        <Text numberOfLines={2} style={styles.textDecorationNone}> <Icon
+                          name="ic_edit"
+                          size={16}
+                          color="#000"
 
-                      />
-                      </Text>
-                    </ButtonLinkPress>
-                  </ProfileActionView>
-                </ProfileContentView>
+                        />
+                        </Text>
+                      </ButtonLinkPress>
+                    </ProfileActionView>
+                  </ProfileContentView>
 
-                <ProfileContentView>
-                  <ParentRowView>
-                    {/* <Text>{parentViewHeight}parentheight{profileViewHeight}profileViewHeight{windowHeight}windowHeight</Text>
+                  <ProfileContentView>
+                    <ParentRowView>
+                      {/* <Text>{parentViewHeight}parentheight{profileViewHeight}profileViewHeight{windowHeight}windowHeight</Text>
                  */}
-                    <ParentSection>
-                      <ParentLabel>
-                        <Text>{t('childSetuprelationSelectTitle')}</Text>
-                      </ParentLabel>
-                      <ParentData>
+                      <ParentSection>
+                        <ParentLabel>
+                          <Text>{t('childSetuprelationSelectTitle')}</Text>
+                        </ParentLabel>
+                        <ParentData>
 
-                        <Text style={styles.marginLeft15}>
-                          {userRelationToParent?.length > 0 ? relationshipToParent?.name : ''}
-                        </Text>
+                          <Text style={styles.marginLeft15}>
+                            {userRelationToParent?.length > 0 ? relationshipToParent?.name : ''}
+                          </Text>
 
-                      </ParentData>
-                    </ParentSection>
-                    <ParentSection>
-                      <ParentLabel>
-                        <Text>{t('parentGender')}</Text>
-                      </ParentLabel>
-                      <ParentData>
-                        <Text style={styles.marginLeft15}>
-                          {
-                            userParentalRoleData?.length > 0
-                              ? relationshipValue?.name
-                              : ''
-                          }
-                        </Text>
-                      </ParentData>
+                        </ParentData>
+                      </ParentSection>
+                      <ParentSection>
+                        <ParentLabel>
+                          <Text>{t('parentGender')}</Text>
+                        </ParentLabel>
+                        <ParentData>
+                          <Text style={styles.marginLeft15}>
+                            {
+                              userParentalRoleData?.length > 0
+                                ? relationshipValue?.name
+                                : ''
+                            }
+                          </Text>
+                        </ParentData>
 
-                    </ParentSection>
-                    <ParentSection>
-                      <ParentLabel>
-                        <Text>{t('parentNameLabel')}</Text>
-                      </ParentLabel>
-                      <ParentData>
-                        <Text style={styles.marginLeft15}>
-                          {userNameData?.length > 0 ? userNameData[0].value : ''}
-                        </Text>
+                      </ParentSection>
+                      <ParentSection>
+                        <ParentLabel>
+                          <Text>{t('parentNameLabel')}</Text>
+                        </ParentLabel>
+                        <ParentData>
+                          <Text style={styles.marginLeft15}>
+                            {userNameData?.length > 0 ? userNameData[0].value : ''}
+                          </Text>
 
-                      </ParentData>
-                    </ParentSection>
+                        </ParentData>
+                      </ParentSection>
 
-                  </ParentRowView>
-                </ProfileContentView>
-              </ParentListView>
+                    </ParentRowView>
+                  </ProfileContentView>
+                </ParentListView>
 
-              <ShiftFromTop30>
-                <ButtonWithBorder onPress={(): any => {
-                  navigation.navigate('EditChildProfile', { childData: null });
-                }}>
-                  <OuterIconRow>    
-                    <ButtonTextLg style={styles.plusBtnColor}>{t('childSetupListaddSiblingBtn')}</ButtonTextLg>
-                  </OuterIconRow>
-                </ButtonWithBorder>
+                <ShiftFromTop30>
+                  <ButtonWithBorder onPress={(): any => {
+                    navigation.navigate('EditChildProfile', { childData: null });
+                  }}>
+                    <OuterIconRow>
+                      <ButtonTextLg style={styles.plusBtnColor}>{t('childSetupListaddSiblingBtn')}</ButtonTextLg>
+                    </OuterIconRow>
+                  </ButtonWithBorder>
 
-                <ButtonWithBorder onPress={(): any => {
-                  navigation.navigate('AddExpectingChildProfile', { childData: null });
-                }}>
-                  <OuterIconRow>
-                    <ButtonTextLg style={styles.plusBtnColor}>{t('expectChildAddTxt')}</ButtonTextLg>
-                  </OuterIconRow>
-                </ButtonWithBorder>
+                  <ButtonWithBorder onPress={(): any => {
+                    navigation.navigate('AddExpectingChildProfile', { childData: null });
+                  }}>
+                    <OuterIconRow>
+                      <ButtonTextLg style={styles.plusBtnColor}>{t('expectChildAddTxt')}</ButtonTextLg>
+                    </OuterIconRow>
+                  </ButtonWithBorder>
 
-              </ShiftFromTop30>
+                </ShiftFromTop30>
 
-            </View>
-          </ScrollView>
-          
+              </View>
+            </ScrollView>
+
           </AreaContainer>
         </FlexCol>
         <OverlayLoadingComponent loading={profileLoading} />

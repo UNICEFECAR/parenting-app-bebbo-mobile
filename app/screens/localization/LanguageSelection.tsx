@@ -20,6 +20,12 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import analytics from '@react-native-firebase/analytics';
 import { useIsFocused } from '@react-navigation/native';
 import moment from 'moment';
+import 'moment/min/locales';
+import 'moment/locale/bn-bd'  // import for bangla language
+import 'moment/locale/bn' // import for bangla language
+import 'moment/locale/sq'
+import 'moment/locale/sr'
+import 'moment/locale/tr'
 import { getLanguageCode } from '../../services/Utils';
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -84,6 +90,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     return languageCode;
   };
   useEffect(() => {
+    console.log('---------', route.params)
     if (route?.params?.language != undefined) {
       setLanguage(route?.params?.language)
     } else {
@@ -305,13 +312,16 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
           <Pressable
             onPress={(e: any): any => {
               console.log('Back icon click')
-              {
+              if (route?.params?.isSetting) {
+                navigation?.goBack()
+              } else {
                 route?.params?.isFromCountry ? navigation.navigate('CountryLanguageConfirmation') :
                   navigation.navigate('CountrySelection', {
                     country,
                     language,
                   })
               }
+
             }}
           >
             <OnboardingStyle

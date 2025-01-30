@@ -33,9 +33,7 @@
     const getCountryData = useAppSelector(
       (state: any) => state.AppLayoutDirectionParams,
     );
-    const luxonLocale = useAppSelector(
-      (state: any) => state.selectedCountry.luxonLocale,
-    );
+  
     const allCountries = useAppSelector(
       (state: any) =>
         state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],

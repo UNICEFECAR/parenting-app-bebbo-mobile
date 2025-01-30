@@ -5,7 +5,7 @@ import {
 } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
 import { appConfig } from "../instance";
-
+import { projectNumber, webId, iosId } from 'react-native-dotenv';
 const _urlFiles = "https://www.googleapis.com/drive/v3";
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
 const gdrive = new GDrive();
@@ -223,6 +223,7 @@ class GoogleDrive {
         // Set Google access token
         console.log("args-", args);
         const isAccessTokenSet = await this.setAccessToken();
+        console.log(isAccessTokenSet, "args-", appConfig.backupGDriveFolderName);
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }

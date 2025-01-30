@@ -397,7 +397,7 @@ class MediaPicker {
     console.log("checkPermissionGallery-",openSettings);
     console.log("Platform-",Platform.Version);
     Promise.all([
-      check(Platform.Version>'32' ?GALLERY_PERMISSION_LATEST: GALLERY_PERMISSION),
+      check(Platform.Version>'32' ? GALLERY_PERMISSION_LATEST: GALLERY_PERMISSION),
     ]).then(([photoStatus]) => {
       if (photoStatus === RESULTS.BLOCKED) {
         this.openSettingModal();

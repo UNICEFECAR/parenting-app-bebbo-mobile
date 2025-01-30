@@ -7,12 +7,12 @@ import { ThemeContext } from 'styled-components/native';
 import { FlexRow } from './shared/FlexBoxStyle';
 const styles = StyleSheet.create({
   containerView: {
-    marginLeft:'auto',
-    marginRight:'auto',
-    maxWidth:'100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '100%',
     minHeight: 120,
     padding: 10
-    ,width:'100%',
+    , width: '100%',
   },
   iconStyle: {
     flex: 1,
@@ -29,17 +29,17 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 4,
-    fontSize: 14,
+    fontSize: 10,
     fontWeight: 'bold',
     justifyContent: 'flex-start',
     margin: 0,
     textAlign: 'left',
   }
 });
-const ButtonItem = (props: any):any => {
+const ButtonItem = (props: any): any => {
   return (
     <Pressable
-      onPress={():any => {
+      onPress={(): any => {
         props.setbutton();
       }}
       style={[
@@ -58,8 +58,8 @@ const ButtonItem = (props: any):any => {
     </Pressable>
   );
 };
-const NotificationsCategories = (props: any):any => {
-  const {t} = useTranslation();
+const NotificationsCategories = (props: any): any => {
+  const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
   const backgroundColor = themeContext?.colors.PRIMARY_COLOR;
   const cgColor = themeContext?.colors.CHILDGROWTH_COLOR;
@@ -81,7 +81,7 @@ const NotificationsCategories = (props: any):any => {
       displayName: t('drawerMenucdTxt'),
       activatedColor: cdColor,
       isActivated: false,
-      type:"cd",
+      type: "cd",
     },
     {
       id: 2,
@@ -102,10 +102,10 @@ const NotificationsCategories = (props: any):any => {
   ];
   const [products, setProducts] = useState(allbuttons);
 
-  const handleChange = (id: number):any => {
+  const handleChange = (id: number): any => {
     const updated = products.map((item) => {
       if (id === item.id) {
-        return {...item, isActivated: !item.isActivated};
+        return { ...item, isActivated: !item.isActivated };
       }
       return item;
     });
@@ -114,18 +114,18 @@ const NotificationsCategories = (props: any):any => {
   };
   return (
     <>
-    <View style={{backgroundColor: backgroundColor}}>
-      <View
-        style={styles.containerView}>
-        <FlexRow>
-          <ButtonItem data={products[0]} setbutton={():any => handleChange(0)} />
-          <ButtonItem data={products[1]} setbutton={():any => handleChange(1)} />
-        </FlexRow>
-        <FlexRow>
-          <ButtonItem data={products[2]} setbutton={():any => handleChange(2)} />
-          <ButtonItem data={products[3]} setbutton={():any => handleChange(3)} />
-        </FlexRow>
-      </View>
+      <View style={{ backgroundColor: backgroundColor }}>
+        <View
+          style={styles.containerView}>
+          <FlexRow>
+            <ButtonItem data={products[0]} setbutton={(): any => handleChange(0)} />
+            <ButtonItem data={products[1]} setbutton={(): any => handleChange(1)} />
+          </FlexRow>
+          <FlexRow>
+            <ButtonItem data={products[2]} setbutton={(): any => handleChange(2)} />
+            <ButtonItem data={products[3]} setbutton={(): any => handleChange(3)} />
+          </FlexRow>
+        </View>
       </View>
     </>
   );

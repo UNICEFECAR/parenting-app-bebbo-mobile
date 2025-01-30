@@ -52,6 +52,7 @@ import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 import { formatStringDate } from '../../services/Utils';
 import { bgcolorWhite2 } from '@styles/style';
+import useDigitConverter from '../../customHooks/useDigitConvert';
 
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
@@ -77,6 +78,7 @@ const Childgrowth = ({ navigation }: any): any => {
     { title: t('growthScreenweightForHeight') },
     { title: t('growthScreenheightForAge') },
   ];
+  const { convertDigits } = useDigitConverter()
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
@@ -232,11 +234,11 @@ const Childgrowth = ({ navigation }: any): any => {
                             activeChild.birthDate != null &&
                               activeChild.birthDate != '' &&
                               activeChild.birthDate != undefined
-                              ? getCurrentChildAgeInMonths(
+                              ? convertDigits(getCurrentChildAgeInMonths(
                                 t,
                                 DateTime.fromJSDate(new Date(activeChild.birthDate)),
                                 pluralShow
-                              )
+                              ))
                               : '',
                         }) : t('expectedChildDobLabel')
                       }

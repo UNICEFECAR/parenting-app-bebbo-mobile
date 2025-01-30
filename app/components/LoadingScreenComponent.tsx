@@ -6,12 +6,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { FlexDirCol } from './shared/FlexBoxStyle';
 const flavor = process.env.FLAVOR || 'bebbo';
-const REMOVED_FACEBOOK_APP_ID1LogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`)
+const REMOVED_FACEBOOK_APP_ID1LogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape.svg`)
+const REMOVED_FACEBOOK_APP_ID1LogoShapeMB = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`)
 import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
 import { useAppSelector } from '../../App';
 
 const item = {
-  image: REMOVED_FACEBOOK_APP_ID1LogoShapeNew,
+  image: flavor == 'REMOVED_FACEBOOK_APP_ID1' ? REMOVED_FACEBOOK_APP_ID1LogoShapeMB : REMOVED_FACEBOOK_APP_ID1LogoShapeNew,
   colors: ['#2B2F84', '#1F50A0', '#00AEEF'],
 };
 
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   partnerLogoView: {
-    alignContent: 'center', height: 60,
+    alignContent: 'center',
+    height: 60,
     marginTop: 20,
     resizeMode: 'contain',
     width: 180
@@ -67,6 +69,9 @@ const LoadingScreenComponent = (props: any): any => {
   const sponsors = useAppSelector(
     (state: any) => state.selectedCountry.sponsors,
   );
+  
+  const isMB = flavor === 'REMOVED_FACEBOOK_APP_ID1';
+
   return (
     <LoadingContainer>
       <MainView>
@@ -79,7 +84,7 @@ const LoadingScreenComponent = (props: any): any => {
             style={styles.outerView}>
             <FlexDirCol>
               <View style={styles.vectorImageView}>
-                {item.image && <VectorImage style={styles.logoImage} source={item.image} />}
+                {item.image && <VectorImage style={isMB ? styles.logoImage : {}} source={item.image} />}
               </View>
               <PartnerLogo
                 style={styles.partnerLogoView}

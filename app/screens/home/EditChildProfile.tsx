@@ -1,4 +1,4 @@
-import {  appConfig } from '../../instance';
+import { appConfig } from '../../instance';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
@@ -230,7 +230,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       } else {
         setDefaultGenderValue(genders.find((item: any) => item.id === childData?.gender))
       }
-      console.log(taxonomyIds,'--------------------',all)
+      console.log(taxonomyIds, '--------------------', all)
     }, []),
   );
 
@@ -398,8 +398,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     console.log(insertData, "...insertData")
     childSet.push(insertData);
     setLoading(false);
-    console.log('Edited data is',childSet)
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo,false,true,'');
+    console.log('Edited data is', childSet)
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false, true, '');
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]): any => {
@@ -478,7 +478,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 onPress={(): any => {
                   actionSheetRef.current?.setModalVisible(true);
                 }}>
-                    <VectorImage source={cameraProfileImage} />
+                <VectorImage source={cameraProfileImage} />
                 <ShiftFromTop10>
                   <Heading4Regular>{t('uploadPhtototxt')}</Heading4Regular>
                 </ShiftFromTop10>
@@ -511,10 +511,10 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 </ShiftFromTop10>
               </FormInputGroup>
 
-              {childData && childData?.uuid != '' ? 
-              <ChildDate sendData={sendData} childData={childData} dobMax={new Date()}/>: 
-              <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen" />
-            }
+              {childData && childData?.uuid != '' ?
+                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} /> :
+                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen" />
+              }
 
               <FormContainerFlex>
                 <LabelText>{t('genderLabel')}</LabelText>
@@ -546,7 +546,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             <ButtonMangeProfileContainer>
               <ButtonPrimary
                 disabled={
-                  !validateForm(
+                  loading || !validateForm(
                     1,
                     birthDate,
                     isPremature,
@@ -558,6 +558,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 }
                 onPress={(e: any): any => {
                   e.preventDefault();
+                  if (loading) return;
+                  console.log('ssd')
                   setLoading(true);
                   const validated = validateForm(
                     1,
@@ -596,7 +598,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               <View
                 style={styles.actionsheetView}>
                 {imageOptions.map((item, index) => {
-                  console.log('imageOptions', item)
+                  // console.log('imageOptions', item)
                   if (
                     index == 0 &&
                     (capturedPhoto == '' ||

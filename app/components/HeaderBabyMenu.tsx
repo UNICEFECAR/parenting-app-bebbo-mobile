@@ -157,42 +157,40 @@ const HeaderBabyMenu = (props: any): any => {
   const SortedchildList = [...childList].sort((a: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
-  useEffect(()=>{
-    const gender = genders.find((g:any) => g.id === activeChild?.gender);
-    console.log('in Activechild gender is',gender);
+  useEffect(() => {
+    const gender = genders.find((g: any) => g.id === activeChild?.gender);
+    console.log('in Activechild gender is', gender);
     setActiveChildGenderData(gender);
-  },[activeChild?.gender])
+  }, [activeChild?.gender])
   const renderChildItem = (dispatch: any, data: any, index: number): any => {
     const genderLocal =
       genders?.length > 0 && data.gender != ''
         ? genders.find((genderset: any) => genderset.id === parseInt(data.gender))
         : '';
     const genderName: any = genderLocal;
+    console.log(taxonomyIds?.boyChildGender, '===', genderName, data?.photoUri ? true : false)
     return (
       <View key={index}>
-        {currentActiveChild != '' &&
-          currentActiveChild != null &&
-          currentActiveChild != undefined &&
-          currentActiveChild == data.uuid ? (
+        {currentActiveChild === data.uuid ? (
           <ProfileListViewSelected>
             <ProfileIconView>
-              {data.photoUri != '' ? (
+              {data.photoUri ? (
                 <ImageIcon
                   source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
               ) : (
-                genderName !== '' ?
-                  (genderName?.unique_name === taxonomyIds?.boyChildGender ?
-                    <Icon name="ic_baby" size={36} color="#000" /> :
-                    <Icon name="ic_baby_girl" size={36} color="#000" />) :
-                  <Icon name="ic_baby_girl" size={36} color="#000" />
+                <Icon
+                  name={genderName?.unique_name === taxonomyIds?.boyChildGender ? "ic_baby" : "ic_baby_girl"}
+                  size={36}
+                  color="#000"
+                />
               )}
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>{data.childName}
-                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName?.name}</Heading5> : 
-                  <Heading5 style={styles.heading5Fontwg}>{', ' + t('chilGender2')}</Heading5>
+                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName?.name}</Heading5> :
+                    <Heading5 style={styles.heading5Fontwg}>{', ' + t('chilGender2')}</Heading5>
                   }
                 </Heading3>
               </ProfileSectionView>
@@ -219,16 +217,16 @@ const HeaderBabyMenu = (props: any): any => {
         ) : (
           <ProfileListView>
             <ProfileIconView>
-              {data.photoUri != '' ? (
+              {data.photoUri ? (
                 <ImageIcon
                   source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
               ) : (
-                genderName !== '' ?
-                  (genderName?.unique_name === taxonomyIds?.boyChildGender ?
-                    <Icon name="ic_baby" size={36} color="#000" /> :
-                    <Icon name="ic_baby_girl" size={36} color="#000" />) :
-                  <Icon name="ic_baby_girl" size={36} color="#000" />
+                <Icon
+                  name={genderName?.unique_name === taxonomyIds?.boyChildGender ? "ic_baby" : "ic_baby_girl"}
+                  size={36}
+                  color="#000"
+                />
               )}
             </ProfileIconView>
 
@@ -354,11 +352,11 @@ const HeaderBabyMenu = (props: any): any => {
               getAllConfigData(dispatch);
             }
           }}>
-          {activeChild.photoUri != '' ? (
+          {activeChild.photoUri ? (
             <ImageIcon
               source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
           ) : (
-            activeChildGenderData != '' && activeChildGenderData?.unique_name!='' ? activeChildGenderData?.unique_name == taxonomyIds?.boyChildGender? <Icon name="ic_baby" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} />
+            activeChildGenderData != '' && activeChildGenderData?.unique_name != '' ? activeChildGenderData?.unique_name == taxonomyIds?.boyChildGender ? <Icon name="ic_baby" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} />
           )}
         </HeaderActionBox>
       </HeaderActionView>

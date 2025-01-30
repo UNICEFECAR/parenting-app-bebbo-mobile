@@ -11,15 +11,15 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationHeightForAge } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
-import {standardDevDataForChart} from "../../instance/index"
-export const standardDevDataLoad=standardDevDataForChart;
+import { standardDevDataForChart } from "../../instance/index"
+export const standardDevDataLoad = standardDevDataForChart;
 const styles = StyleSheet.create({
-  fullScreenPressable:{
+  fullScreenPressable: {
     marginTop: 5,
     padding: 7
   },
   loadingContainer: {
-    marginTop:50
+    marginTop: 50
   }
 })
 const ChartHeightForAge = (props: any): any => {
@@ -28,14 +28,14 @@ const ChartHeightForAge = (props: any): any => {
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const navigation = useNavigation<any>();
   const activeChild = useAppSelector((state: any) =>
-  state.childData.childDataSet.activeChild != ''
-    ? JSON.parse(state.childData.childDataSet.activeChild)
-    : [],
-);
-const taxonomyIds = useAppSelector(
-  (state: any) =>
-    state.utilsData.taxonomyIds,
-);
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const taxonomyIds = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomyIds,
+  );
   const fullScreenChart = (chartType: any, obj: any): any => {
     navigation.navigate('ChartFullScreen', {
       activeChild,
@@ -46,28 +46,28 @@ const taxonomyIds = useAppSelector(
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   //const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
   const standardDevData = standardDevDataLoad;
- // console.log(standardDevData,"..standardDevData..")
+  // console.log(standardDevData,"..standardDevData..")
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   let obj: any;
   let standardDeviation: any;
-   // if (activeChild?.gender == '526' || activeChild?.gender == '') {
+  // if (activeChild?.gender == '526' || activeChild?.gender == '') {
   if (activeChild?.gender == taxonomyIds?.boyChildGender || activeChild?.gender == '') {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == appConfig.weightGrowthType && item.child_gender == taxonomyIds?.boyChildGender,
+      (item) => item.growth_type == appConfig.weightGrowthType && item.child_gender == taxonomyIds?.boyChildGender || item.child_gender == appConfig.boyChildGender,
     );
     standardDeviation = genderBoyData;
-    obj = formatHeightData(genderBoyData,'height');
+    obj = formatHeightData(genderBoyData, 'height');
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item) => item.growth_type == appConfig.weightGrowthType && item.child_gender == taxonomyIds?.girlChildGender,
+      (item) => item.growth_type == appConfig.weightGrowthType && item.child_gender == taxonomyIds?.girlChildGender || item.child_gender == appConfig.girlChildGender,
     );
     standardDeviation = genderGirlData;
-    obj = formatHeightData(genderGirlData,'height');
+    obj = formatHeightData(genderGirlData, 'height');
   }
-  
+
   const childBirthDate = activeChild.birthDate;
   const childTaxonomyData = activeChild.taxonomyData;
   const sortedMeasurements = activeChild.measures.sort(
@@ -76,7 +76,7 @@ const taxonomyIds = useAppSelector(
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
   const item: any = getInterpretationHeightForAge(
     standardDeviation,
-    activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined? activeChild.plannedTermDate:childBirthDate,
+    activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != "" && activeChild?.taxonomyData.prematureTaxonomyId != undefined ? activeChild.plannedTermDate : childBirthDate,
     childTaxonomyData,
     lastMeasurements,
   );
@@ -88,27 +88,27 @@ const taxonomyIds = useAppSelector(
       }, 2000);
     }, []),
   );
- 
-const [deviceOrientation, setDeviceOrientation] = useState(
-  Dimensions.get('window').width < Dimensions.get('window').height
-    ? 'portrait'
-    : 'landscape'
-);
-useEffect(() => {
-  const deviceOrientation = (): any => {
-    if (Dimensions.get('window').width < Dimensions.get('window').height) {
-      setDeviceOrientation('portrait');
-    } else {
-      setDeviceOrientation('landscape');
-    }
-  };
-  const listener = Dimensions.addEventListener('change', deviceOrientation);
-  return (): any => {
-    //cleanup work
-    listener.remove()
 
-  };
-}, []);
+  const [deviceOrientation, setDeviceOrientation] = useState(
+    Dimensions.get('window').width < Dimensions.get('window').height
+      ? 'portrait'
+      : 'landscape'
+  );
+  useEffect(() => {
+    const deviceOrientation = (): any => {
+      if (Dimensions.get('window').width < Dimensions.get('window').height) {
+        setDeviceOrientation('portrait');
+      } else {
+        setDeviceOrientation('landscape');
+      }
+    };
+    const listener = Dimensions.addEventListener('change', deviceOrientation);
+    return (): any => {
+      //cleanup work
+      listener.remove()
+
+    };
+  }, []);
   return (
     <FlexCol>
       <FlexCol>
@@ -121,7 +121,7 @@ useEffect(() => {
         </FlexRowEnd>
       </FlexCol>
       <FlexCol>
-        {isChartVisible && deviceOrientation=='portrait' ? (
+        {isChartVisible && deviceOrientation == 'portrait' ? (
           <GrowthChart
             activeChild={activeChild}
             chartType={chartTypes.HeightForAge}
@@ -131,7 +131,7 @@ useEffect(() => {
           />
         ) : (
           <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={headerColor} />
+            <ActivityIndicator size="large" color={headerColor} />
           </View>
         )}
 
@@ -142,25 +142,25 @@ useEffect(() => {
               {item?.interpretationText?.text ? (
                 <Heading3Regular>{item?.interpretationText?.text}</Heading3Regular>
               ) : null}
-              
+
             </>
           ) : null}
         </ShiftFromTopBottom15>
       </FlexCol>
       {(props.days >= activeChild.taxonomyData.days_from) ?
-          <FlexColChart>
-            <RelatedArticles
-              fromScreen={'ChildgrowthTab'}
-              relatedArticles={item?.interpretationText?.articleID}
-              category={5}
-              currentId={chartTypes.HeightForAge}
-              headerColor={headerColor}
-              backgroundColor={backgroundColor}
-              navigation={navigation}
-            />
-          </FlexColChart>
-          : null 
-        }
+        <FlexColChart>
+          <RelatedArticles
+            fromScreen={'ChildgrowthTab'}
+            relatedArticles={item?.interpretationText?.articleID}
+            category={5}
+            currentId={chartTypes.HeightForAge}
+            headerColor={headerColor}
+            backgroundColor={backgroundColor}
+            navigation={navigation}
+          />
+        </FlexColChart>
+        : null
+      }
     </FlexCol>
   );
 };

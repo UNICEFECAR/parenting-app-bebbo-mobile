@@ -75,7 +75,6 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
         }
     });
 
-    console.log('activityCategoryUniqueNameObj data is', appConfig.activityCategoryUniqueNameObj);
     const activityBrackets = chunk(appConfig.activityCategoryobj, 2)
     return (
         <>

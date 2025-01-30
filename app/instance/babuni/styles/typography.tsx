@@ -6,13 +6,13 @@ import styled from 'styled-components/native';
 
 export const Heading1 = styled.Text`
   font-size: 24px;
-  line-height: 32px;
-  color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+  line-height: 35px;
+  color: ${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
   text-align:left;
 `;
 export const Heading1w = styled(Heading1)`
-  color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+  color: ${(props: any): any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `;
 
 export const Heading1Center = styled(Heading1)`
@@ -37,14 +37,14 @@ fontFamily: 'roboto-regular';
 /*Heading 2 Styles */
 export const Heading2 = styled.Text`
   font-size: 20px;
-  line-height: 26px;
-  color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+  line-height: 30px;
+  color: ${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
   text-align:left;
   `;
 
 export const Heading2w = styled(Heading2)`
-color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `;
 
 export const Heading2Center = styled(Heading2)`
@@ -68,17 +68,18 @@ fontFamily: 'roboto-regular';
 /*Heading 3 Styles */
 export const Heading3 = styled.Text`
   font-size: 16px;
-  line-height: 20px;
-  color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+  line-height: 25px;
+  color: ${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
   text-align:left;
+  padding:2px;
 `
 export const Heading3w = styled(Heading3)`
-color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 fontFamily: 'roboto';
 `
 export const HeadingHome3w = styled(Heading3)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 fontFamily: 'roboto';
 `
 
@@ -104,7 +105,7 @@ export const Heading3Regular = styled(Heading3)`
 fontFamily: 'roboto-regular';
 `
 export const Heading3Regularw = styled(Heading3Regular)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `
 
 /*Heading 3 Styles */
@@ -112,14 +113,14 @@ color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
 
 export const Heading4 = styled.Text`
   font-size: 14px;
-  line-height: 18px;
-  color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+  line-height: 20px;
+  color: ${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-bold';
   
 `;
 
 export const Heading4w = styled(Heading4)`
-color: ${(props:any):any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.PRIMARY_RE_TEXTCOLOR};
 `
 
 export const Heading4Center = styled(Heading4)`
@@ -130,7 +131,7 @@ text-align: center;
 `
 export const HeadingChatCenterw = styled(Heading4w)`
 text-align: center;
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `
 export const Heading4Centerr = styled(Heading4Center)`
 fontFamily: 'roboto-regular';
@@ -159,13 +160,13 @@ fontFamily: 'roboto-regular';
 
 export const Heading5 = styled.Text`
   font-size: 12px;
-  line-height: 16px;
-  color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+  line-height: 18px;
+  color: ${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-regular';
   text-align:left;
 `;
 export const Heading5w = styled(Heading5)`
-  color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const Heading5Bold = styled(Heading5)`
@@ -173,23 +174,23 @@ export const Heading5Bold = styled(Heading5)`
 `;
 
 export const Heading5BoldW = styled(Heading5)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const Heading5BoldWh = styled(Heading5)`
-color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 fontFamily: 'roboto-bold';
 `;
 
 export const Heading6 = styled.Text`
   font-size: 11px;
-  line-height: 14px;
-  color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+  line-height: 16px;
+  color: ${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-regular';
   text-align:left;
 `;
 export const Heading6w = styled(Heading6)`
-  color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const Heading6Bold = styled(Heading6)`
@@ -201,13 +202,13 @@ export const Heading6Bold = styled(Heading6)`
 
 export const Paragraph = styled.Text`
   font-size: 14px;
-  line-height: 18px;
-  color: ${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+  line-height: 20px;
+  color: ${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
   fontFamily: 'roboto-regular';
   margin-bottom:15px;
 `;
 export const Paragraphw = styled(Paragraph)`
-  color: ${(props:any):any => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 

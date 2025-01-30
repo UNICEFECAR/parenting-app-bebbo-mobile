@@ -57,7 +57,7 @@ import {
   SideSpacing10
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { createRef, useContext, useEffect, useState } from 'react';
+import React, { createRef, useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
@@ -192,6 +192,10 @@ const SettingScreen = (props: any): any => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
+
+  useLayoutEffect(() => {
+    navigation.closeDrawer()
+  }, [])
 
   const importAllData = async (): Promise<any> => {
     setIsImportRunning(true);
@@ -827,7 +831,7 @@ const SettingScreen = (props: any): any => {
     }
 
   }
-
+  console.log(language, '---', country)
 
   return (
     <>
@@ -1058,7 +1062,7 @@ const SettingScreen = (props: any): any => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                {allCountries?.length !== 1 && allCountries?.languages?.length !== 1 && <IconAreaPress onPress={(): any => {
+                {allCountries?.length >= 1 && allCountries.some(c => c.languages.length > 1) && <IconAreaPress onPress={(): any => {
                   setModalVisible(true)
                 }}>
                   <Icon name="ic_edit" size={16} color="#000" />
@@ -1278,7 +1282,7 @@ const SettingScreen = (props: any): any => {
                     props.navigation.navigate('Localization',
                       {
                         screen: allCountries.length == 1 ? 'LanguageSelection' : 'CountrySelection',
-                        params: { country: null, language: null }
+                        params: { isSetting: true, country: allCountries.length == 1 ? country : null, language: allCountries.length == 1 ? language : null }
                       });
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>

@@ -265,7 +265,7 @@ const ChildSetup = ({ navigation }: Props): any => {
       if (dataset.name.endsWith('.json')) {
         const decryptedData = decryptData(dataset.data, encryptionsKey)
           .then((text: any) => {
-            return text.replace(/[\x00-\x1F\x7F]/g,'');
+            return text.replace(/[\x00-\x1F\x7F]/g, '');
           })
           .catch((error: any) => {
             console.log("Decrypted error", error);
@@ -302,7 +302,7 @@ const ChildSetup = ({ navigation }: Props): any => {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'utf8');
             const decryptedData = decryptData(exportedFileContent, encryptionsKey)
               .then((text: any) => {
-                return text.replace(/[\x00-\x1F\x7F]/g,'');
+                return text.replace(/[\x00-\x1F\x7F]/g, '');
               })
               .catch((error: any) => {
                 console.log("Decrypted error", error);
@@ -371,10 +371,10 @@ const ChildSetup = ({ navigation }: Props): any => {
     } else {
       defaultName = name;
     }
-    const insertData: any = await getNewChild('',"true", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
+    const insertData: any = await getNewChild('', "true", isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     const childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild,false, name);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo, isDefaultChild, false, name);
   }
 
   const themeContext = useContext(ThemeContext);
@@ -452,8 +452,8 @@ const ChildSetup = ({ navigation }: Props): any => {
                 <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                   {/*  <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text> */}
-                   <Text>{relationshipname ? relationshipname : ''}</Text>
+                    {/*  <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text> */}
+                    <Text>{relationshipname ? relationshipname : ''}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_angle_down" size={10} color="#000" />

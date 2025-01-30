@@ -71,7 +71,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from 'styled-components/native';
-import { v4 as uuidv4  } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 // import {
 //   maxCharForRemarks,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 const AddNewChildgrowth = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
-  const {convertDigits} = useDigitConverter()
+  const { convertDigits } = useDigitConverter()
   const { editMeasurementDate } = route.params;
   const [showDelete, setShowDelete] = useState<boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
@@ -733,7 +733,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                           }}>
                           <FlexFDirRowSpace>
                             <Heading3>
-                              {heightValue ? convertDigits(heightValue)   : t('growthScreenhText')}
+                              {heightValue ? convertDigits(heightValue) : t('growthScreenhText')}
                             </Heading3>
                             <Heading4Regular>
                               {t('growthScreencmText')}
@@ -759,7 +759,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                       clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}
-                      onChangeText={(text:any): any => handleDoctorRemark(text)}
+                      onChangeText={(text: any): any => handleDoctorRemark(text)}
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
@@ -778,7 +778,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
               <ButtonContainer>
                 <ButtonTertiary
                   disabled={disableSave()}
-                  onPress={(e:any): any => {
+                  onPress={(e: any): any => {
                     e.stopPropagation();
                     setClicked(true);
                     setTimeout(() => {
