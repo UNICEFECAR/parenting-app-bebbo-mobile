@@ -52,7 +52,7 @@ const ChartHeightForAge = (props: any): any => {
   let obj: any;
   let standardDeviation: any;
   // if (activeChild?.gender == '526' || activeChild?.gender == '') {
-  if (activeChild?.gender == taxonomyIds?.boyChildGender || activeChild?.gender == '') {
+  if (activeChild?.gender == taxonomyIds?.boyChildGender || activeChild?.gender == '' || activeChild?.gender == appConfig.boyChildGender) {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
       (item) => item.growth_type == appConfig.weightGrowthType && item.child_gender == taxonomyIds?.boyChildGender || item.child_gender == appConfig.boyChildGender,

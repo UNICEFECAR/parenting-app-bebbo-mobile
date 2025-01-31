@@ -655,26 +655,25 @@ const SettingScreen = (props: any): any => {
   }
 
   useEffect(() => {
-    if (allCountries?.length === 1 && allCountries[0]?.languages?.length === 1) {
-      setCountry(allCountries[0]);
-      // const selectedLanguage: any = selectedCountry.languages.find(
-      //   (language: any) => language.languageCode === languageCode,
-      // );
-      setlanguage(allCountries[0]?.languages[0]);
-    } else {
-      console.log('Selected country for countryId is', countryId);
-      const selectedCountry: any = allCountries?.find(
-        (country: any) => country?.CountryID == countryId,
-      );
-      console.log(allCountries, 'Selected country is', selectedCountry);
-      setCountry(selectedCountry);
-      const selectedLanguage: any = selectedCountry?.languages?.find(
-        (language: any) => language?.languageCode == languageCode,
-      );
-      setlanguage(selectedLanguage);
+    if (allCountries?.length > 0 && (!country || !language)) {
+      if (allCountries.length === 1 && allCountries[0]?.languages?.length === 1) {
+        setCountry(allCountries[0]);
+        setlanguage(allCountries[0]?.languages[0]);
+      } else {
+        console.log('Selected country for countryId is', countryId);
+        const selectedCountry = allCountries.find(c => c?.CountryID == countryId);
+        console.log(allCountries, 'Selected country is', selectedCountry);
+
+        if (selectedCountry) {
+          setCountry(selectedCountry);
+          const selectedLanguage = selectedCountry.languages?.find(lang => lang.languageCode == languageCode);
+          setlanguage(selectedLanguage);
+        }
+      }
+      toggleSwitch();
     }
-    toggleSwitch();
-  }, []);
+  }, [allCountries]);
+
   useEffect(() => {
     if (isFocused) {
       toggleSwitch();
@@ -831,7 +830,7 @@ const SettingScreen = (props: any): any => {
     }
 
   }
-  console.log(language, '---', country)
+  console.log(language, '---', country, allCountries)
 
   return (
     <>
