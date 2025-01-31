@@ -102,7 +102,6 @@ export const onAddEditChildSuccess = async (response: any, dispatch: any, naviga
   navigation.navigate('ChildProfileScreen');
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any, languageCode: string, prevPage: string): Promise<any> => {
-
   const allDatatoStore = await getAllDataToStore(languageCode, dispatch, prevPage);
   console.log("allDatatoStore ", prevPage, "--", allDatatoStore);
   navigation.navigate('Terms');
@@ -224,13 +223,8 @@ export const downloadArticleImages = async (): Promise<any> => {
 }
 export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any, languageCode: string, prevPage: string, activeChild: any, oldErrorObj: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any): Promise<any> => {
   const resolvedPromises = oldErrorObj.map(async (x: any) => {
-    try {
-      const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint, languageCode, dispatch, prevPage, activeChild);
-      return allDatatoStore;
-    } catch (error) {
-      console.log('0000', error)
-    }
-
+    const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint, languageCode, dispatch, prevPage, activeChild);
+    return allDatatoStore;
 
   })
   const forceUpdateData = [
@@ -272,11 +266,17 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     if (artresp && artresp != {}) {
       const artobj = oldErrorObj.find((x: any) => x.apiEndpoint == 'articles');
       if (artobj && artobj != {}) {
-        const storedata = store.getState();
-        const childagearray = storedata.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age : [];
-        const artarray = artobj.postdata.childAge == 'all' ? childagearray.map((x: any) => x.id) : artobj.postdata.childAge.split(',').map(Number)
-        console.log(artarray, "---childagearray--", childagearray);
-        dispatch(setDownloadedBufferAgeBracket(artarray))
+        try {
+          const storedata = store.getState();
+          const childagearray = storedata.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age : [];
+          const artarray = artobj.postdata.childAge == 'all' ? childagearray.map((x: any) => x.id) : artobj.postdata.childAge.split(',').map(Number)
+          console.log(artarray, "---childagearray--", childagearray);
+          dispatch(setDownloadedBufferAgeBracket(artarray))
+        }
+        catch (err) {
+          console.log('error97', err)
+        }
+
       }
     }
   }
