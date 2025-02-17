@@ -46,7 +46,6 @@ const ChartHeightForAge = (props: any): any => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   //const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
   const standardDevData = standardDevDataLoad;
-  // console.log(standardDevData,"..standardDevData..")
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   let obj: any;
@@ -55,7 +54,7 @@ const ChartHeightForAge = (props: any): any => {
   if (activeChild?.gender == taxonomyIds?.boyChildGender || activeChild?.gender == '' || activeChild?.gender == appConfig.boyChildGender) {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == appConfig.weightGrowthType && item.child_gender == taxonomyIds?.boyChildGender || item.child_gender == appConfig.boyChildGender,
+      (item) => item.growth_type == appConfig.weightGrowthType && (item.child_gender == taxonomyIds?.boyChildGender || item.child_gender == appConfig.boyChildGender),
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData, 'height');

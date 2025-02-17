@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
 })
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
-  // console.log(route.params,"home params")
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const headerColorChildInfo = themeContext?.colors.CHILDDEVELOPMENT_COLOR;

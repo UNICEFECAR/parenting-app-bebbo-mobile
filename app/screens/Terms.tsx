@@ -24,6 +24,7 @@ import VectorImage from 'react-native-vector-image';
 import { activityLogo, adviceLogo, toolsLogo, bebboLogoShape, imgLogoChatbotNew } from '../instance';
 const flavor = process.env.FLAVOR || 'bebbo';
 const REMOVED_FACEBOOK_APP_ID1LogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`)
+const REMOVED_FACEBOOK_APP_ID1LogoShapeMB = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape.svg`)
 import FeatureTCView from '@components/shared/FeaturesTCView';
 import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
 import { logEvent } from '../services/EventSyncService';
@@ -38,7 +39,7 @@ type Props = {
   navigation: TermsNavigationProp;
 };
 const item = {
-  image: imgLogoChatbotNew,
+  image: flavor == 'REMOVED_FACEBOOK_APP_ID1' ? REMOVED_FACEBOOK_APP_ID1LogoShapeMB : REMOVED_FACEBOOK_APP_ID1LogoShapeNew,
   advice: adviceLogo,
   tools: toolsLogo,
   activity: activityLogo
@@ -240,7 +241,7 @@ const Terms = ({ navigation }: Props): any => {
           <OverlayLoadingComponent loading={loading} />
           <View style={{ marginTop: 30 }}>
             <View style={styles.vectorImageView}>
-              {item.image && <VectorImage source={REMOVED_FACEBOOK_APP_ID1LogoShapeNew} />}
+              {item.image && <VectorImage source={item.image} />}
             </View>
           </View>
           <ShiftFromTop15>

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 const HeaderNotiIcon = (props: any): any => {
-  const {convertDigits} = useDigitConverter()
+  const { convertDigits } = useDigitConverter()
   const allnotis = useAppSelector((state: any) => state.notificationData.notifications);
   const localNotifications = useAppSelector((state: any) => state.notificationData.localNotifications);
   const scheduledlocalNotifications = useAppSelector((state: any) => state.notificationData.scheduledlocalNotifications);
@@ -45,7 +45,7 @@ const HeaderNotiIcon = (props: any): any => {
   );
   const allHealthCheckupsData = useAppSelector(
     (state: any) =>
-      state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
+      state?.utilsData?.healthCheckupsData != '' ? JSON.parse(state?.utilsData?.healthCheckupsData) : [],
   );
   const growthEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.growthEnabled),
@@ -330,7 +330,7 @@ const HeaderNotiIcon = (props: any): any => {
     const fetchDataFav = async (): Promise<any> => {
       const filterQuery = 'uuid == "' + activeChild.uuid + '"';
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-      childData[0]?.favoriteadvices && dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices)|| []));
+      childData[0]?.favoriteadvices && dispatch(setFavouriteAdvices(Object.values(childData[0]?.favoriteadvices) || []));
       childData[0]?.favoritegames && dispatch(setFavouriteGames(Object.values(childData[0]?.favoritegames) || []));
     }
     fetchDataFav()

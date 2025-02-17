@@ -47,7 +47,6 @@ import { PERMISSIONS, RESULTS, request, check } from 'react-native-permissions';
 import PushNotification from 'react-native-push-notification';
 import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 //import DynamicLinks from '@react-native-firebase/dynamic-links';
 import { trimWhiteSpacePayload } from '../services/Utils';
 import TermsPage from '@screens/TermsPage';

@@ -10,7 +10,7 @@ import 'react-native-gesture-handler';
 import { ButtonErrorText, ButtonPrimary } from '@components/shared/ButtonGlobal';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { Action, ThunkAction } from '@reduxjs/toolkit';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import ErrorBoundary from 'react-native-error-boundary';
 import 'react-native-gesture-handler';
@@ -26,8 +26,8 @@ import AppNavigation from './app/navigation/AppNavigation';
 import './app/localization/initI18next';
 import configureAppStore from './app/redux/store';
 import { googleAuth } from './app/services/googleAuth';
-// import { appTheme } from './app/styles/theme';
 import { EventProvider } from 'react-native-outside-press';
+import { setTaxonomyIds, setuserIsOnboarded } from './app/redux/reducers/utilsSlice';
 const flavor = process.env.FLAVOR || 'bebbo';
 export const store = configureAppStore();
 export const persistor = persistStore(store);
@@ -46,7 +46,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
 });
-const {appTheme} = require(`./app/instance/${flavor}/styles/theme`);
+const { appTheme } = require(`./app/instance/${flavor}/styles/theme`);
 const CustomFallback = (props: { error: Error; resetError: Function }) => {
   crashlytics().recordError(props.error);
   return (
@@ -66,11 +66,17 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
 
 const App = () => {
   React.useEffect(() => {
-    // testFlavor();
     Orientation.lockToPortrait();
     // SplashScreen.hide();
     googleAuth.configure();
   });
+
+  const onBeforeLift = () => {
+    const taxonomyAllData = store.getState().utilsData.taxonomy.allTaxonomyData ? JSON.parse(store.getState().utilsData.taxonomy.allTaxonomyData) : []
+    if (taxonomyAllData?.relationship_to_parent) {
+      store.dispatch(setTaxonomyIds(taxonomyAllData))
+    }
+  }
 
   return (
     <EventProvider>
@@ -85,6 +91,7 @@ const App = () => {
                   </>
                 }
                 persistor={persistor}
+                onBeforeLift={onBeforeLift}
               >
                 <SafeAreaProvider style={styles.flex1}>
                   <AppNavigation />

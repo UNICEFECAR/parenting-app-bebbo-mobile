@@ -23,7 +23,6 @@ export const storeUnsyncedEvent = async (realm: any, eventData: any): Promise<an
       ...eventData,
       isSynchronized: false,
     });
-    console.log('EventClick unsyncedEvent for category', unsyncedEvent);
   });
 }
 

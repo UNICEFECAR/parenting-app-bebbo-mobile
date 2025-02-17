@@ -45,15 +45,15 @@ type Props = {
   route: any;
   navigation: ChildSetupNavigationProp;
 };
-const styles=StyleSheet.create({
-  flex1:{flex: 1},
-  headerRowView:{
+const styles = StyleSheet.create({
+  flex1: { flex: 1 },
+  headerRowView: {
     maxHeight: 50
   },
   headetTitleText: {
     color: bgcolorWhite
   },
-  textInputML:{width:'100%'}
+  textInputML: { width: '100%' }
 
 })
 const EditParentDetails = ({ route, navigation }: Props): any => {
@@ -86,7 +86,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
   const [parentName, setParentName] = React.useState(parentEditName ? parentEditName : "");
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const relationshipToParent = relationshipToParentGlobal.length > 0 && userParentalRoleData != "" ? relationshipToParentGlobal.find((o: any) => o.id === userParentalRoleData) : '';
-   const relationshipValue = relationshipData.find((item:any) => item.id === userRelationToParentEdit);
+  const relationshipValue = relationshipData.find((item: any) => item.id === userRelationToParentEdit);
   // console.log('result is',relationshipToParent);
   useFocusEffect(
     React.useCallback(() => {
@@ -95,7 +95,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
       setDefaultGenderValue(userRelationToParentEdit != ''
         ? relationshipData.find((item: any) => item.id == userRelationToParentEdit)
         : { title: '' })
-        setRelationshipUniqueName(relationshipValue.unique_name);
+      setRelationshipUniqueName(relationshipValue?.unique_name || '');
     }, [])
   );
   useEffect(() => {
@@ -126,11 +126,11 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
     else {
       relationship = String(relationshipnew);
     }
-     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
-     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
-     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
+    await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
+    await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
+    await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName", parentName);
     userRelationToParent = userRelationToParent.length > 0 ? userRelationToParent[0].value : '';
-    updateActiveChild(activeChild, "parent_gender", relationship, dispatch, String(userRelationToParent),taxonomyIds?.boyChildGender);
+    updateActiveChild(activeChild, "parent_gender", relationship, dispatch, String(userRelationToParent), taxonomyIds?.boyChildGender);
     navigation.navigate('ChildProfileScreen');
   }
   const getCheckedParentItem = (checkedItem: any): any => {
@@ -146,10 +146,10 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
     }
   };
   return <>
-    <View style={[styles.flex1,{ backgroundColor: bgcolorWhite }]}>
+    <View style={[styles.flex1, { backgroundColor: bgcolorWhite }]}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <HeaderRowView
-        style={[styles.headerRowView,{backgroundColor: headerColor}]}>
+        style={[styles.headerRowView, { backgroundColor: headerColor }]}>
         <HeaderIconView>
           <HeaderIconPress
             onPress={(): any => {
@@ -197,7 +197,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
           }
         </View>
         <ActionSheet ref={actionSheetRef}>
-          <View style={{marginBottom:40}}>
+          <View style={{ marginBottom: 40 }}>
             {
               relationshipToParentGlobal.map((item: any, index: any) => {
                 return (

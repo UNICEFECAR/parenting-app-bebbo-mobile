@@ -168,7 +168,7 @@ const HeaderBabyMenu = (props: any): any => {
         ? genders.find((genderset: any) => genderset.id === parseInt(data.gender))
         : '';
     const genderName: any = genderLocal;
-    console.log(taxonomyIds?.boyChildGender, '===', genderName, data?.photoUri ? true : false)
+
     return (
       <View key={index}>
         {currentActiveChild === data.uuid ? (
