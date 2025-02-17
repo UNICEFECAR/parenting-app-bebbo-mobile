@@ -180,7 +180,6 @@ const GrowthChart = (props: any): any => {
     );
   });
   const { topArea, bottomArea, middleArea } = bgObj;
-  console.log('[chart]', bgObj)
   const ChartClick = Platform.OS == "android" ? Svg : View;
   return (
     <>
@@ -292,7 +291,6 @@ const GrowthChart = (props: any): any => {
                             if (props.active === true) {
                               activeState = null;
                             }
-                            console.log(activeState, "..activeState..")
                             if (stroke === 'orange') {
                               st = '#ACACAC';
                             } else {

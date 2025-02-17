@@ -174,6 +174,60 @@ const config = {
       { apiEndpoint: config.apiConfig.taxonomies, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.basicPages, method: 'get', postdata: {}, saveinDB: true },
       {
+        apiEndpoint: config.apiConfig.surveys,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.milestones,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.childDevelopmentData,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.vaccinations,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.healthCheckupData,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.standardDeviation,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.dailyMessages,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.activities,
+        method: 'get',
+        postdata: isDatetimeReq == true && dateTimeObj['activitiesDatetime'] != '' ? { datetime: dateTimeObj['activitiesDatetime'] } : {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.faqs,
+        method: 'get',
+        postdata: isDatetimeReq == true && dateTimeObj['faqsDatetime'] != '' ? { datetime: dateTimeObj['faqsDatetime'] } : {},
+        saveinDB: true,
+      },
+      {
         apiEndpoint: config.apiConfig.videoArticles,
         method: 'get',
         postdata:

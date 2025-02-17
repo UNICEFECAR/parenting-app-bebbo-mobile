@@ -176,8 +176,6 @@ const Articles = ({ route, navigation }: any): any => {
       }
     });
 
-    // console.log('[===]', combinedarr.filter(i => i.cover_video))
-
     return combinedarr;
   }
   const preprocessArticles = (articles: any): any => {
@@ -247,13 +245,12 @@ const Articles = ({ route, navigation }: any): any => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  const articleDataOld = articleDataall.filter((x: any) => appConfig.articleCategoryIdArray.includes(x.category));
+  const articleDataOld = articleDataall.filter((x: any) => taxonomyIds.articleCategoryArray.includes(x.category));
   const VideoArticlesDataall = useAppSelector(
     (state: any) =>
       state.utilsData.VideoArticlesData != '' ? JSON.parse(state.utilsData.VideoArticlesData) : [],
   );
-  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == appConfig.videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && taxonomyIds?.articleCategoryArray?.includes(x.category) && (x.child_gender == activeChild?.gender || x.child_gender == appConfig?.bothChildGender));
-  console.log('=========', videoarticleData)
+  const videoarticleData = VideoArticlesDataall.filter((x: any) => x.mandatory == appConfig.videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && taxonomyIds?.articleCategoryArray?.includes(x.category));
 
   let articleData: any = mergearr(articleDataOld, videoarticleData, true);
   const [filteredData, setfilteredData] = useState<any>([]);
@@ -298,50 +295,10 @@ const Articles = ({ route, navigation }: any): any => {
       setSelectedChildActivitiesData(articleData);
       setCurrentChildSelected(true)
     }
-
   }
   useEffect(() => {
     setsuggestedArticles(filteredData);
   }, [filteredData])
-
-  // useEffect(() => {
-  //   const miniSearchArticles = MiniSearch.loadJSON(searchResultIndexedData, {
-  //     processTerm: (term) => suffixes(term, 3),
-  //     extractField: (document, fieldName): any => {
-  //       const arrFields = fieldName.split(".");
-  //       if (arrFields.length === 2) {
-  //         return (document[arrFields[0]] || [])
-  //           .map((arrField: any) => arrField[arrFields[1]] || "")
-  //           .join(" ");
-  //       } else if (arrFields.length === 3) {
-  //         const tmparr = (document[arrFields[0]] || []).flatMap(
-  //           (arrField: any) => arrField[arrFields[1]] || []
-  //         );
-  //         return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
-  //       }
-  //       return fieldName
-  //         .split(".")
-  //         .reduce((doc, key) => doc && doc[key], document);
-  //     },
-  //     fields: ['title', 'summary', 'body'],
-  //     searchOptions: {
-  //       boost: { title: 2, summary: 1.5, body: 1 },
-  //       bm25: { k: 1.0, b: 0.7, d: 0.5 },
-  //       fuzzy: true,
-  //       // prefix true means it will contain "foo" then search for "foobar"
-  //       prefix: true,
-  //       weights: {
-  //         fuzzy: 0.6,
-  //         prefix: 0.6
-  //       }
-  //     }
-  //   });
-  //   setSearchIndex(miniSearchArticles);
-  //   console.log('miniSearchArticles deserialise data', miniSearchArticles);
-  //   // const miniSearchArticles = new MiniSearch({
-  //   //   fields: ['title', 'summary', 'body'],
-  //   // });
-  // }, [searchResultIndexedData])
 
   const RenderArticleItem = ({ item, index }: any): any => {
     return (
@@ -376,74 +333,6 @@ const Articles = ({ route, navigation }: any): any => {
       flatListRef?.current?.scrollToOffset({ animated: Platform.OS == "android" ? true : false, offset: 0 })
     }
   }
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const fetchData = async (): Promise<any> => {
-  //       const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
-  //       //const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
-  //       // setchildMilestonedata(childData[0].checkedMilestones)
-  //     }
-  //     fetchData()
-  //     return (): any => {
-  //       console.log("unmount activity", route.params);
-
-  //       navigation.setParams({ backClicked: 'no' })
-
-  //       navigation.setParams({ currentSelectedChildId: 0 })
-
-  //       navigation.setParams({ categoryArray: [] })
-
-  //     };
-  //   }, [])
-  // );
-
-  // useEffect(() => {
-  //   async function initializeSearchIndex() {
-  //     try {
-  //       console.log('articleDataData all datas', selectedChildActivitiesData?.length)
-  //       const processedActivities = preprocessArticles(selectedChildActivitiesData);
-  //       console.log('processedActivities all datas', processedActivities);
-  //       const searchActivittiesData = new MiniSearch({
-  //         // processTerm: (term) => suffixes(term, 3),
-  //         // extractField: (document, fieldName): any => {
-  //         //   const arrFields = fieldName.split(".");
-  //         //   if (arrFields.length === 2) {
-  //         //     return (document[arrFields[0]] || [])
-  //         //       .map((arrField: any) => arrField[arrFields[1]] || "")
-  //         //       .join(" ");
-  //         //   } else if (arrFields.length === 3) {
-  //         //     const tmparr = (document[arrFields[0]] || []).flatMap(
-  //         //       (arrField: any) => arrField[arrFields[1]] || []
-  //         //     );
-  //         //     return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
-  //         //   }
-  //         //   return fieldName
-  //         //     .split(".")
-  //         //     .reduce((doc, key) => doc && doc[key], document);
-  //         // },
-  //         searchOptions: {
-  //           boost: { title: 2, summary: 1.5, body: 1 },
-  //           bm25: { k: 1.0, b: 0.7, d: 0.5 },
-  //           fuzzy: true,
-  //           // prefix true means it will contain "foo" then search for "foobar"
-  //           prefix: true,
-  //           weights: {
-  //             fuzzy: 0.6,
-  //             prefix: 0.6
-  //           }
-  //         },
-  //         fields: ['title', 'summary', 'body'],
-  //         storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'embedded_images']
-  //       });
-  //       processedActivities.forEach((item: any) => searchActivittiesData.add(item));
-  //       setSearchIndex(searchActivittiesData);
-  //       console.log('search index dta is', searchActivittiesData)
-  //     } catch (error) {
-  //       console.log("Error: Retrieve minisearch data", error)
-  //     }
-  //   }
-  //   initializeSearchIndex();
-  // }, [currentSelectedChildId])
 
   const setFilteredArticleData = async (itemId: any): Promise<any> => {
     setHistoryVisible(false);
@@ -465,7 +354,6 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = aggregatedResults.filter((x: any) => itemId.includes(x.category));
             }
-            console.log('[]1', filteredResults)
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
@@ -480,14 +368,12 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = results.filter((x: any) => itemId.includes(x.category));
             }
-            console.log('[]2', filteredResults)
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
             toTop()
           }
         } else {
-          console.log('[]3', newArticleData)
           setfilteredData(newArticleData);
         }
 
@@ -513,8 +399,6 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = aggregatedResults;
             }
-            console.log('[]4', filteredResults)
-
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
@@ -527,8 +411,6 @@ const Articles = ({ route, navigation }: any): any => {
             } else {
               filteredResults = results;
             }
-            console.log('[]5', filteredResults)
-
             setfilteredData(filteredResults);
             setLoadingArticle(false)
             setIsSearchedQueryText(false)
@@ -536,10 +418,6 @@ const Articles = ({ route, navigation }: any): any => {
           }
 
         } else {
-
-
-          console.log('[]6', newArticleData)
-
           setfilteredData(newArticleData);
         }
         setLoadingArticle(false);
@@ -583,14 +461,11 @@ const Articles = ({ route, navigation }: any): any => {
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
-          console.log("if route params 0", route.params);
           const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
           showSelectedBracketData(firstChildDevData[0]);
 
         }
         else {
-          console.log("else if route params 0", route.params, activityTaxonomyId);
-
           const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
           showSelectedBracketData(firstChildDevData[0]);
         }
@@ -610,7 +485,6 @@ const Articles = ({ route, navigation }: any): any => {
       }
       fetchData()
       return (): any => {
-        console.log("unmount activity", route.params);
 
         navigation.setParams({ backClicked: 'no' })
 
@@ -627,12 +501,11 @@ const Articles = ({ route, navigation }: any): any => {
       try {
         let videoArticleDataAllCategory: any;
         if (activeChild != null && activeChild.taxonomyData != null && activeChild?.gender != null) {
-          videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == appConfig.videoArticleMandatory && x.child_age.includes(activeChild.taxonomyData.id) && (x.child_gender == activeChild?.gender || x.child_gender == appConfig.bothChildGender));
+          videoArticleDataAllCategory = VideoArticlesDataall.filter((x: any) => x.mandatory == appConfig.videoArticleMandatory);
         }
         const combineDartArr = mergearr(articleDataall, videoArticleDataAllCategory, false);
         articleData = [...combineDartArr];
         const processedArticles = preprocessArticles((combineDartArr));
-        console.log('processedArticles data length', processedArticles?.length)
         const searchIndexData = new MiniSearch({
           processTerm: (term) => suffixes(term, 3),
           extractField: (document, fieldName): any => {
@@ -666,8 +539,6 @@ const Articles = ({ route, navigation }: any): any => {
           storeFields: ['id', 'type', 'title', 'created_at', 'updated_at', 'summary', 'body', 'category', 'child_age', 'child_gender', 'parent_gender', 'keywords', 'related_articles', 'related_video_articles', 'licensed', 'premature', 'mandatory', 'cover_image', 'cover_video', 'related_articles', 'embedded_images']
         });
 
-        // processedArticles.forEach((item: any) => searchIndex.add(item));
-        console.log('processedArticles is', processedArticles?.length);
         searchIndexData.addAllAsync(processedArticles);
         setSearchIndex(searchIndexData);
       } catch (error) {
@@ -735,8 +606,6 @@ const Articles = ({ route, navigation }: any): any => {
         } else {
           filteredResults = aggregatedResults.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         }
-        // console.log('[===]0', filteredResults.filter(i => i.cover_video))
-        console.log('[]7', filteredResults)
         setfilteredData(filteredResults);
         setLoadingArticle(false)
         setIsSearchedQueryText(false)
@@ -744,15 +613,12 @@ const Articles = ({ route, navigation }: any): any => {
       } else {
         const results = searchIndex.search(queryText);
         let filteredResults: any = null;
-        console.log('selectedchild id is', currentSelectedChildId)
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = results.filter((x: any) => selectedCategoryId.includes(x.category));
           filteredResults = categoryFilteredData.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         } else {
           filteredResults = results.filter((x: any) => x.child_age.includes(currentSelectedChildId));
         }
-        console.log('[===]1', filteredResults.filter(i => i.cover_video))
-        console.log('[]8', filteredResults)
         setfilteredData(filteredResults);
         setLoadingArticle(false)
         setIsSearchedQueryText(false)
@@ -929,6 +795,7 @@ const Articles = ({ route, navigation }: any): any => {
             <FlatList
               ref={flatListRef}
               data={filteredData}
+              extraData={filteredData}
               onScroll={(e): any => {
                 if (keyboardStatus == true) {
                   Keyboard.dismiss();

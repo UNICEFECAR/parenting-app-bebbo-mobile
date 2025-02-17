@@ -156,54 +156,6 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const rtlConditions = (language: any): any => {
-
-    // if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
-    //   if (AppLayoutDirection == 'ltr') {
-    //     dispatch(setrestartOnLangChange('yes'));
-    //     dispatch(setAppLayoutDirection('rtl'));
-    //     dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
-    //     dispatch(setAppLayoutDirectionParams({
-    //       country,
-    //       language,
-    //     }));
-    //     Platform.OS == 'ios' ? setTimeout(() => {
-    //       I18nManager.forceRTL(true);
-    //       RNRestart.Restart();
-    //     }, 100) :
-    //       setTimeout(() => {
-    //         I18nManager.forceRTL(true);
-    //         RNRestart.Restart();
-    //       }, 0);
-    //   } else {
-    //     I18nManager.forceRTL(true);
-    //   }
-    // } else {
-    //   if (AppLayoutDirection == 'rtl') {
-
-    //     dispatch(setrestartOnLangChange('yes'));
-    //     dispatch(setAppLayoutDirection('ltr'));
-    //     dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
-    //     dispatch(setAppLayoutDirectionParams({
-    //       country,
-    //       language,
-    //     }));
-    //     Platform.OS == 'ios' ?
-    //       setTimeout(() => {
-    //         I18nManager.forceRTL(false);
-    //         RNRestart.Restart();
-    //       }, 100) :
-    //       setTimeout(() => {
-    //         I18nManager.forceRTL(false);
-    //         RNRestart.Restart();
-    //       }, 0);
-    //   } else {
-    //     I18nManager.forceRTL(false);
-    //   }
-    // }
-    // navigation.navigate('CountryLanguageConfirmation', {
-    //   country,
-    //   language,
-    // })
     moment.locale(getLanguageCode(language?.languageCode))
     i18n.changeLanguage(language?.locale || 'en')
       .then(() => {
@@ -254,12 +206,12 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       // if (userIsOnboarded == true) {
       //   dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
       // }
-      console.log('Sponsors Data for countryList', sponsorsData)
       dispatch(setSponsorStore(sponsorsData));
       const params = {
         apiJsonData: userIsOnboarded == true ? appConfig.allApisObject(false, incrementalSyncDT) : apiJsonData,
         prevPage: userIsOnboarded == true ? 'CountryLangChange' : 'CountryLanguageSelection'
       }
+      console.log(params, 'Sponsors Data for countryList', sponsorsData,userIsOnboarded)
       navigation.navigate("LoadingScreen", params);
     }
   }
@@ -278,7 +230,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     }
     i18n.changeLanguage(newLanguage?.locale || 'en')
       .then(() => {
-        if (countryId == appConfig.restOfTheWorldCountryId) {
+        if (route.params?.country?.CountryID == appConfig.restOfTheWorldCountryId) {
           const rotwLanguagelocaleen = localization[localization.length - 1]?.languages[0]?.locale;
           const rotwLanguagelocaleru = localization[localization.length - 1]?.languages[1]?.locale;
           console.log('rest of the world title', newLanguage)

@@ -29,8 +29,6 @@
     "ios:merhabaBebek:archive": "FLAVOR=merhabaBebek xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme MerhabaBebek -configuration Release -sdk iphoneos -archivePath ios/build/MerhabaBebek.xcarchive archive",
     "ios:merhabaBebek:export": "xcodebuild -exportArchive -archivePath ios/build/MerhabaBebek.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ios/build",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'",
-    "uploadTFBabuni": "xcrun altool --upload-app --type ios --file 'Babuni.ipa' --username 'evios.devs@datamatics.com' --password soty-htok-fint-lqex' ",
-    "uploadTFBebbo": "xcrun altool --upload-app --type ios --file 'ios/build/ParentBuddyApp.ipa' --username 'evios.devs@datamatics.com' --password 'soty-htok-fint-lqex' ",
     "GenerateBundleFile": "FLAVOR=merhabaBebek react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios"
   },
   "dependencies": {
