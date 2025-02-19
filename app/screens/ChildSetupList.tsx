@@ -140,7 +140,6 @@ const ChildSetupList = ({ navigation }: Props): any => {
   }, [isFocused]);
   useFocusEffect(
     React.useCallback(() => {
-
       const backAction = (): any => {
         return true;
       };

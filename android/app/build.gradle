@@ -182,8 +182,8 @@ android {
             applicationId 'org.unicef.ecar.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 39
-            versionName "2.2.4"
+            versionCode 36
+            versionName "2.2.3"
             signingConfig signingConfigs.release
         }
         prodstaging {
@@ -191,8 +191,8 @@ android {
             applicationId 'com.datamatics.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 9
-            versionName "2.1.0"
+            versionCode 8
+            versionName "2.0.0"
             signingConfig signingConfigs.release
         }
         xk {

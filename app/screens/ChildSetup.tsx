@@ -328,7 +328,6 @@ const ChildSetup = ({ navigation }: Props): any => {
           setLoading(true);
           setIsImportRunning(true);
           handleImportedData(oldChildrenData, importedrealm)
-
         }
 
       })
@@ -676,7 +675,6 @@ const ChildSetup = ({ navigation }: Props): any => {
           </SettingShareData>
         </BannerContainer>
       </ActionSheet>
-
       <AlertModal loading={isImportAlertVisible} disabled={isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={importAllData} onCancel={onImportCancel}></AlertModal>
 
     </View>

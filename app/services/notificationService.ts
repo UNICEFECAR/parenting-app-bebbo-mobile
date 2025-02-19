@@ -315,7 +315,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   const childAgeObj = childAge.sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
-  const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != undefined && child?.taxonomyData?.prematureTaxonomyId != "" ? child?.taxonomyData?.prematureTaxonomyId : child?.taxonomyData.id;
+  const activityTaxonomyId = child?.taxonomyData?.prematureTaxonomyId || child?.taxonomyData?.id;
   const lastchildgwperiod = childAgeObj.find((item: any) => String(item.id) == String(gwperiodid));
   let vcnotis: any[] = [];
   let hcnotis: any[] = [];
@@ -327,8 +327,8 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
     const prematurechildgwperiod = childAgeObj.find((item: any) => String(item.id) == String(activityTaxonomyId));
     //find next period and calculate for it and return for gw cd noti
     for (let i = lastchildgwperiodIndex + 1; i <= currentchildgwperiodIndex; i++) {
-      const childDaysTo = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != undefined && child?.taxonomyData?.prematureTaxonomyId != "" ? prematurechildgwperiod.days_to : childAgeObj[i].days_to;
-      const childDaysFrom = child?.taxonomyData?.prematureTaxonomyId != null && child?.taxonomyData?.prematureTaxonomyId != undefined && child?.taxonomyData?.prematureTaxonomyId != "" ? prematurechildgwperiod.days_from : childAgeObj[i].days_from;
+      const childDaysTo = child?.taxonomyData?.prematureTaxonomyId ? prematurechildgwperiod.days_to : childAgeObj[i].days_to;
+      const childDaysFrom = child?.taxonomyData?.prematureTaxonomyId ? prematurechildgwperiod.days_from : childAgeObj[i].days_from;
       const currentgwPeriodNoti = getCDGWNotisForChild(childAgeObj[i], child, prematurechildgwperiod, childDaysTo, childDaysFrom, false);
       lastgwperiodid = childAgeObj[i].id;
       currentgwPeriodNoti.forEach((noti: any) => {

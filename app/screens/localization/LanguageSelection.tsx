@@ -84,7 +84,6 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
   );
-
   const extractLanguageCode = (languageTag: string): string => {
     const [languageCode] = languageTag.split('-');
     return languageCode;
@@ -127,7 +126,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         } else {
 
           if (route.params != undefined) {
-            newCountryId = route.params.country?.countryId;
+            newCountryId = route.params?.country?.countryId;
           } else {
             newCountryId = countryId;
           }

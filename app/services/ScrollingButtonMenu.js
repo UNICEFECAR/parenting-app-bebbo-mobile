@@ -160,7 +160,7 @@ export default class ScrollingButtonMenu extends React.Component {
                     keyboardShouldPersistTaps={keyboardShouldPersistTaps}
                 >
                     {
-                      (items?.length > 0) &&  items.map((route, i) => (
+                      (items?.length > 0) &&  items?.map((route, i) => (
                             <TouchableOpacity
                                 style={[
                                     styles.tabItem,

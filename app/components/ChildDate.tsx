@@ -91,7 +91,7 @@ const ChildDate = (props: any): any => {
         setToggleCheckBox(
           isPremature != null ? JSON.parse(isPremature) : false,
         );
-        setdoborExpectedDate(
+       setdoborExpectedDate(
           birthDate != null ? new Date(birthDate) : new Date(),
         );
         setdueDate(plannedTermDate != null ? new Date(plannedTermDate) : null);
@@ -378,7 +378,6 @@ const ChildDate = (props: any): any => {
                     </FormDateAction>
                   </FormInputBox>
                 </FormInputGroup>
-
               )}
             </ShiftFromTop15>
           </>

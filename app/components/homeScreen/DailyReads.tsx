@@ -326,8 +326,8 @@ const DailyReads = (): any => {
     return <RenderDailyReadItem item={item} index={index} isAdvice={isAdvice} />;
   }, [favoriteAdvices, favoriteGames]);
 
-  const renderEmptyList = () => {
-      if(dataToShowInList?.length == 0 && !fetchAgain){
+  const handleEmptyList = () => {
+      if(dataToShowInList?.length === 0 && !fetchAgain){
         setFetchAgain(true)
       }
       return null
@@ -346,7 +346,7 @@ const DailyReads = (): any => {
             keyExtractor={(item: any): any => keyExtractor(item)}
             windowSize={5}
             initialNumToRender={10}
-            ListEmptyComponent={() => renderEmptyList()}
+            ListEmptyComponent={() => handleEmptyList()}
           />
         </View>
         <View style={styles.flatlistOuterView}>
