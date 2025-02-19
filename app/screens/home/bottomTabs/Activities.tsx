@@ -420,7 +420,6 @@ const Activities = ({ route, navigation }: any): any => {
           console.log("if route params 0", route.params);
           const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
           showSelectedBracketData(firstChildDevData[0]);
-
         }
         else {
           console.log("else if route params 0", route.params, activityTaxonomyId);
@@ -485,7 +484,6 @@ const Activities = ({ route, navigation }: any): any => {
 
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray)
-
   }
   const gotoMilestone = (): any => {
     navigation.navigate('ChildDevelopment',
@@ -937,4 +935,3 @@ const Activities = ({ route, navigation }: any): any => {
 };
 
 export default Activities;
-

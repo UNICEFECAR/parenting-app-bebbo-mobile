@@ -359,7 +359,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         ]
       );
     }
-
   }
   else {
     navigation.reset({

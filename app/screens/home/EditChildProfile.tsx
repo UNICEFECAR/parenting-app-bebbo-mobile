@@ -630,7 +630,6 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             </MainContainer>
           </ActionSheet>
         </ScrollView>
-
       </View>
     </>
   );

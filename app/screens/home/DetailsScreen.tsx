@@ -600,7 +600,6 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{
 
-
                     table: {
                       cssRules
                       // Put the table config here (previously,
