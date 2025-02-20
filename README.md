@@ -1,18 +1,15 @@
 
-<h1>Bebbo - an interactive mobile application for parenting</h1>
+# [Bebbo](https://bebbo.app/) is an interactive mobile application for parenting
     
-### Table of Contents
+## Table of Contents
 
 * [Introduction](#introduction)
-* [Technology stack](#technology-stack)<!--* [Used libraries](#used-libraries)-->
+* [Technology stack](#technology-stack)
+<!--* [Used libraries](#used-libraries)-->
 * [Getting started](#getting-started)
 * [Install Bebbo in localhost](#install-bebbo-in-localhost)
 * [How to run](#how-to-run)
 * [License](#license)
-<!-- 
-* [Source Code Overview](#source-code-overview)
-* [Realm Databases](#realm-databases)
--->
 
 ## Introduction
 
@@ -36,22 +33,11 @@ The app can also operate in an offline mode in environments with limited interne
 
 ## Technology stack
 
-* [React Native](https://reactnative.dev/)
-    * Project is set with Latest version of react native:
-       * React native - 0.72.5
-    * Several React Native modules have been incorporated in order to speed up the development.
-    * Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
-* [TypeScript](https://www.typescriptlang.org/)
-    * TypeScript was used as a programming language.
-    * The same source code compiles into iOS and Android applications.
-* [NPM](https://nodejs.org/en/)
-    * NPM (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
+* [React Native](https://reactnative.dev/) version 0.72.5 was used to build native mobile applications for both iOS and Android using the same codebase. Several React Native modules have been incorporated in order to speed up the development. Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
+* [TypeScript](https://www.typescriptlang.org/) was used as a programming language. 
+* [NPM](https://nodejs.org/en/) (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
         * Node version - 21.7.3
         * NPM version  - 10.8.2
-<!--
-* [Storybook](https://storybook.js.org/)
-    * Storybook was used to create visual tests for many components and services used in the application.
--->
 
 <!--    
 ## Used libraries
@@ -76,25 +62,47 @@ Several third party libraries and services are incorporated. These are the most 
 
 ## Getting started
 
-* Either Mac or Windows can be used for development.
+* Mac or Windows can be used to setup a development environment. iOS and Android apps can be developed using MacBook. Only Android app can be developed using Windows.
 * Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
-* Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to set up environment for React Native development.
+* Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to set up React Native development environment.  
 
 ## Install Bebbo in localhost
 
-1. Clone the repo via GitBash
+1. Download [Node JS](https://nodejs.org/en/download) version 21.7.3 and install it.
+```
+node -v 
+V21.7.3
+```
+2. Install NPM (Node Package Manager).
+```
+npm install -g npm@10.8.2
+npm -v
+10.8.2
+```
+3. Install React Native.
+```
+npm install -g react-native@0.72.5
+react-native -version
+0.72.5
+```
+4. Clone the repo via GitBash.
 ```sh
 git clone https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
+cd parenting-app-bebbo-mobile
 ```
-2. Install NPM packages (DO NOT USE yarn!)
-```sh
+5. When starting work on a new feature branch, branch off from the development branch.
+```
+git checkout -b myFeature develop
+```
+6. Install NPM packages. Do not use yarn!
+```
 npm install
 ```
-3. Only on Mac, go to "ios" folder, and run
-```sh
+7. Only on Mac, go to "ios" folder, and run:
+```
 pod install
 ```
-Before running iOS App on Device, necessary certificate setup from Apple developer account is required.
+Before running iOS app on a device, necessary certificate setup from Apple developer account is required.
 After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp). You can use the below targets.
 
   **Project Target:**
@@ -146,13 +154,11 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
      
      ![alt text](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/ReadMe/Copy_Input_Crashalytics_File.png)      
 
-4. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
-Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
+8. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts. Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
 
-5. For Android, add keystore files into \android\app folder to generate Android build.
-      To add a keystore file to your Android project’s `android/app` folder and configure it for signing, Follow the following steps to add keystore file.:
+9. For Android, add keystore files into \android\app folder to generate Android build. To add a keystore file to your Android project’s `android/app` folder and configure it for signing. Follow the following steps to add keystore file.
 
-    5.1. *Obtain or create a keystore file*
+    9.1. *Obtain or create a keystore file*
     
     If you don’t already have a keystore file, you need to generate one. You can use the `keytool` command to create it:
     
@@ -165,7 +171,7 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
     
     - Follow the prompts to enter details such as passwords, organizational information, etc.
 
-    5.2. *Add a keystore file to the project*
+    9.2. *Add a keystore file to the project*
     
     - *Navigate to Your Project Directory:*
       - Open your project in your file explorer or terminal.
@@ -174,7 +180,7 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
     - *Copy the Keystore File:*
       - Move or copy your `my-release-key.jks` file into the `android/app` directory.
 
-    5.3. *Configure Gradle for Signing*
+    9.3. *Configure Gradle for Signing*
     
     - *Open the `build.gradle` File:*
       - In your project, navigate to `android/app/build.gradle`.
@@ -206,21 +212,22 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
         }
         ```
 
-- **Add Signing Properties:**
-  - Create or update the `gradle.properties` file located in the `android/` directory of your project (if the file doesn’t exist, create it).
+    9.3. *Add Signing Properties:*
 
-  - Add the following properties to `gradle.properties`:
+    - Create or update the `gradle.properties` file located in the `android/` directory of your project (if the file doesn’t exist, create it).
 
-    ```properties
-    MYAPP_RELEASE_STORE_FILE=my-release-key.jks
-    MYAPP_RELEASE_KEY_ALIAS=my-key-alias
-    MYAPP_RELEASE_STORE_PASSWORD=your-store-password
-    MYAPP_RELEASE_KEY_PASSWORD=your-key-password
-    ```
+    - Add the following properties to `gradle.properties`:
 
-    Replace `your-store-password` and `your-key-password` with the actual passwords you used when creating the keystore.
+      ```properties
+      MYAPP_RELEASE_STORE_FILE=my-release-key.jks
+      MYAPP_RELEASE_KEY_ALIAS=my-key-alias
+      MYAPP_RELEASE_STORE_PASSWORD=your-store-password
+      MYAPP_RELEASE_KEY_PASSWORD=your-key-password
+      ```
 
-6. Configure Firebase services
+      Replace `your-store-password` and `your-key-password` with the actual passwords you used when creating the keystore.
+
+10. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
     - Add iOS and Android apps to Firebase project the standard way
     - Use Firebase wizards to create these:
@@ -263,17 +270,17 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
        https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/XkDevelopment
        ```
                
-7. Configure google Signin and GDrive Import/Export
-    * Configure Google Signin and GDrive Import/Export
+11. Configure Google Sign in and GDrive Import/Export
+    * Configure Google Sign in and GDrive Import/Export.
     * Enable Google Drive API from Cloud Console.
-    * Choose Scope For Drive Access
-    * Copy details of REVERSED_CLIENT_ID as in the below example from GoogleService-Info.plist 
-     and add in .env file as  projectNumber and clientIdKey.
+    * Choose Scope For Drive Access.
+    * Copy details of REVERSED_CLIENT_ID as in the below example from GoogleService-Info.plist.
+     and add in .env file as projectNumber and clientIdKey.
        * Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
 
-8. Steps required while creating Flavour builds for both Bebbo and Foleja. 
+12. Steps required while creating Flavour builds for both Bebbo and Foleja. 
 
-   **1.** Follow below steps for **Bebbo Prod and ProdStaging**:
+   **A.** Follow below steps for **Bebbo Prod and ProdStaging**:
    
       * In apiConstants.ts change buildFor const value to buildForBebbo as follows:
          
@@ -319,7 +326,7 @@ Refer this library for custom fonts: https://github.com/oblador/react-native-vec
         encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)
         ```
 
-    **2.** Follow below steps for **Foleja Prod and ProdStaging**:
+    **B.** Follow below steps for **Foleja Prod and ProdStaging**:
    
       * In apiConstants.ts change buildFor const value to buildForFoleja as follows:
          
