@@ -4,8 +4,7 @@
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [Technology stack](#technology-stack)
-<!--* [Used libraries](#used-libraries)-->
+* [Technology stack](#technology-stack) <!--* [Used libraries](#used-libraries)-->
 * [Getting started](#getting-started)
 * [Install Bebbo in localhost](#install-bebbo-in-localhost)
 * [How to run](#how-to-run)
@@ -33,11 +32,12 @@ The app can also operate in an offline mode in environments with limited interne
 
 ## Technology stack
 
-* [React Native](https://reactnative.dev/) version 0.72.5 was used to build native mobile applications for both iOS and Android using the same codebase. Several React Native modules have been incorporated in order to speed up the development. Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
+* [React Native](https://reactnative.dev/) version 0.72.5 was used to build native mobile applications for both iOS and Android using the same codebase. Several React Native modules have been incorporated in order to speed up the development process. Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
 * [TypeScript](https://www.typescriptlang.org/) was used as a programming language. 
 * [NPM](https://nodejs.org/en/) (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
-        * Node version - 21.7.3
-        * NPM version  - 10.8.2
+
+  * Node version - 21.7.3
+  * NPM version  - 10.8.2
 
 <!--    
 ## Used libraries
@@ -212,7 +212,7 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
         }
         ```
 
-    9.3. *Add Signing Properties:*
+    9.4. *Add Signing Properties:*
 
     - Create or update the `gradle.properties` file located in the `android/` directory of your project (if the file doesn’t exist, create it).
 
@@ -237,7 +237,7 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
     
        Prod
        ```
-           https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prod 
+       https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prod 
        ```
        Prodstaging 
        ```
@@ -278,9 +278,9 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
      and add in .env file as projectNumber and clientIdKey.
        * Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
 
-12. Steps required while creating Flavour builds for both Bebbo and Foleja. 
+0. Steps required while creating Flavour builds for both Bebbo and Foleja. 
 
-   **A.** Follow below steps for **Bebbo Prod and ProdStaging**:
+   **1.** Follow below steps for **Bebbo Prod and ProdStaging**:
    
       * In apiConstants.ts change buildFor const value to buildForBebbo as follows:
          
@@ -326,7 +326,7 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
         encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)
         ```
 
-    **B.** Follow below steps for **Foleja Prod and ProdStaging**:
+    **2.** Follow below steps for **Foleja Prod and ProdStaging**:
    
       * In apiConstants.ts change buildFor const value to buildForFoleja as follows:
          
@@ -371,7 +371,7 @@ After each time pod install, copy [CP-User] [RNFB] Core Configuration && [CP-Use
         encryptionsKey=d64e6a977f5643er90h8y5jk123n8bd88630jh56d34ddec874566342209y34 (Key for encryption)
         encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)
         ```
-        
+          
 ---
 
 ## Steps to Generate Required Keys and Tokens
