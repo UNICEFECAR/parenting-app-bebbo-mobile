@@ -29,7 +29,7 @@
     "ios:merhabaBebek:archive": "FLAVOR=merhabaBebek xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme MerhabaBebek -configuration Release -sdk iphoneos -archivePath ios/build/MerhabaBebek.xcarchive archive",
     "ios:merhabaBebek:export": "xcodebuild -exportArchive -archivePath ios/build/MerhabaBebek.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ios/build",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'",
-    "GenerateBundleFile": "FLAVOR=merhabaBebek react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios"
+    "GenerateBundleFile": "ENVFILE=.env.babuni FLAVOR=babuni react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios"
   },
   "dependencies": {
     "@klarna/react-native-vector-drawable": "^0.4.0",

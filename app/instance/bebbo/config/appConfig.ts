@@ -106,8 +106,9 @@ const config = {
   bothChildGender: 59,
   girlChildGender: 41,
   boyChildGender: 40,
-  weightGrowthType: 32786,
-  heightGrowthType: 6461,
+  weightForHeight: 32786,
+  
+  : 6461,
   today: new Date(),
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
