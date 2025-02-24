@@ -189,9 +189,9 @@ const HeaderBabyMenu = (props: any): any => {
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>{data.childName}
-                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName?.name}</Heading5> :
-                    <Heading5 style={styles.heading5Fontwg}>{', ' + t('chilGender2')}</Heading5>
-                  }
+                  <Heading5 style={styles.heading5Fontwg}>
+                    {', ' + (genderName?.name || t('chilGender2'))}
+                  </Heading5>
                 </Heading3>
               </ProfileSectionView>
               <Heading5>
@@ -345,7 +345,7 @@ const HeaderBabyMenu = (props: any): any => {
 
       <HeaderActionView>
         <HeaderActionBox
-          onPress={(): any => {
+          onPress={() => {
             setModalVisible(!modalVisible);
             if (modalVisible) {
               getAllChildren(dispatch, childAge, 0);
@@ -353,12 +353,20 @@ const HeaderBabyMenu = (props: any): any => {
             }
           }}>
           {activeChild.photoUri ? (
-            <ImageIcon
-              source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
+            <ImageIcon source={{ uri: `file://${CHILDREN_PATH}${activeChild.photoUri}` }} />
           ) : (
-            activeChildGenderData != '' && activeChildGenderData?.unique_name != '' ? activeChildGenderData?.unique_name == taxonomyIds?.boyChildGender ? <Icon name="ic_baby" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} />
+            <Icon
+              name={
+                activeChildGenderData?.unique_name === taxonomyIds?.boyChildGender
+                  ? 'ic_baby'
+                  : 'ic_baby_girl'
+              }
+              size={30}
+              color={props.color || '#FFF'}
+            />
           )}
         </HeaderActionBox>
+
       </HeaderActionView>
     </>
   );
