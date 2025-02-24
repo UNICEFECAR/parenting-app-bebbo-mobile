@@ -1,69 +1,49 @@
-node_modules
+# Node.js dependencies
+node_modules/
 npm-debug.log
 yarn-error.log
-android/.gradle
-android/app/build
-ios/Pods
-.DS_store
-local.properties
 
-# BUCK
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
-# .env added
-.env
-.env.*
+# Build artifacts
 *.lock
-ios/PodFile.lock
-package-lock.json
 *.bundle
 android/app/src/main/assets/index.android.bundle
-android/.idea/
-.gradle/
-package-lock.json
-data.realm
-data.realm.management/
-android/gradle.properties
-*.properties
-
-*.properties
-*.properties
-android/gradle.properties
-*.properties
-*.hprof
-
-
-google-services.json
-google-services_old.json
-debug.keystore
-*.keystore
-ios/GoogleServices/Production/GoogleService-Info.plist
-ios/GoogleServices/Xk/GoogleService-Info.plist
-ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-ios/ParentBuddyApp.xcodeproj/xcuserdata/kalyanikaushik.xcuserdatad/xcschemes/xcschememanagement.plist
-ios/GoogleServices/Xk/GoogleService-Info_old.plist
-ios/GoogleServices/Production/GoogleService-Info_new.plist
-ios/GoogleServices/MerhabaBebek/GoogleService-Info.plist
-ios/ParentBuddyApp/Info.plist
-ios/ParentBuddyAppXk-Info.plist
-ios/ParentBuddyApp/Info.plist
-ios/ParentBuddyAppXk-Info.plist
-ios/ParentBuddyAppBangla-Info.plist
-ios/ParentBuddyAppBanglaDev-Info.plist
-ios/GoogleServices/Development/GoogleService-Info.plist
-ios/GoogleServices/Bangla/GoogleService-Info.plist
-ios/ParentBuddyApp/Info.plist
-ios/GoogleServices/XkDevelopment/GoogleService-Info.plist
-ios/GoogleServices/BanglaDevelopment/GoogleService-Info.plist
-android/app/src/prod/res/values/strings.xml
+android/app/build/
 ios/build/
-# react-native-config codegen
 ios/tmp.xcconfig
 
-.envbebboprod
-.envxk
-.envxkdev
-.envbebbodev
-.env.babuni
+# Android-specific files
+android/.gradle/
+android/.idea/
+android/app/src/prod/res/values/strings.xml
+android/gradle.properties
+local.properties
+google-services*.json
+
+# iOS-specific files
+ios/Pods/
+ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ios/ParentBuddyApp.xcodeproj/xcuserdata/*.xcuserdatad/xcschemes/xcschememanagement.plist
+ios/GoogleServices/**/GoogleService-Info*.plist
+ios/**/Info.plist
+ios/**-Info.plist
+
+# Environment files
+.env*
+
+# BUCK build system
+buck-out/
+\.buckd/
+
+# Keystore files
+*.keystore
+!debug.keystore
+
+# Gradle & other properties files
+.gradle/
+*.properties
+
+# Miscellaneous
+.DS_Store
+*.hprof
+data.realm
+data.realm.management/

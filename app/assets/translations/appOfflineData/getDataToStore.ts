@@ -150,121 +150,121 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
         try {
             await getDataToStore(languageCode, dispatch, BasicPagesSchema, Entity as BasicPagesEntity, basicPagesData, setAllTermsData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching basic pages data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.taxonomies) {
+    else if (apiEndpoint === appConfig.apiConfig.taxonomies) {
         try {
             await getDataToStore(languageCode, dispatch, TaxonomySchema, Entity as TaxonomyEntity, taxonomydata, setAllTaxonomyData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching taxonomies data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.countryGroups) {
+    else if (apiEndpoint === appConfig.apiConfig.countryGroups) {
         try {
             await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching countryGroups data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.dailyMessages) {
+    else if (apiEndpoint === appConfig.apiConfig.dailyMessages) {
         try {
             await getDataToStore(languageCode, dispatch, DailyHomeMessagesSchema, Entity as DailyHomeMessagesEntity, dailyHomeNotificationdata, setDailyMessagesData, 'id');
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching dailyMessages data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.standardDeviation) {
+    else if (apiEndpoint === appConfig.apiConfig.standardDeviation) {
         try {
             await getDataToStore(languageCode, dispatch, StandardDevWeightForHeightSchema, Entity as StandardDevWeightForHeightEntity, standardDevData, setStandardDevWFHData);
             await getDataToStore(languageCode, dispatch, StandardDevHeightForAgeSchema, Entity as StandardDevHeightForAgeEntity, standardDevData, setStandardDevHFAData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching standardDeviation data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.vaccinations) {
+    else if (apiEndpoint === appConfig.apiConfig.vaccinations) {
         try {
             await getDataToStore(languageCode, dispatch, VaccinationSchema, Entity as VaccinationEntity, vaccineData, setAllVaccineData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching vaccinations data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.healthCheckupData) {
+    else if (apiEndpoint === appConfig.apiConfig.healthCheckupData) {
         try {
             await getDataToStore(languageCode, dispatch, HealthCheckUpsSchema, Entity as HealthCheckUpsEntity, healthCheckupsData, setAllHealthCheckupsData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching healthCheckupData data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.childDevelopmentData) {
+    else if (apiEndpoint === appConfig.apiConfig.childDevelopmentData) {
         try {
             await getDataToStore(languageCode, dispatch, ChildDevelopmentSchema, Entity as ChildDevelopmentEntity, ChildDevelopmentData, setAllChildDevData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching childDevelopmentData data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.milestones) {
+    else if (apiEndpoint === appConfig.apiConfig.milestones) {
         try {
             await getDataToStore(languageCode, dispatch, MilestonesSchema, Entity as MilestonesEntity, MileStonesData, setAllMileStonesData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching milestones data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.videoArticles) {
+    else if (apiEndpoint === appConfig.apiConfig.videoArticles) {
         try {
             await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching videoArticles data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.activities) {
+    else if (apiEndpoint === appConfig.apiConfig.activities) {
         try {
             await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching activities data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.surveys) {
+    else if (apiEndpoint === appConfig.apiConfig.surveys) {
         try {
             await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching surveys data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.faqs) {
+    else if (apiEndpoint === appConfig.apiConfig.faqs) {
         try {
             await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching faqs data:', error);
         }
 
         return "success";
     }
-    else if (apiEndpoint == appConfig.apiConfig.articles) {
+    else if (apiEndpoint === appConfig.apiConfig.articles) {
         try {
             const currentChildData = {
                 "gender": activeChild.gender,
@@ -273,14 +273,12 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
             }
             await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
         } catch (error) {
-            console.log('error', error)
+            console.error('Error fetching articles data:', error);
         }
-
         return "success";
     } else {
         return "success";
     }
-    // });
 }
 
 export default getAllDataToStore;
