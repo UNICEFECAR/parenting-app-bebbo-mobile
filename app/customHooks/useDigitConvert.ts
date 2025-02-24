@@ -1,4 +1,3 @@
-import { retry } from '@redux-saga/core/effects';
 import { useState } from 'react';
 import { useAppSelector } from '../../App';
 
@@ -20,12 +19,12 @@ const useDigitConverter = (): {
         'hin': ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'],
         'urd': ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'],
         'ar': ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'],
-        'tr': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+        'tr': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],// Turkish uses Latin digits
         'en': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
         // Add more languages and their digit mappings as needed
     };
 
-    const [language, setLanguage] = useState<DigitLanguage>('bn'); // Default language is Bangla
+    const [language, setLanguage] = useState<DigitLanguage>('en'); // Default language is English
 
     const convertDigits = (inputString: any): string => {
         if (!inputString) return ''
