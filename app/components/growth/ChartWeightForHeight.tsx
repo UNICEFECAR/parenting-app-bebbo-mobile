@@ -58,14 +58,14 @@ const ChartWeightForHeight = (props: any): any => {
   if (taxonomyIds?.boyChildGender == 'boy' || activeChild?.gender == '') {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item: any) => item.growth_type == appConfig.heightGrowthType && item.child_gender == taxonomyIds?.boyChildGender || item.child_gender == appConfig.boyChildGender,
+      (item: any) => item.growth_type == appConfig.heightForAge && item.child_gender == taxonomyIds?.boyChildGender || item.child_gender == appConfig.boyChildGender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData, 'weight');
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item: any) => item.growth_type == appConfig.heightGrowthType && item.child_gender == taxonomyIds?.girlChildGender || item.child_gender == appConfig.girlChildGender,
+      (item: any) => item.growth_type == appConfig.heightForAge && item.child_gender == taxonomyIds?.girlChildGender || item.child_gender == appConfig.girlChildGender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData, 'weight');
