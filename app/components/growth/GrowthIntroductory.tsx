@@ -1,21 +1,24 @@
-import { Heading4Regular, ShiftFromBottom20 } from '@styles/typography';
-import { DateTime } from 'luxon';
-import React from 'react';
-import { useAppSelector } from '../../../App';
-import { getCurrentChildAgeInDays } from '../../services/childCRUD';
+import {
+  Heading4Regular,
+  ShiftFromBottom20,
+} from "../../instances/bebbo/styles/typography";
+import { DateTime } from "luxon";
+import React from "react";
+import { useAppSelector } from "../../../App";
+import { getCurrentChildAgeInDays } from "../../services/childCRUD";
 
-const GrowthIntroductory = (props: any):any => {
-  const {activeChild} = props;
+const GrowthIntroductory = (props: any): any => {
+  const { activeChild } = props;
   const taxonomy = useAppSelector((state: any) =>
-    state.utilsData.taxonomy?.allTaxonomyData != ''
+    state.utilsData.taxonomy?.allTaxonomyData != ""
       ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData)
-      : {},
+      : {}
   );
   const growthIntroductoryData = taxonomy?.growth_introductory;
   const childAgeInDays = getCurrentChildAgeInDays(
-    DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
+    DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis()
   );
-  const growthPeriod = ():any => {
+  const growthPeriod = (): any => {
     if (childAgeInDays !== null) {
       let ageInDays = 0;
 
@@ -25,9 +28,9 @@ const GrowthIntroductory = (props: any):any => {
         ageInDays = Math.round(childAgeInDays);
       }
       const body = growthIntroductoryData?.filter(
-        (item:any) =>
+        (item: any) =>
           ageInDays >= Number(item.days_from) &&
-          ageInDays <= Number(item.days_to),
+          ageInDays <= Number(item.days_to)
       )[0].body;
       return body;
     }
@@ -35,8 +38,8 @@ const GrowthIntroductory = (props: any):any => {
 
   return (
     <>
-    <ShiftFromBottom20>
-      <Heading4Regular>{growthPeriod()}</Heading4Regular>
+      <ShiftFromBottom20>
+        <Heading4Regular>{growthPeriod()}</Heading4Regular>
       </ShiftFromBottom20>
     </>
   );

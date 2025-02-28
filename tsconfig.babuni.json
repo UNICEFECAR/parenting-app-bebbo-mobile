@@ -3,10 +3,10 @@
     "compilerOptions": {
         "paths": {
             "@styles/*": [
-                "app/instance/babuni/styles/*"
+                "app/instances/babuni/styles/*"
             ],
             "@images/*": [
-                "app/instance/babuni/assets/images/*"
+                "app/instances/babuni/assets/images/*"
             ]
         }
     }

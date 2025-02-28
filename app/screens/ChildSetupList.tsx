@@ -1,12 +1,12 @@
-import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
-import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
+import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
+import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
   ButtonPrimary,
   ButtonTextLg,
   ButtonUpperCaseText,
-  ButtonWithBorder
-} from '@components/shared/ButtonGlobal';
+  ButtonWithBorder,
+} from "@components/shared/ButtonGlobal";
 import {
   ChildCenterView,
   ChildColArea1,
@@ -17,65 +17,92 @@ import {
   ChildListingBox,
   ChildListTitle,
   CustomScrollView,
-} from '@components/shared/ChildSetupStyle';
-import Icon, { IconML, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
-import OnboardingHeading from '@components/shared/OnboardingHeading';
-import { RootStackParamList } from '@navigation/types';
-import { CommonActions, useFocusEffect, useIsFocused } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { primaryColor, secondaryBtnColor } from '@styles/style';
-import React, { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, Dimensions, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../App';
-import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { apiJsonDataGet, deleteChild, getAge, getAllChildren, getAllConfigData, isFutureDate } from '../services/childCRUD';
-import { formatDate, notiPermissionUtil } from '../services/Utils';
+} from "@components/shared/ChildSetupStyle";
+import Icon, {
+  IconML,
+  OuterIconLeft,
+  OuterIconRow,
+} from "@components/shared/Icon";
+import OnboardingContainer from "@components/shared/OnboardingContainer";
+import OnboardingHeading from "@components/shared/OnboardingHeading";
+import { RootStackParamList } from "@navigation/types";
+import {
+  CommonActions,
+  useFocusEffect,
+  useIsFocused,
+} from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import {
+  primaryColor,
+  secondaryBtnColor,
+} from "../instances/bebbo/styles/style";
+import React, { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  Alert,
+  BackHandler,
+  Dimensions,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
+import { ThemeContext } from "styled-components/native";
+import { useAppDispatch, useAppSelector } from "../../App";
+import { ChildEntity } from "../database/schema/ChildDataSchema";
+import {
+  apiJsonDataGet,
+  deleteChild,
+  getAge,
+  getAllChildren,
+  getAllConfigData,
+  isFutureDate,
+} from "../services/childCRUD";
+import { formatDate, notiPermissionUtil } from "../services/Utils";
 import {
   Heading1Centerw,
   Heading3Centerw,
   Heading5,
   ShiftFromBottom10,
-  ShiftFromTop30
-} from '@styles/typography';
-import useNetInfoHook from '../customHooks/useNetInfoHook';
-import { logEvent } from '../services/EventSyncService';
-import { setActiveChildData } from '../redux/reducers/childSlice';
-import { Flex1, FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
-import { ScrollView } from 'react-native-gesture-handler';
-import { requestExactAlarmPermission } from '../services/exactAlarmService';
+  ShiftFromTop30,
+} from "../instances/bebbo/styles/typography";
+import useNetInfoHook from "../customHooks/useNetInfoHook";
+import { logEvent } from "../services/EventSyncService";
+import { setActiveChildData } from "../redux/reducers/childSlice";
+import { Flex1, FlexCol, FlexRow } from "@components/shared/FlexBoxStyle";
+import { ScrollView } from "react-native-gesture-handler";
+import { requestExactAlarmPermission } from "../services/exactAlarmService";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'AddSiblingDataScreen'
+  "AddSiblingDataScreen"
 >;
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
 const styles = StyleSheet.create({
-  autoHeight: { height: 'auto' },
+  autoHeight: { height: "auto" },
   containerView: {
     backgroundColor: primaryColor,
-    flex: 1
+    flex: 1,
   },
   plusBtnColor: {
     color: secondaryBtnColor,
-    textTransform: 'uppercase'
+    textTransform: "uppercase",
   },
   textStyle: {
     fontSize: 12,
-    fontWeight: 'normal'
+    fontWeight: "normal",
   },
   touchableLeft: {
     marginLeft: 2,
-    padding: 8
+    padding: 8,
   },
   touchableRight: {
     marginRight: 2,
-    padding: 8
+    padding: 8,
   },
-})
+});
 const ChildSetupList = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
@@ -84,39 +111,42 @@ const ChildSetupList = ({ navigation }: Props): any => {
   const [profileViewHeight, setProfileViewHeight] = useState(0);
   const [loading, setLoading] = useState(false);
   const isFocused = useIsFocused();
-  const windowHeight = Dimensions.get('window').height;
-  const genders = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  const windowHeight = Dimensions.get("window").height;
+  const genders = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
+      : []
   );
   const taxonomyIds = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomyIds,
+    (state: any) => state.utilsData.taxonomyIds
   );
   const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
+    (state: any) => state.selectedCountry.languageCode
   );
-  const childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  const childAge = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : []
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
-  const childList = useAppSelector(
-    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
+  const childList = useAppSelector((state: any) =>
+    state.childData.childDataSet.allChild != ""
+      ? JSON.parse(state.childData.childDataSet.allChild)
+      : []
   );
   const onLayout = (event: any): any => {
     setParentViewHeight(event.nativeEvent.layout.height);
-  }
+  };
   useEffect(() => {
     const checkExactAlarmPermission = async () => {
       const hasPermission = await requestExactAlarmPermission();
       if (!hasPermission) {
-        console.log('Redirected to enable exact alarm permission');
+        console.log("Redirected to enable exact alarm permission");
       }
     };
 
-    Platform.OS == 'android' && checkExactAlarmPermission();
+    Platform.OS == "android" && checkExactAlarmPermission();
   }, []);
 
   useEffect(() => {
@@ -125,9 +155,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
       getAllConfigData(dispatch);
       notiPermissionUtil();
       setTimeout(() => {
-        navigation.dispatch(state => {
+        navigation.dispatch((state) => {
           // Remove the home route from the stack
-          const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+          const routes = state.routes.filter((r) => r.name !== "LoadingScreen");
 
           return CommonActions.reset({
             ...state,
@@ -145,86 +175,115 @@ const ChildSetupList = ({ navigation }: Props): any => {
       };
       const backHandler = BackHandler.addEventListener(
         "hardwareBackPress",
-        backAction,
+        backAction
       );
-      navigation.addListener('gestureEnd', backAction);
+      navigation.addListener("gestureEnd", backAction);
       return (): any => {
-        navigation.removeListener('gestureEnd', backAction);
+        navigation.removeListener("gestureEnd", backAction);
         backHandler.remove();
-      }
+      };
     }, [])
   );
   const deleteRecord = (index: number, dispatch: any, uuid: string): any => {
     return new Promise((resolve, reject) => {
-      Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'),
-        [
-          {
-            text: t('removeOption1'),
-            onPress: (): any => resolve("error"),
-            style: "cancel"
+      Alert.alert(t("deleteChildTxt"), t("deleteWarnTxt"), [
+        {
+          text: t("removeOption1"),
+          onPress: (): any => resolve("error"),
+          style: "cancel",
+        },
+        {
+          text: t("growthScreendelText"),
+          onPress: async (): Promise<any> => {
+            await deleteChild(
+              navigation,
+              languageCode,
+              index,
+              dispatch,
+              "ChildEntity",
+              uuid,
+              'uuid ="' + uuid + '"',
+              resolve,
+              reject,
+              childAge,
+              t,
+              childList
+            );
+            getAllChildren(dispatch, childAge, 0);
           },
-          {
-            text: t('growthScreendelText'), onPress: async (): Promise<any> => {
-
-              await deleteChild(navigation, languageCode, index, dispatch, 'ChildEntity', uuid, 'uuid ="' + uuid + '"', resolve, reject, childAge, t, childList);
-              getAllChildren(dispatch, childAge, 0);
-            }
-          }
-        ]
-      );
+        },
+      ]);
     });
-
-  }
+  };
   const editRecord = (data: any): any => {
-    navigation.navigate('AddSiblingDataScreen', { headerTitle: t('babyNotificationUpdateBtn'), childData: data });
-  }
-  const renderDailyReadItem = (dispatch: any, data: ChildEntity, index: number, gender: any): any => {
-    console.log('Gender is', gender)
+    navigation.navigate("AddSiblingDataScreen", {
+      headerTitle: t("babyNotificationUpdateBtn"),
+      childData: data,
+    });
+  };
+  const renderDailyReadItem = (
+    dispatch: any,
+    data: ChildEntity,
+    index: number,
+    gender: any
+  ): any => {
+    console.log("Gender is", gender);
     return (
       <ChildListingBox key={index}>
-        {gender && gender !== '' && gender !== undefined ?
-          (gender?.unique_name === taxonomyIds?.girlChildGender ?
-            <Icon name="ic_baby_girl" size={40} color='#000' />
-            : <Icon name="ic_baby" size={40} color='#000' />)
-          : <Icon name="ic_baby_girl" size={40} color='#000' />}
+        {gender && gender !== "" && gender !== undefined ? (
+          gender?.unique_name === taxonomyIds?.girlChildGender ? (
+            <Icon name="ic_baby_girl" size={40} color="#000" />
+          ) : (
+            <Icon name="ic_baby" size={40} color="#000" />
+          )
+        ) : (
+          <Icon name="ic_baby_girl" size={40} color="#000" />
+        )}
         <ChildColArea1>
-
-          <ChildListTitle >{data.childName}{(gender != '' && gender != undefined) ? <Text style={styles.textStyle}>, {gender?.name}</Text> : null}</ChildListTitle>
-          <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}</Heading5>
+          <ChildListTitle>
+            {data.childName}
+            {gender != "" && gender != undefined ? (
+              <Text style={styles.textStyle}>, {gender?.name}</Text>
+            ) : null}
+          </ChildListTitle>
+          <Heading5>
+            {data.birthDate != null &&
+            data.birthDate != undefined &&
+            !isFutureDate(data.birthDate)
+              ? t("childProfileBornOn", {
+                  childdob:
+                    data.birthDate != null ? formatDate(data.birthDate) : "",
+                })
+              : t("expectedChildDobLabel")}
+          </Heading5>
         </ChildColArea1>
         <ChildColArea2>
-          {
-            childList.length > 1 ? (
-              <TouchableHighlight style={styles.touchableRight} underlayColor="transparent" onPress={(): any => {
-
-                deleteRecord(index, dispatch, data.uuid)
-              }}>
-                <ChildListAction>
-                  <Icon
-                    name="ic_trash"
-                    size={16}
-                    color="#000"
-                  />
-                </ChildListAction>
-              </TouchableHighlight>
-            ) : null
-          }
-          <TouchableHighlight style={styles.touchableLeft} underlayColor="transparent" onPress={(): any => editRecord(data)}>
+          {childList.length > 1 ? (
+            <TouchableHighlight
+              style={styles.touchableRight}
+              underlayColor="transparent"
+              onPress={(): any => {
+                deleteRecord(index, dispatch, data.uuid);
+              }}
+            >
+              <ChildListAction>
+                <Icon name="ic_trash" size={16} color="#000" />
+              </ChildListAction>
+            </TouchableHighlight>
+          ) : null}
+          <TouchableHighlight
+            style={styles.touchableLeft}
+            underlayColor="transparent"
+            onPress={(): any => editRecord(data)}
+          >
             <ChildListAction>
-              <Icon
-                name="ic_edit"
-                size={16}
-                color="#000"
-
-              />
+              <Icon name="ic_edit" size={16} color="#000" />
             </ChildListAction>
           </TouchableHighlight>
         </ChildColArea2>
       </ChildListingBox>
     );
   };
-
-
 
   const childSetup = async (): Promise<any> => {
     // const Ages = await getAge(childList, childAge);
@@ -235,16 +294,19 @@ const ChildSetupList = ({ navigation }: Props): any => {
     // else {
     //   apiJsonData = apiJsonDataGet("all", "all")
     // }
-    const apiJsonData = apiJsonDataGet("all")
-    const eventData= {'name': ONBOARDING_CHILD_COUNT,'params': { child_count: childList?.length }  }
-    logEvent(eventData,netInfo.isConnected)
-   
+    const apiJsonData = apiJsonDataGet("all");
+    const eventData = {
+      name: ONBOARDING_CHILD_COUNT,
+      params: { child_count: childList?.length },
+    };
+    logEvent(eventData, netInfo.isConnected);
+
     navigation.reset({
       index: 0,
       routes: [
         {
-          name: 'LoadingScreen',
-          params: { apiJsonData: apiJsonData, prevPage: 'ChildSetup' },
+          name: "LoadingScreen",
+          params: { apiJsonData: apiJsonData, prevPage: "ChildSetup" },
         },
       ],
     });
@@ -258,58 +320,88 @@ const ChildSetupList = ({ navigation }: Props): any => {
           <OverlayLoadingComponent loading={loading} />
           <OnboardingHeading>
             <ChildCenterView>
-              <Heading1Centerw>
-                {t('childSetupListheader')}
-              </Heading1Centerw>
+              <Heading1Centerw>{t("childSetupListheader")}</Heading1Centerw>
               <ShiftFromTop30>
                 <Heading3Centerw>
-                  {t('childSetupListsubHeader')}
+                  {t("childSetupListsubHeader")}
                 </Heading3Centerw>
               </ShiftFromTop30>
             </ChildCenterView>
           </OnboardingHeading>
           <FlexCol>
-
             <ChildContentArea>
-              <ChildListingArea >
-                <ScrollView style={[styles.autoHeight, { maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140 }]} nestedScrollEnabled={true}>
-                  {
-                    childList.length > 0 ? (
-                      childList.map((item: ChildEntity, index: number) => {
-                        console.log('here gender locale is',genders)
-                        const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find((genderset: any) => genderset.id == Number(item.gender)) : '';
-                        console.log('here genderLocal locale is',genderLocal)
-                        return renderDailyReadItem(dispatch, item, index, genderLocal);
-                      })
-                    ) :
-                      <ChildListingBox>
-                        <ChildColArea1>
-                          <Text>{t('noChildsTxt')}</Text></ChildColArea1>
-                      </ChildListingBox>
-                  }
+              <ChildListingArea>
+                <ScrollView
+                  style={[
+                    styles.autoHeight,
+                    {
+                      maxHeight:
+                        windowHeight -
+                        parentViewHeight -
+                        profileViewHeight -
+                        140,
+                    },
+                  ]}
+                  nestedScrollEnabled={true}
+                >
+                  {childList.length > 0 ? (
+                    childList.map((item: ChildEntity, index: number) => {
+                      console.log("here gender locale is", genders);
+                      const genderLocal =
+                        genders?.length > 0 && item.gender != ""
+                          ? genders.find(
+                              (genderset: any) =>
+                                genderset.id == Number(item.gender)
+                            )
+                          : "";
+                      console.log("here genderLocal locale is", genderLocal);
+                      return renderDailyReadItem(
+                        dispatch,
+                        item,
+                        index,
+                        genderLocal
+                      );
+                    })
+                  ) : (
+                    <ChildListingBox>
+                      <ChildColArea1>
+                        <Text>{t("noChildsTxt")}</Text>
+                      </ChildColArea1>
+                    </ChildListingBox>
+                  )}
                 </ScrollView>
-
               </ChildListingArea>
             </ChildContentArea>
-            <View onLayout={onLayout} style={{ flexDirection: 'column' }}>
-              <ButtonWithBorder onPress={(): any => navigation.navigate('AddSiblingDataScreen', { headerTitle: t('addChildProfileHeader'), childData: null })}>
+            <View onLayout={onLayout} style={{ flexDirection: "column" }}>
+              <ButtonWithBorder
+                onPress={(): any =>
+                  navigation.navigate("AddSiblingDataScreen", {
+                    headerTitle: t("addChildProfileHeader"),
+                    childData: null,
+                  })
+                }
+              >
                 <OuterIconRow>
-                  <ButtonTextLg style={styles.plusBtnColor}>{t('childSetupListaddSiblingBtn')}</ButtonTextLg>
+                  <ButtonTextLg style={styles.plusBtnColor}>
+                    {t("childSetupListaddSiblingBtn")}
+                  </ButtonTextLg>
                 </OuterIconRow>
               </ButtonWithBorder>
-              <ButtonPrimary onPress={(e: any): any => {
-                e.stopPropagation();
-                setLoading(true);
-                setTimeout(() => {
-                  setLoading(false);
-                  childSetup();
-                }, 0)
-
-              }}>
-                <ButtonUpperCaseText numberOfLines={2}>{t('letGetStartedText')}</ButtonUpperCaseText>
+              <ButtonPrimary
+                onPress={(e: any): any => {
+                  e.stopPropagation();
+                  setLoading(true);
+                  setTimeout(() => {
+                    setLoading(false);
+                    childSetup();
+                  }, 0);
+                }}
+              >
+                <ButtonUpperCaseText numberOfLines={2}>
+                  {t("letGetStartedText")}
+                </ButtonUpperCaseText>
               </ButtonPrimary>
             </View>
-
           </FlexCol>
         </OnboardingContainer>
       </View>

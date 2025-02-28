@@ -1,10 +1,10 @@
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import {
   Heading2,
   Heading3,
   Heading6Bold,
   ShiftFromTopBottom5,
-} from "@styles/typography";
+} from "../../instances/bebbo/styles/typography";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";

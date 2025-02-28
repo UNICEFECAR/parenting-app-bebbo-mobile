@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as RNLocalize from 'react-native-localize';
 import { store } from '../../App';
 import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
-import { localization, AVAILABLE_LANGUAGES } from '../instance/index';
+import { localization, AVAILABLE_LANGUAGES } from '../instances/index';
 
 console.log("AVAILABLE_LANGUAGES--", AVAILABLE_LANGUAGES);
 const localisationnew = [...localization];

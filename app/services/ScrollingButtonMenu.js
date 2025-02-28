@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import  { IconML } from '@components/shared/Icon';
-import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
+import { bgcolorBlack2, bgcolorWhite2 } from '../instances/bebbo/styles/style';
 
 export const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 const styles = StyleSheet.create({

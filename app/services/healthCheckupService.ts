@@ -1,5 +1,5 @@
 // import { maxPeriodDays } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from '../instance';
+import { appConfig } from '../instances';
 import { DateTime } from "luxon";
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from "../../App";
@@ -19,8 +19,6 @@ export const getAllHealthCheckupPeriods = (): any => {
   );
 
   const allGrowthPeriods = taxonomy.growth_period;
-  // filter by measurementPlace  is Doctors and sort by measurementDate
-  // getall doctor's place measures
   const allMeasures = activeChild?.measures.filter((item: any) => (item.measurementPlace == 0)).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
@@ -110,7 +108,7 @@ export const getAllHealthCheckupPeriods = (): any => {
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number): any => {
     // console.log("currentIndex--",currentIndex)
     const { t } = useTranslation();
-    if (hcItem != '') {
+    if (hcItem && hcItem.vaccination_opens !== undefined && hcItem.vaccination_ends !== undefined) {
       const measure = allMeasurements.filter((measure: any) => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))
       let regularMeasure: any = {};
       if (measure.length > 1) {

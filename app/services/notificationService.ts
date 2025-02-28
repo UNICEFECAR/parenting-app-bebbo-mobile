@@ -1,5 +1,5 @@
 // import { afterDays, appConfig.beforeDays, appConfig.maxPeriodDays, appConfig.oneMonthDays, appConfig.threeeMonthDays, appConfig.twoMonthDays } from "@assets/translations/appOfflineData/apiConstants";
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import { DateTime } from "luxon";
 import { getCurrentChildAgeInDays, isFutureDate, isFutureDateTime } from './childCRUD';
 import { v4 as uuid } from 'uuid';
