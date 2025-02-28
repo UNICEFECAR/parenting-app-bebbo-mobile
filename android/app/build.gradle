@@ -153,6 +153,14 @@ android {
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD__MERHABA_BEBEK
             }
         }
+        wawamor {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE_WAWAMOR')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE_WAWAMOR)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD_WAWAMOR
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS_WAWAMOR
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD_WAWAMOR
+            }
+        }
     }
     defaultConfig {
         applicationId "org.unicef.ecar.bebbo"
@@ -230,6 +238,15 @@ android {
             versionCode 1
             versionName "1.0.0"
             signingConfig signingConfigs.merhababebek
+        }
+        wawamor {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'org.unicef.ec.wawamor'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.wawamor
         }
         banglastaging {
             minSdkVersion rootProject.ext.minSdkVersion

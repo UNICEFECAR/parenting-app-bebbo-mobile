@@ -30,7 +30,7 @@ const config = {
     extraNodeModules: {
       "react-native-dotenv": path.resolve(
         __dirname,
-        `.env.${process.env.FLAVOR}`
+        `env/.env.${process.env.FLAVOR}`
       ),
     },
   },
