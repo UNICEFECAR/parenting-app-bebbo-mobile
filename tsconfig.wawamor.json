@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "@styles/*": [
+                "app/instance/REMOVED_FACEBOOK_APP_ID1/styles/*"
+            ],
+            "@images/*": [
+                "app/instance/REMOVED_FACEBOOK_APP_ID1/assets/images/*"
+            ]
+        }
+    }
+}
