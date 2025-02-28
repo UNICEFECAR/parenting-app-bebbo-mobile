@@ -20,8 +20,6 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -35,7 +33,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.30528917983-r05tab92r1ulpl0hmipn19kug00864ve</string>
+				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
 		<dict>
@@ -55,7 +53,7 @@
 			<string>Bundle ID</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.30528917983-r05tab92r1ulpl0hmipn19kug00864ve</string>
+				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
 	</array>
@@ -63,6 +61,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAdvertiserIDCollectionEnabled</key>
 	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>

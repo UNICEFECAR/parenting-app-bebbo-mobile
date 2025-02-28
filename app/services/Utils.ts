@@ -5,7 +5,7 @@ import RNFS from 'react-native-fs';
 import { requestNotifications } from "react-native-permissions";
 import { ObjectSchema, PrimaryKey } from "realm";
 import { v4 as uuidv4 } from 'uuid';
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../database/schema/ActivitiesSchema";
 import { ArticleEntity, ArticleEntitySchema } from "../database/schema/ArticleSchema";
@@ -24,7 +24,6 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
 import PushNotification from 'react-native-push-notification';
-import { Country, CountrySchema } from "../database/schema/CountrySchema";
 import moment from "moment";
 const requestNotificationPermission = async (): Promise<any> => {
     const status = await requestNotifications([]);

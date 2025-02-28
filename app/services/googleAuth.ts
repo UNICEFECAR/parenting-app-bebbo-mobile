@@ -39,7 +39,7 @@ class GoogleAuth {
             await GoogleSignin.hasPlayServices();
             user = await GoogleSignin.signIn();
         } catch (error) {
-            console.log("error-qqqq", error)
+            console.error("Sign In Error", error)
         }
 
         return user;

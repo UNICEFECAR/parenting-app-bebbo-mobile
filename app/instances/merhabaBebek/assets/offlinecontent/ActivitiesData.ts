@@ -17,7 +17,7 @@ export const ActivitiesData: any = {
             "cover_image": {
                 "url": "https://merhababebek.app/sites/turkey/files/styles/content_1200xh_/public/2021-08/the%2520box-cover-picture.jpg?itok=Ss0_XKgu",
                 "name": "the%20box-cover-picture.jpg",
-                "alt": "A carboard box with coloured papers inside"
+                "alt": "A cardboard box with coloured papers inside"
             },
             "related_milestone": [
                 4821

@@ -1,4 +1,4 @@
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import { useNavigation } from "@react-navigation/native";
 import {
   Heading4,
@@ -7,7 +7,7 @@ import {
   ShiftFromBottom10,
   ShiftFromTop5,
   ShiftFromTopBottom10,
-} from "@styles/typography";
+} from "../instances/bebbo/styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -45,7 +45,7 @@ import {
   PopupCloseContainer,
 } from "@components/shared/ModalPopupStyle";
 import { isFutureDate } from "../services/childCRUD";
-import { bgColor1 } from "@styles/style";
+import { bgColor1 } from "../instances/bebbo/styles/style";
 import VectorImage from "react-native-vector-image";
 import useDigitConverter from "../customHooks/useDigitConvert";
 const styles = StyleSheet.create({

@@ -1,5 +1,5 @@
 
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {

@@ -1,5 +1,5 @@
 // import { bothChildGender, maxRelatedArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import VideoPlayer from "@components/VideoPlayer";
 import { useFocusEffect } from "@react-navigation/native";
 import {
@@ -7,7 +7,7 @@ import {
   Heading3,
   Heading6Bold,
   ShiftFromTopBottom5,
-} from "@styles/typography";
+} from "../../instances/bebbo/styles/typography";
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";

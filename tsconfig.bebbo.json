@@ -3,10 +3,10 @@
     "compilerOptions": {
         "paths": {
             "@styles/*": [
-                "app/instance/bebbo/styles/*"
+                "app/instances/bebbo/styles/*"
             ],
             "@images/*": [
-                "app/instance/bebbo/assets/images/*"
+                "app/instances/bebbo/assets/images/*"
             ]
         }
     }

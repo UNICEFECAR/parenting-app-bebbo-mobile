@@ -1,44 +1,48 @@
-import { appConfig } from '../../instance';
-import ChildDate from '@components/ChildDate';
-import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ArticleHeading } from '@components/shared/ArticlesStyle';
+import { appConfig } from "../../instances";
+import ChildDate from "@components/ChildDate";
+import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
+import { ArticleHeading } from "@components/shared/ArticlesStyle";
 import {
   ButtonMangeProfileContainer,
   ButtonPrimary,
   ButtonUpperCaseText,
-} from '@components/shared/ButtonGlobal';
+} from "@components/shared/ButtonGlobal";
 import {
   FormContainerFlex,
   FormInputBox,
   FormInputGroup,
-  LabelText
-} from '@components/shared/ChildSetupStyle';
-import { MainContainer, MainManageProfileContainer } from '@components/shared/Container';
-import { FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
+  LabelText,
+} from "@components/shared/ChildSetupStyle";
+import {
+  MainContainer,
+  MainManageProfileContainer,
+} from "@components/shared/Container";
+import { FlexCol, FlexRow } from "@components/shared/FlexBoxStyle";
 import {
   HeaderActionView,
   HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
-  HeaderTitleView
-} from '@components/shared/HeaderContainerStyle';
-import Icon, { IconBox, IconML } from '@components/shared/Icon';
-import { ProfileEditView } from '@components/shared/ProfileListingStyle';
-import ToggleRadios from '@components/ToggleRadios';
-import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+  HeaderTitleView,
+} from "@components/shared/HeaderContainerStyle";
+import Icon, { IconBox, IconML } from "@components/shared/Icon";
+import { ProfileEditView } from "@components/shared/ProfileListingStyle";
+import ToggleRadios from "@components/ToggleRadios";
+import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import {
   Heading2,
   Heading2w,
   Heading4,
-  Heading4Regular, ShiftFromTop10,
+  Heading4Regular,
+  ShiftFromTop10,
   ShiftFromTop15,
-  ShiftFromTop20
-} from '@styles/typography';
-import { CHILDREN_PATH } from '@types/types';
-import React, { createRef, useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+  ShiftFromTop20,
+} from "../../instances/bebbo/styles/typography";
+import { CHILDREN_PATH } from "@types/types";
+import React, { createRef, useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Alert,
   BackHandler,
@@ -46,31 +50,43 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  View
-} from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
-import { copyFile, exists, mkdir, unlink } from 'react-native-fs';
-import { Image as ImageObject } from 'react-native-image-crop-picker';
-import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../../App';
-import { deleteImageFile } from '../../downloadImages/ImageStorage';
+  View,
+} from "react-native";
+import ActionSheet from "react-native-actions-sheet";
+import { copyFile, exists, mkdir, unlink } from "react-native-fs";
+import { Image as ImageObject } from "react-native-image-crop-picker";
+import { ThemeContext } from "styled-components/native";
+import { useAppDispatch, useAppSelector } from "../../../App";
+import { deleteImageFile } from "../../downloadImages/ImageStorage";
 import {
   addChild,
-  deleteChild, getAllChildren, getNewChild,
-  setActiveChild
-} from '../../services/childCRUD';
-import MediaPicker from '../../services/MediaPicker';
-import { validateForm } from '../../services/Utils';
-import TextInputML from '@components/shared/TextInputML';
-import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import useNetInfoHook from '../../customHooks/useNetInfoHook';
-import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
-import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
-import { setActiveChildData } from '../../redux/reducers/childSlice';
-import { bgcolorWhite, childProfileBgColor, secondaryBtnColor } from '@styles/style';
-import Checkbox, { CheckboxActive, CheckboxItem } from '@components/shared/CheckboxStyle';
-import VectorImage from 'react-native-vector-image';
-import { cameraProfileImage } from '../../instance';
+  deleteChild,
+  getAllChildren,
+  getNewChild,
+  setActiveChild,
+} from "../../services/childCRUD";
+import MediaPicker from "../../services/MediaPicker";
+import { validateForm } from "../../services/Utils";
+import TextInputML from "@components/shared/TextInputML";
+import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
+import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
+import {
+  ConfigSettingsEntity,
+  ConfigSettingsSchema,
+} from "../../database/schema/ConfigSettingsSchema";
+import { setActiveChildData } from "../../redux/reducers/childSlice";
+import {
+  bgcolorWhite,
+  childProfileBgColor,
+  secondaryBtnColor,
+} from "../../instances/bebbo/styles/style";
+import Checkbox, {
+  CheckboxActive,
+  CheckboxItem,
+} from "@components/shared/CheckboxStyle";
+import VectorImage from "react-native-vector-image";
+import { cameraProfileImage } from "../../instances";
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -80,44 +96,44 @@ type Props = {
 };
 const styles = StyleSheet.create({
   actionsheetView: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: "flex-start",
+    flexDirection: "row",
+    justifyContent: "center",
   },
-  alignItemsCenter: { alignItems: 'center' },
+  alignItemsCenter: { alignItems: "center" },
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: "column",
     height: 180,
   },
   flex1: { flex: 1 },
   flex4: { flex: 4 },
   headerRowView: { maxHeight: 50 },
   headetTitleText: {
-    color: bgcolorWhite
+    color: bgcolorWhite,
   },
-  heading4: { flexShrink: 1, marginTop: 10, textAlign: 'center' },
+  heading4: { flexShrink: 1, marginTop: 10, textAlign: "center" },
 
   image: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
     flex: 1,
-    justifyContent: 'flex-start',
-    resizeMode: 'cover',
+    justifyContent: "flex-start",
+    resizeMode: "cover",
   },
   innerImageView: {
-    flexDirection: 'row',
+    flexDirection: "row",
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 16,
   },
   innerPressableView: {
-    alignItems: 'center',
+    alignItems: "center",
     height: 180,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   padding0: { padding: 0 },
   pressableView: { paddingLeft: 10, paddingRight: 10 },
-  width100: { width: '100%' }
+  width100: { width: "100%" },
 });
 
 const EditChildProfile = ({ route, navigation }: Props): any => {
@@ -125,64 +141,66 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ''
+    state.childData.childDataSet.allChild != ""
       ? JSON.parse(state.childData.childDataSet.allChild)
-      : state.childData.childDataSet.allChild,
+      : state.childData.childDataSet.allChild
   );
-  const editScreen = childData && childData.uuid != '' ? true : false;
+  const editScreen = childData && childData.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext?.colors.SECONDARY_COLOR;
   const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
+    (state: any) => state.selectedCountry.languageCode
   );
-  let genders = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  let genders = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
+      : []
   );
 
   let all = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData,
+    (state: any) => state.utilsData.taxonomy.allTaxonomyData
   );
   const taxonomyIds = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomyIds,
+    (state: any) => state.utilsData.taxonomyIds
   );
   // genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: { id: st }, i: any, a: any) {
   //   console.log(i, a);
   //   return e.unique_name != taxonomyIds?.bothChildGender;
   // });
-  genders = genders.map((v: any) => ({ ...v, title: v.name })).filter(function (e: any) {
-    return e.unique_name != taxonomyIds?.bothChildGender;
-  });
+  genders = genders
+    .map((v: any) => ({ ...v, title: v.name }))
+    .filter(function (e: any) {
+      return e.unique_name != taxonomyIds?.bothChildGender;
+    });
   const imageOptions = [
-    { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
-    { id: 1, iconName: 'ic_camera', name: t('cameraOption2') },
-    { id: 2, iconName: 'ic_gallery', name: t('cameraOption3') },
+    { id: 0, iconName: "ic_trash", name: t("cameraOption1") },
+    { id: 1, iconName: "ic_camera", name: t("cameraOption2") },
+    { id: 2, iconName: "ic_gallery", name: t("cameraOption3") },
   ];
   const actionSheetRef = createRef<any>();
-  const [capturedPhoto, setCapturedImage] = React.useState('');
-  const [photoUri, setphotoUri] = React.useState('');
+  const [capturedPhoto, setCapturedImage] = React.useState("");
+  const [photoUri, setphotoUri] = React.useState("");
   const [photoDeleted, setPhotoDeleted] = React.useState(false);
   const [defaultGenderValue, setDefaultGenderValue] = React.useState<any>(null);
   const [birthDate, setBirthDate] = React.useState<Date>();
   const [name, setName] = React.useState(
-    childData != null ? childData.childName : '',
+    childData != null ? childData.childName : ""
   );
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date>();
-  const [isPremature, setIsPremature] = React.useState<string>('false');
-  const uuid = childData != null ? childData.uuid : '';
+  const [isPremature, setIsPremature] = React.useState<string>("false");
+  const uuid = childData != null ? childData.uuid : "";
   const createdAt = childData != null ? childData.createdAt : null;
-  const [isExpected, setIsExpected] = React.useState<string>('false');
-  const [destPath, setDestPath] = React.useState<string>('');
+  const [isExpected, setIsExpected] = React.useState<string>("false");
+  const [destPath, setDestPath] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
-  const isFocused = useIsFocused()
-  const childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  const isFocused = useIsFocused();
+  const childAge = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : []
   );
   const sendData = (data: any): any => {
     // the callback. Use a better name
@@ -193,7 +211,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     setIsExpected(String(data.isExpected));
   };
   const [gender, setGender] = React.useState(
-    childData != null ? childData.gender : 0,
+    childData != null ? childData.gender : 0
   );
   const handleBack = (): any => {
     const backAction = (): any => {
@@ -203,39 +221,58 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     };
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
-      backAction,
+      backAction
     );
-    navigation.addListener('gestureEnd', backAction);
+    navigation.addListener("gestureEnd", backAction);
 
     return (): any => {
-      navigation.removeListener('gestureEnd', backAction);
+      navigation.removeListener("gestureEnd", backAction);
       backHandler.remove();
-    }
-  }
+    };
+  };
   useEffect(() => {
-
     handleBack();
   }, []);
   useFocusEffect(
     React.useCallback(() => {
-      if (childData != undefined && childData != null && childData != '' && childData.uuid != '') {
+      if (
+        childData != undefined &&
+        childData != null &&
+        childData != "" &&
+        childData.uuid != ""
+      ) {
         setphotoUri(childData.photoUri);
-        if (childData.photoUri != '' && childData.photoUri != null && childData.photoUri != undefined) {
-          setCapturedImage('file://' + `${CHILDREN_PATH}/${childData.photoUri}`);
+        if (
+          childData.photoUri != "" &&
+          childData.photoUri != null &&
+          childData.photoUri != undefined
+        ) {
+          setCapturedImage(
+            "file://" + `${CHILDREN_PATH}/${childData.photoUri}`
+          );
         }
         sendData(childData);
       }
-      if (childData != null && childData.uuid !== '' && childData?.gender === 0) {
-        setDefaultGenderValue(genders.find((item: any) => item.unique_name === taxonomyIds?.girlChildGender))
+      if (
+        childData != null &&
+        childData.uuid !== "" &&
+        childData?.gender === 0
+      ) {
+        setDefaultGenderValue(
+          genders.find(
+            (item: any) => item.unique_name === taxonomyIds?.girlChildGender
+          )
+        );
       } else {
-        setDefaultGenderValue(genders.find((item: any) => item.id === childData?.gender))
+        setDefaultGenderValue(
+          genders.find((item: any) => item.id === childData?.gender)
+        );
       }
-      console.log(taxonomyIds, '--------------------', all)
-    }, []),
+      console.log(taxonomyIds, "--------------------", all);
+    }, [])
   );
 
-  const onChildPhotoChange = async (image: ImageObject,
-  ): Promise<any> => {
+  const onChildPhotoChange = async (image: ImageObject): Promise<any> => {
     // Create Documents/children folder if it doesnt exist
     if (!(await exists(CHILDREN_PATH))) {
       mkdir(CHILDREN_PATH);
@@ -244,75 +281,82 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     setPhotoDeleted(false);
   };
   const removePhoto = (): any => {
-
     deleteImageFile(capturedPhoto)
       .then(async (data: any) => {
         console.log(data);
         MediaPicker.cleanupImages();
-        setphotoUri('');
-        setCapturedImage('');
+        setphotoUri("");
+        setCapturedImage("");
       })
       .catch((error: any) => {
         console.log(error);
-        Alert.alert(t('tryText'));
+        Alert.alert(t("tryText"));
       });
   };
-  const handleImageOptionClick = async (item: any, index: number): Promise<any> => {
-    console.log('index is', index)
-    console.log('Obn image click1')
+  const handleImageOptionClick = async (
+    item: any,
+    index: number
+  ): Promise<any> => {
+    console.log("index is", index);
+    console.log("Obn image click1");
     if (item.id == 0) {
-      Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
+      Alert.alert(t("removePhotoTxt"), t("removeWarnTxt"), [
         {
-          text: t('removePhotoOption1'),
+          text: t("removePhotoOption1"),
           onPress: (): any => {
-            console.log("pressed")
+            console.log("pressed");
           },
-          style: 'cancel',
+          style: "cancel",
         },
         {
-          text: t('removePhotoOption2'),
+          text: t("removePhotoOption2"),
           onPress: (): any => {
             setPhotoDeleted(true);
           },
         },
       ]);
-    }
-    else if (item.id == 1) {
-      console.log('Obn image click2')
+    } else if (item.id == 1) {
+      console.log("Obn image click2");
       MediaPicker.showCameraImagePicker((image: any) => {
         console.log(image, "..image..");
         onChildPhotoChange(image);
       });
-    }
-    else if (item.id == 2) {
-      console.log('Obn image click3')
+    } else if (item.id == 2) {
+      console.log("Obn image click3");
       MediaPicker.showGalleryImagePicker((image: any) => {
         onChildPhotoChange(image);
       });
     }
   };
-  const deleteRecord = (index: number, dispatch: any, uuid: string, childList: any): any => {
+  const deleteRecord = (
+    index: number,
+    dispatch: any,
+    uuid: string,
+    childList: any
+  ): any => {
     return new Promise((resolve, reject) => {
-      Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
+      Alert.alert(t("deleteChildTxt"), t("deleteWarnTxt"), [
         {
-          text: t('removeOption1'),
-          onPress: (): any => resolve('error'),
-          style: 'cancel',
+          text: t("removeOption1"),
+          onPress: (): any => resolve("error"),
+          style: "cancel",
         },
         {
-          text: t('removeOption2'),
+          text: t("removeOption2"),
           onPress: async (): Promise<any> => {
             if (index == 0) {
-              const filterList = childList.filter((item: any) => item.uuid != uuid)
+              const filterList = childList.filter(
+                (item: any) => item.uuid != uuid
+              );
               const selectedUuid = filterList[0];
-              dispatch(setActiveChildData(selectedUuid))
+              dispatch(setActiveChildData(selectedUuid));
             }
             await deleteChild(
               navigation,
               languageCode,
               index,
               dispatch,
-              'ChildEntity',
+              "ChildEntity",
               uuid,
               'uuid ="' + uuid + '"',
               resolve,
@@ -321,16 +365,14 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
               t,
               childList
             );
-            navigation.navigate('ChildProfileScreen')
-
-
+            navigation.navigate("ChildProfileScreen");
           },
         },
       ]);
     });
   };
   const setPhoto = async (uuid: string): Promise<any> => {
-    const parts = capturedPhoto.split('.');
+    const parts = capturedPhoto.split(".");
     let extension: string | null = null;
     if (parts.length > 1) {
       extension = parts[parts.length - 1].toLowerCase();
@@ -340,7 +382,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     if (extension) {
       newFilename = `${uuid}_${timestamp}.${extension}`;
     } else {
-      newFilename = uuid + '_' + timestamp;
+      newFilename = uuid + "_" + timestamp;
     }
 
     // Set destPath
@@ -354,55 +396,72 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
 
     // Copy image
     await copyFile(capturedPhoto, destPath);
-    setphotoUri(destPath.replace(CHILDREN_PATH, ''));
-    return destPath.replace(CHILDREN_PATH, '');
-  }
+    setphotoUri(destPath.replace(CHILDREN_PATH, ""));
+    return destPath.replace(CHILDREN_PATH, "");
+  };
   const AddChild = async (): Promise<any> => {
     // if dob /plannedTermDate changes, append notifications to current child's notifications in slice
     const isDefaultChild = "false";
     const insertData: any = editScreen
       ? await getNewChild(
-        uuid,
-        isDefaultChild,
-        isExpected,
-        plannedTermDate,
-        isPremature,
-        birthDate,
-        name,
-        photoUri,
-        gender,
-        createdAt,
-      )
+          uuid,
+          isDefaultChild,
+          isExpected,
+          plannedTermDate,
+          isPremature,
+          birthDate,
+          name,
+          photoUri,
+          gender,
+          createdAt
+        )
       : await getNewChild(
-        uuid,
-        isDefaultChild,
-        isExpected,
-        plannedTermDate,
-        isPremature,
-        birthDate,
-        name,
-        photoUri,
-        gender,
-        createdAt
-      );
+          uuid,
+          isDefaultChild,
+          isExpected,
+          plannedTermDate,
+          isPremature,
+          birthDate,
+          name,
+          photoUri,
+          gender,
+          createdAt
+        );
     const childSet: Array<any> = [];
     if (photoDeleted == true) {
       removePhoto();
-      insertData.photoUri = '';
-    }
-    else {
-      if (capturedPhoto != null && capturedPhoto != undefined && capturedPhoto != '') {
+      insertData.photoUri = "";
+    } else {
+      if (
+        capturedPhoto != null &&
+        capturedPhoto != undefined &&
+        capturedPhoto != ""
+      ) {
         insertData.photoUri = await setPhoto(insertData.uuid);
       }
     }
-    console.log(insertData, "...insertData")
+    console.log(insertData, "...insertData");
     childSet.push(insertData);
     setLoading(false);
-    console.log('Edited data is', childSet)
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, childAge, null, null, netInfo, false, true, '');
+    console.log("Edited data is", childSet);
+    addChild(
+      languageCode,
+      editScreen,
+      2,
+      childSet,
+      dispatch,
+      navigation,
+      childAge,
+      null,
+      null,
+      netInfo,
+      false,
+      true,
+      ""
+    );
   };
 
-  const getCheckedItem = (checkedItem: typeof genders[0]): any => {
+  const getCheckedItem = (checkedItem: (typeof genders)[0]): any => {
     setGender(checkedItem.id);
   };
   return (
@@ -410,37 +469,53 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
       <View style={[styles.flex1, { backgroundColor: bgcolorWhite }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
-          style={[styles.headerRowView, {
-            backgroundColor: headerColor,
-          }]}>
+          style={[
+            styles.headerRowView,
+            {
+              backgroundColor: headerColor,
+            },
+          ]}
+        >
           <HeaderIconView>
             <HeaderIconPress
               onPress={(): any => {
                 navigation.goBack();
-              }}>
-              <IconML name={'ic_back'} color="#FFF" size={15} />
+              }}
+            >
+              <IconML name={"ic_back"} color="#FFF" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
-            {childData && childData?.uuid != '' ? (
-              <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('babyNotificationUpdateBtn')} </Heading2w>
+            {childData && childData?.uuid != "" ? (
+              <Heading2w style={styles.headetTitleText} numberOfLines={1}>
+                {t("babyNotificationUpdateBtn")}{" "}
+              </Heading2w>
             ) : (
-              <Heading2w style={styles.headetTitleText} numberOfLines={1}>{t('addChildProfileHeader')}</Heading2w>
+              <Heading2w style={styles.headetTitleText} numberOfLines={1}>
+                {t("addChildProfileHeader")}
+              </Heading2w>
             )}
           </HeaderTitleView>
-          {childList?.length > 1 && childData && childData?.uuid != '' ? (
+          {childList?.length > 1 && childData && childData?.uuid != "" ? (
             <HeaderActionView style={styles.padding0}>
-              <Pressable style={styles.pressableView} onPress={(): any => {
-                console.log('ChildData position', childData)
-                if (childData?.index == undefined) {
-                  deleteRecord(0, dispatch, childData?.uuid, childList)
-                } else {
-                  deleteRecord(childData?.index, dispatch, childData?.uuid, childList)
-                }
-                // deleteRecord(childData?.index, dispatch, childData?.uuid)
-              }
-              }>
-                <Icon name={'ic_trash'} size={20} color="#FFF" />
+              <Pressable
+                style={styles.pressableView}
+                onPress={(): any => {
+                  console.log("ChildData position", childData);
+                  if (childData?.index == undefined) {
+                    deleteRecord(0, dispatch, childData?.uuid, childList);
+                  } else {
+                    deleteRecord(
+                      childData?.index,
+                      dispatch,
+                      childData?.uuid,
+                      childList
+                    );
+                  }
+                  // deleteRecord(childData?.index, dispatch, childData?.uuid)
+                }}
+              >
+                <Icon name={"ic_trash"} size={20} color="#FFF" />
               </Pressable>
             </HeaderActionView>
           ) : null}
@@ -448,46 +523,46 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
         <ScrollView style={styles.flex4}>
           <OverlayLoadingComponent loading={loading} />
           <FlexCol>
-            {capturedPhoto != '' && capturedPhoto != null && capturedPhoto != undefined && photoDeleted == false ? (
+            {capturedPhoto != "" &&
+            capturedPhoto != null &&
+            capturedPhoto != undefined &&
+            photoDeleted == false ? (
               <View style={styles.container}>
                 <ImageBackground
-                  source={
-                    capturedPhoto != ''
-                      ? { uri: capturedPhoto }
-                      : null
-                  }
-                  style={styles.image}>
-                  <ProfileEditView onPress={(): any => {
-                    actionSheetRef.current?.setModalVisible(true);
-                  }}>
-                    <Icon
-                      name="ic_edit"
-                      size={16}
-                      color="#000"
-
-                    />
+                  source={capturedPhoto != "" ? { uri: capturedPhoto } : null}
+                  style={styles.image}
+                >
+                  <ProfileEditView
+                    onPress={(): any => {
+                      actionSheetRef.current?.setModalVisible(true);
+                    }}
+                  >
+                    <Icon name="ic_edit" size={16} color="#000" />
                   </ProfileEditView>
                 </ImageBackground>
               </View>
             ) : (
               <Pressable
-                style={[styles.innerPressableView, {
-                  backgroundColor: childProfileBgColor,
-
-                }]}
+                style={[
+                  styles.innerPressableView,
+                  {
+                    backgroundColor: childProfileBgColor,
+                  },
+                ]}
                 onPress={(): any => {
                   actionSheetRef.current?.setModalVisible(true);
-                }}>
+                }}
+              >
                 <VectorImage source={cameraProfileImage} />
                 <ShiftFromTop10>
-                  <Heading4Regular>{t('uploadPhtototxt')}</Heading4Regular>
+                  <Heading4Regular>{t("uploadPhtototxt")}</Heading4Regular>
                 </ShiftFromTop10>
               </Pressable>
             )}
             <MainManageProfileContainer>
               <FormInputGroup>
                 <ShiftFromTop10>
-                  <LabelText>{t('childNameTxt')}</LabelText>
+                  <LabelText>{t("childNameTxt")}</LabelText>
                   <FormInputBox>
                     <TextInputML
                       style={styles.width100}
@@ -497,9 +572,11 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                       clearButtonMode="always"
                       onChangeText={(value: string): any => {
                         if (value.replace(/\s/g, "") == "") {
-                          setName(value.replace(/\s/g, ''));
+                          setName(value.replace(/\s/g, ""));
                         } else {
-                          setName(value.replace(appConfig.regexpEmojiPresentation, ''));
+                          setName(
+                            value.replace(appConfig.regexpEmojiPresentation, "")
+                          );
                         }
                       }}
                       value={name}
@@ -511,18 +588,28 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 </ShiftFromTop10>
               </FormInputGroup>
 
-              {childData && childData?.uuid != '' ?
-                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} /> :
-                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen" />
-              }
+              {childData && childData?.uuid != "" ? (
+                <ChildDate
+                  sendData={sendData}
+                  childData={childData}
+                  dobMax={new Date()}
+                />
+              ) : (
+                <ChildDate
+                  sendData={sendData}
+                  childData={childData}
+                  dobMax={new Date()}
+                  prevScreen="EditScreen"
+                />
+              )}
 
               <FormContainerFlex>
-                <LabelText>{t('genderLabel')}</LabelText>
+                <LabelText>{t("genderLabel")}</LabelText>
                 <ToggleRadios
                   options={genders}
                   defaultValue={defaultGenderValue}
                   tickbgColor={headerColor}
-                  tickColor={'#FFF'}
+                  tickColor={"#FFF"}
                   getCheckedItem={getCheckedItem}
                 />
               </FormContainerFlex>
@@ -546,81 +633,86 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             <ButtonMangeProfileContainer>
               <ButtonPrimary
                 disabled={
-                  loading || !validateForm(
+                  loading ||
+                  !validateForm(
                     1,
                     birthDate,
                     isPremature,
-                    '',
+                    "",
                     plannedTermDate,
                     name,
-                    gender,
+                    gender
                   )
                 }
                 onPress={(e: any): any => {
                   e.preventDefault();
                   if (loading) return;
-                  console.log('ssd')
+                  console.log("ssd");
                   setLoading(true);
                   const validated = validateForm(
                     1,
                     birthDate,
                     isPremature,
-                    '',
+                    "",
                     plannedTermDate,
                     name,
-                    gender,
+                    gender
                   );
-                  console.log("24455e655", validated)
+                  console.log("24455e655", validated);
                   if (validated == true) {
                     setTimeout(() => {
                       //setLoading(false);
                       AddChild();
-                    }, 0)
+                    }, 0);
                   }
                   // }
-
-                }}>
-                {childData && childData?.uuid != '' ? (
-                  <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
+                }}
+              >
+                {childData && childData?.uuid != "" ? (
+                  <ButtonUpperCaseText numberOfLines={2}>
+                    {t("childSetupListsaveBtnText")}
+                  </ButtonUpperCaseText>
                 ) : (
-                  <ButtonUpperCaseText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonUpperCaseText>
+                  <ButtonUpperCaseText numberOfLines={2}>
+                    {t("childSetupListsaveBtnText")}
+                  </ButtonUpperCaseText>
                 )}
               </ButtonPrimary>
             </ButtonMangeProfileContainer>
           </ShiftFromTop10>
 
-
           <ActionSheet ref={actionSheetRef}>
             <MainContainer>
               <ArticleHeading>
-                <Heading2>{t('cameraOptionsHeader')}</Heading2>
+                <Heading2>{t("cameraOptionsHeader")}</Heading2>
               </ArticleHeading>
-              <View
-                style={styles.actionsheetView}>
+              <View style={styles.actionsheetView}>
                 {imageOptions.map((item, index) => {
                   // console.log('imageOptions', item)
                   if (
                     index == 0 &&
-                    (capturedPhoto == '' ||
+                    (capturedPhoto == "" ||
                       capturedPhoto == null ||
-                      capturedPhoto == undefined || photoDeleted == true)
+                      capturedPhoto == undefined ||
+                      photoDeleted == true)
                   ) {
                     return null;
                   } else {
                     return (
-                      <View
-                        key={index}
-                        style={styles.innerImageView}>
+                      <View key={index} style={styles.innerImageView}>
                         <Pressable
                           style={styles.alignItemsCenter}
                           onPress={(): any => {
-                            console.log('Obn image click')
+                            console.log("Obn image click");
                             //  actionSheetRef.current?.hide();
                             actionSheetRef.current?.setModalVisible(false);
                             handleImageOptionClick(item, index);
-                          }}>
+                          }}
+                        >
                           <Icon name={item.iconName} size={50} color="#000" />
-                          <Heading4 style={styles.heading4}>{item.name}</Heading4>
+                          <Heading4 style={styles.heading4}>
+                            {item.name}
+                          </Heading4>
                         </Pressable>
                       </View>
                     );

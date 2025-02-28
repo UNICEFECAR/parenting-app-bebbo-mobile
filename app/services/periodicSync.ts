@@ -1,4 +1,4 @@
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 
@@ -119,21 +119,23 @@ export const getAllPeriodicSyncData = (): any => {
   }
   else {
     if (childList.length > 0) {
-      childList.map((child: any) => {
-        const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)), 'days').toObject().days;
+      childList.forEach((child: any) => {
+        const childAgedays = DateTime.now().diff(DateTime.fromISO(child.birthDate), 'days').toObject().days;
+      
         if (childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days) {
           const i = childAge.findIndex((_item: any) => _item.id === child.taxonomyData.id);
-          // i > -1 && i < childAge.length
+          
           if (i > -1 && i < childAge.length - 1) {
             const nextchildAgeData = childAge[i + 1];
+      
             if (nextchildAgeData.age_bracket.length > 0) {
-              nextchildAgeData.age_bracket.map((ages: any) => {
+              nextchildAgeData.age_bracket.forEach((ages: any) => {
                 ageBrackets.push(ages);
-              })
+              });
             }
           }
         }
-      })
+      });
     }
     ageBrackets = [...new Set(ageBrackets)];
     if (bufferAgeBracket) {

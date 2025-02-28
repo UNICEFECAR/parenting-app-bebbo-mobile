@@ -1,112 +1,124 @@
-import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
+import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
   ButtonPrimary,
   ButtonTermsRow,
-  ButtonUpperCaseText
-} from '@components/shared/ButtonGlobal';
-import Checkbox, { CheckboxActive, CheckboxItem, FormOuterTermsCheckbox } from '@components/shared/CheckboxStyle';
-import { LabelTextTerms } from '@components/shared/ChildSetupStyle';
-import Icon from '@components/shared/Icon';
-import { RootStackParamList } from '@navigation/types';
-import { CommonActions, useFocusEffect } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../App';
-import { appConfig } from '../instance';
-import { setAcceptTerms, setTaxonomyIds } from '../redux/reducers/utilsSlice';
-import { Heading2Centerw, ShiftFromTop15, SideRightSpacing20, SideSpacing10, ShiftFromTop50, ShiftFromTopPercentage } from '@styles/typography';
-import { bgcolorWhite2, secondaryBtnColor } from '@styles/style';
-import VectorImage from 'react-native-vector-image';
-import { activityLogo, adviceLogo, toolsLogo, bebboLogoShape, imgLogoChatbotNew } from '../instance';
-const flavor = process.env.FLAVOR || 'bebbo';
-const BebboLogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`)
-const BebboLogoShapeMB = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape.svg`)
-import FeatureTCView from '@components/shared/FeaturesTCView';
-import { TERMS_ACCEPTED } from '@assets/data/firebaseEvents';
-import { logEvent } from '../services/EventSyncService';
-import useNetInfoHook from '../customHooks/useNetInfoHook';
+  ButtonUpperCaseText,
+} from "@components/shared/ButtonGlobal";
+import Checkbox, {
+  CheckboxActive,
+  CheckboxItem,
+  FormOuterTermsCheckbox,
+} from "@components/shared/CheckboxStyle";
+import { LabelTextTerms } from "@components/shared/ChildSetupStyle";
+import Icon from "@components/shared/Icon";
+import { RootStackParamList } from "@navigation/types";
+import { CommonActions, useFocusEffect } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import React, { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { ThemeContext } from "styled-components/native";
+import { useAppDispatch, useAppSelector } from "../../App";
+import { appConfig } from "../instances";
+import { setAcceptTerms, setTaxonomyIds } from "../redux/reducers/utilsSlice";
+import {
+  Heading2Centerw,
+  ShiftFromTop15,
+  SideRightSpacing20,
+  SideSpacing10,
+} from "../instances/bebbo/styles/typography";
+import {
+  bgcolorWhite2,
+  secondaryBtnColor,
+} from "../instances/bebbo/styles/style";
+import VectorImage from "react-native-vector-image";
+import { activityLogo, adviceLogo, toolsLogo } from "../instances";
+const flavor = process.env.FLAVOR || "bebbo";
+const BebboLogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
+const BebboLogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
+import FeatureTCView from "@components/shared/FeaturesTCView";
+import { TERMS_ACCEPTED } from "@assets/data/firebaseEvents";
+import { logEvent } from "../services/EventSyncService";
+import useNetInfoHook from "../customHooks/useNetInfoHook";
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'ChildSetup'
+  "ChildSetup"
 >;
 
 type Props = {
   navigation: TermsNavigationProp;
 };
 const item = {
-  image: flavor == 'merhabaBebek' ? BebboLogoShapeMB : BebboLogoShapeNew,
+  image: flavor == "merhabaBebek" ? BebboLogoShapeMB : BebboLogoShapeNew,
   advice: adviceLogo,
   tools: toolsLogo,
-  activity: activityLogo
+  activity: activityLogo,
 };
 const styles = StyleSheet.create({
   checkboxStyle: {
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-    textDecorationStyle: 'solid'
+    fontWeight: "bold",
+    textDecorationLine: "underline",
+    textDecorationStyle: "solid",
   },
 
   containerView: {
     backgroundColor: bgcolorWhite2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
     padding: 25,
-    flex: 1
+    flex: 1,
   },
   containerView2: {
     marginVertical: 25,
-    paddingHorizontal: 25
+    paddingHorizontal: 25,
   },
   privacyText: {
     color: secondaryBtnColor,
-    fontWeight: "700"
+    fontWeight: "700",
   },
   scrollViewStyle: {
-    padding: 0
+    padding: 0,
   },
   vectorImageView: {
     marginTop: 20,
   },
   contentDataView: {
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'red',
-    flex: 1
-  }
-
-})
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+    backgroundColor: "red",
+    flex: 1,
+  },
+});
 const Terms = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const isButtonDisabled = (toggleCheckBox == false)
+  const isButtonDisabled = toggleCheckBox == false;
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
   const netInfo = useNetInfoHook();
 
   const goToPrivacyPolicy = (): any => {
-    navigation.navigate('PrivacyPolicy');
+    navigation.navigate("PrivacyPolicy");
   };
   const goToTerms = (): any => {
-    navigation.navigate('TermsPage');
+    navigation.navigate("TermsPage");
   };
 
   const dispatch = useAppDispatch();
 
   const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
+    (state: any) => state.selectedCountry.languageCode
   );
 
-  const taxonomyAllData = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData) : [],
+  const taxonomyAllData = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData)
+      : []
   );
   useFocusEffect(
     React.useCallback(() => {
@@ -115,15 +127,17 @@ const Terms = ({ navigation }: Props): any => {
   );
   useEffect(() => {
     if (taxonomyAllData?.relationship_to_parent) {
-      dispatch(setTaxonomyIds(taxonomyAllData))
+      dispatch(setTaxonomyIds(taxonomyAllData));
     }
-  }, [])
+  }, []);
   useFocusEffect(
     React.useCallback(() => {
       setTimeout(() => {
         navigation.dispatch((state: any) => {
           // Remove the home route from the stack
-          const routes = state.routes.filter((r: any) => r.name !== 'LoadingScreen');
+          const routes = state.routes.filter(
+            (r: any) => r.name !== "LoadingScreen"
+          );
 
           return CommonActions.reset({
             ...state,
@@ -135,94 +149,93 @@ const Terms = ({ navigation }: Props): any => {
     }, [])
   );
   const acceptTermsFlag = useAppSelector(
-    (state: any) =>
-      state.utilsData.acceptTerms
+    (state: any) => state.utilsData.acceptTerms
   );
   const apiJsonData = [
     {
       apiEndpoint: appConfig.apiConfig.taxonomies,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.videoArticles,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.dailyMessages,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.activities,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.surveys,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.milestones,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.childDevelopmentData,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.vaccinations,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.healthCheckupData,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.standardDeviation,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.faqs,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
     {
       apiEndpoint: appConfig.apiConfig.articles,
-      method: 'get',
+      method: "get",
       postdata: {},
       saveinDB: true,
-    }
+    },
     // survey,child dev,vaccine,healthcheckup,growth,activities,
     // pinned for all 4 tools
   ];
   const acceptTerms = async (): Promise<any> => {
     if (acceptTermsFlag == false) {
       dispatch(setAcceptTerms(true));
-      const eventData = { 'name': TERMS_ACCEPTED }
-      logEvent(eventData, netInfo.isConnected)
+      const eventData = { name: TERMS_ACCEPTED };
+      logEvent(eventData, netInfo.isConnected);
     }
-    navigation.navigate('LoadingScreen', {
+    navigation.navigate("LoadingScreen", {
       apiJsonData: apiJsonData,
-      prevPage: 'Terms'
+      prevPage: "Terms",
     });
   };
 
@@ -232,12 +245,10 @@ const Terms = ({ navigation }: Props): any => {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         alwaysBounceHorizontal={false}
-        contentContainerStyle={{ flex: 1 }}>
+        contentContainerStyle={{ flex: 1 }}
+      >
         <View style={styles.containerView}>
-          <FocusAwareStatusBar
-            animated={true}
-            backgroundColor={headerColor}
-          />
+          <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
           <OverlayLoadingComponent loading={loading} />
           <View style={{ marginTop: 30 }}>
             <View style={styles.vectorImageView}>
@@ -245,22 +256,22 @@ const Terms = ({ navigation }: Props): any => {
             </View>
           </View>
           <ShiftFromTop15>
-            <Heading2Centerw>{t('walkthroughTextssubtitle0')}</Heading2Centerw>
+            <Heading2Centerw>{t("walkthroughTextssubtitle0")}</Heading2Centerw>
           </ShiftFromTop15>
           <View style={styles.containerView2}>
             <FeatureTCView
-              title={t('walkthroughTextstitle3').toString()}
-              subTitle={t('walkthroughTextssubtitle3').toString()}
+              title={t("walkthroughTextstitle3").toString()}
+              subTitle={t("walkthroughTextssubtitle3").toString()}
               iconname={item.advice}
             />
             <FeatureTCView
-              title={t('walkthroughTextstitle2').toString()}
-              subTitle={t('walkthroughTextssubtitle2').toString()}
+              title={t("walkthroughTextstitle2").toString()}
+              subTitle={t("walkthroughTextssubtitle2").toString()}
               iconname={item.tools}
             />
             <FeatureTCView
-              title={t('walkthroughTextstitle1').toString()}
-              subTitle={t('walkthroughTextssubtitle1').toString()}
+              title={t("walkthroughTextstitle1").toString()}
+              subTitle={t("walkthroughTextssubtitle1").toString()}
               iconname={item.activity}
             />
           </View>
@@ -270,7 +281,8 @@ const Terms = ({ navigation }: Props): any => {
                 <FormOuterTermsCheckbox
                   onPress={(): any => {
                     setToggleCheckBox(!toggleCheckBox);
-                  }}>
+                  }}
+                >
                   <CheckboxItem>
                     <View>
                       {toggleCheckBox ? (
@@ -284,13 +296,19 @@ const Terms = ({ navigation }: Props): any => {
                   </CheckboxItem>
                   <SideRightSpacing20>
                     <LabelTextTerms>
-                      {t('tNccheckbox2')}{' '}
-                      <LabelTextTerms onPress={goToPrivacyPolicy} style={styles.privacyText}>
-                        {t('tNcprivacyPolicyTitle')}{' '}
+                      {t("tNccheckbox2")}{" "}
+                      <LabelTextTerms
+                        onPress={goToPrivacyPolicy}
+                        style={styles.privacyText}
+                      >
+                        {t("tNcprivacyPolicyTitle")}{" "}
                       </LabelTextTerms>
-                      {t('childInfoAndText')}{' '}
-                      <LabelTextTerms onPress={goToTerms} style={styles.privacyText}>
-                        {t('tNcheader')}
+                      {t("childInfoAndText")}{" "}
+                      <LabelTextTerms
+                        onPress={goToTerms}
+                        style={styles.privacyText}
+                      >
+                        {t("tNcheader")}
                       </LabelTextTerms>
                       .
                     </LabelTextTerms>
@@ -300,8 +318,11 @@ const Terms = ({ navigation }: Props): any => {
                   disabled={isButtonDisabled}
                   onPress={() => {
                     acceptTerms();
-                  }}>
-                  <ButtonUpperCaseText numberOfLines={2}>{t('continueCountryLang')}</ButtonUpperCaseText>
+                  }}
+                >
+                  <ButtonUpperCaseText numberOfLines={2}>
+                    {t("continueCountryLang")}
+                  </ButtonUpperCaseText>
                 </ButtonPrimary>
               </ButtonTermsRow>
             </SideSpacing10>
@@ -313,4 +334,3 @@ const Terms = ({ navigation }: Props): any => {
 };
 
 export default Terms;
-

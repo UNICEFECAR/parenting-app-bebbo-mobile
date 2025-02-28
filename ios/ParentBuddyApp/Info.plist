@@ -37,7 +37,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.185520625819-2paqi14b84eaov6d69t2d2tnno5fri3p</string>
+				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
 		<dict>
@@ -99,8 +99,6 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires camera permission for capturing profile image</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Let me add photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>

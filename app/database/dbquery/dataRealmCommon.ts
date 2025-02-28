@@ -1,4 +1,4 @@
-import { appConfig } from '../../instance';
+import { appConfig } from '../../instances';
 import Realm, { ObjectSchema } from 'realm';
 import { dataRealmConfig } from '../config/dataDbConfig';
 import { StandardDevHeightForAgeSchema } from '../schema/StandardDevHeightForAgeSchema';

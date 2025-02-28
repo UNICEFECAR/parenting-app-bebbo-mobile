@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 import FastImage from 'react-native-fast-image';
 import RNFS from 'react-native-fs';
 import { store } from "../../App";
-import { appConfig } from '../instance';
+import { appConfig } from '../instances';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../database/schema/ActivitiesSchema';
@@ -268,7 +268,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       if (artobj && artobj != {}) {
         try {
           const storedata = store.getState();
-          const childagearray = storedata.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age : [];
+          const childagearray = storedata.utilsData?.taxonomy?.allTaxonomyData ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age || []: [];
           const artarray = artobj.postdata.childAge == 'all' ? childagearray.map((x: any) => x.id) : artobj.postdata.childAge.split(',').map(Number)
           console.log(artarray, "---childagearray--", childagearray);
           dispatch(setDownloadedBufferAgeBracket(artarray))

@@ -24,13 +24,13 @@ const config = {
   },
   resolver: {
     blacklistRE: exclusionList([
-      /app\/instance\/.*\/styles\/package\.json/, // Exclude conflicting package.json files
-      /app\/instance\/.*\/assets\/images\/package\.json/,
+      /app\/instances\/.*\/styles\/package\.json/, // Exclude conflicting package.json files
+      /app\/instances\/.*\/assets\/images\/package\.json/,
     ]),
     extraNodeModules: {
       "react-native-dotenv": path.resolve(
         __dirname,
-        `.env.${process.env.FLAVOR}`
+        `env/.env.${process.env.FLAVOR}`
       ),
     },
   },

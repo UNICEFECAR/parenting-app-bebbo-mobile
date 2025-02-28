@@ -1,4 +1,4 @@
-import { appConfig } from '../../instance';
+import { appConfig } from '../../instances';
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 

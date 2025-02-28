@@ -1,5 +1,5 @@
 import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
-import { appConfig } from '../instance';
+import { appConfig } from '../instances';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';

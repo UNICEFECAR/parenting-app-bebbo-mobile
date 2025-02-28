@@ -3,10 +3,10 @@
     "compilerOptions": {
         "paths": {
             "@styles/*": [
-                "app/instance/merhabaBebek/styles/*"
+                "app/instances/merhabaBebek/styles/*"
             ],
             "@images/*": [
-                "app/instance/merhabaBebek/assets/images/*"
+                "app/instances/merhabaBebek/assets/images/*"
             ]
         }
     }

@@ -1,4 +1,4 @@
-import { appConfig } from '../instance';
+import { appConfig } from '../instances';
 import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../database/schema/ChildDataSchema';
 

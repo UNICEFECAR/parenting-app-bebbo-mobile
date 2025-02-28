@@ -19,10 +19,10 @@ interface SelectedLocalizationType {
 }
 const initialState: SelectedLocalizationType = {
   countryId: 126,
-  languageCode: 'en', //'en'
+  languageCode: 'en',
   luxonLocale: 'en',
-  locale: 'en', //'en'
-  pluralShow: false,//false
+  locale: 'en',
+  pluralShow: false,
   sponsors: [],
   countries: '',
   restartOnLangChange: 'no',
