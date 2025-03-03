@@ -22,7 +22,8 @@ google-services*.json
 # iOS-specific files
 ios/Pods/
 ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-ios/ParentBuddyApp.xcodeproj/xcuserdata/*.xcuserdatad/xcschemes/xcschememanagement.plist
+ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcuserdata*
+ios/ParentBuddyApp.xcodeproj/xcuserdata*
 ios/GoogleServices/**/GoogleService-Info*.plist
 ios/**-Info.plist
 
