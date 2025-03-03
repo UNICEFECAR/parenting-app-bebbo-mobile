@@ -4,7 +4,7 @@ import RNFS from 'react-native-fs';
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'bebbo',
-  buildFor: 'bebbo', // 'foleja'
+  buildFor: 'bebbo',
   maxRelatedArticleSize: 3,
   isArticlePinned: '1',
   articleCategory: '4,1,55,56,3,2',
@@ -167,93 +167,41 @@ const config = {
         return `${baseUrl}/${selectedLang}`;
     }
   },
-  allApisObject: (isDatetimeReq: any, dateTimeObj: any): any => {
-    const allApiObject = [
-      { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
-      { apiEndpoint: config.apiConfig.articles, method: 'get', postdata: {}, saveinDB: true },
-      { apiEndpoint: config.apiConfig.countryGroups, method: 'get', postdata: {}, saveinDB: true },
-      { apiEndpoint: config.apiConfig.taxonomies, method: 'get', postdata: {}, saveinDB: true },
-      { apiEndpoint: config.apiConfig.basicPages, method: 'get', postdata: {}, saveinDB: true },
-      {
-        apiEndpoint: config.apiConfig.surveys,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.milestones,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.childDevelopmentData,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.vaccinations,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.healthCheckupData,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.standardDeviation,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.dailyMessages,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.activities,
-        method: 'get',
-        postdata: isDatetimeReq == true && dateTimeObj['activitiesDatetime'] != '' ? { datetime: dateTimeObj['activitiesDatetime'] } : {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.faqs,
-        method: 'get',
-        postdata: isDatetimeReq == true && dateTimeObj['faqsDatetime'] != '' ? { datetime: dateTimeObj['faqsDatetime'] } : {},
-        saveinDB: true,
-      },
-      {
-        apiEndpoint: config.apiConfig.videoArticles,
-        method: 'get',
-        postdata:
-          isDatetimeReq && dateTimeObj['videoArticlesDatetime'] !== ''
-            ? { datetime: dateTimeObj['videoArticlesDatetime'] }
-            : {},
-        saveinDB: true,
-      },
-      // Add other objects as needed...
-    ];
-
+  allApisObject: (isDatetimeReq: boolean, dateTimeObj: Record<string, any>): any => {
+    const apiList = [
+      { key: "sponsors", saveInDB: false },
+      { key: "articles", saveInDB: true },
+      { key: "countryGroups", saveInDB: true },
+      { key: "taxonomies", saveInDB: true },
+      { key: "basicPages", saveInDB: true },
+      { key: "surveys", saveInDB: true },
+      { key: "milestones", saveInDB: true },
+      { key: "childDevelopmentData", saveInDB: true },
+      { key: "vaccinations", saveInDB: true },
+      { key: "healthCheckupData", saveInDB: true },
+      { key: "standardDeviation", saveInDB: true },
+      { key: "dailyMessages", saveInDB: true },
+      { key: "activities", saveInDB: true },
+      { key: "faqs", saveInDB: true },
+      { key: "videoArticles", saveInDB: true },
+    ];  
+    const allApiObject = apiList.map(({ key, saveInDB }) => ({
+      apiEndpoint: config.apiConfig[key],
+      method: "get",
+      postdata: isDatetimeReq && dateTimeObj?.[`${key}Datetime`] ? { datetime: dateTimeObj[`${key}Datetime`] } : {},
+      saveInDB,
+    }));
+  
     if (isDatetimeReq) {
+      const archiveDate = dateTimeObj?.archiveDatetime || dateTimeObj?.faqPinnedContentDatetime;
       allApiObject.push({
         apiEndpoint: config.apiConfig.archive,
-        method: 'get',
-        postdata:
-          dateTimeObj['archiveDatetime'] !== ''
-            ? { datetime: dateTimeObj['archiveDatetime'] }
-            : dateTimeObj['faqPinnedContentDatetime'] !== ''
-              ? { datetime: dateTimeObj['faqPinnedContentDatetime'] }
-              : {},
-        saveinDB: true,
+        method: "get",
+        postdata: archiveDate ? { datetime: archiveDate } : {},
+        saveInDB: true,
       });
     }
-
+    
     return allApiObject;
   },
 };
