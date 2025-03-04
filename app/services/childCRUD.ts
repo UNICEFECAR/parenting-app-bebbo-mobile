@@ -1,11 +1,11 @@
 import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
-import { appConfig, articleCategory, boyChildGender } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../instances';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
 import { Alert, Platform } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
-import { store } from '../../App';
+import { store, useAppSelector } from '../../App';
 import { ToastAndroidLocal } from '../android/sharedAndroid.android';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -27,7 +27,7 @@ export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeO
   }
   return [
     {
-      apiEndpoint: appConfig.articles,
+      apiEndpoint: appConfig.apiConfig.articles,
       method: 'get',
       postdata: isDatetimeReq == true && dateTimeObj.articlesDatetime != '' ? { ...postData, datetime: dateTimeObj.articlesDatetime } : { ...postData },
       saveinDB: true,
@@ -137,7 +137,7 @@ export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,
     }
   }
 }
-export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any, activeset?: any): Promise<any> => {
+export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, childAge: any, activeset?: any, boyChildGender?: any): Promise<any> => {
 
   const userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
   let userRelationToParent = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userRelationToParent'");
@@ -435,12 +435,13 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     try {
       await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
     } catch (error) {
-      Alert.alert('Error', 'Error in creating child'+JSON.stringify(error));
+      Alert.alert('Error', 'Error in creating child' + JSON.stringify(error));
     }
-    
+
   }
   //new child add from 
   if (param == 0) {
+    console.log('sssssss')
     if (isDefaultChild) {
       const eventData = { 'name': ONBOARDING_SKIPPED }
       logEvent(eventData, netInfo.isConnected);
@@ -474,6 +475,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     const ageLimit = [];
     const startDate = new Date(oldBirthDate)
     const someDate = new Date(data[0].birthDate)
+    console.log(data, '=======', dateTimesAreSameDay(startDate, someDate))
     if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate) == false) {
       // regenerate notifications for new dob child
       const storedata = store.getState();
@@ -516,6 +518,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       const taxonomyData = await checkBetween(0, ageLimit, childAge);
       let apiJsonData;
+      console.log('---------', taxonomyData)
       //  apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
       if (taxonomyData?.length > 0) {
         apiJsonData = apiJsonDataGet("all");
@@ -531,6 +534,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
             prevPage: 'AddEditChild'
           });
         } else {
+          console.log('===>1')
           navigation.navigate('ChildProfileScreen');
         }
       }
@@ -543,6 +547,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
           setActiveChild(languageCode, data[0].uuid, dispatch, childAge, false);
         }
       }
+      console.log('===>2')
       navigation.navigate('ChildProfileScreen');
     }
     const notiFlagObj = { key: 'generateNotifications', value: true };
@@ -552,7 +557,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
 }
 
-export const updateActiveChild = (child: any, key: any, value: any, dispatch: any, userRelationToParent: any): any => {
+export const updateActiveChild = (child: any, key: any, value: any, dispatch: any, userRelationToParent: any, boyChildGender: any): any => {
   child[key] = value;
   dispatch(setActiveChildData(child));
   analytics().setUserProperties({
@@ -566,7 +571,6 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
 }
 export const getAllConfigData = async (dispatch: any): Promise<any> => {
   const allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
-  console.log("=====2",allJsonDatanew)
   allJsonDatanew?.removeAllListeners?.();
   const configAllData: any = [];
   allJsonDatanew.map((value: ConfigSettingsEntity) => {
@@ -581,7 +585,6 @@ export const calc = async (value: any, childAge: any): Promise<any> => {
 
 export const getAllChildrenDetails = async (dispatch: any, childAge: any, param: any): Promise<any> => {
   const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-  console.log("=====",allJsonDatanew)
   let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   allJsonDatanew?.removeAllListeners?.();
   let childAllData: any = [];
@@ -620,7 +623,6 @@ export const getAllChildrenDetails = async (dispatch: any, childAge: any, param:
 export const getAllChildren = async (dispatch: any, childAge: any, param: any): Promise<any> => {
   try {
     const allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    console.log("=====1",allJsonDatanew)
     let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
     allJsonDatanew?.removeAllListeners?.();
     let childAllData: any = [];
@@ -659,7 +661,7 @@ export const getAllChildren = async (dispatch: any, childAge: any, param: any): 
       }
     }
   } catch (error) {
-    console.log('getAllChildren catch',error)
+    console.log('getAllChildren catch', error)
   }
 }
 

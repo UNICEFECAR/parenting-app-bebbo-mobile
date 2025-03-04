@@ -30,10 +30,11 @@ import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import { apiJsonDataGet, getAge } from '../services/childCRUD';
 import { deleteArticleNotPinned } from '../services/commonApiService';
 import KeepAwake from '@sayem314/react-native-keep-awake';
-import { clientIdKey } from 'react-native-dotenv';
 import RNRestart from 'react-native-restart';
 import i18next from 'i18next';
 import { onLocalizationSelect, setSponsorStore } from '../redux/reducers/localizationSlice';
+import moment from 'moment';
+import { getLanguageCode } from '../services/Utils';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -46,10 +47,10 @@ type Props = {
 
 const LoadingScreen = ({ route, navigation }: Props): any => {
   const dispatch = useAppDispatch();
-  const childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
+  const childAge = useAppSelector((state: any) => {
+    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData;
+    return allTaxonomyData ? JSON.parse(allTaxonomyData).child_age : [];
+  });
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
@@ -153,7 +154,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       //when downloading all data replace agebrackets
       const Ages = await getAgeWithAgeBrackets(prevPage);
       const newAges = [...new Set([...Ages.alldataarr, ...Ages.deltadataarr])]
-    // let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
+      // let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
       // if (Ages.alldataarr?.length > 0 || Ages.deltadataarr?.length > 0) {
       //   if (prevPage == "DownloadAllData" && allDataDownloadFlag == true) {
       //     if (Ages.alldataarr?.length > 0) {
@@ -206,7 +207,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }
     else if (prevPage == "PeriodicSync") {
       //if flag true for buffer then append those in agebrackets
-    //  let allAgeBrackets: any[] = [], deltaageBracktes: any[] = [];
+      //  let allAgeBrackets: any[] = [], deltaageBracktes: any[] = [];
       // if (downloadBufferData == true) {
       //   if (ageBrackets?.length > 0) {
       //     ageBrackets.map((ages: any) => {
@@ -228,13 +229,13 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       //     deltaageBracktes = [...new Set([...deltaageBracktes, ...Ages.deltadataarr])]
       //   }
       // }
-     // allAgeBrackets = [...new Set(allAgeBrackets)];
+      // allAgeBrackets = [...new Set(allAgeBrackets)];
       // let apiJsonDataarticleall: any[] = [], apiJsonDataarticledelta: any[] = [];
       // if (allAgeBrackets.length > 0) {
-        
+
       // }
       // if (deltaageBracktes.length > 0) {
-       
+
       // }
       const apiJsonDataarticleall = apiJsonDataGet("all")
       const apiJsonDataarticledelta = apiJsonDataGet("all", true, incrementalSyncDT)
@@ -289,7 +290,7 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }, [netInfo.isConnected])
   );
   useEffect(() => {
-    console.log('Sponsers List Data is',sponsors)
+    console.log('Sponsers List Data is', sponsors)
     const backAction = (): any => {
       return true;
     };
@@ -304,35 +305,38 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
   }, []);
 
   useEffect(() => {
-    if(allCountries?.length === 1 && allCountries[0]?.languages?.length === 1 && isFirst){
+
+    if (allCountries?.length === 1 && allCountries[0]?.languages?.length === 1 && isFirst) {
       const language = allCountries[0]?.languages?.[0]
+      console.log(language, "allCountries in loading screen", isFirst)
       i18next.changeLanguage(language.locale)
-      .then(() => {
-        if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
-          if (AppLayoutDirection == 'ltr') {
-            //remove rtl on backhandler
-            Platform.OS == 'ios' ? setTimeout(() => {
-              I18nManager.forceRTL(true);
-              RNRestart.Restart();
-            }, 100) :
-              setTimeout(() => {
+        .then(() => {
+          moment.locale(getLanguageCode(language?.languageCode))
+          if (language?.locale == 'GRarb' || language?.locale == 'GRda') {
+            if (AppLayoutDirection == 'ltr') {
+              //remove rtl on backhandler
+              Platform.OS == 'ios' ? setTimeout(() => {
                 I18nManager.forceRTL(true);
-                RNRestart.Restart()
-              }, 0);
+                RNRestart.Restart();
+              }, 100) :
+                setTimeout(() => {
+                  I18nManager.forceRTL(true);
+                  RNRestart.Restart()
+                }, 0);
+            } else {
+              I18nManager.forceRTL(true);
+            }
           } else {
-            I18nManager.forceRTL(true);
+            I18nManager.forceRTL(false);
           }
-        } else {
-          I18nManager.forceRTL(false);
-        }
-      })
-      
+        })
+
       dispatch(setSponsorStore(allCountries[0]));
       dispatch(onLocalizationSelect({ "languages": allCountries[0]?.languages, "countryId": allCountries[0]?.CountryID }));
     }
-  },[isFirst])
+  }, [isFirst])
 
-
+  console.log('Sponsers List Data is', allCountries)
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
   return (
