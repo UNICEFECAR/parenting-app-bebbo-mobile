@@ -9,8 +9,8 @@ export const ArticleFilter = styled.View`
   
   padding:10px 10px;
   min-height:120px;
-  border-bottom-color:${(props:any):any => props.theme.colors.ARTICLES_COLOR};
-  border-top-color:${(props:any):any => props.theme.colors.ARTICLES_COLOR};
+  border-bottom-color:${(props: any): any => props.theme.colors.ARTICLES_COLOR};
+  border-top-color:${(props: any): any => props.theme.colors.ARTICLES_COLOR};
   /*border-bottom-width:1px;
   border-Top-width:1px;*/
   margin-bottom:5px;
@@ -35,7 +35,7 @@ export const FilterText = styled.Text`
 font-size:10px;
 flex:1;
 font-weight:bold;
-color:${(props:any):any => props.theme.colors.PRIMARY_TEXTCOLOR};
+color:${(props: any): any => props.theme.colors.PRIMARY_TEXTCOLOR};
 flex-shrink:1;
 text-align:left;
 `;

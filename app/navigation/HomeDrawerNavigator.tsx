@@ -20,7 +20,8 @@ export default (): any => {
       }}
       detachInactiveScreens={true}
       backBehavior={'initialRoute'}
-      drawerContent={(props): any => <CustomDrawerContent {...props} />}>
+      drawerContent={(props): any => <CustomDrawerContent {...props} />
+      }>
       <HomeDrawerNavigator.Screen
         options={{ headerShown: false }}
         name="Home"
@@ -53,6 +54,6 @@ export default (): any => {
         name="Favourites" component={Favourites}
         initialParams={{ tabIndex: 0, backClicked: 'no' }}
       />
-    </HomeDrawerNavigator.Navigator>
+    </HomeDrawerNavigator.Navigator >
   );
 };

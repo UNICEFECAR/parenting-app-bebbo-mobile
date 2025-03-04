@@ -1,15 +1,17 @@
 module.exports = (api) => {
   const babelEnv = api.env();
+  const flavor = process.env.FLAVOR || 'bebbo';
   const plugins = [
     [
       'module:react-native-dotenv',
       {
         moduleName: "react-native-dotenv",
-        path: '.env',
+        path: `env/.env.${flavor}`,
         blacklist: null,
         whitelist: null,
         safe: false,
         allowUndefined: true,
+        verbose: false,
       },
     ],
     [
@@ -32,20 +34,20 @@ module.exports = (api) => {
           '@assets': './app/assets',
           '@screens': './app/screens',
           '@types': './app/types',
-          '@styles': './app/styles',
+          '@styles': `./app/instances/${flavor}/styles`,
+          '@images': `./app/instances/${flavor}/assets/images`,
           '@navigation': './app/navigation',
           '@offlinedata': './app/assets/translations/appOfflineData',
-          '@dynamicImportsClass': './app/bebbo',
         },
       },
     ],
     [
       "react-native-reanimated/plugin",
-      ],
+    ],
   ];
   //change to 'production' to check if this is working in 'development' mode
   if (babelEnv !== 'development') {
-    plugins.push(['transform-remove-console', {exclude: ['error', 'warn']}]);
+    plugins.push(['transform-remove-console', { exclude: ['error', 'warn'] }]);
   }
   return {
     presets: ['module:metro-react-native-babel-preset'],
