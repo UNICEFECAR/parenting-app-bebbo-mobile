@@ -31,7 +31,7 @@ export const articledata: any = {
                 29646
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/UNI11812.jpg?itok=IF9-sQ6M",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/UNI11812.jpg?itok=IF9-sQ6M",
                 "name": "UNI11812.jpg",
                 "alt": "Mother with her baby giving him positive attention."
             },

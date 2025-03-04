@@ -15,7 +15,7 @@ export const ActivitiesData: any = {
                 511
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=XIgpwh7E",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=XIgpwh7E",
                 "name": "My%20Special%20Helper-cover-picture.jpg",
                 "alt": "Children helping their parents"
             },
@@ -40,7 +40,7 @@ export const ActivitiesData: any = {
                 501
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=faejnvmd",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=faejnvmd",
                 "name": "Let%27s%20Visit%20and%20Talk-cover-picture._2.jpeg",
                 "alt": "Grandparents doing a videocall with their granddaughter"
             },
@@ -65,7 +65,7 @@ export const ActivitiesData: any = {
                 481
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/musical_movements-cover-picture.png?itok=Lakpnc2U",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/musical_movements-cover-picture.png?itok=Lakpnc2U",
                 "name": "musical_movements-cover-picture.png",
                 "alt": "A mother is holding the child in her arms imitating dancing"
             },
@@ -90,7 +90,7 @@ export const ActivitiesData: any = {
                 466
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.jpg?itok=i1YRdfAT",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.jpg?itok=i1YRdfAT",
                 "name": "Look%20at%20your%20ball-cover-picture.jpg",
                 "alt": "A new-born baby looking attentively somewhere"
             },
@@ -115,7 +115,7 @@ export const ActivitiesData: any = {
                 506
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=8bpq6fON",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=8bpq6fON",
                 "name": "Let%27s%20Look%20at%20a%20Book-cover-picture.jpg",
                 "alt": "A child looking at a book"
             },
@@ -140,7 +140,7 @@ export const ActivitiesData: any = {
                 471
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=iB3HV0A1",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=iB3HV0A1",
                 "name": "my_first_turns-cover-picture.jpg",
                 "alt": "A child turning from back to tummy"
             },
@@ -165,7 +165,7 @@ export const ActivitiesData: any = {
                 491
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=G9qcrQUl",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=G9qcrQUl",
                 "name": "Who%20Is%20This%20Person-cover-picture.jpg",
                 "alt": "Grandmother and grandfather carrying two babies"
             },
@@ -190,7 +190,7 @@ export const ActivitiesData: any = {
                 516
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=2vglg9Wq",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=2vglg9Wq",
                 "name": "Colour%20Hunt-cover-picture.jpg",
                 "alt": "Child facing the coloured road"
             },
@@ -215,7 +215,7 @@ export const ActivitiesData: any = {
                 476
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2022-01/say-my-name-cover-image.jpg?itok=GVIDZpaL",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2022-01/say-my-name-cover-image.jpg?itok=GVIDZpaL",
                 "name": "say-my-name-cover-image.jpg",
                 "alt": "A child laying on his or her back with a focussed expression on his or her face "
             },
@@ -240,7 +240,7 @@ export const ActivitiesData: any = {
                 496
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/ART_3230.JPG?itok=y4s5OlTD",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/ART_3230.JPG?itok=y4s5OlTD",
                 "name": "ART_3230.JPG",
                 "alt": "Potraga za zvukom"
             },
@@ -265,7 +265,7 @@ export const ActivitiesData: any = {
                 486
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=U34zGDT3",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=U34zGDT3",
                 "name": "Reading%20with%20your%20baby-cover-picture.jpg",
                 "alt": "A mother looking at the book with her baby"
             },
@@ -290,7 +290,7 @@ export const ActivitiesData: any = {
                 521
             ],
             "cover_image": {
-                "url": "https://bangla.bebbo.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=QUjFCQE9",
+                "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=QUjFCQE9",
                 "name": "flying_imagination-cover-picture.jpg",
                 "alt": "Illustration of Flying imagination"
             },

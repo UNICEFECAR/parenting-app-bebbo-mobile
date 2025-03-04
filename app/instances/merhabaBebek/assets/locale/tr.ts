@@ -141,7 +141,7 @@ const tr = {
     "developScreenrelatedArticleText": "İlgili tavsiye",
     "developScreenrelatedAct": "İlgili oyunlar",
     "developScreenviewDetails": "Devamını gör",
-    "articleScreenheaderTitle": "Tasiyeler",
+    "articleScreenheaderTitle": "Tavsiyeler",
     "articleScreensearchPlaceHolder": "Arama yapın",
     "articleScreennoSearchResult": "Tavsiye bulunamadı",
     "articleScreenshareText": "Paylaş",
