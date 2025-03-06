@@ -249,7 +249,7 @@ export const formatStringTime = (dateData: any): any => {
     const formattedTime = getTwoDigits(hour) + ":" + getTwoDigits(minute)
 
     console.log(formattedTime);
-    return moment(formattedTime, 'hh:mm').format('hh:mm');
+    return Platform.OS == "ios" ? moment(formattedTime, 'hh:mm').locale("en").format('hh:mm A') : moment(formattedTime, 'hh:mm').format('hh:mm');
 }
 export const removeParams = (sParam: any): any => {
     if (sParam.indexOf("?") != -1) {
@@ -539,14 +539,12 @@ export const getLanguageCode = (languageCode: string): string => {
 
     // Check if the languageCode or processedCode is valid
     if (validLanguageCodes.includes(languageCode) || validLanguageCodes.includes(processedCode)) {
-        // console.log("============", processedCode)
         return processedCode;
     }
 
     // Search for a matching locale in localeList based on the lcode
     const match = localeList.find((entry) => entry.lcode === languageCode);
     if (match) {
-        // console.log("============", match.locale)
         return match.locale; // Return the matching locale
     }
 

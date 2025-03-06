@@ -55,7 +55,7 @@
 			<string>Bundle ID</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.REMOVED_PROJECT_NUMBER-REMOVED_CLIENT_ID</string>
+				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
 	</array>
