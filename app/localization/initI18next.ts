@@ -30,7 +30,6 @@ const findLangCode = (languageTag: string | undefined): any => {
   return obj2;
 }
 const AVALAILABLE_LANG_CODES: any = findAllByKey(localisationnew, 'luxonLocale');
-console.log(localisationnew,'=========================')
 const languageDetector: LanguageDetectorAsyncModule = {
   type: 'languageDetector',
   // If this is set to true, your detect function receives a callback function that you should call with your language,
@@ -46,7 +45,6 @@ const languageDetector: LanguageDetectorAsyncModule = {
   detect: (callback: (lng: string) => void) => {
     AsyncStorage.getItem('APP_LANG', (err, lng) => {
       // Error fetching stored data or no language was stored
-      console.log(lng,'=========================',AVALAILABLE_LANG_CODES,AVAILABLE_LANGUAGES)
       if (err || !lng) {
         
         const bestLng = RNLocalize.findBestLanguageTag(AVALAILABLE_LANG_CODES);

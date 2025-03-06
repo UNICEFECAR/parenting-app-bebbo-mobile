@@ -474,7 +474,6 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     const ageLimit = [];
     const startDate = new Date(oldBirthDate)
     const someDate = new Date(data[0].birthDate)
-    console.log(data, '=======', dateTimesAreSameDay(startDate, someDate))
     if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate) == false) {
       // regenerate notifications for new dob child
       const storedata = store.getState();
