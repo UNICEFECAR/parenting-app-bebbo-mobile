@@ -1,17 +1,22 @@
-import { BgActivityTint } from '@components/shared/BackgroundColors';
+import { BgActivityTint } from "@components/shared/BackgroundColors";
+import { ButtonActivity, ButtonText } from "@components/shared/ButtonGlobal";
+import { MainContainer } from "@components/shared/Container";
+import { FlexDirRow, FlexCol } from "@components/shared/FlexBoxStyle";
 import {
-  ButtonActivity,
-  ButtonText
-} from '@components/shared/ButtonGlobal';
-import { MainContainer } from '@components/shared/Container';
-import { FlexDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
-import { FeatureBox, FeatureContentBox, FeatureDivideArea, FeatureImageBox } from '@components/shared/HomeScreenStyle';
-import { useNavigation } from '@react-navigation/native';
-import { Heading2, ShiftFromBottom15 } from '@styles/typography';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import VectorImage from 'react-native-vector-image';
-import { Pressable } from 'react-native';
+  FeatureBox,
+  FeatureContentBox,
+  FeatureDivideArea,
+  FeatureImageBox,
+} from "@components/shared/HomeScreenStyle";
+import { useNavigation } from "@react-navigation/native";
+import {
+  Heading2,
+  ShiftFromBottom15,
+} from "../../instances/bebbo/styles/typography";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import VectorImage from "react-native-vector-image";
+import { Pressable } from "react-native";
 
 const PlayingTogether = (): any => {
   const navigation = useNavigation<any>();
@@ -24,18 +29,25 @@ const PlayingTogether = (): any => {
             <MainContainer>
               <FeatureBox>
                 <FlexDirRow>
-                  <Pressable onPress={(): any => navigation.navigate('Activities')}>
+                  <Pressable
+                    onPress={(): any => navigation.navigate("Activities")}
+                  >
                     <FeatureImageBox>
-                      <VectorImage source={require('@assets/svg/ic_activity_color.svg')} />
+                      <VectorImage
+                        source={require("@images/ic_activity_color.svg")}
+                      />
                     </FeatureImageBox>
                   </Pressable>
                   <FeatureContentBox>
                     <ShiftFromBottom15>
-                      <Heading2>{t('homeScreenptHeader')}</Heading2>
+                      <Heading2>{t("homeScreenptHeader")}</Heading2>
                     </ShiftFromBottom15>
                     <ButtonActivity
-                      onPress={(): any => navigation.navigate('Activities')}>
-                      <ButtonText numberOfLines={2}>{t('homeScreenptButton')}</ButtonText>
+                      onPress={(): any => navigation.navigate("Activities")}
+                    >
+                      <ButtonText numberOfLines={2}>
+                        {t("homeScreenptButton")}
+                      </ButtonText>
                     </ButtonActivity>
                   </FeatureContentBox>
                 </FlexDirRow>

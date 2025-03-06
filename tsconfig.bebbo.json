@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "@styles/*": [
+                "app/instances/bebbo/styles/*"
+            ],
+            "@images/*": [
+                "app/instances/bebbo/assets/images/*"
+            ]
+        }
+    }
+}

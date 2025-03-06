@@ -1,10 +1,11 @@
-import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
-import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
+import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
+import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
-  ButtonPrimary, ButtonText,
+  ButtonPrimary,
+  ButtonText,
   ButtonUpperCaseText,
-} from '@components/shared/ButtonGlobal';
+} from "@components/shared/ButtonGlobal";
 import {
   ChildCenterView,
   ChildColArea1,
@@ -12,72 +13,98 @@ import {
   ChildListAction,
   ChildListingBox,
   ChildListTitle,
-} from '@components/shared/ChildSetupStyle';
-import Icon from '@components/shared/Icon';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
-import OnboardingHeading from '@components/shared/OnboardingHeading';
-import { RootStackParamList } from '@navigation/types';
-import { CommonActions, useFocusEffect, useIsFocused } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { bgcolorWhite2, primaryColor, secondaryBtnColor } from '@styles/style';
-import React, { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../App';
-import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { apiJsonDataGet, deleteChild, getAge, getAllChildren, getAllConfigData, isFutureDate } from '../services/childCRUD';
-import { formatDate, notiPermissionUtil } from '../services/Utils';
+} from "@components/shared/ChildSetupStyle";
+import Icon from "@components/shared/Icon";
+import OnboardingContainer from "@components/shared/OnboardingContainer";
+import OnboardingHeading from "@components/shared/OnboardingHeading";
+import { RootStackParamList } from "@navigation/types";
+import {
+  CommonActions,
+  useFocusEffect,
+  useIsFocused,
+} from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import {
+  bgcolorWhite2,
+  primaryColor,
+  secondaryBtnColor,
+} from "../instances/bebbo/styles/style";
+import React, { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  Alert,
+  BackHandler,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
+import { ThemeContext } from "styled-components/native";
+import { useAppDispatch, useAppSelector } from "../../App";
+import { ChildEntity } from "../database/schema/ChildDataSchema";
+import {
+  apiJsonDataGet,
+  deleteChild,
+  getAge,
+  getAllChildren,
+  getAllConfigData,
+  isFutureDate,
+} from "../services/childCRUD";
+import { formatDate, notiPermissionUtil } from "../services/Utils";
 import {
   Heading1Centerw,
   Heading3Centerw,
   Heading5,
-  ShiftFromTop30
-} from '../styles/typography';
-import useNetInfoHook from '../customHooks/useNetInfoHook';
-import { logEvent } from '../services/EventSyncService';
-import { FlexCol } from '@components/shared/FlexBoxStyle';
+  ShiftFromTop30,
+} from "../instances/bebbo/styles/typography";
+import useNetInfoHook from "../customHooks/useNetInfoHook";
+import { logEvent } from "../services/EventSyncService";
+import { FlexCol } from "@components/shared/FlexBoxStyle";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'AddSiblingDataScreen'
+  "AddSiblingDataScreen"
 >;
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
 const styles = StyleSheet.create({
-  autoHeight: { height: 'auto' },
+  autoHeight: { height: "auto" },
   containerView: {
     backgroundColor: primaryColor,
-    flex: 1
+    flex: 1,
   },
   textStyle: {
     fontSize: 12,
-    fontWeight: 'normal'
+    fontWeight: "normal",
   },
   touchableLeft: {
     marginLeft: 2,
-    padding: 8
+    padding: 8,
   },
   touchableRight: {
     marginRight: 2,
-    padding: 8
+    padding: 8,
   },
   listBgColor: {
-    backgroundColor: 'red'
+    backgroundColor: "red",
   },
   babyImageContainer: {
-    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+    borderRadius:
+      Math.round(
+        Dimensions.get("window").width + Dimensions.get("window").height
+      ) / 2,
     borderColor: secondaryBtnColor,
     borderWidth: 2,
     marginVertical: 30,
-    width: Dimensions.get('window').width * 0.5,
-    height: Dimensions.get('window').width * 0.5,
+    width: Dimensions.get("window").width * 0.5,
+    height: Dimensions.get("window").width * 0.5,
     backgroundColor: bgcolorWhite2,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center'
-  }
-})
+    justifyContent: "center",
+    alignSelf: "center",
+    alignItems: "center",
+  },
+});
 const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
@@ -85,34 +112,38 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
   const [loading, setLoading] = useState(false);
   const [parentViewHeight, setParentViewheight] = useState(0);
   const isFocused = useIsFocused();
-  const genders = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  const genders = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
+      : []
   );
   const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
+    (state: any) => state.selectedCountry.languageCode
   );
-  const childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  const childAge = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : []
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
-  const childList = useAppSelector(
-    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
+  const childList = useAppSelector((state: any) =>
+    state.childData.childDataSet.allChild != ""
+      ? JSON.parse(state.childData.childDataSet.allChild)
+      : []
   );
   const onLayout = (event: any): any => {
     setParentViewheight(event.nativeEvent.layout.height);
-  }
+  };
   useEffect(() => {
     if (isFocused) {
       getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
       notiPermissionUtil();
       setTimeout(() => {
-        navigation.dispatch(state => {
+        navigation.dispatch((state) => {
           // Remove the home route from the stack
-          const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+          const routes = state.routes.filter((r) => r.name !== "LoadingScreen");
 
           return CommonActions.reset({
             ...state,
@@ -130,13 +161,13 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
       };
       const backHandler = BackHandler.addEventListener(
         "hardwareBackPress",
-        backAction,
+        backAction
       );
-      navigation.addListener('gestureEnd', backAction);
+      navigation.addListener("gestureEnd", backAction);
       return (): any => {
-        navigation.removeListener('gestureEnd', backAction);
+        navigation.removeListener("gestureEnd", backAction);
         backHandler.remove();
-      }
+      };
     }, [])
   );
 
@@ -149,16 +180,19 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
     // else {
     //   apiJsonData = apiJsonDataGet("all", "all")
     // }
-    const apiJsonData = apiJsonDataGet("all")
-    const eventData = { 'name': ONBOARDING_CHILD_COUNT, 'params': { child_count: childList?.length } }
-    logEvent(eventData, netInfo.isConnected)
+    const apiJsonData = apiJsonDataGet("all");
+    const eventData = {
+      name: ONBOARDING_CHILD_COUNT,
+      params: { child_count: childList?.length },
+    };
+    logEvent(eventData, netInfo.isConnected);
 
     navigation.reset({
       index: 0,
       routes: [
         {
-          name: 'LoadingScreen',
-          params: { apiJsonData: apiJsonData, prevPage: 'ChildSetup' },
+          name: "LoadingScreen",
+          params: { apiJsonData: apiJsonData, prevPage: "ChildSetup" },
         },
       ],
     });
@@ -173,33 +207,33 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
           <OnboardingHeading>
             <ChildCenterView>
               <Heading1Centerw>
-                {t('serviceProviderHeaderInfoText')}
+                {t("serviceProviderHeaderInfoText")}
               </Heading1Centerw>
               <ShiftFromTop30>
                 <Heading3Centerw>
-                  {t('serviceProviderHeaderSubInfoText')}
+                  {t("serviceProviderHeaderSubInfoText")}
                 </Heading3Centerw>
               </ShiftFromTop30>
             </ChildCenterView>
           </OnboardingHeading>
           <FlexCol>
             <View style={styles.babyImageContainer}>
-              <Icon
-                name="ic_baby_girl"
-                size={90}
-                color="#000"
-              />
+              <Icon name="ic_baby_girl" size={90} color="#000" />
             </View>
-            <View onLayout={onLayout} style={{ flexDirection: 'column' }}>
-              <ButtonPrimary onPress={(e: any): any => {
-                e.stopPropagation();
-                setLoading(true);
-                setTimeout(() => {
-                  setLoading(false);
-                  childSetup();
-                }, 0)
-              }}>
-                <ButtonUpperCaseText numberOfLines={2}>{t('letGetStartedText')}</ButtonUpperCaseText>
+            <View onLayout={onLayout} style={{ flexDirection: "column" }}>
+              <ButtonPrimary
+                onPress={(e: any): any => {
+                  e.stopPropagation();
+                  setLoading(true);
+                  setTimeout(() => {
+                    setLoading(false);
+                    childSetup();
+                  }, 0);
+                }}
+              >
+                <ButtonUpperCaseText numberOfLines={2}>
+                  {t("letGetStartedText")}
+                </ButtonUpperCaseText>
               </ButtonPrimary>
             </View>
           </FlexCol>

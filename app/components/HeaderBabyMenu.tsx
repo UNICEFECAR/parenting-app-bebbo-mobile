@@ -2,92 +2,102 @@ import Icon, {
   OuterIconLeft,
   OuterIconRow,
   TickView6,
-  TickView4
-} from '@components/shared/Icon';
-import { ImageIcon } from '@components/shared/Image';
-import { useNavigation } from '@react-navigation/native';
+  TickView4,
+} from "@components/shared/Icon";
+import { ImageIcon } from "@components/shared/Image";
+import { useNavigation } from "@react-navigation/native";
 import {
   Heading3,
   Heading5,
-  ShiftFromBottom10
-} from '@styles/typography';
-import { CHILDREN_PATH } from '@types/types';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+  ShiftFromBottom10,
+} from "../instances/bebbo/styles/typography";
+import { CHILDREN_PATH } from "@types/types";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   FlatList,
-  Modal, Platform, Pressable, StyleSheet, View
-} from 'react-native';
-import { useAppDispatch, useAppSelector } from '../../App';
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  View,
+} from "react-native";
+import { useAppDispatch, useAppSelector } from "../../App";
 import {
   getAllChildren,
   getAllConfigData,
   isFutureDate,
-  setActiveChild
-} from '../services/childCRUD';
-import { getStatusBarHeight } from '../services/StatusBarHeight';
-import { formatDate } from '../services/Utils';
+  setActiveChild,
+} from "../services/childCRUD";
+import { getStatusBarHeight } from "../services/StatusBarHeight";
+import { formatDate } from "../services/Utils";
 import {
   ButtonContainer,
   ButtonPrimary,
-  ButtonUpperCaseText
-} from './shared/ButtonGlobal';
-import { FDirRow, FlexColEnd } from './shared/FlexBoxStyle';
-import { HeaderActionBox, HeaderActionView } from './shared/HeaderContainerStyle';
+  ButtonUpperCaseText,
+} from "./shared/ButtonGlobal";
+import { FDirRow, FlexColEnd } from "./shared/FlexBoxStyle";
+import {
+  HeaderActionBox,
+  HeaderActionView,
+} from "./shared/HeaderContainerStyle";
 import {
   ProfileActionView,
   ProfileIconView,
   ProfileListView,
   ProfileListViewSelected,
   ProfileSectionView,
-  ProfileTextView
-} from './shared/ProfileListingStyle';
-import { bgcolorBlack2, bgcolortransparent, bgcolorWhite } from '@styles/style';
+  ProfileTextView,
+} from "./shared/ProfileListingStyle";
+import {
+  bgcolorBlack2,
+  bgcolortransparent,
+  bgcolorWhite,
+} from "../instances/bebbo/styles/style";
 
 const headerHeight = 50;
 const styles = StyleSheet.create({
   OuterIconLeftPadding: {
-    paddingLeft: 30
+    paddingLeft: 30,
   },
   centeredPressable: {
     backgroundColor: bgcolortransparent,
     height: headerHeight,
     left: 0,
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     width: "100%",
-    zIndex: 9999
+    zIndex: 9999,
   },
   centeredView: {
-    height: '100%',
+    height: "100%",
     left: 0,
-    position: 'relative',
-    width: '100%',
+    position: "relative",
+    width: "100%",
     zIndex: 1,
   },
   hbMenuView: {
     backgroundColor: bgcolortransparent,
-    height: '100%',
+    height: "100%",
     opacity: 0.5,
-    position: 'absolute',
-    width: '100%',
-    zIndex: 2
+    position: "absolute",
+    width: "100%",
+    zIndex: 2,
   },
   hbPressable: {
     backgroundColor: bgcolortransparent,
-    height: '100%',
-    position: 'relative',
-    width: '100%'
+    height: "100%",
+    position: "relative",
+    width: "100%",
   },
   heading5Fontwg: {
-    fontWeight: 'normal'
+    fontWeight: "normal",
   },
   innerCenteredView: {
-    backgroundColor: bgcolortransparent, flex: 1
+    backgroundColor: bgcolortransparent,
+    flex: 1,
   },
-  mainModal: {
-
-  },
+  mainModal: {},
   modalView: {
     backgroundColor: bgcolorWhite,
     borderBottomLeftRadius: 4,
@@ -95,101 +105,126 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: bgcolorBlack2,
     padding: 0,
-    position: 'relative',
+    position: "relative",
     zIndex: 3,
     ...Platform.select({
       ios: {
         top: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35,
-        marginTop: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35
+        marginTop: getStatusBarHeight(0) > 20 ? headerHeight - 2 : 35,
       },
       android: {
         marginTop: headerHeight,
       },
-    })
+    }),
   },
   pressableProfile: {
     paddingBottom: 7,
-    paddingTop: 7
+    paddingTop: 7,
   },
   sortedChildListView: {
     backgroundColor: bgcolortransparent,
-    height: 'auto',
+    height: "auto",
     maxHeight: 150,
     minHeight: 100,
-    position: 'relative',
+    position: "relative",
     width: "100%",
-    zIndex: 9999
-  }
+    zIndex: 9999,
+  },
 });
 const HeaderBabyMenu = (props: any): any => {
   const { setProfileLoading } = props;
   const navigation = useNavigation<any>();
+  const [activeChildGenderData, setActiveChildGenderData] =
+    React.useState<any>();
   const dispatch = useAppDispatch();
-  const genders = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  const genders = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
+      : []
   );
   const [modalVisible, setModalVisible] = useState(false);
   const { t } = useTranslation();
   const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ''
+    state.childData.childDataSet.allChild != ""
       ? JSON.parse(state.childData.childDataSet.allChild)
-      : [],
+      : []
   );
   const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
+    state.childData.childDataSet.activeChild != ""
       ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
+      : []
   );
   const currentActiveChild = activeChild.uuid;
-  const childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  const childAge = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : []
   );
   const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
+    (state: any) => state.selectedCountry.languageCode
+  );
+  const taxonomyIds = useAppSelector(
+    (state: any) => state.utilsData.taxonomyIds
   );
   const SortedchildList = [...childList].sort((a: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
+  useEffect(() => {
+    const gender = genders.find((g: any) => g.id === activeChild?.gender);
+    console.log("in Activechild gender is", gender);
+    setActiveChildGenderData(gender);
+  }, [activeChild?.gender]);
   const renderChildItem = (dispatch: any, data: any, index: number): any => {
     const genderLocal =
-      genders?.length > 0 && data.gender != ''
-        ? genders.find((genderset: any) => genderset.id === parseInt(data.gender)).name
-        : '';
-    const genderName: string = genderLocal;
+      genders?.length > 0 && data.gender != ""
+        ? genders.find(
+            (genderset: any) => genderset.id === parseInt(data.gender)
+          )
+        : "";
+    const genderName: any = genderLocal;
+
     return (
       <View key={index}>
-        {currentActiveChild != '' &&
-          currentActiveChild != null &&
-          currentActiveChild != undefined &&
-          currentActiveChild == data.uuid ? (
+        {currentActiveChild === data.uuid ? (
           <ProfileListViewSelected>
             <ProfileIconView>
-              {(data.photoUri != '' && data.photoUri != null) ? (
+              {data.photoUri ? (
                 <ImageIcon
-                  source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
+                  source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
               ) : (
-                genderName !== '' ?
-                  (genderName === t('chilGender1') ?
-                    <Icon name="ic_baby" size={36} color="#000" /> :
-                    <Icon name="ic_baby_girl" size={36} color="#000" />) :
-                  <Icon name="ic_baby_girl" size={36} color="#000" />
+                <Icon
+                  name={
+                    genderName?.unique_name === taxonomyIds?.boyChildGender
+                      ? "ic_baby"
+                      : "ic_baby_girl"
+                  }
+                  size={36}
+                  color="#000"
+                />
               )}
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}
-                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName}</Heading5> : 
-                  <Heading5 style={styles.heading5Fontwg}>{', ' + t('chilGender2')}</Heading5>
-                  }
+                <Heading3>
+                  {data.childName}
+                  <Heading5 style={styles.heading5Fontwg}>
+                    {", " + (genderName?.name || t("chilGender2"))}
+                  </Heading5>
                 </Heading3>
               </ProfileSectionView>
               <Heading5>
-                {(data.birthDate != '' &&
-                  data.birthDate != null &&
-                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
+                {data.birthDate != "" &&
+                data.birthDate != null &&
+                data.birthDate != undefined &&
+                !isFutureDate(data.birthDate)
+                  ? t("childProfileBornOn", {
+                      childdob:
+                        data.birthDate != null
+                          ? formatDate(data.birthDate)
+                          : "",
+                    })
+                  : t("expectedChildDobLabel")}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
@@ -198,7 +233,11 @@ const HeaderBabyMenu = (props: any): any => {
                   <OuterIconRow>
                     <OuterIconLeft>
                       <TickView6>
-                        <Icon name="ic_activate_tag" size={11} color="#009B00" />
+                        <Icon
+                          name="ic_activate_tag"
+                          size={11}
+                          color="#009B00"
+                        />
                       </TickView6>
                     </OuterIconLeft>
                   </OuterIconRow>
@@ -209,50 +248,75 @@ const HeaderBabyMenu = (props: any): any => {
         ) : (
           <ProfileListView>
             <ProfileIconView>
-              {(data.photoUri) ? (
+              {data.photoUri ? (
                 <ImageIcon
-                  source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
+                  source={{ uri: "file://" + CHILDREN_PATH + data.photoUri }}
                 ></ImageIcon>
               ) : (
-                genderName !== '' ?
-                  (genderName === t('chilGender1') ?
-                    <Icon name="ic_baby" size={36} color="#000" /> :
-                    <Icon name="ic_baby_girl" size={36} color="#000" />) :
-                  <Icon name="ic_baby_girl" size={36} color="#000" />
+                <Icon
+                  name={
+                    genderName?.unique_name === taxonomyIds?.boyChildGender
+                      ? "ic_baby"
+                      : "ic_baby_girl"
+                  }
+                  size={36}
+                  color="#000"
+                />
               )}
             </ProfileIconView>
 
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}
-                  {genderName != '' && genderName != null && genderName != undefined ? <Heading5 style={styles.heading5Fontwg}>{', ' + genderName}</Heading5> : null}
+                <Heading3>
+                  {data.childName}
+                  {genderName != "" &&
+                  genderName != null &&
+                  genderName != undefined ? (
+                    <Heading5 style={styles.heading5Fontwg}>
+                      {", " + genderName?.name}
+                    </Heading5>
+                  ) : null}
                 </Heading3>
-
               </ProfileSectionView>
               <Heading5>
-                {(data.birthDate != '' &&
-                  data.birthDate != null &&
-                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
+                {data.birthDate != "" &&
+                data.birthDate != null &&
+                data.birthDate != undefined &&
+                !isFutureDate(data.birthDate)
+                  ? t("childProfileBornOn", {
+                      childdob:
+                        data.birthDate != null
+                          ? formatDate(data.birthDate)
+                          : "",
+                    })
+                  : t("expectedChildDobLabel")}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <FlexColEnd>
                 <FDirRow>
-                  <Pressable style={styles.pressableProfile}
+                  <Pressable
+                    style={styles.pressableProfile}
                     onPress={(): any => {
                       setModalVisible(false);
                       setProfileLoading(true);
                       setTimeout(async () => {
-                        const setData = await setActiveChild(languageCode, data.uuid, dispatch, childAge, true);
+                        const setData = await setActiveChild(
+                          languageCode,
+                          data.uuid,
+                          dispatch,
+                          childAge,
+                          true
+                        );
                         if (setData == "activeset") {
                           setProfileLoading(false);
                         }
                       }, 0);
-                    }}>
+                    }}
+                  >
                     <OuterIconRow>
                       <OuterIconLeft style={styles.OuterIconLeftPadding}>
-                        <TickView4>
-                        </TickView4>
+                        <TickView4></TickView4>
                       </OuterIconLeft>
                     </OuterIconRow>
                   </Pressable>
@@ -260,11 +324,13 @@ const HeaderBabyMenu = (props: any): any => {
               </FlexColEnd>
             </ProfileActionView>
           </ProfileListView>
-
         )}
       </View>
     );
   };
+  useEffect(() => {
+    console.log("Active ChildDetails dta", activeChild);
+  }, []);
   return (
     <>
       <Modal
@@ -277,11 +343,9 @@ const HeaderBabyMenu = (props: any): any => {
         }}
         onDismiss={(): any => {
           setModalVisible(false);
-        }}>
-
-        <View
-          style={styles.modalView}
-        >
+        }}
+      >
+        <View style={styles.modalView}>
           {SortedchildList.length > 0 ? (
             <View style={styles.sortedChildListView}>
               <FlatList
@@ -297,55 +361,68 @@ const HeaderBabyMenu = (props: any): any => {
           ) : null}
 
           <ButtonContainer>
-
-
             <ButtonPrimary
               disabled={false}
               onPress={(): any => {
                 setModalVisible(false);
-                navigation.navigate('ChildProfileScreen')
-              }}>
-              <ButtonUpperCaseText numberOfLines={2}>{t('manageProfileTxt')}</ButtonUpperCaseText>
+                navigation.navigate("ChildProfileScreen");
+              }}
+            >
+              <ButtonUpperCaseText numberOfLines={2}>
+                {t("manageProfileTxt")}
+              </ButtonUpperCaseText>
             </ButtonPrimary>
           </ButtonContainer>
         </View>
-        <View
-          style={styles.centeredView}>
+        <View style={styles.centeredView}>
           <View style={styles.innerCenteredView}>
-            <Pressable style={styles.centeredPressable}
+            <Pressable
+              style={styles.centeredPressable}
               onPress={(): any => {
                 setModalVisible(!modalVisible);
                 if (modalVisible) {
                   getAllChildren(dispatch, childAge, 0);
                   getAllConfigData(dispatch);
                 }
-              }}>
-            </Pressable>
+              }}
+            ></Pressable>
           </View>
         </View>
-        <View style={styles.hbMenuView} >
-          <Pressable style={styles.hbPressable}
+        <View style={styles.hbMenuView}>
+          <Pressable
+            style={styles.hbPressable}
             onPress={(): any => {
               setModalVisible(false);
-            }}>
-          </Pressable>
+            }}
+          ></Pressable>
         </View>
       </Modal>
 
       <HeaderActionView>
         <HeaderActionBox
-          onPress={(): any => {
+          onPress={() => {
             setModalVisible(!modalVisible);
             if (modalVisible) {
               getAllChildren(dispatch, childAge, 0);
               getAllConfigData(dispatch);
             }
-          }}>
-          {(activeChild.photoUri != '' && activeChild.photoUri != null) ? (
+          }}
+        >
+          {activeChild.photoUri ? (
             <ImageIcon
-              source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}></ImageIcon>
+              source={{ uri: `file://${CHILDREN_PATH}${activeChild.photoUri}` }}
+            />
           ) : (
-            activeChild.gender != '' ? activeChild.gender == '40' ? <Icon name="ic_baby" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} /> : <Icon name="ic_baby_girl" size={30} color={props.color || '#FFF'} />
+            <Icon
+              name={
+                activeChildGenderData?.unique_name ===
+                taxonomyIds?.boyChildGender
+                  ? "ic_baby"
+                  : "ic_baby_girl"
+              }
+              size={30}
+              color={props.color || "#FFF"}
+            />
           )}
         </HeaderActionBox>
       </HeaderActionView>
@@ -353,4 +430,3 @@ const HeaderBabyMenu = (props: any): any => {
   );
 };
 export default HeaderBabyMenu;
-

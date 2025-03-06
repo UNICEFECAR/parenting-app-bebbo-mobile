@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import  { IconML } from '@components/shared/Icon';
-import { bgcolorBlack2, bgcolorWhite2 } from '@styles/style';
+import { bgcolorBlack2, bgcolorWhite2 } from '../instances/bebbo/styles/style';
 
 export const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -65,15 +65,22 @@ export default class ScrollingButtonMenu extends React.Component {
     
 
     componentDidMount() {
-        const { selected } = this.props;
+        const {selected} = this.props;
+        console.log('selected props is',selected)
         if (selected) {
-            this.setState({ index: selected }, this._scrollTo);
+            this.setState({index: selected}, () => {
+                setTimeout(() => {
+                        this._scrollTo();
+                
+                }, 0);
+            });
         }
     }
 
     _scrollTo() {
-        const { index, scrollindex } = this.state;
-        if (index !== scrollindex) {
+        const {index,scrollindex} = this.state;
+        if(index != scrollindex)
+        {
             const screen1 = screenWidth / 2;
             const elementOffset = this.dataSourceCords[index];
             if (elementOffset !== undefined && typeof this.scroll?.scrollTo === 'function') {

@@ -1,4 +1,4 @@
-import { localization } from '@dynamicImportsClass/dynamicImports';
+// import { localization } from '@dynamicImportsClass/dynamicImports';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { act } from 'react-test-renderer';
 
@@ -18,11 +18,11 @@ interface SelectedLocalizationType {
   AppLayoutDirectionParams: any;
 }
 const initialState: SelectedLocalizationType = {
-  countryId: localization[localization.length - 1].countryId, //126
-  languageCode: localization[localization.length - 1].languages[0].languageCode, //'en'
+  countryId: 126,
+  languageCode: 'en',
   luxonLocale: 'en',
-  locale: localization[localization.length - 1]?.languages[0]?.locale, //'en'
-  pluralShow: localization[localization.length - 1]?.languages[0]?.pluralShow,//false
+  locale: 'en',
+  pluralShow: false,
   sponsors: [],
   countries: '',
   restartOnLangChange: 'no',
@@ -47,13 +47,13 @@ export const localizationSlice = createSlice({
         state.pluralShow = action.payload.language.pluralShow;
       } else {
         console.log('country default is', action.payload)
-          state.countryId = action.payload.countryId;
-          state.countrySelectedId = action.payload.countryId;
-          state.languageCode = action.payload.languages[0].languageCode;
-          state.luxonLocale = action.payload.languages[0].luxonLocale;
-          state.locale = action.payload.languages[0].locale;
-          state.selectedLocale = action.payload.languages[0].locale;
-          state.pluralShow = action.payload.languages[0].pluralShow;
+        state.countryId = action.payload.countryId;
+        state.countrySelectedId = action.payload.countryId;
+        state.languageCode = action.payload.languages[0].languageCode;
+        state.luxonLocale = action.payload.languages[0].luxonLocale;
+        state.locale = action.payload.languages[0].locale;
+        state.selectedLocale = action.payload.languages[0].locale;
+        state.pluralShow = action.payload.languages[0].pluralShow;
       }
     },
     oncountrtIdChange: (state, action: PayloadAction<any>): any => {
@@ -108,6 +108,6 @@ export const localizationSlice = createSlice({
   },
 });
 
-export const { onLocalizationSelect,setCountriesStore, setChildStore, setSponsorStore, oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams } = localizationSlice.actions;
+export const { onLocalizationSelect, setCountriesStore, setChildStore, setSponsorStore, oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams } = localizationSlice.actions;
 
 export default localizationSlice.reducer;

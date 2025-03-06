@@ -1,14 +1,17 @@
-import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import GrowthChart, { chartTypes } from '@components/growth/GrowthChart';
-import { MainContainer } from '@components/shared/Container';
-import { FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
-import Icon from '@components/shared/Icon';
-import { RootStackParamList } from '@navigation/types';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { bgcolorWhite, bgcolorWhite2 } from '@styles/style';
-import { Heading2 } from '@styles/typography';
-import React, { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
+import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
+import GrowthChart, { chartTypes } from "@components/growth/GrowthChart";
+import { MainContainer } from "@components/shared/Container";
+import { FlexCol, FlexFDirRowSpace } from "@components/shared/FlexBoxStyle";
+import Icon from "@components/shared/Icon";
+import { RootStackParamList } from "@navigation/types";
+import { StackNavigationProp } from "@react-navigation/stack";
+import {
+  bgcolorWhite,
+  bgcolorWhite2,
+} from "../../instances/bebbo/styles/style";
+import { Heading2 } from "../../instances/bebbo/styles/typography";
+import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ActivityIndicator,
   BackHandler,
@@ -17,45 +20,50 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  View
-} from 'react-native';
-import Orientation from 'react-native-orientation-locker';
-import { ThemeContext } from 'styled-components/native';
+  View,
+} from "react-native";
+import Orientation from "react-native-orientation-locker";
+import { ThemeContext } from "styled-components/native";
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ChildSetupNavigationProp;
-  route:any;
+  route: any;
 };
-const styles=StyleSheet.create({
-mainContainer:{
-  backgroundColor: bgcolorWhite,
-  flexDirection: 'column'
-},
-mainView:{backgroundColor:bgcolorWhite2, flex: 1},
-padding12:{padding: 12}
-})
-export const ChartFullScreen = ({ route, navigation }: Props):any => {
-  const {activeChild, chartType, obj} = route.params;
+const styles = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: bgcolorWhite,
+    flexDirection: "column",
+  },
+  mainView: { backgroundColor: bgcolorWhite2, flex: 1 },
+  padding12: { padding: 12 },
+});
+export const ChartFullScreen = ({ route, navigation }: Props): any => {
+  const { activeChild, chartType, obj } = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
-  const [windowWidth,setWindowWidth] = React.useState(Dimensions.get('window').width);
-  const [windowHeight,setWindowHeight] = React.useState(Dimensions.get('window').height);
-  const {t} = useTranslation();
+  const [windowWidth, setWindowWidth] = React.useState(
+    Dimensions.get("window").width
+  );
+  const [windowHeight, setWindowHeight] = React.useState(
+    Dimensions.get("window").height
+  );
+  const { t } = useTranslation();
   const chartHeading =
     chartType == chartTypes.WeightForHeight
-      ? {title: t('growthScreenweightForHeight')}
-      : {title: t('growthScreenheightForAge')};
+      ? { title: t("growthScreenweightForHeight") }
+      : { title: t("growthScreenheightForAge") };
   const [isChartVisible, setIsChartVisible] = React.useState(false);
 
-
-  const closeFullScreen = ():any => {
+  const closeFullScreen = (): any => {
     navigation.goBack();
-    setTimeout(()=>{
-      Orientation.lockToPortrait();
-    },Platform.OS=='ios' ? 500:0)
-   
+    setTimeout(
+      () => {
+        Orientation.lockToPortrait();
+      },
+      Platform.OS == "ios" ? 500 : 0
+    );
   };
   React.useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
@@ -63,12 +71,12 @@ export const ChartFullScreen = ({ route, navigation }: Props):any => {
       // Call any action
       Orientation.unlockAllOrientations();
       Orientation.lockToLandscape();
-      setWindowHeight(Dimensions.get('window').width);
-      setWindowWidth(Dimensions.get('window').height);
+      setWindowHeight(Dimensions.get("window").width);
+      setWindowWidth(Dimensions.get("window").height);
       setTimeout(() => {
         setIsChartVisible(true);
       }, 2000);
-      BackHandler.addEventListener('hardwareBackPress', function () {        
+      BackHandler.addEventListener("hardwareBackPress", function () {
         closeFullScreen();
         /**
          * When true is returned the event will not be bubbled up
@@ -80,12 +88,15 @@ export const ChartFullScreen = ({ route, navigation }: Props):any => {
          */
         return true;
       });
-      navigation.addListener('gestureEnd',  function () {
-        setTimeout(()=>{
-          // Orientation.unlockAllOrientations();
-          Orientation.lockToPortrait();
-        },Platform.OS=='ios' ? 400:400)
-        
+      navigation.addListener("gestureEnd", function () {
+        setTimeout(
+          () => {
+            // Orientation.unlockAllOrientations();
+            Orientation.lockToPortrait();
+          },
+          Platform.OS == "ios" ? 400 : 400
+        );
+
         /**
          * When true is returned the event will not be bubbled up
          * & no other back action will execute
@@ -102,8 +113,6 @@ export const ChartFullScreen = ({ route, navigation }: Props):any => {
     return unsubscribe;
   }, [navigation]);
 
- 
-  
   return (
     <>
       <View style={styles.mainView}>
@@ -111,13 +120,13 @@ export const ChartFullScreen = ({ route, navigation }: Props):any => {
 
         <ScrollView>
           <FlexCol>
-            <MainContainer
-              style={styles.mainContainer}>
+            <MainContainer style={styles.mainContainer}>
               <FlexFDirRowSpace>
                 <Heading2>{chartHeading.title}</Heading2>
                 <Pressable
                   style={styles.padding12}
-                  onPress={():any => closeFullScreen()}>
+                  onPress={(): any => closeFullScreen()}
+                >
                   <Icon name="ic_close" size={20} />
                 </Pressable>
               </FlexFDirRowSpace>

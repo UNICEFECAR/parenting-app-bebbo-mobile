@@ -1,4 +1,5 @@
-import { basicPagesUniqueName } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instances';
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface HardcodedDataType {
@@ -8,6 +9,20 @@ interface HardcodedDataType {
   taxonomy: {
     allTaxonomyData: string;
     languageCode: string;
+  };
+  taxonomyIds: {
+    relationShipMotherId: string;
+    relationShipFatherId: string;
+    relationShipOtherCaregiverId: string;
+    relationShipServiceProviderId: string;
+    bothChildGender: string;
+    bothParentGender: string;
+    femaleData: string;
+    maleData: string;
+    girlChildGender: string;
+    boyChildGender: string
+    articleCategoryArray: number[]
+    activityCategoryArray: number[]
   };
   aboutus: {
     id: number;
@@ -100,6 +115,20 @@ const initialState: HardcodedDataType = {
   taxonomy: {
     allTaxonomyData: '',
     languageCode: 'en',
+  },
+  taxonomyIds: {
+    relationShipMotherId: '',
+    relationShipFatherId: '',
+    relationShipOtherCaregiverId: '',
+    relationShipServiceProviderId: '',
+    bothChildGender: '',
+    bothParentGender: '',
+    femaleData: '',
+    maleData: '',
+    girlChildGender: '',
+    boyChildGender: '',
+    articleCategoryArray: [],
+    activityCategoryArray: []
   },
   aboutus: {
     id: 0,
@@ -221,24 +250,68 @@ export const utilsSlice = createSlice({
         state.taxonomy.languageCode = action.payload[0].langCode;
       }
     },
+    setTaxonomyIds: (state,
+      action: PayloadAction<any>,): any => {
+      console.log('action taxonomy ids payload is....', action.payload)
+      action.payload?.relationship_to_parent?.map((x: any) => {
+        if (x.unique_name == appConfig.relationshipUniqueName.relationShipMotherId) {
+          state.taxonomyIds.relationShipMotherId = x.unique_name;
+        } else if (x.unique_name == appConfig.relationshipUniqueName.relationShipFatherId) {
+          state.taxonomyIds.relationShipFatherId = x.unique_name;
+        } else if (x.unique_name == appConfig.relationshipUniqueName.relationShipOtherCaregiverId) {
+          state.taxonomyIds.relationShipOtherCaregiverId = x.unique_name;
+        } else if (x.unique_name == appConfig.relationshipUniqueName.relationShipOtherCaregiverId) {
+          state.taxonomyIds.relationShipOtherCaregiverId = x.unique_name;
+        }
+      })
+      action.payload?.child_gender?.map((x: any) => {
+        if (x.unique_name == appConfig.childGenderUniqueName.bothChildGender) {
+          state.taxonomyIds.bothChildGender = x.unique_name;
+        } else if (x.unique_name == appConfig.childGenderUniqueName.girlChildGender) {
+          state.taxonomyIds.girlChildGender = x.unique_name;
+        } else if (x.unique_name == appConfig.childGenderUniqueName.boyChildGender) {
+          state.taxonomyIds.boyChildGender = x.unique_name;
+        }
+      })
+      action.payload?.parent_gender?.map((x: any) => {
+        if (x.unique_name == appConfig.parentGenderUniqueName.bothParentGender) {
+          state.taxonomyIds.bothParentGender = x.unique_name;
+        } else if (x.unique_name == appConfig.parentGenderUniqueName.maleParentGender) {
+          state.taxonomyIds.maleData = x;
+        } else if (x.unique_name == appConfig.parentGenderUniqueName.femaleParentGender) {
+          state.taxonomyIds.femaleData = x;
+        }
+      })
+      // Create a lookup object
+      const categoryLookup = action.payload?.category?.reduce((acc:any, category:any) => {
+        acc[category.unique_name] = category.id;
+        return acc;
+      }, {});
+      const activityCategoryLookup = action.payload?.activity_category?.reduce((acc:any, activity_category:any) => {
+        acc[activity_category.unique_name] = activity_category.id;
+        return acc;
+      }, {});
+      state.taxonomyIds.articleCategoryArray = appConfig.articleCategoryArray.map(uniqueName => categoryLookup[uniqueName]);
+      state.taxonomyIds.activityCategoryArray = appConfig.activityCategoryArray.map(uniqueName => activityCategoryLookup[uniqueName]);
+    },
     setAllTermsData: (
       state,
       action: PayloadAction<any>,
     ): any => {
       (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
       action.payload.map((x: any) => {
-        if (x.unique_name == basicPagesUniqueName.aboutus) {
+        if (x.unique_name == appConfig.basicPagesUniqueName.aboutus) {
           state.aboutus.id = x.id;
           state.aboutus.title = x.title;
           state.aboutus.body = x.body;
           state.aboutus.unique_name = x.unique_name;
-        } else if (x.unique_name == basicPagesUniqueName.terms) {
+        } else if (x.unique_name == appConfig.basicPagesUniqueName.terms) {
           state.terms.id = x.id;
           state.terms.title = x.title;
           state.terms.body = x.body;
           state.terms.unique_name = x.unique_name;
         }
-        else if (x.unique_name == basicPagesUniqueName.privacypolicy) {
+        else if (x.unique_name == appConfig.basicPagesUniqueName.privacypolicy) {
           state.privacypolicy.id = x.id;
           state.privacypolicy.title = x.title;
           state.privacypolicy.body = x.body;
@@ -331,5 +404,5 @@ export const utilsSlice = createSlice({
   },
 });
 
-export const { setAcceptTerms, setuserIsOnboarded, setuserIsFirstTime, setSyncDate, setAllTaxonomyData, setAllTermsData, setInfoModalOpened, setDailyMessagesData, setStandardDevWFHData, setStandardDevHFAData, setAllVaccineData, setAllHealthCheckupsData, setAllChildDevData, setAllMileStonesData, setAllVideoArticlesData, setAllActivitiesData, setAllSurveyData, setAllFaqsData, setIncrementalSyncDT } = utilsSlice.actions;
+export const { setAcceptTerms, setuserIsOnboarded, setuserIsFirstTime, setSyncDate, setAllTaxonomyData,setTaxonomyIds, setAllTermsData, setInfoModalOpened, setDailyMessagesData, setStandardDevWFHData, setStandardDevHFAData, setAllVaccineData, setAllHealthCheckupsData, setAllChildDevData, setAllMileStonesData, setAllVideoArticlesData, setAllActivitiesData, setAllSurveyData, setAllFaqsData, setIncrementalSyncDT } = utilsSlice.actions;
 export default utilsSlice.reducer;
