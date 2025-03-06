@@ -152,6 +152,14 @@ android {
                 keyAlias MYAPP_UPLOAD_KEY_ALIAS_MERHABA_BEBEK
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD__MERHABA_BEBEK
             }
+        }        
+        fatu {
+            if (project.hasProperty('FATU_STORE_FILE')) {
+                storeFile file(FATU_STORE_FILE)
+                storePassword FATU_STORE_PASSWORD
+                keyAlias FATU_KEY_ALIAS
+                keyPassword FATU_KEY_PASSWORD
+            }
         }
     }
     defaultConfig {
@@ -230,6 +238,15 @@ android {
             versionCode 1
             versionName "1.0.0"
             signingConfig signingConfigs.merhababebek
+        }
+         fatu {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'org.unicef.samoa.fatu'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.fatu
         }
         banglastaging {
             minSdkVersion rootProject.ext.minSdkVersion
