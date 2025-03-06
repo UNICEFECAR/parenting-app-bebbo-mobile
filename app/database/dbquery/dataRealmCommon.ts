@@ -1,4 +1,4 @@
-import { isArticlePinned } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig } from '../../instances';
 import Realm, { ObjectSchema } from 'realm';
 import { dataRealmConfig } from '../config/dataDbConfig';
 import { StandardDevHeightForAgeSchema } from '../schema/StandardDevHeightForAgeSchema';
@@ -121,7 +121,7 @@ class DataRealmCommon {
                             records.forEach(async record => {
                                 const obj = realm?.objects<Entity>(entitySchema.name).filtered('id == "' + record.id + '"');
                                 if (obj.length > 0) {
-                                    if (articleRelation == isArticlePinned && obj[0].isarticle_pinned != "1") {
+                                    if (articleRelation == appConfig.isArticlePinned && obj[0].isarticle_pinned != "1") {
                                         obj[0].isarticle_pinned = articleRelation;
                                     }
                                     else {
@@ -129,7 +129,7 @@ class DataRealmCommon {
                                             record.isarticle_pinned = articleRelation;
                                         }
                                         else {
-                                            record.isarticle_pinned = isArticlePinned;
+                                            record.isarticle_pinned = appConfig.isArticlePinned;
                                         }
                                         realm?.create<Entity>(entitySchema.name, record, "modified");
                                     }

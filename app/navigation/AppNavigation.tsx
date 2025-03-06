@@ -1,101 +1,114 @@
-import analytics from '@react-native-firebase/analytics';
-import { DrawerActions, NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
-import AddSiblingData from '@screens/AddSiblingData';
-import ChildSetup from '@screens/ChildSetup';
-import ChildImportSetup from '@screens/ChildImportSetup';
-import ChildSetupList from '@screens/ChildSetupList';
-import ServiceProviderInfoSetup from '@screens/ServiceProviderInfoSetup';
-import EditParentDetails from '@screens/EditParentDetails';
-import AddNewChildgrowth from '@screens/growth/AddNewChildgrowth';
-import AddNewChildHeight from '@screens/growth/AddNewChildHeight';
-import AddNewChildWeight from '@screens/growth/AddNewChildWeight';
-import AllChildgrowthMeasures from '@screens/growth/AllChildgrowthMeasures';
-import { ChartFullScreen } from '@screens/growth/ChartFullScreen';
-import AddChildHealthCheckup from '@screens/healthCheckup/AddChildHealthCheckup';
-import ChildProfile from '@screens/home/ChildProfile';
-import DetailsScreen from '@screens/home/DetailsScreen';
-import EditChildProfile from '@screens/home/EditChildProfile';
-import LoadingScreen from '@screens/LoadingScreen';
-import PrivacyPolicy from '@screens/PrivacyPolicy';
-import Terms from '@screens/Terms';
-import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
-import AddReminder from '@screens/vaccination/AddReminder';
-import React, { useContext, useEffect, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Alert, AppState, I18nManager, Linking, Platform, Text } from 'react-native';
+import analytics from "@react-native-firebase/analytics";
+import {
+  DrawerActions,
+  NavigationContainer,
+  useNavigation,
+} from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import AddExpectingChildProfile from "@screens/AddExpectingChildProfile";
+import AddSiblingData from "@screens/AddSiblingData";
+import ChildSetup from "@screens/ChildSetup";
+import ChildImportSetup from "@screens/ChildImportSetup";
+import ChildSetupList from "@screens/ChildSetupList";
+import ServiceProviderInfoSetup from "@screens/ServiceProviderInfoSetup";
+import EditParentDetails from "@screens/EditParentDetails";
+import AddNewChildgrowth from "@screens/growth/AddNewChildgrowth";
+import AddNewChildHeight from "@screens/growth/AddNewChildHeight";
+import AddNewChildWeight from "@screens/growth/AddNewChildWeight";
+import AllChildgrowthMeasures from "@screens/growth/AllChildgrowthMeasures";
+import { ChartFullScreen } from "@screens/growth/ChartFullScreen";
+import AddChildHealthCheckup from "@screens/healthCheckup/AddChildHealthCheckup";
+import ChildProfile from "@screens/home/ChildProfile";
+import DetailsScreen from "@screens/home/DetailsScreen";
+import EditChildProfile from "@screens/home/EditChildProfile";
+import LoadingScreen from "@screens/LoadingScreen";
+import PrivacyPolicy from "@screens/PrivacyPolicy";
+import Terms from "@screens/Terms";
+import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
+import AddReminder from "@screens/vaccination/AddReminder";
+import React, { useContext, useEffect, useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  ActivityIndicator,
+  Alert,
+  AppState,
+  I18nManager,
+  Linking,
+  Platform,
+  Text,
+} from "react-native";
 import SplashScreen from "react-native-lottie-splash-screen";
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useAppDispatch, useAppSelector } from '../../App';
-import useNetInfoHook from '../customHooks/useNetInfoHook';
-import { onNetworkStateChange } from '../redux/reducers/bandwidthSlice';
-import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
-import { getAllChildren, setActiveChild } from '../services/childCRUD';
-import HomeDrawerNavigator from './HomeDrawerNavigator';
-import LocalizationNavigation from './LocalizationNavigation';
-import { RootStackParamList } from './types';
-import { retryAlert1 } from '../services/commonApiService';
-import { setchatBotData } from '../redux/reducers/childSlice';
-import { appConfig, restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
-import { oncountrtIdChange, onLocalizationSelect, setSponsorStore } from '../redux/reducers/localizationSlice';
-import { useDeepLinkURL } from '../services/DeepLinking';
-import { ThemeContext } from 'styled-components';
-import messaging from '@react-native-firebase/messaging';
-import { Settings } from 'react-native-fbsdk-next';
-import { PERMISSIONS, RESULTS, request, check } from 'react-native-permissions';
-import PushNotification from 'react-native-push-notification';
-import { setAllLocalNotificationGenerateType } from '../redux/reducers/notificationSlice';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useAppDispatch, useAppSelector } from "../../App";
+import useNetInfoHook from "../customHooks/useNetInfoHook";
+import { onNetworkStateChange } from "../redux/reducers/bandwidthSlice";
+import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
+import { getAllChildren, setActiveChild } from "../services/childCRUD";
+import HomeDrawerNavigator from "./HomeDrawerNavigator";
+import LocalizationNavigation from "./LocalizationNavigation";
+import { RootStackParamList } from "./types";
+import { retryAlert1 } from "../services/commonApiService";
+import { setchatBotData } from "../redux/reducers/childSlice";
+import { appConfig } from "../instances";
+import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
+import { useDeepLinkURL } from "../services/DeepLinking";
+import { ThemeContext } from "styled-components";
+import messaging from "@react-native-firebase/messaging";
+import { Settings } from "react-native-fbsdk-next";
+import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
+import PushNotification from "react-native-push-notification";
+import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
+import PushNotificationIOS from "@react-native-community/push-notification-ios";
 //import DynamicLinks from '@react-native-firebase/dynamic-links';
-import { trimWhiteSpacePayload } from '../services/Utils';
-import TermsPage from '@screens/TermsPage';
-import { logEvent, synchronizeEvents } from '../services/EventSyncService';
-import AddChildSetup from '@screens/AddChildSetup';
-import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
-import { localization } from '@dynamicImportsClass/dynamicImports';
-import i18next from 'i18next';
+import { trimWhiteSpacePayload } from "../services/Utils";
+import TermsPage from "@screens/TermsPage";
+import { logEvent, synchronizeEvents } from "../services/EventSyncService";
+import AddChildSetup from "@screens/AddChildSetup";
+import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
+import moment from "moment";
+import "moment/locale/bn-bd"; // import for bangla language
+import "moment/locale/bn"; // import for bangla language
+// import 'moment/locale/sq'
+import "moment/locale/tr";
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const userIsOnboarded = useAppSelector(
-    (state: any) =>
-      state.utilsData.userIsOnboarded
+    (state: any) => state.utilsData.userIsOnboarded
   );
   const userIsFirstTime = useAppSelector(
-    (state: any) =>
-      state.utilsData.userIsFirstTime
+    (state: any) => state.utilsData.userIsFirstTime
   );
-  const child_age = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
+  const child_age = useAppSelector((state: any) => {
+    const allTaxonomyData = JSON.parse(
+      state?.utilsData.taxonomy?.allTaxonomyData || "{}"
+    );
+    return allTaxonomyData.child_age || [];
+  });
   const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth
-      ? state.bandWidthData.lowbandWidth
-      : false,
+    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
 
   const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
+    (state: any) => state.selectedCountry.languageCode
   );
   const restartOnLangChange = useAppSelector(
-    (state: any) => state.selectedCountry.restartOnLangChange,
+    (state: any) => state.selectedCountry.restartOnLangChange
   );
   const AppLayoutDirectionScreen = useAppSelector(
-    (state: any) => state.selectedCountry.AppLayoutDirectionScreen,
+    (state: any) => state.selectedCountry.AppLayoutDirectionScreen
   );
   const countryId = useAppSelector(
-    (state: any) => state.selectedCountry.countryId,
+    (state: any) => state.selectedCountry.countryId
   );
-  const [netState, setNetState] = React.useState('');
+  const [netState, setNetState] = React.useState("");
   const [loading, setLoading] = React.useState(true);
   const dispatch = useAppDispatch();
   const netInfo = useNetInfoHook();
   const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
+    state.childData.childDataSet.activeChild != ""
       ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
+      : []
   );
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -103,19 +116,27 @@ export default (): any => {
   const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
-  const apiStatus = useAppSelector((state) => state.failedOnloadApiObjReducer.status);
+  const apiStatus = useAppSelector(
+    (state) => state.failedOnloadApiObjReducer.status
+  );
   // console.log('api status is', apiStatus)
-  const apiData = useAppSelector((state) => state.failedOnloadApiObjReducer.data);
-  const apiError = useAppSelector((state) => state.failedOnloadApiObjReducer.error);
+  const apiData = useAppSelector(
+    (state) => state.failedOnloadApiObjReducer.data
+  );
+  const apiError = useAppSelector(
+    (state) => state.failedOnloadApiObjReducer.error
+  );
   const surveyData = useAppSelector((state: any) =>
-    state.utilsData.surveryData != ''
+    state.utilsData.surveryData != ""
       ? JSON.parse(state.utilsData.surveryData)
-      : state.utilsData.surveryData,
+      : state.utilsData.surveryData
   );
-  const allCountries = useAppSelector(
-    (state: any) =>
-      state.selectedCountry.countries != '' ? JSON.parse(state.selectedCountry.countries) : [],
+  const allCountries = useAppSelector((state: any) =>
+    state.selectedCountry.countries != ""
+      ? JSON.parse(state.selectedCountry.countries)
+      : []
   );
+
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
@@ -123,75 +144,95 @@ export default (): any => {
       if (initialUrlnew === null) {
         return;
       }
-      if (initialUrlnew && initialUrlnew.includes('/article/')) {
+      if (initialUrlnew && initialUrlnew.includes("/article/")) {
         const initialUrlnewId: any = initialUrlnew.split("/").pop();
         const initialUrlnewId1: any = parseInt(initialUrlnewId);
         console.log("rerenew2", userIsOnboarded);
         if (userIsOnboarded == true) {
           if (navigationRef) {
-            navigationRef.current?.navigate('DetailsScreen',
-              {
-                fromScreen: "HomeArt",
-                headerColor: '',
-                backgroundColor: '',
-                detailData: initialUrlnewId1,
-                listCategoryArray: []
-              });
-
+            navigationRef.current?.navigate("DetailsScreen", {
+              fromScreen: "HomeArt",
+              headerColor: "",
+              backgroundColor: "",
+              detailData: initialUrlnewId1,
+              listCategoryArray: [],
+            });
           }
         }
-
-      }
-      else if (initialUrlnew && initialUrlnew.includes('/activity/')) {
+      } else if (initialUrlnew && initialUrlnew.includes("/activity/")) {
         const initialUrlnewId: any = initialUrlnew.split("/").pop();
         const initialUrlnewId1: any = parseInt(initialUrlnewId);
         console.log("initialUrlnewId1 activity", initialUrlnewId1);
         if (userIsOnboarded == true) {
           if (navigationRef) {
-            navigationRef.current?.navigate('DetailsScreen',
-              {
-                fromScreen: "HomeAct",
-                headerColor: headerColor,
-                backgroundColor: backgroundColor,
-                detailData: initialUrlnewId1,
-                listCategoryArray: []
-              });
+            navigationRef.current?.navigate("DetailsScreen", {
+              fromScreen: "HomeAct",
+              headerColor: headerColor,
+              backgroundColor: backgroundColor,
+              detailData: initialUrlnewId1,
+              listCategoryArray: [],
+            });
           }
         }
       }
       resetURL();
     }
-  }
+  };
   const apiJsonData = [
     {
-      apiEndpoint: appConfig.countryGroups,
-      method: 'get',
+      apiEndpoint: appConfig.apiConfig.countryGroups,
+      method: "get",
       postdata: {},
       saveinDB: true,
-    }
+    },
+    {
+      apiEndpoint: appConfig.apiConfig.sponsors,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.apiConfig.taxonomies,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
   ];
-  
+
   useEffect(() => {
-    console.log('userIsFirstTime is', userIsFirstTime)
     if (!userIsFirstTime) {
-      dispatch(fetchAPI(apiJsonData, '', dispatch, navigationRef.current, languageCode, activeChild, apiJsonData, netInfo.isConnected))
+      dispatch(
+        fetchAPI(
+          apiJsonData,
+          "",
+          dispatch,
+          navigationRef.current,
+          languageCode,
+          activeChild,
+          apiJsonData,
+          netInfo.isConnected
+        )
+      );
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
     // ... handle deep link
     callUrl(linkedURL);
-  }, [linkedURL, resetURL, userIsOnboarded])
-
+  }, [linkedURL, resetURL, userIsOnboarded]);
 
   useEffect(() => {
     const initPixel = async (): Promise<any> => {
-      if (Platform.OS === 'ios') {
-        const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+      if (Platform.OS === "ios") {
+        const ATT_CHECK = await check(
+          PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY
+        );
         console.log(ATT_CHECK, "..ATT_CHECK..");
         if (ATT_CHECK === RESULTS.DENIED) {
           try {
-            const ATT = await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+            const ATT = await request(
+              PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY
+            );
             if (ATT === RESULTS.GRANTED) {
               console.log(ATT, "..ATT..");
               Settings.setAdvertiserTrackingEnabled(true).then(() => {
@@ -211,45 +252,49 @@ export default (): any => {
         Settings.initializeSDK();
         Settings.setAdvertiserTrackingEnabled(true);
       }
-    }
+    };
     const updateTrackingStatus = (status: any): any => {
-      console.log(status, "..status")
-      if (status === 'active') {
+      console.log(status, "..status");
+      if (status === "active") {
         initPixel();
       }
-    }
+    };
 
     // Ready to check the permission now
-    if (AppState.currentState === 'active') {
-      updateTrackingStatus(AppState.currentState)
+    if (AppState.currentState === "active") {
+      updateTrackingStatus(AppState.currentState);
     } else {
       // Need to wait until the app is ready before checking the permission
-      const eventListener = AppState.addEventListener('change', updateTrackingStatus)
+      const eventListener = AppState.addEventListener(
+        "change",
+        updateTrackingStatus
+      );
 
       return (): any => {
-        eventListener.remove()
+        eventListener.remove();
         // AppState.removeEventListener('change', updateTrackingStatus)
-      }
+      };
     }
-  }, [AppState.currentState])
+  }, [AppState.currentState]);
   const getSearchParamFromURL = (urlNew: any, paramNew: any): any => {
     const url = new URL(urlNew);
     const params = new URLSearchParams(url.search);
     const param = params.get(paramNew);
     console.log(param, params);
     return param;
-  }
+  };
 
   const handleDynamicLink = (link: any): any => {
     if (link && link.url) {
       //  Alert.alert("foreground dynamic link",link.url);
-      const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
-      facebookId && facebookId != '' ? analytics().setUserProperties({ facebook_id: facebookId }) : null;
+      const facebookId = getSearchParamFromURL(link.url, "facebook_id");
+      facebookId && facebookId != ""
+        ? analytics().setUserProperties({ facebook_id: facebookId })
+        : null;
       console.log(facebookId, "..facebookId.");
     }
   };
   useEffect(() => {
-
     // const unsubscribe = DynamicLinks().onLink(handleDynamicLink);
     // // When the component is unmounted, remove the listener
     // DynamicLinks()
@@ -264,7 +309,6 @@ export default (): any => {
     //     }
     //   });
     // return (): any => unsubscribe();
-
   }, []);
   const redirectLocation = (notification: any): any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
@@ -272,141 +316,189 @@ export default (): any => {
     console.log(notification.data.uuid, "..notification.data.uuid..");
 
     if (notification && notification.data && notification.data.notitype) {
-      if (notification.data.notitype == 'vc' || notification.data.notitype == 'vcr') {
+      if (
+        notification.data.notitype == "vc" ||
+        notification.data.notitype == "vcr"
+      ) {
         if (screenName == "NotificationsScreen") {
           console.log("..NotificationsScreen..", screenName);
-          navigationRef.current?.navigate('Home', {
-            screen: 'Tools',
+          navigationRef.current?.navigate("Home", {
+            screen: "Tools",
             params: {
-              screen: 'VaccinationTab',
+              screen: "VaccinationTab",
               params: {
                 fromNotificationScreen: true,
-              }
+              },
             },
-          })
-        }
-        else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-          navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
-        }
-        else {
+          });
+        } else if (
+          screenName == "Home" ||
+          screenName == "VaccinationTab" ||
+          screenName == "ChildDevelopment" ||
+          screenName == "Activities" ||
+          screenName == "Articles" ||
+          screenName == "HealthCheckupsTab" ||
+          screenName == "ChildgrowthTab"
+        ) {
+          navigationRef.current?.navigate("Tools", {
+            screen: "VaccinationTab",
+          });
+        } else {
           console.log("..nohomenew..", screenName);
-          navigationRef.current?.navigate('Home', {
-            screen: 'Tools',
+          navigationRef.current?.navigate("Home", {
+            screen: "Tools",
             params: {
-              screen: 'VaccinationTab',
+              screen: "VaccinationTab",
             },
           });
         }
-
-      }
-      else if (notification.data.notitype == 'hc' || notification.data.notitype == 'hcr') {
+      } else if (
+        notification.data.notitype == "hc" ||
+        notification.data.notitype == "hcr"
+      ) {
         if (screenName == "NotificationsScreen") {
-          navigationRef.current?.navigate('Home', {
-            screen: 'Tools',
+          navigationRef.current?.navigate("Home", {
+            screen: "Tools",
             params: {
-              screen: 'HealthCheckupsTab',
+              screen: "HealthCheckupsTab",
               params: {
                 fromNotificationScreen: true,
-              }
+              },
             },
-          })
-        }
-        else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-          navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
-        }
-        else {
-          navigationRef.current?.navigate('Home', {
-            screen: 'Tools',
+          });
+        } else if (
+          screenName == "Home" ||
+          screenName == "VaccinationTab" ||
+          screenName == "ChildDevelopment" ||
+          screenName == "Activities" ||
+          screenName == "Articles" ||
+          screenName == "HealthCheckupsTab" ||
+          screenName == "ChildgrowthTab"
+        ) {
+          navigationRef.current?.navigate("Tools", {
+            screen: "HealthCheckupsTab",
+          });
+        } else {
+          navigationRef.current?.navigate("Home", {
+            screen: "Tools",
             params: {
-              screen: 'HealthCheckupsTab',
+              screen: "HealthCheckupsTab",
             },
           });
         }
-
-
-      }
-      else if (notification.data.notitype == 'cd') {
+      } else if (notification.data.notitype == "cd") {
         if (screenName == "NotificationsScreen") {
-          navigationRef.current?.navigate('Home', {
-            screen: 'ChildDevelopment', params: {
+          navigationRef.current?.navigate("Home", {
+            screen: "ChildDevelopment",
+            params: {
               fromNotificationScreen: true,
-            }
-          })
-        }
-        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-          navigationRef.current?.navigate('ChildDevelopment');
-        }
-        else {
-          navigationRef.current?.navigate('Home', { screen: 'ChildDevelopment' })
-        }
-      }
-      else if (notification.data.notitype == 'gw') {
-        if (screenName == "NotificationsScreen") {
-          navigationRef.current?.navigate('AddNewChildgrowth', {
-            headerTitle: t('growthScreenaddNewBtntxt'),
-            fromNotificationScreen: true,
-          })
-        }
-        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-          navigationRef.current?.navigate('AddNewChildgrowth', {
-            headerTitle: t('growthScreenaddNewBtntxt'),
+            },
+          });
+        } else if (
+          screenName == "Home" ||
+          screenName == "ChildDevelopment" ||
+          screenName == "Activities" ||
+          screenName == "Articles" ||
+          screenName == "VaccinationTab" ||
+          screenName == "HealthCheckupsTab" ||
+          screenName == "ChildgrowthTab"
+        ) {
+          navigationRef.current?.navigate("ChildDevelopment");
+        } else {
+          navigationRef.current?.navigate("Home", {
+            screen: "ChildDevelopment",
           });
         }
-        else {
-          navigationRef.current?.navigate('AddNewChildgrowth', {
-            headerTitle: t('growthScreenaddNewBtntxt'),
+      } else if (notification.data.notitype == "gw") {
+        if (screenName == "NotificationsScreen") {
+          navigationRef.current?.navigate("AddNewChildgrowth", {
+            headerTitle: t("growthScreenaddNewBtntxt"),
+            fromNotificationScreen: true,
+          });
+        } else if (
+          screenName == "Home" ||
+          screenName == "ChildDevelopment" ||
+          screenName == "Activities" ||
+          screenName == "Articles" ||
+          screenName == "VaccinationTab" ||
+          screenName == "HealthCheckupsTab" ||
+          screenName == "ChildgrowthTab"
+        ) {
+          navigationRef.current?.navigate("AddNewChildgrowth", {
+            headerTitle: t("growthScreenaddNewBtntxt"),
+          });
+        } else {
+          navigationRef.current?.navigate("AddNewChildgrowth", {
+            headerTitle: t("growthScreenaddNewBtntxt"),
           });
         }
       }
     }
     setProfileLoading(true);
     setTimeout(async () => {
-      const setData = await setActiveChild(languageCode, notification.data.uuid, dispatch, child_age, true);
+      const setData = await setActiveChild(
+        languageCode,
+        notification.data.uuid,
+        dispatch,
+        child_age,
+        true
+      );
       if (setData == "activeset") {
         setProfileLoading(false);
       }
     }, 0);
-
-  }
+  };
   const handleNotification = (notification: any): any => {
     let executed = false;
     if (!executed) {
       executed = true;
       if (Platform.OS == "ios") {
-        PushNotificationIOS.getApplicationIconBadgeNumber((num) => { // get current number
-          console.log(num, "...num...")
+        PushNotificationIOS.getApplicationIconBadgeNumber((num) => {
+          // get current number
+          console.log(num, "...num...");
           if (num >= 1) {
-            PushNotificationIOS.setApplicationIconBadgeNumber(0) //set number to 0
+            PushNotificationIOS.setApplicationIconBadgeNumber(0); //set number to 0
           }
         });
       }
 
       if (notification && notification.userInteraction == true) {
-        if (notification && notification.data && notification.data.notitype != '' && notification.data.notitype != null && notification.data.notitype != undefined && userIsOnboarded) {
-
+        if (
+          notification &&
+          notification.data &&
+          notification.data.notitype != "" &&
+          notification.data.notitype != null &&
+          notification.data.notitype != undefined &&
+          userIsOnboarded
+        ) {
           redirectLocation(notification);
         }
-      } else { ///////**APP IS CLOSED!!!**
+      } else {
+        ///////**APP IS CLOSED!!!**
 
         if (notification && notification.foreground == false) {
-          if (notification && notification.data && notification.data.notitype != '' && notification.data.notitype != null && notification.data.notitype != undefined && userIsOnboarded) {
+          if (
+            notification &&
+            notification.data &&
+            notification.data.notitype != "" &&
+            notification.data.notitype != null &&
+            notification.data.notitype != undefined &&
+            userIsOnboarded
+          ) {
             redirectLocation(notification);
           }
         }
       }
-
     }
-
-  }
+  };
   const createLocalNotificationListeners = async (): Promise<any> => {
     try {
       PushNotification.configure({
-        // this will listen to your local push notifications on clicked 
+        // this will listen to your local push notifications on clicked
         onNotification: (notification: any) => {
           handleNotification(notification);
           if (Platform.OS == "ios") {
             notification.finish(PushNotificationIOS.FetchResult.NoData);
-
           }
         },
         popInitialNotification: true,
@@ -415,279 +507,391 @@ export default (): any => {
       PushNotification.popInitialNotification((notification: any) => {
         handleNotification(notification);
         // this will listen to your local push notifications on opening app from background state
-
-      })
-
+      });
     } catch (e) {
-      console.log("error")
+      console.log("error");
     }
-  }
-
+  };
 
   useEffect(() => {
     if (userIsOnboarded == true) {
       createLocalNotificationListeners();
     }
   }, [userIsOnboarded]);
-    
-  const redirectPayload = (remoteMessage: any): any => {
-    if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "articles") {
-      if (navigationRef) {
-        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
-          navigationRef.current?.navigate('DetailsScreen',
-            {
-              fromScreen: "FirebaseArticles",
-              headerColor: '',
-              backgroundColor: '',
-              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-              listCategoryArray: []
-            });
-        }
-        else {
-          const screenName = navigationRef.current.getCurrentRoute().name;
-          if (screenName == "NotificationsScreen") {
-            navigationRef.current?.navigate('Home', {
-              screen: 'Articles',
-              params: {
-                fromNotificationScreen: true,
-              }
-            })
-          }
-          else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-            navigationRef.current?.navigate('Articles');
-          }
-          else {
-            navigationRef.current?.navigate('Home', { screen: 'Articles' })
-          }
-        }
-      }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "activities") {
-      if (navigationRef) {
-        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
-          console.log(Number(remoteMessage.data.id), "Number(remoteMessage.data.id)");
-          navigationRef.current?.navigate('DetailsScreen',
-            {
-              fromScreen: "FirebaseActivities",
-              headerColor: headerColor,
-              backgroundColor: backgroundColor,
-              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-              listCategoryArray: []
-            });
-        }
-        else {
-          const screenName = navigationRef.current.getCurrentRoute().name;
-          if (screenName == "NotificationsScreen") {
-            navigationRef.current?.navigate('Home', {
-              screen: 'Activities',
-              params: {
-                fromNotificationScreen: true,
-              }
-            })
-          }
-          else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-            navigationRef.current?.navigate('Activities');
-          }
-          else {
-            navigationRef.current?.navigate('Home', { screen: 'Activities' })
-          }
-        }
 
-      }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "vaccination") {
+  const redirectPayload = (remoteMessage: any): any => {
+    if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "articles"
+    ) {
       if (navigationRef) {
-        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
-          navigationRef.current?.navigate('DetailsScreen',
-            {
-              fromScreen: "FirebaseVaccinationTab",
-              headerColor: headerColor,
-              backgroundColor: backgroundColor,
-              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-              listCategoryArray: []
+        if (
+          remoteMessage.data.id &&
+          remoteMessage.data.id != "" &&
+          remoteMessage.data.id != null &&
+          remoteMessage.data.id != undefined &&
+          !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))
+        ) {
+          navigationRef.current?.navigate("DetailsScreen", {
+            fromScreen: "FirebaseArticles",
+            headerColor: "",
+            backgroundColor: "",
+            detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+            listCategoryArray: [],
+          });
+        } else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate("Home", {
+              screen: "Articles",
+              params: {
+                fromNotificationScreen: true,
+              },
             });
+          } else if (
+            screenName == "Home" ||
+            screenName == "ChildDevelopment" ||
+            screenName == "Activities" ||
+            screenName == "Articles" ||
+            screenName == "VaccinationTab" ||
+            screenName == "HealthCheckupsTab" ||
+            screenName == "ChildgrowthTab"
+          ) {
+            navigationRef.current?.navigate("Articles");
+          } else {
+            navigationRef.current?.navigate("Home", { screen: "Articles" });
+          }
         }
-        else {
+      }
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "activities"
+    ) {
+      if (navigationRef) {
+        if (
+          remoteMessage.data.id &&
+          remoteMessage.data.id != "" &&
+          remoteMessage.data.id != null &&
+          remoteMessage.data.id != undefined &&
+          !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))
+        ) {
+          console.log(
+            Number(remoteMessage.data.id),
+            "Number(remoteMessage.data.id)"
+          );
+          navigationRef.current?.navigate("DetailsScreen", {
+            fromScreen: "FirebaseActivities",
+            headerColor: headerColor,
+            backgroundColor: backgroundColor,
+            detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+            listCategoryArray: [],
+          });
+        } else {
+          const screenName = navigationRef.current.getCurrentRoute().name;
+          if (screenName == "NotificationsScreen") {
+            navigationRef.current?.navigate("Home", {
+              screen: "Activities",
+              params: {
+                fromNotificationScreen: true,
+              },
+            });
+          } else if (
+            screenName == "Home" ||
+            screenName == "ChildDevelopment" ||
+            screenName == "Activities" ||
+            screenName == "Articles" ||
+            screenName == "VaccinationTab" ||
+            screenName == "HealthCheckupsTab" ||
+            screenName == "ChildgrowthTab"
+          ) {
+            navigationRef.current?.navigate("Activities");
+          } else {
+            navigationRef.current?.navigate("Home", { screen: "Activities" });
+          }
+        }
+      }
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "vaccination"
+    ) {
+      if (navigationRef) {
+        if (
+          remoteMessage.data.id &&
+          remoteMessage.data.id != "" &&
+          remoteMessage.data.id != null &&
+          remoteMessage.data.id != undefined &&
+          !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))
+        ) {
+          navigationRef.current?.navigate("DetailsScreen", {
+            fromScreen: "FirebaseVaccinationTab",
+            headerColor: headerColor,
+            backgroundColor: backgroundColor,
+            detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+            listCategoryArray: [],
+          });
+        } else {
           const screenName = navigationRef.current.getCurrentRoute().name;
           if (screenName == "NotificationsScreen") {
             console.log("..NotificationsScreen..", screenName);
-            navigationRef.current?.navigate('Home', {
-              screen: 'Tools',
+            navigationRef.current?.navigate("Home", {
+              screen: "Tools",
               params: {
-                screen: 'VaccinationTab',
+                screen: "VaccinationTab",
                 params: {
                   fromNotificationScreen: true,
-                }
+                },
               },
-            })
-          }
-          else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-            navigationRef.current?.navigate("Tools", { screen: 'VaccinationTab' })
-          }
-          else {
+            });
+          } else if (
+            screenName == "Home" ||
+            screenName == "VaccinationTab" ||
+            screenName == "ChildDevelopment" ||
+            screenName == "Activities" ||
+            screenName == "Articles" ||
+            screenName == "HealthCheckupsTab" ||
+            screenName == "ChildgrowthTab"
+          ) {
+            navigationRef.current?.navigate("Tools", {
+              screen: "VaccinationTab",
+            });
+          } else {
             console.log("..nohomenew..", screenName);
-            navigationRef.current?.navigate('Home', {
-              screen: 'Tools',
+            navigationRef.current?.navigate("Home", {
+              screen: "Tools",
               params: {
-                screen: 'VaccinationTab',
+                screen: "VaccinationTab",
               },
             });
           }
-
         }
-
       }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "checkup") {
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "checkup"
+    ) {
       if (navigationRef) {
-        if (remoteMessage.data.id && remoteMessage.data.id != "" && remoteMessage.data.id != null && remoteMessage.data.id != undefined && !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))) {
-          navigationRef.current?.navigate('DetailsScreen',
-            {
-              fromScreen: "FirebaseHealthCheckupsTab",
-              headerColor: headerColor,
-              backgroundColor: backgroundColor,
-              detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
-              listCategoryArray: []
-            });
-        }
-        else {
+        if (
+          remoteMessage.data.id &&
+          remoteMessage.data.id != "" &&
+          remoteMessage.data.id != null &&
+          remoteMessage.data.id != undefined &&
+          !isNaN(trimWhiteSpacePayload(remoteMessage.data.id))
+        ) {
+          navigationRef.current?.navigate("DetailsScreen", {
+            fromScreen: "FirebaseHealthCheckupsTab",
+            headerColor: headerColor,
+            backgroundColor: backgroundColor,
+            detailData: Number(trimWhiteSpacePayload(remoteMessage.data.id)),
+            listCategoryArray: [],
+          });
+        } else {
           const screenName = navigationRef.current.getCurrentRoute().name;
           if (screenName == "NotificationsScreen") {
-            navigationRef.current?.navigate('Home', {
-              screen: 'Tools',
+            navigationRef.current?.navigate("Home", {
+              screen: "Tools",
               params: {
-                screen: 'HealthCheckupsTab',
+                screen: "HealthCheckupsTab",
                 params: {
                   fromNotificationScreen: true,
-                }
+                },
               },
-            })
-          }
-          else if (screenName == "Home" || screenName == "VaccinationTab" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-            navigationRef.current?.navigate("Tools", { screen: 'HealthCheckupsTab' })
-          }
-          else {
-            navigationRef.current?.navigate('Home', {
-              screen: 'Tools',
+            });
+          } else if (
+            screenName == "Home" ||
+            screenName == "VaccinationTab" ||
+            screenName == "ChildDevelopment" ||
+            screenName == "Activities" ||
+            screenName == "Articles" ||
+            screenName == "HealthCheckupsTab" ||
+            screenName == "ChildgrowthTab"
+          ) {
+            navigationRef.current?.navigate("Tools", {
+              screen: "HealthCheckupsTab",
+            });
+          } else {
+            navigationRef.current?.navigate("Home", {
+              screen: "Tools",
               params: {
-                screen: 'HealthCheckupsTab',
+                screen: "HealthCheckupsTab",
               },
             });
           }
         }
-
       }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "growth") {
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "growth"
+    ) {
       if (navigationRef) {
         const screenName = navigationRef.current.getCurrentRoute().name;
         if (screenName == "NotificationsScreen") {
-          navigationRef.current?.navigate('Home', {
-            screen: 'Tools',
+          navigationRef.current?.navigate("Home", {
+            screen: "Tools",
             params: {
-              screen: 'ChildgrowthTab',
+              screen: "ChildgrowthTab",
               params: {
                 fromNotificationScreen: true,
-              }
+              },
             },
-          })
-        }
-        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-          navigationRef.current?.navigate("Tools", { screen: 'ChildgrowthTab' })
-        }
-        else {
-          navigationRef.current?.navigate('Home', {
-            screen: 'Tools',
+          });
+        } else if (
+          screenName == "Home" ||
+          screenName == "ChildDevelopment" ||
+          screenName == "Activities" ||
+          screenName == "Articles" ||
+          screenName == "VaccinationTab" ||
+          screenName == "HealthCheckupsTab" ||
+          screenName == "ChildgrowthTab"
+        ) {
+          navigationRef.current?.navigate("Tools", {
+            screen: "ChildgrowthTab",
+          });
+        } else {
+          navigationRef.current?.navigate("Home", {
+            screen: "Tools",
             params: {
-              screen: 'ChildgrowthTab'
+              screen: "ChildgrowthTab",
             },
-          })
+          });
         }
-
       }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "development") {
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "development"
+    ) {
       if (navigationRef) {
         const screenName = navigationRef.current.getCurrentRoute().name;
         if (screenName == "NotificationsScreen") {
-          navigationRef.current?.navigate('Home', {
-            screen: 'ChildDevelopment', params: {
+          navigationRef.current?.navigate("Home", {
+            screen: "ChildDevelopment",
+            params: {
               fromNotificationScreen: true,
-            }
-          })
-        }
-        else if (screenName == "Home" || screenName == "ChildDevelopment" || screenName == "Activities" || screenName == "Articles" || screenName == "VaccinationTab" || screenName == "HealthCheckupsTab" || screenName == "ChildgrowthTab") {
-          navigationRef.current?.navigate('ChildDevelopment');
-        }
-        else {
-          navigationRef.current?.navigate('Home', { screen: 'ChildDevelopment' })
+            },
+          });
+        } else if (
+          screenName == "Home" ||
+          screenName == "ChildDevelopment" ||
+          screenName == "Activities" ||
+          screenName == "Articles" ||
+          screenName == "VaccinationTab" ||
+          screenName == "HealthCheckupsTab" ||
+          screenName == "ChildgrowthTab"
+        ) {
+          navigationRef.current?.navigate("ChildDevelopment");
+        } else {
+          navigationRef.current?.navigate("Home", {
+            screen: "ChildDevelopment",
+          });
         }
       }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "notifications") {
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "notifications"
+    ) {
       if (navigationRef) {
-        navigationRef.current?.navigate('NotificationsScreen')
+        navigationRef.current?.navigate("NotificationsScreen");
       }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "chat") {
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "chat"
+    ) {
       if (navigationRef) {
-        navigationRef.current?.navigate('SupportChat')
+        navigationRef.current?.navigate("SupportChat");
       }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "user_survey") {
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "user_survey"
+    ) {
       if (navigationRef) {
-        if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
+        if (
+          remoteMessage.data.URL &&
+          trimWhiteSpacePayload(remoteMessage.data.URL) != "" &&
+          trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
+          trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
+        ) {
           Linking.openURL(remoteMessage.data.URL);
-        }
-        else {
+        } else {
           if (Platform.OS == "ios") {
             setTimeout(() => {
-              const surveyItem = surveyData.find((item: any) => item.type == "survey");
+              const surveyItem = surveyData.find(
+                (item: any) => item.type == "survey"
+              );
               if (surveyItem && surveyItem.survey_feedback_link) {
                 Linking.openURL(surveyItem.survey_feedback_link);
               }
-            }, 100)
-          }
-          else {
-            const surveyItem = surveyData.find((item: any) => item.type == "survey");
+            }, 100);
+          } else {
+            const surveyItem = surveyData.find(
+              (item: any) => item.type == "survey"
+            );
             if (surveyItem && surveyItem.survey_feedback_link) {
               Linking.openURL(surveyItem.survey_feedback_link);
             }
           }
-
-
         }
       }
-    }
-    else if (remoteMessage && remoteMessage.data && remoteMessage.data.type && trimWhiteSpacePayload(remoteMessage.data.type) === "hyperlink") {
+    } else if (
+      remoteMessage &&
+      remoteMessage.data &&
+      remoteMessage.data.type &&
+      trimWhiteSpacePayload(remoteMessage.data.type) === "hyperlink"
+    ) {
       if (navigationRef) {
-        if (remoteMessage.data.URL && trimWhiteSpacePayload(remoteMessage.data.URL) != "" && trimWhiteSpacePayload(remoteMessage.data.URL) != null && trimWhiteSpacePayload(remoteMessage.data.URL) != undefined) {
+        if (
+          remoteMessage.data.URL &&
+          trimWhiteSpacePayload(remoteMessage.data.URL) != "" &&
+          trimWhiteSpacePayload(remoteMessage.data.URL) != null &&
+          trimWhiteSpacePayload(remoteMessage.data.URL) != undefined
+        ) {
           Linking.openURL(remoteMessage.data.URL);
         }
       }
-    }
-    else {
-      if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
-        Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
-          { text: t('forceUpdateOkBtn') }
-        ]);
+    } else {
+      if (
+        remoteMessage &&
+        remoteMessage.notification &&
+        remoteMessage.notification.body &&
+        remoteMessage.notification.title
+      ) {
+        Alert.alert(
+          remoteMessage.notification.title,
+          remoteMessage.notification.body,
+          [{ text: t("forceUpdateOkBtn") }]
+        );
       }
     }
-  }
+  };
   useEffect(() => {
-    messaging().onNotificationOpenedApp(remoteMessage => {
+    messaging().onNotificationOpenedApp((remoteMessage) => {
       if (remoteMessage) {
         // background click noti
         if (userIsOnboarded == true) {
           redirectPayload(remoteMessage);
         }
       }
-
     });
     // Check whether an initial notification is available
     messaging()
       .getInitialNotification()
-      .then(remoteMessage => {
+      .then((remoteMessage) => {
         if (remoteMessage) {
           // after kill and restart application
           if (userIsOnboarded == true) {
@@ -705,20 +909,27 @@ export default (): any => {
       SplashScreen.hide();
     }, 2000);
 
-    messaging().setBackgroundMessageHandler(async remoteMessage => {
+    messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       try {
         // console.log('Remote notification', JSON.stringify(remoteMessage))
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     });
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
       //type article/activities
       //foreground call
-      if (remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
-        Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body, [
-          { text: t('forceUpdateOkBtn') }
-        ]);
+      if (
+        remoteMessage &&
+        remoteMessage.notification &&
+        remoteMessage.notification.body &&
+        remoteMessage.notification.title
+      ) {
+        Alert.alert(
+          remoteMessage.notification.title,
+          remoteMessage.notification.body,
+          [{ text: t("forceUpdateOkBtn") }]
+        );
       }
     });
     return unsubscribe;
@@ -728,71 +939,83 @@ export default (): any => {
     async function fetchNetInfo(): Promise<any> {
       if (netInfo && netInfo.isConnected != null) {
         if (netInfo.isConnected == true) {
-          synchronizeEvents(netInfo.isConnected)
-          if (Platform.OS == 'android') {
-            if ((netInfo.netValue.type == "unknown" || netInfo.netValue.type == "other" || netInfo.netValue.type == "bluetooth" || netInfo.netValue.type == "vpn")) {
-              setNetState('Lowbandwidth');
-
+          synchronizeEvents(netInfo.isConnected);
+          if (Platform.OS == "android") {
+            if (
+              netInfo.netValue.type == "unknown" ||
+              netInfo.netValue.type == "other" ||
+              netInfo.netValue.type == "bluetooth" ||
+              netInfo.netValue.type == "vpn"
+            ) {
+              setNetState("Lowbandwidth");
+            } else if (
+              netInfo.netValue.type == "cellular" &&
+              netInfo.netValue.details.cellularGeneration == "2g"
+            ) {
+              setNetState("Lowbandwidth");
+            } else if (
+              netInfo.netValue.type == "cellular" &&
+              netInfo.netValue.details.cellularGeneration == "3g"
+            ) {
+              setNetState("Lowbandwidth");
+            } else if (
+              netInfo.netValue.type == "cellular" &&
+              netInfo.netValue.details.cellularGeneration == "4g"
+            ) {
+              setNetState("Highbandwidth");
+            } else {
+              setNetState("Highbandwidth");
             }
-            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "2g") {
-
-              setNetState('Lowbandwidth');
-
-            }
-            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "3g") {
-              setNetState('Lowbandwidth');
-
-
-            }
-            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "4g") {
-              setNetState('Highbandwidth');
-
-
-            }
-            else {
-              setNetState('Highbandwidth');
+          } else if (Platform.OS == "ios") {
+            if (
+              netInfo.netValue.type == "unknown" ||
+              netInfo.netValue.type == "other"
+            ) {
+              setNetState("Lowbandwidth");
+            } else if (
+              netInfo.netValue.type == "cellular" &&
+              netInfo.netValue.details.cellularGeneration == "2g"
+            ) {
+              setNetState("Lowbandwidth");
+            } else if (
+              netInfo.netValue.type == "cellular" &&
+              netInfo.netValue.details.cellularGeneration == "3g"
+            ) {
+              setNetState("Lowbandwidth");
+            } else if (
+              netInfo.netValue.type == "cellular" &&
+              netInfo.netValue.details.cellularGeneration == "4g"
+            ) {
+              setNetState("Highbandwidth");
+            } else {
+              setNetState("Highbandwidth");
             }
           }
-          else if (Platform.OS == 'ios') {
-            if ((netInfo.netValue.type == "unknown" || netInfo.netValue.type == "other")) {
-              setNetState('Lowbandwidth');
-
-            }
-            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "2g") {
-              setNetState('Lowbandwidth');
-
-            }
-            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "3g") {
-              setNetState('Lowbandwidth');
-
-            }
-            else if (netInfo.netValue.type == "cellular" && netInfo.netValue.details.cellularGeneration == "4g") {
-              setNetState('Highbandwidth');
-
-            }
-            else {
-              setNetState('Highbandwidth');
-            }
-          }
+        } else {
+          setNetState("NoConnection");
         }
-        else {
-          setNetState('NoConnection');
-        }
-
       }
     }
     fetchNetInfo();
     return {};
-  }, [netInfo.isConnected, netInfo.netType, netInfo.netValue?.details?.cellularGeneration]);
+  }, [
+    netInfo.isConnected,
+    netInfo.netType,
+    netInfo.netValue?.details?.cellularGeneration,
+  ]);
   useEffect(() => {
     console.log("linkedURL3---", linkedURL);
   }, [linkedURL]);
 
   useEffect(() => {
     if (userIsOnboarded == true) {
-      const obj = { key: 'showDownloadPopup', value: true };
+      const obj = { key: "showDownloadPopup", value: true };
       dispatch(setInfoModalOpened(obj));
-      const localnotiFlagObj = { generateFlag: true, generateType: 'onAppStart', childuuid: 'all' };
+      const localnotiFlagObj = {
+        generateFlag: true,
+        generateType: "onAppStart",
+        childuuid: "all",
+      };
       dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
       getAllChildren(dispatch, child_age, 0);
     }
@@ -800,22 +1023,20 @@ export default (): any => {
   useEffect(() => {
     dispatch(setchatBotData([]));
     if (countryId == 1) {
-      dispatch(oncountrtIdChange(restOfTheWorldCountryId));
+      dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
     }
-    const notiFlagObj = { key: 'generateNotifications', value: true };
+    const notiFlagObj = { key: "generateNotifications", value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
     //add notification condition in else if required 1st time as well
   }, []);
   useEffect(() => {
     async function fetchNetInfoSet(): Promise<any> {
       if (netState == "Highbandwidth" && toggleSwitchVal == true) {
-
         const confirmation = await retryAlert1(0, 0);
         if (confirmation == "yes" && toggleSwitchVal == true) {
           dispatch(onNetworkStateChange(false));
         }
-      }
-      else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
+      } else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
         const confirmation = await retryAlert1(1, 1);
         if (confirmation == "yes" && toggleSwitchVal == false) {
           dispatch(onNetworkStateChange(true));
@@ -828,8 +1049,20 @@ export default (): any => {
 
   const apiJsonDataLoading = [
     {
-      apiEndpoint: appConfig.basicPages,
-      method: 'get',
+      apiEndpoint: appConfig.apiConfig.taxonomies,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.apiConfig.sponsors,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.apiConfig.basicPages,
+      method: "get",
       postdata: {},
       saveinDB: true,
     },
@@ -837,7 +1070,7 @@ export default (): any => {
 
   return (
     <SafeAreaProvider>
-      {apiData &&
+      {apiData && (
         <NavigationContainer
           ref={navigationRef}
           onReady={(): any => {
@@ -845,7 +1078,8 @@ export default (): any => {
           }}
           onStateChange={async (): Promise<any> => {
             const previousRouteName = routeNameRef.current;
-            const currentRouteName = navigationRef.current.getCurrentRoute().name;
+            const currentRouteName =
+              navigationRef.current.getCurrentRoute().name;
             console.log(`Previous route: ${previousRouteName}`);
             console.log(`Current route: ${currentRouteName}`);
             if (previousRouteName !== currentRouteName) {
@@ -853,19 +1087,27 @@ export default (): any => {
                 screen_name: currentRouteName,
                 screen_class: currentRouteName,
               });
-              const eventData = { 'name': currentRouteName + "_opened" }
-              logEvent(eventData, netInfo.isConnected)
+              const eventData = { name: currentRouteName + "_opened" };
+              logEvent(eventData, netInfo.isConnected);
             }
             routeNameRef.current = currentRouteName;
           }}
         >
           <RootStack.Navigator
             initialRouteName={
-              restartOnLangChange != 'yes' ?
-                userIsOnboarded == true ? 'HomeDrawerNavigator' : allCountries?.length === 1 && allCountries[0]?.languages?.length === 1 ? 'LoadingScreen' : 'Localization'
+              restartOnLangChange != "yes"
+                ? userIsOnboarded == true
+                  ? "HomeDrawerNavigator"
+                  : allCountries?.length === 1 &&
+                    allCountries[0]?.languages?.length === 1
+                  ? "LoadingScreen"
+                  : "Localization"
                 : AppLayoutDirectionScreen
             }
-            screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false, headerShown: false }}
+            screenOptions={{
+              animationEnabled: Platform.OS == "ios" ? true : false,
+              headerShown: false,
+            }}
           >
             <RootStack.Screen
               name="Localization"
@@ -921,11 +1163,10 @@ export default (): any => {
               name="LoadingScreen"
               component={LoadingScreen}
               options={{ headerShown: false, gestureEnabled: false }}
-              initialParams={{ 
-                apiJsonData:apiJsonDataLoading,
-                prevPage:'CountryLanguageSelection',
-                isFirst: true
-
+              initialParams={{
+                apiJsonData: apiJsonDataLoading,
+                prevPage: "CountryLanguageSelection",
+                isFirst: true,
               }}
             />
             <RootStack.Screen
@@ -999,7 +1240,8 @@ export default (): any => {
               component={AddChildHealthCheckup}
             />
           </RootStack.Navigator>
-        </NavigationContainer>}
+        </NavigationContainer>
+      )}
     </SafeAreaProvider>
   );
 };
