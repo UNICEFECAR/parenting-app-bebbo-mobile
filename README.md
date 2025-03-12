@@ -71,19 +71,15 @@ Several third party libraries and services are incorporated. These are the most 
 1. Download [Node JS](https://nodejs.org/en/download) version 21.7.3 and install it.
 ```
 node -v 
-V21.7.3
 ```
 2. Install NPM (Node Package Manager).
 ```
 npm install -g npm@10.8.2
 npm -v
-10.8.2
 ```
 3. Install React Native.
 ```
 npm install -g react-native@0.72.5
-react-native -version
-0.72.5
 ```
 4. Clone the repo via GitBash.
 ```sh

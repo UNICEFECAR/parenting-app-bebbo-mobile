@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "@styles/*": [
+                "app/instances/fatu/styles/*"
+            ],
+            "@images/*": [
+                "app/instances/fatu/assets/images/*"
+            ]
+        }
+    }
+}
