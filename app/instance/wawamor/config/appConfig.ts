@@ -1,6 +1,6 @@
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
-
+import { store} from "../../../../App";
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'wawamor',
@@ -153,7 +153,6 @@ const config = {
     selectedLang: string
   ): string => {
     const baseUrl = `${apiUrlDevelop}/${apiEndpoint}`;
-    
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
         return `${baseUrl}/${config.flavorName}`;

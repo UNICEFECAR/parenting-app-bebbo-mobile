@@ -17,7 +17,7 @@ import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 import LocalNotifications from './LocalNotifications';
 import { logEvent } from './EventSyncService';
-
+import {isPregnancy} from "../services/Utils"
 export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeObj?: any): any => {
   const postData = {
     childGender: 'all',
@@ -74,21 +74,31 @@ export const between = (x: any, min: any, max: any): any => {
 }
 export const checkBetween = async (param: any, users: any, childAge: any): Promise<any> => {
   let ageData: any = [];
+  // const isPreg = isPregnancy() ? 2 : 1;
+  const sortedChildAge = [...childAge].sort((a, b) =>
+    a.name === "Pregnancy" ? 1 : b.name === "Pregnancy" ? -1 : 0
+  );
+  
+  const isPreg = 1;
   await Promise.all(users.map(async (itemset: any) => {
-    if (childAge.length > 0) {
-      if (itemset > childAge[childAge.length - 1].days_to) {
+    if (sortedChildAge.length > 0) {
+      if (itemset > sortedChildAge[sortedChildAge.length - isPreg].days_to) {
         if (param == 0) {
-          ageData.push(childAge[childAge.length - 1].id);
+          ageData.push(sortedChildAge[sortedChildAge.length - isPreg].id);
         }
         else {
-          ageData.push(childAge[childAge.length - 1]);
+          ageData.push(sortedChildAge[sortedChildAge.length - isPreg]);
         }
       }
       else {
-        const result = await Promise.all(childAge.map((item: any) => {
+        const result = await Promise.all(sortedChildAge.map((item: any) => {
           if (between(itemset, parseInt(item["days_from"]), parseInt(item["days_to"]))) {
             if (item.id != "446") {
-              if (param == 0) {
+              if(itemset == 0 && isPregnancy()){
+                const childTaxonomy = sortedChildAge.find(i=> i.id == appConfig.pregnancyId)
+                ageData.push(childTaxonomy);
+                console.log('[---------]',childTaxonomy)
+              } else if (param == 0) {
                 if (item.age_bracket.length > 0) {
                   item.age_bracket.map((ages: any) => {
                     ageData.push(ages);
@@ -96,7 +106,8 @@ export const checkBetween = async (param: any, users: any, childAge: any): Promi
                 }
               }
               else {
-                ageData.push(item);
+                  
+                 ageData.push(item);
               }
               ageData = [...new Set(ageData)];
             }
@@ -108,6 +119,7 @@ export const checkBetween = async (param: any, users: any, childAge: any): Promi
     }
 
   }));
+  console.log('==================',ageData)
   return ageData;
 }
 export const getTaxonomyData = async (param: any, birthDate: any, childAge: any, plannedTermDate: any, isPremature: any): Promise<any> => {
@@ -124,13 +136,18 @@ export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,
       prematureTaxonomyData = await checkBetween(param, prematureageLimit, childAge);
     }
     if (taxonomyData?.length > 0) {
-      if (prematureTaxonomyData && prematureTaxonomyData.length > 0) {
-        taxonomyData[0].prematureTaxonomyId = prematureTaxonomyData[0]?.id;
+      try {
+        if (prematureTaxonomyData && prematureTaxonomyData.length > 0) {
+          taxonomyData[0].prematureTaxonomyId = prematureTaxonomyData[0]?.id || null;
+        }
+        else {
+          taxonomyData[0].prematureTaxonomyId = null;
+        }
+        return taxonomyData[0];
       }
-      else {
-        taxonomyData[0].prematureTaxonomyId = null;
+      catch(err){
+        console.log(taxonomyData,"getAllChildren catch1",err)
       }
-      return taxonomyData[0];
     }
     else {
       return [];
@@ -175,7 +192,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
-        ageid: String(child.taxonomyData.id),
+        ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
         is_premature: child.isPremature,
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
@@ -216,10 +233,11 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       }
       if (child) {
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
+        console.log("===========",child)
         dispatch(setActiveChildData(child));
         const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
         analytics().setUserProperties({
-          ageid: String(child.taxonomyData.id),
+          ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
@@ -264,7 +282,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
       dispatch(setActiveChildData(child));
       analytics().setUserProperties({
-        ageid: String(child.taxonomyData.id),
+        ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
         is_premature: child.isPremature,
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
@@ -559,7 +577,7 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
   child[key] = value;
   dispatch(setActiveChildData(child));
   analytics().setUserProperties({
-    ageid: String(child.taxonomyData.id),
+    ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
     is_premature: child.isPremature,
     child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
     relationship_with_child: userRelationToParent,

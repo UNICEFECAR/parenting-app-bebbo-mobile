@@ -58,7 +58,6 @@ class Backup {
       name: appConfig.backupGDriveFolderName,
       parentFolderId: "root",
     });
-    debugger;
     if (backupFolderId instanceof Error) {
       return false;
     }
@@ -253,7 +252,6 @@ class Backup {
       name: appConfig.backupGDriveFolderName,
       parentFolderId: "root",
     });
-    debugger;
     if (backupFolderId instanceof Error) {
       return new Error("Backup folder doesnt exist on GDrive");
     }
@@ -332,7 +330,6 @@ class Backup {
       name: appConfig.backupGDriveFolderName,
       parentFolderId: "root",
     });
-    debugger;
     if (backupFolderId instanceof Error) {
       return new Error("Backup folder doesnt exist on GDrive");
     }

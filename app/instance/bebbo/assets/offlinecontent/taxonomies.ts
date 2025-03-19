@@ -5454,22 +5454,22 @@ export const taxonomydata: any = {
             "relationship_to_parent": [
                 {
                     "id": 109801,
-                    "name": "Mother",
+                    "name": "mother",
                     "unique_name": "mother"
                 },
                 {
                     "id": 109806,
-                    "name": "Father",
+                    "name": "father",
                     "unique_name": "father"
                 },
                 {
                     "id": 109811,
-                    "name": "Other Caregiver",
+                    "name": "other Caregiver",
                     "unique_name": "other_caregiver"
                 },
                 {
                     "id": 109816,
-                    "name": "Service Provider",
+                    "name": "service Provider",
                     "unique_name": "service_provider"
                 }
             ],

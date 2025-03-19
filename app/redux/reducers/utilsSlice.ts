@@ -282,6 +282,7 @@ export const utilsSlice = createSlice({
           state.taxonomyIds.femaleData = x;
         }
       })
+      
       // Create a lookup object
       const categoryLookup = action.payload?.category?.reduce((acc:any, category:any) => {
         acc[category.unique_name] = category.id;
@@ -291,6 +292,7 @@ export const utilsSlice = createSlice({
         acc[activity_category.unique_name] = activity_category.id;
         return acc;
       }, {});
+      
       state.taxonomyIds.articleCategoryArray = appConfig.articleCategoryArray.map(uniqueName => categoryLookup[uniqueName]);
       state.taxonomyIds.activityCategoryArray = appConfig.activityCategoryArray.map(uniqueName => activityCategoryLookup[uniqueName]);
     },

@@ -835,6 +835,7 @@ const Activities = ({ route, navigation }: any): any => {
                 </SearchBox>
                 <DividerAct></DividerAct>
                 <AgeBrackets
+                  isActivity
                   itemColor={headerColorBlack}
                   activatedItemColor={headerColor}
                   currentSelectedChildId={currentSelectedChildId}

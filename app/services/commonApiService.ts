@@ -274,7 +274,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
           dispatch(setDownloadedBufferAgeBracket(artarray))
         }
         catch (err) {
-          console.log('error97', err)
         }
 
       }

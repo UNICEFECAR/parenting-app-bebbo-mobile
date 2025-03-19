@@ -1,6 +1,7 @@
 import { CHILDREN_PATH } from "@types/types";
 import { DateTime } from "luxon";
 import { Platform } from "react-native";
+import { store} from "../../App";
 import RNFS from 'react-native-fs';
 import { requestNotifications } from "react-native-permissions";
 import { ObjectSchema, PrimaryKey } from "realm";
@@ -660,4 +661,17 @@ export function convertDigits(inputString: any, targetLanguage: DigitLanguage): 
     }
 
     return result;
+}
+
+/**
+ * Checks if the selected country has "Pregnancy" content enabled.
+ *
+ * @returns {boolean} - Returns true if the selected country has `content_toggle` set to "Pregnancy", otherwise false.
+ */
+export function isPregnancy() {
+    const allCountries = JSON.parse(store.getState().selectedCountry.countries || [])
+    const countryId = store.getState()?.selectedCountry?.countryId
+    return allCountries.some(
+        (country : any) => country.CountryID === countryId && country.content_toggle === ""
+      );
 }

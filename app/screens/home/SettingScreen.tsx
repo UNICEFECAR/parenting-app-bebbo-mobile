@@ -115,7 +115,6 @@ import { bgcolorWhite2 } from "@styles/style";
 import { logEvent } from "../../services/EventSyncService";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
-import configureAppStore from "../../redux/store";
 import { fetchAPI } from "../../redux/sagaMiddleware/sagaActions";
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -1099,7 +1098,6 @@ const SettingScreen = (props: any): any => {
       importDataIOS();
     }
   };
-  console.log(language, "---", country, allCountries);
 
   return (
     <>
