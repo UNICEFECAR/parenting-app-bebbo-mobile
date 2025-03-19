@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   importTextStyle: {
-    fontWeight: 700
+    fontWeight: '700'
   },
   uploadTextStyle: {
     color: "#1CABE2"

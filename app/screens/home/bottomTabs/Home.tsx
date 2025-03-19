@@ -73,7 +73,11 @@ import {
   setuserIsOnboarded,
 } from "../../../redux/reducers/utilsSlice";
 import { fetchAPI } from "../../../redux/sagaMiddleware/sagaActions";
-import { apiJsonDataGet } from "../../../services/childCRUD";
+import {
+  apiJsonDataGet,
+  getAllChildren,
+  getAllConfigData,
+} from "../../../services/childCRUD";
 import commonApiService from "../../../services/commonApiService";
 import { getAllPeriodicSyncData } from "../../../services/periodicSync";
 import { addSpaceToHtml, getLanguageCode } from "../../../services/Utils";
@@ -111,6 +115,11 @@ const Home = ({ route, navigation }: any): any => {
   const [show2, setShow2] = useState(false);
   const locale = useAppSelector((state: any) =>
     getLanguageCode(state.selectedCountry?.languageCode)
+  );
+  const childAge = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : []
   );
 
   const backgroundColorChildInfo =
@@ -199,6 +208,7 @@ const Home = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : []
   );
+  // console.log("[activeChild]", activeChild);
   const forceUpdateApis = (forceupdatetime: any): any => {
     navigation.navigate("LoadingScreen", {
       apiJsonData: appConfig.allApisObject(true, incrementalSyncDT),
@@ -293,8 +303,17 @@ const Home = ({ route, navigation }: any): any => {
   const relfolejadev = "0.2.0";
   const relfolejaprod = "1.1.0";
 
+  useEffect(() => {
+    console.log("-------------------", childAge);
+    // getAllChildren(dispatch, childAge, 0);
+    // getAllConfigData(dispatch);
+  }, []);
+
   useLayoutEffect(
     React.useCallback(() => {
+      console.log("-------------------", childAge);
+      // getAllChildren(dispatch, childAge, 0);
+      // getAllConfigData(dispatch);
       const task = InteractionManager.runAfterInteractions(() => {
         if (netInfo.isConnected) {
           synchronizeEvents(netInfo.isConnected);

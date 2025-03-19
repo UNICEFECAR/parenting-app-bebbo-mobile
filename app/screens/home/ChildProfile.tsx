@@ -1,18 +1,11 @@
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonLinkPress,
-  ButtonPrimary,
   ButtonTextLg,
-  ButtonTextMdLineL,
   ButtonWithBorder,
 } from "@components/shared/ButtonGlobal";
 import { AreaContainer } from "@components/shared/Container";
-import {
-  FDirRow,
-  FlexColEnd,
-  FlexCol,
-  Flex1,
-} from "@components/shared/FlexBoxStyle";
+import { FDirRow, FlexColEnd, FlexCol } from "@components/shared/FlexBoxStyle";
 import {
   HeaderIconView,
   HeaderRowView,
@@ -21,7 +14,6 @@ import {
 } from "@components/shared/HeaderContainerStyle";
 import Icon, {
   IconML,
-  OuterIconLeft,
   OuterIconRight,
   OuterIconRow,
   TickView1,
@@ -38,8 +30,6 @@ import {
   ProfileActionView,
   ProfileContentView,
   ProfileIconView,
-  ProfileLinkCol,
-  ProfileLinkRow,
   ProfileListDefault,
   ProfileListInner,
   ProfileListViewSelected1,
@@ -55,7 +45,6 @@ import {
   Heading2w,
   Heading3,
   Heading5,
-  ShiftFromBottom30,
   ShiftFromTop30,
 } from "@styles/typography";
 import { CHILDREN_PATH } from "@types/types";
@@ -79,17 +68,9 @@ import {
 } from "../../services/childCRUD";
 import { formatDate } from "../../services/Utils";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
-import {
-  ButtonText,
-  bgcolorWhite,
-  bgcolorWhite2,
-  secondaryBtnColor,
-} from "@styles/style";
+import { bgcolorWhite, bgcolorWhite2, secondaryBtnColor } from "@styles/style";
 import { StackNavigationProp } from "@react-navigation/stack";
-import {
-  setActiveChildData,
-  setAllChildData,
-} from "../../redux/reducers/childSlice";
+import { setAllChildData } from "../../redux/reducers/childSlice";
 
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: "flex-start" },
@@ -210,10 +191,6 @@ const ChildProfile = ({ navigation }: Props): any => {
   const onLayout = (event: any): any => {
     setParentViewheight(event.nativeEvent.layout.height);
   };
-  const onLayout1 = (event: any): any => {
-    setProfileViewheight(event.nativeEvent.layout.height);
-  };
-
   const currentActiveChild = activeChild.uuid;
 
   const allConfigData = useAppSelector((state: any) =>
@@ -345,16 +322,19 @@ const ChildProfile = ({ navigation }: Props): any => {
                     <Pressable
                       onPress={(): any => {
                         data.index = index;
-                        if (isFutureDate(data.birthDate)) {
-                          navigationCustom.navigate(
-                            "AddExpectingChildProfile",
-                            { childData: data }
-                          );
-                        } else {
-                          navigationCustom.navigate("EditChildProfile", {
-                            childData: data,
-                          });
-                        }
+                        navigationCustom.navigate("EditChildProfile", {
+                          childData: data,
+                        });
+                        // if (isFutureDate(data.birthDate)) {
+                        //   navigationCustom.navigate(
+                        //     "AddExpectingChildProfile",
+                        //     { childData: data }
+                        //   );
+                        // } else {
+                        //   navigationCustom.navigate("EditChildProfile", {
+                        //     childData: data,
+                        //   });
+                        // }
                       }}
                     >
                       <TickView1>
@@ -456,17 +436,20 @@ const ChildProfile = ({ navigation }: Props): any => {
                     <OuterIconRight>
                       <Pressable
                         onPress={(): any => {
+                          navigationCustom.navigate("EditChildProfile", {
+                            childData: data,
+                          });
                           data.index = index;
-                          if (isFutureDate(data.birthDate)) {
-                            navigationCustom.navigate(
-                              "AddExpectingChildProfile",
-                              { childData: data }
-                            );
-                          } else {
-                            navigationCustom.navigate("EditChildProfile", {
-                              childData: data,
-                            });
-                          }
+                          // if (isFutureDate(data.birthDate)) {
+                          //   navigationCustom.navigate(
+                          //     "AddExpectingChildProfile",
+                          //     { childData: data }
+                          //   );
+                          // } else {
+                          //   navigationCustom.navigate("EditChildProfile", {
+                          //     childData: data,
+                          //   });
+                          // }
                         }}
                       >
                         <TickView1>
@@ -553,40 +536,6 @@ const ChildProfile = ({ navigation }: Props): any => {
                       })
                     : null}
                 </ScrollView>
-                {/* <ProfileLinkRow onLayout={onLayout1}
-                style={{
-                  backgroundColor: secopndaryTintColor,
-
-                }}>
-                <ProfileLinkCol>
-                  <ButtonLinkPress
-                    onPress={(): any => {
-                      navigation.navigate('EditChildProfile', { childData: null });
-                    }}>
-                    <OuterIconRow>
-                      <OuterIconLeft>
-                        <Icon name="ic_plus" size={20} color="#000" />
-                      </OuterIconLeft>
-                    </OuterIconRow>
-
-                    <ButtonTextMdLineL>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
-                  </ButtonLinkPress>
-                </ProfileLinkCol>
-                <ProfileLinkCol>
-                  <ButtonLinkPress
-                    onPress={(): any => {
-                      navigation.navigate('AddExpectingChildProfile', { childData: null });
-                    }}>
-                    <OuterIconRow>
-                      <OuterIconLeft>
-                        <Icon name="ic_plus" size={20} color="#000" />
-                      </OuterIconLeft>
-                    </OuterIconRow>
-
-                    <ButtonTextMdLineL>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
-                  </ButtonLinkPress>
-                </ProfileLinkCol>
-              </ProfileLinkRow> */}
 
                 <ParentListView
                   style={{ backgroundColor: secopndaryTintColor }}
@@ -631,8 +580,6 @@ const ChildProfile = ({ navigation }: Props): any => {
 
                   <ProfileContentView>
                     <ParentRowView>
-                      {/* <Text>{parentViewHeight}parentheight{profileViewHeight}profileViewHeight{windowHeight}windowHeight</Text>
-                       */}
                       <ParentSection>
                         <ParentLabel>
                           <Text>{t("childSetuprelationSelectTitle")}</Text>
