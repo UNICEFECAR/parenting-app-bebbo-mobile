@@ -54,7 +54,7 @@ const BabyNotification = (): any => {
     React.useState<any>();
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
-    console.log("Activechild gender is", gender);
+    
     setActiveChildGenderData(gender);
   }, [activeChild?.gender]);
   return (

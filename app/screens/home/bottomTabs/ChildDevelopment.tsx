@@ -65,7 +65,7 @@ import {
 import ProgressCircle from "react-native-progress-circle";
 import { setInfoModalOpened } from "../../../redux/reducers/utilsSlice";
 import FirstTimeModal from "@components/shared/FirstTimeModal";
-import { addSpaceToHtml } from "../../../services/Utils";
+import { addSpaceToHtml, isPregnancy } from "../../../services/Utils";
 import {
   CHILD_DEVELOPMENT_AGEGROUP_SELECTED,
   CHILD_MILESTONE_TRACKED,
@@ -570,6 +570,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
               currentSelectedChildId={currentSelectedChildId}
               showSelectedBracketData={showSelectedBracketData}
               ItemTintColor={componentColors?.backgroundColor}
+              isActivity
             />
           </View>
         ) : null}

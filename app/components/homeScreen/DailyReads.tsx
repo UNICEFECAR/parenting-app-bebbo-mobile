@@ -88,7 +88,6 @@ const DailyReads = (): any => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category
   );
-  console.log(activeChild, activityTaxonomyId);
   const dailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.dailyDataCategory
   );
@@ -259,7 +258,6 @@ const DailyReads = (): any => {
         prematureTaxonomyId: activityTaxonomyId,
       };
     }
-    console.log(dailyDataCategory, dailyDataCategoryall);
 
     if (showedDailyDataCategoryall[activeChild.uuid] === undefined) {
       showedDailyDataCategory = { advice: [], games: [] };
@@ -301,12 +299,6 @@ const DailyReads = (): any => {
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) =>
         ActivitiesData.find((f: any) => f.activity_category === i.id)
       );
-      console.log(
-        ArticlesData,
-        ActivitiesDataall,
-        "[1]",
-        articleCategoryArrayNew
-      );
       const currentIndex = articleCategoryArrayNew.findIndex(
         (_item: any) => _item === dailyDataCategory.advice
       );
@@ -316,16 +308,6 @@ const DailyReads = (): any => {
       );
       const obj1 = categoryArticleData.filter(
         (i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id)
-      );
-      console.log(
-        ArticlesData,
-        currentIndex,
-        nextIndex,
-        "[1]",
-        articleCategoryArrayNew,
-        dailyDataCategory,
-        showedDailyDataCategory,
-        categoryArticleData
       );
       let advicearray: any = [];
 
@@ -407,16 +389,6 @@ const DailyReads = (): any => {
           activityListData.push(activity);
         });
       }
-      console.log(
-        ArticlesData,
-        currentIndex,
-        nextIndex,
-        "[1]==========",
-        articleCategoryArrayNew,
-        dailyDataCategory,
-        showedDailyDataCategory,
-        categoryArticleData
-      );
       setDataToShowInList(articleListData);
       setActivityDataToShowInList(activityListData);
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };

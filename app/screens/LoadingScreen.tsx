@@ -428,7 +428,6 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }, [netInfo.isConnected])
   );
   useEffect(() => {
-    // console.log("Sponsers List Data is", sponsors);
     const backAction = (): any => {
       return true;
     };
@@ -482,7 +481,6 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }
   }, [isFirst]);
 
-  console.log("Sponsers List Data is", allCountries);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
   return (
