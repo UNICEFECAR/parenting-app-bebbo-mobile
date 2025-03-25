@@ -77,6 +77,7 @@ import {
   apiJsonDataGet,
   getAllChildren,
   getAllConfigData,
+  setActiveChild,
 } from "../../../services/childCRUD";
 import commonApiService from "../../../services/commonApiService";
 import { getAllPeriodicSyncData } from "../../../services/periodicSync";
@@ -120,6 +121,10 @@ const Home = ({ route, navigation }: any): any => {
     state.utilsData.taxonomy.allTaxonomyData != ""
       ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
       : []
+  );
+
+  const taxonomyIds = useAppSelector(
+    (state: any) => state.utilsData.taxonomyIds
   );
 
   const backgroundColorChildInfo =
@@ -208,7 +213,6 @@ const Home = ({ route, navigation }: any): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : []
   );
-  // console.log("[activeChild]", activeChild);
   const forceUpdateApis = (forceupdatetime: any): any => {
     navigation.navigate("LoadingScreen", {
       apiJsonData: appConfig.allApisObject(true, incrementalSyncDT),
@@ -304,16 +308,20 @@ const Home = ({ route, navigation }: any): any => {
   const relfolejaprod = "1.1.0";
 
   useEffect(() => {
-    console.log("-------------------", childAge);
-    // getAllChildren(dispatch, childAge, 0);
-    // getAllConfigData(dispatch);
+    setActiveChild(
+      languageCode,
+      activeChild.uuid,
+      dispatch,
+      childAge,
+      true,
+      taxonomyIds?.boyChildGender
+    );
+    getAllChildren(dispatch, childAge, 0);
+    getAllConfigData(dispatch);
   }, []);
 
   useLayoutEffect(
     React.useCallback(() => {
-      console.log("-------------------", childAge);
-      // getAllChildren(dispatch, childAge, 0);
-      // getAllConfigData(dispatch);
       const task = InteractionManager.runAfterInteractions(() => {
         if (netInfo.isConnected) {
           synchronizeEvents(netInfo.isConnected);

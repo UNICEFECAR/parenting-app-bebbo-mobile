@@ -252,7 +252,6 @@ export const utilsSlice = createSlice({
     },
     setTaxonomyIds: (state,
       action: PayloadAction<any>,): any => {
-      console.log('action taxonomy ids payload is....', action.payload)
       action.payload?.relationship_to_parent?.map((x: any) => {
         if (x.unique_name == appConfig.relationshipUniqueName.relationShipMotherId) {
           state.taxonomyIds.relationShipMotherId = x.unique_name;
@@ -324,7 +323,6 @@ export const utilsSlice = createSlice({
     },
     setInfoModalOpened: (state: any=initialState,
       action: PayloadAction<any>,): any => {
-      console.log("payload is", action.payload)
       state[action.payload.key] = action.payload.value;
     },
     setIncrementalSyncDT: (state: any,

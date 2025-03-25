@@ -74,12 +74,12 @@ export const between = (x: any, min: any, max: any): any => {
 }
 export const checkBetween = async (param: any, users: any, childAge: any): Promise<any> => {
   let ageData: any = [];
-  // const isPreg = isPregnancy() ? 2 : 1;
+  const isPreg = isPregnancy() ? 2 : 1;
   const sortedChildAge = [...childAge].sort((a, b) =>
     a.name === "Pregnancy" ? 1 : b.name === "Pregnancy" ? -1 : 0
   );
   
-  const isPreg = 1;
+  // const isPreg = 1;
   await Promise.all(users.map(async (itemset: any) => {
     if (sortedChildAge.length > 0) {
       if (itemset > sortedChildAge[sortedChildAge.length - isPreg].days_to) {
@@ -97,7 +97,6 @@ export const checkBetween = async (param: any, users: any, childAge: any): Promi
               if(itemset == 0 && isPregnancy()){
                 const childTaxonomy = sortedChildAge.find(i=> i.id == appConfig.pregnancyId)
                 ageData.push(childTaxonomy);
-                console.log('[---------]',childTaxonomy)
               } else if (param == 0) {
                 if (item.age_bracket.length > 0) {
                   item.age_bracket.map((ages: any) => {
@@ -119,7 +118,6 @@ export const checkBetween = async (param: any, users: any, childAge: any): Promi
     }
 
   }));
-  console.log('==================',ageData)
   return ageData;
 }
 export const getTaxonomyData = async (param: any, birthDate: any, childAge: any, plannedTermDate: any, isPremature: any): Promise<any> => {
@@ -550,7 +548,6 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
             prevPage: 'AddEditChild'
           });
         } else {
-          console.log('===>1')
           navigation.navigate('ChildProfileScreen');
         }
       }

@@ -56,8 +56,25 @@ export default class ScrollingButtonMenu extends React.Component {
         };
     }
    
-    componentDidUpdate(prevProps) {
-        const { selected } = this.props;
+    componentDidUpdate(prevProps,prevState) {
+        const { selected,items } = this.props;
+        const { index } = this.state;
+        const {index:pIndex} = prevState
+
+        // Check if `selected` or `index` is missing from `items`
+        const isNotInItems = !items.some(item => item.id === selected || item.id === index || item.id == pIndex );
+        console.log(isNotInItems,'[item]1',selected,index,pIndex)
+        if (isNotInItems) {
+            console.log(items, '[item]2', items[0]?.id);
+    
+            // Update index & execute the function only once
+            this.setState({ index: items[0]?.id }, () => {
+                setTimeout(() => {
+                    this._scrollTo();
+                    this.props.onPress(items[0]);
+                }, 0);
+            });
+        }
         if (selected !== this.state.index && selected !== prevProps.selected) {
             this.setState({ index: selected }, this._scrollTo);
         }
@@ -65,8 +82,7 @@ export default class ScrollingButtonMenu extends React.Component {
     
 
     componentDidMount() {
-        const {selected} = this.props;
-        console.log('selected props is',selected)
+        const {selected,items} = this.props;
         if (selected) {
             this.setState({index: selected}, () => {
                 setTimeout(() => {
