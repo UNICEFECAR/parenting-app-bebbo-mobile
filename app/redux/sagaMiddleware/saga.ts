@@ -178,7 +178,6 @@ function* onFetchAPI(value: any): any {
     }
   } catch (e) {
     console.log(value)
-    console.log('----------', e)
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
       yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
     }

@@ -532,7 +532,6 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       const taxonomyData = await checkBetween(0, ageLimit, childAge);
       let apiJsonData;
-      console.log('---------', taxonomyData)
       //  apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
       if (taxonomyData?.length > 0) {
         apiJsonData = apiJsonDataGet("all");

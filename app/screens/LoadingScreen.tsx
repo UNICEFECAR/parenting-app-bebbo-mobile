@@ -331,17 +331,6 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       if (apiJsonDataarticledelta.length > 0) {
         apiJsonData.push(apiJsonDataarticledelta[0]);
       }
-      console.log(
-        apiJsonData,
-        "--apiJsonDataarticle sync---",
-        apiJsonDataarticleall,
-        "---apiJsonDataarticleall---",
-        apiJsonDataarticledelta
-      );
-      // if (allAgeBrackets.length > 0) {
-      //   const newAges = [...new Set([...allAgeBrackets, ...bufferAgeBracket])]
-      //   dispatch(setDownloadedBufferAgeBracket(newAges))
-      // }
       dispatch(
         fetchAPI(
           apiJsonData,
@@ -448,7 +437,6 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       isFirst
     ) {
       const language = allCountries[0]?.languages?.[0];
-      console.log(language, "allCountries in loading screen", isFirst);
       i18next.changeLanguage(language.locale).then(() => {
         moment.locale(getLanguageCode(language?.languageCode));
         if (language?.locale == "GRarb" || language?.locale == "GRda") {
