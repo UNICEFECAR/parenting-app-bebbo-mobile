@@ -1,5 +1,5 @@
 export const countryData: any = {
-  "ec-es": [
+  "en": [
     {
       "CountryID": "1",
       "name": "Ecuador",
@@ -20,11 +20,19 @@ export const countryData: any = {
       "languages": [
         {
           "name": "Ecuador",
-          "displayName": null,
+          "displayName": "English",
+          "languageCode": "en",
+          "locale": "en",
+          "luxonLocale": "en-US",
+          "pluralShow": "false"
+        },
+        {
+          "name": "Ecuador",
+          "displayName": "Español",
           "languageCode": "ec-es",
-          "locale": "",
-          "luxonLocale": "",
-          "pluralShow": ""
+          "locale": "ESec",
+          "luxonLocale": "ec-ES",
+          "pluralShow": "true"
         }
       ]
     }

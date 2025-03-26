@@ -1,4 +1,3 @@
-import { CountryItem } from '@components/CountryItem';
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../../../database/schema/ActivitiesSchema";
