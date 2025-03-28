@@ -213,7 +213,6 @@
 		3205C0C52C11DC6F002309EA /* ParentBuddyAppBanglaDev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ParentBuddyAppBanglaDev-Info.plist"; path = "/Users/kalyani/Documents/Projects/ParentBuddyGit/parenting-app-bangla-mobile/parenting-app-bebbo-mobile/ios/ParentBuddyAppBanglaDev-Info.plist"; sourceTree = "<absolute>"; };
 		329F41992C522D52005683FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		329F41A32C522E94005683FC /* bn-BD */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bn-BD"; path = "bn-BD.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		329F41A42C522E94005683FC /* bn-BD */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bn-BD"; path = "bn-BD.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		32ABED122C4F88A9009F8EC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32ABED132C4F88A9009F8EC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32C91BDD2C16E40F008E0B4C /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -1280,7 +1279,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n../node_modules/react-native-vector-image/strip_svgs.sh\n";
+			shellScript = "export NODE_BINARY=/usr/local/bin/node\n../node_modules/react-native/scripts/react-native-xcode.sh\n../node_modules/react-native-vector-image/strip_svgs.sh\n";
 		};
 		1C8021131BA04FD70351DCE9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1473,7 +1472,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n../node_modules/react-native-vector-image/strip_svgs.sh\n";
+			shellScript = "export NODE_BINARY=/usr/local/bin/node\n../node_modules/react-native/scripts/react-native-xcode.sh\n../node_modules/react-native-vector-image/strip_svgs.sh\n";
 		};
 		3205C0A52C11DC6F002309EA /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2888,7 +2887,6 @@
 				BF838CE927A43A7700CC12B9 /* uz-UZ */,
 				BFB0EA2627EAFC0D004ECAC1 /* uk */,
 				32ABED122C4F88A9009F8EC4 /* en */,
-				329F41A42C522E94005683FC /* bn-BD */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

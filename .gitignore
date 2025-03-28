@@ -48,3 +48,4 @@ buck-out/
 *.hprof
 data.realm
 data.realm.management/
+android/app/debug.keystore
