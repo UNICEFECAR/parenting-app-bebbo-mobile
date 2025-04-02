@@ -476,6 +476,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         country: countryData,
         language: newLanguage,
         isFromCountry: true,
+        isDirect: true,
       });
     } else {
       navigation.navigate("CountrySelection", {
@@ -530,6 +531,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                     luxonLocale: luxonLanLocale ?? null,
                     deviceLanCode: deviceLanCode ?? null,
                     isFromCountry: true,
+                    isDirect: true,
                   })
                 }
               >
