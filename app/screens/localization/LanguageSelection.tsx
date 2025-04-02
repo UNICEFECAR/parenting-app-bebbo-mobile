@@ -92,6 +92,12 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   );
   const apiJsonData = [
     {
+      apiEndpoint: appConfig.apiConfig.taxonomies,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+    {
       apiEndpoint: appConfig.apiConfig.basicPages,
       method: "get",
       postdata: {},
@@ -108,7 +114,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     const [languageCode] = languageTag.split("-");
     return languageCode;
   };
-  console.log("========route", route);
+
   useEffect(() => {
     if (route?.params?.language != undefined) {
       setLanguage(route?.params?.language);
@@ -157,7 +163,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         }
       }
       const fetchData = async (): Promise<any> => {
-        if (userIsOnboarded == false) {
+        if (userIsOnboarded == false && route.params?.isDirect) {
           await userRealmCommon.deleteBy(
             ChildEntitySchema,
             "isMigrated == false"

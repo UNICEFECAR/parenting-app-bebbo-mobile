@@ -122,6 +122,16 @@ const Home = ({ route, navigation }: any): any => {
       ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
       : []
   );
+  const allCountries = useAppSelector((state: any) => {
+    try {
+      return state.selectedCountry?.countries !== ""
+        ? JSON.parse(state.selectedCountry?.countries)
+        : [];
+    } catch (error) {
+      console.error("Failed to parse countries JSON:", error);
+      return [];
+    }
+  });
 
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
@@ -308,6 +318,7 @@ const Home = ({ route, navigation }: any): any => {
   const relfolejaprod = "1.1.0";
 
   useEffect(() => {
+    console.log(allCountries, "newChild age", childAge);
     setActiveChild(
       languageCode,
       activeChild.uuid,
@@ -319,6 +330,22 @@ const Home = ({ route, navigation }: any): any => {
     getAllChildren(dispatch, childAge, 0);
     getAllConfigData(dispatch);
   }, []);
+
+  // useLayoutEffect(
+  //   React.useCallback(() => {
+  //     console.log(allCountries, "newChild age", childAge);
+  //     setActiveChild(
+  //       languageCode,
+  //       activeChild.uuid,
+  //       dispatch,
+  //       childAge,
+  //       true,
+  //       taxonomyIds?.boyChildGender
+  //     );
+  //     getAllChildren(dispatch, childAge, 0);
+  //     getAllConfigData(dispatch);
+  //   }, [])
+  // );
 
   useLayoutEffect(
     React.useCallback(() => {

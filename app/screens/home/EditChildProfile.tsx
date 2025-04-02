@@ -89,7 +89,7 @@ import VectorImage from "react-native-vector-image";
 import { cameraProfileImage } from "../../instance";
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-
+const dobMax = new Date(new Date().setHours(23, 59, 59, 999));
 type Props = {
   route: any;
   navigation: NotificationsNavigationProp;
@@ -263,6 +263,13 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             (item: any) => item.unique_name === taxonomyIds?.girlChildGender
           )
         );
+        gender == 0 &&
+          isExpected &&
+          setGender(
+            genders.find(
+              (item: any) => item.unique_name === taxonomyIds?.girlChildGender
+            ).id
+          );
       } else {
         setDefaultGenderValue(
           genders.find((item: any) => item.id === childData?.gender)
@@ -591,13 +598,13 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 <ChildDate
                   sendData={sendData}
                   childData={childData}
-                  dobMax={new Date()}
+                  dobMax={dobMax}
                 />
               ) : (
                 <ChildDate
                   sendData={sendData}
                   childData={childData}
-                  dobMax={new Date()}
+                  dobMax={dobMax}
                   prevScreen="EditScreen"
                 />
               )}

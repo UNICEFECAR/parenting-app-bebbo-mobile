@@ -77,6 +77,7 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     const dataToStore = databaseData2;
     // console.log('offlineData is',offlineData)
     // console.log('stringify offlineData is',JSON.stringify(offlineData))
+    console.log(dataToStore,"offlineData--------------",offlineData)
     if (dataToStore?.length > 0) {
         dispatch(setAllHardcodedData(dataToStore))
         return dataToStore;

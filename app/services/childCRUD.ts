@@ -144,7 +144,7 @@ export const getTaxonomyData = async (param: any, birthDate: any, childAge: any,
         return taxonomyData[0];
       }
       catch(err){
-        console.log(taxonomyData,"getAllChildren catch1",err)
+        console.log(taxonomyData,"getAllChildren catch1",err,childAge)
       }
     }
     else {
