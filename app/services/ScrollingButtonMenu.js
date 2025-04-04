@@ -63,7 +63,7 @@ export default class ScrollingButtonMenu extends React.Component {
 
         // Check if `selected` or `index` is missing from `items`
         const isNotInItems = !items.some(item => item.id === selected || item.id === index || item.id == pIndex );
-        console.log(isNotInItems,'[item]1',selected,index,pIndex)
+    
         if (isNotInItems) {
             console.log(items, '[item]2', items[0]?.id);
     

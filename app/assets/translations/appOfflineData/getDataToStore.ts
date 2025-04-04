@@ -21,7 +21,7 @@ import { appConfig } from "../../../instance";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData, countryData } from '../../../instance';
 import { Country, CountrySchema } from "../../../database/schema/CountrySchema";
 import { setCountriesStore } from '../../../redux/reducers/localizationSlice';
-
+const LANGUAGE_CODE = 'en'
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: any, sortBy?: any, currentChildData?: any): Promise<any> => {
     // return new Promise((resolve) => {
     //let dataToStore: any;
@@ -77,7 +77,6 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     const dataToStore = databaseData2;
     // console.log('offlineData is',offlineData)
     // console.log('stringify offlineData is',JSON.stringify(offlineData))
-    console.log(dataToStore,"offlineData--------------",offlineData)
     if (dataToStore?.length > 0) {
         dispatch(setAllHardcodedData(dataToStore))
         return dataToStore;
@@ -109,7 +108,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
     else if (prevPage == "") {
         let Entity: any;
         console.log(countryData, 'Prevpage is', prevPage, languageCode);
-        // await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
+        // await getDataToStore(appConfig.languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         return "success";
     }
     else if (prevPage == "Terms") {
@@ -166,7 +165,7 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
     }
     else if (apiEndpoint === appConfig.apiConfig.countryGroups) {
         try {
-            await getDataToStore(languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
+            await getDataToStore(appConfig.languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         } catch (error) {
             console.error('Error fetching countryGroups data:', error);
         }

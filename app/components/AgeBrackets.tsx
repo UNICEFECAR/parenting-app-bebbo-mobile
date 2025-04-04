@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../App";
 import ScrollingButtonMenu from "../services/ScrollingButtonMenu";
+import { appConfig } from "../instance";
 
 const AgeBrackets = ({
   currentSelectedChildId,
@@ -18,7 +19,9 @@ const AgeBrackets = ({
 
   const sortedChildAge = React.useMemo(() => {
     let filteredAge = isActivity
-      ? childAge.filter((item: { name: string }) => item.name !== "Pregnancy") // Remove "Pregnancy" if isActivity is true
+      ? childAge.filter(
+          (item: { name: string }) => item.id != appConfig.pregnancyId
+        ) // Remove "Pregnancy" if isActivity is true
       : [...childAge].sort((a, b) =>
           a.name === "Pregnancy" ? -1 : b.name === "Pregnancy" ? 1 : 0
         );

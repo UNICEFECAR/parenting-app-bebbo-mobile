@@ -316,9 +316,7 @@ const Home = ({ route, navigation }: any): any => {
   const relbebboprod = "1.1.5";
   const relfolejadev = "0.2.0";
   const relfolejaprod = "1.1.0";
-
   useEffect(() => {
-    console.log(allCountries, "newChild age", childAge);
     setActiveChild(
       languageCode,
       activeChild.uuid,
@@ -330,22 +328,6 @@ const Home = ({ route, navigation }: any): any => {
     getAllChildren(dispatch, childAge, 0);
     getAllConfigData(dispatch);
   }, []);
-
-  // useLayoutEffect(
-  //   React.useCallback(() => {
-  //     console.log(allCountries, "newChild age", childAge);
-  //     setActiveChild(
-  //       languageCode,
-  //       activeChild.uuid,
-  //       dispatch,
-  //       childAge,
-  //       true,
-  //       taxonomyIds?.boyChildGender
-  //     );
-  //     getAllChildren(dispatch, childAge, 0);
-  //     getAllConfigData(dispatch);
-  //   }, [])
-  // );
 
   useLayoutEffect(
     React.useCallback(() => {
