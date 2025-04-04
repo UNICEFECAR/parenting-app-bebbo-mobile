@@ -200,7 +200,7 @@ android {
             applicationId 'org.unicef.kosovo.foleja'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 11
+            versionCode 12
             versionName "1.3.0"
             signingConfig signingConfigs.xk
         }
