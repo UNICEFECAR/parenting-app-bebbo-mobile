@@ -130,6 +130,8 @@ const config = {
   weightForHeight: 32786,
   heightForAge: 6461,
   pregnancyId:166191,
+  languageCode:"en",
+  searchMinimumLength:3,
   today: new Date(),
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,

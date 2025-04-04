@@ -483,7 +483,6 @@ const Articles = ({ route, navigation }: any): any => {
             const results = searchIndex.search(queryText);
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
-              setSelectedCategoryId(itemId);
               const categoryFilteredData = results.filter((x: any) =>
                 itemId.includes(x.category)
               );
@@ -503,7 +502,7 @@ const Articles = ({ route, navigation }: any): any => {
         } else {
           setfilteredData(newArticleData);
         }
-
+        setSelectedCategoryId(itemId);
         setLoadingArticle(false);
         setIsSearchedQueryText(false);
         setTimeout(() => {
@@ -659,7 +658,15 @@ const Articles = ({ route, navigation }: any): any => {
         articleData = [...combineDartArr];
         const processedArticles = preprocessArticles(combineDartArr);
         const searchIndexData = new MiniSearch({
-          processTerm: (term) => suffixes(term, 3),
+          processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
+          tokenize: (text) => {
+            const words = text.toLowerCase().split(/\s+/);
+            const ngrams = [];
+            for (let i = 0; i < words.length - 1; i++) {
+              ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
+            }
+            return [...words, ...ngrams]; // Return both single words and bigrams
+          },
           extractField: (document, fieldName): any => {
             const arrFields = fieldName.split(".");
             if (arrFields.length === 2) {
@@ -763,13 +770,14 @@ const Articles = ({ route, navigation }: any): any => {
     for (let i = 0; i <= term.length - minLength; i++) {
       tokens.push(term.slice(i));
     }
+    // console.log("--------", tokens);
     return tokens;
   };
 
   const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false);
     setLoadingArticle(true);
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    // await new Promise((resolve) => setTimeout(resolve, 0));
     Keyboard.dismiss();
     if (queryText != "" && queryText != undefined && queryText != null) {
       const keywords = queryText
@@ -778,12 +786,13 @@ const Articles = ({ route, navigation }: any): any => {
         .split(" ")
         .filter((word: any) => word.trim() !== "");
       if (keywords.length > 1) {
-        const resultsPromises = keywords.map(async (keyword: any) => {
-          const results = searchIndex.search(keyword);
-          return results;
-        });
-        const resultsArrays = await Promise.all(resultsPromises);
-        const aggregatedResults = resultsArrays.flat();
+        // const resultsPromises = keywords.map(async (keyword: any) => {
+        //   const results = searchIndex.search(keyword);
+        //   return results;
+        // });
+        // const resultsArrays = await Promise.all(resultsPromises);
+        const results = searchIndex.search(queryText);
+        const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = aggregatedResults.filter((x: any) =>
