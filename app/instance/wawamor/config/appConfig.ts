@@ -1,6 +1,7 @@
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 import { store} from "../../../../App";
+import { Platform } from 'react-native';
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'wawamor',
@@ -102,6 +103,10 @@ const config = {
     { name: 'parentingCorner', id: 401, image: 'ic_artl_parenting' },
     { name: 'nutritionAndBreastfeeding', id: 396, image: 'ic_artl_nutrition' },
   ],
+  reviewURL:Platform.select({
+    android: "https://play.google.com/store/apps/details?id=org.unicef.ec.wawamor",
+    ios: "itms://itunes.apple.com/xk/app/apple-store/id6742478153?action=write-review",
+  }),
   bothParentGender: 6831,
   bothChildGender: 666,
   boyChildGender: 656,

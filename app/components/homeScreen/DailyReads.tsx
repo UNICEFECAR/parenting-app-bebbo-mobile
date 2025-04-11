@@ -28,6 +28,18 @@ import {
 import LoadableImage from "../../services/LoadableImage";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
+import {
+  selectArticleDataAll,
+  selectFilteredArticles,
+  selectLowBandwidth,
+  selectActiveChild,
+  selectActivitiesDataAll,
+  selectActivityCategoryArray,
+  selectDailyDataCategoryAll,
+  selectShowedDailyDataCategoryAll,
+  selectFavoriteAdvices,
+  selectFavoriteGames,
+} from "../../services/selectors";
 
 const styles = StyleSheet.create({
   cardImage: {
@@ -53,27 +65,19 @@ const DailyReads = (): any => {
   const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
-  const articleDataall = useAppSelector((state: any) =>
-    state.articlesData.article.articles != ""
-      ? JSON.parse(state.articlesData.article.articles)
-      : state.articlesData.article.articles
-  );
-  const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
-  );
-  const articleData = articleDataall.filter((x: any) =>
+  const articleDataAll = useAppSelector(selectArticleDataAll);
+  const toggleSwitchVal = useAppSelector(selectLowBandwidth);
+
+  const articleData = articleDataAll.filter((x: any) =>
     appConfig.articleCategoryIdArray.includes(x.category)
   );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const ActivitiesDataall = useAppSelector((state: any) =>
-    state.utilsData.ActivitiesData != ""
-      ? JSON.parse(state.utilsData.ActivitiesData)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const ActivitiesDataall = useAppSelector(selectActivitiesDataAll);
+const activityCategoryArray = useAppSelector(selectActivityCategoryArray);
+const dailyDataCategoryall = useAppSelector(selectDailyDataCategoryAll);
+const showedDailyDataCategoryall = useAppSelector(selectShowedDailyDataCategoryAll);
+const favoriteAdvices = useAppSelector(selectFavoriteAdvices);
+const favoriteGames = useAppSelector(selectFavoriteGames);
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId ??
     activeChild?.taxonomyData?.id;
@@ -84,23 +88,7 @@ const DailyReads = (): any => {
   let ArticlesData = articleData.filter((x: any) =>
     x.child_age.includes(activityTaxonomyId)
   );
-  const activityCategoryArray = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category
-  );
-  const dailyDataCategoryall = useAppSelector(
-    (state: any) => state.articlesData.dailyDataCategory
-  );
 
-  const showedDailyDataCategoryall = useAppSelector(
-    (state: any) => state.articlesData.showedDailyDataCategory
-  );
-  const favoriteAdvices = useAppSelector(
-    (state: any) => state.childData.childDataSet.favoriteadvices
-  );
-  const favoriteGames = useAppSelector(
-    (state: any) => state.childData.childDataSet.favoritegames
-  );
   const [dataToShowInList, setDataToShowInList] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
   const [activityDataToShowInList, setActivityDataToShowInList] = useState([]);
@@ -232,7 +220,7 @@ const DailyReads = (): any => {
         dailyDataCategoryall[activeChild.uuid].currentgamesid;
       if (
         dailyDataCategoryall[activeChild.uuid].taxonomyid !=
-        activeChild.taxonomyData.id
+        activeChild?.taxonomyData?.id
       ) {
         advid = 0;
         currentadviceid = 0;
@@ -282,7 +270,7 @@ const DailyReads = (): any => {
     if (
       dailyDataCategory &&
       (dailyDataCategory.currentDate == "" ||
-        dailyDataCategory.currentDate < nowDate)
+        dailyDataCategory.currentDate == nowDate)
     ) {
       let filteredArticles;
 
@@ -298,6 +286,12 @@ const DailyReads = (): any => {
       );
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) =>
         ActivitiesData.find((f: any) => f.activity_category === i.id)
+      );
+      console.log(
+        ArticlesData,
+        ActivitiesDataall,
+        "[1]",
+        articleCategoryArrayNew
       );
       const currentIndex = articleCategoryArrayNew.findIndex(
         (_item: any) => _item === dailyDataCategory.advice
@@ -462,6 +456,7 @@ const DailyReads = (): any => {
       activityDataToShow.forEach((activity: any) => {
         activityDataList.push(activity);
       });
+      console.log(dailyDataCategory, "[1]1", articleDataToShow);
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList);
     }

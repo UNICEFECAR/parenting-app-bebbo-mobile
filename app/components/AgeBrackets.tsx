@@ -17,21 +17,17 @@ const AgeBrackets = ({
       : []
   );
 
-  const sortedChildAge = React.useMemo(() => {
-    let filteredAge = isActivity
-      ? childAge.filter(
-          (item: { name: string }) => item.id != appConfig.pregnancyId
-        ) // Remove "Pregnancy" if isActivity is true
-      : [...childAge].sort((a, b) =>
-          a.name === "Pregnancy" ? -1 : b.name === "Pregnancy" ? 1 : 0
-        );
-
-    return filteredAge;
-  }, [childAge, isActivity]); // Memoize sorting to avoid unnecessary recalculations
+  let filteredAge = isActivity
+    ? childAge.filter(
+        (item: { name: string }) => item.id != appConfig.pregnancyId
+      )
+    : [...childAge].sort((a, b) =>
+        a.name === "Pregnancy" ? -1 : b.name === "Pregnancy" ? 1 : 0
+      );
 
   return (
     <ScrollingButtonMenu
-      items={sortedChildAge}
+      items={filteredAge}
       onPress={showSelectedBracketData}
       selected={currentSelectedChildId}
       activeBackgroundColor={activatedItemColor}

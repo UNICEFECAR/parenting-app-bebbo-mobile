@@ -23,6 +23,12 @@ import { getAllConfigData } from "../../services/childCRUD";
 // import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instance";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import {
+  selectActiveChild,
+  selectAllConfigData,
+  selectChildDevData,
+  selectPinnedChildDevData,
+} from "../../services/selectors";
 const windowWidth = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -33,16 +39,10 @@ const ChildInfo = (props: any): any => {
   const navigation = useNavigation<any>();
   const netInfo = useNetInfoHook();
   const { headerColor, backgroundColor } = props;
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const allConfigData = useAppSelector((state: any) =>
-    state.variableData?.variableData != ""
-      ? JSON.parse(state.variableData?.variableData)
-      : state.variableData?.variableData
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const allConfigData = useAppSelector(selectAllConfigData);
+  const ChildDevData = useAppSelector(selectChildDevData);
+  const PinnedChildDevData = useAppSelector(selectPinnedChildDevData);
   const dispatch = useAppDispatch();
 
   const userNameData =
@@ -54,16 +54,7 @@ const ChildInfo = (props: any): any => {
       ? allConfigData.filter((item: any) => item.key === "userRelationToParent")
       : [];
   const activeChildGender = activeChild.gender;
-  const ChildDevData = useAppSelector((state: any) =>
-    state.utilsData.ChildDevData != ""
-      ? JSON.parse(state.utilsData.ChildDevData)
-      : []
-  );
-  const PinnedChildDevData = useAppSelector((state: any) =>
-    state.utilsData.VideoArticlesData != ""
-      ? JSON.parse(state.utilsData.VideoArticlesData)
-      : []
-  );
+
   const [selectedPinnedArticleData, setSelectedPinnedArticleData] =
     useState<any>();
   const activityTaxonomyId =

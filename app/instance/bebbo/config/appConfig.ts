@@ -2,6 +2,7 @@ import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 import { store} from "../../../../App";
 import { isPregnancy } from '../../../services/Utils';
+import { Platform } from 'react-native';
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'bebbo',
@@ -123,6 +124,10 @@ const config = {
     { name: 'labourAndBirth', id: 166806, image: 'ic_art_labour_birth' },
     { name: 'pregnancyComplication', id: 166811, image: 'ic_art_complications' },
   ],
+  reviewURL:Platform.select({
+    android: "https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo",
+    ios: "itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review",
+  }),
   bothParentGender: 60,
   bothChildGender: 59,
   girlChildGender: 41,

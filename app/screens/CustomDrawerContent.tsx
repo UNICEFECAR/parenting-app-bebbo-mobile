@@ -732,35 +732,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               </DrawerLinkView>
               <DrawerLinkView
                 onPress={(): any => {
-                  if (Platform.OS === "android") {
-                    if (String(appConfig.buildFor) == "bebbo") {
-                      Linking.openURL(
-                        "https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo"
-                      );
-                    } else if (String(appConfig.buildFor) == "babuni") {
-                      Linking.openURL(
-                        "https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni"
-                      );
-                    } else {
-                      Linking.openURL(
-                        "https://play.google.com/store/apps/details?id=org.unicef.kosovo.foleja"
-                      );
-                    }
-                  } else {
-                    if (String(appConfig.buildFor) == "bebbo") {
-                      Linking.openURL(
-                        "itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review"
-                      );
-                    } else if (String(appConfig.buildFor) == "babuni") {
-                      Linking.openURL(
-                        "itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review"
-                      );
-                    } else {
-                      Linking.openURL(
-                        "itms://itunes.apple.com/xk/app/apple-store/id1607980150?action=write-review"
-                      );
-                    }
-                  }
+                  console.log(appConfig.reviewURL);
+                  Linking.openURL(appConfig.reviewURL);
                 }}
               >
                 <OuterIconRow>

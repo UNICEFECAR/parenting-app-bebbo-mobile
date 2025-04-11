@@ -51,6 +51,7 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     let Entity: any;
     let insertData = [];
     let pinnedArticle = "";
+
     if (response.payload.apiEndpoint == appConfig.apiConfig.articles) {
         insertData = response.payload.data.data;
         Entity = Entity as ArticleEntity;
@@ -64,6 +65,11 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
         EntitySchema2 = ArticleEntitySchema;
         EntitySchema3 = ActivitiesEntitySchema;
         EntitySchema4 = FAQsSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.countryGroups) {
+        insertData = response.payload.data.data;
+        Entity = Entity as Country;
+        EntitySchema = CountrySchema;
     }
     else if (response.payload.apiEndpoint == appConfig.apiConfig.videoArticles) {
         insertData = response.payload.data.data;
@@ -671,7 +677,10 @@ export function convertDigits(inputString: any, targetLanguage: DigitLanguage): 
 export function isPregnancy() {
     const allCountries = JSON.parse(store.getState().selectedCountry.countries || [])
     const countryId = store.getState()?.selectedCountry?.countryId
+    console.log(countryId,'[country data]',allCountries,allCountries.some(
+        (country : any) => country.CountryID == countryId && country.content_toggle == ""
+      ))
     return allCountries.some(
-        (country : any) => country.CountryID === countryId && country.content_toggle === ""
+        (country : any) => country.CountryID == countryId && country.content_toggle == ""
       );
 }

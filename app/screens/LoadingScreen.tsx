@@ -38,6 +38,19 @@ import {
 } from "../redux/reducers/localizationSlice";
 import moment from "moment";
 import { getLanguageCode, isPregnancy } from "../services/Utils";
+import {
+  selectActiveChild,
+  selectAllCountries,
+  selectAllDataDownloadFlag,
+  selectAppLayoutDirection,
+  selectBufferAgeBracket,
+  selectChildAge,
+  selectChildList,
+  selectIncrementalSyncDT,
+  selectLanguageCode,
+  selectLowBandwidth,
+  selectSponsors,
+} from "../services/selectors";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "ChildSetup"
@@ -49,15 +62,10 @@ type Props = {
 
 const LoadingScreen = ({ route, navigation }: Props): any => {
   const dispatch = useAppDispatch();
-  const childAge = useAppSelector((state: any) => {
-    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData;
-    return allTaxonomyData ? JSON.parse(allTaxonomyData).child_age : [];
-  });
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
+  const childList = useAppSelector(selectChildList);
+  const sponsors = useAppSelector(selectSponsors);
+  const AppLayoutDirection = useAppSelector(selectAppLayoutDirection);
   const {
     apiJsonData = null,
     prevPage = null,
@@ -68,42 +76,15 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     forceupdatetime = null,
     isFirst = false,
   } = route.params || {};
-  const sponsors = useAppSelector(
-    (state: any) => state.selectedCountry.sponsors
-  );
-  const allCountries = useAppSelector((state: any) =>
-    state.selectedCountry.countries != ""
-      ? JSON.parse(state.selectedCountry.countries)
-      : []
-  );
 
-  const countryId = useAppSelector(
-    (state: any) => state.selectedCountry.countryId
-  );
-  const AppLayoutDirection = useAppSelector(
-    (state: any) => state.selectedCountry.AppLayoutDirection
-  );
+  const allCountries = useAppSelector(selectAllCountries);
 
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode
-  );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const bufferAgeBracket = useAppSelector(
-    (state: any) => state.childData.childDataSet.bufferAgeBracket
-  );
-  const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
-  );
-  const incrementalSyncDT = useAppSelector(
-    (state: any) => state.utilsData.incrementalSyncDT
-  );
-  const allDataDownloadFlag = useAppSelector(
-    (state: any) => state.utilsData.allDataDownloadFlag
-  );
+  const languageCode = useAppSelector(selectLanguageCode);
+  const activeChild = useAppSelector(selectActiveChild);
+  const bufferAgeBracket = useAppSelector(selectBufferAgeBracket);
+  const toggleSwitchVal = useAppSelector(selectLowBandwidth);
+  const incrementalSyncDT = useAppSelector(selectIncrementalSyncDT);
+  const allDataDownloadFlag = useAppSelector(selectAllDataDownloadFlag);
   const netInfo = useNetInfoHook();
   const [netflag, setnetflag] = useState(false);
   const getAgeWithAgeBrackets = async (prevPage: any): Promise<any> => {

@@ -190,7 +190,6 @@ export default (): any => {
               <Icon name="ic_activities" color={color} size={size} />
             ),
             headerShown: false,
-            unmountOnBlur: true,
           }}
         />
         <DashboardBottomTab.Screen

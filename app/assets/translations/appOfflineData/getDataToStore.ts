@@ -21,7 +21,6 @@ import { appConfig } from "../../../instance";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData, countryData } from '../../../instance';
 import { Country, CountrySchema } from "../../../database/schema/CountrySchema";
 import { setCountriesStore } from '../../../redux/reducers/localizationSlice';
-const LANGUAGE_CODE = 'en'
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: any, sortBy?: any, currentChildData?: any): Promise<any> => {
     // return new Promise((resolve) => {
     //let dataToStore: any;
@@ -75,7 +74,7 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
     //     dataToStore = databaseData2;
     // }
     const dataToStore = databaseData2;
-    // console.log('offlineData is',offlineData)
+    console.log(SchemaToUse.name,'offlineData is......',offlineData,dataToStore)
     // console.log('stringify offlineData is',JSON.stringify(offlineData))
     if (dataToStore?.length > 0) {
         dispatch(setAllHardcodedData(dataToStore))
@@ -108,7 +107,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
     else if (prevPage == "") {
         let Entity: any;
         console.log(countryData, 'Prevpage is', prevPage, languageCode);
-        // await getDataToStore(appConfig.languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
+        await getDataToStore(appConfig.languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         return "success";
     }
     else if (prevPage == "Terms") {
@@ -144,6 +143,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
 
 export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode: string, dispatch: any, _prevPage: string, activeChild?: any): Promise<any> => {
     // return new Promise(async (resolve) => {
+    console.log("apiEndpoint",apiEndpoint)
     let Entity: any;
     if (apiEndpoint == appConfig.apiConfig.basicPages) {
         try {
@@ -164,6 +164,7 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
         return "success";
     }
     else if (apiEndpoint === appConfig.apiConfig.countryGroups) {
+        console.log(appConfig.apiConfig.countryGroups,"apiEndpoint",apiEndpoint)
         try {
             await getDataToStore(appConfig.languageCode, dispatch, CountrySchema, Entity as Country, countryData, setCountriesStore);
         } catch (error) {

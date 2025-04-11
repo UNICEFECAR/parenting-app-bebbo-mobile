@@ -8,20 +8,15 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
+import { selectDailyMessageNotification, selectDailyMessages } from '../../services/selectors';
 const styles=StyleSheet.create({
   shiftFromBottom:{flex:1,flexDirection:'column'}
 })
 const DailyHomeNotification = ():any => {
   const [notification, setNotification] = useState<any>();
   const dispatch = useAppDispatch();
-  const records = useAppSelector((state: any) =>
-    state.utilsData.dailymessages != ''
-      ? JSON.parse(state.utilsData.dailymessages)
-      : state.utilsData.dailymessages,
-  );
-  const currentNotification = useAppSelector((state: any) =>
-  (state.utilsData.dailyMessageNotification),
-  );
+  const records = useAppSelector(selectDailyMessages);
+const currentNotification = useAppSelector(selectDailyMessageNotification);
   const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number }):Promise<any> => {
     dispatch(setInfoModalOpened({key:'dailyMessageNotification', value: JSON.stringify(noti)}));
   };
