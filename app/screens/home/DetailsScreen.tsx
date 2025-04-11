@@ -76,6 +76,7 @@ import { bgcolorBlack2, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { ViewDetailsEntity } from "../../database/schema/ArticleActivityViewSchema";
+import { appConfig } from "../../instance";
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -716,7 +717,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   const setNewFilteredArticleData = (itemId: any): any => {
     navigation.navigate({
       name: fromScreen,
-      params: { categoryArray: itemId, backClicked: "no" },
+      params: { categoryArray: itemId, backClicked: "no",currentSelectedChildId },
       merge: true,
     });
   };
@@ -1024,6 +1025,9 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                     borderColor={newHeaderColor}
                     filterOnCategory={setNewFilteredArticleData}
                     fromPage={fromPage}
+                    isSelectedPregnancy={
+                      currentSelectedChildId == appConfig.pregnancyId
+                    }
                     filterArray={filterArray}
                     onFilterArrayChange={onFilterArrayChange}
                   />

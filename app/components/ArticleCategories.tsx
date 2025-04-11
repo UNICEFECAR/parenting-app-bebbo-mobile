@@ -11,7 +11,6 @@ import { ADVICE_CATEGORY_SELECTED } from "@assets/data/firebaseEvents";
 import { articleColor, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
-import { isPregnancy } from "../services/Utils";
 const styles = StyleSheet.create({
   filterBoxbg1: {
     backgroundColor: articleColor,

@@ -736,6 +736,7 @@ const Articles = ({ route, navigation }: any): any => {
     React.useCallback(() => {
       if (isSerachedQueryText || queryText == "") {
         //setLoadingArticle(true);
+        console.log("sdsds", route.params);
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray) {
             setFilterArray(route.params?.categoryArray);

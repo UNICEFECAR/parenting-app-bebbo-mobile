@@ -96,7 +96,8 @@ export const checkBetween = async (param: any, users: any, childAge: any): Promi
             if (item.id != "446") {
               if(itemset == 0 && isPregnancy()){
                 const childTaxonomy = sortedChildAge.find(i=> i.id == appConfig.pregnancyId)
-                ageData.push(childTaxonomy);
+                console.log(sortedChildAge[0],'=====',sortedChildAge)
+                ageData.push(childTaxonomy || sortedChildAge[0]);
               } else if (param == 0) {
                 if (item.age_bracket.length > 0) {
                   item.age_bracket.map((ages: any) => {

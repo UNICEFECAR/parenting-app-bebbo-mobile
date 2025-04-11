@@ -1,9 +1,5 @@
 import analytics from "@react-native-firebase/analytics";
-import {
-  DrawerActions,
-  NavigationContainer,
-  useNavigation,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AddExpectingChildProfile from "@screens/AddExpectingChildProfile";
 import AddSiblingData from "@screens/AddSiblingData";
@@ -28,15 +24,7 @@ import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
 import React, { useContext, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  ActivityIndicator,
-  Alert,
-  AppState,
-  I18nManager,
-  Linking,
-  Platform,
-  Text,
-} from "react-native";
+import { Alert, AppState, Linking, Platform } from "react-native";
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
@@ -65,11 +53,6 @@ import TermsPage from "@screens/TermsPage";
 import { logEvent, synchronizeEvents } from "../services/EventSyncService";
 import AddChildSetup from "@screens/AddChildSetup";
 import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
-import moment from "moment";
-import "moment/locale/bn-bd"; // import for bangla language
-import "moment/locale/bn"; // import for bangla language
-// import 'moment/locale/sq'
-import "moment/locale/tr";
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -102,7 +85,6 @@ export default (): any => {
     (state: any) => state.selectedCountry.countryId
   );
   const [netState, setNetState] = React.useState("");
-  const [loading, setLoading] = React.useState(true);
   const dispatch = useAppDispatch();
   const netInfo = useNetInfoHook();
   const activeChild = useAppSelector((state: any) =>
@@ -116,15 +98,8 @@ export default (): any => {
   const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
-  const apiStatus = useAppSelector(
-    (state) => state.failedOnloadApiObjReducer.status
-  );
-  // console.log('api status is', apiStatus)
   const apiData = useAppSelector(
     (state) => state.failedOnloadApiObjReducer.data
-  );
-  const apiError = useAppSelector(
-    (state) => state.failedOnloadApiObjReducer.error
   );
   const surveyData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ""
@@ -284,32 +259,6 @@ export default (): any => {
     return param;
   };
 
-  const handleDynamicLink = (link: any): any => {
-    if (link && link.url) {
-      //  Alert.alert("foreground dynamic link",link.url);
-      const facebookId = getSearchParamFromURL(link.url, "facebook_id");
-      facebookId && facebookId != ""
-        ? analytics().setUserProperties({ facebook_id: facebookId })
-        : null;
-      console.log(facebookId, "..facebookId.");
-    }
-  };
-  useEffect(() => {
-    // const unsubscribe = DynamicLinks().onLink(handleDynamicLink);
-    // // When the component is unmounted, remove the listener
-    // DynamicLinks()
-    //   .getInitialLink()
-    //   .then((link: any) => {
-    //     console.log(link, "..11link")
-    //     if (link && link.url) {
-    //       // Alert.alert("background dynamic link",link.url);
-    //       const facebookId = getSearchParamFromURL(link.url, 'facebook_id');
-    //       facebookId && facebookId != '' ? analytics().setUserProperties({ facebook_id: facebookId }) : null;
-    //       console.log(facebookId, "..facebookId11.")
-    //     }
-    //   });
-    // return (): any => unsubscribe();
-  }, []);
   const redirectLocation = (notification: any): any => {
     const screenName = navigationRef.current.getCurrentRoute().name;
     console.log(activeChild, "..activeChild..");

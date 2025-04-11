@@ -18,6 +18,7 @@ function* apiCall(data: ApiJsonArray, dispatch: any): any {
       if (response.data.status == 200) {
         try {
           if (data.saveinDB == true) {
+            console.log('commonApiService saga',response)
             yield put(insertInDB(response, dispatch));
           }
         }
@@ -73,7 +74,8 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
   else if (prevPage == '') {
     try {
       const payload = { errorArr: errorArr, fromPage: prevPage }
-      yield call(onCountryApiSuccess, response, dispatch, navigation, languageCode, prevPage)
+      console.log('prevPage ********',prevPage)
+      yield call(onCountryApiSuccess, response, dispatch, navigation, 'en', prevPage)
     } catch (error) {
       console.log('error5', error)
     }

@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 
@@ -102,6 +103,10 @@ const config = {
     { name: 'parentingCorner', id: 4, image: 'ic_artl_parenting' },
     { name: 'nutritionAndBreastfeeding', id: 1, image: 'ic_artl_nutrition' },
   ],
+  reviewURL:Platform.select({
+    android: "https://play.google.com/store/apps/details?id=org.unicef.kosovo.foleja",
+    ios: "itms://itunes.apple.com/xk/app/apple-store/id1607980150?action=write-review",
+  }),
   bothParentGender: 60,
   bothChildGender: 59,
   girlChildGender: 41,

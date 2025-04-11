@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 
@@ -102,6 +103,10 @@ const config = {
     { name: 'parentingCorner', id: 391, image: 'ic_artl_parenting' },
     { name: 'nutritionAndBreastfeeding', id: 386, image: 'ic_artl_nutrition' },
   ],
+  reviewURL:Platform.select({
+    android: "https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni",
+    ios: "itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review",
+  }),
   bothParentGender: 621,
   bothChildGender: 536,
   boyChildGender: 526,

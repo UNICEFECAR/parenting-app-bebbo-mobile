@@ -25,36 +25,34 @@ const styles = StyleSheet.create({
 });
 import { DateTime } from "luxon";
 import useDigitConverter from "../../customHooks/useDigitConvert";
+import {
+  selectActiveChild,
+  selectPluralShow,
+  selectTaxonomyIds,
+} from "../../services/selectors";
 const BabyNotification = (): any => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
+  const activeChild = useAppSelector(selectActiveChild);
+  const pluralShow = useAppSelector(selectPluralShow);
+  const taxonomyIds = useAppSelector(selectTaxonomyIds);
+  const genders = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
       : []
-  );
-  const pluralShow = useAppSelector(
-    (state: any) => state.selectedCountry.pluralShow
   );
   const isFutureDate = (date: Date): any => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
-  const taxonomyIds = useAppSelector(
-    (state: any) => state.utilsData.taxonomyIds
-  );
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+
   const [activeChildGenderData, setActiveChildGenderData] =
     React.useState<any>();
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
-    
+
     setActiveChildGenderData(gender);
   }, [activeChild?.gender]);
   return (
