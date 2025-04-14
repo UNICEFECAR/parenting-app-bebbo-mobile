@@ -31,7 +31,7 @@ export const client =
 const commonApiService: CommonApiInterface = async (apiEndpoint: string, methodname: any, postdata: object) => {
   const storedata = store.getState();
 
-  const selectedCountry = storedata.selectedCountry?.countryId || '';
+  const selectedCountry = storedata.selectedCountry?.countrySelectedId || '';
   const selectedLang = storedata.selectedCountry.languageCode;
   const newurl = appConfig.finalUrl(apiEndpoint, selectedCountry, selectedLang)
   const responseData: any = {};

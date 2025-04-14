@@ -62,12 +62,12 @@ export const getAllPeriodicSyncData = (): any => {
     }
   ];
   const apiJsonDataSecondSync = [
-    {
-      apiEndpoint: appConfig.apiConfig.sponsors,
-      method: 'get',
-      postdata: {},
-      saveinDB: false,
-    },
+    // {
+    //   apiEndpoint: appConfig.apiConfig.sponsors,
+    //   method: 'get',
+    //   postdata: {},
+    //   saveinDB: false,
+    // },
     {
       apiEndpoint: appConfig.apiConfig.basicPages,
       method: 'get',
