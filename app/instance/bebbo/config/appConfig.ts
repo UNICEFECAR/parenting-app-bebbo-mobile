@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 
@@ -102,6 +103,10 @@ const config = {
     { name: 'parentingCorner', id: 4, image: 'ic_artl_parenting' },
     { name: 'nutritionAndBreastfeeding', id: 1, image: 'ic_artl_nutrition' },
   ],
+  reviewURL:Platform.select({
+    android: "https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo",
+    ios: "itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review",
+  }),
   bothParentGender: 60,
   bothChildGender: 59,
   girlChildGender: 41,
@@ -118,7 +123,7 @@ const config = {
     videoArticles: 'video-articles',
     dailyMessages: 'daily-homescreen-messages',
     basicPages: 'basic-pages',
-    sponsors: 'sponsors',
+    // sponsors: 'sponsors',
     taxonomies: 'taxonomies',
     standardDeviation: 'standard_deviation',
     milestones: 'milestones',
@@ -128,7 +133,7 @@ const config = {
     childGrowthData: 'child-growth-data',
     vaccinations: 'vaccinations',
     healthCheckupData: 'health-checkup-data',
-    pinnedContent: 'pinned-contents',
+    // pinnedContent: 'pinned-contents',
     checkUpdate: 'check-update',
     faqs: 'faqs',
     archive: 'archive',
@@ -157,8 +162,8 @@ const config = {
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
         return `${baseUrl}/${config.flavorName}`;
-      case config.apiConfig.sponsors:
-        return `${baseUrl}/${selectedCountry}`;
+      // case config.apiConfig.sponsors:
+      //   return `${baseUrl}/${selectedCountry}`;
       case config.apiConfig.taxonomies:
         return `${baseUrl}/${selectedLang}/all`;
       case config.apiConfig.checkUpdate:
@@ -169,7 +174,7 @@ const config = {
   },
   allApisObject: (isDatetimeReq: any, dateTimeObj: any): any => {
     const allApiObject = [
-      { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
+      // { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
       { apiEndpoint: config.apiConfig.articles, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.countryGroups, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.taxonomies, method: 'get', postdata: {}, saveinDB: true },

@@ -175,12 +175,12 @@ export default (): any => {
       postdata: {},
       saveinDB: true,
     },
-    {
-      apiEndpoint: appConfig.apiConfig.sponsors,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
+    // {
+    //   apiEndpoint: appConfig.apiConfig.sponsors,
+    //   method: 'get',
+    //   postdata: {},
+    //   saveinDB: true,
+    // },
     {
       apiEndpoint: appConfig.apiConfig.taxonomies,
       method: 'get',
