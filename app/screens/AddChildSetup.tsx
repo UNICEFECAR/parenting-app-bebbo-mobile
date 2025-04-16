@@ -1,5 +1,4 @@
-// import { regexpEmojiPresentation, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../instances";
+import { appConfig } from "../instance";
 import ChildDate from "@components/ChildDate";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
@@ -71,13 +70,13 @@ import {
   Heading2Centerw,
   Heading3BoldCenterrw,
   Heading4Centerrw,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import DocumentPicker, { isInProgress } from "react-native-document-picker";
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
-import { bgcolorWhite2, primaryColor } from "../instances/bebbo/styles/style";
+import { bgcolorWhite2, primaryColor } from "@styles/style";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
 import BackgroundColors from "@components/shared/BackgroundColors";
@@ -498,7 +497,6 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
         false,
         taxonomyIds?.boyChildGender
       );
-      // dispatch(setActiveChildData(childSet[0].uuid))
       const localnotiFlagObj = {
         generateFlag: true,
         generateType: "add",
@@ -507,15 +505,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
       await dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
       notiPermissionUtil();
       console.log("childAge is", childAge, childSet);
-      //const Ages = await getAge(childSet, childAge);
-      //console.log('childAge is Ageds',Ages)
       let apiJsonData;
-      // if (Ages?.length > 0) {
-      //   apiJsonData = apiJsonDataGet(String(Ages), "all")
-      // }
-      // else {
-      //   apiJsonData = apiJsonDataGet("all", "all")
-      // }
       apiJsonData = apiJsonDataGet("all", "all");
       console.log("child API json data is ", apiJsonData);
       navigation.reset({
@@ -527,7 +517,6 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
           },
         ],
       });
-      //addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
     } else {
       addChild(
         languageCode,

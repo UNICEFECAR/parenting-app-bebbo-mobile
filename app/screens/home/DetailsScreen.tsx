@@ -24,7 +24,7 @@ import {
   Heading3Regular,
   Heading6Bold,
   ShiftFromBottom5,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -72,13 +72,11 @@ import {
 import iframe from "@native-html/iframe-plugin";
 import RelatedVideoArticles from "@components/shared/RelatedVideoArticles";
 import { useIsFocused } from "@react-navigation/native";
-import {
-  bgcolorBlack2,
-  bgcolorWhite2,
-} from "../../instances/bebbo/styles/style";
+import { bgcolorBlack2, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { ViewDetailsEntity } from "../../database/schema/ArticleActivityViewSchema";
+import { appConfig } from "../../instance";
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -154,7 +152,6 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
 
   const [detailDataToUse, setDetailDataToUse] = useState<any>({});
-  console.log("-------->", detailDataToUse);
   const adviceval =
     fromScreen === "Activities" ||
     fromScreen === "FirebaseActivities" ||
@@ -720,7 +717,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   const setNewFilteredArticleData = (itemId: any): any => {
     navigation.navigate({
       name: fromScreen,
-      params: { categoryArray: itemId, backClicked: "no" },
+      params: { categoryArray: itemId, backClicked: "no",currentSelectedChildId },
       merge: true,
     });
   };
@@ -1028,6 +1025,9 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                     borderColor={newHeaderColor}
                     filterOnCategory={setNewFilteredArticleData}
                     fromPage={fromPage}
+                    isSelectedPregnancy={
+                      currentSelectedChildId == appConfig.pregnancyId
+                    }
                     filterArray={filterArray}
                     onFilterArrayChange={onFilterArrayChange}
                   />

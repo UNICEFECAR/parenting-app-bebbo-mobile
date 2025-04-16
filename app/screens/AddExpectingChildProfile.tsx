@@ -21,10 +21,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { formatStringDate, getLanguageCode } from "../services/Utils";
-import {
-  Heading2w,
-  ShiftFromTop10,
-} from "../instances/bebbo/styles/typography";
+import { Heading2w, ShiftFromTop10 } from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -50,17 +47,11 @@ import {
   HeaderTitleView,
 } from "@components/shared/HeaderContainerStyle";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-// import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../instances";
 import TextInputML from "@components/shared/TextInputML";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { setActiveChildData } from "../redux/reducers/childSlice";
-import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
-import {
-  ConfigSettingsEntity,
-  ConfigSettingsSchema,
-} from "../database/schema/ConfigSettingsSchema";
-import { bgcolorWhite } from "../instances/bebbo/styles/style";
+import { bgcolorWhite } from "@styles/style";
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -216,6 +207,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
 
     const childSet: Array<any> = [];
     childSet.push(insertData);
+    console.log(childSet);
     addChild(
       languageCode,
       editScreen,

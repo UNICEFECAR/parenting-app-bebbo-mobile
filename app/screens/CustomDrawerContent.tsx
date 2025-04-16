@@ -4,8 +4,7 @@ import {
   EMAIL_SENT,
   FEEDBACK_SUBMIT,
 } from "@assets/data/firebaseEvents";
-// import { buildFor, buildForBangla, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../instances";
+import { appConfig } from "../instance";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   BgDevelopment,
@@ -50,18 +49,14 @@ import {
 import analytics from "@react-native-firebase/analytics";
 import { useDrawerStatus } from "@react-navigation/drawer";
 import { useFocusEffect } from "@react-navigation/native";
-import {
-  bgcolorWhite2,
-  lightShadeColor,
-  secondaryColor,
-} from "../instances/bebbo/styles/style";
+import { bgcolorWhite2, lightShadeColor, secondaryColor } from "@styles/style";
 import {
   Heading1Centerr,
   Heading3,
   Heading4,
   Heading4Center,
   Heading5,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { CHILDREN_PATH } from "@types/types";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useState } from "react";
@@ -211,7 +206,6 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   }, []);
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
-    console.log("Activechild gender is", gender);
     setActiveChildGenderData(gender);
   }, [activeChild?.gender]);
   useFocusEffect(
@@ -738,35 +732,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               </DrawerLinkView>
               <DrawerLinkView
                 onPress={(): any => {
-                  if (Platform.OS === "android") {
-                    if (String(appConfig.buildFor) == "bebbo") {
-                      Linking.openURL(
-                        "https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo"
-                      );
-                    } else if (String(appConfig.buildFor) == "babuni") {
-                      Linking.openURL(
-                        "https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni"
-                      );
-                    } else {
-                      Linking.openURL(
-                        "https://play.google.com/store/apps/details?id=org.unicef.kosovo.foleja"
-                      );
-                    }
-                  } else {
-                    if (String(appConfig.buildFor) == "bebbo") {
-                      Linking.openURL(
-                        "itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review"
-                      );
-                    } else if (String(appConfig.buildFor) == "babuni") {
-                      Linking.openURL(
-                        "itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review"
-                      );
-                    } else {
-                      Linking.openURL(
-                        "itms://itunes.apple.com/xk/app/apple-store/id1607980150?action=write-review"
-                      );
-                    }
-                  }
+                  console.log(appConfig.reviewURL);
+                  Linking.openURL(appConfig.reviewURL);
                 }}
               >
                 <OuterIconRow>

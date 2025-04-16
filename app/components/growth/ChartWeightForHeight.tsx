@@ -1,5 +1,5 @@
 // import { boyChildGender, girlChildGender, heightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../../instances";
+import { appConfig } from "../../instance";
 import {
   FlexCol,
   FlexColChart,
@@ -12,7 +12,7 @@ import {
   Heading3Regular,
   Heading4,
   ShiftFromTopBottom15,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -26,7 +26,7 @@ import { useAppSelector } from "../../../App";
 import { formatHeightData } from "../../services/growthService";
 import { getInterpretationWeightForHeight } from "../../services/interpretationService";
 import GrowthChart, { chartTypes } from "./GrowthChart";
-import { standardDevDataForChart } from "../../instances/index";
+import { standardDevDataForChart } from "../../instance/index";
 export const standardDevDataLoad = standardDevDataForChart;
 
 const LANDSCAPE = "landscape";
@@ -75,7 +75,7 @@ const ChartWeightForHeight = (props: any): any => {
   //console.log(standardDevData,"..standardDevData..")
   let obj: any;
   let standardDeviation: any;
-  if (taxonomyIds?.boyChildGender == BOYGENDER || activeChild?.gender == "") {
+  if (taxonomyIds?.boyChildGender == "boy" || activeChild?.gender == "") {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
       (item: any) =>
@@ -84,7 +84,7 @@ const ChartWeightForHeight = (props: any): any => {
         item.child_gender == appConfig.boyChildGender
     );
     standardDeviation = genderBoyData;
-    obj = formatHeightData(genderBoyData, WEIGHT);
+    obj = formatHeightData(genderBoyData, "weight");
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
@@ -94,7 +94,7 @@ const ChartWeightForHeight = (props: any): any => {
         item.child_gender == appConfig.girlChildGender
     );
     standardDeviation = genderGirlData;
-    obj = formatHeightData(genderGirlData, WEIGHT);
+    obj = formatHeightData(genderGirlData, "weight");
   }
   const childTaxonomyData = activeChild.taxonomyData;
   const sortedMeasurements = activeChild.measures
@@ -117,19 +117,19 @@ const ChartWeightForHeight = (props: any): any => {
       }, 2000);
     }, [])
   );
-  const windowWidth = Dimensions.get(WINDOW).width;
-  const windowHeight = Dimensions.get(WINDOW).height;
+  const windowWidth = Dimensions.get("window").width;
+  const windowHeight = Dimensions.get("window").height;
   const [deviceOrientation, setDeviceOrientation] = useState(
-    Dimensions.get(WINDOW).width < Dimensions.get(WINDOW).height
-      ? PORTRAIT
-      : LANDSCAPE
+    Dimensions.get("window").width < Dimensions.get("window").height
+      ? "portrait"
+      : "landscape"
   );
   useEffect(() => {
     const deviceOrientation = (): any => {
-      if (Dimensions.get(WINDOW).width < Dimensions.get(WINDOW).height) {
-        setDeviceOrientation(PORTRAIT);
+      if (Dimensions.get("window").width < Dimensions.get("window").height) {
+        setDeviceOrientation("portrait");
       } else {
-        setDeviceOrientation(LANDSCAPE);
+        setDeviceOrientation("landscape");
       }
     };
     const listenerEvent = Dimensions.addEventListener(
@@ -157,7 +157,7 @@ const ChartWeightForHeight = (props: any): any => {
       </FlexCol>
 
       <FlexCol>
-        {isChartVisible && deviceOrientation == PORTRAIT ? (
+        {isChartVisible && deviceOrientation == "portrait" ? (
           <GrowthChart
             activeChild={activeChild}
             chartType={chartTypes.WeightForHeight}

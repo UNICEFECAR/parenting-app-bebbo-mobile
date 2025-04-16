@@ -1,5 +1,4 @@
-// import { regexpEmojiPresentation, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../instances";
+import { appConfig } from "../instance";
 import ChildDate from "@components/ChildDate";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
@@ -68,13 +67,13 @@ import {
   ShiftFromTop25,
   Heading2Centerw,
   Heading3BoldCenterrw,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import DocumentPicker, { isInProgress } from "react-native-document-picker";
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
-import { bgcolorWhite2 } from "../instances/bebbo/styles/style";
+import { bgcolorWhite2 } from "@styles/style";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
 import { logEvent } from "../services/EventSyncService";
@@ -476,23 +475,12 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
         childAge,
         false
       );
-      // dispatch(setActiveChildData(childSet[0].uuid))
       const localnotiFlagObj = {
         generateFlag: true,
         generateType: "add",
         childuuid: "all",
       };
       await dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-      // console.log('childAge is',childAge,childSet)
-      // const Ages = await getAge(childSet, childAge);
-      // console.log('childAge is Ageds',Ages)
-      // let apiJsonData;
-      // if (Ages?.length > 0) {
-      //   apiJsonData = apiJsonDataGet(String(Ages), "all")
-      // }
-      // else {
-      //   apiJsonData = apiJsonDataGet("all", "all")
-      // }
       const apiJsonData = apiJsonDataGet("all");
       console.log("child API json data is ", apiJsonData);
       navigation.reset({
@@ -504,7 +492,6 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
           },
         ],
       });
-      //addChild(languageCode, false, 0, childSet, dispatch, navigation, childAge, relationship, userRelationToParent, netInfo);
     } else {
       addChild(
         languageCode,

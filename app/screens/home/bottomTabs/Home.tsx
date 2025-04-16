@@ -1,5 +1,5 @@
 import { SURVEY_SUBMIT } from "@assets/data/firebaseEvents";
-import { appConfig } from "../../../instances";
+import { appConfig } from "../../../instance";
 import { getDataToStore } from "@assets/translations/appOfflineData/getDataToStore";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import AdviceAndArticles from "@components/homeScreen/AdviceAndArticles";
@@ -23,11 +23,7 @@ import {
   HomeSurveyBox,
   OfflineBar,
 } from "@components/shared/HomeScreenStyle";
-import Icon, {
-  IconClearPress,
-  OuterIconLeft,
-  OuterIconRow,
-} from "@components/shared/Icon";
+import Icon, { OuterIconLeft, OuterIconRow } from "@components/shared/Icon";
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -35,7 +31,7 @@ import ModalPopupContainer, {
   PopupOverlay,
 } from "@components/shared/ModalPopupStyle";
 import TabScreenHeader from "@components/TabScreenHeader";
-import { articledata, VideoArticleData } from "../../../instances";
+import { articledata, VideoArticleData } from "../../../instance";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {
@@ -47,11 +43,10 @@ import {
   ShiftFromTop25,
   ShiftFromTopBottom10,
   SideSpacing25,
-} from "../../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { useFocusEffect } from "@react-navigation/native";
-import { InteractionManager, Pressable, View } from "react-native";
+import { InteractionManager } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -78,7 +73,12 @@ import {
   setuserIsOnboarded,
 } from "../../../redux/reducers/utilsSlice";
 import { fetchAPI } from "../../../redux/sagaMiddleware/sagaActions";
-import { apiJsonDataGet } from "../../../services/childCRUD";
+import {
+  apiJsonDataGet,
+  getAllChildren,
+  getAllConfigData,
+  setActiveChild,
+} from "../../../services/childCRUD";
 import commonApiService from "../../../services/commonApiService";
 import { getAllPeriodicSyncData } from "../../../services/periodicSync";
 import { addSpaceToHtml, getLanguageCode } from "../../../services/Utils";
@@ -88,7 +88,7 @@ import {
   ArticleEntitySchema,
 } from "../../../database/schema/ArticleSchema";
 import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
-import { bgcolorWhite2 } from "../../../instances/bebbo/styles/style";
+import { bgcolorWhite2 } from "@styles/style";
 import { ToastAndroidLocal } from "../../../android/sharedAndroid.android";
 import {
   logEvent,
@@ -104,6 +104,18 @@ const styles = StyleSheet.create({
   },
   scrollView: { backgroundColor: bgcolorWhite2, flex: 5 },
 });
+import {
+  selectLocale,
+  selectTaxonomyIds,
+  selectUserIsOnboarded,
+  selectErrorObj,
+  selectShowDownloadPopup,
+  selectLanguageCode,
+  selectSurveyItem,
+  selectIncrementalSyncDT,
+  selectBufferAgeBracket,
+  selectActiveChild,
+} from "../../../services/selectors";
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -114,42 +126,39 @@ const Home = ({ route, navigation }: any): any => {
   const [show, setShow] = useState(false);
   const [date2, setdate2] = useState<Date | null>(null);
   const [show2, setShow2] = useState(false);
-  const locale = useAppSelector((state: any) =>
-    getLanguageCode(state.selectedCountry?.languageCode)
-  );
+
+  // const childAge = useAppSelector((state: any) =>
+  //   state.utilsData.taxonomy.allTaxonomyData != ""
+  //     ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+  //     : []
+  // );
+  // const allCountries = useAppSelector((state: any) => {
+  //   try {
+  //     return state.selectedCountry?.countries !== ""
+  //       ? JSON.parse(state.selectedCountry?.countries)
+  //       : [];
+  //   } catch (error) {
+  //     console.error("Failed to parse countries JSON:", error);
+  //     return [];
+  //   }
+  // });
+  const dispatch = useAppDispatch();
+
+  const locale = useAppSelector(selectLocale);
+  const taxonomyIds = useAppSelector(selectTaxonomyIds);
+  const userIsOnboarded = useAppSelector(selectUserIsOnboarded);
+  const errorObj = useAppSelector(selectErrorObj);
+  const showDownloadPopup = useAppSelector(selectShowDownloadPopup);
+  const languageCode = useAppSelector(selectLanguageCode);
+  const surveyItem = useAppSelector(selectSurveyItem);
+  const incrementalSyncDT = useAppSelector(selectIncrementalSyncDT);
+  const bufferAgeBracket = useAppSelector(selectBufferAgeBracket);
+  const activeChild = useAppSelector(selectActiveChild);
 
   const backgroundColorChildInfo =
     themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
 
-  const dispatch = useAppDispatch();
-
-  const userIsOnboarded = useAppSelector(
-    (state: any) => state.utilsData.userIsOnboarded
-  );
-  const errorObj = useAppSelector(
-    (state: any) => state.failedOnloadApiObjReducer.errorObj
-  );
-  const showDownloadPopup = useAppSelector(
-    (state: any) => state.utilsData.showDownloadPopup
-  );
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode
-  );
   const netInfo = useNetInfoHook();
-  const isFoucused = useIsFocused();
-  const surveyItem = useAppSelector((state: any) =>
-    state.utilsData.surveryData != ""
-      ? JSON.parse(state.utilsData.surveryData)?.find(
-          (item: any) => item.type == "survey"
-        )
-      : state.utilsData.surveryData
-  );
-  const incrementalSyncDT = useAppSelector(
-    (state: any) => state.utilsData.incrementalSyncDT
-  );
-  const bufferAgeBracket = useAppSelector(
-    (state: any) => state.childData.childDataSet.bufferAgeBracket
-  );
   let currentCount = 0;
   const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
@@ -199,11 +208,6 @@ const Home = ({ route, navigation }: any): any => {
   }, []);
   const [profileLoading, setProfileLoading] = React.useState(false);
 
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
   const forceUpdateApis = (forceupdatetime: any): any => {
     navigation.navigate("LoadingScreen", {
       apiJsonData: appConfig.allApisObject(true, incrementalSyncDT),
@@ -229,6 +233,12 @@ const Home = ({ route, navigation }: any): any => {
       });
     }
   };
+  // useEffect(() => {
+  //   const start = Date.now();
+  //   return () => {
+  //     console.log(`${"Home"} mounted in ${Date.now() - start}ms`);
+  //   };
+  // }, []);
 
   const onNoForceUpdate = (): any => {
     if (
@@ -297,6 +307,18 @@ const Home = ({ route, navigation }: any): any => {
   const relbebboprod = "1.1.5";
   const relfolejadev = "0.2.0";
   const relfolejaprod = "1.1.0";
+  useEffect(() => {
+    // setActiveChild(
+    //   languageCode,
+    //   activeChild.uuid,
+    //   dispatch,
+    //   childAge,
+    //   true,
+    //   taxonomyIds?.boyChildGender
+    // );
+    // getAllChildren(dispatch, childAge, 0);
+    // getAllConfigData(dispatch);
+  }, []);
 
   useLayoutEffect(
     React.useCallback(() => {

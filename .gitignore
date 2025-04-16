@@ -25,7 +25,6 @@ ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks
 ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcuserdata*
 ios/ParentBuddyApp.xcodeproj/xcuserdata*
 ios/GoogleServices/**/GoogleService-Info*.plist
-ios/**-Info.plist
 
 # Environment files
 .env*

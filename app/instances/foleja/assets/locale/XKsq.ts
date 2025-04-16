@@ -11,7 +11,7 @@ const XKsq = {
                 country: "Shteti",
                 language: "Gjuha",
                 walkthroughTextstitle0: "Mirë se erdhët Prindër!",
-                walkthroughTextssubtitle0: "Zbuloni aplikacionin Foleja, gjithçka që ju nevojitet si prindër për ta mbështetur zhvillimin e fëmijës tuaj",
+                walkthroughTextssubtitle0: "Eksploroni aplikacionin Foleja, gjithçka që ju nevojitet si prindër për ta mbështetur zhvillimin e fëmijës tuaj",
                 walkthroughTextstitle1: "Lojëra",
                 walkthroughTextssubtitle1: "për ta ndihmuar fëmijën tuaj që të mësojë gjëra të reja çdo ditë",
                 walkthroughTextstitle2: "Mjete",

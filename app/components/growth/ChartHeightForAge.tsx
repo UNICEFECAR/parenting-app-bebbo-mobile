@@ -1,4 +1,4 @@
-import { appConfig } from "../../instances";
+import { appConfig } from "../../instance";
 import {
   FlexCol,
   FlexColChart,
@@ -11,7 +11,7 @@ import {
   Heading3Regular,
   Heading4,
   ShiftFromTopBottom15,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -25,7 +25,7 @@ import { useAppSelector } from "../../../App";
 import { formatHeightData } from "../../services/growthService";
 import { getInterpretationHeightForAge } from "../../services/interpretationService";
 import GrowthChart, { chartTypes } from "./GrowthChart";
-import { standardDevDataForChart } from "../../instances/index";
+import { standardDevDataForChart } from "../../instance/index";
 export const standardDevDataLoad = standardDevDataForChart;
 const styles = StyleSheet.create({
   fullScreenPressable: {
