@@ -1,7 +1,8 @@
 import { Platform } from 'react-native';
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
-
+import { store} from "../../../../App";
+import { Platform } from 'react-native';
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'wawamor',
@@ -113,6 +114,9 @@ const config = {
   girlChildGender: 661,
   weightForHeight: 736,
   heightForAge: 731,
+  pregnancyId:166191,
+  languageCode:"en",
+  searchMinimumLength:3,
   today: new Date(),
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
@@ -158,7 +162,6 @@ const config = {
     selectedLang: string
   ): string => {
     const baseUrl = `${apiUrlDevelop}/${apiEndpoint}`;
-    
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
         return `${baseUrl}/${config.flavorName}`;

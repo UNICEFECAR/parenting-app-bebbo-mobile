@@ -221,7 +221,6 @@ export const getAllHealthCheckupPeriods = (): any => {
     });
   }
 
-  console.log('====', allHealthCheckupsDataNew)
   allHealthCheckupsDataNew = Array.isArray(allHealthCheckupsDataNew) ? allHealthCheckupsDataNew : [allHealthCheckupsDataNew];
   const sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures]?.sort(
     (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ? 1 : -1,

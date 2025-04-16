@@ -10,7 +10,6 @@ import { store } from '../../App';
 import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
 import { localization, AVAILABLE_LANGUAGES } from '../instance/index';
 
-console.log("AVAILABLE_LANGUAGES--", AVAILABLE_LANGUAGES);
 const localisationnew = [...localization];
 const findAllByKey: any = (obj: object | null, keyToFind: string) => {
   if (obj) {

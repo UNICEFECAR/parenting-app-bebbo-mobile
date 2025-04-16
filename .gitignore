@@ -24,8 +24,6 @@ ios/Pods/
 ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 ios/ParentBuddyApp.xcodeproj/xcuserdata/*.xcuserdatad/xcschemes/xcschememanagement.plist
 ios/GoogleServices/**/GoogleService-Info*.plist
-ios/**/Info.plist
-ios/**-Info.plist
 
 # Environment files
 .env*

@@ -4,7 +4,6 @@ import {
   EMAIL_SENT,
   FEEDBACK_SUBMIT,
 } from "@assets/data/firebaseEvents";
-// import { buildFor, buildForBangla, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../instance";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
@@ -207,7 +206,6 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   }, []);
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
-    console.log("Activechild gender is", gender);
     setActiveChildGenderData(gender);
   }, [activeChild?.gender]);
   useFocusEffect(

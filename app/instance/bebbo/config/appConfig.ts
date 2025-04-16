@@ -1,7 +1,9 @@
 import { Platform } from 'react-native';
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
-
+import { store} from "../../../../App";
+import { isPregnancy } from '../../../services/Utils';
+import { Platform } from 'react-native'; 
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'bebbo',
@@ -9,7 +11,7 @@ const config = {
   maxRelatedArticleSize: 3,
   isArticlePinned: '1',
   articleCategory: '4,1,55,56,3,2',
-  articleCategoryIdArray: [4, 1, 55, 56, 3, 2],
+  articleCategoryIdArray: [4, 1, 55, 56, 3, 2,166186,166791,166796,166801,166806,166811],
   articleCategoryArray: [
     'health_and_wellbeing',
     'nutrition_and_breastfeeding',
@@ -17,6 +19,12 @@ const config = {
     'play_and_learning',
     'responsive_parenting',
     'safety_and_protection',
+    "week_by_week",
+    "staying_healthy",
+    "preparing_for_a_baby",
+    "support_during_pregnancy",
+    "labour_and_birth",
+    "pregnancy_complications"
   ],
   activityCategoryArray: [
     'socio_emotional',
@@ -82,6 +90,12 @@ const config = {
     { name: 'responsiveParenting', id: 'responsive_parenting', image: 'ic_artl_responsive' },
     { name: 'parentingCorner', id: 'parenting_corner', image: 'ic_artl_parenting' },
     { name: 'nutritionAndBreastfeeding', id: 'nutrition_and_breastfeeding', image: 'ic_artl_nutrition' },
+    { name: 'weekByWeek', id: 'week_by_week', image: 'ic_art_week_by_week' },
+    { name: 'stayingHealthy', id: 'staying_healthy', image: 'ic_art_staying_healthy' },
+    { name: 'preparingForBaby', id: 'preparing_for_a_baby', image: 'ic_art_preparing_for_baby' },
+    { name: 'supportDuringPregnancy', id: 'support_during_pregnancy', image: 'ic_art_support_pregnancy' },
+    { name: 'labourAndBirth', id: 'labour_and_birth', image: 'ic_art_labour_birth' },
+    { name: 'pregnancyComplication', id: 'pregnancy_complications', image: 'ic_art_complications' },
   ],
   activityCategoryUniqueNameObj: [
     { name: 'Socio-emotional', id: 'socio_emotional', image: 'ic_act_emotional' },
@@ -103,6 +117,14 @@ const config = {
     { name: 'parentingCorner', id: 4, image: 'ic_artl_parenting' },
     { name: 'nutritionAndBreastfeeding', id: 1, image: 'ic_artl_nutrition' },
   ],
+  articleCategoryobjPregnancy: [
+    { name: 'weekByWeek', id: 166186, image: 'ic_art_week_by_week' },
+    { name: 'stayingHealthy', id: 166791, image: 'ic_art_staying_healthy' },
+    { name: 'preparingForBaby', id: 166796, image: 'ic_art_preparing_for_baby' },
+    { name: 'supportDuringPregnancy', id: 166801, image: 'ic_art_support_pregnancy' },
+    { name: 'labourAndBirth', id: 166806, image: 'ic_art_labour_birth' },
+    { name: 'pregnancyComplication', id: 166811, image: 'ic_art_complications' },
+  ],
   reviewURL:Platform.select({
     android: "https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo",
     ios: "itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review",
@@ -113,6 +135,10 @@ const config = {
   boyChildGender: 40,
   weightForHeight: 32786,
   heightForAge: 6461,
+  pregnancyId:166191,
+  weekByWeekId:166186,
+  languageCode:"en",
+  searchMinimumLength:3,
   today: new Date(),
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
@@ -123,7 +149,6 @@ const config = {
     videoArticles: 'video-articles',
     dailyMessages: 'daily-homescreen-messages',
     basicPages: 'basic-pages',
-    // sponsors: 'sponsors',
     taxonomies: 'taxonomies',
     standardDeviation: 'standard_deviation',
     milestones: 'milestones',
@@ -133,7 +158,6 @@ const config = {
     childGrowthData: 'child-growth-data',
     vaccinations: 'vaccinations',
     healthCheckupData: 'health-checkup-data',
-    // pinnedContent: 'pinned-contents',
     checkUpdate: 'check-update',
     faqs: 'faqs',
     archive: 'archive',
@@ -158,14 +182,17 @@ const config = {
     selectedLang: string
   ): string => {
     const baseUrl = `${apiUrlDevelop}/${apiEndpoint}`;
-
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
         return `${baseUrl}/${config.flavorName}`;
-      // case config.apiConfig.sponsors:
-      //   return `${baseUrl}/${selectedCountry}`;
       case config.apiConfig.taxonomies:
-        return `${baseUrl}/${selectedLang}/all`;
+        return `${baseUrl}/${selectedLang}/all${isPregnancy() ? "?pregnancy=true" : ""}`;
+      case config.apiConfig.articles:
+        console.log(`${baseUrl}/${selectedLang}${isPregnancy() ? "?pregnancy=true" : ""}`)
+        return `${baseUrl}/${selectedLang}${isPregnancy() ? "?pregnancy=true" : ""}`;
+      case config.apiConfig.videoArticles:
+        console.log(`${baseUrl}/${selectedLang}${isPregnancy() ? "?pregnancy=true" : ""}`)
+        return `${baseUrl}/${selectedLang}${isPregnancy() ? "?pregnancy=true" : ""}`;
       case config.apiConfig.checkUpdate:
         return `${baseUrl}/${selectedCountry}`;
       default:
@@ -174,7 +201,6 @@ const config = {
   },
   allApisObject: (isDatetimeReq: any, dateTimeObj: any): any => {
     const allApiObject = [
-      // { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
       { apiEndpoint: config.apiConfig.articles, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.countryGroups, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.taxonomies, method: 'get', postdata: {}, saveinDB: true },

@@ -17,7 +17,7 @@ const localization = [
         "displayName": "Español",
         "languageCode": "ec-es",
         "locale": "ESec",
-        "luxonLocale": "ec-es",
+        "luxonLocale": "ec-ES",
         "pluralShow": true
       }
     ],
