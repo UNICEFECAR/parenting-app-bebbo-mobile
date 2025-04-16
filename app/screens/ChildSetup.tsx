@@ -1,5 +1,4 @@
-import { appConfig } from "../instances";
-import ChildDate from "@components/ChildDate";
+import { appConfig } from "../instance";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
@@ -10,16 +9,13 @@ import {
   ChildCenterView,
   ChildRelationList,
   ChildSetupDivider,
-  ChildTabView,
   FormContainer1,
   FormDateAction,
   FormDateText,
   FormInputBox,
   FormInputGroup,
   LabelText,
-  OrDivider,
   OrHeadingView,
-  OrView,
   ParentSetUpDivider,
 } from "@components/shared/ChildSetupStyle";
 import Icon from "@components/shared/Icon";
@@ -36,7 +32,6 @@ import ToggleRadios from "@components/ToggleRadios";
 import { RootStackParamList } from "@navigation/types";
 import { CommonActions, useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { dobMax } from "@types/types";
 import React, { createRef, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -57,27 +52,21 @@ import {
   ChildEntitySchema,
 } from "../database/schema/ChildDataSchema";
 import { backup } from "../services/backup";
-import { addChild, getNewChild, isFutureDate } from "../services/childCRUD";
-import { validateForm, validateParentsForm } from "../services/Utils";
+import { addChild, getNewChild } from "../services/childCRUD";
+import { validateParentsForm } from "../services/Utils";
 import {
   Heading1Centerw,
   Heading3,
-  Heading4Regularw,
   ShiftFromTop20,
-  SideSpacing25,
-  Heading3Centerw,
-  Heading2w,
   Heading1,
   Heading4Regular,
   ShiftFromTopBottom5,
   Heading3w,
   ShiftFromTop50,
-  Heading3Centerrw,
   Heading3BoldCenterrw,
-  ShiftFromTop40,
   ShiftFromTop25,
   Heading4Centerrw,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import AlertModal from "@components/AlertModal";
 import { BannerContainer } from "@components/shared/Container";
 import {
@@ -91,7 +80,7 @@ import DocumentPicker, { isInProgress } from "react-native-document-picker";
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
-import { bgcolorWhite2, primaryColor } from "../instances/bebbo/styles/style";
+import { bgcolorWhite2 } from "@styles/style";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
 
@@ -126,7 +115,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   importTextStyle: {
-    fontWeight: 700,
+    fontWeight: "700",
   },
   uploadTextStyle: {
     color: "#1CABE2",

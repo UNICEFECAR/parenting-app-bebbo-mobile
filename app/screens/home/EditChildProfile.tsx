@@ -1,4 +1,4 @@
-import { appConfig } from "../../instances";
+import { appConfig } from "../../instance";
 import ChildDate from "@components/ChildDate";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { ArticleHeading } from "@components/shared/ArticlesStyle";
@@ -39,7 +39,7 @@ import {
   ShiftFromTop10,
   ShiftFromTop15,
   ShiftFromTop20,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { CHILDREN_PATH } from "@types/types";
 import React, { createRef, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -80,16 +80,16 @@ import {
   bgcolorWhite,
   childProfileBgColor,
   secondaryBtnColor,
-} from "../../instances/bebbo/styles/style";
+} from "@styles/style";
 import Checkbox, {
   CheckboxActive,
   CheckboxItem,
 } from "@components/shared/CheckboxStyle";
 import VectorImage from "react-native-vector-image";
-import { cameraProfileImage } from "../../instances";
+import { cameraProfileImage } from "../../instance";
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-
+const dobMax = new Date(new Date().setHours(23, 59, 59, 999));
 type Props = {
   route: any;
   navigation: NotificationsNavigationProp;
@@ -263,12 +263,18 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
             (item: any) => item.unique_name === taxonomyIds?.girlChildGender
           )
         );
+        gender == 0 &&
+          isExpected &&
+          setGender(
+            genders.find(
+              (item: any) => item.unique_name === taxonomyIds?.girlChildGender
+            ).id
+          );
       } else {
         setDefaultGenderValue(
           genders.find((item: any) => item.id === childData?.gender)
         );
       }
-      console.log(taxonomyIds, "--------------------", all);
     }, [])
   );
 
@@ -592,13 +598,13 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                 <ChildDate
                   sendData={sendData}
                   childData={childData}
-                  dobMax={new Date()}
+                  dobMax={dobMax}
                 />
               ) : (
                 <ChildDate
                   sendData={sendData}
                   childData={childData}
-                  dobMax={new Date()}
+                  dobMax={dobMax}
                   prevScreen="EditScreen"
                 />
               )}

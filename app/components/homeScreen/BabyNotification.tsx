@@ -10,7 +10,7 @@ import {
 import Icon, { OuterIconLeft, OuterIconRow } from "@components/shared/Icon";
 import { ImageIcon } from "@components/shared/Image";
 import { useNavigation } from "@react-navigation/native";
-import { Heading3, Heading5 } from "../../instances/bebbo/styles/typography";
+import { Heading3, Heading5 } from "@styles/typography";
 import { CHILDREN_PATH } from "@types/types";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -25,36 +25,32 @@ const styles = StyleSheet.create({
 });
 import { DateTime } from "luxon";
 import useDigitConverter from "../../customHooks/useDigitConvert";
+import {
+  selectActiveChild,
+  selectPluralShow,
+  selectTaxonomyIds,
+} from "../../services/selectors";
 const BabyNotification = (): any => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
+  const activeChild = useAppSelector(selectActiveChild);
+  const pluralShow = useAppSelector(selectPluralShow);
+  const taxonomyIds = useAppSelector(selectTaxonomyIds);
+  const genders = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
       : []
-  );
-  const pluralShow = useAppSelector(
-    (state: any) => state.selectedCountry.pluralShow
   );
   const isFutureDate = (date: Date): any => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
-  const taxonomyIds = useAppSelector(
-    (state: any) => state.utilsData.taxonomyIds
-  );
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
   const [activeChildGenderData, setActiveChildGenderData] =
     React.useState<any>();
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
-    console.log("Activechild gender is", gender);
     setActiveChildGenderData(gender);
   }, [activeChild?.gender]);
   return (
@@ -135,25 +131,26 @@ const BabyNotification = (): any => {
               <TouchableHighlight
                 underlayColor="transparent"
                 onPress={(): any => {
-                  if (isFutureDate(activeChild.birthDate)) {
-                    navigation.navigate("AddExpectingChildProfile", {
-                      childData:
-                        activeChild != null &&
-                        activeChild != "" &&
-                        activeChild != undefined
-                          ? activeChild
-                          : null,
-                    });
-                  } else {
-                    navigation.navigate("EditChildProfile", {
-                      childData:
-                        activeChild != null &&
-                        activeChild != "" &&
-                        activeChild != undefined
-                          ? activeChild
-                          : null,
-                    });
-                  }
+                  // if (isFutureDate(activeChild.birthDate)) {
+                  //   navigation.navigate('AddExpectingChildProfile', {
+                  //     childData:
+                  //       activeChild != null &&
+                  //         activeChild != '' &&
+                  //         activeChild != undefined
+                  //         ? activeChild
+                  //         : null,
+                  //   })
+                  // }
+                  // else {
+                  navigation.navigate("EditChildProfile", {
+                    childData:
+                      activeChild != null &&
+                      activeChild != "" &&
+                      activeChild != undefined
+                        ? activeChild
+                        : null,
+                  });
+                  // }
                 }}
               >
                 <Flex1 style={styles.padding10}>

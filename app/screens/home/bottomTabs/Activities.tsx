@@ -30,7 +30,7 @@ import {
   ShiftFromTop5,
   ShiftFromTopBottom5,
   SideSpacing10,
-} from "../../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -72,12 +72,8 @@ import {
   ChildEntitySchema,
 } from "../../../database/schema/ChildDataSchema";
 import FastImage from "react-native-fast-image";
-import { randomArrayShuffle } from "../../../services/Utils";
-import {
-  activitiesTintcolor,
-  bgcolorWhite2,
-  greyCode,
-} from "../../../instances/bebbo/styles/style";
+import { isPregnancy, randomArrayShuffle } from "../../../services/Utils";
+import { activitiesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import {
   logEvent,
@@ -88,6 +84,7 @@ import MiniSearch from "minisearch";
 import { ActivityHistoryEntity } from "../../../database/schema/ActivitySearchHistorySchema";
 import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
+import { appConfig } from "../../../instance";
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -763,7 +760,15 @@ const Activities = ({ route, navigation }: any): any => {
       try {
         const processedActivities = preprocessActivities(ActivitiesData);
         const searchActivittiesData = new MiniSearch({
-          processTerm: (term) => suffixes(term, 3),
+          processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
+          // tokenize: (text) => {
+          //   const words = text.toLowerCase().split(/\s+/);
+          //   const ngrams = [];
+          //   for (let i = 0; i < words.length - 1; i++) {
+          //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
+          //   }
+          //   return [...words, ...ngrams]; // Return both single words and bigrams
+          // },
           extractField: (document, fieldName): any => {
             const arrFields = fieldName.split(".");
             if (arrFields.length === 2) {
@@ -841,9 +846,6 @@ const Activities = ({ route, navigation }: any): any => {
     setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 0));
     Keyboard.dismiss();
-    let artData: any;
-    let combineDartArr: [];
-    let newvideoArticleData;
     if (queryText != "" && queryText != undefined && queryText != null) {
       const keywords = queryText
         .trim()
@@ -851,12 +853,13 @@ const Activities = ({ route, navigation }: any): any => {
         .split(" ")
         .filter((word: any) => word.trim() !== "");
       if (keywords.length > 1) {
-        const resultsPromises = keywords.map(async (keyword: any) => {
-          const results = searchIndex.search(keyword);
-          return results;
-        });
-        const resultsArrays = await Promise.all(resultsPromises);
-        const aggregatedResults = resultsArrays.flat();
+        // const resultsPromises = keywords.map(async (keyword: any) => {
+        //   const results = searchIndex.search(keyword);
+        //   return results;
+        // });
+        // const resultsArrays = await Promise.all(resultsPromises);
+        const results = searchIndex.search(queryText);
+        const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = aggregatedResults.filter((x: any) =>
@@ -1040,6 +1043,7 @@ const Activities = ({ route, navigation }: any): any => {
                 </SearchBox>
                 <DividerAct></DividerAct>
                 <AgeBrackets
+                  isActivity
                   itemColor={headerColorBlack}
                   activatedItemColor={headerColor}
                   currentSelectedChildId={currentSelectedChildId}

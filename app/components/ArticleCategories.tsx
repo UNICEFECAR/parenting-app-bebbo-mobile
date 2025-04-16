@@ -1,5 +1,5 @@
 // import { articleCategoryobj } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../instances";
+import { appConfig } from "../instance";
 import { ArticleCategoriesProps } from "@screens/home/bottomTabs/Articles";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
@@ -8,7 +8,7 @@ import { ArticleFilter, FilterBox, FilterText } from "./shared/FilterStyle";
 import { FlexDirRow } from "./shared/FlexBoxStyle";
 import Icon, { OuterIconLeft, OuterIconRow } from "./shared/Icon";
 import { ADVICE_CATEGORY_SELECTED } from "@assets/data/firebaseEvents";
-import { articleColor, bgcolorWhite2 } from "../instances/bebbo/styles/style";
+import { articleColor, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
 const styles = StyleSheet.create({
@@ -30,6 +30,7 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category
   );
+
   const getFilterArray = (itemId: any, filterArray: any[]): any => {
     if (!filterArray.includes(itemId)) {
       filterArray.push(itemId);
@@ -45,7 +46,13 @@ const ArticleCategories = (props: ArticleCategoriesProps): any => {
     Array.from({ length: Math.ceil(arr.length / size) }, (v: any, i: any) =>
       arr.slice(i * size, i * size + size)
     );
-  const articleBrackets = chunk(appConfig.articleCategoryobj, 2);
+  const articleBrackets = chunk(
+    props?.isSelectedPregnancy
+      ? appConfig.articleCategoryobjPregnancy
+      : appConfig.articleCategoryobj,
+    2
+  );
+
   return (
     <>
       <ArticleFilter key={props.filterArray.length}>

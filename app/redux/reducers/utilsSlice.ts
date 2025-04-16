@@ -252,7 +252,6 @@ export const utilsSlice = createSlice({
     },
     setTaxonomyIds: (state,
       action: PayloadAction<any>,): any => {
-      console.log('action taxonomy ids payload is....', action.payload)
       action.payload?.relationship_to_parent?.map((x: any) => {
         if (x.unique_name == appConfig.relationshipUniqueName.relationShipMotherId) {
           state.taxonomyIds.relationShipMotherId = x.unique_name;
@@ -282,6 +281,7 @@ export const utilsSlice = createSlice({
           state.taxonomyIds.femaleData = x;
         }
       })
+      
       // Create a lookup object
       const categoryLookup = action.payload?.category?.reduce((acc:any, category:any) => {
         acc[category.unique_name] = category.id;
@@ -291,6 +291,7 @@ export const utilsSlice = createSlice({
         acc[activity_category.unique_name] = activity_category.id;
         return acc;
       }, {});
+      
       state.taxonomyIds.articleCategoryArray = appConfig.articleCategoryArray.map(uniqueName => categoryLookup[uniqueName]);
       state.taxonomyIds.activityCategoryArray = appConfig.activityCategoryArray.map(uniqueName => activityCategoryLookup[uniqueName]);
     },
@@ -322,7 +323,6 @@ export const utilsSlice = createSlice({
     },
     setInfoModalOpened: (state: any=initialState,
       action: PayloadAction<any>,): any => {
-      console.log("payload is", action.payload)
       state[action.payload.key] = action.payload.value;
     },
     setIncrementalSyncDT: (state: any,

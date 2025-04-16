@@ -7,7 +7,7 @@ import {
   VACCINE_HEALTHCHECKUP_NOTIFICATION_ON,
 } from "@assets/data/firebaseEvents";
 // import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../../instances";
+import { appConfig } from "../../instance";
 
 import AlertModal from "@components/AlertModal";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -66,7 +66,7 @@ import {
   ShiftFromTopBottom10,
   ShiftFromTopBottom5,
   SideSpacing10,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import React, {
   createRef,
@@ -111,12 +111,30 @@ import { formatStringDate, formatStringTime } from "../../services/Utils";
 import * as ScopedStorage from "react-native-scoped-storage";
 import Share from "react-native-share";
 import LocalNotifications from "../../services/LocalNotifications";
-import { bgcolorWhite2 } from "../../instances/bebbo/styles/style";
+import { bgcolorWhite2 } from "@styles/style";
 import { logEvent } from "../../services/EventSyncService";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
-import configureAppStore from "../../redux/store";
 import { fetchAPI } from "../../redux/sagaMiddleware/sagaActions";
+import {
+  selectActiveChild,
+  selectAllCountries,
+  selectAllDataDownloadFlag,
+  selectChildAge,
+  selectChildGenders,
+  selectCountryId,
+  selectDevelopmentEnabledFlag,
+  selectGrowthEnabledFlag,
+  selectIncrementalSyncDT,
+  selectLanguageCode,
+  selectLocalNotifications,
+  selectLowBandwidth,
+  selectMonthlyDownloadDate,
+  selectScheduledLocalNotifications,
+  selectTaxonomyIds,
+  selectVchcEnabledFlag,
+  selectWeeklyDownloadDate,
+} from "../../services/selectors";
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -147,40 +165,25 @@ const SettingScreen = (props: any): any => {
   const thumbTrueColor = primaryColor;
   const thumbFalseColor = "#9598BE";
   const dispatch = useAppDispatch();
-  const growthEnabledFlag = useAppSelector(
-    (state: any) => state.notificationData.growthEnabled
-  );
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
-  const developmentEnabledFlag = useAppSelector(
-    (state: any) => state.notificationData.developmentEnabled
-  );
-  const vchcEnabledFlag = useAppSelector(
-    (state: any) => state.notificationData.vchcEnabled
-  );
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
-  const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
-  );
-  const taxonomyIds = useAppSelector(
-    (state: any) => state.utilsData.taxonomyIds
-  );
-  const allDataDownloadFlag = useAppSelector(
-    (state: any) => state.utilsData.allDataDownloadFlag
-  );
-  const localNotifications = useAppSelector(
-    (state: any) => state.notificationData.localNotifications
-  );
+  const growthEnabledFlag = useAppSelector(selectGrowthEnabledFlag);
+  const developmentEnabledFlag = useAppSelector(selectDevelopmentEnabledFlag);
+  const vchcEnabledFlag = useAppSelector(selectVchcEnabledFlag);
+  const genders = useAppSelector(selectChildGenders);
+  const toggleSwitchVal = useAppSelector(selectLowBandwidth);
+  const activeChild = useAppSelector(selectActiveChild);
+  const taxonomyIds = useAppSelector(selectTaxonomyIds);
+
+  const allDataDownloadFlag = useAppSelector(selectAllDataDownloadFlag);
+  const localNotifications = useAppSelector(selectLocalNotifications);
   const scheduledlocalNotifications = useAppSelector(
-    (state: any) => state.notificationData.scheduledlocalNotifications
+    selectScheduledLocalNotifications
   );
+  const countryId = useAppSelector(selectCountryId);
+  const allCountries = useAppSelector(selectAllCountries);
+  const weeklyDownloadDate = useAppSelector(selectWeeklyDownloadDate);
+  const monthlyDownloadDate = useAppSelector(selectMonthlyDownloadDate);
+  const incrementalSyncDT = useAppSelector(selectIncrementalSyncDT);
+  const childAge = useAppSelector(selectChildAge);
   const isFocused = useIsFocused();
   const { t } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
@@ -194,43 +197,12 @@ const SettingScreen = (props: any): any => {
   const navigation = useNavigation<any>();
   const actionSheetRef = createRef<any>();
   const actionSheetRefImport = createRef<any>();
-  const countryId = useAppSelector(
-    (state: any) => state.selectedCountry?.countryId
-  );
-  const allCountries = useAppSelector((state: any) => {
-    try {
-      return state.selectedCountry?.countries !== ""
-        ? JSON.parse(state.selectedCountry?.countries)
-        : [];
-    } catch (error) {
-      console.error("Failed to parse countries JSON:", error);
-      return [];
-    }
-  });
+
   const [profileLoading, setProfileLoading] = React.useState(false);
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry?.languageCode
-  );
+  const languageCode = useAppSelector(selectLanguageCode);
+
   const netInfo = useNetInfoHook();
-  const weeklyDownloadDate = useAppSelector(
-    (state: any) => state.utilsData.weeklyDownloadDate
-  );
-  const monthlyDownloadDate = useAppSelector(
-    (state: any) => state.utilsData.monthlyDownloadDate
-  );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const incrementalSyncDT = useAppSelector(
-    (state: any) => state.utilsData.incrementalSyncDT
-  );
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+
   const lastUpdatedDate =
     weeklyDownloadDate < monthlyDownloadDate
       ? weeklyDownloadDate
@@ -890,14 +862,14 @@ const SettingScreen = (props: any): any => {
       } else {
         console.log("Selected country for countryId is", countryId);
         const selectedCountry = allCountries.find(
-          (c) => c?.CountryID == countryId
+          (c: any) => c?.CountryID == countryId
         );
         console.log(allCountries, "Selected country is", selectedCountry);
 
         if (selectedCountry) {
           setCountry(selectedCountry);
           const selectedLanguage = selectedCountry.languages?.find(
-            (lang) => lang.languageCode == languageCode
+            (lang: any) => lang.languageCode == languageCode
           );
           setlanguage(selectedLanguage);
         }
@@ -1099,7 +1071,6 @@ const SettingScreen = (props: any): any => {
       importDataIOS();
     }
   };
-  console.log(language, "---", country, allCountries);
 
   return (
     <>
@@ -1381,7 +1352,7 @@ const SettingScreen = (props: any): any => {
               <FlexDirRowSpace>
                 <Heading1>{t("settingScreenlocalizationHeader")}</Heading1>
                 {allCountries?.length >= 1 &&
-                  allCountries.some((c) => c.languages.length > 1) && (
+                  allCountries.some((c: any) => c.languages.length > 1) && (
                     <IconAreaPress
                       onPress={(): any => {
                         setModalVisible(true);
