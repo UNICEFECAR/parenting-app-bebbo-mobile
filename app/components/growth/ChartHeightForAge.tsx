@@ -1,4 +1,4 @@
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import {
   FlexCol,
   FlexColChart,
@@ -25,7 +25,7 @@ import { useAppSelector } from "../../../App";
 import { formatHeightData } from "../../services/growthService";
 import { getInterpretationHeightForAge } from "../../services/interpretationService";
 import GrowthChart, { chartTypes } from "./GrowthChart";
-import { standardDevDataForChart } from "../../instance/index";
+import { standardDevDataForChart } from "../../instances/index";
 export const standardDevDataLoad = standardDevDataForChart;
 const styles = StyleSheet.create({
   fullScreenPressable: {

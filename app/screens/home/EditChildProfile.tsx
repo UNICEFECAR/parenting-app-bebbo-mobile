@@ -1,4 +1,4 @@
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import ChildDate from "@components/ChildDate";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import { ArticleHeading } from "@components/shared/ArticlesStyle";
@@ -86,7 +86,7 @@ import Checkbox, {
   CheckboxItem,
 } from "@components/shared/CheckboxStyle";
 import VectorImage from "react-native-vector-image";
-import { cameraProfileImage } from "../../instance";
+import { cameraProfileImage } from "../../instances";
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const dobMax = new Date(new Date().setHours(23, 59, 59, 999));

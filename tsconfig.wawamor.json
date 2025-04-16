@@ -3,10 +3,10 @@
     "compilerOptions": {
         "paths": {
             "@styles/*": [
-                "app/instance/wawamor/styles/*"
+                "app/instances/wawamor/styles/*"
             ],
             "@images/*": [
-                "app/instance/wawamor/assets/images/*"
+                "app/instances/wawamor/assets/images/*"
             ]
         }
     }

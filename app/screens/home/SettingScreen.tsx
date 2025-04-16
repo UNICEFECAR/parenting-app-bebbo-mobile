@@ -7,7 +7,7 @@ import {
   VACCINE_HEALTHCHECKUP_NOTIFICATION_ON,
 } from "@assets/data/firebaseEvents";
 // import { allApisObject, appConfig, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 
 import AlertModal from "@components/AlertModal";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";

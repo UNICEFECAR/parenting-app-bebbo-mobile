@@ -84,7 +84,7 @@ import MiniSearch from "minisearch";
 import { ActivityHistoryEntity } from "../../../database/schema/ActivitySearchHistorySchema";
 import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
-import { appConfig } from "../../../instance";
+import { appConfig } from "../../../instances";
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {

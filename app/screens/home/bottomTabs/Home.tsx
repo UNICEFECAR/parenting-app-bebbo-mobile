@@ -1,5 +1,5 @@
 import { SURVEY_SUBMIT } from "@assets/data/firebaseEvents";
-import { appConfig } from "../../../instance";
+import { appConfig } from "../../../instances";
 import { getDataToStore } from "@assets/translations/appOfflineData/getDataToStore";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import AdviceAndArticles from "@components/homeScreen/AdviceAndArticles";
@@ -31,7 +31,7 @@ import ModalPopupContainer, {
   PopupOverlay,
 } from "@components/shared/ModalPopupStyle";
 import TabScreenHeader from "@components/TabScreenHeader";
-import { articledata, VideoArticleData } from "../../../instance";
+import { articledata, VideoArticleData } from "../../../instances";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {

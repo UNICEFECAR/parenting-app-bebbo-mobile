@@ -76,7 +76,7 @@ import { bgcolorBlack2, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { ViewDetailsEntity } from "../../database/schema/ArticleActivityViewSchema";
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -717,7 +717,11 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   const setNewFilteredArticleData = (itemId: any): any => {
     navigation.navigate({
       name: fromScreen,
-      params: { categoryArray: itemId, backClicked: "no",currentSelectedChildId },
+      params: {
+        categoryArray: itemId,
+        backClicked: "no",
+        currentSelectedChildId,
+      },
       merge: true,
     });
   };

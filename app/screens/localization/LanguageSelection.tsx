@@ -25,7 +25,7 @@ import {
   onLocalizationSelect,
   setSponsorStore,
 } from "../../redux/reducers/localizationSlice";
-import { appConfig, localization } from "../../instance";
+import { appConfig, localization } from "../../instances";
 import { Flex5 } from "@components/shared/FlexBoxStyle";
 import {
   ButtonPrimary,

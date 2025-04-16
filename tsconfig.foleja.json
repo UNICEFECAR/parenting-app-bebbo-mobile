@@ -3,10 +3,10 @@
     "compilerOptions": {
         "paths": {
             "@styles/*": [
-                "app/instance/foleja/styles/*"
+                "app/instances/foleja/styles/*"
             ],
             "@images/*": [
-                "app/instance/foleja/assets/images/*"
+                "app/instances/foleja/assets/images/*"
             ]
         }
     }

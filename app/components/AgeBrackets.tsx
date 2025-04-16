@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../App";
 import ScrollingButtonMenu from "../services/ScrollingButtonMenu";
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 
 const AgeBrackets = ({
   currentSelectedChildId,

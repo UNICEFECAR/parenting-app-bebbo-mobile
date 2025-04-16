@@ -2,7 +2,7 @@ import { googleAuth } from "./googleAuth";
 import { googleDrive } from "./googleDrive";
 import RNFS from "react-native-fs";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import {
   ConfigSettingsEntity,

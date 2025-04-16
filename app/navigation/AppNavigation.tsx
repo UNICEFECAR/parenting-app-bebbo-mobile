@@ -37,7 +37,7 @@ import LocalizationNavigation from "./LocalizationNavigation";
 import { RootStackParamList } from "./types";
 import { retryAlert1 } from "../services/commonApiService";
 import { setchatBotData } from "../redux/reducers/childSlice";
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
