@@ -89,7 +89,6 @@ class DataRealmCommon {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    console.log(entitySchema.name,"entitySchema",records,_articleRelation)
                     realm.write(() => {
                         if (records?.length > 0) {
                             records.forEach(record => {

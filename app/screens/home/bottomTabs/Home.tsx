@@ -158,7 +158,6 @@ const Home = ({ route, navigation }: any): any => {
   const backgroundColorChildInfo =
     themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
 
-  console.log("----------------------------", errorObj);
   const netInfo = useNetInfoHook();
   let currentCount = 0;
   const setIsModalOpened = async (varkey: any): Promise<any> => {

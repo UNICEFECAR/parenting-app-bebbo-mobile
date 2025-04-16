@@ -161,12 +161,6 @@ export default (): any => {
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.apiConfig.sponsors,
-      method: "get",
-      postdata: {},
-      saveinDB: true,
-    },
-    {
       apiEndpoint: appConfig.apiConfig.taxonomies,
       method: "get",
       postdata: {},
@@ -999,12 +993,6 @@ export default (): any => {
   const apiJsonDataLoading = [
     {
       apiEndpoint: appConfig.apiConfig.taxonomies,
-      method: "get",
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.apiConfig.sponsors,
       method: "get",
       postdata: {},
       saveinDB: true,

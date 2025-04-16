@@ -44,35 +44,6 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
         }
     }
     const databaseData2 = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse, sortBy);
-    // if (SchemaToUse.name == ArticleEntitySchema.name) {
-    //     if (currentChildData && currentChildData != "") {
-    //         let filterQuery = '';
-    //         if (currentChildData.taxonomyData && currentChildData.taxonomyData.id) {
-    //             filterQuery += '(child_age == ' + currentChildData.taxonomyData.id + ' || ';
-    //         }
-    //         if (filterQuery != '') {
-    //             filterQuery += 'child_age == 0)';
-
-    //         }
-    //         else {
-    //             filterQuery += 'child_age == 0';
-    //         }
-    //         if (currentChildData.parent_gender != "" && currentChildData.parent_gender != 0 && currentChildData.parent_gender != "0") {
-    //             filterQuery += '&& (parent_gender==' + parseInt(currentChildData.parent_gender) + ' || parent_gender == ' + bothParentGender + ' || parent_gender == ' + String(bothParentGender) + '  || parent_gender == 0)';
-    //         }
-    //         if (currentChildData.gender != "" && currentChildData.gender != 0 && currentChildData.gender != "0") {
-    //             filterQuery += '&& (child_gender==' + parseInt(currentChildData.gender) + ' || child_gender == ' + bothChildGender + ' || child_gender == ' + String(bothChildGender) + '  || child_gender == 0)';
-    //         }
-    //         // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
-    //         const databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse, filterQuery);
-    //         dataToStore = databaseData;
-    //     } else {
-    //         dataToStore = databaseData2;
-    //     }
-    // }
-    // else {
-    //     dataToStore = databaseData2;
-    // }
     const dataToStore = databaseData2;
     console.log(SchemaToUse.name,'offlineData is......',offlineData,dataToStore)
     // console.log('stringify offlineData is',JSON.stringify(offlineData))
