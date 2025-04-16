@@ -431,6 +431,28 @@ openssl rand -hex 16
 ```
 - The output will be a 32-character hexadecimal string. This is your `encryptionsIVKey`.
 
+### 4. How to get webId and iosId
+
+#### webId is a webClientId in React Native project. 
+- Open Firebase project.
+- Go to Authentication > Sign-in method.
+- Enable Google Sign-in.
+- Expand Google and then Web SDK configuration. Find the Web client ID (OAuth 2.0).
+```
+For example: Web client ID = 1234567890-abcdefg.apps.googleusercontent.com
+ 
+Extract middle portion. webId=abcdefg 
+```
+ 
+#### iosId is an iosClientId in React Native project. 
+- Open Firebase project.
+- Open the GoogleService-Info.plist file.
+- Look for the key "CLIENT_ID"
+```
+For example: CLIENT_ID = 1234567890-abcdefghijk.apps.googleusercontent.com
+
+Extract middle portion. iosId=abcdefghijk
+```
 ---
   ## How to run
   After you install the application you can create build files for various flavors with below npx commands.
