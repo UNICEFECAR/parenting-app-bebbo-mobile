@@ -4,7 +4,6 @@ import i18n from 'i18next';
 import { DateTime } from 'luxon';
 import { Alert } from "react-native";
 import FastImage from 'react-native-fast-image';
-import RNFS from 'react-native-fs';
 import { store } from "../../App";
 import { appConfig } from '../instance';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
@@ -14,15 +13,15 @@ import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSc
 import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { VideoArticleEntity, VideoArticleEntitySchema } from '../database/schema/VideoArticleSchema';
-import downloadImages from '../downloadImages/ImageStorage';
 import { CommonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setchatBotData, setDownloadedBufferAgeBracket } from '../redux/reducers/childSlice';
-import { setCountriesStore, setSponsorStore } from '../redux/reducers/localizationSlice';
+import { setCountriesStore } from '../redux/reducers/localizationSlice';
 import { setAllLocalNotificationGenerateType, setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate, setuserIsFirstTime } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 import LocalNotifications from './LocalNotifications';
+import { getAllChildren, getAllConfigData, setActiveChild } from './childCRUD';
 
 
 export const client =
@@ -107,17 +106,12 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
   navigation.navigate('Terms');
 }
 export const onCountryApiSuccess = async (response: any, dispatch: any, navigation: any, languageCode: string, prevPage: string): Promise<any> => {
-  console.log('Response for country is', response)
   if (response && response[0] && response[0].apiEndpoint == appConfig.apiConfig.countryGroups) {
     response = response[0];
     if (response.data && response.data.status && response.data.status == 200) {
-      console.log('type of sponser data for country is', typeof response.data.data)
-      console.log('sponser data for country is', response.data.data)
-      console.log('sponser data for country issdsd', response.data?.data[0])
       dispatch(setuserIsFirstTime(true));
       dispatch(setCountriesStore(response.data?.data))
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, prevPage);
-      console.log("allDatatoStore ", prevPage, "--", allDatatoStore, languageCode);
     }
   }
 
@@ -274,7 +268,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
           dispatch(setDownloadedBufferAgeBracket(artarray))
         }
         catch (err) {
-          console.log('error97', err)
         }
 
       }
@@ -362,6 +355,23 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
 
   }
   else {
+    const childAge =  store.getState().utilsData.taxonomy.allTaxonomyData != ""
+    ? JSON.parse( store.getState().utilsData.taxonomy.allTaxonomyData).child_age
+    : []
+    const taxonomyIds = store.getState().utilsData.taxonomyIds
+    if(taxonomyIds && childAge?.length > 0){
+      setActiveChild(
+        languageCode,
+        activeChild.uuid,
+        dispatch,
+        childAge,
+        true,
+        taxonomyIds?.boyChildGender
+      );
+      getAllChildren(dispatch, childAge, 0);
+      getAllConfigData(dispatch);
+    }
+    
     navigation.reset({
       index: 0,
       routes: [

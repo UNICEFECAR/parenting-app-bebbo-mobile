@@ -20,6 +20,7 @@ export default function configureAppStore():any {
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
+        immutableCheck:false,
         serializableCheck:false,
       }).concat(allMiddlewares),
     devTools: process.env.NODE_ENV !== 'production',

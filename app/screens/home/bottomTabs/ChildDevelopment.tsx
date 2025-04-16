@@ -65,7 +65,7 @@ import {
 import ProgressCircle from "react-native-progress-circle";
 import { setInfoModalOpened } from "../../../redux/reducers/utilsSlice";
 import FirstTimeModal from "@components/shared/FirstTimeModal";
-import { addSpaceToHtml } from "../../../services/Utils";
+import { addSpaceToHtml, isPregnancy } from "../../../services/Utils";
 import {
   CHILD_DEVELOPMENT_AGEGROUP_SELECTED,
   CHILD_MILESTONE_TRACKED,
@@ -139,7 +139,11 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const childDevModalOpened = useAppSelector(
     (state: any) => state.utilsData.IsChildDevModalOpened
   );
-  console.log("childDevModalOpened......", childDevModalOpened);
+  console.log(
+    VideoArticlesData,
+    "childDevModalOpened......",
+    childDevModalOpened
+  );
   const modalScreenKey = "IsChildDevModalOpened";
   const modalScreenText = "childDevModalText";
   const isFocused = useIsFocused();
@@ -322,6 +326,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   ]);
   useEffect(() => {
     if (isFocused) {
+      console.log("UseFouusEffect child development one");
       if (
         activeChild?.gender == "" ||
         activeChild?.gender == 0 ||
@@ -565,6 +570,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
               currentSelectedChildId={currentSelectedChildId}
               showSelectedBracketData={showSelectedBracketData}
               ItemTintColor={componentColors?.backgroundColor}
+              isActivity
             />
           </View>
         ) : null}

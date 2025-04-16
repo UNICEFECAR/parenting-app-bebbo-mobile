@@ -1,6 +1,7 @@
 import { CHILDREN_PATH } from "@types/types";
 import { DateTime } from "luxon";
 import { Platform } from "react-native";
+import { store} from "../../App";
 import RNFS from 'react-native-fs';
 import { requestNotifications } from "react-native-permissions";
 import { ObjectSchema, PrimaryKey } from "realm";
@@ -50,6 +51,7 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
     let Entity: any;
     let insertData = [];
     let pinnedArticle = "";
+
     if (response.payload.apiEndpoint == appConfig.apiConfig.articles) {
         insertData = response.payload.data.data;
         Entity = Entity as ArticleEntity;
@@ -63,6 +65,11 @@ export const addApiDataInRealm = async (response: any): Promise<any> => {
         EntitySchema2 = ArticleEntitySchema;
         EntitySchema3 = ActivitiesEntitySchema;
         EntitySchema4 = FAQsSchema;
+    }
+    else if (response.payload.apiEndpoint == appConfig.apiConfig.countryGroups) {
+        insertData = response.payload.data.data;
+        Entity = Entity as Country;
+        EntitySchema = CountrySchema;
     }
     else if (response.payload.apiEndpoint == appConfig.apiConfig.videoArticles) {
         insertData = response.payload.data.data;
@@ -660,4 +667,25 @@ export function convertDigits(inputString: any, targetLanguage: DigitLanguage): 
     }
 
     return result;
+}
+
+/**
+ * Checks if the selected country has "Pregnancy" content enabled.
+ *
+ * @returns {boolean} - Returns true if the selected country has `content_toggle` set to "Pregnancy", otherwise false.
+ */
+export function isPregnancy() {
+    try {
+        const allCountries = JSON.parse(store.getState().selectedCountry.countries || '[]')
+        const countryId = store.getState()?.selectedCountry?.countryId
+        console.log(countryId,'[country data]',allCountries,allCountries.some(
+            (country : any) => country.CountryID == countryId && country.content_toggle == ""
+          ))
+        return allCountries.some(
+            (country : any) => country.CountryID == countryId && country.content_toggle == ""
+          );
+    } catch(err){
+        console.log('[err]',err)
+    }
+   
 }
