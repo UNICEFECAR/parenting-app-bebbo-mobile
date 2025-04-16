@@ -1,4 +1,4 @@
-import { appConfig } from "../../../instance";
+import { appConfig } from "../../../instances";
 import ArticleCategories from "@components/ArticleCategories";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";

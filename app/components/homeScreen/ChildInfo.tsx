@@ -21,7 +21,7 @@ import { Dimensions, StyleSheet } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { getAllConfigData } from "../../services/childCRUD";
 // import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import {
   selectActiveChild,

@@ -4,7 +4,7 @@ import {
   EMAIL_SENT,
   FEEDBACK_SUBMIT,
 } from "@assets/data/firebaseEvents";
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   BgDevelopment,

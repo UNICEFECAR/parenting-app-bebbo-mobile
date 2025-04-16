@@ -1,4 +1,4 @@
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import { MainContainer } from "@components/shared/Container";
 import {
   DailyArtTitle,

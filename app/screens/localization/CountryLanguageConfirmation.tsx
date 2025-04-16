@@ -53,7 +53,7 @@ import {
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../App";
-import { appConfig, localization } from "../../instance";
+import { appConfig, localization } from "../../instances";
 import {
   onLocalizationSelect,
   setSponsorStore,

@@ -1,5 +1,5 @@
 // import { articleCategoryobj } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import { ArticleCategoriesProps } from "@screens/home/bottomTabs/Articles";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";

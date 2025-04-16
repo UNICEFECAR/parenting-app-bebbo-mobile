@@ -1,5 +1,5 @@
 // import { boyChildGender, girlChildGender, heightGrowthType } from '@assets/translations/appOfflineData/apiConstants';
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import {
   FlexCol,
   FlexColChart,
@@ -26,7 +26,7 @@ import { useAppSelector } from "../../../App";
 import { formatHeightData } from "../../services/growthService";
 import { getInterpretationWeightForHeight } from "../../services/interpretationService";
 import GrowthChart, { chartTypes } from "./GrowthChart";
-import { standardDevDataForChart } from "../../instance/index";
+import { standardDevDataForChart } from "../../instances/index";
 export const standardDevDataLoad = standardDevDataForChart;
 
 const LANDSCAPE = "landscape";

@@ -1,4 +1,4 @@
-import { appConfig } from "../../instance";
+import { appConfig } from "../../instances";
 import VideoPlayer from "@components/VideoPlayer";
 import { useFocusEffect } from "@react-navigation/native";
 import {

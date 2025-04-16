@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
-import { appConfig } from "../instance";
+import { appConfig } from "../instances";
 import { setAcceptTerms, setTaxonomyIds } from "../redux/reducers/utilsSlice";
 import {
   Heading2Centerw,
@@ -35,10 +35,10 @@ import {
   adviceLogo,
   toolsLogo,
   bebboLogoShapeNew,
-} from "../instance";
+} from "../instances";
 const flavor = process.env.FLAVOR || "bebbo";
-const REMOVED_FACEBOOK_APP_ID1LogoShapeNew = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
-const REMOVED_FACEBOOK_APP_ID1LogoShapeMB = require(`../instance/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
+const REMOVED_FACEBOOK_APP_ID1LogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
+const REMOVED_FACEBOOK_APP_ID1LogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
 import FeatureTCView from "@components/shared/FeaturesTCView";
 import { TERMS_ACCEPTED } from "@assets/data/firebaseEvents";
 import { logEvent } from "../services/EventSyncService";
