@@ -2,7 +2,7 @@ import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 import { store} from "../../../../App";
 import { isPregnancy } from '../../../services/Utils';
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'; 
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'bebbo',
@@ -135,6 +135,7 @@ const config = {
   weightForHeight: 32786,
   heightForAge: 6461,
   pregnancyId:166191,
+  weekByWeekId:166186,
   languageCode:"en",
   searchMinimumLength:3,
   today: new Date(),
@@ -147,7 +148,6 @@ const config = {
     videoArticles: 'video-articles',
     dailyMessages: 'daily-homescreen-messages',
     basicPages: 'basic-pages',
-    sponsors: 'sponsors',
     taxonomies: 'taxonomies',
     standardDeviation: 'standard_deviation',
     milestones: 'milestones',
@@ -157,7 +157,6 @@ const config = {
     childGrowthData: 'child-growth-data',
     vaccinations: 'vaccinations',
     healthCheckupData: 'health-checkup-data',
-    pinnedContent: 'pinned-contents',
     checkUpdate: 'check-update',
     faqs: 'faqs',
     archive: 'archive',
@@ -185,8 +184,6 @@ const config = {
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
         return `${baseUrl}/${config.flavorName}`;
-      case config.apiConfig.sponsors:
-        return `${baseUrl}/${selectedCountry}`;
       case config.apiConfig.taxonomies:
         return `${baseUrl}/${selectedLang}/all${isPregnancy() ? "?pregnancy=true" : ""}`;
       case config.apiConfig.articles:
@@ -203,7 +200,6 @@ const config = {
   },
   allApisObject: (isDatetimeReq: any, dateTimeObj: any): any => {
     const allApiObject = [
-      { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
       { apiEndpoint: config.apiConfig.articles, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.countryGroups, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.taxonomies, method: 'get', postdata: {}, saveinDB: true },

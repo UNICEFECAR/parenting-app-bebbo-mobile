@@ -73,11 +73,13 @@ const DailyReads = (): any => {
   );
   const activeChild = useAppSelector(selectActiveChild);
   const ActivitiesDataall = useAppSelector(selectActivitiesDataAll);
-const activityCategoryArray = useAppSelector(selectActivityCategoryArray);
-const dailyDataCategoryall = useAppSelector(selectDailyDataCategoryAll);
-const showedDailyDataCategoryall = useAppSelector(selectShowedDailyDataCategoryAll);
-const favoriteAdvices = useAppSelector(selectFavoriteAdvices);
-const favoriteGames = useAppSelector(selectFavoriteGames);
+  const activityCategoryArray = useAppSelector(selectActivityCategoryArray);
+  const dailyDataCategoryall = useAppSelector(selectDailyDataCategoryAll);
+  const showedDailyDataCategoryall = useAppSelector(
+    selectShowedDailyDataCategoryAll
+  );
+  const favoriteAdvices = useAppSelector(selectFavoriteAdvices);
+  const favoriteGames = useAppSelector(selectFavoriteGames);
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId ??
     activeChild?.taxonomyData?.id;
@@ -287,12 +289,6 @@ const favoriteGames = useAppSelector(selectFavoriteGames);
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) =>
         ActivitiesData.find((f: any) => f.activity_category === i.id)
       );
-      console.log(
-        ArticlesData,
-        ActivitiesDataall,
-        "[1]",
-        articleCategoryArrayNew
-      );
       const currentIndex = articleCategoryArrayNew.findIndex(
         (_item: any) => _item === dailyDataCategory.advice
       );
@@ -456,7 +452,6 @@ const favoriteGames = useAppSelector(selectFavoriteGames);
       activityDataToShow.forEach((activity: any) => {
         activityDataList.push(activity);
       });
-      console.log(dailyDataCategory, "[1]1", articleDataToShow);
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList);
     }

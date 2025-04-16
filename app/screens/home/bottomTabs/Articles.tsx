@@ -659,14 +659,14 @@ const Articles = ({ route, navigation }: any): any => {
         const processedArticles = preprocessArticles(combineDartArr);
         const searchIndexData = new MiniSearch({
           processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
-          tokenize: (text) => {
-            const words = text.toLowerCase().split(/\s+/);
-            const ngrams = [];
-            for (let i = 0; i < words.length - 1; i++) {
-              ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
-            }
-            return [...words, ...ngrams]; // Return both single words and bigrams
-          },
+          // tokenize: (text) => {
+          //   const words = text.toLowerCase().split(/\s+/);
+          //   const ngrams = [];
+          //   for (let i = 0; i < words.length - 1; i++) {
+          //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
+          //   }
+          //   return [...words, ...ngrams]; // Return both single words and bigrams
+          // },
           extractField: (document, fieldName): any => {
             const arrFields = fieldName.split(".");
             if (arrFields.length === 2) {
@@ -736,7 +736,6 @@ const Articles = ({ route, navigation }: any): any => {
     React.useCallback(() => {
       if (isSerachedQueryText || queryText == "") {
         //setLoadingArticle(true);
-        console.log("sdsds", route.params);
         async function fetchData(): Promise<any> {
           if (route.params?.categoryArray) {
             setFilterArray(route.params?.categoryArray);
@@ -887,6 +886,15 @@ const Articles = ({ route, navigation }: any): any => {
     </Pressable>
   );
 
+  const optimizedFilteredData = useMemo(() => {
+    if (filterArray.length === 1 && filterArray[0] == appConfig.weekByWeekId) {
+      console.log("[filter Array]1");
+      return [...filteredData].sort((a, b) => a.id - b.id); // ✨ non-mutating sort
+    }
+    return filteredData;
+  }, [filteredData, filterArray]);
+  console.log(filterArray, "[filter Array]", optimizedFilteredData);
+
   return (
     <>
       {loadingArticle && <OverlayLoadingComponent loading={loadingArticle} />}
@@ -1010,8 +1018,8 @@ const Articles = ({ route, navigation }: any): any => {
             ) : null}
             <FlatList
               ref={flatListRef}
-              data={filteredData}
-              extraData={filteredData}
+              data={optimizedFilteredData}
+              extraData={[filteredData, optimizedFilteredData]}
               onScroll={(e): any => {
                 if (keyboardStatus == true) {
                   Keyboard.dismiss();

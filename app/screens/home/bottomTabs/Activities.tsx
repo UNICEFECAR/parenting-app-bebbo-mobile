@@ -761,14 +761,14 @@ const Activities = ({ route, navigation }: any): any => {
         const processedActivities = preprocessActivities(ActivitiesData);
         const searchActivittiesData = new MiniSearch({
           processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
-          tokenize: (text) => {
-            const words = text.toLowerCase().split(/\s+/);
-            const ngrams = [];
-            for (let i = 0; i < words.length - 1; i++) {
-              ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
-            }
-            return [...words, ...ngrams]; // Return both single words and bigrams
-          },
+          // tokenize: (text) => {
+          //   const words = text.toLowerCase().split(/\s+/);
+          //   const ngrams = [];
+          //   for (let i = 0; i < words.length - 1; i++) {
+          //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
+          //   }
+          //   return [...words, ...ngrams]; // Return both single words and bigrams
+          // },
           extractField: (document, fieldName): any => {
             const arrFields = fieldName.split(".");
             if (arrFields.length === 2) {

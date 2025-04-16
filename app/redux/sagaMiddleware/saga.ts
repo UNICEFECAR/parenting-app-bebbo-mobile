@@ -18,7 +18,6 @@ function* apiCall(data: ApiJsonArray, dispatch: any): any {
       if (response.data.status == 200) {
         try {
           if (data.saveinDB == true) {
-            console.log('commonApiService saga',response)
             yield put(insertInDB(response, dispatch));
           }
         }
@@ -35,7 +34,6 @@ function* apiCall(data: ApiJsonArray, dispatch: any): any {
 }
 function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any): any {
 
-  // }
   try {
     const payload = { errorArr: errorArr, fromPage: prevPage }
     yield put(receiveAPIFailure(payload))

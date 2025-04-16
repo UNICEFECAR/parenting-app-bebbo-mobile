@@ -675,12 +675,17 @@ export function convertDigits(inputString: any, targetLanguage: DigitLanguage): 
  * @returns {boolean} - Returns true if the selected country has `content_toggle` set to "Pregnancy", otherwise false.
  */
 export function isPregnancy() {
-    const allCountries = JSON.parse(store.getState().selectedCountry.countries || [])
-    const countryId = store.getState()?.selectedCountry?.countryId
-    console.log(countryId,'[country data]',allCountries,allCountries.some(
-        (country : any) => country.CountryID == countryId && country.content_toggle == ""
-      ))
-    return allCountries.some(
-        (country : any) => country.CountryID == countryId && country.content_toggle == ""
-      );
+    try {
+        const allCountries = JSON.parse(store.getState().selectedCountry.countries || '[]')
+        const countryId = store.getState()?.selectedCountry?.countryId
+        console.log(countryId,'[country data]',allCountries,allCountries.some(
+            (country : any) => country.CountryID == countryId && country.content_toggle == ""
+          ))
+        return allCountries.some(
+            (country : any) => country.CountryID == countryId && country.content_toggle == ""
+          );
+    } catch(err){
+        console.log('[err]',err)
+    }
+   
 }
