@@ -490,7 +490,7 @@ const DailyReads = (): any => {
             keyExtractor={(item: any): any => keyExtractor(item)}
             windowSize={5}
             initialNumToRender={10}
-            ListEmptyComponent={() => handleEmptyList()}
+            ListEmptyComponent={() => renderEmptyList()}
           />
         </View>
         <View style={styles.flatlistOuterView}>

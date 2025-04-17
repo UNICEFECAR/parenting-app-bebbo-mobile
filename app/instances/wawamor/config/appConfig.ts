@@ -1,8 +1,6 @@
 import { Platform } from 'react-native';
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
-import { store} from "../../../../App";
-import { Platform } from 'react-native';
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'wawamor',
