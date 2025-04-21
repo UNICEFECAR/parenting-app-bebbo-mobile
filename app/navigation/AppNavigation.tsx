@@ -852,12 +852,6 @@ export default (): any => {
       saveinDB: true,
     },
     {
-      apiEndpoint: appConfig.apiConfig.sponsors,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
       apiEndpoint: appConfig.apiConfig.basicPages,
       method: 'get',
       postdata: {},

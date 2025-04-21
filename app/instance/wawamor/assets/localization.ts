@@ -6,18 +6,10 @@ const localization = [
     languages: [
       {
         "name": "Ecuador",
-        "displayName": "English",
-        "languageCode": "en",
-        "locale": "en",
-        "luxonLocale": "en-US",
-        "pluralShow": "false"
-      },
-      {
-        "name": "Ecuador",
         "displayName": "Español",
         "languageCode": "ec-es",
         "locale": "ESec",
-        "luxonLocale": "ec-es",
+        "luxonLocale": "ec-ES",
         "pluralShow": true
       }
     ],
@@ -25,4 +17,3 @@ const localization = [
 
 ];
 export default localization;
-
