@@ -162,6 +162,7 @@
 		E81D24812D197771009BE118 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E81D247E2D197771009BE118 /* InfoPlist.strings */; };
 		E81D24832D1986DD009BE118 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8D23C172D1963A000ABC8C5 /* GoogleService-Info.plist */; };
 		E83C950B2CDCF5E5007E6428 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 329F419A2C522D52005683FC /* InfoPlist.strings */; };
+		E85CEBF02DB133200067988D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = E88A31BD2D6F529E009E2F96 /* splash.json */; };
 		E86B42B12D1D6FF7002350FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		E86B42B22D1D8C35002350FC /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = E81D246F2D19754C009BE118 /* splash.json */; };
 		E86B42BE2D26C53A002350FC /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 32EB84362C12DD3200B8A367 /* splash.json */; };
@@ -187,7 +188,6 @@
 		E88A31962D6C985B009E2F96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E88A31932D6C985B009E2F96 /* GoogleService-Info.plist */; };
 		E88A319E2D6DED28009E2F96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		E88A31B62D6F3C4E009E2F96 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E88A31B02D6F3C4E009E2F96 /* README.md */; };
-		E88A31BF2D70381C009E2F96 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 32EB84342C12DD3200B8A367 /* splash.json */; };
 		E8DAC0392CB51D7A0066A83D /* liblottie-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DAC0382CB51D7A0066A83D /* liblottie-ios.a */; };
 		E8DAC03B2CB51D7A0066A83D /* liblottie-react-native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DAC03A2CB51D7A0066A83D /* liblottie-react-native.a */; };
 		E8DAC03D2CB51D7A0066A83D /* libreact-native-lottie-splash-screen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DAC03C2CB51D7A0066A83D /* libreact-native-lottie-splash-screen.a */; };
@@ -1370,7 +1370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E88A31BF2D70381C009E2F96 /* splash.json in Resources */,
+				E85CEBF02DB133200067988D /* splash.json in Resources */,
 				E88A319E2D6DED28009E2F96 /* Images.xcassets in Resources */,
 				E88A31702D6C8A4A009E2F96 /* LaunchScreen.storyboard in Resources */,
 				E88A31712D6C8A4A009E2F96 /* roboto-bold.svg in Resources */,
@@ -4673,7 +4673,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/Wawamor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
@@ -4795,7 +4795,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/Wawamor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
