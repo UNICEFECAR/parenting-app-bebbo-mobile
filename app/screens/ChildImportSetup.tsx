@@ -66,9 +66,9 @@ import {
   ShiftFromTopBottom20,
   ShiftFromTop10,
   ShiftFromTop20,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
-import { bgcolorWhite, primaryColor } from "../instances/bebbo/styles/style";
+import { bgcolorWhite } from "@styles/style";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
 import TextInputML from "@components/shared/TextInputML";
@@ -261,7 +261,8 @@ const ChildImportSetup = (props: any): any => {
                     <View>
                       {userRelationToParent != null &&
                       userRelationToParent != undefined &&
-                      userRelationToParent != appConfig.relationShipMotherId &&
+                      userRelationToParent !=
+                        taxonomyIds.relationShipMotherId &&
                       userRelationToParent !=
                         taxonomyIds?.relationShipFatherId ? (
                         <FormContainer1>

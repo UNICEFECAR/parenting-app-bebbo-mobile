@@ -165,8 +165,6 @@ const config = {
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
         return `${baseUrl}/${config.flavorName}`;
-      // case config.apiConfig.sponsors:
-      //   return `${baseUrl}/${selectedCountry}`;
       case config.apiConfig.taxonomies:
         return `${baseUrl}/${selectedLang}/all`;
       case config.apiConfig.checkUpdate:
@@ -177,7 +175,6 @@ const config = {
   },
   allApisObject: (isDatetimeReq: any, dateTimeObj: any): any => {
     const allApiObject = [
-      // { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
       { apiEndpoint: config.apiConfig.articles, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.countryGroups, method: 'get', postdata: {}, saveinDB: true },
       { apiEndpoint: config.apiConfig.taxonomies, method: 'get', postdata: {}, saveinDB: true },
