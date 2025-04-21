@@ -1,14 +1,9 @@
 import { ONBOARDING_CHILD_COUNT } from "@assets/data/firebaseEvents";
-// import {
-//   regexpEmojiPresentation,
-//   relationShipMotherId,
-// } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../instances";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ButtonPrimary,
   ButtonRow,
-  ButtonText,
   ButtonUpperCaseText,
 } from "@components/shared/ButtonGlobal";
 import {
@@ -52,7 +47,6 @@ import {
 import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
 import {
   apiJsonDataGet,
-  getAge,
   getAllChildren,
   setActiveChild,
 } from "../services/childCRUD";
