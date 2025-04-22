@@ -125,7 +125,7 @@ const config = {
   ],
   reviewURL:Platform.select({
     android: "https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo",
-    ios: "itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review",
+    ios: "itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review",
   }),
   bothParentGender: 60,
   bothChildGender: 59,
