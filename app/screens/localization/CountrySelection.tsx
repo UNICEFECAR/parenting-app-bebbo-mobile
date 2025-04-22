@@ -202,7 +202,6 @@ const CountrySelection = (props: any): any => {
                 renderItem={renderItem}
                 initialNumToRender={20}
                 windowSize={20}
-                showsVerticalScrollIndicator={false}
                 keyExtractor={(item): any => item.CountryID}
                 contentContainerStyle={contentContainer}
                 ListFooterComponent={allCountries.length <= 12 && renderHeader}
@@ -215,7 +214,6 @@ const CountrySelection = (props: any): any => {
                 renderItem={renderItem}
                 initialNumToRender={20}
                 windowSize={20}
-                showsVerticalScrollIndicator={false}
                 keyExtractor={(item): any => item.CountryID}
                 ListHeaderComponent={allCountries.length <= 12 && renderHeader}
               />
