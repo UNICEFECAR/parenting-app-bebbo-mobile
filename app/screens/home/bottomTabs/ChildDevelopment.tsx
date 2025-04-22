@@ -84,6 +84,7 @@ import {
   synchronizeEvents,
 } from "../../../services/EventSyncService";
 import useDigitConverter from "../../../customHooks/useDigitConvert";
+import { appConfig } from "../../../instances";
 const styles = StyleSheet.create({
   bgWhite: { backgroundColor: bgcolorWhite2 },
   flex1: { flex: 1 },

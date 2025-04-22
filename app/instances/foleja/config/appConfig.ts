@@ -249,12 +249,16 @@ const config = {
     ];
 
     if (isDatetimeReq) {
-      const archiveDate = dateTimeObj?.archiveDatetime || dateTimeObj?.faqPinnedContentDatetime;
       allApiObject.push({
         apiEndpoint: config.apiConfig.archive,
-        method: "get",
-        postdata: archiveDate ? { datetime: archiveDate } : {},
-        saveInDB: true,
+        method: 'get',
+        postdata:
+          dateTimeObj['archiveDatetime'] !== ''
+            ? { datetime: dateTimeObj['archiveDatetime'] }
+            : dateTimeObj['faqPinnedContentDatetime'] !== ''
+              ? { datetime: dateTimeObj['faqPinnedContentDatetime'] }
+              : {},
+        saveinDB: true,
       });
     }
     

@@ -1,7 +1,8 @@
 import { Platform } from 'react-native';
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
-import { store} from "../../../../App";
+import { store } from "../../../../App";
+import { isPregnancy } from '../../../services/Utils';
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: 'bebbo',
@@ -9,7 +10,7 @@ const config = {
   maxRelatedArticleSize: 3,
   isArticlePinned: '1',
   articleCategory: '4,1,55,56,3,2',
-  articleCategoryIdArray: [4, 1, 55, 56, 3, 2,166186,166791,166796,166801,166806,166811],
+  articleCategoryIdArray: [4, 1, 55, 56, 3, 2, 166186, 166791, 166796, 166801, 166806, 166811],
   articleCategoryArray: [
     'health_and_wellbeing',
     'nutrition_and_breastfeeding',
@@ -123,7 +124,7 @@ const config = {
     { name: 'labourAndBirth', id: 166806, image: 'ic_art_labour_birth' },
     { name: 'pregnancyComplication', id: 166811, image: 'ic_art_complications' },
   ],
-  reviewURL:Platform.select({
+  reviewURL: Platform.select({
     android: "https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo",
     ios: "itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review",
   }),
@@ -133,10 +134,10 @@ const config = {
   boyChildGender: 40,
   weightForHeight: 32786,
   heightForAge: 6461,
-  pregnancyId:166191,
-  weekByWeekId:166186,
-  languageCode:"en",
-  searchMinimumLength:3,
+  pregnancyId: 166191,
+  weekByWeekId: 166186,
+  languageCode: "en",
+  searchMinimumLength: 3,
   today: new Date(),
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
@@ -270,15 +271,19 @@ const config = {
     ];
 
     if (isDatetimeReq) {
-      const archiveDate = dateTimeObj?.archiveDatetime || dateTimeObj?.faqPinnedContentDatetime;
       allApiObject.push({
         apiEndpoint: config.apiConfig.archive,
-        method: "get",
-        postdata: archiveDate ? { datetime: archiveDate } : {},
-        saveInDB: true,
+        method: 'get',
+        postdata:
+          dateTimeObj['archiveDatetime'] !== ''
+            ? { datetime: dateTimeObj['archiveDatetime'] }
+            : dateTimeObj['faqPinnedContentDatetime'] !== ''
+              ? { datetime: dateTimeObj['faqPinnedContentDatetime'] }
+              : {},
+        saveinDB: true,
       });
     }
-    
+
     return allApiObject;
   },
 };
