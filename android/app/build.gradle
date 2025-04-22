@@ -190,7 +190,7 @@ android {
             applicationId 'org.unicef.ecar.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 40
+            versionCode 41
             versionName "2.3.0"
             signingConfig signingConfigs.release
         }
