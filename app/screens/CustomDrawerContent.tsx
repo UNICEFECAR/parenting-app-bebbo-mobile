@@ -144,7 +144,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
       : []
   );
   const countryId = useAppSelector(
-    (state: any) => state.selectedCountry.countryId
+    (state: any) => state.selectedCountry.countrySelectedId
   );
   const [countryEmail, setCountryEmail] = React.useState("");
 
