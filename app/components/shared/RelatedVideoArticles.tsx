@@ -1,4 +1,3 @@
-// import { bothChildGender, maxRelatedArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
 import VideoPlayer from "@components/VideoPlayer";
 import { useFocusEffect } from "@react-navigation/native";
@@ -7,7 +6,7 @@ import {
   Heading3,
   Heading6Bold,
   ShiftFromTopBottom5,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
@@ -80,12 +79,12 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : []
   );
-  const allVideoArticleData = useAppSelector((state: any) =>
+  const VideoArticlesDataall = useAppSelector((state: any) =>
     state.utilsData.VideoArticlesData != ""
       ? JSON.parse(state.utilsData.VideoArticlesData)
       : []
   );
-  const videoarticleDataold = allVideoArticleData.filter(
+  const videoarticleDataold = VideoArticlesDataall.filter(
     (x: any) =>
       x.mandatory == appConfig.videoArticleMandatory &&
       x.child_age.includes(activeChild.taxonomyData.id) &&

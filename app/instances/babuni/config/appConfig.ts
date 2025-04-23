@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { apiUrlDevelop } from 'react-native-dotenv';
 import RNFS from 'react-native-fs';
 
@@ -102,12 +103,19 @@ const config = {
     { name: 'parentingCorner', id: 391, image: 'ic_artl_parenting' },
     { name: 'nutritionAndBreastfeeding', id: 386, image: 'ic_artl_nutrition' },
   ],
+  reviewURL:Platform.select({
+    android: "https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni",
+    ios: "itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review",
+  }),
   bothParentGender: 621,
   bothChildGender: 536,
   boyChildGender: 526,
   girlChildGender: 531,
   weightForHeight: 601,
   heightForAge: 606,
+  pregnancyId:166191,
+  languageCode:"en",
+  searchMinimumLength:3,
   today: new Date(),
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
@@ -118,7 +126,7 @@ const config = {
     videoArticles: 'video-articles',
     dailyMessages: 'daily-homescreen-messages',
     basicPages: 'basic-pages',
-    sponsors: 'sponsors',
+    // sponsors: 'sponsors',
     taxonomies: 'taxonomies',
     standardDeviation: 'standard_deviation',
     milestones: 'milestones',
@@ -128,7 +136,7 @@ const config = {
     childGrowthData: 'child-growth-data',
     vaccinations: 'vaccinations',
     healthCheckupData: 'health-checkup-data',
-    pinnedContent: 'pinned-contents',
+    // pinnedContent: 'pinned-contents',
     checkUpdate: 'check-update',
     faqs: 'faqs',
     archive: 'archive',
@@ -156,8 +164,8 @@ const config = {
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
         return `${baseUrl}/${config.flavorName}`;
-      case config.apiConfig.sponsors:
-        return `${baseUrl}/${selectedCountry}`;
+      // case config.apiConfig.sponsors:
+      //   return `${baseUrl}/${selectedCountry}`;
       case config.apiConfig.taxonomies:
         return `${baseUrl}/${selectedLang}/all`;
       case config.apiConfig.checkUpdate:
@@ -166,38 +174,90 @@ const config = {
         return `${baseUrl}/${selectedLang}`;
     }
   },
-  allApisObject: (isDatetimeReq: boolean, dateTimeObj: Record<string, any>): any => {
-    const apiList = [
-      { key: "sponsors", saveInDB: false },
-      { key: "articles", saveInDB: true },
-      { key: "countryGroups", saveInDB: true },
-      { key: "taxonomies", saveInDB: true },
-      { key: "basicPages", saveInDB: true },
-      { key: "surveys", saveInDB: true },
-      { key: "milestones", saveInDB: true },
-      { key: "childDevelopmentData", saveInDB: true },
-      { key: "vaccinations", saveInDB: true },
-      { key: "healthCheckupData", saveInDB: true },
-      { key: "standardDeviation", saveInDB: true },
-      { key: "dailyMessages", saveInDB: true },
-      { key: "activities", saveInDB: true },
-      { key: "faqs", saveInDB: true },
-      { key: "videoArticles", saveInDB: true },
-    ];  
-    const allApiObject = apiList.map(({ key, saveInDB }) => ({
-      apiEndpoint: config.apiConfig[key],
-      method: "get",
-      postdata: isDatetimeReq && dateTimeObj?.[`${key}Datetime`] ? { datetime: dateTimeObj[`${key}Datetime`] } : {},
-      saveInDB,
-    }));
-  
+  allApisObject: (isDatetimeReq: any, dateTimeObj: any): any => {
+    const allApiObject = [
+      // { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
+      { apiEndpoint: config.apiConfig.articles, method: 'get', postdata: {}, saveinDB: true },
+      { apiEndpoint: config.apiConfig.countryGroups, method: 'get', postdata: {}, saveinDB: true },
+      { apiEndpoint: config.apiConfig.taxonomies, method: 'get', postdata: {}, saveinDB: true },
+      { apiEndpoint: config.apiConfig.basicPages, method: 'get', postdata: {}, saveinDB: true },
+      {
+        apiEndpoint: config.apiConfig.surveys,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.milestones,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.childDevelopmentData,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.vaccinations,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.healthCheckupData,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.standardDeviation,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.dailyMessages,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.activities,
+        method: 'get',
+        postdata: isDatetimeReq == true && dateTimeObj['activitiesDatetime'] != '' ? { datetime: dateTimeObj['activitiesDatetime'] } : {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.faqs,
+        method: 'get',
+        postdata: isDatetimeReq == true && dateTimeObj['faqsDatetime'] != '' ? { datetime: dateTimeObj['faqsDatetime'] } : {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: config.apiConfig.videoArticles,
+        method: 'get',
+        postdata:
+          isDatetimeReq && dateTimeObj['videoArticlesDatetime'] !== ''
+            ? { datetime: dateTimeObj['videoArticlesDatetime'] }
+            : {},
+        saveinDB: true,
+      },
+      // Add other objects as needed...
+    ];
+
     if (isDatetimeReq) {
-      const archiveDate = dateTimeObj?.archiveDatetime || dateTimeObj?.faqPinnedContentDatetime;
       allApiObject.push({
         apiEndpoint: config.apiConfig.archive,
-        method: "get",
-        postdata: archiveDate ? { datetime: archiveDate } : {},
-        saveInDB: true,
+        method: 'get',
+        postdata:
+          dateTimeObj['archiveDatetime'] !== ''
+            ? { datetime: dateTimeObj['archiveDatetime'] }
+            : dateTimeObj['faqPinnedContentDatetime'] !== ''
+              ? { datetime: dateTimeObj['faqPinnedContentDatetime'] }
+              : {},
+        saveinDB: true,
       });
     }
     

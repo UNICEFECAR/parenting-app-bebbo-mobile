@@ -1,0 +1,44 @@
+<svg id="ic_vaccination_color" xmlns="http://www.w3.org/2000/svg" width="60" height="60.001" viewBox="0 0 60 60.001">
+  <rect id="Rectangle_524" data-name="Rectangle 524" width="60" height="60" fill="none"/>
+  <g id="Group_2130" data-name="Group 2130" transform="translate(22.03 2.024)">
+    <path id="Rectangle_513" data-name="Rectangle 513" d="M0,0H17.208a0,0,0,0,1,0,0V27.836a8.6,8.6,0,0,1-8.6,8.6h0a8.6,8.6,0,0,1-8.6-8.6V0A0,0,0,0,1,0,0Z" transform="translate(0 11.134)" fill="#00a8a8"/>
+    <rect id="Rectangle_512" data-name="Rectangle 512" width="8.098" height="11.134" transform="translate(4.049 0)" fill="#99dcdc"/>
+  </g>
+  <g id="Group_2123" data-name="Group 2123" transform="translate(13)">
+    <g id="Shape_486_12_" transform="translate(16.334 47.757)">
+      <g id="Group_1937" data-name="Group 1937">
+        <path id="Path_972" data-name="Path 972" d="M891.5,430.713a1.1,1.1,0,0,1-1.094-1.094V419.564a1.094,1.094,0,0,1,2.189,0v10.055A1.1,1.1,0,0,1,891.5,430.713Z" transform="translate(-890.41 -418.47)" fill="#070707"/>
+      </g>
+    </g>
+    <g id="Shape_487_12_" transform="translate(7.538 0.014)">
+      <g id="Group_1938" data-name="Group 1938">
+        <path id="Path_973" data-name="Path 973" d="M902.667,385.759H885.074a1.094,1.094,0,1,1,0-2.189h17.592a1.094,1.094,0,1,1,0,2.189Z" transform="translate(-883.98 -383.57)" fill="#070707"/>
+      </g>
+    </g>
+    <g id="Shape_488_88_" transform="translate(7.538 19.207)">
+      <g id="Group_1939" data-name="Group 1939">
+        <path id="Path_974" data-name="Path 974" d="M892.612,399.789h-7.537a1.094,1.094,0,1,1,0-2.189h7.537a1.094,1.094,0,1,1,0,2.189Z" transform="translate(-883.98 -397.6)" fill="#070707"/>
+      </g>
+    </g>
+    <g id="Shape_488_87_" transform="translate(7.538 28.837)">
+      <g id="Group_1940" data-name="Group 1940">
+        <path id="Path_975" data-name="Path 975" d="M892.612,406.829h-7.537a1.094,1.094,0,1,1,0-2.189h7.537a1.094,1.094,0,1,1,0,2.189Z" transform="translate(-883.98 -404.64)" fill="#070707"/>
+      </g>
+    </g>
+    <g id="Shape_490_12_" transform="translate(7.516 12.572)">
+      <g id="Group_1941" data-name="Group 1941">
+        <path id="Path_976" data-name="Path 976" d="M893.876,430.123h-.082a10.606,10.606,0,0,1-9.809-11.218V393.844a1.1,1.1,0,0,1,1.094-1.094h17.592a1.1,1.1,0,0,1,1.095,1.094v25.13a10.6,10.6,0,0,1-9.809,11.149Zm-7.7-35.185v24.036a7.786,7.786,0,1,0,15.4.068v-24.1Z" transform="translate(-883.964 -392.75)" fill="#070707"/>
+      </g>
+    </g>
+    <g id="Rectangle-path_23_12_" transform="translate(12.558)">
+      <g id="Group_1942" data-name="Group 1942">
+        <path id="Path_977" data-name="Path 977" d="M896.282,398.321h-7.538a1.1,1.1,0,0,1-1.094-1.094V384.654a1.1,1.1,0,0,1,1.094-1.094h7.538a1.1,1.1,0,0,1,1.094,1.094v12.572A1.1,1.1,0,0,1,896.282,398.321Zm-6.443-2.189h5.349V385.749h-5.349Z" transform="translate(-887.65 -383.56)" fill="#070707"/>
+      </g>
+    </g>
+    <g id="Shape_491_12_" transform="translate(0 12.572)">
+      <g id="Group_1943" data-name="Group 1943">
+        <path id="Path_978" data-name="Path 978" d="M912.232,394.939H879.564a1.094,1.094,0,1,1,0-2.189h32.668a1.094,1.094,0,0,1,0,2.189Z" transform="translate(-878.47 -392.75)" fill="#070707"/>
+      </g>
+    </g>
+  </g>
+</svg>

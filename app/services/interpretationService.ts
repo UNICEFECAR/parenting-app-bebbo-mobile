@@ -46,7 +46,7 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
         if (weight < filteredDataForHeight.sd3neg) {
             interpretationText = interpretationData?.emergencySmallHeightText;
         }
-
+        
         if (weight >= filteredDataForHeight.sd2 && weight <= filteredDataForHeight.sd3) {
             interpretationText = interpretationData?.warrningBigHeightText;
         }

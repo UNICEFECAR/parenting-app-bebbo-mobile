@@ -1,4 +1,3 @@
-// import { articleCategoryIdArray, bothChildGender, maxArticleSize, videoArticleMandatory } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../../instances";
 import ArticleCategories from "@components/ArticleCategories";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
@@ -20,40 +19,22 @@ import VideoPlayer from "@components/VideoPlayer";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import {
-  articleColor,
-  articlesTintcolor,
-  bgColor1,
-  bgcolorWhite2,
-  greyCode,
-} from "../../../instances/bebbo/styles/style";
+import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import {
   Heading3,
   Heading4Center,
   Heading6Bold,
-  ShiftFromBottom10,
   ShiftFromTopBottom5,
-  SideRightSpacing20,
   SideSpacing10,
-} from "../../../instances/bebbo/styles/typography";
-import React, {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+} from "@styles/typography";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  ActivityIndicator,
-  Dimensions,
   FlatList,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  SectionList,
   StyleSheet,
   Text,
   View,
@@ -70,10 +51,7 @@ import {
   synchronizeEvents,
 } from "../../../services/EventSyncService";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
-import {
-  HistoryEntity,
-  SearchHistorySchema,
-} from "../../../database/schema/SearchHistorySchema";
+import { HistoryEntity } from "../../../database/schema/SearchHistorySchema";
 import VectorImage from "react-native-vector-image";
 import MiniSearch from "minisearch";
 import {
@@ -139,19 +117,15 @@ export type ArticleCategoriesProps = {
   onFilterArrayChange?: any;
 };
 const Articles = ({ route, navigation }: any): any => {
-  let sectionListRef: any;
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState("");
   const [isSerachedQueryText, setIsSearchedQueryText] = useState(false);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
   const [loadingArticle, setLoadingArticle] = useState(false);
-  const [flatListHeight, setFlatListHeight] = useState(0);
   const [suggestedArticles, setsuggestedArticles] = useState([]);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
-  const windowWidthStyle = Dimensions.get("window").width;
-  const windowHeightStyle = Dimensions.get("window").height;
   const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
@@ -291,6 +265,11 @@ const Articles = ({ route, navigation }: any): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
+  const activeChild1 = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ""
+      ? JSON.parse(state.childData.childDataSet.allChild)
+      : []
+  );
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ""
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -351,7 +330,19 @@ const Articles = ({ route, navigation }: any): any => {
   };
 
   const showSelectedBracketData = async (item: any): Promise<any> => {
-    console.log("Child id is", item.id);
+    // Check if switching from Pregnancy to Other OR from Other to Pregnancy
+    if (
+      (currentSelectedChildId == appConfig.pregnancyId &&
+        item.id !== appConfig.pregnancyId) ||
+      (currentSelectedChildId !== appConfig.pregnancyId &&
+        item.id == appConfig.pregnancyId)
+    ) {
+      // Reset category filters
+      navigation.setParams({ categoryArray: [] });
+      setFilterArray([]);
+      onFilterArrayChange([]);
+      setFilteredArticleData([]);
+    }
     if (item && item?.id !== null) {
       const eventData = {
         name: ADVICE_AGEGROUP_SELECTED,
@@ -372,6 +363,9 @@ const Articles = ({ route, navigation }: any): any => {
       setCurrentChildSelected(true);
     }
   };
+  // useEffect(() => {
+  //   if(currentSelectedChildId !== appConfig)
+  // },[currentSelectedChildId])
   useEffect(() => {
     setsuggestedArticles(filteredData);
   }, [filteredData]);
@@ -488,7 +482,6 @@ const Articles = ({ route, navigation }: any): any => {
             const results = searchIndex.search(queryText);
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
-              setSelectedCategoryId(itemId);
               const categoryFilteredData = results.filter((x: any) =>
                 itemId.includes(x.category)
               );
@@ -508,7 +501,7 @@ const Articles = ({ route, navigation }: any): any => {
         } else {
           setfilteredData(newArticleData);
         }
-
+        setSelectedCategoryId(itemId);
         setLoadingArticle(false);
         setIsSearchedQueryText(false);
         setTimeout(() => {
@@ -664,7 +657,15 @@ const Articles = ({ route, navigation }: any): any => {
         articleData = [...combineDartArr];
         const processedArticles = preprocessArticles(combineDartArr);
         const searchIndexData = new MiniSearch({
-          processTerm: (term) => suffixes(term, 3),
+          processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
+          // tokenize: (text) => {
+          //   const words = text.toLowerCase().split(/\s+/);
+          //   const ngrams = [];
+          //   for (let i = 0; i < words.length - 1; i++) {
+          //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
+          //   }
+          //   return [...words, ...ngrams]; // Return both single words and bigrams
+          // },
           extractField: (document, fieldName): any => {
             const arrFields = fieldName.split(".");
             if (arrFields.length === 2) {
@@ -768,13 +769,14 @@ const Articles = ({ route, navigation }: any): any => {
     for (let i = 0; i <= term.length - minLength; i++) {
       tokens.push(term.slice(i));
     }
+    // console.log("--------", tokens);
     return tokens;
   };
 
   const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false);
     setLoadingArticle(true);
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    // await new Promise((resolve) => setTimeout(resolve, 0));
     Keyboard.dismiss();
     if (queryText != "" && queryText != undefined && queryText != null) {
       const keywords = queryText
@@ -783,12 +785,13 @@ const Articles = ({ route, navigation }: any): any => {
         .split(" ")
         .filter((word: any) => word.trim() !== "");
       if (keywords.length > 1) {
-        const resultsPromises = keywords.map(async (keyword: any) => {
-          const results = searchIndex.search(keyword);
-          return results;
-        });
-        const resultsArrays = await Promise.all(resultsPromises);
-        const aggregatedResults = resultsArrays.flat();
+        // const resultsPromises = keywords.map(async (keyword: any) => {
+        //   const results = searchIndex.search(keyword);
+        //   return results;
+        // });
+        // const resultsArrays = await Promise.all(resultsPromises);
+        const results = searchIndex.search(queryText);
+        const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = aggregatedResults.filter((x: any) =>
@@ -881,6 +884,15 @@ const Articles = ({ route, navigation }: any): any => {
       </View>
     </Pressable>
   );
+
+  const optimizedFilteredData = useMemo(() => {
+    if (filterArray.length === 1 && filterArray[0] == appConfig.weekByWeekId) {
+      console.log("[filter Array]1");
+      return [...filteredData].sort((a, b) => a.id - b.id); // ✨ non-mutating sort
+    }
+    return filteredData;
+  }, [filteredData, filterArray]);
+  console.log(filterArray, "[filter Array]", optimizedFilteredData);
 
   return (
     <>
@@ -988,6 +1000,9 @@ const Articles = ({ route, navigation }: any): any => {
                 <View style={{ backgroundColor: articlesTintcolor }}>
                   <ArticleCategories
                     borderColor={headerColor}
+                    isSelectedPregnancy={
+                      currentSelectedChildId == appConfig.pregnancyId
+                    }
                     filterOnCategory={setFilteredArticleData}
                     fromPage={fromPage}
                     filterArray={filterArray}
@@ -1002,8 +1017,8 @@ const Articles = ({ route, navigation }: any): any => {
             ) : null}
             <FlatList
               ref={flatListRef}
-              data={filteredData}
-              extraData={filteredData}
+              data={optimizedFilteredData}
+              extraData={[filteredData, optimizedFilteredData]}
               onScroll={(e): any => {
                 if (keyboardStatus == true) {
                   Keyboard.dismiss();

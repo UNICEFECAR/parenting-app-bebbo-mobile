@@ -1,7 +1,4 @@
-import {
-  chartInnerViewBg,
-  outerViewbg,
-} from "../../instances/bebbo/styles/style";
+import { chartInnerViewBg, outerViewbg } from "@styles/style";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -196,6 +193,7 @@ const GrowthChart = (props: any): any => {
   });
   const { topArea, bottomArea, middleArea } = bgObj;
   const ChartClick = Platform.OS == "android" ? Svg : View;
+  console.log(bgObj);
   return (
     <>
       <View style={styles.mainView}>
