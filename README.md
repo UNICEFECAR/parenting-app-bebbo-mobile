@@ -108,7 +108,7 @@ git checkout -b myFeature Development
 6. Install NPM packages. Do not use yarn!
 
 ```
-npm install
+npm install --force
 ```
 
 7. Run below command to generate vector images based on flavour folders:
@@ -138,7 +138,7 @@ NOTE: Please download [env.bebboDev](https://drive.google.com/drive/folders/1jVX
 
 1. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts. Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
 
-1. Pod install inside folder
+1. Pod install inside ios folder
 
 ```
 pod install
@@ -258,20 +258,26 @@ pod install
 
 After set up all configuration you run the bebbo dev app with below npx commands.
 
+Run metro bundler
+
+```
+FLAVOR=bebboDev react-native start --reset-cache
+```
+
 Run and generate build android Bebbo Dev app
 
 ```
-npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
+ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
 
-cd android && ./gradlew bundleProdstagingRelease (aab)
+cd android && ENVFILE=env/.env.bebboDev FLAVOR=bebboDev ./gradlew bundleProdstagingRelease (aab)
 
-cd android && ./gradlew assembleProdstagingRelease (apk)
+cd android && ENVFILE=env/.env.bebboDev FLAVOR=bebboDev ./gradlew assembleProdstagingRelease (apk)
 ```
 
 Run and generate build iOS Bebbo Dev app
 
 ```
-npx react-native run-ios --scheme ParentBuddyAppDev
+ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release
 
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme ParentBuddyAppDev -configuration Release -sdk iphoneos -archivePath ios/build/ParentBuddyAppDev.xcarchive archive (archive)
 
