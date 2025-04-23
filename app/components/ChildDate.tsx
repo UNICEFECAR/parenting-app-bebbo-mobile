@@ -5,25 +5,14 @@ import {
   Heading4Centerr,
   ShiftFromTop10,
   ShiftFromTop15,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { dobMin, maxDue, minDue } from "@types/types";
 import { DateTime } from "luxon";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Modal,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Modal, Platform, Pressable, StyleSheet, View } from "react-native";
 import { formatStringDate, getLanguageCode } from "../services/Utils";
-import Checkbox, {
-  CheckboxActive,
-  CheckboxItem,
-  FormOuterCheckbox,
-} from "./shared/CheckboxStyle";
+import Checkbox, { CheckboxActive, CheckboxItem } from "./shared/CheckboxStyle";
 import {
   FormDateAction,
   FormDateContainer,
@@ -31,17 +20,14 @@ import {
   FormInputBox,
   FormInputGroup,
   LabelChildText,
-  LabelDatePlaceHolderText,
   LabelText,
-  LabelText1,
   LabelTextTerms,
 } from "./shared/ChildSetupStyle";
 import FormPrematureContainer, {
-  FormDobInfoPress,
   FormInfoLabel,
   FormInfoPress,
 } from "./shared/FormPrematureContainer";
-import { FlexFDirRowSpace, FlexRow } from "./shared/FlexBoxStyle";
+import { FlexFDirRowSpace } from "./shared/FlexBoxStyle";
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -49,7 +35,7 @@ import ModalPopupContainer, {
   PopupOverlay,
 } from "./shared/ModalPopupStyle";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { greyCode } from "../instances/bebbo/styles/style";
+import { greyCode } from "@styles/style";
 import { useAppSelector } from "../../App";
 const styles = StyleSheet.create({
   disabledCheckBox: {
@@ -167,6 +153,7 @@ const ChildDate = (props: any): any => {
   const showdobDatepicker = (): any => {
     setdobShow(true);
     if (Platform.OS == "ios") {
+      isExpected && setdoborExpectedDate(new Date());
       setDobDatePickerVisibility(true);
     }
   };

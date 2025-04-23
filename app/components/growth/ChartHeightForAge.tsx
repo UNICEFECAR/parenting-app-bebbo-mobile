@@ -11,7 +11,7 @@ import {
   Heading3Regular,
   Heading4,
   ShiftFromTopBottom15,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import {
   ActivityIndicator,

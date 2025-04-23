@@ -14,7 +14,7 @@ import {
   ShiftFromBottom10,
   ShiftFromTopBottom10,
   SideSpacing25,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Dimensions, StyleSheet } from "react-native";
@@ -23,6 +23,12 @@ import { getAllConfigData } from "../../services/childCRUD";
 // import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import {
+  selectActiveChild,
+  selectAllConfigData,
+  selectChildDevData,
+  selectPinnedChildDevData,
+} from "../../services/selectors";
 const windowWidth = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -33,16 +39,10 @@ const ChildInfo = (props: any): any => {
   const navigation = useNavigation<any>();
   const netInfo = useNetInfoHook();
   const { headerColor, backgroundColor } = props;
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const allConfigData = useAppSelector((state: any) =>
-    state.variableData?.variableData != ""
-      ? JSON.parse(state.variableData?.variableData)
-      : state.variableData?.variableData
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const allConfigData = useAppSelector(selectAllConfigData);
+  const ChildDevData = useAppSelector(selectChildDevData);
+  const PinnedChildDevData = useAppSelector(selectPinnedChildDevData);
   const dispatch = useAppDispatch();
 
   const userNameData =
@@ -54,16 +54,6 @@ const ChildInfo = (props: any): any => {
       ? allConfigData.filter((item: any) => item.key === "userRelationToParent")
       : [];
   const activeChildGender = activeChild.gender;
-  const ChildDevData = useAppSelector((state: any) =>
-    state.utilsData.ChildDevData != ""
-      ? JSON.parse(state.utilsData.ChildDevData)
-      : []
-  );
-  const PinnedChildDevData = useAppSelector((state: any) =>
-    state.utilsData.VideoArticlesData != ""
-      ? JSON.parse(state.utilsData.VideoArticlesData)
-      : []
-  );
   const [selectedPinnedArticleData, setSelectedPinnedArticleData] =
     useState<any>();
   const activityTaxonomyId =
@@ -76,7 +66,7 @@ const ChildInfo = (props: any): any => {
     let filteredData = ChildDevData.filter((x: any) =>
       x.child_age.includes(activityTaxonomyId)
     )[0];
-    filteredData = { ...filteredData, name: activeChild.taxonomyData.name };
+    filteredData = { ...filteredData, name: activeChild?.taxonomyData?.name };
 
     const selectedChildDevData = filteredData;
     console.log(
@@ -89,9 +79,8 @@ const ChildInfo = (props: any): any => {
     if (
       activeChildGender == "" ||
       activeChildGender == 0 ||
-      activeChildGender == 40 ||
-      activeChildGender == 59 ||
-      activeChildGender == 526
+      activeChildGender == appConfig.boyChildGender ||
+      activeChildGender == appConfig.bothChildGender
     ) {
       //for boy,other and blank
       const filteredPinnedData = PinnedChildDevData.filter(
@@ -99,7 +88,7 @@ const ChildInfo = (props: any): any => {
       )[0];
       console.log(activeChild, "activeChild", filteredPinnedData);
       setSelectedPinnedArticleData(filteredPinnedData);
-    } else if (activeChildGender == "41" || activeChildGender == 531) {
+    } else if (activeChildGender == appConfig.girlChildGender) {
       //for girl
       const filteredPinnedData = PinnedChildDevData.filter(
         (x: any) => x.id == selectedChildDevData?.girl_video_article

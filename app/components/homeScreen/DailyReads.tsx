@@ -1,14 +1,6 @@
-import {
-  ADVICE_SHARED,
-  FAVOURITE_ADVICE_ADDED,
-  FAVOURITE_GAME_ADDED,
-  GAME_SHARED,
-} from "@assets/data/firebaseEvents";
-// import { articleCategoryArray,articleCategoryIdArray, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
 import { appConfig } from "../../instances";
 import { MainContainer } from "@components/shared/Container";
 import {
-  DailyAction,
   DailyArtTitle,
   DailyBox,
   DailyTag,
@@ -21,7 +13,7 @@ import {
   Heading4,
   HeadingHome3w,
   ShiftFromTopBottom10,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import { DateTime } from "luxon";
 import React, {
   useCallback,
@@ -43,32 +35,26 @@ import {
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
 import { ThemeContext } from "styled-components/native";
-import { RootState, useAppDispatch, useAppSelector } from "../../../App";
+import { useAppDispatch, useAppSelector } from "../../../App";
 import {
   setDailyArticleGamesCategory,
   setShowedDailyDataCategory,
 } from "../../redux/reducers/articlesSlice";
 import LoadableImage from "../../services/LoadableImage";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
-import { logEvent } from "../../services/EventSyncService";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
-import { connect } from "react-redux";
-import { FDirRow } from "@components/shared/FlexBoxStyle";
-import Icon, {
-  OuterIconLeft,
-  OuterIconLeft1,
-  OuterIconRow,
-} from "@components/shared/Icon";
-import styled from "styled-components/native";
-import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
 import {
-  setFavouriteAdvices,
-  setFavouriteGames,
-} from "../../redux/reducers/childSlice";
-import {
-  ChildEntity,
-  ChildEntitySchema,
-} from "../../database/schema/ChildDataSchema";
+  selectArticleDataAll,
+  selectFilteredArticles,
+  selectLowBandwidth,
+  selectActiveChild,
+  selectActivitiesDataAll,
+  selectActivityCategoryArray,
+  selectDailyDataCategoryAll,
+  selectShowedDailyDataCategoryAll,
+  selectFavoriteAdvices,
+  selectFavoriteGames,
+} from "../../services/selectors";
 
 const styles = StyleSheet.create({
   cardImage: {
@@ -94,56 +80,32 @@ const DailyReads = (): any => {
   const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
-  const articleDataall = useAppSelector((state: any) =>
-    state.articlesData.article.articles != ""
-      ? JSON.parse(state.articlesData.article.articles)
-      : state.articlesData.article.articles
-  );
-  const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
-  );
-  const articleData = articleDataall.filter((x: any) =>
+  const articleDataAll = useAppSelector(selectArticleDataAll);
+  const toggleSwitchVal = useAppSelector(selectLowBandwidth);
+
+  const articleData = articleDataAll.filter((x: any) =>
     appConfig.articleCategoryIdArray.includes(x.category)
   );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
+  const activeChild = useAppSelector(selectActiveChild);
+  const ActivitiesDataall = useAppSelector(selectActivitiesDataAll);
+  const activityCategoryArray = useAppSelector(selectActivityCategoryArray);
+  const dailyDataCategoryall = useAppSelector(selectDailyDataCategoryAll);
+  const showedDailyDataCategoryall = useAppSelector(
+    selectShowedDailyDataCategoryAll
   );
-  const ActivitiesDataall = useAppSelector((state: any) =>
-    state.utilsData.ActivitiesData != ""
-      ? JSON.parse(state.utilsData.ActivitiesData)
-      : []
-  );
+  const favoriteAdvices = useAppSelector(selectFavoriteAdvices);
+  const favoriteGames = useAppSelector(selectFavoriteGames);
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId ??
     activeChild?.taxonomyData?.id;
+
   const ActivitiesData = ActivitiesDataall.filter((x: any) =>
     x.child_age.includes(activityTaxonomyId)
   );
   let ArticlesData = articleData.filter((x: any) =>
     x.child_age.includes(activityTaxonomyId)
   );
-  const activityCategoryArray = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category
-  );
-  // console.log(ActivitiesData)
-  const dailyDataCategoryall = useAppSelector(
-    (state: any) => state.articlesData.dailyDataCategory
-  );
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode
-  );
-  const showedDailyDataCategoryall = useAppSelector(
-    (state: any) => state.articlesData.showedDailyDataCategory
-  );
-  const favoriteAdvices = useAppSelector(
-    (state: any) => state.childData.childDataSet.favoriteadvices
-  );
-  const favoriteGames = useAppSelector(
-    (state: any) => state.childData.childDataSet.favoritegames
-  );
+
   const [dataToShowInList, setDataToShowInList] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
   const [activityDataToShowInList, setActivityDataToShowInList] = useState([]);
@@ -275,7 +237,7 @@ const DailyReads = (): any => {
         dailyDataCategoryall[activeChild.uuid].currentgamesid;
       if (
         dailyDataCategoryall[activeChild.uuid].taxonomyid !=
-        activeChild.taxonomyData.id
+        activeChild?.taxonomyData?.id
       ) {
         advid = 0;
         currentadviceid = 0;
@@ -301,6 +263,7 @@ const DailyReads = (): any => {
         prematureTaxonomyId: activityTaxonomyId,
       };
     }
+
     if (showedDailyDataCategoryall[activeChild.uuid] === undefined) {
       showedDailyDataCategory = { advice: [], games: [] };
     } else {
@@ -341,13 +304,12 @@ const DailyReads = (): any => {
       const activityCategoryArrayNew = activityCategoryArray.filter((i: any) =>
         ActivitiesData.find((f: any) => f.activity_category === i.id)
       );
-      console.log("[1]", articleCategoryArrayNew);
       const currentIndex = articleCategoryArrayNew.findIndex(
         (_item: any) => _item === dailyDataCategory.advice
       );
       const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
-      let categoryArticleData = ArticlesData.filter(
-        (x: any) => x.category == articleCategoryArrayNew[nextIndex]
+      let categoryArticleData = ArticlesData.filter((x: any) =>
+        articleCategoryArrayNew.includes(x.category)
       );
       const obj1 = categoryArticleData.filter(
         (i: any) => !showedDailyDataCategory.advice.find((f: any) => f === i.id)
@@ -432,7 +394,6 @@ const DailyReads = (): any => {
           activityListData.push(activity);
         });
       }
-
       setDataToShowInList(articleListData);
       setActivityDataToShowInList(activityListData);
       const dailyDataCategorytoDispatch: any = { ...dailyDataCategoryall };
@@ -506,7 +467,6 @@ const DailyReads = (): any => {
       activityDataToShow.forEach((activity: any) => {
         activityDataList.push(activity);
       });
-
       setDataToShowInList(articleDataList);
       setActivityDataToShowInList(activityDataList);
     }
@@ -522,8 +482,8 @@ const DailyReads = (): any => {
     [favoriteAdvices, favoriteGames]
   );
 
-  const handleEmptyList = () => {
-    if (dataToShowInList?.length === 0 && !fetchAgain) {
+  const renderEmptyList = () => {
+    if (dataToShowInList?.length == 0 && !fetchAgain) {
       setFetchAgain(true);
     }
     return null;
@@ -545,7 +505,7 @@ const DailyReads = (): any => {
             keyExtractor={(item: any): any => keyExtractor(item)}
             windowSize={5}
             initialNumToRender={10}
-            ListEmptyComponent={() => handleEmptyList()}
+            ListEmptyComponent={() => renderEmptyList()}
           />
         </View>
         <View style={styles.flatlistOuterView}>

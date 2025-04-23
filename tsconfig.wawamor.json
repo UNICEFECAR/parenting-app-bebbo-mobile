@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "@styles/*": [
+                "app/instances/wawamor/styles/*"
+            ],
+            "@images/*": [
+                "app/instances/wawamor/assets/images/*"
+            ]
+        }
+    }
+}

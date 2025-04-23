@@ -14,7 +14,7 @@ import Home from "@screens/home/bottomTabs/Home";
 import Childgrowth from "@screens/home/Childgrowth";
 import HealthCheckups from "@screens/home/HealthCheckups";
 import Vaccination from "@screens/home/Vaccination";
-import { Heading3 } from "../instances/bebbo/styles/typography";
+import { Heading3 } from "@styles/typography";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {

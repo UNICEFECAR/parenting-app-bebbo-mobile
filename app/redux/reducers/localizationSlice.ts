@@ -73,7 +73,7 @@ export const localizationSlice = createSlice({
       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.countries = action.payload;
       //(typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : action.payload = action.payload;
-       console.log('type of data', action.payload)
+      //  console.log('type of data', action.payload)
     },
     setChildStore: (
       state,

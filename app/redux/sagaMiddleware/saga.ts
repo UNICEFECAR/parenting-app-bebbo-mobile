@@ -34,7 +34,6 @@ function* apiCall(data: ApiJsonArray, dispatch: any): any {
 }
 function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any, languageCode: string, activeChild: any, oldErrorObj: any, netInfoIsConnected: any, forceupdatetime: any, downloadWeeklyData: any, downloadMonthlyData: any, enableImageDownload: any): any {
 
-  // }
   try {
     const payload = { errorArr: errorArr, fromPage: prevPage }
     yield put(receiveAPIFailure(payload))
@@ -73,7 +72,8 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
   else if (prevPage == '') {
     try {
       const payload = { errorArr: errorArr, fromPage: prevPage }
-      yield call(onCountryApiSuccess, response, dispatch, navigation, languageCode, prevPage)
+      console.log('prevPage ********',prevPage)
+      yield call(onCountryApiSuccess, response, dispatch, navigation, 'en', prevPage)
     } catch (error) {
       console.log('error5', error)
     }
@@ -178,7 +178,6 @@ function* onFetchAPI(value: any): any {
     }
   } catch (e) {
     console.log(value)
-    console.log('----------', e)
     if (netInfoIsConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
       yield call(onApiError, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj, netInfoIsConnected, forceupdatetime, downloadWeeklyData, downloadMonthlyData, enableImageDownload);
     }

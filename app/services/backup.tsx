@@ -84,7 +84,9 @@ class Backup {
             parentFolderId: backupFolderId,
             isBase64: false,
           });
-          return typeof response === "string";
+          if (typeof response !== "string") {
+            return false;
+          }
         })
         .catch((error: any) => {
           console.error("Error exporting data:", error);
@@ -222,7 +224,7 @@ class Backup {
           })
           .catch((error) => {
             console.log("error-", error);
-            return Promise.reject(new Error("No Import Succeeded"));
+            return new Error("No Import Succeded");
           });
       }
     } catch (error) {

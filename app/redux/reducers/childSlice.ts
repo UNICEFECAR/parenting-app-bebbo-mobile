@@ -35,8 +35,10 @@ export const childSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ):any => {
+      
       (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
       (typeof action.payload == 'object') ? state.childDataSet.activeChild = JSON.stringify(action.payload) : state.childDataSet.activeChild = action.payload;
+      console.log(action.payload)
 
     },
     setAllChildData: (

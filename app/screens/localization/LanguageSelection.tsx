@@ -4,8 +4,12 @@ import OnboardingContainer from "@components/shared/OnboardingContainer";
 import OnboardingStyle from "@components/shared/OnboardingStyle";
 import { LocalizationStackParamList } from "@navigation/types";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { SelectionView } from "../../instances/bebbo/styles/style";
+import { SelectionView } from "@styles/style";
 import React, { useContext, useEffect, useState } from "react";
+import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
+import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
+import { receiveAPIFailure } from "../../redux/sagaMiddleware/sagaSlice";
+import { ChildEntitySchema } from "../../database/schema/ChildDataSchema";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -88,6 +92,12 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   );
   const apiJsonData = [
     {
+      apiEndpoint: appConfig.apiConfig.taxonomies,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
+    {
       apiEndpoint: appConfig.apiConfig.basicPages,
       method: "get",
       postdata: {},
@@ -103,8 +113,8 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
     const [languageCode] = languageTag.split("-");
     return languageCode;
   };
+
   useEffect(() => {
-    console.log("---------", route.params);
     if (route?.params?.language != undefined) {
       setLanguage(route?.params?.language);
     } else {
@@ -151,6 +161,20 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
           }
         }
       }
+      const fetchData = async (): Promise<any> => {
+        if (userIsOnboarded == false && route.params?.isDirect) {
+          await userRealmCommon.deleteBy(
+            ChildEntitySchema,
+            "isMigrated == false"
+          );
+          const data = await dataRealmCommon.deleteAllAtOnce();
+          console.log(data, "..newdata..");
+          // dispatch(setSponsorStore({ country_national_partner: null, country_sponsor_logo: null }));
+          const payload = { errorArr: [], fromPage: "OnLoad" };
+          dispatch(receiveAPIFailure(payload));
+        }
+      };
+      fetchData();
 
       const selectedCountry = allCountries.find(
         (country: any) => country.CountryID == newCountryId
@@ -318,6 +342,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         console.log("error", error);
       });
   };
+
   return (
     <>
       <>
