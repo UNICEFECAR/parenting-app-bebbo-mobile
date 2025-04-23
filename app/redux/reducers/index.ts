@@ -10,7 +10,6 @@ import { createRealmPersistStorage } from './realmPersistor';
 import { notificationSlice } from './notificationSlice';
 import { createMigrate } from 'redux-persist';
 import { bandWidthSlice } from './bandwidthSlice';
-import { parse } from 'react-native-svg';
 
 const migrations = {
   0: (state: any): any => {

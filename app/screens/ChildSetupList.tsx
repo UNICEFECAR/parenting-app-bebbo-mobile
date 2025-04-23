@@ -16,13 +16,8 @@ import {
   ChildListingArea,
   ChildListingBox,
   ChildListTitle,
-  CustomScrollView,
 } from "@components/shared/ChildSetupStyle";
-import Icon, {
-  IconML,
-  OuterIconLeft,
-  OuterIconRow,
-} from "@components/shared/Icon";
+import Icon, { OuterIconRow } from "@components/shared/Icon";
 import OnboardingContainer from "@components/shared/OnboardingContainer";
 import OnboardingHeading from "@components/shared/OnboardingHeading";
 import { RootStackParamList } from "@navigation/types";
@@ -32,10 +27,7 @@ import {
   useIsFocused,
 } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import {
-  primaryColor,
-  secondaryBtnColor,
-} from "../instances/bebbo/styles/style";
+import { primaryColor, secondaryBtnColor } from "@styles/style";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -54,7 +46,6 @@ import { ChildEntity } from "../database/schema/ChildDataSchema";
 import {
   apiJsonDataGet,
   deleteChild,
-  getAge,
   getAllChildren,
   getAllConfigData,
   isFutureDate,
@@ -64,13 +55,11 @@ import {
   Heading1Centerw,
   Heading3Centerw,
   Heading5,
-  ShiftFromBottom10,
   ShiftFromTop30,
-} from "../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
-import { setActiveChildData } from "../redux/reducers/childSlice";
-import { Flex1, FlexCol, FlexRow } from "@components/shared/FlexBoxStyle";
+import { FlexCol } from "@components/shared/FlexBoxStyle";
 import { ScrollView } from "react-native-gesture-handler";
 import { requestExactAlarmPermission } from "../services/exactAlarmService";
 type ChildSetupNavigationProp = StackNavigationProp<
