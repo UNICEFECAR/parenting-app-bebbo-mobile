@@ -27,13 +27,15 @@ import {
   ShiftFromTop15,
   SideRightSpacing20,
   SideSpacing10,
-} from "../instances/bebbo/styles/typography";
-import {
-  bgcolorWhite2,
-  secondaryBtnColor,
-} from "../instances/bebbo/styles/style";
+} from "@styles/typography";
+import { bgcolorWhite2, secondaryBtnColor } from "@styles/style";
 import VectorImage from "react-native-vector-image";
-import { activityLogo, adviceLogo, toolsLogo } from "../instances";
+import {
+  activityLogo,
+  adviceLogo,
+  toolsLogo,
+  bebboLogoShapeNew,
+} from "../instances";
 const flavor = process.env.FLAVOR || "bebbo";
 const BebboLogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
 const BebboLogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
@@ -130,6 +132,8 @@ const Terms = ({ navigation }: Props): any => {
       dispatch(setTaxonomyIds(taxonomyAllData));
     }
   }, []);
+
+  console.log(flavor);
   useFocusEffect(
     React.useCallback(() => {
       setTimeout(() => {

@@ -28,65 +28,101 @@ export const taxonomydata: any = {
                 {
                     "id": 1,
                     "name": "Ushqyerja dhe gjidhënia",
-                    "unique_name": "nutrition_and_breastfeeding"
+                    "unique_name": "nutrition_and_breastfeeding",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 2,
                     "name": "Shëndeti dhe mirëqenia",
-                    "unique_name": "health_and_wellbeing"
+                    "unique_name": "health_and_wellbeing",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 3,
                     "name": "Siguria dhe mbrojtja",
-                    "unique_name": "safety_and_protection"
+                    "unique_name": "safety_and_protection",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 4,
                     "name": "Këndi i prindërve",
-                    "unique_name": "parenting_corner"
+                    "unique_name": "parenting_corner",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 5,
                     "name": "Rritja e fëmijëve",
-                    "unique_name": "child_growth"
+                    "unique_name": "child_growth",
+                    "field_type_of_article": "Article for health and growth tools"
                 },
                 {
                     "id": 6,
                     "name": "Zhvillimi i fëmijëve",
-                    "unique_name": "child_development"
+                    "unique_name": "child_development",
+                    "field_type_of_article": "Article for health and growth tools"
                 },
                 {
                     "id": 7,
                     "name": "Kontrollet shëndetësore",
-                    "unique_name": "health_check_ups"
+                    "unique_name": "health_check_ups",
+                    "field_type_of_article": "Article for health and growth tools"
                 },
                 {
                     "id": 8,
                     "name": "Vaksinimi",
-                    "unique_name": "vaccination"
+                    "unique_name": "vaccination",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 166186,
+                    "name": "Javë pas Jave",
+                    "unique_name": "week_by_week",
+                    "field_type_of_article": "Article for pregnancy"
                 },
                 {
                     "id": 55,
                     "name": "Loja dhe mësimi",
-                    "unique_name": "play_and_learning"
+                    "unique_name": "play_and_learning",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 56,
                     "name": "Prindërimi i përgjegjshëm",
-                    "unique_name": "responsive_parenting"
+                    "unique_name": "responsive_parenting",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 166791,
+                    "name": "Shëndeti",
+                    "unique_name": "staying_healthy",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 166796,
+                    "name": "Planifikimi për fëmijë",
+                    "unique_name": "preparing_for_a_baby",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 166801,
+                    "name": "Mbështetja gjatë shtatzënisë",
+                    "unique_name": "support_during_pregnancy",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 166806,
+                    "name": "Lindja",
+                    "unique_name": "labour_and_birth",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 166811,
+                    "name": "Komplikimet e Shtatzënisë",
+                    "unique_name": "pregnancy_complications",
+                    "field_type_of_article": "Article for pregnancy"
                 }
             ],
             "chatbot_category": [
-                {
-                    "id": 110071,
-                    "name": "Zhvillimi fëmijës",
-                    "unique_name": "child_development"
-                },
-                {
-                    "id": 110076,
-                    "name": "Prindërimi më i mirë",
-                    "unique_name": "better_parenting"
-                },
                 {
                     "id": 110081,
                     "name": "Rritja e fëmijëve të shëndoshë",
@@ -101,6 +137,16 @@ export const taxonomydata: any = {
                     "id": 110091,
                     "name": "Kujdesi për veten",
                     "unique_name": "taking_care_of_yourself"
+                },
+                {
+                    "id": 110071,
+                    "name": "Zhvillimi fëmijës",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 110076,
+                    "name": "Prindërimi më i mirë",
+                    "unique_name": "better_parenting"
                 }
             ],
             "chatbot_child_age": [
@@ -326,7 +372,7 @@ export const taxonomydata: any = {
                     "days_from": 366,
                     "days_to": 547,
                     "buffers_days": 10,
-                    "age_bracket": []
+                    "age_bracket": [49, 50]
                 },
                 {
                     "id": 50,
@@ -366,7 +412,7 @@ export const taxonomydata: any = {
                     "days_from": 1826,
                     "days_to": 2190,
                     "buffers_days": 10,
-                    "age_bracket": []
+                    "age_bracket": [58]
                 }
             ],
             "child_gender": [
@@ -536,6 +582,11 @@ export const taxonomydata: any = {
                     "vaccination_opens": 486
                 },
                 {
+                    "id": 59016,
+                    "name": "prej 5 deri në 6 vjet",
+                    "vaccination_opens": 1460
+                },
+                {
                     "id": 6537,
                     "name": "me 21 muaj të plotë",
                     "vaccination_opens": 639
@@ -544,6 +595,11 @@ export const taxonomydata: any = {
                     "id": 6538,
                     "name": "me 2 vjet të plota",
                     "vaccination_opens": 730
+                },
+                {
+                    "id": 32906,
+                    "name": "me 5 vjet e gjysmë të plota",
+                    "vaccination_opens": 2007
                 },
                 {
                     "id": 6540,
@@ -616,6 +672,11 @@ export const taxonomydata: any = {
                     "vaccination_opens": 2190
                 },
                 {
+                    "id": 109721,
+                    "name": "me 15 ditë",
+                    "vaccination_opens": 15
+                },
+                {
                     "id": 6556,
                     "name": "me 6 vjet e gjysmë të plota",
                     "vaccination_opens": 2372
@@ -629,16 +690,6 @@ export const taxonomydata: any = {
                     "id": 6560,
                     "name": "me 18 muaj të plotë",
                     "vaccination_opens": 547
-                },
-                {
-                    "id": 32906,
-                    "name": "me 5 vjet e gjysmë të plota",
-                    "vaccination_opens": 2007
-                },
-                {
-                    "id": 59016,
-                    "name": "prej 5 deri në 6 vjet",
-                    "vaccination_opens": 1460
                 },
                 {
                     "id": 59041,
@@ -661,21 +712,6 @@ export const taxonomydata: any = {
                     "vaccination_opens": 547
                 },
                 {
-                    "id": 59076,
-                    "name": "prej 12 deri në 18 muaj",
-                    "vaccination_opens": 365
-                },
-                {
-                    "id": 59326,
-                    "name": "prej 19 deri në 23 muaj",
-                    "vaccination_opens": 578
-                },
-                {
-                    "id": 109721,
-                    "name": "me 15 ditë",
-                    "vaccination_opens": 15
-                },
-                {
                     "id": 110006,
                     "name": "prej 7 deri në 14 ditë",
                     "vaccination_opens": 7
@@ -686,9 +722,19 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1460
                 },
                 {
+                    "id": 59326,
+                    "name": "prej 19 deri në 23 muaj",
+                    "vaccination_opens": 578
+                },
+                {
                     "id": 110016,
                     "name": "me 21 ditë",
                     "vaccination_opens": 21
+                },
+                {
+                    "id": 59076,
+                    "name": "prej 12 deri në 18 muaj",
+                    "vaccination_opens": 365
                 },
                 {
                     "id": 159456,
@@ -703,14 +749,14 @@ export const taxonomydata: any = {
             ],
             "growth_type": [
                 {
-                    "id": 6461,
-                    "name": "Gjatësia për peshë",
-                    "unique_name": "height_for_weight"
-                },
-                {
                     "id": 32786,
                     "name": "Gjatësia për moshë",
                     "unique_name": "height_for_age"
+                },
+                {
+                    "id": 6461,
+                    "name": "Gjatësia për peshë",
+                    "unique_name": "height_for_weight"
                 }
             ],
             "parent_gender": [
@@ -754,6 +800,10 @@ export const taxonomydata: any = {
             ],
             "standard_deviation_category": [
                 {
+                    "id": 32771,
+                    "name": "nën -3SD"
+                },
+                {
                     "id": 32736,
                     "name": "mes -2SD deri në +2SD"
                 },
@@ -776,10 +826,180 @@ export const taxonomydata: any = {
                 {
                     "id": 32766,
                     "name": "nën -2SD"
+                }
+            ],
+            "subcategory": [
+                {
+                    "id": 161536,
+                    "name": "Ushqimet e para"
                 },
                 {
-                    "id": 32771,
-                    "name": "nën -3SD"
+                    "id": 166916,
+                    "name": "Balanci jetë-punë"
+                },
+                {
+                    "id": 166921,
+                    "name": "Raporti me partnerin"
+                },
+                {
+                    "id": 161296,
+                    "name": "Receta ushqimi"
+                },
+                {
+                    "id": 161301,
+                    "name": "Ushqyerje e shëndetshme"
+                },
+                {
+                    "id": 161306,
+                    "name": "Aktiviteti fizik"
+                },
+                {
+                    "id": 161311,
+                    "name": "Shkathtësitë socio-emocionale"
+                },
+                {
+                    "id": 160801,
+                    "name": "Gjumi"
+                },
+                {
+                    "id": 161316,
+                    "name": "Gjuha dhe leximi"
+                },
+                {
+                    "id": 160806,
+                    "name": "Kujdesi dhe Higjiena"
+                },
+                {
+                    "id": 161321,
+                    "name": "Këshilla për lojë"
+                },
+                {
+                    "id": 160811,
+                    "name": "Vaksinimi dhe Kontrollet Shendetësore"
+                },
+                {
+                    "id": 160816,
+                    "name": "Shqetësimet rreth zhvillimit të fëmijës"
+                },
+                {
+                    "id": 161586,
+                    "name": "Kuptimi i sjelljes së fëmijëve"
+                },
+                {
+                    "id": 161591,
+                    "name": "Lidhja prind-fëmijë"
+                },
+                {
+                    "id": 161596,
+                    "name": "Marrëdhëniet Familjare"
+                },
+                {
+                    "id": 161431,
+                    "name": "Ndihma e parë"
+                },
+                {
+                    "id": 161436,
+                    "name": "Parandalimi i rreziqeve"
+                },
+                {
+                    "id": 166816,
+                    "name": "0-12 javë"
+                },
+                {
+                    "id": 166821,
+                    "name": "13-28 javë"
+                },
+                {
+                    "id": 166826,
+                    "name": "29-40 javë"
+                },
+                {
+                    "id": 166831,
+                    "name": "Shprehitë e shëndetshme"
+                },
+                {
+                    "id": 166836,
+                    "name": "Shëndeti mendor"
+                },
+                {
+                    "id": 166841,
+                    "name": "Testet dhe Kontrollet shëndetësore"
+                },
+                {
+                    "id": 166846,
+                    "name": "Produkte për fëmijë"
+                },
+                {
+                    "id": 166851,
+                    "name": "Puna dhe karriera"
+                },
+                {
+                    "id": 166856,
+                    "name": "Përvoja të Shtatzënisë"
+                },
+                {
+                    "id": 166861,
+                    "name": "Mbështetja nga partneri"
+                },
+                {
+                    "id": 166866,
+                    "name": "Marrëdhëniet me partnerin"
+                },
+                {
+                    "id": 166871,
+                    "name": "Planifikimi"
+                },
+                {
+                    "id": 166876,
+                    "name": "Llojet e lindjes"
+                },
+                {
+                    "id": 161501,
+                    "name": "Mbrojtja e fëmijëve"
+                },
+                {
+                    "id": 166881,
+                    "name": "Rikuperimi"
+                },
+                {
+                    "id": 161506,
+                    "name": "Emergjencat"
+                },
+                {
+                    "id": 166886,
+                    "name": "Javët e para"
+                },
+                {
+                    "id": 166891,
+                    "name": "Lindja e parakohshme"
+                },
+                {
+                    "id": 161516,
+                    "name": "Strategjitë e prindërimit"
+                },
+                {
+                    "id": 166896,
+                    "name": "Aborti dhe komplikimet"
+                },
+                {
+                    "id": 166901,
+                    "name": "Problemet Shëndetësore"
+                },
+                {
+                    "id": 161526,
+                    "name": "Mbi gjidhënien"
+                },
+                {
+                    "id": 166906,
+                    "name": "Shëndeti mendor"
+                },
+                {
+                    "id": 161531,
+                    "name": "Sfidat e gjidhënies"
+                },
+                {
+                    "id": 166911,
+                    "name": "Shëndeti fizik"
                 }
             ],
             "type_of_support": [
@@ -828,65 +1048,101 @@ export const taxonomydata: any = {
                 {
                     "id": 1,
                     "name": "Prehrana i dojenje ",
-                    "unique_name": "nutrition_and_breastfeeding"
+                    "unique_name": "nutrition_and_breastfeeding",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 2,
                     "name": "Zdravlje i blagostanje ",
-                    "unique_name": "health_and_wellbeing"
+                    "unique_name": "health_and_wellbeing",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 3,
                     "name": "Sigurnost i zaštita ",
-                    "unique_name": "safety_and_protection"
+                    "unique_name": "safety_and_protection",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 4,
                     "name": "Ugao za roditelje ",
-                    "unique_name": "parenting_corner"
+                    "unique_name": "parenting_corner",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 5,
                     "name": "Rast deteta ",
-                    "unique_name": "child_growth"
+                    "unique_name": "child_growth",
+                    "field_type_of_article": "Article for health and growth tools"
                 },
                 {
                     "id": 6,
                     "name": "Razvoj deteta",
-                    "unique_name": "child_development"
+                    "unique_name": "child_development",
+                    "field_type_of_article": "Article for health and growth tools"
                 },
                 {
                     "id": 7,
                     "name": "Zdravstveni pregledi",
-                    "unique_name": "health_check_ups"
+                    "unique_name": "health_check_ups",
+                    "field_type_of_article": "Article for health and growth tools"
                 },
                 {
                     "id": 8,
                     "name": "Vakcinacija ",
-                    "unique_name": "vaccination"
+                    "unique_name": "vaccination",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 166186,
+                    "name": "Nedelju po nedelju",
+                    "unique_name": "week_by_week",
+                    "field_type_of_article": "Article for pregnancy"
                 },
                 {
                     "id": 55,
                     "name": "Igra i učenje ",
-                    "unique_name": "play_and_learning"
+                    "unique_name": "play_and_learning",
+                    "field_type_of_article": "Article for birth to 6 years"
                 },
                 {
                     "id": 56,
                     "name": "Odgovorno roditeljstvo",
-                    "unique_name": "responsive_parenting"
+                    "unique_name": "responsive_parenting",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 166791,
+                    "name": "Zdravlje tokom trudnoće",
+                    "unique_name": "staying_healthy",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 166796,
+                    "name": "Priprema za bebu",
+                    "unique_name": "preparing_for_a_baby",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 166801,
+                    "name": "Podrška tokom trudnoće",
+                    "unique_name": "support_during_pregnancy",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 166806,
+                    "name": "Porod i rođenje",
+                    "unique_name": "labour_and_birth",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 166811,
+                    "name": "Komplikacije u trudnoći",
+                    "unique_name": "pregnancy_complications",
+                    "field_type_of_article": "Article for pregnancy"
                 }
             ],
             "chatbot_category": [
-                {
-                    "id": 110071,
-                    "name": "Razvoj deteta",
-                    "unique_name": "child_development"
-                },
-                {
-                    "id": 110076,
-                    "name": "Bolje roditeljstvo",
-                    "unique_name": "better_parenting"
-                },
                 {
                     "id": 110081,
                     "name": "Podizanje zdrave dece",
@@ -901,6 +1157,16 @@ export const taxonomydata: any = {
                     "id": 110091,
                     "name": "Briga o sebi",
                     "unique_name": "taking_care_of_yourself"
+                },
+                {
+                    "id": 110071,
+                    "name": "Razvoj deteta",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 110076,
+                    "name": "Bolje roditeljstvo",
+                    "unique_name": "better_parenting"
                 }
             ],
             "chatbot_child_age": [
@@ -1126,7 +1392,7 @@ export const taxonomydata: any = {
                     "days_from": 366,
                     "days_to": 547,
                     "buffers_days": 10,
-                    "age_bracket": []
+                    "age_bracket": [49, 50]
                 },
                 {
                     "id": 50,
@@ -1166,7 +1432,7 @@ export const taxonomydata: any = {
                     "days_from": 1826,
                     "days_to": 2190,
                     "buffers_days": 10,
-                    "age_bracket": []
+                    "age_bracket": [58]
                 }
             ],
             "child_gender": [
@@ -1336,6 +1602,11 @@ export const taxonomydata: any = {
                     "vaccination_opens": 486
                 },
                 {
+                    "id": 59016,
+                    "name": "od 5 do 6 godina",
+                    "vaccination_opens": 1460
+                },
+                {
                     "id": 6537,
                     "name": "sa punim 21 mesecom",
                     "vaccination_opens": 639
@@ -1344,6 +1615,11 @@ export const taxonomydata: any = {
                     "id": 6538,
                     "name": "sa pune 2 gocine",
                     "vaccination_opens": 730
+                },
+                {
+                    "id": 32906,
+                    "name": "sa punih 5 ipo godina",
+                    "vaccination_opens": 2007
                 },
                 {
                     "id": 6540,
@@ -1416,6 +1692,11 @@ export const taxonomydata: any = {
                     "vaccination_opens": 2190
                 },
                 {
+                    "id": 109721,
+                    "name": "sa 15 dana",
+                    "vaccination_opens": 15
+                },
+                {
                     "id": 6556,
                     "name": "sa punih 6 ipo godina",
                     "vaccination_opens": 2372
@@ -1429,16 +1710,6 @@ export const taxonomydata: any = {
                     "id": 6560,
                     "name": "sa punih 18 meseci",
                     "vaccination_opens": 547
-                },
-                {
-                    "id": 32906,
-                    "name": "sa punih 5 ipo godina",
-                    "vaccination_opens": 2007
-                },
-                {
-                    "id": 59016,
-                    "name": "od 5 do 6 godina",
-                    "vaccination_opens": 1460
                 },
                 {
                     "id": 59041,
@@ -1461,21 +1732,6 @@ export const taxonomydata: any = {
                     "vaccination_opens": 547
                 },
                 {
-                    "id": 59076,
-                    "name": "od 12 do 18 meseci",
-                    "vaccination_opens": 365
-                },
-                {
-                    "id": 59326,
-                    "name": "od 19 do 23 meseci",
-                    "vaccination_opens": 578
-                },
-                {
-                    "id": 109721,
-                    "name": "sa 15 dana",
-                    "vaccination_opens": 15
-                },
-                {
                     "id": 110006,
                     "name": "od 7 do 14 dana",
                     "vaccination_opens": 7
@@ -1486,21 +1742,31 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1460
                 },
                 {
+                    "id": 59326,
+                    "name": "od 19 do 23 meseci",
+                    "vaccination_opens": 578
+                },
+                {
                     "id": 110016,
                     "name": "sa 21 danom",
                     "vaccination_opens": 21
+                },
+                {
+                    "id": 59076,
+                    "name": "od 12 do 18 meseci",
+                    "vaccination_opens": 365
                 }
             ],
             "growth_type": [
                 {
-                    "id": 6461,
-                    "name": "Visina za težinu",
-                    "unique_name": "height_for_weight"
-                },
-                {
                     "id": 32786,
                     "name": "Visina za uzrast",
                     "unique_name": "height_for_age"
+                },
+                {
+                    "id": 6461,
+                    "name": "Visina za težinu",
+                    "unique_name": "height_for_weight"
                 }
             ],
             "parent_gender": [
@@ -1544,6 +1810,10 @@ export const taxonomydata: any = {
             ],
             "standard_deviation_category": [
                 {
+                    "id": 32771,
+                    "name": "ispod -3SD"
+                },
+                {
                     "id": 32736,
                     "name": "između -2SD do +2SD"
                 },
@@ -1566,10 +1836,180 @@ export const taxonomydata: any = {
                 {
                     "id": 32766,
                     "name": "ispod -2SD"
+                }
+            ],
+            "subcategory": [
+                {
+                    "id": 161536,
+                    "name": "Prva hrana"
                 },
                 {
-                    "id": 32771,
-                    "name": "ispod -3SD"
+                    "id": 166916,
+                    "name": "Balans između posla i porodice"
+                },
+                {
+                    "id": 166921,
+                    "name": "Partnerski odnosi"
+                },
+                {
+                    "id": 161296,
+                    "name": "Recepti"
+                },
+                {
+                    "id": 161301,
+                    "name": "Zdrava ishrana"
+                },
+                {
+                    "id": 161306,
+                    "name": "Fizička aktivnost"
+                },
+                {
+                    "id": 161311,
+                    "name": "Socio-emocionalne veštine"
+                },
+                {
+                    "id": 160801,
+                    "name": "Spavanje"
+                },
+                {
+                    "id": 161316,
+                    "name": "Govor i čitanje"
+                },
+                {
+                    "id": 160806,
+                    "name": "Nega i higijena"
+                },
+                {
+                    "id": 161321,
+                    "name": "Saveti za igru"
+                },
+                {
+                    "id": 160811,
+                    "name": "Vakcinacija i pregledi"
+                },
+                {
+                    "id": 160816,
+                    "name": "Zabrinutosti oko razvoja"
+                },
+                {
+                    "id": 161586,
+                    "name": "Razumevanje detetova ponašanja"
+                },
+                {
+                    "id": 161591,
+                    "name": "Privrženost roditelja i deteta"
+                },
+                {
+                    "id": 161596,
+                    "name": "Porodični odnosi"
+                },
+                {
+                    "id": 161431,
+                    "name": "Prva pomoć"
+                },
+                {
+                    "id": 161436,
+                    "name": "Spečavanje povreda"
+                },
+                {
+                    "id": 166816,
+                    "name": "0-12 nedelja"
+                },
+                {
+                    "id": 166821,
+                    "name": "13-18 nedelja"
+                },
+                {
+                    "id": 166826,
+                    "name": "29-40 nedelja"
+                },
+                {
+                    "id": 166831,
+                    "name": "Zdrave navike"
+                },
+                {
+                    "id": 166836,
+                    "name": "Mentalno zdravlje"
+                },
+                {
+                    "id": 166841,
+                    "name": "Testovi i pregledi"
+                },
+                {
+                    "id": 166846,
+                    "name": "Proizvodi za bebe"
+                },
+                {
+                    "id": 166851,
+                    "name": "Posao i karijera"
+                },
+                {
+                    "id": 166856,
+                    "name": "Tokovi trudnoće"
+                },
+                {
+                    "id": 166861,
+                    "name": "Partnerska podrška"
+                },
+                {
+                    "id": 166866,
+                    "name": "Partnerski odnosi"
+                },
+                {
+                    "id": 166871,
+                    "name": "Planiranje"
+                },
+                {
+                    "id": 166876,
+                    "name": "Vrste porođaja"
+                },
+                {
+                    "id": 161501,
+                    "name": "Bezbednost i zaštita"
+                },
+                {
+                    "id": 166881,
+                    "name": "Oporavak"
+                },
+                {
+                    "id": 161506,
+                    "name": "Vanredne situacije"
+                },
+                {
+                    "id": 166886,
+                    "name": "Prve nedelje"
+                },
+                {
+                    "id": 166891,
+                    "name": "Prevremen porođaj"
+                },
+                {
+                    "id": 161516,
+                    "name": "Strategije roditeljstva"
+                },
+                {
+                    "id": 166896,
+                    "name": "Pobačaj i komplikacije"
+                },
+                {
+                    "id": 166901,
+                    "name": "Zdravstveni problemi"
+                },
+                {
+                    "id": 161526,
+                    "name": "Dojenje"
+                },
+                {
+                    "id": 166906,
+                    "name": "Mentalno zdravlje"
+                },
+                {
+                    "id": 161531,
+                    "name": "Izazovi u dojenju"
+                },
+                {
+                    "id": 166911,
+                    "name": "Fizičko zdravlje"
                 }
             ],
             "type_of_support": [

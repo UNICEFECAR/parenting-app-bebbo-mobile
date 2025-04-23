@@ -10,7 +10,6 @@ import { store } from '../../App';
 import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
 import { localization, AVAILABLE_LANGUAGES } from '../instances/index';
 
-console.log("AVAILABLE_LANGUAGES--", AVAILABLE_LANGUAGES);
 const localisationnew = [...localization];
 const findAllByKey: any = (obj: object | null, keyToFind: string) => {
   if (obj) {
@@ -49,7 +48,7 @@ const languageDetector: LanguageDetectorAsyncModule = {
         
         const bestLng = RNLocalize.findBestLanguageTag(AVALAILABLE_LANG_CODES);
        const langCodeNew = findLangCode(bestLng?.languageTag);
-       const lang2 = langCodeNew ?langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
+       const lang2 = langCodeNew ? langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
        const country = localization.find((x:any) => x.languages.some((item:any) => item.locale === lang2));
       const language = localization.reduce((prev: any, product: any) => prev || product.languages.find((item:any) => item.locale === lang2), undefined);
       store.dispatch(onLocalizationSelect({country,language}))

@@ -39,7 +39,7 @@ import {
   Heading3Regular,
   Heading4Centerr,
   ShiftFromTop25,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -61,7 +61,7 @@ import {
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
 import RNRestart from "react-native-restart";
 import * as RNLocalize from "react-native-localize";
-import { secondaryBtnColor } from "../../instances/bebbo/styles/style";
+import { secondaryBtnColor } from "@styles/style";
 import moment from "moment";
 import "moment/min/locales";
 import "moment/locale/bn-bd"; // import for bangla language
@@ -119,6 +119,12 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     (state: any) => state.utilsData.incrementalSyncDT
   );
   const apiJsonData = [
+    {
+      apiEndpoint: appConfig.apiConfig.taxonomies,
+      method: "get",
+      postdata: {},
+      saveinDB: true,
+    },
     {
       apiEndpoint: appConfig.apiConfig.basicPages,
       method: "get",
@@ -470,6 +476,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         country: countryData,
         language: newLanguage,
         isFromCountry: true,
+        isDirect: true,
       });
     } else {
       navigation.navigate("CountrySelection", {
@@ -524,6 +531,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                     luxonLocale: luxonLanLocale ?? null,
                     deviceLanCode: deviceLanCode ?? null,
                     isFromCountry: true,
+                    isDirect: true,
                   })
                 }
               >

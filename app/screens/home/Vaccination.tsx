@@ -21,7 +21,7 @@ import {
   Heading4Regular,
   ShiftFromTopBottom10,
   ShiftFromTopBottom5,
-} from "../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -194,6 +194,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
       );
     }
   };
+  console.log(upcomingPeriods, previousPeriods);
   return (
     <>
       <Modal

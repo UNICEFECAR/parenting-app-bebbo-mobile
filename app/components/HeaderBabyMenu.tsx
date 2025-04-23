@@ -6,11 +6,7 @@ import Icon, {
 } from "@components/shared/Icon";
 import { ImageIcon } from "@components/shared/Image";
 import { useNavigation } from "@react-navigation/native";
-import {
-  Heading3,
-  Heading5,
-  ShiftFromBottom10,
-} from "../instances/bebbo/styles/typography";
+import { Heading3, Heading5, ShiftFromBottom10 } from "@styles/typography";
 import { CHILDREN_PATH } from "@types/types";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -49,11 +45,7 @@ import {
   ProfileSectionView,
   ProfileTextView,
 } from "./shared/ProfileListingStyle";
-import {
-  bgcolorBlack2,
-  bgcolortransparent,
-  bgcolorWhite,
-} from "../instances/bebbo/styles/style";
+import { bgcolorBlack2, bgcolortransparent, bgcolorWhite } from "@styles/style";
 
 const headerHeight = 50;
 const styles = StyleSheet.create({
@@ -171,7 +163,6 @@ const HeaderBabyMenu = (props: any): any => {
   });
   useEffect(() => {
     const gender = genders.find((g: any) => g.id === activeChild?.gender);
-    console.log("in Activechild gender is", gender);
     setActiveChildGenderData(gender);
   }, [activeChild?.gender]);
   const renderChildItem = (dispatch: any, data: any, index: number): any => {
@@ -208,9 +199,17 @@ const HeaderBabyMenu = (props: any): any => {
               <ProfileSectionView>
                 <Heading3>
                   {data.childName}
-                  <Heading5 style={styles.heading5Fontwg}>
-                    {", " + (genderName?.name || t("chilGender2"))}
-                  </Heading5>
+                  {genderName != "" &&
+                  genderName != null &&
+                  genderName != undefined ? (
+                    <Heading5 style={styles.heading5Fontwg}>
+                      {", " + genderName?.name}
+                    </Heading5>
+                  ) : (
+                    <Heading5 style={styles.heading5Fontwg}>
+                      {", " + t("chilGender2")}
+                    </Heading5>
+                  )}
                 </Heading3>
               </ProfileSectionView>
               <Heading5>
@@ -328,9 +327,6 @@ const HeaderBabyMenu = (props: any): any => {
       </View>
     );
   };
-  useEffect(() => {
-    console.log("Active ChildDetails dta", activeChild);
-  }, []);
   return (
     <>
       <Modal
@@ -410,19 +406,22 @@ const HeaderBabyMenu = (props: any): any => {
         >
           {activeChild.photoUri ? (
             <ImageIcon
-              source={{ uri: `file://${CHILDREN_PATH}${activeChild.photoUri}` }}
-            />
+              source={{ uri: "file://" + CHILDREN_PATH + activeChild.photoUri }}
+            ></ImageIcon>
+          ) : activeChildGenderData != "" &&
+            activeChildGenderData?.unique_name != "" ? (
+            activeChildGenderData?.unique_name ==
+            taxonomyIds?.boyChildGender ? (
+              <Icon name="ic_baby" size={30} color={props.color || "#FFF"} />
+            ) : (
+              <Icon
+                name="ic_baby_girl"
+                size={30}
+                color={props.color || "#FFF"}
+              />
+            )
           ) : (
-            <Icon
-              name={
-                activeChildGenderData?.unique_name ===
-                taxonomyIds?.boyChildGender
-                  ? "ic_baby"
-                  : "ic_baby_girl"
-              }
-              size={30}
-              color={props.color || "#FFF"}
-            />
+            <Icon name="ic_baby_girl" size={30} color={props.color || "#FFF"} />
           )}
         </HeaderActionBox>
       </HeaderActionView>

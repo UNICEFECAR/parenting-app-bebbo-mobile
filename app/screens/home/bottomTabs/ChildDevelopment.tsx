@@ -39,7 +39,7 @@ import {
   ShiftFromTop10,
   ShiftFromTop20,
   ShiftFromTop5,
-} from "../../../instances/bebbo/styles/typography";
+} from "@styles/typography";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -65,7 +65,7 @@ import {
 import ProgressCircle from "react-native-progress-circle";
 import { setInfoModalOpened } from "../../../redux/reducers/utilsSlice";
 import FirstTimeModal from "@components/shared/FirstTimeModal";
-import { addSpaceToHtml } from "../../../services/Utils";
+import { addSpaceToHtml, isPregnancy } from "../../../services/Utils";
 import {
   CHILD_DEVELOPMENT_AGEGROUP_SELECTED,
   CHILD_MILESTONE_TRACKED,
@@ -77,13 +77,14 @@ import ModalPopupContainer, {
   ModalPopupContent,
 } from "@components/shared/ModalPopupStyle";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
-import { bgcolorWhite2 } from "../../../instances/bebbo/styles/style";
+import { bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import {
   logEvent,
   synchronizeEvents,
 } from "../../../services/EventSyncService";
 import useDigitConverter from "../../../customHooks/useDigitConvert";
+import { appConfig } from "../../../instances";
 const styles = StyleSheet.create({
   bgWhite: { backgroundColor: bgcolorWhite2 },
   flex1: { flex: 1 },
@@ -138,7 +139,11 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const childDevModalOpened = useAppSelector(
     (state: any) => state.utilsData.IsChildDevModalOpened
   );
-  console.log("childDevModalOpened......", childDevModalOpened);
+  console.log(
+    VideoArticlesData,
+    "childDevModalOpened......",
+    childDevModalOpened
+  );
   const modalScreenKey = "IsChildDevModalOpened";
   const modalScreenText = "childDevModalText";
   const isFocused = useIsFocused();
@@ -325,15 +330,15 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       if (
         activeChild?.gender == "" ||
         activeChild?.gender == 0 ||
-        activeChild?.gender == 40 ||
-        activeChild?.gender == 59
+        activeChild?.gender == appConfig.boyChildGender ||
+        activeChild?.gender == appConfig.bothChildGender
       ) {
         //for boy,other and blank
         const filteredPinnedData = PinnedChildDevData.filter(
           (x: any) => x.id == selectedChildDevData?.boy_video_article
         )[0];
         setSelectedPinnedArticleData(filteredPinnedData);
-      } else if (activeChild?.gender == "41") {
+      } else if (activeChild?.gender == appConfig.girlChildGender) {
         //for girl
         const filteredPinnedData = PinnedChildDevData.filter(
           (x: any) => x.id == selectedChildDevData?.girl_video_article
@@ -565,6 +570,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
               currentSelectedChildId={currentSelectedChildId}
               showSelectedBracketData={showSelectedBracketData}
               ItemTintColor={componentColors?.backgroundColor}
+              isActivity
             />
           </View>
         ) : null}

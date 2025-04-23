@@ -3,6 +3,9 @@ const axiosService = axios.create({
   timeout: 600000,
   headers: {
     'Content-Type': 'application/json',
+    'Cache-Control': 'no-cache',
+    Pragma: 'no-cache',
+    Expires: '0',
   },
 });
 
