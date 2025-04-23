@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bebbo</string>
+    <string name="app_name">Bebbo Dev</string>
     <string name="facebook_app_id">@string/facebookAppId</string>
     <string name="facebook_client_token">@string/facebookClientToken</string>
 </resources>
