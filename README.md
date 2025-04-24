@@ -121,7 +121,7 @@ FLAVOR=bebboDev npx react-native-vector-image generate
 
 **iOS setup guide:**
 
-1. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/app/assets/fonts/fontello.ttf to **node_modules/react-native-vector-icons/Fonts**. Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
+1. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/android/app/src/main/assets/fonts/fontello.ttf to **node_modules/react-native-vector-icons/Fonts**. Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
 
    Note : When you run the android app, you need to remove the fontello.ttf file from **node_modules/react-native-vector-icons/Fonts** location and follow step 7 again.
    Delete Pods and clean gradle if required.
@@ -138,7 +138,7 @@ cd ios && pod install
 
 **Android setup guide:**
 
-1. Please download [debug and release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) files from the provided link and paste downloaded debug and release keystore files at **/android/app** location inside your project.
+1. Please download [release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) files from the provided link and paste downloaded release keystore file at **/android/app** location inside your project.
 
 2. Configure Firebase services
 
