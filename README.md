@@ -146,13 +146,7 @@ pod install
 
 3. Configure Firebase services
 
-   - [Create Firebase project](https://console.firebase.google.com/)
-   - Add iOS and Android apps to Firebase project the standard way
-   - Use Firebase wizards to create these:
-
-     - GoogleService-Info.plist
-
-   - Copy GoogleService-Info.plist files for iOS locations as mentioned here:
+   - Please download [GoogleService-Info.plist](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link and paste mentioned location.
 
    Prodstaging
 
@@ -160,99 +154,19 @@ pod install
    https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Development
    ```
 
-   NOTE: Please download [GoogleService-Info.plist](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link.
-   **Android setup guide:**
+**Android setup guide:**
 
-1. For Android, add keystore files into \android\app folder to generate Android build. To add a keystore file to your Android project’s `android/app` folder and configure it for signing. Follow the following steps to add keystore file.
+1. Please download [debug and release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) files from the provided Google Drive link. copy paste downloaded debug and release keystore file in /android/app folder.
 
-   1.1. _Obtain or create a keystore file_
+1. Configure Firebase services
 
-   If you don’t already have a keystore file, you need to generate one. You can use the `keytool` command to create it:
+   - Please download [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link and and paste mentioned location.
 
-   - Open a terminal or command prompt.
-   - Run the following command to generate a new keystore file:
+Prodstaging
 
-     ```bash
-     keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
-     ```
-
-   - Follow the prompts to enter details such as passwords, organizational information, etc.
-
-     1.2. _Add a keystore file to the project_
-
-   - _Navigate to Your Project Directory:_
-
-     - Open your project in your file explorer or terminal.
-     - Go to the `android/app` directory of your project.
-
-   - _Copy the Keystore File:_
-
-     - Move or copy your `my-release-key.jks` file into the `android/app` directory.
-
-       1.3. _Configure Gradle for Signing_
-
-   - _Open the `build.gradle` File:_
-
-     - In your project, navigate to `android/app/build.gradle`.
-
-   - _Add Signing Configuration:_
-
-     - Modify the `build.gradle` file to include signing configuration. Add the following code inside the `android` block:
-
-       ```groovy
-       android {
-           ...
-           signingConfigs {
-               release {
-                   if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                       storeFile file(MYAPP_RELEASE_STORE_FILE)
-                       storePassword MYAPP_RELEASE_STORE_PASSWORD
-                       keyAlias MYAPP_RELEASE_KEY_ALIAS
-                       keyPassword MYAPP_RELEASE_KEY_PASSWORD
-                   }
-               }
-           }
-           buildTypes {
-               release {
-                   signingConfig signingConfigs.release
-                   // Optional: Enable ProGuard to shrink and obfuscate code
-                   minifyEnabled false
-                   proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-               }
-           }
-       }
-       ```
-
-       1.4. _Add Signing Properties:_
-
-   - Create or update the `gradle.properties` file located in the `android/` directory of your project (if the file doesn’t exist, create it).
-
-   - Add the following properties to `gradle.properties`:
-
-     ```properties
-     MYAPP_RELEASE_STORE_FILE=my-release-key.jks
-     MYAPP_RELEASE_KEY_ALIAS=my-key-alias
-     MYAPP_RELEASE_STORE_PASSWORD=your-store-password
-     MYAPP_RELEASE_KEY_PASSWORD=your-key-password
-     ```
-
-     Replace `your-store-password` and `your-key-password` with the actual passwords you used when creating the keystore.
-
-   NOTE: Please download [debug and release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) files from the provided Google Drive link. 2. Configure Firebase services
-
-- [Create Firebase project](https://console.firebase.google.com/)
-- Add iOS and Android apps to Firebase project the standard way
-- Use Firebase wizards to create these:
-  - google-services.json
-- Copy google-services.json files for Android locations as mentioned here:
-
-  Prodstaging
-
-  ```
-  https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prodstaging
-  ```
-
-  NOTE: Please download [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link.
+```
+https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prodstaging
+```
 
 ## How to run and generate build
 
@@ -278,10 +192,6 @@ Run and generate build iOS Bebbo Dev app
 
 ```
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release
-
-ENVFILE=env/.env.bebboDev FLAVOR=bebboDev xcodebuild -workspace ios/ParentBuddyApp.xcworkspace -scheme ParentBuddyAppDev -configuration Release -sdk iphoneos -archivePath ios/build/ParentBuddyAppDev.xcarchive archive (archive)
-
-xcodebuild -exportArchive -archivePath ios/build/ParentBuddyAppDev.xcarchive -exportOptionsPlist ExportOptionsBabuni.plist -exportPath ios/build
 ```
 
 ## License
