@@ -12,7 +12,7 @@
 ## Introduction
 
 [Bebbo](https://www.bebbo.app) is a multi-platform mobile application available on both [iOS](https://apps.apple.com/us/app/bebbo/id1588918146) and [Android](https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo).
-Discover the most comprehensive parenting app that provides you with all the tools and expert advice you need, all in one app, to support your child's growth and development from birth to age 6! Personalize this app to access daily toddler games, parenting advice, and tips on taking care of both your child and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child's developmental needs.
+Discover the most comprehensive parenting and pregnancy app that provides you with all the tools and expert advice you need, all in one app, to support your journey from pregnancy through your child's growth and development from birth to age 6! Personalize this app to access daily toddler games, parenting advice, pregnancy tips, and guidance on taking care of both your child and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child's developmental needs.
 
 Bebbo offers:
 
@@ -108,7 +108,7 @@ git checkout -b myFeature Development
 6. Install NPM packages. Do not use yarn!
 
 ```
-npm install --force
+npm install --legacy-peer-deps
 ```
 
 7. Run below command to generate vector images based on flavour folders:
@@ -117,56 +117,32 @@ npm install --force
 FLAVOR=bebboDev npx react-native-vector-image generate
 ```
 
-8. Create env/.env.bebboDev file at project root and add below 10 variables in it.
-   The variables below contain sample data for example purposes. Do not copy values between brackets:
-
-````apiUrlDevelop = 'https://bebbodev.app/api' (Server api endPoint)
-   facebookAppDisplayName=Bebbo (For Facebook Analytics. Get these details from Facebook developer console.)
-   facebookAppId=9856432678543908 (For Facebook Analytics. Get these details from Facebook developer console.)
-   facebookClientToken=f67tr342356dsa233987kl56784v (For Facebook Analytics. Get these details from Facebook developer console.)
-   projectNumber=453789238965 (For Google SignIn. Get it from step 5.)
-   clientIdKey= bhjr6wdgddvv3k87tteq9fds6po3nm7 (For Google SignIn. Get it from step 5.)
-   webId=abcdefg (The webId from Firebase Console)
-   iosId=abcdefghijk (The iosId from Firebase Console)
-   encryptionsKey=d64e6a977f5643er90h8y5jk123n8bd88630jh56d34ddec874566342209y34 (Key for encryption)
-   encryptionsIVKey=nm4532wsd67cv087452xci876bui9765 (Key for encryption)```
-````
-
-NOTE: Please download [env.bebboDev](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link.
+8. Create env/.env.bebboDev file at project root and copy the content from [env.bebboDev](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing).
 
 **iOS setup guide:**
 
-1. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts. Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
+1. For iOS, copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/app/assets/fonts/fontello.ttf to **node_modules/react-native-vector-icons/Fonts**. Refer this library for custom fonts: https://github.com/oblador/react-native-vector-icons.
 
-1. Pod install inside ios folder
+   Note : When you run the android app, you need to remove the fontello.ttf file from **node_modules/react-native-vector-icons/Fonts** location and follow step 7 again.
+   Delete Pods and clean gradle if required.
+
+2. Pod install using below command
 
 ```
-pod install
+cd ios && pod install
 ```
 
 3. Configure Firebase services
 
-   - Please download [GoogleService-Info.plist](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link and paste mentioned location.
-
-   Prodstaging
-
-   ```
-   https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Development
-   ```
+   - Please download [GoogleService-Info.plist](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided link and paste it at **/ios/GoogleServices/Development** location inside your project.
 
 **Android setup guide:**
 
-1. Please download [debug and release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) files from the provided Google Drive link and paste downloaded debug and release keystore file in /android/app folder.
+1. Please download [debug and release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) files from the provided link and paste downloaded debug and release keystore files at **/android/app** location inside your project.
 
-1. Configure Firebase services
+2. Configure Firebase services
 
-   - Please download [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link and paste downaloaded file in mentioned location.
-
-Prodstaging
-
-```
-https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prodstaging
-```
+   - Please download [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided link and paste downloaded debug and release keystore files at **/android/app/src/prodstaging** location inside your project.
 
 ## How to run and generate build
 
