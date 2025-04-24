@@ -156,11 +156,11 @@ pod install
 
 **Android setup guide:**
 
-1. Please download [debug and release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) files from the provided Google Drive link. copy paste downloaded debug and release keystore file in /android/app folder.
+1. Please download [debug and release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) files from the provided Google Drive link and paste downloaded debug and release keystore file in /android/app folder.
 
 1. Configure Firebase services
 
-   - Please download [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link and and paste mentioned location.
+   - Please download [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided Google Drive link and paste downaloaded file in mentioned location.
 
 Prodstaging
 
