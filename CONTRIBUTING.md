@@ -1,7 +1,4 @@
-## 📄 `CONTRIBUTING.md`
-
-````markdown
-# Contributing to Bebbo
+## 📄 `Contributing to Bebbo`
 
 Thank you for your interest in contributing to Bebbo, a multi-platform parenting app developed with React Native. This guide outlines how to get started, report issues, submit pull requests, and understand our review and merge process.
 
@@ -11,11 +8,9 @@ Thank you for your interest in contributing to Bebbo, a multi-platform parenting
 
 ### 1. Clone the repository
 
-```bash
-git clone https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
-cd parenting-app-bebbo-mobile
 ```
-````
+git clone https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
+```
 
 ### 2. Setup Environment
 
@@ -53,7 +48,7 @@ cd ios && pod install
 ios/GoogleServices/Development
 ```
 
-3. Font setup (if using custom icons):
+3. Font setup:
 
 Copy `fontello.ttf` from:
 
@@ -71,13 +66,13 @@ node_modules/react-native-vector-icons/Fonts
 
 ## Android Setup
 
-1. Place the release keystore file into:
+1. Place the [release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file into:
 
 ```
 android/app/
 ```
 
-2. Place [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) (debug/release) into:
+2. Place [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) into:
 
 ```
 android/app/src/prodstaging/
