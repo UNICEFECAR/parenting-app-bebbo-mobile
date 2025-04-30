@@ -68,20 +68,16 @@ import {
 import { setAllNotificationData } from "../../../redux/reducers/notificationSlice";
 import {
   setAllVideoArticlesData,
+  setAppVersion,
   setInfoModalOpened,
   setSyncDate,
   setuserIsOnboarded,
 } from "../../../redux/reducers/utilsSlice";
 import { fetchAPI } from "../../../redux/sagaMiddleware/sagaActions";
-import {
-  apiJsonDataGet,
-  getAllChildren,
-  getAllConfigData,
-  setActiveChild,
-} from "../../../services/childCRUD";
+import { apiJsonDataGet } from "../../../services/childCRUD";
 import commonApiService from "../../../services/commonApiService";
 import { getAllPeriodicSyncData } from "../../../services/periodicSync";
-import { addSpaceToHtml, getLanguageCode } from "../../../services/Utils";
+import { addSpaceToHtml } from "../../../services/Utils";
 import VersionInfo from "react-native-version-info";
 import {
   ArticleEntity,
@@ -94,7 +90,6 @@ import {
   logEvent,
   synchronizeEvents,
 } from "../../../services/EventSyncService";
-import { useIsFocused } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -106,7 +101,6 @@ const styles = StyleSheet.create({
 });
 import {
   selectLocale,
-  selectTaxonomyIds,
   selectUserIsOnboarded,
   selectErrorObj,
   selectShowDownloadPopup,
@@ -115,6 +109,7 @@ import {
   selectIncrementalSyncDT,
   selectBufferAgeBracket,
   selectActiveChild,
+  selectAppVersion,
 } from "../../../services/selectors";
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
@@ -145,8 +140,8 @@ const Home = ({ route, navigation }: any): any => {
   const dispatch = useAppDispatch();
 
   const locale = useAppSelector(selectLocale);
-  const taxonomyIds = useAppSelector(selectTaxonomyIds);
   const userIsOnboarded = useAppSelector(selectUserIsOnboarded);
+  const appVersion = useAppSelector(selectAppVersion);
   const errorObj = useAppSelector(selectErrorObj);
   const showDownloadPopup = useAppSelector(selectShowDownloadPopup);
   const languageCode = useAppSelector(selectLanguageCode);
@@ -307,18 +302,37 @@ const Home = ({ route, navigation }: any): any => {
   const relbebboprod = "1.1.5";
   const relfolejadev = "0.2.0";
   const relfolejaprod = "1.1.0";
+
   useEffect(() => {
-    // setActiveChild(
-    //   languageCode,
-    //   activeChild.uuid,
-    //   dispatch,
-    //   childAge,
-    //   true,
-    //   taxonomyIds?.boyChildGender
-    // );
-    // getAllChildren(dispatch, childAge, 0);
-    // getAllConfigData(dispatch);
+    updateContentOnAppVersionChange();
   }, []);
+
+  const updateContentOnAppVersionChange = async () => {
+    if (VersionInfo.appVersion > appVersion || appVersion === "") {
+      const apiresponse = await commonApiService(
+        forceUpdateData[0].apiEndpoint,
+        forceUpdateData[0].method,
+        forceUpdateData[0].postdata
+      );
+      const forceUpdateTime =
+        apiresponse && apiresponse.data && apiresponse.data.updated_at
+          ? apiresponse.data.updated_at
+          : "0";
+      AsyncStorage.setItem("forceUpdateTime", forceUpdateTime);
+      Alert.alert(t("forceUpdatePopupTitle"), t("forceUpdatePopupText"), [
+        {
+          text: t("forceUpdateOkBtn"),
+          onPress: (): any => {
+            dispatch(setAppVersion(VersionInfo.appVersion));
+            navigation.navigate("LoadingScreen", {
+              apiJsonData: appConfig.allApisObject(false, incrementalSyncDT),
+              prevPage: "CountryLangChange",
+            });
+          },
+        },
+      ]);
+    }
+  };
 
   useLayoutEffect(
     React.useCallback(() => {
@@ -366,7 +380,7 @@ const Home = ({ route, navigation }: any): any => {
             ? apiresponse.data.updated_at
             : "0";
         AsyncStorage.setItem("forceUpdateTime", forceUpdateTime);
-        console.log(forceUpdateTime, "forceupdate apiresponse2", apiresponse);
+        console.log(forceUpdateTime, "forceupdate apiresponse1", apiresponse);
       } else {
         const isVideoArticleUpdateReq = await AsyncStorage.getItem(
           "isVideoArticleUpdateReq"
@@ -657,7 +671,6 @@ const Home = ({ route, navigation }: any): any => {
             console.log("forceupdate apiresponse2", apiresponse);
             let forceUpdateTime = await AsyncStorage.getItem("forceUpdateTime");
             forceUpdateTime = forceUpdateTime ? forceUpdateTime : "0";
-            //Alert.alert("--forceUpdateTime--",String(forceUpdateTime));
             if (apiresponse.data.status == 200) {
               if (apiresponse.data.flag == 1) {
                 if (

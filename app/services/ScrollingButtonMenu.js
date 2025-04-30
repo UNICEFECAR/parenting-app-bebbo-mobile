@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import  { IconML } from '@components/shared/Icon';
 import { bgcolorBlack2, bgcolorWhite2 } from '../instances/bebbo/styles/style';
 
@@ -65,8 +65,6 @@ export default class ScrollingButtonMenu extends React.Component {
         const isNotInItems = !items.some(item => item.id === selected || item.id === index || item.id == pIndex );
     
         if (isNotInItems) {
-            console.log(items, '[item]2', items[0]?.id);
-    
             // Update index & execute the function only once
             this.setState({ index: items[0]?.id }, () => {
                 setTimeout(() => {
@@ -104,6 +102,15 @@ export default class ScrollingButtonMenu extends React.Component {
                 this.scroll?.scrollTo({ y: 0, x, animated: true });
                 this.setState({ scrollindex: index, scrollindexarrow: index });
             }
+        } else {
+            if(Platform.ios === 'android'){
+                const screen1 = screenWidth / 2;
+                const elementOffset = this.dataSourceCords[index];
+                if (elementOffset !== undefined && typeof this.scroll?.scrollTo === 'function') {
+                    const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
+                    this.scroll?.scrollTo({ y: 0, x, animated: true });
+                }
+            }            
         }
     }
 

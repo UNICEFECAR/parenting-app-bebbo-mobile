@@ -28,6 +28,8 @@ export const selectTaxonomyIds = (state: any) => state.utilsData.taxonomyIds;
 // User Onboarded
 export const selectUserIsOnboarded = (state: any) => state.utilsData.userIsOnboarded;
 
+export const selectAppVersion = (state: any) => state.utilsData.appVersion;
+
 // Error Object
 export const selectErrorObj = (state: any) => state.failedOnloadApiObjReducer.errorObj;
 
