@@ -678,10 +678,7 @@ export function convertDigits(inputString: any, targetLanguage: DigitLanguage): 
 export function isPregnancy() {
     try {
         const allCountries = JSON.parse(store.getState().selectedCountry.countries || '[]')
-        const countryId = store.getState()?.selectedCountry?.countryId
-        console.log(countryId,'[country data]',allCountries,allCountries.some(
-            (country : any) => country.CountryID == countryId && country.content_toggle == ""
-          ))
+        const countryId = store.getState()?.selectedCountry?.countryId;
         return allCountries.some(
             (country : any) => country.CountryID == countryId && country.content_toggle == ""
           );

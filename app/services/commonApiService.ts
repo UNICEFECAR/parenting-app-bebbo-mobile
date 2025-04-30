@@ -296,10 +296,27 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   const storedata = store.getState();
   const errorObj = storedata.failedOnloadApiObjReducer.errorObj;
   if (prevPage == 'DownloadUpdate' && errorObj?.length == 0) {
+    const childAge =  store.getState().utilsData.taxonomy.allTaxonomyData != ""
+    ? JSON.parse( store.getState().utilsData.taxonomy.allTaxonomyData).child_age
+    : []
+    const taxonomyIds = store.getState().utilsData.taxonomyIds
+    if(taxonomyIds && childAge?.length > 0){
+      setActiveChild(
+        languageCode,
+        activeChild.uuid,
+        dispatch,
+        childAge,
+        true,
+        taxonomyIds?.boyChildGender
+      );
+      getAllChildren(dispatch, childAge, 0);
+      getAllConfigData(dispatch);
+    }
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
       [
         {
           text: i18n.t('downloadUpdateSuccessOkBtn'), onPress: async (): Promise<any> => {
+            
             navigation.reset({
               index: 0,
               routes: [
