@@ -123,6 +123,14 @@ android {
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD
             }
         }
+         bebboDev {
+           if (project.hasProperty('MYAPP_DEV_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_DEV_UPLOAD_STORE_FILE)
+                storePassword MYAPP_DEV_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_DEV_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_DEV_UPLOAD_KEY_PASSWORD
+            }
+        }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
@@ -190,18 +198,18 @@ android {
             applicationId 'org.unicef.ecar.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 40
+            versionCode 41
             versionName "2.3.0"
             signingConfig signingConfigs.release
         }
         prodstaging {
             minSdkVersion rootProject.ext.minSdkVersion
-            applicationId 'com.datamatics.bebbo'
+            applicationId 'org.unicef.bebbodev'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 8
-            versionName "2.0.0"
-            signingConfig signingConfigs.release
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.bebboDev
         }
         xk {
             minSdkVersion rootProject.ext.minSdkVersion
