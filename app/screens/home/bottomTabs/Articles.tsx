@@ -3,7 +3,7 @@ import ArticleCategories from "@components/ArticleCategories";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
-  ArticleListContainer,
+  ArticleListBox,
   ArticleListContent,
   SearchBox,
   SearchInput,
@@ -115,6 +115,8 @@ export type ArticleCategoriesProps = {
   filterArray?: any;
   fromPage?: any;
   onFilterArrayChange?: any;
+  iconColor?: string;
+  isSelectedPregnancy?: any;
 };
 const Articles = ({ route, navigation }: any): any => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -244,8 +246,10 @@ const Articles = ({ route, navigation }: any): any => {
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.ARTICLES_COLOR;
-  const headerColorBlack = themeContext?.colors.PRIMARY_TEXTCOLOR;
+  const headerTextColor = themeContext?.colors.ARTICLES_TEXTCOLOR;
+  const headerColorBlack = themeContext?.colors.ARTICLES_TEXTCOLOR;
   const backgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();
   //code for getting article dynamic data starts here.
   // let filterArray: string[] = [];
@@ -265,11 +269,7 @@ const Articles = ({ route, navigation }: any): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const activeChild1 = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
+
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ""
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -303,12 +303,10 @@ const Articles = ({ route, navigation }: any): any => {
   const [showNoData, setshowNoData] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
-  const [isCurrentChildSelected, setCurrentChildSelected] = useState(true);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] =
     useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
-  const [searchIndexData, setSearchIndexedData] = useState<any>();
   const videoIsFocused = useIsFocused();
   const goToArticleDetail = (item: any, queryText: string): any => {
     const keywords = queryText
@@ -355,12 +353,10 @@ const Articles = ({ route, navigation }: any): any => {
         x.child_age.includes(item.id)
       );
       setSelectedChildActivitiesData(filteredData);
-      setCurrentChildSelected(false);
     } else {
       setCurrentSelectedChildId(0);
       setIsSearchedQueryText(true);
       setSelectedChildActivitiesData(articleData);
-      setCurrentChildSelected(true);
     }
   };
   // useEffect(() => {
@@ -372,10 +368,18 @@ const Articles = ({ route, navigation }: any): any => {
 
   const RenderArticleItem = ({ item, index }: any): any => {
     return (
-      <ArticleListContainer>
+      <ArticleListBox>
         <Pressable
           onPress={(): any => {
             goToArticleDetail(item, queryText);
+          }}
+          style={{
+            backgroundColor: backgroundColorList,
+            shadowColor: "red",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.08,
+            shadowRadius: 12,
+            elevation: 2,
           }}
           key={index}
         >
@@ -385,7 +389,14 @@ const Articles = ({ route, navigation }: any): any => {
           item.cover_video.url != "" &&
           item.cover_video.url != undefined ? (
             videoIsFocused == true ? (
-              <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
+              <View
+                style={{
+                  padding: 15,
+                  overflow: "hidden",
+                }}
+              >
+                <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
+              </View>
             ) : null
           ) : (
             <LoadableImage
@@ -414,7 +425,7 @@ const Articles = ({ route, navigation }: any): any => {
             isAdvice={true}
           />
         </Pressable>
-      </ArticleListContainer>
+      </ArticleListBox>
     );
   };
   const DATA = [
@@ -693,7 +704,7 @@ const Articles = ({ route, navigation }: any): any => {
               prefix: 0.6,
             },
           },
-          fields: ["title", "summary", "body"],
+          fields: ["title", "summary", "body", "meta_keywords", "keywords"],
           storeFields: [
             "id",
             "type",
@@ -893,11 +904,14 @@ const Articles = ({ route, navigation }: any): any => {
     return filteredData;
   }, [filteredData, filterArray]);
   console.log(filterArray, "[filter Array]", optimizedFilteredData);
-
+  const containerView = (color: any) => ({
+    ...styles.containerView,
+    backgroundColor: color,
+  });
   return (
     <>
       {loadingArticle && <OverlayLoadingComponent loading={loadingArticle} />}
-      <View style={styles.containerView}>
+      <View style={containerView(backgroundColorList)}>
         <KeyboardAvoidingView
           // behavior={Platform.OS === "ios" ? "padding" : "height"}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -908,7 +922,7 @@ const Articles = ({ route, navigation }: any): any => {
           <TabScreenHeader
             title={t("articleScreenheaderTitle")}
             headerColor={headerColor}
-            textColor="#000"
+            textColor={headerTextColor}
             setProfileLoading={setProfileLoading}
           />
           <FlexCol>
@@ -1000,6 +1014,7 @@ const Articles = ({ route, navigation }: any): any => {
                 <View style={{ backgroundColor: articlesTintcolor }}>
                   <ArticleCategories
                     borderColor={headerColor}
+                    iconColor={headerColorBlack}
                     isSelectedPregnancy={
                       currentSelectedChildId == appConfig.pregnancyId
                     }
@@ -1008,7 +1023,7 @@ const Articles = ({ route, navigation }: any): any => {
                     filterArray={filterArray}
                     onFilterArrayChange={onFilterArrayChange}
                   />
-                  <DividerArt></DividerArt>
+                  {/* <DividerArt></DividerArt> */}
                 </View>
               </View>
             </OutsidePressHandler>
@@ -1024,6 +1039,7 @@ const Articles = ({ route, navigation }: any): any => {
                   Keyboard.dismiss();
                 }
               }}
+              contentContainerStyle={{ backgroundColor: backgroundColorList }}
               nestedScrollEnabled={true}
               // keyboardDismissMode={"on-drag"}
               // keyboardShouldPersistTaps='always'

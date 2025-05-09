@@ -115,6 +115,7 @@ const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
   const headerColorChildInfo = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [date1, setdate1] = useState<Date | null>(null);
@@ -745,7 +746,7 @@ const Home = ({ route, navigation }: any): any => {
         <TabScreenHeader
           title={t("homeScreenheaderTitle")}
           headerColor={headerColor}
-          textColor="#FFF"
+          textColor={headerTextColor}
           setProfileLoading={setProfileLoading}
         />
 

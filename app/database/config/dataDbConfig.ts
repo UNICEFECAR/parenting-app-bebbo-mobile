@@ -51,7 +51,7 @@ export const dataRealmConfig: Realm.Configuration = {
     LanguageSchema,
     PartnerSchema
   ],
-  schemaVersion: 11,
+  schemaVersion: 12,
   onMigration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion < 1) {
       // const oldObjects = oldRealm.objects('VariableEntity');

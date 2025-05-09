@@ -23,6 +23,7 @@ import {
 } from "../database/schema/VideoArticleSchema";
 import LoadableImage from "../services/LoadableImage";
 import {
+  ArticleListBox,
   ArticleListContainer,
   ArticleListContent,
 } from "./shared/ArticlesStyle";
@@ -110,7 +111,7 @@ const FavArticles = (): any => {
   );
   const RenderArticleItem = React.memo(({ item, index }: any) => {
     return (
-      <ArticleListContainer>
+      <ArticleListBox>
         <Pressable
           onPress={(): any => {
             goToArticleDetail(item);
@@ -151,7 +152,7 @@ const FavArticles = (): any => {
             isAdvice={true}
           />
         </Pressable>
-      </ArticleListContainer>
+      </ArticleListBox>
     );
   });
   return (
@@ -163,6 +164,7 @@ const FavArticles = (): any => {
               ref={flatListRef}
               data={favAdvicesToShow}
               nestedScrollEnabled={true}
+              showsVerticalScrollIndicator={false}
               removeClippedSubviews={true} // Unmount components when outside of window
               initialNumToRender={4} // Reduce initial render amount
               maxToRenderPerBatch={4} // Reduce number in each render batch
