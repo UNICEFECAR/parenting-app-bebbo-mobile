@@ -18,6 +18,7 @@ import {
 } from "../database/schema/ActivitiesSchema";
 import LoadableImage from "../services/LoadableImage";
 import {
+  ArticleListBox,
   ArticleListContainer,
   ArticleListContent,
 } from "./shared/ArticlesStyle";
@@ -110,7 +111,7 @@ const FavActivities = (): any => {
   );
   const SuggestedActivities = React.memo(({ item, index }: any) => {
     return (
-      <ArticleListContainer>
+      <ArticleListBox>
         <Pressable
           onPress={(): any => {
             goToActivityDetail(item);
@@ -147,7 +148,7 @@ const FavActivities = (): any => {
             isAdvice={false}
           />
         </Pressable>
-      </ArticleListContainer>
+      </ArticleListBox>
     );
   });
   return (
@@ -159,6 +160,7 @@ const FavActivities = (): any => {
               ref={flatListRef}
               data={favGamesToShow}
               nestedScrollEnabled={true}
+              showsVerticalScrollIndicator={false}
               removeClippedSubviews={true} // Unmount components when outside of window
               initialNumToRender={4} // Reduce initial render amount
               maxToRenderPerBatch={4} // Reduce number in each render batch

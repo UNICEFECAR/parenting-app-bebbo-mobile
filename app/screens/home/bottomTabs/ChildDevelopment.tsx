@@ -196,6 +196,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       artHeaderColor: themeContext?.colors.ARTICLES_COLOR,
       artBackgroundColor: themeContext?.colors.ARTICLES_TINTCOLOR,
       headerColorBlack: themeContext?.colors.PRIMARY_TEXTCOLOR,
+      headerTextColor: themeContext?.colors.CHILDDEVELOPMENT_TEXTCOLOR,
     });
 
     return (): any => {
@@ -557,7 +558,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
         <TabScreenHeader
           title={t("developScreenheaderTitle")}
           headerColor={componentColors?.headerColor}
-          textColor="#000"
+          textColor={componentColors.headerTextColor}
           setProfileLoading={setProfileLoading}
         />
         {currentSelectedChildId &&

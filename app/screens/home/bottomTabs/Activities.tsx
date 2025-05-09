@@ -5,6 +5,7 @@ import {
   ActivityBox,
   ArticleHeading,
   ArticleListContainer,
+  ArticleListBox,
   ArticleListContent,
   MainActivityBox,
   SearchBox,
@@ -39,15 +40,11 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Modal,
-  NativeEventEmitter,
-  NativeModules,
   Platform,
   Pressable,
   SectionList,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
@@ -167,7 +164,8 @@ const Activities = ({ route, navigation }: any): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
-  const headerColorBlack = themeContext?.colors.PRIMARY_TEXTCOLOR;
+  const headerColorBlack = themeContext?.colors.ACTIVITIES_TEXTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const fromPage = "Activities";
   const childAge = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != ""
@@ -222,7 +220,6 @@ const Activities = ({ route, navigation }: any): any => {
   const [queryText, searchQueryText] = useState("");
   const [historyVisible, setHistoryVisible] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
-  const [isCurrentChildSelected, setCurrentChildSelected] = useState(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] =
@@ -231,14 +228,11 @@ const Activities = ({ route, navigation }: any): any => {
   const [otherGames, setotherGames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredData, setfilteredData] = useState([]);
-  const [selectedAgeBracket, setSelectedAgeBracket] = useState<any>();
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [childMilestonedata, setchildMilestonedata] = useState([]);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
-
-  const { NativeModule } = NativeModules;
 
   const setIsModalOpened = async (varkey: any): Promise<any> => {
     if (modalVisible == true) {
@@ -487,7 +481,6 @@ const Activities = ({ route, navigation }: any): any => {
         x.child_age.includes(item.id)
       );
       setSelectedChildActivitiesData(filteredData);
-      setCurrentChildSelected(false);
     }
     //  else {
     //   setCurrentSelectedChildId(0);
@@ -611,7 +604,7 @@ const Activities = ({ route, navigation }: any): any => {
   };
   const SuggestedActivities = ({ item, section, index }: any): any => {
     let milestonedatadetail: any = [];
-    if (section == 1) {
+    if (section.id == 1) {
       const relatedmilestoneid =
         item.related_milestone.length > 0 ? item.related_milestone[0] : 0;
       milestonedatadetail = MileStonesData.filter(
@@ -619,7 +612,7 @@ const Activities = ({ route, navigation }: any): any => {
       );
     }
     return (
-      <ArticleListContainer>
+      <ArticleListBox>
         <Pressable
           onPress={(): any => {
             goToActivityDetail(item);
@@ -643,7 +636,7 @@ const Activities = ({ route, navigation }: any): any => {
               </Heading6Bold>
             </ShiftFromTopBottom5>
             <Heading3>{item.title}</Heading3>
-            {section == 1 &&
+            {section.id == 1 &&
             milestonedatadetail.length > 0 &&
             childMilestonedata.findIndex(
               (x: any) => x == milestonedatadetail[0]?.id
@@ -686,7 +679,7 @@ const Activities = ({ route, navigation }: any): any => {
             isAdvice={false}
           />
         </Pressable>
-      </ArticleListContainer>
+      </ArticleListBox>
     );
   };
 
@@ -955,10 +948,15 @@ const Activities = ({ route, navigation }: any): any => {
       </View>
     </Pressable>
   );
+  const containerView = (color: any) => ({
+    ...styles.containerView,
+    backgroundColor: color,
+  });
+  console.log(filteredData, "[DATA]", DATA, MileStonesData);
   return (
     <>
       <OverlayLoadingComponent loading={loading} />
-      <View style={styles.containerView}>
+      <View style={containerView(backgroundColorList)}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           keyboardVerticalOffset={Platform.OS === "android" ? -200 : 0}
@@ -969,7 +967,7 @@ const Activities = ({ route, navigation }: any): any => {
           <TabScreenHeader
             title={t("actScreenheaderTitle")}
             headerColor={headerColor}
-            textColor="#000"
+            textColor={headerColorBlack}
             setProfileLoading={setProfileLoading}
           />
           <FlexCol>
@@ -1067,9 +1065,10 @@ const Activities = ({ route, navigation }: any): any => {
                     filterOnCategory={setFilteredActivityData}
                     fromPage={fromPage}
                     filterArray={filterArray}
+                    iconColor={headerColorBlack}
                     onFilterArrayChange={onFilterArrayChange}
                   />
-                  <DividerAct></DividerAct>
+                  {/* <DividerAct></DividerAct> */}
                 </View>
               </View>
             </OutsidePressHandler>
@@ -1088,6 +1087,7 @@ const Activities = ({ route, navigation }: any): any => {
                 keyExtractor={(item: any, index: any): any =>
                   String(item?.id) + String(index)
                 }
+                contentContainerStyle={{ backgroundColor: backgroundColorList }}
                 stickySectionHeadersEnabled={false}
                 onScroll={(e: any) => {
                   if (keyboardStatus == true) {

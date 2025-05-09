@@ -513,7 +513,6 @@ const DailyReads = (): any => {
     return null;
   };
 
-  console.log(dateChange);
   return (
     <>
       <MainContainer>
