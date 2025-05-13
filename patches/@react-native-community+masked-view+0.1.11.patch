@@ -1,0 +1,12 @@
+diff --git a/node_modules/@react-native-community/masked-view/android/build.gradle b/node_modules/@react-native-community/masked-view/android/build.gradle
+index c4ee933..2516077 100644
+--- a/node_modules/@react-native-community/masked-view/android/build.gradle
++++ b/node_modules/@react-native-community/masked-view/android/build.gradle
+@@ -20,6 +20,7 @@ apply plugin: 'com.android.library'
+ android {
+   compileSdkVersion safeExtGet('compileSdkVersion', 28)
+   buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
++  namespace 'org.reactnative.maskedview'
+   
+   defaultConfig {
+     minSdkVersion safeExtGet('minSdkVersion', 16)
