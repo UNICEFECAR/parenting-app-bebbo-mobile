@@ -85,7 +85,6 @@
     "react-native-aes-crypto": "3.0.3",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-config": "^1.5.1",
-    "react-native-credentials-manager": "^0.5.3",
     "react-native-document-picker": "^9.3.0",
     "react-native-dotenv": "^3.4.9",
     "react-native-error-boundary": "^1.2.3",
