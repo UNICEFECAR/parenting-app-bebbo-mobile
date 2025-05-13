@@ -24,6 +24,7 @@ import {
 } from "./shared/ArticlesStyle";
 import { FlexCol } from "./shared/FlexBoxStyle";
 import ShareFavButtons from "./shared/ShareFavButtons";
+import BackgroundColors from "./shared/BackgroundColors";
 
 const ContainerView = styled.View`
   flex: 1;
@@ -47,6 +48,7 @@ const FavActivities = (): any => {
   const themeContext = useContext(ThemeContext);
   const actHeaderColor = themeContext?.colors.ACTIVITIES_COLOR;
   const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const flatListRef = useRef(null);
   const activityCategoryData = useAppSelector(
     (state: any) =>
@@ -153,14 +155,14 @@ const FavActivities = (): any => {
   });
   return (
     <>
-      <ContainerView>
+      <ContainerView style={{ backgroundColor: backgroundColorList }}>
         <FlexCol>
           {favGamesToShow.length > 0 ? (
             <FlatList
               ref={flatListRef}
               data={favGamesToShow}
               nestedScrollEnabled={true}
-              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ backgroundColor: backgroundColorList }}
               removeClippedSubviews={true} // Unmount components when outside of window
               initialNumToRender={4} // Reduce initial render amount
               maxToRenderPerBatch={4} // Reduce number in each render batch
