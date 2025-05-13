@@ -952,7 +952,7 @@ const Activities = ({ route, navigation }: any): any => {
     ...styles.containerView,
     backgroundColor: color,
   });
-  console.log(filteredData, "[DATA]", DATA, MileStonesData);
+
   return (
     <>
       <OverlayLoadingComponent loading={loading} />
