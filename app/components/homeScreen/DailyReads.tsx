@@ -291,7 +291,9 @@ const DailyReads = (): any => {
           ArticlesData = ArticlesData;
         } else if (filteredArticles.length === 1) {
           const extraArticle = ArticlesData.find(
-            (article: any) => article.id !== filteredArticles[0].id
+            (article: any) =>
+              article.id !== filteredArticles[0].id &&
+              !showedDailyDataCategory?.advice?.includes(article.id)
           );
           ArticlesData = extraArticle
             ? [filteredArticles[0], extraArticle]
@@ -432,7 +434,6 @@ const DailyReads = (): any => {
         advice: advicearray,
         games: gamesarray,
       };
-      console.log("daily", dailyDataCategorytoDispatch);
       dispatch(setDailyArticleGamesCategory(dailyDataCategorytoDispatch));
       dispatch(setShowedDailyDataCategory(showedDailyDataCategorytoDispatch));
     } else {
@@ -455,7 +456,9 @@ const DailyReads = (): any => {
           ArticlesData = ArticlesData;
         } else if (filteredArticles.length === 1) {
           const extraArticle = ArticlesData.find(
-            (article: any) => article.id !== filteredArticles[0].id
+            (article: any) =>
+              article.id !== filteredArticles[0].id &&
+              !showedDailyDataCategory?.advice?.includes(article.id)
           );
           ArticlesData = extraArticle
             ? [filteredArticles[0], extraArticle]

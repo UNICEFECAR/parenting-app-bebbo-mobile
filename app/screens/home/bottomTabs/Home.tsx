@@ -381,7 +381,6 @@ const Home = ({ route, navigation }: any): any => {
             ? apiresponse.data.updated_at
             : "0";
         AsyncStorage.setItem("forceUpdateTime", forceUpdateTime);
-        console.log(forceUpdateTime, "forceupdate apiresponse1", apiresponse);
       } else {
         const isVideoArticleUpdateReq = await AsyncStorage.getItem(
           "isVideoArticleUpdateReq"
@@ -669,7 +668,6 @@ const Home = ({ route, navigation }: any): any => {
               forceUpdateData[0].method,
               forceUpdateData[0].postdata
             );
-            console.log("forceupdate apiresponse2", apiresponse);
             let forceUpdateTime = await AsyncStorage.getItem("forceUpdateTime");
             forceUpdateTime = forceUpdateTime ? forceUpdateTime : "0";
             if (apiresponse.data.status == 200) {
