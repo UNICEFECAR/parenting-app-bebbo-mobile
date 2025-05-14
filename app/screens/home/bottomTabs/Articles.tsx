@@ -359,9 +359,7 @@ const Articles = ({ route, navigation }: any): any => {
       setSelectedChildActivitiesData(articleData);
     }
   };
-  // useEffect(() => {
-  //   if(currentSelectedChildId !== appConfig)
-  // },[currentSelectedChildId])
+  
   useEffect(() => {
     setsuggestedArticles(filteredData);
   }, [filteredData]);
