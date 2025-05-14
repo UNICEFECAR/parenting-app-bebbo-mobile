@@ -44,10 +44,11 @@ const ESec = {
     childSetupdueLabel: "¿Cuál era la fecha estimada de su nacimiento?",
     childSetupdobSelector:
       "Ingresa la fecha de nacimiento/fecha estimada del parto",
-    childNameTxt: "¿Cuál el nombre de tu niña o niño?",
+    childNameTxt: "¿Cuál es el nombre de tu niña o niño?",
     genderLabel: "Es:",
     chilGender1: "niño",
     chilGender2: "niña",
+    childSetuprelationSelectText: "Seleccionar",
     childSetupcontinueBtnText: "Continuar",
     walkthroughButtonSkip: "Saltar",
     childProfileSkipText:

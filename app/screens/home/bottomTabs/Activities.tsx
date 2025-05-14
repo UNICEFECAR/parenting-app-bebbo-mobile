@@ -547,7 +547,7 @@ const Activities = ({ route, navigation }: any): any => {
 
         navigation.setParams({ categoryArray: [] });
       };
-    }, [])
+    }, [activeChild?.uuid])
   );
 
   useFocusEffect(
