@@ -62,8 +62,6 @@ import { logEvent } from "../services/EventSyncService";
 import { FlexCol } from "@components/shared/FlexBoxStyle";
 import { ScrollView } from "react-native-gesture-handler";
 import { requestExactAlarmPermission } from "../services/exactAlarmService";
-import ReactNativeVersionInfo from "react-native-version-info";
-import { setAppVersion } from "../redux/reducers/utilsSlice";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "AddSiblingDataScreen"
@@ -291,7 +289,6 @@ const ChildSetupList = ({ navigation }: Props): any => {
       params: { child_count: childList?.length },
     };
     logEvent(eventData, netInfo.isConnected);
-    dispatch(setAppVersion(ReactNativeVersionInfo.appVersion));
     navigation.reset({
       index: 0,
       routes: [
