@@ -110,6 +110,7 @@ const UserGuide = (): any => {
   ];
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
   const [profileLoading, setProfileLoading] = React.useState(false);
   type Item = (typeof data)[0];
   const keyExtractor = (item: Item): any => item.title;
@@ -180,7 +181,7 @@ const UserGuide = (): any => {
         <TabScreenHeader
           title={t("userGuideheaderTitle")}
           headerColor={headerColor}
-          textColor="#FFF"
+          textColor={headerTextColor}
           setProfileLoading={setProfileLoading}
         />
 

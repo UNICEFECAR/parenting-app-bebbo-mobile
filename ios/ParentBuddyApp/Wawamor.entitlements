@@ -6,8 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:www.wawamor.app</string>
-		<string>applinks:wawamorapp.page.link</string>
+		<string>applinks:wawamor.ec</string>
 	</array>
 </dict>
 </plist>

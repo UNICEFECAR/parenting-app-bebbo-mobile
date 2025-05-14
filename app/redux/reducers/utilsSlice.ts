@@ -5,6 +5,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface HardcodedDataType {
   acceptTerms: boolean;
   userIsOnboarded: boolean;
+  appVersion: string;
   userIsFirstTime: boolean;
   taxonomy: {
     allTaxonomyData: string;
@@ -111,6 +112,7 @@ interface HardcodedDataType {
 const initialState: HardcodedDataType = {
   acceptTerms: false,
   userIsOnboarded: false,
+  appVersion:'',
   userIsFirstTime: false,
   taxonomy: {
     allTaxonomyData: '',
@@ -226,6 +228,10 @@ export const utilsSlice = createSlice({
     setuserIsOnboarded: (state,
       action: PayloadAction<any>,): any => {
       state.userIsOnboarded = action.payload;
+    },
+    setAppVersion: (state,
+      action: PayloadAction<any>,): any => {
+      state.appVersion = action.payload;
     },
     setuserIsFirstTime: (state,
       action: PayloadAction<any>,): any => {
@@ -404,5 +410,5 @@ export const utilsSlice = createSlice({
   },
 });
 
-export const { setAcceptTerms, setuserIsOnboarded, setuserIsFirstTime, setSyncDate, setAllTaxonomyData,setTaxonomyIds, setAllTermsData, setInfoModalOpened, setDailyMessagesData, setStandardDevWFHData, setStandardDevHFAData, setAllVaccineData, setAllHealthCheckupsData, setAllChildDevData, setAllMileStonesData, setAllVideoArticlesData, setAllActivitiesData, setAllSurveyData, setAllFaqsData, setIncrementalSyncDT } = utilsSlice.actions;
+export const { setAcceptTerms, setuserIsOnboarded,setAppVersion, setuserIsFirstTime, setSyncDate, setAllTaxonomyData,setTaxonomyIds, setAllTermsData, setInfoModalOpened, setDailyMessagesData, setStandardDevWFHData, setStandardDevHFAData, setAllVaccineData, setAllHealthCheckupsData, setAllChildDevData, setAllMileStonesData, setAllVideoArticlesData, setAllActivitiesData, setAllSurveyData, setAllFaqsData, setIncrementalSyncDT } = utilsSlice.actions;
 export default utilsSlice.reducer;

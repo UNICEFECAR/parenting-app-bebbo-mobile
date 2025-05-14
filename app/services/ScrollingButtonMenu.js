@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import  { IconML } from '@components/shared/Icon';
 import { bgcolorBlack2, bgcolorWhite2 } from '../instances/bebbo/styles/style';
 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class ScrollingButtonMenu extends React.Component {
+class ScrollingButtonMenu extends React.Component {
 
     constructor(props) {
         super(props);
@@ -65,8 +65,6 @@ export default class ScrollingButtonMenu extends React.Component {
         const isNotInItems = !items.some(item => item.id === selected || item.id === index || item.id == pIndex );
     
         if (isNotInItems) {
-            console.log(items, '[item]2', items[0]?.id);
-    
             // Update index & execute the function only once
             this.setState({ index: items[0]?.id }, () => {
                 setTimeout(() => {
@@ -81,8 +79,14 @@ export default class ScrollingButtonMenu extends React.Component {
     }
     
 
+
     componentDidMount() {
-        const {selected,items} = this.props;
+        this.focusListener = this.props.navigation.addListener('focus', () => {
+            // Called when the screen is focused
+            this._scrollTo();
+          });
+
+        const {selected } = this.props;
         if (selected) {
             this.setState({index: selected}, () => {
                 setTimeout(() => {
@@ -93,17 +97,38 @@ export default class ScrollingButtonMenu extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        // Remove the listener
+        if (this.focusListener) {
+          this.focusListener();
+        }
+      }
     _scrollTo() {
         const {index,scrollindex} = this.state;
         if(index != scrollindex)
         {
-            const screen1 = screenWidth / 2;
+            
+            setTimeout(() => {
+                const screen1 = screenWidth / 2;
             const elementOffset = this.dataSourceCords[index];
             if (elementOffset !== undefined && typeof this.scroll?.scrollTo === 'function') {
                 const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
                 this.scroll?.scrollTo({ y: 0, x, animated: true });
                 this.setState({ scrollindex: index, scrollindexarrow: index });
             }
+            },1500)
+           
+        } else {
+            if(Platform.ios === 'android'){
+                setTimeout(() => {
+                    const screen1 = screenWidth / 2;
+                const elementOffset = this.dataSourceCords[index];
+                if (elementOffset !== undefined && typeof this.scroll?.scrollTo === 'function') {
+                    const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
+                    this.scroll?.scrollTo({ y: 0, x, animated: true });
+                }
+                },1500)
+            }            
         }
     }
 
@@ -257,3 +282,5 @@ ScrollingButtonMenu.defaultProps = {
     containerStyle: {},
     keyboardShouldPersistTaps: 'always',
 };
+
+export default ScrollingButtonMenu;
