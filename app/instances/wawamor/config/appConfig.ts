@@ -36,8 +36,8 @@ const config = {
   tempbackUpPath: `${RNFS.TemporaryDirectoryPath}mybackup.json`,
   firstPeriodicSyncDays: 7,
   secondPeriodicSyncDays: 30,
-  shareText: `\nhttps://www.REMOVED_FACEBOOK_APP_ID1.ec/share/`,
-  shareTextButton: "https://www.REMOVED_FACEBOOK_APP_ID1.ec/share/",
+  shareText: `\nhttps://REMOVED_FACEBOOK_APP_ID1.ec/share/`,
+  shareTextButton: "https://REMOVED_FACEBOOK_APP_ID1.ec/share/",
   maleData: {
     id: 6821,
     name: "Male",

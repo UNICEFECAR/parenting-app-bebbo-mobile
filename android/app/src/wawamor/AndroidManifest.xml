@@ -40,7 +40,7 @@
     <category android:name="android.intent.category.BROWSABLE" />
     <data android:scheme="http" />
     <data android:scheme="https" />
-        <data android:host="www.REMOVED_FACEBOOK_APP_ID1.ec"  android:pathPrefix="/"/>
+        <data android:host="REMOVED_FACEBOOK_APP_ID1.ec"  android:pathPrefix="/"/>
 </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
