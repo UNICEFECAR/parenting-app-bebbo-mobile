@@ -36,8 +36,8 @@ const config = {
   tempbackUpPath: `${RNFS.TemporaryDirectoryPath}mybackup.json`,
   firstPeriodicSyncDays: 7,
   secondPeriodicSyncDays: 30,
-  shareText: `\nhttps://www.wawamor.ec/share/`,
-  shareTextButton: "https://www.wawamor.ec/share/",
+  shareText: `\nhttps://wawamor.ec/share/`,
+  shareTextButton: "https://wawamor.ec/share/",
   maleData: {
     id: 6821,
     name: "Male",
