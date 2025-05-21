@@ -153,6 +153,7 @@ const config = {
   videoArticleMandatory: 0,
   maxArticleSize: 5,
   flavorName: "merhabaBebek",
+  isCheckTokenize: false,
   stopWords: [],
   apiConfig: {
     articles: "articles",

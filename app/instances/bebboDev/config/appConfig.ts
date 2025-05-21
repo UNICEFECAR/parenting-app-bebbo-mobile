@@ -209,6 +209,7 @@ const config = {
   videoArticleMandatory: 0,
   maxArticleSize: 5,
   flavorName: "Bebbo",
+  isCheckTokenize: false,
   stopWords: [],
   apiConfig: {
     articles: "articles",

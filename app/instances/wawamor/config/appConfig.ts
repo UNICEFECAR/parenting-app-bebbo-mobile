@@ -152,6 +152,7 @@ const config = {
   videoArticleMandatory: 0,
   maxArticleSize: 5,
   flavorName: "wawamor",
+  isCheckTokenize: true,
   stopWords: [
     "a",
     "al",

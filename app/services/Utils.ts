@@ -830,7 +830,7 @@ export function isPregnancy() {
 const spanishStopWords = new Set(appConfig.stopWords);
 
 export const cleanAndOptimizeHtmlText = (html: string): string => {
-  function spanishTokenizer(text: string) {
+  function spanishTokenizer(text: string): string[] {
     return (
       text
         .normalize("NFD")
@@ -842,14 +842,16 @@ export const cleanAndOptimizeHtmlText = (html: string): string => {
   }
 
   // Step 1: Convert HTML to plain text
-  let text = convert(html, {
+  const text = convert(html, {
     wordwrap: false,
     selectors: [{ selector: "a", options: { ignoreHref: true } }],
   });
 
-  // Step 2: Tokenize, normalize, filter stopwords
-  const tokenizedWords = spanishTokenizer(text);
-  // console.log(tokenizedWords, "[text]", text);
+  // Step 2: Tokenize (if enabled), else basic word split
+  const tokenizedWords: string[] = appConfig.isCheckTokenize
+    ? spanishTokenizer(text)
+    : text.toLowerCase().match(/\w+/g) || [];
+
   // Step 3: Deduplicate
   const seen = new Set<string>();
   const uniqueWords = tokenizedWords.filter((word) => {
