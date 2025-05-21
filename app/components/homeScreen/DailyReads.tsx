@@ -356,13 +356,17 @@ const DailyReads = (): any => {
       );
       let nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
       let categoryActivityData = ActivitiesData.filter(
-        (x: any) =>
-          x.activity_category == activityCategoryArrayNew[nextIndex2]?.id
+        (x: { activity_category: number }) =>
+          new Set<number>(
+            activityCategoryArrayNew.map((i: { id: number }) => i.id)
+          ).has(x.activity_category)
       );
       if (categoryActivityData.length < 2) {
         const additionalItems = ActivitiesData.filter(
-          (x: any) =>
-            x.activity_category !== activityCategoryArrayNew[nextIndex2]?.id
+          (x: { activity_category: number }) =>
+            new Set<number>(
+              activityCategoryArrayNew.map((i: { id: number }) => i.id)
+            ).has(x.activity_category)
         );
         categoryActivityData = categoryActivityData.concat(
           additionalItems.slice(0, 2 - categoryActivityData.length)

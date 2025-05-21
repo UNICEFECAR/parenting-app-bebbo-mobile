@@ -4,7 +4,6 @@ import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ActivityBox,
   ArticleHeading,
-  ArticleListContainer,
   ArticleListBox,
   ArticleListContent,
   MainActivityBox,
@@ -46,10 +45,15 @@ import {
   StyleSheet,
   Text,
   View,
+  InteractionManager,
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../../App";
-import { setInfoModalOpened } from "../../../redux/reducers/utilsSlice";
+import {
+  resetActivitiesSearchIndex,
+  setActivitiesSearchIndex,
+  setInfoModalOpened,
+} from "../../../redux/reducers/utilsSlice";
 import LoadableImage from "../../../services/LoadableImage";
 import {
   ACTIVITY_SEARCHED,
@@ -69,7 +73,11 @@ import {
   ChildEntitySchema,
 } from "../../../database/schema/ChildDataSchema";
 import FastImage from "react-native-fast-image";
-import { isPregnancy, randomArrayShuffle } from "../../../services/Utils";
+import {
+  cleanAndOptimizeHtmlText,
+  randomArrayShuffle,
+} from "../../../services/Utils";
+import Realm from "realm";
 import { activitiesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import {
@@ -188,6 +196,12 @@ const Activities = ({ route, navigation }: any): any => {
       ? JSON.parse(state.utilsData.ActivitiesData)
       : []
   );
+  const searchIndex = useAppSelector(
+    (state: any) => state.utilsData.activitiesSearchIndex
+  );
+  const isActivitiesSearchIndex = useAppSelector(
+    (state: any) => state.utilsData.isActivitiesSearchIndex
+  );
   // const miniSearchIndexedData = useAppSelector(
   //   (state: any) => state.searchIndex.searchActivityIndex
   // );
@@ -235,10 +249,10 @@ const Activities = ({ route, navigation }: any): any => {
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
-      setModalVisible(false);
     }
   };
   const getSearchedKeywords = async (): Promise<any> => {
@@ -252,18 +266,6 @@ const Activities = ({ route, navigation }: any): any => {
       setSearchHistory(unsynchronizedEvents);
     }
   };
-
-  useFocusEffect(
-    React.useCallback(() => {
-      console.log("is child premature", activeChild.isPremature);
-      // whatever
-      if (netInfo.isConnected) {
-        synchronizeEvents(netInfo.isConnected);
-      }
-      getSearchedKeywords();
-      setModalVisible(activityModalOpened);
-    }, [activityModalOpened])
-  );
 
   const toTop = (): any => {
     // use current
@@ -420,45 +422,72 @@ const Activities = ({ route, navigation }: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-        setKeyboardStatus(true);
-      });
-      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-        setKeyboardStatus(false);
-      });
-      return (): any => {
-        {
-          navigation.setParams({ categoryArray: [] });
-          showSubscription.remove();
-          hideSubscription.remove();
-          // route.params?.currentSelectedChildId = 0;
+      const task = InteractionManager.runAfterInteractions(() => {
+        console.log("is child premature", activeChild.isPremature);
+        if (netInfo.isConnected) {
+          synchronizeEvents(netInfo.isConnected);
         }
+        getSearchedKeywords();
+        setModalVisible(activityModalOpened);
+      });
+
+      return () => {
+        task.cancel();
+      };
+    }, [activityModalOpened])
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      let showSubscription: any;
+      let hideSubscription: any;
+
+      const task = InteractionManager.runAfterInteractions(() => {
+        showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+          setKeyboardStatus(true);
+        });
+        hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+          setKeyboardStatus(false);
+        });
+      });
+
+      return () => {
+        navigation.setParams({ categoryArray: [] });
+        showSubscription?.remove();
+        hideSubscription?.remove();
+        task.cancel();
       };
     }, [])
   );
+
   useFocusEffect(
     React.useCallback(() => {
-      if (isSerachedQueryText || queryText == "") {
-        //setLoading(true);
-        async function fetchData(): Promise<any> {
-          console.log("route category data", route.params?.categoryArray);
-          if (route.params?.categoryArray) {
-            setFilterArray(route.params?.categoryArray);
-            setFilteredActivityData(route.params?.categoryArray);
+      const task = InteractionManager.runAfterInteractions(() => {
+        if (isSerachedQueryText || queryText === "") {
+          const fetchData = async (): Promise<void> => {
+            console.log("route category data", route.params?.categoryArray);
+            if (route.params?.categoryArray) {
+              setFilterArray(route.params?.categoryArray);
+              setFilteredActivityData(route.params?.categoryArray);
+            } else {
+              console.log("route category data in else");
+              setFilterArray([]);
+              setFilteredActivityData([]);
+            }
+          };
+
+          setIsSearchedQueryText(false);
+          if (route.params?.backClicked !== "yes") {
+            fetchData();
           } else {
-            console.log("route category data in else");
-            setFilterArray([]);
-            setFilteredActivityData([]);
+            setLoading(false);
           }
         }
-        setIsSearchedQueryText(false);
-        if (route.params?.backClicked != "yes") {
-          fetchData();
-        } else {
-          setLoading(false);
-        }
-      }
-      //  }
+      });
+
+      return () => {
+        task.cancel();
+      };
     }, [
       selectedChildActivitiesData,
       route.params?.categoryArray,
@@ -491,35 +520,40 @@ const Activities = ({ route, navigation }: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      if (route.params?.backClicked != "yes") {
-        setshowNoData(false);
-        if (
-          route.params?.currentSelectedChildId &&
-          route.params?.currentSelectedChildId != 0
-        ) {
-          console.log("if route params 0", route.params);
-          const firstChildDevData = childAge.filter(
-            (x: any) => x.id == route.params?.currentSelectedChildId
-          );
-          showSelectedBracketData(firstChildDevData[0]);
+      const task = InteractionManager.runAfterInteractions(() => {
+        if (route.params?.backClicked !== "yes") {
+          setshowNoData(false);
+          if (
+            route.params?.currentSelectedChildId &&
+            route.params?.currentSelectedChildId !== 0
+          ) {
+            console.log("if route params 0", route.params);
+            const firstChildDevData = childAge.filter(
+              (x: any) => x.id === route.params?.currentSelectedChildId
+            );
+            showSelectedBracketData(firstChildDevData[0]);
+          } else {
+            console.log(
+              "else if route params 0",
+              route.params,
+              activityTaxonomyId
+            );
+            const firstChildDevData = childAge.filter(
+              (x: any) => x.id === activityTaxonomyId
+            );
+            showSelectedBracketData(firstChildDevData[0]);
+          }
         } else {
-          console.log(
-            "else if route params 0",
-            route.params,
-            activityTaxonomyId
-          );
+          setLoading(false);
+          if (route.params?.backClicked === "yes") {
+            navigation.setParams({ backClicked: "no" });
+          }
+        }
+      });
 
-          const firstChildDevData = childAge.filter(
-            (x: any) => x.id == activityTaxonomyId
-          );
-          showSelectedBracketData(firstChildDevData[0]);
-        }
-      } else {
-        setLoading(false);
-        if (route.params?.backClicked == "yes") {
-          navigation.setParams({ backClicked: "no" });
-        }
-      }
+      return () => {
+        task.cancel();
+      };
     }, [
       activeChild?.uuid,
       languageCode,
@@ -527,24 +561,26 @@ const Activities = ({ route, navigation }: any): any => {
       activityTaxonomyId,
     ])
   );
+
   useFocusEffect(
     React.useCallback(() => {
-      const fetchData = async (): Promise<any> => {
-        const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
-        const childData = await userRealmCommon.getFilteredData<ChildEntity>(
-          ChildEntitySchema,
-          filterQuery
-        );
-        setchildMilestonedata(childData[0].checkedMilestones);
-      };
-      fetchData();
-      return (): any => {
+      const task = InteractionManager.runAfterInteractions(() => {
+        const fetchData = async (): Promise<void> => {
+          const filterQuery = `uuid == "${activeChild?.uuid}"`;
+          const childData = await userRealmCommon.getFilteredData<ChildEntity>(
+            ChildEntitySchema,
+            filterQuery
+          );
+          setchildMilestonedata(childData[0]?.checkedMilestones ?? []);
+        };
+        fetchData();
+      });
+
+      return () => {
+        task.cancel();
         console.log("unmount activity", route.params);
-
         navigation.setParams({ backClicked: "no" });
-
         navigation.setParams({ currentSelectedChildId: 0 });
-
         navigation.setParams({ categoryArray: [] });
       };
     }, [activeChild?.uuid])
@@ -552,25 +588,32 @@ const Activities = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      setsuggestedGames(
-        filteredData.filter(
-          (x: any) =>
-            x.related_milestone.length > 0 &&
-            childMilestonedata.findIndex(
-              (y: any) => y == x.related_milestone[0]
-            ) == -1
-        )
-      );
-      setotherGames(
-        filteredData.filter(
-          (x: any) =>
-            x.related_milestone.length == 0 ||
-            (x.related_milestone.length > 0 &&
+      const task = InteractionManager.runAfterInteractions(() => {
+        setsuggestedGames(
+          filteredData.filter(
+            (x: any) =>
+              x.related_milestone.length > 0 &&
               childMilestonedata.findIndex(
-                (y: any) => y == x.related_milestone[0]
-              ) > -1)
-        )
-      );
+                (y: any) => y === x.related_milestone[0]
+              ) === -1
+          )
+        );
+
+        setotherGames(
+          filteredData.filter(
+            (x: any) =>
+              x.related_milestone.length === 0 ||
+              (x.related_milestone.length > 0 &&
+                childMilestonedata.findIndex(
+                  (y: any) => y === x.related_milestone[0]
+                ) > -1)
+          )
+        );
+      });
+
+      return () => {
+        task.cancel();
+      };
     }, [filteredData, childMilestonedata])
   );
 
@@ -728,15 +771,23 @@ const Activities = ({ route, navigation }: any): any => {
       </ArticleHeading>
     );
   });
-  const [searchIndex, setSearchIndex] = useState<any>(null);
-  const suffixes = (term: any, minLength: any): any => {
-    if (term === null) {
-      return [];
-    }
-    const tokens = [];
-    for (let i = 0; i <= term.length - minLength; i++) {
+  const suffixCache = new Map<string, string[]>();
+  const suffixes = (
+    term: string,
+    minLength: number,
+    maxSuffixes = 5
+  ): string[] => {
+    if (suffixCache.has(term)) return suffixCache.get(term)!;
+
+    const tokens: string[] = [];
+    const maxStart = Math.min(term.length - minLength, maxSuffixes - 1);
+
+    for (let i = 0; i <= maxStart; i++) {
       tokens.push(term.slice(i));
     }
+
+    suffixCache.set(term, tokens);
+    // console.log("--------", tokens);
     return tokens;
   };
   const preprocessActivities = (activities: any): any => {
@@ -744,9 +795,10 @@ const Activities = ({ route, navigation }: any): any => {
       ...activity,
       normalizedTitle: activity.title,
       normalizedSummary: activity.summary,
-      normalizedBody: activity.body,
+      normalizedBody: cleanAndOptimizeHtmlText(activity.body),
     }));
   };
+  // console.log()
   //add minisearch on active child article data
   useEffect(() => {
     async function initializeSearchIndex() {
@@ -810,16 +862,17 @@ const Activities = ({ route, navigation }: any): any => {
         });
         //processedActivities.forEach((item: any) => searchActivittiesData.add(item));
         searchActivittiesData.addAllAsync(processedActivities);
-        setSearchIndex(searchActivittiesData);
+        dispatch(resetActivitiesSearchIndex(false));
+        dispatch(setActivitiesSearchIndex(searchActivittiesData));
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
     }
-    initializeSearchIndex();
+    const task = InteractionManager.runAfterInteractions(() => {
+      isActivitiesSearchIndex && initializeSearchIndex();
+    });
+    return () => task.cancel();
   }, []);
-  // useEffect(() => {
-  //   console.log('Minisearch is for geames', miniSearchIndexedData)
-  // })
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
@@ -1155,4 +1208,4 @@ const Activities = ({ route, navigation }: any): any => {
   );
 };
 
-export default Activities;
+export default React.memo(Activities);

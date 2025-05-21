@@ -62,6 +62,7 @@ const ESec = {
     childSetupListsubHeader:
       "Si tienes otros hijos de 0 a 6 años, puedes agregar sus perfiles ahora o más tarde.",
     drawerMenuchildInfo: "Nació el {{childdob}}",
+
     childSetupListaddSiblingBtn: "Agregar el perfil de otra niña o niño",
     letGetStartedText: "EMPECEMOS",
     childSetupListsaveBtnText: "Guardar",
@@ -121,7 +122,7 @@ const ESec = {
     settingScreengdriveBtntxt: "Google Drive",
     userGuideheaderTitle: "Guía del usuario",
     aboutUsScreenheaderTitle: "Sobre nosotros",
-    supportScreenheaderTitle: "Chatbot: tu asistente de crianza",
+    supportScreenheaderTitle: "Chatbot de crianza",
     supportScreenheader1text: "¡Muy pronto!",
     supportScreenheader2text:
       "Lo sentimos, el chat no está disponible en este momento.",
