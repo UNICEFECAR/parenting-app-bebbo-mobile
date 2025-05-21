@@ -95,6 +95,7 @@ const Childgrowth = ({ navigation }: any): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -192,7 +193,6 @@ const Childgrowth = ({ navigation }: any): any => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={(): any => {
-                  setModalVisible(false);
                   setIsModalOpened("IsGrowthModalOpened");
                 }}
               >

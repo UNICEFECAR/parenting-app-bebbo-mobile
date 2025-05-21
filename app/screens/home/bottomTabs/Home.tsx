@@ -736,6 +736,7 @@ const Home = ({ route, navigation }: any): any => {
       })
     );
   };
+
   return (
     <>
       <>
@@ -887,4 +888,4 @@ const Home = ({ route, navigation }: any): any => {
     </>
   );
 };
-export default Home;
+export default React.memo(Home);

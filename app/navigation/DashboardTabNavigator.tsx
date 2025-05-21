@@ -15,7 +15,7 @@ import Childgrowth from "@screens/home/Childgrowth";
 import HealthCheckups from "@screens/home/HealthCheckups";
 import Vaccination from "@screens/home/Vaccination";
 import { Heading3 } from "@styles/typography";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, Suspense, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Modal,
@@ -151,101 +151,103 @@ export default (): any => {
           </TouchableOpacity>
         </Pressable>
       </Modal>
-      <DashboardBottomTab.Navigator
-        backBehavior={"firstRoute"}
-        detachInactiveScreens={true}
-        screenOptions={{
-          tabBarActiveTintColor: headerColor,
-          tabBarInactiveTintColor: "#000",
-          tabBarActiveBackgroundColor: "#FFF",
-          tabBarInactiveBackgroundColor: "#FFF",
-          tabBarHideOnKeyboard: true,
-          tabBarLabelPosition: "below-icon",
-          headerShown: false,
-        }}
-      >
-        <DashboardBottomTab.Screen
-          name="Home"
-          component={Home}
-          options={{
-            tabBarLabel: t("tabbarLabel1"),
-            tabBarIcon: ({ color, size }: any): any => (
-              <Icon name="ic_sb_home" color={color} size={size} />
-            ),
-            unmountOnBlur: true,
+      <Suspense fallback={null}>
+        <DashboardBottomTab.Navigator
+          backBehavior={"firstRoute"}
+          detachInactiveScreens={true}
+          screenOptions={{
+            tabBarActiveTintColor: headerColor,
+            tabBarInactiveTintColor: "#000",
+            tabBarActiveBackgroundColor: "#FFF",
+            tabBarInactiveBackgroundColor: "#FFF",
+            tabBarHideOnKeyboard: true,
+            tabBarLabelPosition: "below-icon",
             headerShown: false,
           }}
-        />
-        <DashboardBottomTab.Screen
-          name="Activities"
-          component={Activities}
-          initialParams={{
-            categoryArray: [],
-            currentSelectedChildId: 0,
-            backClicked: "no",
-          }}
-          options={{
-            tabBarLabel: t("tabbarLabel2"),
-            tabBarIcon: ({ color, size }: any): any => (
-              <Icon name="ic_activities" color={color} size={size} />
-            ),
-            headerShown: false,
-          }}
-        />
-        <DashboardBottomTab.Screen
-          component={secondaryRoot}
-          name="Tools"
-          options={{
-            tabBarLabel: t("tabbarLabel3"),
-            tabBarIcon: ({ color, size }: any): any => (
-              <Icon
-                name="ic_sb_tools"
-                color={color}
-                size={size}
-                style={styles.bottomtabIconStyle}
-              />
-            ),
-            unmountOnBlur: true,
-            headerShown: false,
-          }}
-          listeners={(): any => ({
-            tabPress: (e: any): any => {
-              setModalVisible(true);
-              e.preventDefault();
-            },
-          })}
-        />
-        <DashboardBottomTab.Screen
-          name="Articles"
-          component={Articles}
-          initialParams={{
-            categoryArray: [],
-            currentSelectedChildId: 0,
-            backClicked: "no",
-          }}
-          options={{
-            tabBarLabel: t("tabbarLabel4"),
-            tabBarIcon: ({ color, size }: any): any => (
-              <Icon name="ic_articles" color={color} size={size} />
-            ),
-            // unmountOnBlur: true,
-            headerShown: false,
-          }}
-        />
-        <DashboardBottomTab.Screen
-          name="ChildDevelopment"
-          component={ChildDevelopment}
-          initialParams={{ currentSelectedChildId: 0 }}
-          options={{
-            tabBarLabel: t("tabbarLabel5"),
-            tabBarIcon: ({ color, size }: any): any => (
-              <Icon name="ic_milestone" color={color} size={size} />
-            ),
-            unmountOnBlur: true,
-            headerShown: false,
-          }}
-        />
-      </DashboardBottomTab.Navigator>
+        >
+          <DashboardBottomTab.Screen
+            name="Home"
+            component={Home}
+            options={{
+              tabBarLabel: t("tabbarLabel1"),
+              tabBarIcon: ({ color, size }: any): any => (
+                <Icon name="ic_sb_home" color={color} size={size} />
+              ),
+              unmountOnBlur: false,
+              headerShown: false,
+            }}
+          />
+          <DashboardBottomTab.Screen
+            name="Activities"
+            component={Activities}
+            initialParams={{
+              categoryArray: [],
+              currentSelectedChildId: 0,
+              backClicked: "no",
+            }}
+            options={{
+              tabBarLabel: t("tabbarLabel2"),
+              tabBarIcon: ({ color, size }: any): any => (
+                <Icon name="ic_activities" color={color} size={size} />
+              ),
+              headerShown: false,
+            }}
+          />
+          <DashboardBottomTab.Screen
+            component={secondaryRoot}
+            name="Tools"
+            options={{
+              tabBarLabel: t("tabbarLabel3"),
+              tabBarIcon: ({ color, size }: any): any => (
+                <Icon
+                  name="ic_sb_tools"
+                  color={color}
+                  size={size}
+                  style={styles.bottomtabIconStyle}
+                />
+              ),
+              unmountOnBlur: true,
+              headerShown: false,
+            }}
+            listeners={(): any => ({
+              tabPress: (e: any): any => {
+                setModalVisible(true);
+                e.preventDefault();
+              },
+            })}
+          />
+          <DashboardBottomTab.Screen
+            name="Articles"
+            component={Articles}
+            initialParams={{
+              categoryArray: [],
+              currentSelectedChildId: 0,
+              backClicked: "no",
+            }}
+            options={{
+              tabBarLabel: t("tabbarLabel4"),
+              tabBarIcon: ({ color, size }: any): any => (
+                <Icon name="ic_articles" color={color} size={size} />
+              ),
+              unmountOnBlur: false,
+              headerShown: false,
+            }}
+          />
+          <DashboardBottomTab.Screen
+            name="ChildDevelopment"
+            component={ChildDevelopment}
+            initialParams={{ currentSelectedChildId: 0 }}
+            options={{
+              tabBarLabel: t("tabbarLabel5"),
+              tabBarIcon: ({ color, size }: any): any => (
+                <Icon name="ic_milestone" color={color} size={size} />
+              ),
+              unmountOnBlur: true,
+              headerShown: false,
+            }}
+          />
+        </DashboardBottomTab.Navigator>
+      </Suspense>
     </>
   );
 };

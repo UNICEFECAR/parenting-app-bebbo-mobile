@@ -20,6 +20,7 @@ import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
+import { cleanAndOptimizeHtmlText } from "../../../services/Utils";
 import {
   Heading3,
   Heading4Center,
@@ -38,6 +39,7 @@ import {
   StyleSheet,
   Text,
   View,
+  InteractionManager,
 } from "react-native";
 import FastImage from "react-native-fast-image";
 import { ThemeContext } from "styled-components/native";
@@ -60,6 +62,10 @@ import {
 } from "@assets/data/firebaseEvents";
 import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
+import {
+  resetSearchIndex,
+  setSearchIndex,
+} from "../../../redux/reducers/articlesSlice";
 type ArticlesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -129,6 +135,7 @@ const Articles = ({ route, navigation }: any): any => {
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
@@ -151,62 +158,53 @@ const Articles = ({ route, navigation }: any): any => {
 
   //merge array
   const mergearr = (
-    articlearrold: any[],
-    videoartarrold: any[],
-    isSuffle: boolean
-  ) => {
-    let combinedarr: any[] = [];
-    let i = 0;
-    let j = 0;
-    let articlearr: any[] = [];
-    let videoartarr: any[] = [];
+    articleArrOld: any[],
+    videoArtArrOld: any[],
+    isShuffle: boolean
+  ): any[] => {
+    const articleArr = isShuffle
+      ? randomArrayShuffle(articleArrOld)
+      : articleArrOld;
+    const videoArr = isShuffle
+      ? randomArrayShuffle(videoArtArrOld)
+      : videoArtArrOld;
 
-    if (isSuffle) {
-      articlearr = randomArrayShuffle(articlearrold);
-      videoartarr = randomArrayShuffle(videoartarrold);
-    } else {
-      articlearr = articlearrold;
-      videoartarr = videoartarrold;
-    }
+    if (articleArr.length === 0) return [...videoArr];
 
-    if (articlearr.length == 0) {
-      combinedarr = [...videoartarr];
-    }
-    articlearr.map((x: any, index: number) => {
-      if (i < appConfig.maxArticleSize) {
-        combinedarr.push(x);
-        i++;
-        if (index == articlearr.length - 1) {
-          if (j < videoartarr.length) {
-            const dd = videoartarr.splice(j);
-            dd.map((y: any) => combinedarr.push(y));
-          }
-        }
-      } else {
-        i = 1;
-        if (videoartarr[j]) {
-          combinedarr.push(videoartarr[j]);
-        }
-        combinedarr.push(x);
-        j++;
-        if (index == articlearr.length - 1) {
-          if (j < videoartarr.length) {
-            const dd = videoartarr.splice(j);
-            dd.map((y: any) => combinedarr.push(y));
-          }
-        }
+    const combinedArr: any[] = [];
+    let videoIndex = 0;
+
+    for (let i = 0; i < articleArr.length; i++) {
+      combinedArr.push(articleArr[i]);
+
+      // After every `maxArticleSize` articles, insert a video article
+      if (
+        (i + 1) % appConfig.maxArticleSize === 0 &&
+        videoIndex < videoArr.length
+      ) {
+        combinedArr.push(videoArr[videoIndex]);
+        videoIndex++;
       }
-    });
+    }
 
-    return combinedarr;
+    // Push remaining video articles if any left
+    while (videoIndex < videoArr.length) {
+      combinedArr.push(videoArr[videoIndex]);
+      videoIndex++;
+    }
+
+    return combinedArr;
   };
-  const preprocessArticles = (articles: any): any => {
-    return articles.map((article: any) => ({
-      ...article,
-      normalizedTitle: article.title,
-      normalizedSummary: article.summary,
-      normalizedBody: article.body,
-    }));
+
+  const preprocessArticles = (articles: any[]): any[] => {
+    return articles.map((article: any) => {
+      return {
+        ...article,
+        normalizedTitle: article.title,
+        normalizedSummary: article.summary,
+        normalizedBody: cleanAndOptimizeHtmlText(article.body),
+      };
+    });
   };
 
   const getSearchedKeywords = async (): Promise<any> => {
@@ -237,12 +235,18 @@ const Articles = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      if (netInfo.isConnected) {
-        synchronizeEvents(netInfo.isConnected);
-      }
-      getSearchedKeywords();
-      setModalVisible(articleModalOpened);
-    }, [articleModalOpened]) //historyVisible
+      const task = InteractionManager.runAfterInteractions(() => {
+        if (netInfo.isConnected) {
+          synchronizeEvents(netInfo.isConnected);
+        }
+        getSearchedKeywords();
+        setModalVisible(articleModalOpened);
+      });
+
+      return () => {
+        task.cancel(); // clean up on unfocus
+      };
+    }, [articleModalOpened, netInfo.isConnected])
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.ARTICLES_COLOR;
@@ -282,6 +286,12 @@ const Articles = ({ route, navigation }: any): any => {
     state.articlesData.article.articles != ""
       ? JSON.parse(state.articlesData.article.articles)
       : state.articlesData.article.articles
+  );
+  const isSearchIndex = useAppSelector(
+    (state: any) => state.articlesData.article.isSearchIndex
+  );
+  const searchIndex = useAppSelector(
+    (state: any) => state.articlesData.article.searchIndex
   );
   const articleDataOld = articleDataall.filter((x: any) =>
     taxonomyIds.articleCategoryArray.includes(x.category)
@@ -359,7 +369,7 @@ const Articles = ({ route, navigation }: any): any => {
       setSelectedChildActivitiesData(articleData);
     }
   };
-  
+
   useEffect(() => {
     setsuggestedArticles(filteredData);
   }, [filteredData]);
@@ -580,49 +590,55 @@ const Articles = ({ route, navigation }: any): any => {
     }
     toTop();
   };
+
   useFocusEffect(
     React.useCallback(() => {
-      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-        setKeyboardStatus(true);
-      });
-      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-        setKeyboardStatus(false);
-      });
-      return (): any => {
-        {
+      const task = InteractionManager.runAfterInteractions(() => {
+        const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+          setKeyboardStatus(true);
+        });
+        const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+          setKeyboardStatus(false);
+        });
+
+        return () => {
           navigation.setParams({ categoryArray: [] });
           showSubscription.remove();
           hideSubscription.remove();
-          // route.params?.currentSelectedChildId = 0;
-        }
+        };
+      });
+
+      return () => {
+        task.cancel();
       };
     }, [])
   );
 
   useFocusEffect(
     React.useCallback(() => {
-      if (route.params?.backClicked != "yes") {
-        setshowNoData(false);
-        if (
-          route.params?.currentSelectedChildId &&
-          route.params?.currentSelectedChildId != 0
-        ) {
-          const firstChildDevData = childAge.filter(
-            (x: any) => x.id == route.params?.currentSelectedChildId
-          );
-          showSelectedBracketData(firstChildDevData[0]);
+      const task = InteractionManager.runAfterInteractions(() => {
+        if (route.params?.backClicked !== "yes") {
+          setshowNoData(false);
+
+          const selectedId = route.params?.currentSelectedChildId;
+          const validId =
+            selectedId && selectedId !== 0 ? selectedId : activityTaxonomyId;
+
+          const firstChildDevData = childAge.find((x: any) => x.id === validId);
+          if (firstChildDevData) {
+            showSelectedBracketData(firstChildDevData);
+          }
         } else {
-          const firstChildDevData = childAge.filter(
-            (x: any) => x.id == activityTaxonomyId
-          );
-          showSelectedBracketData(firstChildDevData[0]);
+          setLoadingArticle(false);
+          if (route.params?.backClicked === "yes") {
+            navigation.setParams({ backClicked: "no" });
+          }
         }
-      } else {
-        setLoadingArticle(false);
-        if (route.params?.backClicked == "yes") {
-          navigation.setParams({ backClicked: "no" });
-        }
-      }
+      });
+
+      return () => {
+        task.cancel();
+      };
     }, [
       activeChild?.uuid,
       languageCode,
@@ -630,20 +646,27 @@ const Articles = ({ route, navigation }: any): any => {
       activityTaxonomyId,
     ])
   );
+
   useFocusEffect(
     React.useCallback(() => {
-      const fetchData = async (): Promise<any> => {
-        const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
-      };
-      fetchData();
-      return (): any => {
-        navigation.setParams({ backClicked: "no" });
+      const task = InteractionManager.runAfterInteractions(() => {
+        const fetchData = async (): Promise<void> => {
+          const filterQuery = `uuid == "${activeChild?.uuid}"`;
+          // await callYourAPI(filterQuery); // if needed
+        };
+        fetchData();
 
-        navigation.setParams({ currentSelectedChildId: 0 });
+        return () => {
+          navigation.setParams({ backClicked: "no" });
+          navigation.setParams({ currentSelectedChildId: 0 });
+          navigation.setParams({ categoryArray: [] });
+        };
+      });
 
-        navigation.setParams({ categoryArray: [] });
+      return () => {
+        task.cancel();
       };
-    }, [])
+    }, [activeChild?.uuid])
   );
   useEffect(() => {
     async function initializeSearchIndex() {
@@ -664,35 +687,48 @@ const Articles = ({ route, navigation }: any): any => {
           false
         );
         articleData = [...combineDartArr];
+
         const processedArticles = preprocessArticles(combineDartArr);
         const searchIndexData = new MiniSearch({
           processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
-          // tokenize: (text) => {
-          //   const words = text.toLowerCase().split(/\s+/);
-          //   const ngrams = [];
-          //   for (let i = 0; i < words.length - 1; i++) {
-          //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
-          //   }
-          //   return [...words, ...ngrams]; // Return both single words and bigrams
-          // },
-          extractField: (document, fieldName): any => {
+          extractField: (document: any, fieldName: string): string => {
             const arrFields = fieldName.split(".");
+
             if (arrFields.length === 2) {
-              return (document[arrFields[0]] || [])
-                .map((arrField: any) => arrField[arrFields[1]] || "")
-                .join(" ");
-            } else if (arrFields.length === 3) {
-              const tmparr = (document[arrFields[0]] || []).flatMap(
-                (arrField: any) => arrField[arrFields[1]] || []
-              );
-              return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
+              const [parent, child] = arrFields;
+              return Array.isArray(document[parent])
+                ? document[parent]
+                    .map((item: any) => item?.[child] ?? "")
+                    .join(" ")
+                : "";
             }
-            return fieldName
-              .split(".")
-              .reduce((doc, key) => doc && doc[key], document);
+
+            if (arrFields.length === 3) {
+              const [level1, level2, level3] = arrFields;
+              return Array.isArray(document[level1])
+                ? document[level1]
+                    .flatMap((item: any) => item?.[level2] ?? [])
+                    .map((subItem: any) => subItem?.[level3] ?? "")
+                    .join(" ")
+                : "";
+            }
+
+            // Fallback for single-level or deep nested fields
+            return (
+              arrFields.reduce(
+                (acc: any, key: string) => acc?.[key],
+                document
+              ) ?? ""
+            );
           },
           searchOptions: {
-            boost: { title: 2, summary: 1.5, body: 1 },
+            boost: {
+              normalizedTitle: 2,
+              normalizedSummary: 1.5,
+              normalizedBody: 1,
+              meta_keywords: 1,
+              keywords: 1,
+            },
             bm25: { k: 1.0, b: 0.7, d: 0.5 },
             fuzzy: true,
             // prefix true means it will contain "foo" then search for "foobar"
@@ -702,13 +738,18 @@ const Articles = ({ route, navigation }: any): any => {
               prefix: 0.6,
             },
           },
-          fields: ["title", "summary", "body", "meta_keywords", "keywords"],
+          fields: [
+            "normalizedTitle",
+            "normalizedSummary",
+            "normalizedBody",
+            "meta_keywords",
+            "keywords",
+          ],
           storeFields: [
             "id",
             "type",
             "title",
             "created_at",
-            "updated_at",
             "summary",
             "body",
             "category",
@@ -718,23 +759,24 @@ const Articles = ({ route, navigation }: any): any => {
             "keywords",
             "related_articles",
             "related_video_articles",
-            "licensed",
             "premature",
-            "mandatory",
             "cover_image",
             "cover_video",
             "related_articles",
             "embedded_images",
           ],
         });
-
         searchIndexData.addAllAsync(processedArticles);
-        setSearchIndex(searchIndexData);
+        dispatch(resetSearchIndex(false));
+        dispatch(setSearchIndex(searchIndexData));
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
     }
-    initializeSearchIndex();
+    const task = InteractionManager.runAfterInteractions(() => {
+      isSearchIndex && initializeSearchIndex();
+    });
+    return () => task.cancel();
   }, []);
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray);
@@ -769,15 +811,23 @@ const Articles = ({ route, navigation }: any): any => {
     ])
   );
 
-  const [searchIndex, setSearchIndex] = useState<any>(null);
-  const suffixes = (term: any, minLength: any): any => {
-    if (term == null) {
-      return [];
-    }
-    const tokens = [];
-    for (let i = 0; i <= term.length - minLength; i++) {
+  // const [searchIndex, setSearchIndex] = useState<any>(null);
+  const suffixCache = new Map<string, string[]>();
+  const suffixes = (
+    term: string,
+    minLength: number,
+    maxSuffixes = 5
+  ): string[] => {
+    if (suffixCache.has(term)) return suffixCache.get(term)!;
+
+    const tokens: string[] = [];
+    const maxStart = Math.min(term.length - minLength, maxSuffixes - 1);
+
+    for (let i = 0; i <= maxStart; i++) {
       tokens.push(term.slice(i));
     }
+
+    suffixCache.set(term, tokens);
     // console.log("--------", tokens);
     return tokens;
   };
@@ -787,7 +837,12 @@ const Articles = ({ route, navigation }: any): any => {
     setLoadingArticle(true);
     // await new Promise((resolve) => setTimeout(resolve, 0));
     Keyboard.dismiss();
-    if (queryText != "" && queryText != undefined && queryText != null) {
+    if (
+      queryText != "" &&
+      queryText != undefined &&
+      queryText != null &&
+      queryText.length >= 3
+    ) {
       const keywords = queryText
         .trim()
         .toLowerCase()
@@ -896,12 +951,11 @@ const Articles = ({ route, navigation }: any): any => {
 
   const optimizedFilteredData = useMemo(() => {
     if (filterArray.length === 1 && filterArray[0] == appConfig.weekByWeekId) {
-      console.log("[filter Array]1");
       return [...filteredData].sort((a, b) => a.id - b.id); // ✨ non-mutating sort
     }
     return filteredData;
   }, [filteredData, filterArray]);
-  console.log(filterArray, "[filter Array]", optimizedFilteredData);
+
   const containerView = (color: any) => ({
     ...styles.containerView,
     backgroundColor: color,
@@ -1064,4 +1118,4 @@ const Articles = ({ route, navigation }: any): any => {
   );
 };
 
-export default Articles;
+export default React.memo(Articles);

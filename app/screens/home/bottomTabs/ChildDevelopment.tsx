@@ -650,4 +650,4 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   );
 };
 
-export default ChildDevelopment;
+export default React.memo(ChildDevelopment);

@@ -77,6 +77,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -214,7 +215,6 @@ const Vaccination = ({ navigation, route }: Props): any => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={(): any => {
-                  setModalVisible(false);
                   setIsModalOpened("IsVaccineModalOpened");
                 }}
               >

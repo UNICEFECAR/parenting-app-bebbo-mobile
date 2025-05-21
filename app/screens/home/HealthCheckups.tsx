@@ -70,6 +70,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   const [modalVisible, setModalVisible] = React.useState(true);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -200,7 +201,6 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={(): any => {
-                  setModalVisible(false);
                   setIsModalOpened("IsHCUModalOpened");
                 }}
               >
