@@ -153,6 +153,7 @@ const config = {
   videoArticleMandatory: 0,
   maxArticleSize: 5,
   flavorName: "Foleja",
+  stopWords: [],
   apiConfig: {
     articles: "articles",
     videoArticles: "video-articles",
