@@ -828,7 +828,6 @@ const Articles = ({ route, navigation }: any): any => {
     }
 
     suffixCache.set(term, tokens);
-    // console.log("--------", tokens);
     return tokens;
   };
 

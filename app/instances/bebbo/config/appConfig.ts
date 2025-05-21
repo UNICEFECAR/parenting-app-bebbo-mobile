@@ -209,6 +209,7 @@ const config = {
   videoArticleMandatory: 0,
   maxArticleSize: 5,
   flavorName: "REMOVED_FACEBOOK_APP_ID1",
+  stopWords: [],
   apiConfig: {
     articles: "articles",
     videoArticles: "video-articles",
