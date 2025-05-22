@@ -4,12 +4,12 @@ const ESec = {
     countryLangSelection: "País e idioma",
     editCountryLang: "Editar",
     continueCountryLang: "Continuar",
-    selectYourCountry: "Selecciona tu pais",
+    selectYourCountry: "Selecciona tu país",
     selectYourLang: "elige tu idioma",
-    goToLanguageSelection: "Ir a la selección de idioma",
-    goToConfirm: "Ir a confirmar",
+    goToLanguageSelection: "Ir a selección de idioma ",
+    goToConfirm: "Confirmar",
     checkonce:
-      "Wawamor localizará su contenido según su selección de país e idioma.",
+      "Wawamor localizará el contenido según la selección de país e idioma.",
     country: "País",
     language: "Idioma",
     walkthroughTextssubtitle0: "Descubre Wawamor",
@@ -227,16 +227,16 @@ const ESec = {
     heightModalText:
       "Mueve la regla para seleccionar la estatura de tu hija o hijo",
     articleModalText:
-      "Para encontrar consejos, haz clic en los botones relevantes o anda al buscador usando palabras clave",
+      "Para encontrar consejos, haz clic en los botones correspondientes o utiliza el buscador con palabras clave.",
     detailScreenArticleHeader: "Elige consejo",
     detailScreenActivityHeader: "Elige juegos",
-    trackMilestoneViewHeader: "Actualice los hitos de su hija o hijo",
+    trackMilestoneViewHeader: "Actualiza los hitos de tu hija o hijo",
     trackMilestoneViewBtn:
-      "Realice un seguimiento de los hitos de su hija o hijo",
-    babyNotificationText: "El perfil infantil está incompleto.",
-    babyNotificationbyAge: "{{childName}} tiene {{ageInMonth}} edad",
+      "Haz un seguimiento de los hitos que ha alcanzado tu hijo o hija",
+    babyNotificationText: "El perfil de tu hijo o hija está incompleto",
+    babyNotificationbyAge: "{{childName}} tiene {{ageInMonth}} años",
     expectedChildDobLabel: "Niña o niño que aún no ha nacido",
-    babyNotificationText1: "El perfil de la niña o niño está actualizado.",
+    babyNotificationText1: "El perfil de la niña o niño está actualizado",
     babyNotificationUpdateBtn: "Actualización del perfil",
     favScreenHeader: "Favoritos",
     actScreenremovetoFavText: "Guardado",
@@ -274,8 +274,8 @@ const ESec = {
     vcReminderDate: "Seleccionar fecha",
     vcReminderTime: "Seleccionar hora",
     vcReminderAddBtn: "Guardar",
-    vcReminderText: "Ingresa la fecha y hora de la vacunación.",
-    vcDefinedReminderText: "Ingresa  la fecha y hora del recordatorio",
+    vcReminderText: "Ingresa la fecha y hora de la vacunación",
+    vcDefinedReminderText: "Ingresa la fecha y hora del recordatorio",
     vcReminderDeleteWarning:
       "¿Estás seguro de que deseas eliminar este recordatorio de vacunación?",
     growthDeleteWarning:
@@ -289,17 +289,16 @@ const ESec = {
     cameraOption1: "Quitar foto",
     cameraOption2: "Cámara",
     cameraOption3: "Galería",
-    addAnotherChildSetupDobLabel:
-      "¿Cuándo es la fecha de nacimiento de su hija o hijo?",
+    addAnotherChildSetupDobLabel: "¿En qué fecha nació tu hija o hijo?",
     editChildProfileHeader: "Editar el perfil de la niña o niño",
-    addChildProfileHeader: "Añadir otra niña o niño",
+    addChildProfileHeader: "Añadir perfil de otra niña o niño",
     childNamePlaceTxt: "Coloca el nombre de tu niña o niño",
     editProfileBtn: "Editar perfil",
     addProfileBtn: "Agregar perfil",
     childProfileBornOn: "Nació el {{childdob}}",
     childActivatedtxt: "Activado",
     childActivatebtn: "Activar perfil",
-    childProfileHeader: "Perfil de la niña/o y su padre",
+    childProfileHeader: "Perfiles",
     expectChildAddTxt2: "Añadir un nuevo embarazo",
     parentDetailsTxt: "Perfil de los padres",
     parentRoleLabel: "Parentezco",
@@ -310,7 +309,7 @@ const ESec = {
     hcNewBtn: "Agregar visita al médico",
     hcEditBtn: "Editar visita al médico",
     hcNewHeaderTitle: "Nuevo chequeo de salud",
-    hcMeasureText: "La niña o niño mide {{weight}} kg y {{height}} cm",
+    hcMeasureText: "La niña o niño pesa {{weight}} kg y {{height}} cm",
     hcVaccineText: "Vacunas recibidas",
     hcNoMeasureTxt: "Medidas no ingresadas",
     hcNoVaccineTxt: "Vacunas no ingresadas",
@@ -343,7 +342,7 @@ const ESec = {
     uploadPhtototxt: "Sube la foto de tu niña o niño",
     cameraOptionsHeader: "Elegir",
     noChildsTxt: "Sin información",
-    relationShipTxt: "Relación con el niño",
+    relationShipTxt: "Parentezco",
     parentNameTxt: "Nombre",
     parentPlaceNameTxt: "Escribe tu nombre",
     editParentTxt: "Editar información de los padres",
@@ -355,7 +354,7 @@ const ESec = {
     growthChartLegendOrangeLabel: "Valores subóptimos para la edad",
     noVaccinesForPeriod: "No hay vacunas durante este período",
     defaultPeriodInterpretationText:
-      "Las tablas de crecimiento se refieren a niñas y niños de 0 a 61 meses y no contienen valores de crecimiento para niñas o niños mayores. Puede encontrar más información sobre el crecimiento en este período en los consejos pertinentes.",
+      "Las tablas de crecimiento están diseñadas para niñas y niños de 0 a 61 meses y no incluyen datos para mayores de esa edad. Para obtener más información sobre el crecimiento durante este período, consulta la sección de consejos.",
     retryPopupTitle: "Reintentar",
     retryPopupText:
       "Por favor, intenta de nuevo. No se ha descargado todo el contenido.",
@@ -373,9 +372,9 @@ const ESec = {
     removePhotoOption1: "Cancelar",
     removePhotoOption2: "Eliminar",
     activityModalText:
-      "Para encontrar juegos relacionados con un dominio de desarrollo específico, haz clic en el botón correspondiente",
+      "Para encontrar juegos relacionados a la estimulación del desarrollo, haz clic en el botón correspondiente.",
     childDevModalText:
-      "Compruebe si su hija o hijo ha alcanzado las habilidades que se espera que desarrolle durante este período y vea cómo apoyar el desarrollo a través del juego.",
+      "Comprueba si tu hija o hijo ha alcanzado las habilidades que se esperan durante este período y revisa cómo apoyar su desarrollo a través del juego.",
     months5tag: "meses",
     years5tag: "años",
     days5tag: "días",
@@ -399,8 +398,8 @@ const ESec = {
     vaccineModalText:
       "Aquí puedes registrarte, realizar un seguimiento y obtener más información sobre las vacunas recomendadas por el calendario de vacunación de rutina de la Organización Mundial de la Salud (no personalizado para un calendario nacional específico). Configura recordatorios de vacunas y recibe notificaciones.",
     hcModalText:
-      "¡Aquí puede ingresar registros, configurar recordatorios y recibir notificaciones sobre los controles de salud de su hija o hijo (no personalizados a un calendario nacional específico) y obtener más información sobre su contenido!",
-    tryText: "Intentar otra vez...",
+      "¡Aquí puedes ingresar registros, configurar recordatorios y recibir notificaciones sobre los controles de salud de su hija o hijo (no personalizados a un calendario nacional específico) y obtener más información sobre su contenido!",
+    tryText: "Inténtalo otra vez.",
     deleteSuccess: "El perfil de niño o niña se ha eliminado",
     deleteError: "Error de eliminación de usuario. Inténtalo de nuevo..",
     reminderalertText:
@@ -431,7 +430,7 @@ const ESec = {
     vcNoti1:
       "En el período, {{periodName}}, {{childName}} debe recibir la vacuna:",
     alertForExistingMeasuresTitle:
-      "Medida ya disponible para esta fecha, por favor selecciona otra fecha",
+      "Medida ya disponible para esta fecha, por favor selecciona otra fecha.",
     alertForNoTakenVaccinesSelectTitle: "Por favor selecciona la(s) vacuna(s)",
     importText: "Subir datos guardados",
     exportText: "Haz una copia de seguridad de tus datos",
@@ -471,7 +470,7 @@ const ESec = {
     notiTimeAgoTxt: "Hace {{ageStr}}",
     todayTxt: "hoy",
     fiveYearsGreater:
-      "Los valores de crecimiento estándar están disponibles solo para niñas y niños de 0 a 5 años y, por lo tanto, las tablas de crecimiento no son aplicables para mayores de 5 años.",
+      "Los valores de crecimiento estándar están disponibles solo para niñas y niños de 0 a 5 años y, por lo tanto, las tablas de crecimiento no son aplicables para mayores de esa edad. ",
     forceUpdatePopupTitle: "Atención",
     forceUpdatePopupText: "El contenido se actualizará ahora.",
     forceUpdateOkBtn: "De acuerdo",
@@ -515,7 +514,7 @@ const ESec = {
     restOfTheWorldAlertTitle: "Atención",
     restOfTheWorldOkTitle: "De acuerdo",
     restOfTheWorldAlertText:
-      "Al seleccionar 'Resto del Mundo' disfrutarás de todas las funciones de Wawamor, pero ten en cuenta que las vacunas y los controles médicos no están personalizados para un programa de salud nacional específico.",
+      "Al seleccionar 'Resto del Mundo', podrás disfrutar de todas las funciones de Wawamor; sin embargo, ten en cuenta que las vacunas y los controles médicos no estarán personalizados según un programa de salud nacional específico.",
     hcDefinedReminderText: "Ingresa la fecha y hora del recordatorio",
     reminderalertTextDefined:
       "La fecha del recordatorio debe estar entre la fecha y hora actual y la fecha y hora programadas.",
@@ -525,13 +524,13 @@ const ESec = {
     hcrNoti2:
       "El chequeo médico se programó para el {{reminderDateTime}}; ingresa los detalles del chequeo médico",
     vcrNoti3:
-      "La vacunación se programó para el {{reminderDateTime}}; ingrese los detalles de la vacunación",
+      "La vacunación se programó para el {{reminderDateTime}}; ingresa los detalles de la vacunación",
     hcrNoti3:
-      "El chequeo médico se programó para el {{reminderDateTime}}; ingrese los detalles del chequeo médico",
+      "El chequeo médico se programó para el {{reminderDateTime}}; ingresa los detalles del chequeo médico",
     hcHasScheduled: "El control de salud está programado",
     vcHasScheduled: "La vacunación está programada",
     relatedVideoArticle: "Videos relacionados",
-    donateButton: "Donar para Wawamor",
+    donateButton: "Nuestros Aliados",
     searchInWawamorText: "Buscar",
   },
 };
