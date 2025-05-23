@@ -32,7 +32,7 @@ export const articlesSlice = createSlice({
     setShowedDailyDataCategory: (state, action: PayloadAction<any>): any => {
       state.showedDailyDataCategory = action.payload;
     },
-    setSearchIndex: (state, action: PayloadAction<any>): any => {
+    setArticleSearchIndex: (state, action: PayloadAction<any>): any => {
       console.log("[test]", action);
       state.article.searchIndex = action.payload;
     },
@@ -47,7 +47,7 @@ export const {
   setDailyArticleGamesCategory,
   setShowedDailyDataCategory,
   resetSearchIndex,
-  setSearchIndex,
+  setArticleSearchIndex,
 } = articlesSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
