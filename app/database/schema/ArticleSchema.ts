@@ -50,6 +50,8 @@ export type ArticleEntity = {
   premature: number;
   mandatory: number;
   embedded_images?: string[];
+  do_not_feature?: number;
+  meta_keywords?: string;
 };
 
 
@@ -77,6 +79,8 @@ export const ArticleEntitySchema: ObjectSchema = {
     licensed: { type: 'int' },
     premature: { type: 'int' },
     mandatory: { type: 'int' },
-    embedded_images: { type: 'list', objectType: 'string', optional: true }
+    embedded_images: { type: 'list', objectType: 'string', optional: true },
+    do_not_feature: { type: 'int' },
+    meta_keywords:{ type: 'string' }
   }
 };

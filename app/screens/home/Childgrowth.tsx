@@ -3,7 +3,6 @@ import ChartHeightForAge from "@components/growth/ChartHeightForAge";
 import ChartWeightForHeight from "@components/growth/ChartWeightForHeight";
 import GrowthIntroductory from "@components/growth/GrowthIntroductory";
 import LastChildMeasure from "@components/growth/LastChildMeasure";
-import BabyNotification from "@components/homeScreen/BabyNotification";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
   ButtonContainer,
@@ -18,7 +17,6 @@ import {
   TabBarDefault,
 } from "@components/shared/TabBarStyle";
 import TabScreenHeader from "@components/TabScreenHeader";
-import { useFocusEffect } from "@react-navigation/native";
 import {
   Heading3,
   Heading3Centerr,
@@ -90,11 +88,14 @@ const Childgrowth = ({ navigation }: any): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
+  const headerTextColor = themeContext?.colors.CHILDGROWTH_TEXTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const tabBackgroundColor = themeContext?.colors.SECONDARY_TEXTCOLOR;
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -192,7 +193,6 @@ const Childgrowth = ({ navigation }: any): any => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={(): any => {
-                  setModalVisible(false);
                   setIsModalOpened("IsGrowthModalOpened");
                 }}
               >
@@ -227,7 +227,7 @@ const Childgrowth = ({ navigation }: any): any => {
           <TabScreenHeader
             title={t("growthScreenheaderTitle")}
             headerColor={headerColor}
-            textColor="#000"
+            textColor={headerTextColor}
             setProfileLoading={setProfileLoading}
           />
           <ScrollView

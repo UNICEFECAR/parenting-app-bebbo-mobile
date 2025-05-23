@@ -60,6 +60,8 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   const headerColor = themeContext?.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext?.colors.HEALTHCHECKUP_TINTCOLOR;
   const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const headerTextColor = themeContext?.colors.HEALTHCHECKUP_TEXTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();
   const { upcomingPeriods, previousPeriods, childAgeIndays, currentPeriod } =
     getAllHealthCheckupPeriods();
@@ -68,6 +70,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   const [modalVisible, setModalVisible] = React.useState(true);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -198,7 +201,6 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={(): any => {
-                  setModalVisible(false);
                   setIsModalOpened("IsHCUModalOpened");
                 }}
               >
@@ -228,10 +230,12 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
           <TabScreenHeader
             title={t("hcHeader")}
             headerColor={headerColor}
-            textColor="#000"
+            textColor={headerTextColor}
             setProfileLoading={setProfileLoading}
           />
-          <ScrollView style={styles.flex4}>
+          <ScrollView
+            style={[styles.flex4, { backgroundColor: backgroundColorList }]}
+          >
             <MainContainer style={{ backgroundColor: backgroundColor }}>
               <ShiftFromBottom20>
                 <Heading2Center>{t("hcSummaryHeader")}</Heading2Center>

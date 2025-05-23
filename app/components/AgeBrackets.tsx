@@ -2,6 +2,7 @@ import React from "react";
 import { useAppSelector } from "../../App";
 import ScrollingButtonMenu from "../services/ScrollingButtonMenu";
 import { appConfig } from "../instances";
+import { useNavigation } from "@react-navigation/native";
 
 const AgeBrackets = ({
   currentSelectedChildId,
@@ -11,6 +12,7 @@ const AgeBrackets = ({
   ItemTintColor,
   isActivity,
 }: any) => {
+  const navigation = useNavigation();
   const childAge = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData
       ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
@@ -33,6 +35,7 @@ const AgeBrackets = ({
       activeBackgroundColor={activatedItemColor}
       activeColor={itemColor}
       buttonStyle={{ backgroundColor: ItemTintColor }}
+      navigation={navigation}
     />
   );
 };

@@ -21,7 +21,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import { appConfig } from "../instances";
-import { setAcceptTerms, setTaxonomyIds } from "../redux/reducers/utilsSlice";
+import { setAcceptTerms, setAppVersion, setTaxonomyIds } from "../redux/reducers/utilsSlice";
 import {
   Heading2Centerw,
   ShiftFromTop15,
@@ -43,6 +43,7 @@ import FeatureTCView from "@components/shared/FeaturesTCView";
 import { TERMS_ACCEPTED } from "@assets/data/firebaseEvents";
 import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
+import ReactNativeVersionInfo from "react-native-version-info";
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -237,6 +238,7 @@ const Terms = ({ navigation }: Props): any => {
       const eventData = { name: TERMS_ACCEPTED };
       logEvent(eventData, netInfo.isConnected);
     }
+    dispatch(setAppVersion(ReactNativeVersionInfo.appVersion));
     navigation.navigate("LoadingScreen", {
       apiJsonData: apiJsonData,
       prevPage: "Terms",

@@ -10,28 +10,13 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import {
   Heading2,
-  Heading4,
   HeadingHome3w,
   ShiftFromTopBottom10,
 } from "@styles/typography";
 import { DateTime } from "luxon";
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  FlatList,
-  Pressable,
-  Share,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
 import { ThemeContext } from "styled-components/native";
@@ -102,8 +87,9 @@ const DailyReads = (): any => {
   const ActivitiesData = ActivitiesDataall.filter((x: any) =>
     x.child_age.includes(activityTaxonomyId)
   );
-  let ArticlesData = articleData.filter((x: any) =>
-    x.child_age.includes(activityTaxonomyId)
+  let ArticlesData = articleData.filter(
+    (x: any) =>
+      x.child_age.includes(activityTaxonomyId) && x.do_not_feature === 0
   );
 
   const [dataToShowInList, setDataToShowInList] = useState([]);
@@ -139,7 +125,6 @@ const DailyReads = (): any => {
       netInfo: netInfo,
     });
   };
-
   useEffect(() => {
     return () => setFetchAgain(false);
   }, []);
@@ -289,13 +274,34 @@ const DailyReads = (): any => {
       (dailyDataCategory.currentDate == "" ||
         dailyDataCategory.currentDate < nowDate)
     ) {
-      let filteredArticles;
+      let filteredArticles: string | any[] = [];
 
       // comment this code temporary due to premature taxonomy is not available in the data
-      // if (activeChild.isPremature === 'true') {
-      //   filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
-      //   ArticlesData = filteredArticles;
-      // }
+      if (activeChild.isPremature === "true") {
+        filteredArticles = ArticlesData.filter(
+          (article: any) =>
+            article.premature === 1 &&
+            !showedDailyDataCategory?.advice?.includes(article.id)
+        ).sort(
+          (a: any, b: any) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        );
+
+        if (filteredArticles.length === 0) {
+          ArticlesData = ArticlesData;
+        } else if (filteredArticles.length === 1) {
+          const extraArticle = ArticlesData.find(
+            (article: any) =>
+              article.id !== filteredArticles[0].id &&
+              !showedDailyDataCategory?.advice?.includes(article.id)
+          );
+          ArticlesData = extraArticle
+            ? [filteredArticles[0], extraArticle]
+            : [filteredArticles[0]];
+        } else {
+          ArticlesData = filteredArticles;
+        }
+      }
       const articleListData: any = [];
       const activityListData: any = [];
       const articleCategoryArrayNew = appConfig.articleCategoryIdArray.filter(
@@ -350,13 +356,17 @@ const DailyReads = (): any => {
       );
       let nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
       let categoryActivityData = ActivitiesData.filter(
-        (x: any) =>
-          x.activity_category == activityCategoryArrayNew[nextIndex2]?.id
+        (x: { activity_category: number }) =>
+          new Set<number>(
+            activityCategoryArrayNew.map((i: { id: number }) => i.id)
+          ).has(x.activity_category)
       );
       if (categoryActivityData.length < 2) {
         const additionalItems = ActivitiesData.filter(
-          (x: any) =>
-            x.activity_category !== activityCategoryArrayNew[nextIndex2]?.id
+          (x: { activity_category: number }) =>
+            new Set<number>(
+              activityCategoryArrayNew.map((i: { id: number }) => i.id)
+            ).has(x.activity_category)
         );
         categoryActivityData = categoryActivityData.concat(
           additionalItems.slice(0, 2 - categoryActivityData.length)
@@ -435,11 +445,32 @@ const DailyReads = (): any => {
       const activityDataList: any = [];
 
       const articleDataToShow: any = [];
-      let filteredArticles;
-      // if (activeChild.isPremature === 'true') {
-      //   filteredArticles = ArticlesData.filter((article: any) => article.premature === 1).sort((a: any, b: any) => new Date(b.created_at) - new Date(a.created_at));
-      //   ArticlesData = filteredArticles;
-      // }
+      let filteredArticles: string | any[];
+      if (activeChild.isPremature === "true") {
+        filteredArticles = ArticlesData.filter(
+          (article: any) =>
+            article.premature === 1 &&
+            !showedDailyDataCategory?.advice?.includes(article.id)
+        ).sort(
+          (a: any, b: any) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        );
+
+        if (filteredArticles.length === 0) {
+          ArticlesData = ArticlesData;
+        } else if (filteredArticles.length === 1) {
+          const extraArticle = ArticlesData.find(
+            (article: any) =>
+              article.id !== filteredArticles[0].id &&
+              !showedDailyDataCategory?.advice?.includes(article.id)
+          );
+          ArticlesData = extraArticle
+            ? [filteredArticles[0], extraArticle]
+            : [filteredArticles[0]];
+        } else {
+          ArticlesData = filteredArticles;
+        }
+      }
       dailyDataCategory?.currentadviceid?.forEach?.((id: any) => {
         const filteredArticle = ArticlesData.find((x: any) => x.id === id);
         if (filteredArticle) {

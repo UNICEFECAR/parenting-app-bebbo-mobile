@@ -72,7 +72,7 @@ const ChartHeightForAge = (props: any): any => {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
       (item) =>
-        item.growth_type == appConfig.weightForHeight &&
+        item.growth_type == appConfig.heightForAge &&
         (item.child_gender == taxonomyIds?.boyChildGender ||
           item.child_gender == appConfig.boyChildGender)
     );
@@ -82,7 +82,7 @@ const ChartHeightForAge = (props: any): any => {
     //girl
     const genderGirlData = standardDevData?.filter(
       (item) =>
-        (item.growth_type == appConfig.weightForHeight &&
+        (item.growth_type == appConfig.heightForAge &&
           item.child_gender == taxonomyIds?.girlChildGender) ||
         item.child_gender == appConfig.girlChildGender
     );

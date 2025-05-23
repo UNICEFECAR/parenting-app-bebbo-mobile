@@ -161,6 +161,7 @@ const SettingScreen = (props: any): any => {
   const primaryColor = themeContext?.colors?.PRIMARY_COLOR;
   const primaryTintColor = themeContext?.colors?.PRIMARY_TINTCOLOR;
   const trackTrueColor = primaryTintColor;
+  const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
   const trackFalseColor = "#C8D6EE";
   const thumbTrueColor = primaryColor;
   const thumbFalseColor = "#9598BE";
@@ -1079,7 +1080,7 @@ const SettingScreen = (props: any): any => {
         <TabScreenHeader
           title={t("settingScreenheaderTitle")}
           headerColor={primaryColor}
-          textColor="#FFF"
+          textColor={headerTextColor}
           setProfileLoading={setProfileLoading}
         />
 
