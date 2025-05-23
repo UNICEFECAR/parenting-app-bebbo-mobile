@@ -64,8 +64,9 @@ import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
 import {
   resetSearchIndex,
-  setSearchIndex,
+  setArticleSearchIndex,
 } from "../../../redux/reducers/articlesSlice";
+const { convert } = require("html-to-text");
 type ArticlesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -127,6 +128,7 @@ export type ArticleCategoriesProps = {
 const Articles = ({ route, navigation }: any): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState("");
+  let searchIndex = useRef(null);
   const [isSerachedQueryText, setIsSearchedQueryText] = useState(false);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
@@ -202,7 +204,6 @@ const Articles = ({ route, navigation }: any): any => {
         ...article,
         normalizedTitle: article.title,
         normalizedSummary: article.summary,
-        normalizedBody: cleanAndOptimizeHtmlText(article.body),
       };
     });
   };
@@ -287,10 +288,10 @@ const Articles = ({ route, navigation }: any): any => {
       ? JSON.parse(state.articlesData.article.articles)
       : state.articlesData.article.articles
   );
-  const isSearchIndex = useAppSelector(
-    (state: any) => state.articlesData.article.isSearchIndex
-  );
-  const searchIndex = useAppSelector(
+  // const isSearchIndex = useAppSelector(
+  //   (state: any) => state.articlesData.article.isSearchIndex
+  // );
+  const articleSearchIndex = useAppSelector(
     (state: any) => state.articlesData.article.searchIndex
   );
   const articleDataOld = articleDataall.filter((x: any) =>
@@ -476,7 +477,7 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.search(keyword);
+              const results = searchIndex.current.search(keyword);
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -498,7 +499,7 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.search(queryText);
+            const results = searchIndex.current.search(queryText);
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               const categoryFilteredData = results.filter((x: any) =>
@@ -539,7 +540,7 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.search(keyword);
+              const results = searchIndex.current.search(keyword);
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -557,7 +558,7 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.search(queryText);
+            const results = searchIndex.current.search(queryText);
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               filteredResults = results.filter((x: any) =>
@@ -712,7 +713,6 @@ const Articles = ({ route, navigation }: any): any => {
                     .join(" ")
                 : "";
             }
-
             // Fallback for single-level or deep nested fields
             return (
               arrFields.reduce(
@@ -741,7 +741,6 @@ const Articles = ({ route, navigation }: any): any => {
           fields: [
             "normalizedTitle",
             "normalizedSummary",
-            "normalizedBody",
             "meta_keywords",
             "keywords",
           ],
@@ -767,14 +766,15 @@ const Articles = ({ route, navigation }: any): any => {
           ],
         });
         searchIndexData.addAllAsync(processedArticles);
-        dispatch(resetSearchIndex(false));
-        dispatch(setSearchIndex(searchIndexData));
+        // setSearchIndex(searchIndexData);
+        searchIndex.current = searchIndexData;
+        // dispatch(resetSearchIndex(false));
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
     }
     const task = InteractionManager.runAfterInteractions(() => {
-      isSearchIndex && initializeSearchIndex();
+      initializeSearchIndex();
     });
     return () => task.cancel();
   }, []);
@@ -811,7 +811,6 @@ const Articles = ({ route, navigation }: any): any => {
     ])
   );
 
-  // const [searchIndex, setSearchIndex] = useState<any>(null);
   const suffixCache = new Map<string, string[]>();
   const suffixes = (
     term: string,
@@ -853,7 +852,7 @@ const Articles = ({ route, navigation }: any): any => {
         //   return results;
         // });
         // const resultsArrays = await Promise.all(resultsPromises);
-        const results = searchIndex.search(queryText);
+        const results = searchIndex.current.search(queryText);
         const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
@@ -873,7 +872,7 @@ const Articles = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results = searchIndex.search(queryText);
+        const results = searchIndex.current.search(queryText);
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = results.filter((x: any) =>
@@ -959,6 +958,7 @@ const Articles = ({ route, navigation }: any): any => {
     ...styles.containerView,
     backgroundColor: color,
   });
+  // console.log(searchIndex, "[para]", optimizedFilteredData);
   return (
     <>
       {loadingArticle && <OverlayLoadingComponent loading={loadingArticle} />}

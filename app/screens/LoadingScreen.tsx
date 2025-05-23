@@ -53,6 +53,10 @@ import {
 } from "../services/selectors";
 import { resetSearchIndex } from "../redux/reducers/articlesSlice";
 import { resetActivitiesSearchIndex } from "../redux/reducers/utilsSlice";
+import {
+  // resetSearchIndex,
+  setArticleSearchIndex,
+} from "../redux/reducers/articlesSlice";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "ChildSetup"
@@ -139,8 +143,8 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
       "in callSagaApi navigation history--",
       navigation.getState().routes
     );
-    dispatch(resetSearchIndex(true));
-    dispatch(resetActivitiesSearchIndex(true));
+    // dispatch(resetSearchIndex(true));
+    // dispatch(resetActivitiesSearchIndex(true));
     const prevRoute = routes.length > 2 ? routes[routes.length - 2] : null;
     if (prevPage == "ChildSetup" || prevPage == "AddEditChild") {
       dispatch(
