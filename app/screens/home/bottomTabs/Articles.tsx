@@ -20,7 +20,7 @@ import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
-import { cleanAndOptimizeHtmlText } from "../../../services/Utils";
+import { miniSearchConfig } from "../../../services/Utils";
 import {
   Heading3,
   Heading4Center,
@@ -196,16 +196,6 @@ const Articles = ({ route, navigation }: any): any => {
     }
 
     return combinedArr;
-  };
-
-  const preprocessArticles = (articles: any[]): any[] => {
-    return articles.map((article: any) => {
-      return {
-        ...article,
-        normalizedTitle: article.title,
-        normalizedSummary: article.summary,
-      };
-    });
   };
 
   const getSearchedKeywords = async (): Promise<any> => {
@@ -672,103 +662,19 @@ const Articles = ({ route, navigation }: any): any => {
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
-        let videoArticleDataAllCategory: any;
         if (
           activeChild != null &&
           activeChild.taxonomyData != null &&
           activeChild?.gender != null
         ) {
-          videoArticleDataAllCategory = VideoArticlesDataall.filter(
-            (x: any) => x.mandatory == appConfig.videoArticleMandatory
+          const searchIndexData = MiniSearch.loadJSON(
+            articleSearchIndex,
+            miniSearchConfig
           );
+          // setSearchIndex(searchIndexData);
+          searchIndex.current = searchIndexData;
+          // dispatch(resetSearchIndex(false));
         }
-        const combineDartArr = mergearr(
-          articleDataall,
-          videoArticleDataAllCategory,
-          false
-        );
-        articleData = [...combineDartArr];
-
-        const processedArticles = preprocessArticles(combineDartArr);
-        const searchIndexData = new MiniSearch({
-          processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
-          extractField: (document: any, fieldName: string): string => {
-            const arrFields = fieldName.split(".");
-
-            if (arrFields.length === 2) {
-              const [parent, child] = arrFields;
-              return Array.isArray(document[parent])
-                ? document[parent]
-                    .map((item: any) => item?.[child] ?? "")
-                    .join(" ")
-                : "";
-            }
-
-            if (arrFields.length === 3) {
-              const [level1, level2, level3] = arrFields;
-              return Array.isArray(document[level1])
-                ? document[level1]
-                    .flatMap((item: any) => item?.[level2] ?? [])
-                    .map((subItem: any) => subItem?.[level3] ?? "")
-                    .join(" ")
-                : "";
-            }
-            // Fallback for single-level or deep nested fields
-            return (
-              arrFields.reduce(
-                (acc: any, key: string) => acc?.[key],
-                document
-              ) ?? ""
-            );
-          },
-          searchOptions: {
-            boost: {
-              normalizedTitle: 2,
-              normalizedSummary: 1.5,
-              normalizedBody: 1,
-              meta_keywords: 1,
-              keywords: 1,
-            },
-            bm25: { k: 1.0, b: 0.7, d: 0.5 },
-            fuzzy: true,
-            // prefix true means it will contain "foo" then search for "foobar"
-            prefix: true,
-            weights: {
-              fuzzy: 0.6,
-              prefix: 0.6,
-            },
-          },
-          fields: [
-            "normalizedTitle",
-            "normalizedSummary",
-            "meta_keywords",
-            "keywords",
-          ],
-          storeFields: [
-            "id",
-            "type",
-            "title",
-            "created_at",
-            "summary",
-            "body",
-            "category",
-            "child_age",
-            "child_gender",
-            "parent_gender",
-            "keywords",
-            "related_articles",
-            "related_video_articles",
-            "premature",
-            "cover_image",
-            "cover_video",
-            "related_articles",
-            "embedded_images",
-          ],
-        });
-        searchIndexData.addAllAsync(processedArticles);
-        // setSearchIndex(searchIndexData);
-        searchIndex.current = searchIndexData;
-        // dispatch(resetSearchIndex(false));
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
@@ -811,25 +717,6 @@ const Articles = ({ route, navigation }: any): any => {
     ])
   );
 
-  const suffixCache = new Map<string, string[]>();
-  const suffixes = (
-    term: string,
-    minLength: number,
-    maxSuffixes = 5
-  ): string[] => {
-    if (suffixCache.has(term)) return suffixCache.get(term)!;
-
-    const tokens: string[] = [];
-    const maxStart = Math.min(term.length - minLength, maxSuffixes - 1);
-
-    for (let i = 0; i <= maxStart; i++) {
-      tokens.push(term.slice(i));
-    }
-
-    suffixCache.set(term, tokens);
-    return tokens;
-  };
-
   const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false);
     setLoadingArticle(true);
@@ -853,6 +740,7 @@ const Articles = ({ route, navigation }: any): any => {
         // });
         // const resultsArrays = await Promise.all(resultsPromises);
         const results = searchIndex.current.search(queryText);
+
         const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
@@ -873,6 +761,7 @@ const Articles = ({ route, navigation }: any): any => {
         toTop();
       } else {
         const results = searchIndex.current.search(queryText);
+
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = results.filter((x: any) =>
@@ -958,7 +847,7 @@ const Articles = ({ route, navigation }: any): any => {
     ...styles.containerView,
     backgroundColor: color,
   });
-  // console.log(searchIndex, "[para]", optimizedFilteredData);
+  console.log(searchIndex, "[para]", optimizedFilteredData);
   return (
     <>
       {loadingArticle && <OverlayLoadingComponent loading={loadingArticle} />}
