@@ -33,7 +33,7 @@ export const articlesSlice = createSlice({
       state.showedDailyDataCategory = action.payload;
     },
     setArticleSearchIndex: (state, action: PayloadAction<any>): any => {
-      console.log("[test]", action);
+      console.log("[Index]", action);
       state.article.searchIndex = action.payload;
     },
     resetSearchIndex: (state, action: PayloadAction<any>): any => {

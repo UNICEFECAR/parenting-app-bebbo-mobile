@@ -430,7 +430,7 @@ export const utilsSlice = createSlice({
       state.faqsData = action.payload;
     },
     setActivitiesSearchIndex: (state, action: PayloadAction<any>): any => {
-      console.log("[test]", action);
+      console.log("[Index]1", action);
       state.activitiesSearchIndex = action.payload;
     },
     resetActivitiesSearchIndex: (state, action: PayloadAction<any>): any => {

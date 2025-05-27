@@ -76,6 +76,7 @@ import FastImage from "react-native-fast-image";
 import {
   cleanAndOptimizeHtmlText,
   randomArrayShuffle,
+  miniSearchConfigActivity,
 } from "../../../services/Utils";
 import Realm from "realm";
 import { activitiesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
@@ -197,9 +198,9 @@ const Activities = ({ route, navigation }: any): any => {
       ? JSON.parse(state.utilsData.ActivitiesData)
       : []
   );
-  // const searchIndex = useAppSelector(
-  //   (state: any) => state.utilsData.activitiesSearchIndex
-  // );
+  const activitySearchIndex = useAppSelector(
+    (state: any) => state.utilsData.activitiesSearchIndex
+  );
   // const isActivitiesSearchIndex = useAppSelector(
   //   (state: any) => state.utilsData.isActivitiesSearchIndex
   // );
@@ -791,83 +792,18 @@ const Activities = ({ route, navigation }: any): any => {
     // console.log("--------", tokens);
     return tokens;
   };
-  const preprocessActivities = (activities: any): any => {
-    return activities.map((activity: any) => ({
-      ...activity,
-      normalizedTitle: activity.title,
-      normalizedSummary: activity.summary,
-      normalizedBody: cleanAndOptimizeHtmlText(activity.body),
-    }));
-  };
+
   // console.log()
   //add minisearch on active child article data
   useEffect(() => {
-    const miniSearchOption = {
-      processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
-      // tokenize: (text) => {
-      //   const words = text.toLowerCase().split(/\s+/);
-      //   const ngrams = [];
-      //   for (let i = 0; i < words.length - 1; i++) {
-      //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
-      //   }
-      //   return [...words, ...ngrams]; // Return both single words and bigrams
-      // },
-      extractField: (document, fieldName): any => {
-        const arrFields = fieldName.split(".");
-        if (arrFields.length === 2) {
-          return (document[arrFields[0]] || [])
-            .map((arrField: any) => arrField[arrFields[1]] || "")
-            .join(" ");
-        } else if (arrFields.length === 3) {
-          const tmparr = (document[arrFields[0]] || []).flatMap(
-            (arrField: any) => arrField[arrFields[1]] || []
-          );
-          return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
-        }
-        return fieldName
-          .split(".")
-          .reduce((doc, key) => doc && doc[key], document);
-      },
-      searchOptions: {
-        boost: { title: 2, summary: 1.5, body: 1 },
-        bm25: { k: 1.0, b: 0.7, d: 0.5 },
-        fuzzy: true,
-        // prefix true means it will contain "foo" then search for "foobar"
-        prefix: true,
-        weights: {
-          fuzzy: 0.6,
-          prefix: 0.6,
-        },
-      },
-      fields: ["title", "summary", "body"],
-      storeFields: [
-        "id",
-        "type",
-        "title",
-        "created_at",
-        "updated_at",
-        "summary",
-        "body",
-        "activity_category",
-        "equipment",
-        "type_of_support",
-        "child_age",
-        "cover_image",
-        "related_milestone",
-        "mandatory",
-        "embedded_images",
-      ],
-    };
     async function initializeSearchIndex() {
       try {
-        const processedActivities = preprocessActivities(ActivitiesData);
-        const searchActivittiesData = new MiniSearch(miniSearchOption);
-
-        searchActivittiesData.addAllAsync(processedActivities);
-        // setSearchIndex(searchActivittiesData);
-        // dispatch(resetActivitiesSearchIndex(false));
+        const searchActivittiesData = MiniSearch.loadJSON(
+          activitySearchIndex,
+          miniSearchConfigActivity
+        );
         searchIndex.current = searchActivittiesData;
-        // dispatch(setActivitiesSearchIndex(searchActivittiesData));
+
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }

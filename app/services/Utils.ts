@@ -8,6 +8,10 @@ import { ObjectSchema, PrimaryKey } from "realm";
 import { v4 as uuidv4 } from "uuid";
 import { appConfig } from "../instances";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
+import {
+  resetSearchIndex,
+  setArticleSearchIndex,
+} from "../redux/reducers/articlesSlice";
 const { convert } = require("html-to-text");
 import {
   ActivitiesEntity,
@@ -61,6 +65,8 @@ import { isFutureDate } from "./childCRUD";
 import PushNotification from "react-native-push-notification";
 import moment from "moment";
 import { Country, CountrySchema } from "../database/schema/CountrySchema";
+import MiniSearch from "minisearch";
+import { setActivitiesSearchIndex } from "../redux/reducers/utilsSlice";
 
 const requestNotificationPermission = async (): Promise<any> => {
   const status = await requestNotifications([]);
@@ -1172,4 +1178,206 @@ export const cleanAndOptimizeHtmlText = (html: string): string => {
   });
 
   return uniqueWords.join(" ");
+};
+
+const suffixCache = new Map<string, string[]>();
+export const suffixes = (
+  term: string,
+  minLength: number,
+  maxSuffixes = 5
+): string[] => {
+  if (suffixCache.has(term)) return suffixCache.get(term)!;
+
+  const tokens: string[] = [];
+  const maxStart = Math.min(term.length - minLength, maxSuffixes - 1);
+
+  for (let i = 0; i <= maxStart; i++) {
+    tokens.push(term.slice(i));
+  }
+
+  suffixCache.set(term, tokens);
+  return tokens;
+};
+
+export const preprocessArticles = (articles: any[]): any[] => {
+  return articles.map((article: any) => {
+    return {
+      ...article,
+      normalizedTitle: article.title,
+      normalizedSummary: article.summary,
+      normalizedBody: cleanAndOptimizeHtmlText(article.body),
+    };
+  });
+};
+
+export const miniSearchConfig = {
+  processTerm: (term: string) => suffixes(term, appConfig.searchMinimumLength),
+  extractField: (document: any, fieldName: string): string => {
+    const arrFields = fieldName.split(".");
+
+    if (arrFields.length === 2) {
+      const [parent, child] = arrFields;
+      return Array.isArray(document[parent])
+        ? document[parent].map((item: any) => item?.[child] ?? "").join(" ")
+        : "";
+    }
+
+    if (arrFields.length === 3) {
+      const [level1, level2, level3] = arrFields;
+      return Array.isArray(document[level1])
+        ? document[level1]
+            .flatMap((item: any) => item?.[level2] ?? [])
+            .map((subItem: any) => subItem?.[level3] ?? "")
+            .join(" ")
+        : "";
+    }
+    // Fallback for single-level or deep nested fields
+    return (
+      arrFields.reduce((acc: any, key: string) => acc?.[key], document) ?? ""
+    );
+  },
+  searchOptions: {
+    boost: {
+      normalizedTitle: 2,
+      normalizedSummary: 1.5,
+      normalizedBody: 1,
+      meta_keywords: 1,
+      keywords: 1,
+    },
+    bm25: { k: 1.0, b: 0.7, d: 0.5 },
+    tokenize: (text: string) => {
+      const words = text.toLowerCase().split(/\s+/).filter(Boolean);
+      const bigrams = [];
+      for (let i = 0; i < words.length - 1; i++) {
+        bigrams.push(`${words[i]} ${words[i + 1]}`);
+      }
+
+      return [...words, ...bigrams];
+    },
+    combineWith: "OR",
+    fuzzy: true,
+    // prefix true means it will contain "foo" then search for "foobar"
+    prefix: true,
+    weights: {
+      fuzzy: 0.6,
+      prefix: 0.6,
+    },
+  },
+  fields: [
+    "normalizedTitle",
+    "normalizedSummary",
+    "normalizedBody",
+    "meta_keywords",
+    "keywords",
+  ],
+  storeFields: [
+    "id",
+    "type",
+    "title",
+    "created_at",
+    "summary",
+    "body",
+    "category",
+    "child_age",
+    "child_gender",
+    "parent_gender",
+    "keywords",
+    "related_articles",
+    "related_video_articles",
+    "premature",
+    "cover_image",
+    "cover_video",
+    "related_articles",
+    "embedded_images",
+  ],
+};
+
+export const miniSearchConfigActivity = {
+  processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
+  // tokenize: (text) => {
+  //   const words = text.toLowerCase().split(/\s+/);
+  //   const ngrams = [];
+  //   for (let i = 0; i < words.length - 1; i++) {
+  //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
+  //   }
+  //   return [...words, ...ngrams]; // Return both single words and bigrams
+  // },
+  extractField: (document, fieldName): any => {
+    const arrFields = fieldName.split(".");
+    if (arrFields.length === 2) {
+      return (document[arrFields[0]] || [])
+        .map((arrField: any) => arrField[arrFields[1]] || "")
+        .join(" ");
+    } else if (arrFields.length === 3) {
+      const tmparr = (document[arrFields[0]] || []).flatMap(
+        (arrField: any) => arrField[arrFields[1]] || []
+      );
+      return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
+    }
+    return fieldName.split(".").reduce((doc, key) => doc && doc[key], document);
+  },
+  searchOptions: {
+    boost: { title: 2, summary: 1.5, body: 1 },
+    bm25: { k: 1.0, b: 0.7, d: 0.5 },
+    fuzzy: true,
+    // prefix true means it will contain "foo" then search for "foobar"
+    prefix: true,
+    weights: {
+      fuzzy: 0.6,
+      prefix: 0.6,
+    },
+  },
+  fields: ["title", "summary", "body"],
+  storeFields: [
+    "id",
+    "type",
+    "title",
+    "created_at",
+    "updated_at",
+    "summary",
+    "body",
+    "activity_category",
+    "equipment",
+    "type_of_support",
+    "child_age",
+    "cover_image",
+    "related_milestone",
+    "mandatory",
+    "embedded_images",
+  ],
+};
+
+export const setMiniSearch = async (
+  data: readonly any[],
+  dispatch: (arg0: {
+    payload: any;
+    type: "articlesData/setArticleSearchIndex";
+  }) => void
+) => {
+  const searchList = preprocessArticles(data);
+  const searchIndexData = new MiniSearch(miniSearchConfig);
+  await searchIndexData.addAll(searchList);
+  dispatch(setArticleSearchIndex(JSON.stringify(searchIndexData)));
+};
+
+const preprocessActivities = (activities: any): any => {
+  return activities.map((activity: any) => ({
+    ...activity,
+    normalizedTitle: activity.title,
+    normalizedSummary: activity.summary,
+    normalizedBody: cleanAndOptimizeHtmlText(activity.body),
+  }));
+};
+export const setActivityMiniSearch = async (
+  data: readonly any[],
+  dispatch: (arg0: {
+    payload: any;
+    type: "articlesData/setArticleSearchIndex";
+  }) => void
+) => {
+  const articleList = randomArrayShuffle(data);
+  const searchList = preprocessActivities(articleList);
+  const searchIndexData = new MiniSearch(miniSearchConfigActivity);
+  await searchIndexData.addAll(searchList);
+  dispatch(setActivitiesSearchIndex(JSON.stringify(searchIndexData)));
 };
