@@ -46,6 +46,7 @@ import {
   Text,
   View,
   InteractionManager,
+  ActivityIndicator,
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../../App";
@@ -219,8 +220,8 @@ const Activities = ({ route, navigation }: any): any => {
   );
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId != null &&
-    activeChild?.taxonomyData?.prematureTaxonomyId != undefined &&
-    activeChild?.taxonomyData?.prematureTaxonomyId != ""
+      activeChild?.taxonomyData?.prematureTaxonomyId != undefined &&
+      activeChild?.taxonomyData?.prematureTaxonomyId != ""
       ? activeChild?.taxonomyData?.prematureTaxonomyId
       : activeChild?.taxonomyData.id;
   const favoritegames = useAppSelector(
@@ -243,6 +244,7 @@ const Activities = ({ route, navigation }: any): any => {
   const [suggestedGames, setsuggestedGames] = useState([]);
   const [otherGames, setotherGames] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingSection, setLoadingSection] = useState<boolean>(true);
   const [filteredData, setfilteredData] = useState([]);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const [showNoData, setshowNoData] = useState(false);
@@ -444,51 +446,51 @@ const Activities = ({ route, navigation }: any): any => {
       let showSubscription: any;
       let hideSubscription: any;
 
-      const task = InteractionManager.runAfterInteractions(() => {
-        showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-          setKeyboardStatus(true);
-        });
-        hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-          setKeyboardStatus(false);
-        });
+      // const task = InteractionManager.runAfterInteractions(() => {
+      showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+        setKeyboardStatus(true);
       });
+      hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+        setKeyboardStatus(false);
+      });
+      // });
 
       return () => {
         navigation.setParams({ categoryArray: [] });
         showSubscription?.remove();
         hideSubscription?.remove();
-        task.cancel();
+        // task.cancel();
       };
     }, [])
   );
 
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        if (isSerachedQueryText || queryText === "") {
-          const fetchData = async (): Promise<void> => {
-            console.log("route category data", route.params?.categoryArray);
-            if (route.params?.categoryArray) {
-              setFilterArray(route.params?.categoryArray);
-              setFilteredActivityData(route.params?.categoryArray);
-            } else {
-              console.log("route category data in else");
-              setFilterArray([]);
-              setFilteredActivityData([]);
-            }
-          };
-
-          setIsSearchedQueryText(false);
-          if (route.params?.backClicked !== "yes") {
-            fetchData();
+      // const task = InteractionManager.runAfterInteractions(() => {
+      if (isSerachedQueryText || queryText === "") {
+        const fetchData = async (): Promise<void> => {
+          console.log("route category data", route.params?.categoryArray);
+          if (route.params?.categoryArray) {
+            setFilterArray(route.params?.categoryArray);
+            setFilteredActivityData(route.params?.categoryArray);
           } else {
-            setLoading(false);
+            console.log("route category data in else");
+            setFilterArray([]);
+            setFilteredActivityData([]);
           }
+        };
+
+        setIsSearchedQueryText(false);
+        if (route.params?.backClicked !== "yes") {
+          fetchData();
+        } else {
+          setLoading(false);
         }
-      });
+      }
+      // });
 
       return () => {
-        task.cancel();
+        // task.cancel();
       };
     }, [
       selectedChildActivitiesData,
@@ -522,39 +524,39 @@ const Activities = ({ route, navigation }: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        if (route.params?.backClicked !== "yes") {
-          setshowNoData(false);
-          if (
-            route.params?.currentSelectedChildId &&
-            route.params?.currentSelectedChildId !== 0
-          ) {
-            console.log("if route params 0", route.params);
-            const firstChildDevData = childAge.filter(
-              (x: any) => x.id === route.params?.currentSelectedChildId
-            );
-            showSelectedBracketData(firstChildDevData[0]);
-          } else {
-            console.log(
-              "else if route params 0",
-              route.params,
-              activityTaxonomyId
-            );
-            const firstChildDevData = childAge.filter(
-              (x: any) => x.id === activityTaxonomyId
-            );
-            showSelectedBracketData(firstChildDevData[0]);
-          }
+      // const task = InteractionManager.runAfterInteractions(() => {
+      if (route.params?.backClicked !== "yes") {
+        setshowNoData(false);
+        if (
+          route.params?.currentSelectedChildId &&
+          route.params?.currentSelectedChildId !== 0
+        ) {
+          console.log("if route params 0", route.params);
+          const firstChildDevData = childAge.filter(
+            (x: any) => x.id === route.params?.currentSelectedChildId
+          );
+          showSelectedBracketData(firstChildDevData[0]);
         } else {
-          setLoading(false);
-          if (route.params?.backClicked === "yes") {
-            navigation.setParams({ backClicked: "no" });
-          }
+          console.log(
+            "else if route params 0",
+            route.params,
+            activityTaxonomyId
+          );
+          const firstChildDevData = childAge.filter(
+            (x: any) => x.id === activityTaxonomyId
+          );
+          showSelectedBracketData(firstChildDevData[0]);
         }
-      });
+      } else {
+        setLoading(false);
+        if (route.params?.backClicked === "yes") {
+          navigation.setParams({ backClicked: "no" });
+        }
+      }
+      // });
 
       return () => {
-        task.cancel();
+        // task.cancel();
       };
     }, [
       activeChild?.uuid,
@@ -566,20 +568,20 @@ const Activities = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        const fetchData = async (): Promise<void> => {
-          const filterQuery = `uuid == "${activeChild?.uuid}"`;
-          const childData = await userRealmCommon.getFilteredData<ChildEntity>(
-            ChildEntitySchema,
-            filterQuery
-          );
-          setchildMilestonedata(childData[0]?.checkedMilestones ?? []);
-        };
-        fetchData();
-      });
+      // const task = InteractionManager.runAfterInteractions(() => {
+      const fetchData = async (): Promise<void> => {
+        const filterQuery = `uuid == "${activeChild?.uuid}"`;
+        const childData = await userRealmCommon.getFilteredData<ChildEntity>(
+          ChildEntitySchema,
+          filterQuery
+        );
+        setchildMilestonedata(childData[0]?.checkedMilestones ?? []);
+      };
+      fetchData();
+      // });
 
       return () => {
-        task.cancel();
+        // task.cancel();
         console.log("unmount activity", route.params);
         navigation.setParams({ backClicked: "no" });
         navigation.setParams({ currentSelectedChildId: 0 });
@@ -590,31 +592,31 @@ const Activities = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        setsuggestedGames(
-          filteredData.filter(
-            (x: any) =>
-              x.related_milestone.length > 0 &&
+      // const task = InteractionManager.runAfterInteractions(() => {
+      setsuggestedGames(
+        filteredData.filter(
+          (x: any) =>
+            x.related_milestone.length > 0 &&
+            childMilestonedata.findIndex(
+              (y: any) => y === x.related_milestone[0]
+            ) === -1
+        )
+      );
+
+      setotherGames(
+        filteredData.filter(
+          (x: any) =>
+            x.related_milestone.length === 0 ||
+            (x.related_milestone.length > 0 &&
               childMilestonedata.findIndex(
                 (y: any) => y === x.related_milestone[0]
-              ) === -1
-          )
-        );
-
-        setotherGames(
-          filteredData.filter(
-            (x: any) =>
-              x.related_milestone.length === 0 ||
-              (x.related_milestone.length > 0 &&
-                childMilestonedata.findIndex(
-                  (y: any) => y === x.related_milestone[0]
-                ) > -1)
-          )
-        );
-      });
-
+              ) > -1)
+        )
+      );
+      // });
+      setLoadingSection(false)
       return () => {
-        task.cancel();
+        // task.cancel();
       };
     }, [filteredData, childMilestonedata])
   );
@@ -682,10 +684,10 @@ const Activities = ({ route, navigation }: any): any => {
             </ShiftFromTopBottom5>
             <Heading3>{item.title}</Heading3>
             {section.id == 1 &&
-            milestonedatadetail.length > 0 &&
-            childMilestonedata.findIndex(
-              (x: any) => x == milestonedatadetail[0]?.id
-            ) == -1 ? (
+              milestonedatadetail.length > 0 &&
+              childMilestonedata.findIndex(
+                (x: any) => x == milestonedatadetail[0]?.id
+              ) == -1 ? (
               <MainActivityBox>
                 <ActivityBox>
                   <Flex4>
@@ -814,10 +816,10 @@ const Activities = ({ route, navigation }: any): any => {
         console.log("Error: Retrieve minisearch data", error);
       }
     }
-    const task = InteractionManager.runAfterInteractions(() => {
-      initializeSearchIndex();
-    });
-    return () => task.cancel();
+    // const task = InteractionManager.runAfterInteractions(() => {
+    initializeSearchIndex();
+    // });
+    // return () => task.cancel();
   }, []);
 
   //store previous searched keyword
@@ -1074,41 +1076,46 @@ const Activities = ({ route, navigation }: any): any => {
 
             <FlexCol>
               {showNoData == true &&
-              suggestedGames?.length == 0 &&
-              otherGames?.length == 0 ? (
+                suggestedGames?.length == 0 &&
+                otherGames?.length == 0 ? (
                 <Heading4Center>{t("noDataTxt")}</Heading4Center>
               ) : null}
-
-              <SectionList
-                sections={DATA}
-                // ref={flatListRef}
-                ref={(ref: any): any => (sectionListRef = ref)}
-                keyExtractor={(item: any, index: any): any =>
-                  String(item?.id) + String(index)
-                }
-                contentContainerStyle={{ backgroundColor: backgroundColorList }}
-                stickySectionHeadersEnabled={false}
-                onScroll={(e: any) => {
-                  if (keyboardStatus == true) {
-                    Keyboard.dismiss();
+              {loadingSection ? (
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                  <ActivityIndicator size="large" color="#000" style={{}} />
+                </View>
+              ) :
+                <SectionList
+                  sections={DATA}
+                  // ref={flatListRef}
+                  ref={(ref: any): any => (sectionListRef = ref)}
+                  keyExtractor={(item: any, index: any): any =>
+                    String(item?.id) + String(index)
                   }
-                }}
-                // initialNumToRender={4}
-                // renderItem={({ item, title }) => <Item item={item} title={title}/>}
-                removeClippedSubviews={true} // Unmount components when outside of window
-                initialNumToRender={4} // Reduce initial render amount
-                maxToRenderPerBatch={4} // Reduce number in each render batch
-                updateCellsBatchingPeriod={100} // Increase time between renders
-                windowSize={7} // Reduce the window size
-                // renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
-                renderItem={memoizedValue}
-                renderSectionHeader={({ section }): any =>
-                  section.data.length > 0 ? (
-                    <HeadingComponent section={section} />
-                  ) : // <Text style={styles.header}>{section.title}</Text>
-                  null
-                }
-              />
+                  contentContainerStyle={{ backgroundColor: backgroundColorList }}
+                  stickySectionHeadersEnabled={false}
+                  onScroll={(e: any) => {
+                    if (keyboardStatus == true) {
+                      Keyboard.dismiss();
+                    }
+                  }}
+                  // initialNumToRender={4}
+                  // renderItem={({ item, title }) => <Item item={item} title={title}/>}
+                  removeClippedSubviews={true} // Unmount components when outside of window
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                  // renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
+                  renderItem={memoizedValue}
+                  renderSectionHeader={({ section }): any =>
+                    section.data.length > 0 ? (
+                      <HeadingComponent section={section} />
+                    ) : // <Text style={styles.header}>{section.title}</Text>
+                      null
+                  }
+                />
+              }
             </FlexCol>
           </FlexCol>
           <FirstTimeModal

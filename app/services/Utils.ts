@@ -1240,7 +1240,7 @@ export const miniSearchConfig = {
     boost: {
       normalizedTitle: 2,
       normalizedSummary: 1.5,
-      normalizedBody: 1,
+      // normalizedBody: 1,
       meta_keywords: 1,
       keywords: 1,
     },
@@ -1266,7 +1266,7 @@ export const miniSearchConfig = {
   fields: [
     "normalizedTitle",
     "normalizedSummary",
-    "normalizedBody",
+    // "normalizedBody",
     "meta_keywords",
     "keywords",
   ],
