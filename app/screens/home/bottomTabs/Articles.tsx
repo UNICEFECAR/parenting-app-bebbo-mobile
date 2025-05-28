@@ -3,7 +3,7 @@ import ArticleCategories from "@components/ArticleCategories";
 import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import {
-  ArticleListContainer,
+  ArticleListBox,
   ArticleListContent,
   SearchBox,
   SearchInput,
@@ -20,6 +20,7 @@ import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
+import { miniSearchConfig } from "../../../services/Utils";
 import {
   Heading3,
   Heading4Center,
@@ -38,6 +39,7 @@ import {
   StyleSheet,
   Text,
   View,
+  InteractionManager,
 } from "react-native";
 import FastImage from "react-native-fast-image";
 import { ThemeContext } from "styled-components/native";
@@ -60,6 +62,11 @@ import {
 } from "@assets/data/firebaseEvents";
 import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
+import {
+  resetSearchIndex,
+  setArticleSearchIndex,
+} from "../../../redux/reducers/articlesSlice";
+const { convert } = require("html-to-text");
 type ArticlesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -115,10 +122,13 @@ export type ArticleCategoriesProps = {
   filterArray?: any;
   fromPage?: any;
   onFilterArrayChange?: any;
+  iconColor?: string;
+  isSelectedPregnancy?: any;
 };
 const Articles = ({ route, navigation }: any): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState("");
+  let searchIndex = useRef(null);
   const [isSerachedQueryText, setIsSearchedQueryText] = useState(false);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
@@ -127,6 +137,7 @@ const Articles = ({ route, navigation }: any): any => {
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
@@ -149,62 +160,42 @@ const Articles = ({ route, navigation }: any): any => {
 
   //merge array
   const mergearr = (
-    articlearrold: any[],
-    videoartarrold: any[],
-    isSuffle: boolean
-  ) => {
-    let combinedarr: any[] = [];
-    let i = 0;
-    let j = 0;
-    let articlearr: any[] = [];
-    let videoartarr: any[] = [];
+    articleArrOld: any[],
+    videoArtArrOld: any[],
+    isShuffle: boolean
+  ): any[] => {
+    const articleArr = isShuffle
+      ? randomArrayShuffle(articleArrOld)
+      : articleArrOld;
+    const videoArr = isShuffle
+      ? randomArrayShuffle(videoArtArrOld)
+      : videoArtArrOld;
 
-    if (isSuffle) {
-      articlearr = randomArrayShuffle(articlearrold);
-      videoartarr = randomArrayShuffle(videoartarrold);
-    } else {
-      articlearr = articlearrold;
-      videoartarr = videoartarrold;
-    }
+    if (articleArr.length === 0) return [...videoArr];
 
-    if (articlearr.length == 0) {
-      combinedarr = [...videoartarr];
-    }
-    articlearr.map((x: any, index: number) => {
-      if (i < appConfig.maxArticleSize) {
-        combinedarr.push(x);
-        i++;
-        if (index == articlearr.length - 1) {
-          if (j < videoartarr.length) {
-            const dd = videoartarr.splice(j);
-            dd.map((y: any) => combinedarr.push(y));
-          }
-        }
-      } else {
-        i = 1;
-        if (videoartarr[j]) {
-          combinedarr.push(videoartarr[j]);
-        }
-        combinedarr.push(x);
-        j++;
-        if (index == articlearr.length - 1) {
-          if (j < videoartarr.length) {
-            const dd = videoartarr.splice(j);
-            dd.map((y: any) => combinedarr.push(y));
-          }
-        }
+    const combinedArr: any[] = [];
+    let videoIndex = 0;
+
+    for (let i = 0; i < articleArr.length; i++) {
+      combinedArr.push(articleArr[i]);
+
+      // After every `maxArticleSize` articles, insert a video article
+      if (
+        (i + 1) % appConfig.maxArticleSize === 0 &&
+        videoIndex < videoArr.length
+      ) {
+        combinedArr.push(videoArr[videoIndex]);
+        videoIndex++;
       }
-    });
+    }
 
-    return combinedarr;
-  };
-  const preprocessArticles = (articles: any): any => {
-    return articles.map((article: any) => ({
-      ...article,
-      normalizedTitle: article.title,
-      normalizedSummary: article.summary,
-      normalizedBody: article.body,
-    }));
+    // Push remaining video articles if any left
+    while (videoIndex < videoArr.length) {
+      combinedArr.push(videoArr[videoIndex]);
+      videoIndex++;
+    }
+
+    return combinedArr;
   };
 
   const getSearchedKeywords = async (): Promise<any> => {
@@ -235,17 +226,25 @@ const Articles = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      if (netInfo.isConnected) {
-        synchronizeEvents(netInfo.isConnected);
-      }
-      getSearchedKeywords();
-      setModalVisible(articleModalOpened);
-    }, [articleModalOpened]) //historyVisible
+      const task = InteractionManager.runAfterInteractions(() => {
+        if (netInfo.isConnected) {
+          synchronizeEvents(netInfo.isConnected);
+        }
+        getSearchedKeywords();
+        setModalVisible(articleModalOpened);
+      });
+
+      return () => {
+        task.cancel(); // clean up on unfocus
+      };
+    }, [articleModalOpened, netInfo.isConnected])
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.ARTICLES_COLOR;
-  const headerColorBlack = themeContext?.colors.PRIMARY_TEXTCOLOR;
+  const headerTextColor = themeContext?.colors.ARTICLES_TEXTCOLOR;
+  const headerColorBlack = themeContext?.colors.ARTICLES_TEXTCOLOR;
   const backgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();
   //code for getting article dynamic data starts here.
   // let filterArray: string[] = [];
@@ -265,11 +264,7 @@ const Articles = ({ route, navigation }: any): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const activeChild1 = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
+
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ""
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -282,6 +277,12 @@ const Articles = ({ route, navigation }: any): any => {
     state.articlesData.article.articles != ""
       ? JSON.parse(state.articlesData.article.articles)
       : state.articlesData.article.articles
+  );
+  // const isSearchIndex = useAppSelector(
+  //   (state: any) => state.articlesData.article.isSearchIndex
+  // );
+  const articleSearchIndex = useAppSelector(
+    (state: any) => state.articlesData.article.searchIndex
   );
   const articleDataOld = articleDataall.filter((x: any) =>
     taxonomyIds.articleCategoryArray.includes(x.category)
@@ -303,12 +304,10 @@ const Articles = ({ route, navigation }: any): any => {
   const [showNoData, setshowNoData] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
-  const [isCurrentChildSelected, setCurrentChildSelected] = useState(true);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] =
     useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
-  const [searchIndexData, setSearchIndexedData] = useState<any>();
   const videoIsFocused = useIsFocused();
   const goToArticleDetail = (item: any, queryText: string): any => {
     const keywords = queryText
@@ -355,27 +354,31 @@ const Articles = ({ route, navigation }: any): any => {
         x.child_age.includes(item.id)
       );
       setSelectedChildActivitiesData(filteredData);
-      setCurrentChildSelected(false);
     } else {
       setCurrentSelectedChildId(0);
       setIsSearchedQueryText(true);
       setSelectedChildActivitiesData(articleData);
-      setCurrentChildSelected(true);
     }
   };
-  // useEffect(() => {
-  //   if(currentSelectedChildId !== appConfig)
-  // },[currentSelectedChildId])
+
   useEffect(() => {
     setsuggestedArticles(filteredData);
   }, [filteredData]);
 
   const RenderArticleItem = ({ item, index }: any): any => {
     return (
-      <ArticleListContainer>
+      <ArticleListBox>
         <Pressable
           onPress={(): any => {
             goToArticleDetail(item, queryText);
+          }}
+          style={{
+            backgroundColor: backgroundColorList,
+            shadowColor: "red",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.08,
+            shadowRadius: 12,
+            elevation: 2,
           }}
           key={index}
         >
@@ -385,7 +388,14 @@ const Articles = ({ route, navigation }: any): any => {
           item.cover_video.url != "" &&
           item.cover_video.url != undefined ? (
             videoIsFocused == true ? (
-              <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
+              <View
+                style={{
+                  padding: 15,
+                  overflow: "hidden",
+                }}
+              >
+                <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
+              </View>
             ) : null
           ) : (
             <LoadableImage
@@ -414,7 +424,7 @@ const Articles = ({ route, navigation }: any): any => {
             isAdvice={true}
           />
         </Pressable>
-      </ArticleListContainer>
+      </ArticleListBox>
     );
   };
   const DATA = [
@@ -457,7 +467,7 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.search(keyword);
+              const results = searchIndex.current.search(keyword);
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -479,7 +489,7 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.search(queryText);
+            const results = searchIndex.current.search(queryText);
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               const categoryFilteredData = results.filter((x: any) =>
@@ -520,7 +530,7 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.search(keyword);
+              const results = searchIndex.current.search(keyword);
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -538,7 +548,7 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.search(queryText);
+            const results = searchIndex.current.search(queryText);
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               filteredResults = results.filter((x: any) =>
@@ -571,49 +581,55 @@ const Articles = ({ route, navigation }: any): any => {
     }
     toTop();
   };
+
   useFocusEffect(
     React.useCallback(() => {
-      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-        setKeyboardStatus(true);
-      });
-      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-        setKeyboardStatus(false);
-      });
-      return (): any => {
-        {
+      const task = InteractionManager.runAfterInteractions(() => {
+        const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+          setKeyboardStatus(true);
+        });
+        const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+          setKeyboardStatus(false);
+        });
+
+        return () => {
           navigation.setParams({ categoryArray: [] });
           showSubscription.remove();
           hideSubscription.remove();
-          // route.params?.currentSelectedChildId = 0;
-        }
+        };
+      });
+
+      return () => {
+        task.cancel();
       };
     }, [])
   );
 
   useFocusEffect(
     React.useCallback(() => {
-      if (route.params?.backClicked != "yes") {
-        setshowNoData(false);
-        if (
-          route.params?.currentSelectedChildId &&
-          route.params?.currentSelectedChildId != 0
-        ) {
-          const firstChildDevData = childAge.filter(
-            (x: any) => x.id == route.params?.currentSelectedChildId
-          );
-          showSelectedBracketData(firstChildDevData[0]);
+      const task = InteractionManager.runAfterInteractions(() => {
+        if (route.params?.backClicked !== "yes") {
+          setshowNoData(false);
+
+          const selectedId = route.params?.currentSelectedChildId;
+          const validId =
+            selectedId && selectedId !== 0 ? selectedId : activityTaxonomyId;
+
+          const firstChildDevData = childAge.find((x: any) => x.id === validId);
+          if (firstChildDevData) {
+            showSelectedBracketData(firstChildDevData);
+          }
         } else {
-          const firstChildDevData = childAge.filter(
-            (x: any) => x.id == activityTaxonomyId
-          );
-          showSelectedBracketData(firstChildDevData[0]);
+          setLoadingArticle(false);
+          if (route.params?.backClicked === "yes") {
+            navigation.setParams({ backClicked: "no" });
+          }
         }
-      } else {
-        setLoadingArticle(false);
-        if (route.params?.backClicked == "yes") {
-          navigation.setParams({ backClicked: "no" });
-        }
-      }
+      });
+
+      return () => {
+        task.cancel();
+      };
     }, [
       activeChild?.uuid,
       languageCode,
@@ -621,111 +637,52 @@ const Articles = ({ route, navigation }: any): any => {
       activityTaxonomyId,
     ])
   );
+
   useFocusEffect(
     React.useCallback(() => {
-      const fetchData = async (): Promise<any> => {
-        const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
-      };
-      fetchData();
-      return (): any => {
-        navigation.setParams({ backClicked: "no" });
+      const task = InteractionManager.runAfterInteractions(() => {
+        const fetchData = async (): Promise<void> => {
+          const filterQuery = `uuid == "${activeChild?.uuid}"`;
+          // await callYourAPI(filterQuery); // if needed
+        };
+        fetchData();
 
-        navigation.setParams({ currentSelectedChildId: 0 });
+        return () => {
+          navigation.setParams({ backClicked: "no" });
+          navigation.setParams({ currentSelectedChildId: 0 });
+          navigation.setParams({ categoryArray: [] });
+        };
+      });
 
-        navigation.setParams({ categoryArray: [] });
+      return () => {
+        task.cancel();
       };
-    }, [])
+    }, [activeChild?.uuid])
   );
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
-        let videoArticleDataAllCategory: any;
         if (
           activeChild != null &&
           activeChild.taxonomyData != null &&
           activeChild?.gender != null
         ) {
-          videoArticleDataAllCategory = VideoArticlesDataall.filter(
-            (x: any) => x.mandatory == appConfig.videoArticleMandatory
+          const searchIndexData = MiniSearch.loadJSON(
+            articleSearchIndex,
+            miniSearchConfig
           );
+          // setSearchIndex(searchIndexData);
+          searchIndex.current = searchIndexData;
+          // dispatch(resetSearchIndex(false));
         }
-        const combineDartArr = mergearr(
-          articleDataall,
-          videoArticleDataAllCategory,
-          false
-        );
-        articleData = [...combineDartArr];
-        const processedArticles = preprocessArticles(combineDartArr);
-        const searchIndexData = new MiniSearch({
-          processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
-          // tokenize: (text) => {
-          //   const words = text.toLowerCase().split(/\s+/);
-          //   const ngrams = [];
-          //   for (let i = 0; i < words.length - 1; i++) {
-          //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
-          //   }
-          //   return [...words, ...ngrams]; // Return both single words and bigrams
-          // },
-          extractField: (document, fieldName): any => {
-            const arrFields = fieldName.split(".");
-            if (arrFields.length === 2) {
-              return (document[arrFields[0]] || [])
-                .map((arrField: any) => arrField[arrFields[1]] || "")
-                .join(" ");
-            } else if (arrFields.length === 3) {
-              const tmparr = (document[arrFields[0]] || []).flatMap(
-                (arrField: any) => arrField[arrFields[1]] || []
-              );
-              return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
-            }
-            return fieldName
-              .split(".")
-              .reduce((doc, key) => doc && doc[key], document);
-          },
-          searchOptions: {
-            boost: { title: 2, summary: 1.5, body: 1 },
-            bm25: { k: 1.0, b: 0.7, d: 0.5 },
-            fuzzy: true,
-            // prefix true means it will contain "foo" then search for "foobar"
-            prefix: true,
-            weights: {
-              fuzzy: 0.6,
-              prefix: 0.6,
-            },
-          },
-          fields: ["title", "summary", "body"],
-          storeFields: [
-            "id",
-            "type",
-            "title",
-            "created_at",
-            "updated_at",
-            "summary",
-            "body",
-            "category",
-            "child_age",
-            "child_gender",
-            "parent_gender",
-            "keywords",
-            "related_articles",
-            "related_video_articles",
-            "licensed",
-            "premature",
-            "mandatory",
-            "cover_image",
-            "cover_video",
-            "related_articles",
-            "embedded_images",
-          ],
-        });
-
-        searchIndexData.addAllAsync(processedArticles);
-        setSearchIndex(searchIndexData);
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
     }
-    initializeSearchIndex();
+    const task = InteractionManager.runAfterInteractions(() => {
+      initializeSearchIndex();
+    });
+    return () => task.cancel();
   }, []);
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray);
@@ -760,25 +717,17 @@ const Articles = ({ route, navigation }: any): any => {
     ])
   );
 
-  const [searchIndex, setSearchIndex] = useState<any>(null);
-  const suffixes = (term: any, minLength: any): any => {
-    if (term == null) {
-      return [];
-    }
-    const tokens = [];
-    for (let i = 0; i <= term.length - minLength; i++) {
-      tokens.push(term.slice(i));
-    }
-    // console.log("--------", tokens);
-    return tokens;
-  };
-
   const searchList = async (queryText: any): Promise<any> => {
     setHistoryVisible(false);
     setLoadingArticle(true);
     // await new Promise((resolve) => setTimeout(resolve, 0));
     Keyboard.dismiss();
-    if (queryText != "" && queryText != undefined && queryText != null) {
+    if (
+      queryText != "" &&
+      queryText != undefined &&
+      queryText != null &&
+      queryText.length >= 3
+    ) {
       const keywords = queryText
         .trim()
         .toLowerCase()
@@ -790,7 +739,8 @@ const Articles = ({ route, navigation }: any): any => {
         //   return results;
         // });
         // const resultsArrays = await Promise.all(resultsPromises);
-        const results = searchIndex.search(queryText);
+        const results = searchIndex.current.search(queryText);
+
         const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
@@ -810,7 +760,8 @@ const Articles = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results = searchIndex.search(queryText);
+        const results = searchIndex.current.search(queryText);
+
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = results.filter((x: any) =>
@@ -887,17 +838,20 @@ const Articles = ({ route, navigation }: any): any => {
 
   const optimizedFilteredData = useMemo(() => {
     if (filterArray.length === 1 && filterArray[0] == appConfig.weekByWeekId) {
-      console.log("[filter Array]1");
       return [...filteredData].sort((a, b) => a.id - b.id); // ✨ non-mutating sort
     }
     return filteredData;
   }, [filteredData, filterArray]);
-  console.log(filterArray, "[filter Array]", optimizedFilteredData);
 
+  const containerView = (color: any) => ({
+    ...styles.containerView,
+    backgroundColor: color,
+  });
+  console.log(searchIndex, "[para]", optimizedFilteredData);
   return (
     <>
       {loadingArticle && <OverlayLoadingComponent loading={loadingArticle} />}
-      <View style={styles.containerView}>
+      <View style={containerView(backgroundColorList)}>
         <KeyboardAvoidingView
           // behavior={Platform.OS === "ios" ? "padding" : "height"}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -908,7 +862,7 @@ const Articles = ({ route, navigation }: any): any => {
           <TabScreenHeader
             title={t("articleScreenheaderTitle")}
             headerColor={headerColor}
-            textColor="#000"
+            textColor={headerTextColor}
             setProfileLoading={setProfileLoading}
           />
           <FlexCol>
@@ -1000,6 +954,7 @@ const Articles = ({ route, navigation }: any): any => {
                 <View style={{ backgroundColor: articlesTintcolor }}>
                   <ArticleCategories
                     borderColor={headerColor}
+                    iconColor={headerColorBlack}
                     isSelectedPregnancy={
                       currentSelectedChildId == appConfig.pregnancyId
                     }
@@ -1008,7 +963,7 @@ const Articles = ({ route, navigation }: any): any => {
                     filterArray={filterArray}
                     onFilterArrayChange={onFilterArrayChange}
                   />
-                  <DividerArt></DividerArt>
+                  {/* <DividerArt></DividerArt> */}
                 </View>
               </View>
             </OutsidePressHandler>
@@ -1024,6 +979,7 @@ const Articles = ({ route, navigation }: any): any => {
                   Keyboard.dismiss();
                 }
               }}
+              contentContainerStyle={{ backgroundColor: backgroundColorList }}
               nestedScrollEnabled={true}
               // keyboardDismissMode={"on-drag"}
               // keyboardShouldPersistTaps='always'
@@ -1050,4 +1006,4 @@ const Articles = ({ route, navigation }: any): any => {
   );
 };
 
-export default Articles;
+export default React.memo(Articles);

@@ -15,15 +15,9 @@ import Childgrowth from "@screens/home/Childgrowth";
 import HealthCheckups from "@screens/home/HealthCheckups";
 import Vaccination from "@screens/home/Vaccination";
 import { Heading3 } from "@styles/typography";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, Suspense } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Modal,
-  Platform,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { Modal, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { DashboardBottomTabParamList } from "./types";
 const styles = StyleSheet.create({
@@ -65,7 +59,6 @@ export default (): any => {
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
-  //const navigation = useNavigation();
   const navigation =
     useNavigation<StackNavigationProp<ToolsRootStackParamList>>();
   const { t } = useTranslation();
@@ -151,6 +144,7 @@ export default (): any => {
           </TouchableOpacity>
         </Pressable>
       </Modal>
+      {/* <Suspense fallback={null}> */}
       <DashboardBottomTab.Navigator
         backBehavior={"firstRoute"}
         detachInactiveScreens={true}
@@ -172,7 +166,7 @@ export default (): any => {
             tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
-            unmountOnBlur: true,
+            unmountOnBlur: false,
             headerShown: false,
           }}
         />
@@ -228,7 +222,7 @@ export default (): any => {
             tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_articles" color={color} size={size} />
             ),
-            // unmountOnBlur: true,
+            unmountOnBlur: false,
             headerShown: false,
           }}
         />
@@ -246,6 +240,7 @@ export default (): any => {
           }}
         />
       </DashboardBottomTab.Navigator>
+      {/* </Suspense> */}
     </>
   );
 };

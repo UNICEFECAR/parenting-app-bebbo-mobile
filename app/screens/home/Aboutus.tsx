@@ -35,6 +35,7 @@ const Aboutus = (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const { t } = useTranslation();
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
   const aboutusdata = useAppSelector(
     (state: any) => state.utilsData.aboutus.body
   );
@@ -52,7 +53,7 @@ const Aboutus = (): any => {
             <TabScreenHeader
               title={t("aboutUsScreenheaderTitle")}
               headerColor={headerColor}
-              textColor="#FFF"
+              textColor={headerTextColor}
               setProfileLoading={setProfileLoading}
             />
           </View>

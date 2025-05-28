@@ -100,6 +100,12 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const { convertDigits } = useDigitConverter();
   const dispatch = useAppDispatch();
   const [profileLoading, setProfileLoading] = React.useState(false);
+  const headerColor = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
+  const backgroundColor = themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
+  const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
+  const headerColorBlack = themeContext?.colors.PRIMARY_TEXTCOLOR;
+  const headerTextColor = themeContext?.colors.CHILDDEVELOPMENT_TEXTCOLOR;
   const ChildDevData = useAppSelector((state: any) =>
     state.utilsData.ChildDevData != ""
       ? JSON.parse(state.utilsData.ChildDevData)
@@ -189,28 +195,29 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   //      //setModalVisible(childDevModalOpened);
   //    },[])
   //  )
-  useEffect(() => {
-    setComponentColors({
-      headerColor: themeContext?.colors.CHILDDEVELOPMENT_COLOR,
-      backgroundColor: themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR,
-      artHeaderColor: themeContext?.colors.ARTICLES_COLOR,
-      artBackgroundColor: themeContext?.colors.ARTICLES_TINTCOLOR,
-      headerColorBlack: themeContext?.colors.PRIMARY_TEXTCOLOR,
-    });
+  // useEffect(() => {
+  //   setComponentColors({
+  //     headerColor: themeContext?.colors.CHILDDEVELOPMENT_COLOR,
+  //     backgroundColor: themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR,
+  //     artHeaderColor: themeContext?.colors.ARTICLES_COLOR,
+  //     artBackgroundColor: themeContext?.colors.ARTICLES_TINTCOLOR,
+  //     headerColorBlack: themeContext?.colors.PRIMARY_TEXTCOLOR,
+  //     headerTextColor: themeContext?.colors.CHILDDEVELOPMENT_TEXTCOLOR,
+  //   });
 
-    return (): any => {
-      navigation.setParams({
-        currentSelectedChildId: 0,
-        fromActivitiesScreen: false,
-      });
-    };
-  }, []);
+  //   return (): any => {
+  //     navigation.setParams({
+  //       currentSelectedChildId: 0,
+  //       fromActivitiesScreen: false,
+  //     });
+  //   };
+  // }, []);
 
   const onPressInfo = (): any => {
     navigation.navigate("DetailsScreen", {
       fromScreen: "ChildDevelopment",
-      headerColor: componentColors?.artHeaderColor,
-      backgroundColor: componentColors?.artBackgroundColor,
+      headerColor: artHeaderColor,
+      backgroundColor: artBackgroundColor,
       detailData: selectedPinnedArticleData,
       currentSelectedChildId: currentSelectedChildId,
     });
@@ -279,6 +286,10 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     return (): any => {
       navigation.removeListener("gestureEnd", onBackPress);
       backHandler.remove();
+      navigation.setParams({
+        currentSelectedChildId: 0,
+        fromActivitiesScreen: false,
+      });
     };
   }, []);
   useEffect(() => {
@@ -518,9 +529,9 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                     percent={milestonePercent}
                     radius={35}
                     borderWidth={6}
-                    color={componentColors?.headerColor}
+                    color={headerColor}
                     shadowColor="#fff"
-                    bgColor={componentColors?.backgroundColor}
+                    bgColor={backgroundColor}
                   >
                     <Text style={styles.font18}>
                       {convertDigits(milestonePercent?.toString())}
@@ -544,38 +555,26 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   };
   return (
     <>
-      <View
-        style={[
-          styles.flex1,
-          { backgroundColor: componentColors?.headerColor },
-        ]}
-      >
-        <FocusAwareStatusBar
-          animated={true}
-          backgroundColor={componentColors?.headerColor}
-        />
+      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <TabScreenHeader
           title={t("developScreenheaderTitle")}
-          headerColor={componentColors?.headerColor}
-          textColor="#000"
+          headerColor={headerColor}
+          textColor={headerTextColor}
           setProfileLoading={setProfileLoading}
         />
-        {currentSelectedChildId &&
-        componentColors != null &&
-        currentSelectedChildId != 0 ? (
-          <View style={styles.bgWhite}>
-            <AgeBrackets
-              itemColor={componentColors?.headerColorBlack}
-              activatedItemColor={componentColors?.headerColor}
-              currentSelectedChildId={currentSelectedChildId}
-              showSelectedBracketData={showSelectedBracketData}
-              ItemTintColor={componentColors?.backgroundColor}
-              isActivity
-            />
-          </View>
-        ) : null}
+        <View style={styles.bgWhite}>
+          <AgeBrackets
+            itemColor={headerColorBlack}
+            activatedItemColor={headerColor}
+            currentSelectedChildId={currentSelectedChildId}
+            showSelectedBracketData={showSelectedBracketData}
+            ItemTintColor={backgroundColor}
+            isActivity
+          />
+        </View>
 
-        <FlexCol style={{ backgroundColor: componentColors?.backgroundColor }}>
+        <FlexCol style={{ backgroundColor: backgroundColor }}>
           {showNoData == true &&
           (Object.keys(selectedChildDevData).length == 0 ||
             selectedChildDevData == undefined) &&
@@ -594,7 +593,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                   sendMileStoneDatatoParent={sendMileStoneDatatoParent}
                   VideoArticlesData={VideoArticlesData}
                   ActivitiesData={ActivitiesData}
-                  subItemSaperatorColor={componentColors?.headerColor}
+                  subItemSaperatorColor={headerColor}
                   currentSelectedChildId={currentSelectedChildId}
                 />
               )}
@@ -649,4 +648,4 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   );
 };
 
-export default ChildDevelopment;
+export default React.memo(ChildDevelopment);

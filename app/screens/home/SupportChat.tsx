@@ -73,6 +73,7 @@ const SupportChat = ({ navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
+  const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const windowWidthstyle = Dimensions.get("window").width;
@@ -652,7 +653,8 @@ const SupportChat = ({ navigation }: Props): any => {
         <TabScreenHeader
           title={t("supportScreenheaderTitle")}
           headerColor={headerColor}
-          textColor="#FFF"
+          textColor={headerTextColor}
+          headerTextColor
           setProfileLoading={setProfileLoading}
         />
         <FlexCol>

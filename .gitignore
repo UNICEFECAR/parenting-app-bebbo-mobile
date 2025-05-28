@@ -29,7 +29,7 @@ ios/GoogleServices/**/GoogleService-Info*.plist
 # Environment files
 .env*
 env/*
-
+ios/DerivedData
 # BUCK build system
 buck-out/
 \.buckd/

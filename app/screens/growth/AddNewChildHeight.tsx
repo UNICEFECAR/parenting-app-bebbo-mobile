@@ -65,6 +65,7 @@ const AddNewChildHeight = ({ navigation, route }: Props): any => {
   const [height1, setheight1] = useState<number>(0.0);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -125,7 +126,6 @@ const AddNewChildHeight = ({ navigation, route }: Props): any => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={(): any => {
-                  setModalVisible(false);
                   setIsModalOpened("IsHeightModalOpened");
                 }}
               >
