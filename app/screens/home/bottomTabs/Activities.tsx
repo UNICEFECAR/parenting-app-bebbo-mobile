@@ -793,17 +793,23 @@ const Activities = ({ route, navigation }: any): any => {
     return tokens;
   };
 
+  const preprocessActivities = (activities: any): any => {
+    return activities.map((activity: any) => ({
+      ...activity,
+      normalizedTitle: activity.title,
+      normalizedSummary: activity.summary,
+      normalizedBody: cleanAndOptimizeHtmlText(activity.body),
+    }));
+  };
   // console.log()
   //add minisearch on active child article data
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
-        const searchActivittiesData = MiniSearch.loadJSON(
-          activitySearchIndex,
-          miniSearchConfigActivity
-        );
+        const processedActivities = preprocessActivities(ActivitiesData);
+        const searchActivittiesData = new MiniSearch(miniSearchConfigActivity);
+        searchActivittiesData.addAllAsync(processedActivities);
         searchIndex.current = searchActivittiesData;
-
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
