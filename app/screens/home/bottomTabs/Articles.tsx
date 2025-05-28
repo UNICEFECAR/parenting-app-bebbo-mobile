@@ -20,7 +20,10 @@ import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
-import { miniSearchConfig } from "../../../services/Utils";
+import {
+  cleanAndOptimizeHtmlText,
+  miniSearchConfig,
+} from "../../../services/Utils";
 import {
   Heading3,
   Heading4Center,
@@ -659,22 +662,42 @@ const Articles = ({ route, navigation }: any): any => {
       };
     }, [activeChild?.uuid])
   );
+  export const preprocessArticles = (articles: any[]): any[] => {
+    return articles.map((article: any) => {
+      return {
+        ...article,
+        normalizedTitle: article.title,
+        normalizedSummary: article.summary,
+        normalizedBody: cleanAndOptimizeHtmlText(article.body),
+      };
+    });
+  };
+
   useEffect(() => {
     async function initializeSearchIndex() {
+      let videoArticleDataAllCategory: any;
       try {
         if (
           activeChild != null &&
           activeChild.taxonomyData != null &&
           activeChild?.gender != null
         ) {
-          const searchIndexData = MiniSearch.loadJSON(
-            articleSearchIndex,
-            miniSearchConfig
+          videoArticleDataAllCategory = VideoArticlesDataall.filter(
+            (x: any) => x.mandatory == appConfig.videoArticleMandatory
           );
-          // setSearchIndex(searchIndexData);
-          searchIndex.current = searchIndexData;
-          // dispatch(resetSearchIndex(false));
         }
+        const combineDartArr = mergearr(
+          articleDataall,
+          videoArticleDataAllCategory,
+          false
+        );
+        articleData = [...combineDartArr];
+        const processedArticles = preprocessArticles(combineDartArr);
+        const searchIndexData = new MiniSearch(miniSearchConfig);
+        // setSearchIndex(searchIndexData);
+        searchIndexData.addAllAsync(processedArticles);
+        searchIndex.current = searchIndexData;
+        // dispatch(resetSearchIndex(false));
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
