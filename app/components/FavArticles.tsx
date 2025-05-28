@@ -7,7 +7,7 @@ import {
 } from "../instances/bebbo/styles/typography";
 import React, { useContext, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList, Pressable, StyleSheet } from "react-native";
+import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import styled, { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../App";
@@ -22,10 +22,7 @@ import {
   VideoArticleEntitySchema,
 } from "../database/schema/VideoArticleSchema";
 import LoadableImage from "../services/LoadableImage";
-import {
-  ArticleListContainer,
-  ArticleListContent,
-} from "./shared/ArticlesStyle";
+import { ArticleListBox, ArticleListContent } from "./shared/ArticlesStyle";
 import { FlexCol } from "./shared/FlexBoxStyle";
 import ShareFavButtons from "./shared/ShareFavButtons";
 import VideoPlayer from "./VideoPlayer";
@@ -52,6 +49,7 @@ const FavArticles = (): any => {
 
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const flatListRef = useRef(null);
   const categoryData = useAppSelector(
     (state: any) =>
@@ -110,7 +108,7 @@ const FavArticles = (): any => {
   );
   const RenderArticleItem = React.memo(({ item, index }: any) => {
     return (
-      <ArticleListContainer>
+      <ArticleListBox>
         <Pressable
           onPress={(): any => {
             goToArticleDetail(item);
@@ -122,7 +120,14 @@ const FavArticles = (): any => {
           item.cover_video &&
           item.cover_video.url != "" &&
           item.cover_video.url != undefined ? (
-            <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
+            <View
+              style={{
+                padding: 15,
+                overflow: "hidden",
+              }}
+            >
+              <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
+            </View>
           ) : (
             <LoadableImage
               style={styles.cardImage}
@@ -151,18 +156,19 @@ const FavArticles = (): any => {
             isAdvice={true}
           />
         </Pressable>
-      </ArticleListContainer>
+      </ArticleListBox>
     );
   });
   return (
     <>
-      <ContainerView>
+      <ContainerView style={{ backgroundColor: backgroundColorList }}>
         <FlexCol>
           {favAdvicesToShow.length > 0 ? (
             <FlatList
               ref={flatListRef}
               data={favAdvicesToShow}
               nestedScrollEnabled={true}
+              contentContainerStyle={{ backgroundColor: backgroundColorList }}
               removeClippedSubviews={true} // Unmount components when outside of window
               initialNumToRender={4} // Reduce initial render amount
               maxToRenderPerBatch={4} // Reduce number in each render batch
