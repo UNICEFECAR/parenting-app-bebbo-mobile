@@ -43,6 +43,7 @@ import {
   Text,
   View,
   InteractionManager,
+  ActivityIndicator,
 } from "react-native";
 import FastImage from "react-native-fast-image";
 import { ThemeContext } from "styled-components/native";
@@ -129,6 +130,9 @@ export type ArticleCategoriesProps = {
   isSelectedPregnancy?: any;
 };
 const Articles = ({ route, navigation }: any): any => {
+  const articleModalOpened = useAppSelector(
+    (state: any) => state.utilsData.IsArticleModalOpened
+  );
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText, searchQueryText] = useState("");
   let searchIndex = useRef(null);
@@ -136,6 +140,7 @@ const Articles = ({ route, navigation }: any): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
   const [loadingArticle, setLoadingArticle] = useState(false);
+  const [loadingSection, setLoadingSection] = useState<boolean>(true);
   const [suggestedArticles, setsuggestedArticles] = useState([]);
   const dispatch = useAppDispatch();
   const flatListRef = useRef<any>(null);
@@ -147,9 +152,7 @@ const Articles = ({ route, navigation }: any): any => {
       setModalVisible(false);
     }
   };
-  const articleModalOpened = useAppSelector(
-    (state: any) => state.utilsData.IsArticleModalOpened
-  );
+
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
@@ -229,16 +232,16 @@ const Articles = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        if (netInfo.isConnected) {
-          synchronizeEvents(netInfo.isConnected);
-        }
-        getSearchedKeywords();
-        setModalVisible(articleModalOpened);
-      });
+      // const task = InteractionManager.runAfterInteractions(() => {
+      if (netInfo.isConnected) {
+        synchronizeEvents(netInfo.isConnected);
+      }
+      getSearchedKeywords();
+      setModalVisible(articleModalOpened);
+      // });
 
       return () => {
-        task.cancel(); // clean up on unfocus
+        // task.cancel(); // clean up on unfocus
       };
     }, [articleModalOpened, netInfo.isConnected])
   );
@@ -386,10 +389,10 @@ const Articles = ({ route, navigation }: any): any => {
           key={index}
         >
           {netInfo.isConnected == true &&
-          item &&
-          item.cover_video &&
-          item.cover_video.url != "" &&
-          item.cover_video.url != undefined ? (
+            item &&
+            item.cover_video &&
+            item.cover_video.url != "" &&
+            item.cover_video.url != undefined ? (
             videoIsFocused == true ? (
               <View
                 style={{
@@ -587,51 +590,51 @@ const Articles = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-          setKeyboardStatus(true);
-        });
-        const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-          setKeyboardStatus(false);
-        });
-
-        return () => {
-          navigation.setParams({ categoryArray: [] });
-          showSubscription.remove();
-          hideSubscription.remove();
-        };
+      // const task = InteractionManager.runAfterInteractions(() => {
+      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+        setKeyboardStatus(true);
+      });
+      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+        setKeyboardStatus(false);
       });
 
       return () => {
-        task.cancel();
+        navigation.setParams({ categoryArray: [] });
+        showSubscription.remove();
+        hideSubscription.remove();
+      };
+      // });
+
+      return () => {
+        // task.cancel();
       };
     }, [])
   );
 
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        if (route.params?.backClicked !== "yes") {
-          setshowNoData(false);
+      // const task = InteractionManager.runAfterInteractions(() => {
+      if (route.params?.backClicked !== "yes") {
+        setshowNoData(false);
 
-          const selectedId = route.params?.currentSelectedChildId;
-          const validId =
-            selectedId && selectedId !== 0 ? selectedId : activityTaxonomyId;
+        const selectedId = route.params?.currentSelectedChildId;
+        const validId =
+          selectedId && selectedId !== 0 ? selectedId : activityTaxonomyId;
 
-          const firstChildDevData = childAge.find((x: any) => x.id === validId);
-          if (firstChildDevData) {
-            showSelectedBracketData(firstChildDevData);
-          }
-        } else {
-          setLoadingArticle(false);
-          if (route.params?.backClicked === "yes") {
-            navigation.setParams({ backClicked: "no" });
-          }
+        const firstChildDevData = childAge.find((x: any) => x.id === validId);
+        if (firstChildDevData) {
+          showSelectedBracketData(firstChildDevData);
         }
-      });
+      } else {
+        setLoadingArticle(false);
+        if (route.params?.backClicked === "yes") {
+          navigation.setParams({ backClicked: "no" });
+        }
+      }
+      // });
 
       return () => {
-        task.cancel();
+        // task.cancel();
       };
     }, [
       activeChild?.uuid,
@@ -643,26 +646,26 @@ const Articles = ({ route, navigation }: any): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        const fetchData = async (): Promise<void> => {
-          const filterQuery = `uuid == "${activeChild?.uuid}"`;
-          // await callYourAPI(filterQuery); // if needed
-        };
-        fetchData();
-
-        return () => {
-          navigation.setParams({ backClicked: "no" });
-          navigation.setParams({ currentSelectedChildId: 0 });
-          navigation.setParams({ categoryArray: [] });
-        };
-      });
+      // const task = InteractionManager.runAfterInteractions(() => {
+      const fetchData = async (): Promise<void> => {
+        const filterQuery = `uuid == "${activeChild?.uuid}"`;
+        // await callYourAPI(filterQuery); // if needed
+      };
+      fetchData();
 
       return () => {
-        task.cancel();
+        navigation.setParams({ backClicked: "no" });
+        navigation.setParams({ currentSelectedChildId: 0 });
+        navigation.setParams({ categoryArray: [] });
+      };
+      // });
+
+      return () => {
+        // task.cancel();
       };
     }, [activeChild?.uuid])
   );
-  export const preprocessArticles = (articles: any[]): any[] => {
+  const preprocessArticles = (articles: any[]): any[] => {
     return articles.map((article: any) => {
       return {
         ...article,
@@ -697,15 +700,18 @@ const Articles = ({ route, navigation }: any): any => {
         // setSearchIndex(searchIndexData);
         searchIndexData.addAllAsync(processedArticles);
         searchIndex.current = searchIndexData;
+        setTimeout(() => {
+          setLoadingSection(false)
+        }, 1000)
         // dispatch(resetSearchIndex(false));
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
     }
-    const task = InteractionManager.runAfterInteractions(() => {
-      initializeSearchIndex();
-    });
-    return () => task.cancel();
+    // const task = InteractionManager.runAfterInteractions(() => {
+    initializeSearchIndex();
+    // });
+    // return () => task.cancel();
   }, []);
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray);
@@ -993,28 +999,34 @@ const Articles = ({ route, navigation }: any): any => {
             {showNoData == true && suggestedArticles?.length == 0 ? (
               <Heading4Center>{t("noDataTxt")}</Heading4Center>
             ) : null}
-            <FlatList
-              ref={flatListRef}
-              data={optimizedFilteredData}
-              extraData={[filteredData, optimizedFilteredData]}
-              onScroll={(e): any => {
-                if (keyboardStatus == true) {
-                  Keyboard.dismiss();
-                }
-              }}
-              contentContainerStyle={{ backgroundColor: backgroundColorList }}
-              nestedScrollEnabled={true}
-              // keyboardDismissMode={"on-drag"}
-              // keyboardShouldPersistTaps='always'
-              removeClippedSubviews={true} // Unmount components when outside of window
-              initialNumToRender={4} // Reduce initial render amount
-              maxToRenderPerBatch={4} // Reduce number in each render batch
-              updateCellsBatchingPeriod={100} // Increase time between renders
-              windowSize={7} // Reduce the window size
-              // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
-              renderItem={memoizedValue}
-              keyExtractor={(item): any => item.id.toString()}
-            />
+            {loadingSection ? (
+              <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                <ActivityIndicator size="large" color="#000" style={{}} />
+              </View>
+            ) :
+              <FlatList
+                ref={flatListRef}
+                data={optimizedFilteredData}
+                extraData={[filteredData, optimizedFilteredData]}
+                onScroll={(e): any => {
+                  if (keyboardStatus == true) {
+                    Keyboard.dismiss();
+                  }
+                }}
+                contentContainerStyle={{ backgroundColor: backgroundColorList }}
+                nestedScrollEnabled={true}
+                // keyboardDismissMode={"on-drag"}
+                // keyboardShouldPersistTaps='always'
+                removeClippedSubviews={true} // Unmount components when outside of window
+                initialNumToRender={4} // Reduce initial render amount
+                maxToRenderPerBatch={4} // Reduce number in each render batch
+                updateCellsBatchingPeriod={100} // Increase time between renders
+                windowSize={7} // Reduce the window size
+                // renderItem={({ item, index }) => <RenderArticleItem item={item} index={index} />}
+                renderItem={memoizedValue}
+                keyExtractor={(item): any => item.id.toString()}
+              />
+            }
           </FlexCol>
           <FirstTimeModal
             modalVisible={modalVisible}
