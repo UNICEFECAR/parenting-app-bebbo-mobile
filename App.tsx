@@ -34,6 +34,7 @@ import "./app/localization/initI18next";
 import configureAppStore from "./app/redux/store";
 import { googleAuth } from "./app/services/googleAuth";
 import { EventProvider } from "react-native-outside-press";
+import RNRestart from "react-native-restart";
 import { setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
 const flavor = process.env.FLAVOR || "bebbo";
 export const store = configureAppStore();
@@ -63,6 +64,7 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
       <ButtonPrimary
         onPress={() => {
           props.resetError();
+          RNRestart.Restart();
         }}
       >
         <ButtonErrorText>{"Try again"}</ButtonErrorText>

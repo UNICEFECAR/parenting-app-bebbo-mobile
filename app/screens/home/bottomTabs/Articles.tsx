@@ -662,7 +662,7 @@ const Articles = ({ route, navigation }: any): any => {
       };
     }, [activeChild?.uuid])
   );
-  export const preprocessArticles = (articles: any[]): any[] => {
+  const preprocessArticles = (articles: any[]): any[] => {
     return articles.map((article: any) => {
       return {
         ...article,
