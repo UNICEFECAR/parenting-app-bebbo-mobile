@@ -6,14 +6,17 @@
  */
 
 import "react-native-gesture-handler";
-import {
-  ButtonErrorText,
-  ButtonPrimary,
-} from "@components/shared/ButtonGlobal";
 import crashlytics from "@react-native-firebase/crashlytics";
 import { Action, ThunkAction } from "@reduxjs/toolkit";
 import React from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import i18n from "i18next";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import ErrorBoundary from "react-native-error-boundary";
 import "react-native-gesture-handler";
 import Orientation from "react-native-orientation-locker";
@@ -53,22 +56,54 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#fff",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+    color: "#2B2F84",
+  },
+  message: {
+    fontSize: 14,
+    color: "#444",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: "#2B2F84",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 6,
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "600",
+    fontSize: 16,
+  },
 });
 const { appTheme } = require(`./app/instances/${flavor}/styles/theme`);
+
 const CustomFallback = (props: { error: Error; resetError: Function }) => {
   crashlytics().recordError(props.error);
   return (
-    <View style={{ marginTop: "15%" }}>
-      <Text>Something happened!</Text>
-      <Text>{props.error.toString()}</Text>
-      <ButtonPrimary
+    <View style={styles.container}>
+      <Text style={styles.title}>{i18n.t("generalError")}</Text>
+      <Text style={styles.message}>{props.error?.toString()}</Text>
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           props.resetError();
           RNRestart.Restart();
         }}
       >
-        <ButtonErrorText>{"Try again"}</ButtonErrorText>
-      </ButtonPrimary>
+        <Text style={styles.buttonText}>{i18n.t("tryText")}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
