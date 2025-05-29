@@ -1,6 +1,7 @@
 import { Platform } from "react-native";
 import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from "react-native-fs";
+import { isPregnancy } from "../../../services/Utils";
 
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
@@ -9,7 +10,10 @@ const config = {
   maxRelatedArticleSize: 3,
   isArticlePinned: "1",
   articleCategory: "4,1,55,56,3,2",
-  articleCategoryIdArray: [376, 386, 391, 396, 401, 406],
+  articleCategoryIdArray: [
+    376, 386, 391, 396, 401, 406, 110676, 110701, 110716, 110726, 110756,
+    110776,
+  ],
   articleCategoryArray: [
     "health_and_wellbeing",
     "nutrition_and_breastfeeding",
@@ -17,6 +21,12 @@ const config = {
     "play_and_learning",
     "responsive_parenting",
     "safety_and_protection",
+    "week_by_week",
+    "staying_healthy",
+    "preparing_for_a_baby",
+    "support_during_pregnancy",
+    "labour_and_birth",
+    "pregnancy_complications",
   ],
   activityCategoryArray: [
     "socio_emotional",
@@ -105,6 +115,32 @@ const config = {
       id: "nutrition_and_breastfeeding",
       image: "ic_artl_nutrition",
     },
+    { name: "weekByWeek", id: "week_by_week", image: "ic_art_week_by_week" },
+    {
+      name: "stayingHealthy",
+      id: "staying_healthy",
+      image: "ic_art_staying_healthy",
+    },
+    {
+      name: "preparingForBaby",
+      id: "preparing_for_a_baby",
+      image: "ic_art_preparing_for_baby",
+    },
+    {
+      name: "supportDuringPregnancy",
+      id: "support_during_pregnancy",
+      image: "ic_art_support_pregnancy",
+    },
+    {
+      name: "labourAndBirth",
+      id: "labour_and_birth",
+      image: "ic_art_labour_birth",
+    },
+    {
+      name: "pregnancyComplication",
+      id: "pregnancy_complications",
+      image: "ic_art_complications",
+    },
   ],
   activityCategoryUniqueNameObj: [
     {
@@ -134,6 +170,26 @@ const config = {
     { name: "parentingCorner", id: 391, image: "ic_artl_parenting" },
     { name: "nutritionAndBreastfeeding", id: 386, image: "ic_artl_nutrition" },
   ],
+  articleCategoryobjPregnancy: [
+    { name: "weekByWeek", id: 110676, image: "ic_art_week_by_week" },
+    { name: "stayingHealthy", id: 110701, image: "ic_art_staying_healthy" },
+    {
+      name: "preparingForBaby",
+      id: 110716,
+      image: "ic_art_preparing_for_baby",
+    },
+    {
+      name: "supportDuringPregnancy",
+      id: 110726,
+      image: "ic_art_support_pregnancy",
+    },
+    { name: "labourAndBirth", id: 110756, image: "ic_art_labour_birth" },
+    {
+      name: "pregnancyComplication",
+      id: 110776,
+      image: "ic_art_complications",
+    },
+  ],
   reviewURL: Platform.select({
     android:
       "https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni",
@@ -145,7 +201,8 @@ const config = {
   girlChildGender: 531,
   weightForHeight: 606,
   heightForAge: 601,
-  pregnancyId: 166191,
+  pregnancyId: 110151,
+  weekByWeekId: 110676,
   languageCode: "en",
   searchMinimumLength: 3,
   today: new Date(),
@@ -198,16 +255,30 @@ const config = {
     switch (apiEndpoint) {
       case config.apiConfig.countryGroups:
         return `${baseUrl}/${config.flavorName}`;
-      // case config.apiConfig.sponsors:
-      //   return `${baseUrl}/${selectedCountry}`;
       case config.apiConfig.taxonomies:
-        return `${baseUrl}/${selectedLang}/all`;
+        return `${baseUrl}/${selectedLang}/all${
+          isPregnancy() ? "?pregnancy=true" : ""
+        }`;
+      case config.apiConfig.articles:
+        console.log(
+          `${baseUrl}/${selectedLang}${isPregnancy() ? "?pregnancy=true" : ""}`
+        );
+        return `${baseUrl}/${selectedLang}${
+          isPregnancy() ? "?pregnancy=true" : ""
+        }`;
+      case config.apiConfig.videoArticles:
+        console.log(
+          `${baseUrl}/${selectedLang}${isPregnancy() ? "?pregnancy=true" : ""}`
+        );
+        return `${baseUrl}/${selectedLang}${
+          isPregnancy() ? "?pregnancy=true" : ""
+        }`;
       case config.apiConfig.checkUpdate:
         return `${baseUrl}/${selectedCountry}`;
       default:
         return `${baseUrl}/${selectedLang}`;
     }
-  },
+  },,
   allApisObject: (isDatetimeReq: any, dateTimeObj: any): any => {
     const allApiObject = [
       // { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
