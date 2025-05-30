@@ -278,7 +278,7 @@ const config = {
       default:
         return `${baseUrl}/${selectedLang}`;
     }
-  },,
+  },
   allApisObject: (isDatetimeReq: any, dateTimeObj: any): any => {
     const allApiObject = [
       // { apiEndpoint: config.apiConfig.sponsors, method: 'get', postdata: {}, saveinDB: false },
