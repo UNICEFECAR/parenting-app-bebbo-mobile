@@ -32,6 +32,8 @@ const Favourites = ({ navigation, route }: Props): any => {
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const backgroundBlue = themeContext?.colors.SECONDARY_COLOR;
   const backgroundBlueTint = themeContext?.colors.SECONDARY_TINTCOLOR;
+  const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
+
   const [profileLoading, setProfileLoading] = React.useState(false);
 
   const [selectedIndex, setSelectedIndex] = React.useState<number>();
@@ -77,7 +79,7 @@ const Favourites = ({ navigation, route }: Props): any => {
         <TabScreenHeader
           title={t("favScreenHeader")}
           headerColor={headerColor}
-          textColor="#FFF"
+          textColor={headerTextColor}
           setProfileLoading={setProfileLoading}
         />
 

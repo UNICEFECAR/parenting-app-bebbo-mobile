@@ -99,7 +99,13 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
   const dispatch = useAppDispatch();
-  const [profileLoading, setProfileLoading] = React.useState(false);
+  const [profileLoading, setProfileLoading] = React.useState(true);
+  const headerColor = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
+  const backgroundColor = themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
+  const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
+  const headerColorBlack = themeContext?.colors.PRIMARY_TEXTCOLOR;
+  const headerTextColor = themeContext?.colors.CHILDDEVELOPMENT_TEXTCOLOR;
   const ChildDevData = useAppSelector((state: any) =>
     state.utilsData.ChildDevData != ""
       ? JSON.parse(state.utilsData.ChildDevData)
@@ -154,15 +160,14 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     useState<any>();
   const [selectedPinnedArticleData, setSelectedPinnedArticleData] = useState();
   const [milestonePercent, setMilestonePercent] = useState(0);
-  const [componentColors, setComponentColors] = useState<any>({});
   const [showNoData, setshowNoData] = useState(false);
   const [listLoading, setListLoading] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const flatListRef = useRef<any>();
   const activityTaxonomyId =
     activeChild?.taxonomyData.prematureTaxonomyId != null &&
-    activeChild?.taxonomyData.prematureTaxonomyId != undefined &&
-    activeChild?.taxonomyData.prematureTaxonomyId != ""
+      activeChild?.taxonomyData.prematureTaxonomyId != undefined &&
+      activeChild?.taxonomyData.prematureTaxonomyId != ""
       ? activeChild?.taxonomyData.prematureTaxonomyId
       : activeChild?.taxonomyData.id;
 
@@ -181,36 +186,12 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       setModalVisible(childDevModalOpened);
     }
   }, [isFocused]);
-  // useFocusEffect(
-  //   React.useCallback(()=>{
-  //      if (netInfo.isConnected) {
-  //        synchronizeEvents(netInfo.isConnected);
-  //      }
-  //      //setModalVisible(childDevModalOpened);
-  //    },[])
-  //  )
-  useEffect(() => {
-    setComponentColors({
-      headerColor: themeContext?.colors.CHILDDEVELOPMENT_COLOR,
-      backgroundColor: themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR,
-      artHeaderColor: themeContext?.colors.ARTICLES_COLOR,
-      artBackgroundColor: themeContext?.colors.ARTICLES_TINTCOLOR,
-      headerColorBlack: themeContext?.colors.PRIMARY_TEXTCOLOR,
-    });
-
-    return (): any => {
-      navigation.setParams({
-        currentSelectedChildId: 0,
-        fromActivitiesScreen: false,
-      });
-    };
-  }, []);
 
   const onPressInfo = (): any => {
     navigation.navigate("DetailsScreen", {
       fromScreen: "ChildDevelopment",
-      headerColor: componentColors?.artHeaderColor,
-      backgroundColor: componentColors?.artBackgroundColor,
+      headerColor: artHeaderColor,
+      backgroundColor: artBackgroundColor,
       detailData: selectedPinnedArticleData,
       currentSelectedChildId: currentSelectedChildId,
     });
@@ -222,38 +203,54 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       offset: 0,
     });
   };
-  const showSelectedBracketData = async (item: any): Promise<any> => {
-    toTop();
-    const eventData = {
-      name: CHILD_DEVELOPMENT_AGEGROUP_SELECTED,
-      params: { age_id: item.id },
-    };
-    logEvent(eventData, netInfo.isConnected);
+  const showSelectedBracketData = React.useCallback(
+    async (item: any): Promise<void> => {
+      toTop();
 
-    setCurrentSelectedChildId(item.id);
-    let filteredData = ChildDevData.filter((x: any) =>
-      x.child_age.includes(item.id)
-    )[0];
-    filteredData = { ...filteredData, name: item.name };
-    setSelectedChildDevData(filteredData);
-    const childData = await userRealmCommon.getFilteredData<ChildEntity>(
-      ChildEntitySchema,
-      'uuid == "' + activeChild.uuid + '"'
-    );
-    const filteredMilestoneData = await MileStonesData.filter((x: any) =>
-      x.child_age.includes(item.id)
-    );
-    childData[0].checkedMilestones.filter((x: any) => {
-      const i = filteredMilestoneData.findIndex((_item: any) => _item.id === x);
-      if (i > -1) {
-        filteredMilestoneData[i]["toggleCheck"] = true;
+      const eventData = {
+        name: CHILD_DEVELOPMENT_AGEGROUP_SELECTED,
+        params: { age_id: item.id },
+      };
+      logEvent(eventData, netInfo.isConnected);
+
+      setCurrentSelectedChildId(item.id);
+
+      let filteredData = ChildDevData.find((x: any) =>
+        x.child_age.includes(item.id)
+      );
+
+      if (filteredData) {
+        filteredData = { ...filteredData, name: item.name };
+        setSelectedChildDevData(filteredData);
       }
-    });
-    setselectedChildMilestoneData(filteredMilestoneData);
-    setTimeout(() => {
-      setshowNoData(true);
-    }, 500);
-  };
+
+      const childData = await userRealmCommon.getFilteredData<ChildEntity>(
+        ChildEntitySchema,
+        `uuid == "${activeChild.uuid}"`
+      );
+
+      const filteredMilestoneData = MileStonesData.filter((x: any) =>
+        x.child_age.includes(item.id)
+      );
+
+      const checkedMilestones = childData?.[0]?.checkedMilestones ?? [];
+
+      checkedMilestones.forEach((x: any) => {
+        const i = filteredMilestoneData.findIndex((_item: any) => _item.id === x);
+        if (i > -1) {
+          filteredMilestoneData[i]["toggleCheck"] = true;
+        }
+      });
+
+      setselectedChildMilestoneData(filteredMilestoneData);
+      setTimeout(() => {
+        setProfileLoading(false)
+        setshowNoData(true);
+      }, 500);
+    },
+    [ChildDevData, MileStonesData, activeChild.uuid, netInfo.isConnected]
+  );
+
   const onBackPress = (): any => {
     if (route.params?.fromNotificationScreen == true) {
       navigation.navigate("NotificationsScreen");
@@ -279,6 +276,10 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     return (): any => {
       navigation.removeListener("gestureEnd", onBackPress);
       backHandler.remove();
+      navigation.setParams({
+        currentSelectedChildId: 0,
+        fromActivitiesScreen: false,
+      });
     };
   }, []);
   useEffect(() => {
@@ -376,6 +377,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
       //const sortednewArray = newArray.sort((x, y) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
 
       setselectedChildMilestoneData([...newArray]);
+      setProfileLoading(false)
     }
   };
   const ContentThatGoesBelowTheFlatList = (): any => {
@@ -419,8 +421,8 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     return (
       <>
         {selectedChildDevData &&
-        Object.keys(selectedChildDevData).length != 0 &&
-        selectedChildDevData != "" ? (
+          Object.keys(selectedChildDevData).length != 0 &&
+          selectedChildDevData != "" ? (
           <Container>
             {Platform.OS == "ios" ? (
               listLoading == true ? (
@@ -439,8 +441,8 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
         ) : null}
         <ArticleHeading>
           {selectedChildDevData &&
-          selectedChildDevData != null &&
-          selectedChildDevData != "" ? (
+            selectedChildDevData != null &&
+            selectedChildDevData != "" ? (
             <>
               <FlexDirRowSpace>
                 <Heading3>{selectedChildDevData?.name} </Heading3>
@@ -476,7 +478,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
             </>
           ) : null}
           {selectedChildMilestoneData &&
-          selectedChildMilestoneData?.length > 0 ? (
+            selectedChildMilestoneData?.length > 0 ? (
             <FDirCol>
               <DevelopmentStatus>
                 <FlexDirRowSpace>
@@ -518,9 +520,9 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                     percent={milestonePercent}
                     radius={35}
                     borderWidth={6}
-                    color={componentColors?.headerColor}
+                    color={headerColor}
                     shadowColor="#fff"
-                    bgColor={componentColors?.backgroundColor}
+                    bgColor={backgroundColor}
                   >
                     <Text style={styles.font18}>
                       {convertDigits(milestonePercent?.toString())}
@@ -544,42 +546,30 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   };
   return (
     <>
-      <View
-        style={[
-          styles.flex1,
-          { backgroundColor: componentColors?.headerColor },
-        ]}
-      >
-        <FocusAwareStatusBar
-          animated={true}
-          backgroundColor={componentColors?.headerColor}
-        />
+      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <TabScreenHeader
           title={t("developScreenheaderTitle")}
-          headerColor={componentColors?.headerColor}
-          textColor="#000"
+          headerColor={headerColor}
+          textColor={headerTextColor}
           setProfileLoading={setProfileLoading}
         />
-        {currentSelectedChildId &&
-        componentColors != null &&
-        currentSelectedChildId != 0 ? (
-          <View style={styles.bgWhite}>
-            <AgeBrackets
-              itemColor={componentColors?.headerColorBlack}
-              activatedItemColor={componentColors?.headerColor}
-              currentSelectedChildId={currentSelectedChildId}
-              showSelectedBracketData={showSelectedBracketData}
-              ItemTintColor={componentColors?.backgroundColor}
-              isActivity
-            />
-          </View>
-        ) : null}
+        <View style={styles.bgWhite}>
+          <AgeBrackets
+            itemColor={headerColorBlack}
+            activatedItemColor={headerColor}
+            currentSelectedChildId={currentSelectedChildId}
+            showSelectedBracketData={showSelectedBracketData}
+            ItemTintColor={backgroundColor}
+            isActivity
+          />
+        </View>
 
-        <FlexCol style={{ backgroundColor: componentColors?.backgroundColor }}>
+        <FlexCol style={{ backgroundColor: backgroundColor }}>
           {showNoData == true &&
-          (Object.keys(selectedChildDevData).length == 0 ||
-            selectedChildDevData == undefined) &&
-          selectedChildMilestoneData?.length == 0 ? (
+            (Object.keys(selectedChildDevData).length == 0 ||
+              selectedChildDevData == undefined) &&
+            selectedChildMilestoneData?.length == 0 ? (
             <Heading4Center>{t("noDataTxt")}</Heading4Center>
           ) : null}
           <View>
@@ -594,11 +584,15 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                   sendMileStoneDatatoParent={sendMileStoneDatatoParent}
                   VideoArticlesData={VideoArticlesData}
                   ActivitiesData={ActivitiesData}
-                  subItemSaperatorColor={componentColors?.headerColor}
+                  subItemSaperatorColor={headerColor}
                   currentSelectedChildId={currentSelectedChildId}
                 />
               )}
               keyExtractor={(item): any => item.id.toString()}
+              initialNumToRender={5}
+              maxToRenderPerBatch={10}
+              windowSize={7}
+              removeClippedSubviews={true}
               nestedScrollEnabled={true}
               ListHeaderComponent={ContentThatGoesAboveTheFlatList}
               ListFooterComponent={ContentThatGoesBelowTheFlatList}
@@ -649,4 +643,4 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   );
 };
 
-export default ChildDevelopment;
+export default React.memo(ChildDevelopment);

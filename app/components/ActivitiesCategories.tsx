@@ -19,6 +19,7 @@ type ActivityCategoriesProps = {
   filterArray?: any;
   fromPage?: any;
   onFilterArrayChange?: any;
+  iconColor?: any;
 };
 const styles = StyleSheet.create({
   filterBoxbg1: {
@@ -110,12 +111,23 @@ const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
                                 style={styles.iconStyle}
                                 name={item.image}
                                 size={20}
-                                color="#000"
+                                color={
+                                  props.filterArray.includes(item.id)
+                                    ? props.iconColor
+                                    : "#000"
+                                }
                               />
                             </OuterIconLeft>
                           </OuterIconRow>
 
-                          <FilterText numberOfLines={2}>
+                          <FilterText
+                            numberOfLines={2}
+                            style={
+                              props.filterArray.includes(item.id) && {
+                                color: props.iconColor,
+                              }
+                            }
+                          >
                             {
                               activityCategoryData?.filter(
                                 (x: any) => x.id == item.id

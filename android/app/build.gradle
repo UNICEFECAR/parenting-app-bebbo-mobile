@@ -252,8 +252,8 @@ android {
             applicationId 'org.unicef.ec.wawamor'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 2
-            versionName "1.0.0"
+            versionCode 6
+            versionName "1.0.2"
             signingConfig signingConfigs.wawamor
         }
         banglastaging {

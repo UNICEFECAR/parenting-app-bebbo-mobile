@@ -11,7 +11,6 @@ import TabScreenHeader from "@components/TabScreenHeader";
 import PreviousVaccines from "@components/vaccination/tabs/PreviousVaccines";
 import UpcomingVaccines from "@components/vaccination/tabs/UpcomingVaccines";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
-import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import {
   Heading2,
@@ -70,12 +69,15 @@ const Vaccination = ({ navigation, route }: Props): any => {
   const headerColor = themeContext?.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext?.colors.VACCINATION_TINTCOLOR;
   const tabBackgroundColor = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const headerTextColor = themeContext?.colors.VACCINATION_TEXTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const [modalVisible, setModalVisible] = React.useState(true);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -154,7 +156,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
   const renderItem = (index: number): any => {
     if (index === 0) {
       return (
-        <View>
+        <View style={{ backgroundColor: backgroundColorList }}>
           {upcomingPeriods.length > 0 && upcomingPeriodsData() == false ? (
             upcomingPeriods.map((item: any, itemindex: any) => {
               return (
@@ -175,7 +177,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
       );
     } else if (index === 1) {
       return (
-        <View>
+        <View style={{ backgroundColor: backgroundColorList }}>
           {previousPeriods.length > 0 && previousPeriodsData() == false ? (
             previousPeriods.map((item: any, itemindex: any) => {
               return (
@@ -213,7 +215,6 @@ const Vaccination = ({ navigation, route }: Props): any => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={(): any => {
-                  setModalVisible(false);
                   setIsModalOpened("IsVaccineModalOpened");
                 }}
               >
@@ -243,7 +244,7 @@ const Vaccination = ({ navigation, route }: Props): any => {
           <TabScreenHeader
             title={t("drawerMenuvcTxt")}
             headerColor={headerColor}
-            textColor="#000"
+            textColor={headerTextColor}
             setProfileLoading={setProfileLoading}
           />
           <ScrollView style={stylesLocal.flex4}>
