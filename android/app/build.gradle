@@ -91,13 +91,17 @@ def reactNativeArchitectures() {
 }
 
 android {
+    buildFeatures {
+        buildConfig true
+    }
+    namespace 'org.unicef.ecar.bebbo'
     flavorDimensions "default"
     ndkVersion rootProject.ext.ndkVersion
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     packagingOptions {
         pickFirst 'lib/*/libfbjni.so'
