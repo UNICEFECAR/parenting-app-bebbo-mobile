@@ -277,24 +277,24 @@ export const onChildSetupApiSuccess = async (
   if (artresp && artresp != null) {
     const artobj = oldErrorObj.find((x: any) => x.apiEndpoint == "articles");
 
-    const state = store.getState();
-    const articleDataall =
-      state.articlesData.article.articles != ""
-        ? JSON.parse(state.articlesData.article.articles)
-        : state.articlesData.article.articles;
+    // const state = store.getState();
+    // const articleDataall =
+    //   state.articlesData.article.articles != ""
+    //     ? JSON.parse(state.articlesData.article.articles)
+    //     : state.articlesData.article.articles;
 
-    const VideoArticlesDataall =
-      state.utilsData.VideoArticlesData != ""
-        ? JSON.parse(state.utilsData.VideoArticlesData)
-        : [];
+    // const VideoArticlesDataall =
+    //   state.utilsData.VideoArticlesData != ""
+    //     ? JSON.parse(state.utilsData.VideoArticlesData)
+    //     : [];
 
-    const ActivitiesDataold =
-      state.utilsData.ActivitiesData != ""
-        ? JSON.parse(state.utilsData.ActivitiesData)
-        : [];
+    // const ActivitiesDataold =
+    //   state.utilsData.ActivitiesData != ""
+    //     ? JSON.parse(state.utilsData.ActivitiesData)
+    //     : [];
 
-    setActivityMiniSearch(ActivitiesDataold, dispatch);
-    setMiniSearch([...articleDataall, ...VideoArticlesDataall], dispatch);
+    // setActivityMiniSearch(ActivitiesDataold, dispatch);
+    // setMiniSearch([...articleDataall, ...VideoArticlesDataall], dispatch);
 
     if (artobj && artobj != null) {
       const storedata = store.getState();
@@ -580,24 +580,24 @@ export const onHomeapiSuccess = async (
       getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
     }
-    const state = storedata;
-    const articleDataall =
-      state.articlesData.article.articles != ""
-        ? JSON.parse(state.articlesData.article.articles)
-        : state.articlesData.article.articles;
+    // const state = storedata;
+    // const articleDataall =
+    //   state.articlesData.article.articles != ""
+    //     ? JSON.parse(state.articlesData.article.articles)
+    //     : state.articlesData.article.articles;
 
-    const VideoArticlesDataall =
-      state.utilsData.VideoArticlesData != ""
-        ? JSON.parse(state.utilsData.VideoArticlesData)
-        : [];
+    // const VideoArticlesDataall =
+    //   state.utilsData.VideoArticlesData != ""
+    //     ? JSON.parse(state.utilsData.VideoArticlesData)
+    //     : [];
 
-    const ActivitiesDataold =
-      state.utilsData.ActivitiesData != ""
-        ? JSON.parse(state.utilsData.ActivitiesData)
-        : [];
+    // const ActivitiesDataold =
+    //   state.utilsData.ActivitiesData != ""
+    //     ? JSON.parse(state.utilsData.ActivitiesData)
+    //     : [];
 
-    setActivityMiniSearch(ActivitiesDataold, dispatch);
-    setMiniSearch([...articleDataall, ...VideoArticlesDataall], dispatch);
+    // setActivityMiniSearch(ActivitiesDataold, dispatch);
+    // setMiniSearch([...articleDataall, ...VideoArticlesDataall], dispatch);
     Alert.alert(
       i18n.t("downloadUpdateSuccessPopupTitle"),
       i18n.t("downloadUpdateSuccessPopupText"),

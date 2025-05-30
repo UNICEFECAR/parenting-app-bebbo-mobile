@@ -235,7 +235,7 @@ export default (): any => {
             tabBarIcon: ({ color, size }: any): any => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),
-            unmountOnBlur: true,
+            unmountOnBlur: false,
             headerShown: false,
           }}
         />
