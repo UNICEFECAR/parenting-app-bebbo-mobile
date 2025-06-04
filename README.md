@@ -14,6 +14,12 @@
 [Bebbo](https://www.bebbo.app) is a multi-platform mobile application available on both [iOS](https://apps.apple.com/us/app/bebbo/id1588918146) and [Android](https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo).
 Discover the most comprehensive parenting and pregnancy app that provides you with all the tools and expert advice you need, all in one app, to support your journey from pregnancy through your child's growth and development from birth to age 6! Personalize this app to access daily toddler games, parenting advice, pregnancy tips, and guidance on taking care of both your child and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child's developmental needs.
 
+For more information on setup and getting started, check out our [guidelines for contributors](./CONTRIBUTING.md)
+
+Steps to setup the [Parent Buddy CMS](https://github.com/UNICEFECAR/parenting-app-bebbo-CMS) application
+
+🔗 For more functional information refer [Wiki](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/wiki).
+
 Bebbo offers:
 
 - Expert advice and parenting articles covering early learning, health, nutrition, caregiving, and safety, tailored to both your questions and your child’s age.
@@ -143,6 +149,9 @@ cd ios && pod install
 2. Configure Firebase services
 
    - Please download [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file from the provided link and paste downloaded debug and release keystore files at **/android/app/src/prodstaging** location inside your project.
+
+🚀 **Creating a New Instance:**  
+To configure and deploy a new instance of the app, refer to the guidelines available in our [link](./readMeNewInstance.md).
 
 ## How to run and generate build
 
