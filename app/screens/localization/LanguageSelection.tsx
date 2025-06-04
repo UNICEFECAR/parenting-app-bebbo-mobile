@@ -4,8 +4,8 @@ import OnboardingContainer from "@components/shared/OnboardingContainer";
 import OnboardingStyle from "@components/shared/OnboardingStyle";
 import { LocalizationStackParamList } from "@navigation/types";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { SelectionView } from "@styles/style";
-import React, { useContext, useEffect, useState } from "react";
+import { SelectionViewLang } from "@styles/style";
+import { useContext, useEffect, useState } from "react";
 import { dataRealmCommon } from "../../database/dbquery/dataRealmCommon";
 import { userRealmCommon } from "../../database/dbquery/userRealmCommon";
 import { receiveAPIFailure } from "../../redux/sagaMiddleware/sagaSlice";
@@ -369,13 +369,13 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
             />
           </Pressable>
 
-          <SelectionView>
+          <SelectionViewLang>
             <FlatList
               data={languages}
               renderItem={renderItem}
               keyExtractor={(item): any => item.languageCode.toString()}
             />
-          </SelectionView>
+          </SelectionViewLang>
 
           <Flex5>
             <ButtonPrimary onPress={(): any => goToConfirmationScreen()}>

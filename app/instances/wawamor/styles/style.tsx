@@ -10,6 +10,10 @@ export const ButtonText = styled.Text`
 export const SelectionView = styled.View`
   flex: 1;
 `;
+export const SelectionViewLang = styled.View`
+  max-height:80%;
+  margin-bottom:10%;
+`;
 export const bgColor1='rgba(0,0,0,0.7)';
 export const bgcolorWhite='white';
 export const bgcolorWhite2='#FAFAFA';
