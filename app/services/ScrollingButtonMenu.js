@@ -63,7 +63,7 @@ class ScrollingButtonMenu extends React.Component {
 
         // Check if `selected` or `index` is missing from `items`
         const isNotInItems = !items.some(item => item.id === selected || item.id === index || item.id == pIndex );
-        if (isNotInItems && items.lenght > 0) {
+        if (isNotInItems) {
             // Update index & execute the function only once
             this.setState({ index: items[0]?.id }, () => {
                 setTimeout(() => {
