@@ -11,6 +11,7 @@ For full setup details, refer to:
 ---
 
 ## Folder Structure
+
 A new instance follows this structure:
 
 ```
@@ -33,16 +34,19 @@ Project-Root/
 ## Step 1: Preparing a New Instance Folder
 
 ### 1.1 Duplicate an Existing Instance
+
 - Copy an existing folder (e.g., `app/instances/babuni`)
 - Rename it to `app/instances/wawamor`
 
 ### 1.2 Modify Instance-Specific Files
+
 - `config/appConfig.ts` → Update API URL, feature flags, settings
 - `styles/theme.ts` → Update brand colors, fonts, UI styles
 - `assets/localization.ts` → Update localized content
 - `firebaseEvents.ts` → Update Firebase event names
 
 ### 1.3 Add Configuration to Project Root
+
 - Add `tsconfig.wawamor.json`
 - Add `env/.env.wawamor`
 
@@ -50,23 +54,26 @@ Project-Root/
 
 ## Step 2: Updating Assets & Localization
 
-| Folder/File            | Purpose |
-|-------------------------|---------|
-| `images/`               | Icons, logos, backgrounds |
-| `locale/`               | Translation files |
-| `offlinecontent/`       | Offline articles, tips, taxonomies |
-| `splash.json`           | Splash animation configuration |
-| `localization.ts`       | Defines app texts |
-| `standardDeviation.json`| Statistical data |
+| Folder/File              | Purpose                            |
+| ------------------------ | ---------------------------------- |
+| `images/`                | Icons, logos, backgrounds          |
+| `locale/`                | Translation files                  |
+| `offlinecontent/`        | Offline articles, tips, taxonomies |
+| `splash.json`            | Splash animation configuration     |
+| `localization.ts`        | Defines app texts                  |
+| `standardDeviation.json` | Statistical data                   |
 
 ### 2.1 Add Images
+
 - Replace logos and icons in `assets/images/`
 
 ### 2.2 Update Localization Files
+
 - Modify `locale/en.ts`, `locale/es.ts`
 - **Important:** Don't rename keys like `aboutBebboDrawerMenu` or `searchInBebboText`
 
 ### 2.3 Update Offline Content
+
 - Update articles, health tips, vaccinations inside `offlinecontent/`
 
 ---
@@ -75,18 +82,18 @@ Project-Root/
 
 Create `env/.env.wawamor` with:
 
-| Variable                 | Description |
-|---------------------------|-------------|
-| `apiUrlDevelop`           | API Base URL (development) |
-| `facebookAppDisplayName`  | Facebook login display name |
-| `facebookAppId`           | Facebook App ID |
-| `facebookClientToken`     | Facebook Client Token |
-| `projectNumber`           | Firebase project number |
-| `clientIdKey`             | Backend auth client key |
-| `webId`                   | Web ID for Firebase |
-| `iosId`                   | iOS App instance ID |
-| `encryptionsKey`          | Encryption key |
-| `encryptionsIVKey`        | Encryption IV key |
+| Variable                 | Description                 |
+| ------------------------ | --------------------------- |
+| `apiUrlDevelop`          | API Base URL (development)  |
+| `facebookAppDisplayName` | Facebook login display name |
+| `facebookAppId`          | Facebook App ID             |
+| `facebookClientToken`    | Facebook Client Token       |
+| `projectNumber`          | Firebase project number     |
+| `clientIdKey`            | Backend auth client key     |
+| `webId`                  | Web ID for Firebase         |
+| `iosId`                  | iOS App instance ID         |
+| `encryptionsKey`         | Encryption key              |
+| `encryptionsIVKey`       | Encryption IV key           |
 
 ---
 
@@ -111,27 +118,116 @@ Create `tsconfig.wawamor.json`:
 ## Step 5: Setting Up iOS Instance
 
 ### 5.1 Add a New Scheme in Xcode
+
 - Open project in Xcode
 - Manage Schemes → Add New Scheme → Name it `Wawamor`
 
 ### 5.2 Add a New Target
+
 - File → New → Target → App
 - Name: `Wawamor`
 - Set signing Team
+  Here's a polished and structured version of your steps, formatted for inclusion in a `README.md` file. This makes it easier for developers to follow the process of creating a **new instance** of the app in Xcode:
+
+### 5.2.1. Duplicate the Target and Scheme
+
+- In **Xcode**, duplicate the existing target (e.g., `ParentBuddyApp`).
+- Duplicate the scheme as well by going to **Product > Scheme > Manage Schemes**, then clicking **Duplicate** on the existing one.
+- Rename the new target and scheme to reflect the new instance (e.g., `NewInstance`).
+
+### 5.2.2. Rename Target Name and Bundle Identifier
+
+- In the **new target settings**, update:
+
+  - **Display Name**
+  - **Bundle Identifier** (e.g., `org.unicef.ecar.newinstance`)
+
+### 5.2.3. Add Target to `Podfile`
+
+- Open your `Podfile`.
+- Add the new target configuration similar to the existing one:
+
+  ```ruby
+  target 'NewInstance' do
+    # Copy pods used in other targets
+    pod 'YourPodsHere'
+  end
+  ```
+
+- Run `pod install` in the `ios/` directory:
+
+  ```sh
+  cd ios
+  pod install
+  ```
+
+### 5.2.4. Edit or Create `Info.plist` for New Target
+
+- After duplicating the target, Xcode may automatically create a new `Info.plist`.
+- If not, create one manually.
+- Edit this `Info.plist` to reflect the new instance details (display name, bundle ID, permissions, etc.).
+
+### 5.2.5. Duplicate and Rename Supporting Files
+
+- In **Finder**, duplicate the following:
+
+  - `InfoPlist_Wawamor` folder → rename to `InfoPlist_NewInstance`
+  - `wawamor.entitlements` → rename to `newinstance.entitlements`
+
+### 5.2.6. Add Localizations for the New Instance
+
+- Select the **ParentBuddyApp** project in Xcode.
+- Navigate to **Project → Info** tab.
+- Under **Localizations**, click the ➕ button and:
+
+  - Add required languages.
+  - In the popup, choose `InfoPlist.strings` as the resource file.
+
+### 5.2.7. Add New Files to the Project
+
+- Right-click on `ParentBuddyApp` in Xcode → **Add Files to "ParentBuddyApp"**:
+
+  - Add `InfoPlist_NewInstance` folder.
+  - Select the target as **NewInstance** and click **Finish**.
+
+- Do the same to add `newinstance.entitlements`:
+
+  - This time **do not select any target**.
+
+### 5.2.8. Update Build Settings
+
+- In the new target:
+
+  - Go to **Build Settings**.
+  - Search for `Info.plist File` and set it to:
+
+    ```plaintext
+    InfoPlist_NewInstance/Info.plist
+    ```
+
+  - Search for `Code Signing Entitlements` and set it to:
+
+    ```plaintext
+    newinstance.entitlements
+    ```
 
 ### 5.3 Update Bundle ID
+
 - New Bundle Identifier: `org.unicef.ec.wawamor`
 
 ### 5.4 Configure Firebase
+
 - Create a Firebase project
 - Download `GoogleService-Info.plist`
 - Add it to Wawamor Target → Copy Bundle Resources
 
 ### 5.5 Add Splash Image
+
 - Create `WawamorSplash` in Assets.xcassets
 - Set correct images for different devices
 
 ### 5.6 Add Localization Strings
+
 - Create `Localizable_Wawamor.strings`
 - Example:
   ```text
@@ -139,12 +235,15 @@ Create `tsconfig.wawamor.json`:
   ```
 
 ### 5.7 Set Display Name
+
 - Update `Bundle Display Name` to `Wawamor` in Build Settings
 
 ### 5.8 Configure Signing
+
 - Set correct Team and signing settings in Wawamor Target
 
 ### 5.9 Update Podfile
+
 - Add Wawamor Target:
   ```ruby
   target 'Wawamor' do
@@ -156,8 +255,10 @@ Create `tsconfig.wawamor.json`:
 ## Step 6: Setting Up Android Instance
 
 ### 6.1 Add Resources
+
 - Copy existing instance (e.g., `android/app/src/bangla`) to `android/app/src/wawamor`
 - Update:
+
   - `res/raw/splash.json`
   - Files in `res/values/`
   - AndroidManifest.xml:
@@ -168,6 +269,7 @@ Create `tsconfig.wawamor.json`:
 - Add `google-services.json` for Firebase
 
 ### 6.2 Generate Keystore
+
 Run:
 
 ```bash
@@ -179,6 +281,7 @@ keytool -genkeypair -v -keystore android/app/wawamor.keystore \
 ### 6.3 Update Gradle Files
 
 - `android/gradle.properties`:
+
   ```properties
   WAWAMOR_STORE_FILE=android/app/wawamor.keystore
   WAWAMOR_STORE_PASSWORD=wawamorstorepass
