@@ -62,18 +62,20 @@ class ScrollingButtonMenu extends React.Component {
         const {index:pIndex} = prevState
 
         // Check if `selected` or `index` is missing from `items`
-        const isNotInItems = !items.some(item => item.id === selected || item.id === index || item.id == pIndex );
-        if (isNotInItems) {
-            // Update index & execute the function only once
-            this.setState({ index: items[0]?.id }, () => {
-                setTimeout(() => {
-                    this._scrollTo();
-                    this.props.onPress(items[0]);
-                }, 0);
-            });
-        }
-        if (selected !== this.state.index && selected !== prevProps.selected) {
-            this.setState({ index: selected }, this._scrollTo);
+        if (items.length > 0) {
+            const isNotInItems = !items.some(item => item.id === selected || item.id === index || item.id == pIndex );
+            if (isNotInItems) {
+                // Update index & execute the function only once
+                this.setState({ index: items[0]?.id }, () => {
+                    setTimeout(() => {
+                        this._scrollTo();
+                        this.props.onPress(items[0]);
+                    }, 0);
+                });
+            }
+            if (selected !== this.state.index && selected !== prevProps.selected) {
+                this.setState({ index: selected }, this._scrollTo);
+            }
         }
     }
     
@@ -118,7 +120,7 @@ class ScrollingButtonMenu extends React.Component {
             },1500)
            
         } else {
-            if(Platform.ios === 'android'){
+            if(Platform.OS === 'android'){
                 setTimeout(() => {
                     const screen1 = screenWidth / 2;
                 const elementOffset = this.dataSourceCords[index];
