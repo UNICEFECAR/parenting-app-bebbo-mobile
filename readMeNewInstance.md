@@ -1,14 +1,8 @@
----
-
 # Bebbo Guide: Setting Up a New Instance
 
 ## Objective
-This guide outlines the steps for adding a new Bebbo instance.  
-For full setup details, refer to:
-- **BEBBO APP ADMIN MANUAL FOR NEW APP.docx**
-- **Bebbo project README** (for local setup)
 
----
+This guide outlines the steps for adding a new Bebbo instance.
 
 ## Folder Structure
 
