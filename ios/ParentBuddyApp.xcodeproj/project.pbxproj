@@ -14,6 +14,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		15F7B6DB5D7F147123177E3E /* libPods-ParentBuddyApp-ParentBuddyAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 432A8A94F0C66930E1F7016A /* libPods-ParentBuddyApp-ParentBuddyAppTests.a */; };
+		1BBE80BEC95F2696D6709A67 /* libPods-ParentBuddyApp-MerhabaBebek.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE515A9152F90250B4C7DB /* libPods-ParentBuddyApp-MerhabaBebek.a */; };
 		2077C61FCCA3A2BD8E3C11FD /* libPods-ParentBuddyApp-ParentBuddyAppDev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC23B934048ED268F478279 /* libPods-ParentBuddyApp-ParentBuddyAppDev.a */; };
 		24BEB418EBAF998964A425BE /* libPods-ParentBuddyApp-ParentBuddyAppXkDev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB6340EB3791CC48248F25E /* libPods-ParentBuddyApp-ParentBuddyAppXkDev.a */; };
 		2A0F6AC26C074BD7B3F138D1 /* roboto-bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = EFAF5542772A48CE96BF36C4 /* roboto-bold.woff2 */; };
@@ -83,7 +84,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9178C28A1235BC1C60657F13 /* libPods-ParentBuddyApp-ParentBuddyAppBangla.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4041DA35A2D998F15E52EC08 /* libPods-ParentBuddyApp-ParentBuddyAppBangla.a */; };
 		95929EC4E4AB423DC31D2D1A /* libPods-ParentBuddyApp-Wawamor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E9FA6FAFAD2E055446832C /* libPods-ParentBuddyApp-Wawamor.a */; };
-		9B9BDC0EA7223784234C8E9C /* libPods-ParentBuddyApp-MerhabaBebek.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 950BE927D97C2F4C66927464 /* libPods-ParentBuddyApp-MerhabaBebek.a */; };
+		9B9BDC0EA7223784234C8E9C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		9DF386A602734BDD8FBC7002 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = AF645B11569440C0AF006D46 /* roboto-bold.woff */; };
 		B74DB5666A5A7FDE4B72BE7A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DE663E62B63ED982F5A3E26F /* PrivacyInfo.xcprivacy */; };
 		BF838CA027A42D8000CC12B9 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
@@ -140,6 +141,28 @@
 		C2B224109B97464BA2BE7AA6 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */; };
 		CB0A670D0C3C06A7B511C25A /* libPods-ParentBuddyApp-ParentBuddyAppBanglaDev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1253F56D682F6F72C0F73F4E /* libPods-ParentBuddyApp-ParentBuddyAppBanglaDev.a */; };
 		CE9E89C826F089CC0093EF36 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
+		D6D22D382DED9A7700B93593 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6D22D362DED9A7700B93593 /* InfoPlist.strings */; };
+		D6ED01832DED79B600808FF9 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
+		D6ED01842DED79B600808FF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		D6ED01852DED79B600808FF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		D6ED01872DED79B600808FF9 /* liblottie-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F46DDC2C09E64B002B7E99 /* liblottie-ios.a */; };
+		D6ED01882DED79B600808FF9 /* liblottie-react-native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F46DDE2C09E64B002B7E99 /* liblottie-react-native.a */; };
+		D6ED01892DED79B600808FF9 /* libreact-native-lottie-splash-screen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F46DE02C09E64C002B7E99 /* libreact-native-lottie-splash-screen.a */; };
+		D6ED018D2DED79B600808FF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		D6ED01902DED79B600808FF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		D6ED01912DED79B600808FF9 /* roboto-bold.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EEE70F0FA9C4C97B81D5F41 /* roboto-bold.svg */; };
+		D6ED01932DED79B600808FF9 /* roboto-regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = CF5A89EF45F5475AB99FA3D3 /* roboto-regular.svg */; };
+		D6ED01942DED79B600808FF9 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */; };
+		D6ED01952DED79B600808FF9 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = AF645B11569440C0AF006D46 /* roboto-bold.woff */; };
+		D6ED01962DED79B600808FF9 /* roboto-bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = EFAF5542772A48CE96BF36C4 /* roboto-bold.woff2 */; };
+		D6ED01972DED79B600808FF9 /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DCFCF254384121AFD15232 /* roboto-regular.ttf */; };
+		D6ED01982DED79B600808FF9 /* roboto-regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = ABE444F221AB4FE5BDD5591C /* roboto-regular.woff */; };
+		D6ED01992DED79B600808FF9 /* roboto-regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 7E381652FDB746499AC00012 /* roboto-regular.woff2 */; };
+		D6ED019A2DED79B600808FF9 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BF9D735C2805928300181FC5 /* Config.xcconfig */; };
+		D6ED019B2DED79B600808FF9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 56756C72E32A202C418A14B3 /* PrivacyInfo.xcprivacy */; };
+		D6F859B52DED953200E96695 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6F859B22DED952200E96695 /* README.md */; };
+		D6F859B62DED957000E96695 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6F859B32DED952200E96695 /* splash.json */; };
+		D6F859BB2DED965700E96695 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F859BA2DED965700E96695 /* GoogleService-Info.plist */; };
 		DE7635C5CF362E8E064B3418 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6225EB08BAA2431B1B2EDB0A /* PrivacyInfo.xcprivacy */; };
 		E81D244D2D19685F009BE118 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
 		E81D244E2D19685F009BE118 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -189,6 +212,7 @@
 		E8DAC0392CB51D7A0066A83D /* liblottie-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DAC0382CB51D7A0066A83D /* liblottie-ios.a */; };
 		E8DAC03B2CB51D7A0066A83D /* liblottie-react-native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DAC03A2CB51D7A0066A83D /* liblottie-react-native.a */; };
 		E8DAC03D2CB51D7A0066A83D /* libreact-native-lottie-splash-screen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DAC03C2CB51D7A0066A83D /* libreact-native-lottie-splash-screen.a */; };
+		EB910195AC89F1C50FACFB03 /* libPods-ParentBuddyApp-ReraiUmtwana.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40110740D968FCFA2C1A7D87 /* libPods-ParentBuddyApp-ReraiUmtwana.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +274,7 @@
 		32F46DE42C09E653002B7E99 /* liblottie-react-native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "liblottie-react-native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F46DE62C09E653002B7E99 /* libreact-native-lottie-splash-screen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-lottie-splash-screen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC22CD75A115B5126CC38E3 /* Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.debug.xcconfig"; sourceTree = "<group>"; };
+		40110740D968FCFA2C1A7D87 /* libPods-ParentBuddyApp-ReraiUmtwana.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-ReraiUmtwana.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4041DA35A2D998F15E52EC08 /* libPods-ParentBuddyApp-ParentBuddyAppBangla.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-ParentBuddyAppBangla.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CBC1510C15E78878242D76 /* Pods-ParentBuddyApp-ParentBuddyAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppTests/Pods-ParentBuddyApp-ParentBuddyAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		432A8A94F0C66930E1F7016A /* libPods-ParentBuddyApp-ParentBuddyAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-ParentBuddyAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,8 +285,10 @@
 		5EEE70F0FA9C4C97B81D5F41 /* roboto-bold.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-bold.svg"; path = "../app/assets/fonts/roboto/roboto-bold.svg"; sourceTree = "<group>"; };
 		6225EB08BAA2431B1B2EDB0A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = ParentBuddyApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		66F5C120575269C834535D10 /* Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppXk/Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig"; sourceTree = "<group>"; };
+		688627E59CFA620A338FC3E4 /* Pods-ParentBuddyApp-ReraiUmtwana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ReraiUmtwana.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ReraiUmtwana/Pods-ParentBuddyApp-ReraiUmtwana.debug.xcconfig"; sourceTree = "<group>"; };
 		6B221A4371B7C453676738B7 /* Pods-ParentBuddyApp-ParentBuddyAppXk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppXk.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppXk/Pods-ParentBuddyApp-ParentBuddyAppXk.release.xcconfig"; sourceTree = "<group>"; };
 		7AF4BE74ED1D72BD8170FB94 /* Pods-ParentBuddyApp-ParentBuddyAppXkDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppXkDev.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppXkDev/Pods-ParentBuddyApp-ParentBuddyAppXkDev.release.xcconfig"; sourceTree = "<group>"; };
+		7CBE515A9152F90250B4C7DB /* libPods-ParentBuddyApp-MerhabaBebek.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-MerhabaBebek.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E381652FDB746499AC00012 /* roboto-regular.woff2 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-regular.woff2"; path = "../app/assets/fonts/roboto/roboto-regular.woff2"; sourceTree = "<group>"; };
 		7F3FA55DDD4B230687E799E4 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = ParentBuddyApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		80231925A54DA177647D73FB /* Pods-ParentBuddyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp/Pods-ParentBuddyApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -271,7 +298,6 @@
 		84B6EA52B214BF2EE9B66834 /* Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppDev/Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig"; sourceTree = "<group>"; };
 		877B29A9ADE0D020B576C6CE /* Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBangla/Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig"; sourceTree = "<group>"; };
 		8E2E0B22C78C20B95241AC39 /* libPods-ParentBuddyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		950BE927D97C2F4C66927464 /* libPods-ParentBuddyApp-MerhabaBebek.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-MerhabaBebek.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E9FA6FAFAD2E055446832C /* libPods-ParentBuddyApp-Wawamor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-Wawamor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B065AFF904D23419F5E25C /* Pods-ParentBuddyApp-ParentBuddyAppBangla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppBangla.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBangla/Pods-ParentBuddyApp-ParentBuddyAppBangla.debug.xcconfig"; sourceTree = "<group>"; };
 		ABE444F221AB4FE5BDD5591C /* roboto-regular.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-regular.woff"; path = "../app/assets/fonts/roboto/roboto-regular.woff"; sourceTree = "<group>"; };
@@ -311,7 +337,16 @@
 		CE9E89C626F089CC0093EF36 /* ParentBuddyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParentBuddyApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE9E89C726F089CC0093EF36 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		CF5A89EF45F5475AB99FA3D3 /* roboto-regular.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-regular.svg"; path = "../app/assets/fonts/roboto/roboto-regular.svg"; sourceTree = "<group>"; };
+		D6201C322DF0148700A08691 /* sn-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sn-ZW"; path = "sn-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D6201C332DF0148800A08691 /* nd-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nd-ZW"; path = "nd-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D6201C342DF0148C00A08691 /* en-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-ZW"; path = "en-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D643D98F2DED8ABA002E4885 /* ReraiUmtwana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReraiUmtwana.entitlements; sourceTree = "<group>"; };
 		D6C147772DBA0DDB008A9E76 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D6ED01A32DED79B600808FF9 /* ReraiUmtwana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReraiUmtwana.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F859B22DED952200E96695 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D6F859B32DED952200E96695 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		D6F859B72DED958400E96695 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D6F859BA2DED965700E96695 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DDB6340EB3791CC48248F25E /* libPods-ParentBuddyApp-ParentBuddyAppXkDev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-ParentBuddyAppXkDev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE663E62B63ED982F5A3E26F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = ParentBuddyApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E81D246C2D19685F009BE118 /* MerhabaBebek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MerhabaBebek.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,6 +376,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EFAF5542772A48CE96BF36C4 /* roboto-bold.woff2 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-bold.woff2"; path = "../app/assets/fonts/roboto/roboto-bold.woff2"; sourceTree = "<group>"; };
+		F5904449DDC7940C95BD7C98 /* Pods-ParentBuddyApp-ReraiUmtwana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ReraiUmtwana.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ReraiUmtwana/Pods-ParentBuddyApp-ReraiUmtwana.release.xcconfig"; sourceTree = "<group>"; };
 		FBC23B934048ED268F478279 /* libPods-ParentBuddyApp-ParentBuddyAppDev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-ParentBuddyAppDev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEF2DAEB1A16A5EBE86CD496 /* Pods-ParentBuddyApp-MerhabaBebek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-MerhabaBebek.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-MerhabaBebek/Pods-ParentBuddyApp-MerhabaBebek.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -434,6 +470,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6ED01862DED79B600808FF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6ED01872DED79B600808FF9 /* liblottie-ios.a in Frameworks */,
+				D6ED01882DED79B600808FF9 /* liblottie-react-native.a in Frameworks */,
+				D6ED01892DED79B600808FF9 /* libreact-native-lottie-splash-screen.a in Frameworks */,
+				EB910195AC89F1C50FACFB03 /* libPods-ParentBuddyApp-ReraiUmtwana.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E81D24502D19685F009BE118 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -441,7 +488,8 @@
 				E81D24512D19685F009BE118 /* liblottie-ios.a in Frameworks */,
 				E81D24522D19685F009BE118 /* liblottie-react-native.a in Frameworks */,
 				E81D24532D19685F009BE118 /* libreact-native-lottie-splash-screen.a in Frameworks */,
-				9B9BDC0EA7223784234C8E9C /* libPods-ParentBuddyApp-MerhabaBebek.a in Frameworks */,
+				9B9BDC0EA7223784234C8E9C /* (null) in Frameworks */,
+				1BBE80BEC95F2696D6709A67 /* libPods-ParentBuddyApp-MerhabaBebek.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +527,8 @@
 		13B07FAE1A68108700A75B9A /* ParentBuddyApp */ = {
 			isa = PBXGroup;
 			children = (
+				D6D22D282DED980200B93593 /* InfoPlist_ReraiUmtwana */,
+				D643D98F2DED8ABA002E4885 /* ReraiUmtwana.entitlements */,
 				E85CEBF12DB7B13D0067988D /* ParentBuddyAppDev.entitlements */,
 				E88A31892D6C8FDD009E2F96 /* InfoPlist_Wawamor */,
 				E865079E2D439ED80040298D /* MerhabaBebek.entitlements */,
@@ -528,6 +578,8 @@
 				FEF2DAEB1A16A5EBE86CD496 /* Pods-ParentBuddyApp-MerhabaBebek.release.xcconfig */,
 				1C0547500CC476682563D09E /* Pods-ParentBuddyApp-Wawamor.debug.xcconfig */,
 				1F1A320CFBCF5A7A90A33FBA /* Pods-ParentBuddyApp-Wawamor.release.xcconfig */,
+				688627E59CFA620A338FC3E4 /* Pods-ParentBuddyApp-ReraiUmtwana.debug.xcconfig */,
+				F5904449DDC7940C95BD7C98 /* Pods-ParentBuddyApp-ReraiUmtwana.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -559,9 +611,10 @@
 				DDB6340EB3791CC48248F25E /* libPods-ParentBuddyApp-ParentBuddyAppXkDev.a */,
 				C412D7F456CCD424A4D2595E /* libPods-ParentBuddyApp-ParentBuddyAppXk.a */,
 				1253F56D682F6F72C0F73F4E /* libPods-ParentBuddyApp-ParentBuddyAppBanglaDev.a */,
-				950BE927D97C2F4C66927464 /* libPods-ParentBuddyApp-MerhabaBebek.a */,
 				4041DA35A2D998F15E52EC08 /* libPods-ParentBuddyApp-ParentBuddyAppBangla.a */,
 				98E9FA6FAFAD2E055446832C /* libPods-ParentBuddyApp-Wawamor.a */,
+				40110740D968FCFA2C1A7D87 /* libPods-ParentBuddyApp-ReraiUmtwana.a */,
+				7CBE515A9152F90250B4C7DB /* libPods-ParentBuddyApp-MerhabaBebek.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -619,6 +672,7 @@
 		32EB84382C12DD3200B8A367 /* LottieSplash */ = {
 			isa = PBXGroup;
 			children = (
+				D6F859B42DED952200E96695 /* ReraiUmtwana */,
 				E88A31B52D6F3C4E009E2F96 /* Wawamor */,
 				E86B42BB2D26C50B002350FC /* Foleja */,
 				E86B42B62D26C4E2002350FC /* Xk */,
@@ -690,6 +744,7 @@
 				3205C0C42C11DC6F002309EA /* Babuni.app */,
 				E81D246C2D19685F009BE118 /* MerhabaBebek.app */,
 				E88A31832D6C8A4A009E2F96 /* Wawamor.app */,
+				D6ED01A32DED79B600808FF9 /* ReraiUmtwana.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -697,6 +752,7 @@
 		BF838CBD27A42E7400CC12B9 /* GoogleServices */ = {
 			isa = PBXGroup;
 			children = (
+				D6F859B82DED958400E96695 /* ReraiUmtwana */,
 				E88A31942D6C985B009E2F96 /* Wawamor */,
 				E8D23C182D1963A000ABC8C5 /* MerhabaBebek */,
 				320313662C12152C00907AF2 /* Bangla */,
@@ -755,6 +811,32 @@
 				BF838D3327A8091300CC12B9 /* GoogleService-Info.plist */,
 			);
 			path = XkDevelopment;
+			sourceTree = "<group>";
+		};
+		D6D22D282DED980200B93593 /* InfoPlist_ReraiUmtwana */ = {
+			isa = PBXGroup;
+			children = (
+				D6D22D362DED9A7700B93593 /* InfoPlist.strings */,
+			);
+			path = InfoPlist_ReraiUmtwana;
+			sourceTree = "<group>";
+		};
+		D6F859B42DED952200E96695 /* ReraiUmtwana */ = {
+			isa = PBXGroup;
+			children = (
+				D6F859B22DED952200E96695 /* README.md */,
+				D6F859B32DED952200E96695 /* splash.json */,
+			);
+			path = ReraiUmtwana;
+			sourceTree = "<group>";
+		};
+		D6F859B82DED958400E96695 /* ReraiUmtwana */ = {
+			isa = PBXGroup;
+			children = (
+				D6F859BA2DED965700E96695 /* GoogleService-Info.plist */,
+				D6F859B72DED958400E96695 /* README.md */,
+			);
+			path = ReraiUmtwana;
 			sourceTree = "<group>";
 		};
 		E81D24702D19754C009BE118 /* MerhabaBebek */ = {
@@ -1020,6 +1102,29 @@
 			productReference = BF838D3127A8082C00CC12B9 /* Foleja.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D6ED017F2DED79B600808FF9 /* ReraiUmtwana */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6ED01A02DED79B600808FF9 /* Build configuration list for PBXNativeTarget "ReraiUmtwana" */;
+			buildPhases = (
+				D6ED01802DED79B600808FF9 /* [CP] Check Pods Manifest.lock */,
+				D6ED01812DED79B600808FF9 /* Start Packager */,
+				D6ED01822DED79B600808FF9 /* Sources */,
+				D6ED01862DED79B600808FF9 /* Frameworks */,
+				D6ED018B2DED79B600808FF9 /* Resources */,
+				D6ED019C2DED79B600808FF9 /* Bundle React Native code and images */,
+				D6ED019D2DED79B600808FF9 /* [CP] Embed Pods Frameworks */,
+				D6ED019E2DED79B600808FF9 /* [CP] Copy Pods Resources */,
+				D6ED019F2DED79B600808FF9 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReraiUmtwana;
+			productName = ParentBuddyApp;
+			productReference = D6ED01A32DED79B600808FF9 /* ReraiUmtwana.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E81D24492D19685F009BE118 /* MerhabaBebek */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E81D24692D19685F009BE118 /* Build configuration list for PBXNativeTarget "MerhabaBebek" */;
@@ -1113,6 +1218,10 @@
 						DevelopmentTeam = 93BCKGKLMZ;
 						ProvisioningStyle = Manual;
 					};
+					D6ED017F2DED79B600808FF9 = {
+						DevelopmentTeam = K288UMKCNF;
+						ProvisioningStyle = Automatic;
+					};
 					E81D24492D19685F009BE118 = {
 						DevelopmentTeam = K288UMKCNF;
 						ProvisioningStyle = Automatic;
@@ -1143,13 +1252,18 @@
 				"ru-BY",
 				"ru-RU",
 				"sr-Latn-ME",
-				Base,
 				"sr-Latn-XK",
 				"sq-XK",
 				uk,
 				tr,
 				"bn-BD",
 				sk,
+				Base,
+				"en-rZW",
+				"nd-rZW",
+				"sn-ZW",
+				"nd-ZW",
+				"en-ZW",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1167,6 +1281,7 @@
 				3205C0A32C11DC6F002309EA /* ParentBuddyAppBanglaDev */,
 				E81D24492D19685F009BE118 /* MerhabaBebek */,
 				E88A315F2D6C8A4A009E2F96 /* Wawamor */,
+				D6ED017F2DED79B600808FF9 /* ReraiUmtwana */,
 			);
 		};
 /* End PBXProject section */
@@ -1321,6 +1436,29 @@
 				BF838D2A27A8082B00CC12B9 /* roboto-regular.woff2 in Resources */,
 				BF9D73602805928300181FC5 /* Config.xcconfig in Resources */,
 				B74DB5666A5A7FDE4B72BE7A /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6ED018B2DED79B600808FF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6F859B62DED957000E96695 /* splash.json in Resources */,
+				D6D22D382DED9A7700B93593 /* InfoPlist.strings in Resources */,
+				D6ED018D2DED79B600808FF9 /* Images.xcassets in Resources */,
+				D6ED01902DED79B600808FF9 /* LaunchScreen.storyboard in Resources */,
+				D6ED01912DED79B600808FF9 /* roboto-bold.svg in Resources */,
+				D6F859B52DED953200E96695 /* README.md in Resources */,
+				D6ED01932DED79B600808FF9 /* roboto-regular.svg in Resources */,
+				D6ED01942DED79B600808FF9 /* roboto-bold.ttf in Resources */,
+				D6ED01952DED79B600808FF9 /* roboto-bold.woff in Resources */,
+				D6F859BB2DED965700E96695 /* GoogleService-Info.plist in Resources */,
+				D6ED01962DED79B600808FF9 /* roboto-bold.woff2 in Resources */,
+				D6ED01972DED79B600808FF9 /* roboto-regular.ttf in Resources */,
+				D6ED01982DED79B600808FF9 /* roboto-regular.woff in Resources */,
+				D6ED01992DED79B600808FF9 /* roboto-regular.woff2 in Resources */,
+				D6ED019A2DED79B600808FF9 /* Config.xcconfig in Resources */,
+				D6ED019B2DED79B600808FF9 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2541,6 +2679,202 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppXkDev/Pods-ParentBuddyApp-ParentBuddyAppXkDev-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D6ED01802DED79B600808FF9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ParentBuddyApp-ReraiUmtwana-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6ED01812DED79B600808FF9 /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D6ED019C2DED79B600808FF9 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n../node_modules/react-native-vector-image/strip_svgs.sh\n";
+		};
+		D6ED019D2DED79B600808FF9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmtwana/Pods-ParentBuddyApp-ReraiUmtwana-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBAEMKit/FBAEMKit.framework/FBAEMKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework/FBSDKCoreKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics.framework/FBSDKCoreKit_Basics",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKGamingServicesKit/FBSDKGamingServicesKit.framework/FBSDKGamingServicesKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework/FBSDKLoginKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKShareKit/FBSDKShareKit.framework/FBSDKShareKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBAEMKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit_Basics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKGamingServicesKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmtwana/Pods-ParentBuddyApp-ReraiUmtwana-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6ED019E2DED79B600808FF9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmtwana/Pods-ParentBuddyApp-ReraiUmtwana-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore/FirebaseCore_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreExtension/FirebaseCoreExtension_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreInternal/FirebaseCoreInternal_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInstallations/FirebaseInstallations_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport/GoogleDataTransport_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift/Promises_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/AppAuth/AppAuthCore_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCrashlytics/FirebaseCrashlytics_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseMessaging/FirebaseMessaging_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher_Core_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleSignIn/GoogleSignIn.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/fontello.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RealmJS/RealmJS.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseCore_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseCoreExtension_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseCoreInternal_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseInstallations_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleDataTransport_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleUtilities_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FBLPromises_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Promises_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nanopb_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppAuthCore_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseCrashlytics_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseMessaging_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMSessionFetcher_Core_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome6_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome6_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome6_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fontello.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RealmJS.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmtwana/Pods-ParentBuddyApp-ReraiUmtwana-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6ED019F2DED79B600808FF9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export FLAVOR=merhabaBebek # Or dynamically pass it via the script\n";
+		};
 		DB7628BD11B9A0CC3FCF692F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3133,6 +3467,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6ED01822DED79B600808FF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6ED01832DED79B600808FF9 /* Dynamic.swift in Sources */,
+				D6ED01842DED79B600808FF9 /* AppDelegate.m in Sources */,
+				D6ED01852DED79B600808FF9 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E81D244C2D19685F009BE118 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3198,6 +3542,16 @@
 			children = (
 				BF838CEB27A441FC00CC12B9 /* sr-Latn-XK */,
 				BF838CEC27A4423D00CC12B9 /* sq-XK */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D6D22D362DED9A7700B93593 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D6201C322DF0148700A08691 /* sn-ZW */,
+				D6201C332DF0148800A08691 /* nd-ZW */,
+				D6201C342DF0148C00A08691 /* en-ZW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3950,10 +4304,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -4016,10 +4367,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -4484,6 +4832,161 @@
 			};
 			name = Release;
 		};
+		D6ED01A12DED79B600808FF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 688627E59CFA620A338FC3E4 /* Pods-ParentBuddyApp-ReraiUmtwana.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ReraiUmtwana.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = K288UMKCNF;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AppAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaAsyncSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
+					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCoreDiagnostics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCrashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstallations\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Glog\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-PeerTalk\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-RSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/FlipperKit\"",
+					"\"${PODS_ROOT}/Headers/Public/GCDWebServer\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMAppAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleDataTransport\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/Permission-Camera\"",
+					"\"${PODS_ROOT}/Headers/Public/Permission-PhotoLibrary\"",
+					"\"${PODS_ROOT}/Headers/Public/Permission-PhotoLibraryAddOnly\"",
+					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/RCT-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
+					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
+					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
+					"\"${PODS_ROOT}/Headers/Public/RNDateTimePicker\"",
+					"\"${PODS_ROOT}/Headers/Public/RNFBAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/RNFBApp\"",
+					"\"${PODS_ROOT}/Headers/Public/RNFBCrashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
+					"\"${PODS_ROOT}/Headers/Public/RNFastImage\"",
+					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
+					"\"${PODS_ROOT}/Headers/Public/RNGoogleSignin\"",
+					"\"${PODS_ROOT}/Headers/Public/RNImageCropPicker\"",
+					"\"${PODS_ROOT}/Headers/Public/RNLocalize\"",
+					"\"${PODS_ROOT}/Headers/Public/RNPermissions\"",
+					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
+					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
+					"\"${PODS_ROOT}/Headers/Public/RNVectorIcons\"",
+					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
+					"\"${PODS_ROOT}/Headers/Public/React-callinvoker\"",
+					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
+					"\"${PODS_ROOT}/Headers/Public/React-perflogger\"",
+					"\"${PODS_ROOT}/Headers/Public/React-runtimeexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImageWebPCoder\"",
+					"\"${PODS_ROOT}/Headers/Public/TOCropViewController\"",
+					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
+					"\"${PODS_ROOT}/Headers/Public/YogaKit\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/libevent\"",
+					"\"${PODS_ROOT}/Headers/Public/libwebp\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-lottie-splash-screen\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-netinfo\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-orientation-locker\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-webview\"",
+					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/realm-js-ios/Headers\"",
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include\"",
+					"\"$(PODS_ROOT)/boost-for-react-native\"",
+					"\"$(PODS_ROOT)/boost-for-react-native\"",
+					"\"$(PODS_ROOT)/glog\"",
+					"\"$(PODS_ROOT)/RCT-Folly\"",
+					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
+					"\"$(PODS_TARGET_SRCROOT)/include/\"",
+				);
+				INFOPLIST_FILE = "ReraiUmtwana-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rerai Umtwan";
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.zw.reraiumtwana;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		D6ED01A22DED79B600808FF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5904449DDC7940C95BD7C98 /* Pods-ParentBuddyApp-ReraiUmtwana.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ReraiUmtwana.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = K288UMKCNF;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
+				INFOPLIST_FILE = "ReraiUmtwana-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rerai Umtwan";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.zw.reraiumtwana;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
 		E81D246A2D19685F009BE118 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 435D8830AB2699E92C976288 /* Pods-ParentBuddyApp-MerhabaBebek.debug.xcconfig */;
@@ -4883,6 +5386,15 @@
 			buildConfigurations = (
 				BF838D2F27A8082B00CC12B9 /* Debug */,
 				BF838D3027A8082B00CC12B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6ED01A02DED79B600808FF9 /* Build configuration list for PBXNativeTarget "ReraiUmtwana" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6ED01A12DED79B600808FF9 /* Debug */,
+				D6ED01A22DED79B600808FF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

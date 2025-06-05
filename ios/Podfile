@@ -129,6 +129,9 @@ target 'ParentBuddyApp' do
   target 'Wawamor' do
     shared_pods
   end
+  target 'ReraiUmtwana' do
+    shared_pods
+  end
   # post_install do |installer|
   #   flipper_post_install(installer)
   # end

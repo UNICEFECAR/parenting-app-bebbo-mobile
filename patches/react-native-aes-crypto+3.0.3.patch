@@ -1,18 +1,12 @@
-diff --git a/node_modules/react-native-aes-crypto/ios/RCTAes/lib/AesCrypt.m b/node_modules/react-native-aes-crypto/ios/RCTAes/lib/AesCrypt.m
-index 45375cb..39b4eca 100755
---- a/node_modules/react-native-aes-crypto/ios/RCTAes/lib/AesCrypt.m
-+++ b/node_modules/react-native-aes-crypto/ios/RCTAes/lib/AesCrypt.m
-@@ -205,7 +205,12 @@ + (NSString *) decrypt: (NSString *)cipherText key: (NSString *)key iv: (NSStrin
-     }
-     else{
-         NSData *result = [self AESCBC:@"decrypt" data:[[NSData alloc] initWithBase64EncodedString:cipherText options:0] key:key iv:iv algorithm:algorithm];
--        return [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
-+        NSString * newRes = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
-+        if(newRes != nil){
-+            return [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
-+        }else{
-+            return [[NSString alloc] initWithData:result encoding:NSASCIIStringEncoding];
-+        }
-     }
- }
+diff --git a/node_modules/react-native-aes-crypto/android/build.gradle b/node_modules/react-native-aes-crypto/android/build.gradle
+index 9bfe598..3d1ada3 100644
+--- a/node_modules/react-native-aes-crypto/android/build.gradle
++++ b/node_modules/react-native-aes-crypto/android/build.gradle
+@@ -31,6 +31,7 @@ def DEFAULT_MIN_SDK_VERSION = 16
+ def DEFAULT_TARGET_SDK_VERSION = 28
  
+ android {
++    namespace 'com.tectiv3.aes'
+     compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
+     buildToolsVersion safeExtGet('buildToolsVersion', DEFAULT_BUILD_TOOLS_VERSION)
+     defaultConfig {
