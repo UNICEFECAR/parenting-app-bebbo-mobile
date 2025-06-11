@@ -90,7 +90,16 @@ const migrationsutils = {
         articleCategoryArray: [],
         activityCategoryArray: [],
       }
-    };
+    }
+    
+  },
+  4: (state: any): any => {
+    console.log('[state change]', state)
+    return {
+      ...state,
+      appVersion: state.appVersion ?? ""
+    }
+    
   }
   //   console.log("..state.vaccineData..",typeof state.vaccineData)
   //   const categories=(typeof state.vaccineData == 'string') ? JSON.parse(state.vaccineData):null
