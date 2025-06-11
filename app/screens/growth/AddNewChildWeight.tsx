@@ -63,6 +63,7 @@ const AddNewChildWeight = ({ navigation, route }: Props): any => {
   const [weight1, setweight1] = useState<any>(0.0);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     const obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
@@ -123,7 +124,6 @@ const AddNewChildWeight = ({ navigation, route }: Props): any => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={(): any => {
-                  setModalVisible(false);
                   setIsModalOpened("IsWeightModalOpened");
                 }}
               >

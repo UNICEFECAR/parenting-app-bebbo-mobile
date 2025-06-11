@@ -75,6 +75,7 @@ const Notifications = (): any => {
   const [isLoading, setIsLoading] = useState(true);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const themeContext = useContext(ThemeContext);
+  const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
   const primaryColor = themeContext?.colors.PRIMARY_COLOR;
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
@@ -474,6 +475,10 @@ const Notifications = (): any => {
     setIsDeleteEnabled(!isDeleteEnabled);
     setCheckedNotifications([]);
   };
+  const headerTitleTextColor = () => ({
+    ...styles.headerTitleTextColor,
+    color: headerTextColor,
+  });
   return (
     <>
       <View style={[styles.flex1, { backgroundColor: primaryColor }]}>
@@ -487,10 +492,10 @@ const Notifications = (): any => {
               },
             ]}
           >
-            <BurgerIcon />
+            <BurgerIcon color={headerTextColor} />
 
             <HeaderTitleView style={styles.flex2}>
-              <Heading2w style={styles.headerTitleTextColor}>
+              <Heading2w style={headerTitleTextColor()}>
                 {t("notiScreenheaderTitle")}
               </Heading2w>
             </HeaderTitleView>
@@ -501,7 +506,11 @@ const Notifications = (): any => {
                 <Pressable
                   onPress={(): any => navigation.navigate("SettingsScreen")}
                 >
-                  <Icon name={"ic_sb_settings"} size={22} color="#FFF" />
+                  <Icon
+                    name={"ic_sb_settings"}
+                    size={22}
+                    color={headerTextColor}
+                  />
                 </Pressable>
               </OuterIconSpace>
               {isFutureDate(activeChild?.birthDate) ||
@@ -513,12 +522,15 @@ const Notifications = (): any => {
                       setCheckedNotifications([]);
                     }}
                   >
-                    <Icon name={"ic_trash"} size={20} color="#FFF" />
+                    <Icon name={"ic_trash"} size={20} color={headerTextColor} />
                   </Pressable>
                 </OuterIconSpace>
               )}
             </OuterIconRow>
-            <HeaderBabyMenu setProfileLoading={setProfileLoading} />
+            <HeaderBabyMenu
+              setProfileLoading={setProfileLoading}
+              color={headerTextColor}
+            />
           </HeaderRowView>
           {isFutureDate(activeChild?.birthDate) ? (
             <Heading4Center style={styles.marginTop10}>

@@ -4,7 +4,7 @@ import FocusAwareStatusBar from "@components/FocusAwareStatusBar";
 import {
   ActivityBox,
   ArticleHeading,
-  ArticleListContainer,
+  ArticleListBox,
   ArticleListContent,
   MainActivityBox,
   SearchBox,
@@ -31,7 +31,7 @@ import {
   ShiftFromTopBottom5,
   SideSpacing10,
 } from "@styles/typography";
-import React, { useContext, useMemo, useState, useEffect } from "react";
+import React, { useContext, useMemo, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -39,20 +39,22 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Modal,
-  NativeEventEmitter,
-  NativeModules,
   Platform,
   Pressable,
   SectionList,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
+  InteractionManager,
+  ActivityIndicator,
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../../App";
-import { setInfoModalOpened } from "../../../redux/reducers/utilsSlice";
+import {
+  resetActivitiesSearchIndex,
+  setActivitiesSearchIndex,
+  setInfoModalOpened,
+} from "../../../redux/reducers/utilsSlice";
 import LoadableImage from "../../../services/LoadableImage";
 import {
   ACTIVITY_SEARCHED,
@@ -72,7 +74,12 @@ import {
   ChildEntitySchema,
 } from "../../../database/schema/ChildDataSchema";
 import FastImage from "react-native-fast-image";
-import { isPregnancy, randomArrayShuffle } from "../../../services/Utils";
+import {
+  cleanAndOptimizeHtmlText,
+  randomArrayShuffle,
+  miniSearchConfigActivity,
+} from "../../../services/Utils";
+import Realm from "realm";
 import { activitiesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import {
@@ -163,11 +170,13 @@ const Activities = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   let sectionListRef: any;
+  let searchIndex = useRef(null);
   const themeContext = useContext(ThemeContext);
   const [profileLoading, setProfileLoading] = React.useState(false);
   const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
-  const headerColorBlack = themeContext?.colors.PRIMARY_TEXTCOLOR;
+  const headerColorBlack = themeContext?.colors.ACTIVITIES_TEXTCOLOR;
+  const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const fromPage = "Activities";
   const childAge = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != ""
@@ -190,6 +199,12 @@ const Activities = ({ route, navigation }: any): any => {
       ? JSON.parse(state.utilsData.ActivitiesData)
       : []
   );
+  const activitySearchIndex = useAppSelector(
+    (state: any) => state.utilsData.activitiesSearchIndex
+  );
+  // const isActivitiesSearchIndex = useAppSelector(
+  //   (state: any) => state.utilsData.isActivitiesSearchIndex
+  // );
   // const miniSearchIndexedData = useAppSelector(
   //   (state: any) => state.searchIndex.searchActivityIndex
   // );
@@ -205,8 +220,8 @@ const Activities = ({ route, navigation }: any): any => {
   );
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId != null &&
-    activeChild?.taxonomyData?.prematureTaxonomyId != undefined &&
-    activeChild?.taxonomyData?.prematureTaxonomyId != ""
+      activeChild?.taxonomyData?.prematureTaxonomyId != undefined &&
+      activeChild?.taxonomyData?.prematureTaxonomyId != ""
       ? activeChild?.taxonomyData?.prematureTaxonomyId
       : activeChild?.taxonomyData.id;
   const favoritegames = useAppSelector(
@@ -222,7 +237,6 @@ const Activities = ({ route, navigation }: any): any => {
   const [queryText, searchQueryText] = useState("");
   const [historyVisible, setHistoryVisible] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
-  const [isCurrentChildSelected, setCurrentChildSelected] = useState(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] =
@@ -230,21 +244,19 @@ const Activities = ({ route, navigation }: any): any => {
   const [suggestedGames, setsuggestedGames] = useState([]);
   const [otherGames, setotherGames] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingSection, setLoadingSection] = useState<boolean>(true);
   const [filteredData, setfilteredData] = useState([]);
-  const [selectedAgeBracket, setSelectedAgeBracket] = useState<any>();
   const [keyboardStatus, setKeyboardStatus] = useState<any>();
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [childMilestonedata, setchildMilestonedata] = useState([]);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
-  const { NativeModule } = NativeModules;
-
   const setIsModalOpened = async (varkey: any): Promise<any> => {
+    setModalVisible(false);
     if (modalVisible == true) {
       const obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
-      setModalVisible(false);
     }
   };
   const getSearchedKeywords = async (): Promise<any> => {
@@ -258,18 +270,6 @@ const Activities = ({ route, navigation }: any): any => {
       setSearchHistory(unsynchronizedEvents);
     }
   };
-
-  useFocusEffect(
-    React.useCallback(() => {
-      console.log("is child premature", activeChild.isPremature);
-      // whatever
-      if (netInfo.isConnected) {
-        synchronizeEvents(netInfo.isConnected);
-      }
-      getSearchedKeywords();
-      setModalVisible(activityModalOpened);
-    }, [activityModalOpened])
-  );
 
   const toTop = (): any => {
     // use current
@@ -304,7 +304,7 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.search(keyword);
+              const results = searchIndex.current.search(keyword);
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -327,7 +327,7 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.search(queryText);
+            const results = searchIndex.current.search(queryText);
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               setSelectedCategoryId(itemId);
@@ -372,7 +372,7 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.search(keyword);
+              const results = searchIndex.current.search(keyword);
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -391,7 +391,7 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.search(queryText);
+            const results = searchIndex.current.search(queryText);
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               filteredResults = results.filter((x: any) =>
@@ -426,27 +426,49 @@ const Activities = ({ route, navigation }: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      const task = InteractionManager.runAfterInteractions(() => {
+        console.log("is child premature", activeChild.isPremature);
+        if (netInfo.isConnected) {
+          synchronizeEvents(netInfo.isConnected);
+        }
+        getSearchedKeywords();
+        setModalVisible(activityModalOpened);
+      });
+
+      return () => {
+        task.cancel();
+      };
+    }, [activityModalOpened])
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      let showSubscription: any;
+      let hideSubscription: any;
+
+      // const task = InteractionManager.runAfterInteractions(() => {
+      showSubscription = Keyboard.addListener("keyboardDidShow", () => {
         setKeyboardStatus(true);
       });
-      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
         setKeyboardStatus(false);
       });
-      return (): any => {
-        {
-          navigation.setParams({ categoryArray: [] });
-          showSubscription.remove();
-          hideSubscription.remove();
-          // route.params?.currentSelectedChildId = 0;
-        }
+      // });
+
+      return () => {
+        navigation.setParams({ categoryArray: [] });
+        showSubscription?.remove();
+        hideSubscription?.remove();
+        // task.cancel();
       };
     }, [])
   );
+
   useFocusEffect(
     React.useCallback(() => {
-      if (isSerachedQueryText || queryText == "") {
-        //setLoading(true);
-        async function fetchData(): Promise<any> {
+      // const task = InteractionManager.runAfterInteractions(() => {
+      if (isSerachedQueryText || queryText === "") {
+        const fetchData = async (): Promise<void> => {
           console.log("route category data", route.params?.categoryArray);
           if (route.params?.categoryArray) {
             setFilterArray(route.params?.categoryArray);
@@ -456,15 +478,20 @@ const Activities = ({ route, navigation }: any): any => {
             setFilterArray([]);
             setFilteredActivityData([]);
           }
-        }
+        };
+
         setIsSearchedQueryText(false);
-        if (route.params?.backClicked != "yes") {
+        if (route.params?.backClicked !== "yes") {
           fetchData();
         } else {
           setLoading(false);
         }
       }
-      //  }
+      // });
+
+      return () => {
+        // task.cancel();
+      };
     }, [
       selectedChildActivitiesData,
       route.params?.categoryArray,
@@ -487,7 +514,6 @@ const Activities = ({ route, navigation }: any): any => {
         x.child_age.includes(item.id)
       );
       setSelectedChildActivitiesData(filteredData);
-      setCurrentChildSelected(false);
     }
     //  else {
     //   setCurrentSelectedChildId(0);
@@ -498,15 +524,16 @@ const Activities = ({ route, navigation }: any): any => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      if (route.params?.backClicked != "yes") {
+      // const task = InteractionManager.runAfterInteractions(() => {
+      if (route.params?.backClicked !== "yes") {
         setshowNoData(false);
         if (
           route.params?.currentSelectedChildId &&
-          route.params?.currentSelectedChildId != 0
+          route.params?.currentSelectedChildId !== 0
         ) {
           console.log("if route params 0", route.params);
           const firstChildDevData = childAge.filter(
-            (x: any) => x.id == route.params?.currentSelectedChildId
+            (x: any) => x.id === route.params?.currentSelectedChildId
           );
           showSelectedBracketData(firstChildDevData[0]);
         } else {
@@ -515,18 +542,22 @@ const Activities = ({ route, navigation }: any): any => {
             route.params,
             activityTaxonomyId
           );
-
           const firstChildDevData = childAge.filter(
-            (x: any) => x.id == activityTaxonomyId
+            (x: any) => x.id === activityTaxonomyId
           );
           showSelectedBracketData(firstChildDevData[0]);
         }
       } else {
         setLoading(false);
-        if (route.params?.backClicked == "yes") {
+        if (route.params?.backClicked === "yes") {
           navigation.setParams({ backClicked: "no" });
         }
       }
+      // });
+
+      return () => {
+        // task.cancel();
+      };
     }, [
       activeChild?.uuid,
       languageCode,
@@ -534,50 +565,59 @@ const Activities = ({ route, navigation }: any): any => {
       activityTaxonomyId,
     ])
   );
+
   useFocusEffect(
     React.useCallback(() => {
-      const fetchData = async (): Promise<any> => {
-        const filterQuery = 'uuid == "' + activeChild?.uuid + '"';
+      // const task = InteractionManager.runAfterInteractions(() => {
+      const fetchData = async (): Promise<void> => {
+        const filterQuery = `uuid == "${activeChild?.uuid}"`;
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(
           ChildEntitySchema,
           filterQuery
         );
-        setchildMilestonedata(childData[0].checkedMilestones);
+        setchildMilestonedata(childData[0]?.checkedMilestones ?? []);
       };
       fetchData();
-      return (): any => {
+      // });
+
+      return () => {
+        // task.cancel();
         console.log("unmount activity", route.params);
-
         navigation.setParams({ backClicked: "no" });
-
         navigation.setParams({ currentSelectedChildId: 0 });
-
         navigation.setParams({ categoryArray: [] });
       };
-    }, [])
+    }, [activeChild?.uuid])
   );
 
   useFocusEffect(
     React.useCallback(() => {
+      // const task = InteractionManager.runAfterInteractions(() => {
       setsuggestedGames(
         filteredData.filter(
           (x: any) =>
             x.related_milestone.length > 0 &&
             childMilestonedata.findIndex(
-              (y: any) => y == x.related_milestone[0]
-            ) == -1
+              (y: any) => y === x.related_milestone[0]
+            ) === -1
         )
       );
+
       setotherGames(
         filteredData.filter(
           (x: any) =>
-            x.related_milestone.length == 0 ||
+            x.related_milestone.length === 0 ||
             (x.related_milestone.length > 0 &&
               childMilestonedata.findIndex(
-                (y: any) => y == x.related_milestone[0]
+                (y: any) => y === x.related_milestone[0]
               ) > -1)
         )
       );
+      // });
+      setLoadingSection(false)
+      return () => {
+        // task.cancel();
+      };
     }, [filteredData, childMilestonedata])
   );
 
@@ -611,7 +651,7 @@ const Activities = ({ route, navigation }: any): any => {
   };
   const SuggestedActivities = ({ item, section, index }: any): any => {
     let milestonedatadetail: any = [];
-    if (section == 1) {
+    if (section.id == 1) {
       const relatedmilestoneid =
         item.related_milestone.length > 0 ? item.related_milestone[0] : 0;
       milestonedatadetail = MileStonesData.filter(
@@ -619,7 +659,7 @@ const Activities = ({ route, navigation }: any): any => {
       );
     }
     return (
-      <ArticleListContainer>
+      <ArticleListBox>
         <Pressable
           onPress={(): any => {
             goToActivityDetail(item);
@@ -643,11 +683,11 @@ const Activities = ({ route, navigation }: any): any => {
               </Heading6Bold>
             </ShiftFromTopBottom5>
             <Heading3>{item.title}</Heading3>
-            {section == 1 &&
-            milestonedatadetail.length > 0 &&
-            childMilestonedata.findIndex(
-              (x: any) => x == milestonedatadetail[0]?.id
-            ) == -1 ? (
+            {section.id == 1 &&
+              milestonedatadetail.length > 0 &&
+              childMilestonedata.findIndex(
+                (x: any) => x == milestonedatadetail[0]?.id
+              ) == -1 ? (
               <MainActivityBox>
                 <ActivityBox>
                   <Flex4>
@@ -686,7 +726,7 @@ const Activities = ({ route, navigation }: any): any => {
             isAdvice={false}
           />
         </Pressable>
-      </ArticleListContainer>
+      </ArticleListBox>
     );
   };
 
@@ -735,98 +775,52 @@ const Activities = ({ route, navigation }: any): any => {
       </ArticleHeading>
     );
   });
-  const [searchIndex, setSearchIndex] = useState<any>(null);
-  const suffixes = (term: any, minLength: any): any => {
-    if (term === null) {
-      return [];
-    }
-    const tokens = [];
-    for (let i = 0; i <= term.length - minLength; i++) {
+  const suffixCache = new Map<string, string[]>();
+  const suffixes = (
+    term: string,
+    minLength: number,
+    maxSuffixes = 5
+  ): string[] => {
+    if (suffixCache.has(term)) return suffixCache.get(term)!;
+
+    const tokens: string[] = [];
+    const maxStart = Math.min(term.length - minLength, maxSuffixes - 1);
+
+    for (let i = 0; i <= maxStart; i++) {
       tokens.push(term.slice(i));
     }
+
+    suffixCache.set(term, tokens);
+    // console.log("--------", tokens);
     return tokens;
   };
+
   const preprocessActivities = (activities: any): any => {
     return activities.map((activity: any) => ({
       ...activity,
       normalizedTitle: activity.title,
       normalizedSummary: activity.summary,
-      normalizedBody: activity.body,
+      normalizedBody: cleanAndOptimizeHtmlText(activity.body),
     }));
   };
+  // console.log()
   //add minisearch on active child article data
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
         const processedActivities = preprocessActivities(ActivitiesData);
-        const searchActivittiesData = new MiniSearch({
-          processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
-          // tokenize: (text) => {
-          //   const words = text.toLowerCase().split(/\s+/);
-          //   const ngrams = [];
-          //   for (let i = 0; i < words.length - 1; i++) {
-          //     ngrams.push(`${words[i]} ${words[i + 1]}`); // Create bigrams
-          //   }
-          //   return [...words, ...ngrams]; // Return both single words and bigrams
-          // },
-          extractField: (document, fieldName): any => {
-            const arrFields = fieldName.split(".");
-            if (arrFields.length === 2) {
-              return (document[arrFields[0]] || [])
-                .map((arrField: any) => arrField[arrFields[1]] || "")
-                .join(" ");
-            } else if (arrFields.length === 3) {
-              const tmparr = (document[arrFields[0]] || []).flatMap(
-                (arrField: any) => arrField[arrFields[1]] || []
-              );
-              return tmparr.map((s: any) => s[arrFields[2]] || "").join(" ");
-            }
-            return fieldName
-              .split(".")
-              .reduce((doc, key) => doc && doc[key], document);
-          },
-          searchOptions: {
-            boost: { title: 2, summary: 1.5, body: 1 },
-            bm25: { k: 1.0, b: 0.7, d: 0.5 },
-            fuzzy: true,
-            // prefix true means it will contain "foo" then search for "foobar"
-            prefix: true,
-            weights: {
-              fuzzy: 0.6,
-              prefix: 0.6,
-            },
-          },
-          fields: ["title", "summary", "body"],
-          storeFields: [
-            "id",
-            "type",
-            "title",
-            "created_at",
-            "updated_at",
-            "summary",
-            "body",
-            "activity_category",
-            "equipment",
-            "type_of_support",
-            "child_age",
-            "cover_image",
-            "related_milestone",
-            "mandatory",
-            "embedded_images",
-          ],
-        });
-        //processedActivities.forEach((item: any) => searchActivittiesData.add(item));
+        const searchActivittiesData = new MiniSearch(miniSearchConfigActivity);
         searchActivittiesData.addAllAsync(processedActivities);
-        setSearchIndex(searchActivittiesData);
+        searchIndex.current = searchActivittiesData;
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
     }
+    // const task = InteractionManager.runAfterInteractions(() => {
     initializeSearchIndex();
+    // });
+    // return () => task.cancel();
   }, []);
-  // useEffect(() => {
-  //   console.log('Minisearch is for geames', miniSearchIndexedData)
-  // })
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
@@ -858,7 +852,7 @@ const Activities = ({ route, navigation }: any): any => {
         //   return results;
         // });
         // const resultsArrays = await Promise.all(resultsPromises);
-        const results = searchIndex.search(queryText);
+        const results = searchIndex.current.search(queryText);
         const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
@@ -879,7 +873,7 @@ const Activities = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results = searchIndex.search(queryText);
+        const results = searchIndex.current.search(queryText);
         let filteredResults: any = null;
         console.log("selectedCategoryId length", selectedCategoryId);
         if (selectedCategoryId.length > 0) {
@@ -955,10 +949,15 @@ const Activities = ({ route, navigation }: any): any => {
       </View>
     </Pressable>
   );
+  const containerView = (color: any) => ({
+    ...styles.containerView,
+    backgroundColor: color,
+  });
+
   return (
     <>
       <OverlayLoadingComponent loading={loading} />
-      <View style={styles.containerView}>
+      <View style={containerView(backgroundColorList)}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           keyboardVerticalOffset={Platform.OS === "android" ? -200 : 0}
@@ -969,7 +968,7 @@ const Activities = ({ route, navigation }: any): any => {
           <TabScreenHeader
             title={t("actScreenheaderTitle")}
             headerColor={headerColor}
-            textColor="#000"
+            textColor={headerColorBlack}
             setProfileLoading={setProfileLoading}
           />
           <FlexCol>
@@ -1067,49 +1066,56 @@ const Activities = ({ route, navigation }: any): any => {
                     filterOnCategory={setFilteredActivityData}
                     fromPage={fromPage}
                     filterArray={filterArray}
+                    iconColor={headerColorBlack}
                     onFilterArrayChange={onFilterArrayChange}
                   />
-                  <DividerAct></DividerAct>
+                  {/* <DividerAct></DividerAct> */}
                 </View>
               </View>
             </OutsidePressHandler>
 
             <FlexCol>
               {showNoData == true &&
-              suggestedGames?.length == 0 &&
-              otherGames?.length == 0 ? (
+                suggestedGames?.length == 0 &&
+                otherGames?.length == 0 ? (
                 <Heading4Center>{t("noDataTxt")}</Heading4Center>
               ) : null}
-
-              <SectionList
-                sections={DATA}
-                // ref={flatListRef}
-                ref={(ref: any): any => (sectionListRef = ref)}
-                keyExtractor={(item: any, index: any): any =>
-                  String(item?.id) + String(index)
-                }
-                stickySectionHeadersEnabled={false}
-                onScroll={(e: any) => {
-                  if (keyboardStatus == true) {
-                    Keyboard.dismiss();
+              {loadingSection ? (
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                  <ActivityIndicator size="large" color="#000" style={{}} />
+                </View>
+              ) :
+                <SectionList
+                  sections={DATA}
+                  // ref={flatListRef}
+                  ref={(ref: any): any => (sectionListRef = ref)}
+                  keyExtractor={(item: any, index: any): any =>
+                    String(item?.id) + String(index)
                   }
-                }}
-                // initialNumToRender={4}
-                // renderItem={({ item, title }) => <Item item={item} title={title}/>}
-                removeClippedSubviews={true} // Unmount components when outside of window
-                initialNumToRender={4} // Reduce initial render amount
-                maxToRenderPerBatch={4} // Reduce number in each render batch
-                updateCellsBatchingPeriod={100} // Increase time between renders
-                windowSize={7} // Reduce the window size
-                // renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
-                renderItem={memoizedValue}
-                renderSectionHeader={({ section }): any =>
-                  section.data.length > 0 ? (
-                    <HeadingComponent section={section} />
-                  ) : // <Text style={styles.header}>{section.title}</Text>
-                  null
-                }
-              />
+                  contentContainerStyle={{ backgroundColor: backgroundColorList }}
+                  stickySectionHeadersEnabled={false}
+                  onScroll={(e: any) => {
+                    if (keyboardStatus == true) {
+                      Keyboard.dismiss();
+                    }
+                  }}
+                  // initialNumToRender={4}
+                  // renderItem={({ item, title }) => <Item item={item} title={title}/>}
+                  removeClippedSubviews={true} // Unmount components when outside of window
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                  // renderItem={({ item, section, index }) => <SuggestedActivities item={item} section={section.id} index={index} />}
+                  renderItem={memoizedValue}
+                  renderSectionHeader={({ section }): any =>
+                    section.data.length > 0 ? (
+                      <HeadingComponent section={section} />
+                    ) : // <Text style={styles.header}>{section.title}</Text>
+                      null
+                  }
+                />
+              }
             </FlexCol>
           </FlexCol>
           <FirstTimeModal
@@ -1155,4 +1161,4 @@ const Activities = ({ route, navigation }: any): any => {
   );
 };
 
-export default Activities;
+export default React.memo(Activities);

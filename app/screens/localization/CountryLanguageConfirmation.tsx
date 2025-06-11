@@ -36,6 +36,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import {
   Heading2Centerw,
   Heading3,
+  Heading3Centerr,
   Heading3Regular,
   Heading4Centerr,
   ShiftFromTop25,
@@ -70,6 +71,8 @@ import "moment/locale/sq";
 import "moment/locale/sr";
 import "moment/locale/tr";
 import { getLanguageCode } from "../../services/Utils";
+import { OfflineBar } from "@components/shared/HomeScreenStyle";
+import useNetInfoHook from "../../customHooks/useNetInfoHook";
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "Terms"
@@ -89,6 +92,7 @@ const styles = StyleSheet.create({
 const CountryLanguageConfirmation = ({ route }: Props): any => {
   const { country, language } = route.params;
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfoHook();
   const [countryData, setCountryData] = useState<any>();
   const [sponsorsData, setSponsorsData] = useState<any>();
   const [newLanguage, setNewLanguage] = useState<any>();
@@ -494,7 +498,11 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           backgroundColor={headerColor}
           key={newLanguage}
         />
-
+        {netInfo && netInfo.isConnected == false ? (
+          <OfflineBar>
+            <Heading3Centerr>{t("noInternet")}</Heading3Centerr>
+          </OfflineBar>
+        ) : null}
         <OnboardingContainer>
           <OnboardingConfirmationHead>
             <Text style={styles.welcomeText}>{t("welcomeText")}</Text>
@@ -508,6 +516,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
           <LocalizationContainer>
             <LocalizationRow>
               <LocalizationCol
+                disabled={allCountries.length === 0}
                 onPress={(): any =>
                   navigation.navigate("CountrySelection", {
                     country: countryData,
@@ -524,6 +533,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
               </LocalizationCol>
 
               <LocalizationWithoutBorderCol
+                disabled={allCountries.length === 0}
                 onPress={() =>
                   popAndPush(navigation, "LanguageSelection", {
                     country: countryData,
@@ -550,7 +560,10 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
               <LocalizationAction></LocalizationAction>
             </LocalizationRow>
             <ShiftFromTop25>
-              <ButtonWithBorder onPress={onEditLang}>
+              <ButtonWithBorder
+                disabled={allCountries.length === 0}
+                onPress={onEditLang}
+              >
                 <OuterIconRow>
                   <OuterIconLeft>
                     <IconML
@@ -565,7 +578,10 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
             </ShiftFromTop25>
 
             <Flex1>
-              <ButtonPrimary onPress={(): any => saveSelection()}>
+              <ButtonPrimary
+                disabled={allCountries.length === 0}
+                onPress={(): any => saveSelection()}
+              >
                 <ButtonUpperCaseText numberOfLines={2}>
                   {t("continueCountryLang")}
                 </ButtonUpperCaseText>

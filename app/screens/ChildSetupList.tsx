@@ -289,7 +289,6 @@ const ChildSetupList = ({ navigation }: Props): any => {
       params: { child_count: childList?.length },
     };
     logEvent(eventData, netInfo.isConnected);
-
     navigation.reset({
       index: 0,
       routes: [
