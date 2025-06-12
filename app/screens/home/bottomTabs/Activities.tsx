@@ -51,8 +51,6 @@ import {
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../../App";
 import {
-  resetActivitiesSearchIndex,
-  setActivitiesSearchIndex,
   setInfoModalOpened,
 } from "../../../redux/reducers/utilsSlice";
 import LoadableImage from "../../../services/LoadableImage";
@@ -75,7 +73,6 @@ import {
 } from "../../../database/schema/ChildDataSchema";
 import FastImage from "react-native-fast-image";
 import {
-  cleanAndOptimizeHtmlText,
   randomArrayShuffle,
   miniSearchConfigActivity,
 } from "../../../services/Utils";
@@ -91,7 +88,7 @@ import MiniSearch from "minisearch";
 import { ActivityHistoryEntity } from "../../../database/schema/ActivitySearchHistorySchema";
 import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
-import { appConfig } from "../../../instances";
+
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -199,15 +196,6 @@ const Activities = ({ route, navigation }: any): any => {
       ? JSON.parse(state.utilsData.ActivitiesData)
       : []
   );
-  const activitySearchIndex = useAppSelector(
-    (state: any) => state.utilsData.activitiesSearchIndex
-  );
-  // const isActivitiesSearchIndex = useAppSelector(
-  //   (state: any) => state.utilsData.isActivitiesSearchIndex
-  // );
-  // const miniSearchIndexedData = useAppSelector(
-  //   (state: any) => state.searchIndex.searchActivityIndex
-  // );
   const ActivitiesData = randomArrayShuffle(ActivitiesDataold);
   const activityCategoryData = useAppSelector(
     (state: any) =>
@@ -795,20 +783,12 @@ const Activities = ({ route, navigation }: any): any => {
     return tokens;
   };
 
-  const preprocessActivities = (activities: any): any => {
-    return activities.map((activity: any) => ({
-      ...activity,
-      normalizedTitle: activity.title,
-      normalizedSummary: activity.summary,
-      normalizedBody: cleanAndOptimizeHtmlText(activity.body),
-    }));
-  };
   // console.log()
   //add minisearch on active child article data
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
-        const processedActivities = preprocessActivities(ActivitiesData);
+        const processedActivities = ActivitiesData;
         const searchActivittiesData = new MiniSearch(miniSearchConfigActivity);
         searchActivittiesData.addAllAsync(processedActivities);
         searchIndex.current = searchActivittiesData;
