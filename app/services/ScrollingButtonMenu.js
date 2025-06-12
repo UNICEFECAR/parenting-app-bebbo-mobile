@@ -117,7 +117,7 @@ class ScrollingButtonMenu extends React.Component {
                 this.scroll?.scrollTo({ y: 0, x, animated: true });
                 this.setState({ scrollindex: index, scrollindexarrow: index });
             }
-            },1500)
+            },0)
            
         } else {
             if(Platform.OS === 'android'){
@@ -128,7 +128,7 @@ class ScrollingButtonMenu extends React.Component {
                     const x = elementOffset.x - (screen1 - (elementOffset.width / 2));
                     this.scroll?.scrollTo({ y: 0, x, animated: true });
                 }
-                },1500)
+                },0)
             }            
         }
     }
