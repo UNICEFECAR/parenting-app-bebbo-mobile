@@ -292,7 +292,22 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.current.search(keyword);
+              const results2 = searchIndex.current.search(keyword);
+              const results = results2.slice().sort((a:any, b:any) => {
+                const aMatch = [a.title, a.body, a.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+                const bMatch = [b.title, b.body, b.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+              
+                // If a matches and b doesn't → a comes first
+                if (aMatch && !bMatch) return -1;
+                if (!aMatch && bMatch) return 1;
+              
+                // If both match or neither → maintain original order
+                return 0;
+              });
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -315,7 +330,22 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.current.search(queryText);
+            const results2 = searchIndex.current.search(queryText);
+            const results = results2.slice().sort((a:any, b:any) => {
+              const aMatch = [a.title, a.body, a.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+              const bMatch = [b.title, b.body, b.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+            
+              // If a matches and b doesn't → a comes first
+              if (aMatch && !bMatch) return -1;
+              if (!aMatch && bMatch) return 1;
+            
+              // If both match or neither → maintain original order
+              return 0;
+            });
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               setSelectedCategoryId(itemId);
@@ -360,7 +390,22 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.current.search(keyword);
+              const results2 = searchIndex.current.search(keyword);
+              const results = results2.slice().sort((a:any, b:any) => {
+                const aMatch = [a.title, a.body, a.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+                const bMatch = [b.title, b.body, b.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+              
+                // If a matches and b doesn't → a comes first
+                if (aMatch && !bMatch) return -1;
+                if (!aMatch && bMatch) return 1;
+              
+                // If both match or neither → maintain original order
+                return 0;
+              });
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -379,7 +424,22 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.current.search(queryText);
+            const results2 = searchIndex.current.search(queryText);
+            const results = results2.slice().sort((a:any, b:any) => {
+              const aMatch = [a.title, a.body, a.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+              const bMatch = [b.title, b.body, b.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+            
+              // If a matches and b doesn't → a comes first
+              if (aMatch && !bMatch) return -1;
+              if (!aMatch && bMatch) return 1;
+            
+              // If both match or neither → maintain original order
+              return 0;
+            });
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               filteredResults = results.filter((x: any) =>
@@ -827,12 +887,22 @@ const Activities = ({ route, navigation }: any): any => {
         .split(" ")
         .filter((word: any) => word.trim() !== "");
       if (keywords.length > 1) {
-        // const resultsPromises = keywords.map(async (keyword: any) => {
-        //   const results = searchIndex.search(keyword);
-        //   return results;
-        // });
-        // const resultsArrays = await Promise.all(resultsPromises);
-        const results = searchIndex.current.search(queryText);
+        const results2 = searchIndex.current.search(queryText);
+        const results = results2.slice().sort((a:any, b:any) => {
+          const aMatch = [a.title, a.body, a.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+          const bMatch = [b.title, b.body, b.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+        
+          // If a matches and b doesn't → a comes first
+          if (aMatch && !bMatch) return -1;
+          if (!aMatch && bMatch) return 1;
+        
+          // If both match or neither → maintain original order
+          return 0;
+        });
         const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
@@ -853,7 +923,22 @@ const Activities = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results = searchIndex.current.search(queryText);
+        const results2 = searchIndex.current.search(queryText);
+        const results = results2.slice().sort((a:any, b:any) => {
+          const aMatch = [a.title, a.body, a.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+          const bMatch = [b.title, b.body, b.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+        
+          // If a matches and b doesn't → a comes first
+          if (aMatch && !bMatch) return -1;
+          if (!aMatch && bMatch) return 1;
+        
+          // If both match or neither → maintain original order
+          return 0;
+        });
         let filteredResults: any = null;
         console.log("selectedCategoryId length", selectedCategoryId);
         if (selectedCategoryId.length > 0) {
