@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface ArticleDataType {
   article: {
     articles: string;
-    isSearchIndex: boolean;
-    searchIndex: any;
   };
   dailyDataCategory: any;
   showedDailyDataCategory: any;
@@ -11,8 +9,6 @@ interface ArticleDataType {
 const initialState: ArticleDataType = {
   article: {
     articles: "",
-    isSearchIndex: true,
-    searchIndex: null,
   },
   dailyDataCategory: {},
   showedDailyDataCategory: {},
@@ -32,13 +28,6 @@ export const articlesSlice = createSlice({
     setShowedDailyDataCategory: (state, action: PayloadAction<any>): any => {
       state.showedDailyDataCategory = action.payload;
     },
-    setArticleSearchIndex: (state, action: PayloadAction<any>): any => {
-      console.log("[Index]", action);
-      state.article.searchIndex = action.payload;
-    },
-    resetSearchIndex: (state, action: PayloadAction<any>): any => {
-      state.article.isSearchIndex = action.payload;
-    },
   },
 });
 
@@ -46,8 +35,6 @@ export const {
   setAllArticleData,
   setDailyArticleGamesCategory,
   setShowedDailyDataCategory,
-  resetSearchIndex,
-  setArticleSearchIndex,
 } = articlesSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

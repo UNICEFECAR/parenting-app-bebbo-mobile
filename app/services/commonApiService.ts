@@ -32,7 +32,6 @@ import {
 } from "../database/schema/VideoArticleSchema";
 import { CommonApiInterface } from "../interface/interface";
 import {
-  setArticleSearchIndex,
   setDailyArticleGamesCategory,
   setShowedDailyDataCategory,
 } from "../redux/reducers/articlesSlice";
@@ -54,11 +53,6 @@ import {
 import axiosService from "./axiosService";
 import LocalNotifications from "./LocalNotifications";
 import { getAllChildren, getAllConfigData, setActiveChild } from "./childCRUD";
-import {
-  randomArrayShuffle,
-  setActivityMiniSearch,
-  setMiniSearch,
-} from "./Utils";
 
 export const client =
   "https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/";
