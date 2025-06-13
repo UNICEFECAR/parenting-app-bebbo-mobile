@@ -91,13 +91,17 @@ def reactNativeArchitectures() {
 }
 
 android {
+    buildFeatures {
+        buildConfig true
+    }
+    namespace 'org.unicef.ecar.bebbo'
     flavorDimensions "default"
     ndkVersion rootProject.ext.ndkVersion
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     packagingOptions {
         pickFirst 'lib/*/libfbjni.so'
@@ -167,6 +171,14 @@ android {
                 storePassword MYAPP_UPLOAD_STORE_PASSWORD_WAWAMOR
                 keyAlias MYAPP_UPLOAD_KEY_ALIAS_WAWAMOR
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD_WAWAMOR
+            }
+        }
+        reraiumtwana {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE_RERAI_UMTWANA')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE_RERAI_UMTWANA)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD__RERAI_UMTWANA
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS_RERAI_UMTWANA
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD__RERAI_UMTWANA
             }
         }
     }
@@ -243,8 +255,8 @@ android {
             applicationId 'org.unicef.ecar.merhababebek'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 2
-            versionName "1.0.0"
+            versionCode 3
+            versionName "1.0.1"
             signingConfig signingConfigs.merhababebek
         }
         wawamor {
@@ -252,9 +264,18 @@ android {
             applicationId 'org.unicef.ec.wawamor'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 6
-            versionName "1.0.2"
+            versionCode 7
+            versionName "1.0.3"
             signingConfig signingConfigs.wawamor
+        }
+        reraiumtwana {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'org.unicef.zw.reraiumtwana'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.reraiumtwana
         }
         banglastaging {
             minSdkVersion rootProject.ext.minSdkVersion
@@ -297,11 +318,13 @@ dependencies {
     implementation 'com.android.support:support-core-utils:28.0.0'
     // Multi Dex Support: https://developer.android.com/studio/build/multidex#mdex-gradle
     implementation 'com.android.support:multidex:1.0.3'
-//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'  //This implementation is to check memory leak
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }
+
+    implementation 'com.google.android.gms:play-services-auth:21.0.0'
 
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.squareup.okhttp3', module:'okhttp'

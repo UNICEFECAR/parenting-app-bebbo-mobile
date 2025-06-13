@@ -12,6 +12,7 @@ function* apiCall(data: ApiJsonArray, dispatch: any): any {
   try {
 
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
+    console.log("response is",JSON.stringify(response))
     if (response.status != 200) {
       errorArr.push(data);
     } else {
