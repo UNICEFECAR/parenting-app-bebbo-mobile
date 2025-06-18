@@ -264,7 +264,7 @@ android {
             applicationId 'org.unicef.ec.wawamor'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 7
+            versionCode 8
             versionName "1.0.3"
             signingConfig signingConfigs.wawamor
         }

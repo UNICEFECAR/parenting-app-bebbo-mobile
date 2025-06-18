@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
   pressableMilestone: {
     paddingBottom: 15,
     paddingTop: 15,
+    alignItems: "flex-end"
   },
   pressablePadding: {
     paddingLeft: 15,
@@ -740,7 +741,6 @@ const Activities = ({ route, navigation }: any): any => {
                 <ActivityBox>
                   <Flex4>
                     <Heading6Bold style={styles.headingBoldStyle}>
-                      {t("actScreenpendingMilestone")}{" "}
                       {t("actScreenmilestones")}
                     </Heading6Bold>
                   </Flex4>
@@ -750,7 +750,7 @@ const Activities = ({ route, navigation }: any): any => {
                       style={styles.pressableMilestone}
                     >
                       <ButtonTextSmLine numberOfLines={2}>
-                        {t("actScreentrack")} {t("actScreenmilestones")}
+                        {t("actScreentrack")}
                       </ButtonTextSmLine>
                     </Pressable>
                   </Flex2>
