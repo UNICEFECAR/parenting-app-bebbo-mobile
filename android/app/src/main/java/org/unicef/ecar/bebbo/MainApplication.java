@@ -12,7 +12,7 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
-import org.unicef.ecar.bebbo.GoogleSignInPackage;
+// import org.unicef.ecar.bebbo.GoogleSignInPackage;
 
 
 public class MainApplication extends Application implements ReactApplication {
@@ -31,7 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
                     // Packages that cannot be autolinked yet can be added manually here, for example:
                     // packages.add(new MyReactNativePackage());
                     packages.add(new ExactAlarmPackage());
-                    packages.add(new GoogleSignInPackage());
+                    // packages.add(new GoogleSignInPackage());     //for credential manager
     
                     return packages;
                 }
