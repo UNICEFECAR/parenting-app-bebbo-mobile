@@ -84,7 +84,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9178C28A1235BC1C60657F13 /* libPods-ParentBuddyApp-ParentBuddyAppBangla.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4041DA35A2D998F15E52EC08 /* libPods-ParentBuddyApp-ParentBuddyAppBangla.a */; };
 		95929EC4E4AB423DC31D2D1A /* libPods-ParentBuddyApp-Wawamor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E9FA6FAFAD2E055446832C /* libPods-ParentBuddyApp-Wawamor.a */; };
-		9B9BDC0EA7223784234C8E9C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		9B9BDC0EA7223784234C8E9C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		9DF386A602734BDD8FBC7002 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = AF645B11569440C0AF006D46 /* roboto-bold.woff */; };
 		B74DB5666A5A7FDE4B72BE7A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DE663E62B63ED982F5A3E26F /* PrivacyInfo.xcprivacy */; };
 		BF838CA027A42D8000CC12B9 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
@@ -488,7 +488,7 @@
 				E81D24512D19685F009BE118 /* liblottie-ios.a in Frameworks */,
 				E81D24522D19685F009BE118 /* liblottie-react-native.a in Frameworks */,
 				E81D24532D19685F009BE118 /* libreact-native-lottie-splash-screen.a in Frameworks */,
-				9B9BDC0EA7223784234C8E9C /* BuildFile in Frameworks */,
+				9B9BDC0EA7223784234C8E9C /* (null) in Frameworks */,
 				1BBE80BEC95F2696D6709A67 /* libPods-ParentBuddyApp-MerhabaBebek.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4304,10 +4304,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -4370,10 +4367,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -5112,6 +5106,8 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				clientIdKey = scsufmo35rtvmhorkdrv5pp5jgauj56l;
+				projectNumber = 30528917983;
 			};
 			name = Debug;
 		};
@@ -5145,6 +5141,8 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				clientIdKey = scsufmo35rtvmhorkdrv5pp5jgauj56l;
+				projectNumber = 30528917983;
 			};
 			name = Release;
 		};

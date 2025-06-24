@@ -195,6 +195,12 @@ export const Heading6w = styled(Heading6)`
 
 export const Heading6Bold = styled(Heading6)`
   fontFamily: 'roboto-bold';
+  color: ${(props: any): any => props.theme.colors.HEADING_GRAY_TEXTCOLOR};
+  padding: 2px;
+`;
+
+export const Heading6Padding0 = styled(Heading6Bold)`
+  padding: 0;
 `;
 
 

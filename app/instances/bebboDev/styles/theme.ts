@@ -34,6 +34,7 @@ export const appTheme = {
     ACTIVITIES_TEXTCOLOR: "#000000",
     ARTICLES_TEXTCOLOR: "#000000",
     ARTICLES_LIST_BACKGROUND: "#FAFAFA",
+    HEADING_GRAY_TEXTCOLOR: "#3B3B3B",
   },
   fonts: {
     ROBOTO_BOLD: "roboto-bold",
