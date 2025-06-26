@@ -141,6 +141,8 @@
 		CB0A670D0C3C06A7B511C25A /* libPods-ParentBuddyApp-ParentBuddyAppBanglaDev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1253F56D682F6F72C0F73F4E /* libPods-ParentBuddyApp-ParentBuddyAppBanglaDev.a */; };
 		CE9E89C826F089CC0093EF36 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
 		D640D55E2E0BD996000759B4 /* MerhabaBebek-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D640D55D2E0BD996000759B4 /* MerhabaBebek-Info.plist */; };
+		D6C647782E0C164400FF2AA8 /* Wawamor-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6C647772E0C164400FF2AA8 /* Wawamor-Info.plist */; };
+		D6C6477A2E0C1F2200FF2AA8 /* ParentBuddyAppBangla-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6C647792E0C1F2200FF2AA8 /* ParentBuddyAppBangla-Info.plist */; };
 		D6D22D382DED9A7700B93593 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6D22D362DED9A7700B93593 /* InfoPlist.strings */; };
 		D6ED01832DED79B600808FF9 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
 		D6ED01842DED79B600808FF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -343,6 +345,8 @@
 		D640D55D2E0BD996000759B4 /* MerhabaBebek-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MerhabaBebek-Info.plist"; sourceTree = "<group>"; };
 		D643D98F2DED8ABA002E4885 /* ReraiUmtwana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReraiUmtwana.entitlements; sourceTree = "<group>"; };
 		D6C147772DBA0DDB008A9E76 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D6C647772E0C164400FF2AA8 /* Wawamor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wawamor-Info.plist"; sourceTree = "<group>"; };
+		D6C647792E0C1F2200FF2AA8 /* ParentBuddyAppBangla-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParentBuddyAppBangla-Info.plist"; sourceTree = "<group>"; };
 		D6ED01A32DED79B600808FF9 /* ReraiUmtwana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReraiUmtwana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F859B22DED952200E96695 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6F859B32DED952200E96695 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -527,6 +531,8 @@
 		13B07FAE1A68108700A75B9A /* ParentBuddyApp */ = {
 			isa = PBXGroup;
 			children = (
+				D6C647792E0C1F2200FF2AA8 /* ParentBuddyAppBangla-Info.plist */,
+				D6C647772E0C164400FF2AA8 /* Wawamor-Info.plist */,
 				D640D55D2E0BD996000759B4 /* MerhabaBebek-Info.plist */,
 				D6D22D282DED980200B93593 /* InfoPlist_ReraiUmtwana */,
 				D643D98F2DED8ABA002E4885 /* ReraiUmtwana.entitlements */,
@@ -1341,6 +1347,7 @@
 				32C91BDE2C16E40F008E0B4C /* splash.json in Resources */,
 				3205C08D2C11DC5A002309EA /* LaunchScreen.storyboard in Resources */,
 				3205C08E2C11DC5A002309EA /* Images.xcassets in Resources */,
+				D6C6477A2E0C1F2200FF2AA8 /* ParentBuddyAppBangla-Info.plist in Resources */,
 				3205C08F2C11DC5A002309EA /* roboto-bold.svg in Resources */,
 				3205C0902C11DC5A002309EA /* roboto-regular.svg in Resources */,
 				3205C0912C11DC5A002309EA /* roboto-bold.ttf in Resources */,
@@ -1500,6 +1507,7 @@
 				E88A318C2D6C9039009E2F96 /* Ecuadorian Spanish.strings in Resources */,
 				E88A31B62D6F3C4E009E2F96 /* README.md in Resources */,
 				E88A31752D6C8A4A009E2F96 /* roboto-bold.woff in Resources */,
+				D6C647782E0C164400FF2AA8 /* Wawamor-Info.plist in Resources */,
 				E88A31762D6C8A4A009E2F96 /* roboto-bold.woff2 in Resources */,
 				E88A31772D6C8A4A009E2F96 /* roboto-regular.ttf in Resources */,
 				E88A31782D6C8A4A009E2F96 /* roboto-regular.woff in Resources */,
@@ -3947,7 +3955,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppBangla.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				ENABLE_BITCODE = NO;
@@ -4057,6 +4065,8 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				clientIdKey = scsufmo35rtvmhorkdrv5pp5jgauj56l;
+				projectNumber = 422491588953;
 			};
 			name = Debug;
 		};
@@ -4069,7 +4079,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppBangla.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
@@ -4090,6 +4100,8 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				clientIdKey = scsufmo35rtvmhorkdrv5pp5jgauj56l;
+				projectNumber = 422491588953;
 			};
 			name = Release;
 		};
@@ -4310,10 +4322,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -4376,10 +4385,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -5277,7 +5283,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				projectNumber = 185520625819;
+				projectNumber = 222346171255;
 			};
 			name = Debug;
 		};
@@ -5311,7 +5317,7 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				projectNumber = 185520625819;
+				projectNumber = 222346171255;
 			};
 			name = Release;
 		};
