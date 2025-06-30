@@ -39,8 +39,8 @@ import {
   Heading3Centerr,
   Heading3Regular,
   Heading4Center,
+  ShiftFromTop10,
   ShiftFromTop20,
-  ShiftFromTop25,
   ShiftFromTopBottom10,
   SideSpacing25,
 } from "@styles/typography";
@@ -785,12 +785,12 @@ const Home = ({ route, navigation }: any): any => {
             <FeatureDivideArea>
               <DailyHomeNotification />
             </FeatureDivideArea>
-            <ShiftFromTop25>
+            <ShiftFromTop10>
               <ChildInfo
                 headerColor={headerColorChildInfo}
                 backgroundColor={backgroundColorChildInfo}
               />
-            </ShiftFromTop25>
+            </ShiftFromTop10>
             <ChildMilestones />
             <PlayingTogether />
             <AdviceAndArticles />

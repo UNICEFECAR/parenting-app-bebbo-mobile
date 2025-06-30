@@ -368,10 +368,10 @@ const Articles = ({ route, navigation }: any): any => {
           }}
           style={{
             backgroundColor: backgroundColorList,
-            shadowColor: "red",
+            shadowColor: "#00000",
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.08,
-            shadowRadius: 12,
+            shadowRadius: 2,
             elevation: 2,
           }}
           key={index}

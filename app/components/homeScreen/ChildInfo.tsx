@@ -8,12 +8,10 @@ import { MainContainer } from "@components/shared/Container";
 import VideoPlayer from "@components/VideoPlayer";
 import { useNavigation } from "@react-navigation/native";
 import {
-  Heading2Center,
   Heading3Center,
   Heading4Centerr,
   ShiftFromBottom10,
   ShiftFromTopBottom10,
-  SideSpacing25,
 } from "@styles/typography";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -102,7 +100,7 @@ const ChildInfo = (props: any): any => {
       (parseInt(userRelationToParent[0].value) ==
         appConfig.relationShipOtherCaregiverId ||
         parseInt(userRelationToParent[0].value) ==
-          appConfig.relationShipServiceProviderId)
+        appConfig.relationShipServiceProviderId)
     ) {
       return false;
     } else {
@@ -120,34 +118,32 @@ const ChildInfo = (props: any): any => {
   };
   return (
     <>
-      <MainContainer key={selectedPinnedArticleData?.id}>
-        {selectedPinnedArticleData ? (
-          <>
-            <ShiftFromBottom10 style={styles.shiftFromBottom}>
-              <VideoPlayer
-                selectedPinnedArticleData={selectedPinnedArticleData}
-              ></VideoPlayer>
-            </ShiftFromBottom10>
-            <Heading3Center style={styles.flexShrink1} numberOfLines={2}>
-              {selectedPinnedArticleData?.title}
-            </Heading3Center>
+      {selectedPinnedArticleData ? (
+        <MainContainer key={selectedPinnedArticleData?.id}>
+          <ShiftFromBottom10 style={styles.shiftFromBottom}>
+            <VideoPlayer
+              selectedPinnedArticleData={selectedPinnedArticleData}
+            ></VideoPlayer>
+          </ShiftFromBottom10>
+          <Heading3Center style={styles.flexShrink1} numberOfLines={2}>
+            {selectedPinnedArticleData?.title}
+          </Heading3Center>
 
-            <ShiftFromTopBottom10>
-              {selectedPinnedArticleData &&
+          <ShiftFromTopBottom10>
+            {selectedPinnedArticleData &&
               selectedPinnedArticleData?.summary ? (
-                <Heading4Centerr style={styles.flexShrink1} numberOfLines={2}>
-                  {selectedPinnedArticleData?.summary}
-                </Heading4Centerr>
-              ) : null}
-            </ShiftFromTopBottom10>
-            <ButtonPrimary onPress={goToVideoArticleDetails}>
-              <ButtonUpperCaseText numberOfLines={2}>
-                {t("homeScreenchildBtnText")}
-              </ButtonUpperCaseText>
-            </ButtonPrimary>
-          </>
-        ) : null}
-      </MainContainer>
+              <Heading4Centerr style={styles.flexShrink1} numberOfLines={2}>
+                {selectedPinnedArticleData?.summary}
+              </Heading4Centerr>
+            ) : null}
+          </ShiftFromTopBottom10>
+          <ButtonPrimary onPress={goToVideoArticleDetails}>
+            <ButtonUpperCaseText numberOfLines={2}>
+              {t("homeScreenchildBtnText")}
+            </ButtonUpperCaseText>
+          </ButtonPrimary>
+        </MainContainer>
+      ) : null}
     </>
   );
 };

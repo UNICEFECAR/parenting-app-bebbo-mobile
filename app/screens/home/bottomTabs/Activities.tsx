@@ -10,11 +10,11 @@ import {
   SearchBox,
   SearchInput,
 } from "@components/shared/ArticlesStyle";
-import { ButtonTextSmLine } from "@components/shared/ButtonGlobal";
+import { ButtonTextSmHt } from "@components/shared/ButtonGlobal";
 import { DividerAct } from "@components/shared/Divider";
 import FirstTimeModal from "@components/shared/FirstTimeModal";
 import { Flex2, Flex4, FlexCol } from "@components/shared/FlexBoxStyle";
-import { PrematureTagActivity } from "@components/shared/PrematureTag";
+import { PrematureTagActivity, PrematureTagDevelopment } from "@components/shared/PrematureTag";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TabScreenHeader from "@components/TabScreenHeader";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
@@ -27,6 +27,7 @@ import {
   Heading4Centerr,
   Heading5Bold,
   Heading6Bold,
+  Heading6Padding0,
   ShiftFromTop5,
   ShiftFromTopBottom5,
   SideSpacing10,
@@ -98,6 +99,8 @@ type Props = {
 const styles = StyleSheet.create({
   activityHeadingView: {
     flexDirection: "row",
+    justifyContent:"space-between",
+    alignItems:"center"
   },
   ageBracketView: {
     backgroundColor: bgcolorWhite2,
@@ -150,12 +153,13 @@ const styles = StyleSheet.create({
     paddingTop: 17,
   },
   pressableHeading: {
-    flex: 1,
     maxWidth: "40%",
+    alignSelf: 'flex-start'
   },
   pressableMilestone: {
     paddingBottom: 15,
     paddingTop: 15,
+    alignItems: "flex-end"
   },
   pressablePadding: {
     paddingLeft: 15,
@@ -739,19 +743,20 @@ const Activities = ({ route, navigation }: any): any => {
               <MainActivityBox>
                 <ActivityBox>
                   <Flex4>
-                    <Heading6Bold style={styles.headingBoldStyle}>
-                      {t("actScreenpendingMilestone")}{" "}
+                    <Heading6Padding0 style={styles.headingBoldStyle}>
                       {t("actScreenmilestones")}
-                    </Heading6Bold>
+                    </Heading6Padding0>
                   </Flex4>
                   <Flex2>
                     <Pressable
                       onPress={(): any => gotoMilestone()}
                       style={styles.pressableMilestone}
                     >
-                      <ButtonTextSmLine numberOfLines={2}>
-                        {t("actScreentrack")} {t("actScreenmilestones")}
-                      </ButtonTextSmLine>
+                      <PrematureTagDevelopment>
+                      <ButtonTextSmHt numberOfLines={2}>
+                        {t("actScreentrack")}
+                      </ButtonTextSmHt>
+                      </PrematureTagDevelopment>
                     </Pressable>
                   </Flex2>
                 </ActivityBox>

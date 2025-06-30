@@ -84,6 +84,10 @@ export const ButtonTextSmLine = styled(ButtonTextLine)`
   line-height:16px;
   
 `;
+export const ButtonTextSmHt = styled(ButtonText)`
+  font-size:12px;
+  line-height:16px;
+`;
 export const ButtonTextSmLineW = styled(ButtonTextSmLine)`
 color: ${(props: any): any => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
