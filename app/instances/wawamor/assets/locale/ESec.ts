@@ -309,7 +309,7 @@ const ESec = {
     hcNewBtn: "Agregar visita al médico",
     hcEditBtn: "Editar visita al médico",
     hcNewHeaderTitle: "Nuevo chequeo de salud",
-    hcMeasureText: "El niño o niña pesa {{peso}} kg y mide {{estatura}} cm",
+    hcMeasureText: "El niño o niña pesa {{weight}} kg y mide {{height}} cm",
     hcVaccineText: "Vacunas recibidas",
     hcNoMeasureTxt: "Medidas no ingresadas",
     hcNoVaccineTxt: "Vacunas no ingresadas",
