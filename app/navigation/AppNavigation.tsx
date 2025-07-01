@@ -22,7 +22,7 @@ import PrivacyPolicy from "@screens/PrivacyPolicy";
 import Terms from "@screens/Terms";
 import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, AppState, BackHandler, Linking, Platform } from "react-native";
 import SplashScreen from "react-native-lottie-splash-screen";
@@ -42,7 +42,7 @@ import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
 import messaging from "@react-native-firebase/messaging";
-import { Settings } from "react-native-fbsdk-next";
+import { AppEventsLogger, Settings } from "react-native-fbsdk-next";
 import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
 import PushNotification from "react-native-push-notification";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
@@ -113,6 +113,7 @@ export default (): any => {
       ? JSON.parse(state.selectedCountry.countries)
       : []
   );
+  const hasLoggedEvent = useRef(false);
   let currentCount = 0;
   const callUrl = (url: any): any => {
     if (url) {
@@ -228,6 +229,12 @@ export default (): any => {
   }, [linkedURL, resetURL, userIsOnboarded]);
 
   useEffect(() => {
+    const logFacebookEvent = (): void => {
+      if (!hasLoggedEvent.current) {
+        AppEventsLogger.logEvent('fb_sdk_initialized'); // Custom event
+        hasLoggedEvent.current = true;
+      }
+    };
     const initPixel = async (): Promise<any> => {
       if (Platform.OS === "ios") {
         const ATT_CHECK = await check(
@@ -243,6 +250,7 @@ export default (): any => {
               console.log(ATT, "..ATT..");
               Settings.setAdvertiserTrackingEnabled(true).then(() => {
                 Settings.initializeSDK();
+                logFacebookEvent();
               });
             }
           } catch (error) {
@@ -250,12 +258,15 @@ export default (): any => {
             throw error;
           } finally {
             Settings.initializeSDK();
+            logFacebookEvent();
           }
           Settings.initializeSDK();
+          logFacebookEvent();
           Settings.setAdvertiserTrackingEnabled(true);
         }
       } else {
         Settings.initializeSDK();
+        logFacebookEvent();
         Settings.setAdvertiserTrackingEnabled(true);
       }
     };
