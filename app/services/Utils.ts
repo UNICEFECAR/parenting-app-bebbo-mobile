@@ -9,11 +9,6 @@ import { v4 as uuidv4 } from "uuid";
 import { appConfig } from "../instances";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import {
-  resetSearchIndex,
-  setArticleSearchIndex,
-} from "../redux/reducers/articlesSlice";
-const { convert } = require("html-to-text");
-import {
   ActivitiesEntity,
   ActivitiesEntitySchema,
 } from "../database/schema/ActivitiesSchema";
@@ -66,7 +61,6 @@ import PushNotification from "react-native-push-notification";
 import moment from "moment";
 import { Country, CountrySchema } from "../database/schema/CountrySchema";
 import MiniSearch from "minisearch";
-import { setActivitiesSearchIndex } from "../redux/reducers/utilsSlice";
 
 const requestNotificationPermission = async (): Promise<any> => {
   const status = await requestNotifications([]);
@@ -833,353 +827,6 @@ export function isPregnancy() {
   }
 }
 
-// const spanishStopWords = new Set(appConfig.stopWords);
-
-export const cleanAndOptimizeHtmlText = (html: string): string => {
-  function spanishTokenizer(text: string): string[] {
-    const spanishStopWords = new Set([
-      "a",
-      "al",
-      "algo",
-      "algunas",
-      "algunos",
-      "ante",
-      "antes",
-      "como",
-      "con",
-      "contra",
-      "cual",
-      "cuando",
-      "de",
-      "del",
-      "desde",
-      "donde",
-      "dos",
-      "el",
-      "él",
-      "ella",
-      "ellas",
-      "ellos",
-      "en",
-      "entre",
-      "era",
-      "erais",
-      "eran",
-      "eras",
-      "eres",
-      "es",
-      "esa",
-      "esas",
-      "ese",
-      "eso",
-      "esos",
-      "esta",
-      "estaba",
-      "estabais",
-      "estaban",
-      "estabas",
-      "estad",
-      "estada",
-      "estadas",
-      "estado",
-      "estados",
-      "estamos",
-      "estando",
-      "estar",
-      "estaremos",
-      "estará",
-      "estarán",
-      "estarás",
-      "estaré",
-      "estaréis",
-      "estaría",
-      "estaríais",
-      "estaríamos",
-      "estarían",
-      "estarías",
-      "estas",
-      "este",
-      "estemos",
-      "esto",
-      "estos",
-      "estoy",
-      "estuve",
-      "estuviera",
-      "estuvierais",
-      "estuvieran",
-      "estuvieras",
-      "estuvieron",
-      "estuviese",
-      "estuvieseis",
-      "estuviesen",
-      "estuvieses",
-      "estuvimos",
-      "estuviste",
-      "estuvisteis",
-      "estuviéramos",
-      "estuviésemos",
-      "estuvo",
-      "está",
-      "estábamos",
-      "estáis",
-      "están",
-      "estás",
-      "esté",
-      "estéis",
-      "estén",
-      "estés",
-      "fue",
-      "fuera",
-      "fuerais",
-      "fueran",
-      "fueras",
-      "fueron",
-      "fuese",
-      "fueseis",
-      "fuesen",
-      "fueses",
-      "fui",
-      "fuimos",
-      "fuiste",
-      "fuisteis",
-      "ha",
-      "habida",
-      "habidas",
-      "habido",
-      "habidos",
-      "habiendo",
-      "habremos",
-      "habrá",
-      "habrán",
-      "habrás",
-      "habré",
-      "habréis",
-      "habría",
-      "habríais",
-      "habríamos",
-      "habrían",
-      "habrías",
-      "habéis",
-      "había",
-      "habíais",
-      "habíamos",
-      "habían",
-      "habías",
-      "han",
-      "has",
-      "hasta",
-      "hay",
-      "haya",
-      "hayamos",
-      "hayan",
-      "hayas",
-      "he",
-      "hemos",
-      "hube",
-      "hubiera",
-      "hubierais",
-      "hubieran",
-      "hubieras",
-      "hubieron",
-      "hubiese",
-      "hubieseis",
-      "hubiesen",
-      "hubieses",
-      "hubimos",
-      "hubiste",
-      "hubisteis",
-      "hubiéramos",
-      "hubiésemos",
-      "hubo",
-      "la",
-      "las",
-      "le",
-      "les",
-      "lo",
-      "los",
-      "me",
-      "mi",
-      "mis",
-      "mucho",
-      "muchos",
-      "muy",
-      "más",
-      "mí",
-      "mía",
-      "mías",
-      "mío",
-      "míos",
-      "nada",
-      "ni",
-      "no",
-      "nos",
-      "nosotras",
-      "nosotros",
-      "nuestra",
-      "nuestras",
-      "nuestro",
-      "nuestros",
-      "o",
-      "os",
-      "otra",
-      "otras",
-      "otro",
-      "otros",
-      "para",
-      "pero",
-      "poco",
-      "por",
-      "porque",
-      "que",
-      "quien",
-      "quienes",
-      "qué",
-      "se",
-      "sea",
-      "seamos",
-      "sean",
-      "seas",
-      "seremos",
-      "será",
-      "serán",
-      "serás",
-      "seré",
-      "seréis",
-      "sería",
-      "seríais",
-      "seríamos",
-      "serían",
-      "serías",
-      "seáis",
-      "sido",
-      "siendo",
-      "sin",
-      "sobre",
-      "sois",
-      "somos",
-      "son",
-      "soy",
-      "su",
-      "sus",
-      "suya",
-      "suyas",
-      "suyo",
-      "suyos",
-      "sí",
-      "también",
-      "tanto",
-      "te",
-      "tenemos",
-      "tenga",
-      "tengamos",
-      "tengan",
-      "tengas",
-      "tengo",
-      "tendremos",
-      "tendrá",
-      "tendrán",
-      "tendrás",
-      "tendré",
-      "tendréis",
-      "tendría",
-      "tendríais",
-      "tendríamos",
-      "tendrían",
-      "tendrías",
-      "tened",
-      "tener",
-      "tenida",
-      "tenidas",
-      "tenido",
-      "tenidos",
-      "teniendo",
-      "tenéis",
-      "tenía",
-      "teníais",
-      "teníamos",
-      "tenían",
-      "tenías",
-      "ti",
-      "tiene",
-      "tienen",
-      "tienes",
-      "todo",
-      "todos",
-      "tu",
-      "tus",
-      "tuve",
-      "tuviera",
-      "tuvierais",
-      "tuvieran",
-      "tuvieras",
-      "tuvieron",
-      "tuviese",
-      "tuvieseis",
-      "tuviesen",
-      "tuvieses",
-      "tuvimos",
-      "tuviste",
-      "tuvisteis",
-      "tuviéramos",
-      "tuviésemos",
-      "tuvo",
-      "tuya",
-      "tuyas",
-      "tuyo",
-      "tuyos",
-      "un",
-      "una",
-      "uno",
-      "unos",
-      "vosotras",
-      "vosotros",
-      "vuestra",
-      "vuestras",
-      "vuestro",
-      "vuestros",
-      "y",
-      "ya",
-      "yo",
-    ]);
-    return (
-      text
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .match(/\w+/g)
-        ?.filter((word) => word.length > 1 && !spanishStopWords.has(word)) || []
-    );
-  }
-
-  // Step 1: Convert HTML to plain text
-  const text = convert(html, {
-    wordwrap: false,
-    selectors: [
-      { selector: "a", options: { ignoreHref: true } },
-      // { selector: "img", format: "skip" },
-      // { selector: "video", format: "skip" },
-      // { selector: "style", format: "skip" },
-      // { selector: "br", format: "lineBreak" },
-      // { selector: "p", format: "block" },
-      // { selector: "li", format: "block" },
-      // { selector: "span", format: "block" },
-    ],
-  });
-
-  // Step 2: Tokenize (if enabled), else basic word split
-  const tokenizedWords = spanishTokenizer(text);
-
-  // Step 3: Deduplicate
-  const seen = new Set<string>();
-  const uniqueWords = tokenizedWords.filter((word) => {
-    if (seen.has(word)) return false;
-    seen.add(word);
-    return true;
-  });
-
-  return uniqueWords.join(" ");
-};
-
 const suffixCache = new Map<string, string[]>();
 export const suffixes = (
   term: string,
@@ -1197,17 +844,6 @@ export const suffixes = (
 
   suffixCache.set(term, tokens);
   return tokens;
-};
-
-export const preprocessArticles = (articles: any[]): any[] => {
-  return articles.map((article: any) => {
-    return {
-      ...article,
-      normalizedTitle: article.title,
-      normalizedSummary: article.summary,
-      normalizedBody: cleanAndOptimizeHtmlText(article.body),
-    };
-  });
 };
 
 export const miniSearchConfig = {
@@ -1238,9 +874,9 @@ export const miniSearchConfig = {
   },
   searchOptions: {
     boost: {
-      normalizedTitle: 2,
-      normalizedSummary: 1.5,
-      // normalizedBody: 1,
+      title: 2,
+      summary: 1.5,
+      body: 1,
       meta_keywords: 1,
       keywords: 1,
     },
@@ -1251,7 +887,7 @@ export const miniSearchConfig = {
       for (let i = 0; i < words.length - 1; i++) {
         bigrams.push(`${words[i]} ${words[i + 1]}`);
       }
-
+      console.log("tokens 2 is--",[...words, ...bigrams])
       return [...words, ...bigrams];
     },
     combineWith: "OR",
@@ -1264,9 +900,9 @@ export const miniSearchConfig = {
     },
   },
   fields: [
-    "normalizedTitle",
-    "normalizedSummary",
-    // "normalizedBody",
+    "title",
+    "summary",
+    "body",
     "meta_keywords",
     "keywords",
   ],
@@ -1293,7 +929,7 @@ export const miniSearchConfig = {
 };
 
 export const miniSearchConfigActivity = {
-  processTerm: (term) => suffixes(term, appConfig.searchMinimumLength),
+  processTerm: (term: string) => suffixes(term, appConfig.searchMinimumLength),
   // tokenize: (text) => {
   //   const words = text.toLowerCase().split(/\s+/);
   //   const ngrams = [];
@@ -1302,7 +938,7 @@ export const miniSearchConfigActivity = {
   //   }
   //   return [...words, ...ngrams]; // Return both single words and bigrams
   // },
-  extractField: (document, fieldName): any => {
+  extractField: (document: { [x: string]: any; }, fieldName: string): any => {
     const arrFields = fieldName.split(".");
     if (arrFields.length === 2) {
       return (document[arrFields[0]] || [])
@@ -1345,39 +981,4 @@ export const miniSearchConfigActivity = {
     "mandatory",
     "embedded_images",
   ],
-};
-
-export const setMiniSearch = async (
-  data: readonly any[],
-  dispatch: (arg0: {
-    payload: any;
-    type: "articlesData/setArticleSearchIndex";
-  }) => void
-) => {
-  const searchList = preprocessArticles(data);
-  const searchIndexData = new MiniSearch(miniSearchConfig);
-  await searchIndexData.addAll(searchList);
-  dispatch(setArticleSearchIndex(JSON.stringify(searchIndexData)));
-};
-
-const preprocessActivities = (activities: any): any => {
-  return activities.map((activity: any) => ({
-    ...activity,
-    normalizedTitle: activity.title,
-    normalizedSummary: activity.summary,
-    normalizedBody: cleanAndOptimizeHtmlText(activity.body),
-  }));
-};
-export const setActivityMiniSearch = async (
-  data: readonly any[],
-  dispatch: (arg0: {
-    payload: any;
-    type: "articlesData/setArticleSearchIndex";
-  }) => void
-) => {
-  const articleList = randomArrayShuffle(data);
-  const searchList = preprocessActivities(articleList);
-  const searchIndexData = new MiniSearch(miniSearchConfigActivity);
-  await searchIndexData.addAll(searchList);
-  dispatch(setActivitiesSearchIndex(JSON.stringify(searchIndexData)));
 };

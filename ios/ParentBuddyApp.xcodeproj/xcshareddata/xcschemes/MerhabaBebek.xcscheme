@@ -26,16 +26,16 @@
       </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3205C07E2C11DC5A002309EA"
-               BuildableName = "Babuni.app"
-               BlueprintName = "ParentBuddyAppBangla"
+               BlueprintIdentifier = "E81D24492D19685F009BE118"
+               BuildableName = "MerhabaBebek.app"
+               BlueprintName = "MerhabaBebek"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -68,26 +68,29 @@
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "FLAVOR"
-            value = "merhabaBebek"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E81D24492D19685F009BE118"
+            BuildableName = "MerhabaBebek.app"
+            BlueprintName = "MerhabaBebek"
+            ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

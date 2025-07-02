@@ -21,7 +21,6 @@ import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { articlesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import {
-  cleanAndOptimizeHtmlText,
   miniSearchConfig,
 } from "../../../services/Utils";
 import {
@@ -66,11 +65,6 @@ import {
 } from "@assets/data/firebaseEvents";
 import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
-import {
-  resetSearchIndex,
-  setArticleSearchIndex,
-} from "../../../redux/reducers/articlesSlice";
-const { convert } = require("html-to-text");
 type ArticlesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -284,12 +278,6 @@ const Articles = ({ route, navigation }: any): any => {
       ? JSON.parse(state.articlesData.article.articles)
       : state.articlesData.article.articles
   );
-  // const isSearchIndex = useAppSelector(
-  //   (state: any) => state.articlesData.article.isSearchIndex
-  // );
-  const articleSearchIndex = useAppSelector(
-    (state: any) => state.articlesData.article.searchIndex
-  );
   const articleDataOld = articleDataall.filter((x: any) =>
     taxonomyIds.articleCategoryArray.includes(x.category)
   );
@@ -380,10 +368,10 @@ const Articles = ({ route, navigation }: any): any => {
           }}
           style={{
             backgroundColor: backgroundColorList,
-            shadowColor: "red",
+            shadowColor: "#00000",
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.08,
-            shadowRadius: 12,
+            shadowRadius: 2,
             elevation: 2,
           }}
           key={index}
@@ -473,7 +461,23 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.current.search(keyword);
+              const results2 = searchIndex.current.search(keyword);
+              const results = results2.slice().sort((a:any, b:any) => {
+                const aMatch = [a.title, a.body, a.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+                const bMatch = [b.title, b.body, b.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+              
+                // If a matches and b doesn't → a comes first
+                if (aMatch && !bMatch) return -1;
+                if (!aMatch && bMatch) return 1;
+              
+                // If both match or neither → maintain original order
+                return 0;
+              });
+              
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -495,7 +499,23 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.current.search(queryText);
+            const results2 = searchIndex.current.search(queryText);
+            const results = results2.slice().sort((a:any, b:any) => {
+              const aMatch = [a.title, a.body, a.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+              const bMatch = [b.title, b.body, b.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+            
+              // If a matches and b doesn't → a comes first
+              if (aMatch && !bMatch) return -1;
+              if (!aMatch && bMatch) return 1;
+            
+              // If both match or neither → maintain original order
+              return 0;
+            });
+            
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               const categoryFilteredData = results.filter((x: any) =>
@@ -536,7 +556,23 @@ const Articles = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.current.search(keyword);
+              const results2 = searchIndex.current.search(keyword);
+              const results = results2.slice().sort((a:any, b:any) => {
+                const aMatch = [a.title, a.body, a.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+                const bMatch = [b.title, b.body, b.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+              
+                // If a matches and b doesn't → a comes first
+                if (aMatch && !bMatch) return -1;
+                if (!aMatch && bMatch) return 1;
+              
+                // If both match or neither → maintain original order
+                return 0;
+              });
+              
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -554,7 +590,23 @@ const Articles = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.current.search(queryText);
+            const results2 = searchIndex.current.search(queryText);
+            const results = results2.slice().sort((a:any, b:any) => {
+              const aMatch = [a.title, a.body, a.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+              const bMatch = [b.title, b.body, b.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+            
+              // If a matches and b doesn't → a comes first
+              if (aMatch && !bMatch) return -1;
+              if (!aMatch && bMatch) return 1;
+            
+              // If both match or neither → maintain original order
+              return 0;
+            });
+            
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               filteredResults = results.filter((x: any) =>
@@ -665,16 +717,6 @@ const Articles = ({ route, navigation }: any): any => {
       };
     }, [activeChild?.uuid])
   );
-  const preprocessArticles = (articles: any[]): any[] => {
-    return articles.map((article: any) => {
-      return {
-        ...article,
-        normalizedTitle: article.title,
-        normalizedSummary: article.summary,
-        normalizedBody: cleanAndOptimizeHtmlText(article.body),
-      };
-    });
-  };
 
   useEffect(() => {
     async function initializeSearchIndex() {
@@ -695,7 +737,7 @@ const Articles = ({ route, navigation }: any): any => {
           false
         );
         articleData = [...combineDartArr];
-        const processedArticles = preprocessArticles(combineDartArr);
+        const processedArticles = combineDartArr;
         const searchIndexData = new MiniSearch(miniSearchConfig);
         // setSearchIndex(searchIndexData);
         searchIndexData.addAllAsync(processedArticles);
@@ -703,7 +745,6 @@ const Articles = ({ route, navigation }: any): any => {
         setTimeout(() => {
           setLoadingSection(false)
         }, 1000)
-        // dispatch(resetSearchIndex(false));
       } catch (error) {
         console.log("Error: Retrieve minisearch data", error);
       }
@@ -768,8 +809,22 @@ const Articles = ({ route, navigation }: any): any => {
         //   return results;
         // });
         // const resultsArrays = await Promise.all(resultsPromises);
-        const results = searchIndex.current.search(queryText);
-
+        const results2 = searchIndex.current.search(queryText);
+        const results = results2.slice().sort((a:any, b:any) => {
+          const aMatch = [a.title, a.body, a.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+          const bMatch = [b.title, b.body, b.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+        
+          // If a matches and b doesn't → a comes first
+          if (aMatch && !bMatch) return -1;
+          if (!aMatch && bMatch) return 1;
+        
+          // If both match or neither → maintain original order
+          return 0;
+        });
         const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
@@ -789,8 +844,23 @@ const Articles = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results = searchIndex.current.search(queryText);
-
+        const results2 = searchIndex.current.search(queryText);
+        const results = results2.slice().sort((a:any, b:any) => {
+          const aMatch = [a.title, a.body, a.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+          const bMatch = [b.title, b.body, b.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+        
+          // If a matches and b doesn't → a comes first
+          if (aMatch && !bMatch) return -1;
+          if (!aMatch && bMatch) return 1;
+        
+          // If both match or neither → maintain original order
+          return 0;
+        });
+        
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
           const categoryFilteredData = results.filter((x: any) =>

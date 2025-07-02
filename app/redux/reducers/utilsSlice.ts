@@ -7,8 +7,6 @@ interface HardcodedDataType {
   userIsOnboarded: boolean;
   appVersion: string;
   userIsFirstTime: boolean;
-  isActivitiesSearchIndex: boolean;
-  activitiesSearchIndex: any;
   taxonomy: {
     allTaxonomyData: string;
     languageCode: string;
@@ -116,8 +114,6 @@ const initialState: HardcodedDataType = {
   userIsOnboarded: false,
   appVersion: "",
   userIsFirstTime: false,
-  isActivitiesSearchIndex: true,
-  activitiesSearchIndex: null,
   taxonomy: {
     allTaxonomyData: "",
     languageCode: "en",
@@ -429,13 +425,6 @@ export const utilsSlice = createSlice({
         : null;
       state.faqsData = action.payload;
     },
-    setActivitiesSearchIndex: (state, action: PayloadAction<any>): any => {
-      console.log("[Index]1", action);
-      state.activitiesSearchIndex = action.payload;
-    },
-    resetActivitiesSearchIndex: (state, action: PayloadAction<any>): any => {
-      state.isActivitiesSearchIndex = action.payload;
-    },
   },
 });
 
@@ -461,7 +450,5 @@ export const {
   setAllSurveyData,
   setAllFaqsData,
   setIncrementalSyncDT,
-  setActivitiesSearchIndex,
-  resetActivitiesSearchIndex,
 } = utilsSlice.actions;
 export default utilsSlice.reducer;

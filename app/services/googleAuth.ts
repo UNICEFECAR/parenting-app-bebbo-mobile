@@ -1,5 +1,12 @@
 import { GoogleSignin, User } from "@react-native-google-signin/google-signin";
 import { projectNumber, webId, iosId } from "react-native-dotenv";
+
+// import { NativeModules, Platform } from "react-native";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// const { GoogleSignInModule } = NativeModules;
+
+// const GOOGLE_TOKEN_KEY = "googleToken";
 /**
  * Authenticate with Google.
  */
@@ -21,7 +28,6 @@ class GoogleAuth {
    * Must be called before any other method.
    */
   public configure(): any {
-    console.log(webId, "google initilize", iosId);
     GoogleSignin.configure({
       scopes: ["https://www.googleapis.com/auth/drive.file"], // what API you want to access on behalf of the user, default is email and profile
       webClientId: `${projectNumber}-${webId}.apps.googleusercontent.com`,
@@ -35,7 +41,7 @@ class GoogleAuth {
       await GoogleSignin.hasPlayServices();
       user = await GoogleSignin.signIn();
     } catch (error) {
-      console.error("Sign In Error", error);
+      console.log("Sign In Error", error);
     }
 
     return user;
