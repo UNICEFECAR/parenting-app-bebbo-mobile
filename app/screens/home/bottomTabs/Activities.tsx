@@ -10,11 +10,11 @@ import {
   SearchBox,
   SearchInput,
 } from "@components/shared/ArticlesStyle";
-import { ButtonTextSmLine } from "@components/shared/ButtonGlobal";
+import { ButtonTextSmHt } from "@components/shared/ButtonGlobal";
 import { DividerAct } from "@components/shared/Divider";
 import FirstTimeModal from "@components/shared/FirstTimeModal";
 import { Flex2, Flex4, FlexCol } from "@components/shared/FlexBoxStyle";
-import { PrematureTagActivity } from "@components/shared/PrematureTag";
+import { PrematureTagActivity, PrematureTagDevelopment } from "@components/shared/PrematureTag";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
 import TabScreenHeader from "@components/TabScreenHeader";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
@@ -27,6 +27,7 @@ import {
   Heading4Centerr,
   Heading5Bold,
   Heading6Bold,
+  Heading6Padding0,
   ShiftFromTop5,
   ShiftFromTopBottom5,
   SideSpacing10,
@@ -51,8 +52,6 @@ import {
 import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../../../App";
 import {
-  resetActivitiesSearchIndex,
-  setActivitiesSearchIndex,
   setInfoModalOpened,
 } from "../../../redux/reducers/utilsSlice";
 import LoadableImage from "../../../services/LoadableImage";
@@ -75,7 +74,6 @@ import {
 } from "../../../database/schema/ChildDataSchema";
 import FastImage from "react-native-fast-image";
 import {
-  cleanAndOptimizeHtmlText,
   randomArrayShuffle,
   miniSearchConfigActivity,
 } from "../../../services/Utils";
@@ -91,7 +89,7 @@ import MiniSearch from "minisearch";
 import { ActivityHistoryEntity } from "../../../database/schema/ActivitySearchHistorySchema";
 import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
-import { appConfig } from "../../../instances";
+
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -101,6 +99,8 @@ type Props = {
 const styles = StyleSheet.create({
   activityHeadingView: {
     flexDirection: "row",
+    justifyContent:"space-between",
+    alignItems:"center"
   },
   ageBracketView: {
     backgroundColor: bgcolorWhite2,
@@ -153,12 +153,13 @@ const styles = StyleSheet.create({
     paddingTop: 17,
   },
   pressableHeading: {
-    flex: 1,
     maxWidth: "40%",
+    alignSelf: 'flex-start'
   },
   pressableMilestone: {
     paddingBottom: 15,
     paddingTop: 15,
+    alignItems: "flex-end"
   },
   pressablePadding: {
     paddingLeft: 15,
@@ -199,15 +200,6 @@ const Activities = ({ route, navigation }: any): any => {
       ? JSON.parse(state.utilsData.ActivitiesData)
       : []
   );
-  const activitySearchIndex = useAppSelector(
-    (state: any) => state.utilsData.activitiesSearchIndex
-  );
-  // const isActivitiesSearchIndex = useAppSelector(
-  //   (state: any) => state.utilsData.isActivitiesSearchIndex
-  // );
-  // const miniSearchIndexedData = useAppSelector(
-  //   (state: any) => state.searchIndex.searchActivityIndex
-  // );
   const ActivitiesData = randomArrayShuffle(ActivitiesDataold);
   const activityCategoryData = useAppSelector(
     (state: any) =>
@@ -304,7 +296,22 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.current.search(keyword);
+              const results2 = searchIndex.current.search(keyword);
+              const results = results2.slice().sort((a:any, b:any) => {
+                const aMatch = [a.title, a.body, a.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+                const bMatch = [b.title, b.body, b.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+              
+                // If a matches and b doesn't → a comes first
+                if (aMatch && !bMatch) return -1;
+                if (!aMatch && bMatch) return 1;
+              
+                // If both match or neither → maintain original order
+                return 0;
+              });
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -327,7 +334,22 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.current.search(queryText);
+            const results2 = searchIndex.current.search(queryText);
+            const results = results2.slice().sort((a:any, b:any) => {
+              const aMatch = [a.title, a.body, a.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+              const bMatch = [b.title, b.body, b.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+            
+              // If a matches and b doesn't → a comes first
+              if (aMatch && !bMatch) return -1;
+              if (!aMatch && bMatch) return 1;
+            
+              // If both match or neither → maintain original order
+              return 0;
+            });
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               setSelectedCategoryId(itemId);
@@ -372,7 +394,22 @@ const Activities = ({ route, navigation }: any): any => {
             .filter((word: any) => word.trim() !== "");
           if (keywords.length > 1) {
             const resultsPromises = keywords.map(async (keyword: any) => {
-              const results = searchIndex.current.search(keyword);
+              const results2 = searchIndex.current.search(keyword);
+              const results = results2.slice().sort((a:any, b:any) => {
+                const aMatch = [a.title, a.body, a.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+                const bMatch = [b.title, b.body, b.summary].some(field =>
+                  field?.toLowerCase().includes(keyword.toLowerCase())
+                );
+              
+                // If a matches and b doesn't → a comes first
+                if (aMatch && !bMatch) return -1;
+                if (!aMatch && bMatch) return 1;
+              
+                // If both match or neither → maintain original order
+                return 0;
+              });
               return results;
             });
             const resultsArrays = await Promise.all(resultsPromises);
@@ -391,7 +428,22 @@ const Activities = ({ route, navigation }: any): any => {
             setIsSearchedQueryText(false);
             toTop();
           } else {
-            const results = searchIndex.current.search(queryText);
+            const results2 = searchIndex.current.search(queryText);
+            const results = results2.slice().sort((a:any, b:any) => {
+              const aMatch = [a.title, a.body, a.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+              const bMatch = [b.title, b.body, b.summary].some(field =>
+                field?.toLowerCase().includes(queryText.toLowerCase())
+              );
+            
+              // If a matches and b doesn't → a comes first
+              if (aMatch && !bMatch) return -1;
+              if (!aMatch && bMatch) return 1;
+            
+              // If both match or neither → maintain original order
+              return 0;
+            });
             let filteredResults: any = null;
             if (currentSelectedChildId != 0) {
               filteredResults = results.filter((x: any) =>
@@ -691,19 +743,20 @@ const Activities = ({ route, navigation }: any): any => {
               <MainActivityBox>
                 <ActivityBox>
                   <Flex4>
-                    <Heading6Bold style={styles.headingBoldStyle}>
-                      {t("actScreenpendingMilestone")}{" "}
+                    <Heading6Padding0 style={styles.headingBoldStyle}>
                       {t("actScreenmilestones")}
-                    </Heading6Bold>
+                    </Heading6Padding0>
                   </Flex4>
                   <Flex2>
                     <Pressable
                       onPress={(): any => gotoMilestone()}
                       style={styles.pressableMilestone}
                     >
-                      <ButtonTextSmLine numberOfLines={2}>
-                        {t("actScreentrack")} {t("actScreenmilestones")}
-                      </ButtonTextSmLine>
+                      <PrematureTagDevelopment>
+                      <ButtonTextSmHt numberOfLines={2}>
+                        {t("actScreentrack")}
+                      </ButtonTextSmHt>
+                      </PrematureTagDevelopment>
                     </Pressable>
                   </Flex2>
                 </ActivityBox>
@@ -795,20 +848,12 @@ const Activities = ({ route, navigation }: any): any => {
     return tokens;
   };
 
-  const preprocessActivities = (activities: any): any => {
-    return activities.map((activity: any) => ({
-      ...activity,
-      normalizedTitle: activity.title,
-      normalizedSummary: activity.summary,
-      normalizedBody: cleanAndOptimizeHtmlText(activity.body),
-    }));
-  };
   // console.log()
   //add minisearch on active child article data
   useEffect(() => {
     async function initializeSearchIndex() {
       try {
-        const processedActivities = preprocessActivities(ActivitiesData);
+        const processedActivities = ActivitiesData;
         const searchActivittiesData = new MiniSearch(miniSearchConfigActivity);
         searchActivittiesData.addAllAsync(processedActivities);
         searchIndex.current = searchActivittiesData;
@@ -847,12 +892,22 @@ const Activities = ({ route, navigation }: any): any => {
         .split(" ")
         .filter((word: any) => word.trim() !== "");
       if (keywords.length > 1) {
-        // const resultsPromises = keywords.map(async (keyword: any) => {
-        //   const results = searchIndex.search(keyword);
-        //   return results;
-        // });
-        // const resultsArrays = await Promise.all(resultsPromises);
-        const results = searchIndex.current.search(queryText);
+        const results2 = searchIndex.current.search(queryText);
+        const results = results2.slice().sort((a:any, b:any) => {
+          const aMatch = [a.title, a.body, a.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+          const bMatch = [b.title, b.body, b.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+        
+          // If a matches and b doesn't → a comes first
+          if (aMatch && !bMatch) return -1;
+          if (!aMatch && bMatch) return 1;
+        
+          // If both match or neither → maintain original order
+          return 0;
+        });
         const aggregatedResults = results.flat();
         let filteredResults: any = null;
         if (selectedCategoryId.length > 0) {
@@ -873,7 +928,22 @@ const Activities = ({ route, navigation }: any): any => {
         setIsSearchedQueryText(false);
         toTop();
       } else {
-        const results = searchIndex.current.search(queryText);
+        const results2 = searchIndex.current.search(queryText);
+        const results = results2.slice().sort((a:any, b:any) => {
+          const aMatch = [a.title, a.body, a.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+          const bMatch = [b.title, b.body, b.summary].some(field =>
+            field?.toLowerCase().includes(queryText.toLowerCase())
+          );
+        
+          // If a matches and b doesn't → a comes first
+          if (aMatch && !bMatch) return -1;
+          if (!aMatch && bMatch) return 1;
+        
+          // If both match or neither → maintain original order
+          return 0;
+        });
         let filteredResults: any = null;
         console.log("selectedCategoryId length", selectedCategoryId);
         if (selectedCategoryId.length > 0) {

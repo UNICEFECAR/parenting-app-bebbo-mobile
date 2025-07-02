@@ -22,9 +22,9 @@ import PrivacyPolicy from "@screens/PrivacyPolicy";
 import Terms from "@screens/Terms";
 import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, AppState, Linking, Platform } from "react-native";
+import { Alert, AppState, BackHandler, Linking, Platform } from "react-native";
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
@@ -42,7 +42,7 @@ import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
 import messaging from "@react-native-firebase/messaging";
-import { Settings } from "react-native-fbsdk-next";
+import { AppEventsLogger, Settings } from "react-native-fbsdk-next";
 import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
 import PushNotification from "react-native-push-notification";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
@@ -53,6 +53,7 @@ import TermsPage from "@screens/TermsPage";
 import { logEvent, synchronizeEvents } from "../services/EventSyncService";
 import AddChildSetup from "@screens/AddChildSetup";
 import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
+import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -98,6 +99,7 @@ export default (): any => {
   const backgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const { linkedURL, resetURL } = useDeepLinkURL();
   const navigationRef = React.useRef<any>();
+  const routesLength = navigationRef?.current?.getRootState()?.routes?.length;
   const apiData = useAppSelector(
     (state) => state.failedOnloadApiObjReducer.data
   );
@@ -111,7 +113,8 @@ export default (): any => {
       ? JSON.parse(state.selectedCountry.countries)
       : []
   );
-
+  const hasLoggedEvent = useRef(false);
+  let currentCount = 0;
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
@@ -185,12 +188,53 @@ export default (): any => {
     }
   }, [dispatch]);
 
+  const onBackPress = (): any => {
+    if (routesLength === 1 && userIsOnboarded == false) {
+        if (currentCount === 0) {
+          currentCount++;
+          if (Platform.OS === "android") {
+            ToastAndroidLocal.show(t("backPressText"), 6000);
+            setTimeout(() => {
+              currentCount = 0;
+            }, 2000);
+            return true;
+          } else {
+            Alert.alert(t("backPressText"));
+            setTimeout(() => {
+              currentCount = 0;
+            }, 2000);
+            return true;
+          }
+        } else {
+          // exit the app here using
+            BackHandler.exitApp();
+        }
+      }
+    };
+    useEffect(() => {
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        onBackPress
+      );
+      navigationRef.current?.addListener("gestureEnd", onBackPress);
+      return (): any => {
+        navigationRef.current?.removeListener("gestureEnd", onBackPress);
+        backHandler.remove();
+      };
+    }, [routesLength,userIsOnboarded]);
+
   useEffect(() => {
     // ... handle deep link
     callUrl(linkedURL);
   }, [linkedURL, resetURL, userIsOnboarded]);
 
   useEffect(() => {
+    const logFacebookEvent = (): void => {
+      if (!hasLoggedEvent.current) {
+        AppEventsLogger.logEvent('fb_sdk_initialized'); // Custom event
+        hasLoggedEvent.current = true;
+      }
+    };
     const initPixel = async (): Promise<any> => {
       if (Platform.OS === "ios") {
         const ATT_CHECK = await check(
@@ -206,6 +250,7 @@ export default (): any => {
               console.log(ATT, "..ATT..");
               Settings.setAdvertiserTrackingEnabled(true).then(() => {
                 Settings.initializeSDK();
+                logFacebookEvent();
               });
             }
           } catch (error) {
@@ -213,12 +258,15 @@ export default (): any => {
             throw error;
           } finally {
             Settings.initializeSDK();
+            logFacebookEvent();
           }
           Settings.initializeSDK();
+          logFacebookEvent();
           Settings.setAdvertiserTrackingEnabled(true);
         }
       } else {
         Settings.initializeSDK();
+        logFacebookEvent();
         Settings.setAdvertiserTrackingEnabled(true);
       }
     };

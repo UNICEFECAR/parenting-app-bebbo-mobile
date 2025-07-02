@@ -1,0 +1,23 @@
+diff --git a/node_modules/react-native-vector-icons/.DS_Store b/node_modules/react-native-vector-icons/.DS_Store
+new file mode 100644
+index 0000000..7cc9d69
+Binary files /dev/null and b/node_modules/react-native-vector-icons/.DS_Store differ
+diff --git a/node_modules/react-native-vector-icons/Fonts/.DS_Store b/node_modules/react-native-vector-icons/Fonts/.DS_Store
+new file mode 100644
+index 0000000..31586d0
+Binary files /dev/null and b/node_modules/react-native-vector-icons/Fonts/.DS_Store differ
+diff --git a/node_modules/react-native-vector-icons/android/build.gradle b/node_modules/react-native-vector-icons/android/build.gradle
+index 3e615e9..a3453aa 100644
+--- a/node_modules/react-native-vector-icons/android/build.gradle
++++ b/node_modules/react-native-vector-icons/android/build.gradle
+@@ -23,7 +23,9 @@ if (isNewArchitectureEnabled()) {
+ android {
+     namespace = "com.oblador.vectoricons"
+     compileSdkVersion safeExtGet('compileSdkVersion', 31)
+-
++    buildFeatures {
++        buildConfig true
++    }
+     defaultConfig {
+         minSdkVersion safeExtGet('minSdkVersion', 21)
+         targetSdkVersion safeExtGet('targetSdkVersion', 31)
