@@ -27,7 +27,6 @@ import {
   selectChildDevData,
   selectPinnedChildDevData,
 } from "../../services/selectors";
-import QuickLinksRow from './QuickLinksRow';
 const windowWidth = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   flexShrink1: { flexShrink: 1 },
@@ -143,7 +142,6 @@ const ChildInfo = (props: any): any => {
               {t("homeScreenchildBtnText")}
             </ButtonUpperCaseText>
           </ButtonPrimary>
-          <QuickLinksRow />
         </MainContainer>
       ) : null}
     </>
