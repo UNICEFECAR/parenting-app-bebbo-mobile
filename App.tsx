@@ -39,6 +39,7 @@ import { googleAuth } from "./app/services/googleAuth";
 import { EventProvider } from "react-native-outside-press";
 import RNRestart from "react-native-restart";
 import { setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
+import { recordError } from "./app/services/firebaseAnalytics";
 const flavor = process.env.FLAVOR || "bebbo";
 export const store = configureAppStore();
 export const persistor = persistStore(store);
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
 const { appTheme } = require(`./app/instances/${flavor}/styles/theme`);
 
 const CustomFallback = (props: { error: Error; resetError: Function }) => {
-  crashlytics().recordError(props.error);
+  recordError(props.error);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t("generalError")}</Text>

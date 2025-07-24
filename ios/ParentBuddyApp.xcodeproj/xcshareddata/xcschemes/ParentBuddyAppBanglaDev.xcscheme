@@ -15,8 +15,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3205C0A32C11DC6F002309EA"
-               BuildableName = "Babuni.app"
+               BlueprintIdentifier = "D6F143062E2A29F400986814"
+               BuildableName = "ParentBuddyAppBanglaDev.app"
                BlueprintName = "ParentBuddyAppBanglaDev"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
             </BuildableReference>
@@ -44,8 +44,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3205C0A32C11DC6F002309EA"
-            BuildableName = "Babuni.app"
+            BlueprintIdentifier = "D6F143062E2A29F400986814"
+            BuildableName = "ParentBuddyAppBanglaDev.app"
             BlueprintName = "ParentBuddyAppBanglaDev"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
@@ -67,8 +67,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3205C0A32C11DC6F002309EA"
-            BuildableName = "Babuni.app"
+            BlueprintIdentifier = "D6F143062E2A29F400986814"
+            BuildableName = "ParentBuddyAppBanglaDev.app"
             BlueprintName = "ParentBuddyAppBanglaDev"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>

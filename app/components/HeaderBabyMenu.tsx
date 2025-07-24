@@ -46,6 +46,7 @@ import {
   ProfileTextView,
 } from "./shared/ProfileListingStyle";
 import { bgcolorBlack2, bgcolortransparent, bgcolorWhite } from "@styles/style";
+import { selectActiveChild, selectChildAge, selectChildGenders, selectParsedChildList, selectTaxonomyIds } from "../services/selectors";
 
 const headerHeight = 50;
 const styles = StyleSheet.create({
@@ -129,35 +130,17 @@ const HeaderBabyMenu = (props: any): any => {
   const [activeChildGenderData, setActiveChildGenderData] =
     React.useState<any>();
   const dispatch = useAppDispatch();
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  const genders = useAppSelector(selectChildGenders);
   const [modalVisible, setModalVisible] = useState(false);
   const { t } = useTranslation();
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const childList = useAppSelector(selectParsedChildList);
+  const activeChild = useAppSelector(selectActiveChild);
   const currentActiveChild = activeChild.uuid;
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const taxonomyIds = useAppSelector(
-    (state: any) => state.utilsData.taxonomyIds
-  );
+  const taxonomyIds = useAppSelector(selectTaxonomyIds);
   const SortedchildList = [...childList].sort((a: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });

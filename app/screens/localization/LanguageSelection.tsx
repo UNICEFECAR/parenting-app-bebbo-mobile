@@ -32,8 +32,6 @@ import {
   ButtonUpperCaseText,
 } from "@components/shared/ButtonGlobal";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
-import crashlytics from "@react-native-firebase/crashlytics";
-import analytics from "@react-native-firebase/analytics";
 import { useIsFocused } from "@react-navigation/native";
 import moment from "moment";
 import "moment/min/locales";
@@ -43,6 +41,7 @@ import "moment/locale/sq";
 import "moment/locale/sr";
 import "moment/locale/tr";
 import { getLanguageCode } from "../../services/Utils";
+import { recordError, setUserProperties } from "../../services/firebaseAnalytics";
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   "CountryLanguageConfirmation"
@@ -197,7 +196,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
-  const rtlConditions = (language: any): any => {
+  const rtlConditions = async (language: any): Promise<any> => {
     moment.locale(getLanguageCode(language?.languageCode));
     i18n.changeLanguage(language?.locale || "en").then(() => {
       if (language?.locale == "GRarb" || language?.locale == "GRda") {
@@ -246,7 +245,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        analytics().setUserProperties({
+        await setUserProperties({
           country: route.params?.country?.name,
           language: language?.displayName,
         });
@@ -256,7 +255,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        analytics().setUserProperties({
+        await setUserProperties({
           country: country?.displayName,
           language: language?.displayName,
         });
@@ -293,7 +292,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       newLanguage = language[0];
     } else {
       // throw new Error('Language is not defined or empty'); when we have error handling if language is undefined or empty
-      crashlytics().recordError(
+      recordError(
         "Language is not defined or empty" + JSON.stringify(language)
       );
       console.log("Language is not defined or empty");

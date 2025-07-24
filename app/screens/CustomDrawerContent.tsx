@@ -46,7 +46,6 @@ import {
   SubDrawerHead,
   SubDrawerLinkView,
 } from "@components/shared/NavigationDrawer";
-import analytics from "@react-native-firebase/analytics";
 import { useDrawerStatus } from "@react-navigation/drawer";
 import { useFocusEffect } from "@react-navigation/native";
 import { bgcolorWhite2, lightShadeColor, secondaryColor } from "@styles/style";
@@ -81,6 +80,7 @@ import { formatDate, addSpaceToHtml } from "../services/Utils";
 import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import useDigitConverter from "../customHooks/useDigitConvert";
+import { logAnalyticsEvent } from "../services/firebaseAnalytics";
 
 const styles = StyleSheet.create({
   containerView: {
@@ -302,7 +302,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
         //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
-        analytics().logEvent(APP_SHARE);
+        await logAnalyticsEvent(APP_SHARE);
       }
     } catch (error: any) {
       Alert.alert(t("generalError"));
@@ -769,8 +769,8 @@ const CustomDrawerContent = ({ navigation }: any): any => {
           donateItem?.survey_feedback_link != "" &&
           donateItem?.survey_feedback_link != null ? (
             <DrawerLinkView
-              onPress={(): any => {
-                analytics().logEvent(DONATE_OPENED);
+              onPress={async (): Promise<any> => {
+                await logAnalyticsEvent(DONATE_OPENED);
                 Linking.openURL(donateItem?.survey_feedback_link);
               }}
             >
@@ -827,9 +827,9 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 </ModalPopupContent>
                 <FDirRow>
                   <ButtonModal
-                    onPress={(): any => {
+                    onPress={async (): Promise<any> => {
                       setModalVisible(false);
-                      analytics().logEvent(FEEDBACK_SUBMIT);
+                      await logAnalyticsEvent(FEEDBACK_SUBMIT);
                       Linking.openURL(feedbackItem?.survey_feedback_link);
                     }}
                   >

@@ -86,7 +86,7 @@ import {
   View,
 } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
-import DocumentPicker, { isInProgress } from "react-native-document-picker";
+import DocumentPicker, { isErrorWithCode, errorCodes } from "@react-native-documents/picker";
 import RNFS from "react-native-fs";
 import { Switch } from "react-native-gesture-handler";
 import VectorImage from "react-native-vector-image";
@@ -888,13 +888,31 @@ const SettingScreen = (props: any): any => {
   const handleError = (err: any): any => {
     console.log(err, "..err");
 
-    if (DocumentPicker.isCancel(err)) {
-      console.log("cancelled");
-      // User cancelled the picker, exit any dialogs or menus and move on
-    } else if (isInProgress(err)) {
-      console.log(
-        "multiple pickers were opened, only the last will be considered"
-      );
+    // if (DocumentPicker.isCancel(err)) {
+    //   console.log("cancelled");
+    //   // User cancelled the picker, exit any dialogs or menus and move on
+    // } else if (isInProgress(err)) {
+    //   console.log(
+    //     "multiple pickers were opened, only the last will be considered"
+    //   );
+    // } else {
+    //   throw err;
+    // }
+
+    if (isErrorWithCode(err)) {
+      switch (err.code) {
+        case errorCodes.IN_PROGRESS:
+          console.warn('user attempted to present a picker, but a previous one was already presented')
+          break
+        case errorCodes.UNABLE_TO_OPEN_FILE_TYPE:
+          console.log('unable to open file type')
+          break
+        case errorCodes.OPERATION_CANCELED:
+          // ignore
+          break
+        default:
+          console.error(err)
+      }
     } else {
       throw err;
     }
