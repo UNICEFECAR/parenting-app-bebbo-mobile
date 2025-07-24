@@ -469,7 +469,7 @@ const ChildImportSetup = (props: any): any => {
                         params: { child_count: childList?.length },
                       };
                       logEvent(eventData, netInfo.isConnected);
-                      // analytics().logEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
+                      // await logAnalyticsEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
 
                       props.navigation.reset({
                         index: 0,

@@ -209,7 +209,7 @@ export const selectMonthlyDownloadDate = (state: any) =>
 
 // --- Memoized JSON-parsed selectors ---
 export const selectAllCountries = createSelector(
-  [(state: any) => state.selectedCountry?.countries],
+  [(state: any) => state.selectedCountry.countries],
   (countries) => {
     if (countries && countries !== "") {
       try {
@@ -283,3 +283,19 @@ export const selectSponsors = (state: any) =>
 // --- App Layout Direction ---
 export const selectAppLayoutDirection = (state: any) =>
   state.selectedCountry?.AppLayoutDirection;
+
+// ChildList
+
+export const selectRawChildList = (state: any) => state.childData.childDataSet.allChild;
+
+export const selectParsedChildList = createSelector(
+  [selectRawChildList],
+  (allChildString) => {
+    try {
+      return allChildString ? JSON.parse(allChildString) : [];
+    } catch (e) {
+      console.warn('Failed to parse child list:', e);
+      return [];
+    }
+  }
+);

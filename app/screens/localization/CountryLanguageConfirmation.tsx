@@ -20,11 +20,9 @@ import OnboardingContainer, {
   LocalizationContentResult,
   LocalizationRow,
   OnboardingConfirmationHead,
-  OnboardingContent,
   OnboardingShiftHead,
 } from "@components/shared/OnboardingContainer";
 import { RootStackParamList } from "@navigation/types";
-import analytics from "@react-native-firebase/analytics";
 import {
   CommonActions,
   StackActions,
@@ -73,6 +71,7 @@ import "moment/locale/tr";
 import { getLanguageCode } from "../../services/Utils";
 import { OfflineBar } from "@components/shared/HomeScreenStyle";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { setUserProperties } from "../../services/firebaseAnalytics";
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "Terms"
@@ -336,7 +335,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     }, [])
   );
 
-  const rtlConditions = (language: any): any => {
+  const rtlConditions = async (language: any): Promise<any> => {
     console.log(language, "[language]");
     i18n.changeLanguage(language.locale).then(() => {
       if (language?.locale == "GRarb" || language?.locale == "GRda") {
@@ -376,7 +375,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        analytics().setUserProperties({
+        await setUserProperties({
           country: route.params?.country?.name,
           language: newLanguage?.displayName,
         });
@@ -399,7 +398,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        analytics().setUserProperties({
+        await setUserProperties({
           country: countryData?.name,
           language: newLanguage?.displayName,
         });
