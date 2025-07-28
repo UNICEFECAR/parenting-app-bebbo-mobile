@@ -24,6 +24,7 @@ import {
   Platform,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
@@ -52,6 +53,7 @@ import { imageBg } from "../../instances/bebbo/styles/style";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { useFocusEffect } from "@react-navigation/native";
+import { selectAllConfigData, selectAllTaxonomyData, selectFaqsData, selectSurveyData } from "../../services/selectors";
 
 type SupportChatNavigationProp = StackNavigationProp<any>;
 type Props = {
@@ -78,25 +80,14 @@ const SupportChat = ({ navigation }: Props): any => {
   const dispatch = useAppDispatch();
   const windowWidthstyle = Dimensions.get("window").width;
   const windowHeightstyle = Dimensions.get("window").height;
-  const allConfigData = useAppSelector((state: any) =>
-    state.variableData?.variableData != ""
-      ? JSON.parse(state.variableData?.variableData)
-      : state.variableData?.variableData
-  );
+  const { width } = useWindowDimensions();
+  const allConfigData = useAppSelector(selectAllConfigData);
   const userNameData =
     allConfigData?.length > 0
       ? allConfigData.filter((item: any) => item.key === "userName")
       : [];
-  const taxonomy = useAppSelector((state: any) =>
-    state.utilsData.taxonomy?.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData)
-      : {}
-  );
-  const faqsData = useAppSelector((state: any) =>
-    state.utilsData.faqsData != ""
-      ? JSON.parse(state.utilsData.faqsData)
-      : state.utilsData.faqsData
-  );
+  const taxonomy = useAppSelector(selectAllTaxonomyData);
+  const faqsData = useAppSelector(selectFaqsData);
 
   useLayoutEffect(() => {
     navigation.closeDrawer();
@@ -118,12 +109,7 @@ const SupportChat = ({ navigation }: Props): any => {
       : state.childData.childDataSet.chatBotData;
   });
   const [profileLoading, setProfileLoading] = React.useState(false);
-  const [scrollLoad, setScrollLoad] = React.useState(true);
-  const surveryData = useAppSelector((state: any) =>
-    state.utilsData.surveryData != ""
-      ? JSON.parse(state.utilsData.surveryData)
-      : state.utilsData.surveryData
-  );
+  const surveryData = useAppSelector(selectSurveyData);
   const feedbackItem = surveryData.find((item: any) => item.type == "feedback");
   const [steps, setsteps] = useState<any>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -767,6 +753,7 @@ const SupportChat = ({ navigation }: Props): any => {
 
                   {feedbackItem && feedbackItem?.body ? (
                     <HTML
+                      contentWidth={width}
                       source={{ html: addSpaceToHtml(feedbackItem?.body) }}
                       ignoredStyles={["color", "fontSize", "fontFamily"]}
                     />

@@ -15,7 +15,7 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "E88A315F2D6C8A4A009E2F96"
+                     BlueprintIdentifier = "D6F143522E2A39D000986814"
                      BuildableName = "Wawamor.app"
                      BlueprintName = "Wawamor"
                      ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -33,7 +33,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E88A315F2D6C8A4A009E2F96"
+               BlueprintIdentifier = "D6F143522E2A39D000986814"
                BuildableName = "Wawamor.app"
                BlueprintName = "Wawamor"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -62,7 +62,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E88A315F2D6C8A4A009E2F96"
+            BlueprintIdentifier = "D6F143522E2A39D000986814"
             BuildableName = "Wawamor.app"
             BlueprintName = "Wawamor"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -79,7 +79,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E88A315F2D6C8A4A009E2F96"
+            BlueprintIdentifier = "D6F143522E2A39D000986814"
             BuildableName = "Wawamor.app"
             BlueprintName = "Wawamor"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">

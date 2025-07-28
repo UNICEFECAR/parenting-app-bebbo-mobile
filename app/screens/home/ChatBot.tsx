@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import HTML from "react-native-render-html";
 import { addSpaceToHtml } from "../../services/Utils";
@@ -35,6 +35,7 @@ import { useAppSelector } from "../../../App";
 import ThreeDotsLoader from "../../services/ThreeDotsLoader";
 import { imgLogoChatbotNew } from "../../instances";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { selectAllConfigData } from "../../services/selectors";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   flexShrink1: { flexShrink: 1 },
@@ -78,16 +79,12 @@ const BotBubble = (props: any): any => {
   const netInfo = useNetInfoHook();
   const navigation = useNavigation<any>();
   const [answer2visible, setanswer2visible] = useState(false);
-  const allConfigData = useAppSelector((state: any) =>
-    state.variableData?.variableData != ""
-      ? JSON.parse(state.variableData?.variableData)
-      : state.variableData?.variableData
-  );
+  const allConfigData = useAppSelector(selectAllConfigData);
   const userNameData =
     allConfigData?.length > 0
       ? allConfigData.filter((item: any) => item.key === "userName")
       : [];
-
+  const { width } = useWindowDimensions();
   return (
     <FlexRow>
       <BotImage>
@@ -129,6 +126,7 @@ const BotBubble = (props: any): any => {
           <>
             <View style={styles.htmlView}>
               <HTML
+                contentWidth={width}
                 source={{
                   html: addSpaceToHtml(steps.textToShow.answer_part_1),
                 }}
@@ -158,6 +156,7 @@ const BotBubble = (props: any): any => {
             {answer2visible == true ? (
               <View style={styles.htmlView2}>
                 <HTML
+                  contentWidth={width}
                   source={{
                     html: addSpaceToHtml(steps.textToShow.answer_part_2),
                   }}

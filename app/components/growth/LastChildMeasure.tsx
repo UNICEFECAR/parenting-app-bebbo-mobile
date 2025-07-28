@@ -48,6 +48,7 @@ import useDigitConverter from "../../customHooks/useDigitConvert";
 import { MeasuresEntity } from "../../database/schema/ChildDataSchema";
 import { getCurrentChildAgeInYears } from "../../services/childCRUD";
 import { formatStringDate } from "../../services/Utils";
+import { selectActiveChild } from "../../services/selectors";
 const styles = StyleSheet.create({
   buttonTextDecoration: {
     textDecorationLine: "none",
@@ -59,11 +60,7 @@ const styles = StyleSheet.create({
 const LastChildMeasure = (): any => {
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const navigation = useNavigation<any>();
   const [modalVisible, setModalVisible] = useState(false);
   let measures: any = [];

@@ -1,49 +1,104 @@
-# Node.js dependencies
-node_modules/
-npm-debug.log
-yarn-error.log
+# OSX
+#
+.DS_Store
 
-# Build artifacts
-*.lock
-*.bundle
-android/app/src/main/assets/index.android.bundle
-android/app/build/
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+**/.xcode.env.local
+
 ios/build/
 ios/tmp.xcconfig
-
-# Android-specific files
-android/.gradle/
-android/.idea/
-android/app/src/prod/res/values/strings.xml
-android/gradle.properties
-local.properties
-google-services*.json
-
-# iOS-specific files
-ios/Pods/
 ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcuserdata*
 ios/ParentBuddyApp.xcodeproj/xcuserdata*
 ios/GoogleServices/**/GoogleService-Info*.plist
+ios/DerivedData
+
+# lock files (package-lock.json, yarn.lock etc.)
+*.lock
 
 # Environment files
 .env*
 env/*
-ios/DerivedData
-# BUCK build system
-buck-out/
-\.buckd/
 
-# Keystore files
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
 *.keystore
 !debug.keystore
-
+.kotlin/
+android/app/src/main/assets/index.android.bundle
+# prevent Firebase config from leaking
+google-services*.json
 # Gradle & other properties files
 .gradle/
 *.properties
 
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+
+# Bundle artifact
+*.jsbundle
+
+# Ruby / CocoaPods
+**/Pods/
+/vendor/bundle/
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# testing
+/coverage
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # Miscellaneous
-.DS_Store
-*.hprof
 data.realm
 data.realm.management/
+
+# BUCK
+buck-out/
+.buckd/

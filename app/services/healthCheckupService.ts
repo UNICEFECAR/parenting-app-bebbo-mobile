@@ -7,16 +7,10 @@ import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { formatStringDate } from './Utils';
 import { useEffect } from 'react';
 import { t } from 'i18next';
+import { selectActiveChild, selectAllTaxonomyData, selectHealthCheckupsData, selectVaccineData } from './selectors';
 export const getAllHealthCheckupPeriods = (): any => {
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
-  );
-  const taxonomy = useAppSelector(
-    (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const taxonomy = useAppSelector(selectAllTaxonomyData);
 
   const allGrowthPeriods = taxonomy.growth_period;
   const allMeasures = activeChild?.measures.filter((item: any) => (item.measurementPlace == 0)).sort(
@@ -26,10 +20,7 @@ export const getAllHealthCheckupPeriods = (): any => {
   const vcMeasures = activeChild?.measures.filter((item: any) => (item.measurementPlace == 1 && item.didChildGetVaccines == true)).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
-  const allVaccinePeriods = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.vaccineData),
-  );
+  const allVaccinePeriods = useAppSelector(selectVaccineData);
   const checkIfMeasuredVaccineExistsForLocale = (vaccineIds: any): any => {
     return vaccineIds?.filter((vcId: any) => {
       return allVaccinePeriods?.some((el: any) => {
@@ -100,10 +91,7 @@ export const getAllHealthCheckupPeriods = (): any => {
       return vaccinesforHC;
     }
   }
-  const allHealthCheckupsData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.healthCheckupsData),
-  );
+  const allHealthCheckupsData = useAppSelector(selectHealthCheckupsData);
   const additionalMeasures: any[] = [];
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number): any => {
     // console.log("currentIndex--",currentIndex)
