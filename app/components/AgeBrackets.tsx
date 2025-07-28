@@ -3,6 +3,7 @@ import { useAppSelector } from "../../App";
 import ScrollingButtonMenu from "../services/ScrollingButtonMenu";
 import { appConfig } from "../instances";
 import { useNavigation } from "@react-navigation/native";
+import { selectChildAge } from "../services/selectors";
 
 const AgeBrackets = ({
   currentSelectedChildId,
@@ -13,11 +14,7 @@ const AgeBrackets = ({
   isActivity,
 }: any) => {
   const navigation = useNavigation();
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
 
   let filteredAge = isActivity
     ? childAge.filter(

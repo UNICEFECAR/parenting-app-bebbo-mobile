@@ -42,6 +42,7 @@ import "moment/locale/sr";
 import "moment/locale/tr";
 import { getLanguageCode } from "../../services/Utils";
 import { recordError, setUserProperties } from "../../services/firebaseAnalytics";
+import { selectAllCountries } from "../../services/selectors";
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   "CountryLanguageConfirmation"
@@ -52,11 +53,7 @@ type Props = {
 };
 const LanguageSelection = ({ route, navigation }: Props): any => {
   const [language, setLanguage] = useState<any>();
-  const allCountries = useAppSelector((state: any) =>
-    state.selectedCountry.countries != ""
-      ? JSON.parse(state.selectedCountry.countries)
-      : []
-  );
+  const allCountries = useAppSelector(selectAllCountries);
   let country: any, languagenew: any;
   if (
     appConfig.buildFor == appConfig.buildForFoleja &&

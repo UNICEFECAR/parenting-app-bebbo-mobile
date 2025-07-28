@@ -69,6 +69,7 @@ import {
   ScrollView,
   Share,
   StyleSheet,
+  useWindowDimensions,
   View,
 } from "react-native";
 import HTML from "react-native-render-html";
@@ -81,6 +82,7 @@ import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import useDigitConverter from "../customHooks/useDigitConvert";
 import { logAnalyticsEvent } from "../services/firebaseAnalytics";
+import { selectActiveChild, selectAllCountries, selectChildGenders, selectSurveyData, selectVaccineData } from "../services/selectors";
 
 const styles = StyleSheet.create({
   containerView: {
@@ -121,28 +123,14 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   const { convertDigits } = useDigitConverter();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const [aboutAccordValue, onChangeAboutAccordValue] = React.useState(false);
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const allVaccineData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData)
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const allVaccineData = useAppSelector(selectVaccineData);
   const allnotis = useAppSelector(
     (state: any) => state.notificationData.notifications
   );
   const [notifications, setNotifications] = useState<any[]>([]);
-  const surveryData = useAppSelector((state: any) =>
-    state.utilsData.surveryData != ""
-      ? JSON.parse(state.utilsData.surveryData)
-      : state.utilsData.surveryData
-  );
-  const allCountries = useAppSelector((state: any) =>
-    state.selectedCountry.countries != ""
-      ? JSON.parse(state.selectedCountry.countries)
-      : []
-  );
+  const surveryData = useAppSelector(selectSurveyData);
+  const allCountries = useAppSelector(selectAllCountries);
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countrySelectedId
   );
@@ -153,7 +141,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
     (item: any) => item.type == "user_guide"
   );
   const donateItem = surveryData.find((item: any) => item.type == "donate");
-  const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices
       ? state.childData.childDataSet.favoriteadvices
@@ -169,6 +157,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   );
   const [favoritescount, setfavoritescount] = useState(0);
   const isOpen = useDrawerStatus() === "open";
+  const { width } = useWindowDimensions();
   useFocusEffect(
     React.useCallback(() => {
       if (isOpen) {
@@ -190,12 +179,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const locale = useAppSelector((state: any) => state.selectedCountry.locale);
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  const genders = useAppSelector(selectChildGenders);
   const [activeChildGenderData, setActiveChildGenderData] =
     React.useState<any>();
   useEffect(() => {
@@ -820,6 +804,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
 
                   {feedbackItem && feedbackItem?.body ? (
                     <HTML
+                      contentWidth={width}
                       source={{ html: addSpaceToHtml(feedbackItem?.body) }}
                       ignoredStyles={["color", "fontSize", "fontFamily"]}
                     />

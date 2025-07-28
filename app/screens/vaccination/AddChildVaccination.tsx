@@ -95,6 +95,7 @@ import { formatStringDate, getLanguageCode } from "../../services/Utils";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import ToggleRadiosBgColor from "@components/ToggleRadiosBgColor";
+import { selectActiveChild, selectVaccineData } from "../../services/selectors";
 
 const styles = StyleSheet.create({
   constinerView: {
@@ -161,11 +162,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] =
     useState(false);
   const dispatch = useAppDispatch();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const locale = useAppSelector((state: any) =>
     getLanguageCode(state.selectedCountry?.languageCode)
   );
@@ -191,9 +188,7 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
       navigation.goBack();
     }
   };
-  const allVaccinePeriods = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData)
-  );
+  const allVaccinePeriods = useAppSelector(selectVaccineData);
   const checkIfMeasuredVaccineExistsForLocale = (vaccineIds: any): any => {
     return vaccineIds?.filter((vcId: any) => {
       return allVaccinePeriods.some((el: any) => {

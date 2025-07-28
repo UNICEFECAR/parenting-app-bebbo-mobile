@@ -17,6 +17,7 @@ import {
   View,
   Dimensions,
   Modal,
+  useWindowDimensions,
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../App";
@@ -48,6 +49,7 @@ import { isFutureDate } from "../services/childCRUD";
 import { bgColor1 } from "../instances/bebbo/styles/style";
 import VectorImage from "react-native-vector-image";
 import useDigitConverter from "../customHooks/useDigitConvert";
+import { selectActiveChild, selectActiveChildUuid } from "../services/selectors";
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: "flex-start" },
   checkboxStyle: { borderWidth: 1 },
@@ -118,21 +120,14 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
   const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
-  const activeChilduuid = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild).uuid
-      : []
-  );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChilduuid = useAppSelector(selectActiveChildUuid);
+  const activeChild = useAppSelector(selectActiveChild);
   const { convertDigits } = useDigitConverter();
   const [selVideoArticleData, setselVideoArticleData] = useState<any>();
   const [selActivitiesData, setselActivitiesData] = useState<any>();
   const [selVideoImage, setselVideoImage] = useState("");
   const [selActivityImage, setselActivityImage] = useState("");
+  const { width } = useWindowDimensions();
   useEffect(() => {
     if (item?.toggleCheck == true) {
       setToggleCheckBox(true);
@@ -309,6 +304,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                     <ShiftFromBottom5>
                       {item && item.body ? (
                         <HTML
+                          contentWidth={width}
                           source={{ html: addSpaceToHtml(item.body) }}
                           baseStyle={styles.htmlFontSize}
                           ignoredStyles={["color", "fontSize", "fontFamily"]}

@@ -25,6 +25,7 @@ import {
 import { FlexCol } from "./shared/FlexBoxStyle";
 import ShareFavButtons from "./shared/ShareFavButtons";
 import BackgroundColors from "./shared/BackgroundColors";
+import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray } from "../services/selectors";
 
 const ContainerView = styled.View`
   flex: 1;
@@ -50,23 +51,12 @@ const FavActivities = (): any => {
   const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const flatListRef = useRef(null);
-  const activityCategoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category
-  );
+  const activityCategoryData = useAppSelector(selectActivityCategoryArray);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const ActivitiesDataall = useAppSelector((state: any) =>
-    state.utilsData.ActivitiesData != ""
-      ? JSON.parse(state.utilsData.ActivitiesData)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const ActivitiesDataall = useAppSelector(selectActivitiesDataAll);
   const favoritegames = useAppSelector(
     (state: any) => state.childData.childDataSet.favoritegames
   );

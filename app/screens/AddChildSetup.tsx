@@ -92,6 +92,7 @@ import {
 } from "../database/schema/ConfigSettingsSchema";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
+import { selectChildAge, selectChildGenders, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -149,33 +150,15 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
   const actionSheetRefImport = createRef<any>();
   const netInfo = useNetInfoHook();
-  let relationshipData = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender
-      : []
-  );
+  let relationshipData = useAppSelector(selectParentGender);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
-  const relationshipToParent = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData)
-          .relationship_to_parent
-      : []
-  );
+  const relationshipToParent = useAppSelector(selectRelationshipToParent);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const actionSheetRef = createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
@@ -187,11 +170,7 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
-  let genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  let genders = useAppSelector(selectChildGenders);
 
   genders = genders
     .map((v: any) => ({ ...v, title: v.name }))
@@ -560,9 +539,9 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
     <>
       <View style={styles.containerView}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <OverlayLoadingComponent loading={loading} />
         <ScrollView contentContainerStyle={styles.scrollViewStyle}>
           <OnboardingContainer>
-            <OverlayLoadingComponent loading={loading} />
             <FlexRow>
               <ShiftFromTop25>
                 <Pressable

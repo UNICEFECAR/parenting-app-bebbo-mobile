@@ -87,6 +87,7 @@ import Checkbox, {
 } from "@components/shared/CheckboxStyle";
 import VectorImage from "react-native-vector-image";
 import { cameraProfileImage } from "../../instances";
+import { selectChildAge, selectChildGenders, selectChildList } from "../../services/selectors";
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const dobMax = new Date(new Date().setHours(23, 59, 59, 999));
@@ -140,11 +141,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const netInfo = useNetInfoHook();
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const childData = route.params.childData;
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : state.childData.childDataSet.allChild
-  );
+  const childList = useAppSelector(selectChildList);
   const editScreen = childData && childData.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
@@ -154,15 +151,8 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  let genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  let genders = useAppSelector(selectChildGenders);
 
-  let all = useAppSelector(
-    (state: any) => state.utilsData.taxonomy.allTaxonomyData
-  );
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
@@ -196,12 +186,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [isExpected, setIsExpected] = React.useState<string>("false");
   const [destPath, setDestPath] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
-  const isFocused = useIsFocused();
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const sendData = (data: any): any => {
     // the callback. Use a better name
     setBirthDate(data.birthDate);

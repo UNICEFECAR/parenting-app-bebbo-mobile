@@ -42,6 +42,7 @@ import {
 } from "../shared/ButtonGlobal";
 import Icon, { IconViewBg } from "../shared/Icon";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { selectActiveChild, selectVaccineData } from "../../services/selectors";
 const styles = StyleSheet.create({
   dirView: { flex: 6, flexDirection: "row" },
   iconStyle: { alignSelf: "center" },
@@ -64,11 +65,7 @@ const UpcomingHealthCheckup = (props: any): any => {
   const themeContext = useContext(ThemeContext);
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const reminders = activeChild.reminders;
   let hcReminder: any;
   const healthCheckupReminders = reminders.filter(
@@ -104,9 +101,7 @@ const UpcomingHealthCheckup = (props: any): any => {
     }
   };
 
-  const allVaccineData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData)
-  );
+  const allVaccineData = useAppSelector(selectVaccineData);
   const getVaccineName = (vaccineID: any): any => {
     return allVaccineData?.find((v: any) => v.uuid == vaccineID)?.title;
   };

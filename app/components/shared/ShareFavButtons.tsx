@@ -21,9 +21,10 @@ import {
   setFavouriteGames,
 } from "../../redux/reducers/childSlice";
 import { FDirRow } from "./FlexBoxStyle";
-import Icon, { OuterIconLeft, OuterIconRow, OuterIconLeft1 } from "./Icon";
+import Icon, { OuterIconRow, OuterIconLeft1 } from "./Icon";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
+import { selectActiveChildUuid } from "../../services/selectors";
 export const ShareFavBox = styled.View`
   flex-direction: row;
   padding: 5px 10px 0;
@@ -40,11 +41,7 @@ const styles = StyleSheet.create({
 });
 const ShareFavButtons = React.memo((props: any) => {
   const netInfo = useNetInfoHook();
-  const activeChilduuid = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild).uuid
-      : []
-  );
+  const activeChilduuid = useAppSelector(selectActiveChildUuid);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
@@ -85,6 +82,7 @@ const ShareFavButtons = React.memo((props: any) => {
   };
   const onFavClick = async (): Promise<any> => {
     const filterQuery = 'uuid == "' + activeChilduuid + '"';
+    console.log("on click",filterQuery)
     if (isAdvice) {
       await userRealmCommon.updateFavorites<ChildEntity>(
         ChildEntitySchema,

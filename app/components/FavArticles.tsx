@@ -26,6 +26,7 @@ import { ArticleListBox, ArticleListContent } from "./shared/ArticlesStyle";
 import { FlexCol } from "./shared/FlexBoxStyle";
 import ShareFavButtons from "./shared/ShareFavButtons";
 import VideoPlayer from "./VideoPlayer";
+import { selectArticleCategoryArray, selectArticleDataAll } from "../services/selectors";
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: row;
@@ -51,21 +52,14 @@ const FavArticles = (): any => {
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const flatListRef = useRef(null);
-  const categoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category
-  );
+  const categoryData = useAppSelector(selectArticleCategoryArray);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
   const favoriteadvices = useAppSelector(
     (state: any) => state.childData.childDataSet.favoriteadvices
   );
-  const articleDataall = useAppSelector((state: any) =>
-    state.articlesData.article.articles != ""
-      ? JSON.parse(state.articlesData.article.articles)
-      : state.articlesData.article.articles
-  );
+  const articleDataall = useAppSelector(selectArticleDataAll);
   const [favAdvicesToShow, setfavAdvicesToShow] = useState([]);
   const netInfo = useNetInfoHook();
   const goToArticleDetail = (item: any): any => {

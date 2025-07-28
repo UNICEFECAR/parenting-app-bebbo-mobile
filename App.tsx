@@ -6,7 +6,6 @@
  */
 
 import "react-native-gesture-handler";
-import crashlytics from "@react-native-firebase/crashlytics";
 import { Action, ThunkAction } from "@reduxjs/toolkit";
 import React from "react";
 import i18n from "i18next";
@@ -18,7 +17,6 @@ import {
   View,
 } from "react-native";
 import ErrorBoundary from "react-native-error-boundary";
-import "react-native-gesture-handler";
 import Orientation from "react-native-orientation-locker";
 import { MenuProvider } from "react-native-popup-menu";
 import { SafeAreaProvider } from "react-native-safe-area-context";
