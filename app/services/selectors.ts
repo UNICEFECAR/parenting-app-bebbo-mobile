@@ -47,6 +47,14 @@ export const selectActiveChild = createSelector(
   [(state: any) => state.childData.childDataSet.activeChild],
   (activeChild) => (activeChild ? memoizedJsonParse(activeChild) : [])
 );
+export const selectActiveChildUuid = createSelector(
+  [(state: any) => state.childData.childDataSet.activeChild],
+  (activeChild) => (activeChild ? memoizedJsonParse(activeChild).uuid : [])
+);
+export const selectActiveChildReminders = createSelector(
+  [(state: any) => state.childData.childDataSet.activeChild],
+  (activeChild) => (activeChild ? memoizedJsonParse(activeChild).reminders : [])
+);
 
 // Survey Item
 export const selectSurveyItem = createSelector(
@@ -55,6 +63,19 @@ export const selectSurveyItem = createSelector(
     if (surveyData && surveyData !== "") {
       try {
         return memoizedJsonParse(surveyData, [])?.find((item: any) => item.type === "survey");
+      } catch (e) {
+        console.warn("Invalid survey JSON", e);
+      }
+    }
+    return null;
+  }
+);
+export const selectSurveyData = createSelector(
+  [(state: any) => state.utilsData.surveryData],
+  (surveyData) => {
+    if (surveyData && surveyData !== "") {
+      try {
+        return memoizedJsonParse(surveyData, []);
       } catch (e) {
         console.warn("Invalid survey JSON", e);
       }
@@ -93,7 +114,7 @@ const activities = (state: any) => state.utilsData.ActivitiesData;
 export const selectActivitiesDataAll = createSelector([activities], (data) => {
   if (data && data !== '') {
     try {
-      return memoizedJsonParse(data);
+      return memoizedJsonParse(data) ?? [];
     } catch (e) {
       console.warn('Invalid ActivitiesData JSON:', e);
     }
@@ -102,12 +123,48 @@ export const selectActivitiesDataAll = createSelector([activities], (data) => {
 });
 
 // --- Taxonomy Activity Categories ---
+export const selectAllTaxonomyData = createSelector(
+  [(state: any) => state.utilsData.taxonomy.allTaxonomyData], (data) => {
+  try {
+    return memoizedJsonParse(data);
+  } catch (e) {
+    console.warn('Invalid taxonomy JSON:', e);
+    return [];
+  }
+});
 const taxonomyData = (state: any) => state.utilsData.taxonomy.allTaxonomyData;
 export const selectActivityCategoryArray = createSelector([taxonomyData], (data) => {
   try {
     return memoizedJsonParse(data)?.activity_category ?? [];
   } catch (e) {
     console.warn('Invalid taxonomy JSON:', e);
+    return [];
+  }
+});
+
+export const selectArticleCategoryArray = createSelector([taxonomyData], (data) => {
+  try {
+    return memoizedJsonParse(data)?.category ?? [];
+  } catch (e) {
+    console.warn('Invalid taxonomy JSON category:', e);
+    return [];
+  }
+});
+
+export const selectParentGender = createSelector([taxonomyData], (data) => {
+  try {
+    return memoizedJsonParse(data)?.parent_gender ?? [];
+  } catch (e) {
+    console.warn('Invalid taxonomy JSON parent_gender:', e);
+    return [];
+  }
+});
+
+export const selectRelationshipToParent = createSelector([taxonomyData], (data) => {
+  try {
+    return memoizedJsonParse(data)?.relationship_to_parent ?? [];
+  } catch (e) {
+    console.warn('Invalid taxonomy JSON relationship_to_parent:', e);
     return [];
   }
 });
@@ -128,7 +185,7 @@ const articles = (state: any) => state.articlesData.article.articles;
 export const selectArticleDataAll = createSelector([articles], (articles) => {
   if (articles && articles !== '') {
     try {
-      return memoizedJsonParse(articles);
+      return memoizedJsonParse(articles) ?? [];
     } catch (e) {
       console.warn('Invalid article JSON:', e);
     }
@@ -297,5 +354,60 @@ export const selectParsedChildList = createSelector(
       console.warn('Failed to parse child list:', e);
       return [];
     }
+  }
+);
+
+// Tools Selectors //
+
+export const selectHealthCheckupsData = createSelector(
+  [(state: any) => state.utilsData.healthCheckupsData],
+  (data) => {
+    if (data && data !== "") {
+      try {
+        return memoizedJsonParse(data);
+      } catch (e) {
+        console.warn("Invalid ChildDevData JSON:", e);
+      }
+    }
+    return [];
+  }
+);
+export const selectVaccineData = createSelector(
+  [(state: any) => state.utilsData.vaccineData],
+  (data) => {
+    if (data && data !== "") {
+      try {
+        return memoizedJsonParse(data);
+      } catch (e) {
+        console.warn("Invalid ChildDevData JSON:", e);
+      }
+    }
+    return [];
+  }
+);
+export const selectFaqsData = createSelector(
+  [(state: any) => state.utilsData.faqsData],
+  (data) => {
+    if (data && data !== "") {
+      try {
+        return memoizedJsonParse(data);
+      } catch (e) {
+        console.warn("Invalid ChildDevData JSON:", e);
+      }
+    }
+    return [];
+  }
+);
+export const selectMileStonesData = createSelector(
+  [(state: any) => state.utilsData.MileStonesData],
+  (data) => {
+    if (data && data !== "") {
+      try {
+        return memoizedJsonParse(data);
+      } catch (e) {
+        console.warn("Invalid ChildDevData JSON:", e);
+      }
+    }
+    return [];
   }
 );

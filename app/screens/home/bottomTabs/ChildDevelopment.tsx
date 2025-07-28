@@ -51,6 +51,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 import HTML from "react-native-render-html";
@@ -85,6 +86,7 @@ import {
 } from "../../../services/EventSyncService";
 import useDigitConverter from "../../../customHooks/useDigitConvert";
 import { appConfig } from "../../../instances";
+import { selectActiveChild, selectActivitiesDataAll, selectChildAge, selectChildDevData, selectMileStonesData, selectPinnedChildDevData } from "../../../services/selectors";
 const styles = StyleSheet.create({
   bgWhite: { backgroundColor: bgcolorWhite2 },
   flex1: { flex: 1 },
@@ -99,6 +101,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const { convertDigits } = useDigitConverter();
   const dispatch = useAppDispatch();
+  const { width } = useWindowDimensions();
   const [profileLoading, setProfileLoading] = React.useState(true);
   const headerColor = themeContext?.colors.CHILDDEVELOPMENT_COLOR;
   const backgroundColor = themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
@@ -106,41 +109,13 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
   const headerColorBlack = themeContext?.colors.PRIMARY_TEXTCOLOR;
   const headerTextColor = themeContext?.colors.CHILDDEVELOPMENT_TEXTCOLOR;
-  const ChildDevData = useAppSelector((state: any) =>
-    state.utilsData.ChildDevData != ""
-      ? JSON.parse(state.utilsData.ChildDevData)
-      : []
-  );
-  const PinnedChildDevData = useAppSelector((state: any) =>
-    state.utilsData.VideoArticlesData != ""
-      ? JSON.parse(state.utilsData.VideoArticlesData)
-      : []
-  );
-  const MileStonesData = useAppSelector((state: any) =>
-    state.utilsData.MileStonesData != ""
-      ? JSON.parse(state.utilsData.MileStonesData)
-      : []
-  );
-  const VideoArticlesData = useAppSelector((state: any) =>
-    state.utilsData.VideoArticlesData != ""
-      ? JSON.parse(state.utilsData.VideoArticlesData)
-      : []
-  );
-  const ActivitiesData = useAppSelector((state: any) =>
-    state.utilsData.ActivitiesData != ""
-      ? JSON.parse(state.utilsData.ActivitiesData)
-      : []
-  );
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const ChildDevData = useAppSelector(selectChildDevData);
+  const PinnedChildDevData = useAppSelector(selectPinnedChildDevData);
+  const MileStonesData = useAppSelector(selectMileStonesData);
+  const VideoArticlesData = useAppSelector(selectPinnedChildDevData);
+  const ActivitiesData = useAppSelector(selectActivitiesDataAll);
+  const childAge = useAppSelector(selectChildAge);
+  const activeChild = useAppSelector(selectActiveChild);
   console.log(childAge, "......", activeChild);
   const childDevModalOpened = useAppSelector(
     (state: any) => state.utilsData.IsChildDevModalOpened
@@ -150,8 +125,6 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     "childDevModalOpened......",
     childDevModalOpened
   );
-  const modalScreenKey = "IsChildDevModalOpened";
-  const modalScreenText = "childDevModalText";
   const isFocused = useIsFocused();
   const [modalVisible, setModalVisible] = useState(false);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
@@ -391,6 +364,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                 <ShiftFromTop10>
                   {selectedChildDevData?.milestone ? (
                     <HTML
+                      contentWidth={width}
                       source={{
                         html: addSpaceToHtml(selectedChildDevData?.milestone),
                       }}

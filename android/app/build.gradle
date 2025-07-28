@@ -193,8 +193,8 @@ android {
     productFlavors {
         prod {
             applicationId 'org.unicef.ecar.bebbo'
-            versionCode 43
-            versionName "2.3.2"
+            versionCode 44
+            versionName "2.3.3"
             signingConfig signingConfigs.release
         }
         prodstaging {

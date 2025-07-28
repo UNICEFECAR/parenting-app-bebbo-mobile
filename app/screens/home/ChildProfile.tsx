@@ -71,6 +71,7 @@ import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import { bgcolorWhite, bgcolorWhite2, secondaryBtnColor } from "@styles/style";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { setAllChildData } from "../../redux/reducers/childSlice";
+import { selectActiveChild, selectAllConfigData, selectChildAge, selectChildGenders, selectChildList, selectParentGender, selectRelationshipToParent } from "../../services/selectors";
 
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: "flex-start" },
@@ -117,20 +118,12 @@ const ChildProfile = ({ navigation }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
   const secopndaryTintColor = themeContext?.colors.SECONDARY_TINTCOLOR;
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  const genders = useAppSelector(selectChildGenders);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
   const dispatch = useAppDispatch();
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -156,16 +149,8 @@ const ChildProfile = ({ navigation }: Props): any => {
     }, [])
   );
 
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : state.childData.childDataSet.allChild
-  );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const childList = useAppSelector(selectChildList);
+  const activeChild = useAppSelector(selectActiveChild);
 
   useEffect(() => {
     const backAction = (): any => {
@@ -193,11 +178,7 @@ const ChildProfile = ({ navigation }: Props): any => {
   };
   const currentActiveChild = activeChild.uuid;
 
-  const allConfigData = useAppSelector((state: any) =>
-    state.variableData?.variableData != ""
-      ? JSON.parse(state.variableData?.variableData)
-      : state.variableData?.variableData
-  );
+  const allConfigData = useAppSelector(selectAllConfigData);
   const userParentalRoleData =
     allConfigData?.length > 0
       ? allConfigData.filter((item: any) => item.key === "userParentalRole")
@@ -206,12 +187,7 @@ const ChildProfile = ({ navigation }: Props): any => {
     allConfigData?.length > 0
       ? allConfigData.filter((item: any) => item.key === "userName")
       : [];
-  const relationshipToParentGlobal = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData)
-          .relationship_to_parent
-      : []
-  );
+  const relationshipToParentGlobal = useAppSelector(selectRelationshipToParent);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
@@ -219,11 +195,7 @@ const ChildProfile = ({ navigation }: Props): any => {
     allConfigData?.length > 0
       ? allConfigData.filter((item: any) => item.key === "userRelationToParent")
       : [];
-  const relationshipData = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender
-      : []
-  );
+  const relationshipData = useAppSelector(selectParentGender);
 
   const relationshipValue =
     relationshipData.length > 0 && userParentalRoleData.length > 0

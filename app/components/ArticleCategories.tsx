@@ -11,6 +11,7 @@ import { ADVICE_CATEGORY_SELECTED } from "@assets/data/firebaseEvents";
 import { articleColor, bgcolorWhite2 } from "@styles/style";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
+import { selectArticleCategoryArray } from "../services/selectors";
 const styles = StyleSheet.create({
   filterBoxbg1: {
     backgroundColor: articleColor,
@@ -26,10 +27,7 @@ const styles = StyleSheet.create({
 });
 const ArticleCategories = (props: ArticleCategoriesProps): any => {
   const netInfo = useNetInfoHook();
-  const categoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category
-  );
+  const categoryData = useAppSelector(selectArticleCategoryArray);
 
   const getFilterArray = (itemId: any, filterArray: any[]): any => {
     if (!filterArray.includes(itemId)) {

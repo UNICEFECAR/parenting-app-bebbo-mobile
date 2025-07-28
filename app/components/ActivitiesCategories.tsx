@@ -13,6 +13,7 @@ import {
 } from "../instances/bebbo/styles/style";
 import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
+import { selectActivityCategoryArray } from "../services/selectors";
 type ActivityCategoriesProps = {
   borderColor?: any;
   filterOnCategory?: any;
@@ -48,10 +49,7 @@ const styles = StyleSheet.create({
 });
 const ActivitiesCategories = (props: ActivityCategoriesProps): any => {
   const netInfo = useNetInfoHook();
-  const activityCategoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category
-  );
+  const activityCategoryData = useAppSelector(selectActivityCategoryArray);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );

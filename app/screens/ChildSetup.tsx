@@ -83,6 +83,7 @@ import TextInputML from "@components/shared/TextInputML";
 import { bgcolorWhite2 } from "@styles/style";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
+import { selectChildAge, selectChildGenders, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -145,19 +146,9 @@ const ChildSetup = ({ navigation }: Props): any => {
   const actionSheetRefImport = createRef<any>();
   const netInfo = useNetInfoHook();
   let relationshipData =
-    useAppSelector((state: any) => {
-      const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData || {};
-      return allTaxonomyData !== ""
-        ? JSON.parse(allTaxonomyData).parent_gender
-        : [];
-    }) || [];
+    useAppSelector(selectParentGender) || [];
 
-  let relationshipToParent = useAppSelector((state: any) => {
-    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData || {};
-    return allTaxonomyData !== ""
-      ? JSON.parse(allTaxonomyData).relationship_to_parent
-      : [];
-  });
+  let relationshipToParent = useAppSelector(selectRelationshipToParent);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
@@ -170,10 +161,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const childAge = useAppSelector((state: any) => {
-    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData;
-    return allTaxonomyData !== "" ? JSON.parse(allTaxonomyData).child_age : [];
-  });
+  const childAge = useAppSelector(selectChildAge);
   const actionSheetRef = createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
@@ -185,11 +173,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
-  let genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  let genders = useAppSelector(selectChildGenders);
 
   genders = genders
     ?.map((v: any) => ({ ...v, title: v.name }))

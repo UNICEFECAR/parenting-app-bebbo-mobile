@@ -38,6 +38,7 @@ import {
 } from "../services/notificationService";
 import Icon from "./shared/Icon";
 import { BubbleContainer, BubbleView1 } from "./shared/NavigationDrawer";
+import { selectActiveChild, selectAllTaxonomyData, selectChildAge, selectHealthCheckupsData, selectVaccineData } from "../services/selectors";
 const styles = StyleSheet.create({
   bubbleContainer: {
     alignItems: "center",
@@ -66,25 +67,13 @@ const HeaderNotiIcon = (props: any): any => {
     (state: any) => state.notificationData.localNotificationGenerateType
   );
 
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const dispatch = useAppDispatch();
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const generateNotificationsFlag = useAppSelector(
     (state: any) => state.utilsData.generateNotifications
   );
-  const allHealthCheckupsData = useAppSelector((state: any) =>
-    state?.utilsData?.healthCheckupsData != ""
-      ? JSON.parse(state?.utilsData?.healthCheckupsData)
-      : []
-  );
+  const allHealthCheckupsData = useAppSelector(selectHealthCheckupsData);
   const growthEnabledFlag = useAppSelector(
     (state: any) => state.notificationData.growthEnabled
   );
@@ -94,20 +83,10 @@ const HeaderNotiIcon = (props: any): any => {
   const vchcEnabledFlag = useAppSelector(
     (state: any) => state.notificationData.vchcEnabled
   );
-  const taxonomy = useAppSelector((state: any) =>
-    state.utilsData.taxonomy?.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData)
-      : {}
-  );
+  const taxonomy = useAppSelector(selectAllTaxonomyData);
   const allGrowthPeriods = taxonomy?.growth_period;
-  const allVaccinePeriods = useAppSelector((state: any) =>
-    state.utilsData.vaccineData != ""
-      ? JSON.parse(state.utilsData.vaccineData)
-      : []
-  );
-  const allVaccineData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData)
-  );
+  const allVaccinePeriods = useAppSelector(selectVaccineData);
+  const allVaccineData = useAppSelector(selectVaccineData);
   const { t } = useTranslation();
   const [notifications, setNotifications] = useState<any[]>([]);
   const [newAllChildNotis, setAllChildNotis] = useState<any>([]);

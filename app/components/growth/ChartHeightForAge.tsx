@@ -26,6 +26,7 @@ import { formatHeightData } from "../../services/growthService";
 import { getInterpretationHeightForAge } from "../../services/interpretationService";
 import GrowthChart, { chartTypes } from "./GrowthChart";
 import { standardDevDataForChart } from "../../instances/index";
+import { selectActiveChild } from "../../services/selectors";
 export const standardDevDataLoad = standardDevDataForChart;
 const styles = StyleSheet.create({
   fullScreenPressable: {
@@ -41,11 +42,7 @@ const ChartHeightForAge = (props: any): any => {
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const navigation = useNavigation<any>();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );

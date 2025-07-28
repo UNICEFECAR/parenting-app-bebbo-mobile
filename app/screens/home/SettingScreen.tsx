@@ -1095,6 +1095,9 @@ const SettingScreen = (props: any): any => {
     <>
       <View style={[styles.flex1, { backgroundColor: primaryColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
+        <OverlayLoadingComponent
+              loading={isExportRunning || isImportRunning ? true : false}
+            />
         <TabScreenHeader
           title={t("settingScreenheaderTitle")}
           headerColor={primaryColor}
@@ -1432,9 +1435,9 @@ const SettingScreen = (props: any): any => {
                 </ButtonText>
               </ButtonPrimary>
             </ShiftFromTopBottom10>
-            <OverlayLoadingComponent
+            {/* <OverlayLoadingComponent
               loading={isExportRunning || isImportRunning ? true : false}
-            />
+            /> */}
           </MainContainer>
 
           <ActionSheet ref={actionSheetRef}>

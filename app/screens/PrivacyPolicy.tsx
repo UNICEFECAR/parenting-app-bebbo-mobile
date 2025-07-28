@@ -17,6 +17,7 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
+  useWindowDimensions,
   View,
 } from "react-native";
 import HTML from "react-native-render-html";
@@ -50,9 +51,7 @@ const PrivacyPolicy = ({ navigation }: Props): any => {
   const privacydata = useAppSelector(
     (state: any) => state.utilsData.privacypolicy.body
   );
-  const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
-  );
+  const { width } = useWindowDimensions();
   useFocusEffect(
     React.useCallback(() => {
       const backAction = (): any => {
@@ -97,6 +96,7 @@ const PrivacyPolicy = ({ navigation }: Props): any => {
           <ScrollView contentContainerStyle={styles.scrollViewStyle}>
             {privacydata != "" ? (
               <HTML
+                contentWidth={width}
                 source={{ html: addSpaceToHtml(privacydata) }}
                 baseStyle={styles.htmlStyle}
                 ignoredStyles={["color", "fontSize", "fontFamily"]}

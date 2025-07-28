@@ -1,13 +1,10 @@
 import { DateTime } from "luxon";
 import { apiUrlDevelop } from "react-native-dotenv";
 import { useAppSelector } from "../../App";
+import { selectActiveChild, selectAllTaxonomyData, selectVaccineData } from "./selectors";
 
 export const getAllVaccinePeriods = (): any => {
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   //filter measures by didChildGetVaccines
   const vaccineMeasures = activeChild?.measures.filter((item: any) => item.didChildGetVaccines == true);
   const measuredVaccines: any[] = [];
@@ -26,18 +23,12 @@ export const getAllVaccinePeriods = (): any => {
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
-  const taxonomy = useAppSelector(
-    (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
-  );
+  const taxonomy = useAppSelector(selectAllTaxonomyData);
   const allGrowthPeriods = taxonomy.growth_period
   const getVaccineInfo = (periodID: any): any => {
     return allGrowthPeriods.find((item: any) => item.id == periodID);
   }
-  const allVaccinePeriods = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.vaccineData),
-  );
+  const allVaccinePeriods = useAppSelector(selectVaccineData);
   const group_to_growthPeriod = allVaccinePeriods.reduce(function (obj: any, item: any) {
     obj[item.growth_period] = obj[item.growth_period] || [];
     obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at, old_calendar: item.old_calendar });

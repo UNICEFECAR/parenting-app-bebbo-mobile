@@ -1,4 +1,3 @@
-import analytics, { getAnalytics, logScreenView } from "@react-native-firebase/analytics";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AddExpectingChildProfile from "@screens/AddExpectingChildProfile";
@@ -41,7 +40,7 @@ import { appConfig } from "../instances";
 import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
-import { getMessaging, getToken, getInitialNotification, onMessage, onNotificationOpenedApp, setBackgroundMessageHandler } from "@react-native-firebase/messaging";
+import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp, setBackgroundMessageHandler } from "@react-native-firebase/messaging";
 import { AppEventsLogger, Settings } from "react-native-fbsdk-next";
 import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
 import PushNotification from "react-native-push-notification";
@@ -55,7 +54,7 @@ import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
 import { getApp } from "@react-native-firebase/app";
 import { logAnalyticsEvent } from "../services/firebaseAnalytics";
-import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyItem } from "../services/selectors";
+import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -96,7 +95,7 @@ export default (): any => {
   const apiData = useAppSelector(
     (state) => state.failedOnloadApiObjReducer.data
   );
-  const surveyData = useAppSelector(selectSurveyItem);
+  const surveyData = useAppSelector(selectSurveyData);
   const allCountries = useAppSelector(selectAllCountries);
   const hasLoggedEvent = useRef(false);
   let currentCount = 0;
@@ -1079,6 +1078,7 @@ export default (): any => {
             screenOptions={{
               animationEnabled: Platform.OS == "ios" ? true : false,
               headerShown: false,
+              presentation: 'transparentModal'
             }}
           >
             <RootStack.Screen

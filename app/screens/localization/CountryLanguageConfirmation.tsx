@@ -72,6 +72,7 @@ import { getLanguageCode } from "../../services/Utils";
 import { OfflineBar } from "@components/shared/HomeScreenStyle";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { setUserProperties } from "../../services/firebaseAnalytics";
+import { selectAllCountries } from "../../services/selectors";
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "Terms"
@@ -138,11 +139,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
   const sponsors = useAppSelector(
     (state: any) => state.selectedCountry.sponsors
   );
-  const allCountries = useAppSelector((state: any) =>
-    state.selectedCountry.countries != ""
-      ? JSON.parse(state.selectedCountry.countries)
-      : []
-  );
+  const allCountries = useAppSelector(selectAllCountries);
   const { t, i18n } = useTranslation();
   console.log(I18nManager.isRTL, "---is rtl val");
   const extractLanguageCode = (languageTag: string): string => {
