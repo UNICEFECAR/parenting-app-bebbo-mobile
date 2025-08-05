@@ -522,6 +522,38 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
     <>
       <View style={[styles.flex1, { backgroundColor: headerColor }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <OverlayLoadingComponent loading={profileLoading} />
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible1}
+            onRequestClose={(): any => {
+              setModalVisible1(false);
+            }}
+            onDismiss={(): any => {
+              setModalVisible1(false);
+            }}
+          >
+            <PopupOverlay>
+              <ModalPopupContainer>
+                <PopupCloseContainer>
+                  <PopupClose
+                    onPress={(): any => {
+                      setModalVisible1(false);
+                    }}
+                  >
+                    <Icon name="ic_close" size={16} color="#000" />
+                  </PopupClose>
+                </PopupCloseContainer>
+                <ModalPopupContent>
+                  <Heading4Centerr>
+                    {t("childSetupprematureMessageNext")}
+                  </Heading4Centerr>
+                </ModalPopupContent>
+              </ModalPopupContainer>
+            </PopupOverlay>
+          </Modal>
+
         <TabScreenHeader
           title={t("developScreenheaderTitle")}
           headerColor={headerColor}
@@ -574,44 +606,6 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
           </View>
         </FlexCol>
 
-        {/* <View>
-          <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
-        </View> */}
-
-        <View>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible1}
-            onRequestClose={(): any => {
-              setModalVisible1(false);
-            }}
-            onDismiss={(): any => {
-              setModalVisible1(false);
-            }}
-          >
-            <PopupOverlay>
-              <ModalPopupContainer>
-                <PopupCloseContainer>
-                  <PopupClose
-                    onPress={(): any => {
-                      setModalVisible1(false);
-                    }}
-                  >
-                    <Icon name="ic_close" size={16} color="#000" />
-                  </PopupClose>
-                </PopupCloseContainer>
-                <ModalPopupContent>
-                  <Heading4Centerr>
-                    {t("childSetupprematureMessageNext")}
-                  </Heading4Centerr>
-                </ModalPopupContent>
-              </ModalPopupContainer>
-            </PopupOverlay>
-          </Modal>
-        </View>
-
-        <OverlayLoadingComponent loading={profileLoading} />
       </View>
     </>
   );

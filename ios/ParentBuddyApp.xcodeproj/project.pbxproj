@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -198,7 +198,7 @@
 /* Begin PBXFileReference section */
 		07DE5DA6621498F2729AEB41 /* Pods_ParentBuddyApp_Wawamor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_Wawamor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CD0F078CDD45E7D2A5CC340 /* Pods-ParentBuddyApp-Wawamor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-Wawamor.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-Wawamor/Pods-ParentBuddyApp-Wawamor.release.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ParentBuddyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Bebbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bebbo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ParentBuddyApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ParentBuddyApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = ParentBuddyApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -327,17 +327,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = ParentBuddyAppTests;
-			sourceTree = "<group>";
-		};
+		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ParentBuddyAppTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,7 +496,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* ParentBuddyApp.app */,
+				13B07F961A680F5B00A75B9A /* Bebbo.app */,
 				D6F142412E29268B00986814 /* Foleja.app */,
 				D6F142B32E29334B00986814 /* Bebbo.app */,
 				D6F142D82E29392300986814 /* Foleja.app */,
@@ -805,7 +795,7 @@
 			);
 			name = ParentBuddyApp;
 			productName = ParentBuddyApp;
-			productReference = 13B07F961A680F5B00A75B9A /* ParentBuddyApp.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Bebbo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D628E5F02E2A71DE00202918 /* ParentBuddyAppTests */ = {
@@ -2219,7 +2209,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
-				PRODUCT_NAME = ParentBuddyApp;
+				PRODUCT_NAME = Bebbo;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2260,7 +2250,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
-				PRODUCT_NAME = ParentBuddyApp;
+				PRODUCT_NAME = Bebbo;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2357,10 +2347,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -2441,10 +2428,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParentBuddyApp/ParentBuddyApp-Bridging-Header.h";

@@ -69,7 +69,7 @@ import {
   Heading3BoldCenterrw,
 } from "@styles/typography";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import DocumentPicker, { isErrorWithCode, errorCodes } from "@react-native-documents/picker";
+import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
@@ -317,9 +317,9 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
     }
   };
   const importDataIOS = async (): Promise<any> => {
-    DocumentPicker.pick({
+    pick({
       allowMultiSelection: false,
-      type: DocumentPicker.types.allFiles,
+      allowedTypes: ['*/*'],
     })
       .then(async (res: any) => {
         console.log(res, "..res..");
@@ -575,8 +575,8 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
               </ShiftFromTop20>
               <View>
                 {birthDate != null &&
-                birthDate != undefined &&
-                !isFutureDate(birthDate) ? (
+                  birthDate != undefined &&
+                  !isFutureDate(birthDate) ? (
                   <FormContainer1>
                     <LabelText>{t("genderLabel")}</LabelText>
                     <ToggleRadios
@@ -593,26 +593,26 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
                 <ButtonPrimary
                   disabled={
                     birthDate != null &&
-                    birthDate != undefined &&
-                    !isFutureDate(birthDate)
+                      birthDate != undefined &&
+                      !isFutureDate(birthDate)
                       ? !validateForm(
-                          0,
-                          birthDate,
-                          isPremature,
-                          relationship,
-                          plannedTermDate,
-                          name,
-                          gender
-                        )
+                        0,
+                        birthDate,
+                        isPremature,
+                        relationship,
+                        plannedTermDate,
+                        name,
+                        gender
+                      )
                       : !validateForm(
-                          3,
-                          birthDate,
-                          isPremature,
-                          relationship,
-                          plannedTermDate,
-                          name,
-                          gender
-                        )
+                        3,
+                        birthDate,
+                        isPremature,
+                        relationship,
+                        plannedTermDate,
+                        name,
+                        gender
+                      )
                   }
                   onPress={(e: any): any => {
                     e.stopPropagation();

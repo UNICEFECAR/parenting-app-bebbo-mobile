@@ -29,7 +29,7 @@ class GoogleAuth {
    */
   public configure(): any {
     GoogleSignin.configure({
-      scopes: ["https://www.googleapis.com/auth/drive.file"], // what API you want to access on behalf of the user, default is email and profile
+      scopes: ["https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive.appfolder"], // what API you want to access on behalf of the user, default is email and profile
       webClientId: `${projectNumber}-${webId}.apps.googleusercontent.com`,
       iosClientId: `${projectNumber}-${iosId}.apps.googleusercontent.com`,
     });

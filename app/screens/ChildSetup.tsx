@@ -76,7 +76,7 @@ import {
 } from "@components/shared/SettingsStyle";
 import VectorImage from "react-native-vector-image";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import DocumentPicker, { isErrorWithCode, errorCodes } from "@react-native-documents/picker";
+import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
@@ -326,9 +326,9 @@ const ChildSetup = ({ navigation }: Props): any => {
     }
   };
   const importDataIOS = async (): Promise<any> => {
-    DocumentPicker.pick({
+    pick({
       allowMultiSelection: false,
-      type: DocumentPicker.types.allFiles,
+      allowedTypes: ['*/*'],
     })
       .then(async (res: any) => {
         console.log(res, "..res..");
@@ -550,9 +550,9 @@ const ChildSetup = ({ navigation }: Props): any => {
 
               <View>
                 {userRelationToParent != null &&
-                userRelationToParent != undefined &&
-                userRelationToParent != relationShipMotherId &&
-                userRelationToParent != relationShipFatherId ? (
+                  userRelationToParent != undefined &&
+                  userRelationToParent != relationShipMotherId &&
+                  userRelationToParent != relationShipFatherId ? (
                   <FormContainer1>
                     <LabelText>{t("parentGender")}</LabelText>
                     <ToggleRadios
@@ -663,7 +663,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                       ) {
                         if (
                           typeof taxonomyIds?.femaleData?.unique_name ===
-                            "string" ||
+                          "string" ||
                           taxonomyIds?.femaleData?.unique_name instanceof String
                         ) {
                           setRelationship(taxonomyIds?.femaleData.unique_name);
@@ -677,7 +677,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                       ) {
                         if (
                           typeof taxonomyIds?.maleData.unique_name ===
-                            "string" ||
+                          "string" ||
                           taxonomyIds?.maleData.unique_name instanceof String
                         ) {
                           setRelationship(taxonomyIds?.maleData.unique_name);
@@ -689,9 +689,9 @@ const ChildSetup = ({ navigation }: Props): any => {
                       } else {
                         if (
                           userRelationToParent ==
-                            taxonomyIds?.relationShipMotherId ||
+                          taxonomyIds?.relationShipMotherId ||
                           userRelationToParent ==
-                            taxonomyIds?.relationShipFatherId
+                          taxonomyIds?.relationShipFatherId
                         ) {
                           setRelationship("");
                         }

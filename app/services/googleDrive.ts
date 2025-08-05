@@ -1,6 +1,6 @@
 import {
     GDrive,
-    MimeTypes,
+    MIME_TYPES,
     ListQueryBuilder
 } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
@@ -228,30 +228,29 @@ class GoogleDrive {
         }
         try {
             const filenew = await gdrive.files.createIfNotExists({
-                q: new ListQueryBuilder()
-                    .e("name", appConfig.backupGDriveFolderName)
-                    .and()
-                    .e("trashed", false)
-                    .and()
-                    .e("mimeType", MimeTypes.FOLDER)
-                    .and()
-                    .in("root", "parents")
+                q: new ListQueryBuilder("name", '=', appConfig.backupGDriveFolderName)
+                    .and("trashed", "=", false)
+                    .and("mimeType", "=", MIME_TYPES.application.vndGoogleAppsFolder)
+                    .and("root", "in", "parents")
             },
                 gdrive.files.newMetadataOnlyUploader()
                     .setRequestBody({
                         name: appConfig.backupGDriveFolderName,
-                        mimeType: MimeTypes.FOLDER,
+                        mimeType: MIME_TYPES.application.vndGoogleAppsFolder,
                         parents: ["root"]
                     }
                     )
             )
+            console.log("filenew--",filenew)
             if (filenew.result && filenew.result.id != '' && filenew.result.id != null && filenew.result.id != undefined) {
                 return filenew.result.id;
             }
             else {
+                console.log("in else")
                 return new Error('GDrive folder was not created');
             }
         } catch (e) {
+            console.log("catch error",e)
             return new Error('GDrive folder was not created');
         }
 

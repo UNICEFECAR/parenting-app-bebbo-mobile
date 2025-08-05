@@ -86,7 +86,7 @@ import {
   View,
 } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
-import DocumentPicker, { isErrorWithCode, errorCodes } from "@react-native-documents/picker";
+import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
 import RNFS from "react-native-fs";
 import { Switch } from "react-native-gesture-handler";
 import VectorImage from "react-native-vector-image";
@@ -990,9 +990,9 @@ const SettingScreen = (props: any): any => {
   };
   const importDataIOS = async (): Promise<any> => {
     console.log("<<<<<importDataIOS>>>>>>");
-    DocumentPicker.pick({
+    pick({
       allowMultiSelection: false,
-      type: DocumentPicker.types.allFiles,
+      allowedTypes: ['*/*'],
     })
       .then(async (res: any) => {
         console.log("<<<<<importDataIOS>>>>>>", res);

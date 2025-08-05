@@ -774,62 +774,63 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </DrawerLinkView>
           ) : null}
         </ScrollView>
-      </View>
-      <Modal
-        animationType="none"
-        transparent={true}
-        visible={modalVisible === true}
-        onRequestClose={(): any => {
-          setModalVisible(false);
-        }}
-        onDismiss={(): any => {
-          setModalVisible(false);
-        }}
-      >
-        <PopupOverlay>
-          <ModalPopupContainer>
-            <PopupCloseContainer>
-              <PopupClose
-                onPress={(): any => {
-                  setModalVisible(false);
-                }}
-              >
-                <Icon name="ic_close" size={16} color="#000" />
-              </PopupClose>
-            </PopupCloseContainer>
-            {feedbackItem ? (
-              <>
-                <ModalPopupContent>
-                  <Heading1Centerr>{feedbackItem?.title}</Heading1Centerr>
 
-                  {feedbackItem && feedbackItem?.body ? (
-                    <HTML
-                      contentWidth={width}
-                      source={{ html: addSpaceToHtml(feedbackItem?.body) }}
-                      ignoredStyles={["color", "fontSize", "fontFamily"]}
-                    />
-                  ) : null}
-                </ModalPopupContent>
-                <FDirRow>
-                  <ButtonModal
-                    onPress={async (): Promise<any> => {
-                      setModalVisible(false);
-                      await logAnalyticsEvent(FEEDBACK_SUBMIT);
-                      Linking.openURL(feedbackItem?.survey_feedback_link);
-                    }}
-                  >
-                    <ButtonText numberOfLines={2}>
-                      {t("continueInModal")}
-                    </ButtonText>
-                  </ButtonModal>
-                </FDirRow>
-              </>
-            ) : (
-              <Heading4Center>{t("noDataTxt")}</Heading4Center>
-            )}
-          </ModalPopupContainer>
-        </PopupOverlay>
-      </Modal>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={modalVisible === true}
+          onRequestClose={(): any => {
+            setModalVisible(false);
+          }}
+          onDismiss={(): any => {
+            setModalVisible(false);
+          }}
+        >
+          <PopupOverlay>
+            <ModalPopupContainer>
+              <PopupCloseContainer>
+                <PopupClose
+                  onPress={(): any => {
+                    setModalVisible(false);
+                  }}
+                >
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+              </PopupCloseContainer>
+              {feedbackItem ? (
+                <>
+                  <ModalPopupContent>
+                    <Heading1Centerr>{feedbackItem?.title}</Heading1Centerr>
+
+                    {feedbackItem && feedbackItem?.body ? (
+                      <HTML
+                        contentWidth={width}
+                        source={{ html: addSpaceToHtml(feedbackItem?.body) }}
+                        ignoredStyles={["color", "fontSize", "fontFamily"]}
+                      />
+                    ) : null}
+                  </ModalPopupContent>
+                  <FDirRow>
+                    <ButtonModal
+                      onPress={async (): Promise<any> => {
+                        setModalVisible(false);
+                        await logAnalyticsEvent(FEEDBACK_SUBMIT);
+                        Linking.openURL(feedbackItem?.survey_feedback_link);
+                      }}
+                    >
+                      <ButtonText numberOfLines={2}>
+                        {t("continueInModal")}
+                      </ButtonText>
+                    </ButtonModal>
+                  </FDirRow>
+                </>
+              ) : (
+                <Heading4Center>{t("noDataTxt")}</Heading4Center>
+              )}
+            </ModalPopupContainer>
+          </PopupOverlay>
+        </Modal>
+      </View>
     </>
   );
 };
