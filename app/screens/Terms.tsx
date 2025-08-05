@@ -44,6 +44,7 @@ import { TERMS_ACCEPTED } from "@assets/data/firebaseEvents";
 import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import ReactNativeVersionInfo from "react-native-version-info";
+import { selectAllTaxonomyData } from "../services/selectors";
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -118,11 +119,7 @@ const Terms = ({ navigation }: Props): any => {
     (state: any) => state.selectedCountry.languageCode
   );
 
-  const taxonomyAllData = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData)
-      : []
-  );
+  const taxonomyAllData = useAppSelector(selectAllTaxonomyData);
   useFocusEffect(
     React.useCallback(() => {
       setLoading(false);

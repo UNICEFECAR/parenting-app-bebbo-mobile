@@ -62,6 +62,7 @@ import { logEvent } from "../services/EventSyncService";
 import { FlexCol } from "@components/shared/FlexBoxStyle";
 import { ScrollView } from "react-native-gesture-handler";
 import { requestExactAlarmPermission } from "../services/exactAlarmService";
+import { selectChildAge, selectChildGenders, selectChildList } from "../services/selectors";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "AddSiblingDataScreen"
@@ -101,29 +102,17 @@ const ChildSetupList = ({ navigation }: Props): any => {
   const [loading, setLoading] = useState(false);
   const isFocused = useIsFocused();
   const windowHeight = Dimensions.get("window").height;
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  const genders = useAppSelector(selectChildGenders);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
+  const childList = useAppSelector(selectChildList);
   const onLayout = (event: any): any => {
     setParentViewHeight(event.nativeEvent.layout.height);
   };

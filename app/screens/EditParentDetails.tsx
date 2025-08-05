@@ -48,6 +48,7 @@ import {
   ShiftFromTop10,
 } from "../instances/bebbo/styles/typography";
 import { bgcolorWhite } from "../instances/bebbo/styles/style";
+import { selectActiveChild, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -75,19 +76,11 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipName, setRelationshipName] = useState("");
   const [defaultGenderValue, setDefaultGenderValue] = React.useState<any>(null);
-  let relationshipData = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender
-      : []
-  );
+  let relationshipData = useAppSelector(selectParentGender);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
-  const relationshipToParentGlobal = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData)
-        .relationship_to_parent
-  );
+  const relationshipToParentGlobal = useAppSelector(selectRelationshipToParent);
 
   relationshipData = relationshipData
     .map((v: any) => ({ ...v, title: v.name }))
@@ -153,11 +146,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
       backHandler.remove();
     };
   }, []);
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const saveParentData = async (
     relationship: any,
     parentName: any,
