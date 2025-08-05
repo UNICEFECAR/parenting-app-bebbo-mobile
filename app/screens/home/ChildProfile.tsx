@@ -145,7 +145,7 @@ const ChildProfile = ({ navigation }: Props): any => {
             index: routes.length - 1,
           });
         });
-      }, 500);
+      }, 50);
     }, [])
   );
 

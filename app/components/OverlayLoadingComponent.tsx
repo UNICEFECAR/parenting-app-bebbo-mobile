@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     zIndex: 9999,
-    elevation: 10, // For Android
   },
   loaderBox: {
     width: 100,
