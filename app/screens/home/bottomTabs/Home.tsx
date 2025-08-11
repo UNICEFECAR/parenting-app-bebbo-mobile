@@ -291,7 +291,11 @@ const Home = ({ route, navigation }: any): any => {
   const relfolejaprod = "1.1.0";
 
   useEffect(() => {
-    updateContentOnAppVersionChange();
+    const task = InteractionManager.runAfterInteractions(() => {
+      updateContentOnAppVersionChange();
+    });
+
+    return () => task.cancel();
   }, []);
 
   const updateContentOnAppVersionChange = async () => {
@@ -693,13 +697,17 @@ const Home = ({ route, navigation }: any): any => {
         }
       }
     }
-    if (Platform.OS == "ios") {
-      if (netInfo.isConnected != null) {
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (Platform.OS == "ios") {
+        if (netInfo.isConnected != null) {
+          fetchNetInfo();
+        }
+      } else {
         fetchNetInfo();
       }
-    } else {
-      fetchNetInfo();
-    }
+    });
+
+    return () => task.cancel();
   }, [netInfo.isConnected]);
   const ondobChange = (event: any, selectedDate: any): any => {
     setShow(Platform.OS === "ios");

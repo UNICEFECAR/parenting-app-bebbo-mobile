@@ -79,6 +79,7 @@ import { logEvent } from "../../services/EventSyncService";
 import { ViewDetailsEntity } from "../../database/schema/ArticleActivityViewSchema";
 import { appConfig } from "../../instances";
 import { selectArticleCategoryArray } from "../../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -152,7 +153,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     (state: any) => state.childData.childDataSet.favoritegames
   );
   const { t } = useTranslation();
-
+  const insets = useSafeAreaInsets();
   const [detailDataToUse, setDetailDataToUse] = useState<any>({});
   const { width } = useWindowDimensions();
   const adviceval =
@@ -845,7 +846,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   return (
     <>
       {detailDataToUse ? (
-        <View style={[styles.flex1, { backgroundColor: newHeaderColor }]}>
+        <View style={[styles.flex1, { backgroundColor: newHeaderColor, paddingBottom: insets.bottom }]}>
           <FocusAwareStatusBar
             animated={true}
             backgroundColor={newHeaderColor}

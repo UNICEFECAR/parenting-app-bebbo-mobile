@@ -135,6 +135,7 @@ import {
   selectVchcEnabledFlag,
   selectWeeklyDownloadDate,
 } from "../../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -203,7 +204,7 @@ const SettingScreen = (props: any): any => {
   const languageCode = useAppSelector(selectLanguageCode);
 
   const netInfo = useNetInfoHook();
-
+  const insets = useSafeAreaInsets();
   const lastUpdatedDate =
     weeklyDownloadDate < monthlyDownloadDate
       ? weeklyDownloadDate
@@ -1093,7 +1094,7 @@ const SettingScreen = (props: any): any => {
 
   return (
     <>
-      <View style={[styles.flex1, { backgroundColor: primaryColor }]}>
+      <View style={[styles.flex1, { backgroundColor: primaryColor, paddingBottom: insets.bottom }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <OverlayLoadingComponent
               loading={isExportRunning || isImportRunning ? true : false}

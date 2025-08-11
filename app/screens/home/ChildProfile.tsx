@@ -53,6 +53,7 @@ import { useTranslation } from "react-i18next";
 import {
   BackHandler,
   Dimensions,
+  InteractionManager,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -127,8 +128,10 @@ const ChildProfile = ({ navigation }: Props): any => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch, childAge, 0);
-      getAllConfigData(dispatch);
+      const task = InteractionManager.runAfterInteractions(() => {
+        getAllChildren(dispatch, childAge, 0);
+        getAllConfigData(dispatch);
+      });
       setTimeout(() => {
         navigation.dispatch((state: any) => {
           // Remove the home route from the stack
@@ -146,6 +149,7 @@ const ChildProfile = ({ navigation }: Props): any => {
           });
         });
       }, 50);
+      return () => task.cancel();
     }, [])
   );
 

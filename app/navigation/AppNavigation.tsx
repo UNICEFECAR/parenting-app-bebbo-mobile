@@ -1,4 +1,4 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AddExpectingChildProfile from "@screens/AddExpectingChildProfile";
 import AddSiblingData from "@screens/AddSiblingData";
@@ -23,7 +23,7 @@ import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, AppState, BackHandler, Linking, NativeModules, Platform } from "react-native";
+import { Alert, AppState, BackHandler, InteractionManager, Linking, NativeModules, Platform } from "react-native";
 import SplashScreen from "@attarchi/react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
@@ -157,20 +157,24 @@ export default (): any => {
   ];
 
   useEffect(() => {
-    if (!userIsFirstTime) {
-      dispatch(
-        fetchAPI(
-          apiJsonData,
-          "",
-          dispatch,
-          navigationRef.current,
-          languageCode,
-          activeChild,
-          apiJsonData,
-          netInfo.isConnected
-        )
-      );
-    }
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (!userIsFirstTime) {
+        dispatch(
+          fetchAPI(
+            apiJsonData,
+            "",
+            dispatch,
+            navigationRef.current,
+            languageCode,
+            activeChild,
+            apiJsonData,
+            netInfo.isConnected
+          )
+        );
+      }
+    });
+
+    return () => task.cancel();
   }, [dispatch]);
 
   const onBackPress = (): any => {
@@ -209,8 +213,12 @@ export default (): any => {
     }, [routesLength,userIsOnboarded]);
 
   useEffect(() => {
-    // ... handle deep link
-    callUrl(linkedURL);
+    const task = InteractionManager.runAfterInteractions(() => {
+      // ... handle deep link
+      callUrl(linkedURL);
+    });
+    
+    return () => task.cancel();
   }, [linkedURL, resetURL, userIsOnboarded]);
 
   useEffect(() => {
@@ -491,7 +499,10 @@ export default (): any => {
 
   useEffect(() => {
     if (userIsOnboarded == true) {
-      createLocalNotificationListeners();
+      const task = InteractionManager.runAfterInteractions(() => {
+        createLocalNotificationListeners();
+      });
+      return () => task.cancel();
     }
   }, [userIsOnboarded]);
 
@@ -973,8 +984,11 @@ export default (): any => {
         }
       }
     }
-    fetchNetInfo();
-    return {};
+    const task = InteractionManager.runAfterInteractions(() => {
+      fetchNetInfo();
+    });
+
+    return () => task.cancel();
   }, [
     netInfo.isConnected,
     netInfo.netType,
@@ -985,26 +999,34 @@ export default (): any => {
   }, [linkedURL]);
 
   useEffect(() => {
-    if (userIsOnboarded == true) {
-      const obj = { key: "showDownloadPopup", value: true };
-      dispatch(setInfoModalOpened(obj));
-      const localnotiFlagObj = {
-        generateFlag: true,
-        generateType: "onAppStart",
-        childuuid: "all",
-      };
-      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-      getAllChildren(dispatch, child_age, 0);
-    }
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (userIsOnboarded == true) {
+        const obj = { key: "showDownloadPopup", value: true };
+        dispatch(setInfoModalOpened(obj));
+        const localnotiFlagObj = {
+          generateFlag: true,
+          generateType: "onAppStart",
+          childuuid: "all",
+        };
+        dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+        getAllChildren(dispatch, child_age, 0);
+      }
+    });
+
+    return () => task.cancel();
   }, [userIsOnboarded]);
   useEffect(() => {
-    dispatch(setchatBotData([]));
-    if (countryId == 1) {
-      dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
-    }
-    const notiFlagObj = { key: "generateNotifications", value: true };
-    dispatch(setInfoModalOpened(notiFlagObj));
-    //add notification condition in else if required 1st time as well
+    const task = InteractionManager.runAfterInteractions(() => {
+      dispatch(setchatBotData([]));
+      if (countryId == 1) {
+        dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
+      }
+      const notiFlagObj = { key: "generateNotifications", value: true };
+      dispatch(setInfoModalOpened(notiFlagObj));
+      //add notification condition in else if required 1st time as well
+    });
+
+    return () => task.cancel();
   }, []);
   useEffect(() => {
     async function fetchNetInfoSet(): Promise<any> {
@@ -1020,7 +1042,11 @@ export default (): any => {
         }
       }
     }
-    fetchNetInfoSet();
+    const task = InteractionManager.runAfterInteractions(() => {
+      fetchNetInfoSet();
+    });
+
+    return () => task.cancel();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
 
@@ -1038,7 +1064,13 @@ export default (): any => {
       saveinDB: true,
     },
   ];
-
+  const navTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: 'transparent',
+    },
+  };
   return (
     <SafeAreaProvider>
       {apiData && (
@@ -1063,6 +1095,7 @@ export default (): any => {
             }
             routeNameRef.current = currentRouteName;
           }}
+          theme={navTheme}
         >
           <RootStack.Navigator
             initialRouteName={
@@ -1078,7 +1111,6 @@ export default (): any => {
             screenOptions={{
               animationEnabled: Platform.OS == "ios" ? true : false,
               headerShown: false,
-              presentation: 'transparentModal'
             }}
           >
             <RootStack.Screen

@@ -83,6 +83,7 @@ import useNetInfoHook from "../customHooks/useNetInfoHook";
 import useDigitConverter from "../customHooks/useDigitConvert";
 import { logAnalyticsEvent } from "../services/firebaseAnalytics";
 import { selectActiveChild, selectAllCountries, selectChildGenders, selectSurveyData, selectVaccineData } from "../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
   containerView: {
@@ -254,13 +255,13 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     item.isRead == false &&
                     item.isDeleted == false &&
                     toDay >=
-                      DateTime.fromJSDate(
-                        new Date(item.notificationDate)
-                      ).toMillis() &&
+                    DateTime.fromJSDate(
+                      new Date(item.notificationDate)
+                    ).toMillis() &&
                     childBirthDate <=
-                      DateTime.fromJSDate(
-                        new Date(item.notificationDate)
-                      ).toMillis()
+                    DateTime.fromJSDate(
+                      new Date(item.notificationDate)
+                    ).toMillis()
                   );
                 });
               setNotifications(
@@ -301,11 +302,12 @@ const CustomDrawerContent = ({ navigation }: any): any => {
 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
+  const insets = useSafeAreaInsets();
   return (
     <>
       <FocusAwareStatusBar
         animated={true}
-        backgroundColor={Platform.OS == "ios" ? headerColor : null}
+        backgroundColor={(Platform.OS == "ios" || Platform.OS === 'android' && insets.top > 50) ? headerColor : null}
       />
       <View style={styles.containerView}>
         <ScrollView style={styles.scrollViewStyle}>
@@ -338,9 +340,9 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                             <Icon
                               name={
                                 activeChildGenderData &&
-                                genders.find(
-                                  (g: any) => g.id === activeChild?.gender
-                                )?.unique_name === taxonomyIds?.boyChildGender
+                                  genders.find(
+                                    (g: any) => g.id === activeChild?.gender
+                                  )?.unique_name === taxonomyIds?.boyChildGender
                                   ? "ic_baby"
                                   : "ic_baby_girl"
                               }
@@ -358,17 +360,17 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                         </Heading3>
                         <Heading5>
                           {activeChild.birthDate != "" &&
-                          activeChild.birthDate != null &&
-                          activeChild.birthDate != undefined &&
-                          !isFutureDate(activeChild.birthDate)
+                            activeChild.birthDate != null &&
+                            activeChild.birthDate != undefined &&
+                            !isFutureDate(activeChild.birthDate)
                             ? t("drawerMenuchildInfo", {
-                                childdob:
-                                  activeChild.birthDate != "" &&
+                              childdob:
+                                activeChild.birthDate != "" &&
                                   activeChild.birthDate != null &&
                                   activeChild.birthDate != undefined
-                                    ? formatDate(activeChild.birthDate)
-                                    : "",
-                              })
+                                  ? formatDate(activeChild.birthDate)
+                                  : "",
+                            })
                             : t("expectedChildDobLabel")}
                         </Heading5>
                       </FDirCol>
@@ -620,11 +622,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </Heading4>
           </DrawerLinkView>
           {userGuideItem &&
-          userGuideItem != {} &&
-          userGuideItem != "" &&
-          userGuideItem?.survey_feedback_link &&
-          userGuideItem?.survey_feedback_link != "" &&
-          userGuideItem?.survey_feedback_link != null ? (
+            userGuideItem != {} &&
+            userGuideItem != "" &&
+            userGuideItem?.survey_feedback_link &&
+            userGuideItem?.survey_feedback_link != "" &&
+            userGuideItem?.survey_feedback_link != null ? (
             <DrawerLinkView
               onPress={(): any => {
                 Linking.openURL(userGuideItem?.survey_feedback_link);
@@ -747,11 +749,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </>
           ) : null}
           {donateItem &&
-          donateItem != {} &&
-          donateItem != "" &&
-          donateItem?.survey_feedback_link &&
-          donateItem?.survey_feedback_link != "" &&
-          donateItem?.survey_feedback_link != null ? (
+            donateItem != {} &&
+            donateItem != "" &&
+            donateItem?.survey_feedback_link &&
+            donateItem?.survey_feedback_link != "" &&
+            donateItem?.survey_feedback_link != null ? (
             <DrawerLinkView
               onPress={async (): Promise<any> => {
                 await logAnalyticsEvent(DONATE_OPENED);

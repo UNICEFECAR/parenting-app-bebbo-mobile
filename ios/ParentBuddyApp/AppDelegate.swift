@@ -27,33 +27,12 @@ class AppDelegate: RCTAppDelegate {
     // return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     let result = super.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-    // // ⚠️ Splash logic: delay until rootView is ready
-    // DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-    //   if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-    //     let window = windowScene.windows.first,
-    //     let rootVC = window.rootViewController,
-    //     let rootView = rootVC.view {
-
-    //       let dynamic = Dynamic()
-    //       let animationUIView = dynamic.createAnimationView(rootView: rootView, lottieName: "splash")
-
-    //       // Add background image to the animation view (not just rootView)
-    //       let backgroundImageView = UIImageView(frame: animationUIView.bounds)
-    //       backgroundImageView.image = UIImage(named: "splashimg")
-    //       backgroundImageView.contentMode = .scaleAspectFill
-    //       animationUIView.addSubview(backgroundImageView)
-    //       animationUIView.sendSubviewToBack(backgroundImageView)
-
-    //       animationUIView.frame = rootView.bounds
-    //       RNSplashScreen.showLottieSplash(animationUIView, inRootView: rootView)
-
-    //       if let animationView = animationUIView as? LottieAnimationView {
-    //           dynamic.play(animationView: animationView)
-    //       }
-
-    //       RNSplashScreen.setAnimationFinished(true)
-    //   }
-    // }
+    // ✅ Set rootView background color (like old AppDelegate.m)
+    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+      let window = windowScene.windows.first,
+      let rootView = window.rootViewController?.view {
+        rootView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1) // white
+    }
 
     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
       let window = windowScene.windows.first {
