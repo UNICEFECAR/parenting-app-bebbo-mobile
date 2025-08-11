@@ -1094,7 +1094,7 @@ const SettingScreen = (props: any): any => {
 
   return (
     <>
-      <View style={[styles.flex1, { backgroundColor: primaryColor, paddingBottom: insets.bottom }]}>
+      <View style={[styles.flex1, { paddingBottom: insets.bottom }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <OverlayLoadingComponent
               loading={isExportRunning || isImportRunning ? true : false}

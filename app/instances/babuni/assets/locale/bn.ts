@@ -356,7 +356,7 @@ const bn = {
     "noRecentGrowthMeasure": "আপনার শিশুর বৃদ্ধি ও বিকাশের পরিমাপগুলো বেশ পুরনো। সেগুলো হালনাগাদ করে ফলাফল পেতে তথ্যগুলো আপডেট করুন।",
     "vcTaken": "টিকা নেয়া হয়েছে",
     "settingExportError": "ব্যাকআাপ রাখার সময় ভুল হয়েছে। অনুগ্রহ আবার চেস্থা করুন।",
-    "settingExportSuccess": "তথ্যগুলোর ব্যাকআপ সফলভাবে রাখা হয়েছে",
+    "settingExportSuccess": "তথ্যগুলোর ব্যাকআপ সফলভাবে রাখা হয়েছে.",
     "alertForModifyMeasures": "খেয়াল করুন",
     "alertForModifyMeasuresTitle": "এই তারিখটি নির্বাচন করা হলে বিদ্যমান পরিমাপগুলো সংশোধিত হবে",
     "alertForModifyMeasuresOk": "ঠিক আছে",

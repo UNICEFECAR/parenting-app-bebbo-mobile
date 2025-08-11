@@ -643,15 +643,36 @@ export const onHomeapiSuccess = async (
       getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
     }
-
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: "HomeDrawerNavigator",
-        },
-      ],
-    });
+    if(prevPage == "ImportScreen") {
+      Alert.alert(
+        i18n.t("downloadUpdateSuccessPopupTitle"),
+        i18n.t("successOnboardingImport"),
+        [
+          {
+            text: i18n.t("downloadUpdateSuccessOkBtn"),
+            onPress: async (): Promise<any> => {
+              navigation.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: "HomeDrawerNavigator",
+                  },
+                ],
+              });
+            },
+          },
+        ]
+      );
+    } else {
+        navigation.reset({
+          index: 0,
+          routes: [
+            {
+              name: "HomeDrawerNavigator",
+            },
+          ],
+        });
+      }
   }
 };
 export const onHomeSurveyapiSuccess = async (

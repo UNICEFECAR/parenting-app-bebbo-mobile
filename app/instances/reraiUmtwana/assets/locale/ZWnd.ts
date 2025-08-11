@@ -384,7 +384,7 @@ const ZWnd = {
       "Your child's measurement was taken a very long time ago. Please update your child growth measurement now to get an updated assessment. ",
     vcTaken: 'Vaccines received',
     settingExportError: 'Error while backing up data. Please try again.',
-    settingExportSuccess: 'Data backed up successfully',
+    settingExportSuccess: 'Data backed up successfully.',
     alertForModifyMeasures: 'Attention',
     alertForModifyMeasuresTitle:
       'Selecting this date will modify existing measures.',
@@ -399,7 +399,7 @@ const ZWnd = {
       'Check what milestones {{childName}} has reached in the period of {{periodName}}.',
     gwNoti1: '{{childName}} is growing - update growth measures.',
     hcNoti1:
-      'In this period, {{periodName}}, {{childName}} should have a health checkp-up. Schedule a visit to the doctor.',
+      'In this period, {{periodName}}, {{childName}} should have a health check-up. Schedule a visit to the doctor.',
     vcNoti1:
       'In the period, {{periodName}}, {{childName}} should receive vaccine:  ',
     alertForExistingMeasuresTitle:
