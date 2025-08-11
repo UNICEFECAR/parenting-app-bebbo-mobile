@@ -96,6 +96,7 @@ import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import ToggleRadiosBgColor from "@components/ToggleRadiosBgColor";
 import { selectActiveChild, selectVaccineData } from "../../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
   constinerView: {
@@ -612,9 +613,10 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
       backHandler.remove();
     };
   }, []);
+  const insets = useSafeAreaInsets();
   return (
     <>
-      <View style={styles.constinerView}>
+      <View style={[styles.constinerView, { paddingBottom: insets.bottom }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView style={styles.headerRowStyle}>
           <HeaderIconView>

@@ -34,6 +34,7 @@ import {
   Alert,
   BackHandler,
   Dimensions,
+  InteractionManager,
   Platform,
   StyleSheet,
   Text,
@@ -128,9 +129,14 @@ const ChildSetupList = ({ navigation }: Props): any => {
   }, []);
 
   useEffect(() => {
+    let task: { cancel: () => void } | undefined;
+    setLoading(true)
     if (isFocused) {
-      getAllChildren(dispatch, childAge, 0);
-      getAllConfigData(dispatch);
+      task = InteractionManager.runAfterInteractions(() => {
+        getAllChildren(dispatch, childAge, 0);
+        getAllConfigData(dispatch);
+        setLoading(false)
+      });
       notiPermissionUtil();
       setTimeout(() => {
         navigation.dispatch((state) => {
@@ -145,6 +151,9 @@ const ChildSetupList = ({ navigation }: Props): any => {
         });
       }, 100);
     }
+    return () => {
+      if (task) task.cancel();
+    };
   }, [isFocused]);
   useFocusEffect(
     React.useCallback(() => {

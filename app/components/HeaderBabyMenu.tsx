@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FlatList,
+  InteractionManager,
   Modal,
   Platform,
   Pressable,
@@ -145,8 +146,12 @@ const HeaderBabyMenu = (props: any): any => {
     if (a.uuid == currentActiveChild) return -1;
   });
   useEffect(() => {
-    const gender = genders.find((g: any) => g.id === activeChild?.gender);
-    setActiveChildGenderData(gender);
+    const task = InteractionManager.runAfterInteractions(() => {
+      const gender = genders.find((g: any) => g.id === activeChild?.gender);
+      setActiveChildGenderData(gender);
+    });
+    
+    return () => task.cancel();
   }, [activeChild?.gender]);
   const renderChildItem = (dispatch: any, data: any, index: number): any => {
     const genderLocal =
@@ -344,7 +349,9 @@ const HeaderBabyMenu = (props: any): any => {
               disabled={false}
               onPress={(): any => {
                 setModalVisible(false);
-                navigation.navigate("ChildProfileScreen");
+                setTimeout(() => {
+                  navigation.navigate("ChildProfileScreen");
+                }, 50);
               }}
             >
               <ButtonUpperCaseText numberOfLines={2}>
