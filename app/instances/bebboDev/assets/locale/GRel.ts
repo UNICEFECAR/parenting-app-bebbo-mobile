@@ -399,7 +399,7 @@ const GRel = {
     vcTaken: 'Εμβολιάστηκε',
     settingExportError:
       'Σφάλμα κατά την εξαγωγή των δεδομένων. Προσπαθήστε ξανά',
-    settingExportSuccess: 'Εξαγωγή δεδομένων με επιτυχία',
+    settingExportSuccess: 'Εξαγωγή δεδομένων με επιτυχία.',
     alertForModifyMeasures: 'Ειδοποίηση',
     alertForModifyMeasuresTitle:
       'Η επιλογή αυτής της ημερομηνίας θα τροποποιήσει τις υπάρχουσες μετρήσεις',

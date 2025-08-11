@@ -384,7 +384,7 @@ const RSen = {
       "Your child's measurement was taken a very long time ago. Please update your child growth measurement now to get an updated assessment. ",
     vcTaken: 'Vaccines received',
     settingExportError: 'Error while backing up data. Please try again.',
-    settingExportSuccess: 'Data backed up successfully',
+    settingExportSuccess: 'Data backed up successfully.',
     alertForModifyMeasures: 'Attention',
     alertForModifyMeasuresTitle:
       'Selecting this date will modify existing measures',

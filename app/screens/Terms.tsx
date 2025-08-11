@@ -44,7 +44,8 @@ import { TERMS_ACCEPTED } from "@assets/data/firebaseEvents";
 import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import ReactNativeVersionInfo from "react-native-version-info";
-import { selectAllTaxonomyData } from "../services/selectors";
+import { selectAllCountries, selectAllTaxonomyData } from "../services/selectors";
+import { setUserProperties } from "../services/firebaseAnalytics";
 
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -118,7 +119,13 @@ const Terms = ({ navigation }: Props): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-
+  const allCountries = useAppSelector(selectAllCountries);
+  const countryId = useAppSelector(
+      (state: any) => state.selectedCountry.countrySelectedId
+    );
+    const country = allCountries.find((c: any) => c.CountryID === countryId);
+    const language = country?.languages.find((l: any) => l.languageCode === languageCode);
+  
   const taxonomyAllData = useAppSelector(selectAllTaxonomyData);
   useFocusEffect(
     React.useCallback(() => {
@@ -235,6 +242,10 @@ const Terms = ({ navigation }: Props): any => {
       const eventData = { name: TERMS_ACCEPTED };
       logEvent(eventData, netInfo.isConnected);
     }
+    await setUserProperties({
+      country: country.name,
+      language: language.displayName,
+    });
     dispatch(setAppVersion(ReactNativeVersionInfo.appVersion));
     navigation.navigate("LoadingScreen", {
       apiJsonData: apiJsonData,

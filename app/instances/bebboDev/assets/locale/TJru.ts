@@ -379,7 +379,7 @@ const TJru = {
     vcTaken: 'Полученные вакцины',
     settingExportError:
       'Ошибка экспорта данных. Пожалуйста, попробуйте еще раз',
-    settingExportSuccess: 'Данные успешно экспортированы',
+    settingExportSuccess: 'Данные успешно экспортированы.',
     alertForModifyMeasures: 'Внимание',
     alertForModifyMeasuresTitle:
       'Выбор этой даты приведет к изменениям результатов измерений',

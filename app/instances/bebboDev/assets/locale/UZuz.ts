@@ -392,7 +392,7 @@ const UZuz = {
     vcTaken: 'Qabul qilingan emlashlar',
     settingExportError:
       'Maʼlumotni eksport qilishda xatolik yuz berdi. Yana bir bor urinib koʻring',
-    settingExportSuccess: 'Maʼlumot muvaffaqiyatli eksport qilindi',
+    settingExportSuccess: 'Maʼlumot muvaffaqiyatli eksport qilindi.',
     alertForModifyMeasures: 'Ogohlantirish',
     alertForModifyMeasuresTitle:
       'Bu sanani tanlash mavjud oʻlchamlarni oʻzgartiradi',

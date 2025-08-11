@@ -351,7 +351,7 @@ const ChildSetupList = ({ navigation }: Props): any => {
                   ) : (
                     <ChildListingBox>
                       <ChildColArea1>
-                        <Text>{t("noChildsTxt")}</Text>
+                        {/* <Text>{t("noChildsTxt")}</Text> */}
                       </ChildColArea1>
                     </ChildListingBox>
                   )}

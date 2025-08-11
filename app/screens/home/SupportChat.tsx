@@ -54,6 +54,7 @@ import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { useFocusEffect } from "@react-navigation/native";
 import { selectAllConfigData, selectAllTaxonomyData, selectFaqsData, selectSurveyData } from "../../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type SupportChatNavigationProp = StackNavigationProp<any>;
 type Props = {
@@ -114,6 +115,7 @@ const SupportChat = ({ navigation }: Props): any => {
   const [steps, setsteps] = useState<any>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const flatListRef = useRef<any>(null);
+  const insets = useSafeAreaInsets();
   const noDataStep = (): any => {
     console.log("noDataStep");
   };
@@ -634,7 +636,7 @@ const SupportChat = ({ navigation }: Props): any => {
 
   return (
     <>
-      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+      <View style={[styles.flex1, { paddingBottom: insets.bottom }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <TabScreenHeader
           title={t("supportScreenheaderTitle")}

@@ -409,7 +409,7 @@ const ESec = {
     vcTaken: "Vacunas recibidas",
     settingExportError:
       "Error al realizar la copia de seguridad de los datos. Inténtalo de nuevo.",
-    settingExportSuccess: "Datos respaldados exitosamente",
+    settingExportSuccess: "Datos respaldados exitosamente.",
     alertForModifyMeasures: "Atención",
     alertForModifyMeasuresTitle:
       "Si eliges esta fecha, se actualizarán las medidas ya registradas.",

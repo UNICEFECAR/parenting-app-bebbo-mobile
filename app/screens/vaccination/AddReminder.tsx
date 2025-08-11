@@ -647,7 +647,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                         mode={"time"}
                         locale={locale}
                         display="spinner"
-                        is24Hour={true}
+                        is24Hour={false}
                         minimumDate={minmeasureTime}
                         onChange={onmeasureTimeChange}
                       />
@@ -778,7 +778,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                         mode={"time"}
                         display="spinner"
                         locale={locale}
-                        is24Hour={true}
+                        is24Hour={false}
                         minimumDate={
                           new Date(
                             DateTime.local().plus({ minutes: +1 }).toISODate()
