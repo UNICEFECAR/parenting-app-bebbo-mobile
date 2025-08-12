@@ -314,9 +314,10 @@ export const formatStringTime = (dateData: any): any => {
   const formattedTime = getTwoDigits(hour) + ":" + getTwoDigits(minute);
 
   console.log(formattedTime);
-  return Platform.OS == "ios"
-    ? moment(formattedTime, "hh:mm").locale("en").format("hh:mm A")
-    : moment(formattedTime, "hh:mm").format("hh:mm");
+  return moment(formattedTime, "hh:mm").locale("en").format("hh:mm A");
+  // return Platform.OS == "ios"
+  //   ? moment(formattedTime, "hh:mm").locale("en").format("hh:mm A")
+  //   : moment(formattedTime, "hh:mm").format("hh:mm");
 };
 export const removeParams = (sParam: any): any => {
   if (sParam.indexOf("?") != -1) {
