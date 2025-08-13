@@ -95,6 +95,28 @@ const styles = StyleSheet.create({
   fullWidth: { width: "100%" },
   titleUnderline: { textDecorationLine: "underline" },
 });
+const VideoPlayerWrapper = React.memo(({ selectedPinnedArticleData, listLoading }: any) => {
+  const { width } = useWindowDimensions();
+
+  return (
+    <View style={{ height: width * 0.565, overflow: "hidden" }}>
+      {Platform.OS === "ios" ? (
+        listLoading ? (
+          <VideoPlayer
+            style={{ width: "100%" }}
+            selectedPinnedArticleData={selectedPinnedArticleData}
+          />
+        ) : null
+      ) : (
+        <VideoPlayer
+          style={{ width: "100%" }}
+          selectedPinnedArticleData={selectedPinnedArticleData}
+        />
+      )}
+    </View>
+  );
+});
+
 const ChildDevelopment = ({ route, navigation }: any): any => {
   const netInfo = useNetInfoHook();
   const themeContext = useContext(ThemeContext);
@@ -505,35 +527,35 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <OverlayLoadingComponent loading={profileLoading} />
         <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible1}
-            onRequestClose={(): any => {
-              setModalVisible1(false);
-            }}
-            onDismiss={(): any => {
-              setModalVisible1(false);
-            }}
-          >
-            <PopupOverlay>
-              <ModalPopupContainer>
-                <PopupCloseContainer>
-                  <PopupClose
-                    onPress={(): any => {
-                      setModalVisible1(false);
-                    }}
-                  >
-                    <Icon name="ic_close" size={16} color="#000" />
-                  </PopupClose>
-                </PopupCloseContainer>
-                <ModalPopupContent>
-                  <Heading4Centerr>
-                    {t("childSetupprematureMessageNext")}
-                  </Heading4Centerr>
-                </ModalPopupContent>
-              </ModalPopupContainer>
-            </PopupOverlay>
-          </Modal>
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible1}
+          onRequestClose={(): any => {
+            setModalVisible1(false);
+          }}
+          onDismiss={(): any => {
+            setModalVisible1(false);
+          }}
+        >
+          <PopupOverlay>
+            <ModalPopupContainer>
+              <PopupCloseContainer>
+                <PopupClose
+                  onPress={(): any => {
+                    setModalVisible1(false);
+                  }}
+                >
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+              </PopupCloseContainer>
+              <ModalPopupContent>
+                <Heading4Centerr>
+                  {t("childSetupprematureMessageNext")}
+                </Heading4Centerr>
+              </ModalPopupContent>
+            </ModalPopupContainer>
+          </PopupOverlay>
+        </Modal>
 
         <TabScreenHeader
           title={t("developScreenheaderTitle")}
@@ -560,25 +582,6 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
             <Heading4Center>{t("noDataTxt")}</Heading4Center>
           ) : null}
           <View>
-              {selectedChildDevData &&
-              Object.keys(selectedChildDevData).length != 0 &&
-              selectedChildDevData != "" ? (
-              <Container style={{minHeight: width * 0.565}}>
-                {Platform.OS == "ios" ? (
-                  listLoading == true ? (
-                    <VideoPlayer
-                      style={styles.fullWidth}
-                      selectedPinnedArticleData={selectedPinnedArticleData}
-                    ></VideoPlayer>
-                  ) : null
-                ) : (
-                  <VideoPlayer
-                    style={styles.fullWidth}
-                    selectedPinnedArticleData={selectedPinnedArticleData}
-                  ></VideoPlayer>
-                )}
-              </Container>
-            ) : null}
             <FlatList
               ref={flatListRef}
               data={selectedChildMilestoneData}
@@ -600,7 +603,20 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
               windowSize={7}
               removeClippedSubviews={true}
               nestedScrollEnabled={true}
-              ListHeaderComponent={ContentThatGoesAboveTheFlatList}
+              ListHeaderComponent={
+                <>
+                  {selectedChildDevData &&
+                    Object.keys(selectedChildDevData).length != 0 &&
+                    selectedChildDevData != "" ? (
+                    <VideoPlayerWrapper
+                      selectedPinnedArticleData={selectedPinnedArticleData}
+                      listLoading={listLoading}
+                    />
+                  ) : null}
+                  {ContentThatGoesAboveTheFlatList}
+                </>
+
+              }
               ListFooterComponent={ContentThatGoesBelowTheFlatList}
             />
           </View>

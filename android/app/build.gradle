@@ -195,7 +195,7 @@ android {
         prod {
             applicationId 'org.unicef.ecar.bebbo'
             versionCode 44
-            versionName "2.3.3"
+            versionName "2.4.0"
             signingConfig signingConfigs.release
         }
         prodstaging {
