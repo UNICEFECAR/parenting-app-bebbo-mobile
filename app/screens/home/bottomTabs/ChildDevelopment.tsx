@@ -394,25 +394,6 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const ContentThatGoesAboveTheFlatList = (): any => {
     return (
       <>
-        {selectedChildDevData &&
-          Object.keys(selectedChildDevData).length != 0 &&
-          selectedChildDevData != "" ? (
-          <Container>
-            {Platform.OS == "ios" ? (
-              listLoading == true ? (
-                <VideoPlayer
-                  style={styles.fullWidth}
-                  selectedPinnedArticleData={selectedPinnedArticleData}
-                ></VideoPlayer>
-              ) : null
-            ) : (
-              <VideoPlayer
-                style={styles.fullWidth}
-                selectedPinnedArticleData={selectedPinnedArticleData}
-              ></VideoPlayer>
-            )}
-          </Container>
-        ) : null}
         <ArticleHeading>
           {selectedChildDevData &&
             selectedChildDevData != null &&
@@ -579,6 +560,25 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
             <Heading4Center>{t("noDataTxt")}</Heading4Center>
           ) : null}
           <View>
+              {selectedChildDevData &&
+              Object.keys(selectedChildDevData).length != 0 &&
+              selectedChildDevData != "" ? (
+              <Container style={{minHeight: width * 0.565}}>
+                {Platform.OS == "ios" ? (
+                  listLoading == true ? (
+                    <VideoPlayer
+                      style={styles.fullWidth}
+                      selectedPinnedArticleData={selectedPinnedArticleData}
+                    ></VideoPlayer>
+                  ) : null
+                ) : (
+                  <VideoPlayer
+                    style={styles.fullWidth}
+                    selectedPinnedArticleData={selectedPinnedArticleData}
+                  ></VideoPlayer>
+                )}
+              </Container>
+            ) : null}
             <FlatList
               ref={flatListRef}
               data={selectedChildMilestoneData}
