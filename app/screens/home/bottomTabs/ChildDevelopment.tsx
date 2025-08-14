@@ -613,7 +613,7 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
                       listLoading={listLoading}
                     />
                   ) : null}
-                  {ContentThatGoesAboveTheFlatList}
+                  {ContentThatGoesAboveTheFlatList()}
                 </>
 
               }
