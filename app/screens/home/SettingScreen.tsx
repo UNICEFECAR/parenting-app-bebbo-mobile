@@ -86,7 +86,7 @@ import {
   View,
 } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
-import DocumentPicker, { isInProgress } from "react-native-document-picker";
+import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
 import RNFS from "react-native-fs";
 import { Switch } from "react-native-gesture-handler";
 import VectorImage from "react-native-vector-image";
@@ -135,6 +135,7 @@ import {
   selectVchcEnabledFlag,
   selectWeeklyDownloadDate,
 } from "../../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -203,7 +204,7 @@ const SettingScreen = (props: any): any => {
   const languageCode = useAppSelector(selectLanguageCode);
 
   const netInfo = useNetInfoHook();
-
+  const insets = useSafeAreaInsets();
   const lastUpdatedDate =
     weeklyDownloadDate < monthlyDownloadDate
       ? weeklyDownloadDate
@@ -888,13 +889,31 @@ const SettingScreen = (props: any): any => {
   const handleError = (err: any): any => {
     console.log(err, "..err");
 
-    if (DocumentPicker.isCancel(err)) {
-      console.log("cancelled");
-      // User cancelled the picker, exit any dialogs or menus and move on
-    } else if (isInProgress(err)) {
-      console.log(
-        "multiple pickers were opened, only the last will be considered"
-      );
+    // if (DocumentPicker.isCancel(err)) {
+    //   console.log("cancelled");
+    //   // User cancelled the picker, exit any dialogs or menus and move on
+    // } else if (isInProgress(err)) {
+    //   console.log(
+    //     "multiple pickers were opened, only the last will be considered"
+    //   );
+    // } else {
+    //   throw err;
+    // }
+
+    if (isErrorWithCode(err)) {
+      switch (err.code) {
+        case errorCodes.IN_PROGRESS:
+          console.warn('user attempted to present a picker, but a previous one was already presented')
+          break
+        case errorCodes.UNABLE_TO_OPEN_FILE_TYPE:
+          console.log('unable to open file type')
+          break
+        case errorCodes.OPERATION_CANCELED:
+          // ignore
+          break
+        default:
+          console.error(err)
+      }
     } else {
       throw err;
     }
@@ -972,9 +991,9 @@ const SettingScreen = (props: any): any => {
   };
   const importDataIOS = async (): Promise<any> => {
     console.log("<<<<<importDataIOS>>>>>>");
-    DocumentPicker.pick({
+    pick({
       allowMultiSelection: false,
-      type: DocumentPicker.types.allFiles,
+      allowedTypes: ['*/*'],
     })
       .then(async (res: any) => {
         console.log("<<<<<importDataIOS>>>>>>", res);
@@ -1075,8 +1094,11 @@ const SettingScreen = (props: any): any => {
 
   return (
     <>
-      <View style={[styles.flex1, { backgroundColor: primaryColor }]}>
+      <View style={[styles.flex1, { paddingBottom: insets.bottom }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
+        <OverlayLoadingComponent
+              loading={isExportRunning || isImportRunning ? true : false}
+            />
         <TabScreenHeader
           title={t("settingScreenheaderTitle")}
           headerColor={primaryColor}
@@ -1414,9 +1436,9 @@ const SettingScreen = (props: any): any => {
                 </ButtonText>
               </ButtonPrimary>
             </ShiftFromTopBottom10>
-            <OverlayLoadingComponent
+            {/* <OverlayLoadingComponent
               loading={isExportRunning || isImportRunning ? true : false}
-            />
+            /> */}
           </MainContainer>
 
           <ActionSheet ref={actionSheetRef}>

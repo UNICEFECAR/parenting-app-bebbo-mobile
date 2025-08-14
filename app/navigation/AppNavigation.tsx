@@ -1,5 +1,4 @@
-import analytics from "@react-native-firebase/analytics";
-import { NavigationContainer } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AddExpectingChildProfile from "@screens/AddExpectingChildProfile";
 import AddSiblingData from "@screens/AddSiblingData";
@@ -24,8 +23,8 @@ import AddChildVaccination from "@screens/vaccination/AddChildVaccination";
 import AddReminder from "@screens/vaccination/AddReminder";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, AppState, BackHandler, Linking, Platform } from "react-native";
-import SplashScreen from "react-native-lottie-splash-screen";
+import { Alert, AppState, BackHandler, InteractionManager, Linking, NativeModules, Platform } from "react-native";
+import SplashScreen from "@attarchi/react-native-lottie-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppDispatch, useAppSelector } from "../../App";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
@@ -41,19 +40,21 @@ import { appConfig } from "../instances";
 import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
-import messaging from "@react-native-firebase/messaging";
+import { getMessaging, getInitialNotification, onMessage, onNotificationOpenedApp, setBackgroundMessageHandler } from "@react-native-firebase/messaging";
 import { AppEventsLogger, Settings } from "react-native-fbsdk-next";
 import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
 import PushNotification from "react-native-push-notification";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
-//import DynamicLinks from '@react-native-firebase/dynamic-links';
 import { trimWhiteSpacePayload } from "../services/Utils";
 import TermsPage from "@screens/TermsPage";
 import { logEvent, synchronizeEvents } from "../services/EventSyncService";
 import AddChildSetup from "@screens/AddChildSetup";
 import { fetchAPI } from "../redux/sagaMiddleware/sagaActions";
 import { ToastAndroidLocal } from "../android/sharedAndroid.android";
+import { getApp } from "@react-native-firebase/app";
+import { logAnalyticsEvent } from "../services/firebaseAnalytics";
+import { selectActiveChild, selectAllCountries, selectChildAge, selectSurveyData } from "../services/selectors";
 const RootStack = createStackNavigator<RootStackParamList>();
 export default (): any => {
   const [profileLoading, setProfileLoading] = React.useState(false);
@@ -63,12 +64,7 @@ export default (): any => {
   const userIsFirstTime = useAppSelector(
     (state: any) => state.utilsData.userIsFirstTime
   );
-  const child_age = useAppSelector((state: any) => {
-    const allTaxonomyData = JSON.parse(
-      state?.utilsData.taxonomy?.allTaxonomyData || "{}"
-    );
-    return allTaxonomyData.child_age || [];
-  });
+  const child_age = useAppSelector(selectChildAge);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
@@ -88,11 +84,7 @@ export default (): any => {
   const [netState, setNetState] = React.useState("");
   const dispatch = useAppDispatch();
   const netInfo = useNetInfoHook();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.ACTIVITIES_COLOR;
@@ -103,18 +95,11 @@ export default (): any => {
   const apiData = useAppSelector(
     (state) => state.failedOnloadApiObjReducer.data
   );
-  const surveyData = useAppSelector((state: any) =>
-    state.utilsData.surveryData != ""
-      ? JSON.parse(state.utilsData.surveryData)
-      : state.utilsData.surveryData
-  );
-  const allCountries = useAppSelector((state: any) =>
-    state.selectedCountry.countries != ""
-      ? JSON.parse(state.selectedCountry.countries)
-      : []
-  );
+  const surveyData = useAppSelector(selectSurveyData);
+  const allCountries = useAppSelector(selectAllCountries);
   const hasLoggedEvent = useRef(false);
   let currentCount = 0;
+  const messaging = getMessaging(getApp());
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);
@@ -172,20 +157,24 @@ export default (): any => {
   ];
 
   useEffect(() => {
-    if (!userIsFirstTime) {
-      dispatch(
-        fetchAPI(
-          apiJsonData,
-          "",
-          dispatch,
-          navigationRef.current,
-          languageCode,
-          activeChild,
-          apiJsonData,
-          netInfo.isConnected
-        )
-      );
-    }
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (!userIsFirstTime) {
+        dispatch(
+          fetchAPI(
+            apiJsonData,
+            "",
+            dispatch,
+            navigationRef.current,
+            languageCode,
+            activeChild,
+            apiJsonData,
+            netInfo.isConnected
+          )
+        );
+      }
+    });
+
+    return () => task.cancel();
   }, [dispatch]);
 
   const onBackPress = (): any => {
@@ -224,8 +213,12 @@ export default (): any => {
     }, [routesLength,userIsOnboarded]);
 
   useEffect(() => {
-    // ... handle deep link
-    callUrl(linkedURL);
+    const task = InteractionManager.runAfterInteractions(() => {
+      // ... handle deep link
+      callUrl(linkedURL);
+    });
+    
+    return () => task.cancel();
   }, [linkedURL, resetURL, userIsOnboarded]);
 
   useEffect(() => {
@@ -506,7 +499,10 @@ export default (): any => {
 
   useEffect(() => {
     if (userIsOnboarded == true) {
-      createLocalNotificationListeners();
+      const task = InteractionManager.runAfterInteractions(() => {
+        createLocalNotificationListeners();
+      });
+      return () => task.cancel();
     }
   }, [userIsOnboarded]);
 
@@ -871,7 +867,7 @@ export default (): any => {
     }
   };
   useEffect(() => {
-    messaging().onNotificationOpenedApp((remoteMessage) => {
+    onNotificationOpenedApp(messaging, (remoteMessage) => {
       if (remoteMessage) {
         // background click noti
         if (userIsOnboarded == true) {
@@ -880,8 +876,7 @@ export default (): any => {
       }
     });
     // Check whether an initial notification is available
-    messaging()
-      .getInitialNotification()
+    getInitialNotification(messaging)
       .then((remoteMessage) => {
         if (remoteMessage) {
           // after kill and restart application
@@ -895,19 +890,21 @@ export default (): any => {
     // if (userIsOnboarded) {
     //   hideDelay = Platform.OS === 'android' ? 0 : 500;
     // }
-
+    // if (Platform.OS === 'ios') {
+    //   NativeModules.RNSplashScreen.setAnimationFinished(true);
+    // }
     setTimeout(() => {
       SplashScreen.hide();
     }, 2000);
 
-    messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+    setBackgroundMessageHandler(messaging, async (remoteMessage) => {
       try {
         // console.log('Remote notification', JSON.stringify(remoteMessage))
       } catch (err) {
         console.log(err);
       }
     });
-    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+    const unsubscribe = onMessage(messaging, async (remoteMessage) => {
       //type article/activities
       //foreground call
       if (
@@ -987,8 +984,11 @@ export default (): any => {
         }
       }
     }
-    fetchNetInfo();
-    return {};
+    const task = InteractionManager.runAfterInteractions(() => {
+      fetchNetInfo();
+    });
+
+    return () => task.cancel();
   }, [
     netInfo.isConnected,
     netInfo.netType,
@@ -999,26 +999,34 @@ export default (): any => {
   }, [linkedURL]);
 
   useEffect(() => {
-    if (userIsOnboarded == true) {
-      const obj = { key: "showDownloadPopup", value: true };
-      dispatch(setInfoModalOpened(obj));
-      const localnotiFlagObj = {
-        generateFlag: true,
-        generateType: "onAppStart",
-        childuuid: "all",
-      };
-      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-      getAllChildren(dispatch, child_age, 0);
-    }
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (userIsOnboarded == true) {
+        const obj = { key: "showDownloadPopup", value: true };
+        dispatch(setInfoModalOpened(obj));
+        const localnotiFlagObj = {
+          generateFlag: true,
+          generateType: "onAppStart",
+          childuuid: "all",
+        };
+        dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+        getAllChildren(dispatch, child_age, 0);
+      }
+    });
+
+    return () => task.cancel();
   }, [userIsOnboarded]);
   useEffect(() => {
-    dispatch(setchatBotData([]));
-    if (countryId == 1) {
-      dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
-    }
-    const notiFlagObj = { key: "generateNotifications", value: true };
-    dispatch(setInfoModalOpened(notiFlagObj));
-    //add notification condition in else if required 1st time as well
+    const task = InteractionManager.runAfterInteractions(() => {
+      dispatch(setchatBotData([]));
+      if (countryId == 1) {
+        dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
+      }
+      const notiFlagObj = { key: "generateNotifications", value: true };
+      dispatch(setInfoModalOpened(notiFlagObj));
+      //add notification condition in else if required 1st time as well
+    });
+
+    return () => task.cancel();
   }, []);
   useEffect(() => {
     async function fetchNetInfoSet(): Promise<any> {
@@ -1034,7 +1042,11 @@ export default (): any => {
         }
       }
     }
-    fetchNetInfoSet();
+    const task = InteractionManager.runAfterInteractions(() => {
+      fetchNetInfoSet();
+    });
+
+    return () => task.cancel();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
 
@@ -1052,7 +1064,13 @@ export default (): any => {
       saveinDB: true,
     },
   ];
-
+  const navTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: 'transparent',
+    },
+  };
   return (
     <SafeAreaProvider>
       {apiData && (
@@ -1068,7 +1086,7 @@ export default (): any => {
             console.log(`Previous route: ${previousRouteName}`);
             console.log(`Current route: ${currentRouteName}`);
             if (previousRouteName !== currentRouteName) {
-              analytics().logScreenView({
+              await logAnalyticsEvent('screen_view', {
                 screen_name: currentRouteName,
                 screen_class: currentRouteName,
               });
@@ -1077,6 +1095,7 @@ export default (): any => {
             }
             routeNameRef.current = currentRouteName;
           }}
+          theme={navTheme}
         >
           <RootStack.Navigator
             initialRouteName={

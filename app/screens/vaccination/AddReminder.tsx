@@ -78,6 +78,7 @@ import {
 import * as RNLocalize from "react-native-localize";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
+import { selectActiveChild } from "../../services/selectors";
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -162,11 +163,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
     setMeasureTimePickerVisibilityDefined,
   ] = useState(false);
   const dispatch = useAppDispatch();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const vchcEnabledFlag = useAppSelector(
     (state: any) => state.notificationData.vchcEnabled
   );
@@ -650,7 +647,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                         mode={"time"}
                         locale={locale}
                         display="spinner"
-                        is24Hour={true}
+                        is24Hour={false}
                         minimumDate={minmeasureTime}
                         onChange={onmeasureTimeChange}
                       />
@@ -781,7 +778,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                         mode={"time"}
                         display="spinner"
                         locale={locale}
-                        is24Hour={true}
+                        is24Hour={false}
                         minimumDate={
                           new Date(
                             DateTime.local().plus({ minutes: +1 }).toISODate()

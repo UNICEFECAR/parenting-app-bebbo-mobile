@@ -391,7 +391,7 @@ const MKmk = {
     vcTaken: 'Примени вакцини',
     settingExportError:
       'Грешка при пренос на податоци. Ве молиме обидете се повторно',
-    settingExportSuccess: 'Податоците се успешно преземени',
+    settingExportSuccess: 'Податоците се успешно преземени.',
     alertForModifyMeasures: 'Внимание',
     alertForModifyMeasuresTitle:
       'Одбирањето на овој датум ќе ги промени постоечките мерења',

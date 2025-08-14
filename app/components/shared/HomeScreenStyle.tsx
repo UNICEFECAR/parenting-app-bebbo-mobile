@@ -89,11 +89,11 @@ background-color: ${(props: any): any => props.theme?.colors?.SECONDARY_TEXTCOLO
 border-radius:4px;
 margin:0 7px 15px;
 width:285px;
-shadow-color: #00000;
-shadow-offset: 0px 8px; /* Shadow only at the bottom */
-shadow-opacity: 0.08;
-shadow-radius: 6px;
-
+shadow-color: #000;
+shadow-offset: 0px 2px; /* Shadow only at the bottom */
+shadow-opacity: 0.1;
+shadow-radius: 4px;
+elevation: 3;
 `;
 
 export const BottomBarBg = styled.View`

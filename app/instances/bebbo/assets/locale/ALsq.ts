@@ -399,7 +399,7 @@ const ALsq = {
     vcTaken: 'Vaksinat e bëra',
     settingExportError:
       'Gabim gjatë eksportimit të të dhënave. Ju lutemi provoni përsëri',
-    settingExportSuccess: 'Të dhënat u eksportuan me sukses',
+    settingExportSuccess: 'Të dhënat u eksportuan me sukses.',
     alertForModifyMeasures: 'Kujdes',
     alertForModifyMeasuresTitle:
       'Zgjedhja e kësaj të dhëne do të modifikojë matjet ekzistuese',

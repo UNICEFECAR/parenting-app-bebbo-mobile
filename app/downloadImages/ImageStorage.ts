@@ -21,7 +21,6 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
                 connectionTimeout: 150 * 1000, // milliseconds
                 readTimeout: 150 * 1000, // milliseconds
             });
-            console.log(jobId);
             const downloadResult = await downloadPromise;
             if (downloadResult.statusCode === 200) {
                 if (await RNFS.exists(args.destFolder + '/' + args.destFilename)) {
@@ -94,7 +93,6 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean; a
         const numberOfSuccess = loopResponses.reduce((acc: number, currentValue: boolean) => {
             if (currentValue) return acc + 1; else return acc;
         }, 0);
-         console.log(numberOfSuccess);
         // Add responses to allResponses
         allResponses = allResponses.concat(
             loopResponses.map((value, index) => {

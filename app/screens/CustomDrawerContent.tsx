@@ -46,7 +46,6 @@ import {
   SubDrawerHead,
   SubDrawerLinkView,
 } from "@components/shared/NavigationDrawer";
-import analytics from "@react-native-firebase/analytics";
 import { useDrawerStatus } from "@react-navigation/drawer";
 import { useFocusEffect } from "@react-navigation/native";
 import { bgcolorWhite2, lightShadeColor, secondaryColor } from "@styles/style";
@@ -70,6 +69,7 @@ import {
   ScrollView,
   Share,
   StyleSheet,
+  useWindowDimensions,
   View,
 } from "react-native";
 import HTML from "react-native-render-html";
@@ -81,6 +81,9 @@ import { formatDate, addSpaceToHtml } from "../services/Utils";
 import { logEvent } from "../services/EventSyncService";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import useDigitConverter from "../customHooks/useDigitConvert";
+import { logAnalyticsEvent } from "../services/firebaseAnalytics";
+import { selectActiveChild, selectAllCountries, selectChildGenders, selectSurveyData, selectVaccineData } from "../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
   containerView: {
@@ -121,28 +124,14 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   const { convertDigits } = useDigitConverter();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const [aboutAccordValue, onChangeAboutAccordValue] = React.useState(false);
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const allVaccineData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData)
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const allVaccineData = useAppSelector(selectVaccineData);
   const allnotis = useAppSelector(
     (state: any) => state.notificationData.notifications
   );
   const [notifications, setNotifications] = useState<any[]>([]);
-  const surveryData = useAppSelector((state: any) =>
-    state.utilsData.surveryData != ""
-      ? JSON.parse(state.utilsData.surveryData)
-      : state.utilsData.surveryData
-  );
-  const allCountries = useAppSelector((state: any) =>
-    state.selectedCountry.countries != ""
-      ? JSON.parse(state.selectedCountry.countries)
-      : []
-  );
+  const surveryData = useAppSelector(selectSurveyData);
+  const allCountries = useAppSelector(selectAllCountries);
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countrySelectedId
   );
@@ -153,7 +142,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
     (item: any) => item.type == "user_guide"
   );
   const donateItem = surveryData.find((item: any) => item.type == "donate");
-  const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices
       ? state.childData.childDataSet.favoriteadvices
@@ -169,6 +158,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   );
   const [favoritescount, setfavoritescount] = useState(0);
   const isOpen = useDrawerStatus() === "open";
+  const { width } = useWindowDimensions();
   useFocusEffect(
     React.useCallback(() => {
       if (isOpen) {
@@ -190,12 +180,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const locale = useAppSelector((state: any) => state.selectedCountry.locale);
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  const genders = useAppSelector(selectChildGenders);
   const [activeChildGenderData, setActiveChildGenderData] =
     React.useState<any>();
   useEffect(() => {
@@ -270,13 +255,13 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     item.isRead == false &&
                     item.isDeleted == false &&
                     toDay >=
-                      DateTime.fromJSDate(
-                        new Date(item.notificationDate)
-                      ).toMillis() &&
+                    DateTime.fromJSDate(
+                      new Date(item.notificationDate)
+                    ).toMillis() &&
                     childBirthDate <=
-                      DateTime.fromJSDate(
-                        new Date(item.notificationDate)
-                      ).toMillis()
+                    DateTime.fromJSDate(
+                      new Date(item.notificationDate)
+                    ).toMillis()
                   );
                 });
               setNotifications(
@@ -302,7 +287,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
         //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
-        analytics().logEvent(APP_SHARE);
+        await logAnalyticsEvent(APP_SHARE);
       }
     } catch (error: any) {
       Alert.alert(t("generalError"));
@@ -317,11 +302,12 @@ const CustomDrawerContent = ({ navigation }: any): any => {
 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.SECONDARY_COLOR;
+  const insets = useSafeAreaInsets();
   return (
     <>
       <FocusAwareStatusBar
         animated={true}
-        backgroundColor={Platform.OS == "ios" ? headerColor : null}
+        backgroundColor={(Platform.OS == "ios" || Platform.OS === 'android' && insets.top > 50) ? headerColor : null}
       />
       <View style={styles.containerView}>
         <ScrollView style={styles.scrollViewStyle}>
@@ -354,9 +340,9 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                             <Icon
                               name={
                                 activeChildGenderData &&
-                                genders.find(
-                                  (g: any) => g.id === activeChild?.gender
-                                )?.unique_name === taxonomyIds?.boyChildGender
+                                  genders.find(
+                                    (g: any) => g.id === activeChild?.gender
+                                  )?.unique_name === taxonomyIds?.boyChildGender
                                   ? "ic_baby"
                                   : "ic_baby_girl"
                               }
@@ -374,17 +360,17 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                         </Heading3>
                         <Heading5>
                           {activeChild.birthDate != "" &&
-                          activeChild.birthDate != null &&
-                          activeChild.birthDate != undefined &&
-                          !isFutureDate(activeChild.birthDate)
+                            activeChild.birthDate != null &&
+                            activeChild.birthDate != undefined &&
+                            !isFutureDate(activeChild.birthDate)
                             ? t("drawerMenuchildInfo", {
-                                childdob:
-                                  activeChild.birthDate != "" &&
+                              childdob:
+                                activeChild.birthDate != "" &&
                                   activeChild.birthDate != null &&
                                   activeChild.birthDate != undefined
-                                    ? formatDate(activeChild.birthDate)
-                                    : "",
-                              })
+                                  ? formatDate(activeChild.birthDate)
+                                  : "",
+                            })
                             : t("expectedChildDobLabel")}
                         </Heading5>
                       </FDirCol>
@@ -636,11 +622,11 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </Heading4>
           </DrawerLinkView>
           {userGuideItem &&
-          userGuideItem != {} &&
-          userGuideItem != "" &&
-          userGuideItem?.survey_feedback_link &&
-          userGuideItem?.survey_feedback_link != "" &&
-          userGuideItem?.survey_feedback_link != null ? (
+            userGuideItem != {} &&
+            userGuideItem != "" &&
+            userGuideItem?.survey_feedback_link &&
+            userGuideItem?.survey_feedback_link != "" &&
+            userGuideItem?.survey_feedback_link != null ? (
             <DrawerLinkView
               onPress={(): any => {
                 Linking.openURL(userGuideItem?.survey_feedback_link);
@@ -763,14 +749,14 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </>
           ) : null}
           {donateItem &&
-          donateItem != {} &&
-          donateItem != "" &&
-          donateItem?.survey_feedback_link &&
-          donateItem?.survey_feedback_link != "" &&
-          donateItem?.survey_feedback_link != null ? (
+            donateItem != {} &&
+            donateItem != "" &&
+            donateItem?.survey_feedback_link &&
+            donateItem?.survey_feedback_link != "" &&
+            donateItem?.survey_feedback_link != null ? (
             <DrawerLinkView
-              onPress={(): any => {
-                analytics().logEvent(DONATE_OPENED);
+              onPress={async (): Promise<any> => {
+                await logAnalyticsEvent(DONATE_OPENED);
                 Linking.openURL(donateItem?.survey_feedback_link);
               }}
             >
@@ -790,61 +776,63 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </DrawerLinkView>
           ) : null}
         </ScrollView>
-      </View>
-      <Modal
-        animationType="none"
-        transparent={true}
-        visible={modalVisible === true}
-        onRequestClose={(): any => {
-          setModalVisible(false);
-        }}
-        onDismiss={(): any => {
-          setModalVisible(false);
-        }}
-      >
-        <PopupOverlay>
-          <ModalPopupContainer>
-            <PopupCloseContainer>
-              <PopupClose
-                onPress={(): any => {
-                  setModalVisible(false);
-                }}
-              >
-                <Icon name="ic_close" size={16} color="#000" />
-              </PopupClose>
-            </PopupCloseContainer>
-            {feedbackItem ? (
-              <>
-                <ModalPopupContent>
-                  <Heading1Centerr>{feedbackItem?.title}</Heading1Centerr>
 
-                  {feedbackItem && feedbackItem?.body ? (
-                    <HTML
-                      source={{ html: addSpaceToHtml(feedbackItem?.body) }}
-                      ignoredStyles={["color", "fontSize", "fontFamily"]}
-                    />
-                  ) : null}
-                </ModalPopupContent>
-                <FDirRow>
-                  <ButtonModal
-                    onPress={(): any => {
-                      setModalVisible(false);
-                      analytics().logEvent(FEEDBACK_SUBMIT);
-                      Linking.openURL(feedbackItem?.survey_feedback_link);
-                    }}
-                  >
-                    <ButtonText numberOfLines={2}>
-                      {t("continueInModal")}
-                    </ButtonText>
-                  </ButtonModal>
-                </FDirRow>
-              </>
-            ) : (
-              <Heading4Center>{t("noDataTxt")}</Heading4Center>
-            )}
-          </ModalPopupContainer>
-        </PopupOverlay>
-      </Modal>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={modalVisible === true}
+          onRequestClose={(): any => {
+            setModalVisible(false);
+          }}
+          onDismiss={(): any => {
+            setModalVisible(false);
+          }}
+        >
+          <PopupOverlay>
+            <ModalPopupContainer>
+              <PopupCloseContainer>
+                <PopupClose
+                  onPress={(): any => {
+                    setModalVisible(false);
+                  }}
+                >
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+              </PopupCloseContainer>
+              {feedbackItem ? (
+                <>
+                  <ModalPopupContent>
+                    <Heading1Centerr>{feedbackItem?.title}</Heading1Centerr>
+
+                    {feedbackItem && feedbackItem?.body ? (
+                      <HTML
+                        contentWidth={width}
+                        source={{ html: addSpaceToHtml(feedbackItem?.body) }}
+                        ignoredStyles={["color", "fontSize", "fontFamily"]}
+                      />
+                    ) : null}
+                  </ModalPopupContent>
+                  <FDirRow>
+                    <ButtonModal
+                      onPress={async (): Promise<any> => {
+                        setModalVisible(false);
+                        await logAnalyticsEvent(FEEDBACK_SUBMIT);
+                        Linking.openURL(feedbackItem?.survey_feedback_link);
+                      }}
+                    >
+                      <ButtonText numberOfLines={2}>
+                        {t("continueInModal")}
+                      </ButtonText>
+                    </ButtonModal>
+                  </FDirRow>
+                </>
+              ) : (
+                <Heading4Center>{t("noDataTxt")}</Heading4Center>
+              )}
+            </ModalPopupContainer>
+          </PopupOverlay>
+        </Modal>
+      </View>
     </>
   );
 };

@@ -377,7 +377,7 @@ const BYbe = {
     vcTaken: 'Атрыманыя вакцыны',
     settingExportError:
       'Памылка экспарту даных. Калі ласка, паспрабуйце яшчэ раз',
-    settingExportSuccess: 'Даныя паспяхова экспартаваны',
+    settingExportSuccess: 'Даныя паспяхова экспартаваны.',
     alertForModifyMeasures: 'Увага',
     alertForModifyMeasuresTitle:
       'Выбар гэтай даты прывядзе да змены вынікаў вымярэнняў',

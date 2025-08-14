@@ -379,7 +379,7 @@ const UZru = {
     vcTaken: 'Полученные вакцины',
     settingExportError:
       'Ошибка при экспорте данных. Пожалуйста, попробуйте еще раз',
-    settingExportSuccess: 'Данные успешно экспортированы',
+    settingExportSuccess: 'Данные успешно экспортированы.',
     alertForModifyMeasures: 'Внимание',
     alertForModifyMeasuresTitle:
       'Выбор этих данных изменит существующие данные',

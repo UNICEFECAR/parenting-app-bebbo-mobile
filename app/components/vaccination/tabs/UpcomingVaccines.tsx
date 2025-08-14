@@ -35,6 +35,7 @@ import {
 } from "../../shared/ButtonGlobal";
 import Icon, { IconViewAlert, IconViewBg } from "../../shared/Icon";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
+import { selectActiveChild } from "../../../services/selectors";
 const styles = StyleSheet.create({
   alignCenter: { alignSelf: "center" },
   radioActive: { backgroundColor: greenColor, borderRadius: 50 },
@@ -48,11 +49,7 @@ const UpcomingVaccines = (props: any): any => {
   const netInfo = useNetInfoHook();
   const navigation = useNavigation<any>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const reminders = activeChild.reminders;
   let vcReminder: any;
   const vaccineReminders = reminders.filter(

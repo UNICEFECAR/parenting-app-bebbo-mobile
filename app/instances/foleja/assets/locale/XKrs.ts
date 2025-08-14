@@ -347,7 +347,7 @@ const XKrs = {
               noRecentGrowthMeasure: "Mere su uzete veoma davno. Unesite najsvežije mere rasta vašeg deteta da biste obnovili procenu i grafikon. ",
               vcTaken: "Primljene vakcine ",
               settingExportError: "Greška prilikom izvoza podataka. Molimo vas pokušajte ponovo",
-              settingExportSuccess: "Podaci su uspešno izvezeni ",
+              settingExportSuccess: "Podaci su uspešno izvezeni.",
               alertForModifyMeasures: "Pažnja!",
               alertForModifyMeasuresTitle: "Ako izaberete ovaj datum biće izmenjene postojeće mere",
               alertForModifyMeasuresOk: "Uredu",

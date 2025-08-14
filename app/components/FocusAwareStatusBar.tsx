@@ -2,22 +2,22 @@ import { useIsFocused } from '@react-navigation/native';
 import * as React from 'react';
 import { Platform, StatusBar, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { getStatusBarHeight } from '../services/StatusBarHeight';
 const FocusAwareStatusBar = (props: any):any => {
-  if(Platform.OS === 'android') {
+  const insets = useSafeAreaInsets();
+  console.log(props.backgroundColor,"insets is--",insets)
+  if(Platform.OS === 'android' && insets.top < 50 && insets.bottom === 0) {
   const isFocused = useIsFocused();
   return isFocused ? <StatusBar  {...props} /> : null;
 
   }else{
-    const insets = useSafeAreaInsets();
-    const heightValue =  getStatusBarHeight(0)>=20?insets.top:0
     return (
-      <View style={{ height: heightValue, backgroundColor:props.backgroundColor }}>
+      <View style={{ paddingTop: insets.top, backgroundColor:props.backgroundColor }}>
          <StatusBar
+          translucent backgroundColor="transparent" barStyle="dark-content"
            animated={true}
           {...props}/>
       </View>
     );
   }
 }
-export default FocusAwareStatusBar;
+export default React.memo(FocusAwareStatusBar);

@@ -76,13 +76,14 @@ import {
 } from "@components/shared/SettingsStyle";
 import VectorImage from "react-native-vector-image";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import DocumentPicker, { isInProgress } from "react-native-document-picker";
+import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
 import { bgcolorWhite2 } from "@styles/style";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
+import { selectChildAge, selectChildGenders, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -145,19 +146,9 @@ const ChildSetup = ({ navigation }: Props): any => {
   const actionSheetRefImport = createRef<any>();
   const netInfo = useNetInfoHook();
   let relationshipData =
-    useAppSelector((state: any) => {
-      const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData || {};
-      return allTaxonomyData !== ""
-        ? JSON.parse(allTaxonomyData).parent_gender
-        : [];
-    }) || [];
+    useAppSelector(selectParentGender) || [];
 
-  let relationshipToParent = useAppSelector((state: any) => {
-    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData || {};
-    return allTaxonomyData !== ""
-      ? JSON.parse(allTaxonomyData).relationship_to_parent
-      : [];
-  });
+  let relationshipToParent = useAppSelector(selectRelationshipToParent);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
@@ -170,10 +161,7 @@ const ChildSetup = ({ navigation }: Props): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const childAge = useAppSelector((state: any) => {
-    const allTaxonomyData = state.utilsData.taxonomy.allTaxonomyData;
-    return allTaxonomyData !== "" ? JSON.parse(allTaxonomyData).child_age : [];
-  });
+  const childAge = useAppSelector(selectChildAge);
   const actionSheetRef = createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
@@ -185,11 +173,7 @@ const ChildSetup = ({ navigation }: Props): any => {
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
-  let genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  let genders = useAppSelector(selectChildGenders);
 
   genders = genders
     ?.map((v: any) => ({ ...v, title: v.name }))
@@ -236,13 +220,31 @@ const ChildSetup = ({ navigation }: Props): any => {
   };
   const handleError = (err: any): any => {
     console.log(err, "..err");
-    if (DocumentPicker.isCancel(err)) {
-      console.log("cancelled");
-      // User cancelled the picker, exit any dialogs or menus and move on
-    } else if (isInProgress(err)) {
-      console.log(
-        "multiple pickers were opened, only the last will be considered"
-      );
+    // if (DocumentPicker.isCancel(err)) {
+    //   console.log("cancelled");
+    //   // User cancelled the picker, exit any dialogs or menus and move on
+    // } else if (isInProgress(err)) {
+    //   console.log(
+    //     "multiple pickers were opened, only the last will be considered"
+    //   );
+    // } else {
+    //   throw err;
+    // }
+
+    if (isErrorWithCode(err)) {
+      switch (err.code) {
+        case errorCodes.IN_PROGRESS:
+          console.warn('user attempted to present a picker, but a previous one was already presented')
+          break
+        case errorCodes.UNABLE_TO_OPEN_FILE_TYPE:
+          console.log('unable to open file type')
+          break
+        case errorCodes.OPERATION_CANCELED:
+          // ignore
+          break
+        default:
+          console.error(err)
+      }
     } else {
       throw err;
     }
@@ -324,9 +326,9 @@ const ChildSetup = ({ navigation }: Props): any => {
     }
   };
   const importDataIOS = async (): Promise<any> => {
-    DocumentPicker.pick({
+    pick({
       allowMultiSelection: false,
-      type: DocumentPicker.types.allFiles,
+      allowedTypes: ['*/*'],
     })
       .then(async (res: any) => {
         console.log(res, "..res..");
@@ -548,9 +550,9 @@ const ChildSetup = ({ navigation }: Props): any => {
 
               <View>
                 {userRelationToParent != null &&
-                userRelationToParent != undefined &&
-                userRelationToParent != relationShipMotherId &&
-                userRelationToParent != relationShipFatherId ? (
+                  userRelationToParent != undefined &&
+                  userRelationToParent != relationShipMotherId &&
+                  userRelationToParent != relationShipFatherId ? (
                   <FormContainer1>
                     <LabelText>{t("parentGender")}</LabelText>
                     <ToggleRadios
@@ -661,7 +663,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                       ) {
                         if (
                           typeof taxonomyIds?.femaleData?.unique_name ===
-                            "string" ||
+                          "string" ||
                           taxonomyIds?.femaleData?.unique_name instanceof String
                         ) {
                           setRelationship(taxonomyIds?.femaleData.unique_name);
@@ -675,7 +677,7 @@ const ChildSetup = ({ navigation }: Props): any => {
                       ) {
                         if (
                           typeof taxonomyIds?.maleData.unique_name ===
-                            "string" ||
+                          "string" ||
                           taxonomyIds?.maleData.unique_name instanceof String
                         ) {
                           setRelationship(taxonomyIds?.maleData.unique_name);
@@ -687,9 +689,9 @@ const ChildSetup = ({ navigation }: Props): any => {
                       } else {
                         if (
                           userRelationToParent ==
-                            taxonomyIds?.relationShipMotherId ||
+                          taxonomyIds?.relationShipMotherId ||
                           userRelationToParent ==
-                            taxonomyIds?.relationShipFatherId
+                          taxonomyIds?.relationShipFatherId
                         ) {
                           setRelationship("");
                         }

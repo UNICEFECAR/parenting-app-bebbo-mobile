@@ -17,6 +17,7 @@ import {
   View,
   Dimensions,
   Modal,
+  useWindowDimensions,
 } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../App";
@@ -41,13 +42,15 @@ import {
 import HTML from "react-native-render-html";
 import { addSpaceToHtml, removeParams } from "../services/Utils";
 import {
-  PopupCloseVideo,
-  PopupCloseContainer,
+  PopupCloseContainerCD,
+  PopupCloseVideoCD,
 } from "@components/shared/ModalPopupStyle";
 import { isFutureDate } from "../services/childCRUD";
 import { bgColor1 } from "../instances/bebbo/styles/style";
 import VectorImage from "react-native-vector-image";
 import useDigitConverter from "../customHooks/useDigitConvert";
+import { selectActiveChild, selectActiveChildUuid } from "../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: "flex-start" },
   checkboxStyle: { borderWidth: 1 },
@@ -118,21 +121,15 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
   const actBackgroundColor = themeContext?.colors.ACTIVITIES_TINTCOLOR;
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext?.colors.ARTICLES_TINTCOLOR;
-  const activeChilduuid = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild).uuid
-      : []
-  );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChilduuid = useAppSelector(selectActiveChildUuid);
+  const activeChild = useAppSelector(selectActiveChild);
   const { convertDigits } = useDigitConverter();
   const [selVideoArticleData, setselVideoArticleData] = useState<any>();
   const [selActivitiesData, setselActivitiesData] = useState<any>();
   const [selVideoImage, setselVideoImage] = useState("");
   const [selActivityImage, setselActivityImage] = useState("");
+  const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   useEffect(() => {
     if (item?.toggleCheck == true) {
       setToggleCheckBox(true);
@@ -282,8 +279,8 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                 </ShiftFromBottom10>
                 <FDirRow style={styles.alignItemsStart}>
                   {selVideoArticleData &&
-                  selVideoArticleData?.cover_video &&
-                  selVideoArticleData?.cover_video?.url != "" ? (
+                    selVideoArticleData?.cover_video &&
+                    selVideoArticleData?.cover_video?.url != "" ? (
                     <>
                       <Pressable
                         style={styles.innerPressable}
@@ -309,6 +306,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                     <ShiftFromBottom5>
                       {item && item.body ? (
                         <HTML
+                          contentWidth={width}
                           source={{ html: addSpaceToHtml(item.body) }}
                           baseStyle={styles.htmlFontSize}
                           ignoredStyles={["color", "fontSize", "fontFamily"]}
@@ -328,8 +326,8 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                     </ShiftFromBottom5>
                     {/* uncomment this for related article */}
                     {item &&
-                    item.related_articles &&
-                    item.related_articles.length > 0 ? (
+                      item.related_articles &&
+                      item.related_articles.length > 0 ? (
                       <Pressable
                         onPress={(): any => gotoArticle(item.related_articles)}
                       >
@@ -350,8 +348,8 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                     </ShiftFromBottom10>
                     <FDirRow>
                       {selActivitiesData &&
-                      selActivitiesData?.cover_image &&
-                      selActivitiesData?.cover_image?.url != "" ? (
+                        selActivitiesData?.cover_image &&
+                        selActivitiesData?.cover_image?.url != "" ? (
                         <>
                           <Image
                             source={
@@ -403,16 +401,13 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
             <VideoPlayer
               selectedPinnedArticleData={selVideoArticleData}
             ></VideoPlayer>
-            <PopupCloseContainer style={styles.popupCloseContainer}>
-              <PopupCloseVideo
-                style={styles.popupCloseVideo}
-                onPress={(): any => {
-                  setModalVisible(!modalVisible);
-                }}
+            <PopupCloseContainerCD style={{ marginTop: insets.top + 15 }}>
+              <PopupCloseVideoCD
+                onPress={() => setModalVisible(!modalVisible)}
               >
                 <Icon name="ic_close" size={20} color="#fff" />
-              </PopupCloseVideo>
-            </PopupCloseContainer>
+              </PopupCloseVideoCD>
+            </PopupCloseContainerCD>
           </View>
         </Modal>
       </MainContainer>

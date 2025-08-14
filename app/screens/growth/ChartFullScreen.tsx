@@ -24,6 +24,7 @@ import {
 } from "react-native";
 import Orientation from "react-native-orientation-locker";
 import { ThemeContext } from "styled-components/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -49,6 +50,7 @@ export const ChartFullScreen = ({ route, navigation }: Props): any => {
   const [windowHeight, setWindowHeight] = React.useState(
     Dimensions.get("window").height
   );
+  const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const chartHeading =
     chartType == chartTypes.WeightForHeight
@@ -115,7 +117,7 @@ export const ChartFullScreen = ({ route, navigation }: Props): any => {
 
   return (
     <>
-      <View style={styles.mainView}>
+      <View style={[styles.mainView, { paddingBottom: insets.bottom }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <ScrollView>

@@ -46,6 +46,21 @@ export const PopupCloseVideo = styled(PopupClose)`
   margin-right:4px;
   top:0;
 `;
+export const PopupCloseContainerCD = styled.View`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 16px;
+  zIndex: 999; 
+  elevation: 999;
+`;
+export const PopupCloseVideoCD = styled.Pressable`
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ModalPopupContent = styled.View`
   padding:10px 40px;
   margin-top:-25px;
