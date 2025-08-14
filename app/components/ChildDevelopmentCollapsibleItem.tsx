@@ -50,6 +50,7 @@ import { bgColor1 } from "../instances/bebbo/styles/style";
 import VectorImage from "react-native-vector-image";
 import useDigitConverter from "../customHooks/useDigitConvert";
 import { selectActiveChild, selectActiveChildUuid } from "../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: "flex-start" },
   checkboxStyle: { borderWidth: 1 },
@@ -128,6 +129,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
   const [selVideoImage, setselVideoImage] = useState("");
   const [selActivityImage, setselActivityImage] = useState("");
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   useEffect(() => {
     if (item?.toggleCheck == true) {
       setToggleCheckBox(true);
@@ -399,7 +401,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
             <VideoPlayer
               selectedPinnedArticleData={selVideoArticleData}
             ></VideoPlayer>
-            <PopupCloseContainerCD>
+            <PopupCloseContainerCD style={{ marginTop: insets.top + 15 }}>
               <PopupCloseVideoCD
                 onPress={() => setModalVisible(!modalVisible)}
               >
