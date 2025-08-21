@@ -246,9 +246,9 @@ const ChildProfile = ({ navigation }: Props): any => {
             ) : (
               <Icon
                 name={
-                  genderName?.unique_name === taxonomyIds?.girlChildGender
-                    ? "ic_baby_girl"
-                    : "ic_baby"
+                  genderName?.unique_name === taxonomyIds?.boyChildGender
+                    ? "ic_baby"
+                    : "ic_baby_girl"
                 }
                 size={40}
                 color="#000"
@@ -342,9 +342,9 @@ const ChildProfile = ({ navigation }: Props): any => {
               ) : (
                 <Icon
                   name={
-                    genderName?.unique_name === taxonomyIds?.girlChildGender
-                      ? "ic_baby_girl"
-                      : "ic_baby"
+                    genderName?.unique_name === taxonomyIds?.boyChildGender
+                      ? "ic_baby"
+                      : "ic_baby_girl"
                   }
                   size={40}
                   color="#000"
