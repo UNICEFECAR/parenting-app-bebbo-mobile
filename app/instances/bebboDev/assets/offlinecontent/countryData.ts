@@ -325,6 +325,14 @@ export const countryData: any = {
                     "locale": "UZuz",
                     "luxonLocale": "uz-Latn-UZ",
                     "pluralShow": "true"
+                },
+                {
+                    "name": "Uzbekistan (Oʻzbekiston)",
+                    "displayName": "Qaraqalpaq",
+                    "languageCode": "uz-kaa",
+                    "locale": "UZkaa",
+                    "luxonLocale": "kaa-UZ",
+                    "pluralShow": "true"
                 }
             ]
         },

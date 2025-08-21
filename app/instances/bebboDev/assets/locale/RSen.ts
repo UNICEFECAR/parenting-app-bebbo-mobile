@@ -462,7 +462,7 @@ const RSen = {
     favScreenremoveText: 'Remove',
     settingScreenimportOptionHeader: 'Upload backup file from',
     childSetupprematureMessageNext:
-      'The content of this section is displayed according to the corrected and not the actual age of your prematurely born child',
+      'The content of this section is displayed according to the expected and not the actual age of your prematurely born child.',
     helloMessage:
       "Hello{{parentName}}, my name is Bebbo. I'm here to answer your questions",
     selectAreaOfInterest:
