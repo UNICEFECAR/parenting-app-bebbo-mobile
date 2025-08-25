@@ -15958,6 +15958,674 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
+    "uz-kaa": [
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Пересказывает историю полностью ",
+            "created_at": "Tue, 09/28/2021 - 22:00",
+            "updated_at": "Thu, 10/14/2021 - 10:06",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Ребенку удается совершенно самостоятельно и точно пересказать сюжет определенной истории, правильно расположив события в хронологическом порядке, событие, или телешоу в котором он участвовал.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7826
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Ловко участвует в различных мероприятиях, требующих дополнительных физических навыков",
+            "created_at": "Tue, 09/28/2021 - 21:59",
+            "updated_at": "Thu, 10/14/2021 - 10:04",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Способен(на) стоять на одной ноге, точно бить по мячу, попадать мячом в цель и т. д.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7531
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Демонстрирует понимание разницы между реальным и подражанием или вымышленным",
+            "created_at": "Tue, 09/28/2021 - 21:58",
+            "updated_at": "Thu, 10/14/2021 - 10:04",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Он/она только придумывает истории, события, персонажей из своего воображения, художественно представляет, описывает и присваивает им свойства, которые не являются реалистичными. Он/она получает удовольствие, делая это, осознавая, что в мире воображения возможно все.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7571
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Использует навыки самостоятельного участия в повседневных делах и общественной деятельности",
+            "created_at": "Tue, 09/28/2021 - 21:57",
+            "updated_at": "Thu, 10/14/2021 - 09:51",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Может самостоятельно одеваться и раздеваться, пользуется ложкой и вилкой, самостоятельно пользуется туалетом и моет руки. Может расстаться с родителями и участвовать в самостоятельной общественной деятельности. </p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7526
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Строит предложения из пяти или более слов; в разговоре использует слова, чтобы сказать о будущем.",
+            "created_at": "Tue, 09/28/2021 - 21:57",
+            "updated_at": "Tue, 09/28/2021 - 21:57",
+            "body": "<p>Использует слова вместе, чтобы выразить свои идеи; может сказать, что «будет» или «может» случиться в будущем.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7486
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "Может считать до десяти и без ошибок посчитать десять предметов",
+            "created_at": "Tue, 09/28/2021 - 21:56",
+            "updated_at": "Tue, 09/28/2021 - 21:56",
+            "body": "<p>Может также называть порядковые числительные «первый, второй» до 10, считать дни недели и месяцы.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7501
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6996,
+            "type": "Milestone",
+            "title": "Знает основные различия между реальными, придуманными и воображаемыми вещами.",
+            "created_at": "Tue, 09/28/2021 - 21:55",
+            "updated_at": "Tue, 09/28/2021 - 21:55",
+            "body": "<p>Придумывает историю о несуществующем персонаже или знает, что животные не могут разговаривать в реальной жизни.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7441
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6981,
+            "type": "Milestone",
+            "title": "Пользуется предложениями от 4 до 5 слов",
+            "created_at": "Tue, 09/28/2021 - 21:54",
+            "updated_at": "Tue, 09/28/2021 - 21:54",
+            "body": "<p>Составляет предложения, собирая слова вместе так, чтобы они имели смысл, и передавали ее / его идеи.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7431
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6976,
+            "type": "Milestone",
+            "title": "Любит угождать другим и сотрудничать",
+            "created_at": "Tue, 09/28/2021 - 21:53",
+            "updated_at": "Tue, 09/28/2021 - 21:54",
+            "body": "<p>Признает чувства других; часто любит делиться с другими; может соблюдать очередь. </p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7426
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2531,
+            "type": "Milestone",
+            "title": "Возбуждается, когда вы разговариваете с ней /ним",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Когда он/она слышит ваш голос, радуется, но вы также замечаете , что он/она замедляет свои движения,кажется прслушивается к вам , присутствовать…</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7586
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6311
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Издает звуки",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Ребенок плачет, и в тоже время издает звуки</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "Лежа на животике, поднимает голову",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Когда вы положите его/ее на животик, то ребенок попытается поднять голову, чтобы освободить дыхательные пути.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7606
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6281
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "Издает разные звуки, когда он счастлив, расстроен или голоден",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Плач ребенка меняется в зависимости от определенных потребностей, поэтому по звукам, которые он издает, можно определить, счастлив ли он/она, расстроен или имеет какие-то другие потребности.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7611
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6316
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "Может утешить себя на некоторое время",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Малыш успокаивается, посасывая свой палец или свою маленькую ручку.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7176
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6361
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Поворачивает голову к источнику звука и показывает, что слушает",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Если он/она слышит человеческий голос или какой-то другой звук, он/она поварачивает к нему голву . Слушая голос, он/она смотрит на родителя или говорящего, замедляя свои движения.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7721
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6326
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Проявляет скуку или плачет, если вид деятельности меняется",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Thu, 08/12/2021 - 21:40",
+            "body": "<p>Ребенок плачем выражает недовольство , если его/её надолго оставляют в одном положении, или протестует, если вы опускаете ее/его после того, как держали на руках</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7181
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Начинает лепетать",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Вокализирует и издает звуки, напоминающие гласные - a, e, и, o, у</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Поднимается и спускается по лестнице",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Поднимается по лестнице с опорой, попеременно используя одну ногу, затем другую.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Устанавливает зрительно-моторную координацию",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Нарастает зрительно-моторная координация, например, ваш ребенок смотрит на предмет и пытается дотянуться до него.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Может сидеть с некоторой поддержкой",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Thu, 08/12/2021 - 21:40",
+            "body": "<p>Опираясь на что-то или держась за что-то, ребенок может сидеть и в течение короткого времени может самостоятельно сохранять сидячее положение.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "Может сказать предложение из 2–3 слов",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Может составлять и произносить предложения из 2-3 слов достаточно хорошо, чтобы члены семьи могли его/ее понять.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Отзывается на звучащий голос, издавая звуки - слиянием гласных: а, э, у ...",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Когда кто-то обращается к нему/ней, говорит, поет, читает ему/ей... ребенок реагирует.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7211
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6421
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Малыш в восторге, когда понимает, что пора играть",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Он/она радуется, выглядит счастливым и наслаждается игрой и общением, особенно с родителями и знакомыми людьми.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7841
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6441
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Любит играть в компании детей.",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Игра теперь не просто параллельное присутствуе - бок о бок, а она имеет более сложные элементы, воображение и игривость.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7371
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6931
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "Начинает понимать значение слова «нет».",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Начинает понимать значение слова «нет». Когда он/она слышит слово, то прекращает деятельность и признает неодобрение.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7226
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6476
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Использует одну руку больше, чем другую",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Начинает больше пользоваться одной рукой - левой или правой.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7356
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6666
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Приподнимается в положении ползания. Некоторые дети уже ползают.",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Приподнимает себя до положения ползания. Некоторые дети уже ползают. Он/она может самостоятельно ползать. Он/она движется ползком вперед или назад.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7706
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6486
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Отталкивается, пытается встать.",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Отталкивается, пытается встать. Она/он пытается подняться, придерживаясь за мебель, но ей/ему нужна помощь и поддержка.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [
+                4531
+            ],
+            "related_video_articles": [
+                6471
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Часть детского общения также понятна людям, которые не находятся рядом с ним каждый день",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Thu, 08/12/2021 - 21:40",
+            "body": "<p>Он\\она начинает выговаривать слова понятнее и использует все больше и больше слов со смыслом, поэтому общение становится проще.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7346
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Непроизвольно стремится разделить интересы и радость со взрослыми",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Наслаждается взаимными играми: \"Я даю это тебе - ты даешь это мне\", \"Я делаю - ты делаешь\" и тому подобное.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Собирает мелкие предметы пальцами, кушает пальцами",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Обладает лучшим \"пинцетным захватом \" - может манипулировать очень маленькими объектами, беря их большим и указательным пальцами.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7766
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6536
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Помогает при одевании",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Thu, 08/12/2021 - 21:40",
+            "body": "<p>Содействует вам, когда вы его одеваете, просовывает руку через рукава и ноги через штанины.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7276
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2966,
+            "type": "Milestone",
+            "title": "Становится все более независимым",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Thu, 08/12/2021 - 21:40",
+            "body": "<p>Иногда сопротивляется указаниям, злится, хочет контролировать других, ссорится, приказывает, оберегает свои вещи.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7786
+            ],
+            "related_articles": [
+                4781
+            ],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2981,
+            "type": "Milestone",
+            "title": "Понимает и выполняет простые указания",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Следует просто изложенным инструкциям без демонстрции, может выполнять то, что от него/неё ожидают.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7326
+            ],
+            "related_articles": [
+                4776
+            ],
+            "related_video_articles": [
+                6571
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2986,
+            "type": "Milestone",
+            "title": "Произносит слова со смыслом.",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 09/22/2021 - 06:05",
+            "body": "<p>Обращаясь к родителям, она/он произносит хотя бы одно или несколько отдельных слов.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7286
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6851
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 3001,
+            "type": "Milestone",
+            "title": "Самостоятельно пишет карандашом или мелками на бумаге",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Wed, 10/13/2021 - 11:27",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Любит чиркать каракули, карандашом на бумаге, рукой на песке, палкой на грязи или водой на бетоне.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7296
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6606
+            ],
+            "mandatory": 0
+        }
+    ],
     "sk": [
         {
             "id": 2541,
