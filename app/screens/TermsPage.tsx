@@ -17,6 +17,7 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
+  useWindowDimensions,
   View,
 } from "react-native";
 import HTML from "react-native-render-html";
@@ -48,9 +49,7 @@ const styles = StyleSheet.create({
 const TermsPage = ({ navigation }: Props): any => {
   const { t } = useTranslation();
   const termsdata = useAppSelector((state: any) => state.utilsData.terms.body);
-  const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
-  );
+  const { width } = useWindowDimensions();
   useFocusEffect(
     React.useCallback(() => {
       const backAction = (): any => {
@@ -93,6 +92,7 @@ const TermsPage = ({ navigation }: Props): any => {
           <ScrollView contentContainerStyle={styles.scrollViewStyle}>
             {termsdata != "" ? (
               <HTML
+                contentWidth={width}
                 source={{ html: addSpaceToHtml(termsdata) }}
                 baseStyle={styles.htmlStyle}
                 ignoredStyles={["color", "fontSize", "fontFamily"]}

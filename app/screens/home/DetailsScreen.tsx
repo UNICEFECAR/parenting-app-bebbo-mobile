@@ -34,6 +34,7 @@ import {
   BackHandler,
   Dimensions,
   StyleSheet,
+  useWindowDimensions,
 } from "react-native";
 import HTML from "react-native-render-html";
 import { ThemeContext } from "styled-components/native";
@@ -77,6 +78,8 @@ import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { ViewDetailsEntity } from "../../database/schema/ArticleActivityViewSchema";
 import { appConfig } from "../../instances";
+import { selectArticleCategoryArray } from "../../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -150,8 +153,9 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     (state: any) => state.childData.childDataSet.favoritegames
   );
   const { t } = useTranslation();
-
+  const insets = useSafeAreaInsets();
   const [detailDataToUse, setDetailDataToUse] = useState<any>({});
+  const { width } = useWindowDimensions();
   const adviceval =
     fromScreen === "Activities" ||
     fromScreen === "FirebaseActivities" ||
@@ -723,10 +727,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     };
   }, [detailData]);
 
-  const categoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category
-  );
+  const categoryData = useAppSelector(selectArticleCategoryArray);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
@@ -817,6 +818,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     return (
       <View style={styles.marginBottom10}>
         <HTML
+          contentWidth={width}
           source={{ html: addSpaceToHtml(highlightData) }}
           key={detailDataToUse.id}
           baseStyle={isTitle ? styles.htmlTitleCode : styles.htmlSummaryCode}
@@ -844,7 +846,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   return (
     <>
       {detailDataToUse ? (
-        <View style={[styles.flex1, { backgroundColor: newHeaderColor }]}>
+        <View style={[styles.flex1, { backgroundColor: newHeaderColor, paddingBottom: insets.bottom }]}>
           <FocusAwareStatusBar
             animated={true}
             backgroundColor={newHeaderColor}
@@ -949,6 +951,7 @@ const DetailsScreen = ({ route, navigation }: any): any => {
 
               {detailDataToUse && detailDataToUse.body ? (
                 <HTML
+                  contentWidth={width}
                   source={{
                     html:
                       queryText != undefined

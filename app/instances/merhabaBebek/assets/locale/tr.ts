@@ -356,7 +356,7 @@ const tr = {
     "noRecentGrowthMeasure": "Çocuğunuzun ölçümleri çok uzun zaman önce yapılmış. Güncellenmiş bir değerlendirme almak için lütfen çocuğunuzun büyüme ölçümünü girin.",
     "vcTaken": "Olunan aşılar",
     "settingExportError": "Veriler yedeklenirken hata oluştu. Lütfen tekrar deneyin.",
-    "settingExportSuccess": "Veriler başarıyla yedeklendi",
+    "settingExportSuccess": "Veriler başarıyla yedeklendi.",
     "alertForModifyMeasures": "Dikkat",
     "alertForModifyMeasuresTitle": "Bu tarihin seçilmesi mevcut ölçümleri değiştirecektir",
     "alertForModifyMeasuresOk": "Tamam",

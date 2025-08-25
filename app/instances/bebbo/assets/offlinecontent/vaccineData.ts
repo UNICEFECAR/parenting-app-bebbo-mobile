@@ -3608,5 +3608,150 @@ export const vaccineData: any = {
             "updated_at": "Sat, 08/28/2021 - 04:18"
         }
     ],
+    "uz-kaa": [
+        {
+            "uuid": "739acbe6-5736-42b0-b85c-59e0fd392c27",
+            "id": 56746,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против дифтерии, столбняка, коклюша - третья доза. Против гепатита B - четвертая доза доза. Против  заболеваний вызванных гемофильной палочкой типа b - третья доза.",
+            "growth_period": 6491,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 14:45",
+            "updated_at": "Wed, 09/29/2021 - 16:25"
+        },
+        {
+            "uuid": "01a602d8-84b4-4d18-a448-18a613c4cd83",
+            "id": 56741,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против дифтерии, столбняка, коклюша - вторая доза. Против гепатита B - третья доза доза. Против  заболеваний вызванных гемофильной палочкой типа b - вторая доза. ",
+            "growth_period": 6481,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 14:45",
+            "updated_at": "Wed, 09/29/2021 - 15:52"
+        },
+        {
+            "uuid": "672ea026-26d2-4f1f-91db-cca3f7eecb50",
+            "id": 23311,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против полиомиелита - пятая доза. ",
+            "growth_period": 6557,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:23",
+            "updated_at": "Wed, 09/29/2021 - 17:13"
+        },
+        {
+            "uuid": "0ce95378-e0a4-4d4e-bce6-d9b6b7a805cb",
+            "id": 23306,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против кори, эпидемического паротита и краснухи-вторая доза.",
+            "growth_period": 6553,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:22",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        },
+        {
+            "uuid": "277ab49c-0551-4e9a-aefd-89dcd4117cac",
+            "id": 23296,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против полиомиелита - четвертая доза. ",
+            "growth_period": 6535,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:21",
+            "updated_at": "Wed, 09/29/2021 - 16:47"
+        },
+        {
+            "uuid": "98c38bc6-2a49-474b-bf5f-faad9737faaa",
+            "id": 23286,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против туберкулеза",
+            "growth_period": 6466,
+            "pinned_article": 4676,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:20",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        },
+        {
+            "uuid": "7965f3ac-d0e1-4718-aa7a-ce31831d0553",
+            "id": 23281,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против заболеваний, вызванных бактериями стрептококка пневмонии - третья  доза",
+            "growth_period": 6532,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:19",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        },
+        {
+            "uuid": "3e134daf-9f76-4190-bfc8-b02896c111d4",
+            "id": 23261,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против кори, эпидемического паротита и краснухи-первая доза.",
+            "growth_period": 6532,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:16",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        },
+        {
+            "uuid": "79f35f9a-b3ca-4af0-88df-3b83216ba33e",
+            "id": 23251,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против ротавирусной инфекции (вирусная диарея) первая доза",
+            "growth_period": 6476,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:15",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        },
+        {
+            "uuid": "7597d3b5-34a5-4b0d-bc45-0efe34249b23",
+            "id": 23246,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против полиомиелита первая доза",
+            "growth_period": 6476,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:14",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        },
+        {
+            "uuid": "7fd4f89a-d054-44b0-a2ba-816ecd29c638",
+            "id": 23241,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против заболеваний, вызванных бактериями стрептококка пневмонии - первая доза",
+            "growth_period": 6476,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:12",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        },
+        {
+            "uuid": "95f35453-d2e4-48b4-a576-d381961d128f",
+            "id": 23226,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против дифтерии, столбняка, коклюша- первая доза. Против гепатита B - вторая доза.Против  заболеваний вызванных гемофильной палочкой типа b - первая доза.",
+            "growth_period": 6476,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:09",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        },
+        {
+            "uuid": "4e1bc4f7-31d8-4e48-b8c6-735ec65de749",
+            "id": 23206,
+            "type": "Vaccinations - Age Periods",
+            "title": "Против гепатита B - первая доза",
+            "growth_period": 6466,
+            "pinned_article": 4661,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 12:43",
+            "updated_at": "Sat, 08/28/2021 - 04:18"
+        }
+    ],
 
 };

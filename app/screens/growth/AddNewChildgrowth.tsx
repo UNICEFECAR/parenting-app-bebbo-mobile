@@ -104,6 +104,7 @@ import { setAllLocalNotificationGenerateType } from "../../redux/reducers/notifi
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import useDigitConverter from "../../customHooks/useDigitConvert";
+import { selectActiveChild } from "../../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
@@ -150,11 +151,7 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
   const getCheckedGrowthPlace = (checkedItem: any): any => {
     setMeasurePlace(checkedItem.id);
   };
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const dispatch = useAppDispatch();
 
   const onmeasureDateChange = (event: any, selectedDate: any): any => {

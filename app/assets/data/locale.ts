@@ -115,6 +115,11 @@ export const localeList = [
         "locale": "ru"
     },
     {
+        "name": "Uzbekistan (Oʻzbekiston)",
+        "lcode": "uz-kaa",
+        "locale": "kaa"
+    },
+    {
         "name": "English",
         "lcode": "en",
         "locale": "en"

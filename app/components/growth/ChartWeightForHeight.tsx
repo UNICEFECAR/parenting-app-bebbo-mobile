@@ -27,6 +27,7 @@ import { formatHeightData } from "../../services/growthService";
 import { getInterpretationWeightForHeight } from "../../services/interpretationService";
 import GrowthChart, { chartTypes } from "./GrowthChart";
 import { standardDevDataForChart } from "../../instances/index";
+import { selectActiveChild } from "../../services/selectors";
 export const standardDevDataLoad = standardDevDataForChart;
 
 const LANDSCAPE = "landscape";
@@ -57,11 +58,7 @@ const ChartWeightForHeight = (props: any): any => {
   );
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const fullScreenChart = (chartType: any, obj: any): any => {
     navigation.navigate("ChartFullScreen", {
       activeChild,

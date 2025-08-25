@@ -396,7 +396,7 @@ const TJtg = {
     vcTaken: 'Ваксинаҳои қабулгардида',
     settingExportError:
       'Хатогӣ ҳангоми содироти маълумотҳо. Лутфан, боз кӯшиш кунед',
-    settingExportSuccess: 'Маълумот бомуваффақият содир карда шуд',
+    settingExportSuccess: 'Маълумот бомуваффақият содир карда шуд.',
     alertForModifyMeasures: 'Диққат',
     alertForModifyMeasuresTitle:
       'Интихоби ин сана маълумоти мавҷудбударо тағйир медиҳад',

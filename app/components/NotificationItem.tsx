@@ -34,6 +34,7 @@ import {
   NotifIcon,
   NotifiContent,
 } from "./shared/NotificationStyle";
+import { selectVaccineData } from "../services/selectors";
 const styles = StyleSheet.create({
   checkBoxStyle: {
     borderWidth: 1,
@@ -152,9 +153,7 @@ const NotificationItem = (props: any): any => {
   useEffect(() => {
     setToggleCheckBox(false);
   }, [isDeleteEnabled]);
-  const allVaccineData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData)
-  );
+  const allVaccineData = useAppSelector(selectVaccineData);
   const getVaccinesForPeriod = (period: string): any => {
     const allvc = allVaccineData.filter(
       (item: any) => item.growth_period == period

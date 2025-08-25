@@ -66,6 +66,7 @@ const requestNotificationPermission = async (): Promise<any> => {
   const status = await requestNotifications([]);
   console.log(status, "..status..");
 };
+const flavor = process.env.FLAVOR || "bebbo";
 export const notiPermissionUtil = async (): Promise<any> => {
   setTimeout(() => {
     if (Platform.OS == "android") {
@@ -276,7 +277,10 @@ export const formatDate = (dateData: any): any => {
     getTwoDigits(dateData.month) +
     "." +
     dateData.year;
-  return moment(dateView, "DD.MM.YYYY").format("DD.MM.YYYY");
+    const locale = getLanguageCode(store.getState().selectedCountry.languageCode)
+  return flavor == "babuni"
+    ? moment(dateView, "DD.MM.YYYY").locale(locale).format("DD.MM.YYYY")
+    : moment(dateView, "DD.MM.YYYY").format("DD.MM.YYYY");
 };
 export const formatStringDate = (dateData: any): any => {
   dateData = DateTime.fromJSDate(new Date(dateData));
@@ -300,7 +304,10 @@ export const formatStringDate = (dateData: any): any => {
     getTwoDigits(dateData.month) +
     "." +
     dateData.year;
-  return moment(dateView, "DD.MM.YYYY").format("DD.MM.YYYY");
+    const locale = getLanguageCode(store.getState().selectedCountry.languageCode);
+  return flavor == "babuni"
+    ? moment(dateView, "DD.MM.YYYY").locale(locale).format("DD.MM.YYYY")
+    : moment(dateView, "DD.MM.YYYY").format("DD.MM.YYYY");
 };
 
 export const formatStringTime = (dateData: any): any => {
@@ -312,11 +319,11 @@ export const formatStringTime = (dateData: any): any => {
   const minute = DateTime.fromISO(dateData).minute;
 
   const formattedTime = getTwoDigits(hour) + ":" + getTwoDigits(minute);
-
+  const locale = getLanguageCode(store.getState().selectedCountry.languageCode);
   console.log(formattedTime);
-  return Platform.OS == "ios"
-    ? moment(formattedTime, "hh:mm").locale("en").format("hh:mm A")
-    : moment(formattedTime, "hh:mm").format("hh:mm");
+  return flavor == "babuni"
+    ? moment(formattedTime, "hh:mm").locale(locale).format("hh:mm A")
+    : moment(formattedTime, "hh:mm").locale("en").format("hh:mm A");
 };
 export const removeParams = (sParam: any): any => {
   if (sParam.indexOf("?") != -1) {
@@ -661,6 +668,7 @@ export const getLanguageCode = (languageCode: string): string => {
     { name: "Ukraine (Україна)", lcode: "uk", locale: "uk" },
     { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-uz", locale: "uz" },
     { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-ru", locale: "ru" },
+    { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-kaa", locale: "kaa" },
     { name: "English", lcode: "en", locale: "en" },
     { name: "Russian", lcode: "ru", locale: "ru" },
     { name: "Türkiye", lcode: "tr", locale: "tr" },
