@@ -17,6 +17,7 @@ import TJtg from "./TJtg";
 import uk from "./uk";
 import UZru from "./UZru";
 import UZuz from "./UZuz";
+import UZkaa from "./UZkaa";
 import MDro from "./MDro";
 import ROro from "./ROro";
 import sk from "./sk";
@@ -38,6 +39,7 @@ const AVAILABLE_LANGUAGES = {
     uk,
     UZru,
     UZuz,
+    UZkaa,
     RSen,
     BYbe,
     BYru,

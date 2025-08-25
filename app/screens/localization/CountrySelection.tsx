@@ -20,6 +20,7 @@ import {
   ButtonPrimary,
   ButtonUpperCaseText,
 } from "@components/shared/ButtonGlobal";
+import { selectAllCountries } from "../../services/selectors";
 const CountrySelection = (props: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -34,15 +35,8 @@ const CountrySelection = (props: any): any => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId
   );
-  const getCountryData = useAppSelector(
-    (state: any) => state.AppLayoutDirectionParams
-  );
-
-  const allCountries = useAppSelector((state: any) =>
-    state.selectedCountry.countries != ""
-      ? JSON.parse(state.selectedCountry.countries)
-      : []
-  );
+  
+  const allCountries = useAppSelector(selectAllCountries);
 
   const userIsOnboarded = useAppSelector(
     (state: any) => state.utilsData.userIsOnboarded
@@ -208,7 +202,7 @@ const CountrySelection = (props: any): any => {
               />
             ) : (
               <FlatList
-                data={allCountries?.reverse()}
+                data={[...allCountries].reverse()}
                 extraData={allCountries}
                 contentContainerStyle={{ flexDirection: "column-reverse" }}
                 renderItem={renderItem}

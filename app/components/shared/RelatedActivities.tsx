@@ -20,6 +20,7 @@ import {
 } from "./ArticlesStyle";
 import ShareFavButtons from "./ShareFavButtons";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { selectActivitiesDataAll, selectActivityCategoryArray } from "../../services/selectors";
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -67,19 +68,12 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
     navigation,
     currentSelectedChildId,
   } = props;
-  const ActivitiesDataold = useAppSelector((state: any) =>
-    state.utilsData.ActivitiesData != ""
-      ? JSON.parse(state.utilsData.ActivitiesData)
-      : []
-  );
+  const ActivitiesDataold = useAppSelector(selectActivitiesDataAll);
   const ActivitiesData = randomArrayShuffle(ActivitiesDataold);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
-  const activityCategoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category
-  );
+  const activityCategoryData = useAppSelector(selectActivityCategoryArray);
   const favoritegames = useAppSelector(
     (state: any) => state.childData.childDataSet.favoritegames
   );

@@ -44,6 +44,7 @@ import ModalPopupContainer, {
 import Icon from "@components/shared/Icon";
 import { MainContainer } from "@components/shared/Container";
 import { isFutureDate } from "../../services/childCRUD";
+import { selectActiveChild, selectActiveChildReminders } from "../../services/selectors";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   flex4: { flex: 4 },
@@ -88,16 +89,8 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
     setModalVisible(hcuModalOpened);
   }, [hcuModalOpened]);
 
-  const reminders = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild).reminders
-      : []
-  );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const reminders = useAppSelector(selectActiveChildReminders);
+  const activeChild = useAppSelector(selectActiveChild);
   const healthCheckupReminder = reminders.filter(
     (item: any) => item.reminderType == "healthCheckup"
   )[0];

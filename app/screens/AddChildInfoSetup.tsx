@@ -69,7 +69,7 @@ import {
   Heading3BoldCenterrw,
 } from "@styles/typography";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
-import DocumentPicker, { isInProgress } from "react-native-document-picker";
+import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
@@ -87,6 +87,7 @@ import {
   ConfigSettingsSchema,
 } from "../database/schema/ConfigSettingsSchema";
 import { setAllLocalNotificationGenerateType } from "../redux/reducers/notificationSlice";
+import { selectChildAge, selectChildGenders, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -143,30 +144,12 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
   const [isImportAlertVisible, setImportAlertVisible] = useState(false);
   const actionSheetRefImport = createRef<any>();
   const netInfo = useNetInfoHook();
-  let relationshipData = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender
-      : []
-  );
-  const relationshipToParent = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData)
-          .relationship_to_parent
-      : []
-  );
+  let relationshipData = useAppSelector(selectParentGender);
+  const relationshipToParent = useAppSelector(selectRelationshipToParent);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const actionSheetRef = createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
@@ -178,11 +161,7 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
-  let genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  let genders = useAppSelector(selectChildGenders);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
@@ -237,13 +216,30 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
   };
   const handleError = (err: any): any => {
     console.log(err, "..err");
-    if (DocumentPicker.isCancel(err)) {
-      console.log("Document pickup is cancelled");
-      // User cancelled the picker, exit any dialogs or menus and move on
-    } else if (isInProgress(err)) {
-      console.log(
-        "multiple pickers were opened, only the last will be considered"
-      );
+    // if (DocumentPicker.isCancel(err)) {
+    //   console.log("Document pickup is cancelled");
+    //   // User cancelled the picker, exit any dialogs or menus and move on
+    // } else if (isInProgress(err)) {
+    //   console.log(
+    //     "multiple pickers were opened, only the last will be considered"
+    //   );
+    // } else {
+    //   throw err;
+    // }
+    if (isErrorWithCode(err)) {
+      switch (err.code) {
+        case errorCodes.IN_PROGRESS:
+          console.warn('user attempted to present a picker, but a previous one was already presented')
+          break
+        case errorCodes.UNABLE_TO_OPEN_FILE_TYPE:
+          console.log('unable to open file type')
+          break
+        case errorCodes.OPERATION_CANCELED:
+          // ignore
+          break
+        default:
+          console.error(err)
+      }
     } else {
       throw err;
     }
@@ -321,9 +317,9 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
     }
   };
   const importDataIOS = async (): Promise<any> => {
-    DocumentPicker.pick({
+    pick({
       allowMultiSelection: false,
-      type: DocumentPicker.types.allFiles,
+      allowedTypes: ['*/*'],
     })
       .then(async (res: any) => {
         console.log(res, "..res..");
@@ -579,8 +575,8 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
               </ShiftFromTop20>
               <View>
                 {birthDate != null &&
-                birthDate != undefined &&
-                !isFutureDate(birthDate) ? (
+                  birthDate != undefined &&
+                  !isFutureDate(birthDate) ? (
                   <FormContainer1>
                     <LabelText>{t("genderLabel")}</LabelText>
                     <ToggleRadios
@@ -597,26 +593,26 @@ const AddChildInfoSetup = ({ route, navigation }: Props): any => {
                 <ButtonPrimary
                   disabled={
                     birthDate != null &&
-                    birthDate != undefined &&
-                    !isFutureDate(birthDate)
+                      birthDate != undefined &&
+                      !isFutureDate(birthDate)
                       ? !validateForm(
-                          0,
-                          birthDate,
-                          isPremature,
-                          relationship,
-                          plannedTermDate,
-                          name,
-                          gender
-                        )
+                        0,
+                        birthDate,
+                        isPremature,
+                        relationship,
+                        plannedTermDate,
+                        name,
+                        gender
+                      )
                       : !validateForm(
-                          3,
-                          birthDate,
-                          isPremature,
-                          relationship,
-                          plannedTermDate,
-                          name,
-                          gender
-                        )
+                        3,
+                        birthDate,
+                        isPremature,
+                        relationship,
+                        plannedTermDate,
+                        name,
+                        gender
+                      )
                   }
                   onPress={(e: any): any => {
                     e.stopPropagation();

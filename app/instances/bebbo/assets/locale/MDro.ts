@@ -397,7 +397,7 @@ const MDro = {
     vcTaken: 'Vaccinuri administrate ',
     settingExportError:
       'Eroare la exportarea datelor. Vă rugăm să încercați din nou',
-    settingExportSuccess: 'Datele au fost exportate cu succes ',
+    settingExportSuccess: 'Datele au fost exportate cu succes.',
     alertForModifyMeasures: 'Alertă',
     alertForModifyMeasuresTitle:
       'Selectarea acestei date va modifica măsurile existente',

@@ -393,7 +393,7 @@ const MEcnr = {
     vcTaken: 'Primljene vakcine ',
     settingExportError:
       'Greška prilikom izvoza podataka. Molimo pokušajte ponovo.',
-    settingExportSuccess: 'Podaci su uspješno izvezeni',
+    settingExportSuccess: 'Podaci su uspješno izvezeni.',
     alertForModifyMeasures: 'Upozorenje',
     alertForModifyMeasuresTitle:
       'Odabirom ovog datuma izmijeniće se postojeće mjere',

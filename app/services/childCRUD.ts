@@ -1,7 +1,6 @@
 import { EXPECTED_CHILD_ENTERED, ONBOARDING_SKIPPED } from '@assets/data/firebaseEvents';
 import { appConfig } from '../instances';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
-import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
 import { Alert, Platform } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,6 +17,7 @@ import { getVariableData } from '../redux/reducers/variableSlice';
 import LocalNotifications from './LocalNotifications';
 import { logEvent } from './EventSyncService';
 import {isPregnancy} from "../services/Utils"
+import { setUserProperties } from './firebaseAnalytics';
 export const apiJsonDataGet = (parentGender: any, isDatetimeReq?: any, dateTimeObj?: any): any => {
   const postData = {
     childGender: 'all',
@@ -189,7 +189,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       }
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({
+      await setUserProperties({
         ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
         is_premature: child.isPremature,
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
@@ -233,7 +233,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         dispatch(setActiveChildData(child));
         const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
-        analytics().setUserProperties({
+        await setUserProperties({
           ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
           is_premature: child.isPremature,
           child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
@@ -278,7 +278,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({
+      await setUserProperties({
         ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
         is_premature: child.isPremature,
         child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
@@ -569,10 +569,10 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
 }
 
-export const updateActiveChild = (child: any, key: any, value: any, dispatch: any, userRelationToParent: any, boyChildGender: any): any => {
+export const updateActiveChild = async (child: any, key: any, value: any, dispatch: any, userRelationToParent: any, boyChildGender: any): Promise<any> => {
   child[key] = value;
   dispatch(setActiveChildData(child));
-  analytics().setUserProperties({
+  await setUserProperties({
     ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
     is_premature: child.isPremature,
     child_gender: child.gender == boyChildGender ? "Boy" : "Girl",

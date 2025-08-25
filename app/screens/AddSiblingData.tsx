@@ -43,6 +43,7 @@ import {
   SideSpacing25,
 } from "../instances/bebbo/styles/typography";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
+import { selectChildAge, selectChildGenders } from "../services/selectors";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "HomeDrawerNavigator"
@@ -75,19 +76,11 @@ const AddSiblingData = ({ route, navigation }: Props): any => {
   const createdAt = childData != null ? childData.createdAt : null;
   const relationship = childData != null ? childData.relationship : "";
   const editScreen = childData != null ? true : false;
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  let genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  let genders = useAppSelector(selectChildGenders);
 
   genders = genders
     .map((v: any) => ({ ...v, title: v.name }))

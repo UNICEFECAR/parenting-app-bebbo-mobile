@@ -28,7 +28,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D6ED017F2DED79B600808FF9"
+            BlueprintIdentifier = "D6F1437A2E2A3B7900986814"
             BuildableName = "ReraiUmtwana.app"
             BlueprintName = "ReraiUmtwana"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -45,7 +45,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D6ED017F2DED79B600808FF9"
+            BlueprintIdentifier = "D6F1437A2E2A3B7900986814"
             BuildableName = "ReraiUmtwana.app"
             BlueprintName = "ReraiUmtwana"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">

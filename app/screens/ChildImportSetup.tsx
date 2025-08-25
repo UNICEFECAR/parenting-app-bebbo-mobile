@@ -66,6 +66,7 @@ import { bgcolorWhite } from "@styles/style";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
 import TextInputML from "@components/shared/TextInputML";
+import { selectChildAge, selectChildGenders, selectParentGender, selectRelationshipToParent } from "../services/selectors";
 const styles = StyleSheet.create({
   containerView: {
     backgroundColor: bgcolorWhite,
@@ -101,34 +102,19 @@ const ChildImportSetup = (props: any): any => {
     (state: any) => state.utilsData.taxonomyIds
   );
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  const genders = useAppSelector(selectChildGenders);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
-  let relationshipData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender
-  );
+  const childAge = useAppSelector(selectChildAge);
+  let relationshipData = useAppSelector(selectParentGender);
   relationshipData = relationshipData
     .map((v: any) => ({ ...v, title: v.name }))
     .filter(function (e: any) {
       return e.unique_name != taxonomyIds?.bothParentGender;
     });
 
-  const relationshipToParent = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData)
-        .relationship_to_parent
-  );
+  const relationshipToParent = useAppSelector(selectRelationshipToParent);
   useEffect(() => {
     const backAction = (): any => {
       return true;
@@ -469,7 +455,7 @@ const ChildImportSetup = (props: any): any => {
                         params: { child_count: childList?.length },
                       };
                       logEvent(eventData, netInfo.isConnected);
-                      // analytics().logEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
+                      // await logAnalyticsEvent(ONBOARDING_CHILD_COUNT, { child_count: childList?.length })
 
                       props.navigation.reset({
                         index: 0,

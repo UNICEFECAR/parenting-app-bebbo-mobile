@@ -3294,6 +3294,268 @@ export const healthCheckupsData: any = {
             "updated_at": "Sat, 08/28/2021 - 03:43"
         }
     ],
+    "uz-kaa": [
+        {
+            "id": 56061,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 60 месяца",
+            "growth_period": 6551,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:13",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56056,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 54 месяца",
+            "growth_period": 6549,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:13",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56051,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 48 месяца",
+            "growth_period": 6548,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:13",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56046,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 42 месяца",
+            "growth_period": 6547,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:12",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56041,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 36 месяца",
+            "growth_period": 6543,
+            "pinned_article": 4511,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:12",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56036,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 33 месяца",
+            "growth_period": 6542,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:12",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56031,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 30 месяца",
+            "growth_period": 6541,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:11",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56026,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 27 месяца",
+            "growth_period": 6540,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:11",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56021,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 24 месяца",
+            "growth_period": 6538,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:10",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56016,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 21 месяца",
+            "growth_period": 6537,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:09",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56011,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 15 месяца",
+            "growth_period": 6534,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:09",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56006,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 11 месяца",
+            "growth_period": 6531,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:08",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 56001,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 10 месяца",
+            "growth_period": 6526,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:08",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 55996,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 8 месяца",
+            "growth_period": 6516,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:07",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 55991,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 7 месяца",
+            "growth_period": 6511,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 14:06",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23291,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 18 месяцев",
+            "growth_period": 6560,
+            "pinned_article": 4476,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:21",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23271,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 16 месяцев",
+            "growth_period": 6535,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:17",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23256,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 12 месяца",
+            "growth_period": 6532,
+            "pinned_article": 4471,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:13",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23231,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 9 месяца",
+            "growth_period": 6521,
+            "pinned_article": 4466,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:08",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23216,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 6 месяцев",
+            "growth_period": 6501,
+            "pinned_article": 4461,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:07",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23201,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 5 месяцев",
+            "growth_period": 6496,
+            "pinned_article": 4456,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:06",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23191,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 4 месяца",
+            "growth_period": 6491,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 13:03",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23181,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 3 месяца",
+            "growth_period": 6481,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 12:59",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23171,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полные 2 месяца",
+            "growth_period": 6476,
+            "pinned_article": 4446,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 12:57",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23161,
+            "type": "Health Check-ups - Age Periods",
+            "title": "в полный 1 месяц",
+            "growth_period": 6471,
+            "pinned_article": 4441,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 12:53",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        },
+        {
+            "id": 23151,
+            "type": "Health Check-ups - Age Periods",
+            "title": "При рождении",
+            "growth_period": 6466,
+            "pinned_article": 4526,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 12:45",
+            "updated_at": "Sat, 08/28/2021 - 03:43"
+        }
+    ],
 
 
 };

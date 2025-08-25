@@ -6,14 +6,11 @@ import { DateTime } from "luxon";
 import React from "react";
 import { useAppSelector } from "../../../App";
 import { getCurrentChildAgeInDays } from "../../services/childCRUD";
+import { selectAllTaxonomyData } from "../../services/selectors";
 
 const GrowthIntroductory = (props: any): any => {
   const { activeChild } = props;
-  const taxonomy = useAppSelector((state: any) =>
-    state.utilsData.taxonomy?.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData)
-      : {}
-  );
+  const taxonomy = useAppSelector(selectAllTaxonomyData);
   const growthIntroductoryData = taxonomy?.growth_introductory;
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis()

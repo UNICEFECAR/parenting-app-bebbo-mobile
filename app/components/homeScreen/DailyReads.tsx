@@ -200,7 +200,6 @@ const DailyReads = (): any => {
       </View>
     );
   });
-
   useEffect(() => {
     let dailyDataCategory: any, showedDailyDataCategory: any;
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
@@ -248,7 +247,6 @@ const DailyReads = (): any => {
         prematureTaxonomyId: activityTaxonomyId,
       };
     }
-
     if (showedDailyDataCategoryall[activeChild.uuid] === undefined) {
       showedDailyDataCategory = { advice: [], games: [] };
     } else {
@@ -416,7 +414,6 @@ const DailyReads = (): any => {
       const selectedAdviceIds = articleDataToShow?.map(
         (article) => article?.id || 0
       );
-
       const selectedGameCategories = activityDataToShow.map(
         (_activity, index) =>
           activityCategoryArrayNew[nextIndex2 + index]?.id || 0
@@ -424,7 +421,6 @@ const DailyReads = (): any => {
       const selectedGameIds = activityDataToShow.map(
         (activity) => activity?.id || 0
       );
-
       dailyDataCategorytoDispatch[activeChild.uuid] = {
         advice: selectedAdviceCategories,
         games: selectedGameCategories,
@@ -449,13 +445,11 @@ const DailyReads = (): any => {
       if (activeChild.isPremature === "true") {
         filteredArticles = ArticlesData.filter(
           (article: any) =>
-            article.premature === 1 &&
-            !showedDailyDataCategory?.advice?.includes(article.id)
+            article.premature === 1
         ).sort(
           (a: any, b: any) =>
             new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
         );
-
         if (filteredArticles.length === 0) {
           ArticlesData = ArticlesData;
         } else if (filteredArticles.length === 1) {
@@ -512,11 +506,13 @@ const DailyReads = (): any => {
     },
     [favoriteAdvices, favoriteGames]
   );
-
-  const renderEmptyList = () => {
-    if (dataToShowInList?.length == 0 && !fetchAgain) {
+  useEffect(() => {
+    if (dataToShowInList?.length === 0 && !fetchAgain) {
       setFetchAgain(true);
     }
+  }, [dataToShowInList, fetchAgain]);
+
+  const renderEmptyList = () => {
     return null;
   };
 

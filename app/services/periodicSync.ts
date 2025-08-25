@@ -1,20 +1,14 @@
 import { appConfig } from "../instances";
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
+import { selectChildAge, selectChildList } from "./selectors";
 
 export const getAllPeriodicSyncData = (): any => {
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ''
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : state.childData.childDataSet.allChild,
-  );
+  const childList = useAppSelector(selectChildList);
   const bufferAgeBracket = useAppSelector((state: any) =>
     state.childData.childDataSet.bufferAgeBracket
   );
-  const childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
+  const childAge = useAppSelector(selectChildAge);
   const userIsOnboarded = useAppSelector(
     (state: any) => state.utilsData.userIsOnboarded,
   );

@@ -1,5 +1,5 @@
 import { dataRealmCommon } from './../database/dbquery/dataRealmCommon';
-import analytics from '@react-native-firebase/analytics';
+import { logAnalyticsEvent } from './firebaseAnalytics';
 
 //A method to log events to Firebase Analytics
 export const logEventToFirebase = async (analyticsInstance: any, event: any): Promise<void> => {
@@ -31,8 +31,9 @@ export const logEvent = async (eventData: any, netInfo: boolean): Promise<any> =
   const realm = await dataRealmCommon.openRealm();
 
   if (netInfo == true) {
-    const analyticsInstance = analytics();
-    logEventToFirebase(analyticsInstance, eventData);
+    // const analyticsInstance = analytics();
+    // logEventToFirebase(analyticsInstance, eventData);
+    await logAnalyticsEvent(eventData.name, eventData.params);
   } else {
     storeUnsyncedEvent(realm, eventData);
   }
@@ -50,11 +51,12 @@ export const synchronizeEvents = async (netInfo: boolean): Promise<any> => {
     }
 
     if (netInfo == true) {
-      const analyticsInstance = analytics();
+      // const analyticsInstance = analytics();
 
       unsynchronizedEvents.forEach(async (event: any) => {
         if (typeof event !== 'undefined' && event !== null) {
-          logEventToFirebase(analyticsInstance, event);
+          // logEventToFirebase(analyticsInstance, event);
+          await logAnalyticsEvent(event.name, event.params); 
           markEventAsSynchronized(realm, event);
         }
       });

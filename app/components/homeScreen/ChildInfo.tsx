@@ -15,7 +15,7 @@ import {
 } from "@styles/typography";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, Pressable, StyleSheet } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { getAllConfigData } from "../../services/childCRUD";
 // import { relationShipOtherCaregiverId, relationShipServiceProviderId } from '@assets/translations/appOfflineData/apiConstants';
@@ -125,10 +125,11 @@ const ChildInfo = (props: any): any => {
               selectedPinnedArticleData={selectedPinnedArticleData}
             ></VideoPlayer>
           </ShiftFromBottom10>
-          <Heading3Center style={styles.flexShrink1} numberOfLines={2}>
-            {selectedPinnedArticleData?.title}
-          </Heading3Center>
-
+          <Pressable onPress={goToVideoArticleDetails}>
+            <Heading3Center style={styles.flexShrink1} numberOfLines={2}>
+              {selectedPinnedArticleData?.title}
+            </Heading3Center>
+          </Pressable>
           <ShiftFromTopBottom10>
             {selectedPinnedArticleData &&
               selectedPinnedArticleData?.summary ? (
