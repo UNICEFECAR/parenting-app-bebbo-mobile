@@ -39,7 +39,6 @@
 		D6B295552E2E88D100C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B295392E2E88A500C8889C /* README.md */; };
 		D6B295562E2E88D800C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295432E2E88A500C8889C /* splash.json */; };
 		D6B295572E2E88DC00C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B295422E2E88A500C8889C /* README.md */; };
-		D6B295582E2E88E100C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B295452E2E88A500C8889C /* README.md */; };
 		D6B295592E2E88E500C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295462E2E88A500C8889C /* splash.json */; };
 		D6B2955A2E2E890900C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295372E2E88A500C8889C /* splash.json */; };
 		D6B2955B2E2E890900C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295372E2E88A500C8889C /* splash.json */; };
@@ -1252,7 +1251,6 @@
 				D6F143722E2A39EA00986814 /* README.md in Resources */,
 				D6F1435E2E2A39D000986814 /* roboto-regular.woff2 in Resources */,
 				D6F1435F2E2A39D000986814 /* roboto-bold.svg in Resources */,
-				D6B295582E2E88E100C8889C /* README.md in Resources */,
 				D6F143792E2A3A3C00986814 /* Ecuadorian Spanish.strings in Resources */,
 				D6F143752E2A3A2700986814 /* Wawamor-Info.plist in Resources */,
 				D6F143602E2A39D000986814 /* roboto-regular.svg in Resources */,
