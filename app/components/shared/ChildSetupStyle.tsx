@@ -76,8 +76,13 @@ export const LabelChildText = styled(LabelTextVac)`
   text-align:left;
   margin-top: 0px;
   flex-shrink: 1;
-  flex-wrap: wrap;
-  max-width: 80%;
+  flex-grow: 1;
+`;
+export const LabelRow = styled.View`
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
 `;
 export const LinkText = styled.Text`
   font-size: 16px;
