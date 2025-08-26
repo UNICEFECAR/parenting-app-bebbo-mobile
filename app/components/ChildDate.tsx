@@ -10,7 +10,7 @@ import { dobMin, maxDue, minDue } from "@types/types";
 import { DateTime } from "luxon";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Modal, Platform, Pressable, StyleSheet, View } from "react-native";
+import { Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { formatStringDate, getLanguageCode } from "../services/Utils";
 import Checkbox, { CheckboxActive, CheckboxItem } from "./shared/CheckboxStyle";
 import {
@@ -20,12 +20,14 @@ import {
   FormInputBox,
   FormInputGroup,
   LabelChildText,
+  LabelRow,
   LabelText,
   LabelTextTerms,
 } from "./shared/ChildSetupStyle";
 import FormPrematureContainer, {
   FormInfoLabel,
   FormInfoPress,
+  FormInfoPressPremature,
 } from "./shared/FormPrematureContainer";
 import { FlexFDirRowSpace } from "./shared/FlexBoxStyle";
 import ModalPopupContainer, {
@@ -280,7 +282,7 @@ const ChildDate = (props: any): any => {
 
         <FormPrematureContainer>
           <Pressable
-            style={{ flexDirection: "row" }}
+            style={{ flexDirection: "row", alignItems: "center" }}
             onPress={(): any => {
               if (!disablePrematureCheck) {
                 props.sendData({
@@ -309,13 +311,16 @@ const ChildDate = (props: any): any => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelChildText>{t("childSetupprematureLabel")}</LabelChildText>
+            <LabelRow>
+              <LabelChildText numberOfLines={0}>
+                {t("childSetupprematureLabel")}
+                <Text>{"    "}</Text>
+                <FormInfoPressPremature onPress={(): any => setModalVisible(true)}>
+                  <Icon name="ic_info" size={15} color="#070707" />
+                </FormInfoPressPremature>
+              </LabelChildText>
+            </LabelRow>
           </Pressable>
-          <FormInfoLabel>
-            <FormInfoPress onPress={(): any => setModalVisible(true)}>
-              <Icon name="ic_info" size={15} color="#070707" />
-            </FormInfoPress>
-          </FormInfoLabel>
         </FormPrematureContainer>
 
         {toggleCheckBox && !disablePrematureCheck ? (
