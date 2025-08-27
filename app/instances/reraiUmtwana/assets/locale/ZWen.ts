@@ -52,7 +52,7 @@ const ZWen = {
     childSetupListheader:
       'Bebbo is getting ready to support your parenting journey!',
     childSetupListsubHeader:
-      'If you have any other children aged 0 to 6, you can add them now or later.',
+      'If you are expecting or have any other children aged 0 to 6, you can add them now or later.',
     childSetupListaddSiblingBtn: '+ Add another child',
     childSetupListeditSiblingBtn: "Edit child's profile",
     childSetupListcontinueBtnText: 'Continue',
