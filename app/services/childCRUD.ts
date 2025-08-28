@@ -192,7 +192,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       await setUserProperties({
         ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
         is_premature: child.isPremature,
-        child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+        child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender,
         auto_child: child.autoChild
@@ -236,7 +236,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         await setUserProperties({
           ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
           is_premature: child.isPremature,
-          child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+          child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
           parent_gender: child.parent_gender,
           auto_child: child.autoChild
@@ -281,7 +281,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       await setUserProperties({
         ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
         is_premature: child.isPremature,
-        child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+        child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender,
         auto_child: child.autoChild
@@ -575,7 +575,7 @@ export const updateActiveChild = async (child: any, key: any, value: any, dispat
   await setUserProperties({
     ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
     is_premature: child.isPremature,
-    child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+    child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
     relationship_with_child: userRelationToParent,
     parent_gender: child.parent_gender,
     auto_child: child.autoChild
