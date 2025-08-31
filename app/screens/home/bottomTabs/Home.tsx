@@ -46,7 +46,7 @@ import {
 } from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { InteractionManager } from "react-native";
+import { InteractionManager, useWindowDimensions } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -111,6 +111,7 @@ import {
   selectActiveChild,
   selectAppVersion,
 } from "../../../services/selectors";
+import QuickLinksRow from "@components/homeScreen/QuickLinksRow";
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -122,22 +123,8 @@ const Home = ({ route, navigation }: any): any => {
   const [show, setShow] = useState(false);
   const [date2, setdate2] = useState<Date | null>(null);
   const [show2, setShow2] = useState(false);
+  const { width } = useWindowDimensions();
 
-  // const childAge = useAppSelector((state: any) =>
-  //   state.utilsData.taxonomy.allTaxonomyData != ""
-  //     ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-  //     : []
-  // );
-  // const allCountries = useAppSelector((state: any) => {
-  //   try {
-  //     return state.selectedCountry?.countries !== ""
-  //       ? JSON.parse(state.selectedCountry?.countries)
-  //       : [];
-  //   } catch (error) {
-  //     console.error("Failed to parse countries JSON:", error);
-  //     return [];
-  //   }
-  // });
   const dispatch = useAppDispatch();
 
   const locale = useAppSelector(selectLocale);
@@ -305,7 +292,11 @@ const Home = ({ route, navigation }: any): any => {
   const relfolejaprod = "1.1.0";
 
   useEffect(() => {
-    updateContentOnAppVersionChange();
+    const task = InteractionManager.runAfterInteractions(() => {
+      updateContentOnAppVersionChange();
+    });
+
+    return () => task.cancel();
   }, []);
 
   const updateContentOnAppVersionChange = async () => {
@@ -707,13 +698,17 @@ const Home = ({ route, navigation }: any): any => {
         }
       }
     }
-    if (Platform.OS == "ios") {
-      if (netInfo.isConnected != null) {
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (Platform.OS == "ios") {
+        if (netInfo.isConnected != null) {
+          fetchNetInfo();
+        }
+      } else {
         fetchNetInfo();
       }
-    } else {
-      fetchNetInfo();
-    }
+    });
+
+    return () => task.cancel();
   }, [netInfo.isConnected]);
   const ondobChange = (event: any, selectedDate: any): any => {
     setShow(Platform.OS === "ios");
@@ -791,6 +786,7 @@ const Home = ({ route, navigation }: any): any => {
                 backgroundColor={backgroundColorChildInfo}
               />
             </ShiftFromTop10>
+            <QuickLinksRow />
             <ChildMilestones />
             <PlayingTogether />
             <AdviceAndArticles />
@@ -857,6 +853,7 @@ const Home = ({ route, navigation }: any): any => {
 
                     {surveyItem && surveyItem?.body ? (
                       <HTML
+                        contentWidth={width}
                         source={{ html: addSpaceToHtml(surveyItem?.body) }}
                         ignoredStyles={["color", "fontSize", "fontFamily"]}
                       />
