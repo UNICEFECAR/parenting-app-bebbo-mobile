@@ -45,54 +45,55 @@ class Backup {
     return AesCrypto.decrypt(text, key, encryptionsIVKey, "aes-256-cbc");
   };
   public async export(): Promise<boolean> {
-    await googleAuth.signOut();
-    const tokens = await googleAuth.getTokens();
+    try {
+      await googleAuth.signOut();
+      const tokens = await googleAuth.getTokens();
 
-    // Sign in if neccessary
-    if (!tokens) {
-      const user = await googleAuth.signIn();
-      if (!user) return false;
-    }
+      // Sign in if necessary
+      if (!tokens) {
+        const user = await googleAuth.signIn();
+        if (!user) return false;
+      }
 
-    const backupFolderId = await googleDrive.safeCreateFolder({
-      name: appConfig.backupGDriveFolderName,
-      parentFolderId: "root",
-    });
-    if (backupFolderId instanceof Error) {
+      const backupFolderId = await googleDrive.safeCreateFolder({
+        name: appConfig.backupGDriveFolderName,
+        parentFolderId: "root",
+      });
+      if (backupFolderId instanceof Error) {
+        return false;
+      }
+
+      // Get backup file ID if exists on GDrive
+      let backupFileId: string | null = null;
+      const backupFiles = await googleDrive.list({
+        filter: `trashed=false and (name contains '${appConfig.backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
+      });
+      if (Array.isArray(backupFiles) && backupFiles.length > 0) {
+        backupFileId = backupFiles[0].id;
+      }
+
+      // Delete existing backup if present
+      if (backupFileId) {
+        await googleDrive.deleteFile(backupFileId);
+      }
+
+      // Prepare content
+      const jsonData = await userRealmCommon.exportUserRealmDataToJson();
+      const cipher = await this.encryptData(JSON.stringify(jsonData), encryptionsKey);
+
+      // Upload file to Drive and verify response
+      const response = await googleDrive.createFileMultipart({
+        name: appConfig.backupGDriveFileName,
+        content: cipher.cipher,
+        parentFolderId: backupFolderId,
+        isBase64: false,
+      });
+
+      return typeof response === "string" && response.length > 0;
+    } catch (error) {
+      console.error("Error exporting data:", error);
       return false;
     }
-
-    // Get backup file ID if exists on GDrive
-    let backupFileId: string | null = null;
-    const backupFiles = await googleDrive.list({
-      filter: `trashed=false and (name contains '${appConfig.backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
-    });
-    if (Array.isArray(backupFiles) && backupFiles.length > 0) {
-      backupFileId = backupFiles[0].id;
-    }
-    // Delete backupFileId
-    if (backupFileId) {
-      await googleDrive.deleteFile(backupFileId);
-    }
-    // Create file on gdrive
-    userRealmCommon.exportUserRealmDataToJson().then(async (jsonData: any) => {
-      this.encryptData(JSON.stringify(jsonData), encryptionsKey)
-        .then(async (cipher: any) => {
-          const response = await googleDrive.createFileMultipart({
-            name: appConfig.backupGDriveFileName,
-            content: cipher.cipher,
-            parentFolderId: backupFolderId,
-            isBase64: false,
-          });
-          if (typeof response !== "string") {
-            return false;
-          }
-        })
-        .catch((error: any) => {
-          console.error("Error exporting data:", error);
-        });
-    });
-    return true;
   }
 
   public closeImportedRealm(): any {

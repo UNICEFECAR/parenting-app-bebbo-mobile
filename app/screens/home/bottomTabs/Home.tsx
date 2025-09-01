@@ -111,6 +111,7 @@ import {
   selectActiveChild,
   selectAppVersion,
 } from "../../../services/selectors";
+import QuickLinksRow from "@components/homeScreen/QuickLinksRow";
 const Home = ({ route, navigation }: any): any => {
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -785,6 +786,7 @@ const Home = ({ route, navigation }: any): any => {
                 backgroundColor={backgroundColorChildInfo}
               />
             </ShiftFromTop10>
+            <QuickLinksRow />
             <ChildMilestones />
             <PlayingTogether />
             <AdviceAndArticles />
