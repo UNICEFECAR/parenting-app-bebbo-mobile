@@ -23,7 +23,7 @@ const ChildMilestones = (): any => {
   return (
     <>
       <BgDevelopmentTint>
-        <FeatureDivideArea>
+        {/* <FeatureDivideArea> */}
           <MainContainer>
             <FeatureBox>
               <FlexDirRow>
@@ -51,7 +51,7 @@ const ChildMilestones = (): any => {
               </FlexDirRow>
             </FeatureBox>
           </MainContainer>
-        </FeatureDivideArea>
+        {/* </FeatureDivideArea> */}
       </BgDevelopmentTint>
     </>
   );

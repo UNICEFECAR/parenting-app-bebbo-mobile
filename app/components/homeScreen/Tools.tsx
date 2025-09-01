@@ -44,7 +44,9 @@ const Tools = (): any => {
                   navigation.navigate("Tools", { screen: "HealthCheckupsTab" })
                 }
               >
-                <VectorImage source={require("@images/ic_health_color.svg")} />
+                <VectorImage
+                  source={require("@images/ic_health_color.svg")}
+                />
                 <ToolBoxText>
                   <Heading3Center>{t("homeScreenhc")}</Heading3Center>
                 </ToolBoxText>
@@ -54,7 +56,9 @@ const Tools = (): any => {
                   navigation.navigate("Tools", { screen: "ChildgrowthTab" })
                 }
               >
-                <VectorImage source={require("@images/ic_growth_color.svg")} />
+                <VectorImage
+                  source={require("@images/ic_growth_color.svg")}
+                />
                 <ToolBoxText>
                   <Heading3Center>{t("homeScreencg")}</Heading3Center>
                 </ToolBoxText>
