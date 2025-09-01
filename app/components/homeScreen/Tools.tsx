@@ -13,15 +13,11 @@ import {
   ShiftFromTop10,
 } from "../../instances/bebbo/styles/typography";
 import React from "react";
-import { StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import VectorImage from "react-native-vector-image";
 const Tools = (): any => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const styles = StyleSheet.create({
-    icon: { width: 48, height: 48 },
-  });
   return (
     <>
       <BgSecondaryTint>
@@ -38,7 +34,6 @@ const Tools = (): any => {
               >
                 <VectorImage
                   source={require("@images/ic_vaccination_color.svg")}
-                  style={styles.icon}
                 />
                 <ToolBoxText>
                   <Heading3Center>{t("homeScreenvc")}</Heading3Center>
@@ -51,7 +46,6 @@ const Tools = (): any => {
               >
                 <VectorImage
                   source={require("@images/ic_health_color.svg")}
-                  style={styles.icon}
                 />
                 <ToolBoxText>
                   <Heading3Center>{t("homeScreenhc")}</Heading3Center>
@@ -64,7 +58,6 @@ const Tools = (): any => {
               >
                 <VectorImage
                   source={require("@images/ic_growth_color.svg")}
-                  style={styles.icon}
                 />
                 <ToolBoxText>
                   <Heading3Center>{t("homeScreencg")}</Heading3Center>
