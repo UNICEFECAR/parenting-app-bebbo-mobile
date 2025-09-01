@@ -33,7 +33,7 @@
         "./app/types/*"
       ],
       "@styles/*": [
-        "app/instances/bebbo/styles/*"
+        "./app/instances/bebbo/styles/*"
       ],
       "@navigation/*": [
         "./app/navigation/*"
