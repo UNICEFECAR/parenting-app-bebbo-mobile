@@ -264,11 +264,11 @@ const SettingScreen = (props: any): any => {
     // const file = await ScopedStorage.openDocumentTree(true);
     const uri: any = await ScopedStorage.getPersistedUriPermissions();
     try {
-      // Create a JSON backup file in Document picker
+      // const fileDownload: any = await ScopedStorage.writeFile(file.uri,JSON.stringify(cipher), "mybackup.json", "*/*", 'utf8', false);
       const fileDownload: any = await ScopedStorage.createDocument(
-        `bebbo_backup_${Date.now()}.json`,
+        "mybackup",
         "application/json",
-        cipher,
+        JSON.stringify(cipher),
         "utf8"
       );
       const uri1: any = await ScopedStorage.getPersistedUriPermissions();
