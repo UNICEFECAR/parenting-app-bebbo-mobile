@@ -284,28 +284,23 @@ const QuickLinksRow = () => {
   );
 };
 
-const CARD_WIDTH = width * 0.26; // Adjust card width
+const CARD_WIDTH = width * 0.285; // Adjust card width
 
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
-    borderWidth: 0,
-    borderColor: 'red',
-    // paddingBottom:20
   },
   listContainer: {
     justifyContent: "space-between",
     paddingHorizontal: 10,
     paddingBottom: 10,
-    borderWidth: 0,
-    borderColor: 'blue'
   },
   card: {
     width: CARD_WIDTH,
     alignItems: "center",
     backgroundColor: "#fff",
     borderRadius: 8,
-    paddingVertical: 6,
+    paddingVertical: 15,
     marginHorizontal: 6,
     shadowColor: "#000",
     shadowOpacity: 0.1,
@@ -332,6 +327,7 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
+    paddingHorizontal: 6,
   },
 });
 

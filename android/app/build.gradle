@@ -166,7 +166,7 @@ android {
             enable true
             reset()
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64", "arm64-v8a-16k", "x86_64-16k"
-            universalApk true
+            universalApk false
         }
     }
     signingConfigs {
