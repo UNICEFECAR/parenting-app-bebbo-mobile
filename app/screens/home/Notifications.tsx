@@ -50,6 +50,8 @@ import {
   isFutureDate,
 } from "../../services/childCRUD";
 import { selectActiveChild } from "../../services/selectors";
+import useDigitConverter from "../../customHooks/useDigitConvert";
+
 const styles = StyleSheet.create({
   buttonContainerTwo: { backgroundColor: bgcolorWhite2 },
   flex1: { flex: 1 },
@@ -87,6 +89,7 @@ const Notifications = (): any => {
   const [checkedNotifications, setCheckedNotifications] = useState<any[]>([]);
   const flatListRefNoti = useRef(null);
   const activeChild = useAppSelector(selectActiveChild);
+  const { convertDigits } = useDigitConverter();
   const onBackPress = (): any => {
     navigation.reset({
       index: 0,
@@ -624,7 +627,7 @@ const Notifications = (): any => {
                   >
                     <ButtonText numberOfLines={2}>
                       {t("notiDelSelected", {
-                        count: checkedNotifications.length,
+                        count: convertDigits(checkedNotifications.length),
                       })}{" "}
                     </ButtonText>
                   </ButtonSecondary>
