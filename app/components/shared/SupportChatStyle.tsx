@@ -85,7 +85,7 @@ export const ActionBubblePressable = styled.Pressable`
     flex-direction: row;
     flex:1;
     align-items: center;
-    background-color: #75A7DD;
+    background-color: ${(props:any):any => props.theme?.colors?.CHAT_ACTION_BG_COLOR};
     padding: 4px;
     padding-right: 10px;
     border-radius: 100px;
@@ -99,6 +99,6 @@ export const ActionBubbleIcon = styled.View`
     justify-content: center;
     align-items: center;
     margin-right: 15px;
-    background-color: #e2edf7;
+    background-color; ${(props:any):any => props.theme?.colors?.CHAT_ACTION_ICON};
     border-radius: 100px;
 `;

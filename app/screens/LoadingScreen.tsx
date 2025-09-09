@@ -5,7 +5,6 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { DateTime } from "luxon";
 import React, { useContext, useEffect, useState } from "react";
 import { BackHandler, I18nManager, Platform } from "react-native";
-import { ThemeContext } from "styled-components/native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import LoadingScreenComponent from "../components/LoadingScreenComponent";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
@@ -51,6 +50,7 @@ import {
   selectLowBandwidth,
   selectSponsors,
 } from "../services/selectors";
+import { loadingHeaderColor } from "@styles/style";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "ChildSetup"
@@ -450,11 +450,9 @@ const LoadingScreen = ({ route, navigation }: Props): any => {
     }
   }, [isFirst]);
 
-  const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext?.colors.SECONDARY_COLOR;
   return (
     <>
-      <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+      <FocusAwareStatusBar animated={true} backgroundColor={loadingHeaderColor} />
       <KeepAwake />
       <LoadingScreenComponent
         sponsors={sponsors}

@@ -145,7 +145,7 @@ android {
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD_WAWAMOR
             }
         }
-        reraiumtwana {
+        reraiumntwana {
             if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE_RERAI_UMTWANA')) {
                 storeFile file(MYAPP_UPLOAD_STORE_FILE_RERAI_UMTWANA)
                 storePassword MYAPP_UPLOAD_STORE_PASSWORD__RERAI_UMTWANA
@@ -234,11 +234,11 @@ android {
             versionName "1.0.3"
             signingConfig signingConfigs.wawamor
         }
-        reraiumtwana {
-            applicationId 'org.unicef.zw.reraiumtwana'
+        reraiumntwana {
+            applicationId 'org.unicef.zw.reraiumntwana'
             versionCode 1
             versionName "1.0.0"
-            signingConfig signingConfigs.reraiumtwana
+            signingConfig signingConfigs.reraiumntwana
         }
         banglastaging {
             applicationId 'com.datamatics.bangla'

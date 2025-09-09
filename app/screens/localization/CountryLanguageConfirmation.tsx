@@ -60,7 +60,7 @@ import {
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
 import RNRestart from "react-native-restart";
 import * as RNLocalize from "react-native-localize";
-import { secondaryBtnColor } from "@styles/style";
+import { secondaryBtnColor, secondaryColor } from "@styles/style";
 import moment from "moment";
 import "moment/min/locales";
 import "moment/locale/bn-bd"; // import for bangla language
@@ -502,7 +502,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         <OnboardingContainer>
           <OnboardingConfirmationHead>
             <Text style={styles.welcomeText}>{t("welcomeText")}</Text>
-            <Icon name="ic_country" size={100} color="#00AEEF" />
+            <Icon name="ic_country" size={100} color={secondaryColor} />
             <OnboardingShiftHead>
               <Heading2Centerw>{t("countryLangSelection")}</Heading2Centerw>
             </OnboardingShiftHead>

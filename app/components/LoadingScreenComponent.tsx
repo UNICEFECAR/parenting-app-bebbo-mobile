@@ -17,10 +17,11 @@ import {
   WrapView,
 } from "./shared/LoadingStyle";
 import { useAppSelector } from "../../App";
+import { gradientColorFirst, gradientColorSecond, gradientColorThird, LoadingScreenColorText } from "@styles/style";
 
 const item = {
   image: flavor == "merhabaBebek" ? BebboLogoShapeMB : BebboLogoShapeNew,
-  colors: ["#2B2F84", "#1F50A0", "#00AEEF"],
+  colors: [gradientColorFirst, gradientColorSecond, gradientColorThird],
 };
 
 const styles = StyleSheet.create({
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     marginBottom: 15,
+    color: LoadingScreenColorText
   },
   linearGradient: {
     flex: 1,
@@ -129,10 +131,10 @@ const LoadingScreenComponent = (props: any): any => {
 
           <View style={styles.innerView}>
             <Text>
-              <ActivityIndicator size="large" color="#ffffff" />
+              <ActivityIndicator size="large" color={LoadingScreenColorText} />
             </Text>
             <Text style={styles.loadingText}>
-              <LoadingText>{t("loadingText")}</LoadingText>
+              <LoadingText style={{color:LoadingScreenColorText}}>{t("loadingText")}</LoadingText>
             </Text>
           </View>
         </LinearGradient>
