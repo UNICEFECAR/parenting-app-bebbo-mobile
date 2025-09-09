@@ -80,7 +80,7 @@ import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
-import { bgcolorWhite2 } from "@styles/style";
+import { bgcolorWhite2, secondaryBtnColor } from "@styles/style";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
 import { selectChildAge, selectChildGenders, selectParentGender, selectRelationshipToParent } from "../services/selectors";
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   uploadTextStyle: {
-    color: "#1CABE2",
+    color: secondaryBtnColor,
   },
   orDividerStyle: {
     width: 172,

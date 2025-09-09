@@ -1,1 +1,1 @@
-Add splash json file for Merhababebek here
+Add splash json file for Rerai Umntwana here

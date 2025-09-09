@@ -237,8 +237,8 @@ margin-end:20px;
 
 export const ParentSetUpDivider = styled.View`
 flex:1;
-border-color:#1CABE2;
-background-color:#1CABE2;
+border-color:${(props:any):any => props.theme.colors.SECONDARY_RE_COLOR};
+background-color:${(props:any):any => props.theme.colors.SECONDARY_RE_COLOR};
 border-radius:4px;
 height:3px;
 `;
