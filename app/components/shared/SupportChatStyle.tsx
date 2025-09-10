@@ -99,6 +99,6 @@ export const ActionBubbleIcon = styled.View`
     justify-content: center;
     align-items: center;
     margin-right: 15px;
-    background-color; ${(props:any):any => props.theme?.colors?.CHAT_ACTION_ICON};
+    background-color: ${(props:any):any => props.theme?.colors?.CHAT_ACTION_ICON};
     border-radius: 100px;
 `;
