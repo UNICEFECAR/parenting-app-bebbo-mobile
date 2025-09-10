@@ -2815,7 +2815,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppBangla.entitlements;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ParentBuddyAppBangla-Info.plist";
@@ -2857,7 +2857,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppBangla.entitlements;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				INFOPLIST_FILE = "ParentBuddyAppBangla-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Babuni;
@@ -3061,8 +3061,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/Wawamor.entitlements;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = K288UMKCNF;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9N55R289Y;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Wawamor-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Wawamor;
@@ -3071,7 +3073,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3079,18 +3081,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ec.wawamor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				apiUrlDevelop = "https://wawamor.ec/api";
-				clientIdKey = sirng9aq3kdc4io44ukk0bmt3d0b3kb3;
+				clientIdKey = fv344ke8gh356619cbu1nab46eeotavk;
 				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
 				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
 				facebookAppDisplayName = wawamor;
 				facebookAppId = 1284775292751688;
 				facebookClientToken = c831fe777dc52fd8ae31f217506d1010;
-				iosId = sirng9aq3kdc4io44ukk0bmt3d0b3kb3;
+				iosId = fv344ke8gh356619cbu1nab46eeotavk;
 				projectNumber = 222346171255;
 				webId = 069h7h66gqj5bl41i1jg93gsrubqma3r;
 			};
@@ -3103,8 +3106,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/Wawamor.entitlements;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = K288UMKCNF;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9N55R289Y;
 				INFOPLIST_FILE = "Wawamor-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Wawamor;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -3112,7 +3117,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3120,17 +3125,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ec.wawamor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				apiUrlDevelop = "https://wawamor.ec/api";
-				clientIdKey = sirng9aq3kdc4io44ukk0bmt3d0b3kb3;
+				clientIdKey = fv344ke8gh356619cbu1nab46eeotavk;
 				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
 				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
 				facebookAppDisplayName = wawamor;
 				facebookAppId = 1284775292751688;
 				facebookClientToken = c831fe777dc52fd8ae31f217506d1010;
-				iosId = sirng9aq3kdc4io44ukk0bmt3d0b3kb3;
+				iosId = fv344ke8gh356619cbu1nab46eeotavk;
 				projectNumber = 222346171255;
 				webId = 069h7h66gqj5bl41i1jg93gsrubqma3r;
 			};
