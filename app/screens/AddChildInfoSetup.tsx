@@ -73,7 +73,7 @@ import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native
 import * as ScopedStorage from "react-native-scoped-storage";
 import RNFS from "react-native-fs";
 import TextInputML from "@components/shared/TextInputML";
-import { bgcolorWhite2 } from "@styles/style";
+import { bgcolorWhite2, secondaryBtnColor } from "@styles/style";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
 import { logEvent } from "../services/EventSyncService";
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   uploadTextStyle: {
-    color: "#1CABE2",
+    color: secondaryBtnColor,
   },
 });
 const AddChildInfoSetup = ({ route, navigation }: Props): any => {

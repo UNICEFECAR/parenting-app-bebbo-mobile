@@ -111,7 +111,7 @@ import { formatStringDate, formatStringTime } from "../../services/Utils";
 import * as ScopedStorage from "react-native-scoped-storage";
 import Share from "react-native-share";
 import LocalNotifications from "../../services/LocalNotifications";
-import { bgcolorWhite2 } from "@styles/style";
+import { bgcolorWhite2, settingThumbFalseColor, settingTrackFalseColor, settingTrackTrueColor } from "@styles/style";
 import { logEvent } from "../../services/EventSyncService";
 import AesCrypto from "react-native-aes-crypto";
 import { encryptionsIVKey, encryptionsKey } from "react-native-dotenv";
@@ -160,12 +160,11 @@ const styles = StyleSheet.create({
 const SettingScreen = (props: any): any => {
   const themeContext = useContext(ThemeContext);
   const primaryColor = themeContext?.colors?.PRIMARY_COLOR;
-  const primaryTintColor = themeContext?.colors?.PRIMARY_TINTCOLOR;
-  const trackTrueColor = primaryTintColor;
+  const trackTrueColor = settingTrackTrueColor;
   const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
-  const trackFalseColor = "#C8D6EE";
+  const trackFalseColor = settingTrackFalseColor;
   const thumbTrueColor = primaryColor;
-  const thumbFalseColor = "#9598BE";
+  const thumbFalseColor = settingThumbFalseColor;
   const dispatch = useAppDispatch();
   const growthEnabledFlag = useAppSelector(selectGrowthEnabledFlag);
   const developmentEnabledFlag = useAppSelector(selectDevelopmentEnabledFlag);
