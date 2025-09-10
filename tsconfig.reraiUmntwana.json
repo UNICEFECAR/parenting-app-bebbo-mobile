@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "@styles/*": [
+                "app/instances/reraiUmntwana/styles/*"
+            ],
+            "@images/*": [
+                "app/instances/reraiUmntwana/assets/images/*"
+            ]
+        }
+    }
+}

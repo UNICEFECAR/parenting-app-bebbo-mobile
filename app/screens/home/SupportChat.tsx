@@ -49,12 +49,12 @@ import {
   CHATBOT_SUBCATEGORY_SELECTED,
   FEEDBACK_SUBMIT,
 } from "@assets/data/firebaseEvents";
-import { imageBg } from "../../instances/bebbo/styles/style";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { useFocusEffect } from "@react-navigation/native";
 import { selectAllConfigData, selectAllTaxonomyData, selectFaqsData, selectSurveyData } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { imageBg } from "@styles/style";
 
 type SupportChatNavigationProp = StackNavigationProp<any>;
 type Props = {

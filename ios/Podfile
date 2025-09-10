@@ -73,7 +73,7 @@ target 'ParentBuddyApp' do
     ParentBuddyAppBanglaDev
     MerhabaBebek
     Wawamor
-    ReraiUmtwana
+    ReraiUmntwana
   ].each do |variant_target|
     target variant_target do
       shared_pods

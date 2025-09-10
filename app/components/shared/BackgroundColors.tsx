@@ -11,7 +11,7 @@ export const BgPrimaryTint = styled.View`
 background-color:${(props:any):any => props.theme.colors.PRIMARY_TINTCOLOR};
 `;
 export const BgSecondary = styled.View`
-background-color:${(props:any):any => props.theme.colors.SECONDARY_COLOR};
+background-color:${(props:any):any => props.theme.colors.TERTIARY_BG_COLOR};
 `;
 export const BgSecondaryTint = styled.View`
 background-color:${(props:any):any => props.theme.colors.SECONDARY_TINTCOLOR};

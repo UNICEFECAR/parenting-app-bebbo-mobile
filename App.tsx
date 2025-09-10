@@ -38,6 +38,7 @@ import { EventProvider } from "react-native-outside-press";
 import RNRestart from "react-native-restart";
 import { setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
 import { recordError } from "./app/services/firebaseAnalytics";
+import { primaryColor } from "@styles/style";
 const flavor = process.env.FLAVOR || "bebbo";
 export const store = configureAppStore();
 export const persistor = persistStore(store);
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
-    color: "#2B2F84",
+    color: primaryColor,
   },
   message: {
     fontSize: 14,
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: "#2B2F84",
+    backgroundColor: primaryColor,
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 6,

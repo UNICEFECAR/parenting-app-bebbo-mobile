@@ -36,6 +36,7 @@ import ThreeDotsLoader from "../../services/ThreeDotsLoader";
 import { imgLogoChatbotNew } from "../../instances";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { selectAllConfigData } from "../../services/selectors";
+import { gradientColorFirst, gradientColorSecond, gradientColorThird } from "@styles/style";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   flexShrink1: { flexShrink: 1 },
@@ -92,7 +93,7 @@ const BotBubble = (props: any): any => {
           style={styles.linearGradient}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
-          colors={["#2B2F84", "#1F50A0", "#00AEEF"]}
+          colors={[gradientColorFirst, gradientColorSecond, gradientColorThird]}
         >
           <VectorImage style={styles.vectorImage} source={imgLogoChatbotNew} />
         </LinearGradient>
