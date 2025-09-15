@@ -672,6 +672,7 @@ export const getLanguageCode = (languageCode: string): string => {
     { name: "English", lcode: "en", locale: "en" },
     { name: "Russian", lcode: "ru", locale: "ru" },
     { name: "Türkiye", lcode: "tr", locale: "tr" },
+    { name: "Español", lcode: "ec-es", locale: "es" },
   ];
 
   // Process the input code
