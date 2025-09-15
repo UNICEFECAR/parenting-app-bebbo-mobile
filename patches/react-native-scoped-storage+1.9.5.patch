@@ -1,0 +1,450 @@
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/results.bin b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/results.bin
+new file mode 100644
+index 0000000..e1640c9
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/results.bin
+@@ -0,0 +1 @@
++o/bundleLibRuntimeToDirRelease
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/BuildConfig.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/BuildConfig.dex
+new file mode 100644
+index 0000000..c914b4f
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/BuildConfig.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageConst.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageConst.dex
+new file mode 100644
+index 0000000..f3684ee
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageConst.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.dex
+new file mode 100644
+index 0000000..7af5a4f
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.dex
+new file mode 100644
+index 0000000..030ed37
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.dex
+new file mode 100644
+index 0000000..4507d3a
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule.dex
+new file mode 100644
+index 0000000..07361b6
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageModule.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStoragePackage.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStoragePackage.dex
+new file mode 100644
+index 0000000..95ae6f5
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStoragePackage.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.dex
+new file mode 100644
+index 0000000..eab595e
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.dex
+new file mode 100644
+index 0000000..2cada2a
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils.dex
+new file mode 100644
+index 0000000..4768181
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/RNScopedStorageUtils.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/Utils/FileProvider.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/Utils/FileProvider.dex
+new file mode 100644
+index 0000000..3ec2c6d
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/Utils/FileProvider.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/Utils/PathResolver.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/Utils/PathResolver.dex
+new file mode 100644
+index 0000000..d4b7bd2
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/bundleLibRuntimeToDirRelease_dex/com/ammarahmed/scopedstorage/Utils/PathResolver.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/desugar_graph.bin b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/desugar_graph.bin
+new file mode 100644
+index 0000000..2a20bd4
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/23fcebc577558e86f78763257215578c/transformed/bundleLibRuntimeToDirRelease/desugar_graph.bin differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/ee533c707731f6bf2798cd1bf044fa46/results.bin b/node_modules/react-native-scoped-storage/android/build/.transforms/ee533c707731f6bf2798cd1bf044fa46/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/.transforms/ee533c707731f6bf2798cd1bf044fa46/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/react-native-scoped-storage/android/build/.transforms/ee533c707731f6bf2798cd1bf044fa46/transformed/classes/classes_dex/classes.dex b/node_modules/react-native-scoped-storage/android/build/.transforms/ee533c707731f6bf2798cd1bf044fa46/transformed/classes/classes_dex/classes.dex
+new file mode 100644
+index 0000000..c906ffb
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/.transforms/ee533c707731f6bf2798cd1bf044fa46/transformed/classes/classes_dex/classes.dex differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/generated/source/buildConfig/release/com/ammarahmed/scopedstorage/BuildConfig.java b/node_modules/react-native-scoped-storage/android/build/generated/source/buildConfig/release/com/ammarahmed/scopedstorage/BuildConfig.java
+new file mode 100644
+index 0000000..de81c83
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/generated/source/buildConfig/release/com/ammarahmed/scopedstorage/BuildConfig.java
+@@ -0,0 +1,10 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package com.ammarahmed.scopedstorage;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = false;
++  public static final String LIBRARY_PACKAGE_NAME = "com.ammarahmed.scopedstorage";
++  public static final String BUILD_TYPE = "release";
++}
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/AndroidManifest.xml b/node_modules/react-native-scoped-storage/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..83281c1
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.ammarahmed.scopedstorage" >
++
++    <uses-sdk android:minSdkVersion="24" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/output-metadata.json b/node_modules/react-native-scoped-storage/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/output-metadata.json
+new file mode 100644
+index 0000000..ac0163a
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "com.ammarahmed.scopedstorage",
++  "variantName": "release",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/aar_metadata/release/writeReleaseAarMetadata/aar-metadata.properties b/node_modules/react-native-scoped-storage/android/build/intermediates/aar_metadata/release/writeReleaseAarMetadata/aar-metadata.properties
+new file mode 100644
+index 0000000..1211b1e
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/aar_metadata/release/writeReleaseAarMetadata/aar-metadata.properties
+@@ -0,0 +1,6 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=1
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
++coreLibraryDesugaringEnabled=false
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/annotation_processor_list/release/javaPreCompileRelease/annotationProcessors.json b/node_modules/react-native-scoped-storage/android/build/intermediates/annotation_processor_list/release/javaPreCompileRelease/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/annotation_processor_list/release/javaPreCompileRelease/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/compile_library_classes_jar/release/bundleLibCompileToJarRelease/classes.jar b/node_modules/react-native-scoped-storage/android/build/intermediates/compile_library_classes_jar/release/bundleLibCompileToJarRelease/classes.jar
+new file mode 100644
+index 0000000..d502d1a
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/compile_library_classes_jar/release/bundleLibCompileToJarRelease/classes.jar differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/compile_r_class_jar/release/generateReleaseRFile/R.jar b/node_modules/react-native-scoped-storage/android/build/intermediates/compile_r_class_jar/release/generateReleaseRFile/R.jar
+new file mode 100644
+index 0000000..e35abce
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/compile_r_class_jar/release/generateReleaseRFile/R.jar differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/compile_symbol_list/release/generateReleaseRFile/R.txt b/node_modules/react-native-scoped-storage/android/build/intermediates/compile_symbol_list/release/generateReleaseRFile/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..88f4cf7
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/jniLibs"/></dataSet><dataSet config="release" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/release/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/mergeReleaseShaders/merger.xml b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/mergeReleaseShaders/merger.xml
+new file mode 100644
+index 0000000..7d6ce68
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/mergeReleaseShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/shaders"/></dataSet><dataSet config="release" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/release/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/packageReleaseAssets/merger.xml b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/packageReleaseAssets/merger.xml
+new file mode 100644
+index 0000000..5a4c512
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/packageReleaseAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/assets"/></dataSet><dataSet config="release" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/release/assets"/></dataSet><dataSet config="generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/build/intermediates/shader_assets/release/compileReleaseShaders/out"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/release/packageReleaseResources/compile-file-map.properties b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/release/packageReleaseResources/compile-file-map.properties
+new file mode 100644
+index 0000000..d096660
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/release/packageReleaseResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Mon Sep 15 17:21:34 IST 2025
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/release/packageReleaseResources/merger.xml b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/release/packageReleaseResources/merger.xml
+new file mode 100644
+index 0000000..5ee00a6
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/incremental/release/packageReleaseResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="release$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/release/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="release" generated-set="release$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/release/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/build/generated/res/resValues/release"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/build/generated/res/resValues/release"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/BuildConfig.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/BuildConfig.class
+new file mode 100644
+index 0000000..b9d213d
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/BuildConfig.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageConst.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageConst.class
+new file mode 100644
+index 0000000..16143cf
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageConst.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.class
+new file mode 100644
+index 0000000..217a9c6
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.class
+new file mode 100644
+index 0000000..245a868
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.class
+new file mode 100644
+index 0000000..0aea1b4
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule.class
+new file mode 100644
+index 0000000..60584cb
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageModule.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStoragePackage.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStoragePackage.class
+new file mode 100644
+index 0000000..28e991b
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStoragePackage.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.class
+new file mode 100644
+index 0000000..89a88ac
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.class
+new file mode 100644
+index 0000000..44dbf5b
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils.class
+new file mode 100644
+index 0000000..0ec5bea
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/RNScopedStorageUtils.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/Utils/FileProvider.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/Utils/FileProvider.class
+new file mode 100644
+index 0000000..97de4ac
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/Utils/FileProvider.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/Utils/PathResolver.class b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/Utils/PathResolver.class
+new file mode 100644
+index 0000000..83a0f2c
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/com/ammarahmed/scopedstorage/Utils/PathResolver.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/local_only_symbol_list/release/parseReleaseLocalResources/R-def.txt b/node_modules/react-native-scoped-storage/android/build/intermediates/local_only_symbol_list/release/parseReleaseLocalResources/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/local_only_symbol_list/release/parseReleaseLocalResources/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/manifest_merge_blame_file/release/processReleaseManifest/manifest-merger-blame-release-report.txt b/node_modules/react-native-scoped-storage/android/build/intermediates/manifest_merge_blame_file/release/processReleaseManifest/manifest-merger-blame-release-report.txt
+new file mode 100644
+index 0000000..1ebe6ae
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/manifest_merge_blame_file/release/processReleaseManifest/manifest-merger-blame-release-report.txt
+@@ -0,0 +1,7 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    package="com.ammarahmed.scopedstorage" >
++4
++5    <uses-sdk android:minSdkVersion="24" />
++6
++7</manifest>
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml b/node_modules/react-native-scoped-storage/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml
+new file mode 100644
+index 0000000..83281c1
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.ammarahmed.scopedstorage" >
++
++    <uses-sdk android:minSdkVersion="24" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/navigation_json/release/extractDeepLinksRelease/navigation.json b/node_modules/react-native-scoped-storage/android/build/intermediates/navigation_json/release/extractDeepLinksRelease/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/navigation_json/release/extractDeepLinksRelease/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/nested_resources_validation_report/release/generateReleaseResources/nestedResourcesValidationReport.txt b/node_modules/react-native-scoped-storage/android/build/intermediates/nested_resources_validation_report/release/generateReleaseResources/nestedResourcesValidationReport.txt
+new file mode 100644
+index 0000000..08f4ebe
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/nested_resources_validation_report/release/generateReleaseResources/nestedResourcesValidationReport.txt
+@@ -0,0 +1 @@
++0 Warning/Error
+\ No newline at end of file
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/BuildConfig.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/BuildConfig.class
+new file mode 100644
+index 0000000..b9d213d
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/BuildConfig.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageConst.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageConst.class
+new file mode 100644
+index 0000000..16143cf
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageConst.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.class
+new file mode 100644
+index 0000000..217a9c6
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$1.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.class
+new file mode 100644
+index 0000000..245a868
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$2.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.class
+new file mode 100644
+index 0000000..0aea1b4
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule$3.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule.class
+new file mode 100644
+index 0000000..60584cb
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageModule.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStoragePackage.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStoragePackage.class
+new file mode 100644
+index 0000000..28e991b
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStoragePackage.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.class
+new file mode 100644
+index 0000000..89a88ac
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils$1.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.class
+new file mode 100644
+index 0000000..44dbf5b
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils$2.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils.class
+new file mode 100644
+index 0000000..0ec5bea
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/RNScopedStorageUtils.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/Utils/FileProvider.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/Utils/FileProvider.class
+new file mode 100644
+index 0000000..97de4ac
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/Utils/FileProvider.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/Utils/PathResolver.class b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/Utils/PathResolver.class
+new file mode 100644
+index 0000000..83a0f2c
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_dir/release/bundleLibRuntimeToDirRelease/com/ammarahmed/scopedstorage/Utils/PathResolver.class differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_jar/release/bundleLibRuntimeToJarRelease/classes.jar b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_jar/release/bundleLibRuntimeToJarRelease/classes.jar
+new file mode 100644
+index 0000000..990e178
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/intermediates/runtime_library_classes_jar/release/bundleLibRuntimeToJarRelease/classes.jar differ
+diff --git a/node_modules/react-native-scoped-storage/android/build/intermediates/symbol_list_with_package_name/release/generateReleaseRFile/package-aware-r.txt b/node_modules/react-native-scoped-storage/android/build/intermediates/symbol_list_with_package_name/release/generateReleaseRFile/package-aware-r.txt
+new file mode 100644
+index 0000000..1829b3d
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/intermediates/symbol_list_with_package_name/release/generateReleaseRFile/package-aware-r.txt
+@@ -0,0 +1 @@
++com.ammarahmed.scopedstorage
+diff --git a/node_modules/react-native-scoped-storage/android/build/outputs/logs/manifest-merger-release-report.txt b/node_modules/react-native-scoped-storage/android/build/outputs/logs/manifest-merger-release-report.txt
+new file mode 100644
+index 0000000..cfc1637
+--- /dev/null
++++ b/node_modules/react-native-scoped-storage/android/build/outputs/logs/manifest-merger-release-report.txt
+@@ -0,0 +1,17 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml:2:1-5:12
++INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml:2:1-5:12
++	package
++		ADDED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml:3:11-49
++		INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml
++	xmlns:android
++		ADDED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml:2:11-69
++uses-sdk
++INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
++INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml
++INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml
++	android:targetSdkVersion
++		INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml
++	android:minSdkVersion
++		INJECTED from /Users/neharuparel/Desktop/BebboProject/parenting-app-bebbo-mobile/node_modules/react-native-scoped-storage/android/src/main/AndroidManifest.xml
+diff --git a/node_modules/react-native-scoped-storage/android/build/tmp/compileReleaseJavaWithJavac/previous-compilation-data.bin b/node_modules/react-native-scoped-storage/android/build/tmp/compileReleaseJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..d865b3f
+Binary files /dev/null and b/node_modules/react-native-scoped-storage/android/build/tmp/compileReleaseJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/react-native-scoped-storage/android/src/main/java/com/ammarahmed/scopedstorage/RNScopedStorageModule.java b/node_modules/react-native-scoped-storage/android/src/main/java/com/ammarahmed/scopedstorage/RNScopedStorageModule.java
+index 9471287..412d8d9 100644
+--- a/node_modules/react-native-scoped-storage/android/src/main/java/com/ammarahmed/scopedstorage/RNScopedStorageModule.java
++++ b/node_modules/react-native-scoped-storage/android/src/main/java/com/ammarahmed/scopedstorage/RNScopedStorageModule.java
+@@ -50,13 +50,13 @@ public class RNScopedStorageModule extends ReactContextBaseJavaModule {
+     private static final String PATH_TREE = "tree";
+     private static final String PRIMARY_TYPE = "primary";
+     private static final String RAW_TYPE = "raw";
+-    private static ReactApplicationContext reactContext = null;
++    private final ReactApplicationContext reactContext;
+     private final int REQUEST_CODE = 27867;
+     ActivityEventListener activityEventListener;
+ 
+     public RNScopedStorageModule(ReactApplicationContext rc) {
+-        super(reactContext);
+-        reactContext = rc;
++        super(rc);
++        this.reactContext = rc;
+     }
+ 
+     /**
+@@ -238,7 +238,13 @@ public class RNScopedStorageModule extends ReactContextBaseJavaModule {
+             };
+ 
+             reactContext.addActivityEventListener(activityEventListener);
+-            reactContext.getCurrentActivity().startActivityForResult(intent, REQUEST_CODE);
++            Activity activity = getCurrentActivity();
++            if (activity != null) {
++                activity.startActivityForResult(intent, REQUEST_CODE);
++            } else {
++                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
++                reactContext.startActivity(intent);
++            }
+ 
+         } catch (Exception e) {
+             promise.reject("ERROR", e.getMessage());
+@@ -299,7 +305,13 @@ public class RNScopedStorageModule extends ReactContextBaseJavaModule {
+                 }
+             };
+             reactContext.addActivityEventListener(activityEventListener);
+-            reactContext.getCurrentActivity().startActivityForResult(intent, REQUEST_CODE);
++            Activity activity = getCurrentActivity();
++            if (activity != null) {
++                activity.startActivityForResult(intent, REQUEST_CODE);
++            } else {
++                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
++                reactContext.startActivity(intent);
++            }
+ 
+         } catch (Exception e) {
+             promise.reject("ERROR", e.getMessage());
+@@ -364,7 +376,13 @@ public class RNScopedStorageModule extends ReactContextBaseJavaModule {
+                 }
+             };
+             reactContext.addActivityEventListener(activityEventListener);
+-            reactContext.getCurrentActivity().startActivityForResult(intent, REQUEST_CODE);
++            Activity activity = getCurrentActivity();
++            if (activity != null) {
++                activity.startActivityForResult(intent, REQUEST_CODE);
++            } else {
++                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
++                reactContext.startActivity(intent);
++            }
+ 
+         } catch (Exception e) {
+             promise.reject("ERROR", e.getMessage());
