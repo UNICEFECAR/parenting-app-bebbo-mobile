@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-bold",
     fontWeight: 700,
     fontSize: 20,
-    lineHeight: 26,
+    lineHeight: 28,
     padding: 0,
   },
   marginBottom10: { marginBottom: 10 },

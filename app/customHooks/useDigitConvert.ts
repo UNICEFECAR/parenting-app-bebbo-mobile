@@ -27,7 +27,7 @@ const useDigitConverter = (): {
     const [language, setLanguage] = useState<DigitLanguage>('en'); // Default language is English
 
     const convertDigits = (inputString: any): string => {
-        if (!inputString) return ''
+        if (inputString === null || inputString === undefined) return ''
         // Convert input string to lowercase for case-insensitive comparison
         const lowerTarget = locale?.toLowerCase?.() as DigitLanguage;
 
