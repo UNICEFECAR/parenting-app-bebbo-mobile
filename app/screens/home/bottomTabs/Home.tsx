@@ -137,7 +137,16 @@ const Home = ({ route, navigation }: any): any => {
   const incrementalSyncDT = useAppSelector(selectIncrementalSyncDT);
   const bufferAgeBracket = useAppSelector(selectBufferAgeBracket);
   const activeChild = useAppSelector(selectActiveChild);
-
+  const flavor = process.env.FLAVOR || "bebbo";
+  const countryId = useAppSelector(
+    (state: any) => state.selectedCountry.countryId
+  );
+  const hcuModalOpened = useAppSelector(
+    (state: any) => state.utilsData.IsHCUModalOpened
+  );
+  const vaccineModalOpened = useAppSelector(
+    (state: any) => state.utilsData.IsVaccineModalOpened
+  );
   const backgroundColorChildInfo =
     themeContext?.colors.CHILDDEVELOPMENT_TINTCOLOR;
 
@@ -294,6 +303,17 @@ const Home = ({ route, navigation }: any): any => {
   useEffect(() => {
     const task = InteractionManager.runAfterInteractions(() => {
       updateContentOnAppVersionChange();
+
+      const firstModalVisible = flavor !== "bebbo" ? true : (countryId == appConfig.restOfTheWorldCountryId) ? true : false
+      console.log("home firstModalVisible--",firstModalVisible)
+      if(vaccineModalOpened == true && firstModalVisible == false) {
+        const obj = { key: "IsVaccineModalOpened", value: false };
+        dispatch(setInfoModalOpened(obj));
+      }
+      if(hcuModalOpened == true && firstModalVisible == false) {
+        const obj = { key: "IsHCUModalOpened", value: false };
+        dispatch(setInfoModalOpened(obj));
+      }
     });
 
     return () => task.cancel();
