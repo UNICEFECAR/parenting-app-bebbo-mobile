@@ -677,7 +677,7 @@ export const getLanguageCode = (languageCode: string): string => {
     { name: "Ukraine (Україна)", lcode: "uk", locale: "uk" },
     { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-uz", locale: "uz" },
     { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-ru", locale: "ru" },
-    { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-kaa", locale: "kaa" },
+    { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-kaa", locale: "uz" },
     { name: "English", lcode: "en", locale: "en" },
     { name: "Russian", lcode: "ru", locale: "ru" },
     { name: "Türkiye", lcode: "tr", locale: "tr" },
