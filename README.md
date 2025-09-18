@@ -170,6 +170,52 @@ Run and generate build iOS Bebbo Dev app
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release
 ```
 
+
+## Windows Setup Notes 🪟
+
+If you are building on **Windows (Android only)**, you may need a few extra steps:
+
+1. **Check installed versions**
+   ```bash
+   node -v   # should be 21.7.3
+   npm -v    # should be 10.8.2
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+
+3. **Clear Metro bundler cache** (if build fails or app crashes)
+   ```bash
+   npm start -- --reset-cache
+   ```
+
+4. **Clean Gradle build** (fixes Android build issues)
+   ```bash
+   cd android
+   gradlew clean
+   cd ..
+   ```
+
+5. **Environment variables**  
+   Ensure the following are configured in your Windows environment:
+   - `ANDROID_HOME` → Android SDK path  
+   - `JAVA_HOME` → JDK installation path  
+
+   Add to your **Path**:
+   ```
+   %ANDROID_HOME%\platform-tools
+   %ANDROID_HOME%\emulator
+   %JAVA_HOME%\bin
+   ```
+
+6. **Run Android app**
+   ```bash
+   ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
+   ```
+
+
 ## License
 
 Distributed under the GPL-3.0 license. See `LICENSE` for more information.
