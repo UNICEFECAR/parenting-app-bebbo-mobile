@@ -133,7 +133,11 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   const headerTextColor = themeContext?.colors.CHILDDEVELOPMENT_TEXTCOLOR;
   const ChildDevData = useAppSelector(selectChildDevData);
   const PinnedChildDevData = useAppSelector(selectPinnedChildDevData);
-  const MileStonesData = useAppSelector(selectMileStonesData);
+  const MileStonesData = useAppSelector((state: any) =>
+    state.utilsData.MileStonesData != ""
+      ? JSON.parse(state.utilsData.MileStonesData)
+      : []
+  );
   const VideoArticlesData = useAppSelector(selectPinnedChildDevData);
   const ActivitiesData = useAppSelector(selectActivitiesDataAll);
   const childAge = useAppSelector(selectChildAge);
