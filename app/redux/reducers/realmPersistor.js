@@ -1,5 +1,5 @@
-import Realm from "realm";
-import {ObjectSchema} from 'realm';
+import { getRealmLib, safeOpenRealm } from './realmSafe';
+
 const FRAGMENT_SIZE = 16000000; // Limit of 16 MB per string
 
 const ITEM_SCHEMA = {
@@ -11,14 +11,22 @@ const ITEM_SCHEMA = {
   }
 };
 
-class ItemSchema extends Realm.Object {
-  static schema = ITEM_SCHEMA;
+let ItemSchemaClass = null;
+async function getItemSchemaClass() {
+  if (!ItemSchemaClass) {
+    const Realm = await getRealmLib();
+    class ItemSchema extends Realm.Object {
+      static schema = ITEM_SCHEMA;
 
-  get content() {
-    return this.fragments.join("");
+      get content() {
+        return this.fragments.join("");
+      }
+    }
+    ItemSchemaClass = ItemSchema;
   }
+  return ItemSchemaClass;
 }
-          
+
 function fragmentString(str) {
   const fragments = [];
   for (let i = 0; (i * FRAGMENT_SIZE) < str.length; i++) {
@@ -45,12 +53,14 @@ async function withCallback(callback, func) {
   }
 }
 
-function createRealmAccess(path = Realm.defaultPath) {
+function createRealmAccess(path) {
   let __realm = null;
   return async function accessRealm() {
     if (!__realm) {
+      // const Realm = await getRealmLib();
+      const ItemSchema = await getItemSchemaClass();
       try {
-        __realm = await Realm.open({
+        __realm = await safeOpenRealm({
           schema: [ItemSchema],
           schemaVersion: 1,
           path,
@@ -66,7 +76,7 @@ function createRealmAccess(path = Realm.defaultPath) {
           },
         });
       } catch (error) {
-        console.log("error")
+        console.log("realmPersistor accessRealm error", error);
         throw error;
       }
     }
@@ -79,6 +89,7 @@ export function createRealmPersistStorage({ path } = {}) {
 
   async function accessItemInstances() {
     const realm = await accessRealm();
+    const ItemSchema = await getItemSchemaClass();
     return realm.objects(ItemSchema);
   }
 
@@ -96,6 +107,7 @@ export function createRealmPersistStorage({ path } = {}) {
 
   async function setItem(key, value, callback) {
     return withCallback(callback, async function() {
+      const Realm = await getRealmLib();
       const realm = await accessRealm();
       realm.write(() => {
         realm.create(

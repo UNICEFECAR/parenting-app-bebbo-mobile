@@ -217,20 +217,20 @@ android {
         }
         bangla {
             applicationId 'org.unicef.bangladesh.babuni'
-            versionCode 2
+            versionCode 3
             versionName "1.0.0"
             signingConfig signingConfigs.bangla
         }
         merhababebek {
             applicationId 'org.unicef.ecar.merhababebek'
-            versionCode 3
-            versionName "1.0.1"
+            versionCode 4
+            versionName "1.0.2"
             signingConfig signingConfigs.merhababebek
         }
         wawamor {
             applicationId 'org.unicef.ec.wawamor'
-            versionCode 9
-            versionName "1.0.3"
+            versionCode 10
+            versionName "1.0.4"
             signingConfig signingConfigs.wawamor
         }
         reraiumntwana {

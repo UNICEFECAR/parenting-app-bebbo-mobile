@@ -1,18 +1,19 @@
 import { appConfig } from '../../instances';
-import Realm, { ObjectSchema } from 'realm';
-import { dataRealmConfig } from '../config/dataDbConfig';
+import { deleteDataRealm, openDataRealm } from '../config/dataDbConfig';
 import { StandardDevHeightForAgeSchema } from '../schema/StandardDevHeightForAgeSchema';
 import { StandardDevWeightForHeightSchema } from '../schema/StandardDevWeightForHeightSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
 
+// ONLY use for TypeScript types:
+import type RealmInstance from 'realm';
 const deleteRealmFilesBeforeOpen = false;
 
 class DataRealmCommon {
-    public realm?: Realm;
+    public realm?: RealmInstance;
     private static instance: DataRealmCommon;
 
     public constructor() {
-        this.openRealm();
+        // this.openRealm();
     }
 
     static getInstance(): DataRealmCommon {
@@ -22,33 +23,28 @@ class DataRealmCommon {
         return DataRealmCommon.instance;
     }
 
-    public async openRealm(): Promise<Realm | null> {
-        return new Promise((resolve) => {
-            if (this.realm) {
-                resolve(this.realm);
-            } else {
-                // Delete realm file
-                if (deleteRealmFilesBeforeOpen) {
-                    Realm.deleteFile(dataRealmConfig);
-                }
+    public async openRealm(): Promise<RealmInstance | null | undefined> {
+        if (this.realm) {
+            return this.realm;
+        }
 
-                // Open realm file
-                Realm.open(dataRealmConfig)
-                    .then(realm => {
-                        this.realm = realm;
-                        resolve(realm);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        resolve(null);
-                    });
+        try {
+            if (deleteRealmFilesBeforeOpen) {
+                await deleteDataRealm();
             }
-        });
+
+            // Open and cache
+            this.realm = await openDataRealm();
+            return this.realm;
+        } catch (error) {
+            console.log("openRealm error:", error);
+            return null;
+        }
     }
     public closeRealm(): any {
         if (this.realm) {
             this.realm.close();
-            delete this.realm;
+            this.realm = undefined;
         }
     }
 
@@ -62,7 +58,7 @@ class DataRealmCommon {
         return rval;
     }
 
-    public async getObjectLength<Entity>(entitySchema: ObjectSchema): Promise<number> {
+    public async getObjectLength<Entity>(entitySchema: RealmInstance.ObjectSchema): Promise<number> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
             try {
@@ -83,7 +79,7 @@ class DataRealmCommon {
         // });
     }
 
-    public async create<Entity>(entitySchema: ObjectSchema, records: Entity[], _articleRelation?: string): Promise<any> {
+    public async create<Entity>(entitySchema: RealmInstance.ObjectSchema, records: Entity[], _articleRelation?: string): Promise<any> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
             try {
@@ -110,7 +106,7 @@ class DataRealmCommon {
             }
         // });
     }
-    public async createArticles<Entity>(entitySchema: ObjectSchema, records: Entity[], articleRelation: string): Promise<any> {
+    public async createArticles<Entity>(entitySchema: RealmInstance.ObjectSchema, records: Entity[], articleRelation: string): Promise<any> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
             try {
@@ -188,7 +184,7 @@ class DataRealmCommon {
             }
         // });
     }
-    public async updateSettings<Entity>(_entitySchema: ObjectSchema, key: string, value: string): Promise<string> {
+    public async updateSettings<Entity>(_entitySchema: RealmInstance.ObjectSchema, key: string, value: string): Promise<string> {
         let result: any='';
         // return new Promise(async (resolve, reject) => {
             try {
@@ -234,7 +230,7 @@ class DataRealmCommon {
             }
         // });
     }
-    public async getData<Entity>(entitySchema: ObjectSchema, sortedOrder?: any): Promise<any> {
+    public async getData<Entity>(entitySchema: RealmInstance.ObjectSchema, sortedOrder?: any): Promise<any> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
             try {
@@ -261,7 +257,7 @@ class DataRealmCommon {
             }
         // });
     }
-    public async getFilteredData<Entity>(entitySchema: ObjectSchema, filterData: any): Promise<any> {
+    public async getFilteredData<Entity>(entitySchema: RealmInstance.ObjectSchema, filterData: any): Promise<any> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
             // console.log('Error is here on getFiltered data',filterData)
@@ -412,7 +408,7 @@ class DataRealmCommon {
         // });
 
     }
-    public async deleteOneByOne(entitySchema: ObjectSchema): Promise<any> {
+    public async deleteOneByOne(entitySchema: RealmInstance.ObjectSchema): Promise<any> {
         // return new Promise(async (resolve, reject) => {
             let result: any='';
             try {

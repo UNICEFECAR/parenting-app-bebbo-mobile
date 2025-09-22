@@ -77,7 +77,7 @@ import {
   randomArrayShuffle,
   miniSearchConfigActivity,
 } from "../../../services/Utils";
-import Realm from "realm";
+
 import { activitiesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import {
@@ -90,6 +90,7 @@ import { ActivityHistoryEntity } from "../../../database/schema/ActivitySearchHi
 import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray, selectChildAge, selectMileStonesData } from "../../../services/selectors";
+import { getRealmLib } from "../../../redux/reducers/realmSafe";
 
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -851,6 +852,7 @@ const Activities = ({ route, navigation }: any): any => {
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
+    const Realm = await getRealmLib();
     realm.write(() => {
       const storeKeyword = realm.create(
         "ActivitySearchHistory",

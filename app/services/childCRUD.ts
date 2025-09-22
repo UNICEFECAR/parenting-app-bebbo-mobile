@@ -60,7 +60,7 @@ export const getCurrentChildAgeInDays = (birthDayMillis: number): any => {
   if (childBirthDay) {
     const date = DateTime.fromMillis(childBirthDay);
     const convertInDays = timeNow.diff(date, "days").toObject().days;
-    if (convertInDays !== undefined && convertInDays > 0) {
+    if (convertInDays !== undefined) {
       days = Math.round(convertInDays);
     }
     else {
@@ -94,7 +94,7 @@ export const checkBetween = async (param: any, users: any, childAge: any): Promi
         const result = await Promise.all(sortedChildAge.map((item: any) => {
           if (between(itemset, parseInt(item["days_from"]), parseInt(item["days_to"]))) {
             if (item.id != "446") {
-              if(itemset == 0 && isPregnancy()){
+              if(itemset < 0 && isPregnancy()){
                 const childTaxonomy = sortedChildAge.find(i=> i.id == appConfig.pregnancyId)
                 ageData.push(childTaxonomy || sortedChildAge[0]);
               } else if (param == 0) {
@@ -192,7 +192,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       await setUserProperties({
         ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
         is_premature: child.isPremature,
-        child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+        child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender,
         auto_child: child.autoChild
@@ -236,7 +236,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         await setUserProperties({
           ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
           is_premature: child.isPremature,
-          child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+          child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
           relationship_with_child: userRelationToParent,
           parent_gender: child.parent_gender,
           auto_child: child.autoChild
@@ -281,7 +281,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       await setUserProperties({
         ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
         is_premature: child.isPremature,
-        child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+        child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
         relationship_with_child: userRelationToParent,
         parent_gender: child.parent_gender,
         auto_child: child.autoChild
@@ -575,7 +575,7 @@ export const updateActiveChild = async (child: any, key: any, value: any, dispat
   await setUserProperties({
     ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
     is_premature: child.isPremature,
-    child_gender: child.gender == boyChildGender ? "Boy" : "Girl",
+    child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
     relationship_with_child: userRelationToParent,
     parent_gender: child.parent_gender,
     auto_child: child.autoChild

@@ -53,6 +53,7 @@ import {
 import axiosService from "./axiosService";
 import LocalNotifications from "./LocalNotifications";
 import { getAllChildren, getAllConfigData, setActiveChild } from "./childCRUD";
+import { apiUrlDevelop } from "react-native-dotenv";
 
 export const client =
   "https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/";
@@ -318,8 +319,15 @@ export const downloadArticleImages = async (): Promise<any> => {
   databaseData.map((x: any) => {
     if (x.embedded_images && x.embedded_images.length > 0) {
       x.embedded_images.map((y: any) => {
-        if (y.split("https://")[1] || y.split("http://")[1]) {
+        if (/^https?:\/\//i.test(y)) {
           imageArray.push({ uri: y });
+        } else {
+          const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+          if (y.startsWith("/")) {
+            imageArray.push({ uri: baseUrl + y});
+          } else {
+            imageArray.push({ uri: baseUrl + "/" + y});
+          }
         }
       });
     }
@@ -339,8 +347,15 @@ export const downloadArticleImages = async (): Promise<any> => {
   databaseDataact.map((x: any) => {
     if (x.embedded_images && x.embedded_images.length > 0) {
       x.embedded_images.map((y: any) => {
-        if (y.split("https://")[1] || y.split("http://")[1]) {
+        if (/^https?:\/\//i.test(y)) {
           imageArray.push({ uri: y });
+        } else {
+          const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+          if (y.startsWith("/")) {
+            imageArray.push({ uri: baseUrl + y});
+          } else {
+            imageArray.push({ uri: baseUrl + "/" + y});
+          }
         }
       });
     }
@@ -360,8 +375,15 @@ export const downloadArticleImages = async (): Promise<any> => {
   databaseDatabasicpg.map((x: any) => {
     if (x.embedded_images && x.embedded_images.length > 0) {
       x.embedded_images.map((y: any) => {
-        if (y.split("https://")[1] || y.split("http://")[1]) {
+        if (/^https?:\/\//i.test(y)) {
           imageArray.push({ uri: y });
+        } else {
+          const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+          if (y.startsWith("/")) {
+            imageArray.push({ uri: baseUrl + y});
+          } else {
+            imageArray.push({ uri: baseUrl + "/" + y});
+          }
         }
       });
     }
@@ -381,8 +403,15 @@ export const downloadArticleImages = async (): Promise<any> => {
   databaseDatavideoart.map((x: any) => {
     if (x.embedded_images && x.embedded_images.length > 0) {
       x.embedded_images.map((y: any) => {
-        if (y.split("https://")[1] || y.split("http://")[1]) {
+        if (/^https?:\/\//i.test(y)) {
           imageArray.push({ uri: y });
+        } else {
+          const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+          if (y.startsWith("/")) {
+            imageArray.push({ uri: baseUrl + y});
+          } else {
+            imageArray.push({ uri: baseUrl + "/" + y});
+          }
         }
       });
     }

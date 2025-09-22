@@ -100,6 +100,7 @@ export default (): any => {
   const hasLoggedEvent = useRef(false);
   let currentCount = 0;
   const messaging = getMessaging(getApp());
+  // console.log("token is--",messaging.getToken())
   const callUrl = (url: any): any => {
     if (url) {
       //Alert.alert("in deep link",url);

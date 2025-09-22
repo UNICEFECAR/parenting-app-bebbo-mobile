@@ -41,7 +41,7 @@ import { recordError } from "./app/services/firebaseAnalytics";
 import { primaryColor } from "@styles/style";
 const flavor = process.env.FLAVOR || "bebbo";
 export const store = configureAppStore();
-export const persistor = persistStore(store);
+// export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<
@@ -109,12 +109,15 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
 };
 
 const App = () => {
+  const [persistor, setPersistor] = React.useState<any>(null);
   React.useEffect(() => {
+    const p = persistStore(store);
+    setPersistor(p);
     Orientation.lockToPortrait();
     // SplashScreen.hide();
     googleAuth.configure();
-  });
-
+  },[]);
+  if (!persistor) return <ActivityIndicator size="large" color="#0000ff" />;
   const onBeforeLift = () => {
     const taxonomyAllData = store.getState().utilsData.taxonomy.allTaxonomyData
       ? JSON.parse(store.getState().utilsData.taxonomy.allTaxonomyData)
