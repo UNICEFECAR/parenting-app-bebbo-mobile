@@ -274,7 +274,7 @@ const localizationall = [
         displayName: 'Qaraqalpaq',
         languageCode: 'uz-kaa',
         locale: 'UZkaa',
-        luxonLocale: 'kaa-UZ',
+        luxonLocale: 'uz-Latn-UZ',
         pluralShow: true,
       },
     ],

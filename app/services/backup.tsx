@@ -9,7 +9,7 @@ import {
   ConfigSettingsSchema,
 } from "../database/schema/ConfigSettingsSchema";
 import { getAllChildren, setActiveChild } from "./childCRUD";
-import Realm from "realm";
+import { safeOpenRealm, safeDeleteRealm } from "../redux/reducers/realmSafe";
 import {
   ChildEntity,
   ChildEntitySchema,
@@ -23,7 +23,7 @@ import { getChild } from "../services/Utils";
  */
 class Backup {
   private static instance: Backup;
-  importedrealm?: Realm;
+  importedrealm?: any;
 
   private constructor() {
     console.log("initialized");
@@ -97,7 +97,11 @@ class Backup {
 
   public closeImportedRealm(): any {
     if (this.importedrealm) {
-      this.importedrealm.close();
+      try {
+        this.importedrealm.close();
+      } catch (e) {
+        console.warn('closeImportedRealm warning', e);
+      }
       delete this.importedrealm;
     }
   }
@@ -167,11 +171,11 @@ class Backup {
                     prevPage: "ImportScreen",
                   });
                   try {
-                    Realm.deleteFile({
+                    await safeDeleteRealm({
                       path: RNFS.TemporaryDirectoryPath + "/" + "user1.realm",
                     });
                   } catch (error) {
-                    console.log("error");
+                    console.log("error",error);
                   }
                   return "Imported";
                 } else {
@@ -188,11 +192,11 @@ class Backup {
                     prevPage: "ImportScreen",
                   });
                   try {
-                    Realm.deleteFile({
+                    await safeDeleteRealm({
                       path: RNFS.TemporaryDirectoryPath + "/" + "user1.realm",
                     });
                   } catch (error) {
-                    console.log("error");
+                    console.log("error",error);
                   }
                   return "Imported";
                 }
@@ -210,11 +214,11 @@ class Backup {
                   prevPage: "ImportScreen",
                 });
                 try {
-                  Realm.deleteFile({
+                  await safeDeleteRealm({
                     path: RNFS.TemporaryDirectoryPath + "/" + "user1.realm",
                   });
                 } catch (error) {
-                  console.log("error");
+                  console.log("error",error);
                 }
                 return "Imported";
               }
@@ -297,12 +301,16 @@ class Backup {
         return oldChildrenData;
       } else {
         this.closeImportedRealm();
-        this.importedrealm = await new Realm({ path: "user1.realm" });
+        this.importedrealm = await safeOpenRealm({
+          path: "user1.realm",
+        });
         if (this.importedrealm) {
           await userRealmCommon.openRealm();
           await userRealmCommon.deleteAllAtOnce();
           this.closeImportedRealm();
-          this.importedrealm = await new Realm({ path: "user1.realm" });
+          this.importedrealm = await safeOpenRealm({
+            path: "user1.realm",
+          });
           const oldChildrenData = this.importedrealm.objects("ChildEntity");
           return oldChildrenData;
         }
@@ -376,12 +384,16 @@ class Backup {
         const jsonParseFileData = JSON.parse(await decryptedData);
         oldChildrenData = jsonParseFileData;
       } else {
-        this.importedrealm = await new Realm({ path: "user1.realm" });
+        this.importedrealm = await safeOpenRealm({
+          path: "user1.realm",
+        });
         if (this.importedrealm) {
           await userRealmCommon.openRealm();
           await userRealmCommon.deleteAllAtOnce();
           this.closeImportedRealm();
-          this.importedrealm = await new Realm({ path: "user1.realm" });
+          this.importedrealm = await safeOpenRealm({
+            path: "user1.realm",
+          });
           oldChildrenData = this.importedrealm.objects("ChildEntity");
         }
       }
@@ -412,7 +424,7 @@ class Backup {
               );
             this.closeImportedRealm();
             try {
-              Realm.deleteFile({ path: "user1.realm" });
+              await safeDeleteRealm({ path: "user1.realm" });
             } catch (error) {
               console.log("error");
             }

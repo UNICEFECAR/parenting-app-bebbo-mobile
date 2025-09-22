@@ -13,7 +13,6 @@ import FirstTimeModal from "@components/shared/FirstTimeModal";
 import { FlexCol } from "@components/shared/FlexBoxStyle";
 import Icon, { IconClearPress, OuterIconRow } from "@components/shared/Icon";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
-import Realm from "realm";
 import TabScreenHeader from "@components/TabScreenHeader";
 import VideoPlayer from "@components/VideoPlayer";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
@@ -66,6 +65,7 @@ import {
 import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
 import { selectActiveChild, selectArticleCategoryArray, selectArticleDataAll, selectChildAge, selectPinnedChildDevData } from "../../../services/selectors";
+import { getRealmLib } from "../../../redux/reducers/realmSafe";
 type ArticlesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -213,6 +213,7 @@ const Articles = ({ route, navigation }: any): any => {
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
+    const Realm = await getRealmLib();
     realm.write(() => {
       const storeKeyword = realm.create(
         "SearchHistory",
