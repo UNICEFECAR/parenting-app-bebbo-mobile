@@ -60,7 +60,7 @@ export const getCurrentChildAgeInDays = (birthDayMillis: number): any => {
   if (childBirthDay) {
     const date = DateTime.fromMillis(childBirthDay);
     const convertInDays = timeNow.diff(date, "days").toObject().days;
-    if (convertInDays !== undefined && convertInDays > 0) {
+    if (convertInDays !== undefined) {
       days = Math.round(convertInDays);
     }
     else {
@@ -94,7 +94,7 @@ export const checkBetween = async (param: any, users: any, childAge: any): Promi
         const result = await Promise.all(sortedChildAge.map((item: any) => {
           if (between(itemset, parseInt(item["days_from"]), parseInt(item["days_to"]))) {
             if (item.id != "446") {
-              if(itemset == 0 && isPregnancy()){
+              if(itemset < 0 && isPregnancy()){
                 const childTaxonomy = sortedChildAge.find(i=> i.id == appConfig.pregnancyId)
                 ageData.push(childTaxonomy || sortedChildAge[0]);
               } else if (param == 0) {
