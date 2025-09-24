@@ -140,7 +140,11 @@ const ChildDevelopment = ({ route, navigation }: any): any => {
   );
   const VideoArticlesData = useAppSelector(selectPinnedChildDevData);
   const ActivitiesData = useAppSelector(selectActivitiesDataAll);
-  const childAge = useAppSelector(selectChildAge);
+  const childAge = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ""
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : []
+  );
   const activeChild = useAppSelector(selectActiveChild);
   console.log(childAge, "......", activeChild);
   const childDevModalOpened = useAppSelector(
