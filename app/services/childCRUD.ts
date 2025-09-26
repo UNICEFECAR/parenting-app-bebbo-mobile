@@ -60,7 +60,7 @@ export const getCurrentChildAgeInDays = (birthDayMillis: number): any => {
   if (childBirthDay) {
     const date = DateTime.fromMillis(childBirthDay);
     const convertInDays = timeNow.diff(date, "days").toObject().days;
-    if (convertInDays !== undefined) {
+    if (convertInDays !== undefined && (isPregnancy() || convertInDays > 0)) {
       days = Math.round(convertInDays);
     }
     else {
