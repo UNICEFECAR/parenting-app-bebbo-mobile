@@ -40,27 +40,6 @@ The app can also operate in an offline mode in environments with limited interne
   - Node version - 21.7.3
   - NPM version - 10.8.2
 
-<!--
-## Used libraries
-
-Several third party libraries and services are incorporated. These are the most important, the full list can be seen by examining package.json (in the root of the project)
-
-* [Firebase Analytics](https://www.npmjs.com/package/%40react-native-firebase/analytics) service
-* [Google SignIn](https://www.npmjs.com/package/@react-native-community/google-signin) service
-* [React Navigation](https://reactnavigation.org/) for navigation screens
-* [Axios](https://github.com/axios/axios) - HTTP client
-* [i18n-js](https://www.npmjs.com/package/i18n-js) - Internationalization
-* [lodash.com](https://lodash.com/) - Utilities
-* [luxon](https://moment.github.io/luxon/) - Date/time calculations
-* [Facebook SignIn](https://github.com/facebook/react-native-fbsdk/)
-* [FastImage](https://github.com/DylanVann/react-native-fast-image#readme) - for image performance optimizations
-* [Google Drive](https://www.npmjs.com/package/react-native-google-drive-api-wrapper)
-* [react-native-localize](https://github.com/zoontek/react-native-localize) - localization
-* [react-native-paper](https://callstack.github.io/react-native-paper/) - UI components
-* [realm](https://www.npmjs.com/package/realm) - local database
-* [victory-native](https://www.npmjs.com/package/victory-native) - for charts
--->
-
 ## Getting started
 
 - Mac or Windows can be used to setup a development environment. iOS and Android apps can be developed using MacBook. Only Android app can be developed using Windows.
@@ -171,49 +150,27 @@ ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBu
 ```
 
 
-## Windows Setup Notes 🪟
+## Platform-specific Run Commands
 
-If you are building on **Windows (Android only)**, you may need a few extra steps:
+### Linux / MacOS 
+```bash
+ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
+```
 
-1. **Check installed versions**
-   ```bash
-   node -v   # should be 21.7.3
-   npm -v    # should be 10.8.2
-   ```
+### Windows 🪟
+```bash
+set ENVFILE=env/.env.bebboDev && set FLAVOR=bebboDev && npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install --legacy-peer-deps
-   ```
-
-3. **Clear Metro bundler cache** (if build fails or app crashes)
-   ```bash
-   npm start -- --reset-cache
-   ```
-
-4. **Clean Gradle build** (fixes Android build issues)
-   ```bash
-   cd android
-   gradlew clean
-   cd ..
-   ```
-
-5. **Environment variables**  
-   Ensure the following are configured in your Windows environment:
-   - `ANDROID_HOME` → Android SDK path  
-   - `JAVA_HOME` → JDK installation path  
-
-   Add to your **Path**:
-   ```
-   %ANDROID_HOME%\platform-tools
-   %ANDROID_HOME%\emulator
-   %JAVA_HOME%\bin
-   ```
-
-6. **Run Android app**
-   ```bash
-   ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
-   ```
+### Notes
+- Windows uses `set ... && set ... &&` syntax for environment variables, while Linux/Mac uses inline assignment.  
+- If builds fail on Windows, run:
+  ```bash
+  cd android
+  gradlew clean
+  cd ..
+  ```
+- Ensure `ANDROID_HOME` and `JAVA_HOME` are set in Windows system environment variables.
 
 
 ## License
