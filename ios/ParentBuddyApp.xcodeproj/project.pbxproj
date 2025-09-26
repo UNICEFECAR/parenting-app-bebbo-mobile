@@ -39,7 +39,6 @@
 		D6B2954E2E2E88B600C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953D2E2E88A500C8889C /* splash.json */; };
 		D6B2954F2E2E88B600C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953D2E2E88A500C8889C /* splash.json */; };
 		D6B295502E2E88BD00C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295402E2E88A500C8889C /* splash.json */; };
-		D6B295512E2E88C100C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953F2E2E88A500C8889C /* README.md */; };
 		D6B295522E2E88C800C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953C2E2E88A500C8889C /* README.md */; };
 		D6B295532E2E88C800C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953C2E2E88A500C8889C /* README.md */; };
 		D6B295552E2E88D100C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B295392E2E88A500C8889C /* README.md */; };
@@ -339,7 +338,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ParentBuddyAppTests; sourceTree = "<group>"; };
+		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = ParentBuddyAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1259,7 +1268,6 @@
 				D6F143392E2A366200986814 /* roboto-bold.woff in Resources */,
 				D6F1433A2E2A366200986814 /* roboto-bold.woff2 in Resources */,
 				D6F143502E2A37A100986814 /* GoogleService-Info.plist in Resources */,
-				D6B295512E2E88C100C8889C /* README.md in Resources */,
 				D6F1433B2E2A366200986814 /* roboto-regular.ttf in Resources */,
 				D6F1433C2E2A366200986814 /* roboto-bold.ttf in Resources */,
 				D6F1433D2E2A366200986814 /* roboto-regular.woff in Resources */,
@@ -2387,7 +2395,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -2468,7 +2479,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParentBuddyApp/ParentBuddyApp-Bridging-Header.h";
