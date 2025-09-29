@@ -319,3 +319,10 @@ export const SideSpacing30 = styled.View`
 margin-left:30px;
 margin-right:30px;
 `
+export const ShiftFromTopBottom20Padding = styled.View`
+margin-bottom:20px;
+margin-top:20px;
+padding: 0 25px;
+border-width: 0px;
+border-color: red;
+`
