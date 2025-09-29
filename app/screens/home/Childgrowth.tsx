@@ -26,6 +26,7 @@ import {
   ShiftFromBottom5,
   ShiftFromTop10,
   ShiftFromTopBottom20,
+  ShiftFromTopBottom20Padding,
   SideSpacing10,
 } from "../../instances/bebbo/styles/typography";
 import ModalPopupContainer, {
@@ -274,9 +275,9 @@ const Childgrowth = ({ navigation }: any): any => {
                       {t("growthScreennoGrowthData")}
                     </Heading3Centerr>
                   ) : null}
-                  <ShiftFromTopBottom20>
+                  <ShiftFromTopBottom20Padding>
                     <Heading4>{t("growthScreennoGrowthDataHelpText")}</Heading4>
-                  </ShiftFromTopBottom20>
+                  </ShiftFromTopBottom20Padding>
                 </FlexDirCol>
                 {renderDummyChart()}
               </>
