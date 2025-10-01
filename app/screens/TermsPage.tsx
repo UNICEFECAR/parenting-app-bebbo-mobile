@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   },
   scrollViewStyle: {
     padding: 0,
+    paddingRight: 10
   },
 });
 const TermsPage = ({ navigation }: Props): any => {
