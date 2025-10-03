@@ -166,7 +166,7 @@ android {
             enable true
             reset()
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64", "arm64-v8a-16k", "x86_64-16k"
-            universalApk true
+            universalApk false
         }
     }
     signingConfigs {
@@ -229,7 +229,7 @@ android {
         }
         wawamor {
             applicationId 'org.unicef.ec.wawamor'
-            versionCode 10
+            versionCode 11
             versionName "1.0.4"
             signingConfig signingConfigs.wawamor
         }
