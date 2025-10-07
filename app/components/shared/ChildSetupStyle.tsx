@@ -74,7 +74,15 @@ export const LabelWithInfoText = styled(LabelTextVac)`
 `;
 export const LabelChildText = styled(LabelTextVac)`
   text-align:left;
-  margin-top: 3px;
+  margin-top: 0px;
+  flex-shrink: 1;
+  flex-grow: 1;
+`;
+export const LabelRow = styled.View`
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
 `;
 export const LinkText = styled.Text`
   font-size: 16px;
@@ -229,8 +237,8 @@ margin-end:20px;
 
 export const ParentSetUpDivider = styled.View`
 flex:1;
-border-color:#1CABE2;
-background-color:#1CABE2;
+border-color:${(props:any):any => props.theme.colors.SECONDARY_RE_COLOR};
+background-color:${(props:any):any => props.theme.colors.SECONDARY_RE_COLOR};
 border-radius:4px;
 height:3px;
 `;

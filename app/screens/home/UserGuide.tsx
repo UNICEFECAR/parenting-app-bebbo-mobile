@@ -19,11 +19,8 @@ import LinearGradient from "react-native-linear-gradient";
 import VectorImage from "react-native-vector-image";
 import { ThemeContext } from "styled-components/native";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
-import {
-  bgcolorWhite,
-  bgcolorWhite2,
-  buttonBg,
-} from "../../instances/bebbo/styles/style";
+import { childListBgColor, bgcolorWhite, bgcolorWhite2, buttonBg, secondaryColor, } from "@styles/style";
+
 type DashboardNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -96,7 +93,7 @@ const UserGuide = (): any => {
     {
       title: t("walkthroughTextstitle2"),
       image: require("@images/ic_tools_color.svg"),
-      colors: ["#00AEEF", "#50C7F3", "#97DEF8", "#B3E7FA"],
+      colors: [secondaryColor, "#50C7F3", "#97DEF8", childListBgColor],
       textcolor: "#000",
       subtitle: t("walkthroughTextssubtitle2"),
     },

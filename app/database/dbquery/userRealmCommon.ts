@@ -1,9 +1,11 @@
 import { DateTime } from 'luxon';
 
 import { Component } from 'react';
-import Realm, { ObjectSchema } from 'realm';
+import type RealmType from 'realm';
+import type { ObjectSchema } from 'realm';
 import { getDiffinDays } from '../../services/childCRUD';
-import { userRealmConfig } from '../config/dbConfig';
+import { deleteUserRealm, openUserRealm } from '../config/dbConfig';
+
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../schema/ActivitiesSchema';
 import { ArticleEntity, ArticleEntitySchema } from '../schema/ArticleSchema';
 import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
@@ -12,12 +14,12 @@ import { Alert } from 'react-native';
 const deleteRealmFilesBeforeOpen = false;
 
 class UserRealmCommon extends Component {
-    public realm?: Realm;
+    public realm?: RealmType | null = null;
     private static instance: UserRealmCommon;
 
     private constructor(props: any) {
         super(props);
-        this.openRealm();
+        // this.openRealm();
     }
 
     static getInstance(): UserRealmCommon {
@@ -27,32 +29,26 @@ class UserRealmCommon extends Component {
         return UserRealmCommon.instance;
     }
 
-    public async openRealm(): Promise<Realm | null> {
-        return new Promise((resolve) => {
-            if (this.realm) {
-                resolve(this.realm);
-            } else {
-                // Delete realm file
-                if (deleteRealmFilesBeforeOpen) {
-                    Realm.deleteFile(userRealmConfig);
-                }
-                // Open realm file
-                Realm.open(userRealmConfig)
-                    .then(realm => {
-                        this.realm = realm;
-                        resolve(realm);
-                    })
-                    .catch(error => {
-                        Alert.alert('Error', 'Error opening user realm'+JSON.stringify(error));
-                        resolve(error);
-                    });
+    public async openRealm(): Promise<RealmType | null | undefined> {
+        if (this.realm) {
+            return this.realm;
+        }
+        try {
+            if (deleteRealmFilesBeforeOpen) {
+                await deleteUserRealm();
             }
-        });
+            this.realm = await openUserRealm();
+            return this.realm;
+        } catch (error) {
+            console.log('Error', 'Error opening user realm: ' + JSON.stringify(error));
+            return null;
+        }
     }
+
     public closeRealm(): any {
         if (this.realm) {
             this.realm.close();
-            delete this.realm;
+            this.realm = null;
         }
     }
 
@@ -118,9 +114,9 @@ class UserRealmCommon extends Component {
             if (realm) {
                 realm?.write(() => {
                     records.forEach(record => {
-                                             realm?.create<Entity>(entitySchema.name, record, true);
+                        realm?.create<Entity>(entitySchema.name, record, true);
                     })
-                    result = records;                    
+                    result = records;
                 });
                 return result;
             }

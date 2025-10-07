@@ -6,7 +6,6 @@
  */
 
 import "react-native-gesture-handler";
-import crashlytics from "@react-native-firebase/crashlytics";
 import { Action, ThunkAction } from "@reduxjs/toolkit";
 import React from "react";
 import i18n from "i18next";
@@ -18,7 +17,6 @@ import {
   View,
 } from "react-native";
 import ErrorBoundary from "react-native-error-boundary";
-import "react-native-gesture-handler";
 import Orientation from "react-native-orientation-locker";
 import { MenuProvider } from "react-native-popup-menu";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -39,9 +37,11 @@ import { googleAuth } from "./app/services/googleAuth";
 import { EventProvider } from "react-native-outside-press";
 import RNRestart from "react-native-restart";
 import { setTaxonomyIds } from "./app/redux/reducers/utilsSlice";
+import { recordError } from "./app/services/firebaseAnalytics";
+import { primaryColor } from "@styles/style";
 const flavor = process.env.FLAVOR || "bebbo";
 export const store = configureAppStore();
-export const persistor = persistStore(store);
+// export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
-    color: "#2B2F84",
+    color: primaryColor,
   },
   message: {
     fontSize: 14,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: "#2B2F84",
+    backgroundColor: primaryColor,
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 6,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 const { appTheme } = require(`./app/instances/${flavor}/styles/theme`);
 
 const CustomFallback = (props: { error: Error; resetError: Function }) => {
-  crashlytics().recordError(props.error);
+  recordError(props.error);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t("generalError")}</Text>
@@ -109,12 +109,15 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
 };
 
 const App = () => {
+  const [persistor, setPersistor] = React.useState<any>(null);
   React.useEffect(() => {
+    const p = persistStore(store);
+    setPersistor(p);
     Orientation.lockToPortrait();
     // SplashScreen.hide();
     googleAuth.configure();
-  });
-
+  },[]);
+  if (!persistor) return <ActivityIndicator size="large" color="#0000ff" />;
   const onBeforeLift = () => {
     const taxonomyAllData = store.getState().utilsData.taxonomy.allTaxonomyData
       ? JSON.parse(store.getState().utilsData.taxonomy.allTaxonomyData)

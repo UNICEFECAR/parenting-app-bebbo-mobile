@@ -61,6 +61,7 @@ import {
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { logEvent } from "../services/EventSyncService";
 import { FlexCol } from "@components/shared/FlexBoxStyle";
+import { selectChildAge, selectChildList } from "../services/selectors";
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   "AddSiblingDataScreen"
@@ -112,26 +113,10 @@ const ServiceProviderInfoSetup = ({ navigation }: Props): any => {
   const [loading, setLoading] = useState(false);
   const [parentViewHeight, setParentViewheight] = useState(0);
   const isFocused = useIsFocused();
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode
-  );
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext?.colors.PRIMARY_REDESIGN_COLOR;
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : []
-  );
+  const childList = useAppSelector(selectChildList);
   const onLayout = (event: any): any => {
     setParentViewheight(event.nativeEvent.layout.height);
   };

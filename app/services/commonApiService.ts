@@ -53,6 +53,7 @@ import {
 import axiosService from "./axiosService";
 import LocalNotifications from "./LocalNotifications";
 import { getAllChildren, getAllConfigData, setActiveChild } from "./childCRUD";
+import { apiUrlDevelop } from "react-native-dotenv";
 
 export const client =
   "https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/";
@@ -271,25 +272,6 @@ export const onChildSetupApiSuccess = async (
   if (artresp && artresp != null) {
     const artobj = oldErrorObj.find((x: any) => x.apiEndpoint == "articles");
 
-    // const state = store.getState();
-    // const articleDataall =
-    //   state.articlesData.article.articles != ""
-    //     ? JSON.parse(state.articlesData.article.articles)
-    //     : state.articlesData.article.articles;
-
-    // const VideoArticlesDataall =
-    //   state.utilsData.VideoArticlesData != ""
-    //     ? JSON.parse(state.utilsData.VideoArticlesData)
-    //     : [];
-
-    // const ActivitiesDataold =
-    //   state.utilsData.ActivitiesData != ""
-    //     ? JSON.parse(state.utilsData.ActivitiesData)
-    //     : [];
-
-    // setActivityMiniSearch(ActivitiesDataold, dispatch);
-    // setMiniSearch([...articleDataall, ...VideoArticlesDataall], dispatch);
-
     if (artobj && artobj != null) {
       const storedata = store.getState();
       const childagearray =
@@ -337,8 +319,15 @@ export const downloadArticleImages = async (): Promise<any> => {
   databaseData.map((x: any) => {
     if (x.embedded_images && x.embedded_images.length > 0) {
       x.embedded_images.map((y: any) => {
-        if (y.split("https://")[1] || y.split("http://")[1]) {
+        if (/^https?:\/\//i.test(y)) {
           imageArray.push({ uri: y });
+        } else {
+          const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+          if (y.startsWith("/")) {
+            imageArray.push({ uri: baseUrl + y});
+          } else {
+            imageArray.push({ uri: baseUrl + "/" + y});
+          }
         }
       });
     }
@@ -358,8 +347,15 @@ export const downloadArticleImages = async (): Promise<any> => {
   databaseDataact.map((x: any) => {
     if (x.embedded_images && x.embedded_images.length > 0) {
       x.embedded_images.map((y: any) => {
-        if (y.split("https://")[1] || y.split("http://")[1]) {
+        if (/^https?:\/\//i.test(y)) {
           imageArray.push({ uri: y });
+        } else {
+          const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+          if (y.startsWith("/")) {
+            imageArray.push({ uri: baseUrl + y});
+          } else {
+            imageArray.push({ uri: baseUrl + "/" + y});
+          }
         }
       });
     }
@@ -379,8 +375,15 @@ export const downloadArticleImages = async (): Promise<any> => {
   databaseDatabasicpg.map((x: any) => {
     if (x.embedded_images && x.embedded_images.length > 0) {
       x.embedded_images.map((y: any) => {
-        if (y.split("https://")[1] || y.split("http://")[1]) {
+        if (/^https?:\/\//i.test(y)) {
           imageArray.push({ uri: y });
+        } else {
+          const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+          if (y.startsWith("/")) {
+            imageArray.push({ uri: baseUrl + y});
+          } else {
+            imageArray.push({ uri: baseUrl + "/" + y});
+          }
         }
       });
     }
@@ -400,8 +403,15 @@ export const downloadArticleImages = async (): Promise<any> => {
   databaseDatavideoart.map((x: any) => {
     if (x.embedded_images && x.embedded_images.length > 0) {
       x.embedded_images.map((y: any) => {
-        if (y.split("https://")[1] || y.split("http://")[1]) {
+        if (/^https?:\/\//i.test(y)) {
           imageArray.push({ uri: y });
+        } else {
+          const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+          if (y.startsWith("/")) {
+            imageArray.push({ uri: baseUrl + y});
+          } else {
+            imageArray.push({ uri: baseUrl + "/" + y});
+          }
         }
       });
     }
@@ -574,24 +584,7 @@ export const onHomeapiSuccess = async (
       getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
     }
-    // const state = storedata;
-    // const articleDataall =
-    //   state.articlesData.article.articles != ""
-    //     ? JSON.parse(state.articlesData.article.articles)
-    //     : state.articlesData.article.articles;
-
-    // const VideoArticlesDataall =
-    //   state.utilsData.VideoArticlesData != ""
-    //     ? JSON.parse(state.utilsData.VideoArticlesData)
-    //     : [];
-
-    // const ActivitiesDataold =
-    //   state.utilsData.ActivitiesData != ""
-    //     ? JSON.parse(state.utilsData.ActivitiesData)
-    //     : [];
-
-    // setActivityMiniSearch(ActivitiesDataold, dispatch);
-    // setMiniSearch([...articleDataall, ...VideoArticlesDataall], dispatch);
+    
     Alert.alert(
       i18n.t("downloadUpdateSuccessPopupTitle"),
       i18n.t("downloadUpdateSuccessPopupText"),
@@ -679,15 +672,36 @@ export const onHomeapiSuccess = async (
       getAllChildren(dispatch, childAge, 0);
       getAllConfigData(dispatch);
     }
-
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: "HomeDrawerNavigator",
-        },
-      ],
-    });
+    if(prevPage == "ImportScreen") {
+      Alert.alert(
+        i18n.t("downloadUpdateSuccessPopupTitle"),
+        i18n.t("successOnboardingImport"),
+        [
+          {
+            text: i18n.t("downloadUpdateSuccessOkBtn"),
+            onPress: async (): Promise<any> => {
+              navigation.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: "HomeDrawerNavigator",
+                  },
+                ],
+              });
+            },
+          },
+        ]
+      );
+    } else {
+        navigation.reset({
+          index: 0,
+          routes: [
+            {
+              name: "HomeDrawerNavigator",
+            },
+          ],
+        });
+      }
   }
 };
 export const onHomeSurveyapiSuccess = async (

@@ -60,12 +60,13 @@ import { isFutureDate } from "./childCRUD";
 import PushNotification from "react-native-push-notification";
 import moment from "moment";
 import { Country, CountrySchema } from "../database/schema/CountrySchema";
-import MiniSearch from "minisearch";
+import { apiUrlDevelop } from "react-native-dotenv";
 
 const requestNotificationPermission = async (): Promise<any> => {
   const status = await requestNotifications([]);
   console.log(status, "..status..");
 };
+const flavor = process.env.FLAVOR || "bebbo";
 export const notiPermissionUtil = async (): Promise<any> => {
   setTimeout(() => {
     if (Platform.OS == "android") {
@@ -250,6 +251,15 @@ export const addSpaceToHtml = (htmlInput: any): any => {
     html = html.replace(/<[/]s> /g, " </s>");
     html = html.replace(/<[/]u> /g, " </u>");
     html = html.replace(/<[/]span> /g, " </span>");
+
+    html = html.replace(/<img\s+[^>]*src=["']([^"']+)["']/gi, (match: string, src: string) => {
+      if (/^https?:\/\//i.test(src)) {
+        return match;
+      }
+      const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
+      const absoluteSrc = src.startsWith("/") ? baseUrl + src : baseUrl + "/" + src;
+      return match.replace(src, absoluteSrc);
+    });
     return html;
   }
 };
@@ -276,7 +286,10 @@ export const formatDate = (dateData: any): any => {
     getTwoDigits(dateData.month) +
     "." +
     dateData.year;
-  return moment(dateView, "DD.MM.YYYY").format("DD.MM.YYYY");
+    const locale = getLanguageCode(store.getState().selectedCountry.languageCode)
+  return flavor == "babuni"
+    ? moment(dateView, "DD.MM.YYYY").locale(locale).format("DD.MM.YYYY")
+    : moment(dateView, "DD.MM.YYYY").format("DD.MM.YYYY");
 };
 export const formatStringDate = (dateData: any): any => {
   dateData = DateTime.fromJSDate(new Date(dateData));
@@ -300,7 +313,10 @@ export const formatStringDate = (dateData: any): any => {
     getTwoDigits(dateData.month) +
     "." +
     dateData.year;
-  return moment(dateView, "DD.MM.YYYY").format("DD.MM.YYYY");
+    const locale = getLanguageCode(store.getState().selectedCountry.languageCode);
+  return flavor == "babuni"
+    ? moment(dateView, "DD.MM.YYYY").locale(locale).format("DD.MM.YYYY")
+    : moment(dateView, "DD.MM.YYYY").format("DD.MM.YYYY");
 };
 
 export const formatStringTime = (dateData: any): any => {
@@ -312,11 +328,11 @@ export const formatStringTime = (dateData: any): any => {
   const minute = DateTime.fromISO(dateData).minute;
 
   const formattedTime = getTwoDigits(hour) + ":" + getTwoDigits(minute);
-
+  const locale = getLanguageCode(store.getState().selectedCountry.languageCode);
   console.log(formattedTime);
-  return Platform.OS == "ios"
-    ? moment(formattedTime, "hh:mm").locale("en").format("hh:mm A")
-    : moment(formattedTime, "hh:mm").format("hh:mm");
+  return flavor == "babuni"
+    ? moment(formattedTime, "hh:mm").locale(locale).format("hh:mm A")
+    : moment(formattedTime, "hh:mm").locale("en").format("hh:mm A");
 };
 export const removeParams = (sParam: any): any => {
   if (sParam.indexOf("?") != -1) {
@@ -661,9 +677,11 @@ export const getLanguageCode = (languageCode: string): string => {
     { name: "Ukraine (Україна)", lcode: "uk", locale: "uk" },
     { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-uz", locale: "uz" },
     { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-ru", locale: "ru" },
+    { name: "Uzbekistan (Oʻzbekiston)", lcode: "uz-kaa", locale: "uz" },
     { name: "English", lcode: "en", locale: "en" },
     { name: "Russian", lcode: "ru", locale: "ru" },
     { name: "Türkiye", lcode: "tr", locale: "tr" },
+    { name: "Español", lcode: "ec-es", locale: "es" },
   ];
 
   // Process the input code
@@ -776,7 +794,7 @@ export function convertDigits(
     en: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], // Turkish uses Latin digits
     // Add more languages and their digit mappings as needed
   };
-  if (!inputString) return "";
+  if (inputString === null || inputString === undefined) return "";
 
   // Convert input string to lowercase for case-insensitive comparison
   const lowerTarget = targetLanguage?.toLowerCase?.() as DigitLanguage;

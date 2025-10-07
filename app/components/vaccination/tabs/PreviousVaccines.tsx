@@ -32,6 +32,8 @@ import { formatStringDate } from "../../../services/Utils";
 import Icon, { IconViewAlert } from "../../shared/Icon";
 import { StackNavigationProp } from "@react-navigation/stack";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
+import { selectActiveChild } from "../../../services/selectors";
+import useDigitConverter from "../../../customHooks/useDigitConvert";
 const styles = StyleSheet.create({
   alignCenter: { alignSelf: "center" },
   radioActive: { backgroundColor: greenColor, borderRadius: 50 },
@@ -61,6 +63,7 @@ const PreviousVaccines = (props: any): any => {
   const { item, headerColor, backgroundColor } = props;
   const { t } = useTranslation();
   const netInfo = useNetInfoHook();
+  const { convertDigits } = useDigitConverter();
   //const navigation = useNavigation<any>();
   const navigation =
     useNavigation<StackNavigationProp<PreviousRootStackParamList>>();
@@ -69,11 +72,7 @@ const PreviousVaccines = (props: any): any => {
   const navigation2 =
     useNavigation<StackNavigationProp<PreviousNew1RootStackParamList>>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const gotoArticle = (pinnedArticleId: any): any => {
     if (pinnedArticleId != 0) {
       navigation.navigate("DetailsScreen", {
@@ -189,13 +188,13 @@ const PreviousVaccines = (props: any): any => {
                 <Heading5>
                   {t("vaccinesTxt")}
                   {":"}
-                  {totalVC} {" | "}
+                  {convertDigits(totalVC)} {" | "}
                   {t("vaccinesDoneTxt")}
                   {":"}
-                  {doneVc ? doneVc.length : 0} {" | "}
+                  {doneVc ? convertDigits(doneVc.length) : convertDigits(0)} {" | "}
                   {t("vaccinesPendingTxt")}
                   {":"}
-                  {totalVC - (doneVc ? doneVc.length : 0)}
+                  {convertDigits(totalVC - (doneVc ? doneVc.length : 0))}
                 </Heading5>
               </ToolsHeadingView>
               <ToolsActionView>

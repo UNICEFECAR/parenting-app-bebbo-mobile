@@ -1,52 +1,46 @@
+import React, { useContext } from "react";
+import { View, ActivityIndicator, StyleSheet, Dimensions } from "react-native";
+import { ThemeContext } from "styled-components/native";
 import {
   bgcolorWhite2,
   overlaymodalBackground,
 } from "../instances/bebbo/styles/style";
-import React, { useContext } from "react";
-import { StyleSheet, View, Modal, ActivityIndicator } from "react-native";
-import { ThemeContext } from "styled-components/native";
-const styles = StyleSheet.create({
-  activityIndicatorWrapper: {
-    alignItems: "center",
-    backgroundColor: bgcolorWhite2,
-    borderRadius: 10,
-    display: "flex",
-    height: 100,
-    justifyContent: "space-around",
-    width: 100,
-  },
-  modalBackground: {
-    alignItems: "center",
-    backgroundColor: overlaymodalBackground,
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-around",
-  },
-});
-
-const OverlayLoadingComponent = (props: any): any => {
-  const { loading } = props;
+const OverlayLoadingComponent = ({ loading }: { loading: boolean }) => {
   const themeContext = useContext(ThemeContext);
+  if (!loading) return null;
+
   return (
-    <Modal
-      transparent={true}
-      animationType={"none"}
-      visible={loading}
-      onRequestClose={(): any => {
-        console.log("request to close called");
-      }}
-    >
-      <View style={styles.modalBackground}>
-        <View style={styles.activityIndicatorWrapper}>
-          <ActivityIndicator
-            size="large"
-            color={themeContext?.colors.PRIMARY_TEXTCOLOR}
-            animating={loading}
-          />
-        </View>
+    <View style={styles.overlay}>
+      <View style={styles.loaderBox}>
+        <ActivityIndicator
+          size="large"
+          color={themeContext?.colors.PRIMARY_TEXTCOLOR}
+        />
       </View>
-    </Modal>
+    </View>
   );
 };
+const { width, height } = Dimensions.get('window');
+const styles = StyleSheet.create({
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width,
+    height,
+    backgroundColor: overlaymodalBackground,
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 9999,
+  },
+  loaderBox: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    backgroundColor: bgcolorWhite2,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
 export default OverlayLoadingComponent;

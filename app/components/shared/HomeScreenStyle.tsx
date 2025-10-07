@@ -1,3 +1,4 @@
+import { dailyReadsTagColor } from '@styles/style';
 import styled from 'styled-components/native';
 const HomeScreenStyle = styled.View`
 `;
@@ -54,7 +55,7 @@ margin-top:15px;
 export const HomeSurveyBox = styled.Pressable`
 padding:17px;
 border-radius:4px;
-background-color: ${(props: any): any => props.theme?.colors?.SECONDARY_COLOR};
+background-color: ${(props: any): any => props.theme?.colors?.TERTIARY_BG_COLOR};
 `;
 
 
@@ -70,8 +71,9 @@ position:absolute; bottom:10px;z-index:999;width:100%;padding:3px 10px;
 `;
 
 export const DailyTag = styled.View`
-position:absolute; background-color: ${(props: any): any => props.theme.colors.PRIMARY_COLOR};padding:7px 10px;
-border-top-left-radius:4px;
+position:absolute; background-color: ${dailyReadsTagColor};
+padding:7px 10px;
+border-top-left-radius:2px;
 `;
 export const DailyTagText = styled.Text`
 font-size:11px;
@@ -89,11 +91,11 @@ background-color: ${(props: any): any => props.theme?.colors?.SECONDARY_TEXTCOLO
 border-radius:4px;
 margin:0 7px 15px;
 width:285px;
-shadow-color: #00000;
-shadow-offset: 0px 8px; /* Shadow only at the bottom */
-shadow-opacity: 0.08;
-shadow-radius: 6px;
-
+shadow-color: #000;
+shadow-offset: 0px 2px; /* Shadow only at the bottom */
+shadow-opacity: 0.1;
+shadow-radius: 4px;
+elevation: 3;
 `;
 
 export const BottomBarBg = styled.View`

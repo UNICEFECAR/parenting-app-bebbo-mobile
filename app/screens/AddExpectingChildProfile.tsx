@@ -52,6 +52,7 @@ import TextInputML from "@components/shared/TextInputML";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { setActiveChildData } from "../redux/reducers/childSlice";
 import { bgcolorWhite } from "@styles/style";
+import { selectChildAge, selectChildList } from "../services/selectors";
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -81,11 +82,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
   const [clicked, setClicked] = useState(false);
   const [showdob, setdobShow] = useState(false);
 
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const locale = useAppSelector((state: any) =>
     getLanguageCode(state.selectedCountry?.languageCode)
   );
@@ -112,11 +109,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props): any => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ""
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : state.childData.childDataSet.allChild
-  );
+  const childList = useAppSelector(selectChildList);
   const handleDobConfirm = (event: any): any => {
     const date = event;
     ondobChange(event, date);

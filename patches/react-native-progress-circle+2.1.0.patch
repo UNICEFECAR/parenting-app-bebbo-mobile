@@ -1,0 +1,38 @@
+diff --git a/node_modules/react-native-progress-circle/src/index.js b/node_modules/react-native-progress-circle/src/index.js
+index 50cb271..4911de7 100644
+--- a/node_modules/react-native-progress-circle/src/index.js
++++ b/node_modules/react-native-progress-circle/src/index.js
+@@ -1,11 +1,10 @@
+ import React, { Component } from 'react'
+ import PropTypes from 'prop-types'
+-import { StyleSheet, View, ViewPropTypes,I18nManager } from 'react-native'
++import { StyleSheet, View, I18nManager } from 'react-native'
++import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+ 
+ // compatability for react-native versions < 0.44
+-const ViewPropTypesStyle = ViewPropTypes
+-  ? ViewPropTypes.style
+-  : View.propTypes.style
++const ViewPropTypesStyle = ViewPropTypes.style
+ let direction = I18nManager.isRTL? 'right' : 'left';
+ const styles = StyleSheet.create({
+   outerCircle: {
+@@ -32,7 +31,8 @@ const styles = StyleSheet.create({
+ })
+ 
+ function percentToDegrees(percent) {
+-  return percent * 3.6
++  // return percent * 3.6
++  return (isNaN(percent) ? 0 : percent) * 3.6
+ }
+ 
+ export default class PercentageCircle extends Component {
+@@ -148,7 +148,7 @@ export default class PercentageCircle extends Component {
+     } = this.computeDerivedState()
+ 
+     return (
+-      <View
++      <View key={`circle-${this.props.percent}`}
+         style={[
+           styles.outerCircle,
+           {

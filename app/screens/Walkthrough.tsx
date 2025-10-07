@@ -26,7 +26,7 @@ import LinearGradient from "react-native-linear-gradient";
 import VectorImage from "react-native-vector-image";
 import { ThemeContext } from "styled-components/native";
 import { bebboLogoShape } from "@dynamicImportsClass/dynamicImports";
-import { bgcolorWhite2 } from "../instances/bebbo/styles/style";
+import { bgcolorWhite2, childListBgColor, secondaryColor } from "../instances/bebbo/styles/style";
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   "ChildSetup"
@@ -80,7 +80,7 @@ const Walkthrough = ({ navigation }: Props): any => {
     {
       title: t("walkthroughTextstitle0"),
       image: bebboLogoShape,
-      colors: ["#2B2F84", "#1F50A0", "#00AEEF"],
+      colors: ["#2B2F84", "#1F50A0", secondaryColor],
       textcolor: "#FFF",
       subtitle: t("walkthroughTextssubtitle0"),
     },
@@ -94,7 +94,7 @@ const Walkthrough = ({ navigation }: Props): any => {
     {
       title: t("walkthroughTextstitle2"),
       image: require("@assets/svg/ic_tools_color.svg"),
-      colors: ["#00AEEF", "#50C7F3", "#97DEF8", "#B3E7FA"],
+      colors: ["#00AEEF", "#50C7F3", "#97DEF8", childListBgColor],
       textcolor: "#000",
       subtitle: t("walkthroughTextssubtitle2"),
     },

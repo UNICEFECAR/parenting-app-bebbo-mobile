@@ -388,7 +388,7 @@ const RSsr = {
     vcTaken: 'Primljene vakcine ',
     settingExportError:
       'Greška prilikom izvoza podataka. Molimo vas pokušajte ponovo',
-    settingExportSuccess: 'Podaci su uspešno izvezeni',
+    settingExportSuccess: 'Podaci su uspešno izvezeni.',
     alertForModifyMeasures: 'Pažnja!',
     alertForModifyMeasuresTitle:
       'Ako izaberete ovaj datum biće izmenjene postojeće mere',

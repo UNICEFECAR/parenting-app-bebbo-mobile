@@ -347,7 +347,7 @@ const uk = {
                 noRecentGrowthMeasure: "Вимірювання вашої дитини було зроблено дуже давно. Оновіть вимірювання росту дитини зараз, щоб отримати оновлену оцінку. ",
                 vcTaken: "Отримані вакцини ",
                 settingExportError: "Помилка під час експортування даних. Повторіть спробу",
-                settingExportSuccess: "Дані успішно експортовано ",
+                settingExportSuccess: "Дані успішно експортовано.",
                 alertForModifyMeasures: "Сповіщення",
                 alertForModifyMeasuresTitle: "Вибір цієї дати змінить існуючі заходи",
                 alertForModifyMeasuresOk: "ОК",

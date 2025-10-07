@@ -269,6 +269,14 @@ const localizationall = [
         luxonLocale: 'ru-UZ',
         pluralShow: true,
       },
+      {
+        name: 'Karakalpak',
+        displayName: 'Qaraqalpaq',
+        languageCode: 'uz-kaa',
+        locale: 'UZkaa',
+        luxonLocale: 'uz-Latn-UZ',
+        pluralShow: true,
+      },
     ],
   },
   {

@@ -40,6 +40,7 @@ import {
 } from "../shared/ButtonGlobal";
 import Icon, { IconViewAlert } from "../shared/Icon";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { selectVaccineData } from "../../services/selectors";
 const styles = StyleSheet.create({
   iconStyle: { alignSelf: "center" },
   radioActive: { backgroundColor: greenColor, borderRadius: 50 },
@@ -64,9 +65,7 @@ const PreviousHealthCheckup = (props: any): any => {
       });
     }
   };
-  const allVaccineData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData)
-  );
+  const allVaccineData = useAppSelector(selectVaccineData);
   const getVaccineName = (vaccineID: any): any => {
     return allVaccineData?.find((v: any) => v.uuid == vaccineID)?.title;
   };

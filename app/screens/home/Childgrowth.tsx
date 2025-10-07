@@ -26,6 +26,7 @@ import {
   ShiftFromBottom5,
   ShiftFromTop10,
   ShiftFromTopBottom20,
+  ShiftFromTopBottom20Padding,
   SideSpacing10,
 } from "../../instances/bebbo/styles/typography";
 import ModalPopupContainer, {
@@ -58,6 +59,7 @@ import { MeasuresEntity } from "../../database/schema/ChildDataSchema";
 import { formatStringDate } from "../../services/Utils";
 import { bgcolorWhite2 } from "../../instances/bebbo/styles/style";
 import useDigitConverter from "../../customHooks/useDigitConvert";
+import { selectActiveChild } from "../../services/selectors";
 
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
@@ -111,11 +113,7 @@ const Childgrowth = ({ navigation }: any): any => {
     setModalVisible(growthModalOpened);
   }, [growthModalOpened]);
 
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   let measures: any = [];
   let days = 0;
   if (activeChild?.measures.length > 0) {
@@ -277,9 +275,9 @@ const Childgrowth = ({ navigation }: any): any => {
                       {t("growthScreennoGrowthData")}
                     </Heading3Centerr>
                   ) : null}
-                  <ShiftFromTopBottom20>
+                  <ShiftFromTopBottom20Padding>
                     <Heading4>{t("growthScreennoGrowthDataHelpText")}</Heading4>
-                  </ShiftFromTopBottom20>
+                  </ShiftFromTopBottom20Padding>
                 </FlexDirCol>
                 {renderDummyChart()}
               </>

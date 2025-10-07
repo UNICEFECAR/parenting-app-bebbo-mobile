@@ -1,8 +1,17 @@
 import ImagePicker from "react-native-image-crop-picker";
-import { RESULTS, check, request, openSettings, openLimitedPhotoLibraryPicker } from "react-native-permissions";
-import { Alert, Platform } from "react-native";
-import { PICKER_TYPE, IMAGE_PICKER_OPTIONS, CAMERA_PERMISSION, GALLERY_PERMISSION,GALLERY_PERMISSION_LATEST } from "../types/types";
+import { RESULTS, check, request, openSettings, PERMISSIONS } from "react-native-permissions";
+import { Alert, PermissionsAndroid, Platform } from "react-native";
+import { PICKER_TYPE, IMAGE_PICKER_OPTIONS, CAMERA_PERMISSION } from "../types/types";
 import i18n from 'i18next';
+import { CameraRoll } from "@react-native-camera-roll/camera-roll";
+
+// Android permissions
+const GALLERY_PERMISSION_ANDROID_PRE33 = PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE;
+const GALLERY_PERMISSION_ANDROID_33_PLUS = PERMISSIONS.ANDROID.READ_MEDIA_IMAGES;
+
+// iOS permission
+const GALLERY_PERMISSION_IOS = PERMISSIONS.IOS.PHOTO_LIBRARY;
+
 class MediaPicker {
   /**
    *
@@ -101,6 +110,7 @@ class MediaPicker {
     cameraOptions = {}
   ):any {
     this.checkPermissionGallery(() => {
+      console.log("in checkPermissionGallery success")
       this.pickGalleryOptions(
         callback,
         pickerTypeCamera,
@@ -354,33 +364,51 @@ class MediaPicker {
       });
   }
 
-  handlePermissionsGallery(triggerFunc: any):any {
-    request(Platform.Version>'32' ?GALLERY_PERMISSION_LATEST: GALLERY_PERMISSION).then(async (photoPermission) => {
-      if (
-        photoPermission === RESULTS.GRANTED
-      ) {
-        triggerFunc();
-      }
-      else if (
-        photoPermission === RESULTS.LIMITED
-      ) {
-        if (Platform.OS === 'ios') {
-          setTimeout(() => {
-            openLimitedPhotoLibraryPicker().then(() => {
-              triggerFunc();
-            }).catch(() => {
-              console.log("permission catch");
-            });
-          }, 350);
+  handlePermissionsGallery = async (triggerFunc: any): Promise<void> => {
+    try {
+      if (Platform.OS === "android") {
+        const sdk = Platform.Version;
+  
+        if (sdk >= 33) {
+          triggerFunc();
+        } else if (sdk >= 24) {
+          // Android 7.0 → 12 → READ_EXTERNAL_STORAGE
+          const status = await PermissionsAndroid.check(GALLERY_PERMISSION_ANDROID_PRE33);
+          if (status) {
+            triggerFunc();
+          } else {
+            const result = await PermissionsAndroid.request(GALLERY_PERMISSION_ANDROID_PRE33);
+            if (result === PermissionsAndroid.RESULTS.GRANTED) triggerFunc();
+            else Alert.alert(i18n.t("generalErrorTitle"), i18n.t("generalError"));
+          }
+        } else {
+          // fallback for very old Android versions
+          triggerFunc();
+        }
+      } else if (Platform.OS === "ios") {
+        const photoPermission = await request(GALLERY_PERMISSION_IOS);
+  
+        if (photoPermission === RESULTS.GRANTED) {
+          triggerFunc();
+        } else if (photoPermission === RESULTS.LIMITED) {
+          try {
+            // Show limited photo picker
+            // @ts-ignore
+            await CameraRoll.presentLimitedLibraryPicker();
+            triggerFunc();
+          } catch (e) {
+            console.log("Limited picker not available", e);
+            triggerFunc();
+          }
+        } else {
+          Alert.alert(i18n.t("generalErrorTitle"), i18n.t("generalError"));
         }
       }
-      else if (
-        photoPermission === RESULTS.DENIED || photoPermission === RESULTS.BLOCKED || photoPermission === RESULTS.UNAVAILABLE
-      ) {
-        Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
-      }
-    });
-  }
+    } catch (e) {
+      console.log("Gallery permission error", e);
+      Alert.alert(i18n.t("generalErrorTitle"), i18n.t("generalError"));
+    }
+  };
   checkPermissionCamera(triggerFunc: any, openSettings = undefined):any {
     console.log("checkPermissionGallery-",openSettings);
     Promise.all([
@@ -393,17 +421,36 @@ class MediaPicker {
       }
     });
   }
-  checkPermissionGallery(triggerFunc: any, openSettings = undefined):any {
-    console.log("checkPermissionGallery-",openSettings);
-    console.log("Platform-",Platform.Version);
-    Promise.all([
-      check(Platform.Version>'32' ? GALLERY_PERMISSION_LATEST: GALLERY_PERMISSION),
-    ]).then(([photoStatus]) => {
-      if (photoStatus === RESULTS.BLOCKED) {
-        this.openSettingModal();
+
+  checkPermissionGallery(triggerFunc: any, openSettings = undefined): any {
+    if (Platform.OS === "android") {
+      const sdk = Platform.Version;
+  
+      if (sdk >= 33) {
+        // Android 13+ → READ_MEDIA_IMAGES
+        check(GALLERY_PERMISSION_ANDROID_33_PLUS).then((status) => {
+          if (status === RESULTS.GRANTED) triggerFunc();
+          else if (status === RESULTS.BLOCKED) this.openSettingModal();
+          else this.handlePermissionsGallery(triggerFunc);
+        });
+      } else if (sdk >= 24) {
+        // Android 7.0 → 12 → READ_EXTERNAL_STORAGE
+        check(GALLERY_PERMISSION_ANDROID_PRE33).then((status) => {
+          if (status === RESULTS.GRANTED) triggerFunc();
+          else if (status === RESULTS.BLOCKED) this.openSettingModal();
+          else this.handlePermissionsGallery(triggerFunc);
+        });
       } else {
-        this.handlePermissionsGallery(triggerFunc);
+        // fallback for very old Android versions
+        triggerFunc();
       }
+      return;
+    }
+  
+    // iOS
+    check(GALLERY_PERMISSION_IOS).then((status) => {
+      if (status === RESULTS.BLOCKED) this.openSettingModal();
+      else this.handlePermissionsGallery(triggerFunc);
     });
   }
 }

@@ -34,7 +34,7 @@ const config = {
     "cognitive",
     "motor",
   ],
-  regexpEmojiPresentation: /[^\p{L} ]/gu,
+  regexpEmojiPresentation: /[^\p{L}\p{M} ]/gu,
   luxonDefaultLocale: "en-US",
   videoTypeVimeo: "vimeo",
   videoTypeYoutube: "youtube",
@@ -193,7 +193,7 @@ const config = {
   reviewURL: Platform.select({
     android:
       "https://play.google.com/store/apps/details?id=org.unicef.bangladesh.babuni",
-    ios: "itms://itunes.apple.com/bangla/app/apple-store/id6504746888?action=write-review",
+    ios: "https://apps.apple.com/app/id6504746888?action=write-review",
   }),
   bothParentGender: 621,
   bothChildGender: 536,

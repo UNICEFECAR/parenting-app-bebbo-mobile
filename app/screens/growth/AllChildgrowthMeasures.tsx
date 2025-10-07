@@ -23,6 +23,8 @@ import { StyleSheet, View } from "react-native";
 import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../../App";
 import { isFutureDate } from "../../services/childCRUD";
+import { selectActiveChild } from "../../services/selectors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
@@ -35,14 +37,11 @@ const AllChildgrowthMeasures = ({ navigation }: any): any => {
   const headerColor = themeContext?.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext?.colors.CHILDGROWTH_TINTCOLOR;
   const { t } = useTranslation();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const insets = useSafeAreaInsets();
   return (
     <>
-      <View style={[styles.flex1, { backgroundColor: headerColor }]}>
+      <View style={[styles.flex1, { backgroundColor: headerColor, paddingBottom: insets.bottom }]}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={[
