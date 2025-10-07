@@ -39,7 +39,6 @@
 		D6B2954E2E2E88B600C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953D2E2E88A500C8889C /* splash.json */; };
 		D6B2954F2E2E88B600C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953D2E2E88A500C8889C /* splash.json */; };
 		D6B295502E2E88BD00C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295402E2E88A500C8889C /* splash.json */; };
-		D6B295522E2E88C800C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953C2E2E88A500C8889C /* README.md */; };
 		D6B295532E2E88C800C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953C2E2E88A500C8889C /* README.md */; };
 		D6B295552E2E88D100C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B295392E2E88A500C8889C /* README.md */; };
 		D6B295592E2E88E500C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295462E2E88A500C8889C /* splash.json */; };
@@ -338,7 +337,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ParentBuddyAppTests; sourceTree = "<group>"; };
+		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = ParentBuddyAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1140,7 +1149,6 @@
 				D6F1427E2E29326600986814 /* roboto-regular.woff2 in Resources */,
 				D6F142802E29326600986814 /* roboto-bold.woff in Resources */,
 				D6F142812E29326600986814 /* roboto-bold.woff2 in Resources */,
-				D6B295522E2E88C800C8889C /* README.md in Resources */,
 				D6F142822E29326600986814 /* roboto-regular.ttf in Resources */,
 				D6F142832E29326600986814 /* roboto-bold.ttf in Resources */,
 				D6F142852E29326600986814 /* roboto-regular.woff in Resources */,
@@ -2385,7 +2393,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -2466,7 +2477,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParentBuddyApp/ParentBuddyApp-Bridging-Header.h";
@@ -2551,7 +2565,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconXk;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppXk.entitlements;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ParentBuddyAppXk-Info.plist";
@@ -2561,7 +2575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.4.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2593,7 +2607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconXk;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppXk.entitlements;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = "ParentBuddyAppXk-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Foleja;
@@ -2602,7 +2616,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.4.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
