@@ -38,7 +38,7 @@ import {
 } from "../instances";
 const flavor = process.env.FLAVOR || "bebbo";
 const BebboLogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
-// const BebboLogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
+const BebboLogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
 import FeatureTCView from "@components/shared/FeaturesTCView";
 import { TERMS_ACCEPTED } from "@assets/data/firebaseEvents";
 import { logEvent } from "../services/EventSyncService";
@@ -56,7 +56,7 @@ type Props = {
   navigation: TermsNavigationProp;
 };
 const item = {
-  image: BebboLogoShapeNew,
+  image: flavor == "merhabaBebek" ? BebboLogoShapeMB : BebboLogoShapeNew,
   advice: adviceLogo,
   tools: toolsLogo,
   activity: activityLogo,

@@ -11,7 +11,7 @@ import androidx.core.view.WindowCompat
 class MainActivity : ReactActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    super.onCreate(null)
     WindowCompat.setDecorFitsSystemWindows(window, false)
     SplashScreen.show(this, R.style.SplashScreen_SplashTheme, R.id.lottie)
     // Skip waiting for the Lottie animation to finish
