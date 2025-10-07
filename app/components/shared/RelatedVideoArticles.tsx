@@ -25,6 +25,7 @@ import {
 } from "./ArticlesStyle";
 import ShareFavButtons from "./ShareFavButtons";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { selectActiveChild, selectArticleCategoryArray, selectPinnedChildDevData } from "../../services/selectors";
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -74,16 +75,8 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
   const { t } = useTranslation();
   const netInfo = useNetInfoHook();
   let relartlength = relatedArticles ? relatedArticles.length : 0;
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
-  const VideoArticlesDataall = useAppSelector((state: any) =>
-    state.utilsData.VideoArticlesData != ""
-      ? JSON.parse(state.utilsData.VideoArticlesData)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const VideoArticlesDataall = useAppSelector(selectPinnedChildDevData);
   const videoarticleDataold = VideoArticlesDataall.filter(
     (x: any) =>
       x.mandatory == appConfig.videoArticleMandatory &&
@@ -92,10 +85,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
         x.child_gender == appConfig.bothChildGender)
   );
   const videoarticleData = randomArrayShuffle(videoarticleDataold);
-  const categoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category
-  );
+  const categoryData = useAppSelector(selectArticleCategoryArray);
   const favoriteadvices = useAppSelector(
     (state: any) => state.childData.childDataSet.favoriteadvices
   );

@@ -7,7 +7,6 @@ import iframe from "@native-html/iframe-plugin";
 import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { bgcolorWhite2, primaryColor } from "../instances/bebbo/styles/style";
 import { Heading1w, ShiftFromTop5 } from "../instances/bebbo/styles/typography";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
@@ -17,6 +16,7 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
+  useWindowDimensions,
   View,
 } from "react-native";
 import HTML from "react-native-render-html";
@@ -25,6 +25,7 @@ import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../App";
 import RenderImage from "../services/RenderImage";
 import { addSpaceToHtml } from "../services/Utils";
+import { bgcolorWhite2, primaryColor } from "@styles/style";
 type PrivacyPolicyNavigationProp = StackNavigationProp<
   RootStackParamList,
   "ChildSetup"
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
   },
   scrollViewStyle: {
     padding: 0,
+    paddingRight: 10
   },
 });
 const PrivacyPolicy = ({ navigation }: Props): any => {
@@ -50,9 +52,7 @@ const PrivacyPolicy = ({ navigation }: Props): any => {
   const privacydata = useAppSelector(
     (state: any) => state.utilsData.privacypolicy.body
   );
-  const toggleSwitchVal = useAppSelector((state: any) =>
-    state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
-  );
+  const { width } = useWindowDimensions();
   useFocusEffect(
     React.useCallback(() => {
       const backAction = (): any => {
@@ -97,6 +97,7 @@ const PrivacyPolicy = ({ navigation }: Props): any => {
           <ScrollView contentContainerStyle={styles.scrollViewStyle}>
             {privacydata != "" ? (
               <HTML
+                contentWidth={width}
                 source={{ html: addSpaceToHtml(privacydata) }}
                 baseStyle={styles.htmlStyle}
                 ignoredStyles={["color", "fontSize", "fontFamily"]}

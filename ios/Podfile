@@ -1,162 +1,91 @@
 # Resolve react_native_pods.rb with node to allow for hoisting
-def node_require(script)
-  # Resolve script with node to allow for hoisting
-  require Pod::Executable.execute_command('node', ['-p',
-    "require.resolve(
-      '#{script}',
-      {paths: [process.argv[1]]},
-    )", __dir__]).strip
-end
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip
 
-node_require('react-native/scripts/react_native_pods.rb')
-node_require('react-native-permissions/scripts/setup.rb')
-platform :ios, '14.0'
+platform :ios, min_ios_version_supported
 prepare_react_native_project!
-pod 'Firebase', :modular_headers => true  
-pod 'FirebaseCore', :modular_headers => true
-pod 'FirebaseSessions', :modular_headers => true
-pod 'FirebaseCoreExtension', :modular_headers => true
-pod 'FirebaseInstallations', :modular_headers => true
-pod 'GoogleDataTransport', :modular_headers => true
-pod 'nanopb', :modular_headers => true
-pod 'GoogleUtilities', :modular_headers => true
-pod 'lottie-ios', :modular_headers => true
 
-# If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
-# because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
-#
-# To fix this you can also exclude `react-native-flipper` using a `react-native.config.js`
-# ```js
-# module.exports = {
-#   dependencies: {
-#     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
-# ```
-#flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+require_relative '../node_modules/react-native-permissions/scripts/setup'
+
+# Firebase (modular header support)
+# pod 'Firebase', :modular_headers => true  
+# pod 'FirebaseCore', :modular_headers => true
+# pod 'FirebaseCoreExtension', :modular_headers => true
+# pod 'FirebaseSessions', :modular_headers => true
+# pod 'FirebaseInstallations', :modular_headers => true
+# pod 'GoogleDataTransport', :modular_headers => true
+# pod 'nanopb', :modular_headers => true
+# pod 'GoogleUtilities', :modular_headers => true
+
+# Permissions
+setup_permissions([
+  'AppTrackingTransparency',
+  'Camera',
+  'PhotoLibrary',
+  'PhotoLibraryAddOnly',
+])
+
+# Optional shared pods
+def shared_pods
+  # pod 'react-native-lottie-splash-screen', :path => '../node_modules/react-native-lottie-splash-screen'
+  # pod 'lottie-ios', '4.5.0'
+  # pod '@attarchi/react-native-lottie-splash-screen', :path => '../node_modules/@attarchi/react-native-lottie-splash-screen'
+  pod 'lottie-ios'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+end
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
+else
+  use_frameworks! :linkage => :static
 end
-setup_permissions([
-   'AppTrackingTransparency',
-  # 'Bluetooth',
-  # 'Calendars',
-  # 'CalendarsWriteOnly',
-   'Camera',
-  # 'Contacts',
-  # 'FaceID',
-  # 'LocationAccuracy',
-  # 'LocationAlways',
-  # 'LocationWhenInUse',
-  # 'MediaLibrary',
-  # 'Microphone',
-  # 'Motion',
-  # 'Notifications',
-  'PhotoLibrary',
- 'PhotoLibraryAddOnly',
-  # 'Reminders',
-  # 'Siri',
-  # 'SpeechRecognition',
-  # 'StoreKit',
-])
-def shared_pods
 
-
-  # Core React Native libraries
-
-  # pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
-  # permissions_path = '../node_modules/react-native-permissions/ios'
-  # pod 'Permission-AppTrackingTransparency', :path => "#{permissions_path}/AppTrackingTransparency/Permission-AppTrackingTransparency.podspec"
-  # pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
-  # pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
-  # pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
-  pod 'react-native-lottie-splash-screen', :path => '../node_modules/react-native-lottie-splash-screen'
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
-  #pod 'RNFBApp', :path => '../node_modules/react-native-firebase/app'
-  #pod 'RNFBCrashlytics', :path => '../node_modules/react-native-firebase/crashlytics'
-
-  # Auto-linked pods
-  use_native_modules!
-  ENV['COCOAPODS_VERBOSE'] = 'true'
-  # Flipper pods
- # add_flipper_pods!
-end
-#use_modular_headers!
 target 'ParentBuddyApp' do
   config = use_native_modules!
 
-  # Flags change depending on the env values.
-  flags = get_default_flags()
+  $RNFirebaseAsStaticFramework = true
 
   use_react_native!(
     :path => config[:reactNativePath],
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    :hermes_enabled => flags[:hermes_enabled],
-    :fabric_enabled => flags[:fabric_enabled],
-    # Enables Flipper.
-    #
-    # Note that if you have use_frameworks! enabled, Flipper will not work and
-    # you should disable the next line.
-    #:flipper_configuration => flipper_config,
-    # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  shared_pods
+
+  # Unit test target
   target 'ParentBuddyAppTests' do
     inherit! :complete
-    # Pods for testing
   end
-  target 'ParentBuddyAppXk' do
-    shared_pods
-  end
-  target 'ParentBuddyAppDev' do
-    shared_pods
-  end
-  target 'ParentBuddyAppXkDev' do
-    shared_pods
-  end
-  target 'ParentBuddyAppBangla' do
-    shared_pods
-  end
-  target 'ParentBuddyAppBanglaDev' do
-    shared_pods
-  end
-  target 'MerhabaBebek' do
-    shared_pods
-  end
-  target 'Wawamor' do
-    shared_pods
-  end
-  target 'ReraiUmtwana' do
-    shared_pods
-  end
-  # post_install do |installer|
-  #   flipper_post_install(installer)
-  # end
 
-  # post_install do |installer|
-  #   # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
-  #   react_native_post_install(
-  #     installer,
-  #     config[:reactNativePath],
-  #     :mac_catalyst_enabled => false
-  #   )
-  #   __apply_Xcode_12_5_M1_post_install_workaround(installer)
-  # end
-  post_install do |installer|
-    react_native_post_install(installer)
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
-    installer.pods_project.targets.each do |target|  
-      target.build_configurations.each do |config|
-        privacy_info_path = File.join(File.dirname(__FILE__), 'ios/PrivacyInfo.xcprivacy')
-        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-        config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
-        config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
-        config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
-        config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-      end
+  # Multibranding app targets
+  %w[
+    ParentBuddyAppXk
+    ParentBuddyAppDev
+    ParentBuddyAppXkDev
+    ParentBuddyAppBangla
+    ParentBuddyAppBanglaDev
+    MerhabaBebek
+    Wawamor
+    ReraiUmntwana
+  ].each do |variant_target|
+    target variant_target do
+      shared_pods
     end
-  end 
+  end
+
+  post_install do |installer|
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false
+    )
+    
+  end
 end

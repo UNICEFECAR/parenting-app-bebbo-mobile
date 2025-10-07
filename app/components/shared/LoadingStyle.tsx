@@ -38,7 +38,6 @@ export const GoogleLogo = styled.Image`
  
 `;
 export const LoadingText = styled.Text`
-  color: #fff;
   font-size: 22px;
   font-weight: bold;
 `;

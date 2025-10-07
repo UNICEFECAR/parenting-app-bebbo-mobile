@@ -390,7 +390,7 @@ const KGky = {
     vcTaken: 'Алынган вакциалар',
     settingExportError:
       'Дайындарды экспорттоодо ката кетти. Кайра аракет кылыңыз',
-    settingExportSuccess: 'Дайындар ийгиликтүү экспорттолду',
+    settingExportSuccess: 'Дайындар ийгиликтүү экспорттолду.',
     alertForModifyMeasures: 'Ката',
     alertForModifyMeasuresTitle:
       'Бул күндү тандоо учурдагы маалыматтарды өзгөртөт',

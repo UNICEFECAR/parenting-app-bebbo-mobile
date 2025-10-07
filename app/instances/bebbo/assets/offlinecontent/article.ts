@@ -900,6 +900,49 @@ export const articledata: any = {
             "embedded_images": []
         }
     ],
+    "uz-kaa": [
+        {
+            "id": 331,
+            "type": "Article",
+            "title": "Pozitiv eʼtibor va farzandingiz",
+            "created_at": "Tue, 10/05/2021 - 09:50",
+            "updated_at": "Tue, 10/12/2021 - 11:51",
+            "summary": "Pozitiv eʼtibor farzandingizga nisbatan iliq munosabatda va eʼtiborli boʻlishingizdir. Bu u oʻzini xavfsiz va qadrli his qilishiga yordam beradi. Farzandingizga pozitiv eʼtiborni koʻrsatish uchun har bir daqiqadan qanday unumli foydalanishni bilib oling!",
+            "body": "<h2> </h2><p>Pozitiv eʼtibor nima?</p><p>Pozitiv eʼtibor farzandingizga undan mamnunligingiz va munosabatlaringizdagi iliqlikni koʻrsatib berishingizdir. Masalan:</p><ul><li>farzandingizga tabassum qilishingiz;</li>\t<li>farzandingizga mehr-muhabbat bilan boqishingiz;</li>\t<li>farzandingizga muloyim va gʻamxoʻr munosabatda boʻlishingiz;</li>\t<li>ragʻbatlantiruvchi soʻzlardan foydalanishingiz va farzandingizning yutuqlarini nishonlashingiz;</li>\t<li>farzandingizning qiziqishlari (uning faoliyati va yutuqlari)ga befarq emasligingizni bildirishingiz.</li></ul><p>Pozitiv eʼtibor nima uchun muhim</p><p>Bolalarga tugʻilganidan boshlab eʼtiborli munosabat va tajriba zarur, toki ular qadrli ekanliklarini va boshqalarni quvontira olishlarini bilsinlar. Kattalarning pozitiv eʼtibori, reaksiyalari va munosabatlari bolalarga ular qanchalar qadrli ekanlikarini anglashga yordam beradi.</p><p>Farzandingizning oʻzi haqidagi tasavvuri siz va boshqa yaqinlarining pozitiv va mehrli munosabati orqali ortib boradi.</p><p>Bolada xavfsizlik va himoya ostida ekanlik hissi siz va unga gʻamxoʻrlik qiluvchi boshqa yaqinlarining munosabatlari natijasida shakllanadi. Kichkintoy biron yangi yoki notanish vaziyat qarshisida choʻchiyotgan payt uni tinchlantirib, dalda bersangiz, u oʻzini xavfsiz va xotirjam his qiladi.</p><p>Pozitiv eʼtiborni qanday koʻrsatish mumkin: barcha yosh davrlari</p><p>Farzandingizning yoshidan qatʼi nazar, siz har kuni unga oʻzgacha va betakror ekanini bildiruvchi oddiy amallarni bajarishingiz mumkin. Masalan:</p><ul><li>Farzandingizga qarab tabassum qiling.</li>\t<li>Farzandingiz nima qilayotganiga qiziqish bildiring – agar iloji boʻlsa, bu haqda sizga gapirib berishini soʻrang.</li>\t<li>Farzandingiz siz bilan soʻzlashganda diqqat bilan tinglang.</li>\t<li>Farzandingiz bilan birga bajarishingiz mumkin boʻlgan topshiriqlar oʻylab toping.</li></ul><p>Turli yoshdagi bolalarga pozitiv eʼtibor koʻrsatish usullari mavjud.</p><p>Yangi tugʻilgan chaqaloqlar va kichkintoylar: pozitiv eʼtibor koʻrsatish xususida maslahatlar</p><ul><li>Chaqaloq yigʻlaganida uni ovuting.</li>\t<li>Kichkintoyingiz tabassum qilganda unga javoban tabassum qiling.</li>\t<li>Kichkintoyingizning ovoziga reaksiya bildirib, javob qaytaring.</li>\t<li>Atrofingizda nimalar sodir boʻlayotganini unga soʻzlab bering.</li>\t<li>Kichkintoyingiz nimaga qiziqayotganiga eʼtibor bering va uni biron narsani oʻrganishga, masalan, eʼtiborini jalb qilayotgan rangli shaqildoqni shaqillatib koʻrishga undang.</li></ul><p>Kichik yoshdagi bolalar: pozitiv eʼtibor boʻyicha maslahatlar</p><ul><li>Farzandingizga u bajaradigan ishlarning nimasi sizga yoqishini ayting. Masalan, “Kubchalarni yigʻishga yordam berishing menga juda yoqadi”, deng. Maqtovga moyil, pozitiv ovozda gapiring.</li>\t<li>Farzandingiz bilan birga vaqt oʻtkazishdan rohatlaning. Bu, masalan, birgalikda choʻkkalab oʻtirib, oʻrmalab ketayotgan qurtni kuzatish kabi oddiy mashgʻulot boʻlishi ham mumkin.</li>\t<li>Farzandingiz bilan suhbatlashayotganingizda u har doim ham kerakli soʻzlarni tanlay olmasa-da, javob berishi uchun vaqt bering.</li></ul><p>Maktabgacha yoshdagi bolalar: pozitiv eʼtibor boʻyicha maslahatlar</p><p>Farzandingizning sevimli mashgʻulotlari birga bajarishga harakat qiling – masalan, pazl, konstruktor yigʻish, rasm chizish uchun vaqt ajrating.</p><ul><li>Farzandingizning biron xatti-harakatini ragʻbatlantirmoqchi boʻlsangiz, unga bu haqida ayting. Masalan: “Likopchani oshxonaga olib kelganing uchun rahmat. Sen yordam berganing uchun dasturxonni bir zumda yigʻib olamiz”.</li>\t<li>Ertalab salomlashayotganda farzandingizning koʻzlariga qarab tabassum qilishni unutmang, uni quchoqlashingiz ham mumkin.</li></ul><p>Pozitiv boʻlish qiyin boʻlganda</p><p>Har doim pozitiv boʻlish imkonsiz va gʻayritabiiy holatdir. Agar vaqti-vaqti bilan farzandingizdan uzoqroqda boʻlib, biror tashvish bilan band boʻlib yoki biron ishga chalgʻib qolsangiz, farzandingiz oʻzini eplay oladi.</p><p>Oiladagi stresslar, shuningdek, pandemiya, iqtisodiy beqarorlik va boshqa hodisalar siz va farzandingizga qiyinchiliklar tugʻdirishi mumkin. Oʻzingizga gʻamxoʻrlik qilishni unutmang.</p><p>Ayni damda sodir boʻlayotgan voqea emas, balki uzoq muddat davom etadigan jarayon muhimroqdir. Agar farzandingiz har doim sizdan asosan pozitiv eʼtibor oladigan boʻlsa, u oʻzini suyukli va toʻliq himoya ostida his qiladi.</p><p>Ammo ota-onalar farzandlarining ehtiyojlariga muntazam eʼtibor qarata olmasalar, bu bolalarga kichik yoshda ham, kelajakda ham salbiy taʼsir koʻrsatishi mumkin. Agar farzandingiz bilan har kunlik munosabatingiz salbiy boʻlsa yoki unga yaxshi munosabatda boʻlishingiz, oʻzingizni pozitiv tutishingiz qiyin boʻlsa, shifokor yoki boshqa mutaxassisga murojaat qilganingiz maʼqul.</p>",
+            "category": 56,
+            "child_age": [
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                57,
+                58
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                4771,
+                4766,
+                4761
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/UNI11812.jpg?itok=-yXJiS6R",
+                "name": "© UNICEF/UNI11812/Pirozzi",
+                "alt": "Mother with her baby giving him positive attention."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0,
+            "embedded_images": []
+        }
+    ],
     "sk": [
         {
             "id": 331,

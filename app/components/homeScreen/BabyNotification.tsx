@@ -27,6 +27,7 @@ import { DateTime } from "luxon";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 import {
   selectActiveChild,
+  selectChildGenders,
   selectPluralShow,
   selectTaxonomyIds,
 } from "../../services/selectors";
@@ -37,11 +38,7 @@ const BabyNotification = (): any => {
   const activeChild = useAppSelector(selectActiveChild);
   const pluralShow = useAppSelector(selectPluralShow);
   const taxonomyIds = useAppSelector(selectTaxonomyIds);
-  const genders = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender
-      : []
-  );
+  const genders = useAppSelector(selectChildGenders);
   const isFutureDate = (date: Date): any => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)

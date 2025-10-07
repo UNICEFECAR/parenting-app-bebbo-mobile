@@ -3,7 +3,7 @@ import { Heading6w } from "@styles/typography";
 import { DateTime } from "luxon";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, StyleSheet } from "react-native";
+import { InteractionManager, Pressable, StyleSheet } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../App";
 import useDigitConverter from "../customHooks/useDigitConvert";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
@@ -38,6 +38,7 @@ import {
 } from "../services/notificationService";
 import Icon from "./shared/Icon";
 import { BubbleContainer, BubbleView1 } from "./shared/NavigationDrawer";
+import { selectActiveChild, selectAllTaxonomyData, selectChildAge, selectHealthCheckupsData, selectVaccineData } from "../services/selectors";
 const styles = StyleSheet.create({
   bubbleContainer: {
     alignItems: "center",
@@ -66,25 +67,13 @@ const HeaderNotiIcon = (props: any): any => {
     (state: any) => state.notificationData.localNotificationGenerateType
   );
 
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const dispatch = useAppDispatch();
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const generateNotificationsFlag = useAppSelector(
     (state: any) => state.utilsData.generateNotifications
   );
-  const allHealthCheckupsData = useAppSelector((state: any) =>
-    state?.utilsData?.healthCheckupsData != ""
-      ? JSON.parse(state?.utilsData?.healthCheckupsData)
-      : []
-  );
+  const allHealthCheckupsData = useAppSelector(selectHealthCheckupsData);
   const growthEnabledFlag = useAppSelector(
     (state: any) => state.notificationData.growthEnabled
   );
@@ -94,54 +83,137 @@ const HeaderNotiIcon = (props: any): any => {
   const vchcEnabledFlag = useAppSelector(
     (state: any) => state.notificationData.vchcEnabled
   );
-  const taxonomy = useAppSelector((state: any) =>
-    state.utilsData.taxonomy?.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData)
-      : {}
-  );
+  const taxonomy = useAppSelector(selectAllTaxonomyData);
   const allGrowthPeriods = taxonomy?.growth_period;
-  const allVaccinePeriods = useAppSelector((state: any) =>
-    state.utilsData.vaccineData != ""
-      ? JSON.parse(state.utilsData.vaccineData)
-      : []
-  );
-  const allVaccineData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData)
-  );
+  const allVaccinePeriods = useAppSelector(selectVaccineData);
+  const allVaccineData = useAppSelector(selectVaccineData);
   const { t } = useTranslation();
   const [notifications, setNotifications] = useState<any[]>([]);
   const [newAllChildNotis, setAllChildNotis] = useState<any>([]);
   const [flagValue, setFlagValue] = useState<boolean>(false);
   useEffect(() => {
     console.log("firstuseeffect", generateNotificationsFlag);
-    if (generateNotificationsFlag == true) {
-      const fetchDataOfNotifications = async (): Promise<any> => {
-        const childList = await getAllChildrenDetails(dispatch, childAge, 1);
-        const allchildNotis: any[] = [];
-        childList?.map((child: any) => {
-          const notiExist = allnotis.find(
-            (item: any) => String(item.childuuid) == String(child.uuid)
-          );
-          if (notiExist != undefined) {
-            //remove reminder notis
-            if (isFutureDate(child?.birthDate)) {
-              // do not calculate for expecting child
-              //empty childNotis // find and remove child from notification slice
-            } else {
-              const checkIfNewCalcRequired = isPeriodsMovedAhead(
-                childAge,
-                notiExist,
-                child,
-                allVaccinePeriods,
-                allGrowthPeriods,
-                allHealthCheckupsData
-              );
-              if (checkIfNewCalcRequired) {
-                const reminderNotis = getChildReminderNotifications(
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (generateNotificationsFlag == true) {
+        const fetchDataOfNotifications = async (): Promise<any> => {
+          const childList = await getAllChildrenDetails(dispatch, childAge, 1);
+          const allchildNotis: any[] = [];
+          childList?.map((child: any) => {
+            const notiExist = allnotis.find(
+              (item: any) => String(item.childuuid) == String(child.uuid)
+            );
+            if (notiExist != undefined) {
+              //remove reminder notis
+              if (isFutureDate(child?.birthDate)) {
+                // do not calculate for expecting child
+                //empty childNotis // find and remove child from notification slice
+              } else {
+                const checkIfNewCalcRequired = isPeriodsMovedAhead(
+                  childAge,
+                  notiExist,
                   child,
-                  notiExist.reminderNotis,
-                  vchcEnabledFlag
+                  allVaccinePeriods,
+                  allGrowthPeriods,
+                  allHealthCheckupsData
                 );
+                if (checkIfNewCalcRequired) {
+                  const reminderNotis = getChildReminderNotifications(
+                    child,
+                    notiExist.reminderNotis,
+                    vchcEnabledFlag
+                  );
+                  const {
+                    lastgwperiodid,
+                    lastvcperiodid,
+                    lasthcperiodid,
+                    gwcdnotis,
+                    vcnotis,
+                    hcnotis,
+                  } = getNextChildNotification(
+                    notiExist.lastgwperiodid,
+                    notiExist.lastvcperiodid,
+                    notiExist.lasthcperiodid,
+                    child,
+                    childAge,
+                    allHealthCheckupsData,
+                    allVaccinePeriods,
+                    allGrowthPeriods,
+                    growthEnabledFlag,
+                    developmentEnabledFlag,
+                    vchcEnabledFlag
+                  );
+                  ////  append new notifications for child
+                  const allgwcdnotis: any = [];
+                  const allvcnotis: any = [];
+                  const allhcnotis: any = [];
+                  gwcdnotis.reverse().forEach((item: any) => {
+                    allgwcdnotis.push(item);
+                  });
+                  if (notiExist.gwcdnotis) {
+                    notiExist.gwcdnotis?.forEach((item: any) => {
+                      allgwcdnotis.push(item);
+                    });
+                  }
+                  vcnotis.reverse().forEach((item: any) => {
+                    allvcnotis.push(item);
+                  });
+                  if (notiExist.vcnotis) {
+                    notiExist.vcnotis?.forEach((item: any) => {
+                      allvcnotis.push(item);
+                    });
+                  }
+                  hcnotis.reverse().forEach((item: any) => {
+                    allhcnotis.push(item);
+                  });
+                  if (notiExist.hcnotis) {
+                    notiExist.hcnotis?.forEach((item: any) => {
+                      allhcnotis.push(item);
+                    });
+                  }
+                  const allreminderNotis: any = [];
+                  reminderNotis.reverse().forEach((item: any) => {
+                    allreminderNotis.push(item);
+                  });
+                  // remove duplicates by key of growth_period,periodName from reminderNotis
+                  allchildNotis.push({
+                    childuuid: notiExist.childuuid,
+                    lastgwperiodid: lastgwperiodid,
+                    lastvcperiodid: lastvcperiodid,
+                    lasthcperiodid: lasthcperiodid,
+                    gwcdnotis: allgwcdnotis,
+                    vcnotis: allvcnotis,
+                    hcnotis: allhcnotis,
+                    reminderNotis: allreminderNotis,
+                  });
+                } else {
+                  //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
+                  //find and remove child from notification slice
+                  //clear notification which are already generated,
+                  //generate for new notifications
+                  const allreminderNotis: any = [];
+                  const reminderNotis = getChildReminderNotifications(
+                    child,
+                    notiExist.reminderNotis,
+                    vchcEnabledFlag
+                  );
+                  reminderNotis.reverse().forEach((item) => {
+                    allreminderNotis.push(item);
+                  });
+                  allchildNotis.push({
+                    childuuid: notiExist.childuuid,
+                    lastgwperiodid: notiExist.lastgwperiodid,
+                    lastvcperiodid: notiExist.lastvcperiodid,
+                    lasthcperiodid: notiExist.lasthcperiodid,
+                    gwcdnotis: notiExist.gwcdnotis,
+                    vcnotis: notiExist.vcnotis,
+                    hcnotis: notiExist.hcnotis,
+                    reminderNotis: allreminderNotis,
+                  });
+                }
+              }
+            } else {
+              // create notification for that child first time
+              if (!isFutureDate(child?.birthDate)) {
                 const {
                   lastgwperiodid,
                   lastvcperiodid,
@@ -149,10 +221,7 @@ const HeaderNotiIcon = (props: any): any => {
                   gwcdnotis,
                   vcnotis,
                   hcnotis,
-                } = getNextChildNotification(
-                  notiExist.lastgwperiodid,
-                  notiExist.lastvcperiodid,
-                  notiExist.lasthcperiodid,
+                }: any = getChildNotification(
                   child,
                   childAge,
                   allHealthCheckupsData,
@@ -162,206 +231,123 @@ const HeaderNotiIcon = (props: any): any => {
                   developmentEnabledFlag,
                   vchcEnabledFlag
                 );
-                ////  append new notifications for child
-                const allgwcdnotis: any = [];
-                const allvcnotis: any = [];
-                const allhcnotis: any = [];
-                gwcdnotis.reverse().forEach((item: any) => {
-                  allgwcdnotis.push(item);
-                });
-                if (notiExist.gwcdnotis) {
-                  notiExist.gwcdnotis?.forEach((item: any) => {
-                    allgwcdnotis.push(item);
-                  });
-                }
-                vcnotis.reverse().forEach((item: any) => {
-                  allvcnotis.push(item);
-                });
-                if (notiExist.vcnotis) {
-                  notiExist.vcnotis?.forEach((item: any) => {
-                    allvcnotis.push(item);
-                  });
-                }
-                hcnotis.reverse().forEach((item: any) => {
-                  allhcnotis.push(item);
-                });
-                if (notiExist.hcnotis) {
-                  notiExist.hcnotis?.forEach((item: any) => {
-                    allhcnotis.push(item);
-                  });
-                }
-                const allreminderNotis: any = [];
-                reminderNotis.reverse().forEach((item: any) => {
-                  allreminderNotis.push(item);
-                });
-                // remove duplicates by key of growth_period,periodName from reminderNotis
-                allchildNotis.push({
-                  childuuid: notiExist.childuuid,
-                  lastgwperiodid: lastgwperiodid,
-                  lastvcperiodid: lastvcperiodid,
-                  lasthcperiodid: lasthcperiodid,
-                  gwcdnotis: allgwcdnotis,
-                  vcnotis: allvcnotis,
-                  hcnotis: allhcnotis,
-                  reminderNotis: allreminderNotis,
-                });
-              } else {
-                //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
-                //find and remove child from notification slice
-                //clear notification which are already generated,
-                //generate for new notifications
-                const allreminderNotis: any = [];
                 const reminderNotis = getChildReminderNotifications(
                   child,
-                  notiExist.reminderNotis,
+                  [],
                   vchcEnabledFlag
                 );
-                reminderNotis.reverse().forEach((item) => {
-                  allreminderNotis.push(item);
-                });
                 allchildNotis.push({
-                  childuuid: notiExist.childuuid,
-                  lastgwperiodid: notiExist.lastgwperiodid,
-                  lastvcperiodid: notiExist.lastvcperiodid,
-                  lasthcperiodid: notiExist.lasthcperiodid,
-                  gwcdnotis: notiExist.gwcdnotis,
-                  vcnotis: notiExist.vcnotis,
-                  hcnotis: notiExist.hcnotis,
-                  reminderNotis: allreminderNotis,
+                  childuuid: child.uuid,
+                  lastgwperiodid,
+                  lastvcperiodid,
+                  lasthcperiodid,
+                  gwcdnotis: gwcdnotis,
+                  vcnotis: vcnotis,
+                  hcnotis: hcnotis,
+                  reminderNotis: reminderNotis,
                 });
+              } else {
+                //for expecting child no notifications
               }
             }
-          } else {
-            // create notification for that child first time
-            if (!isFutureDate(child?.birthDate)) {
-              const {
-                lastgwperiodid,
-                lastvcperiodid,
-                lasthcperiodid,
-                gwcdnotis,
-                vcnotis,
-                hcnotis,
-              }: any = getChildNotification(
-                child,
-                childAge,
-                allHealthCheckupsData,
-                allVaccinePeriods,
-                allGrowthPeriods,
-                growthEnabledFlag,
-                developmentEnabledFlag,
-                vchcEnabledFlag
-              );
-              const reminderNotis = getChildReminderNotifications(
-                child,
-                [],
-                vchcEnabledFlag
-              );
-              allchildNotis.push({
-                childuuid: child.uuid,
-                lastgwperiodid,
-                lastvcperiodid,
-                lasthcperiodid,
-                gwcdnotis: gwcdnotis,
-                vcnotis: vcnotis,
-                hcnotis: hcnotis,
-                reminderNotis: reminderNotis,
-              });
-            } else {
-              //for expecting child no notifications
-            }
-          }
-        });
-        dispatch(setAllNotificationData(allchildNotis));
-        //generate notifications for all childs
-        //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
-        //if already exist, then for each module get last period, and generate afterwards period's notifications
-        //after generating notifications make it false
-        const notiFlagObj = { key: "generateNotifications", value: false };
-        dispatch(setInfoModalOpened(notiFlagObj));
-      };
-      fetchDataOfNotifications();
-    }
+          });
+          dispatch(setAllNotificationData(allchildNotis));
+          //generate notifications for all childs
+          //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
+          //if already exist, then for each module get last period, and generate afterwards period's notifications
+          //after generating notifications make it false
+          const notiFlagObj = { key: "generateNotifications", value: false };
+          dispatch(setInfoModalOpened(notiFlagObj));
+        };
+        fetchDataOfNotifications();
+      }
+    });
+
+    return () => task.cancel();
   }, [generateNotificationsFlag]);
 
   useFocusEffect(
     React.useCallback(() => {
       // Your dismiss logic here
-      if (allnotis.length > 0) {
-        const currentChildNotis = allnotis?.find(
-          (item: any) => item.childuuid == activeChild.uuid
-        );
-        //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
-        if (!isFutureDate(activeChild?.birthDate)) {
-          if (currentChildNotis) {
-            const currentChildallnoti: any = [];
-            if (currentChildNotis.gwcdnotis) {
-              currentChildNotis.gwcdnotis.forEach((item: any) => {
-                currentChildallnoti.push(item);
-              });
-            }
-            if (currentChildNotis.hcnotis) {
-              currentChildNotis.hcnotis.forEach((item: any) => {
-                currentChildallnoti.push(item);
-              });
-            }
-            if (currentChildNotis.vcnotis) {
-              //
-              currentChildNotis.vcnotis.forEach((item: any) => {
-                if (item.title == "vcNoti1") {
-                  const vcNotisExists = getVaccinesForPeriodCount(
-                    allVaccineData,
-                    item.growth_period
-                  );
-                  if (
-                    vcNotisExists != "" &&
-                    vcNotisExists != null &&
-                    vcNotisExists != undefined
-                  ) {
+      const task = InteractionManager.runAfterInteractions(() => {
+        if (allnotis.length > 0) {
+          const currentChildNotis = allnotis?.find(
+            (item: any) => item.childuuid == activeChild.uuid
+          );
+          //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
+          if (!isFutureDate(activeChild?.birthDate)) {
+            if (currentChildNotis) {
+              const currentChildallnoti: any = [];
+              if (currentChildNotis.gwcdnotis) {
+                currentChildNotis.gwcdnotis.forEach((item: any) => {
+                  currentChildallnoti.push(item);
+                });
+              }
+              if (currentChildNotis.hcnotis) {
+                currentChildNotis.hcnotis.forEach((item: any) => {
+                  currentChildallnoti.push(item);
+                });
+              }
+              if (currentChildNotis.vcnotis) {
+                //
+                currentChildNotis.vcnotis.forEach((item: any) => {
+                  if (item.title == "vcNoti1") {
+                    const vcNotisExists = getVaccinesForPeriodCount(
+                      allVaccineData,
+                      item.growth_period
+                    );
+                    if (
+                      vcNotisExists != "" &&
+                      vcNotisExists != null &&
+                      vcNotisExists != undefined
+                    ) {
+                      currentChildallnoti.push(item);
+                    }
+                  } else {
                     currentChildallnoti.push(item);
                   }
-                } else {
+                });
+              }
+              if (currentChildNotis.reminderNotis) {
+                currentChildNotis.reminderNotis.forEach((item: any) => {
                   currentChildallnoti.push(item);
-                }
-              });
+                });
+              }
+              const childBirthDate = DateTime.fromJSDate(
+                new Date(activeChild.birthDate)
+              ).toMillis();
+              //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
+              const toDay = DateTime.fromJSDate(new Date()).toMillis();
+              const combinedNotis = currentChildallnoti
+                .sort(
+                  (a: any, b: any) =>
+                    new Date(a.notificationDate) - new Date(b.notificationDate)
+                )
+                .filter((item: any) => {
+                  return (
+                    item.isRead == false &&
+                    item.isDeleted == false &&
+                    toDay >=
+                      DateTime.fromJSDate(
+                        new Date(item.notificationDate)
+                      ).toMillis() &&
+                    childBirthDate <=
+                      DateTime.fromJSDate(
+                        new Date(item.notificationDate)
+                      ).toMillis()
+                  );
+                });
+              // delete item from combinedNotis item => { item.title == 'cdNoti2' && childAgeInDays >= item.days_to })
+              setNotifications(
+                currentChildallnoti.length > 0 ? combinedNotis : []
+              );
             }
-            if (currentChildNotis.reminderNotis) {
-              currentChildNotis.reminderNotis.forEach((item: any) => {
-                currentChildallnoti.push(item);
-              });
-            }
-            const childBirthDate = DateTime.fromJSDate(
-              new Date(activeChild.birthDate)
-            ).toMillis();
-            //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
-            const toDay = DateTime.fromJSDate(new Date()).toMillis();
-            const combinedNotis = currentChildallnoti
-              .sort(
-                (a: any, b: any) =>
-                  new Date(a.notificationDate) - new Date(b.notificationDate)
-              )
-              .filter((item: any) => {
-                return (
-                  item.isRead == false &&
-                  item.isDeleted == false &&
-                  toDay >=
-                    DateTime.fromJSDate(
-                      new Date(item.notificationDate)
-                    ).toMillis() &&
-                  childBirthDate <=
-                    DateTime.fromJSDate(
-                      new Date(item.notificationDate)
-                    ).toMillis()
-                );
-              });
-            // delete item from combinedNotis item => { item.title == 'cdNoti2' && childAgeInDays >= item.days_to })
-            setNotifications(
-              currentChildallnoti.length > 0 ? combinedNotis : []
-            );
+          } else {
+            setNotifications([]);
           }
-        } else {
-          setNotifications([]);
         }
-      }
+      });
+      return () => task.cancel();
     }, [activeChild.uuid, allnotis])
   );
   useFocusEffect(
@@ -463,23 +449,29 @@ const HeaderNotiIcon = (props: any): any => {
           }
         }
       };
-      fetchData();
+      const task = InteractionManager.runAfterInteractions(() => {
+        fetchData();
+      });
+      return () => task.cancel();
     }, [localNotificationGenerateType])
   );
   useEffect(() => {
-    if (flagValue == true) {
-      // Alert.alert(String(flagValue),String(newAllChildNotis));
-      dispatch(setAllScheduledLocalNotificationData([]));
-      dispatch(setAllLocalNotificationData(newAllChildNotis));
-      const localnotiFlagObj = {
-        generateFlag: false,
-        generateType: "add",
-        childuuid: "all",
-      };
-      dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
-    }
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (flagValue == true) {
+        // Alert.alert(String(flagValue),String(newAllChildNotis));
+        dispatch(setAllScheduledLocalNotificationData([]));
+        dispatch(setAllLocalNotificationData(newAllChildNotis));
+        const localnotiFlagObj = {
+          generateFlag: false,
+          generateType: "add",
+          childuuid: "all",
+        };
+        dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
+      }
+    });
     return (): any => {
       setFlagValue(false);
+      task.cancel()
     };
   }, [flagValue]);
   useEffect(() => {
@@ -524,7 +516,10 @@ const HeaderNotiIcon = (props: any): any => {
       });
       dispatch(setAllScheduledLocalNotificationData(filteredschedulednoti));
     };
-    fetchDataOfScheduled();
+    const task = InteractionManager.runAfterInteractions(() => {
+      fetchDataOfScheduled();
+    });
+    return () => task.cancel();
   }, [localNotifications]);
 
   useEffect(() => {
@@ -547,7 +542,10 @@ const HeaderNotiIcon = (props: any): any => {
           setFavouriteGames(Object.values(childData[0]?.favoritegames) || [])
         );
     };
-    fetchDataFav();
+    const task = InteractionManager.runAfterInteractions(() => {
+      fetchDataFav();
+    });
+    return () => task.cancel();
   }, [activeChild.uuid]);
   const navigation = useNavigation<any>();
   return (

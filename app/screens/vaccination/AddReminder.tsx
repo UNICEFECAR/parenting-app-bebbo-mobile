@@ -78,6 +78,7 @@ import {
 import * as RNLocalize from "react-native-localize";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
+import { selectActiveChild } from "../../services/selectors";
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -162,11 +163,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
     setMeasureTimePickerVisibilityDefined,
   ] = useState(false);
   const dispatch = useAppDispatch();
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const vchcEnabledFlag = useAppSelector(
     (state: any) => state.notificationData.vchcEnabled
   );
@@ -420,9 +417,9 @@ const AddReminder = ({ route, navigation }: Props): any => {
     ) {
       if (
         DateTime.fromJSDate(finalReminderDateDefined).toMillis() >
-          DateTime.fromJSDate(new Date()).toMillis() &&
+        DateTime.fromJSDate(new Date()).toMillis() &&
         DateTime.fromJSDate(finalReminderDateDefined).toMillis() <
-          DateTime.fromJSDate(finalReminderDate).toMillis()
+        DateTime.fromJSDate(finalReminderDate).toMillis()
       ) {
         const reminderValues = {
           uuid: editReminderItem ? editReminderItem.uuid : uuid(),
@@ -650,7 +647,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                         mode={"time"}
                         locale={locale}
                         display="spinner"
-                        is24Hour={true}
+                        is24Hour={false}
                         minimumDate={minmeasureTime}
                         onChange={onmeasureTimeChange}
                       />
@@ -781,7 +778,7 @@ const AddReminder = ({ route, navigation }: Props): any => {
                         mode={"time"}
                         display="spinner"
                         locale={locale}
-                        is24Hour={true}
+                        is24Hour={false}
                         minimumDate={
                           new Date(
                             DateTime.local().plus({ minutes: +1 }).toISODate()
@@ -791,10 +788,10 @@ const AddReminder = ({ route, navigation }: Props): any => {
                           measureTime
                             ? new Date(measureTime)
                             : new Date(
-                                DateTime.local()
-                                  .plus({ minutes: +1 })
-                                  .toISODate()
-                              )
+                              DateTime.local()
+                                .plus({ minutes: +1 })
+                                .toISODate()
+                            )
                         }
                         onChange={onmeasureTimeChangeDefined}
                       />
@@ -830,11 +827,19 @@ const AddReminder = ({ route, navigation }: Props): any => {
                       minimumDate={minmeasureTimeDefined}
                       //minimumDate={new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
                       maximumDate={
-                        measureTime
-                          ? new Date(measureTime)
+                        measureTime && measureDate
+                          ? new Date(
+                            DateTime.fromMillis(
+                              typeof measureDate === "number" ? measureDate : new Date(measureDate).getTime()
+                            ).set({
+                              hour: measureTime.hour,
+                              minute: measureTime.minute,
+                              second: measureTime.second,
+                            }).toMillis()
+                          )
                           : new Date(
-                              DateTime.local().plus({ minutes: +1 }).toISODate()
-                            )
+                            DateTime.local().plus({ minutes: +1 }).toISODate()
+                          )
                       }
                     />
                   </FormDateText>

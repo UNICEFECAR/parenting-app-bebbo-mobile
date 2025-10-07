@@ -35,6 +35,8 @@ import {
 } from "../../shared/ButtonGlobal";
 import Icon, { IconViewAlert, IconViewBg } from "../../shared/Icon";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
+import { selectActiveChild } from "../../../services/selectors";
+import useDigitConverter from "../../../customHooks/useDigitConvert";
 const styles = StyleSheet.create({
   alignCenter: { alignSelf: "center" },
   radioActive: { backgroundColor: greenColor, borderRadius: 50 },
@@ -48,11 +50,8 @@ const UpcomingVaccines = (props: any): any => {
   const netInfo = useNetInfoHook();
   const navigation = useNavigation<any>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
+  const { convertDigits } = useDigitConverter();
   const reminders = activeChild.reminders;
   let vcReminder: any;
   const vaccineReminders = reminders.filter(
@@ -195,14 +194,14 @@ const UpcomingVaccines = (props: any): any => {
                 <Heading5>
                   {t("vaccinesTxt")}
                   {":"}
-                  {totalVC}
+                  {convertDigits(totalVC)}
                   {" | "}
                   {t("vaccinesDoneTxt")}
                   {":"}
-                  {doneVc ? doneVc.length : 0} {" | "}
+                  {doneVc ? convertDigits(doneVc.length) : convertDigits(0)} {" | "}
                   {t("vaccinesPendingTxt")}
                   {":"}
-                  {totalVC - (doneVc ? doneVc.length : 0)}
+                  {convertDigits(totalVC - (doneVc ? doneVc.length : 0))}
                 </Heading5>
               </ToolsHeadingView>
               <ToolsActionView>

@@ -13,7 +13,6 @@ import FirstTimeModal from "@components/shared/FirstTimeModal";
 import { FlexCol } from "@components/shared/FlexBoxStyle";
 import Icon, { IconClearPress, OuterIconRow } from "@components/shared/Icon";
 import ShareFavButtons from "@components/shared/ShareFavButtons";
-import Realm from "realm";
 import TabScreenHeader from "@components/TabScreenHeader";
 import VideoPlayer from "@components/VideoPlayer";
 import { HomeDrawerNavigatorStackParamList } from "@navigation/types";
@@ -65,6 +64,8 @@ import {
 } from "@assets/data/firebaseEvents";
 import AgeBrackets from "@components/AgeBrackets";
 import OutsidePressHandler from "react-native-outside-press";
+import { selectActiveChild, selectArticleCategoryArray, selectArticleDataAll, selectChildAge, selectPinnedChildDevData } from "../../../services/selectors";
+import { getRealmLib } from "../../../redux/reducers/realmSafe";
 type ArticlesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -212,6 +213,7 @@ const Articles = ({ route, navigation }: any): any => {
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
+    const Realm = await getRealmLib();
     realm.write(() => {
       const storeKeyword = realm.create(
         "SearchHistory",
@@ -249,15 +251,8 @@ const Articles = ({ route, navigation }: any): any => {
   //code for getting article dynamic data starts here.
   // let filterArray: string[] = [];
   const fromPage = "Articles";
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
-  const categoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category
-  );
+  const childAge = useAppSelector(selectChildAge);
+  const categoryData = useAppSelector(selectArticleCategoryArray);
   const taxonomyIds = useAppSelector(
     (state: any) => state.utilsData.taxonomyIds
   );
@@ -265,27 +260,15 @@ const Articles = ({ route, navigation }: any): any => {
     (state: any) => state.selectedCountry.languageCode
   );
 
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId ??
     activeChild?.taxonomyData.id;
-  const articleDataall = useAppSelector((state: any) =>
-    state.articlesData.article.articles != ""
-      ? JSON.parse(state.articlesData.article.articles)
-      : state.articlesData.article.articles
-  );
+  const articleDataall = useAppSelector(selectArticleDataAll);
   const articleDataOld = articleDataall.filter((x: any) =>
     taxonomyIds.articleCategoryArray.includes(x.category)
   );
-  const VideoArticlesDataall = useAppSelector((state: any) =>
-    state.utilsData.VideoArticlesData != ""
-      ? JSON.parse(state.utilsData.VideoArticlesData)
-      : []
-  );
+  const VideoArticlesDataall = useAppSelector(selectPinnedChildDevData);
   const videoarticleData = VideoArticlesDataall.filter(
     (x: any) =>
       x.mandatory == appConfig.videoArticleMandatory &&

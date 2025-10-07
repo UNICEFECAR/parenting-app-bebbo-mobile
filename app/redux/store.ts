@@ -16,16 +16,28 @@ if (process.env.NODE_ENV !== 'production' ){
 allMiddlewares.push(sagaMiddleware);
 
 export default function configureAppStore():any {
+  // const store = configureStore({
+  //   reducer: rootReducer,
+  //   middleware: (getDefaultMiddleware) =>
+  //     getDefaultMiddleware({
+  //       immutableCheck:false,
+  //       serializableCheck:false,
+  //     }).concat(allMiddlewares),
+  //   devTools: process.env.NODE_ENV !== 'production',
+  //   // preloadedState,
+  //   enhancers: [],
+  // });
   const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
-        immutableCheck:false,
-        serializableCheck:false,
+        immutableCheck: false,
+        serializableCheck: false,
       }).concat(allMiddlewares),
+  
     devTools: process.env.NODE_ENV !== 'production',
-    // preloadedState,
-    enhancers: [],
+  
+    enhancers: (getDefaultEnhancers) => getDefaultEnhancers(), // ✅ must be a callback
   });
   sagaMiddleware.run(rootSaga);
   return store;

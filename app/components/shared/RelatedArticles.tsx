@@ -27,6 +27,7 @@ import {
 } from "./ArticlesStyle";
 import ShareFavButtons from "./ShareFavButtons";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
+import { selectArticleCategoryArray, selectArticleDataAll } from "../../services/selectors";
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -73,19 +74,12 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
   const { t } = useTranslation();
   const netInfo = useNetInfoHook();
   let relartlength = relatedArticles ? relatedArticles.length : 0;
-  const articleDataold = useAppSelector((state: any) =>
-    state.articlesData.article.articles != ""
-      ? JSON.parse(state.articlesData.article.articles)
-      : state.articlesData.article.articles
-  );
+  const articleDataold = useAppSelector(selectArticleDataAll);
   const articleData = randomArrayShuffle(articleDataold);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
-  const categoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category
-  );
+  const categoryData = useAppSelector(selectArticleCategoryArray);
   const favoriteadvices = useAppSelector(
     (state: any) => state.childData.childDataSet.favoriteadvices
   );

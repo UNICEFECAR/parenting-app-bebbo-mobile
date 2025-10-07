@@ -11,17 +11,14 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../../App";
 import { setInfoModalOpened } from "../../redux/reducers/utilsSlice";
+import { selectDailyMessages } from "../../services/selectors";
 const styles = StyleSheet.create({
   shiftFromBottom: { flex: 1, flexDirection: "column" },
 });
 const DailyHomeNotification = (): any => {
   const [notification, setNotification] = useState<any>();
   const dispatch = useAppDispatch();
-  const records = useAppSelector((state: any) =>
-    state.utilsData.dailymessages != ""
-      ? JSON.parse(state.utilsData.dailymessages)
-      : state.utilsData.dailymessages
-  );
+  const records = useAppSelector(selectDailyMessages);
   const currentNotification = useAppSelector(
     (state: any) => state.utilsData.dailyMessageNotification
   );

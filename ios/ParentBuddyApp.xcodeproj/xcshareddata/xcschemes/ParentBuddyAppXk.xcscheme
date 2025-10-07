@@ -14,7 +14,7 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
+                     BlueprintIdentifier = "D6F1422C2E29268B00986814"
                      BuildableName = "Foleja.app"
                      BlueprintName = "ParentBuddyAppXk"
                      ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -32,7 +32,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
+               BlueprintIdentifier = "D6F1422C2E29268B00986814"
                BuildableName = "Foleja.app"
                BlueprintName = "ParentBuddyAppXk"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -62,7 +62,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
+            BlueprintIdentifier = "D6F1422C2E29268B00986814"
             BuildableName = "Foleja.app"
             BlueprintName = "ParentBuddyAppXk"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -79,7 +79,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
+            BlueprintIdentifier = "D6F1422C2E29268B00986814"
             BuildableName = "Foleja.app"
             BlueprintName = "ParentBuddyAppXk"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">

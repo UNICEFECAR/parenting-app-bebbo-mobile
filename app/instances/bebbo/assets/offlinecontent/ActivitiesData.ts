@@ -6241,6 +6241,308 @@ export const ActivitiesData: any = {
             "embedded_images": []
         }
     ],
+    "uz-kaa": [
+        {
+            "id": 7406,
+            "type": "Games",
+            "title": "Kitob varaqlaymiz",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Mon, 10/18/2021 - 20:44",
+            "summary": "Sizga kerak boʻladigan materiallar: bir yoki bir nechta rasmli kitoblar (agar sizda bunday kitob boʻlmasa, jurnaldagi rasmlarni qirqing va bir joyga jamlang yoki oddiy rasmlar chizing)",
+            "body": "<p>Sizga kerak boʻladigan materiallar: bir yoki bir nechta rasmli kitoblar (agar sizda bunday kitob boʻlmasa, jurnaldagi rasmlarni qirqing va bir joyga jamlang yoki oddiy rasmlar chizing)</p><p>Birgalikda nima qilishingiz mumkin: rasmli kitoblarni farzandingiz bilan birga koʻrishingiz uning uchun shu yoshdagi maroqli mashgʻulotga aylanadi. Kitobdagi rasmlar haqida gapirganingizda yoki oʻqiganingizda bolangizni sahifalarni ochishga undang. Buni qiziqarli mashgʻulorga aylantiring. Masalan: “Qani, mushuk hozir qayerga borishini koʻraylik-chi. Keyingi sahifani ocha olasanmi?” deb soʻrang. Bolaga kitob varaqlashni koʻrsating, kerak boʻlganda qoʻlidan ushlab yoʻnaltiring. “Sahifani ochganing uchun rahmat. Mana, mushuk daraxtda oʻtirganini koʻrdim”, deyishingiz mumkin. Farzandingiz qiziqib, sahifalarni varaqlashni uddalagach, hikoyalar oʻqib berishni kundalik mashgʻulotlar safiga qoʻshing. Shundan soʻng farzandingiz kitob yoki jurnal sahifalarini mustaqil ravishda varaqlayotganini koʻrishingiz mumkin.</p><p>Farzandingiz nimani oʻrganmoqda: sahifa varaqlash mayda qoʻl motorikasining yangi koʻnikmasidir va bu orqali bolangiz qoʻllarini yanada mohirona ishlata oladi. Farzandingiz koʻrib turgan rasmi va sahifani ochganda chiqadigan yangi rasm oʻrtasida bogʻliqlik oʻrnatadi, natijada uning fikrlash qobiliyati ham mustahkamlanadi.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                51
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=Ho_bSe-d",
+                "name": "@cottonbro",
+                "alt": "A child looking at a book"
+            },
+            "related_milestone": [
+                5861
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7426,
+            "type": "Games",
+            "title": "Mening maxsus yordamchim",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Mon, 10/18/2021 - 21:12",
+            "summary": "Sizga kerak boʻladigan materiallar: kundalik turmushda ishlatiladigan narsalar yoki boshqa materiallar. Masalan, toza taxlangan kiyimlar; bolangiz oʻynagan oʻyinchoqlar yoki boshqa narsalar; ovqat uchun qoshiqlar, sinmaydigan piyolalar yoki boshqa narsalar; bogʻdan topilgan narsalar, masalan, yerdagi barglar.",
+            "body": "<p>Sizga kerak boʻladigan materiallar: kundalik turmushda ishlatiladigan narsalar yoki boshqa materiallar. Masalan, toza taxlangan kiyimlar; bolangiz oʻynagan oʻyinchoqlar yoki boshqa narsalar; ovqat uchun qoshiqlar, sinmaydigan piyolalar yoki boshqa narsalar; bogʻdan topilgan narsalar, masalan, yerdagi barglar.</p><p>Birgalikda nima qilishingiz mumkin: farzandingizga “maxsus yordamchingiz boʻlish”ni taklif qiling. Masalan, bunday deng: “Menga mana bu paypoqlarni yigʻishda yordaming juda zarur. Baʼzilarini singilchangning shkafiga qoʻyamiz; baʼzilari senikiga qoʻyamiz. Iltimos, bularni olib, joyiga qoʻy. Barakalla, juda katta yordam berding. Rahmat!”</p><p>Ushbu turdagi mashgʻulotlar har kuni turli xil materiallar va vazifalar bilan muntazam ravishda bajarilishi mumkin.</p><p>Farzandingiz nimani oʻrganmoqda: u hamkorlik qilishni oʻrganmoqda. Boshqalarga yordam berish farzandingizni ham, boshqalarni ham quvontiradi. Farzandingiz oddiy koʻrsatmalarga rioya qilishni, boshqa buyumlarning nomlarini oʻrganadi. U narsalarni saralashni yoki guruhlashni oʻrganishi ham mumkin, masalan, siz bolangizdan eng kichkina paypoqlarni topib, ularni bitta qutiga, kattaroq paypoqlarni boshqa qutiga solishni soʻrashingiz mumkin. Bu ishni sinovdek emas, balki qiziqarli va doʻstona mashgʻulotdek tashkillashtiring.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                52
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=G0NjesNG",
+                "name": "@Phillip Goldsberry",
+                "alt": "Children helping their parents"
+            },
+            "related_milestone": [
+                6976
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7511,
+            "type": "Games",
+            "title": "Ranglar ovi",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Tue, 10/19/2021 - 12:30",
+            "summary": "Kerak bo’ladigan vositalar: Har biri turli rangdagi kichik narsalar (masalan, qizil paypoq yoki apelsin)Birgalikda nima qilishingiz mumkin: Farzandingizni \"Ranglar ovi\" o'yinini o'ynashga taklif qiling. “Qara!  Mana qizil paypoq.  Qizil rangli boshqa narsalarni topa olasanmi? Kel, birgalikda ko'rib chiqamiz! ”  Uyingizning turli joylaridan qidiring yoki ochiq havoda ov qiling. Rangni bildiruvchi so'zdan tez-tez foydalaning.  ",
+            "body": "<p>Kerak bo’ladigan vositalar: Har biri turli rangdagi kichik narsalar (masalan, qizil paypoq yoki apelsin)</p><p>Birgalikda nima qilishingiz mumkin: Farzandingizni \"Ranglar ovi\" o'yinini o'ynashga taklif qiling. “Qara!  Mana qizil paypoq.  Qizil rangli boshqa narsalarni topa olasanmi? Kel, birgalikda ko'rib chiqamiz! ”  Uyingizning turli joylaridan qidiring yoki ochiq havoda ov qiling. Rangni bildiruvchi so'zdan tez-tez foydalaning.  </p><p>Keyin, boshqa rangdagi narsalarni qidirib, ranglar ovi bilan shug'ullaning. Binafsha, to'q sariq, jigarrang ranglarni qo'shing, shunda bolangiz ko'proq ranglarni o'rganadi.  U ko'proq ma'lumotga ega bo'lganda, siz misol keltirmasdan turib farzandingizdan faqat ma'lum bir rangdagi narsalarni topishini so'rashingiz yoki bolangizdan qaysi rangni qidirishini xohlashini so'rashingiz mumkin. </p><p>Ushbu o'yindan tashqari, bolangizga kundalik suhbatda rang nomlaridan foydalanib ranglarni o'rganishda yordam bering (ovqat tayyorlash: ‘’Hozir men shu sariq bananlarni archib tashlayman’’, yoki kiyinayotganda: \"Endi bugun kiymoqchi bo’lgan binafsharang ko’ylagingni topaylik.\"</p><p>Farzandingiz nimani o'rganadi:  Ranglarni bilish maktabga tayyorgarlikning muhim qismidir.  Farzandingiz tafakkuri, u buyumlar turli ko’rinishga ega bo’lishi va shu bilan birga bir xil rangda bo’lishi, yoki aksincha, masalan shlyapaga o’xshab bir xil ko’rinishda va turli ranglarda bo’lishi mumkinligini taqqoslashi orqali rivojlanadi.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                57
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=59xQEN1V",
+                "name": "@Cory Woodward",
+                "alt": "Child facing the coloured road"
+            },
+            "related_milestone": [
+                7061
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7571,
+            "type": "Games",
+            "title": "Xayolotga parvoz",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 10/21/2021 - 07:10",
+            "summary": "Kerak boʻladigan materiallar: talab etilmaydi.Birgalikda nima qilishingiz mumkin: farzandlaringiz parvoz qanday boʻlishini tasavvur qilib koʻrsin. Qayerga parvoz qilgan boʻlar eding? Kimlarni koʻrishni xohlar eding? Qanday tezlikda uchgan boʻlarding?Bolalar Oyga uchish qanaqa boʻlishini yoki yaxshilik qilish, masalan, balandlikda qolib ketgan hayvonlarni qutqarishda oʻzlarining uchish qobiliyatidan foydalanishni tasavvur qilishi mumkin.",
+            "body": "<p>Kerak boʻladigan materiallar: talab etilmaydi.</p><p>Birgalikda nima qilishingiz mumkin: farzandlaringiz parvoz qanday boʻlishini tasavvur qilib koʻrsin. Qayerga parvoz qilgan boʻlar eding? Kimlarni koʻrishni xohlar eding? Qanday tezlikda uchgan boʻlarding?</p><p>Bolalar Oyga uchish qanaqa boʻlishini yoki yaxshilik qilish, masalan, balandlikda qolib ketgan hayvonlarni qutqarishda oʻzlarining uchish qobiliyatidan foydalanishni tasavvur qilishi mumkin.</p><p>Batafsil bilib olishni unutmang – nima deb oʻylaysiz, 5000 metr balandlikda havoning hidi qanday boʻladi? Teringiz nimalarni his qilishi mumkin? Notoʻgʻri javoblar yoʻq, chegara ham yoʻq!</p><p>Dunyodagi eng tez uchadigan qush sapsan lochini ekanini bilasizmi? Bu gʻaroyib qush soatiga 240 milgacha tezlikda ucha oladi!</p><p>Farzandingiz nimani oʻrganadi: tasavvuri boy bolalarga uchish qanday boʻlishini his qilish uchun tasavvurlariga erk berish juda yoqib qoladi! Bu mashgʻulot muloqotga bagʻishlanadi, chunki farzandlaringiz uchganda his qilgan tuygʻulari va parvoz zavqini bir-birlari bilan boʻlishadi.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                58
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=5vaEj2LH",
+                "name": "flying_imagination-cover-picture.jpg",
+                "alt": "Illustration of Flying imagination"
+            },
+            "related_milestone": [
+                7131
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7606,
+            "type": "Games",
+            "title": "Koptokni kuzat",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Mon, 10/18/2021 - 19:53",
+            "summary": "Kerak bo’ladigan vositalar: Koptok, adyolBirgalikda nima qilishingiz mumkin: Ushbu ajoyib mashg’ulotni amalga oshirish uchun joy tayyorlab oling. Chalg'ituvchi buyumlar kam bo’lgan xonani tanlang, adyolni yerga yoki katta krovatga to’shang. Keyin kichkintoyingizni qorni bilan adyolga yotqizing. Farzandingiz atrofida to’siq hosil qilish uchun, siz oldinga qarab, oyoqlaringizni farzandingizning ikkala yoniga uzatib o’tirishingiz kerak. ",
+            "body": "<p>Kerak bo’ladigan vositalar: Koptok, adyol</p><p>Birgalikda nima qilishingiz mumkin: Ushbu ajoyib mashg’ulotni amalga oshirish uchun joy tayyorlab oling. Chalg'ituvchi buyumlar kam bo’lgan xonani tanlang, adyolni yerga yoki katta krovatga to’shang. Keyin kichkintoyingizni qorni bilan adyolga yotqizing. Farzandingiz atrofida to’siq hosil qilish uchun, siz oldinga qarab, oyoqlaringizni farzandingizning ikkala yoniga uzatib o’tirishingiz kerak. </p><p>Endi kichkintoyingizning e'tiborini jalb qilish uchun u bilan gaplashing, buni amalga oshirgandan so'ng, koptokni olib unga ko'rsating va yerga qo'ying. Kichkintoyingiz koptokni ko'zlari bilan kuzatib turishi uchun koptokni bir tomondan ikkinchi tomonga sekin dumalating. Taxminan besh daqiqa, yoki kichkintoyingiz charchagunicha davom eting. Agar sizning kichkintoyingiz hali boshini ko'tara olmasa, siz unga koptokni faqat pastdan yuqoriga qarab harakatlantirish orqali ko'rsatishingiz mumkin, u asta-sekin boshini ko'tarish va koptokni ko'zlari bilan kuzatib borish uchun yetarli kuchga ega bo'lishi kerak.</p><p>Farzandingiz nimani o'rganadi: Bu mashqlar kichkintoyingiz mushaklarini mustahkamlash bilan birga, harakatlanayotgan buyumlarni kuzatish orqali uning ko’rish qobiliyatini kuchaytiradi va kelajakda o’qish va yozish uchun ko’rish va ilg’ash malakasini me’yorlashtiradi.  </p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                43
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.jpg?itok=SF_Uixzh",
+                "name": "@Spencer Selover",
+                "alt": "A new-born baby looking attentively somewhere"
+            },
+            "related_milestone": [
+                2556
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7631,
+            "type": "Games",
+            "title": "Mening ilk o’girilishlarim",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Mon, 10/18/2021 - 20:56",
+            "summary": "Kerak bo’ladigan vositalar: Yo'q",
+            "body": "<p>Kerak bo’ladigan vositalar: Yo'q</p><p>Birgalikda nima qilishingiz mumkin: Go'daklar sekin-asta o'z tanalari bilan ko'proq tanishib, o'zining dunyosini kashf etishga imkon beradigan harakatlarni muvofiqlashtira boshlaydilar. Bu faol mashg'ulot sizning kichkintoyingizga o’girilish ko'nikmalarnini qisqa vaqt ichida o'zlashtirishga yordam beradi. Boshlash uchun siz kichkintoyingizni yumshoq yuzaga, yoki krovatga yotqizishingiz kerak. Uning bir oyog'ini ushlang va ikkinchisining ustidan o’tkazing.  Huddi shu mashqni boshqa oyoq bilan yana bir bor bajaring. Taxminan uch marta takrorlang va to'rtinchi martasida qo'lingizni farzandingizning tagiga qo’yib, ehtiyotkorlik bilan, to u qorniga ag’darilgunga qadar unga yordam bering. </p><p>Mashqlarni bajarayotganda quyidagi she’rni aytishingiz mumkin:</p><p>Dumalaymiz, ag’darilamiz,</p><p>Mazza qilamiz.</p><p>Aylanamiz, o’rgilamiz,</p><p>Yayrab quvnaymiz!</p><p>Kichkintoyingizga ozor yetkazib qo’ymaslik uchun barcha harakatlar ehtiyotkorlik bilan bajarilishi va kichkintoyingiz  bo'ynini mustaqil tuta olishi kerakligini unutmang. Kichkintoyingizni yana chalqancha yotqazib, uni boshqa tomonga ag’darib, mashqni takrorlang. U o’girilgan tomondan turib, uning diqqatini jalb qilish uchun u bilan gaplashing va she’rni takrorlang. Ko’plab o’pichlar bilan mashqni yakunlang. </p><p>Farzandingiz nimani o'rganadi: Bu mashq kichkintoyingizga belidan qorniga ag’darilayotganda kuchga ega bo’lib va harakatlarini muvofiqlashtirib, keyinchalik, bir necha oylardan so’ng uning harakat faolligini oshirib, muvofiqlashtiruvchi ko’nikmalar hosil qilishiga yordam beradi.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                44
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=hrrZ8Qz7",
+                "name": "my_first_turns-cover-picture.jpg",
+                "alt": "A child turning from back to tummy"
+            },
+            "related_milestone": [
+                2601
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7656,
+            "type": "Games",
+            "title": "Mening ismimni ayting",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Sat, 09/25/2021 - 07:06",
+            "summary": "Sizga kerak bo'lgan materiallar: Yo'qBirgalikda nima qilishingiz mumkin: Ushbu chiroyli faoliyatni amalga oshirish uchun siz kichkintoyni faqat beshik yoki yotoq kabi yumshoq yuzaga chalqancha yotqizishingiz kerak. Endi kichkintoyingiz bilan suhbatlashing, uning e'tiborini jalb qiling. Buni qilganingizda, siz unga quyidagi qo'shiqni kuylashingiz mumkin:Qaerda (farzandingizning ismi)?Qaerda (farzandingizning ismi)?Mana siz, mana siz.",
+            "body": "<p><strong>Sizga kerak bo'lgan materiallar: </strong>Yo'q</p><p><strong>Birgalikda nima qilishingiz mumkin: </strong>Ushbu chiroyli faoliyatni amalga oshirish uchun siz kichkintoyni faqat beshik yoki yotoq kabi yumshoq yuzaga chalqancha yotqizishingiz kerak. Endi kichkintoyingiz bilan suhbatlashing, uning e'tiborini jalb qiling. Buni qilganingizda, siz unga quyidagi qo'shiqni kuylashingiz mumkin:</p><p>Qaerda (farzandingizning ismi)?</p><p>Qaerda (farzandingizning ismi)?</p><p>Mana siz, mana siz.</p><p>Keyin siz baland va past ovoz bilan aytib turishingiz mumkin. Kichkintoyga uning ismi, ovozi va ovoz paydo bo'lgan joyni tanib olishda yordam berishning yana bir usuli - o'zingizni yotoq yoki beshikning turli joylariga joylashtirish va qo'shiqni u erdan karavot etagida, yotoqxonada kuylash. yostiqlar, bir tomonda va boshqa tomonda. Kichkintoyingiz qayerda ekaningizni bilish uchun o'girilguncha kichkintoyingizning ismi bilan qo'shiq ayt. Har doim chaqalog'ingizga: \"Men sizni yaxshi ko'raman (kichkintoyning ismi)!\" Va ozgina o'p.</p><p><strong>Farzandingiz nimani o'rganmoqda: </strong>Ushbu mashg'ulot sizning kichkintoyingizga uning ismini tanib olishga va taniqli so'zlarga javoban tana harakatlaridan foydalanishga yordam beradi.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                45
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/say_my_name-cover-picture.jpg?itok=M48Jcpos",
+                "name": "say_my_name-cover-picture.jpg",
+                "alt": "A child laying on his or her back with a focussed expression on his or her face"
+            },
+            "related_milestone": [
+                2641
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7231,
+            "type": "Games",
+            "title": "Kichkintoy bilan mutolaa",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 10/21/2021 - 07:19",
+            "summary": "Kerak boʻladigan materiallar: bolalar kitobi (yorqin rangli rasmlari va taktil elementlari bor boʻlgan, matodan yasalgan yoki qattiq muqovali). Agar sizda bunday kitob boʻlmasa, oddiy qogʻozni ikki buklab, ustiga yorqin rangli bir nechta rasm yopishtirib yoki chizib ishlatsangiz boʻladi.",
+            "body": "<p>Kerak boʻladigan materiallar: bolalar kitobi (yorqin rangli rasmlari va taktil elementlari bor boʻlgan, matodan yasalgan yoki qattiq muqovali). Agar sizda bunday kitob boʻlmasa, oddiy qogʻozni ikki buklab, ustiga yorqin rangli bir nechta rasm yopishtirib yoki chizib ishlatsangiz boʻladi.</p><p>Birgalikda nima qilishingiz mumkin: kitobni birgalikda koʻrib chiqishingiz uchun bolani tizzangizga shunday oʻtqazingki, uning yuzini ham koʻra oling. Kitobni ikkalangiz ham koʻrib, oʻqiy olishingizga qulay qilib ushlang. Siz kitobdagi rasmlarni qoʻlingiz bilan koʻrsatib tasvirlashingiz yoki bu haqda hikoya aytib berishingiz mumkin. Qisqa va sodda jumlalardan foydalaning. Ovozingiz ohangini oʻzgartirib, vaqti-vaqti bilan toʻxtalib, ajablangan holda soʻzlang.</p><p>Farzandingiz sizning yuz ifodangizni koʻra olsin, siz esa uni kuzating hamda sizningcha unga yoqqan va yoqmagan narsalarni nomlab turing. Unga kitobga teginishga, ogʻziga olib borishga (agar xavfsiz boʻlsa) va boshqa usullar bilan oʻrganishga ruxsat bering. Agar farzandingiz mutolaa paytida ovoz chiqarsa, unga ham “oʻqish” imkonini bering. Unga quloq soling, tovushlarini takrorlab javob bering, maqtab turing. Farzandingizning kitobga qiziqmay qoʻyganini sezsangiz (boshqa tomonlarga qaraydi, qarshilik koʻrsatadi, xarxasha qila boshlaydi), sabr bilan uning diqqati yana kitobga qaytishini kuting. Agar kitob farzandingizni ortiq qiziqtirmasa, bu mashgʻulotni keyinroq bajaring.</p><p>Farzandingiz nimani oʻrganadi: kitoblarni birgalikda oʻqish va koʻrib chiqish farzandingizning muloqot qobiliyati va nutqini rivojlantirish uchun muhimdir.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                47
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=1FI9_YIw",
+                "name": "@Elisabeth Wales",
+                "alt": "A mother looking at the book with her baby"
+            },
+            "related_milestone": [
+                2791
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7671,
+            "type": "Games",
+            "title": "Musiqa ostida harakatlar",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 10/21/2021 - 08:10",
+            "summary": "Kerak bo’ladigan vositalar: Turli ritmdagi musiqa; yog'och bolg’acha/qoshiq yoki tayoq. Birgalikda nima qilishingiz mumkin: bu mashqni boshlash uchun kichkintoyingiz bilan foydalanadigan musiqani tayyorlang,  turli ritmdagi musiqani qo’llashingiz va qaytarishni osonlashtirish uchun uni soddalashtirishingiz mumkin.",
+            "body": "<p>Kerak bo’ladigan vositalar: Turli ritmdagi musiqa; yog'och bolg’acha/qoshiq yoki tayoq. </p><p>Birgalikda nima qilishingiz mumkin: bu mashqni boshlash uchun kichkintoyingiz bilan foydalanadigan musiqani tayyorlang,  turli ritmdagi musiqani qo’llashingiz va qaytarishni osonlashtirish uchun uni soddalashtirishingiz mumkin.</p><p>Kichkintoyingizni ko'taring va musiqa ritmiga mos raqsga tushing. Bola harakatlarni yaxshi o’zlashtirishi uchun uy ichida raqs tushgan holda yurishingiz mumkin. Keyin siz kichkintoyingiz bilan yerga, qulay yuzaga o'tirib, musiqa ritmiga rioya qilgan holda pol yoki yerga yog’och bolg’acha/yog'och yoki qo'llaringiz bilan urishingiz mumkin. Kichkintoyga harakatlaringizga taqlid qilishni taklif qiling.</p><p>Ushbu mashg'ulotda kichkintoyingiz ritmga rioya qilmaydi, lekin bu unga keyinchalik bu mahoratga erishish uchun asos bo'ladi.</p><p>Agar musiqa qo'ya olmasangiz, siz qo'shiq kuylashingiz, raqsga tushishingiz va ritmga mos harakatlarni yerda qilishingiz mumkin.</p><p>Farzandingiz nimani o'rganadi: Bu mashg'ulot yordamida siz kichkintoyingizga ritm tuyg'usini rivojlantirishga, harakat bilan bog’liqlik o'rnatishga va qo’shimcha yordamsiz o’tirishga  yordam berasiz.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                46
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/musical_movements-cover-picture.png?itok=iGWnVtyG",
+                "name": "musical_movements-cover-picture.png",
+                "alt": "A mother is holding the child in her arms imitating dancing"
+            },
+            "related_milestone": [
+                2696
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7246,
+            "type": "Games",
+            "title": "Bu kim?",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Sun, 10/17/2021 - 15:02",
+            "summary": "Kerak bo’ladigan vositalar: Yo'qBirgalikda nima qilishingiz mumkin: Siz ajablanishingiz mumkinki, bu yoshda bolangiz birdan o'zi tanimaydigan odamlar bilan uchrashganda qo'rqib, uyatchan yoki bezovtalana boshlaydi.  Oldin, ehtimol, sizning bolangiz hammaga katta tabassumlar bag'ishlagan. Bu sizning farzandingizning rivojlanishidagi yana bir qadam.  Bu sizning farzandingiz siz - uning maxsus odamlari va boshqalar orasida qanday farq borligini juda yaxshi bilishini va ularga g'amxo'rlik qilishini ko'rsatadi.",
+            "body": "<p>Kerak bo’ladigan vositalar: Yo'q</p><p>Birgalikda nima qilishingiz mumkin: Siz ajablanishingiz mumkinki, bu yoshda bolangiz birdan o'zi tanimaydigan odamlar bilan uchrashganda qo'rqib, uyatchan yoki bezovtalana boshlaydi.  Oldin, ehtimol, sizning bolangiz hammaga katta tabassumlar bag'ishlagan. Bu sizning farzandingizning rivojlanishidagi yana bir qadam.  Bu sizning farzandingiz siz - uning maxsus odamlari va boshqalar orasida qanday farq borligini juda yaxshi bilishini va ularga g'amxo'rlik qilishini ko'rsatadi.</p><p>Iloji bo'lsa, bolangizga yangi odam bilan isinish uchun vaqt ajrating.  Farzandingizni ushlang, boshqa odam bilan oson gaplashing va shu bilan siz bolangizga tasalli berasiz.  Farzandingizni masxara qilish yoki undashdan ko'ra (\"Bunday uyatchang bo'lmang!), Unga javob bering, yoki javob bermasin, bolangizni yanada qulayroq ko'rinadigan tarzda.  Agar yangi odam sizning farzandingizga do'stona munosabatda bo'lishni boshlasa, siz shunchaki: \"Keling, unga siz bilan tanishish uchun ozgina vaqt beraylik\", deb aytishingiz mumkin, yana farzandingizni uyatchan yoki qo'rqinchli bola deb yozishdan saqlaning. Vaziyatga qarab, siz yangi odamga bolangiz \"muzni sindirish\" uchun qiziqqan kichik o'yinchoq yoki boshqa narsalarni berishingiz mumkin.</p><p>Farzandingiz nimani o'rganadi:  Yangi odamlar bilan bo'lgan bu noqulaylik biroz vaqtgacha davom etishi mumkin, ammo sizning farzandingiz ikkita narsani o'rganmoqda.  Birinchidan, u sizni bezovta qiladigan holatlarda (hissiy xavfsizlik) sizga ishonch va tasalli manbai ekanligingizni o'rganmoqda.  Ikkinchidan, sizning farzandingiz boshqa odamlar odatda juda yoqimli va ular bilan birga bo'lish qiziqarli bo'lishini o'rganmoqda (ijtimoiy rivojlanish).  Har doimgidek, sizning qo'llab-quvvatlashingiz katta farq qiladi.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                48
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=r4m_GFrg",
+                "name": "@Pixabay",
+                "alt": "Grandmother and grandfather carrying two babies"
+            },
+            "related_milestone": [
+                2871
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7306,
+            "type": "Games",
+            "title": "Ovozni qidiring",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Sun, 10/17/2021 - 15:21",
+            "summary": "Sizga kerak bo'lgan materiallar: Yo'q.",
+            "body": "<p><strong>Sizga kerak bo'lgan materiallar: </strong>Yo'q.</p><p><strong>Birgalikda nima qilishingiz mumkin: </strong>Bolalar xazina izlashni yaxshi ko'rgani kabi, ular tovushlarni qidirishdan xursand. Sizga kerak bo'lgan narsa - xonadagi yoki atrofingizdagi barcha tovushlarni tinglash uchun to'xtash va yaxshi tinglash odatini boshlash. Bir oz sukut saqlang va bolangizni ham shunga undang.  \"Shhhhh, keling, qanday ovozni ushlay olamiz\" kabi bir narsa ayting va keyin quloqlaringizga ishora qiling. Siz urish, xirillash, xirillash, shivirlash, tirnalish, suhbatlarni eshitishingiz mumkin. Bolani rag'batlantiring “Keling, eshitishimiz mumkin bo'lgan tovushlarni to'play olamizmi yoki yo'qmi. Eshitishimcha soat millari, avtobus o'tgani, qo'shnisi lift bilan kelgani. ”  Bu kabi ko'plab qiziqarli so'zlardan foydalaning - hatto bolangiz ularni hali tushunmasa ham.  </p><p>Agar bola kattaroq bo'lsa, siz \"Bu tovushni qaerdan topsam bo'ladi?\" Degan savolni berishingiz mumkin. (Va keyin unga taqlid qiling).  Unga nom berish orqali u kashfiyot tuyg'usidan zavqlansin va ovoz bilan uni yaratadigan narsa o'rtasidagi bog'liqlikni o'rnatsin. Shunday qilib, til tushunchalar bilan bog'lanib, so'z boyligini ham boyitadi. </p><p>Siz ushbu mashg'ulotdan deyarli har qanday hayotiy vaziyatda foydalanishingiz mumkin - bepul o'yin va bo'sh vaqt davomida, shuningdek kundalik ishlar paytida - kiyinish, ovqat tayyorlash, gigiena tartibi, xarid qilish, piyoda yurish, haydash va (agar mahalliy sog'liqni saqlash talablari ruxsat etilsa) avtobus kutish paytida. yoki o'z navbatida bankda, pochtada yoki shifokorda.</p><p><strong>Farzandingiz nimani o'rganmoqda:  </strong>Farzandingiz siz bilan mashg'ulotlarni orziqib kutadi va siz birgalikda o'ynab, u mimika, imo-ishoralar va yaqin odamlarning ba'zi harakatlariga taqlid qiladi, ko'rsatkich barmog'i bilan o'zini qiziqtirgan narsaga ishora qiladi yoki qiziqish uchun boshqa odamlarga narsalar taklif qiladi ularni o'yinga jalb qiling. Ushbu mashg'ulot uning so'z boyligini va dunyo haqidagi bilimlarini shakllantiradi. Farzandingiz atrofni o'rganib chiqishiga imkon bering va nima eshitayotganini aytib bering, hattoki beozor yoki oddiy so'zlar bilan ham.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                49
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/ART_3230.JPG?itok=Pq51mhvc",
+                "name": "Vodič za roditelje",
+                "alt": "Potraga za zvukom"
+            },
+            "related_milestone": [
+                3021
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7346,
+            "type": "Games",
+            "title": "Keling, suhbatlashamiz!",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Sat, 09/25/2021 - 07:08",
+            "summary": "Sizga kerak bo'lgan materiallar: Yo'q",
+            "body": "<p><strong>Sizga kerak bo'lgan materiallar: </strong>Yo'q</p><p><strong>Birgalikda nima qilishingiz mumkin: </strong>Bu yoshda bolangizning nutqii tez rivojlanadi. Uyda bolangiz tovush va so'zlardan foydalanishi uchun keng imkoniyatlar mavjud.  Bir-biringizni tobora tushunib bormoqdasizlar. Imkon qadar bolangizga boshqalar, ya’ni bobo yoki buvisi (yuzma-yuz yoki video qo'ng'iroqlar bilan), qo'shni yoki sotuvchilar bilan ham muloqot qilishga sharoit yarating. Asta-sekin farzandingiz kattalarga nimaddir deyishga harakat qilishi mumkin. Siz unga savollar berib yordam berasiz, masalan: “Qara, mana bu meva. Qaysi mevani sotib olamiz?\"  Agar bolangizning javobi noaniq bo’lsa, savolingizni takrorlang, biroz suhbatlashing va sotuvchiga murojaat qiling. Bunday faoliyat turlicha bo'lishi mumkin.  Farzandingizga muloqot qilish va uni tushunayotganligingizni his qilish nihoyatda maroqlidir.</p><p><strong>Farzandingiz nimani o'rganmoqda: </strong>Farzandingiz nutq val va kommunikativ ko'nikmalarini rivojlantirib bormoqda.  Ijtimoiy vaziyatlarda uning o'ziga bo’lgan ishonchi tobora ortmoqda.  Sizning rag’batingiz uning xavfsizlik va qulaylik hislarini mustahkamlaydi.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                50
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=qE31flxF",
+                "name": "@Hero Images",
+                "alt": "Grandparents doing a videocall with their granddaughter"
+            },
+            "related_milestone": [
+                2876
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        }
+    ],
     "sk": [
         {
             "id": 7656,

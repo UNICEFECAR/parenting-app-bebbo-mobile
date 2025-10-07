@@ -15,7 +15,7 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "E81D24492D19685F009BE118"
+                     BlueprintIdentifier = "D6F1432A2E2A366200986814"
                      BuildableName = "MerhabaBebek.app"
                      BlueprintName = "MerhabaBebek"
                      ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -33,7 +33,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E81D24492D19685F009BE118"
+               BlueprintIdentifier = "D6F1432A2E2A366200986814"
                BuildableName = "MerhabaBebek.app"
                BlueprintName = "MerhabaBebek"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -62,7 +62,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E81D24492D19685F009BE118"
+            BlueprintIdentifier = "D6F1432A2E2A366200986814"
             BuildableName = "MerhabaBebek.app"
             BlueprintName = "MerhabaBebek"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
@@ -79,7 +79,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E81D24492D19685F009BE118"
+            BlueprintIdentifier = "D6F1432A2E2A366200986814"
             BuildableName = "MerhabaBebek.app"
             BlueprintName = "MerhabaBebek"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">

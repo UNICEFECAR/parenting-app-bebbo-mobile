@@ -52,7 +52,7 @@ const RSen = {
     childSetupListheader:
       'Bebbo is getting ready to support your parenting journey!',
     childSetupListsubHeader:
-      'If you have any other children aged 0 to 6, you can add them now or later.',
+      'If you are expecting or have any other children aged 0 to 6, you can add them now or later.',
     childSetupListaddSiblingBtn: '+ Add another child',
     childSetupListeditSiblingBtn: "Edit child's profile",
     childSetupListcontinueBtnText: 'Continue',
@@ -384,7 +384,7 @@ const RSen = {
       "Your child's measurement was taken a very long time ago. Please update your child growth measurement now to get an updated assessment. ",
     vcTaken: 'Vaccines received',
     settingExportError: 'Error while backing up data. Please try again.',
-    settingExportSuccess: 'Data backed up successfully',
+    settingExportSuccess: 'Data backed up successfully.',
     alertForModifyMeasures: 'Attention',
     alertForModifyMeasuresTitle:
       'Selecting this date will modify existing measures',
@@ -462,7 +462,7 @@ const RSen = {
     favScreenremoveText: 'Remove',
     settingScreenimportOptionHeader: 'Upload backup file from',
     childSetupprematureMessageNext:
-      'The content of this section is displayed according to the corrected and not the actual age of your prematurely born child',
+      'The content of this section is displayed according to the expected and not the actual age of your prematurely born child.',
     helloMessage:
       "Hello{{parentName}}, my name is Bebbo. I'm here to answer your questions",
     selectAreaOfInterest:

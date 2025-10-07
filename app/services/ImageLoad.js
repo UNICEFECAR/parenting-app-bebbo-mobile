@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
 const DefaultIndicator = ActivityIndicator;
 
 const getSourceKey = source => (source && source.uri) || String(source);
+const loadedUris = new Set();
 
 export const createImageProgress = ImageComponent =>
   class ImageProgress extends Component {
@@ -45,8 +46,9 @@ export const createImageProgress = ImageComponent =>
         return {
           sourceKey,
           error: null,
-          loading: false,
-          progress: 0,
+           // if we’ve seen this image before, mark it loaded immediately
+          loading: !loadedUris.has(sourceKey),
+          progress: loadedUris.has(sourceKey) ? 1 : 0,
         };
       }
       return null;
@@ -54,12 +56,12 @@ export const createImageProgress = ImageComponent =>
 
     constructor(props) {
       super(props);
-
+      const sourceKey = getSourceKey(props.source);
       this.state = {
-        sourceKey: getSourceKey(props.source),
+        sourceKey,
         error: null,
-        loading: false,
-        progress: 0,
+        loading: !loadedUris.has(sourceKey),
+        progress: loadedUris.has(sourceKey) ? 1 : 0,
         thresholdReached: !props.threshold,
       };
     }
@@ -79,17 +81,17 @@ export const createImageProgress = ImageComponent =>
       }
     }
 
-    setNativeProps(nativeProps) {
-      if (this.ref) {
-        this.ref.setNativeProps(nativeProps);
-      }
-    }
+    // setNativeProps(nativeProps) {
+    //   if (this.ref) {
+    //     this.ref.setNativeProps(nativeProps);
+    //   }
+    // }
 
-    measure(cb) {
-      if (this.ref) {
-        this.ref.measure(cb);
-      }
-    }
+    // measure(cb) {
+    //   if (this.ref) {
+    //     this.ref.measure(cb);
+    //   }
+    // }
 
     ref = null;
     handleRef = ref => {
@@ -103,7 +105,7 @@ export const createImageProgress = ImageComponent =>
     }
 
     handleLoadStart = () => {
-      if (!this.state.loading && this.state.progress !== 1) {
+      if (!loadedUris.has(this.state.sourceKey)) {
         this.setState({
           error: null,
           loading: true,
@@ -114,6 +116,9 @@ export const createImageProgress = ImageComponent =>
     };
 
     handleProgress = event => {
+      if (loadedUris.has(this.state.sourceKey)) {
+        return; // already fully loaded once
+      }
       const progress = event.nativeEvent.loaded / event.nativeEvent.total;
       // RN is a bit buggy with these events, sometimes a loaded event and then a few
       // 100% progress – sometimes in an infinite loop. So we just assume 100% progress
@@ -136,13 +141,12 @@ export const createImageProgress = ImageComponent =>
     };
 
     handleLoad = event => {
-      if (this.state.progress !== 1) {
+      loadedUris.add(this.state.sourceKey);
         this.setState({
           error: null,
           loading: false,
           progress: 1,
         });
-      }
       this.bubbleEvent('onLoad', event);
     };
 

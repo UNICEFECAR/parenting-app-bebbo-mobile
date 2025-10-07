@@ -77,7 +77,7 @@ import {
   randomArrayShuffle,
   miniSearchConfigActivity,
 } from "../../../services/Utils";
-import Realm from "realm";
+
 import { activitiesTintcolor, bgcolorWhite2, greyCode } from "@styles/style";
 import useNetInfoHook from "../../../customHooks/useNetInfoHook";
 import {
@@ -89,6 +89,8 @@ import MiniSearch from "minisearch";
 import { ActivityHistoryEntity } from "../../../database/schema/ActivitySearchHistorySchema";
 import VectorImage from "react-native-vector-image";
 import OutsidePressHandler from "react-native-outside-press";
+import { selectActiveChild, selectActivitiesDataAll, selectActivityCategoryArray, selectChildAge, selectMileStonesData } from "../../../services/selectors";
+import { getRealmLib } from "../../../redux/reducers/realmSafe";
 
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -179,37 +181,18 @@ const Activities = ({ route, navigation }: any): any => {
   const headerColorBlack = themeContext?.colors.ACTIVITIES_TEXTCOLOR;
   const backgroundColorList = themeContext?.colors.ARTICLES_LIST_BACKGROUND;
   const fromPage = "Activities";
-  const childAge = useAppSelector((state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != ""
-      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
-      : []
-  );
+  const childAge = useAppSelector(selectChildAge);
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ""
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : []
-  );
+  const activeChild = useAppSelector(selectActiveChild);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode
   );
-  const ActivitiesDataold = useAppSelector((state: any) =>
-    state.utilsData.ActivitiesData != ""
-      ? JSON.parse(state.utilsData.ActivitiesData)
-      : []
-  );
+  const ActivitiesDataold = useAppSelector(selectActivitiesDataAll);
   const ActivitiesData = randomArrayShuffle(ActivitiesDataold);
-  const activityCategoryData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category
-  );
-  const MileStonesData = useAppSelector((state: any) =>
-    state.utilsData.MileStonesData != ""
-      ? JSON.parse(state.utilsData.MileStonesData)
-      : []
-  );
+  const activityCategoryData = useAppSelector(selectActivityCategoryArray);
+  const MileStonesData = useAppSelector(selectMileStonesData);
   const activityTaxonomyId =
     activeChild?.taxonomyData?.prematureTaxonomyId != null &&
       activeChild?.taxonomyData?.prematureTaxonomyId != undefined &&
@@ -869,6 +852,7 @@ const Activities = ({ route, navigation }: any): any => {
 
   //store previous searched keyword
   const storeSearchKeyword = async (realm: any, keyword: any): Promise<any> => {
+    const Realm = await getRealmLib();
     realm.write(() => {
       const storeKeyword = realm.create(
         "ActivitySearchHistory",

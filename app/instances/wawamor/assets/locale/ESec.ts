@@ -178,7 +178,7 @@ const ESec = {
     growthScreenaddNewBtntxt: "Agregar medidas",
     growthScreeneditNewBtntxt: "Editar medidas",
     growthScreenweightForHeight: "Peso para la talla",
-    growthScreenheightForAge: "Talla la para edad",
+    growthScreenheightForAge: "Talla para la edad",
     growthScreensubHeading: "Medición del crecimiento",
     growthScreenprematureText: "Prematuro",
     growthScreenlastMeasureText: "Medido por última vez el {{measureDate}}",
@@ -195,8 +195,8 @@ const ESec = {
     growthScreendateMeasurementText: "Fecha de medición",
     growthScreenenterDateMeasurementText: "Introduce la fecha de medición",
     growthScreenwhereMeasured: "¿Dónde se midió a la niña o niño?",
-    growthScreendoctorMeasurePlace: "En el centro de salud",
-    growthScreenhomeMeasurePlace: "En casa",
+    growthScreendoctorMeasurePlace: "Centro de salud",
+    growthScreenhomeMeasurePlace: "Casa",
     growthScreenenterMeasuresText: "Introduce el peso y la longitud/talla",
     growthScreenenterDoctorRemarkText: "Comentario del profesional de salud",
     growthScreenenterDoctorRemarkTextPlaceHolder:
@@ -409,7 +409,7 @@ const ESec = {
     vcTaken: "Vacunas recibidas",
     settingExportError:
       "Error al realizar la copia de seguridad de los datos. Inténtalo de nuevo.",
-    settingExportSuccess: "Datos respaldados exitosamente",
+    settingExportSuccess: "Datos respaldados exitosamente.",
     alertForModifyMeasures: "Atención",
     alertForModifyMeasuresTitle:
       "Si eliges esta fecha, se actualizarán las medidas ya registradas.",
