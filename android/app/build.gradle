@@ -236,7 +236,7 @@ android {
         reraiumntwana {
             applicationId 'org.unicef.zw.reraiumntwana'
             versionCode 1
-            versionName "1.0.0"
+            versionName "0.0.1"
             signingConfig signingConfigs.reraiumntwana
         }
         banglastaging {
