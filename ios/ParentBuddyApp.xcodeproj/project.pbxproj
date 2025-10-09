@@ -28,6 +28,7 @@
 		D61DD3472E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3482E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3492E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
+		D663D8CC2E96AAEB0003700A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6B855DE2E6EDC110043F90E /* Images.xcassets */; };
 		D6642A3C2E6EA96D00860549 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6642A3B2E6EA96D00860549 /* GoogleService-Info.plist */; };
 		D677385E2E6ACC870067DBAC /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = D67738582E6ACC870067DBAC /* splash_screen.png */; };
 		D67738602E6ACC870067DBAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D677385C2E6ACC870067DBAC /* Assets.xcassets */; };
@@ -45,7 +46,6 @@
 		D6B2955A2E2E890900C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295372E2E88A500C8889C /* splash.json */; };
 		D6B2955B2E2E890900C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295372E2E88A500C8889C /* splash.json */; };
 		D6B855DD2E6EC7900043F90E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */; };
-		D6B855DF2E6EDC110043F90E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6B855DE2E6EDC110043F90E /* Images.xcassets */; };
 		D6F141E52E2912C200986814 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F141E32E2912C200986814 /* InfoPlist.strings */; };
 		D6F1420D2E29131100986814 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F22E29131100986814 /* GoogleService-Info.plist */; };
 		D6F142102E29131100986814 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F32E29131100986814 /* README.md */; };
@@ -1309,7 +1309,7 @@
 				D6A1B7052E6E8D1E00D89625 /* splash.json in Resources */,
 				D67738602E6ACC870067DBAC /* Assets.xcassets in Resources */,
 				D67738612E6ACC870067DBAC /* splash_screen@3x.png in Resources */,
-				D6B855DF2E6EDC110043F90E /* Images.xcassets in Resources */,
+				D663D8CC2E96AAEB0003700A /* Images.xcassets in Resources */,
 				D67738622E6ACC870067DBAC /* splash_screen@2x.png in Resources */,
 				D6F1438A2E2A3B7900986814 /* roboto-bold.woff2 in Resources */,
 				D6F1438B2E2A3B7900986814 /* roboto-regular.ttf in Resources */,

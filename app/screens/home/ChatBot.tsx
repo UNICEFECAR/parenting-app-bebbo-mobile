@@ -36,10 +36,10 @@ import ThreeDotsLoader from "../../services/ThreeDotsLoader";
 import { imgLogoChatbotNew } from "../../instances";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { selectAllConfigData } from "../../services/selectors";
-import { gradientColorFirst, gradientColorSecond, gradientColorThird } from "@styles/style";
+import { gradientColorFirst, gradientColorSecond, gradientColorThird, menuDrawerTextColor } from "@styles/style";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
-  flexShrink1: { flexShrink: 1 },
+  flexShrink1: { flexShrink: 1, color: menuDrawerTextColor },
   font14: { fontSize: 14 },
   htmlView: { padding: 15, paddingTop: 5, paddingBottom: 5 },
   htmlView2: { padding: 15, paddingTop: 15, paddingBottom: 5 },
@@ -246,7 +246,7 @@ const ActionBubble = (props: any): any => {
           }}
         >
           <ActionBubbleIcon>
-            <IconML name="ic_back" size={16} color="#000" />
+            <IconML name="ic_back" size={16} color={menuDrawerTextColor} />
           </ActionBubbleIcon>
           <Heading4Regular style={styles.flexShrink1}>
             {actionval?.label}
