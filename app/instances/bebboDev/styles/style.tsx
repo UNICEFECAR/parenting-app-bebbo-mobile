@@ -49,3 +49,5 @@ export const settingTrackTrueColor = '#B3E7FA';
 export const settingTrackFalseColor = '#C8D6EE';
 export const loadingHeaderColor = '#00AEEF';
 export const dailyReadsTagColor = '#2B2F84';
+export const menuDrawerTextColor = '#000000';
+export const chatDotLoaderBGColor = '#8CAEE4';
