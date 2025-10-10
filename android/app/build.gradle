@@ -229,8 +229,8 @@ android {
         }
         wawamor {
             applicationId 'org.unicef.ec.wawamor'
-            versionCode 11
-            versionName "1.0.4"
+            versionCode 12
+            versionName "1.0.5"
             signingConfig signingConfigs.wawamor
         }
         reraiumntwana {
