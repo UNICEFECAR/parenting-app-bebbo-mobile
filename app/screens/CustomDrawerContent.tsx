@@ -12,7 +12,7 @@ import {
   BgHealth,
   BgVaccination,
 } from "@components/shared/BackgroundColors";
-import { ButtonModal, ButtonText } from "@components/shared/ButtonGlobal";
+import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
 import {
   FDirCol,
   FDirRow,
@@ -820,9 +820,9 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                         Linking.openURL(feedbackItem?.survey_feedback_link);
                       }}
                     >
-                      <ButtonText numberOfLines={2}>
+                      <ButtonTextTheme numberOfLines={2}>
                         {t("continueInModal")}
-                      </ButtonText>
+                      </ButtonTextTheme>
                     </ButtonModal>
                   </FDirRow>
                 </>
