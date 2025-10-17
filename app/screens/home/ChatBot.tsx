@@ -267,11 +267,16 @@ const ChatBot: React.FC<ChatBotData> = (props: any) => {
     console.log("chatbot screen", props.steps);
     console.log("showNextStep screen", props.item);
     console.log("categorySelection screen", props.categorySelection);
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, props.item.delay);
-  }, [props.item.showNextStep]);
+    if (props.item.showNextStep) {
+      setLoading(true);
+  
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, props.item.delay || 0);
+  
+      return () => clearTimeout(timer);
+    }
+  }, [props.item.showNextStep, props.item.delay]);
 
   //   return (
   //     <View style={[styles.flex1, (props.index == 0 ? styles.paddingTop10 : styles.paddingTop0)]} key={props.index}>
