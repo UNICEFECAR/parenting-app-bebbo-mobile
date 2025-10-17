@@ -193,8 +193,8 @@ android {
     productFlavors {
         prod {
             applicationId 'org.unicef.ecar.bebbo'
-            versionCode 46
-            versionName "2.4.1"
+            versionCode 47
+            versionName "2.4.2"
             signingConfig signingConfigs.release
         }
         prodstaging {
@@ -229,7 +229,7 @@ android {
         }
         wawamor {
             applicationId 'org.unicef.ec.wawamor'
-            versionCode 12
+            versionCode 13
             versionName "1.0.5"
             signingConfig signingConfigs.wawamor
         }
