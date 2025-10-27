@@ -41,6 +41,7 @@ import {
 import Icon, { IconViewAlert } from "../shared/Icon";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { selectVaccineData } from "../../services/selectors";
+import useDigitConverter from "../../customHooks/useDigitConvert";
 const styles = StyleSheet.create({
   iconStyle: { alignSelf: "center" },
   radioActive: { backgroundColor: greenColor, borderRadius: 50 },
@@ -49,6 +50,7 @@ const PreviousHealthCheckup = (props: any): any => {
   const netInfo = useNetInfoHook();
   const { item, backgroundColor } = props;
   const { t } = useTranslation();
+  const { convertDigits } = useDigitConverter();
   const navigation = useNavigation<any>();
   const [isOPen, setIsOPen] = useState<boolean>(false);
   const themeContext = useContext(ThemeContext);
@@ -172,8 +174,8 @@ const PreviousHealthCheckup = (props: any): any => {
                       item?.growthMeasures?.measurementPlace == 0 ? (
                         <Heading4Regular>
                           {t("hcMeasureText", {
-                            weight: item?.growthMeasures.weight,
-                            height: item?.growthMeasures.height,
+                            weight: convertDigits(item?.growthMeasures.weight || "0"),
+                            height: convertDigits(item?.growthMeasures.height || "0"),
                           })}
                         </Heading4Regular>
                       ) : (

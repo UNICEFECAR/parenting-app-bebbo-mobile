@@ -101,6 +101,7 @@ import { formatStringDate, getLanguageCode } from "../../services/Utils";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { logEvent } from "../../services/EventSyncService";
 import { selectActiveChild, selectVaccineData } from "../../services/selectors";
+import useDigitConverter from "../../customHooks/useDigitConvert";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   flex9: { flex: 9 },
@@ -141,6 +142,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
   const dispatch = useAppDispatch();
   const [clicked, setClicked] = useState(false);
   const activeChild = useAppSelector(selectActiveChild);
+  const { convertDigits } = useDigitConverter();
   const locale = useAppSelector((state: any) =>
     getLanguageCode(state.selectedCountry?.languageCode)
   );
@@ -906,7 +908,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                                 <FlexFDirRowSpace>
                                   <Heading3>
                                     {weightValue
-                                      ? weightValue
+                                      ? convertDigits(weightValue || "0")
                                       : t("growthScreenwText")}
                                   </Heading3>
                                   <Heading4Regular>
@@ -930,7 +932,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                                 <FlexFDirRowSpace>
                                   <Heading3>
                                     {heightValue
-                                      ? heightValue
+                                      ? convertDigits(heightValue || "0")
                                       : t("growthScreenhText")}
                                   </Heading3>
                                   <Heading4Regular>
