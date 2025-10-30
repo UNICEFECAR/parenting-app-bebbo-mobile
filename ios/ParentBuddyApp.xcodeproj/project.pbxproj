@@ -28,10 +28,9 @@
 		D61DD3472E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3482E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3492E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
-		D663D8CC2E96AAEB0003700A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6B855DE2E6EDC110043F90E /* Images.xcassets */; };
+		D63CC5472EB0BAC300B05FDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		D6642A3C2E6EA96D00860549 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6642A3B2E6EA96D00860549 /* GoogleService-Info.plist */; };
 		D677385E2E6ACC870067DBAC /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = D67738582E6ACC870067DBAC /* splash_screen.png */; };
-		D67738602E6ACC870067DBAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D677385C2E6ACC870067DBAC /* Assets.xcassets */; };
 		D67738612E6ACC870067DBAC /* splash_screen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D677385A2E6ACC870067DBAC /* splash_screen@3x.png */; };
 		D67738622E6ACC870067DBAC /* splash_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D67738592E6ACC870067DBAC /* splash_screen@2x.png */; };
 		D6A1B7052E6E8D1E00D89625 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A1B7022E6E8D1E00D89625 /* splash.json */; };
@@ -181,6 +180,7 @@
 		D6F143992E2A3B9800986814 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F52E29131100986814 /* README.md */; };
 		D6F143A12E2A3BE700986814 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F1439E2E2A3BE700986814 /* InfoPlist.strings */; };
 		D6F143A22E2A3BE700986814 /* ReraiUmntwana-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F143A02E2A3BE700986814 /* ReraiUmntwana-Info.plist */; };
+		D6F1E8942EB0B8DC00B2C8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */; };
 		DA3D277D84BC05EEB5F159A4 /* Pods_ParentBuddyApp_ReraiUmntwana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553E8AB5CF83EB89330C9CAB /* Pods_ParentBuddyApp_ReraiUmntwana.framework */; };
 		F27D058AF84CA2E66A66BAAF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7DCE18FFE5A29E4601F8AF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework */; };
 /* End PBXBuildFile section */
@@ -235,7 +235,6 @@
 		D67738582E6ACC870067DBAC /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen.png; sourceTree = "<group>"; };
 		D67738592E6ACC870067DBAC /* splash_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_screen@2x.png"; sourceTree = "<group>"; };
 		D677385A2E6ACC870067DBAC /* splash_screen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_screen@3x.png"; sourceTree = "<group>"; };
-		D677385C2E6ACC870067DBAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6A1B7012E6E8D1E00D89625 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6A1B7022E6E8D1E00D89625 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D6A1B7032E6E8D1E00D89625 /* splash_old.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash_old.json; sourceTree = "<group>"; };
@@ -251,7 +250,6 @@
 		D6B295482E2E88A500C8889C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6B295492E2E88A500C8889C /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D6B855DE2E6EDC110043F90E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D6D5339B2E2FA3780060EC92 /* react_native_lottie_splash_screen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = react_native_lottie_splash_screen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F141D12E2912C200986814 /* be-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "be-BY"; path = "be-BY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F141D22E2912C200986814 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -327,6 +325,7 @@
 		D6F1439C2E2A3BE700986814 /* nd-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nd-ZW"; path = "nd-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F1439D2E2A3BE700986814 /* sn-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sn-ZW"; path = "sn-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F143A02E2A3BE700986814 /* ReraiUmntwana-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReraiUmntwana-Info.plist"; sourceTree = "<group>"; };
+		D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8541B93430AA7F2E060F943 /* Pods_ParentBuddyApp_ParentBuddyAppDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ParentBuddyAppDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig"; sourceTree = "<group>"; };
@@ -571,10 +570,9 @@
 		D677385D2E6ACC870067DBAC /* ReraiUmntwana */ = {
 			isa = PBXGroup;
 			children = (
-				D6B855DE2E6EDC110043F90E /* Images.xcassets */,
+				D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */,
 				D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */,
 				D677385B2E6ACC870067DBAC /* splashimg.imageset */,
-				D677385C2E6ACC870067DBAC /* Assets.xcassets */,
 			);
 			path = ReraiUmntwana;
 			sourceTree = "<group>";
@@ -1300,20 +1298,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F143862E2A3B7900986814 /* roboto-regular.woff2 in Resources */,
+				D63CC5472EB0BAC300B05FDF /* Images.xcassets in Resources */,
 				D6F143872E2A3B7900986814 /* roboto-bold.svg in Resources */,
 				D6F143882E2A3B7900986814 /* roboto-regular.svg in Resources */,
 				D6F143892E2A3B7900986814 /* roboto-bold.woff in Resources */,
 				D677385E2E6ACC870067DBAC /* splash_screen.png in Resources */,
 				D6A1B7052E6E8D1E00D89625 /* splash.json in Resources */,
-				D67738602E6ACC870067DBAC /* Assets.xcassets in Resources */,
 				D67738612E6ACC870067DBAC /* splash_screen@3x.png in Resources */,
-				D663D8CC2E96AAEB0003700A /* Images.xcassets in Resources */,
 				D67738622E6ACC870067DBAC /* splash_screen@2x.png in Resources */,
 				D6F1438A2E2A3B7900986814 /* roboto-bold.woff2 in Resources */,
 				D6F1438B2E2A3B7900986814 /* roboto-regular.ttf in Resources */,
 				D6F143A12E2A3BE700986814 /* InfoPlist.strings in Resources */,
 				D6B855DD2E6EC7900043F90E /* LaunchScreen.storyboard in Resources */,
 				D6F143A22E2A3BE700986814 /* ReraiUmntwana-Info.plist in Resources */,
+				D6F1E8942EB0B8DC00B2C8E0 /* Assets.xcassets in Resources */,
 				D6F1438C2E2A3B7900986814 /* roboto-bold.ttf in Resources */,
 				D6F143992E2A3B9800986814 /* README.md in Resources */,
 				D6642A3C2E6EA96D00860549 /* GoogleService-Info.plist in Resources */,
