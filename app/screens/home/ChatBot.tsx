@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   paddingTop0: { paddingTop: 0 },
   paddingTop10: { paddingTop: 10 },
   vectorImage: {
-    borderRadius: 100,
+    // borderRadius: 100,
     height: 20,
     resizeMode: "contain",
     width: 20,
