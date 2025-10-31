@@ -217,7 +217,7 @@ android {
         }
         bangla {
             applicationId 'org.unicef.bangladesh.babuni'
-            versionCode 6
+            versionCode 7
             versionName "1.0.0"
             signingConfig signingConfigs.bangla
         }
@@ -235,8 +235,8 @@ android {
         }
         reraiumntwana {
             applicationId 'org.unicef.zw.reraiumntwana'
-            versionCode 1
-            versionName "0.0.1"
+            versionCode 2
+            versionName "1.0.0"
             signingConfig signingConfigs.reraiumntwana
         }
         banglastaging {
