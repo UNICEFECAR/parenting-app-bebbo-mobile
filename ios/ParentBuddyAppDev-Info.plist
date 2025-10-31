@@ -23,6 +23,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb$(facebookAppId)</string>
@@ -53,7 +58,7 @@
 			<string>Bundle ID</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.datamatics.bebbo</string>
+				<string>org.unicef.bebbodev</string>
 			</array>
 		</dict>
 	</array>
@@ -69,6 +74,8 @@
 	<string>$(facebookClientToken)</string>
 	<key>FacebookDisplayName</key>
 	<string>$(facebookAppDisplayName)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -93,8 +100,6 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires camera permission for capturing profile image</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Let me add photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
