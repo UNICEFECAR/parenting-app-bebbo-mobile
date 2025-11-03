@@ -3,18 +3,19 @@ import { getLanguageCode } from '../services/Utils';
 const cache = new Map<string, any>();
 
 export function memoizedJsonParse(json: string, fallback: any = []) {
-  if (!json) return fallback;
+  // if (!json) return fallback;
 
-  if (cache.has(json)) return cache.get(json);
+  // if (cache.has(json)) return cache.get(json);
 
-  try {
+  // try {
     const parsed = JSON.parse(json);
-    cache.set(json, parsed);
-    return parsed;
-  } catch (e) {
-    console.warn('Failed to parse JSON:', e);
-    return fallback;
-  }
+  //   cache.set(json, parsed);
+  //   return parsed;
+  // } catch (e) {
+  //   console.warn('Failed to parse JSON:', e);
+  //   return fallback;
+  // }
+  return parsed;
 }
 // Language Code
 export const selectLanguageCode = (state: any) => state.selectedCountry.languageCode;
@@ -43,9 +44,20 @@ export const selectIncrementalSyncDT = (state: any) => state.utilsData.increment
 export const selectBufferAgeBracket = (state: any) => state.childData.childDataSet.bufferAgeBracket;
 
 // Active Child
+// export const selectActiveChild = createSelector(
+//   [(state: any) => state.childData.childDataSet.activeChild],
+//   (activeChild) => (activeChild ? memoizedJsonParse(activeChild) : [])
+// );
 export const selectActiveChild = createSelector(
-  [(state: any) => state.childData.childDataSet.activeChild],
-  (activeChild) => (activeChild ? memoizedJsonParse(activeChild) : [])
+  (state: any) => state.childData.childDataSet.activeChild,
+  (activeChildString) => {
+    try {
+      return activeChildString ? JSON.parse(activeChildString) : [];
+    } catch (e) {
+      console.warn("Failed to parse activeChild JSON:", e);
+      return [];
+    }
+  }
 );
 export const selectActiveChildUuid = createSelector(
   [(state: any) => state.childData.childDataSet.activeChild],

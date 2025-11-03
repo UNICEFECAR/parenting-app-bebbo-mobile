@@ -63,7 +63,8 @@ align-items:center;
 export const ToolsHeadView = styled.View`
 flex-direction:row;
 justify-content:space-between;
-flex:1;
+align-items: center;
+width: 100%;
 `;
 
 export const HealthDesc = styled.View`

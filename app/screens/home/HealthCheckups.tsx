@@ -7,6 +7,7 @@ import {
   ButtonText,
   ButtonTextSmLine,
   ButtonModal,
+  ButtonTextTheme,
 } from "@components/shared/ButtonGlobal";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import { FlexCol, FDirRow } from "@components/shared/FlexBoxStyle";
@@ -209,9 +210,9 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
                   setIsModalOpened("IsHCUModalOpened");
                 }}
               >
-                <ButtonText numberOfLines={2}>
+                <ButtonTextTheme numberOfLines={2}>
                   {t("continueInModal")}
-                </ButtonText>
+                </ButtonTextTheme>
               </ButtonModal>
             </FDirRow>
           </ModalPopupContainer>

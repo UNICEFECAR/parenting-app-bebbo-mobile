@@ -42,7 +42,7 @@ import ModalPopupContainer, {
   PopupOverlay,
 } from "@components/shared/ModalPopupStyle";
 import Icon from "@components/shared/Icon";
-import { ButtonModal, ButtonText } from "@components/shared/ButtonGlobal";
+import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
 import useDigitConverter from "../../customHooks/useDigitConvert";
 type VaccinationNavigationProp =
@@ -230,9 +230,9 @@ const Vaccination = ({ navigation, route }: Props): any => {
                   setIsModalOpened("IsVaccineModalOpened");
                 }}
               >
-                <ButtonText numberOfLines={2}>
+                <ButtonTextTheme numberOfLines={2}>
                   {t("continueInModal")}
-                </ButtonText>
+                </ButtonTextTheme>
               </ButtonModal>
             </FDirRow>
           </ModalPopupContainer>

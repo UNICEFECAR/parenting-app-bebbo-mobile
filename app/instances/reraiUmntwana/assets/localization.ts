@@ -7,7 +7,7 @@ const localization = [
       {
         name: "English",
         displayName: "English",
-        languageCode: "en",
+        languageCode: "zw-en",
         locale: "ZWen",
         luxonLocale: "en-ZW",
         pluralShow: true

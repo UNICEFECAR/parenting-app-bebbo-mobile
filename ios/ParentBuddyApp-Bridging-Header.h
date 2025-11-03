@@ -8,5 +8,5 @@
 #define ParentBuddyApp_Bridging_Header_h
 
 #import "RNSplashScreen.h" // here
-
+#import "Orientation.h"
 #endif /* ParentBuddyApp_Bridging_Header_h */
