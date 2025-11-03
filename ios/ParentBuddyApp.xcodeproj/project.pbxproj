@@ -28,9 +28,9 @@
 		D61DD3472E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3482E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3492E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
+		D63CC5472EB0BAC300B05FDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		D6642A3C2E6EA96D00860549 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6642A3B2E6EA96D00860549 /* GoogleService-Info.plist */; };
 		D677385E2E6ACC870067DBAC /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = D67738582E6ACC870067DBAC /* splash_screen.png */; };
-		D67738602E6ACC870067DBAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D677385C2E6ACC870067DBAC /* Assets.xcassets */; };
 		D67738612E6ACC870067DBAC /* splash_screen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D677385A2E6ACC870067DBAC /* splash_screen@3x.png */; };
 		D67738622E6ACC870067DBAC /* splash_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D67738592E6ACC870067DBAC /* splash_screen@2x.png */; };
 		D6A1B7052E6E8D1E00D89625 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A1B7022E6E8D1E00D89625 /* splash.json */; };
@@ -40,12 +40,10 @@
 		D6B2954F2E2E88B600C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953D2E2E88A500C8889C /* splash.json */; };
 		D6B295502E2E88BD00C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295402E2E88A500C8889C /* splash.json */; };
 		D6B295532E2E88C800C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953C2E2E88A500C8889C /* README.md */; };
-		D6B295552E2E88D100C8889C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6B295392E2E88A500C8889C /* README.md */; };
 		D6B295592E2E88E500C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295462E2E88A500C8889C /* splash.json */; };
 		D6B2955A2E2E890900C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295372E2E88A500C8889C /* splash.json */; };
 		D6B2955B2E2E890900C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295372E2E88A500C8889C /* splash.json */; };
 		D6B855DD2E6EC7900043F90E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */; };
-		D6B855DF2E6EDC110043F90E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6B855DE2E6EDC110043F90E /* Images.xcassets */; };
 		D6F141E52E2912C200986814 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F141E32E2912C200986814 /* InfoPlist.strings */; };
 		D6F1420D2E29131100986814 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F22E29131100986814 /* GoogleService-Info.plist */; };
 		D6F142102E29131100986814 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F32E29131100986814 /* README.md */; };
@@ -75,7 +73,6 @@
 		D6F142932E29329200986814 /* roboto-regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = D6F1428F2E29329200986814 /* roboto-regular.svg */; };
 		D6F142972E29334B00986814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		D6F1429B2E29334B00986814 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D6F1429C2E29334B00986814 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F141E32E2912C200986814 /* InfoPlist.strings */; };
 		D6F1429F2E29334B00986814 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		D6F142A02E29334B00986814 /* roboto-regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = D6F1427D2E29326600986814 /* roboto-regular.woff2 */; };
 		D6F142A12E29334B00986814 /* roboto-bold.svg in Resources */ = {isa = PBXBuildFile; fileRef = D6F1428E2E29329200986814 /* roboto-bold.svg */; };
@@ -182,6 +179,8 @@
 		D6F143992E2A3B9800986814 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F52E29131100986814 /* README.md */; };
 		D6F143A12E2A3BE700986814 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F1439E2E2A3BE700986814 /* InfoPlist.strings */; };
 		D6F143A22E2A3BE700986814 /* ReraiUmntwana-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F143A02E2A3BE700986814 /* ReraiUmntwana-Info.plist */; };
+		D6F1E8942EB0B8DC00B2C8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */; };
+		D6F40A1F2EB4F3680015F5C7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F40A1D2EB4F3680015F5C7 /* InfoPlist.strings */; };
 		DA3D277D84BC05EEB5F159A4 /* Pods_ParentBuddyApp_ReraiUmntwana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553E8AB5CF83EB89330C9CAB /* Pods_ParentBuddyApp_ReraiUmntwana.framework */; };
 		F27D058AF84CA2E66A66BAAF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7DCE18FFE5A29E4601F8AF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework */; };
 /* End PBXBuildFile section */
@@ -236,7 +235,6 @@
 		D67738582E6ACC870067DBAC /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen.png; sourceTree = "<group>"; };
 		D67738592E6ACC870067DBAC /* splash_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_screen@2x.png"; sourceTree = "<group>"; };
 		D677385A2E6ACC870067DBAC /* splash_screen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_screen@3x.png"; sourceTree = "<group>"; };
-		D677385C2E6ACC870067DBAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6A1B7012E6E8D1E00D89625 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6A1B7022E6E8D1E00D89625 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D6A1B7032E6E8D1E00D89625 /* splash_old.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash_old.json; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 		D6B295482E2E88A500C8889C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6B295492E2E88A500C8889C /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D6B855DE2E6EDC110043F90E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D6D5339B2E2FA3780060EC92 /* react_native_lottie_splash_screen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = react_native_lottie_splash_screen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F141D12E2912C200986814 /* be-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "be-BY"; path = "be-BY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F141D22E2912C200986814 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -328,6 +325,8 @@
 		D6F1439C2E2A3BE700986814 /* nd-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nd-ZW"; path = "nd-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F1439D2E2A3BE700986814 /* sn-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sn-ZW"; path = "sn-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F143A02E2A3BE700986814 /* ReraiUmntwana-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReraiUmntwana-Info.plist"; sourceTree = "<group>"; };
+		D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D6F40A1C2EB4F3680015F5C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8541B93430AA7F2E060F943 /* Pods_ParentBuddyApp_ParentBuddyAppDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ParentBuddyAppDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig"; sourceTree = "<group>"; };
@@ -337,17 +336,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = ParentBuddyAppTests;
-			sourceTree = "<group>";
-		};
+		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ParentBuddyAppTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,6 +426,7 @@
 		13B07FAE1A68108700A75B9A /* ParentBuddyApp */ = {
 			isa = PBXGroup;
 			children = (
+				D6F40A1E2EB4F3680015F5C7 /* InfoPlist_BebboDev */,
 				D61DD34A2E2FB86C00109398 /* ParentBuddyApp-Bridging-Header.h */,
 				D61DD3402E2FB37400109398 /* Dynamic.swift */,
 				D6B2954B2E2E88A500C8889C /* LottieSplash */,
@@ -572,10 +562,9 @@
 		D677385D2E6ACC870067DBAC /* ReraiUmntwana */ = {
 			isa = PBXGroup;
 			children = (
-				D6B855DE2E6EDC110043F90E /* Images.xcassets */,
+				D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */,
 				D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */,
 				D677385B2E6ACC870067DBAC /* splashimg.imageset */,
-				D677385C2E6ACC870067DBAC /* Assets.xcassets */,
 			);
 			path = ReraiUmntwana;
 			sourceTree = "<group>";
@@ -815,6 +804,14 @@
 				D6F1439E2E2A3BE700986814 /* InfoPlist.strings */,
 			);
 			path = InfoPlist_ReraiUmntwana;
+			sourceTree = "<group>";
+		};
+		D6F40A1E2EB4F3680015F5C7 /* InfoPlist_BebboDev */ = {
+			isa = PBXGroup;
+			children = (
+				D6F40A1D2EB4F3680015F5C7 /* InfoPlist.strings */,
+			);
+			path = InfoPlist_BebboDev;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1162,17 +1159,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F1429B2E29334B00986814 /* LaunchScreen.storyboard in Resources */,
-				D6F1429C2E29334B00986814 /* InfoPlist.strings in Resources */,
 				D6F142B72E29361400986814 /* ParentBuddyAppDev-Info.plist in Resources */,
 				D6F1429F2E29334B00986814 /* Images.xcassets in Resources */,
 				D6F142A02E29334B00986814 /* roboto-regular.woff2 in Resources */,
+				D6F40A1F2EB4F3680015F5C7 /* InfoPlist.strings in Resources */,
 				D6F142A12E29334B00986814 /* roboto-bold.svg in Resources */,
 				D6F142A22E29334B00986814 /* roboto-regular.svg in Resources */,
 				D6F142A42E29334B00986814 /* roboto-bold.woff in Resources */,
 				D6F142B82E29379800986814 /* GoogleService-Info.plist in Resources */,
 				D6F142A52E29334B00986814 /* roboto-bold.woff2 in Resources */,
 				D6F142B92E2937BF00986814 /* README.md in Resources */,
-				D6B295552E2E88D100C8889C /* README.md in Resources */,
 				D6F142A62E29334B00986814 /* roboto-regular.ttf in Resources */,
 				D6F142A72E29334B00986814 /* roboto-bold.ttf in Resources */,
 				D6F142A92E29334B00986814 /* roboto-regular.woff in Resources */,
@@ -1302,20 +1298,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F143862E2A3B7900986814 /* roboto-regular.woff2 in Resources */,
+				D63CC5472EB0BAC300B05FDF /* Images.xcassets in Resources */,
 				D6F143872E2A3B7900986814 /* roboto-bold.svg in Resources */,
 				D6F143882E2A3B7900986814 /* roboto-regular.svg in Resources */,
 				D6F143892E2A3B7900986814 /* roboto-bold.woff in Resources */,
 				D677385E2E6ACC870067DBAC /* splash_screen.png in Resources */,
 				D6A1B7052E6E8D1E00D89625 /* splash.json in Resources */,
-				D67738602E6ACC870067DBAC /* Assets.xcassets in Resources */,
 				D67738612E6ACC870067DBAC /* splash_screen@3x.png in Resources */,
-				D6B855DF2E6EDC110043F90E /* Images.xcassets in Resources */,
 				D67738622E6ACC870067DBAC /* splash_screen@2x.png in Resources */,
 				D6F1438A2E2A3B7900986814 /* roboto-bold.woff2 in Resources */,
 				D6F1438B2E2A3B7900986814 /* roboto-regular.ttf in Resources */,
 				D6F143A12E2A3BE700986814 /* InfoPlist.strings in Resources */,
 				D6B855DD2E6EC7900043F90E /* LaunchScreen.storyboard in Resources */,
 				D6F143A22E2A3BE700986814 /* ReraiUmntwana-Info.plist in Resources */,
+				D6F1E8942EB0B8DC00B2C8E0 /* Assets.xcassets in Resources */,
 				D6F1438C2E2A3B7900986814 /* roboto-bold.ttf in Resources */,
 				D6F143992E2A3B9800986814 /* README.md in Resources */,
 				D6642A3C2E6EA96D00860549 /* GoogleService-Info.plist in Resources */,
@@ -2228,6 +2224,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		D6F40A1D2EB4F3680015F5C7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D6F40A1C2EB4F3680015F5C7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -2248,7 +2252,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.4.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2289,7 +2293,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.4.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2393,10 +2397,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -2477,10 +2478,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParentBuddyApp/ParentBuddyApp-Bridging-Header.h";
@@ -2575,7 +2573,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.4.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2616,7 +2614,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.4.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2647,6 +2645,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppDev.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
@@ -2665,20 +2665,21 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.bebbodev;
 				PRODUCT_NAME = Bebbo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				apiUrlDevelop = "https://bebbo.app/api";
-				clientIdKey = 2paqi14b84eaov6d69t2d2tnno5fri3p;
+				apiUrlDevelop = "https://staging.bebbo.app/api";
+				clientIdKey = hk963eho333n1aoqdkluk0d0tbp5okbf;
 				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
 				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
 				facebookAppDisplayName = Bebbo;
 				facebookAppId = 952919688723913;
 				facebookClientToken = e66dd996692fda3880211c44ce57938e;
-				iosId = 2paqi14b84eaov6d69t2d2tnno5fri3p;
-				projectNumber = 185520625819;
-				webId = g23qpmm4v35et550u4uq9aj5638g836d;
+				iosId = hk963eho333n1aoqdkluk0d0tbp5okbf;
+				projectNumber = 944025016653;
+				webId = 3p5vjfe1gtcmo3cbmgm8359luf5mcoap;
 			};
 			name = Debug;
 		};
@@ -2689,6 +2690,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppDev.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = "ParentBuddyAppDev-Info.plist";
@@ -2706,19 +2709,20 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.bebbodev;
 				PRODUCT_NAME = Bebbo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				apiUrlDevelop = "https://bebbo.app/api";
-				clientIdKey = 2paqi14b84eaov6d69t2d2tnno5fri3p;
+				apiUrlDevelop = "https://staging.bebbo.app/api";
+				clientIdKey = hk963eho333n1aoqdkluk0d0tbp5okbf;
 				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
 				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
 				facebookAppDisplayName = Bebbo;
 				facebookAppId = 952919688723913;
 				facebookClientToken = e66dd996692fda3880211c44ce57938e;
-				iosId = 2paqi14b84eaov6d69t2d2tnno5fri3p;
-				projectNumber = 185520625819;
-				webId = g23qpmm4v35et550u4uq9aj5638g836d;
+				iosId = hk963eho333n1aoqdkluk0d0tbp5okbf;
+				projectNumber = 944025016653;
+				webId = 3p5vjfe1gtcmo3cbmgm8359luf5mcoap;
 			};
 			name = Release;
 		};
@@ -2811,7 +2815,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppBangla.entitlements;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ParentBuddyAppBangla-Info.plist";
@@ -2853,7 +2857,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyAppBangla.entitlements;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				INFOPLIST_FILE = "ParentBuddyAppBangla-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Babuni;
@@ -3069,7 +3073,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3113,7 +3117,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

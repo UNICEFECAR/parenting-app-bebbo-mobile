@@ -16,6 +16,7 @@ import {
   ButtonModal,
   ButtonPrimary,
   ButtonText,
+  ButtonTextTheme,
 } from "@components/shared/ButtonGlobal";
 import Checkbox, {
   CheckboxActive,
@@ -1613,9 +1614,9 @@ const SettingScreen = (props: any): any => {
                     });
                   }}
                 >
-                  <ButtonText numberOfLines={2}>
+                  <ButtonTextTheme numberOfLines={2}>
                     {t("continueInModal")}
-                  </ButtonText>
+                  </ButtonTextTheme>
                 </ButtonModal>
               </FDirRow>
             </ModalPopupContainer>

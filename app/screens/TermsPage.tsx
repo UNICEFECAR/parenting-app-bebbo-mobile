@@ -7,7 +7,6 @@ import iframe from "@native-html/iframe-plugin";
 import { RootStackParamList } from "@navigation/types";
 import { useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { bgcolorWhite2, primaryColor } from "../instances/bebbo/styles/style";
 import { Heading1w, ShiftFromTop5 } from "../instances/bebbo/styles/typography";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
@@ -26,6 +25,7 @@ import { ThemeContext } from "styled-components/native";
 import { useAppSelector } from "../../App";
 import RenderImage from "../services/RenderImage";
 import { addSpaceToHtml } from "../services/Utils";
+import { bgcolorWhite2, primaryColor } from "@styles/style";
 type TermsPageNavigationProp = StackNavigationProp<
   RootStackParamList,
   "ChildSetup"

@@ -165,8 +165,8 @@ android {
         abi {
             enable true
             reset()
-            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64", "arm64-v8a-16k", "x86_64-16k"
-            universalApk false
+            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+            universalApk true
         }
     }
     signingConfigs {
@@ -193,8 +193,8 @@ android {
     productFlavors {
         prod {
             applicationId 'org.unicef.ecar.bebbo'
-            versionCode 46
-            versionName "2.4.1"
+            versionCode 48
+            versionName "2.4.3"
             signingConfig signingConfigs.release
         }
         prodstaging {
@@ -206,7 +206,7 @@ android {
         xk {
             applicationId 'org.unicef.kosovo.foleja'
             versionCode 13
-            versionName "2.4.1"
+            versionName "2.4.2"
             signingConfig signingConfigs.xk
         }
         xkstaging {
@@ -217,7 +217,7 @@ android {
         }
         bangla {
             applicationId 'org.unicef.bangladesh.babuni'
-            versionCode 3
+            versionCode 7
             versionName "1.0.0"
             signingConfig signingConfigs.bangla
         }
@@ -229,13 +229,13 @@ android {
         }
         wawamor {
             applicationId 'org.unicef.ec.wawamor'
-            versionCode 11
-            versionName "1.0.4"
+            versionCode 13
+            versionName "1.0.5"
             signingConfig signingConfigs.wawamor
         }
         reraiumntwana {
             applicationId 'org.unicef.zw.reraiumntwana'
-            versionCode 1
+            versionCode 2
             versionName "1.0.0"
             signingConfig signingConfigs.reraiumntwana
         }
