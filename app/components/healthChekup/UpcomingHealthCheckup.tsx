@@ -43,6 +43,7 @@ import {
 import Icon, { IconViewBg } from "../shared/Icon";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { selectActiveChild, selectVaccineData } from "../../services/selectors";
+import useDigitConverter from "../../customHooks/useDigitConvert";
 const styles = StyleSheet.create({
   dirView: { flex: 6, flexDirection: "row" },
   iconStyle: { alignSelf: "center" },
@@ -61,6 +62,7 @@ const UpcomingHealthCheckup = (props: any): any => {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const netInfo = useNetInfoHook();
+  const { convertDigits } = useDigitConverter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const themeContext = useContext(ThemeContext);
   const artHeaderColor = themeContext?.colors.ARTICLES_COLOR;
@@ -210,8 +212,8 @@ const UpcomingHealthCheckup = (props: any): any => {
                     item?.growthMeasures?.measurementPlace == 0 ? (
                       <Heading4Regular>
                         {t("hcMeasureText", {
-                          weight: item?.growthMeasures.weight,
-                          height: item?.growthMeasures.height,
+                          weight: convertDigits(item?.growthMeasures.weight || "0"),
+                          height: convertDigits(item?.growthMeasures.height || "0"),
                         })}
                       </Heading4Regular>
                     ) : (

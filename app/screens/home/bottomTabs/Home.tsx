@@ -15,6 +15,7 @@ import {
   ButtonModal,
   ButtonTertiary,
   ButtonText,
+  ButtonTextTheme,
 } from "@components/shared/ButtonGlobal";
 import { MainContainer } from "@components/shared/Container";
 import { FDirRow, FlexCol, FlexDirRow } from "@components/shared/FlexBoxStyle";
@@ -888,9 +889,9 @@ const Home = ({ route, navigation }: any): any => {
                         Linking.openURL(surveyItem?.survey_feedback_link);
                       }}
                     >
-                      <ButtonText numberOfLines={2}>
+                      <ButtonTextTheme numberOfLines={2}>
                         {t("continueInModal")}
-                      </ButtonText>
+                      </ButtonTextTheme>
                     </ButtonModal>
                   </FDirRow>
                 </>

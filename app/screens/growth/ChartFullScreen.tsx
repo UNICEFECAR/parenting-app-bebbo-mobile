@@ -59,12 +59,13 @@ export const ChartFullScreen = ({ route, navigation }: Props): any => {
   const [isChartVisible, setIsChartVisible] = React.useState(false);
 
   const closeFullScreen = (): any => {
-    navigation.goBack();
+    
+    Orientation.lockToPortrait();
     setTimeout(
       () => {
-        Orientation.lockToPortrait();
+        navigation.goBack();
       },
-      Platform.OS == "ios" ? 500 : 0
+      Platform.OS == "ios" ? 200 : 0
     );
   };
   React.useEffect(() => {

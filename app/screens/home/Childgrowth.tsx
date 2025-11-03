@@ -9,6 +9,7 @@ import {
   ButtonPrimary,
   ButtonText,
   ButtonModal,
+  ButtonTextTheme,
 } from "@components/shared/ButtonGlobal";
 import { BgContainer, MainContainer } from "@components/shared/Container";
 import { FDirRow, FlexCol, FlexDirCol } from "@components/shared/FlexBoxStyle";
@@ -206,9 +207,9 @@ const Childgrowth = ({ navigation }: any): any => {
                   setIsModalOpened("IsGrowthModalOpened");
                 }}
               >
-                <ButtonText numberOfLines={2}>
+                <ButtonTextTheme numberOfLines={2}>
                   {t("continueInModal")}
-                </ButtonText>
+                </ButtonTextTheme>
               </ButtonModal>
             </FDirRow>
           </ModalPopupContainer>

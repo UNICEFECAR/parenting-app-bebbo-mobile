@@ -428,11 +428,12 @@ class MediaPicker {
   
       if (sdk >= 33) {
         // Android 13+ → READ_MEDIA_IMAGES
-        check(GALLERY_PERMISSION_ANDROID_33_PLUS).then((status) => {
-          if (status === RESULTS.GRANTED) triggerFunc();
-          else if (status === RESULTS.BLOCKED) this.openSettingModal();
-          else this.handlePermissionsGallery(triggerFunc);
-        });
+        triggerFunc()
+        // check(GALLERY_PERMISSION_ANDROID_33_PLUS).then((status) => {
+        //   if (status === RESULTS.GRANTED) triggerFunc();
+        //   else if (status === RESULTS.BLOCKED) this.openSettingModal();
+        //   else this.handlePermissionsGallery(triggerFunc);
+        // });
       } else if (sdk >= 24) {
         // Android 7.0 → 12 → READ_EXTERNAL_STORAGE
         check(GALLERY_PERMISSION_ANDROID_PRE33).then((status) => {

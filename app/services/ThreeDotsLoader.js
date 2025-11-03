@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, StyleSheet, Animated } from 'react-native'
 import PropTypes from 'prop-types';
-import { primaryColor } from "@styles/style";
+import { primaryColor, chatDotLoaderBGColor } from "@styles/style";
 
 const SIZE = 9
 const MARGIN = 3
-const BG = '#8CAEE4'
+const BG = chatDotLoaderBGColor
 const ACTIVE_BG = primaryColor
 const dots = [1, 2, 3]
 const INTERVAL = 300
