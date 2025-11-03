@@ -1,3 +1,4 @@
+import { menuDrawerTextColor } from '@styles/style';
 import styled from 'styled-components/native';
 
 /*Button Pressable */
@@ -50,6 +51,14 @@ min-height:40px;
 export const ButtonText = styled.Text`
   text-align: center;
   color: ${(props: any): any => props.theme?.colors?.PRIMARY_TEXTCOLOR};
+  font-family: 'roboto-bold';
+  font-size:16px;
+  line-height:25px;
+`;
+
+export const ButtonTextTheme = styled.Text`
+  text-align: center;
+  color: ${menuDrawerTextColor};
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:25px;

@@ -12,7 +12,7 @@ import {
   BgHealth,
   BgVaccination,
 } from "@components/shared/BackgroundColors";
-import { ButtonModal, ButtonText } from "@components/shared/ButtonGlobal";
+import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
 import {
   FDirCol,
   FDirRow,
@@ -48,7 +48,7 @@ import {
 } from "@components/shared/NavigationDrawer";
 import { useDrawerStatus } from "@react-navigation/drawer";
 import { useFocusEffect } from "@react-navigation/native";
-import { bgcolorWhite2, lightShadeColor, secondaryColor } from "@styles/style";
+import { bgcolorWhite2, lightShadeColor, menuDrawerTextColor, secondaryColor } from "@styles/style";
 import {
   Heading1Centerr,
   Heading3,
@@ -347,18 +347,18 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                                   : "ic_baby_girl"
                               }
                               size={36}
-                              color="#000"
+                              color={menuDrawerTextColor}
                             />
                           )}
                         </OuterIconLeft15>
                       </OuterIconRow>
                       <FDirCol>
-                        <Heading3>
+                        <Heading3 style={{color: menuDrawerTextColor}}>
                           {activeChild.childName != ""
                             ? activeChild.childName
                             : ""}
                         </Heading3>
-                        <Heading5>
+                        <Heading5 style={{color: menuDrawerTextColor}}>
                           {activeChild.birthDate != "" &&
                             activeChild.birthDate != null &&
                             activeChild.birthDate != undefined &&
@@ -377,7 +377,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                     </FlexDirRow>
                   </HeaderTitleView>
                   <HeaderActionView>
-                    <IconML name="ic_angle_right" size={16} color="#000" />
+                    <IconML name="ic_angle_right" size={16} color={menuDrawerTextColor} />
                   </HeaderActionView>
                 </HeaderRowView>
               </DrawerHeadContainer>
@@ -419,7 +419,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             {notifications.length > 0 ? (
               <BubbleContainer>
                 <BubbleView>
-                  <Heading5>{convertDigits(notifications.length)}</Heading5>
+                  <Heading5 style={{color: menuDrawerTextColor}}>{convertDigits(notifications.length)}</Heading5>
                 </BubbleView>
               </BubbleContainer>
             ) : null}
@@ -590,7 +590,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             {favoritescount > 0 ? (
               <BubbleContainer>
                 <BubbleView>
-                  <Heading5>{convertDigits(favoritescount)}</Heading5>
+                  <Heading5 style={{color: menuDrawerTextColor}}>{convertDigits(favoritescount)}</Heading5>
                 </BubbleView>
               </BubbleContainer>
             ) : null}
@@ -820,9 +820,9 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                         Linking.openURL(feedbackItem?.survey_feedback_link);
                       }}
                     >
-                      <ButtonText numberOfLines={2}>
+                      <ButtonTextTheme numberOfLines={2}>
                         {t("continueInModal")}
-                      </ButtonText>
+                      </ButtonTextTheme>
                     </ButtonModal>
                   </FDirRow>
                 </>

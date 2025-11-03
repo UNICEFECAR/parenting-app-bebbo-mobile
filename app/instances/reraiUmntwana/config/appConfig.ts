@@ -156,10 +156,10 @@ const config = {
     { name: "Motor", id: "motor", image: "ic_act_movement" },
   ],
   activityCategoryobj: [
-    { name: "Socio-emotional", id: 676, image: "ic_act_emotional" },
-    { name: "Language and communication", id: 686, image: "ic_act_language" },
-    { name: "Cognitive", id: 681, image: "ic_act_cognitive" },
-    { name: "Motor", id: 671, image: "ic_act_movement" },
+    { name: "Socio-emotional", id: 726, image: "ic_act_emotional" },
+    { name: "Language and communication", id: 736, image: "ic_act_language" },
+    { name: "Cognitive", id: 731, image: "ic_act_cognitive" },
+    { name: "Motor", id: 721, image: "ic_act_movement" },
   ],
   articleCategoryobj: [
     { name: "playingAndLearning", id: 416, image: "ic_artl_play" },
@@ -208,7 +208,7 @@ const config = {
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
   maxArticleSize: 5,
-  flavorName: "zimbabwe",
+  flavorName: "reraiumntwana",
   isCheckTokenize: false,
   stopWords: [],
   apiConfig: {

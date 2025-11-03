@@ -42,7 +42,7 @@ import ModalPopupContainer, {
 import Icon from "@components/shared/Icon";
 import HTML from "react-native-render-html";
 import { addSpaceToHtml } from "../../services/Utils";
-import { ButtonModal, ButtonText } from "@components/shared/ButtonGlobal";
+import { ButtonModal, ButtonText, ButtonTextTheme } from "@components/shared/ButtonGlobal";
 import {
   CHATBOT_CATEGORY_SELECTED,
   CHATBOT_FAQ_SELECTED,
@@ -770,9 +770,9 @@ const SupportChat = ({ navigation }: Props): any => {
                       Linking.openURL(feedbackItem?.survey_feedback_link);
                     }}
                   >
-                    <ButtonText numberOfLines={2}>
+                    <ButtonTextTheme numberOfLines={2}>
                       {t("continueInModal")}
-                    </ButtonText>
+                    </ButtonTextTheme>
                   </ButtonModal>
                 </FDirRow>
               </>

@@ -5,6 +5,7 @@ import {
   ButtonModal,
   ButtonTertiary,
   ButtonText,
+  ButtonTextTheme,
 } from "@components/shared/ButtonGlobal";
 import { MainContainer } from "@components/shared/Container";
 import { FDirRow, FlexCol } from "@components/shared/FlexBoxStyle";
@@ -141,9 +142,9 @@ const AddNewChildHeight = ({ navigation, route }: Props): any => {
                   setIsModalOpened("IsHeightModalOpened");
                 }}
               >
-                <ButtonText numberOfLines={2}>
+                <ButtonTextTheme numberOfLines={2}>
                   {t("continueInModal")}
-                </ButtonText>
+                </ButtonTextTheme>
               </ButtonModal>
             </FDirRow>
           </ModalPopupContainer>

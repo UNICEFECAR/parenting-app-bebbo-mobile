@@ -192,7 +192,7 @@ const GrowthChart = (props: any): any => {
     );
   });
   const { topArea, bottomArea, middleArea } = bgObj;
-  const ChartClick = Platform.OS == "android" ? Svg : View;
+  const ChartClick = View;
   console.log(bgObj);
   return (
     <>
