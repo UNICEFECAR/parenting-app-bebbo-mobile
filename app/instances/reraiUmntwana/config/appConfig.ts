@@ -46,8 +46,8 @@ const config = {
   tempbackUpPath: `${RNFS.TemporaryDirectoryPath}mybackup.json`,
   firstPeriodicSyncDays: 7,
   secondPeriodicSyncDays: 30,
-  shareText: `\nhttps://zw.bebbo.app/share/`,
-  shareTextButton: "https://zw.bebbo.app/share/",
+  shareText: `\nhttps://rerai.umntwana.app/share/`,
+  shareTextButton: "https://rerai.umntwana.app/share/",
   maleData: {
     id: 3386,
     name: "Male",
