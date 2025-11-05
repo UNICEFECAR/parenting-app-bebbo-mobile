@@ -36,7 +36,7 @@
     <category android:name="android.intent.category.BROWSABLE" />
     <data android:scheme="http" />
     <data android:scheme="https" />
-        <data android:host="zw.bebbo.app"  android:pathPrefix="/"/>
+        <data android:host="rerai.umntwana.app"  android:pathPrefix="/"/>
 </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
