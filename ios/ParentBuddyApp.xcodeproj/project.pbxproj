@@ -28,12 +28,12 @@
 		D61DD3472E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3482E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3492E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
+		D62267BC2EBB4D4E00BE4745 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D62267BA2EBB4D4E00BE4745 /* splash.json */; };
 		D63CC5472EB0BAC300B05FDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		D6642A3C2E6EA96D00860549 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6642A3B2E6EA96D00860549 /* GoogleService-Info.plist */; };
 		D677385E2E6ACC870067DBAC /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = D67738582E6ACC870067DBAC /* splash_screen.png */; };
 		D67738612E6ACC870067DBAC /* splash_screen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D677385A2E6ACC870067DBAC /* splash_screen@3x.png */; };
 		D67738622E6ACC870067DBAC /* splash_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D67738592E6ACC870067DBAC /* splash_screen@2x.png */; };
-		D6A1B7052E6E8D1E00D89625 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A1B7022E6E8D1E00D89625 /* splash.json */; };
 		D6B2954C2E2E88AF00C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953A2E2E88A500C8889C /* splash.json */; };
 		D6B2954D2E2E88AF00C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953A2E2E88A500C8889C /* splash.json */; };
 		D6B2954E2E2E88B600C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B2953D2E2E88A500C8889C /* splash.json */; };
@@ -229,15 +229,14 @@
 		D54F85C6C7EBD2F48551FF08 /* Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.debug.xcconfig"; sourceTree = "<group>"; };
 		D61DD3402E2FB37400109398 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		D61DD34A2E2FB86C00109398 /* ParentBuddyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParentBuddyApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		D62267B92EBB4D4E00BE4745 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D62267BA2EBB4D4E00BE4745 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D628E5F12E2A71DE00202918 /* ParentBuddyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParentBuddyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6642A3B2E6EA96D00860549 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D67738572E6ACC870067DBAC /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		D67738582E6ACC870067DBAC /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen.png; sourceTree = "<group>"; };
 		D67738592E6ACC870067DBAC /* splash_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_screen@2x.png"; sourceTree = "<group>"; };
 		D677385A2E6ACC870067DBAC /* splash_screen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_screen@3x.png"; sourceTree = "<group>"; };
-		D6A1B7012E6E8D1E00D89625 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D6A1B7022E6E8D1E00D89625 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
-		D6A1B7032E6E8D1E00D89625 /* splash_old.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash_old.json; sourceTree = "<group>"; };
 		D6B295372E2E88A500C8889C /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D6B295392E2E88A500C8889C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6B2953A2E2E88A500C8889C /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -548,6 +547,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D62267BB2EBB4D4E00BE4745 /* ReraiUmntwana */ = {
+			isa = PBXGroup;
+			children = (
+				D62267B92EBB4D4E00BE4745 /* README.md */,
+				D62267BA2EBB4D4E00BE4745 /* splash.json */,
+			);
+			path = ReraiUmntwana;
+			sourceTree = "<group>";
+		};
 		D677385B2E6ACC870067DBAC /* splashimg.imageset */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,16 +575,6 @@
 				D677385B2E6ACC870067DBAC /* splashimg.imageset */,
 			);
 			path = ReraiUmntwana;
-			sourceTree = "<group>";
-		};
-		D6A1B7042E6E8D1E00D89625 /* ReraiUmtwana */ = {
-			isa = PBXGroup;
-			children = (
-				D6A1B7012E6E8D1E00D89625 /* README.md */,
-				D6A1B7022E6E8D1E00D89625 /* splash.json */,
-				D6A1B7032E6E8D1E00D89625 /* splash_old.json */,
-			);
-			path = ReraiUmtwana;
 			sourceTree = "<group>";
 		};
 		D6B295382E2E88A500C8889C /* Babuni */ = {
@@ -635,7 +633,7 @@
 		D6B2954B2E2E88A500C8889C /* LottieSplash */ = {
 			isa = PBXGroup;
 			children = (
-				D6A1B7042E6E8D1E00D89625 /* ReraiUmtwana */,
+				D62267BB2EBB4D4E00BE4745 /* ReraiUmntwana */,
 				D6B295382E2E88A500C8889C /* Babuni */,
 				D6B2953B2E2E88A500C8889C /* Bebbo */,
 				D6B2953E2E2E88A500C8889C /* Foleja */,
@@ -1301,9 +1299,9 @@
 				D63CC5472EB0BAC300B05FDF /* Images.xcassets in Resources */,
 				D6F143872E2A3B7900986814 /* roboto-bold.svg in Resources */,
 				D6F143882E2A3B7900986814 /* roboto-regular.svg in Resources */,
+				D62267BC2EBB4D4E00BE4745 /* splash.json in Resources */,
 				D6F143892E2A3B7900986814 /* roboto-bold.woff in Resources */,
 				D677385E2E6ACC870067DBAC /* splash_screen.png in Resources */,
-				D6A1B7052E6E8D1E00D89625 /* splash.json in Resources */,
 				D67738612E6ACC870067DBAC /* splash_screen@3x.png in Resources */,
 				D67738622E6ACC870067DBAC /* splash_screen@2x.png in Resources */,
 				D6F1438A2E2A3B7900986814 /* roboto-bold.woff2 in Resources */,
@@ -2573,7 +2571,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.2;
+				MARKETING_VERSION = 2.4.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2614,7 +2612,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.2;
+				MARKETING_VERSION = 2.4.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3171,12 +3169,12 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				apiUrlDevelop = "https://zw.bebbo.app/api";
+				apiUrlDevelop = "https://rerai.umntwana.app/api";
 				clientIdKey = 26ig0p4368ohb0u63h8s6o1t5piaslud;
 				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
 				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
 				facebookAppDisplayName = ReraiUmntwana;
-				facebookAppId = 91300381851659536;
+				facebookAppId = 1300381851659536;
 				facebookClientToken = 3619c762b1adccd15c32431bc6bb0232;
 				iosId = 26ig0p4368ohb0u63h8s6o1t5piaslud;
 				projectNumber = 437524921254;
@@ -3211,12 +3209,12 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				apiUrlDevelop = "https://zw.bebbo.app/api";
+				apiUrlDevelop = "https://rerai.umntwana.app/api";
 				clientIdKey = 26ig0p4368ohb0u63h8s6o1t5piaslud;
 				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
 				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
 				facebookAppDisplayName = ReraiUmntwana;
-				facebookAppId = 91300381851659536;
+				facebookAppId = 1300381851659536;
 				facebookClientToken = 3619c762b1adccd15c32431bc6bb0232;
 				iosId = 26ig0p4368ohb0u63h8s6o1t5piaslud;
 				projectNumber = 437524921254;
