@@ -174,7 +174,7 @@ const UpcomingVaccines = (props: any): any => {
                 }}
               >
                 {item?.vaccines.every((el: any) => {
-                  return el.isMeasured == true;
+                  return el.old_calendar == 1 || el.isMeasured == true;
                 }) ? (
                   <RadioActive style={styles.radioActive}>
                     <Icon name="ic_tick" size={12} color="#FFF" />
