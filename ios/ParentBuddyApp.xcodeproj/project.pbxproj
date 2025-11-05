@@ -336,7 +336,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ParentBuddyAppTests; sourceTree = "<group>"; };
+		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = ParentBuddyAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2397,7 +2407,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -2478,7 +2491,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParentBuddyApp/ParentBuddyApp-Bridging-Header.h";
@@ -2573,7 +2589,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.2;
+				MARKETING_VERSION = 2.4.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2614,7 +2630,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.2;
+				MARKETING_VERSION = 2.4.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3171,12 +3187,12 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				apiUrlDevelop = "https://zw.bebbo.app/api";
+				apiUrlDevelop = "https://rerai.umntwana.app/api";
 				clientIdKey = 26ig0p4368ohb0u63h8s6o1t5piaslud;
 				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
 				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
 				facebookAppDisplayName = ReraiUmntwana;
-				facebookAppId = 91300381851659536;
+				facebookAppId = 1300381851659536;
 				facebookClientToken = 3619c762b1adccd15c32431bc6bb0232;
 				iosId = 26ig0p4368ohb0u63h8s6o1t5piaslud;
 				projectNumber = 437524921254;
@@ -3211,12 +3227,12 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				apiUrlDevelop = "https://zw.bebbo.app/api";
+				apiUrlDevelop = "https://rerai.umntwana.app/api";
 				clientIdKey = 26ig0p4368ohb0u63h8s6o1t5piaslud;
 				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
 				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
 				facebookAppDisplayName = ReraiUmntwana;
-				facebookAppId = 91300381851659536;
+				facebookAppId = 1300381851659536;
 				facebookClientToken = 3619c762b1adccd15c32431bc6bb0232;
 				iosId = 26ig0p4368ohb0u63h8s6o1t5piaslud;
 				projectNumber = 437524921254;
