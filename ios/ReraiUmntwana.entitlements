@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:zw.bebbo.app</string>
+		<string>applinks:rerai.umntwana.app</string>
 		<string>applinks:zwapp.page.link</string>
 	</array>
 </dict>
