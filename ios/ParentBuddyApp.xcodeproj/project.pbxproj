@@ -579,14 +579,14 @@
 			path = ReraiUmntwana;
 			sourceTree = "<group>";
 		};
-		D6A1B7042E6E8D1E00D89625 /* ReraiUmtwana */ = {
+		D6A1B7042E6E8D1E00D89625 /* ReraiUmntwana */ = {
 			isa = PBXGroup;
 			children = (
 				D6A1B7012E6E8D1E00D89625 /* README.md */,
 				D6A1B7022E6E8D1E00D89625 /* splash.json */,
 				D6A1B7032E6E8D1E00D89625 /* splash_old.json */,
 			);
-			path = ReraiUmtwana;
+			path = ReraiUmntwana;
 			sourceTree = "<group>";
 		};
 		D6B295382E2E88A500C8889C /* Babuni */ = {
@@ -645,7 +645,7 @@
 		D6B2954B2E2E88A500C8889C /* LottieSplash */ = {
 			isa = PBXGroup;
 			children = (
-				D6A1B7042E6E8D1E00D89625 /* ReraiUmtwana */,
+				D6A1B7042E6E8D1E00D89625 /* ReraiUmntwana */,
 				D6B295382E2E88A500C8889C /* Babuni */,
 				D6B2953B2E2E88A500C8889C /* Bebbo */,
 				D6B2953E2E2E88A500C8889C /* Foleja */,
