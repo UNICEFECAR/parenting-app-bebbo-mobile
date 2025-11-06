@@ -132,7 +132,7 @@
     "sonarqube-scanner": "^4.3.0",
     "styled-components": "^6.1.19",
     "uuid": "^11.1.0",
-    "victory-native": "^36.8.1"
+    "victory-native": "^41.20.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
