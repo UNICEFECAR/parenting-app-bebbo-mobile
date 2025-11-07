@@ -12,6 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		30B0DC5A77B30A255F2CB4D2 /* Pods_ParentBuddyApp_ParentBuddyAppBanglaDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8471EC4F08CBAB84F2E3695 /* Pods_ParentBuddyApp_ParentBuddyAppBanglaDev.framework */; };
 		340F249DA9EEA926EDEDA391 /* Pods_ParentBuddyApp_ParentBuddyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EBCE8B75FB615FD820638DB /* Pods_ParentBuddyApp_ParentBuddyAppTests.framework */; };
+		4BE0AAA9148E486B13C933EC /* Pods_ParentBuddyApp_BebboPacific.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_BebboPacific.framework */; };
 		647717583366C7601F4BF539 /* Pods_ParentBuddyApp_Wawamor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DE5DA6621498F2729AEB41 /* Pods_ParentBuddyApp_Wawamor.framework */; };
 		69192446C7D2FB6457345895 /* Pods_ParentBuddyApp_ParentBuddyAppDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8541B93430AA7F2E060F943 /* Pods_ParentBuddyApp_ParentBuddyAppDev.framework */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
@@ -44,6 +45,24 @@
 		D6B2955A2E2E890900C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295372E2E88A500C8889C /* splash.json */; };
 		D6B2955B2E2E890900C8889C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6B295372E2E88A500C8889C /* splash.json */; };
 		D6B855DD2E6EC7900043F90E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */; };
+		D6C1B5812EBC847B00E466C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		D6C1B5822EBC847B00E466C0 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
+		D6C1B5862EBC847B00E466C0 /* roboto-regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = D6F1427D2E29326600986814 /* roboto-regular.woff2 */; };
+		D6C1B5872EBC847B00E466C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		D6C1B5882EBC847B00E466C0 /* roboto-bold.svg in Resources */ = {isa = PBXBuildFile; fileRef = D6F1428E2E29329200986814 /* roboto-bold.svg */; };
+		D6C1B5892EBC847B00E466C0 /* roboto-regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = D6F1428F2E29329200986814 /* roboto-regular.svg */; };
+		D6C1B58B2EBC847B00E466C0 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = D6F142782E29326600986814 /* roboto-bold.woff */; };
+		D6C1B58F2EBC847B00E466C0 /* roboto-bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = D6F142792E29326600986814 /* roboto-bold.woff2 */; };
+		D6C1B5902EBC847B00E466C0 /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6F1427B2E29326600986814 /* roboto-regular.ttf */; };
+		D6C1B5952EBC847B00E466C0 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6F142772E29326600986814 /* roboto-bold.ttf */; };
+		D6C1B5982EBC847B00E466C0 /* roboto-regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = D6F1427C2E29326600986814 /* roboto-regular.woff */; };
+		D6C1B5992EBC847B00E466C0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		D6C1B5A32EBC85EB00E466C0 /* BebboPacific-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5A22EBC85EB00E466C0 /* BebboPacific-Info.plist */; };
+		D6C1B5A92EBC876600E466C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5A72EBC876600E466C0 /* InfoPlist.strings */; };
+		D6C1B5B32EBCA16000E466C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		D6C1B5B72EBCB07A00E466C0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5B52EBCB07A00E466C0 /* README.md */; };
+		D6C1B5B82EBCB07A00E466C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5B42EBCB07A00E466C0 /* GoogleService-Info.plist */; };
+		D6C1B5BD2EBCB0D100E466C0 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5BA2EBCB0D100E466C0 /* splash.json */; };
 		D6F141E52E2912C200986814 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F141E32E2912C200986814 /* InfoPlist.strings */; };
 		D6F1420D2E29131100986814 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F22E29131100986814 /* GoogleService-Info.plist */; };
 		D6F142102E29131100986814 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F32E29131100986814 /* README.md */; };
@@ -181,7 +200,8 @@
 		D6F143A22E2A3BE700986814 /* ReraiUmntwana-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F143A02E2A3BE700986814 /* ReraiUmntwana-Info.plist */; };
 		D6F1E8942EB0B8DC00B2C8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */; };
 		D6F40A1F2EB4F3680015F5C7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F40A1D2EB4F3680015F5C7 /* InfoPlist.strings */; };
-		DA3D277D84BC05EEB5F159A4 /* Pods_ParentBuddyApp_ReraiUmntwana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553E8AB5CF83EB89330C9CAB /* Pods_ParentBuddyApp_ReraiUmntwana.framework */; };
+		DA3D277D84BC05EEB5F159A4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		EC6F9DFCA8562697202B7198 /* Pods_ParentBuddyApp_ReraiUmntwana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_ReraiUmntwana.framework */; };
 		F27D058AF84CA2E66A66BAAF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7DCE18FFE5A29E4601F8AF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework */; };
 /* End PBXBuildFile section */
 
@@ -206,16 +226,18 @@
 		283B0D9A778402DBEB33066D /* Pods-ParentBuddyApp-ParentBuddyAppXkDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppXkDev.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppXkDev/Pods-ParentBuddyApp-ParentBuddyAppXkDev.debug.xcconfig"; sourceTree = "<group>"; };
 		2EFAFD36A6FAB53DF9062A98 /* Pods_ParentBuddyApp_ParentBuddyAppBangla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ParentBuddyAppBangla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		349FF3C9170EC6BEA30B6389 /* Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig"; sourceTree = "<group>"; };
+		366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_ReraiUmntwana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ReraiUmntwana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-BebboPacific.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-BebboPacific.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific.debug.xcconfig"; sourceTree = "<group>"; };
 		4011E01A78313931C883C49A /* Pods-ParentBuddyApp-MerhabaBebek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-MerhabaBebek.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-MerhabaBebek/Pods-ParentBuddyApp-MerhabaBebek.debug.xcconfig"; sourceTree = "<group>"; };
 		43D02DA51954010C7EB91B7E /* Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppXk/Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig"; sourceTree = "<group>"; };
 		43ED259E043F02A838663F96 /* Pods_ParentBuddyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E33ADFC5459E658155B0E58 /* Pods_ParentBuddyApp_ParentBuddyAppXkDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ParentBuddyAppXkDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E7DCE18FFE5A29E4601F8AF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ParentBuddyAppXk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		553E8AB5CF83EB89330C9CAB /* Pods_ParentBuddyApp_ReraiUmntwana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ReraiUmntwana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		565267C2A18C6A6FCED98018 /* Pods-ParentBuddyApp-MerhabaBebek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-MerhabaBebek.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-MerhabaBebek/Pods-ParentBuddyApp-MerhabaBebek.release.xcconfig"; sourceTree = "<group>"; };
 		580373AA984CA5167A0B307D /* Pods-ParentBuddyApp-ParentBuddyAppDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppDev.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppDev/Pods-ParentBuddyApp-ParentBuddyAppDev.release.xcconfig"; sourceTree = "<group>"; };
 		5C30A20B7F5343B130C4898D /* Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBangla/Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ParentBuddyApp/AppDelegate.swift; sourceTree = "<group>"; };
+		78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-BebboPacific.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-BebboPacific.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific.release.xcconfig"; sourceTree = "<group>"; };
 		7DF711D8CB44721A360C8F88 /* Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ParentBuddyApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8325BA672C3935571B54205C /* Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppDev/Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig"; sourceTree = "<group>"; };
@@ -249,6 +271,17 @@
 		D6B295482E2E88A500C8889C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6B295492E2E88A500C8889C /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D6C1B5A02EBC847B00E466C0 /* BebboPacific.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BebboPacific.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6C1B5A22EBC85EB00E466C0 /* BebboPacific-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BebboPacific-Info.plist"; sourceTree = "<group>"; };
+		D6C1B5AE2EBC9A1500E466C0 /* en-FJ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-FJ"; path = "en-FJ.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D6C1B5AF2EBC9A1D00E466C0 /* en-WS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-WS"; path = "en-WS.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D6C1B5B02EBC9A1E00E466C0 /* fj */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fj; path = fj.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D6C1B5B12EBC9A2500E466C0 /* sm-WS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sm-WS"; path = "sm-WS.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D6C1B5B22EBC9B2400E466C0 /* BebboPacific.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BebboPacific.entitlements; sourceTree = "<group>"; };
+		D6C1B5B42EBCB07A00E466C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D6C1B5B52EBCB07A00E466C0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D6C1B5B92EBCB0D100E466C0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D6C1B5BA2EBCB0D100E466C0 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D6D5339B2E2FA3780060EC92 /* react_native_lottie_splash_screen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = react_native_lottie_splash_screen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F141D12E2912C200986814 /* be-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "be-BY"; path = "be-BY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F141D22E2912C200986814 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -327,6 +360,7 @@
 		D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6F40A1C2EB4F3680015F5C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8541B93430AA7F2E060F943 /* Pods_ParentBuddyApp_ParentBuddyAppDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ParentBuddyAppDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_BebboPacific.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_BebboPacific.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig"; sourceTree = "<group>"; };
 		F4F28DB5EB235B2642A26D6E /* Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppTests/Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -335,7 +369,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ParentBuddyAppTests; sourceTree = "<group>"; };
+		D628E5F22E2A71DE00202918 /* ParentBuddyAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = ParentBuddyAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +396,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				340F249DA9EEA926EDEDA391 /* Pods_ParentBuddyApp_ParentBuddyAppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6C1B5832EBC847B00E466C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BE0AAA9148E486B13C933EC /* Pods_ParentBuddyApp_BebboPacific.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +467,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA3D277D84BC05EEB5F159A4 /* Pods_ParentBuddyApp_ReraiUmntwana.framework in Frameworks */,
+				DA3D277D84BC05EEB5F159A4 /* BuildFile in Frameworks */,
+				EC6F9DFCA8562697202B7198 /* Pods_ParentBuddyApp_ReraiUmntwana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +478,9 @@
 		13B07FAE1A68108700A75B9A /* ParentBuddyApp */ = {
 			isa = PBXGroup;
 			children = (
+				D6C1B5B22EBC9B2400E466C0 /* BebboPacific.entitlements */,
+				D6C1B5A82EBC876600E466C0 /* InfoPlist_BebboPacific */,
+				D6C1B5A22EBC85EB00E466C0 /* BebboPacific-Info.plist */,
 				D6F40A1E2EB4F3680015F5C7 /* InfoPlist_BebboDev */,
 				D61DD34A2E2FB86C00109398 /* ParentBuddyApp-Bridging-Header.h */,
 				D61DD3402E2FB37400109398 /* Dynamic.swift */,
@@ -473,8 +529,9 @@
 				8EBCE8B75FB615FD820638DB /* Pods_ParentBuddyApp_ParentBuddyAppTests.framework */,
 				4E7DCE18FFE5A29E4601F8AF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework */,
 				4E33ADFC5459E658155B0E58 /* Pods_ParentBuddyApp_ParentBuddyAppXkDev.framework */,
-				553E8AB5CF83EB89330C9CAB /* Pods_ParentBuddyApp_ReraiUmntwana.framework */,
 				07DE5DA6621498F2729AEB41 /* Pods_ParentBuddyApp_Wawamor.framework */,
+				E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_BebboPacific.framework */,
+				366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_ReraiUmntwana.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -516,6 +573,7 @@
 				D6F1436F2E2A39D000986814 /* Wawamor.app */,
 				D6F143972E2A3B7900986814 /* ReraiUmntwana.app */,
 				D628E5F12E2A71DE00202918 /* ParentBuddyAppTests.xctest */,
+				D6C1B5A02EBC847B00E466C0 /* BebboPacific.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -543,6 +601,8 @@
 				349FF3C9170EC6BEA30B6389 /* Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig */,
 				F57C38D930E37ED60322D609 /* Pods-ParentBuddyApp-Wawamor.debug.xcconfig */,
 				0CD0F078CDD45E7D2A5CC340 /* Pods-ParentBuddyApp-Wawamor.release.xcconfig */,
+				391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-BebboPacific.debug.xcconfig */,
+				78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-BebboPacific.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -633,6 +693,7 @@
 		D6B2954B2E2E88A500C8889C /* LottieSplash */ = {
 			isa = PBXGroup;
 			children = (
+				D6C1B5BB2EBCB0D100E466C0 /* BebboPacific */,
 				D62267BB2EBB4D4E00BE4745 /* ReraiUmntwana */,
 				D6B295382E2E88A500C8889C /* Babuni */,
 				D6B2953B2E2E88A500C8889C /* Bebbo */,
@@ -642,6 +703,32 @@
 				D6B2954A2E2E88A500C8889C /* Xk */,
 			);
 			path = LottieSplash;
+			sourceTree = "<group>";
+		};
+		D6C1B5A82EBC876600E466C0 /* InfoPlist_BebboPacific */ = {
+			isa = PBXGroup;
+			children = (
+				D6C1B5A72EBC876600E466C0 /* InfoPlist.strings */,
+			);
+			path = InfoPlist_BebboPacific;
+			sourceTree = "<group>";
+		};
+		D6C1B5B62EBCB07A00E466C0 /* BebboPacific */ = {
+			isa = PBXGroup;
+			children = (
+				D6C1B5B42EBCB07A00E466C0 /* GoogleService-Info.plist */,
+				D6C1B5B52EBCB07A00E466C0 /* README.md */,
+			);
+			path = BebboPacific;
+			sourceTree = "<group>";
+		};
+		D6C1B5BB2EBCB0D100E466C0 /* BebboPacific */ = {
+			isa = PBXGroup;
+			children = (
+				D6C1B5B92EBCB0D100E466C0 /* README.md */,
+				D6C1B5BA2EBCB0D100E466C0 /* splash.json */,
+			);
+			path = BebboPacific;
 			sourceTree = "<group>";
 		};
 		D6F141E42E2912C200986814 /* InfoPlist_Bebbo */ = {
@@ -736,6 +823,7 @@
 		D6F142002E29131100986814 /* GoogleServices */ = {
 			isa = PBXGroup;
 			children = (
+				D6C1B5B62EBCB07A00E466C0 /* BebboPacific */,
 				D6F141E82E29131100986814 /* Bangla */,
 				D6F141EB2E29131100986814 /* BanglaDevelopment */,
 				D6F141EE2E29131100986814 /* Development */,
@@ -861,6 +949,27 @@
 			productName = ParentBuddyAppTests;
 			productReference = D628E5F12E2A71DE00202918 /* ParentBuddyAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D6C1B57E2EBC847B00E466C0 /* BebboPacific */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6C1B59D2EBC847B00E466C0 /* Build configuration list for PBXNativeTarget "BebboPacific" */;
+			buildPhases = (
+				D6C1B57F2EBC847B00E466C0 /* [CP] Check Pods Manifest.lock */,
+				D6C1B5802EBC847B00E466C0 /* Sources */,
+				D6C1B5832EBC847B00E466C0 /* Frameworks */,
+				D6C1B5852EBC847B00E466C0 /* Resources */,
+				D6C1B59A2EBC847B00E466C0 /* Bundle React Native code and images */,
+				D6C1B59B2EBC847B00E466C0 /* [CP] Embed Pods Frameworks */,
+				D6C1B59C2EBC847B00E466C0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BebboPacific;
+			productName = ParentBuddyApp;
+			productReference = D6C1B5A02EBC847B00E466C0 /* BebboPacific.app */;
+			productType = "com.apple.product-type.application";
 		};
 		D6F1422C2E29268B00986814 /* ParentBuddyAppXk */ = {
 			isa = PBXNativeTarget;
@@ -1079,6 +1188,10 @@
 				"nd-ZW",
 				"en-ZW",
 				"sn-ZW",
+				fj,
+				"en-FJ",
+				"en-WS",
+				"sm-WS",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1095,6 +1208,7 @@
 				D6F1432A2E2A366200986814 /* MerhabaBebek */,
 				D6F143522E2A39D000986814 /* Wawamor */,
 				D6F1437A2E2A3B7900986814 /* ReraiUmntwana */,
+				D6C1B57E2EBC847B00E466C0 /* BebboPacific */,
 			);
 		};
 /* End PBXProject section */
@@ -1126,6 +1240,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6C1B5852EBC847B00E466C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6C1B5BD2EBCB0D100E466C0 /* splash.json in Resources */,
+				D6C1B5862EBC847B00E466C0 /* roboto-regular.woff2 in Resources */,
+				D6C1B5872EBC847B00E466C0 /* Images.xcassets in Resources */,
+				D6C1B5882EBC847B00E466C0 /* roboto-bold.svg in Resources */,
+				D6C1B5892EBC847B00E466C0 /* roboto-regular.svg in Resources */,
+				D6C1B58B2EBC847B00E466C0 /* roboto-bold.woff in Resources */,
+				D6C1B5A32EBC85EB00E466C0 /* BebboPacific-Info.plist in Resources */,
+				D6C1B5A92EBC876600E466C0 /* InfoPlist.strings in Resources */,
+				D6C1B5B72EBCB07A00E466C0 /* README.md in Resources */,
+				D6C1B5B82EBCB07A00E466C0 /* GoogleService-Info.plist in Resources */,
+				D6C1B58F2EBC847B00E466C0 /* roboto-bold.woff2 in Resources */,
+				D6C1B5902EBC847B00E466C0 /* roboto-regular.ttf in Resources */,
+				D6C1B5952EBC847B00E466C0 /* roboto-bold.ttf in Resources */,
+				D6C1B5B32EBCA16000E466C0 /* LaunchScreen.storyboard in Resources */,
+				D6C1B5982EBC847B00E466C0 /* roboto-regular.woff in Resources */,
+				D6C1B5992EBC847B00E466C0 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1765,6 +1902,78 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D6C1B57F2EBC847B00E466C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ParentBuddyApp-BebboPacific-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6C1B59A2EBC847B00E466C0 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/.xcode.env",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n\n../node_modules/react-native-vector-image/strip_svgs.sh\n";
+		};
+		D6C1B59B2EBC847B00E466C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6C1B59C2EBC847B00E466C0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D6F142392E29268B00986814 /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2071,6 +2280,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6C1B5802EBC847B00E466C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6C1B5812EBC847B00E466C0 /* AppDelegate.swift in Sources */,
+				D6C1B5822EBC847B00E466C0 /* Dynamic.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6F1422E2E29268B00986814 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2154,6 +2372,17 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D6C1B5A72EBC876600E466C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D6C1B5AE2EBC9A1500E466C0 /* en-FJ */,
+				D6C1B5AF2EBC9A1D00E466C0 /* en-WS */,
+				D6C1B5B02EBC9A1E00E466C0 /* fj */,
+				D6C1B5B12EBC9A2500E466C0 /* sm-WS */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D6F141E32E2912C200986814 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2395,7 +2624,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -2476,7 +2708,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParentBuddyApp/ParentBuddyApp-Bridging-Header.h";
@@ -2551,6 +2786,94 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParentBuddyApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ParentBuddyApp";
+			};
+			name = Release;
+		};
+		D6C1B59E2EBC847B00E466C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-BebboPacific.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/BebboPacific.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SGVD5KL2Y7;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "BebboPacific-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bebbo Pacific";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.pc.bebbopacific;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				apiUrlDevelop = "https://bebbopacific.app/api";
+				clientIdKey = e3q716lho7gpkrhmhgc87o81mi45l5e6;
+				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
+				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
+				facebookAppDisplayName = BebboPacific;
+				facebookAppId = 4342271699341754;
+				facebookClientToken = cec7269f26208ae6ea720476fe70d1b1;
+				iosId = e3q716lho7gpkrhmhgc87o81mi45l5e6;
+				projectNumber = 255587757121;
+				webId = 2er4popo4dh9rlnud4n9bn9i7gbsj5lq;
+			};
+			name = Debug;
+		};
+		D6C1B59F2EBC847B00E466C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-BebboPacific.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/BebboPacific.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SGVD5KL2Y7;
+				INFOPLIST_FILE = "BebboPacific-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bebbo Pacific";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.pc.bebbopacific;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				apiUrlDevelop = "https://bebbopacific.app/api";
+				clientIdKey = e3q716lho7gpkrhmhgc87o81mi45l5e6;
+				encryptionsIVKey = cd6854fab61ec032563b2e0c38b30c39;
+				encryptionsKey = f06d3a055c7066de31d6d1ae583d7bd18d99840bc74d14aaed63860054004f15;
+				facebookAppDisplayName = BebboPacific;
+				facebookAppId = 4342271699341754;
+				facebookClientToken = cec7269f26208ae6ea720476fe70d1b1;
+				iosId = e3q716lho7gpkrhmhgc87o81mi45l5e6;
+				projectNumber = 255587757121;
+				webId = 2er4popo4dh9rlnud4n9bn9i7gbsj5lq;
 			};
 			name = Release;
 		};
@@ -3248,6 +3571,15 @@
 			buildConfigurations = (
 				D628E5F72E2A71DE00202918 /* Debug */,
 				D628E5F82E2A71DE00202918 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6C1B59D2EBC847B00E466C0 /* Build configuration list for PBXNativeTarget "BebboPacific" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6C1B59E2EBC847B00E466C0 /* Debug */,
+				D6C1B59F2EBC847B00E466C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
