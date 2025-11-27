@@ -1,36 +1,36 @@
 export const countryData: any = {
-    "bn": [
+  "bn": [
+    {
+      "CountryID": "1",
+      "name": "বাংলাদেশ (Bangladesh)",
+      "country_email": "info@babuni.app",
+      "country_national_partner": {
+        "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2024-12/BSA_logo_white.webp?itok=5Vysg0t1",
+        "name": "BSA_logo_white.png",
+        "alt": "BSA logo"
+      },
+      "country_sponsor_logo": {
+        "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2024-11/MoH_bangladesh_0.webp?itok=VQlU7V7V",
+        "name": "MoH_bangladesh_0.png",
+        "alt": "MoH Bangladesh logo"
+      },
+      "unicef_logo": {
+        "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2025-11/Babuni%20logo%20%28white%29.webp?itok=CGVVUw-l",
+        "name": "Babuni logo (white).png",
+        "alt": "Babuni logo (white)"
+      },
+      "content_toggle": "Pregnancy",
+      "app_name": "Babuni",
+      "languages": [
         {
-            "CountryID": "1",
-            "name": "Bangladesh",
-            "country_email": "info@babuni.app",
-            "country_national_partner": {
-              "url": "https://www.babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2024-05/BSA%20logo.png?itok=r_uaB6MP",
-              "name": "BSA logo.png",
-              "alt": "Bangladesh society"
-            },
-            "country_sponsor_logo": {
-              "url": "https://www.babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2024-05/MoH%20bangladesh.png?itok=LpBi5n0s",
-              "name": "MoH bangladesh.png",
-              "alt": "ministry of health Bangladesh"
-            },
-            "unicef_logo": {
-              "url": "https://www.babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2024-11/Bengali_white_vertical_RGB.png?itok=JLjee2NA",
-              "name": "Bengali_white_vertical_RGB.png",
-              "alt": "UNICEF logo in Bengali"
-            },
-            "content_toggle": "",
-            "app_name": "Babuni",
-            "languages": [
-              {
-                "name": "Bangladesh",
-                "displayName": "Bengali",
-                "languageCode": "bn",
-                "locale": "bn",
-                "luxonLocale": "bn",
-                "pluralShow": "false"
-              }
-            ]
-          }
-    ]
+          "name": "বাংলাদেশ (Bangladesh)",
+          "displayName": "বাংলা",
+          "languageCode": "bn",
+          "locale": "bn",
+          "luxonLocale": "bn",
+          "pluralShow": "false"
+        }
+      ]
+    }
+  ]
 };

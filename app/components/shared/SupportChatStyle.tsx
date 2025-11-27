@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { FlexCol } from './FlexBoxStyle';
+import { botBubbleContainerColor } from '@styles/style';
 const ChatContainer = styled.View`
   width: 100%;
   height: 100%;
@@ -37,7 +38,7 @@ export const BotBubbleTextContainer = styled.View`
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: #f6f5f2;
+    background-color: ${botBubbleContainerColor};
     padding: 15px;
     padding-top: 17px;
     padding-bottom: 17px;
