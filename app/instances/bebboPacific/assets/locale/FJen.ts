@@ -333,7 +333,7 @@ const FJen = {
     growthChartLegendOrangeLabel: 'Suboptimal values for age',
     noVaccinesForPeriod: 'There are no vaccines during this period',
     defaultPeriodInterpretationText:
-      'Growth charts refer to children 0 to 61 months old and do not contain growth values for older children. You can find more about growth in this period under relevant advice.',
+      'Growth charts refer to children 0 to 60 months old and do not contain growth values for older children. You can find more about growth in this period under relevant advice.',
     retryPopupTitle: 'Retry',
     retryPopupText: 'Please retry. Not all content  has been downloaded.',
     retryCancelPopUpBtn: 'Cancel',
@@ -373,9 +373,9 @@ const FJen = {
     growthModalText:
       "Enter and keep updating your child's weight and height here and learn how to better support her/his growth.",
     vaccineModalText:
-      "Here you can register, track, and find out more about vaccines recommended by the World Health Organization's routine immunization calendar (not customized to a specific national calendar). Set reminders for vaccinations and receive notifications.",
+      "Here you can register, track, and find out more about vaccines recommended in The Ministry of Health and Medical Service's national immunization schedule. Set reminders for vaccinations and receive notifications.",
     hcModalText:
-      'Here you can enter records, set reminders and receive notifications about your child’s health check-ups (not customized to a specific national calendar) and find out more about their content!',
+      'Here you can enter records, set reminders and receive notifications about your child\'s health check-ups.',
     tryText: 'Try again... ',
     deleteSuccess: 'Child profile is deleted',
     deleteError: 'User delete error. Please try again..',

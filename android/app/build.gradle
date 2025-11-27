@@ -225,8 +225,8 @@ android {
         }
         bangla {
             applicationId 'org.unicef.bangladesh.babuni'
-            versionCode 7
-            versionName "1.0.0"
+            versionCode 8
+            versionName "1.0.1"
             signingConfig signingConfigs.bangla
         }
         merhababebek {
@@ -243,7 +243,7 @@ android {
         }
         reraiumntwana {
             applicationId 'org.unicef.zw.reraiumntwana'
-            versionCode 2
+            versionCode 3
             versionName "1.0.0"
             signingConfig signingConfigs.reraiumntwana
         }

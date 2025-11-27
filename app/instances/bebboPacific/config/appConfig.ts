@@ -167,7 +167,7 @@ const config = {
     { name: "safetyAndProtection", id: 416, image: "ic_artl_safety" },
     { name: "responsiveParenting", id: 411, image: "ic_artl_responsive" },
     { name: "parentingCorner", id: 401, image: "ic_artl_parenting" },
-    { name: "nutritionAndBreastfeeding", id: 496, image: "ic_artl_nutrition" },
+    { name: "nutritionAndBreastfeeding", id: 396, image: "ic_artl_nutrition" },
   ],
   articleCategoryobjPregnancy: [
     { name: "weekByWeek", id: 426, image: "ic_art_week_by_week" },
