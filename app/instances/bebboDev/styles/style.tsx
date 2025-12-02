@@ -51,3 +51,4 @@ export const loadingHeaderColor = '#00AEEF';
 export const dailyReadsTagColor = '#2B2F84';
 export const menuDrawerTextColor = '#000000';
 export const chatDotLoaderBGColor = '#8CAEE4';
+export const botBubbleContainerColor = '#f6f5f2';

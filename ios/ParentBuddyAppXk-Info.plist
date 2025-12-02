@@ -97,8 +97,8 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires camera permission for capturing profile image</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Let me add photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>

@@ -110,46 +110,49 @@ Create `tsconfig.wawamor.json`:
 
 ## Step 5: Setting Up iOS Instance
 
-### 5.1 Add a New Scheme in Xcode
-- Open project in Xcode
-- Manage Schemes → Add New Scheme → Name it `Wawamor`
-
-### 5.2 Add a New Target
-- File → New → Target → App
-- Name: `Wawamor`
-- Set signing Team
-
-### 5.3 Update Bundle ID
-- New Bundle Identifier: `org.unicef.ec.wawamor`
-
-### 5.4 Configure Firebase
-- Create a Firebase project
-- Download `GoogleService-Info.plist`
-- Add it to Wawamor Target → Copy Bundle Resources
-
-### 5.5 Add Splash Image
-- Create `WawamorSplash` in Assets.xcassets
-- Set correct images for different devices
-
-### 5.6 Add Localization Strings
-- Create `Localizable_Wawamor.strings`
-- Example:
-  ```text
-  "app_name" = "Wawamor";
-  ```
-
-### 5.7 Set Display Name
-- Update `Bundle Display Name` to `Wawamor` in Build Settings
-
-### 5.8 Configure Signing
-- Set correct Team and signing settings in Wawamor Target
-
-### 5.9 Update Podfile
-- Add Wawamor Target:
+### 5.1 Add New Scheme and Target in Xcode
+- Open the project `ParentBuddyApp.xcworkspace` in Xcode.
+- Go to **Product → Scheme → Manage Schemes…** and click + to create a new scheme.
+Name the scheme `Wawamor`.
+- Duplicate an existing target → rename the new target to `Wawamor`.
+- In the **General** tab of the new target, update the **Display Name** to `Wawamor`.
+- In **Signing & Capabilities**, update the **Bundle Identifier** to:
+`org.unicef.ec.wawamor`.
+- Set the correct **Team** and **Code Signing settings** for the Wawamor target.
+- When the target is duplicated, a copy of the **Info.plist** file is created.
+Open it in Xcode and update all values for the new instance.
+- Update the **Podfile** to include the new target:
   ```ruby
   target 'Wawamor' do
   end
   ```
+- In Finder, duplicate the `InfoPlist_Wawamor` folder and the `Wawamor.entitlements` file.
+Rename them to match the new instance name.
+- In Xcode, select the **ParentBuddyApp** project →
+Go to Project → ParentBuddyApp → Info tab → Localizations → click + →
+Add the required language(s).
+When prompted, select InfoPlist.strings as the resource file.
+- In Xcode, right-click **ParentBuddyApp → Add Files to "ParentBuddyApp"…**
+Add the renamed `InfoPlist_Wawamor` folder.
+Make sure the `Wawamor` target is selected. 
+- Open the newly added `InfoPlist_Wawamor` folder → select InfoPlist.
+In the right panel, update the localization settings.
+Xcode will automatically generate `InfoPlist.strings` files for selected languages.
+- Again right-click **ParentBuddyApp → Add Files…** and add the new `Wawamor.entitlements` file.
+Do **not** assign it to any target.
+- In the Wawamor target → Build Settings, update:
+  - **Info.plist File** path
+  - **Code Signing Entitlements** path
+    to point to the new instance files you created.
+
+### 5.2 Add Splash Image and Icons
+- Create `Wawamor` folder inside `ios -> Wawamor`. Add Assets, Splashimg and Launchscreen as per the requirement for the instance. Add this `Wawamor` folder in Xcode.
+- Create folder `Wawamor` at `ios -> LottieSplash -> Wawamor`. Add updated `splash.json` inside it.
+
+### 5.3 Configure Firebase
+- Create a Firebase project
+- Download `GoogleService-Info.plist`
+- Add it to `Wawamor` Target → Copy Bundle Resources
 
 ---
 
