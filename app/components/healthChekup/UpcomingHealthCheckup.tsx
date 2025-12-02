@@ -326,6 +326,11 @@ const UpcomingHealthCheckup = (props: any): any => {
                   <Pressable
                     onPress={(): any => {
                       console.log("pressable called");
+                      navigation.navigate("AddChildHealthCheckup", {
+                        headerTitle: t("hcEditHeaderTitle"),
+                        vcPeriod: item,
+                        editMeasurementDate: item?.growthMeasures?.dateToMilis,
+                      })
                     }}
                   >
                     <ButtonTextMdLine numberOfLines={2}>

@@ -144,7 +144,7 @@ const ZWen = {
     developScreenchartLabel: 'Pending',
     developScreenchartText: 'Reached milestones during the current period',
     developScreenmileStoneQ: 'Which of the milestones has your child reached?',
-    developScreentipsText: 'Tips from Doctors',
+    developScreentipsText: 'Tips from the Health facility',
     developScreenmileStone: 'Milestone',
     developScreenrelatedArticleText: 'View related advice',
     developScreenrelatedAct: 'Related games ',
@@ -178,18 +178,18 @@ const ZWen = {
     growthScreendateMeasurementText: 'Date of measurement',
     growthScreenenterDateMeasurementText: 'Enter date of measurement',
     growthScreenwhereMeasured: 'Where was the child measured?',
-    growthScreendoctorMeasurePlace: "At the doctor's",
+    growthScreendoctorMeasurePlace: "At health facility",
     growthScreenhomeMeasurePlace: 'At home',
     growthScreenenterMeasuresText: 'Enter weight and height',
-    growthScreenenterDoctorRemarkText: "Doctor's remark or comment",
+    growthScreenenterDoctorRemarkText: "Health worker's remarks or comments",
     growthScreenenterDoctorRemarkTextPlaceHolder:
-      "Enter your doctor's remark or comment",
+      "Enter health worker's remarks or comments",
     growthScreensaveMeasures: 'Save',
     growthScreensaveMeasuresDetails: 'Save',
     growthScreenaddWeight: 'Add weight',
     growthScreenaddHeight: 'Add height',
     growthScreennewGrowthBottomText:
-      "Measuring a child at home is less accurate than measuring at the doctor's and can affect the accuracy of the growth chart.",
+      "Measuring a child at home is less accurate than measuring at the health facility. It is recommended to have your child weighed by a community health worker or health worker.",
     growthScreenrelatedArticle: 'Related advice ',
     noBorn: 'Not born yet',
     noday: '0 days',
@@ -242,8 +242,8 @@ const ZWen = {
     vcPlanned: 'Vaccines in this period',
     vcPrev: 'Vaccines in previous periods',
     vcChildMeasureQ: 'Was the child measured?',
-    vcDoctorRemark: "Doctor's remark or comment",
-    vcDoctorRemarkPlaceHolder: "Enter Doctor's remark or comment",
+    vcDoctorRemark: "Health worker's remarks or comments",
+    vcDoctorRemarkPlaceHolder: "Enter health worker's remarks or comments",
     vcIsMeasuredOption1: 'Yes',
     vcIsMeasuredOption2: 'No',
     vcDeleteWarning: "Do you want to delete child's vaccination details?",
@@ -285,8 +285,8 @@ const ZWen = {
     hcHeader: 'Health check-up',
     hcSummaryHeader: 'Additional health check-ups',
     hcReminderbtn: 'Set health check-up reminder',
-    hcNewBtn: 'Add doctor visit',
-    hcEditBtn: 'Edit doctor visit',
+    hcNewBtn: 'Add Health facility visit',
+    hcEditBtn: 'Edit Health facility visit',
     hcNewHeaderTitle: 'New health check-up',
     hcMeasureText: 'Child is {{weight}} kg and {{height}} cm',
     hcVaccineText: 'Vaccines received',
@@ -333,7 +333,7 @@ const ZWen = {
     growthChartLegendOrangeLabel: 'Suboptimal values for age',
     noVaccinesForPeriod: 'There are no vaccines during this period',
     defaultPeriodInterpretationText:
-      'Growth charts refer to children 0 to 61 months old and do not contain growth values for older children. You can find more about growth in this period under relevant advice.',
+      'Growth charts refer to children 0 to 60 months old and do not contain growth values for older children. You can find more about growth in this period under relevant advice.',
     retryPopupTitle: 'Retry',
     retryPopupText: 'Please retry. Not all content  has been downloaded.',
     retryCancelPopUpBtn: 'Cancel',
@@ -373,9 +373,9 @@ const ZWen = {
     growthModalText:
       "Enter and keep updating your child's weight and height here and learn how to better support her/his growth.",
     vaccineModalText:
-      "Here you can register, track, and find out more about vaccines recommended by the World Health Organization's routine immunization calendar (not customized to a specific national calendar). Set reminders for vaccinations and receive notifications.",
+      "Here you can register, track, and find out more about vaccines recommended by Ministry of Health and Child Care's routine immunization calender. Set reminders for vaccinations and receive notifications.",
     hcModalText:
-      'Here you can enter records, set reminders and receive notifications about your child’s health check-ups (not customized to a specific national calendar) and find out more about their content!',
+      'Here you can enter records, set reminders and receive notifications about your child\'s health check-ups.',
     tryText: 'Try again... ',
     deleteSuccess: 'Child profile is deleted',
     deleteError: 'User delete error. Please try again..',
@@ -399,7 +399,7 @@ const ZWen = {
       'Check what milestones {{childName}} has reached in the period of {{periodName}}.',
     gwNoti1: '{{childName}} is growing - update growth measures.',
     hcNoti1:
-      'In this period, {{periodName}}, {{childName}} should have a health check-up. Schedule a visit to the doctor.',
+      'In this period, {{periodName}}, {{childName}} should have a health check-up. Schedule a visit to the health facility.',
     vcNoti1:
       'In the period, {{periodName}}, {{childName}} should receive vaccine:  ',
     alertForExistingMeasuresTitle:
