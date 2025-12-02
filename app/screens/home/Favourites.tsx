@@ -16,6 +16,7 @@ import { TabBarContainer, TabBarDefault } from "@components/shared/TabBarStyle";
 import { Flex1 } from "@components/shared/FlexBoxStyle";
 import { useFocusEffect } from "@react-navigation/native";
 import OverlayLoadingComponent from "@components/OverlayLoadingComponent";
+import { secondaryColor } from "@styles/style";
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -30,7 +31,7 @@ const Favourites = ({ navigation, route }: Props): any => {
   const themeContext = useContext(ThemeContext);
   const { t } = useTranslation();
   const headerColor = themeContext?.colors.PRIMARY_COLOR;
-  const backgroundBlue = themeContext?.colors.SECONDARY_COLOR;
+  const backgroundBlue = secondaryColor;
   const backgroundBlueTint = themeContext?.colors.SECONDARY_TINTCOLOR;
   const headerTextColor = themeContext?.colors.PRIMARY_BLUE_TEXTCOLOR;
 

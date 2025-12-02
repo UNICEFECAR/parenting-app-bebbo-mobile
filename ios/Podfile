@@ -74,6 +74,7 @@ target 'ParentBuddyApp' do
     MerhabaBebek
     Wawamor
     ReraiUmntwana
+    BebboPacific
   ].each do |variant_target|
     target variant_target do
       shared_pods

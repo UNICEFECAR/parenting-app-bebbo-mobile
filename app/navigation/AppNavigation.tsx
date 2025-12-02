@@ -1019,7 +1019,7 @@ export default (): any => {
   useEffect(() => {
     const task = InteractionManager.runAfterInteractions(() => {
       dispatch(setchatBotData([]));
-      if (countryId == 1) {
+      if (countryId == 1 && !allCountries.some((c: { CountryID: any; }) => Number(c.CountryID) === 1)) {
         dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
       }
       const notiFlagObj = { key: "generateNotifications", value: true };

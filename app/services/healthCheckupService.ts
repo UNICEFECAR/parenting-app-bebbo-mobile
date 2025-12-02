@@ -211,12 +211,23 @@ export const getAllHealthCheckupPeriods = (): any => {
   const sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures]?.sort(
     (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ? 1 : -1,
   );
-  console.log('sortedGroupsForPeriods', sortedGroupsForPeriods)
-  let upcomingPeriods = sortedGroupsForPeriods.filter(
+  const specialPeriod = sortedGroupsForPeriods.filter(
+    (p: any) =>
+      p.vaccination_opens === 0 &&
+      p.vaccination_ends === appConfig.maxPeriodDays && !p.isAdditional
+  );
+  let upcomingPeriods = specialPeriod.length > 0 ? specialPeriod : sortedGroupsForPeriods.filter(
     (period: any) => period?.vaccination_opens > childAgeIndays,
   );
-
-  const previousPeriods = sortedGroupsForPeriods
+  const previousPeriods = specialPeriod.length > 0 ? sortedGroupsForPeriods
+  .filter(
+    (p: any) =>
+      (
+        p.vaccination_opens === 0 &&
+        p.vaccination_ends === appConfig.maxPeriodDays && p.isAdditional && p.isAdditional === true
+      )
+  )
+  .reverse() : sortedGroupsForPeriods
     .filter((period: any) => period?.vaccination_opens <= childAgeIndays)
     .reverse();
 
