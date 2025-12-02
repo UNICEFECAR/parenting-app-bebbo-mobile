@@ -127,17 +127,36 @@ cd ios && pod install
 
 After set up all configuration you run the bebbo dev app with below npx commands.
 
-Run metro bundler
+**Run metro bundler**
 
 ```
 FLAVOR=bebboDev react-native start --reset-cache
 ```
 
-Run and generate build android Bebbo Dev app
+**Run and generate build android Bebbo Dev app**
+#### Linux / MacOS 
+```bash
+ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
+```
+
+#### Windows
+```bash
+set ENVFILE=env/.env.bebboDev && set FLAVOR=bebboDev && npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
+```
+
+#### Notes
+- Windows uses `set ... ` syntax for environment variables, while Linux/Mac uses inline assignment.  
+- If builds fail on Windows, run:
+  ```bash
+  cd android
+  gradlew clean
+  cd ..
+  ```
+- Ensure `ANDROID_HOME` and `JAVA_HOME` are set in Windows system environment variables.
+
+**Generate Release Bundles / APK (Manual Gradle)**
 
 ```
-ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
-
 cd android && ENVFILE=env/.env.bebboDev FLAVOR=bebboDev ./gradlew bundleProdstagingRelease (aab)
 
 cd android && ENVFILE=env/.env.bebboDev FLAVOR=bebboDev ./gradlew assembleProdstagingRelease (apk)
@@ -148,30 +167,6 @@ Run and generate build iOS Bebbo Dev app
 ```
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release
 ```
-
-
-## Platform-specific Run Commands
-
-### Linux / MacOS 
-```bash
-ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
-```
-
-### Windows 🪟
-```bash
-set ENVFILE=env/.env.bebboDev && set FLAVOR=bebboDev && npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
-```
-
-### Notes
-- Windows uses `set ... && set ... &&` syntax for environment variables, while Linux/Mac uses inline assignment.  
-- If builds fail on Windows, run:
-  ```bash
-  cd android
-  gradlew clean
-  cd ..
-  ```
-- Ensure `ANDROID_HOME` and `JAVA_HOME` are set in Windows system environment variables.
-
 
 ## License
 
