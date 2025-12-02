@@ -231,7 +231,7 @@ class GoogleDrive {
                 q: new ListQueryBuilder("name", '=', appConfig.backupGDriveFolderName)
                     .and("trashed", "=", false)
                     .and("mimeType", "=", MIME_TYPES.application.vndGoogleAppsFolder)
-                    .and("root", "in", "parents")
+                    .and("'root' in parents")
             },
                 gdrive.files.newMetadataOnlyUploader()
                     .setRequestBody({

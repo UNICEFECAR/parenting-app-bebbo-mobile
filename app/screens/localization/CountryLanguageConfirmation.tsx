@@ -73,6 +73,7 @@ import { OfflineBar } from "@components/shared/HomeScreenStyle";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { setUserProperties } from "../../services/firebaseAnalytics";
 import { selectAllCountries } from "../../services/selectors";
+const flavor = process.env.FLAVOR || "bebbo";
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "Terms"
@@ -170,7 +171,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       }
     }
 
-    return null; // Return null if country not found
+    return flavor == "bebbo" ? null : allCountries.sort((a: { CountryID: number; },b: { CountryID: number; })=> a.CountryID-b.CountryID)[0]; // Return null if country not found
   };
 
   useFocusEffect(

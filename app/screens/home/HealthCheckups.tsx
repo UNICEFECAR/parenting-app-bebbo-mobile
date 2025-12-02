@@ -46,6 +46,7 @@ import Icon from "@components/shared/Icon";
 import { MainContainer } from "@components/shared/Container";
 import { isFutureDate } from "../../services/childCRUD";
 import { selectActiveChild, selectActiveChildReminders } from "../../services/selectors";
+import { DateTime } from "luxon";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   flex4: { flex: 4 },
@@ -95,6 +96,23 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
   const healthCheckupReminder = reminders.filter(
     (item: any) => item.reminderType == "healthCheckup"
   )[0];
+  let hcReminder: any;
+  if (healthCheckupReminder) {
+    const today = DateTime.fromJSDate(new Date());
+    const reminderDate = new Date(
+      DateTime.fromMillis(healthCheckupReminder?.reminderDate)
+    );
+    const hours = new Date(healthCheckupReminder?.reminderTime).getHours();
+    const mins = new Date(healthCheckupReminder?.reminderTime).getMinutes();
+    reminderDate.setHours(hours);
+    reminderDate.setMinutes(mins);
+    if (
+      today.toMillis() <
+      DateTime.fromJSDate(new Date(reminderDate)).toMillis()
+    ) {
+      hcReminder = healthCheckupReminder;
+    }
+  }
   const renderItem = (index: number): any => {
     if (index === 0) {
       return (
@@ -237,7 +255,7 @@ const HealthCheckups = ({ navigation, route }: Props): any => {
 
               {isFutureDate(
                 activeChild?.birthDate
-              ) ? null : healthCheckupReminder ? null : (
+              ) ? null : hcReminder ? null : (
                 <Pressable
                   onPress={(): any => {
                     navigation.navigate("AddReminder", {

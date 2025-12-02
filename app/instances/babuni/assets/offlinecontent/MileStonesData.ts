@@ -1,208 +1,1418 @@
 export const MileStonesData: any = {
     "bn": [
         {
+            "id": 5171,
+            "type": "Milestone",
+            "title": "সাধারণ অভিনয় বা অনুকরণ করে খেলতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-26T16:44:15+05:30\" class=\"datetime\"\u003ETue, 11/26/2024 - 16:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:30:11+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eউদাহরণস্বরূপ, সহজ সরল কাল্পনিক খেলার মাধ্যমে সে নিজে কেক খায়, একটি পুতুলকে খাওয়ায়, ইত্যাদি অভিনয় করে।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [5176],
+            "related_articles": [3691],
+            "related_video_articles": [2671],
+            "mandatory": 1
+        },
+        {
+            "id": 4801,
+            "type": "Milestone",
+            "title": "জিনিসপত্র একটি বাক্সে রাখে, আবার সেগুলো বাক্স থেকে বের করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-26T10:47:26+05:30\" class=\"datetime\"\u003ETue, 11/26/2024 - 10:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:00:27+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:00\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে কাছের জিনিসগুলো আরও সঠিকভাবে দক্ষতার সাথে ব্যবহার করতে পারে । শিশু এমনকি ছোট জিনিসগুলো একটি বাক্সে বা বোতলে রাখতে এবং সেগুলো বের করতেও পারে।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4806],
+            "related_articles": [],
+            "related_video_articles": [3616],
+            "mandatory": 1
+        },
+        {
+            "id": 4791,
+            "type": "Milestone",
+            "title": "শিশু এক হাতে খেলনা ধরে পরীক্ষা করে, ঝাঁকায় এবং তা দিয়ে আঘাত করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:41:37+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:41\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:42:51+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু একটি বস্তু বা জিনিসকে ধরতে আঙুল ব্যবহার না করে তার হাতের তালু ব্যবহার করে। সে জিনিসটিকে নাড়ায়, ঠুকাঠুকি করে বা মুখে দেয়।\u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [4796],
+            "related_articles": [],
+            "related_video_articles": [3581],
+            "mandatory": 1
+        },
+        {
+            "id": 4781,
+            "type": "Milestone",
+            "title": "প্রতিদিনের জিনিসপত্র কীভাবে ব্যবহার হয় তা ব্যাখ্যা করতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:39:38+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T14:37:48+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 14:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eদৈনন্দিন জীবনে ফোন বা টাকা কীভাবে ব্যবহার করা হয় তা বর্ণনা করতে পারে। উদাহরণস্বরূপ, সে বলবে, \"ফোনে কথা বলা হয়,\" বা \"টাকার মাধ্যমে আমরা দোকানে জিনিস কিনি।\"\u003Cbr\u003E \u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4786],
+            "related_articles": [],
+            "related_video_articles": [2901],
+            "mandatory": 1
+        },
+        {
+            "id": 4771,
+            "type": "Milestone",
+            "title": "নাম ঠিকানা বলতে পারে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:38:47+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T15:16:42+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 15:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুকে জিজ্ঞেস করলে, সে তার সম্পর্কে প্রাথমিক তথ্য দিতে পারে। যেমন নাম, বয়স, এবং ঠিকানা বলতে পারে। \u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4776],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4761,
+            "type": "Milestone",
+            "title": "শিশু অন্য কারো সহায়তা ছাড়াই মাথা সোজা রাখতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:35:05+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:35\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:49:46+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eআংশিক বসা অবস্থায়, সে মাথার ভারসাম্য বজায় রাখে এবং মাথা সোজা রাখতে পারে।\u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [4766],
+            "related_articles": [],
+            "related_video_articles": [2751],
+            "mandatory": 1
+        },
+        {
+            "id": 4751,
+            "type": "Milestone",
+            "title": "আঙুল এবং হাত আরও নিখুঁতভাবে ব্যবহার করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:27:24+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:27\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-21T12:17:37+05:30\" class=\"datetime\"\u003EMon, 07/21/2025 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eকাঁচি ব্যবহার করার দক্ষতা আগের তুলনায় বেশি দেখা যায়; এমনকি ৮ বা তার বেশি বড় ব্লক দিয়ে টাওয়ার তৈরি করে।\u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4756],
+            "related_articles": [],
+            "related_video_articles": [2896],
+            "mandatory": 1
+        },
+        {
+            "id": 4741,
+            "type": "Milestone",
+            "title": "খেলনাগুলো আলাদা করতে পারে এবং মিলাতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:26:25+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:26\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:31:36+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eউদাহরণস্বরূপ সে একটি প্রাণীকে আর একটি প্রাণীর সঙ্গে এবং একটি মোজাকে আর একটি মোজার সঙ্গে মিলাতে পারে।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4746],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4731,
+            "type": "Milestone",
+            "title": "বাবা-মা ঘর থেকে বের হয়ে গেলে শিশুর মন খারাপ হয় এবং বাবা-মা ফিরে এলে মন শান্ত হয়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:25:13+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:25\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:37:46+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযখন বাবা-মা ঘর থেকে বেরিয়ে যান, তখন সে একাকীবোধ করে বা কাঁদতে শুরু করে। কিন্তু মা-বাবা কিংবা কাছের কেউ ফিরে আসলে, সে খুশি হয়ে যায়।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4736],
+            "related_articles": [],
+            "related_video_articles": [3541],
+            "mandatory": 1
+        },
+        {
+            "id": 4721,
+            "type": "Milestone",
+            "title": "এই বয়সের শিশু বড়দের সাহায্য নিয়ে দাঁড়াতে পারে, এমনকি অল্প সময়ের জন্যে কারো সাহায্য ছাড়া সে দাঁড়াতে সক্ষম।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:24:06+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-21T12:12:00+05:30\" class=\"datetime\"\u003EMon, 07/21/2025 - 12:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eতাকে যখন কোনো কিছুর সাহায্যে দাঁড় করানো হয় তখন সে লাফিয়ে ওঠে এবং নিজে নিজে দাঁড়াতে চেষ্টা করে।\u003C/p\u003E",
+            "child_age": [481],
+            "related_activities": [4726],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4711,
+            "type": "Milestone",
+            "title": "সে গড় গড় শব্দ করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:23:09+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:10:03+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:10\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে গলা দিয়ে নানাধরনের শব্দ তৈরি করে।\u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [4716],
+            "related_articles": [],
+            "related_video_articles": [3061],
+            "mandatory": 1
+        },
+        {
+            "id": 4701,
+            "type": "Milestone",
+            "title": "বকবক করে শব্দাংশ তৈরি করে এবং অনেক রকমের ধ্বনি তৈরি করে কথা বলে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:22:03+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T14:25:01+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 14:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eগর গর শব্দ বা ধ্বনি দ্বারা অনেক ধরনের শব্দ উৎপন্ন করে। হরেক রকম ধ্বনি বা বর্নের দ্বারা সকলের সাথে কথা বলার চেষ্টা করে এবং বড়রা যে কথাগুলো বলে থাকে তা অনুকরন করার চেষ্টা করে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4706],
+            "related_articles": [],
+            "related_video_articles": [3571],
+            "mandatory": 1
+        },
+        {
+            "id": 4691,
+            "type": "Milestone",
+            "title": "দুই থেকে তিন শব্দের নির্দেশনাগুলো অনুসরন করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:19:24+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:19\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T11:42:49+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 11:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eদুই অথবা তিন বাক্যের নির্দেশনাগুলো অনুসরন করে যেমন- পুতুলটি রাখো, চেয়ারে বসো , জামাটি খোলো ,জুতাগুলো রাখো।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [4696],
+            "related_articles": [],
+            "related_video_articles": [2836],
+            "mandatory": 1
+        },
+        {
+            "id": 4681,
+            "type": "Milestone",
+            "title": "বিভিন্ন কার্যকলাপের জন্য শরীরকে আরও দক্ষতার সঙ্গে ব্যবহার করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:18:20+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T15:27:09+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 15:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএক পায়ে দাঁড়ায়, লাফায়, দোলে, উঠানামা করে। সুযোগ পেলে, সাইকেল বা স্কুটার চালায় এবং শুধুমাত্র তার হাত বা পা ব্যবহার করে বল দক্ষভাবে নিয়ন্ত্রণ করে।\u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4686],
+            "related_articles": [],
+            "related_video_articles": [2626],
+            "mandatory": 1
+        },
+        {
+            "id": 4671,
+            "type": "Milestone",
+            "title": "দায়িত্ব নেওয়ার লক্ষণগুলি দেখাতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:17:22+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:24:03+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eউদাহরনস্বরূপ নিজের কাজের প্রতি যত্নশীল হয়ে ওঠে। খেলনা গুছিয়ে রাখে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4676],
+            "related_articles": [],
+            "related_video_articles": [2591],
+            "mandatory": 1
+        },
+        {
+            "id": 4661,
+            "type": "Milestone",
+            "title": "এই বয়সে শিশুরা কঠিন আকার, অক্ষর এবং সূক্ষ্ম ভাবে আকাআকি করতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:15:28+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:15\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:42:14+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eআঁকার ক্ষেত্রে বাস্তবসম্মত বিবরণ রাখতে পারে, আরও জটিল ছবি তৈরি করতে পারে। সুযোগ পেলে আঁকে এবং পেইন্টিংয়ের উপকরণগুলি দক্ষতার সাথে ব্যবহার করতে পারে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4666],
+            "related_articles": [],
+            "related_video_articles": [2961],
+            "mandatory": 1
+        },
+        {
+            "id": 4651,
+            "type": "Milestone",
+            "title": "এই বয়সে শিশু হাত মুখে দেয়। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:14:35+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:14\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:23:22+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eপ্রায় সময় মুখের মধ্যে হাত রাখে এমনকি হাতের কাছে যা পায় তা মুখের মধ্যে নেওয়ার চেষ্টা করে। \u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [4656],
+            "related_articles": [],
+            "related_video_articles": [3051],
+            "mandatory": 1
+        },
+        {
+            "id": 4641,
+            "type": "Milestone",
+            "title": "সহজে এক হাত থেকে আরেক হাতে জিনিসপত্র সরিয়ে নিতে পারে এবং ঝাঁকায়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:13:38+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:13\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:12:51+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসহজেই এক হাত থেকে অন্য হাতে বস্তু স্থানান্তর করে এবং সেগুলো ঝাঁকায়। সে বস্তুগুলোকে বাম হাত থেকে ডান হাতে এবং ভারসাম্য বজায় রেখে ডান হাত থেকে বাম হাতে স্থানান্তর করতে পারে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4646],
+            "related_articles": [],
+            "related_video_articles": [2741],
+            "mandatory": 1
+        },
+        {
+            "id": 4631,
+            "type": "Milestone",
+            "title": "একই’ বা ‘অনুরূপ’ এবং ‘ভিন্ন’ শব্দগুলোর অর্থ বুঝতে পারে এবং জিনিসগুলোকে বিভিন্নভাবে শ্রেণিবদ্ধ করতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:12:45+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:12\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:26:58+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু পশুদের বৈশিষ্ট্য নিয়ে কথা বলতে পারে-যেমন: কোন পশুর লোম আছে আর কোনটির পালক আছে। আবার একটি বইয়ে থাকা ছবির ভেতর থেকে ভিন্ন কিছু খুঁজে বের করতে পারে-যেমন: অনেক শিশুর মধ্যে একমাত্র ছেলেটিই যে বল ধরে আছে, সেটি দেখিয়ে দিতে পারে। \u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4636],
+            "related_articles": [],
+            "related_video_articles": [2881],
+            "mandatory": 1
+        },
+        {
+            "id": 4621,
+            "type": "Milestone",
+            "title": "সে মুখস্থ করা গান গায় বা গল্প বলে।  ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:11:52+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:11\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:28:07+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু আগে শোনা কোনো গল্প বা গান সম্পর্কে ভাবতে পারে এবং সেই গল্প বা গানের শব্দগুলো মনে রাখার চেষ্টা করে। \u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4626],
+            "related_articles": [],
+            "related_video_articles": [2886],
+            "mandatory": 1
+        },
+        {
+            "id": 4611,
+            "type": "Milestone",
+            "title": "জটিল শব্দ বুঝতে পারে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:10:56+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-02-25T15:04:16+05:30\" class=\"datetime\"\u003ETue, 02/25/2025 - 15:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eছোট ছোট শব্দ যেমন- ভিন্ন, সহজ, কঠিন, ভাল , খারাপ, ছোট এবং বড় ইত্যাদি শব্দগুলি বুঝতে পারে।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [4616],
+            "related_articles": [],
+            "related_video_articles": [2846],
+            "mandatory": 1
+        },
+        {
+            "id": 4601,
+            "type": "Milestone",
+            "title": "খাতায় স্বাধীনভাবে আকিবুকি করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:09:41+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:35:53+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএই বয়সে সে পেন্সিল ধরে আঁকিবুঁকি করতে, দেখে দেখে লাইন ও বৃত্ত আঁকতে পারে।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4606],
+            "related_articles": [],
+            "related_video_articles": [2696],
+            "mandatory": 1
+        },
+        {
+            "id": 4591,
+            "type": "Milestone",
+            "title": "খেলার নিয়ম মেনে চলে এবং মাঝে মাঝে নতুন নিয়মের ধারণাও দেয়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:08:38+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:26:50+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eখেলার নিয়ম বুঝতে শিখে এবং সে নিজে নিজেই নতুন নতুন খেলা আবিষ্কার করে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4596],
+            "related_articles": [],
+            "related_video_articles": [3016],
+            "mandatory": 1
+        },
+        {
+            "id": 4581,
+            "type": "Milestone",
+            "title": "নিজের নাম শুনলে শিশু প্রতিক্রিয়া দেখায়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:07:38+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:41:08+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:41\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে তার নিজের নাম শোনার সাথে সাথে সাড়া দেয়। আর এভাবেই সে নিজের নামের সাথে পরিচিতি লাভ করে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4586],
+            "related_articles": [],
+            "related_video_articles": [3556],
+            "mandatory": 1
+        },
+        {
+            "id": 4571,
+            "type": "Milestone",
+            "title": "শিশু এক হাতে তার নাগালের বাইরে উঁচুতে রাখা জিনিস ধরতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:06:33+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-21T12:12:49+05:30\" class=\"datetime\"\u003EMon, 07/21/2025 - 12:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে হাতের তালুর অংশ, বৃদ্ধাঙ্গুলি ও তর্জনী এমনকি এক হাত ব্যবহার করে আশেপাশের বিভিন্ন জিনিস ধরার চেষ্টা করে থাকে।\u003C/p\u003E",
+            "child_age": [481],
+            "related_activities": [4576],
+            "related_articles": [],
+            "related_video_articles": [3491],
+            "mandatory": 1
+        },
+        {
+            "id": 4561,
+            "type": "Milestone",
+            "title": "সৃজনশীল কার্যক্রমে অংশগ্রহণ করার জন্য সিদ্ধান্ত নিতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:05:35+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T15:30:44+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 15:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eগান ও নাচ, আঁকা ও রং করতে ভালোবাসে ও মাটি দিয়ে বিভিন্ন ধরনের পুতুল ,হাড়ি পাতিল ইত্যাদি তৈরি করে। এছাড়াও অন্যান্য সৃজনশীল কার্যকলাপের সাথে যুক্ত হয়ে থাকে।\u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4566],
+            "related_articles": [],
+            "related_video_articles": [2946],
+            "mandatory": 1
+        },
+        {
+            "id": 4551,
+            "type": "Milestone",
+            "title": "পরিবারের সদস্যদের চেনে কিন্তু অপরিচিত কেউ তার সামনে এলে সে ভয় পায়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:04:15+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-21T12:16:59+05:30\" class=\"datetime\"\u003EMon, 07/21/2025 - 12:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eপরিবারের সদস্যদের চিনতে পারে ও অপরিচিত কাউকে দেখলে সে ভয় পায়। যখন শিশু পরিচিত মানুষগুলোকে দেখে তখন আনন্দিত হয় এবং পরিচিত ও অপরিচিত মানুষদের চিনতে পারে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4556],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4541,
+            "type": "Milestone",
+            "title": "তার পায়ের আঙ্গুলের উপর দাড়াতে পারে, দৌড়াতে পারে, লাফাতে পারে, এবং বল মারতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:03:00+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:43:09+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:43\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযখন শিশু দাঁড়াতে পারে তখন বিভিন্ন ধরনের কাজ করে থাকে যেমন ,দৌড়ানো, লাফানো এবং বল লাথি মারা এবং তা মাথার উপর দিয়ে ছুঁড়ে মারা।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4546],
+            "related_articles": [],
+            "related_video_articles": [2691],
+            "mandatory": 1
+        },
+        {
+            "id": 4531,
+            "type": "Milestone",
+            "title": "শিশু হাতের নাগালে যা পায় তা মুখে দিয়ে বোঝার চেষ্টা করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:02:01+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:25:55+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুরা হাতের কাছে যা পায় তা মুখে তুলে নেয় এবং প্রায় সময়ই তারা নিজের পা মুখে দিয়ে দেয়।\u003C/p\u003E",
+            "child_age": [481],
+            "related_activities": [4536],
+            "related_articles": [],
+            "related_video_articles": [3501],
+            "mandatory": 1
+        },
+        {
+            "id": 4521,
+            "type": "Milestone",
+            "title": "এক বা একাধিক নির্দেশনা সহজেই বুঝতে পারে এবং তা অনুসরন করতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T17:00:44+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 17:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:47:37+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:47\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএকের অধিক সহজ নির্দেশনাগুলো অনুসরন করে, যেমন “বালিশটি নিয়ে আসো, ”বসো”, ”ঝুড়িতে ময়লাটি ফেলে দাও, প্লিজ”।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4526],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4511,
+            "type": "Milestone",
+            "title": "শিশু তার হাত ও পা স্বাধীনভাবে দু’পাশেই নড়াচড়া করে।  ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:59:41+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:59\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:06:30+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে খেলাধুলা বা হাটাহাটির মাধ্যমে স্বাধীনভাবে তার হাত পা নড়াচড়া করে থাকে। \u003C/p\u003E",
+            "child_age": [466],
+            "related_activities": [4516],
+            "related_articles": [],
+            "related_video_articles": [1936],
+            "mandatory": 1
+        },
+        {
+            "id": 4501,
+            "type": "Milestone",
+            "title": "মানুষের মুখ দেখলে হাসে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:57:58+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:16:42+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eঅধিকাংশ সময়, সহজেই এবং স্বতঃস্ফূর্তভাবে তার কাছের মানুষদের দিকে তাকিয়ে হাসে।\u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [4506],
+            "related_articles": [],
+            "related_video_articles": [3526],
+            "mandatory": 1
+        },
+        {
+            "id": 4491,
+            "type": "Milestone",
+            "title": "মানুষ বা জিনিসপত্রের নড়াচড়া সে চোখ বা দৃষ্টি দিয়ে অনুসরণ করতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:57:07+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:24:29+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযখন খেলনা, বস্তু বা মানুষ তার দৃষ্টির সীমায় চলাচল করে, তখন সে তাদের নড়াচড়া অনুসরণ করার চেষ্টা করে।\u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [4496],
+            "related_articles": [],
+            "related_video_articles": [3606],
+            "mandatory": 1
+        },
+        {
+            "id": 4481,
+            "type": "Milestone",
+            "title": "এই বয়সেও জিনিসপত্র মুখে নেয়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:54:48+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:54\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T14:39:33+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 14:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএখনও যে কোনো জিনিসপত্র সে মুখে দেয়। সে জিনিসগুলো মুখে দিয়ে পরীক্ষা করে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4486],
+            "related_articles": [],
+            "related_video_articles": [3471],
+            "mandatory": 1
+        },
+        {
+            "id": 4471,
+            "type": "Milestone",
+            "title": "হাঁটে, দৌড়ায়, লাফ দেয়, বড় এবং ছোট বলকে দক্ষতার সাথে ছুঁড়ে এবং লাথি মারতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:53:44+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:53\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-21T12:15:22+05:30\" class=\"datetime\"\u003EMon, 07/21/2025 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশরীরকে আরও দক্ষতার সাথে ব্যবহার করে (যেমন- স্কুটার বা ট্রাই সাইকেল চালানো, রোলার স্কেটিং ইত্যাদি)।\"\u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4476],
+            "related_articles": [],
+            "related_video_articles": [3536],
+            "mandatory": 1
+        },
+        {
+            "id": 4461,
+            "type": "Milestone",
+            "title": "যখন আপনি শিশুর দিকে তাকিয়ে হাসেন এবং কথা বলেন তখন সে আপনার দিকে তাকায়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:52:54+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:52\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-16T18:18:03+05:30\" class=\"datetime\"\u003EWed, 07/16/2025 - 18:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eআপনি যখন তার সাথে কথা বলেন, তখন সে আপনার মুখটি তার চোখে খুঁজতে থাকে।\u003C/p\u003E",
+            "child_age": [466],
+            "related_activities": [4466],
+            "related_articles": [],
+            "related_video_articles": [1926],
+            "mandatory": 1
+        },
+        {
+            "id": 4451,
+            "type": "Milestone",
+            "title": "মা-বাবার থেকে অল্প সময়ের জন্য আলাদা হলে শিশু কান্নাকাটি করে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:51:26+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-02-27T11:08:54+05:30\" class=\"datetime\"\u003EThu, 02/27/2025 - 11:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eমা-বাবা থেকে আলাদা হওয়ার পরই তার মধ্যে উদ্বেগের স্পষ্ট লক্ষণ দেখা যায়।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4456],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4441,
+            "type": "Milestone",
+            "title": "জটিল খেলা তৈরি করে এমনকি এর সাথে অন্যদের যুক্ত করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:39:18+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:41:02+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:41\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eকাল্পনিক খেলা করতে পছন্দ করে, যেখানে অনেক কাল্পনিক উপাদান থাকে। কখনও কখনও বোঝা কঠিন হয় কোনটা বাস্তব আর কোনটা কাল্পনিক!\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [4446],
+            "related_articles": [],
+            "related_video_articles": [2666],
+            "mandatory": 1
+        },
+        {
+            "id": 4431,
+            "type": "Milestone",
+            "title": "একটি গল্প বলতে পারে অথবা গল্পের অংশ পুনরায় বলতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:37:15+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:24:38+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু নিজে নিজে গল্পের মূল ভাবনা বা প্রিয় অংশ পুনরায় বলতে পারে। বড়রা যদি তাকে অনুরোধ করে কোনো গল্পের প্রধান ঘটনা বা কোনো গুরুত্বপূর্ণ অংশ সম্পর্কে বলতে তখন সেটি সে নিজের মতো করে বলে।\u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4436],
+            "related_articles": [],
+            "related_video_articles": [2916],
+            "mandatory": 1
+        },
+        {
+            "id": 4421,
+            "type": "Milestone",
+            "title": "দলবদ্ধভাবে কোন কিছু করতে আগ্রহ প্রকাশ করে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:36:22+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:36\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T11:27:54+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 11:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে প্রিয় মানুষের মুখভঙ্গি, অঙ্গভঙ্গি এবং কিছু কার্যকলাপ অনুকরণ করে, যে জিনিসগুলির প্রতি তার আগ্রহ রয়েছে সেগুলোর দিকে হাত দিয়ে ইশারা করে, বা তার প্রতি অন্যদের আগ্রহী করতে, সে বিভিন্ন জিনিস দিয়ে তাদের খেলায় অংশ নিতে উৎসাহিত করে।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [4426],
+            "related_articles": [2181],
+            "related_video_articles": [2611],
+            "mandatory": 1
+        },
+        {
+            "id": 4411,
+            "type": "Milestone",
+            "title": "এই বয়সে সহজ নিয়মের খেলা করে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:35:01+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:35\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-02-27T11:01:59+05:30\" class=\"datetime\"\u003EThu, 02/27/2025 - 11:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসহজ সরল খেলার নিয়ম অনুসরণ করে এবং নিজের পালা আসার জন্য সে অপেক্ষা করে।\u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4416],
+            "related_articles": [],
+            "related_video_articles": [3626],
+            "mandatory": 1
+        },
+        {
+            "id": 4401,
+            "type": "Milestone",
+            "title": "মানব দেহের সঠিক আকার এবং মৌলিক আকৃতি আঁকে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:34:04+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:34\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:40:47+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eমানুষের দৃশ্যমান অংশের ছবি আঁকে; কখনো কখনো সে বৃত্ত, ত্রিভুজ এবং অন্যান্য জ্যামিতিক চিত্র আঁকতে পারে।\u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4406],
+            "related_articles": [],
+            "related_video_articles": [2631],
+            "mandatory": 1
+        },
+        {
+            "id": 4391,
+            "type": "Milestone",
+            "title": "এই বয়সে শিশুরা কঠিন বাক্য গুলো বলতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:33:01+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:33\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:49:46+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএখন সে আরও কঠিন বাক্যগুলি ব্যবহার করা শুরু করেছে। উদাহরণস্বরূপ, সে সঠিকভাবে বর্তমান, অতীত এবং ভবিষ্যৎ কাল ব্যবহার করতে পারে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4396],
+            "related_articles": [],
+            "related_video_articles": [2951],
+            "mandatory": 1
+        },
+        {
+            "id": 4381,
+            "type": "Milestone",
+            "title": "খেলার সময় শিশু মুখভঙ্গি ও অভিব্যক্তি, সেই সাথে ধ্বনি নকল করতে শুরু করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:31:51+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:31\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T17:21:42+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 17:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eআপনি যখন তাকে উদ্দেশ্য করে কিছু বলেন, তখন সে আপনার সেই অঙ্গভঙ্গি বা মুখভঙ্গিটি অনুকরণ করার চেষ্টা করে। সে আপনার কথাবার্তা এবং আলোচনায় সাড়া দিয়ে আওয়াজ করে বা কথা বলতে চেষ্টা করে।  \u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [4386],
+            "related_articles": [1186],
+            "related_video_articles": [2861],
+            "mandatory": 1
+        },
+        {
+            "id": 4371,
+            "type": "Milestone",
+            "title": "কোন সময়ে কি কাজ করতে হবে তা বলতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:30:52+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:30\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:32:55+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএই বয়সে সে সময়ের পরিবর্তন বুঝতে পারে, সকালে, দুপুর ও সন্ধ্যায় কী ঘটে তা বুঝতে পারে, কিছু কার্যকলাপ পরিকল্পনাও করতে পারে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4376],
+            "related_articles": [],
+            "related_video_articles": [2771],
+            "mandatory": 1
+        },
+        {
+            "id": 4361,
+            "type": "Milestone",
+            "title": "উপুড় হয়ে শুয়ে, কনুইয়ে ভর দিয়ে ধীরে ধীরে শরীর ওঠানোর চেষ্টা করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:29:48+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T17:26:54+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 17:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে উপুড় হয়ে শুয়ে থাকা অবস্থায়, কনুইয়ের ভর দিয়ে কাঁধ ও মাথা ওঠানোর চেষ্টা করে।\u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [4366],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4351,
+            "type": "Milestone",
+            "title": "বিভিন্ন পশু-পাখি চেনে এবং তাদের ডাক সম্পর্কেও জানে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:28:40+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:28\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:52:52+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eপশু-পাখির আওয়াজ বা ডাক শুনে সে নাম বলে দিতে পারে ও পশুর ডাক অনুকরণ করতে পারে। যেমন- কুকুর, গরু ইত্যাদি।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4356],
+            "related_articles": [],
+            "related_video_articles": [2821],
+            "mandatory": 1
+        },
+        {
+            "id": 4341,
+            "type": "Milestone",
+            "title": "শিশু তার ছোট ছোট আঙুল দিয়ে ছোট জিনিস ধরতে এবং নিজে নিজে খেতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:27:19+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:27\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:50:11+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে ছোট ও হালকা জিনিস তুলতে পারে। সে দুই আঙুল ব্যবহার করে ছোট ও হালকা জিনিস তুলে নেয়। এই বয়সে সে এখন কোনো জিনিস ধরে রাখার জন্য কেবল আঙুলের ডগা নয়, আঙুলের পুরো পৃষ্ঠ ব্যবহার করে থাকে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4346],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4331,
+            "type": "Milestone",
+            "title": "সহজ সরল শব্দের গানের সামান্য অংশ গায়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:26:12+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:26\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:48:03+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসহজ সরল শব্দের গান কিছু অংশ গাইতে পারে। \u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [4336],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4321,
+            "type": "Milestone",
+            "title": "নিত্যদিনের জিনিসপত্র ব্যবহার করতে জানে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:25:04+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:25\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T11:51:06+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 11:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে জানে দৈনন্দিন ব্যবহারের জিনিসপত্র কীভাবে ব্যবহার করতে হয় । যেমন- চামচ, কাঁটাচামচ, ব্রাশ, কাপ ইত্যাদি এবং সেগুলি সঠিকভাবে ব্যবহার করতে চেষ্টা করে থাকে।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [4326],
+            "related_articles": [1601],
+            "related_video_articles": [2616],
+            "mandatory": 1
+        },
+        {
+            "id": 4311,
+            "type": "Milestone",
+            "title": "কমপক্ষে চারটি রঙ্গের নাম সঠিকভাবে বলতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:24:05+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:48:40+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশুধু লাল, নীল, এবং হলুদ রঙ ছাড়াও কিছু জটিল রঙও চিনতে পারে, যেমন বেগুনি এবং কমলা।\u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4316],
+            "related_articles": [],
+            "related_video_articles": [2936],
+            "mandatory": 1
+        },
+        {
+            "id": 4301,
+            "type": "Milestone",
+            "title": "\"আমার, তোমার, তার\" শব্দের অর্থ বুঝতে পারে এবং যথাযথভাবে ব্যবহার করে। সে বাক্যে - প্রত্যয় এবং সর্বনামও ব্যবহার করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:23:06+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:56:19+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:56\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\u003Cstrong\u003E\"\u003C/strong\u003Eআমি\", \"তুমি\", \"আমরা\" এর মতো শব্দগুলো উচ্চারণ করতে পারে এবং কিছু শব্দের বহুবচন রূপ বলতে পারে। যেমন \"কুকুরেরা\", \"বিড়ালেরা\" ।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [4306],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4291,
+            "type": "Milestone",
+            "title": "বর্ণমালার কিছু অক্ষর লিখতে পারে বা অন্য কোনো চিত্র দেখালে তা অনুকরণ করার চেষ্টা করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:21:16+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:30:59+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু অক্ষর বা কোনো বস্তুর ছবি দেখলে তা অনুকরণ করে আঁকার চেষ্টা করে, যদিও তার আঁকাটি সঠিক নাও হতে পারে।\u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4296],
+            "related_articles": [],
+            "related_video_articles": [3631],
+            "mandatory": 1
+        },
+        {
+            "id": 4281,
+            "type": "Milestone",
+            "title": "কৌতুহল নিয়ে খেলনা পর্যবেক্ষন করে, ঝাকুনি দেয়, টুং টাং শব্দ করে, নিক্ষেপ করে, আবার খুটিয়ে খুটিয়ে মনো্যোগ  দিয়ে দেখতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:20:26+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:20\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:46:22+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:46\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eবিভিন্ন জিনিস বা খেলনা একটির সঙ্গে অন্যটিতে ঠুকে পর্যবেক্ষণ করে (যেমন: একটি কাপ দিয়ে টেবিলে ঠকঠক করা বা একটি খেলনা দিয়ে অন্য খেলনার উপর ঠকঠক করা)।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4286],
+            "related_articles": [],
+            "related_video_articles": [2721],
+            "mandatory": 1
+        },
+        {
+            "id": 4271,
+            "type": "Milestone",
+            "title": "বর্ণমালার অক্ষরগুলো লিখতে, পড়তে ও চিনতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:18:47+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-21T13:14:33+05:30\" class=\"datetime\"\u003EMon, 07/21/2025 - 13:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে অ, আ, বর্ণমালার বেশিরভাগ অক্ষর চিনতে পারে এবং দৈনন্দিন কিছু মৌলিক শব্দ পড়তে পারে। যেমন \"বাড়ি\" \"বই,\" \"মা, মামা,\" \"দাদা\" ইত্যাদি পড়তে পারে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4276],
+            "related_articles": [],
+            "related_video_articles": [2976],
+            "mandatory": 1
+        },
+        {
+            "id": 4261,
+            "type": "Milestone",
+            "title": "পড়ে যাওয়া বস্তু অনুসরণ করে আবার লুকানো বস্তু খোঁজে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:17:42+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T14:35:47+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 14:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eহাত থেকে পড়ে যাওয়া জিনিস তোলার চেষ্টা করে এবং লুকিয়ে থাকা জিনিস খুঁজে বের করে আনে। যদি কোনো জিনিস, যেমন- একটি কাপ বা খেলনা কম্বলের নিচে লুকিয়ে রাখা হয়, তবে সে সেটি খুঁজে বের করার চেষ্টা করে। যখন কোনো জিনিস পড়ে যায় বা মা তা ঢিল দিয়ে ফেলে দেয় তার সামনে, তখন সে তার চোখ দিয়ে ছুঁড়ে ফেলা জিনিসটির অনুসরণ করে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4266],
+            "related_articles": [],
+            "related_video_articles": [2736],
+            "mandatory": 1
+        },
+        {
+            "id": 4251,
+            "type": "Milestone",
+            "title": "সময়ের ধারণা যেমন আগে এবং পরে বুঝতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:16:47+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T17:28:45+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 17:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএকটি ঘটনা আগে হয়েছে বা পরে কি হয়েছে তা শিশু ব্যাখ্যা করতে পারে; ঋতুগুলোকে এমন ক্রম অনুযায়ী সাজাতে পারে যেমন- গ্রীষ্ম বসন্তের পরে আসে \u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4256],
+            "related_articles": [],
+            "related_video_articles": [2926],
+            "mandatory": 1
+        },
+        {
+            "id": 4241,
+            "type": "Milestone",
+            "title": "তার জীবনে ঘটে যাওয়া বিষয়গুলো নিয়ে কথা বলে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:15:11+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:15\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:31:50+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eগত সপ্তাহে হওয়া জন্মদিনের অনুষ্ঠান বা পরিবারের সঙ্গে করা যেকোন একটি ঘটনার বর্ণনা দিতে পারে। \u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4246],
+            "related_articles": [],
+            "related_video_articles": [2866],
+            "mandatory": 1
+        },
+        {
+            "id": 4231,
+            "type": "Milestone",
+            "title": "মা বা বাবা থেকে আলাদা হওয়া সহজে মেনে নিতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:14:19+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:14\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:07:01+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eমা-বাবার কাছ থেকে কিছুক্ষণ আলাদা থাকলে সে আগের মতো অস্থির হয় না; বরং দ্রুত শান্ত হয়ে যায়। এমনকি বাবা-মা আশেপাশে না থাকলেও সে ধীরে ধীরে কাছাকাছি থাকা অন্য প্রাপ্তবয়স্কদের ওপর ভরসা করতে শেখে।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [4236],
+            "related_articles": [],
+            "related_video_articles": [3001],
+            "mandatory": 1
+        },
+        {
+            "id": 4221,
+            "type": "Milestone",
+            "title": "অন্য মানুষদের ধারণা বা চাহিদা বুঝতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:12:01+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:12\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:15:37+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে অন্যরা কী চায় বা কী পরামর্শ দেয় তার প্রতি বেশি মনোযোগ দেয় এবং তাদের চাহিদা পূরণ করতে চায় – তার পাশাপাশি সে বন্ধুদের সাথে এবং দলগত কাজের ক্ষেত্রে আরও সহযোগিতামূলক আচরণ করে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4226],
+            "related_articles": [],
+            "related_video_articles": [2966],
+            "mandatory": 1
+        },
+        {
+            "id": 4211,
+            "type": "Milestone",
+            "title": "২ এবং ৩ সংখ্যার মান বুঝতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:11:11+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:11\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:32:44+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eপ্রশ্ন করলে, শিশু দুই বা তিনটি জিনিস (যেমন খেলনা, চামচ, বাটি ইত্যাদি) বেছে নিতে পারে বা জিনিসগুলোর একটি গুচ্ছ দেখে বলতে পারে যে সেখানে দুই বা তিনটি জিনিস বা খেলনা আছে।\u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4216],
+            "related_articles": [],
+            "related_video_articles": [2781],
+            "mandatory": 1
+        },
+        {
+            "id": 4201,
+            "type": "Milestone",
+            "title": "মাঝে মাঝে সে তার হাতের মুঠিগুলো খোলে এবং ইচ্ছেমতো নাড়ায়। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:10:21+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:02:58+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু বেশিরভাগ সময় হাতের মুঠি বন্ধ রাখে, কিন্তু কখনো কখনো সে কিছু সময়ের জন্য খোলাও রাখে। সে তার হাতের নড়াচড়া লক্ষ্য করে এবং হাতগুলো মুখের কাছে নিয়ে যায় বা আঙুল মুখে দেয়।\u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [4206],
+            "related_articles": [],
+            "related_video_articles": [3611],
+            "mandatory": 1
+        },
+        {
+            "id": 4191,
+            "type": "Milestone",
+            "title": "ছোট ছোট নির্দেশনা গুলো বুঝতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:09:10+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:37:44+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eআপনি যখন তাকে বলেন \"বলটি আনো\" বা \"মায়ের কাছে দাও\", তখন সে বুঝতে পারে\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4196],
+            "related_articles": [],
+            "related_video_articles": [3621],
+            "mandatory": 1
+        },
+        {
+            "id": 4181,
+            "type": "Milestone",
+            "title": "সে তার যেকোন ধরনের অনুভূতি প্রকাশ করতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:06:53+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:01:36+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eবিভিন্ন অনুভূতির প্রকাশ এবং প্রদর্শন করতে পারে- ভয়, রাগ, করুণা, অপরাধবোধ, আনন্দ।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4186],
+            "related_articles": [3021],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4171,
+            "type": "Milestone",
+            "title": "উদ্দেশ্যপূর্ণ ভাবে খেলনা ব্যবহার করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:05:36+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:09:19+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:09\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে খেলনা নিয়ে সঠিকভাবে খেলতে পারে, জানে সেগুলি কিসের জন্য এবং কীভাবে খেলতে হয়।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4176],
+            "related_articles": [],
+            "related_video_articles": [2686],
+            "mandatory": 1
+        },
+        {
+            "id": 4161,
+            "type": "Milestone",
+            "title": "শিশু দু’দিক দিয়েই পেটের ওপর থেকে ঘুরে চিৎ হতে পারে আবার চিৎ অবস্থা থেকে পেটের ওপর ফিরে আসতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:04:04+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:00:47+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:00\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে যেকোন দিকে (বাম এবং ডান) উল্টে যেতে পারে এবং ঘুরতে পারে, পিঠ থেকে পেট এবং পেট থেকে পিঠে উভয় দিকে ঘুরতে পারে।\u003C/p\u003E",
+            "child_age": [481],
+            "related_activities": [4166],
+            "related_articles": [],
+            "related_video_articles": [3496],
+            "mandatory": 1
+        },
+        {
+            "id": 4151,
+            "type": "Milestone",
+            "title": "নাড়াচাড়ার মাধ্যমে যোগাযোগ শুরু করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:02:55+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T14:32:58+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 14:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eনড়াচড়ার মাধ্যমে ইশারা-ইঙ্গিত ব্যবহার করে যোগাযোগ করতে শুরু করে। তবে শিশু মৌখিকভাবে নয়, বরং হাত দিয়ে পছন্দসই বস্তুর দিকে ইশারা করে বা \"না\" নির্দেশ করার জন্য মাথা নাড়ায়। হাত বা আঙুল দিয়ে তার মা-বাবার সাথে যোগাযোগ করে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4156],
+            "related_articles": [],
+            "related_video_articles": [3586],
+            "mandatory": 1
+        },
+        {
+            "id": 4141,
+            "type": "Milestone",
+            "title": "আনন্দ বা রাগের অনুভূতিগুলো প্রকাশ করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:02:00+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T17:31:08+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 17:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে সন্তুষ্টি এবং অসন্তুষ্টির ক্ষেত্রে প্রতিক্রিয়া দেখায়।\u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [4146],
+            "related_articles": [],
+            "related_video_articles": [3516],
+            "mandatory": 1
+        },
+        {
+            "id": 4131,
+            "type": "Milestone",
+            "title": "আপনি যখন সন্তানকে কোলে নেন তখন সে আরাম বোধ করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T16:00:56+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 16:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:07:32+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযখন আপনি তাকে কোলে তুলে নেন, তখন আপনি অনুভব করেন যে সে আপনার বুকের সাথে লেপ্টে আছে এবং নিজেকে নিরাপদ ভাবছে।\u003C/p\u003E",
+            "child_age": [466],
+            "related_activities": [4136],
+            "related_articles": [],
+            "related_video_articles": [1951],
+            "mandatory": 1
+        },
+        {
+            "id": 4121,
+            "type": "Milestone",
+            "title": "অন্য শিশুদের সাথে পাশাপাশি খেলে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:59:53+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:59\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T17:24:02+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 17:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eঅন্যান্য শিশুদের পাশে নিজের মতো খেলে, তাদের সাথে খেলতে পছন্দ না করলেও তাদের খেলা নষ্ট করে না। ধীরে ধীরে সে তাদেরকে নিজের খেলায় যুক্ত করতে শুরু করে, যেমন-তাদেরকে একটি খেলনা দিয়ে বা নিজে থেকেই তাদের খেলনা নিয়ে খেলা করে। \u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4126],
+            "related_articles": [],
+            "related_video_articles": [2701],
+            "mandatory": 1
+        },
+        {
+            "id": 4111,
+            "type": "Milestone",
+            "title": "নিজে বসতে পারে এবং সাহায্য ছাড়াই বসে থাকতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:58:40+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T14:56:23+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 14:56\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eনিজে নিজে বসতে পারে এবং কোনো সহায়তা ছাড়াই একা বসে থাকতে পারে। শিশু স্বতন্ত্রভাবে বসার জন্য জায়গা করে নেয়। অতিরিক্ত কোন ধরনের সহায়তা ছাড়াই সে বসে থাকতে পারে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4116],
+            "related_articles": [],
+            "related_video_articles": [3566],
+            "mandatory": 1
+        },
+        {
+            "id": 4101,
+            "type": "Milestone",
+            "title": "খুব গভীরভাবে মানুষের চেহারা পর্যবেক্ষন করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:56:44+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:18:50+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eমানুষের মুখ মনোযোগ সহকারে এবং নিখুঁতভাবে পর্যবেক্ষণ করে, দীর্ঘ সময় চোখে চোখ রাখে। \u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [4106],
+            "related_articles": [],
+            "related_video_articles": [3521],
+            "mandatory": 1
+        },
+        {
+            "id": 4086,
+            "type": "Milestone",
+            "title": "এখনও সে অপরিচিত ব্যক্তি এবং নতুন পরিস্থিতিতে ভয় পায়",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:55:11+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:55\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-02-25T15:38:32+05:30\" class=\"datetime\"\u003ETue, 02/25/2025 - 15:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eঅপরিচিত কেউ তার কাছে এলে সে ভয় পায় বা সংকোচ বোধ করে, পরিচিতজনদের খোঁজে বা মা-বাবাকে আঁকড়ে ধরে।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [4091],
+            "related_articles": [2181, 4096],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4076,
+            "type": "Milestone",
+            "title": "আপনি যখন শিশুকে স্পর্শ করেন, তখন সে তার হাতের মুঠি খোলে আবার বন্ধ করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:54:22+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:54\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:08:23+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eআপনি যখন শিশুর হাতের তালু স্পর্শ করবেন বা কিছু রাখবেন, তখন সে হাতের মুঠি শক্ত করে বন্ধ করবে। আপনি যদি তার হাতের তালুতে আপনার আঙুল রাখেন, তাহলে সে আপনার আঙুল শক্ত করে ধরবে। \u003C/p\u003E",
+            "child_age": [466],
+            "related_activities": [4081],
+            "related_articles": [],
+            "related_video_articles": [1931],
+            "mandatory": 1
+        },
+        {
+            "id": 4066,
+            "type": "Milestone",
+            "title": "নিজের নাম, বয়স এবং লিঙ্গ বলতে পারে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:51:59+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:14:31+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে নিজের নাম, বয়স এবং লিঙ্গ সম্পর্কে বলতে পারে।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [4071],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 4056,
+            "type": "Milestone",
+            "title": "দাঁড়ায়, নড়াচড়া করে এবং নিজে নিজে হাঁটতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:50:38+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:50\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-21T10:19:57+05:30\" class=\"datetime\"\u003EMon, 07/21/2025 - 10:19\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু স্বাধীনভাবে বিভিন্ন দিকে, বিভিন্ন গতিতে চলাফেরা করতে পারে অথবা একসঙ্গে বিভিন্ন নড়াচড়া করতে পারে।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [4061],
+            "related_articles": [3281],
+            "related_video_articles": [2596],
+            "mandatory": 1
+        },
+        {
+            "id": 4046,
+            "type": "Milestone",
+            "title": "অচেনা মানুষের সাথে কথা বলার সময় লজ্জা এবং বিব্রত বোধ প্রকাশ করে ।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:48:43+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:20:40+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eঅপরিচিত কাউকে দেখলে, শিশু পরিচিত ব্যক্তিদের সাথে থাকা অবস্থায়ও ভিন্নরকম আচরণ করে থাকে। সে তাদের দেখে লজ্জিত হয় (যেমন- চোখে চোখ রেখে কথা বলার চেষ্টা করেনা, পরিচিত ব্যক্তিদের আঁকড়ে ধরে থাকে)।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4051],
+            "related_articles": [],
+            "related_video_articles": [2716],
+            "mandatory": 1
+        },
+        {
+            "id": 4036,
+            "type": "Milestone",
+            "title": "শিশু তার হাত এবং পা সুক্ষ্মভাবে নাড়াচাড়া করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:47:49+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:11:39+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eখেলার সময় শিশু তার হাত-পা দিয়ে স্বাভাবিকভাবেই ছোট ছোট, এলোমেলো নড়াচড়া করে থাকে।\u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [4041],
+            "related_articles": [],
+            "related_video_articles": [3026],
+            "mandatory": 1
+        },
+        {
+            "id": 4026,
+            "type": "Milestone",
+            "title": "শিশু যখন উপুড় হয়ে শুয়ে থাকে তখন সে মাদুর বা চাদরের ওপর তার হাত আর কনুইয়ে ভর দিয়ে থাকতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:41:54+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:41\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:17:45+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুকে উপুড় করে শুইয়ে রাখলে, সে কনুইয়ের উপর ভর দিয়ে মাথা তুলতে পারে এবং মেঝেতে ঠেলা দিয়ে নিজেকে ওঠানোর চেষ্টা করে। \u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [4031],
+            "related_articles": [],
+            "related_video_articles": [3041],
+            "mandatory": 1
+        },
+        {
+            "id": 4016,
+            "type": "Milestone",
+            "title": "সিড়ি দিয়ে উপরে উঠতে এবং নিচে নামতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:40:31+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T14:18:17+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 14:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসিড়ি দিয়ে উপরে উঠতে এবং নিচে নামতে পারে। প্রথমে কারও সাহায্য নিয়ে সিঁড়ি বেয়ে উপরে উঠতে পারে এবং সামান্য সাহায্য নিয়ে সিঁড়ি বেয়ে নামতেও পারে।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4021],
+            "related_articles": [],
+            "related_video_articles": [2681],
+            "mandatory": 1
+        },
+        {
+            "id": 4006,
+            "type": "Milestone",
+            "title": "ছবির বইয়ের প্রতি অনেক বেশি আগ্রহ দেখায়।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:39:22+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:18:16+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eছবির বইয়ের প্রতি আগ্রহ দেখায় এবং একা একা বইয়ের পৃষ্ঠা উল্টাতে পারে।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [4011],
+            "related_articles": [],
+            "related_video_articles": [2856],
+            "mandatory": 1
+        },
+        {
+            "id": 3996,
+            "type": "Milestone",
+            "title": "শব্দের কিছু অংশ পুনরাবৃত্তি করতে পারে এবং কিছু শিশু ইতোমধ্যেই অর্থবহুল শব্দ বলতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:37:55+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:30:54+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eঅনেক ধরনের শব্দ উৎপন্ন করে যেমন- মা, বাবা, দাদা...এবং তাদের মধ্যে কিছু শিশু প্রথম স্বীকৃত শব্দ হিসেবে ব্যবহার করে মা, বাবা।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4001],
+            "related_articles": [],
+            "related_video_articles": [2806],
+            "mandatory": 1
+        },
+        {
+            "id": 3986,
+            "type": "Milestone",
+            "title": "পেন্সিল, কাঠের বা মোমের ক্রেয়ন দিয়ে বৃত্ত আঁকাআঁকি করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:36:27+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:36\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:23:37+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eপেনসিল, কাঠের বা মোমের ক্রেয়ন দিয়ে দেখে দেখে বৃত্ত আঁকে।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [3991],
+            "related_articles": [],
+            "related_video_articles": [2651],
+            "mandatory": 1
+        },
+        {
+            "id": 3976,
+            "type": "Milestone",
+            "title": "বয়স্ক এবং বড়দের আচরণ অনুকরণ করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:34:32+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:34\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:40:19+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে বড়দের অনুকরণ করে এবং তাদের যা করতে দেখে সে তাই করার চেষ্টা করে থাকে। যেমন: ঠেলা দিয়ে পুশ চেয়ার চালায়, সংবাদপত্র পড়ে, গান গায়, গানের তালে নাচ করে।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [3981],
+            "related_articles": [],
+            "related_video_articles": [3011],
+            "mandatory": 1
+        },
+        {
+            "id": 3966,
+            "type": "Milestone",
+            "title": "শিশু খেলনা একপাশ থেকে অন্যপাশে সরে যাওয়া লক্ষ্য করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:33:01+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:33\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T17:39:28+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 17:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুর চোখের সামনে কোনো জিনিস নড়াচড়া করলে বা কোনো ব্যক্তি চলাচল করলে, সে তার চোখ দিয়ে চলাচল অনুসরণ করতে পারে। \u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [3971],
+            "related_articles": [],
+            "related_video_articles": [3506],
+            "mandatory": 1
+        },
+        {
+            "id": 3956,
+            "type": "Milestone",
+            "title": "সে নিজের নাম, পদবি, বয়স এবং বাড়ির ঠিকানা জানে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:31:15+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:31\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-02-25T14:09:06+05:30\" class=\"datetime\"\u003ETue, 02/25/2025 - 14:09\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে নিজের সম্পর্কে প্রাথমিক তথ্য জানে এবং কেউ প্রশ্ন করলে বা অনুরোধ করলে তা বলতে পারে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [3961],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 3946,
+            "type": "Milestone",
+            "title": "জিনিসপত্র এলোমেলোভাবে রাখে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:29:28+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-16T19:10:22+05:30\" class=\"datetime\"\u003EWed, 07/16/2025 - 19:10\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে একটি বাক্সে জিনিসপত্র রাখে এবং সেখান থেকে সেগুলো বের করে আনে\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [3951],
+            "related_articles": [1116],
+            "related_video_articles": [2621],
+            "mandatory": 1
+        },
+        {
+            "id": 3936,
+            "type": "Milestone",
+            "title": "শিশু আনন্দ বা অসন্তুষ্টি জোরালো ধ্বনিতে প্রকাশ করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:27:07+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:27\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:51:01+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eতার পছন্দ নয় এমন কাজ করলে বা তাকে বিরক্ত করলে জোরে শব্দ করে কাঁদে বা চিৎকার দিয়ে প্রতিবাদ করে, আর আনন্দ প্রকাশ সময় জোরে শব্দ করে হেসে সে তার অনুভূতি প্রকাশ করে।\u003C/p\u003E",
+            "child_age": [481],
+            "related_activities": [3941],
+            "related_articles": [],
+            "related_video_articles": [3476],
+            "mandatory": 1
+        },
+        {
+            "id": 3926,
+            "type": "Milestone",
+            "title": "বিভিন্ন ধরনের অনুভূতি প্রকাশ করে ,এমনকি অন্যদের অনুভূতি বুঝতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:25:46+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:25\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:32:35+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে রাগ করে, ভয় পায়, অপরাধবোধ বা লজ্জা প্রকাশ করে। আর অন্যদের প্রতিও সহানুভূতি দেখাতে শুরু করে। তাই সে বুঝতে পারে অন্যরা কেমন অনুভব করছে, যেমন, তার কাঁদতে থাকা বন্ধুকে সান্ত্বনা দিতে আলিঙ্গন করতে চায়, মা অথবা বাবা তার উপর অভিমান করলে সে তাদের কাছে এগিয়ে যায় রাগ ভাঙাতে। \u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [3931],
+            "related_articles": [],
+            "related_video_articles": [2646],
+            "mandatory": 1
+        },
+        {
+            "id": 3916,
+            "type": "Milestone",
+            "title": "অন্যদের সাথে যোগাযোগের সময় শব্দ এবং ইশারার ব্যবহার করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:24:50+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:48:32+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে ২ থেকে ৪ শব্দের বাক্য উচ্চারণ করতে পারে এবং নিজের সম্পর্কে অন্যের সঙ্গে কথা বলতে পারে। যেমন: \"আমাকে দাও\", \"তুমি বসো\", \"আমি চাই\" ইত্যাদি।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [3921],
+            "related_articles": [],
+            "related_video_articles": [2826],
+            "mandatory": 1
+        },
+        {
+            "id": 3906,
+            "type": "Milestone",
+            "title": "শিশু তার মাথা একপাশ থেকে অন্যপাশে ঘোরায়। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:22:27+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:22:06+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু তার ঘাড় এবং মাথা ঘোরায় ও বিভিন্নভাবে নড়াচড়া করে। \u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [3911],
+            "related_articles": [],
+            "related_video_articles": [3046],
+            "mandatory": 1
+        },
+        {
+            "id": 3896,
+            "type": "Milestone",
+            "title": "অন্য শিশু এবং প্রাপ্তবয়স্কদের সাথে খেলার প্রতি আগ্রহ প্রকাশ করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:14:44+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:14\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:36:19+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে অন্যদের সাথে খেলার জন্য তাদের খুঁজে বের করে, সে জানে কীভাবে খেলায় যুক্ত হতে হয়, এবং খেলতে খেলতে অন্য শিশুরাও বড়দের থেকে শেখে। \u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [3901],
+            "related_articles": [],
+            "related_video_articles": [3031],
+            "mandatory": 1
+        },
+        {
+            "id": 3886,
+            "type": "Milestone",
+            "title": "তার একটি পছন্দের খেলনা আছে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:11:46+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:11\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-02-25T12:02:55+05:30\" class=\"datetime\"\u003ETue, 02/25/2025 - 12:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে একটি নির্দিষ্ট খেলনাকে বাছাই করে, সেটি খুঁজে বের করে এবং সেটিকে তার সাথে নিয়ে ঘুরে বেড়ায়।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [3891],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 3876,
+            "type": "Milestone",
+            "title": "শিশু তার নিজের নাম, তার পরিচিত কারোর নাম এবং তার আশেপাশের বস্তুর নাম বুঝতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:06:59+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:28:02+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eতার নাম ডাকলে বা \"না\" শব্দ বললে সে সঠিকভাবে সাড়া দেয়।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [3881],
+            "related_articles": [],
+            "related_video_articles": [3601],
+            "mandatory": 1
+        },
+        {
+            "id": 3866,
+            "type": "Milestone",
+            "title": "শিশু অনুকরণ করে এবং অঙ্গভঙ্গি ব্যবহার করে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:05:26+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:40:25+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু \"পা-পা\" বলে অভিবাদন জানাতে পারে, \"না\" প্রকাশের জন্য মাথা নাড়ায়, এবং সে যে জিনিসটি চায় তার দিকে তাকায় বা আঙুল নির্দেশ করে চিহ্নিত করে।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [3871],
+            "related_articles": [],
+            "related_video_articles": [3551],
+            "mandatory": 1
+        },
+        {
+            "id": 3856,
+            "type": "Milestone",
+            "title": "শিশুরা হাঁটার শুরুতে ঘরের যে কোন ফার্ণিচার ধরে উঠে দাঁড়ায় এবং তা ধরে ধরে হাঁটতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T15:02:14+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 15:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:01:05+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে কোনো কিছুর সাহায্য নিয়েও দাঁড়াতে পারে, এমনকি কোনো ধরনের সহায়তা ছাড়াই অল্প সময়ের জন্য নিজে নিজেই দাঁড়াতেও পারে।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [3861],
+            "related_articles": [1131],
+            "related_video_articles": [2726],
+            "mandatory": 1
+        },
+        {
+            "id": 3846,
+            "type": "Milestone",
+            "title": "শিশুর মনোভাব বুঝানোর জন্যে বিভিন্ন অঙ্গভঙ্গি ব্যবহার করে",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T14:30:16+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 14:30\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T11:44:34+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 11:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুরা বড়দের করা ইশারা-ইঙ্গিত এবং কথা অনুকরণ করার চেষ্টা করে, কারো অনুরোধের জবাবে সে উপযুক্ত আকার ইঙ্গিত ব্যবহার করে (যেমন \"টা টা\" বা \"না\")।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [3851],
+            "related_articles": [],
+            "related_video_articles": [2601],
+            "mandatory": 1
+        },
+        {
+            "id": 3836,
+            "type": "Milestone",
+            "title": "কাল্পনিক বা অনুকরণের খেলাগুলো খেলে থাকে।",
+            "created_at": "\u003Ctime datetime=\"2024-11-24T14:26:57+05:30\" class=\"datetime\"\u003ESun, 11/24/2024 - 14:26\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T11:59:49+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 11:59\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E\"কাল্পনিক খেলা” খেলতে গিয়ে, সে মিছেমিছি চা পান করছে বা পুতুলকে খাওয়াচ্ছে,অথবা ডাক্তার সেজে রোগী দেখছে এমন অভিনয় করে থাকে।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [3841],
+            "related_articles": [2876],
+            "related_video_articles": [3546],
+            "mandatory": 1
+        },
+        {
             "id": 4831,
             "type": "Milestone",
-            "title": "উন্নত শারীরিক দক্ষতার প্রয়োজন বিভিন্ন ক্রিয়াকলাপে দক্ষতার সাথে অংশগ্রহণ করে",
-            "created_at": "<time datetime=\"2024-05-27T15:11:00+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:11</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:03+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>এক পায়ে দাঁড়াতে, একটি বলকে সুনির্দিষ্টভাবে লাথি মারতে, বল দিয়ে লক্ষ্যে আঘাত করতে সক্ষম।</p>",
-            "child_age": [
-                521
-            ],
-            "related_activities": [
-                4836
-            ],
+            "title": "উন্নত শারীরিক দক্ষতার প্রয়োজন হয় এমন বিভিন্ন ক্রিয়াকলাপে দক্ষতার সাথে অংশগ্রহণ করে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:11:00+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:11\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:38:39+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএক পায়ে দাঁড়াতে পারে, দক্ষতার সাথে বলে লাথি মারতে পারে এবং বলকে একটি নির্দিষ্ট লক্ষ্যে ছুঁড়ে দিতে পারে ইত্যাদি।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4836],
             "related_articles": [],
-            "related_video_articles": [
-                3641
-            ],
+            "related_video_articles": [3641],
             "mandatory": 1
         },
         {
             "id": 4841,
             "type": "Milestone",
-            "title": "দৈনন্দিন রুটিন এবং সামাজিক কার্যকলাপে স্বাধীনভাবে অংশগ্রহণ করার জন্য দক্ষতা ব্যবহার করে",
-            "created_at": "<time datetime=\"2024-05-27T15:10:54+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:10</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:03+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>স্বাধীনভাবে পোশাক পরতে এবং খুলে ফেলতে পারে, একটি চামচ এবং কাঁটা ব্যবহার করে, একা টয়লেট ব্যবহার করে এবং হাত ধোয়। পিতামাতার থেকে আলাদা হতে পারে এবং স্বাধীন সামাজিক কর্মকান্ডে জড়িত হতে পারে।</p>",
-            "child_age": [
-                516
-            ],
-            "related_activities": [
-                4846
-            ],
+            "title": "প্রতিদিনের রুটিন এবং সামাজিক কার্যক্রমে স্বাধীনভাবে অংশগ্রহণ করতে দক্ষতা ব্যবহার করে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:10:54+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T17:36:04+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 17:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএই বয়সে সে পুরোপুরি নিজে নিজেই পোশাক পরতে ও খুলতে পারে, চামচ ও কাটা চামচের ব্যবহার করতে, একা টয়লেট করতে এবং হাত ধুয়ে নিতে পারে। মা-বাবার থেকে আলাদা হয়েও সামাজিক বিভিন্ন কাজে অংশগ্রহণ করতে পারে।\u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4846],
             "related_articles": [],
-            "related_video_articles": [
-                3636
-            ],
+            "related_video_articles": [3636],
             "mandatory": 1
         },
         {
             "id": 4851,
             "type": "Milestone",
-            "title": "দশটি গণনা করতে পারে এবং ভুল ছাড়াই দশটি বস্তুর নাম দিতে পারে",
-            "created_at": "<time datetime=\"2024-05-27T15:10:49+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:10</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:03+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>এছাড়াও \"প্রথম, দ্বিতীয়,\" 10 পর্যন্ত বলতে পারেন, সপ্তাহের দিন এবং মাসের গণনা৷</p>",
-            "child_age": [
-                516
-            ],
-            "related_activities": [
-                4856
-            ],
+            "title": "দশ পর্যন্ত গুণতে পারে এবং দশটি জিনিস ভুল না করে বলতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:10:49+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T17:44:17+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 17:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএছাড়াও 'প্রথম, দ্বিতীয়' ক্রম সাজিয়ে দশম পর্যন্ত গণনা পারে, সপ্তাহ এবং মাসের নামও বলতে পারে।\u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4856],
             "related_articles": [],
-            "related_video_articles": [
-                2931
-            ],
+            "related_video_articles": [2931],
             "mandatory": 1
         },
         {
             "id": 4861,
             "type": "Milestone",
-            "title": "পাঁচ বা ততোধিক শব্দের বাক্যে কথা বলে; ভবিষ্যৎ সম্পর্কে কথা বলার জন্য শব্দ ব্যবহার করে",
-            "created_at": "<time datetime=\"2024-05-27T15:10:45+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:10</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:03+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>তার/তার ধারনা প্রকাশ করার জন্য শব্দগুলোকে একত্রিত করে; ভবিষ্যতে কি \"হবে\" বা \"হতে পারে\" বলতে পারে।</p>",
-            "child_age": [
-                516
-            ],
-            "related_activities": [
-                4866
-            ],
+            "title": "পাঁচ বা তার বেশি শব্দের বাক্যে কথা বলে এবং ভবিষ্যত সম্পর্কিত কথা বলে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:10:45+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T17:49:05+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 17:49\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eতার ধারণা প্রকাশ করার জন্য শব্দগুলোকে একত্রিত করে; ভবিষ্যতে কী 'হবে' বা 'হতে পারে' তা বলতে পারে।\u003C/p\u003E",
+            "child_age": [516],
+            "related_activities": [4866],
             "related_articles": [],
-            "related_video_articles": [
-                2911
-            ],
+            "related_video_articles": [2911],
             "mandatory": 1
         },
         {
             "id": 4871,
             "type": "Milestone",
-            "title": "বাস্তব, ভান বা কাল্পনিক জিনিসগুলির মধ্যে মৌলিক পার্থক্য জানেন",
-            "created_at": "<time datetime=\"2024-05-27T15:10:16+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:10</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:03+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>এমন একটি চরিত্রের গল্প তৈরি করে যার অস্তিত্ব নেই, বা জানে যে প্রাণীরা বাস্তব জীবনে কথা বলতে পারে না।</p>",
-            "child_age": [
-                511
-            ],
-            "related_activities": [
-                4876
-            ],
+            "title": "বাস্তব, ভান করা বা কল্পনার জিনিসগুলোর মধ্যে মৌলিক পার্থক্য বুঝতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:10:16+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:37:40+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eবাস্তবে পশুপাখি কথা বলতে পারেনা জেনেও সে পশুপাখির একটি কাল্পনিক চরিত্র দিয়ে গল্প তৈরি করে।\u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4876],
             "related_articles": [],
-            "related_video_articles": [
-                2871
-            ],
+            "related_video_articles": [2871],
             "mandatory": 1
         },
         {
             "id": 4881,
             "type": "Milestone",
-            "title": "4 থেকে 5 শব্দের বাক্য ব্যবহার করে",
-            "created_at": "<time datetime=\"2024-05-27T15:10:11+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:10</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:03+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>শব্দগুলিকে এমনভাবে একত্রিত করে যা অর্থপূর্ণ হয় এবং তার/তার ধারণাগুলিকে যোগাযোগ করে।</p>",
-            "child_age": [
-                511
-            ],
-            "related_activities": [
-                4886
-            ],
+            "title": "৪ থেকে ৫ শব্দের বাক্য ব্যবহার করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:10:11+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:39:05+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশব্দগুলোকে এমনভাবে সাজিয়ে কথা বলে, যেন তা অর্থপূর্ণ হয় এবং তার ভাবনা প্রকাশ পায়।\u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4886],
             "related_articles": [],
-            "related_video_articles": [
-                2786
-            ],
+            "related_video_articles": [2786],
             "mandatory": 1
         },
         {
             "id": 4891,
             "type": "Milestone",
-            "title": "অন্যদের খুশি করতে এবং সহযোগিতা করতে পছন্দ করে",
-            "created_at": "<time datetime=\"2024-05-27T15:10:07+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:10</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:04+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>অন্যের অনুভূতি স্বীকার করে; প্রায়ই অন্যদের সাথে ভাগাভাগি উপভোগ করে; পালা নিতে সক্ষম।</p>",
-            "child_age": [
-                511
-            ],
-            "related_activities": [
-                4896
-            ],
+            "title": "অন্যদের খুশি করতে এবং সহযোগিতা করতে পছন্দ করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:10:07+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:10\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T12:40:10+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 12:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুরা অন্যের অনুভূতি সহজে বুঝতে পারে, আনন্দের সাথে জিনিসপত্র বা অভিজ্ঞতা ভাগাভাগি করে নিতে ভালোবাসে এবং ধীরে ধীরে পালাক্রমে খেলা বা কাজ করার অভ্যাস গড়ে তোলে। \u003C/p\u003E\u003Cp\u003E \u003C/p\u003E\u003Cp\u003E \u003C/p\u003E",
+            "child_age": [511],
+            "related_activities": [4896],
             "related_articles": [],
-            "related_video_articles": [
-                2766
-            ],
+            "related_video_articles": [2766],
             "mandatory": 1
         },
         {
             "id": 4901,
             "type": "Milestone",
-            "title": "কাগজে একটি পেন্সিল বা crayons সঙ্গে স্বাধীনভাবে scribbles",
-            "created_at": "<time datetime=\"2024-05-27T15:09:55+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:09</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:04+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>কাগজে পেন্সিল দিয়ে, বালির উপর হাত দিয়ে, কাদার উপর লাঠি দিয়ে, বা কংক্রিটের উপর জল দিয়ে স্ক্রিবল আন্দোলন ব্যবহার করতে পছন্দ করে।</p>",
-            "child_age": [
-                496
-            ],
-            "related_activities": [
-                4906
-            ],
+            "title": "পেন্সিল বা রঙ দিয়ে নিজে নিজে কাগজে আঁকিবুঁকি করে",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:09:55+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-16T19:05:40+05:30\" class=\"datetime\"\u003EWed, 07/16/2025 - 19:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eকাগজের উপর নিজের ইচ্ছা অনুযায়ী আঁকতে পছন্দ করে, সেটা পেন্সিল দিয়ে কাগজে হোক বা বালিতে, লাঠি দিয়ে কাদায়, কিংবা পানিতে বা কংক্রিটের উপর।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [4906],
             "related_articles": [],
-            "related_video_articles": [
-                2606
-            ],
+            "related_video_articles": [2606],
             "mandatory": 1
         },
         {
             "id": 4911,
             "type": "Milestone",
-            "title": "অর্থ সহ শব্দ উচ্চারণ করে",
-            "created_at": "<time datetime=\"2024-05-27T15:09:19+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:09</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:04+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>বাবা-মাকে সম্বোধন করার সময় সে অন্তত এক বা কয়েকটি পৃথক শব্দ বলে।</p>",
-            "child_age": [
-                496
-            ],
-            "related_activities": [
-                4916
-            ],
+            "title": "অর্থবহ শব্দ উচ্চারণ করে",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:09:19+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-16T18:50:04+05:30\" class=\"datetime\"\u003EWed, 07/16/2025 - 18:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে বাবা-মাকে সম্বোধন করার সময় অন্তত একটি বা কয়েকটি আলাদা শব্দ বলে।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [4916],
             "related_articles": [],
-            "related_video_articles": [
-                2791
-            ],
+            "related_video_articles": [2791],
             "mandatory": 1
         },
         {
             "id": 4921,
             "type": "Milestone",
-            "title": "সহজ আদেশ বোঝে এবং কার্যকর করে",
-            "created_at": "<time datetime=\"2024-05-27T15:09:11+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:09</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:04+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>কোন প্রদর্শন ছাড়াই সহজভাবে বর্ণিত নির্দেশাবলী অনুসরণ করে, তার/তার কাছ থেকে যা আশা করা যায় তা সম্পাদন করতে পারে।</p>",
-            "child_age": [
-                496
-            ],
-            "related_activities": [
-                4926
-            ],
+            "title": "সহজ নির্দেশনাগুলো বুঝে কাজ করতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:09:11+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:11:30+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসহজ নির্দেশনাগুলো কারোর সাহায্য ছাড়াই অনুসরণ করে এবং যা তার থেকে আশা করা হয় তা সম্পন্ন করতে সক্ষম হয়ে থাকে।\u003C/p\u003E",
+            "child_age": [496],
+            "related_activities": [4926],
             "related_articles": [],
-            "related_video_articles": [
-                2816
-            ],
+            "related_video_articles": [2816],
             "mandatory": 1
         },
         {
             "id": 4931,
             "type": "Milestone",
-            "title": "আরও স্বাধীন হচ্ছে",
-            "created_at": "<time datetime=\"2024-05-27T15:09:04+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:09</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:04+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>কখনও কখনও তিনি আদেশ প্রতিরোধ করেন, রেগে যান, অন্যদের নিয়ন্ত্রণ করতে চান, ঝগড়া করেন, আদেশ দেন, তার জিনিস রক্ষা করেন।</p>",
-            "child_age": [
-                501
-            ],
-            "related_activities": [
-                4936
-            ],
+            "title": "ধীরে ধীরে আরও স্বাধীনচেতা হয়ে উঠছে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:09:04+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:55:34+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:55\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eকখনও কখনও সে নির্দেশ মানতে অস্বীকার করে, রেগে যায়, অন্যদের নিয়ন্ত্রণ করতে চায়, ঝগড়া করে, আদেশ দেয় এবং তার জিনিসগুলো রক্ষা করে।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4936],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 1
@@ -210,16 +1420,12 @@ export const MileStonesData: any = {
         {
             "id": 4941,
             "type": "Milestone",
-            "title": "ড্রেসিংয়ে সাহায্য করে",
-            "created_at": "<time datetime=\"2024-05-27T15:08:59+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:08</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:05+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>সহযোগিতা করে যখন আপনি তাকে পোশাক পরান, পায়ের পাতার মোজাবিশেষ মাধ্যমে হাতা এবং পায়ে তার হাত ধাক্কা দেয়।</p>",
-            "child_age": [
-                491
-            ],
-            "related_activities": [
-                4946
-            ],
+            "title": "পোশাক পরতে সাহায্য করে",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:08:59+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-02-25T17:01:20+05:30\" class=\"datetime\"\u003ETue, 02/25/2025 - 17:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eতাকে পোশাক পরানোর সময় সহযোগিতা করে, সাবলীলভাবে হাতগুলো হাতার মধ্যে দেয় এবং পাগুলো প্যান্টের মধ্যে ঢোকায়।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4946],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 1
@@ -227,54 +1433,38 @@ export const MileStonesData: any = {
         {
             "id": 4951,
             "type": "Milestone",
-            "title": "আঙ্গুল দিয়ে ছোট বস্তু বাছাই করে, আঙ্গুল দিয়ে খাওয়ায়",
-            "created_at": "<time datetime=\"2024-05-27T15:08:54+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:08</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:05+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>একটি ভাল \"পিন্সার গ্র্যাপ\" আছে - বুড়ো আঙুল এবং তর্জনী দিয়ে খুব ছোট বস্তুগুলিকে ম্যানিপুলেট করতে পারে।</p>",
-            "child_age": [
-                491
-            ],
-            "related_activities": [
-                4956
-            ],
+            "title": "শিশু তার ছোট ছোট আঙুল দিয়ে ছোট জিনিস ধরতে এবং নিজে নিজে খেতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:08:54+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:40:56+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eতার দুই আঙুলে ধরা জোরালো হয়েছে - সে আঙুল এবং তর্জনী দিয়ে খুব ছোট জিনিসগুলি নাড়াচাড়া করতে পারে।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4956],
             "related_articles": [],
-            "related_video_articles": [
-                2706
-            ],
+            "related_video_articles": [2706],
             "mandatory": 1
         },
         {
             "id": 4961,
             "type": "Milestone",
-            "title": "স্বতঃস্ফূর্তভাবে প্রাপ্তবয়স্কদের সাথে আগ্রহ এবং আনন্দ ভাগ করতে চায়",
-            "created_at": "<time datetime=\"2024-05-27T15:08:00+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:08</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:05+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>পারস্পরিক খেলা উপভোগ করে, \"আমি তোমাকে দিই - তুমি আমাকে দাও\", \"আমি করি - তুমি করো\" এবং এর মতো।</p>",
-            "child_age": [
-                491
-            ],
-            "related_activities": [
-                4966
-            ],
+            "title": "বড়দের সাথে স্বতঃস্ফুর্তভাবে তার আগ্রহ ও আনন্দ ভাগ করে নেয়ার চেষ্টা করে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:08:00+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:24:33+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু পাল্টাপাল্টি খেলা উপভোগ করে, 'আমি তোমাকে দিচ্ছি - তুমি আমাকে দাও,' 'আমি করি - তুমি কর,' এবং এরকম আরো নানারকম খেলা।\u003C/p\u003E",
+            "child_age": [491],
+            "related_activities": [4966],
             "related_articles": [],
-            "related_video_articles": [
-                2711
-            ],
+            "related_video_articles": [2711],
             "mandatory": 1
         },
         {
             "id": 4971,
             "type": "Milestone",
-            "title": "সন্তানের যোগাযোগের অংশগুলি এমন লোকেরাও বুঝতে পারে যারা প্রতিদিন সন্তানের সাথে থাকে না",
-            "created_at": "<time datetime=\"2024-05-27T15:07:55+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:07</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:05+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>শিশুটি আরও স্পষ্টভাবে কণ্ঠস্বর উচ্চারণ করতে শুরু করে এবং অর্থ সহ আরও বেশি শব্দ ব্যবহার করে এবং তাই যোগাযোগ সহজ হয়।</p>",
-            "child_age": [
-                501
-            ],
-            "related_activities": [
-                4976
-            ],
+            "title": "শিশুর যোগাযোগের কিছু অংশ অপরিচিত লোকেরাও বুঝতে পারেন যারা প্রতিদিন তার সন্তানের সাথে থাকে না।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:07:55+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:59:23+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:59\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএই বয়সে শিশু আরও স্পষ্টভাবে শব্দ উচ্চারণ করতে শুরু করে এবং আরও বেশি অর্থপূর্ণ শব্দ ব্যবহার করে, তাই তাদের সাথে যোগাযোগ করা সহজ হয়।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [4976],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 1
@@ -282,168 +1472,116 @@ export const MileStonesData: any = {
         {
             "id": 4981,
             "type": "Milestone",
-            "title": "দূরে ঠেলে উঠে দাঁড়ানোর চেষ্টা করে।",
-            "created_at": "<time datetime=\"2024-05-27T15:07:44+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:07</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:05+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>দূরে ঠেলে উঠে দাঁড়ানোর চেষ্টা করে। তিনি আসবাবপত্র ধরে উঠতে চেষ্টা করেন, কিন্তু তার সাহায্য এবং সমর্থন প্রয়োজন।</p>",
-            "child_age": [
-                486
-            ],
-            "related_activities": [
-                4986
-            ],
+            "title": "সরিয়ে দেয়, দাঁড়ানোর চেষ্টা করে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:07:44+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:08:44+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eধাক্কা দিয়ে বিভিন্ন জিনিস দূরে সরিয়ে দেয়, দাঁড়ানোর চেষ্টা করে। সে অনেক সময় ফার্নিচার ধরে উঠে দাঁড়ানোর চেষ্টা করে, তবে তাকে সাহায্যও করতে হয় ।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4986],
             "related_articles": [],
-            "related_video_articles": [
-                3466
-            ],
+            "related_video_articles": [3466],
             "mandatory": 1
         },
         {
             "id": 4991,
             "type": "Milestone",
-            "title": "নিজেকে একটি ক্রলিং অবস্থানে তুলে নেয়। কিছু শিশু ইতিমধ্যেই হামাগুড়ি দিচ্ছে।",
-            "created_at": "<time datetime=\"2024-05-27T15:07:39+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:07</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:05+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>নিজেকে একটি ক্রলিং অবস্থানে তুলে নেয়। কিছু শিশু ইতিমধ্যেই হামাগুড়ি দিচ্ছে। শিশুটি নিজে থেকেই হামাগুড়ি দিতে পারে। শিশুটি হামাগুড়ি দিয়ে চলাফেরা করে তা পিছনের দিকে হোক বা সামনের দিকে।</p>",
-            "child_age": [
-                486
-            ],
-            "related_activities": [
-                4996
-            ],
+            "title": "হাত ও হাঁটুর উপর ভর করে হামাগুড়ি দেওয়ার অবস্থায় উঠতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:07:39+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T15:02:02+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 15:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু নিজে থেকেই হামাগুড়ি দেয়ার চেষ্টা করে, ধীরে ধীরে সে আরও ভালো অবস্থায় পৌঁছায়। কিছু শিশু হামাগুড়ির মাধ্যমেই চলাচল করে। শিশু সামনে অথবা পিছনে দিকে হামাগুড়ি দিয়ে চলাচল করে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [4996],
             "related_articles": [],
-            "related_video_articles": [
-                3561
-            ],
+            "related_video_articles": [3561],
             "mandatory": 1
         },
         {
             "id": 5001,
             "type": "Milestone",
-            "title": "এক হাত অন্য হাতের চেয়ে বেশি ব্যবহার করে",
-            "created_at": "<time datetime=\"2024-05-27T15:07:01+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:07</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:06+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>বাম বা ডান - এক হাত আরো ব্যবহার করতে শুরু করে।</p>",
-            "child_age": [
-                501
-            ],
-            "related_activities": [
-                5006
-            ],
+            "title": "এক হাত অন্য হাতের থেকে বেশি ব্যবহার করে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:07:01+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T17:26:04+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 17:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু যেকোন একটি হাত বেশি ব্যবহার করতে শুরু করে। সাধারণত সে খেলতে বা আঁকিআঁকি করতে এক হাতের প্রতি বেশি মনোযোগ দেয়।\u003C/p\u003E",
+            "child_age": [501],
+            "related_activities": [5006],
             "related_articles": [],
-            "related_video_articles": [
-                2676
-            ],
+            "related_video_articles": [2676],
             "mandatory": 1
         },
         {
             "id": 5011,
             "type": "Milestone",
-            "title": "\"না\" শব্দের অর্থ বুঝতে শুরু করে।",
-            "created_at": "<time datetime=\"2024-05-27T15:06:56+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:06</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:06+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>\"না\" শব্দের অর্থ বুঝতে শুরু করে। যখন তিনি শব্দটি শুনেন, তিনি কার্যকলাপ বন্ধ করে দেন এবং অসম্মতি স্বীকার করেন।</p>",
-            "child_age": [
-                486
-            ],
-            "related_activities": [
-                5016
-            ],
+            "title": "\"না\" শব্দের অর্থ বুঝতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:06:56+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T14:17:50+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 14:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযখন সে কোনো শব্দ শোনে, তখন সে তার কাজ থামিয়ে দেয়, আর অসম্মতি প্রকাশ করে। অর্থাৎ সে যখন কিছু করতে চায়, তখন \"না\" বলার সাথে সাথে বোঝে যে সেটি করতে নিষেধ করা হচ্ছে।\u003C/p\u003E",
+            "child_age": [486],
+            "related_activities": [5016],
             "related_articles": [],
-            "related_video_articles": [
-                3576
-            ],
+            "related_video_articles": [3576],
             "mandatory": 1
         },
         {
             "id": 5021,
             "type": "Milestone",
-            "title": "বাচ্চাদের সাথে খেলতে পছন্দ করে",
-            "created_at": "<time datetime=\"2024-05-27T15:06:51+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:06</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:06+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>খেলা এখন আর শুধু সমান্তরাল নয় – পাশাপাশি, তবে আরও জটিল উপাদান, কল্পনা এবং কৌতুকপূর্ণতা রয়েছে।</p>",
-            "child_age": [
-                506
-            ],
-            "related_activities": [
-                5026
-            ],
+            "title": "অন্যান্য শিশুদের সাথে খেলতে পছন্দ করে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:06:51+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:43:02+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:43\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eখেলা এখন আর কেবল খেলা নয়—যেখানে যুক্ত হয়েছে কল্পনা, আনন্দ এবং নতুন নতুন অনেক উপাদান \u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [5026],
             "related_articles": [],
-            "related_video_articles": [
-                2656
-            ],
+            "related_video_articles": [2656],
             "mandatory": 1
         },
         {
             "id": 5031,
             "type": "Milestone",
-            "title": "শিশুটি উত্তেজিত হয় যখন সে বুঝতে পারে যে এটি খেলার সময়",
-            "created_at": "<time datetime=\"2024-05-27T15:06:46+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:06</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:06+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>তিনি আনন্দ করেন, খুশি হন এবং খেলা এবং যোগাযোগ উপভোগ করেন, বিশেষ করে পিতামাতা এবং পরিচিত ব্যক্তিদের সাথে।</p>",
-            "child_age": [
-                481
-            ],
-            "related_activities": [
-                5036
-            ],
+            "title": "খেলার সময় বুঝতে পারলে শিশু আনন্দিত হয়।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:06:46+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:06:59+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eখেলার সময় হলে সে আনন্দিত হয়, মুখে হাসি ফুটে ওঠে এবং খেলতে বা কথা বলতে তার ভালো লাগে। বিশেষ করে বাবা-মা এবং পরিচিত ব্যক্তিদের সাথে। তার এই উচ্ছ্বাস তাকে আরও বেশি উজ্জীবিত করে এবং খেলায় অংশগ্রহণ করতে উৎসাহিত করে।\u003C/p\u003E",
+            "child_age": [481],
+            "related_activities": [5036],
             "related_articles": [],
-            "related_video_articles": [
-                3481
-            ],
+            "related_video_articles": [3481],
             "mandatory": 1
         },
         {
             "id": 5041,
             "type": "Milestone",
-            "title": "ধ্বনি তৈরি করে কণ্ঠস্বরের সাড়া দেয় - স্বরধ্বনি একত্রিত করে: a, e, u...",
-            "created_at": "<time datetime=\"2024-05-27T15:06:40+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:06</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:06+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>যখন কেউ তাকে সম্বোধন করে, কথা বলে, গান গায়, তাকে পাঠ করে... শিশুটি সাড়া দেয়।</p>",
-            "child_age": [
-                481
-            ],
-            "related_activities": [
-                5046
-            ],
+            "title": "শিশু স্বরবর্ণের (অ, আ, ও উ) ধ্বনি মিলিয়ে সাড়া দেয়।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:06:40+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:40:44+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযখন কেউ তার সঙ্গে কথা বলে, গান গায়, ছড়া বলে বা তাকে পড়ে শোনায়, তখন শিশু সাড়া দেয়। সে আওয়াজের দিকে তাকায়, হাসে, বা শব্দ বের করে অনুভূতি প্রকাশ করে এবং যোগাযোগের চেষ্টা করে।\u003C/p\u003E",
+            "child_age": [481],
+            "related_activities": [5046],
             "related_articles": [],
-            "related_video_articles": [
-                3486
-            ],
+            "related_video_articles": [3486],
             "mandatory": 1
         },
         {
             "id": 5051,
             "type": "Milestone",
-            "title": "2 থেকে 3 শব্দের একটি বাক্য বলতে পারে",
-            "created_at": "<time datetime=\"2024-05-27T15:06:08+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:06</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:06+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>পরিবারের সদস্যরা তাকে বোঝার জন্য যথেষ্ট 2 থেকে 3 শব্দের বাক্য রচনা এবং বলতে পারে।</p>",
-            "child_age": [
-                506
-            ],
-            "related_activities": [
-                5056
-            ],
+            "title": "দুই থেকে তিন শব্দের বাক্যগুলো বলতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:06:08+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:48:33+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eপরিবারের সদস্যরা বুঝতে পারে এমন ২ থেকে ৩ শব্দের বাক্য বলতে পারে, যেমন \"আমি খেলছি\" \"দাদা এসেছে\", “মা বা বাবা এসেছে” ইত্যাদি।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [5056],
             "related_articles": [],
-            "related_video_articles": [
-                2581
-            ],
+            "related_video_articles": [2581],
             "mandatory": 1
         },
         {
             "id": 5061,
             "type": "Milestone",
-            "title": "কিছু সাপোর্ট নিয়ে বসতে পারে",
-            "created_at": "<time datetime=\"2024-05-27T15:06:03+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:06</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:20+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>যখন তার সমর্থন থাকে বা কিছু ধরে রাখে, তখন শিশুটি বসতে পারে এবং অল্প সময়ের জন্য স্বাধীনভাবে বসার অবস্থান বজায় রাখতে পারে।</p>",
-            "child_age": [
-                481
-            ],
-            "related_activities": [
-                5066
-            ],
+            "title": "সামান্য সাহায্য পেলেই বসতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:06:03+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T13:16:51+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 13:16\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযখন শিশু সাহায্য পায় বা কিছু ধরে রাখে, তখন সে বসতে পারে এবং অল্প সময়ের জন্য স্বাধীনভাবে বসার অবস্থান বজায় রাখতে পারে।\u003C/p\u003E",
+            "child_age": [481],
+            "related_activities": [5066],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 1
@@ -451,229 +1589,157 @@ export const MileStonesData: any = {
         {
             "id": 5071,
             "type": "Milestone",
-            "title": "হাত-চোখের সমন্বয় স্থাপন করে",
-            "created_at": "<time datetime=\"2024-05-27T15:05:53+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:05</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:21+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>হাত-চোখের সমন্বয় ক্ষমতা বৃদ্ধি পায়, উদাহরণস্বরূপ: আপনার শিশু একটি বস্তুর দিকে তাকায় এবং সেটিতে পৌঁছানোর চেষ্টা করে।</p>",
-            "child_age": [
-                476
-            ],
-            "related_activities": [
-                5076
-            ],
+            "title": "শিশু এই সময়ে হাত এবং চোখের সমন্বয় বুঝতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:05:53+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T17:45:24+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 17:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eএই সময়ে শিশুর হাত-চোখের সমন্বয়ের দক্ষতা বাড়ে, যেমন: আপনার শিশু কোনো বস্তু দেখছে এবং তা ধরার চেষ্টা করছে।\u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [5076],
             "related_articles": [],
-            "related_video_articles": [
-                3511
-            ],
+            "related_video_articles": [3511],
             "mandatory": 1
         },
         {
             "id": 5081,
             "type": "Milestone",
-            "title": "সিঁড়ি বেয়ে ওপরে ওঠে",
-            "created_at": "<time datetime=\"2024-05-27T15:05:48+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:05</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:21+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>পর্যায়ক্রমে এক পা এবং তারপরে অন্যটি ব্যবহার করে সমর্থন সহ সিঁড়ি বেয়ে উঠে যায়।</p>",
-            "child_age": [
-                506
-            ],
-            "related_activities": [
-                5086
-            ],
+            "title": "সিঁড়ি উপরে এবং নিচে ওঠানামা করতে পারে।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:05:48+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T16:52:36+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 16:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু যে কারও সহায়তা নিয়ে সিঁড়ি বেয়ে উঠতে পারে, আর প্রথমে এক পা এবং পরে অন্য পা ব্যবহার করে এক এক করে পা ফেলে সিঁড়ি বেয়ে উঠে।\u003C/p\u003E",
+            "child_age": [506],
+            "related_activities": [5086],
             "related_articles": [],
-            "related_video_articles": [
-                2641
-            ],
+            "related_video_articles": [2641],
             "mandatory": 1
         },
         {
             "id": 5091,
             "type": "Milestone",
-            "title": "বকবক শুরু করে",
-            "created_at": "<time datetime=\"2024-05-27T15:05:06+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:05</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:21+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>কণ্ঠস্বর তৈরি করে এবং ধ্বনি তৈরি করে যা স্বরগুলির সাথে সাদৃশ্যপূর্ণ - a, e, i, o, u</p>",
-            "child_age": [
-                476
-            ],
-            "related_activities": [
-                5096
-            ],
+            "title": "শিশু আধো আধো বোলে কথা শুরু করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:05:06+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T17:58:45+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 17:58\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু শব্দ তৈরি করে এবং সুর তুলতে পারে যা অনেকটা স্বরবর্ণের মতো শোনায়। যেমন - আ, এ, ই, ও, উ।\u003C/p\u003E",
+            "child_age": [476],
+            "related_activities": [5096],
             "related_articles": [],
-            "related_video_articles": [
-                3596
-            ],
+            "related_video_articles": [3596],
             "mandatory": 1
         },
         {
             "id": 5101,
             "type": "Milestone",
-            "title": "কার্যকলাপ পরিবর্তিত হলে একঘেয়েমি বা কান্না দেখায়",
-            "created_at": "<time datetime=\"2024-05-27T15:05:01+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:05</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:21+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>শিশুটি দীর্ঘ সময় ধরে এক অবস্থানে থাকলে কান্নার মাধ্যমে অভিযোগ করে, অথবা আপনি যদি তাকে আপনার বাহুতে ধরে রেখে তাকে নামিয়ে দেন তাহলে প্রতিবাদ করে।</p>",
-            "child_age": [
-                471
-            ],
-            "related_activities": [
-                5106
-            ],
+            "title": "নড়াচড়া থেমে গেলে সে বিরক্ত হয়, কান্না করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:05:01+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:27:24+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুকে যদি দীর্ঘ সময় ধরে একই অবস্থানে রাখা হয়, তবে সে কাঁদতে শুরু করে এমনকি আপনি তাকে কোল থেকে নামালেও বিরক্ত হয় ও কাঁদে।\u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [5106],
             "related_articles": [],
-            "related_video_articles": [
-                2801
-            ],
+            "related_video_articles": [2801],
             "mandatory": 1
         },
         {
             "id": 5111,
             "type": "Milestone",
-            "title": "শব্দের উৎসের দিকে মাথা ঘুরিয়ে দেখায় যে সে/সে শুনছে",
-            "created_at": "<time datetime=\"2024-05-27T15:04:56+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:04</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:21+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>যদি শিশুটি মানুষের কণ্ঠস্বর বা অন্য কোনো শব্দ শুনতে পায়, শিশুটি তার দিকে মাথা ঘুরিয়ে দেয়। শিশু যখন কণ্ঠস্বর শোনে তখন সে/তিনি অভিভাবক বা কথা বলা ব্যক্তির দিকে তাকায়, নড়াচড়া মন্থর করে।</p>",
-            "child_age": [
-                471
-            ],
-            "related_activities": [
-                5116
-            ],
+            "title": "শব্দ শুনলে সে মাথা ঘুরিয়ে শব্দের উৎসের দিকে তাকায় যা থেকে বোঝা যায় সে শুনেছে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:04:56+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:32:09+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযদি শিশু মানুষের কণ্ঠস্বর বা অন্য কোনো শব্দ শুনতে পায়, তবে শিশু তার দিকে মাথা ঘুরিয়ে তাকায়। শিশু যখন কণ্ঠস্বর শোনে, তখন সে বাবা-মা বা কথা বলা ব্যক্তির দিকে তাকায়, যার ফলে তার অন্যকোন দিকে নড়াচড়া করা কমে যায়। \u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [5116],
             "related_articles": [],
-            "related_video_articles": [
-                3056
-            ],
+            "related_video_articles": [3056],
             "mandatory": 1
         },
         {
             "id": 5121,
             "type": "Milestone",
-            "title": "কিছুক্ষণের জন্য নিজেকে সান্ত্বনা দিতে পারে",
-            "created_at": "<time datetime=\"2024-05-27T15:04:51+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:04</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:22+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>শিশু আঙুল বা ছোট হাত চুষে নিজেকে প্রশমিত করে।</p>",
-            "child_age": [
-                471
-            ],
-            "related_activities": [
-                5126
-            ],
+            "title": "শিশু কিছু সময়ের জন্য নিজেকে শান্ত করতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:04:51+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-17T12:37:26+05:30\" class=\"datetime\"\u003EThu, 07/17/2025 - 12:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশু তার আঙুল বা হাত মুখে নিয়ে নিজেকে শান্ত করে।\u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [5126],
             "related_articles": [],
-            "related_video_articles": [
-                3531
-            ],
+            "related_video_articles": [3531],
             "mandatory": 1
         },
         {
             "id": 5131,
             "type": "Milestone",
-            "title": "শিশু খুশি, মন খারাপ বা ক্ষুধার্ত হলে বিভিন্ন শব্দ করে",
-            "created_at": "<time datetime=\"2024-05-27T15:04:46+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:04</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:22+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>শিশুর কান্নার ভিন্নতা থাকে যখন তার নির্দিষ্ট কিছু প্রয়োজন থাকে, তাই s/তিনি যে শব্দ করেন তার উপর ভিত্তি করে এটি সনাক্ত করা যায় যে সে খুশি, মন খারাপ বা অন্য কোন প্রয়োজন আছে কিনা।</p>",
-            "child_age": [
-                471
-            ],
-            "related_activities": [
-                5136
-            ],
+            "title": "শিশু তার খুশি-আনন্দ, অস্বস্তি আর খিদে নানাধরণের শব্দের মাধ্যমে প্রকাশ করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:04:46+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-22T13:12:40+05:30\" class=\"datetime\"\u003ETue, 07/22/2025 - 13:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুর নির্দিষ্ট প্রয়োজনের ওপর নির্ভর করে তার কান্না পরিবর্তিত হয়। তাই সে যে শব্দ করে তা থেকে বোঝা যায় সে খুশি, বিরক্ত বা অন্য কোনো প্রয়োজন অনুভব করছে কিনা। \u003C/p\u003E",
+            "child_age": [471],
+            "related_activities": [5136],
             "related_articles": [],
-            "related_video_articles": [
-                3591
-            ],
+            "related_video_articles": [3591],
             "mandatory": 1
         },
         {
             "id": 5141,
             "type": "Milestone",
-            "title": "পেটের উপর শুয়ে থাকা অবস্থায় শিশুটি মাথা তুলে নেয়",
-            "created_at": "<time datetime=\"2024-05-27T15:03:55+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:03</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:22+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>আপনি যখন শিশুটিকে পেটের উপর শুয়ে রাখেন, তখন শিশুটি শ্বাসনালী পরিষ্কার করার জন্য মাথাটি তোলার চেষ্টা করবে।</p>",
-            "child_age": [
-                466
-            ],
-            "related_activities": [
-                5146
-            ],
+            "title": "শিশুকে তার পেটের উপরে শুইয়ে দিলে সে তার মাথা অল্প একটু ওঠাতে পারে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:03:55+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-16T18:33:42+05:30\" class=\"datetime\"\u003EWed, 07/16/2025 - 18:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eযখন আপনি তাকে পেটের ওপর শুইয়ে রাখেন, তখন সে ভালোভাবে শ্বাস-প্রশ্বাস নেয়ার জন্য শ্বাসনালী পরিষ্কার করতে তার মাথা উঁচু করে রাখে। \u003C/p\u003E",
+            "child_age": [466],
+            "related_activities": [5146],
             "related_articles": [],
-            "related_video_articles": [
-                1946
-            ],
+            "related_video_articles": [1946],
             "mandatory": 1
         },
         {
             "id": 5151,
             "type": "Milestone",
-            "title": "শব্দ করে",
-            "created_at": "<time datetime=\"2024-05-27T15:03:44+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:03</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:22+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>শিশু কাঁদে, কিন্তু শব্দও করে</p>",
-            "child_age": [
-                466
-            ],
-            "related_activities": [
-                5156
-            ],
+            "title": "এই বয়সে শিশুরা মুখ দিয়ে শব্দ করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:03:44+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-16T18:37:42+05:30\" class=\"datetime\"\u003EWed, 07/16/2025 - 18:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে কান্না করার পাশাপাশি বিভিন্ন রকম শব্দ করে থাকে।\u003C/p\u003E",
+            "child_age": [466],
+            "related_activities": [5156],
             "related_articles": [],
-            "related_video_articles": [
-                1941
-            ],
+            "related_video_articles": [1941],
             "mandatory": 1
         },
         {
             "id": 5161,
             "type": "Milestone",
-            "title": "আপনি যখন তার সাথে কথা বলেন তখন উত্তেজিত হন",
-            "created_at": "<time datetime=\"2024-05-27T15:03:38+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:03</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:14:23+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:14</time>\n",
-            "body": "<p>যখন শিশুটি আপনার কণ্ঠস্বর শোনে তখন শিশুটি উত্তেজনা দেখায়, কিন্তু আপনি এটিও লক্ষ্য করেন যে শিশুটি তার/তার নড়াচড়া কমিয়ে দেয়, মনে হয় শুনছে, উপস্থিত থাকুন...</p>",
-            "child_age": [
-                466
-            ],
-            "related_activities": [
-                5166
-            ],
+            "title": "শিশুর সাথে কথা বললে সে আনন্দ প্রকাশ করে। ",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T15:03:38+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-20T10:01:55+05:30\" class=\"datetime\"\u003ESun, 07/20/2025 - 10:01\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে আপনার কণ্ঠস্বর শোনা মাত্রই উচ্ছাসিত বা আনন্দিত হয়, কিন্তু আপনি এটাও লক্ষ্য করেন যে আপনার কথা বলার সময় সে ধীরে ধীরে নড়াচড়া কমিয়ে ফেলে, মনে হয় সে শুনছে, এবং সে তার বর্তমানে উপস্থিত থাকে।\u003C/p\u003E",
+            "child_age": [466],
+            "related_activities": [5166],
             "related_articles": [],
-            "related_video_articles": [
-                1261
-            ],
+            "related_video_articles": [1261],
             "mandatory": 1
         },
         {
             "id": 4811,
             "type": "Milestone",
-            "title": "একটি সম্পূর্ণ গল্প বলে",
-            "created_at": "<time datetime=\"2024-05-27T14:59:59+05:30\" class=\"datetime\">Mon, 05/27/2024 - 14:59</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:15:05+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:15</time>\n",
-            "body": "<p>শিশুটি একটি নির্দিষ্ট গল্পের প্লটটি সম্পূর্ণ স্বাধীনভাবে এবং নির্ভুলভাবে পুনরায় বলতে পরিচালনা করে, ঘটনাগুলিকে কালানুক্রমিক ক্রমে সঠিকভাবে সাজিয়ে, যে ইভেন্টে সে অংশগ্রহণ করেছিল বা একটি টিভি শো।</p>",
-            "child_age": [
-                521
-            ],
-            "related_activities": [
-                4816
-            ],
+            "title": "একটি সম্পূর্ণ গল্প বলতে পারে",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T14:59:59+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 14:59\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-02-25T16:32:54+05:30\" class=\"datetime\"\u003ETue, 02/25/2025 - 16:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eশিশুটি একটি গল্পের কাহিনী সম্পূর্ণ স্বাধীনভাবে নিজের ভাষায় পুনরাবৃত্তি করতে পারে, সময়ক্রম অনুসারে ঘটনাগুলিকে সঠিকভাবে সাজিয়ে বলার চেষ্টা করে, যেখানে সে নিজে অংশগ্রহণ করেছে। অথবা কোন একটি টিভি শো সম্পর্কেও সে বলতে পারে।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4816],
             "related_articles": [],
-            "related_video_articles": [
-                2986
-            ],
+            "related_video_articles": [2986],
             "mandatory": 1
         },
         {
             "id": 4821,
             "type": "Milestone",
-            "title": "বাস্তব এবং ভান বা মেক-বিলিভের মধ্যে পার্থক্য বোঝার দেখায়",
-            "created_at": "<time datetime=\"2024-05-27T14:58:44+05:30\" class=\"datetime\">Mon, 05/27/2024 - 14:58</time>\n",
-            "updated_at": "<time datetime=\"2024-05-27T15:15:05+05:30\" class=\"datetime\">Mon, 05/27/2024 - 15:15</time>\n",
-            "body": "<p>তিনি কেবল তার কল্পনা থেকে গল্প, ঘটনা, চরিত্র উদ্ভাবন করেন, শৈল্পিকভাবে উপস্থাপন করেন, বর্ণনা করেন এবং তাদের বৈশিষ্ট্যগুলি বরাদ্দ করেন যা বাস্তবসম্মত নয়। এটি করার সময় সে মজা করে, সচেতন যে কল্পনার জগতে সবকিছুই সম্ভব।</p>",
-            "child_age": [
-                521
-            ],
-            "related_activities": [
-                4826
-            ],
+            "title": "বাস্তব এবং কল্পনার মধ্যে পার্থক্য বোঝার ক্ষমতা তৈরি হয়।",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T14:58:44+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 14:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-07-19T16:18:38+05:30\" class=\"datetime\"\u003ESat, 07/19/2025 - 16:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003Eসে তার কল্পনা থেকে গল্প, ঘটনা, চরিত্র তৈরি করে, সেগুলোকে সুন্দরভাবে উপস্থাপন করে, বর্ণনা করে এবং সেগুলোর কাল্পনিক গুণাবলীও দিয়ে থাকে। এগুলো করতে গিয়ে সে খুব আনন্দ পায়, কারণ সে জানে কল্পনার জগতে সবকিছুই সম্ভব।\u003C/p\u003E",
+            "child_age": [521],
+            "related_activities": [4826],
             "related_articles": [],
-            "related_video_articles": [
-                2996
-            ],
+            "related_video_articles": [2996],
             "mandatory": 1
         }
     ]
