@@ -168,6 +168,12 @@ Run and generate build iOS Bebbo Dev app
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release
 ```
 
+## Contributors
+
+We gratefully acknowledge the amazing contributors who helped improve the project:
+- [@Kumar Saurabh](https://github.com/Kumar-s75)
+- [@Anithpavan](https://github.com/Anithpavan)
+
 ## License
 
 Distributed under the GPL-3.0 license. See `LICENSE` for more information.
