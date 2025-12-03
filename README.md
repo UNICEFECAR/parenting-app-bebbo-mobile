@@ -40,32 +40,15 @@ The app can also operate in an offline mode in environments with limited interne
   - Node version - 21.7.3
   - NPM version - 10.8.2
 
-<!--
-## Used libraries
-
-Several third party libraries and services are incorporated. These are the most important, the full list can be seen by examining package.json (in the root of the project)
-
-* [Firebase Analytics](https://www.npmjs.com/package/%40react-native-firebase/analytics) service
-* [Google SignIn](https://www.npmjs.com/package/@react-native-community/google-signin) service
-* [React Navigation](https://reactnavigation.org/) for navigation screens
-* [Axios](https://github.com/axios/axios) - HTTP client
-* [i18n-js](https://www.npmjs.com/package/i18n-js) - Internationalization
-* [lodash.com](https://lodash.com/) - Utilities
-* [luxon](https://moment.github.io/luxon/) - Date/time calculations
-* [Facebook SignIn](https://github.com/facebook/react-native-fbsdk/)
-* [FastImage](https://github.com/DylanVann/react-native-fast-image#readme) - for image performance optimizations
-* [Google Drive](https://www.npmjs.com/package/react-native-google-drive-api-wrapper)
-* [react-native-localize](https://github.com/zoontek/react-native-localize) - localization
-* [react-native-paper](https://callstack.github.io/react-native-paper/) - UI components
-* [realm](https://www.npmjs.com/package/realm) - local database
-* [victory-native](https://www.npmjs.com/package/victory-native) - for charts
--->
-
 ## Getting started
 
 - Mac or Windows can be used to setup a development environment. iOS and Android apps can be developed using MacBook. Only Android app can be developed using Windows.
 - Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
 - Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to set up React Native development environment.
+
+### Creating a new instance
+
+If you want to create a fresh instance of this app (e.g. for a new locale/flavor), follow the steps in [New Instance Setup Guide](readMeNewInstance.md).
 
 ## Install Bebbo in localhost
 
@@ -148,17 +131,36 @@ cd ios && pod install
 
 After set up all configuration you run the bebbo dev app with below npx commands.
 
-Run metro bundler
+**Run metro bundler**
 
 ```
 FLAVOR=bebboDev react-native start --reset-cache
 ```
 
-Run and generate build android Bebbo Dev app
+**Run and generate build android Bebbo Dev app**
+#### Linux / MacOS 
+```bash
+ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
+```
+
+#### Windows
+```bash
+set ENVFILE=env/.env.bebboDev && set FLAVOR=bebboDev && npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
+```
+
+#### Notes
+- Windows uses `set ... ` syntax for environment variables, while Linux/Mac uses inline assignment.  
+- If builds fail on Windows, run:
+  ```bash
+  cd android
+  gradlew clean
+  cd ..
+  ```
+- Ensure `ANDROID_HOME` and `JAVA_HOME` are set in Windows system environment variables.
+
+**Generate Release Bundles / APK (Manual Gradle)**
 
 ```
-ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
-
 cd android && ENVFILE=env/.env.bebboDev FLAVOR=bebboDev ./gradlew bundleProdstagingRelease (aab)
 
 cd android && ENVFILE=env/.env.bebboDev FLAVOR=bebboDev ./gradlew assembleProdstagingRelease (apk)
@@ -169,6 +171,12 @@ Run and generate build iOS Bebbo Dev app
 ```
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release
 ```
+
+## Contributors
+
+We gratefully acknowledge the amazing contributors who helped improve the project:
+- [@Kumar Saurabh](https://github.com/Kumar-s75)
+- [@Anithpavan](https://github.com/Anithpavan)
 
 ## License
 
