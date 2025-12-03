@@ -46,6 +46,10 @@ The app can also operate in an offline mode in environments with limited interne
 - Follow [these instructions](https://reactnative.dev/docs/environment-setup) in order to prepare machine for development, specifically “React Native CLI Quickstart”.
 - Follow [these instructions](https://reactnative.dev/docs/set-up-your-environment?os=macos&platform=android) to set up React Native development environment.
 
+### Creating a new instance
+
+If you want to create a fresh instance of this app (e.g. for a new locale/flavor), follow the steps in [New Instance Setup Guide](readMeNewInstance.md).
+
 ## Install Bebbo in localhost
 
 1. Download [Node JS](https://nodejs.org/en/download) version 21.7.3 and install it.
