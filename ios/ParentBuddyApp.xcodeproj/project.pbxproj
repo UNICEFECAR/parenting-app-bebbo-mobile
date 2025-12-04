@@ -30,6 +30,8 @@
 		D61DD3482E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D61DD3492E2FB37900109398 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D62267BC2EBB4D4E00BE4745 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = D62267BA2EBB4D4E00BE4745 /* splash.json */; };
+		D63091672EE1651300431E7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63091652EE1651300431E7E /* Assets.xcassets */; };
+		D63091682EE1653300431E7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		D63CC5472EB0BAC300B05FDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		D6642A3C2E6EA96D00860549 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6642A3B2E6EA96D00860549 /* GoogleService-Info.plist */; };
 		D677385E2E6ACC870067DBAC /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = D67738582E6ACC870067DBAC /* splash_screen.png */; };
@@ -48,7 +50,6 @@
 		D6C1B5812EBC847B00E466C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		D6C1B5822EBC847B00E466C0 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61DD3402E2FB37400109398 /* Dynamic.swift */; };
 		D6C1B5862EBC847B00E466C0 /* roboto-regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = D6F1427D2E29326600986814 /* roboto-regular.woff2 */; };
-		D6C1B5872EBC847B00E466C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		D6C1B5882EBC847B00E466C0 /* roboto-bold.svg in Resources */ = {isa = PBXBuildFile; fileRef = D6F1428E2E29329200986814 /* roboto-bold.svg */; };
 		D6C1B5892EBC847B00E466C0 /* roboto-regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = D6F1428F2E29329200986814 /* roboto-regular.svg */; };
 		D6C1B58B2EBC847B00E466C0 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = D6F142782E29326600986814 /* roboto-bold.woff */; };
@@ -254,6 +255,7 @@
 		D62267B92EBB4D4E00BE4745 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D62267BA2EBB4D4E00BE4745 /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D628E5F12E2A71DE00202918 /* ParentBuddyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParentBuddyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D63091652EE1651300431E7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6642A3B2E6EA96D00860549 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D67738572E6ACC870067DBAC /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		D67738582E6ACC870067DBAC /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen.png; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D63091662EE1651300431E7E /* BebboPacific */,
 				D677385D2E6ACC870067DBAC /* ReraiUmntwana */,
 				D6F142752E29324000986814 /* Resources */,
 				13B07FAE1A68108700A75B9A /* ParentBuddyApp */,
@@ -614,6 +617,14 @@
 				D62267BA2EBB4D4E00BE4745 /* splash.json */,
 			);
 			path = ReraiUmntwana;
+			sourceTree = "<group>";
+		};
+		D63091662EE1651300431E7E /* BebboPacific */ = {
+			isa = PBXGroup;
+			children = (
+				D63091652EE1651300431E7E /* Assets.xcassets */,
+			);
+			path = BebboPacific;
 			sourceTree = "<group>";
 		};
 		D677385B2E6ACC870067DBAC /* splashimg.imageset */ = {
@@ -1249,15 +1260,16 @@
 			files = (
 				D6C1B5BD2EBCB0D100E466C0 /* splash.json in Resources */,
 				D6C1B5862EBC847B00E466C0 /* roboto-regular.woff2 in Resources */,
-				D6C1B5872EBC847B00E466C0 /* Images.xcassets in Resources */,
 				D6C1B5882EBC847B00E466C0 /* roboto-bold.svg in Resources */,
 				D6C1B5892EBC847B00E466C0 /* roboto-regular.svg in Resources */,
 				D6C1B58B2EBC847B00E466C0 /* roboto-bold.woff in Resources */,
+				D63091672EE1651300431E7E /* Assets.xcassets in Resources */,
 				D6C1B5A32EBC85EB00E466C0 /* BebboPacific-Info.plist in Resources */,
 				D6C1B5A92EBC876600E466C0 /* InfoPlist.strings in Resources */,
 				D6C1B5B72EBCB07A00E466C0 /* README.md in Resources */,
 				D6C1B5B82EBCB07A00E466C0 /* GoogleService-Info.plist in Resources */,
 				D6C1B58F2EBC847B00E466C0 /* roboto-bold.woff2 in Resources */,
+				D63091682EE1653300431E7E /* Images.xcassets in Resources */,
 				D6C1B5902EBC847B00E466C0 /* roboto-regular.ttf in Resources */,
 				D6C1B5952EBC847B00E466C0 /* roboto-bold.ttf in Resources */,
 				D6C1B5B32EBCA16000E466C0 /* LaunchScreen.storyboard in Resources */,
@@ -2798,7 +2810,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/BebboPacific.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SGVD5KL2Y7;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "BebboPacific-Info.plist";
@@ -2843,7 +2855,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/BebboPacific.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SGVD5KL2Y7;
 				INFOPLIST_FILE = "BebboPacific-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Bebbo Pacific";
