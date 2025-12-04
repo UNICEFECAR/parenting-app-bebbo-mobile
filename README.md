@@ -174,7 +174,7 @@ ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBu
 
 ## Contributors
 
-We gratefully acknowledge the amazing contributors who helped improve the project:
+We acknowledge the contributors who helped improve the project:
 - [@Kumar Saurabh](https://github.com/Kumar-s75)
 - [@Anithpavan](https://github.com/Anithpavan)
 
