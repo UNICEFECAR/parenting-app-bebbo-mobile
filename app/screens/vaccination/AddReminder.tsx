@@ -180,23 +180,28 @@ const AddReminder = ({ route, navigation }: Props): any => {
     );
     setmeasureShow(false);
     if (selectedDate) {
-      setmeasureDate(localCurrentDate);
-      setDateTouched(true);
-      if (localCurrentDate.toISODate() == DateTime.local().toISODate()) {
-        setminmeasureTime(new Date());
-        setmeasureTime(
-          localCurrentDate.set({
-            minute:
-              localCurrentDate.minute < 59 ? localCurrentDate.minute + 1 : 0,
-          })
-        );
+      if (
+        !measureDate ||
+        localCurrentDate.toISODate() !== measureDate.toISODate()
+      ) {
+        setmeasureDate(localCurrentDate);
+        setDateTouched(true);
+        if (localCurrentDate.toISODate() == DateTime.local().toISODate()) {
+          setminmeasureTime(new Date());
+          setmeasureTime(
+            localCurrentDate.set({
+              minute:
+                localCurrentDate.minute < 59 ? localCurrentDate.minute + 1 : 0,
+            })
+          );
 
-        //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
-      } else {
-        // // const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
-        // // setminmeasureTime(new Date(currentDatenew));
-        //setminmeasureTime(new Date());
-        setminmeasureTime(new Date(new Date(currentDate).setHours(0, 0, 0, 0)));
+          //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
+        } else {
+          // // const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
+          // // setminmeasureTime(new Date(currentDatenew));
+          //setminmeasureTime(new Date());
+          setminmeasureTime(new Date(new Date(currentDate).setHours(0, 0, 0, 0)));
+        }
       }
     }
   };
@@ -209,21 +214,26 @@ const AddReminder = ({ route, navigation }: Props): any => {
     console.log("This is your date format", localCurrentDate);
     setmeasureShowDefined(false);
     if (selectedDate) {
-      setmeasureDateDefined(localCurrentDate);
-      setDateTouchedDefined(true);
-      if (localCurrentDate.toISODate() == DateTime.local().toISODate()) {
-        setmeasureTimeDefined(
-          localCurrentDate.set({
-            minute:
-              localCurrentDate.minute < 59 ? localCurrentDate.minute + 1 : 0,
-          })
-        );
-        setminmeasureTimeDefined(new Date());
-        //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
-      } else {
-        setminmeasureTimeDefined(
-          new Date(new Date(currentDate).setHours(0, 0, 0, 0))
-        );
+      if (
+        !measureDateDefined ||
+        localCurrentDate.toISODate() !== measureDateDefined.toISODate()
+      ) {
+        setmeasureDateDefined(localCurrentDate);
+        setDateTouchedDefined(true);
+        if (localCurrentDate.toISODate() == DateTime.local().toISODate()) {
+          setmeasureTimeDefined(
+            localCurrentDate.set({
+              minute:
+                localCurrentDate.minute < 59 ? localCurrentDate.minute + 1 : 0,
+            })
+          );
+          setminmeasureTimeDefined(new Date());
+          //new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0)
+        } else {
+          setminmeasureTimeDefined(
+            new Date(new Date(currentDate).setHours(0, 0, 0, 0))
+          );
+        }
       }
     }
   };
