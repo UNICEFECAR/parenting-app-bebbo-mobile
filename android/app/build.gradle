@@ -84,6 +84,7 @@ android {
     flavorDimensions "default"
     defaultConfig {
         applicationId "org.unicef.ecar.bebbo"
+        multiDexEnabled true
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -225,7 +226,7 @@ android {
         }
         bangla {
             applicationId 'org.unicef.bangladesh.babuni'
-            versionCode 8
+            versionCode 9
             versionName "1.0.1"
             signingConfig signingConfigs.bangla
         }
@@ -285,4 +286,5 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
