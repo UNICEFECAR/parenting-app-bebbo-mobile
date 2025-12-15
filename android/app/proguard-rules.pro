@@ -8,3 +8,8 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+
+-keep class com.facebook.jni.** { *; }
+-keep,allowobfuscation @interface com.facebook.jni.annotations.DoNotStrip
+-keep @com.facebook.jni.annotations.DoNotStrip class *
+-keepclassmembers class * { @com.facebook.jni.annotations.DoNotStrip *; }

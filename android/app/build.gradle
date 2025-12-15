@@ -164,11 +164,20 @@ android {
         }
     }
 
-    // packagingOptions {
-    //     pickFirst 'lib/*/libfbjni.so'
-    //     pickFirst 'lib/*/libc++_shared.so'
-    //     pickFirst 'lib/*/libhermes.so'
-    // }
+    packagingOptions {
+        pickFirst 'lib/*/libfbjni.so'
+        pickFirst 'lib/*/libc++_shared.so'
+        pickFirst 'lib/*/libhermes.so'
+        pickFirst 'lib/*/libreactnative.so'
+        pickFirst 'lib/*/libjsi.so'
+
+        // Specific to New Architecture (Fabric/TurboModules)
+        pickFirst 'lib/*/libreact_codegen_rncore.so'
+        pickFirst 'lib/*/libturbomodulejsijni.so'
+        pickFirst 'lib/*/libfabricjni.so'
+        pickFirst 'lib/*/libmapbufferjni.so'
+        pickFirst 'lib/*/libyoga.so'
+    }
     // Splits block if needed
     splits {
         abi {
@@ -256,7 +265,7 @@ android {
         }
         bebbopacific {
             applicationId 'org.unicef.pc.bebbopacific'
-            versionCode 1
+            versionCode 2
             versionName "1.0.0"
             signingConfig signingConfigs.bebbopacific
         }
