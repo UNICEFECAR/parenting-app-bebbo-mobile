@@ -746,6 +746,22 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                   {t("drawerMenuPrivacyTxt")}
                 </Heading4>
               </DrawerLinkView>
+              <DrawerLinkView
+                onPress={(): any => {
+                  navigation.navigate("TermsPage");
+                  navigation.closeDrawer();
+                }}
+                style={{marginBottom: 14}}
+              >
+                <OuterIconRow>
+                  <OuterIconLeft15 style={{ width: 25, alignItems: "center" }}>
+                    <Icon name="terms_conditions" size={20} color="#000" />
+                  </OuterIconLeft15>
+                </OuterIconRow>
+                <Heading4 style={styles.headingFlexShrink}>
+                  {t("tNcheader")}
+                </Heading4>
+              </DrawerLinkView>
             </>
           ) : null}
           {donateItem &&

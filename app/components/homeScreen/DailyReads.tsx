@@ -309,7 +309,7 @@ const DailyReads = (): any => {
         ActivitiesData.find((f: any) => f.activity_category === i.id)
       );
       const currentIndex = articleCategoryArrayNew.findIndex(
-        (_item: any) => _item === dailyDataCategory.advice
+        (_item: any) => _item === dailyDataCategory.advice[dailyDataCategory.advice.length - 1]
       );
       const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
       let categoryArticleData = ArticlesData.filter((x: any) =>
@@ -320,7 +320,7 @@ const DailyReads = (): any => {
       );
       let advicearray: any = [];
 
-      if (obj1.length === 0) {
+      if (obj1.length < 2) {
         const abc = showedDailyDataCategory.advice.filter(
           (i: any) => !categoryArticleData.find((f: any) => f.id === i)
         );
@@ -349,9 +349,15 @@ const DailyReads = (): any => {
           articleListData.push(article);
         });
       }
-      const currentIndex2 = activityCategoryArrayNew.findIndex(
-        (_item: any) => _item.id === dailyDataCategory.games
-      );
+      let currentIndex2 = -1;
+      if (dailyDataCategory.games.length > 0) {
+        const lastCategoryId = dailyDataCategory.games[dailyDataCategory.games.length - 1];
+        currentIndex2 = activityCategoryArrayNew.findIndex((cat: { id: any; }) => cat.id === lastCategoryId);
+      }
+      if (currentIndex2 === -1) {
+        currentIndex2 = activityCategoryArrayNew.length - 1;  // Last available category
+      }
+      
       let nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
       let categoryActivityData = ActivitiesData.filter(
         (x: { activity_category: number }) =>
@@ -374,7 +380,7 @@ const DailyReads = (): any => {
         (i: any) => !showedDailyDataCategory.games.find((f: any) => f === i.id)
       );
       let gamesarray: any = [];
-      if (obj2.length === 0) {
+      if (obj2.length < 2) {
         const abc = showedDailyDataCategory.games.filter(
           (i: any) => !categoryActivityData.find((f: any) => f.id === i)
         );
@@ -409,14 +415,15 @@ const DailyReads = (): any => {
         ...showedDailyDataCategoryall,
       };
       const selectedAdviceCategories = articleDataToShow?.map(
-        (_article, index) => articleCategoryArrayNew[nextIndex + index] || 0
+        (_article, index) => articleCategoryArrayNew[(nextIndex + index) % articleCategoryArrayNew.length] || 0
       );
       const selectedAdviceIds = articleDataToShow?.map(
         (article) => article?.id || 0
       );
+      const categoryLength = activityCategoryArrayNew.length;
       const selectedGameCategories = activityDataToShow.map(
         (_activity, index) =>
-          activityCategoryArrayNew[nextIndex2 + index]?.id || 0
+          activityCategoryArrayNew[(nextIndex2 + index) % categoryLength]?.id
       );
       const selectedGameIds = activityDataToShow.map(
         (activity) => activity?.id || 0
