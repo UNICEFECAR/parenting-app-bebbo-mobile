@@ -128,7 +128,7 @@ const ChildDate = (props: any): any => {
       props.sendData({
         birthDate: currentDate,
         plannedTermDate: null,
-        isPremature: toggleCheckBox,
+        isPremature: false,
         isExpected: true,
       });
     } else {
@@ -155,7 +155,7 @@ const ChildDate = (props: any): any => {
   const showdobDatepicker = (): any => {
     setdobShow(true);
     if (Platform.OS == "ios") {
-      isExpected && setdoborExpectedDate(new Date());
+      // isExpected && setdoborExpectedDate(new Date());
       setDobDatePickerVisibility(true);
     }
   };
@@ -166,6 +166,18 @@ const ChildDate = (props: any): any => {
       setDueDatePickerVisibility(true);
     }
   };
+  const prematureHandlePress = () => {
+    if (!disablePrematureCheck) {
+      props.sendData({
+        birthDate: doborExpectedDate,
+        plannedTermDate: null,
+        isPremature: !toggleCheckBox,
+        isExpected: isExpected,
+      });
+      setToggleCheckBox(!toggleCheckBox);
+      setdueDate(null);
+    }
+  }
   return (
     <>
       <FormDateContainer>
@@ -279,23 +291,11 @@ const ChildDate = (props: any): any => {
             </Pressable>
           </FormInputGroup>
         )}
-
+      {disablePrematureCheck ? null : 
         <FormPrematureContainer>
           <Pressable
             style={{ flexDirection: "row", alignItems: "center" }}
-            onPress={(): any => {
-              if (!disablePrematureCheck) {
-                props.sendData({
-                  birthDate: doborExpectedDate,
-                  plannedTermDate: null,
-                  isPremature: !toggleCheckBox,
-                  isExpected: isExpected,
-                });
-                setToggleCheckBox(!toggleCheckBox);
-                setdueDate(null);
-              }
-            }}
-          >
+            onPress={prematureHandlePress}>
             <CheckboxItem>
               <View>
                 {toggleCheckBox ? (
@@ -322,7 +322,7 @@ const ChildDate = (props: any): any => {
             </LabelRow>
           </Pressable>
         </FormPrematureContainer>
-
+}
         {toggleCheckBox && !disablePrematureCheck ? (
           <>
             <ShiftFromTop15>
