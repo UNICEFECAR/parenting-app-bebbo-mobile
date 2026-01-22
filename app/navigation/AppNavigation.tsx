@@ -158,8 +158,9 @@ export default (): any => {
   ];
 
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
-      if (!userIsFirstTime) {
+    if (userIsFirstTime) return;
+    if (!languageCode || !netInfo.isConnected) return;
+    const timeout = setTimeout(() => {
         dispatch(
           fetchAPI(
             apiJsonData,
@@ -172,11 +173,10 @@ export default (): any => {
             netInfo.isConnected
           )
         );
-      }
-    });
+    },1000);
 
-    return () => task.cancel();
-  }, [dispatch]);
+    return () => clearTimeout(timeout);
+  }, [dispatch,languageCode, netInfo.isConnected]);
 
   const onBackPress = (): any => {
     if (routesLength === 1 && userIsOnboarded == false) {
@@ -499,12 +499,11 @@ export default (): any => {
   };
 
   useEffect(() => {
-    if (userIsOnboarded == true) {
-      const task = InteractionManager.runAfterInteractions(() => {
+    if (!userIsOnboarded) return;
+    const timeout = setTimeout(() => {
         createLocalNotificationListeners();
-      });
-      return () => task.cancel();
-    }
+      },2000);
+      return () => clearTimeout(timeout);
   }, [userIsOnboarded]);
 
   const redirectPayload = (remoteMessage: any): any => {
@@ -1000,7 +999,8 @@ export default (): any => {
   }, [linkedURL]);
 
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
+    if (!userIsOnboarded) return;
+    const timeout = setTimeout(() => {
       if (userIsOnboarded == true) {
         const obj = { key: "showDownloadPopup", value: true };
         dispatch(setInfoModalOpened(obj));
@@ -1012,12 +1012,13 @@ export default (): any => {
         dispatch(setAllLocalNotificationGenerateType(localnotiFlagObj));
         getAllChildren(dispatch, child_age, 0);
       }
-    });
+    },1000);
 
-    return () => task.cancel();
+    return () => clearTimeout(timeout);
   }, [userIsOnboarded]);
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
+    if (!allCountries.length) return;
+    const timeout = setTimeout(() => {
       dispatch(setchatBotData([]));
       if (countryId == 1 && !allCountries.some((c: { CountryID: any; }) => Number(c.CountryID) === 1)) {
         dispatch(oncountrtIdChange(appConfig.restOfTheWorldCountryId));
@@ -1025,9 +1026,9 @@ export default (): any => {
       const notiFlagObj = { key: "generateNotifications", value: true };
       dispatch(setInfoModalOpened(notiFlagObj));
       //add notification condition in else if required 1st time as well
-    });
+    },1000);
 
-    return () => task.cancel();
+    return () => clearTimeout(timeout);
   }, []);
   useEffect(() => {
     async function fetchNetInfoSet(): Promise<any> {
@@ -1043,11 +1044,11 @@ export default (): any => {
         }
       }
     }
-    const task = InteractionManager.runAfterInteractions(() => {
+    const timeout = setTimeout(() => {
       fetchNetInfoSet();
-    });
+    },1000);
 
-    return () => task.cancel();
+    return () => clearTimeout(timeout);
   }, [netState]);
   const routeNameRef = React.useRef<any>();
 
@@ -1079,6 +1080,7 @@ export default (): any => {
           ref={navigationRef}
           onReady={(): any => {
             routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+            // SplashScreen.hide();
           }}
           onStateChange={async (): Promise<any> => {
             const previousRouteName = routeNameRef.current;
