@@ -241,7 +241,7 @@ const Childgrowth = ({ navigation }: any): any => {
               <>
                 <FlexDirCol>
                   <ShiftFromBottom5>
-                    <Heading3 style={styles.marginTop15}>
+                    <Heading3 numberOfLines={2} ellipsizeMode="tail" style={[styles.marginTop15,{marginHorizontal:8,textAlign: 'center'}]}>
                       {activeChild.birthDate != null &&
                       activeChild.birthDate != undefined &&
                       !isFutureDate(activeChild.birthDate)
