@@ -25,11 +25,11 @@ import {
   FlexFDirRowSpace,
 } from "@components/shared/FlexBoxStyle";
 import {
-  HeaderActionView,
+  HeaderActionViewTools,
   HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
-  HeaderTitleView,
+  HeaderTitleViewTools,
 } from "@components/shared/HeaderContainerStyle";
 import Icon, { IconML } from "@components/shared/Icon";
 import ModalPopupContainer, {
@@ -692,22 +692,22 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                 <IconML name={"ic_back"} color="#000" size={15} />
               </HeaderIconPress>
             </HeaderIconView>
-            <HeaderTitleView>
+            <HeaderTitleViewTools>
               <Heading2 numberOfLines={1}>
                 {showDelete
                   ? t("growthScreeneditNewBtntxt")
                   : t("growthScreenaddNewBtntxt")}
               </Heading2>
-            </HeaderTitleView>
+            </HeaderTitleViewTools>
             {showDelete ? (
-              <HeaderActionView style={styles.padding0}>
+              <HeaderActionViewTools style={styles.padding0}>
                 <Pressable
                   style={styles.pressableView}
                   onPress={(): any => setModalVisible(true)}
                 >
                   <Icon name={"ic_trash"} size={20} color="#000" />
                 </Pressable>
-              </HeaderActionView>
+              </HeaderActionViewTools>
             ) : null}
           </HeaderRowView>
           <FlexCol>
