@@ -34,6 +34,12 @@ export const HeaderTitleView = styled.View`
   padding: 10px;
   justify-content: center;
 `;
+export const HeaderTitleViewTools = styled.View`
+  flex: 1;
+  padding: 10px;
+  padding-right: 0px;
+  justify-content: center;
+`;
 export const HeaderTitleExpectedView = styled.View`
   flex: 14;
   padding: 10px;
@@ -49,6 +55,13 @@ flex:1;
 padding:10px;
 align-items:flex-end;
 justify-content:flex-start;
+`;
+export const HeaderActionViewTools = styled.View`
+width: 44px; 
+padding:0px;
+align-items:flex-end;
+justify-content:center;
+margin-right:10;
 `;
 
 export const HeaderActionBox = styled.Pressable`

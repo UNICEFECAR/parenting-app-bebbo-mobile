@@ -25,8 +25,6 @@ import {
   LabelTextTerms,
 } from "./shared/ChildSetupStyle";
 import FormPrematureContainer, {
-  FormInfoLabel,
-  FormInfoPress,
   FormInfoPressPremature,
 } from "./shared/FormPrematureContainer";
 import { FlexFDirRowSpace } from "./shared/FlexBoxStyle";
@@ -183,22 +181,21 @@ const ChildDate = (props: any): any => {
       <FormDateContainer>
         {Platform.OS != "ios" ? (
           <FormInputGroup>
-            <FormPrematureContainer>
-              <LabelText>
+            <FormPrematureContainer style={{marginBottom:20}}>
+              <LabelChildText>
                 {prevScreen == "EditScreen"
                   ? t("addAnotherChildSetupDobLabel")
                   : t("childSetupdobLabel")}
-              </LabelText>
-              <FormInfoLabel>
-                <FormInfoPress onPress={(): any => setDobModalVisible(true)}>
+               <Text>{"    "}</Text>
+                <FormInfoPressPremature onPress={(): any => setDobModalVisible(true)}>
                   <Icon
                     name="ic_info"
                     size={15}
                     color="#070707"
                     onPress={(): any => setDobModalVisible(true)}
                   />
-                </FormInfoPress>
-              </FormInfoLabel>
+                </FormInfoPressPremature>
+              </LabelChildText>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
               <FormInputBox>
@@ -236,22 +233,21 @@ const ChildDate = (props: any): any => {
           </FormInputGroup>
         ) : (
           <FormInputGroup>
-            <FormPrematureContainer>
-              <LabelText>
+            <FormPrematureContainer style={{marginBottom:20}}>
+              <LabelChildText>
                 {prevScreen == "EditScreen"
                   ? t("addAnotherChildSetupDobLabel")
                   : t("childSetupdobLabel")}
-              </LabelText>
-              <FormInfoLabel>
-                <FormInfoPress onPress={(): any => setDobModalVisible(true)}>
+              <Text>{"    "}</Text>
+                <FormInfoPressPremature onPress={(): any => setDobModalVisible(true)}>
                   <Icon
                     name="ic_info"
                     size={15}
                     color="#070707"
                     onPress={(): any => setDobModalVisible(true)}
                   />
-                </FormInfoPress>
-              </FormInfoLabel>
+                </FormInfoPressPremature>
+              </LabelChildText>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
               <View style={{ marginTop: -10 }}>
