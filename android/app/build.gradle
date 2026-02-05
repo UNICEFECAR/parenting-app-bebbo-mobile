@@ -211,7 +211,7 @@ android {
     productFlavors {
         prod {
             applicationId 'org.unicef.ecar.bebbo'
-            versionCode 49
+            versionCode 50
             versionName "2.4.4"
             signingConfig signingConfigs.release
         }
@@ -253,7 +253,7 @@ android {
         }
         reraiumntwana {
             applicationId 'org.unicef.zw.reraiumntwana'
-            versionCode 5
+            versionCode 6
             versionName "1.0.1"
             signingConfig signingConfigs.reraiumntwana
         }
