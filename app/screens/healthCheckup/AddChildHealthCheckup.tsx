@@ -30,14 +30,15 @@ import {
   FlexFDirRowSpace,
 } from "@components/shared/FlexBoxStyle";
 import {
-  HeaderActionView,
+  HeaderActionViewTools,
   HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
-  HeaderTitleView,
+  HeaderTitleViewTools,
 } from "@components/shared/HeaderContainerStyle";
 import Icon, { IconML } from "@components/shared/Icon";
 import ModalPopupContainer, {
+  ModalPopupContent,
   PopupClose,
   PopupCloseContainer,
   PopupOverlay,
@@ -775,20 +776,20 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                 <IconML name={"ic_back"} color="#000" size={15} />
               </HeaderIconPress>
             </HeaderIconView>
-            <HeaderTitleView>
-              <Heading2>
+            <HeaderTitleViewTools>
+              <Heading2 numberOfLines={1}>
                 {showDelete ? t("hcEditHeaderTitle") : t("hcNewHeaderTitle")}
               </Heading2>
-            </HeaderTitleView>
+            </HeaderTitleViewTools>
             {showDelete ? (
-              <HeaderActionView style={styles.padding0}>
+              <HeaderActionViewTools style={styles.padding0}>
                 <Pressable
                   style={styles.padding10}
                   onPress={(): any => setModalVisible(true)}
                 >
                   <Icon name={"ic_trash"} size={20} color="#000" />
                 </Pressable>
-              </HeaderActionView>
+              </HeaderActionViewTools>
             ) : null}
           </HeaderRowView>
 
@@ -1030,7 +1031,9 @@ const AddChildHealthCheckup = ({ route, navigation }: any): any => {
                 </PopupCloseContainer>
 
                 <ShiftFromTopBottom10>
-                  <Heading3Center>{t("hcDeleteWarning")}</Heading3Center>
+                  <ModalPopupContent>
+                    <Heading3Center>{t("hcDeleteWarning")}</Heading3Center>
+                  </ModalPopupContent>
                 </ShiftFromTopBottom10>
                 <ButtonContainerTwo>
                   <ButtonColTwo>

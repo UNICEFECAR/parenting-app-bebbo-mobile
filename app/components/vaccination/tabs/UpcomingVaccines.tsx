@@ -190,7 +190,7 @@ const UpcomingVaccines = (props: any): any => {
               }}
             >
               <ToolsHeadingView>
-                <Heading2>{item?.periodName}</Heading2>
+                <Heading2 numberOfLines={2} ellipsizeMode="tail">{item?.periodName}</Heading2>
                 <Heading5>
                   {t("vaccinesTxt")}
                   {":"}

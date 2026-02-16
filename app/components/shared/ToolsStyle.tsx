@@ -49,9 +49,11 @@ padding:4px;
 export const ToolsHeadingView = styled.View`
 padding:0 10px;
 align-self:center;
+flex: 1;
 `;
 export const ToolsActionView = styled.View`
 align-self:center;
+flex-shrink: 0;
 `;
 
 export const ToolsHeadPress = styled.Pressable`

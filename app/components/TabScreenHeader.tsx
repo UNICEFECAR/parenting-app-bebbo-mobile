@@ -22,7 +22,7 @@ const TabScreenHeader = (props: any): any => {
       >
         <BurgerIcon color={textColor} />
         <HomeHeaderTitleView>
-          <Heading2w style={{ color: textColor }}> {props.title}</Heading2w>
+          <Heading2w numberOfLines={1} ellipsizeMode="tail" style={{ color: textColor }}> {props.title}</Heading2w>
         </HomeHeaderTitleView>
         <HeaderNotiIcon color={textColor} isVisibleIcon={true} />
         <HeaderBabyMenu
