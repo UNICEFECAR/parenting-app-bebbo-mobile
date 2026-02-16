@@ -151,12 +151,12 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     const normalizedCountryCode = countryCode.toLowerCase(); // Normalize to lowercase for case-insensitive comparison
 
     for (const country of allCountries) {
-      if (country.languages) {
+      if (country?.languages) {
         // Ensure country.languages is not null or undefined
-        for (const language of country.languages) {
+        for (const language of country?.languages) {
           if (
-            !language.languageCode.toLowerCase().includes("-") &&
-            language.languageCode.toLowerCase().includes(normalizedCountryCode)
+            !language?.languageCode?.toLowerCase().includes("-") &&
+            language?.languageCode?.toLowerCase().includes(normalizedCountryCode)
           ) {
             return country;
           } else if (
@@ -170,8 +170,10 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         }
       }
     }
-
-    return flavor == "bebbo" ? null : allCountries.sort((a: { CountryID: number; },b: { CountryID: number; })=> a.CountryID-b.CountryID)[0]; // Return null if country not found
+    const sortedCountries = [...allCountries].sort(
+      (a, b) => (a?.CountryID ?? 0) - (b?.CountryID ?? 0)
+    );
+    return flavor == "bebbo" ? null : sortedCountries[0]; // Return null if country not found
   };
 
   useFocusEffect(
@@ -213,25 +215,25 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       let newCountryLocale: any;
       if (userIsOnboarded == true) {
         if (
-          route.params.country &&
-          route.params.country != null &&
-          route.params.country != undefined
+          route?.params?.country &&
+          route?.params?.country != null &&
+          route?.params?.country != undefined
         ) {
-          newCountryId = route.params.country.CountryID;
-          newCountryLocale = route.params.country.luxonLocale;
+          newCountryId = route.params.country?.CountryID;
+          newCountryLocale = route.params.country?.luxonLocale ?? selectedDefaultCountry;
           setCountryData(route.params.country);
         } else {
           newCountryId = countryId;
           newCountryLocale = selectedDefaultCountry;
         }
       } else {
-        if (Object.keys(route.params).length === 0) {
+        if (!route?.params || Object.keys(route.params).length === 0) {
           newCountryLocale = selectedDefaultCountry;
           newCountryId = countryId;
         } else {
-          if (route.params != undefined) {
-            newCountryLocale = route.params.language.luxonLocale;
-            newCountryId = route.params.country.countryId;
+          if (route?.params?.country && route?.params?.language) {
+            newCountryLocale = route.params.language.luxonLocale ?? selectedDefaultCountry;
+            newCountryId = route.params.country.countryId ?? countryId;
           } else {
             newCountryLocale = selectedDefaultCountry;
             newCountryId = countryId;
@@ -241,7 +243,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
 
       console.log("newCountryId country is", newCountryId);
       const selectedCountry = allCountries.find(
-        (country: any) => country.CountryID === newCountryId.toString()
+        (country: any) => country.CountryID?.toString() === String(newCountryId ?? "")
       );
 
       setSponsorsData(selectedCountry);

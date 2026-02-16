@@ -40,7 +40,7 @@ import {
   ShiftFromTop15,
   ShiftFromTop20,
 } from "@styles/typography";
-import { CHILDREN_PATH } from "@types/types";
+import { CHILDREN_PATH, dobMax as dobMaxFuture } from "@types/types";
 import React, { createRef, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -90,7 +90,6 @@ import { cameraProfileImage } from "../../instances";
 import { selectChildAge, selectChildGenders, selectChildList } from "../../services/selectors";
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-const dobMax = new Date(new Date().setHours(23, 59, 59, 999));
 type Props = {
   route: any;
   navigation: NotificationsNavigationProp;
@@ -187,6 +186,7 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
   const [destPath, setDestPath] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
   const childAge = useAppSelector(selectChildAge);
+  const dobMax = uuid == "" ? new Date(new Date().setHours(23, 59, 59, 999)) : dobMaxFuture;
   const sendData = (data: any): any => {
     // the callback. Use a better name
     setBirthDate(data.birthDate);
@@ -395,29 +395,29 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
     const isDefaultChild = "false";
     const insertData: any = editScreen
       ? await getNewChild(
-          uuid,
-          isDefaultChild,
-          isExpected,
-          plannedTermDate,
-          isPremature,
-          birthDate,
-          name,
-          photoUri,
-          gender,
-          createdAt
-        )
+        uuid,
+        isDefaultChild,
+        isExpected,
+        plannedTermDate,
+        isPremature,
+        birthDate,
+        name,
+        photoUri,
+        gender,
+        createdAt
+      )
       : await getNewChild(
-          uuid,
-          isDefaultChild,
-          isExpected,
-          plannedTermDate,
-          isPremature,
-          birthDate,
-          name,
-          photoUri,
-          gender,
-          createdAt
-        );
+        uuid,
+        isDefaultChild,
+        isExpected,
+        plannedTermDate,
+        isPremature,
+        birthDate,
+        name,
+        photoUri,
+        gender,
+        createdAt
+      );
     const childSet: Array<any> = [];
     if (photoDeleted == true) {
       removePhoto();
@@ -515,9 +515,9 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
           <OverlayLoadingComponent loading={loading} />
           <FlexCol>
             {capturedPhoto != "" &&
-            capturedPhoto != null &&
-            capturedPhoto != undefined &&
-            photoDeleted == false ? (
+              capturedPhoto != null &&
+              capturedPhoto != undefined &&
+              photoDeleted == false ? (
               <View style={styles.container}>
                 <ImageBackground
                   source={capturedPhoto != "" ? { uri: capturedPhoto } : null}
@@ -593,17 +593,18 @@ const EditChildProfile = ({ route, navigation }: Props): any => {
                   prevScreen="EditScreen"
                 />
               )}
-
-              <FormContainerFlex>
-                <LabelText>{t("genderLabel")}</LabelText>
-                <ToggleRadios
-                  options={genders}
-                  defaultValue={defaultGenderValue}
-                  tickbgColor={headerColor}
-                  tickColor={"#FFF"}
-                  getCheckedItem={getCheckedItem}
-                />
-              </FormContainerFlex>
+              {isExpected && isExpected == "true" ? null :
+                <FormContainerFlex>
+                  <LabelText>{t("genderLabel")}</LabelText>
+                  <ToggleRadios
+                    options={genders}
+                    defaultValue={defaultGenderValue}
+                    tickbgColor={headerColor}
+                    tickColor={"#FFF"}
+                    getCheckedItem={getCheckedItem}
+                  />
+                </FormContainerFlex>
+              }
               {/* <CheckboxItem>
               <View>
                 {toggleCheckBox ? (
