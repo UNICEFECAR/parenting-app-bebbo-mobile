@@ -192,7 +192,7 @@ const config = {
   reviewURL: Platform.select({
     android:
       "https://play.google.com/store/apps/details?id=org.unicef.zw.reraiumntwana",
-    ios: "itms-apps://itunes.apple.com/app/id6737232729?action=write-review",
+    ios: "itms-apps://itunes.apple.com/app/id6751264485?action=write-review",
   }),
   bothParentGender: 3396,
   bothChildGender: 716,

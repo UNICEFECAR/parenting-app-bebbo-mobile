@@ -25,8 +25,6 @@ import {
   LabelTextTerms,
 } from "./shared/ChildSetupStyle";
 import FormPrematureContainer, {
-  FormInfoLabel,
-  FormInfoPress,
   FormInfoPressPremature,
 } from "./shared/FormPrematureContainer";
 import { FlexFDirRowSpace } from "./shared/FlexBoxStyle";
@@ -128,7 +126,7 @@ const ChildDate = (props: any): any => {
       props.sendData({
         birthDate: currentDate,
         plannedTermDate: null,
-        isPremature: toggleCheckBox,
+        isPremature: false,
         isExpected: true,
       });
     } else {
@@ -155,7 +153,7 @@ const ChildDate = (props: any): any => {
   const showdobDatepicker = (): any => {
     setdobShow(true);
     if (Platform.OS == "ios") {
-      isExpected && setdoborExpectedDate(new Date());
+      // isExpected && setdoborExpectedDate(new Date());
       setDobDatePickerVisibility(true);
     }
   };
@@ -166,27 +164,38 @@ const ChildDate = (props: any): any => {
       setDueDatePickerVisibility(true);
     }
   };
+  const prematureHandlePress = () => {
+    if (!disablePrematureCheck) {
+      props.sendData({
+        birthDate: doborExpectedDate,
+        plannedTermDate: null,
+        isPremature: !toggleCheckBox,
+        isExpected: isExpected,
+      });
+      setToggleCheckBox(!toggleCheckBox);
+      setdueDate(null);
+    }
+  }
   return (
     <>
       <FormDateContainer>
         {Platform.OS != "ios" ? (
           <FormInputGroup>
-            <FormPrematureContainer>
-              <LabelText>
+            <FormPrematureContainer style={{marginBottom:20}}>
+              <LabelChildText>
                 {prevScreen == "EditScreen"
                   ? t("addAnotherChildSetupDobLabel")
                   : t("childSetupdobLabel")}
-              </LabelText>
-              <FormInfoLabel>
-                <FormInfoPress onPress={(): any => setDobModalVisible(true)}>
+               <Text>{"    "}</Text>
+                <FormInfoPressPremature onPress={(): any => setDobModalVisible(true)}>
                   <Icon
                     name="ic_info"
                     size={15}
                     color="#070707"
                     onPress={(): any => setDobModalVisible(true)}
                   />
-                </FormInfoPress>
-              </FormInfoLabel>
+                </FormInfoPressPremature>
+              </LabelChildText>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
               <FormInputBox>
@@ -224,22 +233,21 @@ const ChildDate = (props: any): any => {
           </FormInputGroup>
         ) : (
           <FormInputGroup>
-            <FormPrematureContainer>
-              <LabelText>
+            <FormPrematureContainer style={{marginBottom:20}}>
+              <LabelChildText>
                 {prevScreen == "EditScreen"
                   ? t("addAnotherChildSetupDobLabel")
                   : t("childSetupdobLabel")}
-              </LabelText>
-              <FormInfoLabel>
-                <FormInfoPress onPress={(): any => setDobModalVisible(true)}>
+              <Text>{"    "}</Text>
+                <FormInfoPressPremature onPress={(): any => setDobModalVisible(true)}>
                   <Icon
                     name="ic_info"
                     size={15}
                     color="#070707"
                     onPress={(): any => setDobModalVisible(true)}
                   />
-                </FormInfoPress>
-              </FormInfoLabel>
+                </FormInfoPressPremature>
+              </LabelChildText>
             </FormPrematureContainer>
             <Pressable onPress={showdobDatepicker}>
               <View style={{ marginTop: -10 }}>
@@ -279,23 +287,11 @@ const ChildDate = (props: any): any => {
             </Pressable>
           </FormInputGroup>
         )}
-
+      {disablePrematureCheck ? null : 
         <FormPrematureContainer>
           <Pressable
             style={{ flexDirection: "row", alignItems: "center" }}
-            onPress={(): any => {
-              if (!disablePrematureCheck) {
-                props.sendData({
-                  birthDate: doborExpectedDate,
-                  plannedTermDate: null,
-                  isPremature: !toggleCheckBox,
-                  isExpected: isExpected,
-                });
-                setToggleCheckBox(!toggleCheckBox);
-                setdueDate(null);
-              }
-            }}
-          >
+            onPress={prematureHandlePress}>
             <CheckboxItem>
               <View>
                 {toggleCheckBox ? (
@@ -322,7 +318,7 @@ const ChildDate = (props: any): any => {
             </LabelRow>
           </Pressable>
         </FormPrematureContainer>
-
+}
         {toggleCheckBox && !disablePrematureCheck ? (
           <>
             <ShiftFromTop15>

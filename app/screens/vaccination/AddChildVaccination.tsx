@@ -31,6 +31,7 @@ import {
 } from "@components/shared/HeaderContainerStyle";
 import Icon, { IconML } from "@components/shared/Icon";
 import ModalPopupContainer, {
+  ModalPopupContent,
   PopupClose,
   PopupCloseContainer,
   PopupOverlay,
@@ -916,7 +917,9 @@ const AddChildVaccination = ({ route, navigation }: any): any => {
                 </PopupClose>
               </PopupCloseContainer>
               <ShiftFromTopBottom10>
-                <Heading3Center>{t("vcDeleteWarning")}</Heading3Center>
+                <ModalPopupContent>
+                  <Heading3Center>{t("vcDeleteWarning")}</Heading3Center>
+                </ModalPopupContent>
               </ShiftFromTopBottom10>
               <ButtonContainerTwo>
                 <ButtonColTwo>

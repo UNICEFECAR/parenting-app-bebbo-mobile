@@ -93,6 +93,10 @@ const styles = StyleSheet.create({
   headingFlexShrink: {
     flexShrink: 1,
   },
+  titleContainer: {
+    flex: 3,
+    marginHorizontal: 2,
+  },
   iconStyle: {
     alignSelf: "center",
     flex: 1,
@@ -436,7 +440,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 <Icon name="ic_sb_tools" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={styles.headingFlexShrink}>
+            <Heading4 numberOfLines={2} ellipsizeMode="tail" style={[styles.headingFlexShrink,styles.titleContainer]}>
               {t("drawerMenutoolsTxt")}
             </Heading4>
             <Icon
@@ -659,7 +663,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
               </OuterIconLeft15>
             </OuterIconRow>
             <>
-              <Heading4 style={styles.headingFlexShrink}>
+              <Heading4 numberOfLines={2} ellipsizeMode="tail" style={[styles.headingFlexShrink,styles.titleContainer]}>
                 {t("aboutBebboDrawerMenu", {
                   appName: t("homeScreenheaderTitle"),
                 })}
@@ -744,6 +748,22 @@ const CustomDrawerContent = ({ navigation }: any): any => {
                 </OuterIconRow>
                 <Heading4 style={styles.headingFlexShrink}>
                   {t("drawerMenuPrivacyTxt")}
+                </Heading4>
+              </DrawerLinkView>
+              <DrawerLinkView
+                onPress={(): any => {
+                  navigation.navigate("TermsPage");
+                  navigation.closeDrawer();
+                }}
+                style={{marginBottom: 14}}
+              >
+                <OuterIconRow>
+                  <OuterIconLeft15 style={{ width: 25, alignItems: "center" }}>
+                    <Icon name="terms_conditions" size={20} color="#000" />
+                  </OuterIconLeft15>
+                </OuterIconRow>
+                <Heading4 style={styles.headingFlexShrink}>
+                  {t("tNcheader")}
                 </Heading4>
               </DrawerLinkView>
             </>

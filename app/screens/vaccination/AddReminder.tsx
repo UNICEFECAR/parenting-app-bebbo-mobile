@@ -28,6 +28,7 @@ import {
 } from "@components/shared/HeaderContainerStyle";
 import Icon, { IconML, IconViewBorder } from "@components/shared/Icon";
 import ModalPopupContainer, {
+  ModalPopupContent,
   PopupClose,
   PopupCloseContainer,
   PopupOverlay,
@@ -901,7 +902,9 @@ const AddReminder = ({ route, navigation }: Props): any => {
                   </PopupClose>
                 </PopupCloseContainer>
                 <ShiftFromTopBottom10>
-                  <Heading3Center>{warningTxt}</Heading3Center>
+                  <ModalPopupContent>
+                    <Heading3Center>{warningTxt}</Heading3Center>
+                  </ModalPopupContent>
                 </ShiftFromTopBottom10>
                 <ButtonContainerTwo>
                   <ButtonColTwo>

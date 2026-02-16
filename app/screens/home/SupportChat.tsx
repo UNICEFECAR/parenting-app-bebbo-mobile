@@ -8,6 +8,7 @@ import {
   Heading4Center,
 } from "../../instances/bebbo/styles/typography";
 import React, {
+  useCallback,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -115,14 +116,22 @@ const SupportChat = ({ navigation }: Props): any => {
   const [steps, setsteps] = useState<any>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const flatListRef = useRef<any>(null);
+  const isUserScrollingRef = useRef(false);
+  const isNearBottomRef = useRef(true);
+  const forceScrollOnceRef = useRef(false);
+  const prevStepsLengthRef = useRef(steps.length);
   const insets = useSafeAreaInsets();
   const noDataStep = (): any => {
     console.log("noDataStep");
   };
-  const updateChatBotData = (updatedData: any): any => {
+  
+  const updateChatBotData = useCallback((updatedData: any) => {
     setsteps(updatedData);
-    dispatch(setchatBotData(updatedData));
-  };
+    // Debounce or delay the Redux dispatch so it doesn't block the UI
+    setTimeout(() => {
+      dispatch(setchatBotData(updatedData));
+    }, 100);
+  }, [dispatch]);
   const showdynamicdelay = (stepobj: any[], index: number): any => {
     setTimeout(() => {
       let localsteps = [...stepobj];
@@ -150,7 +159,7 @@ const SupportChat = ({ navigation }: Props): any => {
     updateChatBotData(localsteps);
   };
 
-  const categorySelection = (
+  const categorySelection = useCallback((
     stepIndex: any,
     optionIndex: any,
     steps2: any
@@ -236,6 +245,7 @@ const SupportChat = ({ navigation }: Props): any => {
         categoryName: localsteps[indexForText].answer.label,
       });
     } else if (nextstepid == expertAdviceId) {
+      forceScrollOnceRef.current = true;
       localsteps[index].textToShow = localsteps[stepIndex].options[optionIndex];
       const indexForText = localsteps.reduce(
         (acc: any, el: any, i: any) => (el.id === explorecatstep ? i : acc),
@@ -264,7 +274,13 @@ const SupportChat = ({ navigation }: Props): any => {
     if (nextstepid == expertAdviceId) {
       showdynamicdelay(localsteps, index);
     }
-  };
+  },[taxonomy.chatbot_subcategory,
+    faqsData,
+    netInfo.isConnected,updateChatBotData,
+    showdynamicdelay,
+    logEvent,
+    t,
+    noDataStep]);
 
   const category = taxonomy.chatbot_category.map((x: any, i: any) => {
     console.log(i);
@@ -550,27 +566,82 @@ const SupportChat = ({ navigation }: Props): any => {
       end: true,
     },
   ];
-
+  const handleScroll = (event: any) => {
+    const {
+      layoutMeasurement,
+      contentOffset,
+      contentSize,
+    } = event.nativeEvent;
+  
+    const distanceFromBottom =
+      contentSize.height -
+      (layoutMeasurement.height + contentOffset.y);
+  
+    // Bigger threshold is CRITICAL for long lists
+    isNearBottomRef.current = distanceFromBottom < 250;
+  };
+  
+  const handleScrollBeginDrag = () => {
+    isUserScrollingRef.current = true;
+  };
+  
+  const handleScrollEndDrag = () => {
+    isUserScrollingRef.current = false;
+  };
+  const scrollToBottomIfAllowed = () => {
+    if (
+      (isNearBottomRef.current && !isUserScrollingRef.current) ||
+      forceScrollOnceRef.current
+    ) {
+      requestAnimationFrame(() => {
+        flatListRef.current?.scrollToEnd({ animated: true });
+        forceScrollOnceRef.current = false;
+      });
+    }
+  };
+  // useEffect(() => {
+  //   if (
+  //     steps.length > prevStepsLengthRef.current &&
+  //     isNearBottomRef.current &&
+  //     !isUserScrollingRef.current
+  //   ) {
+  //     requestAnimationFrame(() => {
+  //       flatListRef.current?.scrollToEnd({ animated: true });
+  //     });
+  //   }
+  
+  //   prevStepsLengthRef.current = steps.length;
+  // }, [steps.length]);
   useEffect(() => {
-    setTimeout(() => {
-      if (flatListRef && flatListRef.current && steps.length > 0) {
-        flatListRef.current.scrollToIndex({
-          animated: true,
-          index: steps.length - 1,
-          viewPosition: 1,
-        });
-      }
-    }, 0);
-    setTimeout(() => {
-      if (flatListRef && flatListRef.current && steps.length > 0) {
-        flatListRef.current.scrollToIndex({
-          animated: true,
-          index: steps.length - 1,
-          viewPosition: 1,
-        });
-      }
-    }, delayOfConcurrentSteps);
+    prevStepsLengthRef.current = steps.length;
+    if (steps.length > prevStepsLengthRef.current - 1) {  // Only new items
+      setTimeout(() => {
+        if (!isUserScrollingRef.current) {
+          flatListRef.current?.scrollToEnd({ animated: true });
+        }
+      }, 100);
+    }
   }, [steps]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (flatListRef && flatListRef.current && steps.length > 0) {
+  //       flatListRef.current.scrollToIndex({
+  //         animated: true,
+  //         index: steps.length - 1,
+  //         viewPosition: 1,
+  //       });
+  //     }
+  //   }, 0);
+  //   setTimeout(() => {
+  //     if (flatListRef && flatListRef.current && steps.length > 0) {
+  //       flatListRef.current.scrollToIndex({
+  //         animated: true,
+  //         index: steps.length - 1,
+  //         viewPosition: 1,
+  //       });
+  //     }
+  //   }, delayOfConcurrentSteps);
+  // }, [steps]);
 
   const setOnloadChatBotData = (chatBotData: any, stepsjson: any): any => {
     console.log("ChatbotData", chatBotData);
@@ -660,24 +731,20 @@ const SupportChat = ({ navigation }: Props): any => {
                 <FlatList
                   ref={flatListRef}
                   data={steps}
-                  onScroll={(e): any => {
-                    console.log("on scroll Error e-", e);
-                  }}
+                  extraData={steps}
+                  onScroll={handleScroll}
+                  onScrollBeginDrag={handleScrollBeginDrag}
+                  onScrollEndDrag={handleScrollEndDrag}
+                  scrollEventThrottle={16}
                   nestedScrollEnabled={true}
-                  initialScrollIndex={Math.max(steps.length - 1, 0)}
+                  onContentSizeChange={scrollToBottomIfAllowed}
+                  onLayout={scrollToBottomIfAllowed}
                   removeClippedSubviews={true}
-                  initialNumToRender={75}
-                  maxToRenderPerBatch={75}
+                  initialNumToRender={20}
+                  maxToRenderPerBatch={10}
                   updateCellsBatchingPeriod={100}
                   scrollIndicatorInsets={{ right: 1 }}
-                  windowSize={90}
-                  getItemLayout={(data, index): any => {
-                    return {
-                      length: windowWidthstyle,
-                      offset: windowHeightstyle * index,
-                      index,
-                    };
-                  }}
+                  windowSize={500}
                   renderItem={({ item, index }: any): any => (
                     <ChatBot
                       item={item}
@@ -693,7 +760,7 @@ const SupportChat = ({ navigation }: Props): any => {
                     />
                   )}
                   keyExtractor={(item: any, index: any): any =>
-                    index.toString()
+                    `step-${item.id}`
                   }
                   onScrollToIndexFailed={(info: {
                     averageItemLength: number;

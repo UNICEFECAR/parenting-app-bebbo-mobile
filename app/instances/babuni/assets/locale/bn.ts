@@ -246,7 +246,7 @@ const bn = {
     "growthDeleteWarning": "আপনি কি নিশ্চিত যে শিশুর বৃদ্ধি সংশ্লিষ্ট পরিমাপগুলো মুছে ফেলতে চান?",
     "growthDeleteOption1": "বাতিল করুন",
     "growthDeleteOption2": "নিশ্চিত করুন",
-    "expectChildAddTxt": "প্রত্যাশিত শিশুর তথ্য যুক্ত করুন",
+    "expectChildAddTxt": "+ প্রত্যাশিত শিশুর তথ্য যুক্ত করুন",
     "expectChildDueDateTxt": "শিশুর প্রত্যাশিত জন্মের তারিখ",
     "expectPreferNametxt": "কোন পছন্দসই নাম?",
     "expectPreferNamePlacetxt": "আপনার শিশুর নাম লিখুন",
