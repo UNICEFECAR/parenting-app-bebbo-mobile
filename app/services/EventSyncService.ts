@@ -56,7 +56,11 @@ export const synchronizeEvents = async (netInfo: boolean): Promise<any> => {
       unsynchronizedEvents.forEach(async (event: any) => {
         if (typeof event !== 'undefined' && event !== null) {
           // logEventToFirebase(analyticsInstance, event);
-          await logAnalyticsEvent(event.name, event.params); 
+          const paramsWithOfflineFlag = {
+            ...(event.params || {}),
+            is_offline_event: true,
+          };
+          await logAnalyticsEvent(event.name, paramsWithOfflineFlag); 
           markEventAsSynchronized(realm, event);
         }
       });
