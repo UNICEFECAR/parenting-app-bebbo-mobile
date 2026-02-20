@@ -116,7 +116,7 @@ const FavArticles = (): any => {
           item.cover_video.url != undefined ? (
             <View
               style={{
-                padding: 15,
+                // padding: 15,
                 overflow: "hidden",
               }}
             >

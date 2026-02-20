@@ -37,6 +37,7 @@ const config = {
   videoTypeVimeo: "vimeo",
   videoTypeYoutube: "youtube",
   videoTypeImage: "novideo",
+  videoTypeDirect: "direct",
   backupGDriveFolderName: "ParentBuddyDev",
   backupGDriveFileName: "mybackup.json",
   tempRealmFile: `${RNFS.DocumentDirectoryPath}/user1.realm`,
