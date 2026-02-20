@@ -367,7 +367,7 @@ const Articles = ({ route, navigation }: any): any => {
             videoIsFocused == true ? (
               <View
                 style={{
-                  padding: 15,
+                  // padding: 15,
                   overflow: "hidden",
                 }}
               >

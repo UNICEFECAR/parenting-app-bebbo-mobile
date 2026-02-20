@@ -231,7 +231,7 @@ const XKrs = {
               growthDeleteWarning: "Da li ste sigurni da želite da obrišete detalje u vezi sa merama rasta deteta?",
               growthDeleteOption1: "Poništite",
               growthDeleteOption2: "Potvrdite",
-              expectChildAddTxt: "Dodajte detalje o detetu čije rođenje očekujete",
+              expectChildAddTxt: "+ Dodajte detalje o detetu čije rođenje očekujete",
               expectChildDueDateTxt: "Očekivani termin rođenja",
               expectPreferNametxt: "Jeste li izabrali ime za dete?",
               expectPreferNamePlacetxt: "Unesite ime deteta",
