@@ -61,6 +61,7 @@ const FavArticles = (): any => {
   );
   const articleDataall = useAppSelector(selectArticleDataAll);
   const [favAdvicesToShow, setfavAdvicesToShow] = useState([]);
+  const [loading, setLoading] = useState(true);
   const netInfo = useNetInfoHook();
   const goToArticleDetail = (item: any): any => {
     navigation.navigate("DetailsScreen", {
@@ -73,6 +74,7 @@ const FavArticles = (): any => {
   useFocusEffect(
     React.useCallback(() => {
       async function fetchData(): Promise<any> {
+        setLoading(true);
         if (favoriteadvices.length > 0) {
           const filterQuery = favoriteadvices
             .map((x: any) => `id = '${x}'`)
@@ -96,6 +98,7 @@ const FavArticles = (): any => {
         } else {
           setfavAdvicesToShow([]);
         }
+        setLoading(false);
       }
       fetchData();
     }, [favoriteadvices])
@@ -157,7 +160,7 @@ const FavArticles = (): any => {
     <>
       <ContainerView style={{ backgroundColor: backgroundColorList }}>
         <FlexCol>
-          {favAdvicesToShow.length > 0 ? (
+          {loading ? null : favAdvicesToShow.length > 0 ? (
             <FlatList
               ref={flatListRef}
               data={favAdvicesToShow}
