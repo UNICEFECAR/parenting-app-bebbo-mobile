@@ -409,7 +409,7 @@ const XKsq = {
                 forceUpdateOkBtn: "OK",
                 favScreenremoveText: "Fshij",
                 settingScreenimportOptionHeader: "Importoni të dhënat nga",
-                childSetupprematureMessageNext: "Përmbajtja e kësaj pjese shfaqet duke u bazuar në moshën e korrigjuar dhe jo në moshën aktuale të fëmijës suaj të lindur parakohe",
+                childSetupprematureMessageNext: "Përmbajtja e kësaj pjese shfaqet duke u bazuar në moshën e korrigjuar dhe jo në moshën aktuale të fëmijës suaj të lindur parakohe.",
                 helloMessage: "Përshëndetje{{parentName}}, unë jam aplikacioni Foleja. Jam këtu për t'u përgjigjur në pyetjet tua",
                 selectAreaOfInterest: "Ju lutem zgjedhni fushën e interesit për të cilën keni pyetje",
                 question1: "Për cfarë është pyetja juaj?",

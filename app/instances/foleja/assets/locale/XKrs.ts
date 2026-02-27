@@ -298,7 +298,7 @@ const XKrs = {
               notiDelSelected: "Izbrišite izabrani deo  ({{count}})",
               onBirthDay: "Rođenje",
               month: "Mesec",
-              localizationChangeModalText: "Ako izaberete novu zemlju, sadržaj će se promeniti; ako izaberete novi jezik u toj zemlji, sadržaj će ostati isti, na novom jeziku",
+              localizationChangeModalText: "Ako izaberete novu zemlju, sadržaj će se promeniti; ako izaberete novi jezik u toj zemlji, sadržaj će ostati isti, na novom jeziku.",
               growthChartLegendSilverLabel: "Tipične vrednosti za uzrast",
               growthChartLegendOrangeLabel: "Suboptimalne vrednosti za uzrast",
               noVaccinesForPeriod: "U ovom periodu nema vakcinacije",
