@@ -2816,7 +2816,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/BebboPacific.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = SGVD5KL2Y7;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "BebboPacific-Info.plist";
@@ -2861,7 +2861,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/BebboPacific.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = SGVD5KL2Y7;
 				INFOPLIST_FILE = "BebboPacific-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Bebbo Pacific";

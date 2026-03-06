@@ -156,9 +156,6 @@ export default (): any => {
           tabBarHideOnKeyboard: true,
           tabBarLabelPosition: "below-icon",
           headerShown: false,
-          tabBarItemStyle: {
-            marginLeft:6
-          }
         }}
       >
         <DashboardBottomTab.Screen
