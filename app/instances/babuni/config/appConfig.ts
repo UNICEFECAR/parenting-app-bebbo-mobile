@@ -39,6 +39,7 @@ const config = {
   videoTypeVimeo: "vimeo",
   videoTypeYoutube: "youtube",
   videoTypeImage: "novideo",
+  videoTypeDirect: "direct",
   backupGDriveFolderName: "REMOVED_FACEBOOK_APP_ID1 App Backup",
   backupGDriveFileName: "mybackup.json",
   tempRealmFile: `${RNFS.DocumentDirectoryPath}/user1.realm`,
