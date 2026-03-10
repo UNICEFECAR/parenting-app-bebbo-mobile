@@ -33,7 +33,7 @@ The app can also operate in an offline mode in environments with limited interne
 
 ## Technology stack
 
-- [React Native](https://reactnative.dev/) version 0.72.5 was used to build native mobile applications for both iOS and Android using the same codebase. Several React Native modules have been incorporated in order to speed up the development process. Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
+- [React Native](https://reactnative.dev/) version 0.78.2 was used to build native mobile applications for both iOS and Android using the same codebase. Several React Native modules have been incorporated in order to speed up the development process. Refer to [package.json](https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/package.json) for more details.
 - [TypeScript](https://www.typescriptlang.org/) was used as a programming language.
 - [NPM](https://nodejs.org/en/) (Node Package Manager) was used to install third party packages and to run various scripts necessary during development.
 
@@ -70,9 +70,9 @@ npm -v
 3. Install React Native.
 
 ```
-npm install -g react-native@0.72.5
+npm install -g react-native@0.78.2
 react-native -version
-0.72.5
+0.78.2
 ```
 
 4. Clone the repo via GitBash.
