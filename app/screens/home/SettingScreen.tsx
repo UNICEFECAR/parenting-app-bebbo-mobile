@@ -1374,8 +1374,8 @@ const SettingScreen = (props: any): any => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t("settingScreenlocalizationHeader")}</Heading1>
-                {allCountries?.length >= 1 &&
-                  allCountries.some((c: any) => c.languages.length > 1) && (
+                {(allCountries?.length > 1 || 
+                  (allCountries?.length === 1 && allCountries[0]?.languages?.length > 1)) && (
                     <IconAreaPress
                       onPress={(): any => {
                         setModalVisible(true);
