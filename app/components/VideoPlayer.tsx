@@ -12,6 +12,10 @@ import WebView from "react-native-webview";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { getVimeoId, getYoutubeId } from "../services/Utils";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
+import Video from 'react-native-video';
+import { apiUrlDevelop } from "react-native-dotenv";
+import { useRoute } from "@react-navigation/native";
+
 const windowWidthstyle = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   containerStyle: {
@@ -51,7 +55,11 @@ const styles = StyleSheet.create({
 const VideoPlayer = (props: any): any => {
   const [playing, setPlaying] = useState(false);
   const [loading, setLoading] = useState(true);
+  const route = useRoute();
+  const currentScreenName = route.name;
+  const screenNameRelatedVideo = props.screenName ?? '';
   let videoId: string;
+  let videoUrl = '';
   let videoType = appConfig.videoTypeImage;
   const onReady = useCallback(() => {
     setLoading(false);
@@ -68,21 +76,39 @@ const VideoPlayer = (props: any): any => {
       </View>
     );
   };
+  const baseUrl = apiUrlDevelop.replace(/\/api$/, "");
   const netInfo = useNetInfoHook();
   if (
     props.selectedPinnedArticleData &&
     props.selectedPinnedArticleData != {}
   ) {
-    videoType =
-      props.selectedPinnedArticleData.cover_video &&
-      props.selectedPinnedArticleData.cover_video?.site &&
-      props.selectedPinnedArticleData?.cover_video?.site != ""
-        ? props.selectedPinnedArticleData?.cover_video?.site ==
-          appConfig.videoTypeVimeo
-          ? appConfig.videoTypeVimeo
-          : appConfig.videoTypeYoutube
-        : appConfig.videoTypeImage;
+    const videoRelativeUrl = props.selectedPinnedArticleData?.cover_video?.url;
+    if (videoRelativeUrl.startsWith("/sites")) {
+      videoUrl = baseUrl + videoRelativeUrl;
+    } else {
+      videoUrl = videoRelativeUrl;
+    }
+    if (props.selectedPinnedArticleData?.cover_video) {
+      const videoData = props.selectedPinnedArticleData.cover_video;
+      const url = videoData.url || "";
+      const site = videoData.site || "";
+      if (site === appConfig.videoTypeVimeo) {
+        videoType = appConfig.videoTypeVimeo;
+      }
+      else if (url.includes("/sites/")) {
+        videoType = appConfig.videoTypeDirect;
+      }
+      else if (site === appConfig.videoTypeYoutube) {
+        videoType = appConfig.videoTypeYoutube;
+      }
+      else {
+        videoType = appConfig.videoTypeImage;
+      }
+    } else {
+      videoType = appConfig.videoTypeImage;
+    }
   }
+  console.log(appConfig.videoTypeDirect,"appConfig.videoTypeDirect--",videoType)
   if (videoType == appConfig.videoTypeVimeo) {
     videoId = getVimeoId(props.selectedPinnedArticleData?.cover_video?.url);
   } else if (videoType == appConfig.videoTypeYoutube) {
@@ -174,23 +200,59 @@ const VideoPlayer = (props: any): any => {
                     <ActivityIndicator size="large" color="#000" style={{}} />
                   </View>
                 ) : null}
-                <YoutubePlayer
-                  videoId={videoId}
-                  play={playing}
-                  height={windowWidth * 0.563}
-                  onReady={onReady}
-                  onError={onError}
-                  webViewProps={{
-                    allowsInlineMediaPlayback: true,
-                    allowsFullscreenVideo: true,
-                    androidLayerType: "hardware",
-                  }}
-                  initialPlayerParams={{
-                    cc_lang_pref: "us",
-                    controls: true,
-                  }}
-                  webViewStyle={{ opacity: 0.99 }}
-                />
+                {videoType == appConfig.videoTypeYoutube ? (
+                  <YoutubePlayer
+                    videoId={videoId}
+                    play={playing}
+                    height={windowWidth * 0.563}
+                    onReady={onReady}
+                    onError={onError}
+                    webViewProps={{
+                      allowsInlineMediaPlayback: true,
+                      allowsFullscreenVideo: true,
+                      androidLayerType: "hardware",
+                    }}
+                    initialPlayerParams={{
+                      cc_lang_pref: "us",
+                      controls: true,
+                    }}
+                    webViewStyle={{ opacity: 0.99 }}
+                  />
+                ) : videoType === appConfig.videoTypeDirect ? (
+                  <>
+                    <Video
+                      source={{ uri: videoUrl }}
+                      style={{ width: '100%', pointerEvents: currentScreenName == "Articles" || currentScreenName == "Favourites" ? 'none' : 'auto',height: windowWidth * 0.563, opacity: 0.99 }}
+                      onReadyForDisplay={onReady}
+                      onError={onError}
+                      resizeMode="contain"
+                      paused={currentScreenName != "Articles" && currentScreenName != "Favourites" && screenNameRelatedVideo != "RelatedVideo" ? false : true}
+                      controls={currentScreenName == "Articles" || currentScreenName == "Favourites" || screenNameRelatedVideo == "RelatedVideo" ? false : true}
+                    />
+                    {currentScreenName == "Articles" || currentScreenName == "Favourites" || screenNameRelatedVideo == "RelatedVideo" ? (
+                      <Image
+                        source={require("@assets/trash/VideoPlayIcon.png")}
+                        style={{
+                          position: 'absolute',
+                          top: '30%',
+                          left: '50%',
+                          width: 80,
+                          height: 80,
+                          marginLeft: -40,
+                          opacity: 0.9,
+                        }}
+                      />
+                    ) : null}
+                  </>
+                )
+                  :
+                  (<View style={styles.typeImageView}>
+                    <Image
+                      source={require("@assets/trash/defaultArticleImage.png")}
+                      style={styles.typeImageImg}
+                    />
+                  </View>)
+                }
               </View>
             </>
           )}
