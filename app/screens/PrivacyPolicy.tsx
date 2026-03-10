@@ -80,7 +80,7 @@ const PrivacyPolicy = ({ navigation }: Props): any => {
         <OnboardingContainer style={styles.containerView}>
           <OnboardingHeading>
             <ChildAddTop>
-              <Heading1w style={{ color: "#fff" }}>
+              <Heading1w style={{ color: "#fff",maxWidth:'90%' }}>
                 {t("tNcprivacyPolicyTitle")}
               </Heading1w>
               <ShiftFromTop5>

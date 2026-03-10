@@ -61,6 +61,7 @@ const FavActivities = (): any => {
     (state: any) => state.childData.childDataSet.favoritegames
   );
   const [favGamesToShow, setfavGamesToShow] = useState([]);
+  const [loading, setLoading] = useState(true);
   const activityTaxonomyId =
     activeChild?.taxonomyData.prematureTaxonomyId ||
     activeChild?.taxonomyData.id;
@@ -80,6 +81,7 @@ const FavActivities = (): any => {
   useFocusEffect(
     React.useCallback(() => {
       async function fetchData(): Promise<any> {
+        setLoading(true);
         if (favoritegames.length > 0) {
           const filterQuery = favoritegames
             .map((x: any) => `id = '${x}'`)
@@ -97,6 +99,7 @@ const FavActivities = (): any => {
         } else {
           setfavGamesToShow([]);
         }
+        setLoading(false);
       }
       fetchData();
     }, [favoritegames])
@@ -147,7 +150,7 @@ const FavActivities = (): any => {
     <>
       <ContainerView style={{ backgroundColor: backgroundColorList }}>
         <FlexCol>
-          {favGamesToShow.length > 0 ? (
+          {loading ? null : favGamesToShow.length > 0 ? (
             <FlatList
               ref={flatListRef}
               data={favGamesToShow}

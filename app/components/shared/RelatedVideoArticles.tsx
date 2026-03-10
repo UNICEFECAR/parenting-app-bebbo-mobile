@@ -184,7 +184,7 @@ const RelatedVideoArticles = (props: RelatedVideoArticlesProps): any => {
       >
         <RelatedArticleContainer2 key={index}>
           <View>
-            <VideoPlayer selectedPinnedArticleData={item}></VideoPlayer>
+            <VideoPlayer screenName="RelatedVideo" selectedPinnedArticleData={item}></VideoPlayer>
           </View>
           <View style={styles.imageView1}>
             <View style={styles.imageView}>
