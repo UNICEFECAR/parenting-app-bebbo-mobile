@@ -208,8 +208,31 @@ export const getAllHealthCheckupPeriods = (): any => {
   }
 
   allHealthCheckupsDataNew = Array.isArray(allHealthCheckupsDataNew) ? allHealthCheckupsDataNew : [allHealthCheckupsDataNew];
-  const sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures]?.sort(
-    (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ? 1 : -1,
+  // const sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures]?.sort(
+  //   (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ? 1 : -1,
+  // );
+  const sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures].sort(
+    (a: any, b: any) => {
+
+      const aOpen = Number(a.vaccination_opens);
+      const bOpen = Number(b.vaccination_opens);
+
+      // 1️⃣ Sort by vaccination_opens
+      if (aOpen !== bOpen) {
+        return aOpen - bOpen;
+      }
+
+      // 2️⃣ Sort by measurementDate (newest first)
+      const aDate = a?.growthMeasures?.measurementDate
+        ? new Date(a.growthMeasures.measurementDate).getTime()
+        : 0;
+
+      const bDate = b?.growthMeasures?.measurementDate
+        ? new Date(b.growthMeasures.measurementDate).getTime()
+        : 0;
+
+      return bDate - aDate;
+    }
   );
   const specialPeriod = sortedGroupsForPeriods.filter(
     (p: any) =>
@@ -220,16 +243,16 @@ export const getAllHealthCheckupPeriods = (): any => {
     (period: any) => period?.vaccination_opens > childAgeIndays,
   );
   const previousPeriods = specialPeriod.length > 0 ? sortedGroupsForPeriods
-  .filter(
-    (p: any) =>
+    .filter(
+      (p: any) =>
       (
         p.vaccination_opens === 0 &&
         p.vaccination_ends === appConfig.maxPeriodDays && p.isAdditional && p.isAdditional === true
       )
-  )
-  .reverse() : sortedGroupsForPeriods
-    .filter((period: any) => period?.vaccination_opens <= childAgeIndays)
-    .reverse();
+    )
+    .reverse() : sortedGroupsForPeriods
+      .filter((period: any) => period?.vaccination_opens <= childAgeIndays)
+      .reverse();
 
   // logic to add current period to upcomingPeriods and remove it from previousPeriods
   let currentPeriod;
