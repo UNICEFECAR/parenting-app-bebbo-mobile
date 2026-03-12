@@ -138,6 +138,17 @@ Before submitting your PR, make sure:
 
 ---
 
+## Code Review Process
+
+Maintainers review all pull requests before merging.
+
+If changes are required, contributors may be asked to update their pull request.
+Maintainers may request changes instead of modifying contributor commits directly so that contributor history is preserved and proper credit is given.
+
+In some cases maintainers may push minor fixes directly to the contributor branch when "Allow edits from maintainers" is enabled.
+
+---
+
 ## Reporting Issues
 
 When opening an issue, please include:
