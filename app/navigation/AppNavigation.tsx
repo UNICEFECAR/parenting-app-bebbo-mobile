@@ -99,7 +99,7 @@ export default (): any => {
   const allCountries = useAppSelector(selectAllCountries);
   const hasLoggedEvent = useRef(false);
   let currentCount = 0;
-  const messaging = getMessaging(getApp());
+  const messaging = React.useMemo(() => getMessaging(getApp()), []);
   // console.log("token is--",messaging.getToken())
   const callUrl = (url: any): any => {
     if (url) {
@@ -867,60 +867,64 @@ export default (): any => {
     }
   };
   useEffect(() => {
-    onNotificationOpenedApp(messaging, (remoteMessage) => {
-      if (remoteMessage) {
-        // background click noti
-        if (userIsOnboarded == true) {
-          redirectPayload(remoteMessage);
-        }
-      }
-    });
-    // Check whether an initial notification is available
-    getInitialNotification(messaging)
-      .then((remoteMessage) => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 2000);
+    if (!userIsOnboarded) return;
+    const task = InteractionManager.runAfterInteractions(() => {
+      onNotificationOpenedApp(messaging, (remoteMessage) => {
         if (remoteMessage) {
-          // after kill and restart application
+          // background click noti
           if (userIsOnboarded == true) {
             redirectPayload(remoteMessage);
           }
         }
       });
+      // Check whether an initial notification is available
+      getInitialNotification(messaging)
+        .then((remoteMessage) => {
+          if (remoteMessage) {
+            // after kill and restart application
+            if (userIsOnboarded == true) {
+              redirectPayload(remoteMessage);
+            }
+          }
+        });
 
-    // let hideDelay = 2000;
-    // if (userIsOnboarded) {
-    //   hideDelay = Platform.OS === 'android' ? 0 : 500;
-    // }
-    // if (Platform.OS === 'ios') {
-    //   NativeModules.RNSplashScreen.setAnimationFinished(true);
-    // }
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 2000);
+      // let hideDelay = 2000;
+      // if (userIsOnboarded) {
+      //   hideDelay = Platform.OS === 'android' ? 0 : 500;
+      // }
+      // if (Platform.OS === 'ios') {
+      //   NativeModules.RNSplashScreen.setAnimationFinished(true);
+      // }
+      
 
-    setBackgroundMessageHandler(messaging, async (remoteMessage) => {
-      try {
-        // console.log('Remote notification', JSON.stringify(remoteMessage))
-      } catch (err) {
-        console.log(err);
-      }
+      setBackgroundMessageHandler(messaging, async (remoteMessage) => {
+        try {
+          // console.log('Remote notification', JSON.stringify(remoteMessage))
+        } catch (err) {
+          console.log(err);
+        }
+      });
+      onMessage(messaging, async (remoteMessage) => {
+        //type article/activities
+        //foreground call
+        if (
+          remoteMessage &&
+          remoteMessage.notification &&
+          remoteMessage.notification.body &&
+          remoteMessage.notification.title
+        ) {
+          Alert.alert(
+            remoteMessage.notification.title,
+            remoteMessage.notification.body,
+            [{ text: t("forceUpdateOkBtn") }]
+          );
+        }
+      });
     });
-    const unsubscribe = onMessage(messaging, async (remoteMessage) => {
-      //type article/activities
-      //foreground call
-      if (
-        remoteMessage &&
-        remoteMessage.notification &&
-        remoteMessage.notification.body &&
-        remoteMessage.notification.title
-      ) {
-        Alert.alert(
-          remoteMessage.notification.title,
-          remoteMessage.notification.body,
-          [{ text: t("forceUpdateOkBtn") }]
-        );
-      }
-    });
-    return unsubscribe;
+    return () => task.cancel();
   }, [userIsOnboarded]);
 
   useMemo(() => {
@@ -1082,17 +1086,17 @@ export default (): any => {
             routeNameRef.current = navigationRef.current.getCurrentRoute().name;
             // SplashScreen.hide();
           }}
-          onStateChange={async (): Promise<any> => {
+          onStateChange={(): any => {
             const previousRouteName = routeNameRef.current;
             const currentRouteName =
               navigationRef.current.getCurrentRoute().name;
             console.log(`Previous route: ${previousRouteName}`);
             console.log(`Current route: ${currentRouteName}`);
             if (previousRouteName !== currentRouteName) {
-              await logAnalyticsEvent('screen_view', {
+              logAnalyticsEvent('screen_view', {
                 screen_name: currentRouteName,
                 screen_class: currentRouteName,
-              });
+              }).catch(() => {});
               const eventData = { name: currentRouteName + "_opened" };
               logEvent(eventData, netInfo.isConnected);
             }

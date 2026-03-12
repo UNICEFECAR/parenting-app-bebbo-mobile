@@ -164,27 +164,23 @@ android {
         }
     }
 
-    packagingOptions {
-        pickFirst 'lib/*/libfbjni.so'
-        pickFirst 'lib/*/libc++_shared.so'
-        pickFirst 'lib/*/libhermes.so'
-        pickFirst 'lib/*/libreactnative.so'
-        pickFirst 'lib/*/libjsi.so'
-
-        // Specific to New Architecture (Fabric/TurboModules)
-        pickFirst 'lib/*/libreact_codegen_rncore.so'
-        pickFirst 'lib/*/libturbomodulejsijni.so'
-        pickFirst 'lib/*/libfabricjni.so'
-        pickFirst 'lib/*/libmapbufferjni.so'
-        pickFirst 'lib/*/libyoga.so'
-    }
     // Splits block if needed
+    // splits {
+    //     abi {
+    //         enable true
+    //         reset()
+    //         include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+    //         universalApk true
+    //     }
+    // }
     splits {
         abi {
-            enable true
-            reset()
-            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
-            universalApk true
+            enable false
+        }
+    }
+    packaging {
+        jniLibs {
+            pickFirst '**/libc++_shared.so'
         }
     }
     signingConfigs {
@@ -235,8 +231,8 @@ android {
         }
         bangla {
             applicationId 'org.unicef.bangladesh.babuni'
-            versionCode 10
-            versionName "1.0.2"
+            versionCode 11
+            versionName "1.0.3"
             signingConfig signingConfigs.bangla
         }
         merhababebek {
@@ -268,20 +264,6 @@ android {
             versionCode 5
             versionName "1.0.1"
             signingConfig signingConfigs.bebbopacific
-        }
-    }
-}
-
-androidComponents {
-    onVariants(selector().all()) { variant ->
-        def versionCodes = ["armeabi-v7a": 1, "x86": 2, "arm64-v8a": 3, "x86_64": 4]
-
-        variant.outputs.each { output ->
-            def abiFilter = output.filters.find { it.filterType == "ABI" }
-            if (abiFilter != null) {
-                def abi = abiFilter.identifier
-                output.versionCode.set(versionCodes.get(abi) * 1048576 + defaultConfig.versionCode)
-            }
         }
     }
 }
