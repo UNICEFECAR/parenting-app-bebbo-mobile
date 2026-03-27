@@ -177,7 +177,7 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
       parentName
     );
     userRelationToParent =
-      userRelationToParent.length > 0 ? userRelationToParent[0].value : "";
+      userRelationToParent.length > 0 ? typeof userRelationToParent == "object" ? userRelationToParent[0].value : userRelationToParent : "";
     updateActiveChild(
       activeChild,
       "parent_gender",

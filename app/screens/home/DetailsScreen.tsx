@@ -116,7 +116,7 @@ export type RelatedArticlesProps = {
   queryText?: any;
 };
 const DetailsScreen = ({ route, navigation }: any): any => {
-  //const netInfo = useNetInfoHook();
+  const netInfo = useNetInfoHook();
   const {
     fromCd,
     headerColor,
@@ -128,9 +128,8 @@ const DetailsScreen = ({ route, navigation }: any): any => {
     currentSelectedChildId,
     fromAdditionalScreen,
     queryText,
-    netInfo,
   } = route.params;
-  //console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
+  console.log(netInfo,"netInfo",detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor, newBackgroundColor;
   if (
     fromScreen === "Activities" ||
@@ -353,46 +352,32 @@ const DetailsScreen = ({ route, navigation }: any): any => {
               fromScreen === "HomeAct" ||
               fromScreen === "FavActivities"
             ) {
-              console.log(
-                "Game Details screen opened from actvties",
-                fromScreen,
-                articleData[0].id,
-                articleData[0].activity_category
-              );
               const eventGameCatData = {
                 name:
                   GAME_CATEGORY_SELECTED +
                   "_" +
-                  articleData[0].activity_category,
+                  (articleData?.[0]?.activity_category != null ? articleData[0].activity_category : 0),
               };
               const eventData = {
                 name: GAME_DETAILS_OPENED,
                 params: {
-                  game_id: articleData[0].id,
-                  game_category_id: articleData[0].activity_category,
+                  game_id: articleData?.[0]?.id != null ? articleData[0].id : 0,
+                  game_category_id: articleData?.[0]?.activity_category != null ? articleData[0].activity_category : 0,
                 },
               };
               await logEvent(eventGameCatData, netInfo.isConnected);
-              console.log(
-                "Params game pass for firebase event number type",
-                eventData
-              );
               await logEvent(eventData, netInfo.isConnected);
             } else {
               const eventAdviceCatData = {
-                name: ADVICE_CATEGORY_SELECTED + "_" + articleData[0].category,
+                name: ADVICE_CATEGORY_SELECTED + "_" + (articleData?.[0]?.category != null ? articleData[0].category : 0),
               };
               const eventData = {
                 name: ADVICE_DETAILS_OPENED,
                 params: {
-                  advise_id: articleData[0].id,
-                  advice_catergory_id: articleData[0].category,
+                  advise_id: articleData?.[0]?.id != null ? articleData[0].id : 0,
+                  advice_catergory_id: articleData?.[0]?.category != null ? articleData[0].category : 0,
                 },
               };
-              console.log(
-                "Params advice pass for firebase event number type1",
-                eventData
-              );
               await logEvent(eventAdviceCatData, netInfo.isConnected);
               await logEvent(eventData, netInfo.isConnected);
             }
@@ -415,37 +400,33 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   name:
                     GAME_CATEGORY_SELECTED +
                     "_" +
-                    videoarticleData[0].activity_category,
+                    (videoarticleData?.[0]?.activity_category != null ? videoarticleData[0].activity_category : 0),
                 };
                 const eventGameDetailsData = {
                   name: GAME_DETAILS_OPENED,
                   params: {
-                    game_id: videoarticleData[0].id,
-                    game_category_id: videoarticleData[0].activity_category,
+                    game_id: videoarticleData?.[0]?.id != null ? videoarticleData[0].id : 0,
+                    game_category_id: videoarticleData?.[0]?.activity_category != null ? videoarticleData[0].activity_category : 0,
                   },
                 };
-                logEvent(eventGameCatData, netInfo.isConnected);
-                logEvent(eventGameDetailsData, netInfo.isConnected);
+                await logEvent(eventGameCatData, netInfo.isConnected);
+                await logEvent(eventGameDetailsData, netInfo.isConnected);
               } else {
                 const eventAdviceCatData = {
                   name:
                     ADVICE_CATEGORY_SELECTED +
                     "_" +
-                    videoarticleData[0].category,
+                    (videoarticleData?.[0]?.category != null ? videoarticleData[0].category : 0),
                 };
                 const eventAdviceDetailsData = {
                   name: ADVICE_DETAILS_OPENED,
                   params: {
-                    advise_id: videoarticleData[0].id,
-                    advice_catergory_id: videoarticleData[0].category,
+                    advise_id: videoarticleData?.[0]?.id ? videoarticleData[0].id : 0,
+                    advice_catergory_id: videoarticleData?.[0]?.category != null ? videoarticleData[0].category : 0,
                   },
                 };
-                console.log(
-                  "Params advice pass for firebase event number type2",
-                  eventAdviceDetailsData
-                );
-                logEvent(eventAdviceCatData, netInfo.isConnected);
-                logEvent(eventAdviceDetailsData, netInfo.isConnected);
+                await logEvent(eventAdviceCatData, netInfo.isConnected);
+                await logEvent(eventAdviceDetailsData, netInfo.isConnected);
               }
             } else {
               //show alert and back function
@@ -472,34 +453,30 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           ) {
             const eventGameCatData = {
               name:
-                GAME_CATEGORY_SELECTED + "_" + detailData.activity_category,
+                GAME_CATEGORY_SELECTED + "_" + (detailData?.activity_category != null ? detailData.activity_category : 0),
             };
             const eventGameDetailsData = {
               name: GAME_DETAILS_OPENED,
               params: {
-                game_id: detailData.id,
-                game_category_id: detailData.activity_category,
+                game_id: detailData?.id ? detailData.id : 0,
+                game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0,
               },
             };
-            logEvent(eventGameCatData, netInfo.isConnected);
-            logEvent(eventGameDetailsData, netInfo.isConnected);
+            await logEvent(eventGameCatData, netInfo.isConnected);
+            await logEvent(eventGameDetailsData, netInfo.isConnected);
           } else {
             const eventAdviceCatData = {
-              name: ADVICE_CATEGORY_SELECTED + "_" + detailData.category,
+              name: ADVICE_CATEGORY_SELECTED + "_" + (detailData?.category != null ? detailData.category : 0),
             };
             const eventAdviceDetailsData = {
               name: ADVICE_DETAILS_OPENED,
               params: {
-                advise_id: detailData.id,
-                advice_catergory_id: detailData.category,
+                advise_id: detailData?.id != null ? detailData.id : 0,
+                advice_catergory_id: detailData?.category != null ? detailData.category : 0,
               },
             };
-            console.log(
-              "Params advice pass for firebase event number type3",
-              eventAdviceDetailsData
-            );
-            logEvent(eventAdviceCatData, netInfo.isConnected);
-            logEvent(eventAdviceDetailsData, netInfo.isConnected);
+            await logEvent(eventAdviceCatData, netInfo.isConnected);
+            await logEvent(eventAdviceDetailsData, netInfo.isConnected);
           }
         }
       } else {
@@ -527,35 +504,31 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                   name:
                     GAME_CATEGORY_SELECTED +
                     "_" +
-                    activityData[0].activity_category,
+                    (activityData?.[0]?.activity_category != null ? activityData[0].activity_category : 0) ,
                 };
                 const eventGameDetailsData = {
                   name: GAME_DETAILS_OPENED,
                   params: {
-                    game_id: activityData[0].id,
-                    game_category_id: activityData[0].activity_category,
+                    game_id: activityData?.[0]?.id != null ? activityData[0].id : 0,
+                    game_category_id: activityData?.[0]?.activity_category != null ? activityData[0].activity_category : 0,
                   },
                 };
-                logEvent(eventGameCatData, netInfo.isConnected);
-                logEvent(eventGameDetailsData, netInfo.isConnected);
+                await logEvent(eventGameCatData, netInfo.isConnected);
+                await logEvent(eventGameDetailsData, netInfo.isConnected);
               } else {
                 const eventAdviceCatData = {
                   name:
-                    ADVICE_CATEGORY_SELECTED + "_" + activityData[0].category,
+                    ADVICE_CATEGORY_SELECTED + "_" + (activityData?.[0]?.category != null ? activityData[0].category : 0),
                 };
                 const eventAdviceDetailsData = {
                   name: ADVICE_DETAILS_OPENED,
                   params: {
-                    advise_id: activityData[0].id,
-                    advice_catergory_id: activityData[0].category,
+                    advise_id: activityData?.[0]?.id != null ? activityData[0].id : 0,
+                    advice_catergory_id: activityData?.[0]?.category != null ? activityData[0].category : 0,
                   },
                 };
-                console.log(
-                  "Params advice pass for firebase event number type4",
-                  eventAdviceDetailsData
-                );
-                logEvent(eventAdviceCatData, netInfo.isConnected);
-                logEvent(eventAdviceDetailsData, netInfo.isConnected);
+                await logEvent(eventAdviceCatData, netInfo.isConnected);
+                await logEvent(eventAdviceDetailsData, netInfo.isConnected);
               }
             } else {
               //show alert and back function
@@ -581,37 +554,34 @@ const DetailsScreen = ({ route, navigation }: any): any => {
             ) {
               const eventGameCatData = {
                 name:
-                  GAME_CATEGORY_SELECTED + "_" + detailData.activity_category,
+                  GAME_CATEGORY_SELECTED + "_" + (detailData?.activity_category != null ? detailData.activity_category : 0),
               };
               const eventGameDetailsData = {
                 name: GAME_DETAILS_OPENED,
                 params: {
                   game_id: detailData.id,
-                  game_category_id: detailData.activity_category,
+                  game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0,
                 },
               };
-              logEvent(eventGameCatData, netInfo.isConnected);
-              logEvent(eventGameDetailsData, netInfo.isConnected);
+              await logEvent(eventGameCatData, netInfo.isConnected);
+              await logEvent(eventGameDetailsData, netInfo.isConnected);
             } else {
               const eventAdviceCatData = {
-                name: ADVICE_CATEGORY_SELECTED + "_" + detailData.category,
+                name: ADVICE_CATEGORY_SELECTED + "_" + (detailData?.category != null ? detailData.category : 0),
               };
               const eventAdviceDetailsData = {
                 name: ADVICE_DETAILS_OPENED,
                 params: {
-                  advise_id: detailData.id,
-                  advice_catergory_id: detailData.category,
+                  advise_id: detailData?.id != null ? detailData.id : 0,
+                  advice_catergory_id: detailData?.category != null ? detailData.category : 0,
                 },
               };
-              console.log(
-                "Params advice pass for firebase event number type5",
-                eventAdviceDetailsData
-              );
-              logEvent(eventAdviceCatData, netInfo.isConnected);
-              logEvent(eventAdviceDetailsData, netInfo.isConnected);
+              await logEvent(eventAdviceCatData, netInfo.isConnected);
+              await logEvent(eventAdviceDetailsData, netInfo.isConnected);
             }
           }
         } else {
+          console.log("detailData in else--",detailData)
           setDetailDataToUse(detailData);
           if (
             fromScreen === "Activities" ||
@@ -622,34 +592,30 @@ const DetailsScreen = ({ route, navigation }: any): any => {
           ) {
             const eventGameCatData = {
               name:
-                GAME_CATEGORY_SELECTED + "_" + detailData.activity_category,
+                GAME_CATEGORY_SELECTED + "_" + (detailData?.activity_category != null ? detailData.activity_category : 0),
             };
             const eventGameDetailsData = {
               name: GAME_DETAILS_OPENED,
               params: {
-                game_id: detailData.id,
-                game_category_id: detailData.activity_category,
+                game_id: detailData?.id != null ? detailData.id : 0,
+                game_category_id: detailData?.activity_category != null ? detailData.activity_category : 0,
               },
             };
-            logEvent(eventGameCatData, netInfo.isConnected);
-            logEvent(eventGameDetailsData, netInfo.isConnected);
+            await logEvent(eventGameCatData, netInfo.isConnected);
+            await logEvent(eventGameDetailsData, netInfo.isConnected);
           } else {
             const eventAdviceCatData = {
-              name: ADVICE_CATEGORY_SELECTED + "_" + detailData.category,
+              name: ADVICE_CATEGORY_SELECTED + "_" + (detailData?.category != null ? detailData.category : 0),
             };
             const eventAdviceDetailsData = {
               name: ADVICE_DETAILS_OPENED,
               params: {
-                advise_id: detailData.id,
-                advice_catergory_id: detailData.category,
+                advise_id: detailData?.id != null ? detailData.id : 0,
+                advice_catergory_id: detailData?.category != null ? detailData.category : 0,
               },
             };
-            console.log(
-              "Params advice pass for firebase event number type6",
-              eventAdviceDetailsData
-            );
-            logEvent(eventAdviceCatData, netInfo.isConnected);
-            logEvent(eventAdviceDetailsData, netInfo.isConnected);
+            await logEvent(eventAdviceCatData, netInfo.isConnected);
+            await logEvent(eventAdviceDetailsData, netInfo.isConnected);
           }
         }
       }
