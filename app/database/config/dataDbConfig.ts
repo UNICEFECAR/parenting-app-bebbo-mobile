@@ -53,7 +53,7 @@ export async function getDataRealmConfig(): Promise<{ Realm: typeof RealmType, c
       LanguageSchema,
       PartnerSchema
     ],
-    schemaVersion: 12,
+    schemaVersion: 13,
     onMigration: (oldRealm, newRealm) => {
       if (oldRealm.schemaVersion < 1) {
         // const oldObjects = oldRealm.objects('VariableEntity');
