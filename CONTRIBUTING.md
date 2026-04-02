@@ -1,183 +1,204 @@
-## 📄 `Contributing to Bebbo`
+## 📄 `Contributing to Bebbo Mobile App`
 
-Thank you for your interest in contributing to Bebbo, a multi-platform parenting app developed with React Native. This guide outlines how to get started, report issues, submit pull requests, and understand our review and merge process.
+Thank you for your interest in contributing to the Bebbo Mobile App project, a multi-platform parenting app developed with React Native. This document explains the workflow for contributing code, reporting issues, submitting pull requests and understanding our review and merge process.
+
+Please read this guide before starting any work.
 
 ---
 
-## Getting Started
+## Project Setup
 
-### 1. Clone the repository
+Before contributing, please set up the project locally by following the instructions in the README file:
 
+README:
+https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/README.md
+
+Make sure the app builds and runs successfully before starting development.
+
+---
+
+## Contribution Workflow
+
+The contribution workflow depends on whether you have write access to the repository.
+
+### External Contributors (No Write Access)
+1. Fork the repository to your GitHub account
+2. Clone your fork locally
+3. Add the original repository as upstream
+4. Create a new branch from `development`
+5. Make your changes
+6. Commit and push to your fork
+7. Create a Pull Request to the `development` branch of the main repository
+
+Example:
+```bash
+git clone https://github.com/<your-username>/parenting-app-bebbo-mobile.git
+cd parenting-app-bebbo-mobile
+git remote add upstream https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
+git checkout development
+git pull upstream development
+git checkout -b feature/your-feature-name
 ```
+
+### Internal Contributors (Write Access)
+1. Clone the main repository
+2. Create a branch from development
+3. Make changes
+4. Push the branch
+5. Create a Pull Request to the `development` branch.
+
+Example:
+```bash
 git clone https://github.com/UNICEFECAR/parenting-app-bebbo-mobile.git
+cd parenting-app-bebbo-mobile
+git checkout development
+git pull origin development
+git checkout -b feature/your-feature-name
 ```
+## Branching Strategy
 
-### 2. Setup Environment
+We follow a Git flow based branching strategy.
 
-- Node: 21.7.3
-- NPM: 10.8.2
-- React Native: 0.72.5
+| Branch | Purpose |
+|-------|---------|
+| main | Production releases |
+| development | Ongoing development |
+| feature/* | New features |
+| bugfix/* | Bug fixes |
+| hotfix/* | Production fixes |
 
-Use NPM only, not Yarn.
+### Rules
+- Do NOT commit directly to `main`
+- Do NOT commit directly to `development`
+- Always create a feature/bugfix branch from `development`
+- All Pull Requests must target the `development` branch
+- Only maintainers merge Pull Requests
 
-```bash
-npm install --legacy-peer-deps
-```
+## Branch Naming Examples
 
-### 3. Create your environment file
+Use the following naming conventions for branches:
 
-Copy the contents of [`.env.bebboDev`](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) from the shared Google Drive into:
+feature/chatbot-improvements  
+feature/offline-content-sync  
+bugfix/notification-navigation  
+bugfix/android-startup-crash  
+hotfix/playstore-build-fix  
 
-```
-env/.env.bebboDev
-```
+### Format
+`<type>/<short-description>`
 
----
+Types:
+- feature → New feature
+- bugfix → Bug fix
+- hotfix → Production fix
+- refactor → Code refactoring
+- docs → Documentation updates
 
-## iOS Setup
+## Pull Request Guidelines
 
-1. Install CocoaPods:
+Before submitting a Pull Request, please ensure the following:
 
-```bash
-cd ios && pod install
-```
+- The app builds successfully
+- No lint errors
+- No debug logs remain
+- Changes are tested on Android and iOS (if applicable)
+- PR description clearly explains the change
+- Related issue is linked (if applicable)
+- Screenshots are included for UI changes
 
-2. Download and place [GoogleService-Info.plist](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) into:
+### Pull Request Title Format
 
-```
-ios/GoogleServices/Development
-```
+[Feature] Added chatbot analytics  
+[Bugfix] Fixed notification navigation issue  
+[Hotfix] Android crash on startup  
 
-3. Font setup:
+### Pull Request Description Should Include
+- What was changed
+- Why the change was needed
+- Screenshots (if UI change)
+- Steps to test
 
-Copy `fontello.ttf` from:
+## Commit Message Guidelines
 
-```
-android/app/src/main/assets/fonts/fontello.ttf
-```
+Write clear and descriptive commit messages.
 
-to:
+### Recommended Format
+`<type>: <short description>`
 
-```
-node_modules/react-native-vector-icons/Fonts
-```
+Examples:
 
----
+feat: Added chatbot analytics logging  
+fix: Fixed Android notification crash  
+refactor: Improved event sync service  
+docs: Updated contributing guidelines  
 
-## Android Setup
+### Commit Types
+- feat → New feature
+- fix → Bug fix
+- refactor → Code improvement
+- docs → Documentation
+- style → Formatting changes
+- test → Testing
+- chore → Maintenance
 
-1. Place the [release keystore](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) file into:
+### Avoid commit messages like:
+fix  
+changes  
+update  
+done  
+misc    
 
-```
-android/app/
-```
+## Code Style Guidelines
 
-2. Place [googleServices.json](https://drive.google.com/drive/folders/1jVX2T4fqYSxNrVmuVQSMD5j_lKJigXDA?usp=sharing) into:
+Please follow the existing project coding style.
 
-```
-android/app/src/prodstaging/
-```
-
-3. Generate vector images:
-
-```bash
-FLAVOR=bebboDev npx react-native-vector-image generate
-```
-
----
-
-## Running the App
-
-### Metro bundler:
-
-```bash
-FLAVOR=bebboDev react-native start --reset-cache
-```
-
-### Android:
-
-```bash
-ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
-```
-
-### iOS:
-
-```bash
-ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release
-```
-
----
-
-## How to Contribute
-
-### 1. Branch from Development
-
-```bash
-git checkout -b feat/your-feature-name Development
-```
-
-### 2. Code Style
-
-- Use TypeScript
-- Use functional components and hooks
-- Follow naming conventions
-- Lint before pushing: `npm run lint`
-
----
-
-## Pull Request Checklist
-
-Before submitting your PR, make sure:
-
-- [ ] Your branch is based on `Development`
-- [ ] You tested the feature in both iOS and Android
-- [ ] You verified it works across relevant flavors
-- [ ] Your code is linted (`npm run lint`)
-- [ ] You wrote or updated documentation if needed
-- [ ] PR title follows [Conventional Commits](https://www.conventionalcommits.org/)
-
----
-
-## Code Review Process
-
-Maintainers review all pull requests before merging.
-
-If changes are required, contributors may be asked to update their pull request.
-Maintainers may request changes instead of modifying contributor commits directly so that contributor history is preserved and proper credit is given.
-
-In some cases maintainers may push minor fixes directly to the contributor branch when "Allow edits from maintainers" is enabled.
-
----
+General guidelines:
+- Use functional components
+- Use React hooks
+- Keep components small and reusable
+- Avoid very large files
+- Use meaningful variable and function names
+- Remove console logs before committing
+- Avoid commented unused code
+- Follow ESLint rules
+- Write reusable components where possible
+- Keep business logic separate from UI components
+- Use TypeScript types where applicable
+- Use consistent file and folder naming
 
 ## Reporting Issues
 
-When opening an issue, please include:
+When reporting issues, please include:
 
-- Description of the issue
+- Device name
+- OS version
+- App version
 - Steps to reproduce
-- Expected vs. actual behavior
-- Platform and OS version
-- Screenshot or video (if applicable)
-- App flavor (`bebboDev`, `Foleja`, etc.)
+- Screenshots or logs
+- Expected behavior
+- Actual behavior
 
----
+This helps us reproduce and fix issues faster.
 
-## Code Review Process
+## Feature Requests
 
-1. Every pull request must be reviewed by at least one maintainer.
-2. Larger or sensitive changes may require multiple reviewers.
-3. Address all feedback and comments before re-requesting review.
-4. Keep commits clean and meaningful.
+For new features or major changes, please open an issue first to discuss the approach before starting implementation.
 
----
+Please include:
+- Feature description
+- Why the feature is needed
+- Possible implementation approach (if any)
+- Screenshots or references (if applicable)
 
-## Merging
+## Code Reviews
 
-- Only maintainers can merge
-- Merges are done via squash and merge
-- CI checks must pass before merging
-- Avoid merging without an approved review
+All changes must go through Pull Request review before merging.
 
----
+Maintainers may:
+- Request changes
+- Suggest improvements
+- Ask for additional testing
+- Request code refactoring
 
-## Thank You
+In some cases maintainers may push minor fixes directly to the contributor branch when "Allow edits from maintainers" is enabled.
+Pull Requests will be merged only after approval from maintainers.
