@@ -63,7 +63,7 @@ const ESec = {
       "Si tienes otros hijos de 0 a 6 años, puedes agregar sus perfiles ahora o más tarde.",
     drawerMenuchildInfo: "Nació el {{childdob}}",
 
-    childSetupListaddSiblingBtn: "Agregar el perfil de otra niña o niño",
+    childSetupListaddSiblingBtn: "+ Agregar el perfil de otra niña o niño",
     letGetStartedText: "EMPECEMOS",
     childSetupListsaveBtnText: "Guardar",
     serviceProviderHeaderInfoText:

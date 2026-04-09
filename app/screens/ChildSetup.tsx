@@ -493,7 +493,6 @@ const ChildSetup = ({ navigation }: Props): any => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     maxLength={30}
-                    clearButtonMode="always"
                     onChangeText={(value: any): any => {
                       if (value.replace(/\s/g, "") == "") {
                         setName(value.replace(/\s/g, ""));

@@ -873,7 +873,6 @@ const AddNewChildgrowth = ({ route, navigation }: any): any => {
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={appConfig.maxCharForRemarks}
-                      clearButtonMode="always"
                       defaultValue={remarkTxt}
                       multiline={true}
                       onChangeText={(text: any): any =>

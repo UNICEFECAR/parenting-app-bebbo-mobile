@@ -209,7 +209,7 @@ const UZuz = {
     weightModalText: 'Bolaning vaznini tanlash uchun chizgʻichni siljiting',
     heightModalText: 'Bolaning boʻyini tanlash uchun chizgʻichni siljiting',
     articleModalText:
-      'Maslahatlarni topish uchun kerakli tugma ustiga bosing yoki kalit soʻzlar yordamida qidiring',
+      'Maslahatlarni topish uchun kerakli tugma ustiga bosing yoki kalit soʻzlar yordamida qidiring.',
     detailScreenArticleHeader: 'Maslahatlarni tanlash',
     detailScreenActivityHeader: 'Oʻyinlarni tanlash',
     trackMilestoneViewHeader: 'Boladagi rivojlanish bosqichlarini yangilang.',
@@ -354,7 +354,7 @@ const UZuz = {
     expectedChildDobLabel: 'Bola hali tugʻilmagan',
     babyNotificationText1: 'Bolaning profili yangilandi',
     activityModalText:
-      'Muayyan rivojlanish sohasiga tegishli Oʻyinlarni topish uchun kerakli tugmani bosing',
+      'Muayyan rivojlanish sohasiga tegishli Oʻyinlarni topish uchun kerakli tugmani bosing.',
     childDevModalText:
       'Farzandingiz shu davr mobaynida rivojlanishi kerak boʻlgan koʻnikmalarni egallaganini tekshiring va uning rivojlanishini oʻyin orqali qanday qoʻllab-quvvatlashni koʻring',
     months5tag: 'oy',
@@ -377,11 +377,11 @@ const UZuz = {
     childInfoAndText: 'va',
     childSetupdobText: 'Tugʻilgan sanani kiriting',
     growthModalText:
-      'Bu yerga farzandingizning vazn va boʻy oʻchamlarini kiritib boring; oʻsishini yaxshiroq qoʻllab-quvvatlashni oʻrganib olasiz',
+      'Bu yerga farzandingizning vazn va boʻy oʻchamlarini kiritib boring; oʻsishini yaxshiroq qoʻllab-quvvatlashni oʻrganib olasiz.',
     vaccineModalText:
-      'Bu yerda milliy emlash taqvimiga muvofiq roʻyxatdan oʻtishingiz, kuzatib borishingiz va har bir emlash haqida koʻproq maʼlumot olishingiz mumkin. Farzandingizni emlatish eslatmasini yoqing va xabarnomalar olib turing!',
+      'Bu yerda milliy emlash taqvimiga muvofiq roʻyxatdan oʻtishingiz, kuzatib borishingiz va har bir emlash haqida koʻproq maʼlumot olishingiz mumkin. Farzandingizni emlatish eslatmasini yoqing va xabarnomalar olib turing.',
     hcModalText:
-      'Bu yerda yozuvlar kiritishingiz, eslatmalarni yoqib qoʻyishingiz va farzandingizning tibbiy koʻriklari hamda koʻrik natijalari haqida xabarnomalar olib turishingiz mumkin!',
+      'Bu yerda yozuvlar kiritishingiz, eslatmalarni yoqib qoʻyishingiz va farzandingizning tibbiy koʻriklari hamda koʻrik natijalari haqida xabarnomalar olib turishingiz mumkin.',
     tryText: 'Qayta urinib koʻring...',
     deleteSuccess: 'Bola profili oʻchirib tashlandi',
     deleteError:
