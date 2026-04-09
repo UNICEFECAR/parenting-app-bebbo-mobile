@@ -70,6 +70,7 @@ import {
   Heading2Centerw,
   Heading3BoldCenterrw,
   Heading4Centerrw,
+  ShiftFromTopBottom20,
 } from "@styles/typography";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
@@ -583,7 +584,6 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     maxLength={30}
-                    clearButtonMode="always"
                     onChangeText={(value: any): any => {
                       if (value.replace(/\s/g, "") == "") {
                         setName(value.replace(/\s/g, ""));
@@ -728,13 +728,13 @@ const AddChildSetup = ({ route, navigation }: Props): any => {
                   </Pressable>
                 </ShiftFromTop20>
 
-                <ShiftFromTop20>
+                <ShiftFromTopBottom20>
                   <Flex2>
                     <Heading4Centerrw>
                       {t("childProfileSkipText")}
                     </Heading4Centerrw>
                   </Flex2>
-                </ShiftFromTop20>
+                </ShiftFromTopBottom20>
               </FlexCol>
             </FlexCol>
           </OnboardingContainer>

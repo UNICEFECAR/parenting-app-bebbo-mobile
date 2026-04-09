@@ -214,7 +214,7 @@ const ALsq = {
     heightModalText:
       'Poziciono shiritin lëvizës për të zgjedhur gjatësinë e fëmijës tuaj',
     articleModalText:
-      'Për të gjetur këshilla, klikoni në butonat përkatës ose kërkoni duke përdorur fjalë kyçe',
+      'Për të gjetur këshilla, klikoni në butonat përkatës ose kërkoni duke përdorur fjalë kyçe.',
     detailScreenArticleHeader: 'Përzgjidh Këshillat',
     detailScreenActivityHeader: 'Përzgjidh Lojërat',
     trackMilestoneViewHeader:
@@ -363,7 +363,7 @@ const ALsq = {
     expectedChildDobLabel: 'Fëmija nuk ka lindur akoma',
     babyNotificationText1: 'Të dhënat e fëmijës janë përditësuar',
     activityModalText:
-      'Për të gjetur Lojëra që lidhen me një fushë specifike të zhvillimit, klikoni në butonin përkatës',
+      'Për të gjetur Lojëra që lidhen me një fushë specifike të zhvillimit, klikoni në butonin përkatës.',
     childDevModalText:
       'Kontrolloni nëse fëmija juaj ka arritur aftësitë që pritet të zhvillohen gjatë kësaj periudhe dhe shihni sesi mund ta mbështesni zhvillimin e tij/saj përmes lojës ',
     months5tag: 'muaj',
@@ -385,11 +385,11 @@ const ALsq = {
     childInfoAndText: 'dhe',
     childSetupdobText: 'Vendosni datën e lindjes',
     growthModalText:
-      'Vendosni dhe mbani të përditësuar këtu peshën dhe gjatësinë e fëmijës tuaj; do të mësoni sesi të mbështesni më mirë rritjen e saj/tij',
+      'Vendosni dhe mbani të përditësuar këtu peshën dhe gjatësinë e fëmijës tuaj; do të mësoni sesi të mbështesni më mirë rritjen e saj/tij.',
     vaccineModalText:
-      'Këtu mund të regjistroheni, gjurmoni dhe mësoni më shumë për secilën vaksinë sipas kalendarit kombëtar të imunizimit. Vendosni alarm rikujtues për vaksinimet e fëmijës tuaj dhe merrni njoftime!',
+      'Këtu mund të regjistroheni, gjurmoni dhe mësoni më shumë për secilën vaksinë sipas kalendarit kombëtar të imunizimit. Vendosni alarm rikujtues për vaksinimet e fëmijës tuaj dhe merrni njoftime.',
     hcModalText:
-      'Këtu mund të vendosni të dhëna, të vendosni alarme ri-kujtues dhe të merrni njoftime për kontrollet shëndetësore të fëmijës tuaj, si dhe të mësoni më shumë për përmbajtjen e tyre!',
+      'Këtu mund të vendosni të dhëna, të vendosni alarme ri-kujtues dhe të merrni njoftime për kontrollet shëndetësore të fëmijës tuaj, si dhe të mësoni më shumë për përmbajtjen e tyre.',
     tryText: 'Provo përsëri',
     deleteSuccess: 'Profili i fëmijës është fshirë',
     deleteError: 'Gabim në fshirjen e përdoruesit. Provo përsëri.',

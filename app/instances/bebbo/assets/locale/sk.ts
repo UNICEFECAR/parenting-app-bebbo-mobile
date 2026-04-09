@@ -211,7 +211,7 @@ const sk = {
     weightModalText: 'Posúvaním pravítka vyberte hmotnosť dieťaťa',
     heightModalText: 'Posúvaním pravítka vyberte výška dieťaťa',
     articleModalText:
-      'Ak chcete nájsť radu, kliknite na príslušné tlačidlá alebo vyhľadajte pomocou kľúčových slov',
+      'Ak chcete nájsť radu, kliknite na príslušné tlačidlá alebo vyhľadajte pomocou kľúčových slov.',
     detailScreenArticleHeader: 'Vyberte si radu',
     detailScreenActivityHeader: 'Vyberte si hry',
     trackMilestoneViewHeader: 'Míľniky vývinu Vášho dieťaťa ',
@@ -382,7 +382,7 @@ const sk = {
     vaccineModalText:
       'Tu sa môžete zaregistrovať, sledovať a dozvedieť sa viac o vakcínach odporúčaných Svetovou zdravotníckou organizáciou v rámci bežného očkovacieho kalendára (nie je prispôsobený konkrétnemu národnému kalendáru). Nastavte si pripomenutia očkovania a dostávajte upozornenia.',
     hcModalText:
-      'Tu môžete zadávať záznamy, nastavovať pripomenutia a dostávať upozornenia o preventívnych prehliadkach Vášho dieťaťa (nie sú prispôsobené konkrétnemu národnému kalendáru) a dozvedieť sa viac o ich obsahu!',
+      'Tu môžete zadávať záznamy, nastavovať pripomenutia a dostávať upozornenia o preventívnych prehliadkach Vášho dieťaťa (nie sú prispôsobené konkrétnemu národnému kalendáru) a dozvedieť sa viac o ich obsahu.',
     tryText: 'Skúste znova ...',
     deleteSuccess: 'Profil dieťaťa bol odstránený.',
     deleteError: 'Chyba pri odstraňovaní používateľa. Skúste to prosím znova.',

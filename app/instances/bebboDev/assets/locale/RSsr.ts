@@ -352,7 +352,7 @@ const RSsr = {
     expectedChildDobLabel: 'Dete još uvek nije rođeno',
     babyNotificationText1: 'Profil deteta je ažuriran',
     activityModalText:
-      'Da biste pronašli igre za podršku određenoj oblasti razvoja, kliknite na odgovarajuće dugme',
+      'Da biste pronašli igre za podršku određenoj oblasti razvoja, kliknite na odgovarajuće dugme.',
     childDevModalText:
       'Proverite da li je Vaše dete razvilo preporučene veštine i podržite razvoj kroz igru',
     months5tag: 'meseci',
@@ -374,11 +374,11 @@ const RSsr = {
     childInfoAndText: 'i',
     childSetupdobText: 'Unesite datum rođenja',
     growthModalText:
-      'Unesite najnovije podatke o težini i visini vašeg deteta i redovno ih obnavljajte; naučićete kako bolje da podržavate rast vašeg deteta',
+      'Unesite najnovije podatke o težini i visini vašeg deteta i redovno ih obnavljajte; naučićete kako bolje da podržavate rast vašeg deteta.',
     vaccineModalText:
-      'Ovde možete uneti, pratiti i saznati više o svakoj vakcini prema nacionalnom kalendaru imunizacije. Postavite podsetnike za vakcinaciju vašeg deteta i primajte obaveštenja!',
+      'Ovde možete uneti, pratiti i saznati više o svakoj vakcini prema nacionalnom kalendaru imunizacije. Postavite podsetnike za vakcinaciju vašeg deteta i primajte obaveštenja.',
     hcModalText:
-      'Ovde možete uneti zapise, postaviti podsetnike i primati obaveštenja i saznati više o pedijatrijskim pregledima vašeg deteta!',
+      'Ovde možete uneti zapise, postaviti podsetnike i primati obaveštenja i saznati više o pedijatrijskim pregledima vašeg deteta.',
     tryText: 'Pokušajte ponovo... ',
     deleteSuccess: 'Profil deteta je izbrisan',
     deleteError: 'Greška prilikom brisanja. Molim vas, pokušajte ponovo..',
