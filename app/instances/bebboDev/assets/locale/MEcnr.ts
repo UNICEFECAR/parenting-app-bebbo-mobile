@@ -380,7 +380,7 @@ const MEcnr = {
     growthModalText:
       'Ovdje unosite i ažurirate težinu i visinu Vašeg djeteta; naučićete kako da bolje podržavate njegov rast.',
     vaccineModalText:
-      'Ovdje možete upisivati, pratiti i saznati više o svakoj vakcini iz nacionalnog kalendara imunizacije. Podesite podsjetnike za vakcinaciju Vašeg djeteta i dobijajte obavještenja!',
+      'Ovdje možete upisivati, pratiti i saznati više o svakoj vakcini iz nacionalnog kalendara imunizacije. Podesite podsjetnike za vakcinaciju Vašeg djeteta i dobijajte obavještenja.',
     hcModalText:
       'Ovdje možete upisivati, podešavati podsjetnike i dobijati obavještenja o zdravstvenim pregledima Vašeg djeteta i saznati više o njihovom sadržaju.',
     tryText: 'Pokušajte ponovo... ',

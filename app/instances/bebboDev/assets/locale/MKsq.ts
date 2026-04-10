@@ -214,7 +214,7 @@ const MKsq = {
     heightModalText:
       'Lëvizeni  shiritin lëvizës për ta përzgjedhur gjatësinë e fëmijës tuaj',
     articleModalText:
-      'Për të gjetur këshilla, klikoni në butonat përkatës ose kërkoni duke i përdorur fjalët kyçe',
+      'Për të gjetur këshilla, klikoni në butonat përkatës ose kërkoni duke i përdorur fjalët kyçe.',
     detailScreenArticleHeader: 'Përzgjedh Këshillat',
     detailScreenActivityHeader: 'Përzgjedh Lojërat',
     trackMilestoneViewHeader:
@@ -365,7 +365,7 @@ const MKsq = {
     expectedChildDobLabel: 'Fëmija nuk ka lindur ende',
     babyNotificationText1: 'Të dhënat e lindjes së fëmijës u përditësuan',
     activityModalText:
-      'Për të gjetur Lojëra që lidhen me fushën specifike të zhvillimit klikoni në butonin përkatës',
+      'Për të gjetur Lojëra që lidhen me fushën specifike të zhvillimit klikoni në butonin përkatës.',
     childDevModalText:
       'Kontrollo nëse fëmija juaj ka arritur aftësitë që pritet të zhvillohen gjatë kësaj periudhe dhe shih se si ta mbështesësh zhvillimin përmes lojës”',
     months5tag: 'muaj',
@@ -387,11 +387,11 @@ const MKsq = {
     childInfoAndText: 'dhe',
     childSetupdobText: 'Shkruani datën e lindjes',
     growthModalText:
-      'Shkruani dhe përditësoni peshën dhe gjatësinë e fëmijës suaj këtu; do të mësoni se si ta mbështesni zhvillimin e tij/saj',
+      'Shkruani dhe përditësoni peshën dhe gjatësinë e fëmijës suaj këtu; do të mësoni se si ta mbështesni zhvillimin e tij/saj.',
     vaccineModalText:
-      'Këtu mund të regjistroni, gjurmoni, dhe zbuloni më shumë për secilën vaksinë sipas kalendarit kombëtar të vaksinimit. Caktoni rikujtues për vaksinimet e fëmijës suaj dhe pranoni njoftime!',
+      'Këtu mund të regjistroni, gjurmoni, dhe zbuloni më shumë për secilën vaksinë sipas kalendarit kombëtar të vaksinimit. Caktoni rikujtues për vaksinimet e fëmijës suaj dhe pranoni njoftime.',
     hcModalText:
-      "Këtu mund t'i regjistroni të dhënat, të caktoni rikujtues dhe të pranoni njoftime lidhur me kontrollet mjekësore të fëmijës suaj si dhe të zbuloni më shumë për përmbajtjen e tyre!",
+      "Këtu mund t'i regjistroni të dhënat, të caktoni rikujtues dhe të pranoni njoftime lidhur me kontrollet mjekësore të fëmijës suaj si dhe të zbuloni më shumë për përmbajtjen e tyre.",
     tryText: 'Provoni përsëri…',
     deleteSuccess: 'Profili i fëmijës është fshirë',
     deleteError:

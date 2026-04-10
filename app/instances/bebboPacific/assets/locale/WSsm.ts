@@ -375,7 +375,7 @@ const WSsm = {
     vaccineModalText:
       "Here you can register, track, and find out more about vaccines recommended by the World Health Organization's routine immunization calendar (not customized to a specific national calendar). Set reminders for vaccinations and receive notifications.",
     hcModalText:
-      'Here you can enter records, set reminders and receive notifications about your child’s health check-ups (not customized to a specific national calendar) and find out more about their content!',
+      'Here you can enter records, set reminders and receive notifications about your child’s health check-ups (not customized to a specific national calendar) and find out more about their content.',
     tryText: 'Try again... ',
     deleteSuccess: 'Child profile is deleted',
     deleteError: 'User delete error. Please try again..',
