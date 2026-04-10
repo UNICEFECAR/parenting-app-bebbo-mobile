@@ -259,7 +259,7 @@ const UZuz = {
       'Bolaning oʻsish boʻyicha oʻlchovlarini oʻchirishni  xohlaysizmi?',
     growthDeleteOption1: 'Bekor qilish',
     growthDeleteOption2: 'Tasdiqlash',
-    expectChildAddTxt: 'Tugʻilishi kutilayotgan bola maʼlumotlarini qoʻshing',
+    expectChildAddTxt: '+ Tugʻilishi kutilayotgan bola maʼlumotlarini qoʻshing',
     expectChildDueDateTxt: 'Kutilayotgan sana',
     expectPreferNametxt: 'Qanaqa ism istaysiz?',
     expectPreferNamePlacetxt: 'Bolaning ismini kiriting',
