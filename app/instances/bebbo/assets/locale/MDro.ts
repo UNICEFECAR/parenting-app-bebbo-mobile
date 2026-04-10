@@ -210,7 +210,7 @@ const MDro = {
     heightModalText:
       'Deplasați rigla pentru a selecta înălțimea copilului dvs.',
     articleModalText:
-      'Pentru a găsi sfaturi, faceți clic pe butoanele corespunzătoare sau căutați folosind cuvinte cheie',
+      'Pentru a găsi sfaturi, faceți clic pe butoanele corespunzătoare sau căutați folosind cuvinte cheie.',
     detailScreenArticleHeader: 'Alegeți Sfaturi ',
     detailScreenActivityHeader: 'Alegeți Jocuri ',
     trackMilestoneViewHeader:
@@ -359,7 +359,7 @@ const MDro = {
     expectedChildDobLabel: 'Copil care încă nu s-a născut',
     babyNotificationText1: 'Profilul copilului este actualizat',
     activityModalText:
-      'Pentru a găsi jocuri legate de un domeniu specific de dezvoltare, faceți clic pe butonul corespunzător',
+      'Pentru a găsi jocuri legate de un domeniu specific de dezvoltare, faceți clic pe butonul corespunzător.',
     childDevModalText:
       'Verificați dacă copilul dvs. a atins abilitățile pe care se așteaptă să le dezvolte în această perioadă și vedeți cum puteți sprijini dezvoltarea prin joc',
     months5tag: 'luni',
@@ -382,11 +382,11 @@ const MDro = {
     childInfoAndText: 'și',
     childSetupdobText: 'Introduceți data nașterii',
     growthModalText:
-      'Introduceți și actualizați în continuare greutatea și înălțimea copilului dvs. aici; veți învăța cum să îi susțineți mai bine creșterea',
+      'Introduceți și actualizați în continuare greutatea și înălțimea copilului dvs. aici; veți învăța cum să îi susțineți mai bine creșterea.',
     vaccineModalText:
       'Aici puteți să vă înregistrați, să urmăriți și să aflați mai multe despre vaccinurile recomandate de calendarul de imunizare de rutină al OMS (care nu este personalizat în funcție de un anumit calendar național). Setați memento pentru vaccinări și primiți notificări.',
     hcModalText:
-      'Aici puteți introduce înregistrări, seta memento și primi notificări despre vizitele la medic cu copilul dvs. (acestea nu sunt personalizate în funcție de un anumit program național) și puteți afla mai multe despre conținutul acestora!',
+      'Aici puteți introduce înregistrări, seta memento și primi notificări despre vizitele la medic cu copilul dvs. (acestea nu sunt personalizate în funcție de un anumit program național) și puteți afla mai multe despre conținutul acestora.',
     tryText: 'Încercați din nou... ',
     deleteSuccess: 'Informațiile despre copil au fost șterse',
     deleteError:

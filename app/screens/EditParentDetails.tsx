@@ -328,7 +328,6 @@ const EditParentDetails = ({ route, navigation }: Props): any => {
                 style={styles.textInputML}
                 autoCorrect={false}
                 maxLength={30}
-                clearButtonMode="always"
                 onChangeText={(value: any): any => {
                   if (value.replace(/\s/g, "") == "") {
                     setParentName(value.replace(/\s/g, ""));
