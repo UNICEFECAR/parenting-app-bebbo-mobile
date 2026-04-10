@@ -208,7 +208,7 @@ const RSen = {
     weightModalText: "Move the ruler to select your child's weight",
     heightModalText: "Move the ruler to select your child's height",
     articleModalText:
-      'To find advice, click on the relevant buttons or search using keywords',
+      'To find advice, click on the relevant buttons or search using keywords.',
     detailScreenArticleHeader: 'Choose Advice ',
     detailScreenActivityHeader: 'Choose Games ',
     trackMilestoneViewHeader: "Please update your child's milestones.",
@@ -351,7 +351,7 @@ const RSen = {
     removePhotoOption1: 'Cancel',
     removePhotoOption2: 'Remove',
     activityModalText:
-      'To find Games related to specific domain of development, click on the relevant button',
+      'To find Games related to specific domain of development, click on the relevant button.',
     childDevModalText:
       'Check if your child has reached skills expected to develop during this period and see how to support development through play',
     months5tag: 'months',
@@ -371,11 +371,11 @@ const RSen = {
     childInfoAndText: 'and',
     childSetupdobText: 'Enter date of birth',
     growthModalText:
-      "Enter and keep updating your child's weight and height here and learn how to better support her/his growth",
+      "Enter and keep updating your child's weight and height here and learn how to better support her/his growth.",
     vaccineModalText:
       "Here you can register, track, and find out more about vaccines recommended by the World Health Organization's routine immunization calendar (not customized to a specific national calendar). Set reminders for vaccinations and receive notifications.",
     hcModalText:
-      'Here you can enter records, set reminders and receive notifications about your child’s health check-ups (not customized to a specific national calendar) and find out more about their content!',
+      'Here you can enter records, set reminders and receive notifications about your child’s health check-ups (not customized to a specific national calendar) and find out more about their content.',
     tryText: 'Try again... ',
     deleteSuccess: 'Child profile is deleted',
     deleteError: 'User delete error. Please try again..',

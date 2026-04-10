@@ -63,7 +63,7 @@ const ESec = {
       "Si tienes otros hijos de 0 a 6 años, puedes agregar sus perfiles ahora o más tarde.",
     drawerMenuchildInfo: "Nació el {{childdob}}",
 
-    childSetupListaddSiblingBtn: "Agregar el perfil de otra niña o niño",
+    childSetupListaddSiblingBtn: "+ Agregar el perfil de otra niña o niño",
     letGetStartedText: "EMPECEMOS",
     childSetupListsaveBtnText: "Guardar",
     serviceProviderHeaderInfoText:
@@ -282,7 +282,7 @@ const ESec = {
       "¿Estás seguro de que deseas eliminar los datos de crecimiento del niño o niña?",
     growthDeleteOption1: "Cancelar",
     growthDeleteOption2: "Confirmar",
-    expectChildAddTxt: "Agregar un nuevo embarazo",
+    expectChildAddTxt: "+ Agregar un nuevo embarazo",
     expectChildDueDateTxt: "Fecha de parto prevista",
     expectPreferNametxt: "¿Algún nombre preferido?",
     expectPreferNamePlacetxt: "Ingresa el nombre de tu hija o hijo",

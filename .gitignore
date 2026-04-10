@@ -23,6 +23,7 @@ DerivedData
 **/.xcode.env.local
 
 ios/build/
+# react-native-config generated file
 ios/tmp.xcconfig
 ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcuserdata*
