@@ -516,10 +516,10 @@ const ZWen = {
     upto6YearsMsg: 'This app is designed for children up to 6 years of age.',
     donateButton: 'Donate for Rerai Umntwana',
     contactUs: 'Write to us',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'About {{appName}}',
+    aboutBebboDrawerMenu: 'About {{appName}}',
     welcomeText: 'Welcome!',
     letGetStartedText: "LET'S GET STARTED",
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search',
+    searchInBebboText: 'Search',
     childProfileSkipText:
       'If you skip this step, a newborn child profile will be created. You can edit it later to get personalized content.',
     serviceProviderHeaderInfoText:

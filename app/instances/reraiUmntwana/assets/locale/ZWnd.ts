@@ -516,10 +516,10 @@ const ZWnd = {
     upto6YearsMsg: 'Loluhlelo (app)luhlose abantwana abaleminyaka eyisithupha (6) kusiya phansi.',
     donateButton: 'Nika i-donation ku Rerai umntwana',
     contactUs: 'Sibhalele',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'Okwe {{appName}}',
+    aboutBebboDrawerMenu: 'Okwe {{appName}}',
     welcomeText: 'Siyakwamukela!',
     letGetStartedText: "KASIQALE",
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Dinga',
+    searchInBebboText: 'Dinga',
     childProfileSkipText:
       'Ungeqa la iProfile yomntwana osanda kubelethwa iyabe  isikhona /silungisiwa. Ungaphenduka uzolungisisa ukuze uthole okumunyethweyo okuhambelana lomntwana.',
     serviceProviderHeaderInfoText:

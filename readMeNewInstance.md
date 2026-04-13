@@ -1,12 +1,12 @@
 ---
 
-# REMOVED_FACEBOOK_APP_ID1 Guide: Setting Up a New Instance
+# Bebbo Guide: Setting Up a New Instance
 
 ## Objective
-This guide outlines the steps for adding a new REMOVED_FACEBOOK_APP_ID1 instance.  
+This guide outlines the steps for adding a new Bebbo instance.  
 For full setup details, refer to:
 - **BEBBO APP ADMIN MANUAL FOR NEW APP.docx**
-- **REMOVED_FACEBOOK_APP_ID1 project README** (for local setup)
+- **Bebbo project README** (for local setup)
 
 ---
 
@@ -16,14 +16,14 @@ A new instance follows this structure:
 ```
 Project-Root/
 ├── env/
-│   └── .env.REMOVED_FACEBOOK_APP_ID1           # Wawamor-specific environment variables
+│   └── .env.wawamor           # Wawamor-specific environment variables
 ├── app/instances/
-│   └── REMOVED_FACEBOOK_APP_ID1/
+│   └── wawamor/
 │       ├── assets/            # Images and offline content
 │       ├── config/            # Config files
 │       ├── styles/            # Theme and typography
 │       └── firebaseEvents.ts  # Firebase tracking
-├── tsconfig.REMOVED_FACEBOOK_APP_ID1.json      # TypeScript config for Wawamor
+├── tsconfig.wawamor.json      # TypeScript config for Wawamor
 ├── package.json               # Instance-specific scripts
 ├── babel.config.js            # Environment variable setup
 ```
@@ -34,7 +34,7 @@ Project-Root/
 
 ### 1.1 Duplicate an Existing Instance
 - Copy an existing folder (e.g., `app/instances/babuni`)
-- Rename it to `app/instances/REMOVED_FACEBOOK_APP_ID1`
+- Rename it to `app/instances/wawamor`
 
 ### 1.2 Modify Instance-Specific Files
 - `config/appConfig.ts` → Update API URL, feature flags, settings
@@ -43,8 +43,8 @@ Project-Root/
 - `firebaseEvents.ts` → Update Firebase event names
 
 ### 1.3 Add Configuration to Project Root
-- Add `tsconfig.REMOVED_FACEBOOK_APP_ID1.json`
-- Add `env/.env.REMOVED_FACEBOOK_APP_ID1`
+- Add `tsconfig.wawamor.json`
+- Add `env/.env.wawamor`
 
 ---
 
@@ -64,7 +64,7 @@ Project-Root/
 
 ### 2.2 Update Localization Files
 - Modify `locale/en.ts`, `locale/es.ts`
-- **Important:** Don't rename keys like `aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu` or `searchInREMOVED_FACEBOOK_APP_ID1Text`
+- **Important:** Don't rename keys like `aboutBebboDrawerMenu` or `searchInBebboText`
 
 ### 2.3 Update Offline Content
 - Update articles, health tips, vaccinations inside `offlinecontent/`
@@ -73,7 +73,7 @@ Project-Root/
 
 ## Step 3: Adding Environment Variables
 
-Create `env/.env.REMOVED_FACEBOOK_APP_ID1` with:
+Create `env/.env.wawamor` with:
 
 | Variable                 | Description |
 |---------------------------|-------------|
@@ -92,15 +92,15 @@ Create `env/.env.REMOVED_FACEBOOK_APP_ID1` with:
 
 ## Step 4: Configuring TypeScript
 
-Create `tsconfig.REMOVED_FACEBOOK_APP_ID1.json`:
+Create `tsconfig.wawamor.json`:
 
 ```json
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@styles/*": ["app/instances/REMOVED_FACEBOOK_APP_ID1/styles/*"],
-      "@images/*": ["app/instances/REMOVED_FACEBOOK_APP_ID1/assets/images/*"]
+      "@styles/*": ["app/instances/wawamor/styles/*"],
+      "@images/*": ["app/instances/wawamor/assets/images/*"]
     }
   }
 }
@@ -117,7 +117,7 @@ Name the scheme `Wawamor`.
 - Duplicate an existing target → rename the new target to `Wawamor`.
 - In the **General** tab of the new target, update the **Display Name** to `Wawamor`.
 - In **Signing & Capabilities**, update the **Bundle Identifier** to:
-`org.unicef.ec.REMOVED_FACEBOOK_APP_ID1`.
+`org.unicef.ec.wawamor`.
 - Set the correct **Team** and **Code Signing settings** for the Wawamor target.
 - When the target is duplicated, a copy of the **Info.plist** file is created.
 Open it in Xcode and update all values for the new instance.
@@ -159,13 +159,13 @@ Do **not** assign it to any target.
 ## Step 6: Setting Up Android Instance
 
 ### 6.1 Add Resources
-- Copy existing instance (e.g., `android/app/src/bangla`) to `android/app/src/REMOVED_FACEBOOK_APP_ID1`
+- Copy existing instance (e.g., `android/app/src/bangla`) to `android/app/src/wawamor`
 - Update:
   - `res/raw/splash.json`
   - Files in `res/values/`
   - AndroidManifest.xml:
     ```xml
-    <data android:host="www.REMOVED_FACEBOOK_APP_ID1.ec" android:pathPrefix="/"/>
+    <data android:host="www.wawamor.ec" android:pathPrefix="/"/>
     ```
 
 - Add `google-services.json` for Firebase
@@ -174,26 +174,26 @@ Do **not** assign it to any target.
 Run:
 
 ```bash
-keytool -genkeypair -v -keystore android/app/REMOVED_FACEBOOK_APP_ID1.keystore \
-  -storepass REMOVED_FACEBOOK_APP_ID1storepass -keypass REMOVED_FACEBOOK_APP_ID1keypass \
-  -alias REMOVED_FACEBOOK_APP_ID1key -keyalg RSA -keysize 2048 -validity 10000
+keytool -genkeypair -v -keystore android/app/wawamor.keystore \
+  -storepass wawamorstorepass -keypass wawamorkeypass \
+  -alias wawamorkey -keyalg RSA -keysize 2048 -validity 10000
 ```
 
 ### 6.3 Update Gradle Files
 
 - `android/gradle.properties`:
   ```properties
-  WAWAMOR_STORE_FILE=android/app/REMOVED_FACEBOOK_APP_ID1.keystore
-  WAWAMOR_STORE_PASSWORD=REMOVED_FACEBOOK_APP_ID1storepass
-  WAWAMOR_KEY_ALIAS=REMOVED_FACEBOOK_APP_ID1key
-  WAWAMOR_KEY_PASSWORD=REMOVED_FACEBOOK_APP_ID1keypass
+  WAWAMOR_STORE_FILE=android/app/wawamor.keystore
+  WAWAMOR_STORE_PASSWORD=wawamorstorepass
+  WAWAMOR_KEY_ALIAS=wawamorkey
+  WAWAMOR_KEY_PASSWORD=wawamorkeypass
   ```
 
 - `android/app/build.gradle`:
 
   ```gradle
   signingConfigs {
-      REMOVED_FACEBOOK_APP_ID1 {
+      wawamor {
           storeFile file(WAWAMOR_STORE_FILE)
           storePassword WAWAMOR_STORE_PASSWORD
           keyAlias WAWAMOR_KEY_ALIAS
@@ -201,9 +201,9 @@ keytool -genkeypair -v -keystore android/app/REMOVED_FACEBOOK_APP_ID1.keystore \
       }
   }
   productFlavors {
-      REMOVED_FACEBOOK_APP_ID1 {
-          applicationId "org.unicef.ec.REMOVED_FACEBOOK_APP_ID1"
-          signingConfig signingConfigs.REMOVED_FACEBOOK_APP_ID1
+      wawamor {
+          applicationId "org.unicef.ec.wawamor"
+          signingConfig signingConfigs.wawamor
       }
   }
   ```
@@ -214,7 +214,7 @@ keytool -genkeypair -v -keystore android/app/REMOVED_FACEBOOK_APP_ID1.keystore \
 cd android
 ./gradlew clean
 cd ..
-ENVFILE=env/.env.REMOVED_FACEBOOK_APP_ID1 FLAVOR=REMOVED_FACEBOOK_APP_ID1 react-native run-android --variant=REMOVED_FACEBOOK_APP_ID1Debug
+ENVFILE=env/.env.wawamor FLAVOR=wawamor react-native run-android --variant=wawamorDebug
 ```
 
 ---
@@ -225,16 +225,16 @@ ENVFILE=env/.env.REMOVED_FACEBOOK_APP_ID1 FLAVOR=REMOVED_FACEBOOK_APP_ID1 react-
 
 ```json
 "scripts": {
-  "run:REMOVED_FACEBOOK_APP_ID1:android": "ENVFILE=env/.env.REMOVED_FACEBOOK_APP_ID1 FLAVOR=REMOVED_FACEBOOK_APP_ID1 react-native run-android --variant=REMOVED_FACEBOOK_APP_ID1Debug --appId org.unicef.ec.REMOVED_FACEBOOK_APP_ID1",
-  "run:REMOVED_FACEBOOK_APP_ID1:ios": "ENVFILE=env/.env.REMOVED_FACEBOOK_APP_ID1 FLAVOR=REMOVED_FACEBOOK_APP_ID1 react-native run-ios --scheme Wawamor --mode Release"
+  "run:wawamor:android": "ENVFILE=env/.env.wawamor FLAVOR=wawamor react-native run-android --variant=wawamorDebug --appId org.unicef.ec.wawamor",
+  "run:wawamor:ios": "ENVFILE=env/.env.wawamor FLAVOR=wawamor react-native run-ios --scheme Wawamor --mode Release"
 }
 ```
 
 ### 7.2 Run the App
 
 ```bash
-npm run run:REMOVED_FACEBOOK_APP_ID1:android    # Android
-npm run run:REMOVED_FACEBOOK_APP_ID1:ios        # iOS
+npm run run:wawamor:android    # Android
+npm run run:wawamor:ios        # iOS
 ```
 
 ---

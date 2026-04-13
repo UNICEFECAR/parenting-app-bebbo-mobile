@@ -66,7 +66,7 @@ const bn = {
     "drawerMenusetTxt": "সেটিংস",
     "drawerMenushareTxt": "শেয়ার করুন",
     "drawerMenuugTxt": "ব্যবহারকারীর জন্য নির্দেশিকা",
-    "aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu": "বাবুনি' পরিচিতি",
+    "aboutBebboDrawerMenu": "বাবুনি' পরিচিতি",
     "drawerMenuabtTxt": "আমাদের পরিচিতি",
     "contactUs": "আমাদের লিখতে পারেন",
     "drawerMenufeedbackTxt": "আপনার মতামত",
@@ -452,7 +452,7 @@ const bn = {
     "vcHasScheduled": "টিকাদানের তারিখ নির্দিষ্ট হয়েছে",
     "relatedVideoArticle": "বিষয় সম্পর্কিত ভিডিও",
     "donateButton": "বাবুনির জন্য অনুদান দিন",
-    "searchInREMOVED_FACEBOOK_APP_ID1Text": "অনুসন্ধান করুন"
+    "searchInBebboText": "অনুসন্ধান করুন"
   }
 }
 export default bn;

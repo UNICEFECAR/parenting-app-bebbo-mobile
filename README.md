@@ -1,28 +1,28 @@
-# [REMOVED_FACEBOOK_APP_ID1](https://bebbo.app/) is an interactive mobile application for parenting
+# [Bebbo](https://bebbo.app/) is an interactive mobile application for parenting
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Technology stack](#technology-stack) <!--* [Used libraries](#used-libraries)-->
 - [Getting started](#getting-started)
-- [Install REMOVED_FACEBOOK_APP_ID1 in localhost](#install-bebbo-in-localhost)
+- [Install Bebbo in localhost](#install-bebbo-in-localhost)
 - [How to run](#how-to-run)
 - [License](#license)
 
 ## Introduction
 
-[REMOVED_FACEBOOK_APP_ID1](https://www.bebbo.app) is a multi-platform mobile application available on both [iOS](https://apps.apple.com/us/app/bebbo/id1588918146) and [Android](https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo).
+[Bebbo](https://www.bebbo.app) is a multi-platform mobile application available on both [iOS](https://apps.apple.com/us/app/bebbo/id1588918146) and [Android](https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo).
 Discover the most comprehensive parenting and pregnancy app that provides you with all the tools and expert advice you need, all in one app, to support your journey from pregnancy through your child's growth and development from birth to age 6! Personalize this app to access daily toddler games, parenting advice, pregnancy tips, and guidance on taking care of both your child and your own well-being. Navigate easily between multiple child profiles and receive advice tailored to each child's developmental needs.
 
-REMOVED_FACEBOOK_APP_ID1 offers:
+Bebbo offers:
 
 - Expert advice and parenting articles covering early learning, health, nutrition, caregiving, and safety, tailored to both your questions and your child’s age.
 - Personalized 'learning through play' activities and games that support various critical areas of development, including cognition, language, motor skills, and social-emotional skills.
 - Brief instructional videos and evidence-based support for each stage of your child’s development.
-- The ability to search REMOVED_FACEBOOK_APP_ID1’s collection of hundreds of activities and articles by topic, age, or area of development.
+- The ability to search Bebbo’s collection of hundreds of activities and articles by topic, age, or area of development.
 - The ability to save and share your favorite content.
 
-REMOVED_FACEBOOK_APP_ID1 provides you with an interactive set of tools such as:
+Bebbo provides you with an interactive set of tools such as:
 
 - Development milestones tracker
 - Baby growth tracker
@@ -50,7 +50,7 @@ The app can also operate in an offline mode in environments with limited interne
 
 If you want to create a fresh instance of this app (e.g. for a new locale/flavor), follow the steps in [New Instance Setup Guide](readMeNewInstance.md).
 
-## Install REMOVED_FACEBOOK_APP_ID1 in localhost
+## Install Bebbo in localhost
 
 1. Download [Node JS](https://nodejs.org/en/download) version 21.7.3 and install it.
 
@@ -137,7 +137,7 @@ After set up all configuration you run the bebbo dev app with below npx commands
 FLAVOR=bebboDev react-native start --reset-cache
 ```
 
-**Run and generate build android REMOVED_FACEBOOK_APP_ID1 Dev app**
+**Run and generate build android Bebbo Dev app**
 #### Linux / MacOS 
 ```bash
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev npx react-native run-android --variant=prodstagingRelease --appId org.unicef.bebbodev
@@ -166,7 +166,7 @@ cd android && ENVFILE=env/.env.bebboDev FLAVOR=bebboDev ./gradlew bundleProdstag
 cd android && ENVFILE=env/.env.bebboDev FLAVOR=bebboDev ./gradlew assembleProdstagingRelease (apk)
 ```
 
-Run and generate build iOS REMOVED_FACEBOOK_APP_ID1 Dev app
+Run and generate build iOS Bebbo Dev app
 
 ```
 ENVFILE=env/.env.bebboDev FLAVOR=bebboDev react-native run-ios --scheme ParentBuddyAppDev --mode Release

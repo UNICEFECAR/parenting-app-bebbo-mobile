@@ -7,11 +7,11 @@ const sk = {
     selectYourLang: 'Vyberte svoj jazyk',
     goToLanguageSelection: 'Prejdite na výber jazyka',
     goToConfirm: 'Prejdite na potvrdenie',
-    checkonce: 'REMOVED_FACEBOOK_APP_ID1 vyberie obsah na základe Vášho výberu krajiny a jazyka.',
+    checkonce: 'Bebbo vyberie obsah na základe Vášho výberu krajiny a jazyka.',
     country: 'Krajina',
     language: 'Jazyk',
     walkthroughTextstitle0: 'Vitajte, rodičia!',
-    walkthroughTextssubtitle0: 'Objavte REMOVED_FACEBOOK_APP_ID1',
+    walkthroughTextssubtitle0: 'Objavte Bebbo',
     walkthroughTextstitle1: 'Hry',
     walkthroughTextssubtitle1:
       'aby ste pomohli Vášmu dieťaťu učiť sa nové veci každý deň',
@@ -26,18 +26,18 @@ const sk = {
     walkthroughButtonSkip: 'Preskočiť',
     tNcheader: 'Podmienky a ustanovenia',
     tncScreenContent:
-      'REMOVED_FACEBOOK_APP_ID1 nezhromažďuje ani neukladá osobné informácie. Všetky informácie, ktoré zadáte, sú uložené iba do Vášho telefónu.',
+      'Bebbo nezhromažďuje ani neukladá osobné informácie. Všetky informácie, ktoré zadáte, sú uložené iba do Vášho telefónu.',
     tNccheckbox1:
-      'Prečítal(a) som si Podmienky a ustanovenia aplikácie REMOVED_FACEBOOK_APP_ID1, porozumel(a) som im a súhlasím s nimi.',
-    tncCheckBoxText: 'Podmienky a ustanovenia aplikácie REMOVED_FACEBOOK_APP_ID1',
+      'Prečítal(a) som si Podmienky a ustanovenia aplikácie Bebbo, porozumel(a) som im a súhlasím s nimi.',
+    tncCheckBoxText: 'Podmienky a ustanovenia aplikácie Bebbo',
     tNccheckbox2: 'Prečítal(a) som si, porozumel(a) a súhlasil(a) som s nimi',
-    tNcprivacyPolicy: 'Zásady ochrany osobných údajov aplikácie REMOVED_FACEBOOK_APP_ID1',
+    tNcprivacyPolicy: 'Zásady ochrany osobných údajov aplikácie Bebbo',
     tNccheckbox3:
-      'Rozumiem, že moje použitie aplikácie môže generovať anonymizované údaje, ktoré sa môžu použiť na zlepšenie REMOVED_FACEBOOK_APP_ID1. Aj keď poskytovanie týchto údajov nie je povinné, uvedomujem si, že môžu pomôcť vylepšiť celkovú skúsenosť používateľa.',
+      'Rozumiem, že moje použitie aplikácie môže generovať anonymizované údaje, ktoré sa môžu použiť na zlepšenie Bebbo. Aj keď poskytovanie týchto údajov nie je povinné, uvedomujem si, že môžu pomôcť vylepšiť celkovú skúsenosť používateľa.',
     tNcprivacyPolicyTitle: 'Zásady ochrany osobných údajov',
     tNcacceptbtn: 'Súhlasím s Podmienkami a ustanoveniami',
     loadingText: 'Načítava sa obsah…',
-    childSetupheader: 'Využite REMOVED_FACEBOOK_APP_ID1 na maximum!',
+    childSetupheader: 'Využite Bebbo na maximum!',
     childSetupdobLabel:
       'Kedy sa dieťa narodilo alebo kedy je predpokladaný termín pôrodu?',
     addAnotherChildSetupDobLabel: 'Kedy sa dieťa narodilo?',
@@ -51,7 +51,7 @@ const sk = {
     childSetuprelationSelectText: 'Vyberte',
     childSetupcontinueBtnText: 'Pokračujte',
     childSetupListheader:
-      'REMOVED_FACEBOOK_APP_ID1 aplikácia je pripravená sprevádzať Vás cestou rodičovstva!',
+      'Bebbo aplikácia je pripravená sprevádzať Vás cestou rodičovstva!',
     childSetupListsubHeader:
       'Ak máte ďalšie deti vo veku 0 až 6 rokov, môžete ich pridať teraz alebo neskôr.',
     childSetupListaddSiblingBtn: '+ PRIDAŤ ĎALŠIE DIEŤA',
@@ -73,12 +73,12 @@ const sk = {
     drawerMenusetTxt: 'Nastavenia',
     drawerMenushareTxt: 'Zdieľajte',
     drawerMenufeedbackTxt: 'Spätná väzba',
-    drawerMenurateTxt: 'Páči sa Vám REMOVED_FACEBOOK_APP_ID1? Ohodnoťte aplikáciu!',
+    drawerMenurateTxt: 'Páči sa Vám Bebbo? Ohodnoťte aplikáciu!',
     drawerMenuPrivacyTxt: 'Zásady ochrany osobných údajov',
     notiScreenheaderTitle: 'Upozornenia',
     settingScreenheaderTitle: 'Nastavenia',
     settingScreennotiHeaderText: 'Upozornenia',
-    settingScreennotiType1: 'Chcem dostávať upozornenia prostredníctvom REMOVED_FACEBOOK_APP_ID1',
+    settingScreennotiType1: 'Chcem dostávať upozornenia prostredníctvom Bebbo',
     settingScreennotiType2:
       'Chcem dostávať upozornenia týkajúce sa rastu môjho dieťaťa',
     settingScreennotiType3:
@@ -86,11 +86,11 @@ const sk = {
     settingScreennotiType4:
       'Chcem dostávať upozornenia týkajúce sa preventývnych prehliadok a očkovania môjho dieťaťa',
     settingScreennotiInfo:
-      'REMOVED_FACEBOOK_APP_ID1 Vám z času na čas pošle upozornenia, týkajúce sa nového obsahu, dôležitých aktualizácií alebo pripomienok, aby ste mohli podporiť rast a vývin Vášho dieťaťa. Túto funkciu môžete zakázať v akomkoľvek bode nastavení aplikácie, čo bude mať za následok obmedzenú funkčnosť aplikácie.',
+      'Bebbo Vám z času na čas pošle upozornenia, týkajúce sa nového obsahu, dôležitých aktualizácií alebo pripomienok, aby ste mohli podporiť rast a vývin Vášho dieťaťa. Túto funkciu môžete zakázať v akomkoľvek bode nastavení aplikácie, čo bude mať za následok obmedzenú funkčnosť aplikácie.',
     settingScreendataSaverHeaderText: 'Režim šetrenia dát',
     settingScreendataSaverSubText:
       'Nechcem sťahovať obrázky z článkov alebo aktualizácie kvôli nízkej rýchlosti internetu.',
-    settingScreendownldHeaderText: 'Stiahnite si obsah REMOVED_FACEBOOK_APP_ID1',
+    settingScreendownldHeaderText: 'Stiahnite si obsah Bebbo',
     settingScreendownldSubHeaderText: 'Stiahnite si najnovší obsah',
     settingScreendownldSubHeader2Text: 'Stiahnite si všetok obsah',
     settingScreendownldSubHeader3Text:
@@ -112,7 +112,7 @@ const sk = {
     supportScreenheader1text: 'Už čoskoro!',
     supportScreenheader2text:
       'Ospravedlňujeme sa, chatbot momentálne nie je k dispozícii.',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Čítajte viac',
     homeScreenchildInfoTitle: 'Vitaj {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Denné čítanie',
@@ -224,7 +224,7 @@ const sk = {
     favScreenHeader: 'Obľúbené',
     actScreenremovetoFavText: 'Uložené',
     appShareText:
-      'Stiahnite si REMOVED_FACEBOOK_APP_ID1, Vášho vreckového sprievodcu v rodičovstve!',
+      'Stiahnite si Bebbo, Vášho vreckového sprievodcu v rodičovstve!',
     vcHeader: 'Očkovanie',
     vcSummaryHeader: 'Prehľad očkovania',
     vcStatus1: 'Nasledujúce',
@@ -424,9 +424,9 @@ const sk = {
     permissionTitleText: 'Vyžaduje sa povolenie',
     permissionText: 'Povoľte prístup ku galérii a fotoaparátu',
     settingsTextOpen: 'Otvorte nastavenia',
-    downloadUpdatePopupTitle: 'Aktualizujte nový obsah REMOVED_FACEBOOK_APP_ID1.',
+    downloadUpdatePopupTitle: 'Aktualizujte nový obsah Bebbo.',
     downloadUpdatePopupText:
-      'Aktualizácia nového obsahu REMOVED_FACEBOOK_APP_ID1 bude chvíľu trvať.',
+      'Aktualizácia nového obsahu Bebbo bude chvíľu trvať.',
     downloadUpdateCancelPopUpBtn: 'Zrušte',
     downloadUpdateContinueBtn: 'Pokračujte',
     downloadUpdateSuccessPopupTitle: 'Hotovo',
@@ -442,11 +442,11 @@ const sk = {
     parentGender: 'Pohlavie',
     successOnboardingImport: 'Úspešne ste nahrali svoje údaje.',
     updateImportText: 'Ak chcete pokračovať, aktualizujte svoje údaje.',
-    importOnboardingText: 'REMOVED_FACEBOOK_APP_ID1 nezbiera ani neukladá Vaše osobné údaje.',
+    importOnboardingText: 'Bebbo nezbiera ani neukladá Vaše osobné údaje.',
     importOnboardingText1:
       'Informácie, ktoré zadáte do aplikácie, sa uložia do Vášho telefónu alebo do Vášho osobného úložiska.',
     importOnboardingText2:
-      'Ak ste REMOVED_FACEBOOK_APP_ID1 používali na inom zariadení a exportovali ste svoje informácie, môžete ich teraz nahrať do tohto zariadenia.',
+      'Ak ste Bebbo používali na inom zariadení a exportovali ste svoje informácie, môžete ich teraz nahrať do tohto zariadenia.',
     OnboardingImportButton: 'Nahrať teraz',
     ORkeyText: 'ALEBO',
     addChildText: 'Pridajte informácie o Vašom dieťati',
@@ -470,7 +470,7 @@ const sk = {
     childSetupprematureMessageNext:
       'Obsah tejto časti sa zobrazuje podľa korigovaného a nie podľa kalendárneho (skutočného) veku Vášho predčasne narodeného dieťaťa.',
     helloMessage:
-      'Ahoj {{parentName}}, volám sa REMOVED_FACEBOOK_APP_ID1 . Budem odpovedať na Vaše otázky.',
+      'Ahoj {{parentName}}, volám sa Bebbo . Budem odpovedať na Vaše otázky.',
     selectAreaOfInterest: 'Vyberte, na čo sa chcete opýtať.',
     question1: 'Aká  je Vaša otázka?',
     question2: 'Vyberte z nasledujúcich otázok.',
@@ -505,7 +505,7 @@ const sk = {
     restOfTheWorldAlertTitle: 'Pozor',
     restOfTheWorldOkTitle: 'OK',
     restOfTheWorldAlertText:
-      'Ak si vyberiete možnosť Zvyšok sveta, budete môcť využívať všetky funkcie REMOVED_FACEBOOK_APP_ID1, ale upozorňujeme, že očkovania a preventívne prehliadky nie sú prispôsobené odporúčaniam vo Vašej krajine.',
+      'Ak si vyberiete možnosť Zvyšok sveta, budete môcť využívať všetky funkcie Bebbo, ale upozorňujeme, že očkovania a preventívne prehliadky nie sú prispôsobené odporúčaniam vo Vašej krajine.',
     hcDefinedReminderText: 'Zadajte dátum a čas pripomenutia.',
     reminderalertTextDefined:
       'Dátum pripomenutia by mal byť medzi aktuálnym dátumom a plánovaným dátumom.',
@@ -520,18 +520,18 @@ const sk = {
     vcHasScheduled: 'Očkovanie je naplánované.',
     relatedVideoArticle: 'Podobné videá.',
     upto6YearsMsg: 'Táto aplikácia je určená pre deti do 6 rokov.',
-    donateButton: 'Darujte pre REMOVED_FACEBOOK_APP_ID1',
+    donateButton: 'Darujte pre Bebbo',
     contactUs: 'Napíšte nám',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'O {{appName}}',
+    aboutBebboDrawerMenu: 'O {{appName}}',
     welcomeText: 'Vitajte!',
     letGetStartedText: 'ZAČÍNAME!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Ak tento krok preskočíte, vytvorí sa všeobecný profil novorodenca. Neskôr ho môžete upraviť a získať personalizovaný obsah.',
     serviceProviderHeaderInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 aplikácia je pripravená podporiť Vás v starostlivosti o Vaše dieťa!',
+      'Bebbo aplikácia je pripravená podporiť Vás v starostlivosti o Vaše dieťa!',
     serviceProviderHeaderSubInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 vytvoril profil novorodenca, aby ste mohli začať. Neskôr môžete pridať osobné profily Vašich detí.',
+      'Bebbo vytvoril profil novorodenca, aby ste mohli začať. Neskôr môžete pridať osobné profily Vašich detí.',
   },
 };
 export default sk;

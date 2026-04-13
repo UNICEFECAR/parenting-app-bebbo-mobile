@@ -5,7 +5,7 @@ import { isPregnancy } from "../../../services/Utils";
 
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
-  buildForREMOVED_FACEBOOK_APP_ID1: "bebboPacific",
+  buildForBebbo: "bebboPacific",
   buildFor: "bebboPacific", // 'bebboPacific'
   maxRelatedArticleSize: 3,
   isArticlePinned: "1",
@@ -39,7 +39,7 @@ const config = {
   videoTypeYoutube: "youtube",
   videoTypeImage: "novideo",
   videoTypeDirect: "direct",
-  backupGDriveFolderName: "REMOVED_FACEBOOK_APP_ID1Pacific App Backup",
+  backupGDriveFolderName: "BebboPacific App Backup",
   backupGDriveFileName: "mybackup.json",
   tempRealmFile: `${RNFS.DocumentDirectoryPath}/user1.realm`,
   tempFuseJsonPath: `${RNFS.DocumentDirectoryPath}/fuse-index.json`,
@@ -209,7 +209,7 @@ const config = {
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
   maxArticleSize: 5,
-  flavorName: "REMOVED_FACEBOOK_APP_ID1Pacific",
+  flavorName: "BebboPacific",
   isCheckTokenize: false,
   stopWords: [],
   apiConfig: {

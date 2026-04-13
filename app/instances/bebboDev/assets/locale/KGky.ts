@@ -73,7 +73,7 @@ const KGky = {
     notiScreenheaderTitle: 'Эскертмелер',
     settingScreenheaderTitle: 'Орнотуулар',
     settingScreennotiHeaderText: 'Эскертмелер',
-    settingScreennotiType1: 'Эскертмелерди REMOVED_FACEBOOK_APP_ID1 аркылуу алгым келет',
+    settingScreennotiType1: 'Эскертмелерди Bebbo аркылуу алгым келет',
     settingScreennotiType2: 'Баламдын өсүшү жөнүндө эскертмелерди алгым келет',
     settingScreennotiType3:
       'Баламдын өнүгүшү жөнүндө эскертмелерди алгым келет',
@@ -217,7 +217,7 @@ const KGky = {
     babyNotificationUpdateBtn: 'Профилди жаңыртуу',
     favScreenHeader: 'Тандалмалар',
     actScreenremovetoFavText: 'Сакталды',
-    appShareText: 'REMOVED_FACEBOOK_APP_ID1 ну жүктөп ал, сенин ата -энелик чөнтөк өнөктөшүң!',
+    appShareText: 'Bebbo ну жүктөп ал, сенин ата -энелик чөнтөк өнөктөшүң!',
     vcHeader: 'Эмдөө',
     vcSummaryHeader: 'Эмдөө күндөлүгү',
     vcStatus1: 'Пландалган',
@@ -518,13 +518,13 @@ const KGky = {
     upto6YearsMsg: 'Бул колдонмо 6 жашка чейинки балдарга арналган',
     donateButton: 'Беббо үчүн кайрымдуулук',
     contactUs: 'Бизге жазыңыз',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: '{{appName}} жөнүндө',
+    aboutBebboDrawerMenu: '{{appName}} жөнүндө',
     tncCheckBoxText: 'Беббо тиркемесин колдонуу боюнча шарттар менен',
     tncScreenContent:
       'Беббо жеке маалыматтарды чогултпайт жана сактабайт. Сиз киргизген бардык маалыматтар телефонуңузда гана сакталат.',
     welcomeText: 'Кош келипсиз!',
     letGetStartedText: 'ЭМЕСЕ, БАШТАЙЛЫ!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Эгерде бул кадамды өткөрүп жиберсеңиз, жаңы төрөлгөн баланын профили түзүлөт. Сиз үчүн тандалган контентти алып туруу максатында аны кийин деле редакциялай аласыз.',
     serviceProviderHeaderInfoText:

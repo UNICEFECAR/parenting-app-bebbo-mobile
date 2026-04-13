@@ -5,8 +5,8 @@ import { isPregnancy } from "../../../services/Utils";
 
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
-  buildForREMOVED_FACEBOOK_APP_ID1: "REMOVED_FACEBOOK_APP_ID1",
-  buildFor: "REMOVED_FACEBOOK_APP_ID1", // 'REMOVED_FACEBOOK_APP_ID1'
+  buildForBebbo: "merhabaBebek",
+  buildFor: "merhabaBebek", // 'merhabaBebek'
   maxRelatedArticleSize: 3,
   isArticlePinned: "1",
   articleCategory: "4,1,55,56,3,2",
@@ -209,7 +209,7 @@ const config = {
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
   maxArticleSize: 5,
-  flavorName: "REMOVED_FACEBOOK_APP_ID1",
+  flavorName: "merhabaBebek",
   isCheckTokenize: false,
   stopWords: [],
   apiConfig: {

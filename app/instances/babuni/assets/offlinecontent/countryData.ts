@@ -15,12 +15,12 @@ export const countryData: any = {
         "alt": "MoH Bangladesh logo"
       },
       "unicef_logo": {
-        "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2025-11/REMOVED_FACEBOOK_APP_ID1%20logo%20%28white%29.webp?itok=CGVVUw-l",
-        "name": "REMOVED_FACEBOOK_APP_ID1 logo (white).png",
-        "alt": "REMOVED_FACEBOOK_APP_ID1 logo (white)"
+        "url": "https://babuni.app/sites/bangladesh/files/styles/content_1200xh_/public/2025-11/Babuni%20logo%20%28white%29.webp?itok=CGVVUw-l",
+        "name": "Babuni logo (white).png",
+        "alt": "Babuni logo (white)"
       },
       "content_toggle": "Pregnancy",
-      "app_name": "REMOVED_FACEBOOK_APP_ID1",
+      "app_name": "Babuni",
       "languages": [
         {
           "name": "বাংলাদেশ (Bangladesh)",

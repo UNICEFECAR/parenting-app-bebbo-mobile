@@ -8,11 +8,11 @@ const GRel = {
     goToLanguageSelection: 'Μεταβείτε στην επιλογή γλώσσας',
     goToConfirm: 'Πατήστε επιβεβαίωση',
     checkonce:
-      'Το REMOVED_FACEBOOK_APP_ID1 θα προσαρμόσει το διαθέσιμο περιεχόμενο του βάσει της χώρας και της γλώσσας που έχετε επιλέξει.',
+      'Το Bebbo θα προσαρμόσει το διαθέσιμο περιεχόμενο του βάσει της χώρας και της γλώσσας που έχετε επιλέξει.',
     country: 'Χώρα',
     language: 'Γλώσσα',
     walkthroughTextstitle0: 'Καλως ήρθατε γονείς!',
-    walkthroughTextssubtitle0: 'Ανακαλύψτε το REMOVED_FACEBOOK_APP_ID1',
+    walkthroughTextssubtitle0: 'Ανακαλύψτε το Bebbo',
     walkthroughTextstitle1: 'Παιχνίδια',
     walkthroughTextssubtitle1:
       'Βοηθήστε το παιδί σας να μάθει καινούργια πράγματα κάθε μέρα',
@@ -27,13 +27,13 @@ const GRel = {
     walkthroughButtonSkip: 'Παράλειψη',
     tNcheader: 'Όροι και Προϋποθέσεις',
     tNccheckbox1:
-      'Έχω διαβάσει, καταλάβει και αποδεχτεί τους Όρους και Προϋποθέσεις της εφαρμογής REMOVED_FACEBOOK_APP_ID1',
+      'Έχω διαβάσει, καταλάβει και αποδεχτεί τους Όρους και Προϋποθέσεις της εφαρμογής Bebbo',
     tNccheckbox2: 'Έχω διαβάσει, καταλάβει και αποδεχτεί',
-    tNcprivacyPolicy: 'Η Πολιτική Aπορρήτου της εφαρμογής REMOVED_FACEBOOK_APP_ID1',
+    tNcprivacyPolicy: 'Η Πολιτική Aπορρήτου της εφαρμογής Bebbo',
     tNcprivacyPolicyTitle: 'Πολιτική απορρήτου',
     tNcacceptbtn: 'Αποδέχομαι τους όρους και τις προϋποθέσεις',
     loadingText: 'Ανάκτηση περιεχομένου…',
-    childSetupheader: 'Επωφεληθείτε στο έπακρο από το περιεχόμενο του REMOVED_FACEBOOK_APP_ID1!',
+    childSetupheader: 'Επωφεληθείτε στο έπακρο από το περιεχόμενο του Bebbo!',
     childSetupdobLabel:
       'Ποια είναι η ημερομηνία γέννησης ή η εκτιμώμενη ημερομηνία γέννησης του παιδιού;',
     addAnotherChildSetupDobLabel:
@@ -50,7 +50,7 @@ const GRel = {
     childSetuprelationSelectText: 'Επιλογή',
     childSetupcontinueBtnText: 'Συνέχεια',
     childSetupListheader:
-      'Το REMOVED_FACEBOOK_APP_ID1 ετοιμάζεται να υποστηρίξει το γονεϊκό σας ταξίδι!',
+      'Το Bebbo ετοιμάζεται να υποστηρίξει το γονεϊκό σας ταξίδι!',
     childSetupListsubHeader:
       'Εάν έχετε άλλα παιδιά ηλικίας 0 έως 6 ετών, μπορείτε να τα προσθέσετε τώρα ή αργότερα.',
     childSetupListaddSiblingBtn: '+ ΠΡΟΣΘΕΣΤΕ ΑΛΛΟ ΠΑΙΔΙ',
@@ -72,12 +72,12 @@ const GRel = {
     drawerMenusetTxt: 'Ρυθμίσεις',
     drawerMenushareTxt: 'Κοινοποίηση',
     drawerMenufeedbackTxt: 'Αφήστε τα σχόλιά σας',
-    drawerMenurateTxt: 'Σας άρεσε το REMOVED_FACEBOOK_APP_ID1; Αξιολογήστε το!',
+    drawerMenurateTxt: 'Σας άρεσε το Bebbo; Αξιολογήστε το!',
     drawerMenuPrivacyTxt: 'Πολιτική Απορρήτου',
     notiScreenheaderTitle: 'Ειδοποιήσεις',
     settingScreenheaderTitle: 'Ρυθμίσεις',
     settingScreennotiHeaderText: 'Ειδοποιήσεις',
-    settingScreennotiType1: 'Θέλω να λαμβάνω ειδοποιήσεις μέσω του REMOVED_FACEBOOK_APP_ID1',
+    settingScreennotiType1: 'Θέλω να λαμβάνω ειδοποιήσεις μέσω του Bebbo',
     settingScreennotiType2:
       'Θέλω να λαμβάνω ειδοποιήσεις σχετικά με την εξέλιξη του παιδιού μου',
     settingScreennotiType3:
@@ -85,7 +85,7 @@ const GRel = {
     settingScreennotiType4:
       'Θέλω να λαμβάνω ειδοποιήσεις σχετικά με τους ιατρικούς ελέγχους και τους εμβολιασμούς του παιδιού μου',
     settingScreennotiInfo:
-      'Οι ειδοποιήσεις δημοσιεύονται με διαφορετική συχνότητα, καθημερινά και μηνιαία και αποτελούν αναπόσπαστο μέρος της λειτουργικότητας του REMOVED_FACEBOOK_APP_ID1. Μπορείτε να επιλέξετε να αποκρύψετε ειδοποιήσεις στην αρχική οθόνη σας. Μπορείτε επίσης να απενεργοποιήσετε πλήρως αυτήν τη λειτουργία μέσω των ρυθμίσεων της εφαρμογής, το οποίο θα έχει ως αποτέλεσμα την περιορισμένη λειτουργικότητα της εφαρμογής',
+      'Οι ειδοποιήσεις δημοσιεύονται με διαφορετική συχνότητα, καθημερινά και μηνιαία και αποτελούν αναπόσπαστο μέρος της λειτουργικότητας του Bebbo. Μπορείτε να επιλέξετε να αποκρύψετε ειδοποιήσεις στην αρχική οθόνη σας. Μπορείτε επίσης να απενεργοποιήσετε πλήρως αυτήν τη λειτουργία μέσω των ρυθμίσεων της εφαρμογής, το οποίο θα έχει ως αποτέλεσμα την περιορισμένη λειτουργικότητα της εφαρμογής',
     settingScreendataSaverHeaderText: 'Λειτουργία εξοικονόμησης δεδομένων',
     settingScreendataSaverSubText:
       'Δεν θέλω να κατεβάζω εικόνες από άρθρα, ή ενημερώσεις λόγω χαμηλής ταχύτητας του δικτύου',
@@ -110,7 +110,7 @@ const GRel = {
     supportScreenheaderTitle: 'Συνομιλία',
     supportScreenheader1text: 'Σύντομα κοντά σας!',
     supportScreenheader2text: 'Η συνομιλία δεν είναι διαθέσιμη αυτήν τη στιγμή',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Διαβάστε περισσότερα',
     homeScreenchildInfoTitle: 'Καλώς ήρθατε {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Καθημερινές αναγνώσεις',
@@ -225,7 +225,7 @@ const GRel = {
     babyNotificationUpdateBtn: 'Ανανέωση προφίλ',
     favScreenHeader: 'Αγαπημένα',
     actScreenremovetoFavText: 'Αποθηκεύτηκαν',
-    appShareText: 'Κατεβάστε το REMOVED_FACEBOOK_APP_ID1, ένας βοηθός για γονείς…στην τσέπη σας!!',
+    appShareText: 'Κατεβάστε το Bebbo, ένας βοηθός για γονείς…στην τσέπη σας!!',
     vcHeader: 'Εμβολιασμός',
     vcSummaryHeader: 'Σύνοψη εμβολιασμού',
     vcStatus1: 'Αναμένονται',
@@ -458,11 +458,11 @@ const GRel = {
     parentGender: 'Φύλο',
     successOnboardingImport:
       'Έχετε εισάγει επιτυχώς τα στοιχεία του παιδιού/των παιδιών',
-    importOnboardingText: 'To REMOVED_FACEBOOK_APP_ID1 δεν συλλέγει τα προσωπικά σας στοιχεία.',
+    importOnboardingText: 'To Bebbo δεν συλλέγει τα προσωπικά σας στοιχεία.',
     importOnboardingText1:
       'Οι πληροφορίες που εισάγετε στην εφαρμογή αποθηκεύονται στο τηλέφωνό σας ή στον προσωπικό σας χώρο αποθήκευσης.',
     importOnboardingText2:
-      'Εάν έχετε χρησιμοποιήσει το REMOVED_FACEBOOK_APP_ID1 σε άλλη συσκευή και έχετε αποθηκεύσει τις πληροφορίες σας, μπορείτε να ανεβάσετε το αρχείο σε αυτήν τη συσκευή τώρα.',
+      'Εάν έχετε χρησιμοποιήσει το Bebbo σε άλλη συσκευή και έχετε αποθηκεύσει τις πληροφορίες σας, μπορείτε να ανεβάσετε το αρχείο σε αυτήν τη συσκευή τώρα.',
     updateImportText: 'Παρακαλώ εισάγετε τα στοιχεία σας για να συνεχίσετε',
     OnboardingImportButton: 'Ανεβάστε τώρα',
     ORkeyText: 'N',
@@ -483,7 +483,7 @@ const GRel = {
     childSetupprematureMessageNext:
       'Το περιεχόμενο αυτής της ενότητας εμφανίζεται σύμφωνα με τη διορθωμένη και όχι με την πραγματική ηλικία του πρόωρα γεννημένου παιδιού σας.',
     helloMessage:
-      'Γειά σου{{parentName}}, με λένε REMOVED_FACEBOOK_APP_ID1. Είμαι εδώ για να απαντήσω στις ερωτήσεις σου',
+      'Γειά σου{{parentName}}, με λένε Bebbo. Είμαι εδώ για να απαντήσω στις ερωτήσεις σου',
     selectAreaOfInterest:
       'Παρακαλώ επιλέξτε την κατηγορία που σας ενδιαφέρει για να κάνετε µια ερώτηση',
     question1: 'Ποια κατηγορία αφορά η ερώτηση σας;',
@@ -532,21 +532,21 @@ const GRel = {
     vcHasScheduled: 'Ο εμβολιασμός προγραμματίστηκε',
     relatedVideoArticle: 'Σχετικά βίντεο',
     upto6YearsMsg: 'Αυτή η εφαρμογή έχει σχεδιαστεί για παιδιά έως 6 ετών.',
-    donateButton: 'Κάντε μια δωρεά για το REMOVED_FACEBOOK_APP_ID1',
+    donateButton: 'Κάντε μια δωρεά για το Bebbo',
     contactUs: 'Στείλτε μας μήνυμα',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'Σχετικά με {{appName}}',
-    tncCheckBoxText: 'τους Όρους και Προϋποθέσεις της εφαρμογής REMOVED_FACEBOOK_APP_ID1',
+    aboutBebboDrawerMenu: 'Σχετικά με {{appName}}',
+    tncCheckBoxText: 'τους Όρους και Προϋποθέσεις της εφαρμογής Bebbo',
     tncScreenContent:
-      'Το REMOVED_FACEBOOK_APP_ID1 δεν συλλέγει ούτε αποθηκεύει προσωπικές πληροφορίες. Όλα τα δεδομένα που εισάγετε αποθηκεύονται μόνο στο τηλέφωνό σας.',
+      'Το Bebbo δεν συλλέγει ούτε αποθηκεύει προσωπικές πληροφορίες. Όλα τα δεδομένα που εισάγετε αποθηκεύονται μόνο στο τηλέφωνό σας.',
     welcomeText: 'Καλως ΗΡΘΑΤΕ!',
     letGetStartedText: 'ΑΣ ΞΕΚΙΝΗΣΟΥΜΕ!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Εάν παραλείψετε αυτό το βήμα, θα δημιουργηθεί ένα προφίλ νεογέννητου παιδιού. Μπορείτε να το επεξεργαστείτε αργότερα για να λαμβάνετε εξατομικευμένο περιεχόμενο.',
     serviceProviderHeaderInfoText:
-      'Το REMOVED_FACEBOOK_APP_ID1 προετοιμάζεται ώστε να σας υποστηριξεί στο ταξίδι φροντίδας του παιδιού σας!',
+      'Το Bebbo προετοιμάζεται ώστε να σας υποστηριξεί στο ταξίδι φροντίδας του παιδιού σας!',
     serviceProviderHeaderSubInfoText:
-      'Το REMOVED_FACEBOOK_APP_ID1 δημιούργησε ένα προφίλ παιδιού ώστε να ξεκινήσετε. Μπορείτε να προσθέσετε περισσότερα προφίλ παιδιών που φροντίζετε',
+      'Το Bebbo δημιούργησε ένα προφίλ παιδιού ώστε να ξεκινήσετε. Μπορείτε να προσθέσετε περισσότερα προφίλ παιδιών που φροντίζετε',
   },
 };
 export default GRel;

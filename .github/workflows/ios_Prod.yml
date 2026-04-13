@@ -144,7 +144,7 @@ jobs:
                 <key>provisioningProfiles</key>
                 <dict>
                     <key>org.unicef.ecar.bebbo</key>
-                    <string>REMOVED_FACEBOOK_APP_ID1_Production_Unicef</string>
+                    <string>Bebbo_Production_Unicef</string>
                 </dict>
               	<key>thinning</key>
               	<string>&lt;none&gt;</string>
@@ -188,7 +188,7 @@ jobs:
       # - name: Upload Artifacts
       #   uses: actions/upload-artifact@v4
       #   with:
-      #     name: REMOVED_FACEBOOK_APP_ID1.ipa
+      #     name: Bebbo.ipa
       #     path: "ios/ParentBuddyApp/"
       
       - name: Clean up keychain and provisioning profile

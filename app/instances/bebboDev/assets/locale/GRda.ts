@@ -499,12 +499,12 @@ const GRda = {
     vcHasScheduled: 'Vaccination is scheduled',
     relatedVideoArticle: 'Related videos',
     upto6YearsMsg: 'This app is designed for children up to 6 years of age',
-    donateButton: 'Donate for REMOVED_FACEBOOK_APP_ID1',
+    donateButton: 'Donate for Bebbo',
     contactUs: 'Write to us',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'About {{appName}}',
-    tncCheckBoxText: 'Terms and conditions of the REMOVED_FACEBOOK_APP_ID1 application',
+    aboutBebboDrawerMenu: 'About {{appName}}',
+    tncCheckBoxText: 'Terms and conditions of the Bebbo application',
     tncScreenContent:
-      'REMOVED_FACEBOOK_APP_ID1 does not collect or store any personal information. All data you enter is saved only on your phone.',
+      'Bebbo does not collect or store any personal information. All data you enter is saved only on your phone.',
   },
 };
 export default GRda;

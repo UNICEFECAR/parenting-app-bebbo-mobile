@@ -12,7 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		30B0DC5A77B30A255F2CB4D2 /* Pods_ParentBuddyApp_ParentBuddyAppBanglaDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8471EC4F08CBAB84F2E3695 /* Pods_ParentBuddyApp_ParentBuddyAppBanglaDev.framework */; };
 		340F249DA9EEA926EDEDA391 /* Pods_ParentBuddyApp_ParentBuddyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EBCE8B75FB615FD820638DB /* Pods_ParentBuddyApp_ParentBuddyAppTests.framework */; };
-		4BE0AAA9148E486B13C933EC /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1Pacific.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1Pacific.framework */; };
+		4BE0AAA9148E486B13C933EC /* Pods_ParentBuddyApp_BebboPacific.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_BebboPacific.framework */; };
 		647717583366C7601F4BF539 /* Pods_ParentBuddyApp_Wawamor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DE5DA6621498F2729AEB41 /* Pods_ParentBuddyApp_Wawamor.framework */; };
 		69192446C7D2FB6457345895 /* Pods_ParentBuddyApp_ParentBuddyAppDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8541B93430AA7F2E060F943 /* Pods_ParentBuddyApp_ParentBuddyAppDev.framework */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
@@ -58,7 +58,7 @@
 		D6C1B5952EBC847B00E466C0 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6F142772E29326600986814 /* roboto-bold.ttf */; };
 		D6C1B5982EBC847B00E466C0 /* roboto-regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = D6F1427C2E29326600986814 /* roboto-regular.woff */; };
 		D6C1B5992EBC847B00E466C0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
-		D6C1B5A32EBC85EB00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5A22EBC85EB00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific-Info.plist */; };
+		D6C1B5A32EBC85EB00E466C0 /* BebboPacific-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5A22EBC85EB00E466C0 /* BebboPacific-Info.plist */; };
 		D6C1B5A92EBC876600E466C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5A72EBC876600E466C0 /* InfoPlist.strings */; };
 		D6C1B5B32EBCA16000E466C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D6C1B5B72EBCB07A00E466C0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6C1B5B52EBCB07A00E466C0 /* README.md */; };
@@ -199,11 +199,11 @@
 		D6F1438E2E2A3B7900986814 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		D6F143992E2A3B9800986814 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D6F141F52E29131100986814 /* README.md */; };
 		D6F143A12E2A3BE700986814 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F1439E2E2A3BE700986814 /* InfoPlist.strings */; };
-		D6F143A22E2A3BE700986814 /* REMOVED_FACEBOOK_APP_ID1-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F143A02E2A3BE700986814 /* REMOVED_FACEBOOK_APP_ID1-Info.plist */; };
+		D6F143A22E2A3BE700986814 /* ReraiUmntwana-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6F143A02E2A3BE700986814 /* ReraiUmntwana-Info.plist */; };
 		D6F1E8942EB0B8DC00B2C8E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */; };
 		D6F40A1F2EB4F3680015F5C7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6F40A1D2EB4F3680015F5C7 /* InfoPlist.strings */; };
 		DA3D277D84BC05EEB5F159A4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		EC6F9DFCA8562697202B7198 /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1.framework */; };
+		EC6F9DFCA8562697202B7198 /* Pods_ParentBuddyApp_ReraiUmntwana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_ReraiUmntwana.framework */; };
 		F27D058AF84CA2E66A66BAAF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7DCE18FFE5A29E4601F8AF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework */; };
 /* End PBXBuildFile section */
 
@@ -220,16 +220,16 @@
 /* Begin PBXFileReference section */
 		07DE5DA6621498F2729AEB41 /* Pods_ParentBuddyApp_Wawamor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_Wawamor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CD0F078CDD45E7D2A5CC340 /* Pods-ParentBuddyApp-Wawamor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-Wawamor.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-Wawamor/Pods-ParentBuddyApp-Wawamor.release.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* REMOVED_FACEBOOK_APP_ID1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMOVED_FACEBOOK_APP_ID1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Bebbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bebbo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ParentBuddyApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ParentBuddyApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = ParentBuddyApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		13E1E261712598433214CAEE /* Pods-ParentBuddyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp/Pods-ParentBuddyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		283B0D9A778402DBEB33066D /* Pods-ParentBuddyApp-ParentBuddyAppXkDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppXkDev.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppXkDev/Pods-ParentBuddyApp-ParentBuddyAppXkDev.debug.xcconfig"; sourceTree = "<group>"; };
 		2EFAFD36A6FAB53DF9062A98 /* Pods_ParentBuddyApp_ParentBuddyAppBangla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ParentBuddyAppBangla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		349FF3C9170EC6BEA30B6389 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.release.xcconfig"; sourceTree = "<group>"; };
-		366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.debug.xcconfig"; sourceTree = "<group>"; };
+		349FF3C9170EC6BEA30B6389 /* Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig"; sourceTree = "<group>"; };
+		366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_ReraiUmntwana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ReraiUmntwana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-BebboPacific.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-BebboPacific.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific.debug.xcconfig"; sourceTree = "<group>"; };
 		4011E01A78313931C883C49A /* Pods-ParentBuddyApp-MerhabaBebek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-MerhabaBebek.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-MerhabaBebek/Pods-ParentBuddyApp-MerhabaBebek.debug.xcconfig"; sourceTree = "<group>"; };
 		43D02DA51954010C7EB91B7E /* Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppXk/Pods-ParentBuddyApp-ParentBuddyAppXk.debug.xcconfig"; sourceTree = "<group>"; };
 		43ED259E043F02A838663F96 /* Pods_ParentBuddyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,7 +239,7 @@
 		580373AA984CA5167A0B307D /* Pods-ParentBuddyApp-ParentBuddyAppDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppDev.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppDev/Pods-ParentBuddyApp-ParentBuddyAppDev.release.xcconfig"; sourceTree = "<group>"; };
 		5C30A20B7F5343B130C4898D /* Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBangla/Pods-ParentBuddyApp-ParentBuddyAppBangla.release.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ParentBuddyApp/AppDelegate.swift; sourceTree = "<group>"; };
-		78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.release.xcconfig"; sourceTree = "<group>"; };
+		78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-BebboPacific.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-BebboPacific.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific.release.xcconfig"; sourceTree = "<group>"; };
 		7DF711D8CB44721A360C8F88 /* Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev/Pods-ParentBuddyApp-ParentBuddyAppBanglaDev.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ParentBuddyApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8325BA672C3935571B54205C /* Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppDev/Pods-ParentBuddyApp-ParentBuddyAppDev.debug.xcconfig"; sourceTree = "<group>"; };
@@ -274,13 +274,13 @@
 		D6B295482E2E88A500C8889C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6B295492E2E88A500C8889C /* splash.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D6C1B5A02EBC847B00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMOVED_FACEBOOK_APP_ID1Pacific.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6C1B5A22EBC85EB00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "REMOVED_FACEBOOK_APP_ID1Pacific-Info.plist"; sourceTree = "<group>"; };
+		D6C1B5A02EBC847B00E466C0 /* BebboPacific.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BebboPacific.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6C1B5A22EBC85EB00E466C0 /* BebboPacific-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BebboPacific-Info.plist"; sourceTree = "<group>"; };
 		D6C1B5AE2EBC9A1500E466C0 /* en-FJ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-FJ"; path = "en-FJ.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6C1B5AF2EBC9A1D00E466C0 /* en-WS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-WS"; path = "en-WS.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6C1B5B02EBC9A1E00E466C0 /* fj */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fj; path = fj.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D6C1B5B12EBC9A2500E466C0 /* sm-WS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sm-WS"; path = "sm-WS.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		D6C1B5B22EBC9B2400E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = REMOVED_FACEBOOK_APP_ID1Pacific.entitlements; sourceTree = "<group>"; };
+		D6C1B5B22EBC9B2400E466C0 /* BebboPacific.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BebboPacific.entitlements; sourceTree = "<group>"; };
 		D6C1B5B42EBCB07A00E466C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6C1B5B52EBCB07A00E466C0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6C1B5B92EBCB0D100E466C0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -323,7 +323,7 @@
 		D6F141FD2E29131100986814 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6F141FE2E29131100986814 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6F1422A2E2925F500986814 /* ParentBuddyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParentBuddyApp.entitlements; sourceTree = "<group>"; };
-		D6F142412E29268B00986814 /* REMOVED_FACEBOOK_APP_ID1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMOVED_FACEBOOK_APP_ID1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F142412E29268B00986814 /* Foleja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foleja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F142462E29279D00986814 /* ParentBuddyAppXk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParentBuddyAppXk.entitlements; sourceTree = "<group>"; };
 		D6F1424E2E29289C00986814 /* sq-XK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-XK"; path = "sq-XK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F1424F2E29289C00986814 /* sr-Latn-XK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-XK"; path = "sr-Latn-XK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -336,12 +336,12 @@
 		D6F1427D2E29326600986814 /* roboto-regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.woff2"; sourceTree = "<group>"; };
 		D6F1428E2E29329200986814 /* roboto-bold.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "roboto-bold.svg"; sourceTree = "<group>"; };
 		D6F1428F2E29329200986814 /* roboto-regular.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "roboto-regular.svg"; sourceTree = "<group>"; };
-		D6F142B32E29334B00986814 /* REMOVED_FACEBOOK_APP_ID1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMOVED_FACEBOOK_APP_ID1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F142B32E29334B00986814 /* Bebbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bebbo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F142B52E2935C100986814 /* ParentBuddyAppDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParentBuddyAppDev.entitlements; sourceTree = "<group>"; };
 		D6F142B62E29361400986814 /* ParentBuddyAppDev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParentBuddyAppDev-Info.plist"; sourceTree = "<group>"; };
-		D6F142D82E29392300986814 /* REMOVED_FACEBOOK_APP_ID1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMOVED_FACEBOOK_APP_ID1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F142D82E29392300986814 /* Foleja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foleja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F142DA2E29399000986814 /* ParentBuddyAppXkDev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParentBuddyAppXkDev-Info.plist"; sourceTree = "<group>"; };
-		D6F142FB2E293C3A00986814 /* REMOVED_FACEBOOK_APP_ID1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMOVED_FACEBOOK_APP_ID1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F142FB2E293C3A00986814 /* Babuni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Babuni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F142FF2E293CC100986814 /* bn-BD */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bn-BD"; path = "bn-BD.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F143032E293CE900986814 /* ParentBuddyAppBangla.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParentBuddyAppBangla.entitlements; sourceTree = "<group>"; };
 		D6F143042E293EEE00986814 /* ParentBuddyAppBangla-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParentBuddyAppBangla-Info.plist"; sourceTree = "<group>"; };
@@ -355,18 +355,18 @@
 		D6F143732E2A3A0500986814 /* Wawamor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wawamor.entitlements; sourceTree = "<group>"; };
 		D6F143742E2A3A2700986814 /* Wawamor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wawamor-Info.plist"; sourceTree = "<group>"; };
 		D6F143762E2A3A3C00986814 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/Ecuadorian Spanish.strings"; sourceTree = "<group>"; };
-		D6F143972E2A3B7900986814 /* REMOVED_FACEBOOK_APP_ID1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMOVED_FACEBOOK_APP_ID1.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6F1439A2E2A3BB200986814 /* REMOVED_FACEBOOK_APP_ID1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = REMOVED_FACEBOOK_APP_ID1.entitlements; sourceTree = "<group>"; };
+		D6F143972E2A3B7900986814 /* ReraiUmntwana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReraiUmntwana.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F1439A2E2A3BB200986814 /* ReraiUmntwana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReraiUmntwana.entitlements; sourceTree = "<group>"; };
 		D6F1439B2E2A3BE700986814 /* en-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-ZW"; path = "en-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F1439C2E2A3BE700986814 /* nd-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nd-ZW"; path = "nd-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D6F1439D2E2A3BE700986814 /* sn-ZW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sn-ZW"; path = "sn-ZW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		D6F143A02E2A3BE700986814 /* REMOVED_FACEBOOK_APP_ID1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "REMOVED_FACEBOOK_APP_ID1-Info.plist"; sourceTree = "<group>"; };
+		D6F143A02E2A3BE700986814 /* ReraiUmntwana-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReraiUmntwana-Info.plist"; sourceTree = "<group>"; };
 		D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6F40A1C2EB4F3680015F5C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8541B93430AA7F2E060F943 /* Pods_ParentBuddyApp_ParentBuddyAppDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_ParentBuddyAppDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1Pacific.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1Pacific.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_BebboPacific.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentBuddyApp_BebboPacific.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.debug.xcconfig"; sourceTree = "<group>"; };
+		F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig"; sourceTree = "<group>"; };
 		F4F28DB5EB235B2642A26D6E /* Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-ParentBuddyAppTests/Pods-ParentBuddyApp-ParentBuddyAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		F57C38D930E37ED60322D609 /* Pods-ParentBuddyApp-Wawamor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-Wawamor.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-Wawamor/Pods-ParentBuddyApp-Wawamor.debug.xcconfig"; sourceTree = "<group>"; };
 		F6A85ECD172E127848C8EC2C /* Pods-ParentBuddyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp/Pods-ParentBuddyApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -407,7 +407,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BE0AAA9148E486B13C933EC /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1Pacific.framework in Frameworks */,
+				4BE0AAA9148E486B13C933EC /* Pods_ParentBuddyApp_BebboPacific.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA3D277D84BC05EEB5F159A4 /* BuildFile in Frameworks */,
-				EC6F9DFCA8562697202B7198 /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1.framework in Frameworks */,
+				EC6F9DFCA8562697202B7198 /* Pods_ParentBuddyApp_ReraiUmntwana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,16 +482,16 @@
 		13B07FAE1A68108700A75B9A /* ParentBuddyApp */ = {
 			isa = PBXGroup;
 			children = (
-				D6C1B5B22EBC9B2400E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific.entitlements */,
-				D6C1B5A82EBC876600E466C0 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1Pacific */,
-				D6C1B5A22EBC85EB00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific-Info.plist */,
-				D6F40A1E2EB4F3680015F5C7 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1Dev */,
+				D6C1B5B22EBC9B2400E466C0 /* BebboPacific.entitlements */,
+				D6C1B5A82EBC876600E466C0 /* InfoPlist_BebboPacific */,
+				D6C1B5A22EBC85EB00E466C0 /* BebboPacific-Info.plist */,
+				D6F40A1E2EB4F3680015F5C7 /* InfoPlist_BebboDev */,
 				D61DD34A2E2FB86C00109398 /* ParentBuddyApp-Bridging-Header.h */,
 				D61DD3402E2FB37400109398 /* Dynamic.swift */,
 				D6B2954B2E2E88A500C8889C /* LottieSplash */,
-				D6F1439F2E2A3BE700986814 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1 */,
-				D6F143A02E2A3BE700986814 /* REMOVED_FACEBOOK_APP_ID1-Info.plist */,
-				D6F1439A2E2A3BB200986814 /* REMOVED_FACEBOOK_APP_ID1.entitlements */,
+				D6F1439F2E2A3BE700986814 /* InfoPlist_ReraiUmntwana */,
+				D6F143A02E2A3BE700986814 /* ReraiUmntwana-Info.plist */,
+				D6F1439A2E2A3BB200986814 /* ReraiUmntwana.entitlements */,
 				D6F143782E2A3A3C00986814 /* InfoPlist_Wawamor */,
 				D6F143742E2A3A2700986814 /* Wawamor-Info.plist */,
 				D6F143732E2A3A0500986814 /* Wawamor.entitlements */,
@@ -501,7 +501,7 @@
 				D6F143282E2A2ACD00986814 /* ParentBuddyAppBanglaDev-Info.plist */,
 				D6F143042E293EEE00986814 /* ParentBuddyAppBangla-Info.plist */,
 				D6F143032E293CE900986814 /* ParentBuddyAppBangla.entitlements */,
-				D6F143012E293CC100986814 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1 */,
+				D6F143012E293CC100986814 /* InfoPlist_Babuni */,
 				D6F142DA2E29399000986814 /* ParentBuddyAppXkDev-Info.plist */,
 				D6F142B62E29361400986814 /* ParentBuddyAppDev-Info.plist */,
 				D6F142B52E2935C100986814 /* ParentBuddyAppDev.entitlements */,
@@ -510,7 +510,7 @@
 				D6F142462E29279D00986814 /* ParentBuddyAppXk.entitlements */,
 				D6F1422A2E2925F500986814 /* ParentBuddyApp.entitlements */,
 				D6F142002E29131100986814 /* GoogleServices */,
-				D6F141E42E2912C200986814 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1 */,
+				D6F141E42E2912C200986814 /* InfoPlist_Bebbo */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -534,8 +534,8 @@
 				4E7DCE18FFE5A29E4601F8AF /* Pods_ParentBuddyApp_ParentBuddyAppXk.framework */,
 				4E33ADFC5459E658155B0E58 /* Pods_ParentBuddyApp_ParentBuddyAppXkDev.framework */,
 				07DE5DA6621498F2729AEB41 /* Pods_ParentBuddyApp_Wawamor.framework */,
-				E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1Pacific.framework */,
-				366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_REMOVED_FACEBOOK_APP_ID1.framework */,
+				E7C84DE0F1813F867887D086 /* Pods_ParentBuddyApp_BebboPacific.framework */,
+				366DE23E0F76D084227B40BF /* Pods_ParentBuddyApp_ReraiUmntwana.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -550,8 +550,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				D63091662EE1651300431E7E /* REMOVED_FACEBOOK_APP_ID1Pacific */,
-				D677385D2E6ACC870067DBAC /* REMOVED_FACEBOOK_APP_ID1 */,
+				D63091662EE1651300431E7E /* BebboPacific */,
+				D677385D2E6ACC870067DBAC /* ReraiUmntwana */,
 				D6F142752E29324000986814 /* Resources */,
 				13B07FAE1A68108700A75B9A /* ParentBuddyApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -569,17 +569,17 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* REMOVED_FACEBOOK_APP_ID1.app */,
-				D6F142412E29268B00986814 /* REMOVED_FACEBOOK_APP_ID1.app */,
-				D6F142B32E29334B00986814 /* REMOVED_FACEBOOK_APP_ID1.app */,
-				D6F142D82E29392300986814 /* REMOVED_FACEBOOK_APP_ID1.app */,
-				D6F142FB2E293C3A00986814 /* REMOVED_FACEBOOK_APP_ID1.app */,
+				13B07F961A680F5B00A75B9A /* Bebbo.app */,
+				D6F142412E29268B00986814 /* Foleja.app */,
+				D6F142B32E29334B00986814 /* Bebbo.app */,
+				D6F142D82E29392300986814 /* Foleja.app */,
+				D6F142FB2E293C3A00986814 /* Babuni.app */,
 				D6F143242E2A29F400986814 /* ParentBuddyAppBanglaDev.app */,
 				D6F143472E2A366200986814 /* MerhabaBebek.app */,
 				D6F1436F2E2A39D000986814 /* Wawamor.app */,
-				D6F143972E2A3B7900986814 /* REMOVED_FACEBOOK_APP_ID1.app */,
+				D6F143972E2A3B7900986814 /* ReraiUmntwana.app */,
 				D628E5F12E2A71DE00202918 /* ParentBuddyAppTests.xctest */,
-				D6C1B5A02EBC847B00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific.app */,
+				D6C1B5A02EBC847B00E466C0 /* BebboPacific.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -603,31 +603,31 @@
 				A1E5068D170EF702A65C9A91 /* Pods-ParentBuddyApp-ParentBuddyAppXk.release.xcconfig */,
 				283B0D9A778402DBEB33066D /* Pods-ParentBuddyApp-ParentBuddyAppXkDev.debug.xcconfig */,
 				87144A23C4A78723F2F3CD2A /* Pods-ParentBuddyApp-ParentBuddyAppXkDev.release.xcconfig */,
-				F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.debug.xcconfig */,
-				349FF3C9170EC6BEA30B6389 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.release.xcconfig */,
+				F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig */,
+				349FF3C9170EC6BEA30B6389 /* Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig */,
 				F57C38D930E37ED60322D609 /* Pods-ParentBuddyApp-Wawamor.debug.xcconfig */,
 				0CD0F078CDD45E7D2A5CC340 /* Pods-ParentBuddyApp-Wawamor.release.xcconfig */,
-				391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.debug.xcconfig */,
-				78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.release.xcconfig */,
+				391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-BebboPacific.debug.xcconfig */,
+				78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-BebboPacific.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		D62267BB2EBB4D4E00BE4745 /* REMOVED_FACEBOOK_APP_ID1 */ = {
+		D62267BB2EBB4D4E00BE4745 /* ReraiUmntwana */ = {
 			isa = PBXGroup;
 			children = (
 				D62267B92EBB4D4E00BE4745 /* README.md */,
 				D62267BA2EBB4D4E00BE4745 /* splash.json */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1;
+			path = ReraiUmntwana;
 			sourceTree = "<group>";
 		};
-		D63091662EE1651300431E7E /* REMOVED_FACEBOOK_APP_ID1Pacific */ = {
+		D63091662EE1651300431E7E /* BebboPacific */ = {
 			isa = PBXGroup;
 			children = (
 				D63091652EE1651300431E7E /* Assets.xcassets */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1Pacific;
+			path = BebboPacific;
 			sourceTree = "<group>";
 		};
 		D677385B2E6ACC870067DBAC /* splashimg.imageset */ = {
@@ -641,40 +641,40 @@
 			path = splashimg.imageset;
 			sourceTree = "<group>";
 		};
-		D677385D2E6ACC870067DBAC /* REMOVED_FACEBOOK_APP_ID1 */ = {
+		D677385D2E6ACC870067DBAC /* ReraiUmntwana */ = {
 			isa = PBXGroup;
 			children = (
 				D6F1E8932EB0B8DC00B2C8E0 /* Assets.xcassets */,
 				D6B855DC2E6EC7900043F90E /* LaunchScreen.storyboard */,
 				D677385B2E6ACC870067DBAC /* splashimg.imageset */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1;
+			path = ReraiUmntwana;
 			sourceTree = "<group>";
 		};
-		D6B295382E2E88A500C8889C /* REMOVED_FACEBOOK_APP_ID1 */ = {
+		D6B295382E2E88A500C8889C /* Babuni */ = {
 			isa = PBXGroup;
 			children = (
 				D6B295372E2E88A500C8889C /* splash.json */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1;
+			path = Babuni;
 			sourceTree = "<group>";
 		};
-		D6B2953B2E2E88A500C8889C /* REMOVED_FACEBOOK_APP_ID1 */ = {
+		D6B2953B2E2E88A500C8889C /* Bebbo */ = {
 			isa = PBXGroup;
 			children = (
 				D6B295392E2E88A500C8889C /* README.md */,
 				D6B2953A2E2E88A500C8889C /* splash.json */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1;
+			path = Bebbo;
 			sourceTree = "<group>";
 		};
-		D6B2953E2E2E88A500C8889C /* REMOVED_FACEBOOK_APP_ID1 */ = {
+		D6B2953E2E2E88A500C8889C /* Foleja */ = {
 			isa = PBXGroup;
 			children = (
 				D6B2953C2E2E88A500C8889C /* README.md */,
 				D6B2953D2E2E88A500C8889C /* splash.json */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1;
+			path = Foleja;
 			sourceTree = "<group>";
 		};
 		D6B295412E2E88A500C8889C /* MerhabaBebek */ = {
@@ -707,11 +707,11 @@
 		D6B2954B2E2E88A500C8889C /* LottieSplash */ = {
 			isa = PBXGroup;
 			children = (
-				D6C1B5BB2EBCB0D100E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific */,
-				D62267BB2EBB4D4E00BE4745 /* REMOVED_FACEBOOK_APP_ID1 */,
-				D6B295382E2E88A500C8889C /* REMOVED_FACEBOOK_APP_ID1 */,
-				D6B2953B2E2E88A500C8889C /* REMOVED_FACEBOOK_APP_ID1 */,
-				D6B2953E2E2E88A500C8889C /* REMOVED_FACEBOOK_APP_ID1 */,
+				D6C1B5BB2EBCB0D100E466C0 /* BebboPacific */,
+				D62267BB2EBB4D4E00BE4745 /* ReraiUmntwana */,
+				D6B295382E2E88A500C8889C /* Babuni */,
+				D6B2953B2E2E88A500C8889C /* Bebbo */,
+				D6B2953E2E2E88A500C8889C /* Foleja */,
 				D6B295412E2E88A500C8889C /* MerhabaBebek */,
 				D6B295472E2E88A500C8889C /* Wawamor */,
 				D6B2954A2E2E88A500C8889C /* Xk */,
@@ -719,38 +719,38 @@
 			path = LottieSplash;
 			sourceTree = "<group>";
 		};
-		D6C1B5A82EBC876600E466C0 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1Pacific */ = {
+		D6C1B5A82EBC876600E466C0 /* InfoPlist_BebboPacific */ = {
 			isa = PBXGroup;
 			children = (
 				D6C1B5A72EBC876600E466C0 /* InfoPlist.strings */,
 			);
-			path = InfoPlist_REMOVED_FACEBOOK_APP_ID1Pacific;
+			path = InfoPlist_BebboPacific;
 			sourceTree = "<group>";
 		};
-		D6C1B5B62EBCB07A00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific */ = {
+		D6C1B5B62EBCB07A00E466C0 /* BebboPacific */ = {
 			isa = PBXGroup;
 			children = (
 				D6C1B5B42EBCB07A00E466C0 /* GoogleService-Info.plist */,
 				D6C1B5B52EBCB07A00E466C0 /* README.md */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1Pacific;
+			path = BebboPacific;
 			sourceTree = "<group>";
 		};
-		D6C1B5BB2EBCB0D100E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific */ = {
+		D6C1B5BB2EBCB0D100E466C0 /* BebboPacific */ = {
 			isa = PBXGroup;
 			children = (
 				D6C1B5B92EBCB0D100E466C0 /* README.md */,
 				D6C1B5BA2EBCB0D100E466C0 /* splash.json */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1Pacific;
+			path = BebboPacific;
 			sourceTree = "<group>";
 		};
-		D6F141E42E2912C200986814 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1 */ = {
+		D6F141E42E2912C200986814 /* InfoPlist_Bebbo */ = {
 			isa = PBXGroup;
 			children = (
 				D6F141E32E2912C200986814 /* InfoPlist.strings */,
 			);
-			path = InfoPlist_REMOVED_FACEBOOK_APP_ID1;
+			path = InfoPlist_Bebbo;
 			sourceTree = "<group>";
 		};
 		D6F141E82E29131100986814 /* Bangla */ = {
@@ -798,13 +798,13 @@
 			path = Production;
 			sourceTree = "<group>";
 		};
-		D6F141F62E29131100986814 /* REMOVED_FACEBOOK_APP_ID1 */ = {
+		D6F141F62E29131100986814 /* ReraiUmntwana */ = {
 			isa = PBXGroup;
 			children = (
 				D6642A3B2E6EA96D00860549 /* GoogleService-Info.plist */,
 				D6F141F52E29131100986814 /* README.md */,
 			);
-			path = REMOVED_FACEBOOK_APP_ID1;
+			path = ReraiUmntwana;
 			sourceTree = "<group>";
 		};
 		D6F141F92E29131100986814 /* Wawamor */ = {
@@ -837,13 +837,13 @@
 		D6F142002E29131100986814 /* GoogleServices */ = {
 			isa = PBXGroup;
 			children = (
-				D6C1B5B62EBCB07A00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific */,
+				D6C1B5B62EBCB07A00E466C0 /* BebboPacific */,
 				D6F141E82E29131100986814 /* Bangla */,
 				D6F141EB2E29131100986814 /* BanglaDevelopment */,
 				D6F141EE2E29131100986814 /* Development */,
 				D6F141F12E29131100986814 /* MerhabaBebek */,
 				D6F141F42E29131100986814 /* Production */,
-				D6F141F62E29131100986814 /* REMOVED_FACEBOOK_APP_ID1 */,
+				D6F141F62E29131100986814 /* ReraiUmntwana */,
 				D6F141F92E29131100986814 /* Wawamor */,
 				D6F141FC2E29131100986814 /* Xk */,
 				D6F141FF2E29131100986814 /* XkDevelopment */,
@@ -874,12 +874,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		D6F143012E293CC100986814 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1 */ = {
+		D6F143012E293CC100986814 /* InfoPlist_Babuni */ = {
 			isa = PBXGroup;
 			children = (
 				D6F143002E293CC100986814 /* InfoPlist.strings */,
 			);
-			path = InfoPlist_REMOVED_FACEBOOK_APP_ID1;
+			path = InfoPlist_Babuni;
 			sourceTree = "<group>";
 		};
 		D6F1434C2E2A36AE00986814 /* InfoPlist_MerhabaBebek */ = {
@@ -898,20 +898,20 @@
 			path = InfoPlist_Wawamor;
 			sourceTree = "<group>";
 		};
-		D6F1439F2E2A3BE700986814 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1 */ = {
+		D6F1439F2E2A3BE700986814 /* InfoPlist_ReraiUmntwana */ = {
 			isa = PBXGroup;
 			children = (
 				D6F1439E2E2A3BE700986814 /* InfoPlist.strings */,
 			);
-			path = InfoPlist_REMOVED_FACEBOOK_APP_ID1;
+			path = InfoPlist_ReraiUmntwana;
 			sourceTree = "<group>";
 		};
-		D6F40A1E2EB4F3680015F5C7 /* InfoPlist_REMOVED_FACEBOOK_APP_ID1Dev */ = {
+		D6F40A1E2EB4F3680015F5C7 /* InfoPlist_BebboDev */ = {
 			isa = PBXGroup;
 			children = (
 				D6F40A1D2EB4F3680015F5C7 /* InfoPlist.strings */,
 			);
-			path = InfoPlist_REMOVED_FACEBOOK_APP_ID1Dev;
+			path = InfoPlist_BebboDev;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -937,7 +937,7 @@
 			);
 			name = ParentBuddyApp;
 			productName = ParentBuddyApp;
-			productReference = 13B07F961A680F5B00A75B9A /* REMOVED_FACEBOOK_APP_ID1.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Bebbo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D628E5F02E2A71DE00202918 /* ParentBuddyAppTests */ = {
@@ -964,9 +964,9 @@
 			productReference = D628E5F12E2A71DE00202918 /* ParentBuddyAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D6C1B57E2EBC847B00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific */ = {
+		D6C1B57E2EBC847B00E466C0 /* BebboPacific */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6C1B59D2EBC847B00E466C0 /* Build configuration list for PBXNativeTarget "REMOVED_FACEBOOK_APP_ID1Pacific" */;
+			buildConfigurationList = D6C1B59D2EBC847B00E466C0 /* Build configuration list for PBXNativeTarget "BebboPacific" */;
 			buildPhases = (
 				D6C1B57F2EBC847B00E466C0 /* [CP] Check Pods Manifest.lock */,
 				D6C1B5802EBC847B00E466C0 /* Sources */,
@@ -980,9 +980,9 @@
 			);
 			dependencies = (
 			);
-			name = REMOVED_FACEBOOK_APP_ID1Pacific;
+			name = BebboPacific;
 			productName = ParentBuddyApp;
-			productReference = D6C1B5A02EBC847B00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific.app */;
+			productReference = D6C1B5A02EBC847B00E466C0 /* BebboPacific.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D6F1422C2E29268B00986814 /* ParentBuddyAppXk */ = {
@@ -1003,7 +1003,7 @@
 			);
 			name = ParentBuddyAppXk;
 			productName = ParentBuddyApp;
-			productReference = D6F142412E29268B00986814 /* REMOVED_FACEBOOK_APP_ID1.app */;
+			productReference = D6F142412E29268B00986814 /* Foleja.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D6F142942E29334B00986814 /* ParentBuddyAppDev */ = {
@@ -1024,7 +1024,7 @@
 			);
 			name = ParentBuddyAppDev;
 			productName = ParentBuddyApp;
-			productReference = D6F142B32E29334B00986814 /* REMOVED_FACEBOOK_APP_ID1.app */;
+			productReference = D6F142B32E29334B00986814 /* Bebbo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D6F142BA2E29392300986814 /* ParentBuddyAppXkDev */ = {
@@ -1045,7 +1045,7 @@
 			);
 			name = ParentBuddyAppXkDev;
 			productName = ParentBuddyApp;
-			productReference = D6F142D82E29392300986814 /* REMOVED_FACEBOOK_APP_ID1.app */;
+			productReference = D6F142D82E29392300986814 /* Foleja.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D6F142DE2E293C3A00986814 /* ParentBuddyAppBangla */ = {
@@ -1066,7 +1066,7 @@
 			);
 			name = ParentBuddyAppBangla;
 			productName = ParentBuddyApp;
-			productReference = D6F142FB2E293C3A00986814 /* REMOVED_FACEBOOK_APP_ID1.app */;
+			productReference = D6F142FB2E293C3A00986814 /* Babuni.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D6F143062E2A29F400986814 /* ParentBuddyAppBanglaDev */ = {
@@ -1132,9 +1132,9 @@
 			productReference = D6F1436F2E2A39D000986814 /* Wawamor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D6F1437A2E2A3B7900986814 /* REMOVED_FACEBOOK_APP_ID1 */ = {
+		D6F1437A2E2A3B7900986814 /* ReraiUmntwana */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6F143942E2A3B7900986814 /* Build configuration list for PBXNativeTarget "REMOVED_FACEBOOK_APP_ID1" */;
+			buildConfigurationList = D6F143942E2A3B7900986814 /* Build configuration list for PBXNativeTarget "ReraiUmntwana" */;
 			buildPhases = (
 				B9515C33CB30966FD2DD55FE /* [CP] Check Pods Manifest.lock */,
 				D6F1437C2E2A3B7900986814 /* Sources */,
@@ -1148,9 +1148,9 @@
 			);
 			dependencies = (
 			);
-			name = REMOVED_FACEBOOK_APP_ID1;
+			name = ReraiUmntwana;
 			productName = ParentBuddyApp;
-			productReference = D6F143972E2A3B7900986814 /* REMOVED_FACEBOOK_APP_ID1.app */;
+			productReference = D6F143972E2A3B7900986814 /* ReraiUmntwana.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1221,8 +1221,8 @@
 				D6F143062E2A29F400986814 /* ParentBuddyAppBanglaDev */,
 				D6F1432A2E2A366200986814 /* MerhabaBebek */,
 				D6F143522E2A39D000986814 /* Wawamor */,
-				D6F1437A2E2A3B7900986814 /* REMOVED_FACEBOOK_APP_ID1 */,
-				D6C1B57E2EBC847B00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific */,
+				D6F1437A2E2A3B7900986814 /* ReraiUmntwana */,
+				D6C1B57E2EBC847B00E466C0 /* BebboPacific */,
 			);
 		};
 /* End PBXProject section */
@@ -1268,7 +1268,7 @@
 				D6C1B5892EBC847B00E466C0 /* roboto-regular.svg in Resources */,
 				D6C1B58B2EBC847B00E466C0 /* roboto-bold.woff in Resources */,
 				D63091672EE1651300431E7E /* Assets.xcassets in Resources */,
-				D6C1B5A32EBC85EB00E466C0 /* REMOVED_FACEBOOK_APP_ID1Pacific-Info.plist in Resources */,
+				D6C1B5A32EBC85EB00E466C0 /* BebboPacific-Info.plist in Resources */,
 				D6C1B5A92EBC876600E466C0 /* InfoPlist.strings in Resources */,
 				D6C1B5B72EBCB07A00E466C0 /* README.md in Resources */,
 				D6C1B5B82EBCB07A00E466C0 /* GoogleService-Info.plist in Resources */,
@@ -1461,7 +1461,7 @@
 				D6F1438B2E2A3B7900986814 /* roboto-regular.ttf in Resources */,
 				D6F143A12E2A3BE700986814 /* InfoPlist.strings in Resources */,
 				D6B855DD2E6EC7900043F90E /* LaunchScreen.storyboard in Resources */,
-				D6F143A22E2A3BE700986814 /* REMOVED_FACEBOOK_APP_ID1-Info.plist in Resources */,
+				D6F143A22E2A3BE700986814 /* ReraiUmntwana-Info.plist in Resources */,
 				D6F1E8942EB0B8DC00B2C8E0 /* Assets.xcassets in Resources */,
 				D6F1438C2E2A3B7900986814 /* roboto-bold.ttf in Resources */,
 				D6F143992E2A3B9800986814 /* README.md in Resources */,
@@ -1496,15 +1496,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		118878922769380C8A287389 /* [CP] Copy Pods Resources */ = {
@@ -1812,15 +1812,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-ReraiUmntwana/Pods-ParentBuddyApp-ReraiUmntwana-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8D7000D0460A2AA888DF3A7 /* [CP] Check Pods Manifest.lock */ = {
@@ -1860,7 +1860,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ParentBuddyApp-ReraiUmntwana-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1933,7 +1933,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ParentBuddyApp-BebboPacific-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1962,15 +1962,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D6C1B59C2EBC847B00E466C0 /* [CP] Copy Pods Resources */ = {
@@ -1979,15 +1979,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific/Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParentBuddyApp-BebboPacific/Pods-ParentBuddyApp-BebboPacific-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D6F142392E29268B00986814 /* Bundle React Native code and images */ = {
@@ -2491,7 +2491,7 @@
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Bebbo;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2504,7 +2504,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Bebbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2525,7 +2525,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Bebbo;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2538,7 +2538,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Bebbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2795,18 +2795,18 @@
 		};
 		D6C1B59E2EBC847B00E466C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.debug.xcconfig */;
+			baseConfigurationReference = 391B82D35205BF27B7B08B7F /* Pods-ParentBuddyApp-BebboPacific.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/REMOVED_FACEBOOK_APP_ID1Pacific.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/BebboPacific.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = SGVD5KL2Y7;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "REMOVED_FACEBOOK_APP_ID1Pacific-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "REMOVED_FACEBOOK_APP_ID1 Pacific";
+				INFOPLIST_FILE = "BebboPacific-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bebbo Pacific";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2830,17 +2830,17 @@
 		};
 		D6C1B59F2EBC847B00E466C0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1Pacific.release.xcconfig */;
+			baseConfigurationReference = 78C9CBA653F7470CFA1F4D76 /* Pods-ParentBuddyApp-BebboPacific.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/REMOVED_FACEBOOK_APP_ID1Pacific.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/BebboPacific.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = SGVD5KL2Y7;
-				INFOPLIST_FILE = "REMOVED_FACEBOOK_APP_ID1Pacific-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "REMOVED_FACEBOOK_APP_ID1 Pacific";
+				INFOPLIST_FILE = "BebboPacific-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bebbo Pacific";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2874,7 +2874,7 @@
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ParentBuddyAppXk-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Foleja;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2887,7 +2887,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.kosovo.foleja;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2908,7 +2908,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = "ParentBuddyAppXk-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Foleja;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2921,7 +2921,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.kosovo.foleja;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2942,7 +2942,7 @@
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ParentBuddyAppDev-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "REMOVED_FACEBOOK_APP_ID1 Dev";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bebbo Dev";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2955,7 +2955,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.bebbodev;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Bebbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2976,7 +2976,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = "ParentBuddyAppDev-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "REMOVED_FACEBOOK_APP_ID1 Dev";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bebbo Dev";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2989,7 +2989,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.bebbodev;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Bebbo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -3010,7 +3010,7 @@
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ParentBuddyAppXkDev-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Foleja;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3023,7 +3023,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.foleja;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3044,7 +3044,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = "ParentBuddyAppXkDev-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Foleja;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3057,7 +3057,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.foleja;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -3078,7 +3078,7 @@
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ParentBuddyAppBangla-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Babuni;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3091,7 +3091,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.bangladesh.babuni;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Babuni;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3112,7 +3112,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				INFOPLIST_FILE = "ParentBuddyAppBangla-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Babuni;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3125,7 +3125,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.bangladesh.babuni;
-				PRODUCT_NAME = REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_NAME = Babuni;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -3144,7 +3144,7 @@
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "ParentBuddyAppBanglaDev-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Babuni;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3175,7 +3175,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87664ZTMV3;
 				INFOPLIST_FILE = "ParentBuddyAppBanglaDev-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Babuni;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3206,7 +3206,7 @@
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "MerhabaBebek-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Bebbo;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3237,7 +3237,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = "MerhabaBebek-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = REMOVED_FACEBOOK_APP_ID1;
+				INFOPLIST_KEY_CFBundleDisplayName = Bebbo;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3282,7 +3282,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ec.REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ec.wawamor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
@@ -3316,7 +3316,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ec.REMOVED_FACEBOOK_APP_ID1;
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ec.wawamor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
@@ -3327,15 +3327,15 @@
 		};
 		D6F143952E2A3B7900986814 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.debug.xcconfig */;
+			baseConfigurationReference = F2AD9475E4AFC44875A382D1 /* Pods-ParentBuddyApp-ReraiUmntwana.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/REMOVED_FACEBOOK_APP_ID1.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ReraiUmntwana.entitlements;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "REMOVED_FACEBOOK_APP_ID1-Info.plist";
+				INFOPLIST_FILE = "ReraiUmntwana-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Rerai Umntwana";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3359,14 +3359,14 @@
 		};
 		D6F143962E2A3B7900986814 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 349FF3C9170EC6BEA30B6389 /* Pods-ParentBuddyApp-REMOVED_FACEBOOK_APP_ID1.release.xcconfig */;
+			baseConfigurationReference = 349FF3C9170EC6BEA30B6389 /* Pods-ParentBuddyApp-ReraiUmntwana.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/REMOVED_FACEBOOK_APP_ID1.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ReraiUmntwana.entitlements;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = K288UMKCNF;
-				INFOPLIST_FILE = "REMOVED_FACEBOOK_APP_ID1-Info.plist";
+				INFOPLIST_FILE = "ReraiUmntwana-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Rerai Umntwana";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3417,7 +3417,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6C1B59D2EBC847B00E466C0 /* Build configuration list for PBXNativeTarget "REMOVED_FACEBOOK_APP_ID1Pacific" */ = {
+		D6C1B59D2EBC847B00E466C0 /* Build configuration list for PBXNativeTarget "BebboPacific" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6C1B59E2EBC847B00E466C0 /* Debug */,
@@ -3489,7 +3489,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6F143942E2A3B7900986814 /* Build configuration list for PBXNativeTarget "REMOVED_FACEBOOK_APP_ID1" */ = {
+		D6F143942E2A3B7900986814 /* Build configuration list for PBXNativeTarget "ReraiUmntwana" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6F143952E2A3B7900986814 /* Debug */,

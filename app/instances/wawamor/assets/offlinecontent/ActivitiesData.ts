@@ -15,7 +15,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517924996_344a4c609c_c.jpg?itok=N0hAmBfc",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517924996_344a4c609c_c.jpg?itok=N0hAmBfc",
                 "name": "50517924996_344a4c609c_c.jpg",
                 "alt": "©UNICEF/ECU/2020/Arcos"
             },
@@ -40,7 +40,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=igmDmDyL",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=igmDmDyL",
                 "name": "flying_imagination-cover-picture.jpg",
                 "alt": "Illustration of Flying imagination"
             },
@@ -65,7 +65,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/49501428718_ca13e117c3_c.jpg?itok=CvHJGIzA",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/49501428718_ca13e117c3_c.jpg?itok=CvHJGIzA",
                 "name": "49501428718_ca13e117c3_c.jpg",
                 "alt": "©UNICEF/ECU/2022/Arcos"
             },
@@ -90,7 +90,7 @@ export const ActivitiesData: any = {
                 596
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/54255519937_0765e4f90d_c.jpg?itok=ZWTtWi8p",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/54255519937_0765e4f90d_c.jpg?itok=ZWTtWi8p",
                 "name": "54255519937_0765e4f90d_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -115,7 +115,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=uOTC4eR1",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=uOTC4eR1",
                 "name": "Colour%20Hunt-cover-picture.jpg",
                 "alt": "Child facing the coloured road"
             },
@@ -140,7 +140,7 @@ export const ActivitiesData: any = {
                 611
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53165809407_0d568a038e_k.jpg?itok=vU-ypN2B",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53165809407_0d568a038e_k.jpg?itok=vU-ypN2B",
                 "name": "53165809407_0d568a038e_k.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -165,7 +165,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=xMZ83MyW",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=xMZ83MyW",
                 "name": "Let%27s%20Look%20at%20a%20Book-cover-picture.jpg",
                 "alt": "A child looking at a book"
             },
@@ -190,7 +190,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=jv6uk2hV",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=jv6uk2hV",
                 "name": "Reading%20with%20your%20baby-cover-picture.jpg",
                 "alt": "A mother looking at the book with her baby"
             },
@@ -215,7 +215,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=6mQy2ZXC",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=6mQy2ZXC",
                 "name": "Let%27s%20Visit%20and%20Talk-cover-picture._2.jpeg",
                 "alt": "Grandparents doing a videocall with their granddaughter"
             },
@@ -240,7 +240,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=iBnD0L_w",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=iBnD0L_w",
                 "name": "Who%20Is%20This%20Person-cover-picture.jpg",
                 "alt": "Grandmother and grandfather carrying two babies"
             },
@@ -265,7 +265,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=5WH9m8Zb",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=5WH9m8Zb",
                 "name": "my_first_turns-cover-picture.jpg",
                 "alt": "A child turning from back to tummy"
             },
@@ -290,7 +290,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=DqyvPAHB",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=DqyvPAHB",
                 "name": "My%20Special%20Helper-cover-picture.jpg",
                 "alt": "Children helping their parents"
             },
@@ -315,7 +315,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53268893022_70275b777b_c.jpg?itok=hidusp73",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53268893022_70275b777b_c.jpg?itok=hidusp73",
                 "name": "53268893022_70275b777b_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -340,7 +340,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/UNI218447.jpg?itok=_oY3Lrp8",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/UNI218447.jpg?itok=_oY3Lrp8",
                 "name": "UNI218447.jpg",
                 "alt": "Mother Nada Madjupaj teaches her children Andrej (4years) and Andjela (6 years) how to be tidy and how to pick up their toys."
             },
@@ -365,7 +365,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Making%2520a%2520Pretend%2520Meal-cover-picture.jpg?itok=S0l2dpft",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Making%2520a%2520Pretend%2520Meal-cover-picture.jpg?itok=S0l2dpft",
                 "name": "Making%20a%20Pretend%20Meal-cover-picture.jpg",
                 "alt": "A sister and a brother preparing a pretend meal"
             },
@@ -391,7 +391,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50732907303_8cb18df65b_c.jpg?itok=q054xZw1",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50732907303_8cb18df65b_c.jpg?itok=q054xZw1",
                 "name": "50732907303_8cb18df65b_c.jpg",
                 "alt": "©UNICEF/ECU/2024/Arcos"
             },
@@ -416,7 +416,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/ART_9015.JPG?itok=o_6AJiK3",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/ART_9015.JPG?itok=o_6AJiK3",
                 "name": "ART_9015.JPG",
                 "alt": "Playing with the mirror "
             },
@@ -441,7 +441,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/skittles_cover-picture.jpg?itok=NQt9RRu2",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/skittles_cover-picture.jpg?itok=NQt9RRu2",
                 "name": "skittles_cover-picture.jpg",
                 "alt": "Illustration of Skittles"
             },
@@ -466,7 +466,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517955751_0c00ee97da_c.jpg?itok=vnFLMO-y",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517955751_0c00ee97da_c.jpg?itok=vnFLMO-y",
                 "name": "50517955751_0c00ee97da_c.jpg",
                 "alt": "©UNICEF/ECU/2024/Arcos"
             },
@@ -491,7 +491,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/51284604207_a05daa5578_c.jpg?itok=QThpKc4C",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/51284604207_a05daa5578_c.jpg?itok=QThpKc4C",
                 "name": "51284604207_a05daa5578_c.jpg",
                 "alt": "©UNICEF/ECU/2023"
             },
@@ -516,7 +516,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Making%2520a%2520Picture%2520Schedule-cover-picture.jpeg?itok=d6gFmFGT",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Making%2520a%2520Picture%2520Schedule-cover-picture.jpeg?itok=d6gFmFGT",
                 "name": "Making%20a%20Picture%20Schedule-cover-picture.jpeg",
                 "alt": "A weekly planner with stickers"
             },
@@ -541,7 +541,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/musical_mouth-cover-picture.jpg?itok=uufsPzjy",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/musical_mouth-cover-picture.jpg?itok=uufsPzjy",
                 "name": "musical_mouth-cover-picture.jpg",
                 "alt": "Father and mother are smiling and making sound while looking to their child lying on his or her back."
             },
@@ -566,7 +566,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Safely%2520Exploring%2520Objects.jpg?itok=uB3kZZ7I",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Safely%2520Exploring%2520Objects.jpg?itok=uB3kZZ7I",
                 "name": "Safely%20Exploring%20Objects.jpg",
                 "alt": "A baby with a tissue in her or his mouth"
             },
@@ -591,7 +591,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/fingerprint-animals-cover-picture.jpg?itok=_cooDtvK",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/fingerprint-animals-cover-picture.jpg?itok=_cooDtvK",
                 "name": "fingerprint-animals-cover-picture.jpg",
                 "alt": "Illustration of Fingerprint animals"
             },
@@ -616,7 +616,7 @@ export const ActivitiesData: any = {
                 596
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517924996_344a4c609c_c_0.jpg?itok=aCis9FDy",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517924996_344a4c609c_c_0.jpg?itok=aCis9FDy",
                 "name": "50517924996_344a4c609c_c.jpg",
                 "alt": "©UNICEF/ECU/2022/Arcos"
             },
@@ -641,7 +641,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/Captura%20de%20pantalla%202025-03-23%20a%20las%201.37.49%E2%80%AFp.%C2%A0m..png?itok=_ijsvqhU",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/Captura%20de%20pantalla%202025-03-23%20a%20las%201.37.49%E2%80%AFp.%C2%A0m..png?itok=_ijsvqhU",
                 "name": "Captura de pantalla 2025-03-23 a las 1.37.49 p. m..png",
                 "alt": "©UNICEF/ECU/2025"
             },
@@ -666,7 +666,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Making%2520Food%2520for%2520My%2520Family-cover-picture.jpg?itok=6VMecoeq",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Making%2520Food%2520for%2520My%2520Family-cover-picture.jpg?itok=6VMecoeq",
                 "name": "Making%20Food%20for%20My%20Family-cover-picture.jpg",
                 "alt": "A child helping to prepare the meal"
             },
@@ -691,7 +691,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Separation%2520and%2520Comfort-cover-picture.jpg?itok=O1zQsL80",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Separation%2520and%2520Comfort-cover-picture.jpg?itok=O1zQsL80",
                 "name": "Separation%20and%20Comfort-cover-picture.jpg",
                 "alt": "Mother giving a comforting smile to her child"
             },
@@ -716,7 +716,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53629342927_ed23f71526_c.jpg?itok=5MgvL-Mt",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53629342927_ed23f71526_c.jpg?itok=5MgvL-Mt",
                 "name": "53629342927_ed23f71526_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Vallejo"
             },
@@ -741,7 +741,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/Captura%20de%20pantalla%202025-03-23%20a%20las%2011.45.40%E2%80%AFa.%C2%A0m..png?itok=yfTUP9gP",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/Captura%20de%20pantalla%202025-03-23%20a%20las%2011.45.40%E2%80%AFa.%C2%A0m..png?itok=yfTUP9gP",
                 "name": "Captura de pantalla 2025-03-23 a las 11.45.40 a. m..png",
                 "alt": "©UNICEF/ECU/2025"
             },
@@ -766,7 +766,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53270250830_caf6cd6775_c.jpg?itok=MC3S_TsL",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53270250830_caf6cd6775_c.jpg?itok=MC3S_TsL",
                 "name": "53270250830_caf6cd6775_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -791,7 +791,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/naturecounting_cover-picture.png?itok=_abEcWsd",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/naturecounting_cover-picture.png?itok=_abEcWsd",
                 "name": "naturecounting_cover-picture.png",
                 "alt": "Illustration of Nature counting"
             },
@@ -816,7 +816,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53270141999_ed01ea34e3_c.jpg?itok=rxEPXLZM",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53270141999_ed01ea34e3_c.jpg?itok=rxEPXLZM",
                 "name": "53270141999_ed01ea34e3_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -841,7 +841,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/imagine-your-bed-is-cover-image.jpg?itok=ObJ-HXvI",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/imagine-your-bed-is-cover-image.jpg?itok=ObJ-HXvI",
                 "name": "imagine-your-bed-is-cover-image.jpg",
                 "alt": "Illustration of Imagine your bed is"
             },
@@ -866,7 +866,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Set%2520up%2520shop-cover-picture.jpg?itok=DYqOBRP3",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Set%2520up%2520shop-cover-picture.jpg?itok=DYqOBRP3",
                 "name": "Set%20up%20shop-cover-picture.jpg",
                 "alt": "Two girls playing with toys"
             },
@@ -891,7 +891,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/doblando%20la%20ropa.png?itok=VHOnFf5T",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/doblando%20la%20ropa.png?itok=VHOnFf5T",
                 "name": "doblando la ropa.png",
                 "alt": "©UNICEF/ECU/2025"
             },
@@ -916,7 +916,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/how-to-make-playdough-cover-picture.png?itok=0KD6CYam",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/how-to-make-playdough-cover-picture.png?itok=0KD6CYam",
                 "name": "how-to-make-playdough-cover-picture.png",
                 "alt": "Illustration of How to make playdough"
             },
@@ -941,7 +941,7 @@ export const ActivitiesData: any = {
                 596
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/the_look_of_love-cover-picture.jpg?itok=r5Bh7hHD",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/the_look_of_love-cover-picture.jpg?itok=r5Bh7hHD",
                 "name": "the_look_of_love-cover-picture.jpg",
                 "alt": "A mother and her child are happily looking at each other"
             },
@@ -966,7 +966,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/i%2520am%2520dressing%2520myself-cover-picture.jpg?itok=gQ9UyGV0",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/i%2520am%2520dressing%2520myself-cover-picture.jpg?itok=gQ9UyGV0",
                 "name": "i%20am%20dressing%20myself-cover-picture.jpg",
                 "alt": "A parent is changing the baby"
             },
@@ -991,7 +991,7 @@ export const ActivitiesData: any = {
                 596
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Voices%2520game-cover-picture.jpg?itok=SeA6RZTF",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Voices%2520game-cover-picture.jpg?itok=SeA6RZTF",
                 "name": "Voices%20game-cover-picture.jpg",
                 "alt": "A baby lying on his or her back and touching her or his mother face with her or his tiny arms"
             },
@@ -1016,7 +1016,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/family_interview-cover-picture.jpg?itok=4cWvRoLh",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/family_interview-cover-picture.jpg?itok=4cWvRoLh",
                 "name": "family_interview-cover-picture.jpg",
                 "alt": "Illustration of Family interview"
             },
@@ -1041,7 +1041,7 @@ export const ActivitiesData: any = {
                 596
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/happy-feet-cover-picture.jpg?itok=Y4sk_gZc",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/happy-feet-cover-picture.jpg?itok=Y4sk_gZc",
                 "name": "happy-feet-cover-picture.jpg",
                 "alt": "A parent making a feet massage to a baby"
             },
@@ -1066,7 +1066,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/camima%20apoyada%20sobre%20muebles.png?itok=PH6aJrwK",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/camima%20apoyada%20sobre%20muebles.png?itok=PH6aJrwK",
                 "name": "camima apoyada sobre muebles.png",
                 "alt": "©UNICEF/ECU/2025"
             },
@@ -1091,7 +1091,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53165809307_0a96087c44_k_0.jpg?itok=9pAUgUvL",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53165809307_0a96087c44_k_0.jpg?itok=9pAUgUvL",
                 "name": "53165809307_0a96087c44_k.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -1116,7 +1116,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/A%2520Message%2520for%2520Someone%2520Special-cover-picture.jpg?itok=QBcYdyTf",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/A%2520Message%2520for%2520Someone%2520Special-cover-picture.jpg?itok=QBcYdyTf",
                 "name": "A%20Message%20for%20Someone%20Special-cover-picture.jpg",
                 "alt": "Toddler scribbling"
             },
@@ -1141,7 +1141,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Whose%2520Is%2520It-cover-picture.jpg?itok=k9awsg2W",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Whose%2520Is%2520It-cover-picture.jpg?itok=k9awsg2W",
                 "name": "Whose%20Is%20It-cover-picture.jpg",
                 "alt": "A girl carrying a ball"
             },
@@ -1166,7 +1166,7 @@ export const ActivitiesData: any = {
                 611
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/It%2520Is%2520Fun%2520to%2520Play%2520Together-cover-picture.jpg?itok=-rhl7I9c",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/It%2520Is%2520Fun%2520to%2520Play%2520Together-cover-picture.jpg?itok=-rhl7I9c",
                 "name": "It%20Is%20Fun%20to%20Play%20Together-cover-picture.jpg",
                 "alt": "A father playing with his baby"
             },
@@ -1191,7 +1191,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53692676704_bb09b78080_w_0.jpg?itok=m1pKobdS",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53692676704_bb09b78080_w_0.jpg?itok=m1pKobdS",
                 "name": "53692676704_bb09b78080_w.jpg",
                 "alt": "©UNICEF/ECU/2025/Arcos"
             },
@@ -1216,7 +1216,7 @@ export const ActivitiesData: any = {
                 611
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53691442497_f1cf776d5b_c.jpg?itok=CNIZBqGq",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53691442497_f1cf776d5b_c.jpg?itok=CNIZBqGq",
                 "name": "53691442497_f1cf776d5b_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -1241,7 +1241,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53268893267_e14f3d5426_c.jpg?itok=7MCWvgPq",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53268893267_e14f3d5426_c.jpg?itok=7MCWvgPq",
                 "name": "53268893267_e14f3d5426_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -1266,7 +1266,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/my_first_ball-cover-picture.jpg?itok=f9DKBI8U",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/my_first_ball-cover-picture.jpg?itok=f9DKBI8U",
                 "name": "my_first_ball-cover-picture.jpg",
                 "alt": "A child is lying on the ball on his or her tummy"
             },
@@ -1291,7 +1291,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/54350250356_433e17cfc8_c.jpg?itok=36lQUtj6",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/54350250356_433e17cfc8_c.jpg?itok=36lQUtj6",
                 "name": "54350250356_433e17cfc8_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -1316,7 +1316,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/shalev-cohen-e8KDw2_Ej38-unsplash.jpg?itok=GN3Ju21x",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/shalev-cohen-e8KDw2_Ej38-unsplash.jpg?itok=GN3Ju21x",
                 "name": "shalev-cohen-e8KDw2_Ej38-unsplash.jpg",
                 "alt": "Playful bath time"
             },
@@ -1341,7 +1341,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Following%2520Instructions-cover-picture.jpg?itok=gylTxJrE",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Following%2520Instructions-cover-picture.jpg?itok=gylTxJrE",
                 "name": "Following%20Instructions-cover-picture.jpg",
                 "alt": "Children playing outdoors"
             },
@@ -1366,7 +1366,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53270070283_90e527c05a_c.jpg?itok=UNdT6M2Y",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53270070283_90e527c05a_c.jpg?itok=UNdT6M2Y",
                 "name": "53270070283_90e527c05a_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -1391,7 +1391,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/litterpicking_cover-picture.png?itok=Z8lGDGPg",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/litterpicking_cover-picture.png?itok=Z8lGDGPg",
                 "name": "litterpicking_cover-picture.png",
                 "alt": "Illustration of Litter picking"
             },
@@ -1416,7 +1416,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/imitativne%2520igre%2520-%2520kod%2520doktora.jpg?itok=-ySoS4jK",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/imitativne%2520igre%2520-%2520kod%2520doktora.jpg?itok=-ySoS4jK",
                 "name": "imitativne%20igre%20-%20kod%20doktora.jpg",
                 "alt": "Father playing with his son"
             },
@@ -1441,7 +1441,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/wheelbarrowrace-cover-picture.jpg?itok=DsF8-3uq",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/wheelbarrowrace-cover-picture.jpg?itok=DsF8-3uq",
                 "name": "wheelbarrowrace-cover-picture.jpg",
                 "alt": "Illustration of Wheelbarrow race"
             },
@@ -1466,7 +1466,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/i_can_use_objects-cover-picture.jpg?itok=lwlNW-tv",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/i_can_use_objects-cover-picture.jpg?itok=lwlNW-tv",
                 "name": "i_can_use_objects-cover-picture.jpg",
                 "alt": "A parent is combing the child's hair"
             },
@@ -1491,7 +1491,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/n-RFId0_7kep4-unsplash.jpg?itok=IIdmx_Mz",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/n-RFId0_7kep4-unsplash.jpg?itok=IIdmx_Mz",
                 "name": "n-RFId0_7kep4-unsplash.jpg",
                 "alt": "Activity: Treasure hunt"
             },
@@ -1516,7 +1516,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/blanket_game-cover-picture.jpg?itok=O4Neu2YX",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/blanket_game-cover-picture.jpg?itok=O4Neu2YX",
                 "name": "blanket_game-cover-picture.jpg",
                 "alt": "Smiling baby peeks out from under the blanket"
             },
@@ -1541,7 +1541,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Can%2520You%2520Use%2520This-cover-picture.jpg?itok=mjT0uLq6",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Can%2520You%2520Use%2520This-cover-picture.jpg?itok=mjT0uLq6",
                 "name": "Can%20You%20Use%20This-cover-picture.jpg",
                 "alt": "A toddler sweeping the ground"
             },
@@ -1566,7 +1566,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/54256641273_7a4b3f4c2b_c.jpg?itok=CiUHrV-i",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/54256641273_7a4b3f4c2b_c.jpg?itok=CiUHrV-i",
                 "name": "54256641273_7a4b3f4c2b_c.jpg",
                 "alt": "©UNICEF/ECU/2024/Arcos"
             },
@@ -1591,7 +1591,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517225493_a6fca220cc_c.jpg?itok=SKDYoRkj",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517225493_a6fca220cc_c.jpg?itok=SKDYoRkj",
                 "name": "50517225493_a6fca220cc_c.jpg",
                 "alt": "©UNICEF/ECU/2020/Arcos"
             },
@@ -1616,7 +1616,7 @@ export const ActivitiesData: any = {
                 611
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53165809307_0a96087c44_k.jpg?itok=wLjfWpXy",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/53165809307_0a96087c44_k.jpg?itok=wLjfWpXy",
                 "name": "53165809307_0a96087c44_k.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -1641,7 +1641,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/3%20a%206%20meses.jpg?itok=1vOrAqr-",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/3%20a%206%20meses.jpg?itok=1vOrAqr-",
                 "name": "3 a 6 meses.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -1666,7 +1666,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Special%2520Cards%2520for%2520Special%2520People-cover-picture.jpg?itok=GkEud29G",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Special%2520Cards%2520for%2520Special%2520People-cover-picture.jpg?itok=GkEud29G",
                 "name": "Special%20Cards%20for%20Special%20People-cover-picture.jpg",
                 "alt": "A chid drawing a card"
             },
@@ -1691,7 +1691,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/pexels-tatiana-syrikova-3933054%20%281%29.jpg?itok=F3S7UJAz",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/pexels-tatiana-syrikova-3933054%20%281%29.jpg?itok=F3S7UJAz",
                 "name": "pexels-tatiana-syrikova-3933054 (1).jpg",
                 "alt": "child grabbing things from a box"
             },
@@ -1716,7 +1716,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/My%2520Address%2520Song-cover-image.jpg?itok=4uI_OLO5",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/My%2520Address%2520Song-cover-image.jpg?itok=4uI_OLO5",
                 "name": "My%20Address%20Song-cover-image.jpg",
                 "alt": "Ребенок идет в школу с рюкзаком"
             },
@@ -1741,7 +1741,7 @@ export const ActivitiesData: any = {
                 596
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/balancing-cover-picture.jpg?itok=gcGNb54z",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/balancing-cover-picture.jpg?itok=gcGNb54z",
                 "name": "balancing-cover-picture.jpg",
                 "alt": "The parent is holding the baby supporting his or her head and the baby is attentively looking at the parent."
             },
@@ -1766,7 +1766,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/animal-tea-party-cover-picture.png?itok=IeS9DGIc",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/animal-tea-party-cover-picture.png?itok=IeS9DGIc",
                 "name": "animal-tea-party-cover-picture.png",
                 "alt": "Illustration of Animal tea party"
             },
@@ -1791,7 +1791,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/I%2527m%2520Feeding%2520Myself-cover-picture.jpeg?itok=agOr0rTs",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/I%2527m%2520Feeding%2520Myself-cover-picture.jpeg?itok=agOr0rTs",
                 "name": "I%27m%20Feeding%20Myself-cover-picture.jpeg",
                 "alt": "A baby eating with a spoon"
             },
@@ -1816,7 +1816,7 @@ export const ActivitiesData: any = {
                 611
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/%25C5%25A0ta%2520je%252C%2520kako%2520se%2520zove%2520-%2520aktivno%2520%25C4%258Ditanje%2520i%2520pri%25C4%258Danje.jpg?itok=zZa5RGrw",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/%25C5%25A0ta%2520je%252C%2520kako%2520se%2520zove%2520-%2520aktivno%2520%25C4%258Ditanje%2520i%2520pri%25C4%258Danje.jpg?itok=zZa5RGrw",
                 "name": "%C5%A0ta%20je%2C%20kako%20se%20zove%20-%20aktivno%20%C4%8Ditanje%20i%20pri%C4%8Danje.jpg",
                 "alt": "Father is reading a book to his child and talking "
             },
@@ -1841,7 +1841,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/wendy-aros-routman-DuIPj3lqItY-unsplash.jpg?itok=vksArNa6",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/wendy-aros-routman-DuIPj3lqItY-unsplash.jpg?itok=vksArNa6",
                 "name": "wendy-aros-routman-DuIPj3lqItY-unsplash.jpg",
                 "alt": "Activity: Ball in the basket"
             },
@@ -1866,7 +1866,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/little_slaps-cover-picture.jpg?itok=v-zpw2jU",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/little_slaps-cover-picture.jpg?itok=v-zpw2jU",
                 "name": "little_slaps-cover-picture.jpg",
                 "alt": "A baby laying on his or her back and touching his or her parent’s hand"
             },
@@ -1891,7 +1891,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/54350466834_c815363a48_c_0.jpg?itok=J6aBBws8",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/54350466834_c815363a48_c_0.jpg?itok=J6aBBws8",
                 "name": "54350466834_c815363a48_c.jpg",
                 "alt": "©UNICEF/ECU/2025/Arcos"
             },
@@ -1916,7 +1916,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Pretending%2520with%2520My%2520Doll-cover-picture.jpg?itok=DLm0n-B8",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Pretending%2520with%2520My%2520Doll-cover-picture.jpg?itok=DLm0n-B8",
                 "name": "Pretending%20with%20My%20Doll-cover-picture.jpg",
                 "alt": "Girl pretending to make a meal for her toys"
             },
@@ -1942,7 +1942,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Where%2520Can%2520You%2520Kick%2520It-cover-picture.jpg?itok=j-qCAayx",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Where%2520Can%2520You%2520Kick%2520It-cover-picture.jpg?itok=j-qCAayx",
                 "name": "Where%20Can%20You%20Kick%20It-cover-picture.jpg",
                 "alt": "A girl kicking the ball"
             },
@@ -1967,7 +1967,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/49501965841_588a768e45_c.jpg?itok=e4YxNqJc",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/49501965841_588a768e45_c.jpg?itok=e4YxNqJc",
                 "name": "49501965841_588a768e45_c.jpg",
                 "alt": "©UNICEF/ECU"
             },
@@ -1992,7 +1992,7 @@ export const ActivitiesData: any = {
                 596
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/massage-cover-picture.jpeg?itok=giIpNtqq",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/massage-cover-picture.jpeg?itok=giIpNtqq",
                 "name": "massage-cover-picture.jpeg",
                 "alt": "A parent making massage to a baby"
             },
@@ -2017,7 +2017,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/Outdoor%2520Chalk%2520Drawing-cover-picture.jpg?itok=YcfC7txL",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/Outdoor%2520Chalk%2520Drawing-cover-picture.jpg?itok=YcfC7txL",
                 "name": "Outdoor%20Chalk%20Drawing-cover-picture.jpg",
                 "alt": "girl drawing with chalk on the street"
             },
@@ -2042,7 +2042,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/katie-emslie-jvxwttyqhw8-unsplash_kopia.jpg?itok=i8Z5iEzI",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/katie-emslie-jvxwttyqhw8-unsplash_kopia.jpg?itok=i8Z5iEzI",
                 "name": "katie-emslie-jvxwttyqhw8-unsplash_kopia.jpg",
                 "alt": "Father with daughter"
             },
@@ -2075,7 +2075,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Singing%2520nursery%2520rhymes%2520-cover-picture.png?itok=1MXTAEJZ",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Singing%2520nursery%2520rhymes%2520-cover-picture.png?itok=1MXTAEJZ",
                 "name": "Singing%20nursery%20rhymes%20-cover-picture.png",
                 "alt": "illustration of Singing nursery rhymes"
             },
@@ -2100,7 +2100,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/song_for_changing_diapers-cover-picture.jpg?itok=Zhrik-Pd",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/song_for_changing_diapers-cover-picture.jpg?itok=Zhrik-Pd",
                 "name": "song_for_changing_diapers-cover-picture.jpg",
                 "alt": "A mother is sinning a song to her child while changing a dipper"
             },
@@ -2125,7 +2125,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Act%2520Out%2520a%2520Book-cover-picture.jpg?itok=Wzl90UE8",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Act%2520Out%2520a%2520Book-cover-picture.jpg?itok=Wzl90UE8",
                 "name": "Act%20Out%20a%20Book-cover-picture.jpg",
                 "alt": "A girl with a book"
             },
@@ -2150,7 +2150,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/i_see_myself_in_the_mirror-cover-picture.jpg?itok=8nqURgos",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/i_see_myself_in_the_mirror-cover-picture.jpg?itok=8nqURgos",
                 "name": "i_see_myself_in_the_mirror-cover-picture.jpg",
                 "alt": "A baby sees him- or helself in the mirrow"
             },
@@ -2175,7 +2175,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/pexels-tatiana-syrikova-3933022.jpg?itok=qOvUkGIA",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/pexels-tatiana-syrikova-3933022.jpg?itok=qOvUkGIA",
                 "name": "pexels-tatiana-syrikova-3933022.jpg",
                 "alt": "toddler picking up building blocks"
             },
@@ -2200,7 +2200,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/3%20a%206%20meses_.jpg?itok=3rISKZXz",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/3%20a%206%20meses_.jpg?itok=3rISKZXz",
                 "name": "3 a 6 meses_.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -2225,7 +2225,7 @@ export const ActivitiesData: any = {
                 611
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/marcin-jozwiak-zJuHccHbnhA-unsplash.jpg?itok=O78qxw_z",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/marcin-jozwiak-zJuHccHbnhA-unsplash.jpg?itok=O78qxw_z",
                 "name": "marcin-jozwiak-zJuHccHbnhA-unsplash.jpg",
                 "alt": "Searching for hidden objects"
             },
@@ -2250,7 +2250,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/pexels-polina-tankilevitch-3875217.jpg?itok=NIW74SP2",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/pexels-polina-tankilevitch-3875217.jpg?itok=NIW74SP2",
                 "name": "pexels-polina-tankilevitch-3875217.jpg",
                 "alt": "ребенок тянет руки к погремушкам"
             },
@@ -2275,7 +2275,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/bubbles-cover-picture.jpg?itok=PvqDDvCb",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/bubbles-cover-picture.jpg?itok=PvqDDvCb",
                 "name": "bubbles-cover-picture.jpg",
                 "alt": "Soap bubbles"
             },
@@ -2300,7 +2300,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/What%2520Happened-cover-picture.jpg?itok=uG6Gku-m",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/What%2520Happened-cover-picture.jpg?itok=uG6Gku-m",
                 "name": "What%20Happened-cover-picture.jpg",
                 "alt": "A father and three children at a birthday party"
             },
@@ -2325,7 +2325,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Up%2520and%2520Down%2520Together-cover-picture.jpg?itok=WPCNr45x",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Up%2520and%2520Down%2520Together-cover-picture.jpg?itok=WPCNr45x",
                 "name": "Up%20and%20Down%20Together-cover-picture.jpg",
                 "alt": "A father going down the stairs with his child."
             },
@@ -2350,7 +2350,7 @@ export const ActivitiesData: any = {
                 611
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Where%2520is%2520the%2520toy-cover-picture.jpg?itok=ydFMMqQK",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Where%2520is%2520the%2520toy-cover-picture.jpg?itok=ydFMMqQK",
                 "name": "Where%20is%20the%20toy-cover-picture.jpg",
                 "alt": "A surprised child"
             },
@@ -2375,7 +2375,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Making%2520Bubbles-cover-picture.jpg?itok=jLkvA98S",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Making%2520Bubbles-cover-picture.jpg?itok=jLkvA98S",
                 "name": "Making%20Bubbles-cover-picture.jpg",
                 "alt": "A child drawing bubbles"
             },
@@ -2400,7 +2400,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/my_first_rattle-cover-picture.jpg?itok=oYrRvRtb",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/my_first_rattle-cover-picture.jpg?itok=oYrRvRtb",
                 "name": "my_first_rattle-cover-picture.jpg",
                 "alt": "A child holding his or her rattle"
             },
@@ -2425,7 +2425,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Family%2520Songs-cover-picture.jpg?itok=93oCUGid",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Family%2520Songs-cover-picture.jpg?itok=93oCUGid",
                 "name": "Family%20Songs-cover-picture.jpg",
                 "alt": "A mother is singing with her two children"
             },
@@ -2450,7 +2450,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Pretending%2520to%2520Say%2520Goodbye-cover-picture.jpg?itok=McEVsjQq",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Pretending%2520to%2520Say%2520Goodbye-cover-picture.jpg?itok=McEVsjQq",
                 "name": "Pretending%20to%20Say%20Goodbye-cover-picture.jpg",
                 "alt": "Mother and father hugging their child"
             },
@@ -2475,7 +2475,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/lets_play_with_the_cubes-cover-picture.png?itok=KaK29Rxu",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/lets_play_with_the_cubes-cover-picture.png?itok=KaK29Rxu",
                 "name": "lets_play_with_the_cubes-cover-picture.png",
                 "alt": "A child surrounded by colourful cubes"
             },
@@ -2500,7 +2500,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Playing%2520with%2520My%2520Doll-cover-picture.jpg?itok=LktxOIPL",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Playing%2520with%2520My%2520Doll-cover-picture.jpg?itok=LktxOIPL",
                 "name": "Playing%20with%20My%20Doll-cover-picture.jpg",
                 "alt": "A toddler playing with her toy"
             },
@@ -2525,7 +2525,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/you_can_reach_it-cover-picture.jpg?itok=WJknMe0b",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/you_can_reach_it-cover-picture.jpg?itok=WJknMe0b",
                 "name": "you_can_reach_it-cover-picture.jpg",
                 "alt": "A baby lying on his or her tummy is trying to reach the toy"
             },
@@ -2550,7 +2550,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/cloudwatching-cover-picture.png?itok=_Dg6Rsoi",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/cloudwatching-cover-picture.png?itok=_Dg6Rsoi",
                 "name": "cloudwatching-cover-picture.png",
                 "alt": "Illustration of Cloud watching"
             },
@@ -2575,7 +2575,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2022-01/showing-emotions-cover-picture.jpg?itok=7BrE62AR",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2022-01/showing-emotions-cover-picture.jpg?itok=7BrE62AR",
                 "name": "showing-emotions-cover-picture.jpg",
                 "alt": "a smiling baby"
             },
@@ -2600,7 +2600,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Handmade%2520Musical%2520Instrument-cover-picture.jpg?itok=nOleIJP7",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Handmade%2520Musical%2520Instrument-cover-picture.jpg?itok=nOleIJP7",
                 "name": "Handmade%20Musical%20Instrument-cover-picture.jpg",
                 "alt": "A father is playing the musical instrument with the child"
             },
@@ -2625,7 +2625,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Listening%2520to%2520Birdsong-cover-picture.jpeg?itok=DhVSRICW",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Listening%2520to%2520Birdsong-cover-picture.jpeg?itok=DhVSRICW",
                 "name": "Listening%20to%20Birdsong-cover-picture.jpeg",
                 "alt": "A child listening an audio of a birdsong"
             },
@@ -2650,7 +2650,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Who-Am-I-cover-picture_0.jpeg?itok=aVEIogYi",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Who-Am-I-cover-picture_0.jpeg?itok=aVEIogYi",
                 "name": "Who-Am-I-cover-picture_0.jpeg",
                 "alt": "A mother looking family photo album with her daughters"
             },
@@ -2675,7 +2675,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/the%2520box-cover-picture.jpg?itok=O8PM14qo",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/the%2520box-cover-picture.jpg?itok=O8PM14qo",
                 "name": "the%20box-cover-picture.jpg",
                 "alt": "A carboard box with coloured papers inside"
             },
@@ -2700,7 +2700,7 @@ export const ActivitiesData: any = {
                 636
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Up%2520We%2520Go%2520Together-cover-picture.jpg?itok=T_v3XUbs",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Up%2520We%2520Go%2520Together-cover-picture.jpg?itok=T_v3XUbs",
                 "name": "Up%20We%20Go%20Together-cover-picture.jpg",
                 "alt": "A child going up the stairs"
             },
@@ -2725,7 +2725,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/animalspotting-cover-picture.png?itok=Rv9Ik93X",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/animalspotting-cover-picture.png?itok=Rv9Ik93X",
                 "name": "animalspotting-cover-picture.png",
                 "alt": "Illustration of Animal spotting"
             },
@@ -2750,7 +2750,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/obstaclecourse-cover-picture.png?itok=xI4w010o",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/obstaclecourse-cover-picture.png?itok=xI4w010o",
                 "name": "obstaclecourse-cover-picture.png",
                 "alt": "Illustration of Obstacle course"
             },
@@ -2775,7 +2775,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/iwenttomarket_cover-picture.png?itok=3xmx77lF",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/iwenttomarket_cover-picture.png?itok=3xmx77lF",
                 "name": "iwenttomarket_cover-picture.png",
                 "alt": "Illustration of I went to market"
             },
@@ -2800,7 +2800,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/family-photos-cover-picture.png?itok=uLtgJxpR",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/family-photos-cover-picture.png?itok=uLtgJxpR",
                 "name": "family-photos-cover-picture.png",
                 "alt": "Illustration of Family photos"
             },
@@ -2825,7 +2825,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/take_hat_out-cover-picture.jpg?itok=_nbxrLkE",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/take_hat_out-cover-picture.jpg?itok=_nbxrLkE",
                 "name": "take_hat_out-cover-picture.jpg",
                 "alt": "A child wearing a big black hat"
             },
@@ -2850,7 +2850,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/hollie-santos-aUtvHsu8Uzk-unsplash.jpg?itok=gMNirvNb",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/hollie-santos-aUtvHsu8Uzk-unsplash.jpg?itok=gMNirvNb",
                 "name": "hollie-santos-aUtvHsu8Uzk-unsplash.jpg",
                 "alt": "Mother with baby in arms"
             },
@@ -2875,7 +2875,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Telling%2520the%2520Family%2520What%2520Happened%2520at%2520School-cover-picture.jpg?itok=XfAzYcyU",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Telling%2520the%2520Family%2520What%2520Happened%2520at%2520School-cover-picture.jpg?itok=XfAzYcyU",
                 "name": "Telling%20the%20Family%20What%20Happened%20at%20School-cover-picture.jpg",
                 "alt": "A child with a book ready to tell her story to parents"
             },
@@ -2900,7 +2900,7 @@ export const ActivitiesData: any = {
                 601
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Keeping%2520Baby%2520Interested-cover-picture_0.jpg?itok=-G5yq2-v",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Keeping%2520Baby%2520Interested-cover-picture_0.jpg?itok=-G5yq2-v",
                 "name": "Keeping%20Baby%20Interested-cover-picture_0.jpg",
                 "alt": "A child is laying on her or his back and focusing her or his sight on something"
             },
@@ -2925,7 +2925,7 @@ export const ActivitiesData: any = {
                 646
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/household-orchestra-cover_picture.png?itok=gacmqRbu",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/household-orchestra-cover_picture.png?itok=gacmqRbu",
                 "name": "household-orchestra-cover_picture.png",
                 "alt": "Иллюстрация домашнего оркестра"
             },
@@ -2955,7 +2955,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Your%2520Turn%252C%2520My%2520Turn-cover-picture.jpg?itok=CLPxmTDd",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Your%2520Turn%252C%2520My%2520Turn-cover-picture.jpg?itok=CLPxmTDd",
                 "name": "Your%20Turn%2C%20My%20Turn-cover-picture.jpg",
                 "alt": "Children playing a board game"
             },
@@ -2980,7 +2980,7 @@ export const ActivitiesData: any = {
                 611
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/pexels-pixabay-459953.jpg?itok=_SopUEAI",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/pexels-pixabay-459953.jpg?itok=_SopUEAI",
                 "name": "pexels-pixabay-459953.jpg",
                 "alt": "baby holding cotton cloth "
             },
@@ -3005,7 +3005,7 @@ export const ActivitiesData: any = {
                 641
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Finding%2520Two%2520or%2520Three-cover-picture.jpg?itok=1Rt_cvXg",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Finding%2520Two%2520or%2520Three-cover-picture.jpg?itok=1Rt_cvXg",
                 "name": "Finding%20Two%20or%20Three-cover-picture.jpg",
                 "alt": "Child counting objects"
             },
@@ -3030,7 +3030,7 @@ export const ActivitiesData: any = {
                 651
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/animalnamegame_cover-picture.png?itok=DYvY7ypn",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/animalnamegame_cover-picture.png?itok=DYvY7ypn",
                 "name": "animalnamegame_cover-picture.png",
                 "alt": "Illustration of Animal name game"
             },
@@ -3055,7 +3055,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Let%25E2%2580%2599s%2520Go%2520For%2520a%2520Walk-cover-picture.jpg?itok=DUPdDC8h",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/Let%25E2%2580%2599s%2520Go%2520For%2520a%2520Walk-cover-picture.jpg?itok=DUPdDC8h",
                 "name": "Let%E2%80%99s%20Go%20For%20a%20Walk-cover-picture.jpg",
                 "alt": "A baby laying on her or his back and smiling"
             },
@@ -3080,7 +3080,7 @@ export const ActivitiesData: any = {
                 626
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53270069448_391499d789_w_0.jpg?itok=rEvnQ-_J",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53270069448_391499d789_w_0.jpg?itok=rEvnQ-_J",
                 "name": "53270069448_391499d789_w.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -3105,7 +3105,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/my_favourite_toy-cover-picture.png?itok=npgkMGEC",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-08/my_favourite_toy-cover-picture.png?itok=npgkMGEC",
                 "name": "my_favourite_toy-cover-picture.png",
                 "alt": "A smiling baby with toys around him or her"
             },
@@ -3130,7 +3130,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53268893022_70275b777b_c.jpg?itok=lt8BSDoa",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53268893022_70275b777b_c.jpg?itok=lt8BSDoa",
                 "name": "53268893022_70275b777b_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -3155,7 +3155,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517231713_61bb2b4962_c.jpg?itok=QMVTM5ff",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517231713_61bb2b4962_c.jpg?itok=QMVTM5ff",
                 "name": "50517231713_61bb2b4962_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -3180,7 +3180,7 @@ export const ActivitiesData: any = {
                 606
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517924996_344a4c609c_c_1.jpg?itok=p-G-MFDU",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/50517924996_344a4c609c_c_1.jpg?itok=p-G-MFDU",
                 "name": "50517924996_344a4c609c_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -3205,7 +3205,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53270070283_90e527c05a_c.jpg?itok=qZqBBuuR",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/53270070283_90e527c05a_c.jpg?itok=qZqBBuuR",
                 "name": "53270070283_90e527c05a_c.jpg",
                 "alt": "©UNICEF/ECU/2023/Arcos"
             },
@@ -3230,7 +3230,7 @@ export const ActivitiesData: any = {
                 616
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/an%CC%83o%20y%20medio%20y%209%20meses.jpg?itok=Oh2vecJG",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-03/an%CC%83o%20y%20medio%20y%209%20meses.jpg?itok=Oh2vecJG",
                 "name": "año y medio y 9 meses.jpg",
                 "alt": "©UNICEF"
             },
@@ -3255,7 +3255,7 @@ export const ActivitiesData: any = {
                 621
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/storyteller-cover-picture.jpg?itok=Up9iClCB",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2021-12/storyteller-cover-picture.jpg?itok=Up9iClCB",
                 "name": "storyteller-cover-picture.jpg",
                 "alt": "mother telling her baby a story"
             },
@@ -3280,7 +3280,7 @@ export const ActivitiesData: any = {
                 631
             ],
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/51064367322_daff3eebd6_c.jpg?itok=5krDKi24",
+                "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-02/51064367322_daff3eebd6_c.jpg?itok=5krDKi24",
                 "name": "51064367322_daff3eebd6_c.jpg",
                 "alt": "©UNICEF/ECU/2021/Vega"
             },

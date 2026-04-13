@@ -56,7 +56,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
   const allCountries = useAppSelector(selectAllCountries);
   let country: any, languagenew: any;
   if (
-    appConfig.buildFor == appConfig.buildForREMOVED_FACEBOOK_APP_ID1 &&
+    appConfig.buildFor == appConfig.buildForFoleja &&
     (route.params == null ||
       route.params == undefined ||
       route.params?.country == null)
@@ -115,7 +115,7 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
       setLanguage(route?.params?.language);
     } else {
       console.log("languages for foleja is", languages);
-      if (appConfig.buildFor == String(appConfig.buildForREMOVED_FACEBOOK_APP_ID1)) {
+      if (appConfig.buildFor == String(appConfig.buildForFoleja)) {
         setLanguage(languages[0]);
       } else {
         const languagesWithLuxonLocale = country?.languages?.filter(

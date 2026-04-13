@@ -16,8 +16,8 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "D6C1B57E2EBC847B00E466C0"
-                     BuildableName = "REMOVED_FACEBOOK_APP_ID1Pacific.app"
-                     BlueprintName = "REMOVED_FACEBOOK_APP_ID1Pacific"
+                     BuildableName = "BebboPacific.app"
+                     BlueprintName = "BebboPacific"
                      ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D6C1B57E2EBC847B00E466C0"
-               BuildableName = "REMOVED_FACEBOOK_APP_ID1Pacific.app"
-               BlueprintName = "REMOVED_FACEBOOK_APP_ID1Pacific"
+               BuildableName = "BebboPacific.app"
+               BlueprintName = "BebboPacific"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6C1B57E2EBC847B00E466C0"
-            BuildableName = "REMOVED_FACEBOOK_APP_ID1Pacific.app"
-            BlueprintName = "REMOVED_FACEBOOK_APP_ID1Pacific"
+            BuildableName = "BebboPacific.app"
+            BlueprintName = "BebboPacific"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -80,8 +80,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6C1B57E2EBC847B00E466C0"
-            BuildableName = "REMOVED_FACEBOOK_APP_ID1Pacific.app"
-            BlueprintName = "REMOVED_FACEBOOK_APP_ID1Pacific"
+            BuildableName = "BebboPacific.app"
+            BlueprintName = "BebboPacific"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

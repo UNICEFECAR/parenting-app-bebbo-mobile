@@ -8,11 +8,11 @@ const MDro = {
     goToLanguageSelection: 'Accesați selecția de limbi',
     goToConfirm: 'Confirmați',
     checkonce:
-      'REMOVED_FACEBOOK_APP_ID1 va furniza conținutul aplicației în funcție de țara și limba selectată.',
+      'Bebbo va furniza conținutul aplicației în funcție de țara și limba selectată.',
     country: 'Țară',
     language: 'Limbă',
     walkthroughTextstitle0: 'Bun venit părinților!',
-    walkthroughTextssubtitle0: 'Descoperiți REMOVED_FACEBOOK_APP_ID1',
+    walkthroughTextssubtitle0: 'Descoperiți Bebbo',
     walkthroughTextstitle1: 'Jocuri ',
     walkthroughTextssubtitle1:
       'pentru a vă ajuta copilul să învețe lucruri noi în fiecare zi',
@@ -27,13 +27,13 @@ const MDro = {
     walkthroughButtonSkip: 'Sari peste',
     tNcheader: 'Termeni și condiții',
     tNccheckbox1:
-      'Am citit, am înțeles și am acceptat Termenii și condițiile aplicației REMOVED_FACEBOOK_APP_ID1',
+      'Am citit, am înțeles și am acceptat Termenii și condițiile aplicației Bebbo',
     tNccheckbox2: 'Am citit, am înțeles și am acceptat ',
-    tNcprivacyPolicy: 'Politica de Confidențialitate a aplicației REMOVED_FACEBOOK_APP_ID1',
+    tNcprivacyPolicy: 'Politica de Confidențialitate a aplicației Bebbo',
     tNcprivacyPolicyTitle: 'Politica de confidențialitate',
     tNcacceptbtn: 'Accept Termenii și condițiile',
     loadingText: 'Se preia conținutul...',
-    childSetupheader: 'Profită la maxim de REMOVED_FACEBOOK_APP_ID1!',
+    childSetupheader: 'Profită la maxim de Bebbo!',
     childSetupdobLabel:
       'Care este data nașterii copilului sau data preconizată a nașterii?',
     addAnotherChildSetupDobLabel: 'Care este data nașterii copilului?',
@@ -48,7 +48,7 @@ const MDro = {
     childSetuprelationSelectText: 'Selectare',
     childSetupcontinueBtnText: 'Continuare',
     childSetupListheader:
-      'REMOVED_FACEBOOK_APP_ID1 se pregătește să te susțină în călătoria ta de părinte!',
+      'Bebbo se pregătește să te susțină în călătoria ta de părinte!',
     childSetupListsubHeader:
       'Dacă ai alți copii cu vârsta între 0 și 6 ani, îi poți adăuga acum sau mai târziu.',
     childSetupListaddSiblingBtn: '+ ADAUGĂ UN COPIL',
@@ -70,12 +70,12 @@ const MDro = {
     drawerMenusetTxt: 'Setări',
     drawerMenushareTxt: 'Partajați',
     drawerMenufeedbackTxt: 'Feedback',
-    drawerMenurateTxt: 'Vă place REMOVED_FACEBOOK_APP_ID1? Evaluați aplicația!',
+    drawerMenurateTxt: 'Vă place Bebbo? Evaluați aplicația!',
     drawerMenuPrivacyTxt: 'Politica de confidențialitate',
     notiScreenheaderTitle: 'Notificări',
     settingScreenheaderTitle: 'Setări',
     settingScreennotiHeaderText: 'Notificări',
-    settingScreennotiType1: 'Doresc să primesc notificări prin REMOVED_FACEBOOK_APP_ID1',
+    settingScreennotiType1: 'Doresc să primesc notificări prin Bebbo',
     settingScreennotiType2:
       'Doresc să primesc notificări legate de creșterea copilului meu',
     settingScreennotiType3:
@@ -83,7 +83,7 @@ const MDro = {
     settingScreennotiType4:
       'Doresc să primesc notificări legate de vizitele la medic și vaccinările copilului meu',
     settingScreennotiInfo:
-      'Notificările sunt publicate cu o frecvență diferită, zilnic sau lunar, și sunt parte integrantă din funcționalitatea REMOVED_FACEBOOK_APP_ID1. Puteți alege să ascundeți notificările de pe ecranul de pornire. De asemenea, în orice moment, puteți dezactiva complet această funcție din setările aplicației, ceea ce va duce la o funcționalitate limitată a aplicației.',
+      'Notificările sunt publicate cu o frecvență diferită, zilnic sau lunar, și sunt parte integrantă din funcționalitatea Bebbo. Puteți alege să ascundeți notificările de pe ecranul de pornire. De asemenea, în orice moment, puteți dezactiva complet această funcție din setările aplicației, ceea ce va duce la o funcționalitate limitată a aplicației.',
     settingScreendataSaverHeaderText: 'Mod de economisire a datelor',
     settingScreendataSaverSubText:
       'Nu vreau să descarc imagini din articole sau actualizări din cauza vitezei reduse a internetului.',
@@ -109,7 +109,7 @@ const MDro = {
     supportScreenheaderTitle: 'Chat',
     supportScreenheader1text: 'În curând!',
     supportScreenheader2text: 'Chatul nu este disponibil momentan',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Citiți mai mult ',
     homeScreenchildInfoTitle: 'Bine ați venit {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Materiale zilnice ',
@@ -222,7 +222,7 @@ const MDro = {
     favScreenHeader: 'Favorite',
     actScreenremovetoFavText: 'Salvat',
     appShareText:
-      'Descărcați REMOVED_FACEBOOK_APP_ID1, partenerul de buzunar al dvs. în calitate de părinte!',
+      'Descărcați Bebbo, partenerul de buzunar al dvs. în calitate de părinte!',
     vcHeader: 'Vaccinare',
     vcSummaryHeader: 'Rezumatul vaccinării',
     vcStatus1: 'Urmează',
@@ -456,11 +456,11 @@ const MDro = {
     parentGender: 'Gen',
     successOnboardingImport: 'Ați importat cu succes datele copilului',
     updateImportText: 'Actualizați-vă detaliile pentru a continua',
-    importOnboardingText: 'REMOVED_FACEBOOK_APP_ID1 nu colectează datele tale personale.',
+    importOnboardingText: 'Bebbo nu colectează datele tale personale.',
     importOnboardingText1:
       'Informațiile pe care le introduci în aplicație sunt salvate pe telefon sau în spațiul de stocare personal.',
     importOnboardingText2:
-      'Dacă ai folosit REMOVED_FACEBOOK_APP_ID1 pe alt dispozitiv și ai exportat informațiile, poți încărca fișierul pe acest dispozitiv acum.',
+      'Dacă ai folosit Bebbo pe alt dispozitiv și ai exportat informațiile, poți încărca fișierul pe acest dispozitiv acum.',
     OnboardingImportButton: 'Încarcă acum',
     ORkeyText: 'SAU',
     addChildText: 'Adăugați detaliile copilului dvs.',
@@ -480,7 +480,7 @@ const MDro = {
     childSetupprematureMessageNext:
       'Conținutul acestei secțiuni este afișat în funcție de vârsta corectată și nu de cea reală a copilului dvs. născut prematur',
     helloMessage:
-      'Salut, {{parentName}}, numele meu este REMOVED_FACEBOOK_APP_ID1. Sunt aici să vă răspund la întrebări.',
+      'Salut, {{parentName}}, numele meu este Bebbo. Sunt aici să vă răspund la întrebări.',
     selectAreaOfInterest:
       'Vă rugăm să selectați zona de interes despre care aveți o întrebare',
     question1: 'La ce se referă întrebarea dvs.?',
@@ -517,7 +517,7 @@ const MDro = {
     restOfTheWorldAlertTitle: 'Avertisment',
     restOfTheWorldOkTitle: 'Ok',
     restOfTheWorldAlertText:
-      'Selectând „Restul lumii”, vă veți bucura de toate caracteristicile REMOVED_FACEBOOK_APP_ID1, dar rețineți că vaccinările și vizitele la medic nu sunt personalizate pentru un anumit program național de sănătate.',
+      'Selectând „Restul lumii”, vă veți bucura de toate caracteristicile Bebbo, dar rețineți că vaccinările și vizitele la medic nu sunt personalizate pentru un anumit program național de sănătate.',
     remindersAlertTitle: 'Memento!',
     vcDefinedReminderText: 'Introduceți data și ora mementoului',
     hcDefinedReminderText: 'Introduceți data și ora mementoului',
@@ -534,21 +534,21 @@ const MDro = {
     relatedVideoArticle: 'Videoclipuri similare',
     upto6YearsMsg:
       'Această aplicație este destinată copiilor cu vârsta până la 6 ani',
-    donateButton: 'Donează pentru REMOVED_FACEBOOK_APP_ID1',
+    donateButton: 'Donează pentru Bebbo',
     contactUs: 'Trimite-ne un e-mail',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'Despre {{appName}}',
-    tncCheckBoxText: 'Termenii și Condițiile aplicației REMOVED_FACEBOOK_APP_ID1',
+    aboutBebboDrawerMenu: 'Despre {{appName}}',
+    tncCheckBoxText: 'Termenii și Condițiile aplicației Bebbo',
     tncScreenContent:
-      'Aplicația REMOVED_FACEBOOK_APP_ID1 nu colectează și nu stochează nicio informație cu caracter personal. Toate datele pe care le introduceți sunt salvate doar pe telefonul dvs.',
+      'Aplicația Bebbo nu colectează și nu stochează nicio informație cu caracter personal. Toate datele pe care le introduceți sunt salvate doar pe telefonul dvs.',
     welcomeText: 'Bine ai venit!',
     letGetStartedText: 'SĂ ÎNCEPEM!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Dacă omiți acest pas, va fi creat un profil de copil nou-născut. Îl poți edita ulterior pentru a obține conținut personalizat.',
     serviceProviderHeaderInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 se pregătește să te sprijine în îngrijirea copilului!',
+      'Bebbo se pregătește să te sprijine în îngrijirea copilului!',
     serviceProviderHeaderSubInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 a creat un profil de copil nou-născut pentru a te ajuta să începi. Poți adăuga mai multe profiluri pentru copii ulterior.',
+      'Bebbo a creat un profil de copil nou-născut pentru a te ajuta să începi. Poți adăuga mai multe profiluri pentru copii ulterior.',
   },
 };
 export default MDro;

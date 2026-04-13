@@ -138,7 +138,7 @@ android {
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD__MERHABA_BEBEK
             }
         }
-        REMOVED_FACEBOOK_APP_ID1 {
+        wawamor {
             if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE_WAWAMOR')) {
                 storeFile file(MYAPP_UPLOAD_STORE_FILE_WAWAMOR)
                 storePassword MYAPP_UPLOAD_STORE_PASSWORD_WAWAMOR
@@ -241,11 +241,11 @@ android {
             versionName "1.0.3"
             signingConfig signingConfigs.merhababebek
         }
-        REMOVED_FACEBOOK_APP_ID1 {
-            applicationId 'org.unicef.ec.REMOVED_FACEBOOK_APP_ID1'
+        wawamor {
+            applicationId 'org.unicef.ec.wawamor'
             versionCode 14
             versionName "1.0.6"
-            signingConfig signingConfigs.REMOVED_FACEBOOK_APP_ID1
+            signingConfig signingConfigs.wawamor
         }
         reraiumntwana {
             applicationId 'org.unicef.zw.reraiumntwana'

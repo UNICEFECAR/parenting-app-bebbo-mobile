@@ -12,7 +12,7 @@ const MKmk = {
     country: 'Земја',
     language: 'Јазик',
     walkthroughTextstitle0: 'Драги родители,',
-    walkthroughTextssubtitle0: 'Запознајте се со REMOVED_FACEBOOK_APP_ID1',
+    walkthroughTextssubtitle0: 'Запознајте се со Bebbo',
     walkthroughTextstitle1: 'Игри',
     walkthroughTextssubtitle1:
       'за да му помогнете на вашето дете да учи нови нешта секој ден',
@@ -26,13 +26,13 @@ const MKmk = {
     walkthroughButtonSkip: 'Прескокни',
     tNcheader: 'Услови за користење',
     tNccheckbox1:
-      'Ги прочитав, ги разбирам и ги прифаќам условите за користење на апликацијата REMOVED_FACEBOOK_APP_ID1',
+      'Ги прочитав, ги разбирам и ги прифаќам условите за користење на апликацијата Bebbo',
     tNccheckbox2: 'Ги прочитав, ги разбирам и ги прифаќам... ',
-    tNcprivacyPolicy: 'Политика за Приватност на апликацијата REMOVED_FACEBOOK_APP_ID1',
+    tNcprivacyPolicy: 'Политика за Приватност на апликацијата Bebbo',
     tNcprivacyPolicyTitle: 'Политика за приватност',
     tNcacceptbtn: 'Ги прифаќам условите за користење',
     loadingText: 'Содржината се презема…',
-    childSetupheader: 'Извлечете максимум од REMOVED_FACEBOOK_APP_ID1!',
+    childSetupheader: 'Извлечете максимум од Bebbo!',
     childSetupdobLabel:
       'Кој е датумот на раѓање или очекуваниот датум на раѓање на детето?',
     addAnotherChildSetupDobLabel: 'Кој е датумот на раѓање на детето?',
@@ -46,7 +46,7 @@ const MKmk = {
     childSetuprelationSelectText: 'Одберете',
     childSetupcontinueBtnText: 'Продолжете',
     childSetupListheader:
-      'REMOVED_FACEBOOK_APP_ID1 се подготвува да го поддржи вашето патување низ родителството!',
+      'Bebbo се подготвува да го поддржи вашето патување низ родителството!',
     childSetupListsubHeader:
       'Ако имате други деца на возраст од 0 до 6 години, можете да креирате профили сега или подоцна.',
     childSetupListaddSiblingBtn: '+ ДОДАДЕТЕ ДРУГО ДЕТЕ',
@@ -68,12 +68,12 @@ const MKmk = {
     drawerMenusetTxt: 'Подесувања',
     drawerMenushareTxt: 'Споделете',
     drawerMenufeedbackTxt: 'Ваше мислење',
-    drawerMenurateTxt: 'Ви се допаѓа апликацијата REMOVED_FACEBOOK_APP_ID1? Оценете ја!',
+    drawerMenurateTxt: 'Ви се допаѓа апликацијата Bebbo? Оценете ја!',
     drawerMenuPrivacyTxt: 'Политика на приватност',
     notiScreenheaderTitle: 'Известувања',
     settingScreenheaderTitle: 'Подесувања',
     settingScreennotiHeaderText: 'Известувања',
-    settingScreennotiType1: 'Сакам да добивам известувања од REMOVED_FACEBOOK_APP_ID1',
+    settingScreennotiType1: 'Сакам да добивам известувања од Bebbo',
     settingScreennotiType2:
       'Сакам да добивам известувања поврзани со растот на моето дете',
     settingScreennotiType3:
@@ -81,7 +81,7 @@ const MKmk = {
     settingScreennotiType4:
       'Сакам да добивам известувања поврзани со здравствените прегледи и вакцинација на моето дете',
     settingScreennotiInfo:
-      'Известувањата се испраќаат во различни периоди, дневно или месечно, и се составен дел на функционалноста на REMOVED_FACEBOOK_APP_ID1. Можете да одберете да не добивате известувања на екранот. Исто така можете целосно да ја исклучите оваа функција во било кое време во делот „Подесувања“, што ќе доведе до намалена функционалност на апликацијата.',
+      'Известувањата се испраќаат во различни периоди, дневно или месечно, и се составен дел на функционалноста на Bebbo. Можете да одберете да не добивате известувања на екранот. Исто така можете целосно да ја исклучите оваа функција во било кое време во делот „Подесувања“, што ќе доведе до намалена функционалност на апликацијата.',
     settingScreendataSaverHeaderText: 'Режим на намален проток на податоци',
     settingScreendataSaverSubText:
       'Не сакам да симнувам слики од статиите поради малата брзина на интернет',
@@ -107,7 +107,7 @@ const MKmk = {
     supportScreenheaderTitle: 'Разговарајте со нас',
     supportScreenheader1text: 'Наскоро!',
     supportScreenheader2text: 'Во моментот не постои опција за разговор',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Прочитајте повеќе ',
     homeScreenchildInfoTitle: 'Добредојдовте {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Што да прочитате денес ',
@@ -218,7 +218,7 @@ const MKmk = {
     favScreenHeader: 'Омилени',
     actScreenremovetoFavText: 'Зачувано',
     appShareText:
-      'Инсталирајте ја апликацијата REMOVED_FACEBOOK_APP_ID1, вашиот партнер за родителство!',
+      'Инсталирајте ја апликацијата Bebbo, вашиот партнер за родителство!',
     vcHeader: 'Вакцини',
     vcSummaryHeader: 'Вакцини сумирано ',
     vcStatus1: 'Наскоро',
@@ -449,11 +449,11 @@ const MKmk = {
     parentGender: 'Пол',
     successOnboardingImport: 'Успешно внесовте податоци за детето',
     updateImportText: 'Ве молиме да ги ажурирате податоците за да продолжите',
-    importOnboardingText: 'REMOVED_FACEBOOK_APP_ID1 не ги собира вашите лични податоци.',
+    importOnboardingText: 'Bebbo не ги собира вашите лични податоци.',
     importOnboardingText1:
       'Податоците што ги внесувате во апликацијата се зачувуваат во вашиот телефон или во внатрешната меморија.',
     importOnboardingText2:
-      'Ако сте ја користеле REMOVED_FACEBOOK_APP_ID1 на друг уред и сте ги префрлиле вашите податоци, сега можете да ги прикачите податоците на овој уред.',
+      'Ако сте ја користеле Bebbo на друг уред и сте ги префрлиле вашите податоци, сега можете да ги прикачите податоците на овој уред.',
     OnboardingImportButton: 'Прикачете податоци',
     ORkeyText: 'ИЛИ',
     addChildText: 'Додадете податоци за детето',
@@ -473,7 +473,7 @@ const MKmk = {
     childSetupprematureMessageNext:
       'Содржината во овој дел е прикажана според коригираната, а не според вистинската возраст на вашето предвремено родено дете',
     helloMessage:
-      'Здраво{{parentName}}, јас сум REMOVED_FACEBOOK_APP_ID1, тука сум да одговорам на сите ваши прашања',
+      'Здраво{{parentName}}, јас сум Bebbo, тука сум да одговорам на сите ваши прашања',
     selectAreaOfInterest:
       'Ве молиме одберете област за која сакате да поставите прашање',
     question1: 'На што се однесува вашето прашање?',
@@ -523,19 +523,19 @@ const MKmk = {
     upto6YearsMsg: 'Апликацијата е дизајнирана за деца до 6 години',
     donateButton: 'Донирај за Беббо',
     contactUs: 'Испрати ни порака',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'За {{appName}}',
-    tncCheckBoxText: 'Условите за Користење на апликацијата REMOVED_FACEBOOK_APP_ID1',
+    aboutBebboDrawerMenu: 'За {{appName}}',
+    tncCheckBoxText: 'Условите за Користење на апликацијата Bebbo',
     tncScreenContent:
       'Беббо не собира ниту складира никакви лични податоци. Сите податоци што ги внесувате се зачувуваат само на вашиот телефон.',
     welcomeText: 'Добредојдовте!',
     letGetStartedText: '+ АЈДЕ ДА ПОЧНЕМЕ!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Ако го прескокнете овој чекор, ќе се креира профил за новороденче. Можете да ги коригирате податоците подоцна за да добивате содржина соодветна за возраста на детето.',
     serviceProviderHeaderInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 се подготвува да ве поддржи во грижата за вашето дете!',
+      'Bebbo се подготвува да ве поддржи во грижата за вашето дете!',
     serviceProviderHeaderSubInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 креираше профил на новороденче за да започнете. Можете да додадете профили за другите деца подоцна.',
+      'Bebbo креираше профил на новороденче за да започнете. Можете да додадете профили за другите деца подоцна.',
   },
 };
 export default MKmk;

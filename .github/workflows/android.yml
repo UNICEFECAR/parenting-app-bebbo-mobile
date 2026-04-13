@@ -111,5 +111,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: REMOVED_FACEBOOK_APP_ID1_Release.apk
+        name: Bebbo_Release.apk
         path: android/app/build/outputs/apk/

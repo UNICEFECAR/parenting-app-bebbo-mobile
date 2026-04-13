@@ -3,10 +3,10 @@
     "compilerOptions": {
         "paths": {
             "@styles/*": [
-                "app/instances/REMOVED_FACEBOOK_APP_ID1/styles/*"
+                "app/instances/merhabaBebek/styles/*"
             ],
             "@images/*": [
-                "app/instances/REMOVED_FACEBOOK_APP_ID1/assets/images/*"
+                "app/instances/merhabaBebek/assets/images/*"
             ]
         }
     }

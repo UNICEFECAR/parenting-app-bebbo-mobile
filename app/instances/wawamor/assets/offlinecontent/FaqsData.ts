@@ -703,7 +703,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-14T21:39:29+05:30\" class=\"datetime\">Mon, 10/14/2024 - 21:39</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:09+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>Covid-19 ha creado tiempos difíciles en los que debes estar en cuarentena. Puedes pensar en qué los hará más agradables para ti. Por ejemplo, ¿puede poner música en su teléfono para escucharla mientras hace las tareas? Si tiene que hacer algún trabajo físico activo, ¿puede seguirlo con algún tiempo tranquilo en el que haga otras tareas que le permitan sentarse y relajarse?</p>",
-            "answer_part_2": "<p>Con tus hijas e hijos no es bueno que vean demasiadas cosas online, pero quizá puedas programar un rato de pantalla en familia como un capricho que esperar. Hay muchos recursos para darte ideas en las secciones \"Juegos\" y \"Consejos de REMOVED_FACEBOOK_APP_ID1\"</p><p> </p>",
+            "answer_part_2": "<p>Con tus hijas e hijos no es bueno que vean demasiadas cosas online, pero quizá puedas programar un rato de pantalla en familia como un capricho que esperar. Hay muchos recursos para darte ideas en las secciones \"Juegos\" y \"Consejos de Bebbo\"</p><p> </p>",
             "chatbot_subcategory": 576,
             "related_article": 1826,
             "mandatory": 1
@@ -859,7 +859,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-14T20:47:50+05:30\" class=\"datetime\">Mon, 10/14/2024 - 20:47</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:21+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>No es fácil para una madre o un padre aceptar o enfrentarse a una discapacidad infantil. No dudes en expresar cómo te siente al respecto y plantear preguntas que le ayuden a comprender la condición de tu hija o hijo y cómo puede apoyarle. Tu hija o hijo, como todos los niños, puede progresar en su desarrollo a pesar de la discapacidad y darte muchas alegrías en la vida.</p>",
-            "answer_part_2": "<p>La sección de consejos de la \"App REMOVED_FACEBOOK_APP_ID1\" tiene muchos recursos para ayudarte a entender las discapacidades. En la sección \"Juegos\", encontrarás muchas ideas sobre cómo puedes apoyar el desarrollo de tu hija o hijo a través de las interacciones diarias y el juego. Tu profesional de salud también puede apoyarte y responder a muchas de tus preguntas. Compartir tus inquietudes y experiencias con otros padres de niñas y niños con discapacidad puede ayudarte a aliviar algunas de tus preocupaciones y a encontrar recursos adicionales..</p>",
+            "answer_part_2": "<p>La sección de consejos de la \"App Bebbo\" tiene muchos recursos para ayudarte a entender las discapacidades. En la sección \"Juegos\", encontrarás muchas ideas sobre cómo puedes apoyar el desarrollo de tu hija o hijo a través de las interacciones diarias y el juego. Tu profesional de salud también puede apoyarte y responder a muchas de tus preguntas. Compartir tus inquietudes y experiencias con otros padres de niñas y niños con discapacidad puede ayudarte a aliviar algunas de tus preocupaciones y a encontrar recursos adicionales..</p>",
             "chatbot_subcategory": 581,
             "related_article": 5691,
             "mandatory": 1
@@ -991,7 +991,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-14T19:45:43+05:30\" class=\"datetime\">Mon, 10/14/2024 - 19:45</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:21+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>A muchos padres les preocupa qué hacer si el colegio de sus hijos cierra por la pandemia. Tú no eres un \"profesor\" en el mismo sentido que alguien con formación especializada. Puede ayudar al desarrollo y aprendizaje de su hija o hijo simplemente animándole a jugar, a explorar objetos en casa y a mantenerse activo.</p><p> </p>",
-            "answer_part_2": "<p>Puedes hablar con ellos, mirar libros y fotos juntos, involucrarlos en tus actividades caseras y muchas otras experiencias interesantes. Todas ellas son realmente \"actividades de aprendizaje\", pero no de forma \"escolar\". Busca en \"REMOVED_FACEBOOK_APP_ID1 Games\" algunas ideas sobre cómo participar en el juego y el aprendizaje en casa.</p><p> </p>",
+            "answer_part_2": "<p>Puedes hablar con ellos, mirar libros y fotos juntos, involucrarlos en tus actividades caseras y muchas otras experiencias interesantes. Todas ellas son realmente \"actividades de aprendizaje\", pero no de forma \"escolar\". Busca en \"Bebbo Games\" algunas ideas sobre cómo participar en el juego y el aprendizaje en casa.</p><p> </p>",
             "chatbot_subcategory": 491,
             "related_article": 3146,
             "mandatory": 1
@@ -1063,7 +1063,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-14T19:23:18+05:30\" class=\"datetime\">Mon, 10/14/2024 - 19:23</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:22+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>No es recomendable retrasar el calendario de vacunación. Cada vez que se retrasa una vacuna, se está aumentando la vulnerabilidad a enfermedades graves.</p><p> </p>",
-            "answer_part_2": "<p>Evite riesgos y asegúrese de seguir el calendario nacional de vacunación para proteger a su hija o hijo antes de que se exponga a una enfermedad potencialmente mortal. \"REMOVED_FACEBOOK_APP_ID1 Vaccination Tool\" le notificará cuándo es la próxima vacuna y le ayudará a realizar un seguimiento de todas las vacunas recomendadas.</p>",
+            "answer_part_2": "<p>Evite riesgos y asegúrese de seguir el calendario nacional de vacunación para proteger a su hija o hijo antes de que se exponga a una enfermedad potencialmente mortal. \"Bebbo Vaccination Tool\" le notificará cuándo es la próxima vacuna y le ayudará a realizar un seguimiento de todas las vacunas recomendadas.</p>",
             "chatbot_subcategory": 566,
             "related_article": 0,
             "mandatory": 1
@@ -1111,7 +1111,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-08T01:47:16+05:30\" class=\"datetime\">Tue, 10/08/2024 - 01:47</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:22+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>\"Jugar\" no es sólo jugar a algo juntos. Juegas con tu hija o hijo cuando sales al aire libre y buscan juntos flores, o cuando utilizas papel y lápices o crayones para hacer dibujos juntos. </p><p>\"Jugar\" también es coger muñecas o animales de peluche y fingir que les das de comer o los pones a dormir.</p><p> </p>",
-            "answer_part_2": "<p>Igualmente importante es observar qué les interesa a tus hijas o hijos. ¿Apilan cajas en una torre? ¿Le cantan a sus muñecas? Fíjate en lo que hacen y empieza a hacerlo con ellos. Explora los \"Juegos REMOVED_FACEBOOK_APP_ID1\" para encontrar muchas ideas sobre cómo jugar y apoyar el desarrollo de tu hija o hijo.</p><p> </p>",
+            "answer_part_2": "<p>Igualmente importante es observar qué les interesa a tus hijas o hijos. ¿Apilan cajas en una torre? ¿Le cantan a sus muñecas? Fíjate en lo que hacen y empieza a hacerlo con ellos. Explora los \"Juegos Bebbo\" para encontrar muchas ideas sobre cómo jugar y apoyar el desarrollo de tu hija o hijo.</p><p> </p>",
             "chatbot_subcategory": 506,
             "related_article": 1956,
             "mandatory": 1
@@ -1327,7 +1327,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-08T00:46:59+05:30\" class=\"datetime\">Tue, 10/08/2024 - 00:46</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:32+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>Si sabes que tu hija o hijo tiene una discapacidad, probablemente esté preocupado por su desarrollo. ¡Por supuesto que lo estas! Pero recuerde que tu hija o hijo es una personita única y maravillosa con su propia forma de crecer, que puede ser muy diferente en algunos aspectos a la de otras niñas y niños, pero su hija o hijo puede desarrollarse y lo hará, con su ayuda.</p>",
-            "answer_part_2": "<p>Tu médico o tu profesor de preescolar pueden ayudarte a elaborar un plan sobre cómo apoyar a tu hija o hijo mediante actividades y juegos diarios. También puedes intentar reconocer cuáles son los puntos fuertes de tu pequeña o pequeño (quizás no aprende rápido, pero sigue intentándolo incluso en las dificultades o disfruta cuando le lees). Fíjate en esos puntos fuertes, elógielos y ofrécele más formas de utilizarlos. Para las áreas en las que el progreso de tu hijo es lento o difícil de ver, puedes probar juegos sencillos sugeridos por REMOVED_FACEBOOK_APP_ID1 para fomentar un mayor progreso. Por ejemplo, si a tu hijo le cuesta usar las manos, prueba con juegos que pueda hacer contigo, como pasarse un objeto de colores de un lado a otro.</p><p> </p>",
+            "answer_part_2": "<p>Tu médico o tu profesor de preescolar pueden ayudarte a elaborar un plan sobre cómo apoyar a tu hija o hijo mediante actividades y juegos diarios. También puedes intentar reconocer cuáles son los puntos fuertes de tu pequeña o pequeño (quizás no aprende rápido, pero sigue intentándolo incluso en las dificultades o disfruta cuando le lees). Fíjate en esos puntos fuertes, elógielos y ofrécele más formas de utilizarlos. Para las áreas en las que el progreso de tu hijo es lento o difícil de ver, puedes probar juegos sencillos sugeridos por Bebbo para fomentar un mayor progreso. Por ejemplo, si a tu hijo le cuesta usar las manos, prueba con juegos que pueda hacer contigo, como pasarse un objeto de colores de un lado a otro.</p><p> </p>",
             "chatbot_subcategory": 526,
             "related_article": 5691,
             "mandatory": 1
@@ -1519,7 +1519,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-07T23:45:44+05:30\" class=\"datetime\">Mon, 10/07/2024 - 23:45</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:33+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>Todas las niñas y niños son diferentes y desarrollan sus capacidades en momentos distintos. Es normal que una pequeña o pequeño vaya retrasado en algunas áreas y adelantado en otras. La mayoría de las veces, si su hija o hijo es un poco más lento andando, hablando o leyendo que otros, no tiene por qué preocuparse. Disfrute de su hija o hijo por lo que es y elógielo por sus capacidades. Su compromiso diario a través del juego y de una relación afectuosa ayudará a que se desarrolle o se ponga al día.</p>",
-            "answer_part_2": "<p>Pero, si ves grandes diferencias que te preocupan, habla con tu médico u otro profesional. REMOVED_FACEBOOK_APP_ID1 \"Consejos de los médicos\" en Desarrollo infantil se enumeran las preocupaciones que requieren atención en cada período de edad. Cuando se identifican a tiempo, incluso los retrasos en el desarrollo pueden tratarse rápidamente. Los \"Juegos REMOVED_FACEBOOK_APP_ID1\" ofrecen muchas ideas sobre cómo puedes estimular el desarrollo de tu hija o hijo.</p><p> </p>",
+            "answer_part_2": "<p>Pero, si ves grandes diferencias que te preocupan, habla con tu médico u otro profesional. Bebbo \"Consejos de los médicos\" en Desarrollo infantil se enumeran las preocupaciones que requieren atención en cada período de edad. Cuando se identifican a tiempo, incluso los retrasos en el desarrollo pueden tratarse rápidamente. Los \"Juegos Bebbo\" ofrecen muchas ideas sobre cómo puedes estimular el desarrollo de tu hija o hijo.</p><p> </p>",
             "chatbot_subcategory": 526,
             "related_article": 0,
             "mandatory": 1
@@ -1603,7 +1603,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-07T22:00:29+05:30\" class=\"datetime\">Mon, 10/07/2024 - 22:00</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:34+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>El cerebro de su bebé se desarrolla rápidamente incluso antes de nacer. El periodo que va desde la concepción hasta los 5 años es cuando más se desarrolla el cerebro de tu bebé. Desde que nace, su hija o hijo aprende todos los días.</p>",
-            "answer_part_2": "<p>El entorno afectuoso y tu receptividad a las señales de tu bebé ayudarán a desarrollar su cerebro. Las niñas y niños aprenden mejor jugando, así que coge algunas ideas de \"Juegos REMOVED_FACEBOOK_APP_ID1\" y aprovecha cualquier oportunidad para una interacción lúdica.</p><p> </p>",
+            "answer_part_2": "<p>El entorno afectuoso y tu receptividad a las señales de tu bebé ayudarán a desarrollar su cerebro. Las niñas y niños aprenden mejor jugando, así que coge algunas ideas de \"Juegos Bebbo\" y aprovecha cualquier oportunidad para una interacción lúdica.</p><p> </p>",
             "chatbot_subcategory": 486,
             "related_article": 2261,
             "mandatory": 1
@@ -1639,7 +1639,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-07T21:50:47+05:30\" class=\"datetime\">Mon, 10/07/2024 - 21:50</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:34+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>Tu hija o hijo, a cualquier edad, necesita mover su cuerpo todos los días. Los bebés necesitan contonearse, estirarse, utilizar los brazos y las piernas para explorar (de forma segura, contigo cerca). Las niñas y niños mas grandes necesitan lugares seguros para practicar el gateo, andar y correr.</p><p> </p>",
-            "answer_part_2": "<p>\"Juegos REMOVED_FACEBOOK_APP_ID1\" puede darle ideas para actividades sencillas que usted y su hija e hijo disfrutarán juntos. El desarrollo saludable incluye habilidades físicas, así como el desarrollo de habilidades de pensamiento. El tiempo para hacer ejercicio es un tiempo muy bien empleado.</p>",
+            "answer_part_2": "<p>\"Juegos Bebbo\" puede darle ideas para actividades sencillas que usted y su hija e hijo disfrutarán juntos. El desarrollo saludable incluye habilidades físicas, así como el desarrollo de habilidades de pensamiento. El tiempo para hacer ejercicio es un tiempo muy bien empleado.</p>",
             "chatbot_subcategory": 531,
             "related_article": 2981,
             "mandatory": 1
@@ -1831,7 +1831,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-10-07T19:13:43+05:30\" class=\"datetime\">Mon, 10/07/2024 - 19:13</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:20:35+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:20</time>\n",
             "answer_part_1": "<p>Algunos niñas y niños parecen nacer con más ganas de actividad que otros. Sin embargo, todas las pequeñas y pequeños necesitan mover sus cuerpos. ¿Hay maneras para que tú y tu hija o hijo estén activos juntos, ya que eres el compañero de juegos favorito de ella o él? Pueden lanzar calcetines enrollados de un lado a otro en un \"juego de pelota\" o correr juntos por la calle en lugar de siempre caminar. También puedes tomar cajas vacías y hacer lugares por los que tu niña o niño pueda gatear.</p>",
-            "answer_part_2": "<p>En la sección \"Juegos de REMOVED_FACEBOOK_APP_ID1\" encontraras muchos otros recursos. Si su hija o hijo tiene una discapacidad física, su profesional de salud puede mostrarle juegos y actividades para motivarle a utilizar los músculos o partes de su cuerpo que puedan necesitar fortalecerse. Recuerde animar incluso los pequeños esfuerzos (por ejemplo: \"¡Mira lo que haces! Te estás esforzando mucho para alcanzar ese juguete!\")</p><p> </p>",
+            "answer_part_2": "<p>En la sección \"Juegos de Bebbo\" encontraras muchos otros recursos. Si su hija o hijo tiene una discapacidad física, su profesional de salud puede mostrarle juegos y actividades para motivarle a utilizar los músculos o partes de su cuerpo que puedan necesitar fortalecerse. Recuerde animar incluso los pequeños esfuerzos (por ejemplo: \"¡Mira lo que haces! Te estás esforzando mucho para alcanzar ese juguete!\")</p><p> </p>",
             "chatbot_subcategory": 531,
             "related_article": 2981,
             "mandatory": 1
@@ -1951,7 +1951,7 @@ export const FaqsData: any = {
             "created_at": "<time datetime=\"2024-09-30T22:29:25+05:30\" class=\"datetime\">Mon, 09/30/2024 - 22:29</time>\n",
             "updated_at": "<time datetime=\"2025-03-20T17:18:14+05:30\" class=\"datetime\">Thu, 03/20/2025 - 17:18</time>\n",
             "answer_part_1": "<p>Las niñas y niños pueden aprender a través de cualquier actividad. Tus hijas o hijos suelen saber muy bien qué actividades les ayudan a aprender nuevas habilidades y las harán espontáneamente. Obsérvalos cuando jueguen, muestra interés y elógialos: \"¡Mira lo que eres capaz de hacer, bien hecho!\"</p><p> </p>",
-            "answer_part_2": "<p>Valore y aprecie a las niñas y niños por lo que son (y no por lo que \"tienen que ser\") y por lo que ya saben hacer. Esto aumentará su confianza y estarán dispuestos a aprender más. Los \"Juegos REMOVED_FACEBOOK_APP_ID1\" te darán muchas ideas de actividades sencillas que pueden estimular a tu hija o hijo. Averigua qué le interesa y apóyalo.</p>",
+            "answer_part_2": "<p>Valore y aprecie a las niñas y niños por lo que son (y no por lo que \"tienen que ser\") y por lo que ya saben hacer. Esto aumentará su confianza y estarán dispuestos a aprender más. Los \"Juegos Bebbo\" te darán muchas ideas de actividades sencillas que pueden estimular a tu hija o hijo. Averigua qué le interesa y apóyalo.</p>",
             "chatbot_subcategory": 496,
             "related_article": 3131,
             "mandatory": 1

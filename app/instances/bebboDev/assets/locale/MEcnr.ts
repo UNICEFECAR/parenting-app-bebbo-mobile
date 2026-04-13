@@ -8,11 +8,11 @@ const MEcnr = {
     goToLanguageSelection: 'Idite na Izbor jezika',
     goToConfirm: 'Idite na Potvrdi',
     checkonce:
-      'REMOVED_FACEBOOK_APP_ID1 će prilagoditi sadržaj lokalnom kontekstu na osnovu Vašeg izbora zemlje i jezika.',
+      'Bebbo će prilagoditi sadržaj lokalnom kontekstu na osnovu Vašeg izbora zemlje i jezika.',
     country: 'Zemlja',
     language: 'Jezik',
     walkthroughTextstitle0: 'Dobro došli, roditelji!',
-    walkthroughTextssubtitle0: 'Otkrijte REMOVED_FACEBOOK_APP_ID1',
+    walkthroughTextssubtitle0: 'Otkrijte Bebbo',
     walkthroughTextstitle1: 'Igre',
     walkthroughTextssubtitle1:
       'koje će Vašem djetetu pomoći da svakog dana uči nove stvari',
@@ -27,13 +27,13 @@ const MEcnr = {
     walkthroughButtonSkip: 'Preskočite',
     tNcheader: 'Uslovi i odredbe korišćenja',
     tNccheckbox1:
-      'Pročitala/pročitao sam, razumjela/razumio i prihvatam Uslove i odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1',
+      'Pročitala/pročitao sam, razumjela/razumio i prihvatam Uslove i odredbe korišćenja aplikacije Bebbo',
     tNccheckbox2: 'Pročitala/pročitao sam, razumjela/razumio i prihvatam',
-    tNcprivacyPolicy: 'Politiku Privatnosti aplikacije REMOVED_FACEBOOK_APP_ID1',
+    tNcprivacyPolicy: 'Politiku Privatnosti aplikacije Bebbo',
     tNcprivacyPolicyTitle: 'Politika privatnosti',
     tNcacceptbtn: 'Prihvatam Uslove i odredbe',
     loadingText: 'Priprema sadržaja...',
-    childSetupheader: 'Iskoristite REMOVED_FACEBOOK_APP_ID1 na najbolji mogući način!',
+    childSetupheader: 'Iskoristite Bebbo na najbolji mogući način!',
     childSetupdobLabel:
       'Koji je datum rođenja ili očekivani datum rođenja djeteta?',
     addAnotherChildSetupDobLabel: 'Koji je datum rođenja Vašeg djeteta?',
@@ -48,7 +48,7 @@ const MEcnr = {
     childSetuprelationSelectText: 'Odaberite',
     childSetupcontinueBtnText: 'Nastavite',
     childSetupListheader:
-      'REMOVED_FACEBOOK_APP_ID1 se sprema da podrži Vaše roditeljsko putovanje!',
+      'Bebbo se sprema da podrži Vaše roditeljsko putovanje!',
     childSetupListsubHeader:
       'Ako imate još djece uzrasta 0–6 godina, možete ih dodati sada ili kasnije.',
     childSetupListaddSiblingBtn: '+ DODAJTE DRUGO DIJETE',
@@ -70,20 +70,20 @@ const MEcnr = {
     drawerMenusetTxt: 'Podešavanja',
     drawerMenushareTxt: 'Podijelite',
     drawerMenufeedbackTxt: 'Povratne informacije',
-    drawerMenurateTxt: 'Sviđa vam se REMOVED_FACEBOOK_APP_ID1? Ocijenite aplikaciju!',
+    drawerMenurateTxt: 'Sviđa vam se Bebbo? Ocijenite aplikaciju!',
     drawerMenuPrivacyTxt: 'Politika privatnosti',
     notiScreenheaderTitle: 'Obavještenja',
     settingScreenheaderTitle: 'Podešavanja',
     settingScreennotiHeaderText: 'Obavještenja',
     settingScreennotiType1:
-      'Želim da dobijam obavještenja putem aplikacije REMOVED_FACEBOOK_APP_ID1',
+      'Želim da dobijam obavještenja putem aplikacije Bebbo',
     settingScreennotiType2: 'Želim da dobijam obavještenja o rastu mog djeteta',
     settingScreennotiType3:
       'Želim da dobijam obavještenja o razvoju mog djeteta',
     settingScreennotiType4:
       'Želim da dobijam obavještenja o kontrolnim zdravstvenim pregledima i vakcinacijama mog djeteta',
     settingScreennotiInfo:
-      'Obavještenja se šalju s različitom učestalošću, nekad svakodnevno, nekad jednom mjesečno, i kao takva predstavljaju sastavni dio funkcionalnosti aplikacije REMOVED_FACEBOOK_APP_ID1. Možete odabrati da se obavještenja ne prikazuju na početnom ekranu. Takođe, možete u potpunosti isključiti ovu opciju u podešavanjima aplikacije, što će rezultirati ograničavanjem njene funkcionalnosti.',
+      'Obavještenja se šalju s različitom učestalošću, nekad svakodnevno, nekad jednom mjesečno, i kao takva predstavljaju sastavni dio funkcionalnosti aplikacije Bebbo. Možete odabrati da se obavještenja ne prikazuju na početnom ekranu. Takođe, možete u potpunosti isključiti ovu opciju u podešavanjima aplikacije, što će rezultirati ograničavanjem njene funkcionalnosti.',
     settingScreendataSaverHeaderText: 'Režim uštede prenosa podataka.',
     settingScreendataSaverSubText:
       'Ne želim da preuzimam slike iz članaka zbog niske brzine interneta koji koristim.',
@@ -109,7 +109,7 @@ const MEcnr = {
     supportScreenheaderTitle: 'Čet',
     supportScreenheader1text: 'Uskoro!',
     supportScreenheader2text: 'Čet trenutno nije dostupan',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Pročitajte više',
     homeScreenchildInfoTitle: 'Dobro došli/e, {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Dnevni članci',
@@ -221,7 +221,7 @@ const MEcnr = {
     babyNotificationUpdateBtn: 'Ažurirajte profil',
     favScreenHeader: 'Omiljeni sadržaj',
     actScreenremovetoFavText: 'Sačuvano',
-    appShareText: 'Preuzmite REMOVED_FACEBOOK_APP_ID1, Vašeg džepnog partnera u roditeljstvu!',
+    appShareText: 'Preuzmite Bebbo, Vašeg džepnog partnera u roditeljstvu!',
     vcHeader: 'Vakcinacija',
     vcSummaryHeader: 'Pregled vakcinacije',
     vcStatus1: 'Slijedi',
@@ -448,11 +448,11 @@ const MEcnr = {
     parentGender: 'Pol',
     successOnboardingImport: 'Uspješno ste uvezli podatke o djetetu',
     updateImportText: 'Molimo Vas, ažurirajte Vaše podatke da biste nastavili ',
-    importOnboardingText: 'REMOVED_FACEBOOK_APP_ID1 ne prikuplja i ne čuva Vaše lične podatke.',
+    importOnboardingText: 'Bebbo ne prikuplja i ne čuva Vaše lične podatke.',
     importOnboardingText1:
       'Informacije koje unesete u aplikaciju čuvaju se na Vašem telefonu ili u Vašem ličnom skladištu podataka.',
     importOnboardingText2:
-      'Ako ste koristili REMOVED_FACEBOOK_APP_ID1 na drugom uređaju i izvezli svoje informacije, datoteku sada možete otpremiti na ovaj uređaj.',
+      'Ako ste koristili Bebbo na drugom uređaju i izvezli svoje informacije, datoteku sada možete otpremiti na ovaj uređaj.',
     OnboardingImportButton: 'Prenesite podatke',
     ORkeyText: 'ILI',
     addChildText: 'Dodajte podatke o djetetu',
@@ -472,7 +472,7 @@ const MEcnr = {
     childSetupprematureMessageNext:
       'Sadržaji u ovom odjeljku prikazuju se prema korigovanom, a ne prema stvarnom uzrastu Vašeg prijevremeno rođenog djeteta',
     helloMessage:
-      'Zdravo,{{parentName}}, ja sam REMOVED_FACEBOOK_APP_ID1. Rado ću odgovoriti na Vaša pitanja',
+      'Zdravo,{{parentName}}, ja sam Bebbo. Rado ću odgovoriti na Vaša pitanja',
     selectAreaOfInterest:
       'Molim Vas da izaberete oblast interesovanja za koju imate pitanje',
     question1: 'Na šta se odnosi Vaše pitanje?',
@@ -522,21 +522,21 @@ const MEcnr = {
     vcHasScheduled: 'Vakcinacija je zakazana',
     relatedVideoArticle: 'Povezani video-zapisi',
     upto6YearsMsg: 'Ova aplikacija je osmišljena za djecu uzrasta do 6 godina',
-    donateButton: 'Donirajte za REMOVED_FACEBOOK_APP_ID1',
+    donateButton: 'Donirajte za Bebbo',
     contactUs: 'Pišite nam',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'O {{appName}}',
-    tncCheckBoxText: 'Uslove i Odredbe korišćenja aplikacije REMOVED_FACEBOOK_APP_ID1',
+    aboutBebboDrawerMenu: 'O {{appName}}',
+    tncCheckBoxText: 'Uslove i Odredbe korišćenja aplikacije Bebbo',
     tncScreenContent:
-      'REMOVED_FACEBOOK_APP_ID1 ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na Vašem telefonu.',
+      'Bebbo ne prikuplja niti čuva lične podatke. Svi podaci koje unesete čuvaju se samo na Vašem telefonu.',
     welcomeText: 'Dobro došli!',
     letGetStartedText: 'HAJDE DA POČNEMO!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Ako preskočite ovaj korak, biće kreiran profil novorođenčeta. Kasnije ga možete urediti tako da dobijete personalizovani sadržaj.',
     serviceProviderHeaderInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 se sprema da Vam bude podrška u podizanju Vašeg djeteta!',
+      'Bebbo se sprema da Vam bude podrška u podizanju Vašeg djeteta!',
     serviceProviderHeaderSubInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 je kreirao profil novorođenčeta da Vam pomogne da počnete. Kasnije možete dodati profile druge djece.',
+      'Bebbo je kreirao profil novorođenčeta da Vam pomogne da počnete. Kasnije možete dodati profile druge djece.',
   },
 };
 export default MEcnr;
