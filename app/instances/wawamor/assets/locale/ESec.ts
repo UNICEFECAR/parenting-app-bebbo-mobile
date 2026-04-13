@@ -82,7 +82,7 @@ const ESec = {
     drawerMenusetTxt: "Ajustes",
     drawerMenushareTxt: "Compartir",
     drawerMenuugTxt: "Guía del usuario",
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: "Acerca de {{appName}}",
+    aboutBebboDrawerMenu: "Acerca de {{appName}}",
     aboutWawamorDrawerMenu: "Acerca de {{appName}}",
     drawerMenuabtTxt: "Acerca de nosotros / Donar",
     contactUs: "Contáctanos",

@@ -8,11 +8,11 @@ const WSen = {
     goToLanguageSelection: 'Go to language selection',
     goToConfirm: 'Go to confirm',
     checkonce:
-      'REMOVED_FACEBOOK_APP_ID1 Pacific will localize your content based on your selection of your country and language.',
+      'Bebbo Pacific will localize your content based on your selection of your country and language.',
     country: 'Country',
     language: 'Language',
     walkthroughTextstitle0: 'Welcome Parents!',
-    walkthroughTextssubtitle0: 'Discover REMOVED_FACEBOOK_APP_ID1 Pacific',
+    walkthroughTextssubtitle0: 'Discover Bebbo Pacific',
     walkthroughTextstitle1: 'Games ',
     walkthroughTextssubtitle1: 'to help your child learn new things everyday',
     walkthroughTextstitle2: 'Tools',
@@ -26,18 +26,18 @@ const WSen = {
     walkthroughButtonSkip: 'Skip',
     tNcheader: 'Terms and Conditions',
     tncScreenContent:
-      'REMOVED_FACEBOOK_APP_ID1 Pacific does not collect or store any personal information. All the information you enter is saved only on your phone.',
+      'Bebbo Pacific does not collect or store any personal information. All the information you enter is saved only on your phone.',
     tNccheckbox1:
-      'I have read, understood and accepted the Terms and Conditions of the REMOVED_FACEBOOK_APP_ID1 Pacific application',
-    tncCheckBoxText: 'Terms and Conditions of the REMOVED_FACEBOOK_APP_ID1 Pacific application ',
+      'I have read, understood and accepted the Terms and Conditions of the Bebbo Pacific application',
+    tncCheckBoxText: 'Terms and Conditions of the Bebbo Pacific application ',
     tNccheckbox2: 'I have read, understood and accepted the',
-    tNcprivacyPolicy: 'Privacy Policy of the REMOVED_FACEBOOK_APP_ID1 Pacific application',
+    tNcprivacyPolicy: 'Privacy Policy of the Bebbo Pacific application',
     tNccheckbox3:
-      'I understand that my usage of the app may generate anonymized data, which may be used to improve REMOVED_FACEBOOK_APP_ID1 Pacific. While providing this data is not mandatory, I recognize that it can help enhance the overall user experience.',
+      'I understand that my usage of the app may generate anonymized data, which may be used to improve Bebbo Pacific. While providing this data is not mandatory, I recognize that it can help enhance the overall user experience.',
     tNcprivacyPolicyTitle: 'Privacy Policy',
     tNcacceptbtn: 'I accept the Terms and Conditions',
     loadingText: 'Fetching content…',
-    childSetupheader: 'Get the most out of REMOVED_FACEBOOK_APP_ID1 Pacific!',
+    childSetupheader: 'Get the most out of Bebbo Pacific!',
     childSetupdobSelector: 'Enter date of birth / expected due date',
     childSetupdobLabel: 'When is the child’s birth date or due date?',
     addAnotherChildSetupDobLabel: 'When is the child’s birth date?',
@@ -50,7 +50,7 @@ const WSen = {
     childSetuprelationSelectText: 'Select',
     childSetupcontinueBtnText: 'Continue',
     childSetupListheader:
-      'REMOVED_FACEBOOK_APP_ID1 Pacific is getting ready to support your parenting journey!',
+      'Bebbo Pacific is getting ready to support your parenting journey!',
     childSetupListsubHeader:
       'If you are expecting or have any other children aged 0 to 6, you can add them now or later.',
     childSetupListaddSiblingBtn: '+ Add another child',
@@ -72,12 +72,12 @@ const WSen = {
     drawerMenusetTxt: 'Settings',
     drawerMenushareTxt: 'Share',
     drawerMenufeedbackTxt: 'Feedback',
-    drawerMenurateTxt: 'Like REMOVED_FACEBOOK_APP_ID1 Pacific? Rate it!',
+    drawerMenurateTxt: 'Like Bebbo Pacific? Rate it!',
     drawerMenuPrivacyTxt: 'Privacy Policy',
     notiScreenheaderTitle: 'Notifications',
     settingScreenheaderTitle: 'Settings',
     settingScreennotiHeaderText: 'Notifications',
-    settingScreennotiType1: 'I want to receive notifications through REMOVED_FACEBOOK_APP_ID1 Pacific.',
+    settingScreennotiType1: 'I want to receive notifications through Bebbo Pacific.',
     settingScreennotiType2:
       "I want to receive notifications related to my child's growth.",
     settingScreennotiType3:
@@ -85,11 +85,11 @@ const WSen = {
     settingScreennotiType4:
       "I want to receive notifications related to my child's health check-ups and vaccinations.",
     settingScreennotiInfo:
-      "REMOVED_FACEBOOK_APP_ID1 Pacific will send you notifications from time to time about new content, important updates or reminders so that you can support your child's growth and development. You can fully disable this function at any point in the app settings, which will result in limited app functionality.",
+      "Bebbo Pacific will send you notifications from time to time about new content, important updates or reminders so that you can support your child's growth and development. You can fully disable this function at any point in the app settings, which will result in limited app functionality.",
     settingScreendataSaverHeaderText: 'Data Saver Mode',
     settingScreendataSaverSubText:
       "I don't want to download images from articles or updates due to low internet speed.",
-    settingScreendownldHeaderText: 'Download REMOVED_FACEBOOK_APP_ID1 Pacific content\n',
+    settingScreendownldHeaderText: 'Download Bebbo Pacific content\n',
     settingScreendownldSubHeaderText: 'Download latest content',
     settingScreendownldSubHeader2Text: 'Download all content',
     settingScreendownldSubHeader3Text:
@@ -109,7 +109,7 @@ const WSen = {
     supportScreenheaderTitle: 'Chat',
     supportScreenheader1text: 'Coming soon!',
     supportScreenheader2text: 'Sorry, chat is not available at the moment.',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1 Pacific',
+    homeScreenheaderTitle: 'Bebbo Pacific',
     homeScreenchildBtnText: 'Read more ',
     homeScreenchildInfoTitle: 'Welcome {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Daily reads ',
@@ -220,7 +220,7 @@ const WSen = {
     babyNotificationUpdateBtn: 'Update profile',
     favScreenHeader: 'Favourites',
     actScreenremovetoFavText: 'Saved',
-    appShareText: 'Download REMOVED_FACEBOOK_APP_ID1 Pacific, your pocket partner in parenthood!',
+    appShareText: 'Download Bebbo Pacific, your pocket partner in parenthood!',
     vcHeader: 'Vaccination',
     vcSummaryHeader: 'Vaccination summary',
     vcStatus1: 'Upcoming',
@@ -417,9 +417,9 @@ const WSen = {
     permissionTitleText: 'Permission required',
     permissionText: 'Give permission to access gallery and camera',
     settingsTextOpen: 'Open Settings',
-    downloadUpdatePopupTitle: 'Update new REMOVED_FACEBOOK_APP_ID1 Pacific content.',
+    downloadUpdatePopupTitle: 'Update new Bebbo Pacific content.',
     downloadUpdatePopupText:
-      'It will take a bit of time to update the new REMOVED_FACEBOOK_APP_ID1 Pacific content.',
+      'It will take a bit of time to update the new Bebbo Pacific content.',
     downloadUpdateCancelPopUpBtn: 'Cancel',
     downloadUpdateContinueBtn: 'Continue',
     downloadUpdateSuccessPopupTitle: 'Success',
@@ -435,11 +435,11 @@ const WSen = {
     parentGender: 'Gender',
     successOnboardingImport: 'You have successfully uploaded your information.',
     updateImportText: 'Please update your details to continue',
-    importOnboardingText: 'REMOVED_FACEBOOK_APP_ID1 Pacific does not collect your personal details.',
+    importOnboardingText: 'Bebbo Pacific does not collect your personal details.',
     importOnboardingText1:
       'Information you enter to the app is saved to your phone or your personal storage.',
     importOnboardingText2:
-      'If you have used REMOVED_FACEBOOK_APP_ID1 Pacific on another device and exported your information, you can upload the file to this device now.',
+      'If you have used Bebbo Pacific on another device and exported your information, you can upload the file to this device now.',
     OnboardingImportButton: 'Upload now',
     ORkeyText: 'OR',
     addChildText: 'Add your child details',
@@ -463,7 +463,7 @@ const WSen = {
     childSetupprematureMessageNext:
       'The content of this section is displayed according to the expected and not the actual age of your prematurely born child.',
     helloMessage:
-      "Hello{{parentName}}, my name is REMOVED_FACEBOOK_APP_ID1 Pacific. I'm here to answer your questions",
+      "Hello{{parentName}}, my name is Bebbo Pacific. I'm here to answer your questions",
     selectAreaOfInterest:
       'Please select the area of interest from which you have a question',
     question1: 'What is your question about?',
@@ -499,7 +499,7 @@ const WSen = {
     restOfTheWorldAlertTitle: 'Attention',
     restOfTheWorldOkTitle: 'OK',
     restOfTheWorldAlertText:
-      'By selecting Rest of the world, you will enjoy all features of REMOVED_FACEBOOK_APP_ID1 Pacific, but note that vaccinations and health check-ups are not customized to a specific national health program.',
+      'By selecting Rest of the world, you will enjoy all features of Bebbo Pacific, but note that vaccinations and health check-ups are not customized to a specific national health program.',
     hcDefinedReminderText: 'Enter the date and time of the reminder.',
     reminderalertTextDefined:
       'Reminder date time should be between current and scheduled date time.',
@@ -514,18 +514,18 @@ const WSen = {
     vcHasScheduled: 'Vaccination is scheduled.',
     relatedVideoArticle: 'Related videos',
     upto6YearsMsg: 'This app is designed for children up to 6 years of age.',
-    donateButton: 'Donate for REMOVED_FACEBOOK_APP_ID1 Pacific',
+    donateButton: 'Donate for Bebbo Pacific',
     contactUs: 'Write to us',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'About {{appName}}',
+    aboutBebboDrawerMenu: 'About {{appName}}',
     welcomeText: 'Welcome!',
     letGetStartedText: "LET'S GET STARTED",
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search',
+    searchInBebboText: 'Search',
     childProfileSkipText:
       'If you skip this step, a newborn child profile will be created. You can edit it later to get personalized content.',
     serviceProviderHeaderInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 Pacific is getting ready to support your journey in providing care!',
+      'Bebbo Pacific is getting ready to support your journey in providing care!',
     serviceProviderHeaderSubInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 Pacific created a newborn child profile to get you started. You can add more child profiles later.',
+      'Bebbo Pacific created a newborn child profile to get you started. You can add more child profiles later.',
   },
 };
 export default WSen;

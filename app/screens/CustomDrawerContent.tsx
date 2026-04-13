@@ -281,7 +281,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
   );
   const onShare = async (): Promise<any> => {
     const localeData =
-      String(appConfig.buildFor) != appConfig.buildForREMOVED_FACEBOOK_APP_ID1 ? languageCode : "";
+      String(appConfig.buildFor) != appConfig.buildForBebbo ? languageCode : "";
     const messageData = t("appShareText") + appConfig.shareText + localeData;
     console.log(messageData, "..messageData..");
     try {
@@ -664,7 +664,7 @@ const CustomDrawerContent = ({ navigation }: any): any => {
             </OuterIconRow>
             <>
               <Heading4 numberOfLines={2} ellipsizeMode="tail" style={[styles.headingFlexShrink,styles.titleContainer]}>
-                {t("aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu", {
+                {t("aboutBebboDrawerMenu", {
                   appName: t("homeScreenheaderTitle"),
                 })}
               </Heading4>

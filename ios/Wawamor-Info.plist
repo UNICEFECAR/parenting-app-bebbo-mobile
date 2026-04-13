@@ -55,7 +55,7 @@
 			<string>Bundle ID</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>org.unicef.ec.REMOVED_FACEBOOK_APP_ID1</string>
+				<string>org.unicef.ec.wawamor</string>
 			</array>
 		</dict>
 	</array>

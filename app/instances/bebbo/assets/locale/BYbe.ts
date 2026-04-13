@@ -12,7 +12,7 @@ const BYbe = {
     country: 'Краіна',
     language: 'Мова',
     walkthroughTextstitle0: 'Прывітанне, бацькі!',
-    walkthroughTextssubtitle0: 'Перад вамі REMOVED_FACEBOOK_APP_ID1',
+    walkthroughTextssubtitle0: 'Перад вамі Bebbo',
     walkthroughTextstitle1: 'Заняткі',
     walkthroughTextssubtitle1: 'і гульні, якія стымулююць развіццё',
     walkthroughTextstitle2: 'Інструменты',
@@ -26,9 +26,9 @@ const BYbe = {
     walkthroughButtonSkip: 'Прапусціць',
     tNcheader: 'Умовы і палажэнні',
     tNccheckbox1:
-      'Умовы і палажэнні карыстання дадаткам REMOVED_FACEBOOK_APP_ID1 мной прачытаны, зразуметы і прымаюцца',
+      'Умовы і палажэнні карыстання дадаткам Bebbo мной прачытаны, зразуметы і прымаюцца',
     tNccheckbox2: 'Мной прачытана, зразумета і прымаецца',
-    tNcprivacyPolicy: 'Палітыка Канфідэнцыяльнасці дадатку REMOVED_FACEBOOK_APP_ID1',
+    tNcprivacyPolicy: 'Палітыка Канфідэнцыяльнасці дадатку Bebbo',
     tNcprivacyPolicyTitle: 'Палітыка канфідэнцыяльнасці',
     tNcacceptbtn: 'Я прымаю ўмовы і палажэнні',
     loadingText: 'Падрыхтоўка кантэнта…',
@@ -44,7 +44,7 @@ const BYbe = {
     childSetuprelationSelectTitle: 'Вы',
     childSetuprelationSelectText: 'Выбраць',
     childSetupcontinueBtnText: 'Прадоўжыць',
-    childSetupListheader: 'REMOVED_FACEBOOK_APP_ID1 рыхтуецца падтрымаць ваша бацькоўства!',
+    childSetupListheader: 'Bebbo рыхтуецца падтрымаць ваша бацькоўства!',
     childSetupListsubHeader:
       'Калі ў вас ёсць іншыя дзеці ва ўзросце ад 0 да 6 гадоў, вы можаце дадаць іх зараз або пазней.',
     childSetupListaddSiblingBtn: '+ ДАДАЦЬ ЯШЧЭ ДЗІЦЯ',
@@ -66,18 +66,18 @@ const BYbe = {
     drawerMenusetTxt: 'Настройкі',
     drawerMenushareTxt: 'Падзяліцца',
     drawerMenufeedbackTxt: 'Зваротная сувязь',
-    drawerMenurateTxt: 'Спадабалася REMOVED_FACEBOOK_APP_ID1? Пастаўце адзнаку!',
+    drawerMenurateTxt: 'Спадабалася Bebbo? Пастаўце адзнаку!',
     drawerMenuPrivacyTxt: 'Палітыка канфідэнцыяльнасці',
     notiScreenheaderTitle: 'Апавяшчэнні',
     settingScreenheaderTitle: 'Настройкі',
     settingScreennotiHeaderText: 'Апавяшчэнні',
-    settingScreennotiType1: 'Хачу атрымліваць апавяшчэнні праз REMOVED_FACEBOOK_APP_ID1',
+    settingScreennotiType1: 'Хачу атрымліваць апавяшчэнні праз Bebbo',
     settingScreennotiType2: 'Хачу атрымліваць апавяшчэнні пра рост дзіцяці',
     settingScreennotiType3: 'Хачу атрымліваць апавяшчэнні пра развіццё дзіцяці',
     settingScreennotiType4:
       'Хачу атрымліваць апавяшчэнні пра медагляды і вакцынацыю дзіцяці',
     settingScreennotiInfo:
-      "Апавяшчэнні паступаюць з рознай перыядычнасцю — ад штодзённых да штомесячных — і з'яўляюцца неад'емнай функцыяй REMOVED_FACEBOOK_APP_ID1. Вы можаце схаваць апавяшчэнні на галоўным экране. Вы таксама можаце цалкам адключыць гэту функцыю ў любы момант у Настройках дадатку, што абмяжуе яго функцыянальнасць",
+      "Апавяшчэнні паступаюць з рознай перыядычнасцю — ад штодзённых да штомесячных — і з'яўляюцца неад'емнай функцыяй Bebbo. Вы можаце схаваць апавяшчэнні на галоўным экране. Вы таксама можаце цалкам адключыць гэту функцыю ў любы момант у Настройках дадатку, што абмяжуе яго функцыянальнасць",
     settingScreendataSaverHeaderText: 'Рэжым эканоміі трафіка',
     settingScreendataSaverSubText:
       'Не хачу спампоўваць выявы пры атрыманні артыкулаў ці абнаўленняў з-за эканоміі трафіка',
@@ -101,7 +101,7 @@ const BYbe = {
     supportScreenheaderTitle: 'Чат',
     supportScreenheader1text: 'У распрацоўцы!',
     supportScreenheader2text: 'У дадзены момант чат недаступны',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Чытаць далей',
     homeScreenchildInfoTitle: 'Рады вас вітаць, {{childName}} {{parentName}}!',
     homeScreendailyReadsTitle: 'Штодзённыя матэрыялы',
@@ -210,7 +210,7 @@ const BYbe = {
     favScreenHeader: 'Выбранае',
     actScreenremovetoFavText: 'Захавана',
     appShareText:
-      'Спампуйце REMOVED_FACEBOOK_APP_ID1 — вашага надзейнага партнёра ў доглядзе дзяцей, які змяшчаецца ў кішэні',
+      'Спампуйце Bebbo — вашага надзейнага партнёра ў доглядзе дзяцей, які змяшчаецца ў кішэні',
     vcHeader: 'Вакцынацыя',
     vcSummaryHeader: 'Дзённік вакцынацыі',
     vcStatus1: 'Запланавана',
@@ -430,11 +430,11 @@ const BYbe = {
     parentGender: 'Пол',
     successOnboardingImport: 'Вы паспяхова імпартавалі даныя дзіцяці',
     updateImportText: 'Калі ласка, абнавіце вашы даныя, каб прадоўжыць',
-    importOnboardingText: 'REMOVED_FACEBOOK_APP_ID1 не збірае вашы асабістыя звесткі.',
+    importOnboardingText: 'Bebbo не збірае вашы асабістыя звесткі.',
     importOnboardingText1:
       'Інфармацыя, якую вы ўводзіце ў праграму, захоўваецца на вашым тэлефоне або ў у асабістым воблачным сховішчы.',
     importOnboardingText2:
-      'Калі вы карысталіся REMOVED_FACEBOOK_APP_ID1 на іншай прыладзе і экспартавалі сваю інфармацыю, вы можаце зараз загрузіць файл на гэту прыладу.',
+      'Калі вы карысталіся Bebbo на іншай прыладзе і экспартавалі сваю інфармацыю, вы можаце зараз загрузіць файл на гэту прыладу.',
     OnboardingImportButton: 'Загрузіць зараз',
     ORkeyText: 'АБО',
     addChildText: 'Дадаць даныя вашага дзіцяці',
@@ -454,7 +454,7 @@ const BYbe = {
     childSetupprematureMessageNext:
       'Змест гэтага раздзела адлюстроўваецца згодна са скарэкціраваным узростам дзіцяці, а не ўзростам па нараджэнні пры неданошанасці',
     helloMessage:
-      'Прывітанне,{{parentName}}, я REMOVED_FACEBOOK_APP_ID1. Я магу адказаць на вашы пытанні',
+      'Прывітанне,{{parentName}}, я Bebbo. Я магу адказаць на вашы пытанні',
     selectAreaOfInterest:
       'Калі ласка, выберыце тэму, да якой адносіцца ваша пытанне',
     question1: 'Пра што вы хочаце спытаць?',
@@ -505,19 +505,19 @@ const BYbe = {
     upto6YearsMsg: 'Гэты дадатак прызначаны для дзяцей ва ўзросце да 6 гадоў',
     donateButton: 'Ахвяруйце для Беббо',
     contactUs: 'Напішыце нам',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'Пра {{appName}}',
-    tncCheckBoxText: 'Умовы і Палажэнні карыстання дадаткам REMOVED_FACEBOOK_APP_ID1',
+    aboutBebboDrawerMenu: 'Пра {{appName}}',
+    tncCheckBoxText: 'Умовы і Палажэнні карыстання дадаткам Bebbo',
     tncScreenContent:
       'Беббо не збірае і не захоўвае ніякай асабістай інфармацыі. Усе дадзеныя, якія вы ўводзіце, захоўваюцца толькі на вашым тэлефоне.',
     welcomeText: 'Biтаем!',
     letGetStartedText: 'ПАЧНЕМ!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Калі вы прапусціце гэты крок, будзе створаны профіль нованароджанага дзіцяці. Вы можаце адрэдагаваць яго пазней, каб атрымаць персаналізаваны кантэнт.',
     serviceProviderHeaderInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 рыхтуецца падтрымаць ваш клопат пра дзіця!',
+      'Bebbo рыхтуецца падтрымаць ваш клопат пра дзіця!',
     serviceProviderHeaderSubInfoText:
-      'Каб вы пачалі, REMOVED_FACEBOOK_APP_ID1 стварыў профіль нованароджанага. Вы можаце дадаць больш  профіляў пазней.',
+      'Каб вы пачалі, Bebbo стварыў профіль нованароджанага. Вы можаце дадаць больш  профіляў пазней.',
   },
 };
 export default BYbe;

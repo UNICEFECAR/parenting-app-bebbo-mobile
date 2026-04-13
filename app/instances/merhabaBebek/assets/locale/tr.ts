@@ -66,7 +66,7 @@ const tr = {
     "drawerMenusetTxt": "Ayarlar",
     "drawerMenushareTxt": "Paylaş",
     "drawerMenuugTxt": "Kullanıcı rehberi",
-    "aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu": "{{appName}} hakkında",
+    "aboutBebboDrawerMenu": "{{appName}} hakkında",
     "drawerMenuabtTxt": "Hakkımızda",
     "contactUs": "Bize yazın",
     "drawerMenufeedbackTxt": "Geri bildirim",
@@ -452,7 +452,7 @@ const tr = {
     "vcHasScheduled": "Aşı planlandı",
     "relatedVideoArticle": "İlgili videolar",
     "donateButton": "Merhaba Bebek için bağışla",
-    "searchInREMOVED_FACEBOOK_APP_ID1Text": "Arama yapın"
+    "searchInBebboText": "Arama yapın"
   }
 }
 export default tr;

@@ -516,10 +516,10 @@ const ZWsn = {
     upto6YearsMsg: 'App iyi yakagadzirirwa vana kusvika pazera remakore 6.',
     donateButton: 'Ipa ku Rerai Umntwana',
     contactUs: 'Nyora kwatiri',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'Nezve {{appName}}',
+    aboutBebboDrawerMenu: 'Nezve {{appName}}',
     welcomeText: 'Mauya!',
     letGetStartedText: "NGATITANGEI",
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Tsvagai',
+    searchInBebboText: 'Tsvagai',
     childProfileSkipText:
       'Kana ukadirirka danho iri, profile yemwana mutsva ichagadzirwa. Unogona kuzogadzirisa gare gare kuti uwane zvemukati zvinoenderana nemwana wako.',
     serviceProviderHeaderInfoText:

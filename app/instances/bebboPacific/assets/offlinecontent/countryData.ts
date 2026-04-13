@@ -16,7 +16,7 @@ export const countryData: any = {
       },
       "unicef_logo": [],
       "content_toggle": "",
-      "app_name": "REMOVED_FACEBOOK_APP_ID1Pacific",
+      "app_name": "BebboPacific",
       "languages": [
         {
           "name": "Fiji",
@@ -51,12 +51,12 @@ export const countryData: any = {
         "alt": ""
       },
       "unicef_logo": {
-        "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-11/REMOVED_FACEBOOK_APP_ID1%20Pacific%20logo%20%28white%29.webp?itok=rQ5sA8eG",
-        "name": "REMOVED_FACEBOOK_APP_ID1 Pacific logo (white).png",
-        "alt": "REMOVED_FACEBOOK_APP_ID1 Pacific logo (white)"
+        "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-11/Bebbo%20Pacific%20logo%20%28white%29.webp?itok=rQ5sA8eG",
+        "name": "Bebbo Pacific logo (white).png",
+        "alt": "Bebbo Pacific logo (white)"
       },
       "content_toggle": "Pregnancy",
-      "app_name": "REMOVED_FACEBOOK_APP_ID1Pacific",
+      "app_name": "BebboPacific",
       "languages": [
         {
           "name": "Samoa",

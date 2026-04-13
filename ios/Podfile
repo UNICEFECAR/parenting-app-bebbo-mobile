@@ -73,8 +73,8 @@ target 'ParentBuddyApp' do
     ParentBuddyAppBanglaDev
     MerhabaBebek
     Wawamor
-    REMOVED_FACEBOOK_APP_ID1
-    REMOVED_FACEBOOK_APP_ID1Pacific
+    ReraiUmntwana
+    BebboPacific
   ].each do |variant_target|
     target variant_target do
       shared_pods

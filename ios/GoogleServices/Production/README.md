@@ -1,1 +1,1 @@
-Add google services info plist file for REMOVED_FACEBOOK_APP_ID1 here
+Add google services info plist file for Bebbo here

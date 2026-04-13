@@ -505,13 +505,13 @@ const BYru = {
     upto6YearsMsg: 'Это приложение предназначено для детей в возрасте до 6 лет',
     donateButton: 'Пожертвовать для Беббо',
     contactUs: 'Напишите нам',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'О {{appName}}',
+    aboutBebboDrawerMenu: 'О {{appName}}',
     tncCheckBoxText: 'Условия и Положения пользования приложением Беббо',
     tncScreenContent:
       'Беббо не собирает и не хранит никакую личную информацию. Все введенные вами данные сохраняются только на вашем телефоне.',
     welcomeText: 'Добро пожаловать!',
     letGetStartedText: 'ДАВАЙТЕ НАЧНЕМ!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search',
+    searchInBebboText: 'Search',
     childProfileSkipText:
       'Если вы пропустите этот шаг, будет создан профиль новорожденного ребенка. Вы можете отредактировать его позже, чтобы получить персонализированный контент.',
     serviceProviderHeaderInfoText:

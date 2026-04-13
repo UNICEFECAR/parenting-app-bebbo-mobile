@@ -8,11 +8,11 @@ const ALsq = {
     goToLanguageSelection: 'Vazhdo te përzgjedhja e gjuhës',
     goToConfirm: 'Vazhdo për të konfirmuar',
     checkonce:
-      'REMOVED_FACEBOOK_APP_ID1 do ta lokalizojë përmbajtjen bazuar në zgjedhjen tuaj të vendit dhe gjuhës.',
+      'Bebbo do ta lokalizojë përmbajtjen bazuar në zgjedhjen tuaj të vendit dhe gjuhës.',
     country: 'Shteti',
     language: 'Gjuha',
     walkthroughTextstitle0: 'Mirë se erdhët Prindër!',
-    walkthroughTextssubtitle0: 'Zbuloni REMOVED_FACEBOOK_APP_ID1-n',
+    walkthroughTextssubtitle0: 'Zbuloni Bebbo-n',
     walkthroughTextstitle1: 'Lojëra',
     walkthroughTextssubtitle1:
       'për të ndihmuar fëmijën tuaj që të mësojë gjëra të reja çdo ditë',
@@ -27,14 +27,14 @@ const ALsq = {
     walkthroughButtonSkip: 'Kapërce',
     tNcheader: 'Termat dhe Kushtet',
     tNccheckbox1:
-      'Unë kam lexuar, kuptuar dhe pranuar Termat dhe Kushtet e aplikacionit REMOVED_FACEBOOK_APP_ID1',
+      'Unë kam lexuar, kuptuar dhe pranuar Termat dhe Kushtet e aplikacionit Bebbo',
     tNccheckbox2: 'Unë kam lexuar, kuptuar dhe pranuar',
     tNcprivacyPolicy:
-      'Politikën e Privatësisë së të dhënave për aplikacionin REMOVED_FACEBOOK_APP_ID1',
+      'Politikën e Privatësisë së të dhënave për aplikacionin Bebbo',
     tNcprivacyPolicyTitle: 'Politika e Privatësisë së të dhënave',
     tNcacceptbtn: 'Unë pranoj Termat dhe Kushtet',
     loadingText: 'Përmbajtja po ngarkohet',
-    childSetupheader: 'Përfitoni sa më shumë nga REMOVED_FACEBOOK_APP_ID1!',
+    childSetupheader: 'Përfitoni sa më shumë nga Bebbo!',
     childSetupdobLabel:
       'Cila është data e lindjes së fëmijës apo data e pritshme e lindjes?',
     addAnotherChildSetupDobLabel: 'Cila është data e lindjes së fëmijës?',
@@ -49,7 +49,7 @@ const ALsq = {
     childSetuprelationSelectText: 'Përzgjidh',
     childSetupcontinueBtnText: 'Vazhdo',
     childSetupListheader:
-      'REMOVED_FACEBOOK_APP_ID1 po përgatitet për të mbështetur udhëtimin tuaj prindëror!',
+      'Bebbo po përgatitet për të mbështetur udhëtimin tuaj prindëror!',
     childSetupListsubHeader:
       "Nëse keni fëmijë të tjerë nga 0 deri në 6 vjeç, mund t'i shtoni tani ose më vonë.",
     childSetupListaddSiblingBtn: '+ SHTO NJË FËMIJË TJETËR',
@@ -70,13 +70,13 @@ const ALsq = {
     drawerMenuugTxt: 'Udhëzues për përdoruesin',
     drawerMenusetTxt: 'Cilësimet',
     drawerMenushareTxt: 'Shpërndaj',
-    drawerMenufeedbackTxt: 'Jepni mendimin tuaj për aplikacionin REMOVED_FACEBOOK_APP_ID1',
-    drawerMenurateTxt: 'E keni pëlqyer aplikacionin REMOVED_FACEBOOK_APP_ID1? Vlerësojeni!',
+    drawerMenufeedbackTxt: 'Jepni mendimin tuaj për aplikacionin Bebbo',
+    drawerMenurateTxt: 'E keni pëlqyer aplikacionin Bebbo? Vlerësojeni!',
     drawerMenuPrivacyTxt: 'Politika e Privatësisë së të dhënave',
     notiScreenheaderTitle: 'Njoftimet',
     settingScreenheaderTitle: 'Cilësimet',
     settingScreennotiHeaderText: 'Njoftimet',
-    settingScreennotiType1: 'Unë dua të marr njoftime përmes REMOVED_FACEBOOK_APP_ID1',
+    settingScreennotiType1: 'Unë dua të marr njoftime përmes Bebbo',
     settingScreennotiType2:
       'Unë dua të marr njoftime në lidhje me rritjen e fëmijës tim',
     settingScreennotiType3:
@@ -84,7 +84,7 @@ const ALsq = {
     settingScreennotiType4:
       'Unë dua të marr njoftime në lidhje me kontrollet shëndetësore të fëmijës tim dhe për vaksinat.',
     settingScreennotiInfo:
-      'Njoftimet publikohen në frekuenca të ndryshme, çdo ditë ose çdo muaj dhe janë pjesë integrale e funksionalitetit të REMOVED_FACEBOOK_APP_ID1. Mund të zgjidhni që të fshehni njoftimet në ekranin tuaj kryesor. Mund ta çaktivizoni këtë funksion plotësisht në çdo moment, në cilësimet e aplikacionit, gjë që do të rezultojë në kufizim të funksionimit të aplikacionit. "',
+      'Njoftimet publikohen në frekuenca të ndryshme, çdo ditë ose çdo muaj dhe janë pjesë integrale e funksionalitetit të Bebbo. Mund të zgjidhni që të fshehni njoftimet në ekranin tuaj kryesor. Mund ta çaktivizoni këtë funksion plotësisht në çdo moment, në cilësimet e aplikacionit, gjë që do të rezultojë në kufizim të funksionimit të aplikacionit. "',
     settingScreendataSaverHeaderText: 'Gjendja e ruajtjes së të dhënave',
     settingScreendataSaverSubText:
       'Unë nuk dua të shkarkoj imazhe nga artikujt apo përditësimet e fundit për shkak të shpejtësisë së ulët të internetit.',
@@ -112,7 +112,7 @@ const ALsq = {
     supportScreenheader1text: 'Së Shpejti!',
     supportScreenheader2text:
       'Bisedat në chat nuk janë të mundura për momentin',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Lexo më shumë',
     homeScreenchildInfoTitle: 'Mirë se erdhët {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Leximet e përditshme',
@@ -227,7 +227,7 @@ const ALsq = {
     favScreenHeader: 'Të preferuarat',
     actScreenremovetoFavText: 'U Ruajt',
     appShareText:
-      'REMOVED_FACEBOOK_APP_ID1 App | Një aplikacion për prindërit për të monitoruar dhe ndjekur rritjen e fëmijës së tyre',
+      'Bebbo App | Një aplikacion për prindërit për të monitoruar dhe ndjekur rritjen e fëmijës së tyre',
     vcHeader: 'Vaksinimi',
     vcSummaryHeader: 'Përmbledhje për vaksinimin',
     vcStatus1: 'Në vijim',
@@ -459,8 +459,8 @@ const ALsq = {
     importOnboardingText1:
       'Informacionet që futni në aplikacion ruhen në telefonin tuaj ose në hapësirën tuaj ruajtëse personale.',
     importOnboardingText2:
-      'Nëse keni përdorur REMOVED_FACEBOOK_APP_ID1 në një pajisje tjetër dhe keni eksportuar informacionin tuaj, mund ta ngarkoni skedarin në këtë pajisje tani.',
-    importOnboardingText: 'REMOVED_FACEBOOK_APP_ID1 nuk mbledh të dhënat tuaja personale.',
+      'Nëse keni përdorur Bebbo në një pajisje tjetër dhe keni eksportuar informacionin tuaj, mund ta ngarkoni skedarin në këtë pajisje tani.',
+    importOnboardingText: 'Bebbo nuk mbledh të dhënat tuaja personale.',
     OnboardingImportButton: 'Ngarko tani',
     ORkeyText: 'Ose',
     addChildText: 'Shtoni të dhënat e fëmijës',
@@ -480,7 +480,7 @@ const ALsq = {
     childSetupprematureMessageNext:
       'Përmbajtja e këtij seksioni është paraqitur bazuar në moshën e korrigjuar dhe jo në atë aktuale për fëmijen tuaj që ka lindur parakohe',
     helloMessage:
-      "Përshëndetje{{parentName}}, unë jam REMOVED_FACEBOOK_APP_ID1. Jam këtu për t'u përgjigjur pyetjeve",
+      "Përshëndetje{{parentName}}, unë jam Bebbo. Jam këtu për t'u përgjigjur pyetjeve",
     selectAreaOfInterest:
       'Ju lutem zgjidhni fushën e interesit për të cilën keni pyetje',
     question1: 'Për cfarë është pyetja juaj?',
@@ -531,21 +531,21 @@ const ALsq = {
     relatedVideoArticle: 'Video të ngjashme',
     upto6YearsMsg:
       'Ky aplikacion është krijuar për fëmijët deri në moshën 6 vjeç.',
-    donateButton: 'Bëni donacion për REMOVED_FACEBOOK_APP_ID1',
+    donateButton: 'Bëni donacion për Bebbo',
     contactUs: 'Na shkruani',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'Rreth {{appName}}',
-    tncCheckBoxText: 'Termat dhe Kushtet e aplikacionit REMOVED_FACEBOOK_APP_ID1',
+    aboutBebboDrawerMenu: 'Rreth {{appName}}',
+    tncCheckBoxText: 'Termat dhe Kushtet e aplikacionit Bebbo',
     tncScreenContent:
-      'REMOVED_FACEBOOK_APP_ID1 nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj.',
+      'Bebbo nuk mbledh ose ruan asnjë informacion personal. Të gjitha të dhënat që futni ruhen vetëm në telefonin tuaj.',
     welcomeText: 'Mirë se vini!',
     letGetStartedText: 'LE TË FILLOJMË!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Nëse e kaloni këtë hap, do të krijohet një profil i fëmijës së porsalindur. Mund ta modifikoni më vonë për të marrë përmbajtje të personalizuar.',
     serviceProviderHeaderInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 po përgatitet të mbështesë udhëtimin tuaj në ofrimin e kujdesit!',
+      'Bebbo po përgatitet të mbështesë udhëtimin tuaj në ofrimin e kujdesit!',
     serviceProviderHeaderSubInfoText:
-      "REMOVED_FACEBOOK_APP_ID1 krijoi një profil fëmijësh të porsalindur për t'ju ndihmuar të filloni. Mund të shtoni më shumë profile fëmijësh më vonë.",
+      "Bebbo krijoi një profil fëmijësh të porsalindur për t'ju ndihmuar të filloni. Mund të shtoni më shumë profile fëmijësh më vonë.",
   },
 };
 export default ALsq;

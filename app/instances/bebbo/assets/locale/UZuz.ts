@@ -8,11 +8,11 @@ const UZuz = {
     goToLanguageSelection: 'Tilni tanlashga oʻtish',
     goToConfirm: 'Davom etish va tasdiqlash',
     checkonce:
-      'REMOVED_FACEBOOK_APP_ID1 siz tanlagan mamlakat va til asosida kontentni mahalliylashtiradi.',
+      'Bebbo siz tanlagan mamlakat va til asosida kontentni mahalliylashtiradi.',
     country: 'Mamlakat',
     language: 'Til',
     walkthroughTextstitle0: 'Xush kelibsiz, hurmatli ota-onalar!',
-    walkthroughTextssubtitle0: 'REMOVED_FACEBOOK_APP_ID1ni kashf eting',
+    walkthroughTextssubtitle0: 'Bebboni kashf eting',
     walkthroughTextstitle1: 'Oʻyinlar',
     walkthroughTextssubtitle1:
       'farzandingiz har kuni yangi narsalarni oʻrganishida yordam berish uchun',
@@ -27,13 +27,13 @@ const UZuz = {
     walkthroughButtonSkip: 'Oʻtkazib yuborish',
     tNcheader: 'Foydalanish shartlari',
     tNccheckbox1:
-      'REMOVED_FACEBOOK_APP_ID1 ilovasi foydalanish shartlarini oʻqib chiqdim, tushundim va roziman',
+      'Bebbo ilovasi foydalanish shartlarini oʻqib chiqdim, tushundim va roziman',
     tNccheckbox2: 'Oʻqib chiqdim, tushundim va roziman',
-    tNcprivacyPolicy: 'REMOVED_FACEBOOK_APP_ID1 ilovasi Maxfiylik Siyosati',
+    tNcprivacyPolicy: 'Bebbo ilovasi Maxfiylik Siyosati',
     tNcprivacyPolicyTitle: 'Maxfiylik siyosati',
     tNcacceptbtn: 'Foydalanish shartlariga roziman',
     loadingText: 'Kontent yuklanmoqda…',
-    childSetupheader: 'REMOVED_FACEBOOK_APP_ID1 dan maksimal darajada foydalaning!',
+    childSetupheader: 'Bebbo dan maksimal darajada foydalaning!',
     childSetupdobLabel:
       "Bolaning tug'ilgan kuni yoki rejalashtirilgan tug'ilish sanasi qachon?",
     addAnotherChildSetupDobLabel: "Bolaning tug'ilgan kuni qachon?",
@@ -49,7 +49,7 @@ const UZuz = {
     childSetuprelationSelectText: 'Tanlash',
     childSetupcontinueBtnText: 'Davom etish',
     childSetupListheader:
-      "REMOVED_FACEBOOK_APP_ID1 sizning ota-onalik sayohatingizni qo'llab-quvvatlashga tayyorlanmoqda!",
+      "Bebbo sizning ota-onalik sayohatingizni qo'llab-quvvatlashga tayyorlanmoqda!",
     childSetupListsubHeader:
       "Agar sizda 0 yoshdan 6 yoshgacha bo'lgan boshqa farzandlaringiz bo'lsa, ularni hozir yoki keyinroq qo'shishingiz mumkin.",
     childSetupListaddSiblingBtn: "+ YANA BIR FARZANDINGIZNI QO'SHING",
@@ -71,12 +71,12 @@ const UZuz = {
     drawerMenusetTxt: 'Sozlamalar',
     drawerMenushareTxt: 'Ulashish',
     drawerMenufeedbackTxt: 'Fikr-mulohaza',
-    drawerMenurateTxt: 'REMOVED_FACEBOOK_APP_ID1 yoqdimi? Unda baho bering!',
+    drawerMenurateTxt: 'Bebbo yoqdimi? Unda baho bering!',
     drawerMenuPrivacyTxt: 'Maxfiylik siyosati',
     notiScreenheaderTitle: 'Bildirishnomalar',
     settingScreenheaderTitle: 'Sozlamalar',
     settingScreennotiHeaderText: 'Bildirishnomalar',
-    settingScreennotiType1: 'REMOVED_FACEBOOK_APP_ID1 orqali bildirishnomalar olishni xohlayman',
+    settingScreennotiType1: 'Bebbo orqali bildirishnomalar olishni xohlayman',
     settingScreennotiType2:
       'Farzandimning oʻsishiga aloqador bildirishnomalarni olishni xohlayman',
     settingScreennotiType3:
@@ -84,7 +84,7 @@ const UZuz = {
     settingScreennotiType4:
       'Farzandimning tibbiy koʻrigi va emlashlariga aloqador bildirishnomalarni olishni xohlayman',
     settingScreennotiInfo:
-      'Bildirishnomalar turli ketma-ketlikda eʼlon qilinadi: kunlik va oylik. Bu REMOVED_FACEBOOK_APP_ID1 ilovasining asosiy funksiyasi hisoblanadi. Bosh ekrandan bildirishnomalarni yashirishni tanlashingiz mumkin. Shuningdek, bu funksiyani ilova sozlamalaridan toʻliq oʻchirib qoʻyishingiz mumkin, lekin bu ilova funksiyalari cheklanishiga olib keladi.',
+      'Bildirishnomalar turli ketma-ketlikda eʼlon qilinadi: kunlik va oylik. Bu Bebbo ilovasining asosiy funksiyasi hisoblanadi. Bosh ekrandan bildirishnomalarni yashirishni tanlashingiz mumkin. Shuningdek, bu funksiyani ilova sozlamalaridan toʻliq oʻchirib qoʻyishingiz mumkin, lekin bu ilova funksiyalari cheklanishiga olib keladi.',
     settingScreendataSaverHeaderText: 'Maʼlumotlarni saqlash rejimi',
     settingScreendataSaverSubText:
       'Internet tezligi past boʻlgani uchun maqolalar rasmlari va yangilanishlar yuklab olinishini xohlamayman.',
@@ -111,7 +111,7 @@ const UZuz = {
     supportScreenheaderTitle: 'Chat',
     supportScreenheader1text: 'Tez orada!',
     supportScreenheader2text: 'Ayni damda chat mavjud emas',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Batafsil',
     homeScreenchildInfoTitle: 'Xush kelibsiz {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Kunlik oʻqishlar',
@@ -220,7 +220,7 @@ const UZuz = {
     babyNotificationUpdateBtn: 'Profilni yangilash',
     favScreenHeader: 'Sevimlilar',
     actScreenremovetoFavText: 'Saqlandi',
-    appShareText: 'REMOVED_FACEBOOK_APP_ID1 | Ota-onalarning yaqin hamkori',
+    appShareText: 'Bebbo | Ota-onalarning yaqin hamkori',
     vcHeader: 'Emlash',
     vcSummaryHeader: 'Emlash kundaligi',
     vcStatus1: 'Rejalashtirildi',
@@ -450,11 +450,11 @@ const UZuz = {
     successOnboardingImport:
       'Farzandingiz haqidagi maʼlumotlatni muvaffaqiyatli import qildingiz',
     updateImportText: 'Davom etish uchun zarur maʼlumotlarni yangilang',
-    importOnboardingText: "REMOVED_FACEBOOK_APP_ID1 sizning shaxsiy ma'lumotlaringizni yig'maydi.",
+    importOnboardingText: "Bebbo sizning shaxsiy ma'lumotlaringizni yig'maydi.",
     importOnboardingText1:
       "Ilovaga kiritgan ma'lumotlaringiz telefoningizda yoki shaxsiy bulutli xotirangizda saqlanadi.",
     importOnboardingText2:
-      "Agar siz REMOVED_FACEBOOK_APP_ID1 ni boshqa telefoningizda ishlatgan bo'lsangiz va ma'lumotlaringizni eksport qilgan bo'lsangiz, faylni hozir ushbu telefoningizga yuklashingiz mumkin.",
+      "Agar siz Bebbo ni boshqa telefoningizda ishlatgan bo'lsangiz va ma'lumotlaringizni eksport qilgan bo'lsangiz, faylni hozir ushbu telefoningizga yuklashingiz mumkin.",
     OnboardingImportButton: 'Hozir yuklang',
     ORkeyText: 'YOKI',
     addChildText: 'Farzandingiz haqida maʼlumotlarni qoʻshing',
@@ -474,7 +474,7 @@ const UZuz = {
     childSetupprematureMessageNext:
       'Ushbu boʻlimning mazmuni muddatidan avval tugʻilgan farzandingizning haqiqiy yoshiga qarab emas, balki toʻgʻrilangan yoshiga qarab koʻrsatiladi',
     helloMessage:
-      'Salom{{parentName}}, mening ismim REMOVED_FACEBOOK_APP_ID1. Savollaringizga javob berishga tayyorman',
+      'Salom{{parentName}}, mening ismim Bebbo. Savollaringizga javob berishga tayyorman',
     selectAreaOfInterest: 'Iltimos, savolingizga oid boʻlgan sohani tanlang',
     question1: ' Savolingiz nima haqida?',
     question2: ' Iltimos, quyidagi savollardan birini tanlang',
@@ -523,21 +523,21 @@ const UZuz = {
     vcHasScheduled: 'Emlash rejalashtirildi',
     relatedVideoArticle: 'Tegishli videolar',
     upto6YearsMsg: 'Bu ilova 6 yoshgacha boʻlgan bolalar uchun moʻljallangan',
-    donateButton: 'REMOVED_FACEBOOK_APP_ID1ʼga moliyaviy koʻmak',
+    donateButton: 'Bebboʼga moliyaviy koʻmak',
     contactUs: 'Bizga yozish',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: '{{appName}} haqida',
-    tncCheckBoxText: 'REMOVED_FACEBOOK_APP_ID1 ilovasi Foydalanish Shartlarini',
+    aboutBebboDrawerMenu: '{{appName}} haqida',
+    tncCheckBoxText: 'Bebbo ilovasi Foydalanish Shartlarini',
     tncScreenContent:
-      'REMOVED_FACEBOOK_APP_ID1 shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi.',
+      'Bebbo shaxsiy maʼlumotlarni toʻplamaydi va saqlamaydi. Siz kiritgan barcha maʼlumotlar telefoningizda saqlanadi.',
     welcomeText: 'Xush kelibsiz!',
     letGetStartedText: 'QANI BOSHLADIK!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       "Agar siz ushbu bosqichni o'tkazib yuborsangiz, yangi tug'ilgan chaqaloq profili yaratiladi. Shaxsiylashtirilgan kontentni olish uchun uni keyinroq tahrirlashingiz mumkin.",
     serviceProviderHeaderInfoText:
-      "REMOVED_FACEBOOK_APP_ID1 g'amxo'rlik qilishda sayohatingizni qo'llab-quvvatlashga tayyorlanmoqda!",
+      "Bebbo g'amxo'rlik qilishda sayohatingizni qo'llab-quvvatlashga tayyorlanmoqda!",
     serviceProviderHeaderSubInfoText:
-      "REMOVED_FACEBOOK_APP_ID1 siz uchun yangi tug'ilgan chaqaloq profilini yaratdi. Keyinroq boshqa farzandlaringiz profilini qo‘shishingiz mumkin.",
+      "Bebbo siz uchun yangi tug'ilgan chaqaloq profilini yaratdi. Keyinroq boshqa farzandlaringiz profilini qo‘shishingiz mumkin.",
   },
 };
 export default UZuz;

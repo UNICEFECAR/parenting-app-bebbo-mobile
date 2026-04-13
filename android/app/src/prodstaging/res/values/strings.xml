@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">REMOVED_FACEBOOK_APP_ID1 Dev</string>
+    <string name="app_name">Bebbo Dev</string>
     <string name="facebook_app_id">@string/facebookAppId</string>
     <string name="facebook_client_token">@string/facebookClientToken</string>
 </resources>

@@ -527,13 +527,13 @@ const TJtg = {
       'Ин афзорак барои кӯдакони то синни 6 - сола пешбинӣ шудааст',
     donateButton: 'Барои Беббо кӯмаки хайриявӣ кунед',
     contactUs: 'Ба мо нависед',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'Дар бораи {{appName}}',
+    aboutBebboDrawerMenu: 'Дар бораи {{appName}}',
     tncCheckBoxText: 'Шартномаи Истифодабарандаи афзораки мобилии Беббо',
     tncScreenContent:
       'Беббо ягон маълумоти шахсиро ҷамъ ва нигоҳ намедорад. Ҳама маълумоте, ки Шумо ворид мекунед, танҳо дар телефони Шумо нигоҳ дошта мешаванд.',
     welcomeText: 'Хуш омадед!',
     letGetStartedText: 'Биёед шурӯъ намоем!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Агар шумо ин қадамро сарфи назар кунед, профили кӯдаки навзод сохта мешавад. Шумо метавонед онро баъдтар барои гирифтани маълумоти фардӣ барои кӯдак таҳрир намоед.',
     serviceProviderHeaderInfoText:

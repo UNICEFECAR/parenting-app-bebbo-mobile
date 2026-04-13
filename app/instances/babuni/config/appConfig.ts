@@ -5,7 +5,7 @@ import { isPregnancy } from "../../../services/Utils";
 
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
-  buildForREMOVED_FACEBOOK_APP_ID1: "bangla",
+  buildForBebbo: "bangla",
   buildFor: "bangla", // 'babuni'
   maxRelatedArticleSize: 3,
   isArticlePinned: "1",
@@ -40,7 +40,7 @@ const config = {
   videoTypeYoutube: "youtube",
   videoTypeImage: "novideo",
   videoTypeDirect: "direct",
-  backupGDriveFolderName: "REMOVED_FACEBOOK_APP_ID1 App Backup",
+  backupGDriveFolderName: "Babuni App Backup",
   backupGDriveFileName: "mybackup.json",
   tempRealmFile: `${RNFS.DocumentDirectoryPath}/user1.realm`,
   tempFuseJsonPath: `${RNFS.DocumentDirectoryPath}/fuse-index.json`,

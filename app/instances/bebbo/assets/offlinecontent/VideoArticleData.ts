@@ -25,7 +25,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/KkI7neu3UlBI2BAI20goVSglTwdpz4L14ePjNEbL_6w.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/KkI7neu3UlBI2BAI20goVSglTwdpz4L14ePjNEbL_6w.jpg",
                 "name": "Positions for Breastfeeding - Breastfeeding Series",
                 "alt": ""
             },
@@ -63,7 +63,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/RuQcR3UDfjrvNe8j6LVdeXHurhx6f0tTRNIkFeFwJ6A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/RuQcR3UDfjrvNe8j6LVdeXHurhx6f0tTRNIkFeFwJ6A.jpg",
                 "name": "A baby's development from the seventh to the ninth month",
                 "alt": ""
             },
@@ -113,7 +113,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/RuQcR3UDfjrvNe8j6LVdeXHurhx6f0tTRNIkFeFwJ6A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/RuQcR3UDfjrvNe8j6LVdeXHurhx6f0tTRNIkFeFwJ6A.jpg",
                 "name": "A baby's development from the seventh to the ninth month",
                 "alt": ""
             },
@@ -160,7 +160,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/RDKnO4oiU5YArYMOXUJgRM7wchKB_HSt9sf9rxEk5WU.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/RDKnO4oiU5YArYMOXUJgRM7wchKB_HSt9sf9rxEk5WU.jpg",
                 "name": "Child development in the 5th year",
                 "alt": ""
             },
@@ -217,7 +217,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/tDF-vMTvTbUeaOG7rgkyG228VWmqNFTZd2-mvEJTEuM.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/tDF-vMTvTbUeaOG7rgkyG228VWmqNFTZd2-mvEJTEuM.jpg",
                 "name": "A baby's development in the fifth and sixth month",
                 "alt": ""
             },
@@ -270,7 +270,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/jVXK0cpILZClNXN2KfeIU_Hk-9vjGnjqU8L6T6lqMNI.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/jVXK0cpILZClNXN2KfeIU_Hk-9vjGnjqU8L6T6lqMNI.jpg",
                 "name": "A child’s development from the 19th to the 24th month",
                 "alt": ""
             },
@@ -318,7 +318,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/tiMsIBTu6B_G_Pk7_yeQwl5VUnab8I00RHIlqMfqeis.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/tiMsIBTu6B_G_Pk7_yeQwl5VUnab8I00RHIlqMfqeis.jpg",
                 "name": "Child development in the 6th year",
                 "alt": ""
             },
@@ -374,7 +374,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/QVpHdYRyDuNizHcOyBJcJZZcWyKgLgYiou2v7jsCxME.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/QVpHdYRyDuNizHcOyBJcJZZcWyKgLgYiou2v7jsCxME.jpg",
                 "name": "A baby's development during the first month",
                 "alt": ""
             },
@@ -426,7 +426,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/F03MV-lIZMXW1eoKcDg0QL9rTFE_MD3M8Sa5Sc5oAyI.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/F03MV-lIZMXW1eoKcDg0QL9rTFE_MD3M8Sa5Sc5oAyI.jpg",
                 "name": "A child’s development from the 25th to the 36th month final",
                 "alt": ""
             },
@@ -478,7 +478,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/GP5t1CG1pu2eTPs_Q1Zz7Goqm5IUzGrkKrH3YWGx9ec.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/GP5t1CG1pu2eTPs_Q1Zz7Goqm5IUzGrkKrH3YWGx9ec.jpg",
                 "name": "A baby's development during the 2nd month",
                 "alt": ""
             },
@@ -529,7 +529,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/GP5t1CG1pu2eTPs_Q1Zz7Goqm5IUzGrkKrH3YWGx9ec.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/GP5t1CG1pu2eTPs_Q1Zz7Goqm5IUzGrkKrH3YWGx9ec.jpg",
                 "name": "A baby's development during the second month",
                 "alt": ""
             },
@@ -580,7 +580,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/iz0_6bjnLPqAtgHwLz-rvajkWWJm73uAqNP2YSj-Yac.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/iz0_6bjnLPqAtgHwLz-rvajkWWJm73uAqNP2YSj-Yac.jpg",
                 "name": "A baby’s development from the 13th to the 18th month",
                 "alt": ""
             },
@@ -632,7 +632,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/h8d5obR6Q37wGzgSeN0b58f0LJ7i4Fei37U7k8-hE1U.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/h8d5obR6Q37wGzgSeN0b58f0LJ7i4Fei37U7k8-hE1U.jpg",
                 "name": "A baby's development from the 10th to the 12th month",
                 "alt": ""
             },
@@ -683,7 +683,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/h8d5obR6Q37wGzgSeN0b58f0LJ7i4Fei37U7k8-hE1U.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/h8d5obR6Q37wGzgSeN0b58f0LJ7i4Fei37U7k8-hE1U.jpg",
                 "name": "A baby's development from the 10th to the 12th month",
                 "alt": ""
             },
@@ -733,7 +733,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/OADvVP6Ytz5785sDMZPyu3hT7BvguIArnnL9E10AuYg.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/OADvVP6Ytz5785sDMZPyu3hT7BvguIArnnL9E10AuYg.jpg",
                 "name": "1 mes: siente tranquilidad si lo cargas en tus brazos",
                 "alt": ""
             },
@@ -767,7 +767,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/K0cO-Tp9YFtCKBcIlLqUnnki3Ian3-7EhYQ2MFcJx5o.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/K0cO-Tp9YFtCKBcIlLqUnnki3Ian3-7EhYQ2MFcJx5o.jpg",
                 "name": "Stands up by holding onto to the furniture and starts walking next to the furniture",
                 "alt": ""
             },
@@ -801,7 +801,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/J0WishDSnD61oGuKvziBdP8dId1anMl7ASJK2xyixqI.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/J0WishDSnD61oGuKvziBdP8dId1anMl7ASJK2xyixqI.jpg",
                 "name": "Still puts objects in his mouth",
                 "alt": ""
             },
@@ -833,7 +833,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/sUCfzxiBH89EBaIthDzfI3Pbi6LlmD81aU6Z0G_DQFw.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/sUCfzxiBH89EBaIthDzfI3Pbi6LlmD81aU6Z0G_DQFw.jpg",
                 "name": "Uses fingers and hands more precisely",
                 "alt": ""
             },
@@ -867,7 +867,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/DqqGGzvHvZmd2-I4HRHY-ljxwi16UiXMuRK1SviPHhQ.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/DqqGGzvHvZmd2-I4HRHY-ljxwi16UiXMuRK1SviPHhQ.jpg",
                 "name": "Begins to understand the meaning of the word NO",
                 "alt": ""
             },
@@ -899,7 +899,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/lIWJfIIsi1LPTU54MB2BGzLTM54kBhH8ddLqXQ6C_A4.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/lIWJfIIsi1LPTU54MB2BGzLTM54kBhH8ddLqXQ6C_A4.jpg",
                 "name": "Knows basic differences between things that are real, pretend or imaginary",
                 "alt": ""
             },
@@ -933,7 +933,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/q9se74mamqcKdSb3IW74m_so8YTEyIQwjy4cY9mpI-A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/q9se74mamqcKdSb3IW74m_so8YTEyIQwjy4cY9mpI-A.jpg",
                 "name": "Reacts when she hears her own name",
                 "alt": ""
             },
@@ -965,7 +965,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/v1B98mfsnNYiMMkK9q1NPP_dTwMW8pDTEPQ9DTNon8A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/v1B98mfsnNYiMMkK9q1NPP_dTwMW8pDTEPQ9DTNon8A.jpg",
                 "name": "Likes to play in the company of children",
                 "alt": ""
             },
@@ -999,7 +999,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/LYeXxDKKys1SDnOAiZh8Y3pTvYiOC51NlLeNZmz1xOY.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/LYeXxDKKys1SDnOAiZh8Y3pTvYiOC51NlLeNZmz1xOY.jpg",
                 "name": "Repeats syllables, and some children can already say words with the meaning",
                 "alt": ""
             },
@@ -1033,7 +1033,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/SRq2My5VAbCIZAacL62EajlvhGxFdM_dSBzOrh3ZQwY.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/SRq2My5VAbCIZAacL62EajlvhGxFdM_dSBzOrh3ZQwY.jpg",
                 "name": "Walks, runs, jumps, throws and kicks big and small balls easily and more skillfully",
                 "alt": ""
             },
@@ -1067,7 +1067,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/CTmnDpXgjCi2K-yHrPquROg5esPBqRGN0y0dn3nbSE4.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/CTmnDpXgjCi2K-yHrPquROg5esPBqRGN0y0dn3nbSE4.jpg",
                 "name": "Spontaneously seeks to share interests and pleasures with adults",
                 "alt": ""
             },
@@ -1099,7 +1099,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/PhmWdpE44-ejj3rbJKc19fGV6GfjAX8SO_-AdjgQz6A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/PhmWdpE44-ejj3rbJKc19fGV6GfjAX8SO_-AdjgQz6A.jpg",
                 "name": "Understands complex words",
                 "alt": ""
             },
@@ -1133,7 +1133,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/RC_fbxWXbTyrcQMZlLjw4rJy6sIUZ0HERDlsVX3RXiA.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/RC_fbxWXbTyrcQMZlLjw4rJy6sIUZ0HERDlsVX3RXiA.jpg",
                 "name": "Puts hands in the mouth",
                 "alt": ""
             },
@@ -1165,7 +1165,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/jyi8yHWtVFlf2qvu_Wkehta5s-VDBkv0S_5C6BRXIDw.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/jyi8yHWtVFlf2qvu_Wkehta5s-VDBkv0S_5C6BRXIDw.jpg",
                 "name": "Is able to make complex shapes, letters, and detailed drawings",
                 "alt": ""
             },
@@ -1199,7 +1199,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/7fFaRmTp6rF13HszxhuBjdAhhisMSZxu25vO5vQ0t0A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/7fFaRmTp6rF13HszxhuBjdAhhisMSZxu25vO5vQ0t0A.jpg",
                 "name": "Explores things by putting them in his mouth",
                 "alt": ""
             },
@@ -1233,7 +1233,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/dWQkVltS3AM6jtvOLAHsxZGD5Bn1Uhe7FSmOt6E9LJ4.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/dWQkVltS3AM6jtvOLAHsxZGD5Bn1Uhe7FSmOt6E9LJ4.jpg",
                 "name": "Puts one item into another",
                 "alt": ""
             },
@@ -1267,7 +1267,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/O_goQKS5vZzTe_7adMutwtCnd23YHdCmVkFoOdP77A4.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/O_goQKS5vZzTe_7adMutwtCnd23YHdCmVkFoOdP77A4.jpg",
                 "name": "Understands what happens at different times and how time passes",
                 "alt": ""
             },
@@ -1299,7 +1299,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/KKm-z6omDMIyUs59_eOcZI8HFoP4B7uJNvQLnTC9im8.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/KKm-z6omDMIyUs59_eOcZI8HFoP4B7uJNvQLnTC9im8.jpg",
                 "name": "2 meses: le cuesta el cambio brusco de actividad pero se calma contigo",
                 "alt": ""
             },
@@ -1331,7 +1331,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/lCajD1dZkEWGq330ocbT-YxmsqZ0MSxsMVWG3V21MBg.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/lCajD1dZkEWGq330ocbT-YxmsqZ0MSxsMVWG3V21MBg.jpg",
                 "name": "Keeps head upright, without head support",
                 "alt": ""
             },
@@ -1365,7 +1365,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/ZEJK9ujKbJkPL9rM7xk_ETEgRjuveqPoSzqliG9_st8.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/ZEJK9ujKbJkPL9rM7xk_ETEgRjuveqPoSzqliG9_st8.jpg",
                 "name": "Follows rules of games and sometimes has ideas for new rules",
                 "alt": ""
             },
@@ -1399,7 +1399,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/media-icons/generic/video.png",
+                "url": "https://wawamor.ec/sites/ecuador/files/media-icons/generic/video.png",
                 "name": "2 meses: puede calmarse por sí sola un momento",
                 "alt": ""
             },
@@ -1433,7 +1433,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/Sj8dBPLvld6vNYhH2hWeEaZRqN3nt0uhYdrHOQrUuSU.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/Sj8dBPLvld6vNYhH2hWeEaZRqN3nt0uhYdrHOQrUuSU.jpg",
                 "name": "The baby is excited when he realizes that it`s time to play",
                 "alt": ""
             },
@@ -1465,7 +1465,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/9QIcM-Lu4moRQKwnLMt3f-_GONc7hjxN6FSPfDLpmNA.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/9QIcM-Lu4moRQKwnLMt3f-_GONc7hjxN6FSPfDLpmNA.jpg",
                 "name": "Develops a complex play and involves others in it",
                 "alt": ""
             },
@@ -1499,7 +1499,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/DqqGGzvHvZmd2-I4HRHY-ljxwi16UiXMuRK1SviPHhQ.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/DqqGGzvHvZmd2-I4HRHY-ljxwi16UiXMuRK1SviPHhQ.jpg",
                 "name": "Begins to understand the meaning of the word NO",
                 "alt": ""
             },
@@ -1533,7 +1533,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/1OG_U0x0d2gTvb3yWGZnRGzTz_InDuNf4ylcgNAW-7Q.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/1OG_U0x0d2gTvb3yWGZnRGzTz_InDuNf4ylcgNAW-7Q.jpg",
                 "name": "Begins to mimic facial movements and expressions, as well as sounds during play",
                 "alt": ""
             },
@@ -1567,7 +1567,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/zHXjl-kQV2pyrblz8AejLX3wM71KhDJG0Q_DYAMEwdE.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/zHXjl-kQV2pyrblz8AejLX3wM71KhDJG0Q_DYAMEwdE.jpg",
                 "name": "Associates sounds with animals",
                 "alt": ""
             },
@@ -1599,7 +1599,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/m4h7M2fO5LpjKrgrkmaWPDdqNAkMdbwmbPCwIWmIiiY.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/m4h7M2fO5LpjKrgrkmaWPDdqNAkMdbwmbPCwIWmIiiY.jpg",
                 "name": "Uses sentences of 4 to 5 words",
                 "alt": ""
             },
@@ -1633,7 +1633,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/DthfVB_xbZQJhvDTgXf75aa_dyuV1RRWtiF2YxP9fMg.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/DthfVB_xbZQJhvDTgXf75aa_dyuV1RRWtiF2YxP9fMg.jpg",
                 "name": "Establishes hand eye coordination",
                 "alt": ""
             },
@@ -1667,7 +1667,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/eFcdc38lyXI2CO-HyHBIkEQdRI_TTmZBtKtu3UoFUSc.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/eFcdc38lyXI2CO-HyHBIkEQdRI_TTmZBtKtu3UoFUSc.jpg",
                 "name": "Plays side by side with other children",
                 "alt": ""
             },
@@ -1701,7 +1701,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/Rabqnlma_r5HYjOERhCfHB1bdkJSzdiYtvYTI4O7DUw.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/Rabqnlma_r5HYjOERhCfHB1bdkJSzdiYtvYTI4O7DUw.jpg",
                 "name": "Shows that she is angry or happy",
                 "alt": ""
             },
@@ -1733,7 +1733,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/B_vNpLiSshrRb330lBC4m4C0Mk_iOWyBWimerzfIFW0.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/B_vNpLiSshrRb330lBC4m4C0Mk_iOWyBWimerzfIFW0.jpg",
                 "name": "Can explain how everyday objects are used",
                 "alt": ""
             },
@@ -1765,7 +1765,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/6v7KqVrMO0-S7QPvOiTyutuo5Y0pWoVDSjibrYi4FTk.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/6v7KqVrMO0-S7QPvOiTyutuo5Y0pWoVDSjibrYi4FTk.jpg",
                 "name": "Finds it easier to separate from parents",
                 "alt": ""
             },
@@ -1797,7 +1797,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/Z8fWKJgCPLXdkxL5H02SFkdUw4j3bDXFuqMPNhJkjUo.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/Z8fWKJgCPLXdkxL5H02SFkdUw4j3bDXFuqMPNhJkjUo.jpg",
                 "name": "Can count to ten and name ten objects without mistakes",
                 "alt": ""
             },
@@ -1831,7 +1831,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/WhOP2nL9dV8Df7WazcS2Ow84qid4p6lwCmngZdXNxEM.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/WhOP2nL9dV8Df7WazcS2Ow84qid4p6lwCmngZdXNxEM.jpg",
                 "name": "Understands and executes simple orders",
                 "alt": ""
             },
@@ -1865,7 +1865,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/IYIkhMGF-2MTSjp2enNS2zsFnzlvyNORc5t5VOmkiA8.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/IYIkhMGF-2MTSjp2enNS2zsFnzlvyNORc5t5VOmkiA8.jpg",
                 "name": "Turns her head to one side, then to the other",
                 "alt": ""
             },
@@ -1899,7 +1899,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/TfvYejKKzvHQkczuhVOImVjILEN_jVhu4o1d3Klnghw.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/TfvYejKKzvHQkczuhVOImVjILEN_jVhu4o1d3Klnghw.jpg",
                 "name": "Looks forward to joint activities",
                 "alt": ""
             },
@@ -1931,7 +1931,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/dOPMFa66V56XDMATfL0-yykKei0qIClMILcgxXe4IXs.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/dOPMFa66V56XDMATfL0-yykKei0qIClMILcgxXe4IXs.jpg",
                 "name": "Understands the meaning of the numbers 2 and 3",
                 "alt": ""
             },
@@ -1965,7 +1965,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/Z2U136ewvAx_V-iIEnQQJHoanbOCz2lNJa8I96MWFQA.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/Z2U136ewvAx_V-iIEnQQJHoanbOCz2lNJa8I96MWFQA.jpg",
                 "name": "Can go up and down the stairs",
                 "alt": ""
             },
@@ -1999,7 +1999,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/gGMw4bhETj-m0t98Aq6WoSbk1pLRVfYtM-EEnKDjk5U.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/gGMw4bhETj-m0t98Aq6WoSbk1pLRVfYtM-EEnKDjk5U.jpg",
                 "name": "Follows with his eyes a toy moving from one side to the other",
                 "alt": ""
             },
@@ -2033,7 +2033,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/OQyGTsm8mfxUyt-3y46YpdOcnttI869dGALVdK3m1-Y.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/OQyGTsm8mfxUyt-3y46YpdOcnttI869dGALVdK3m1-Y.jpg",
                 "name": "Chooses to participate in creative activities",
                 "alt": ""
             },
@@ -2067,7 +2067,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/DAiyr_HmpzbTSSYYNyxh40brYtQhrzk_OmfKT02PxzY.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/DAiyr_HmpzbTSSYYNyxh40brYtQhrzk_OmfKT02PxzY.jpg",
                 "name": "Occasionally she keeps her fists open, manipulates them",
                 "alt": ""
             },
@@ -2101,7 +2101,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/rdTs1kWrQysQN0bpeR6eYuflCkzMYRevtw9Red5Rzps.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/rdTs1kWrQysQN0bpeR6eYuflCkzMYRevtw9Red5Rzps.jpg",
                 "name": "Uses toys purposefully",
                 "alt": ""
             },
@@ -2135,7 +2135,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/MtUKoYeN7QRcJufx3UKMHsqNYb0cMrzBpzpbTCzva1Q.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/MtUKoYeN7QRcJufx3UKMHsqNYb0cMrzBpzpbTCzva1Q.jpg",
                 "name": "2 meses: se comunica con sonidos suaves y balbucea",
                 "alt": ""
             },
@@ -2167,7 +2167,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/Nf-erBQahpqZ1hGAaUGFgeZ4sg80z5ix3WYYJqYEc4E.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/Nf-erBQahpqZ1hGAaUGFgeZ4sg80z5ix3WYYJqYEc4E.jpg",
                 "name": "Tells a complete story",
                 "alt": ""
             },
@@ -2201,7 +2201,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/7Adii03ETphonP67KzHgARsT0xR3ucpk8aSZ7xoUN6A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/7Adii03ETphonP67KzHgARsT0xR3ucpk8aSZ7xoUN6A.jpg",
                 "name": "Uses one hand more",
                 "alt": ""
             },
@@ -2235,7 +2235,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/eJ8VT4X8zzEGa9wB0WRBiuwoYeL03Lw9nTyCowI9jPs.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/eJ8VT4X8zzEGa9wB0WRBiuwoYeL03Lw9nTyCowI9jPs.jpg",
                 "name": "Imitates and uses gestures",
                 "alt": ""
             },
@@ -2267,7 +2267,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/bWVdyAP0jUlU3ka3dAKAWQvV9gIy0i434CZNjiTXyLI.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/bWVdyAP0jUlU3ka3dAKAWQvV9gIy0i434CZNjiTXyLI.jpg",
                 "name": "Shows understanding of difference between real and pretend or make believe",
                 "alt": ""
             },
@@ -2301,7 +2301,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/JFUDhuIApcWSxoYr9UcgU-cKTsXSIh6NyB17YSLx3ZQ.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/JFUDhuIApcWSxoYr9UcgU-cKTsXSIh6NyB17YSLx3ZQ.jpg",
                 "name": "2 meses: hace diferentes sonidos cuando está feliz, enojada o con hambre",
                 "alt": ""
             },
@@ -2335,7 +2335,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/vdidu4WH3_y8pdMvG_HXvs_M08c9t9iJkOgwEXZLOpU.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/vdidu4WH3_y8pdMvG_HXvs_M08c9t9iJkOgwEXZLOpU.jpg",
                 "name": "Understands a brief instruction or order",
                 "alt": ""
             },
@@ -2367,7 +2367,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/IjDBIAWc2DqWMLdkKKM2Ik_1tGrWBACyAj9bInWiTG4.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/IjDBIAWc2DqWMLdkKKM2Ik_1tGrWBACyAj9bInWiTG4.jpg",
                 "name": "Skillfully participates in varied activities requiring advanced physical skills",
                 "alt": ""
             },
@@ -2401,7 +2401,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/zWcGElA7E7JiFPnc2e--wtl5200yrd0mZZrlVS5Wbu0.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/zWcGElA7E7JiFPnc2e--wtl5200yrd0mZZrlVS5Wbu0.jpg",
                 "name": "In communication with people, uses a combination of words and gestures",
                 "alt": ""
             },
@@ -2435,7 +2435,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/Eqg0zzskKhklv7Zu385u_UzZUHoLuAc08gtyN3vM6L0.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/Eqg0zzskKhklv7Zu385u_UzZUHoLuAc08gtyN3vM6L0.jpg",
                 "name": "Understands her name, names of familiar persons, names of objects from her environment, ever",
                 "alt": ""
             },
@@ -2469,7 +2469,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/5embkbKB6QUGJMvQ3Tc9EmlpWuhN-JLch3bibIAa0xs.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/5embkbKB6QUGJMvQ3Tc9EmlpWuhN-JLch3bibIAa0xs.jpg",
                 "name": "Curiously examines toys, shakes them, bangs, throws, pays attention to details",
                 "alt": ""
             },
@@ -2503,7 +2503,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/VUZNXBsbXzBYnmyhHdYwZ1fG7wZzCYYq0FBKxSxfDb8.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/VUZNXBsbXzBYnmyhHdYwZ1fG7wZzCYYq0FBKxSxfDb8.jpg",
                 "name": "Plays Pretend games, Pretend play appears",
                 "alt": ""
             },
@@ -2535,7 +2535,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/kHO6sBNcXOc9kXJ-8FDXcuP4z-fExU133Hb-7cGaOck.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/kHO6sBNcXOc9kXJ-8FDXcuP4z-fExU133Hb-7cGaOck.jpg",
                 "name": "Recognizes letters of the alphabet and has some reading skills",
                 "alt": ""
             },
@@ -2569,7 +2569,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/vAbg0mk0bbGsxmmFOTBp2vPNBWHRBr0bs7TGn-MNmXI.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/vAbg0mk0bbGsxmmFOTBp2vPNBWHRBr0bs7TGn-MNmXI.jpg",
                 "name": "Begins to communicate with movements",
                 "alt": ""
             },
@@ -2603,7 +2603,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/McaAzczuYKdQxxerk9RKnacSicYCAdBr83SlXrmV11A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/McaAzczuYKdQxxerk9RKnacSicYCAdBr83SlXrmV11A.jpg",
                 "name": "Imitates the behaviour of adults and older children",
                 "alt": ""
             },
@@ -2635,7 +2635,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/YoOMncL6On2apjf-SdpTSDLWWUWm9fK86ItRf0KTwtU.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/YoOMncL6On2apjf-SdpTSDLWWUWm9fK86ItRf0KTwtU.jpg",
                 "name": "Plays simple board games",
                 "alt": ""
             },
@@ -2669,7 +2669,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/oCA1aSBx9q8QZmrnur32SumnM2CkDPaaDj7mfAs8udI.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/oCA1aSBx9q8QZmrnur32SumnM2CkDPaaDj7mfAs8udI.jpg",
                 "name": "Follows the falling object and looks for the hidden object",
                 "alt": ""
             },
@@ -2701,7 +2701,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/JlSxDwjrxUMY-8fv7xNv9I_8scFtMg3ohUWqEPBbhW0.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/JlSxDwjrxUMY-8fv7xNv9I_8scFtMg3ohUWqEPBbhW0.jpg",
                 "name": "Speaks in sentences of five or more words; uses words to talk about the future",
                 "alt": ""
             },
@@ -2735,7 +2735,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/29S2ig0MJhTkV8X243tAQbbe9Oitib8YLquTjT1QXgw.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/29S2ig0MJhTkV8X243tAQbbe9Oitib8YLquTjT1QXgw.jpg",
                 "name": "Carefully observes people's faces",
                 "alt": ""
             },
@@ -2769,7 +2769,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/KA9-SjhrnyGNu-zi3975ynabQDkQFaA1OTykPNj4RsE.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/KA9-SjhrnyGNu-zi3975ynabQDkQFaA1OTykPNj4RsE.jpg",
                 "name": "Names at least four colors correctly",
                 "alt": ""
             },
@@ -2803,7 +2803,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/QA-brZwqU841AYEaaDVK_iFAj5BpD1qQSKe06I8747o.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/QA-brZwqU841AYEaaDVK_iFAj5BpD1qQSKe06I8747o.jpg",
                 "name": "Loudly expresses dissatisfaction or joy",
                 "alt": ""
             },
@@ -2835,7 +2835,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/DlWGSfwOa31m4J1kbQegT-O0IyrJb2ivSF9Am7hebpA.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/DlWGSfwOa31m4J1kbQegT-O0IyrJb2ivSF9Am7hebpA.jpg",
                 "name": "Understands time concepts such as before and after",
                 "alt": ""
             },
@@ -2869,7 +2869,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/_5pcNQatsxLGDAV0HVRbmoXSCvmyYm6Iq91QzzUvwfg.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/_5pcNQatsxLGDAV0HVRbmoXSCvmyYm6Iq91QzzUvwfg.jpg",
                 "name": "2 meses: sigue con la mirada el movimiento de las personas y los objetos a su alrededor",
                 "alt": ""
             },
@@ -2901,7 +2901,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/YA2znGijmn8bjAA7Y2aR0wJSz2LN5BGQsntSGWm9A5M.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/YA2znGijmn8bjAA7Y2aR0wJSz2LN5BGQsntSGWm9A5M.jpg",
                 "name": "Climbs up and down stairs",
                 "alt": ""
             },
@@ -2935,7 +2935,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/qJjA2AIdbflMl5AsRL063cDwFDMF6cSS66XO8ECE6-A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/qJjA2AIdbflMl5AsRL063cDwFDMF6cSS66XO8ECE6-A.jpg",
                 "name": "Turns his head towards the sound source and shows that he is listening",
                 "alt": ""
             },
@@ -2969,7 +2969,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/IzlIp6e1mATjRHXi5lq8oeUKfz-Q1b9QJtQ6xV-etGY.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/IzlIp6e1mATjRHXi5lq8oeUKfz-Q1b9QJtQ6xV-etGY.jpg",
                 "name": "Understands the terms SIMILAR or ALIKE and DIFFERENT and can group things in different ways",
                 "alt": ""
             },
@@ -3001,7 +3001,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/sWx55rt5Z10tsytBi_NcSJRtKxRb8NyEXOSFdlZYSV8.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/sWx55rt5Z10tsytBi_NcSJRtKxRb8NyEXOSFdlZYSV8.jpg",
                 "name": "Can tell a story or retell part of a story",
                 "alt": ""
             },
@@ -3033,7 +3033,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/6H9OrgcAiVgPblQRYRwJHNNATv9sKX2jSEJjRUNcn0M.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/6H9OrgcAiVgPblQRYRwJHNNATv9sKX2jSEJjRUNcn0M.jpg",
                 "name": "Can say a sentence of 2 to 3 words",
                 "alt": ""
             },
@@ -3065,7 +3065,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/vvYKo0SoLk5-ZVQrhZtWm2vpaX5MCUPW8GE8Jk9iVa8.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/vvYKo0SoLk5-ZVQrhZtWm2vpaX5MCUPW8GE8Jk9iVa8.jpg",
                 "name": "Sings songs or tells stories that have been memorized",
                 "alt": ""
             },
@@ -3100,7 +3100,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/F03MV-lIZMXW1eoKcDg0QL9rTFE_MD3M8Sa5Sc5oAyI.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/F03MV-lIZMXW1eoKcDg0QL9rTFE_MD3M8Sa5Sc5oAyI.jpg",
                 "name": "A child’s development from the 25th to the 36th month final",
                 "alt": ""
             },
@@ -3151,7 +3151,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/l2X4blseE3EyKExMhIuxrlix4kahjEFDTvWhx8HAUcQ.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/l2X4blseE3EyKExMhIuxrlix4kahjEFDTvWhx8HAUcQ.jpg",
                 "name": "Play simple PRETEND games",
                 "alt": ""
             },
@@ -3183,7 +3183,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/p5hmHB8lZOvtcxUWiTG835H9CbeYD1Vaw2ngZj8k67E.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/p5hmHB8lZOvtcxUWiTG835H9CbeYD1Vaw2ngZj8k67E.jpg",
                 "name": "Draws accurate image of human body and simple shapes",
                 "alt": ""
             },
@@ -3217,7 +3217,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/QSoSar80doAYBTqIWR3i5Di3Oftef7tcED5GDAcyqoM.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/QSoSar80doAYBTqIWR3i5Di3Oftef7tcED5GDAcyqoM.jpg",
                 "name": "When on her tummy, the baby is leaning on her forearms against the mat",
                 "alt": ""
             },
@@ -3249,7 +3249,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/KZIy9CQUv5Dz0kXkqiDj2m2WlxxGj3qy_JoJA8ZokG4.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/KZIy9CQUv5Dz0kXkqiDj2m2WlxxGj3qy_JoJA8ZokG4.jpg",
                 "name": "Copies circles with a pencil, wooden or wax crayon",
                 "alt": ""
             },
@@ -3281,7 +3281,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/JDwgHmb73d47D8PS4QuoVvspbQMSeUKTaLrupxOM7ow.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/JDwgHmb73d47D8PS4QuoVvspbQMSeUKTaLrupxOM7ow.jpg",
                 "name": "Child development in the 4th year",
                 "alt": ""
             },
@@ -3335,7 +3335,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/tiMsIBTu6B_G_Pk7_yeQwl5VUnab8I00RHIlqMfqeis.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/tiMsIBTu6B_G_Pk7_yeQwl5VUnab8I00RHIlqMfqeis.jpg",
                 "name": "Child development in the 6th year",
                 "alt": ""
             },
@@ -3388,7 +3388,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/RDKnO4oiU5YArYMOXUJgRM7wchKB_HSt9sf9rxEk5WU.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/RDKnO4oiU5YArYMOXUJgRM7wchKB_HSt9sf9rxEk5WU.jpg",
                 "name": "Child development in the 5th year",
                 "alt": ""
             },
@@ -3445,7 +3445,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/iz0_6bjnLPqAtgHwLz-rvajkWWJm73uAqNP2YSj-Yac.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/iz0_6bjnLPqAtgHwLz-rvajkWWJm73uAqNP2YSj-Yac.jpg",
                 "name": "A baby’s development from the 13th to the 18th month",
                 "alt": ""
             },
@@ -3496,7 +3496,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/5xyyzr3frOuhYm0A8stX0Ql5dQyCmIg_RNEw2zvd31o.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/5xyyzr3frOuhYm0A8stX0Ql5dQyCmIg_RNEw2zvd31o.jpg",
                 "name": "Picks small objects with her fingers, feeds with her fingers",
                 "alt": ""
             },
@@ -3530,7 +3530,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/aGdfF9uVaOH-N0zwQjpCY7hyqVmqtITXZ5D9K8cTk9A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/aGdfF9uVaOH-N0zwQjpCY7hyqVmqtITXZ5D9K8cTk9A.jpg",
                 "name": "Lifts himself up to a crawling position  Some children are already crawling",
                 "alt": ""
             },
@@ -3562,7 +3562,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/_h8XXQJ83kLUNA2YPMi8xVNyuKiNopUgL8qpoaA4v9s.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/_h8XXQJ83kLUNA2YPMi8xVNyuKiNopUgL8qpoaA4v9s.jpg",
                 "name": "Puts things in a box and takes them out of it",
                 "alt": ""
             },
@@ -3597,7 +3597,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/sY7919uDCkrMEAUEgBUtK9-2viCPKQfohUNuNsFaYFU.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/sY7919uDCkrMEAUEgBUtK9-2viCPKQfohUNuNsFaYFU.jpg",
                 "name": "A baby's development during the third and fourth month",
                 "alt": ""
             },
@@ -3645,7 +3645,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/Qh5wwUaBlgC_QdxqHVRw3ZXDvCjDqOnSuvq6qhw4QZc.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/Qh5wwUaBlgC_QdxqHVRw3ZXDvCjDqOnSuvq6qhw4QZc.jpg",
                 "name": "Gets upset when the parent leaves the room and relaxes when the parent returns",
                 "alt": ""
             },
@@ -3679,7 +3679,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/g6JH3PA8r4_1k6-2FQcIkuSqiPjF-ET-u5RkOeMjqj0.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/g6JH3PA8r4_1k6-2FQcIkuSqiPjF-ET-u5RkOeMjqj0.jpg",
                 "name": "Shows shyness and nervousness in communicating with strangers",
                 "alt": ""
             },
@@ -3713,7 +3713,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/payUbouWbUZ8yEB6HiL4wUrONMCsnayj5kxI6cLUzGA.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/payUbouWbUZ8yEB6HiL4wUrONMCsnayj5kxI6cLUzGA.jpg",
                 "name": "Smoothly transfers objects from hand to hand, shakes them",
                 "alt": ""
             },
@@ -3747,7 +3747,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/c2t-kXAO1EUL26eWcj2vAcRvfUo-Ivf4ZwbNK39NB4E.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/c2t-kXAO1EUL26eWcj2vAcRvfUo-Ivf4ZwbNK39NB4E.jpg",
                 "name": "Makes fine movements with his arms and legs",
                 "alt": ""
             },
@@ -3781,7 +3781,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/ufHE6ZGa1ZzwmuPAsSrcVrGPPO8AR4io-_xqEMLNU9g.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/ufHE6ZGa1ZzwmuPAsSrcVrGPPO8AR4io-_xqEMLNU9g.jpg",
                 "name": "Can stand on her toes, run, jump, kick the ball",
                 "alt": ""
             },
@@ -3813,7 +3813,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/80QHFRMBARfRnPj6FtY82lfRkW2OoI-xekY4AHSke00.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/80QHFRMBARfRnPj6FtY82lfRkW2OoI-xekY4AHSke00.jpg",
                 "name": "Likes to please others and cooperate",
                 "alt": ""
             },
@@ -3845,7 +3845,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/0lIF1xrOaIw9XeGpzkj-Ovl3W_WFyuqLY_2-QzK2VaE.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/0lIF1xrOaIw9XeGpzkj-Ovl3W_WFyuqLY_2-QzK2VaE.jpg",
                 "name": "Pronounces words with meaning",
                 "alt": ""
             },
@@ -3879,7 +3879,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/iXxpklhOHlxVorkKwfeeBtM5V5U_MHmutqlbE_UVJ2A.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/iXxpklhOHlxVorkKwfeeBtM5V5U_MHmutqlbE_UVJ2A.jpg",
                 "name": "Knows how to use items for everyday use",
                 "alt": ""
             },
@@ -3913,7 +3913,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/x1ag5gEyly5-GxYCkrmyGnFPqT8P_xb72aD3kA_lHmw.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/x1ag5gEyly5-GxYCkrmyGnFPqT8P_xb72aD3kA_lHmw.jpg",
                 "name": "In communication, he uses gestures for better mutual",
                 "alt": ""
             },
@@ -3947,7 +3947,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/fsF99P6QlfjW3IG8uqNUAZ5Ox51xfREeZu97uqQvCjg.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/fsF99P6QlfjW3IG8uqNUAZ5Ox51xfREeZu97uqQvCjg.jpg",
                 "name": "Primer mes: se emociona cuando le hablas con cariño",
                 "alt": ""
             },
@@ -3979,7 +3979,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/kUggjVDheteEBEuN5sMmy_tVyDKI7U3nRs0uFfpeqsQ.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/kUggjVDheteEBEuN5sMmy_tVyDKI7U3nRs0uFfpeqsQ.jpg",
                 "name": "Has understanding of other people’s ideas and needs",
                 "alt": ""
             },
@@ -4015,7 +4015,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/QVpHdYRyDuNizHcOyBJcJZZcWyKgLgYiou2v7jsCxME.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/QVpHdYRyDuNizHcOyBJcJZZcWyKgLgYiou2v7jsCxME.jpg",
                 "name": "A baby's development during the first month",
                 "alt": ""
             },
@@ -4066,7 +4066,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/kt7eJeMM0R217VSXKoEi-_fWlYH0LYSmPc_aDQDgqRc.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/kt7eJeMM0R217VSXKoEi-_fWlYH0LYSmPc_aDQDgqRc.jpg",
                 "name": "Shows signs of taking responsibility",
                 "alt": ""
             },
@@ -4100,7 +4100,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/KT9uzZqTJxETt4JthxwF5J7QuAvVpp9PuIJmezXyWnE.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/KT9uzZqTJxETt4JthxwF5J7QuAvVpp9PuIJmezXyWnE.jpg",
                 "name": "Primer mes: te mira mientras escucha tu voz.",
                 "alt": ""
             },
@@ -4144,7 +4144,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/U0sXmO_KOQcujVDs2Zi9ep9pF2z6UE2NYmrRe3JNx8E.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/U0sXmO_KOQcujVDs2Zi9ep9pF2z6UE2NYmrRe3JNx8E.jpg",
                 "name": "Scribbles independently with a pencil or crayons on paper",
                 "alt": ""
             },
@@ -4178,7 +4178,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/uITYKSseh1RRVyggrDUaEYBdNPbzooUQs_XYo-NWEr0.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/uITYKSseh1RRVyggrDUaEYBdNPbzooUQs_XYo-NWEr0.jpg",
                 "name": "Primer mes: te escucha, cierra sus puños y balbucea",
                 "alt": ""
             },
@@ -4212,7 +4212,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/RHnzqeQd-ANJ856SXMOacNAQb1ETbqvaWuOyBkb70yA.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/RHnzqeQd-ANJ856SXMOacNAQb1ETbqvaWuOyBkb70yA.jpg",
                 "name": "Scribbles independently on paper",
                 "alt": ""
             },
@@ -4246,7 +4246,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/tEV6iHdQRghE7WPLXtJ-7rOiA3Zh0RW4bfe7YYLQor0.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/tEV6iHdQRghE7WPLXtJ-7rOiA3Zh0RW4bfe7YYLQor0.jpg",
                 "name": "Moves her arms and legs freely on both sides",
                 "alt": ""
             },
@@ -4280,7 +4280,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/efVR3kksUBs66xGhKpn5BnvpOCH7sQUj-AX5cB7qYCQ.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/efVR3kksUBs66xGhKpn5BnvpOCH7sQUj-AX5cB7qYCQ.jpg",
                 "name": "Stands, moves and walks independently",
                 "alt": ""
             },
@@ -4314,7 +4314,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/IS3TtOc77uWpeSQnkaIpyOERaP_a4wNvzNYfHzBuMiU.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/IS3TtOc77uWpeSQnkaIpyOERaP_a4wNvzNYfHzBuMiU.jpg",
                 "name": "Primer mes: se comunica con sonidos para llamar tu atención",
                 "alt": ""
             },
@@ -4346,7 +4346,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/8Mk2uRvoORV-SQ85_y-5EY-GQx9Nki5HLejak-HoevQ.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/8Mk2uRvoORV-SQ85_y-5EY-GQx9Nki5HLejak-HoevQ.jpg",
                 "name": "Speaks in complex sentences",
                 "alt": ""
             },
@@ -4380,7 +4380,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/8IM2XkxryUN5-KWDB50dkjb-9UdSqTscZNUK815XWc4.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/8IM2XkxryUN5-KWDB50dkjb-9UdSqTscZNUK815XWc4.jpg",
                 "name": "When lying on his tummy, he lifts his head",
                 "alt": ""
             },
@@ -4414,7 +4414,7 @@ export const VideoArticleData:any = {
                 "site": "youtube"
             },
             "cover_image": {
-                "url": "https://REMOVED_FACEBOOK_APP_ID1.ec/sites/ecuador/files/oembed_thumbnails/GP-qZiq5e3Vh7migLKvRWGd-zwApI88ej7JjznamsKs.jpg",
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/GP-qZiq5e3Vh7migLKvRWGd-zwApI88ej7JjznamsKs.jpg",
                 "name": "Uses skills to independently participate in everyday routines and social activities",
                 "alt": ""
             },

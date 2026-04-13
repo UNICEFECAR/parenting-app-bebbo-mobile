@@ -3,7 +3,7 @@ export const countryData: any = {
     {
       "CountryID": "1",
       "name": "Ecuador",
-      "country_email": "contacto@REMOVED_FACEBOOK_APP_ID1.ec",
+      "country_email": "contacto@wawamor.ec",
       "country_national_partner": {
         "url": "",
         "name": "",

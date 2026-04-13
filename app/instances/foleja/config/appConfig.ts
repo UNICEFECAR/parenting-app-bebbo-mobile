@@ -4,7 +4,7 @@ import RNFS from "react-native-fs";
 import { isPregnancy } from "../../../services/Utils";
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
-  buildForREMOVED_FACEBOOK_APP_ID1: "foleja",
+  buildForBebbo: "foleja",
   buildFor: "foleja", // 'foleja'
   maxRelatedArticleSize: 3,
   isArticlePinned: "1",
@@ -208,7 +208,7 @@ const config = {
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
   maxArticleSize: 5,
-  flavorName: "REMOVED_FACEBOOK_APP_ID1",
+  flavorName: "Foleja",
   isCheckTokenize: false,
   stopWords: [],
   apiConfig: {

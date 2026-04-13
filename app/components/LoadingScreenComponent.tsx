@@ -5,8 +5,8 @@ import LinearGradient from "react-native-linear-gradient";
 import VectorImage from "react-native-vector-image";
 import { FlexDirCol } from "./shared/FlexBoxStyle";
 const flavor = process.env.FLAVOR || "bebbo";
-const REMOVED_FACEBOOK_APP_ID1LogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
-const REMOVED_FACEBOOK_APP_ID1LogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
+const BebboLogoShapeNew = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape.svg`);
+const BebboLogoShapeMB = require(`../instances/${flavor}/assets/images/logo/bebbo_logo_shape1.svg`);
 import {
   LoadingContainer,
   LoadingText,
@@ -20,7 +20,7 @@ import { useAppSelector } from "../../App";
 import { gradientColorFirst, gradientColorSecond, gradientColorThird, LoadingScreenColorText } from "@styles/style";
 
 const item = {
-  image: flavor == "REMOVED_FACEBOOK_APP_ID1" ? REMOVED_FACEBOOK_APP_ID1LogoShapeMB : REMOVED_FACEBOOK_APP_ID1LogoShapeNew,
+  image: flavor == "merhabaBebek" ? BebboLogoShapeMB : BebboLogoShapeNew,
   colors: [gradientColorFirst, gradientColorSecond, gradientColorThird],
 };
 
@@ -78,7 +78,7 @@ const LoadingScreenComponent = (props: any): any => {
     (state: any) => state.selectedCountry.sponsors
   );
 
-  const isMB = flavor === "REMOVED_FACEBOOK_APP_ID1";
+  const isMB = flavor === "merhabaBebek";
 
   return (
     <LoadingContainer>

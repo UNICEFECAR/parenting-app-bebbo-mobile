@@ -7,11 +7,11 @@ const uk = {
     selectYourLang: 'Виберіть мову',
     goToLanguageSelection: 'Перейти до вибору мови',
     goToConfirm: 'Підтвердити',
-    checkonce: 'REMOVED_FACEBOOK_APP_ID1 локалізує вміст на основі вибраної країни та мови.',
+    checkonce: 'Bebbo локалізує вміст на основі вибраної країни та мови.',
     country: 'Країна',
     language: 'Мова',
     walkthroughTextstitle0: 'Ласкаво просимо, батьки!',
-    walkthroughTextssubtitle0: 'Відкрийте для себе REMOVED_FACEBOOK_APP_ID1',
+    walkthroughTextssubtitle0: 'Відкрийте для себе Bebbo',
     walkthroughTextstitle1: 'Ігри ',
     walkthroughTextssubtitle1:
       'щоб допомогти вашій дитині щодня дізнаватися щось нове',
@@ -26,13 +26,13 @@ const uk = {
     walkthroughButtonSkip: 'Пропустити',
     tNcheader: 'Умови та положення',
     tNccheckbox1:
-      'Я прочитав (-ла), зрозумів (-ла) та прийняв (-ла) Умови та положення користування додатком REMOVED_FACEBOOK_APP_ID1',
+      'Я прочитав (-ла), зрозумів (-ла) та прийняв (-ла) Умови та положення користування додатком Bebbo',
     tNccheckbox2: 'Я прочитав (-ла), зрозумів (-ла) та прийняв (-ла) ',
-    tNcprivacyPolicy: 'Політику Конфіденційності додатка REMOVED_FACEBOOK_APP_ID1',
+    tNcprivacyPolicy: 'Політику Конфіденційності додатка Bebbo',
     tNcprivacyPolicyTitle: 'Політика конфіденційності',
     tNcacceptbtn: 'Я приймаю Умови та положення',
     loadingText: 'Отримання вмісту…',
-    childSetupheader: 'Отримайте максимум від REMOVED_FACEBOOK_APP_ID1!',
+    childSetupheader: 'Отримайте максимум від Bebbo!',
     childSetupdobLabel: 'Коли у дитини день народження або термін пологів?',
     addAnotherChildSetupDobLabel:
       'Коли у дитини день народження або термін пологів?',
@@ -45,7 +45,7 @@ const uk = {
     childSetuprelationSelectTitle: 'Ви є',
     childSetuprelationSelectText: 'Виберіть',
     childSetupcontinueBtnText: 'Продовжити',
-    childSetupListheader: 'REMOVED_FACEBOOK_APP_ID1 готується підтримати твій батьківський шлях!',
+    childSetupListheader: 'Bebbo готується підтримати твій батьківський шлях!',
     childSetupListsubHeader:
       'Якщо у вас є інші діти віком від 0 до 6 років, ви можете додати їх зараз або пізніше.',
     childSetupListaddSiblingBtn: '+ ДОДАТИ ІНШУ ДИТИНУ',
@@ -67,12 +67,12 @@ const uk = {
     drawerMenusetTxt: 'Налаштування',
     drawerMenushareTxt: 'Поділитися',
     drawerMenufeedbackTxt: 'Відгуки',
-    drawerMenurateTxt: 'Вам подобається додаток REMOVED_FACEBOOK_APP_ID1? Оцініть його!',
+    drawerMenurateTxt: 'Вам подобається додаток Bebbo? Оцініть його!',
     drawerMenuPrivacyTxt: 'Політика конфіденційності',
     notiScreenheaderTitle: 'Сповіщення',
     settingScreenheaderTitle: 'Налаштування',
     settingScreennotiHeaderText: 'Сповіщення',
-    settingScreennotiType1: 'Я хочу отримувати сповіщення через REMOVED_FACEBOOK_APP_ID1',
+    settingScreennotiType1: 'Я хочу отримувати сповіщення через Bebbo',
     settingScreennotiType2:
       "Я хочу отримувати сповіщення, пов'язані з ростом моєї дитини",
     settingScreennotiType3:
@@ -80,7 +80,7 @@ const uk = {
     settingScreennotiType4:
       "Я хочу отримувати сповіщення, пов'язані з медичними оглядами та щепленнями моєї дитини",
     settingScreennotiInfo:
-      "Сповіщення публікуються з різною періодичністю, щоденно або щомісяця, та є невід'ємною частиною функціональних можливостей REMOVED_FACEBOOK_APP_ID1. Ви можете приховати сповіщення на головному екрані. Ви також можете повністю вимкнути цю функцію в будь-який момент у налаштуваннях додатка, що призведе до обмеження функціональності додатка.",
+      "Сповіщення публікуються з різною періодичністю, щоденно або щомісяця, та є невід'ємною частиною функціональних можливостей Bebbo. Ви можете приховати сповіщення на головному екрані. Ви також можете повністю вимкнути цю функцію в будь-який момент у налаштуваннях додатка, що призведе до обмеження функціональності додатка.",
     settingScreendataSaverHeaderText: 'Режим збереження даних',
     settingScreendataSaverSubText:
       'Я не хочу завантажувати зображення зі статей або оновлень через низьку швидкість Інтернету.',
@@ -104,7 +104,7 @@ const uk = {
     supportScreenheaderTitle: 'Чат',
     supportScreenheader1text: 'Незабаром!',
     supportScreenheader2text: 'Чат наразі недоступний',
-    homeScreenheaderTitle: 'REMOVED_FACEBOOK_APP_ID1',
+    homeScreenheaderTitle: 'Bebbo',
     homeScreenchildBtnText: 'Читати далі ',
     homeScreenchildInfoTitle: 'Ласкаво просимо {{childName}} {{parentName}}',
     homeScreendailyReadsTitle: 'Щоденні новини ',
@@ -212,7 +212,7 @@ const uk = {
     favScreenHeader: 'Улюблене',
     actScreenremovetoFavText: 'Збережено',
     appShareText:
-      'Завантажте додаток REMOVED_FACEBOOK_APP_ID1, вашого надійного помічника у питаннях виховання дітей!',
+      'Завантажте додаток Bebbo, вашого надійного помічника у питаннях виховання дітей!',
     vcHeader: 'Вакцинація',
     vcSummaryHeader: 'Короткий звіт про вакцинації',
     vcStatus1: 'Майбутні',
@@ -431,11 +431,11 @@ const uk = {
     parentGender: 'Стать',
     successOnboardingImport: 'Ви успішно імпортували дані дитини',
     updateImportText: 'Оновіть дані, щоб продовжити',
-    importOnboardingText: 'REMOVED_FACEBOOK_APP_ID1 не збирає вашу особисту інформацію.',
+    importOnboardingText: 'Bebbo не збирає вашу особисту інформацію.',
     importOnboardingText1:
       'Інформація, яку ви вводите в програму, зберігається у вашому телефоні або вашій особистій пам’яті.',
     importOnboardingText2:
-      'Якщо ви використовували REMOVED_FACEBOOK_APP_ID1 на іншому пристрої та експортували свою інформацію, ви можете зараз завантажити файл на цей пристрій.',
+      'Якщо ви використовували Bebbo на іншому пристрої та експортували свою інформацію, ви можете зараз завантажити файл на цей пристрій.',
     OnboardingImportButton: 'Завантажте зараз',
     ORkeyText: 'АБО',
     addChildText: 'Додайте відомості про дитину',
@@ -455,7 +455,7 @@ const uk = {
     childSetupprematureMessageNext:
       'Зміст цього розділу відображається відповідно до виправленого, а не фактичного віку вашої передчасно народженої дитини',
     helloMessage:
-      'Привіт{{parentName}}, мене звати REMOVED_FACEBOOK_APP_ID1. Я готовий відповісти на ваші запитання',
+      'Привіт{{parentName}}, мене звати Bebbo. Я готовий відповісти на ваші запитання',
     selectAreaOfInterest:
       'Будь ласка, виберіть область інтересів, за якою у вас є питання',
     question1: 'Про що ваше запитання?',
@@ -491,7 +491,7 @@ const uk = {
     restOfTheWorldAlertTitle: 'Попередження',
     restOfTheWorldOkTitle: 'ОК',
     restOfTheWorldAlertText:
-      "Вибравши параметр «Інші країни світу», ви користуватиметеся всіма можливостями REMOVED_FACEBOOK_APP_ID1, але зверніть увагу, що вакцинація та медичний огляд не підлаштовуються під конкретну національну програму охорони здоров'я.",
+      "Вибравши параметр «Інші країни світу», ви користуватиметеся всіма можливостями Bebbo, але зверніть увагу, що вакцинація та медичний огляд не підлаштовуються під конкретну національну програму охорони здоров'я.",
     remindersAlertTitle: 'Нагадування!',
     vcDefinedReminderText: 'Введіть дату та час нагадування',
     hcDefinedReminderText: 'Введіть дату та час нагадування',
@@ -507,21 +507,21 @@ const uk = {
     vcHasScheduled: 'Щеплення заплановано',
     relatedVideoArticle: 'Дитячий профіль видалено',
     upto6YearsMsg: 'Ця програма призначена для дітей віком до 6 років',
-    donateButton: 'Пожертвуйте для REMOVED_FACEBOOK_APP_ID1',
+    donateButton: 'Пожертвуйте для Bebbo',
     contactUs: 'Напишіть нам',
-    aboutREMOVED_FACEBOOK_APP_ID1DrawerMenu: 'Про {{appName}}',
-    tncCheckBoxText: 'Умови та Положення користування додатком REMOVED_FACEBOOK_APP_ID1',
+    aboutBebboDrawerMenu: 'Про {{appName}}',
+    tncCheckBoxText: 'Умови та Положення користування додатком Bebbo',
     tncScreenContent:
-      'REMOVED_FACEBOOK_APP_ID1 не збирає та не зберігає жодної особистої інформації. Усі дані, які ви вводите, зберігаються лише на вашому телефоні.',
+      'Bebbo не збирає та не зберігає жодної особистої інформації. Усі дані, які ви вводите, зберігаються лише на вашому телефоні.',
     welcomeText: 'Ласкаво просимо!',
     letGetStartedText: 'ДАВАЙТЕ РОЗПОЧНЕМО!',
-    searchInREMOVED_FACEBOOK_APP_ID1Text: 'Search in REMOVED_FACEBOOK_APP_ID1',
+    searchInBebboText: 'Search in Bebbo',
     childProfileSkipText:
       'Якщо пропустити цей крок, буде створено профіль новонародженої дитини. Ви можете змінити його пізніше, щоб отримати персоналізований вміст.',
     serviceProviderHeaderInfoText:
-      'REMOVED_FACEBOOK_APP_ID1 готується підтримати вашу подорож у догляді за дитиною!',
+      'Bebbo готується підтримати вашу подорож у догляді за дитиною!',
     serviceProviderHeaderSubInfoText:
-      'Щоб почати, REMOVED_FACEBOOK_APP_ID1 створив профіль новонародженої дитини. Ви можете додати більше профілів пізніше.',
+      'Щоб почати, Bebbo створив профіль новонародженої дитини. Ви можете додати більше профілів пізніше.',
   },
 };
 export default uk;

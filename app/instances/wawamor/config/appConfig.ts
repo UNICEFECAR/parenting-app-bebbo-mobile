@@ -4,8 +4,8 @@ import RNFS from "react-native-fs";
 import { isPregnancy } from "../../../services/Utils";
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
-  buildForREMOVED_FACEBOOK_APP_ID1: "REMOVED_FACEBOOK_APP_ID1",
-  buildFor: "REMOVED_FACEBOOK_APP_ID1", // 'REMOVED_FACEBOOK_APP_ID1'
+  buildForBebbo: "wawamor",
+  buildFor: "wawamor", // 'wawamor'
   maxRelatedArticleSize: 3,
   isArticlePinned: "1",
   articleCategory: "4,1,55,56,3,2",
@@ -46,8 +46,8 @@ const config = {
   tempbackUpPath: `${RNFS.TemporaryDirectoryPath}mybackup.json`,
   firstPeriodicSyncDays: 7,
   secondPeriodicSyncDays: 30,
-  shareText: `\nhttps://REMOVED_FACEBOOK_APP_ID1.ec/share/`,
-  shareTextButton: "https://REMOVED_FACEBOOK_APP_ID1.ec/share/",
+  shareText: `\nhttps://wawamor.ec/share/`,
+  shareTextButton: "https://wawamor.ec/share/",
   maleData: {
     id: 6821,
     name: "Male",
@@ -191,7 +191,7 @@ const config = {
   ],
   reviewURL: Platform.select({
     android:
-      "https://play.google.com/store/apps/details?id=org.unicef.ec.REMOVED_FACEBOOK_APP_ID1",
+      "https://play.google.com/store/apps/details?id=org.unicef.ec.wawamor",
     ios: "itms-apps://itunes.apple.com/app/id6742478153?action=write-review",
   }),
   bothParentGender: 6831,
@@ -208,7 +208,7 @@ const config = {
   restOfTheWorldCountryId: 126,
   videoArticleMandatory: 0,
   maxArticleSize: 5,
-  flavorName: "REMOVED_FACEBOOK_APP_ID1",
+  flavorName: "wawamor",
   isCheckTokenize: true,
   stopWords: [
     "a",

@@ -20,7 +20,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Albanian"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Albania (Shqipëria)",
@@ -52,7 +52,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Bulgarian"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Bulgaria (България)",
@@ -84,7 +84,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Greek"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Greece (Ελλάδα)",
@@ -116,7 +116,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Kyrgyz"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Kyrgyzstan (Кыргызстан)",
@@ -156,7 +156,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Montenegrin"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Montenegro (Crna Gora)",
@@ -188,7 +188,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Macedonian"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "North Macedonia (Северна Македонија)",
@@ -228,7 +228,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Serbian"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Serbia (Srbija)",
@@ -268,7 +268,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Tajik"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Tajikistan (Тоҷикистон)",
@@ -308,7 +308,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Uzbek"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Uzbekistan (Oʻzbekiston)",
@@ -356,7 +356,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Uzbek"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Belarus (Беларусь)",
@@ -396,7 +396,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in English"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "displayName": "Rest of the world",
             "languages": [
                 {
@@ -437,7 +437,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Ukrainian"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Ukraine (Україна)",
@@ -469,7 +469,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Romanian"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Romania (România)",
@@ -501,7 +501,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Romanian"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Moldova (Moldova)",
@@ -533,7 +533,7 @@ export const countryData: any = {
                 "alt": "UNICEF logo in Slovak"
             },
             "content_toggle": "",
-            "app_name": "REMOVED_FACEBOOK_APP_ID1",
+            "app_name": "Bebbo",
             "languages": [
                 {
                     "name": "Slovakia (Slovensko)",
