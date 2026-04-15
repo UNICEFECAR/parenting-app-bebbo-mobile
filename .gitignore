@@ -103,3 +103,6 @@ data.realm.management/
 # BUCK
 buck-out/
 .buckd/
+
+#folder
+offlineImages/
