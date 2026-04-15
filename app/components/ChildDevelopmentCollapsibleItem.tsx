@@ -1,4 +1,3 @@
-import { appConfig } from "../instances";
 import { useNavigation } from "@react-navigation/native";
 import {
   Heading4,
@@ -11,7 +10,6 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  Image,
   Pressable,
   StyleSheet,
   View,
@@ -32,15 +30,13 @@ import { DividerDev } from "./shared/Divider";
 import { FDirRow, Flex5 } from "./shared/FlexBoxStyle";
 import Icon from "./shared/Icon";
 import VideoPlayer from "./VideoPlayer";
-import RNFS from "react-native-fs";
-import downloadImages from "../downloadImages/ImageStorage";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
 import {
   ChildEntity,
   ChildEntitySchema,
 } from "../database/schema/ChildDataSchema";
 import HTML from "react-native-render-html";
-import { addSpaceToHtml, removeParams } from "../services/Utils";
+import { addSpaceToHtml } from "../services/Utils";
 import {
   PopupCloseContainerCD,
   PopupCloseVideoCD,
@@ -51,6 +47,8 @@ import VectorImage from "react-native-vector-image";
 import useDigitConverter from "../customHooks/useDigitConvert";
 import { selectActiveChild, selectActiveChildUuid } from "../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import LoadableImage from "../services/LoadableImage";
+import FastImage from "react-native-fast-image";
 const styles = StyleSheet.create({
   alignItemsStart: { alignItems: "flex-start" },
   checkboxStyle: { borderWidth: 1 },
@@ -126,8 +124,6 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
   const { convertDigits } = useDigitConverter();
   const [selVideoArticleData, setselVideoArticleData] = useState<any>();
   const [selActivitiesData, setselActivitiesData] = useState<any>();
-  const [selVideoImage, setselVideoImage] = useState("");
-  const [selActivityImage, setselActivityImage] = useState("");
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   useEffect(() => {
@@ -137,8 +133,6 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
       setToggleCheckBox(false);
     }
     const fetchData = async (): Promise<any> => {
-      setselVideoImage("");
-      setselActivityImage("");
       const currVideoArtData = VideoArticlesData.filter(
         (x: any) => x.id == item?.related_video_articles[0]
       )[0];
@@ -146,53 +140,7 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
       const currActivityData = ActivitiesData.filter(
         (x: any) => x.id == item?.related_activities[0]
       )[0];
-      setselActivitiesData(currActivityData);
-      if (
-        currActivityData &&
-        currActivityData?.cover_image &&
-        currActivityData?.cover_image?.url != ""
-      ) {
-        const imageName = removeParams(
-          currActivityData?.cover_image?.url.split("/").pop()
-        );
-        const imageArray = [];
-        imageArray.push({
-          srcUrl: currActivityData?.cover_image?.url,
-          destFolder: RNFS.DocumentDirectoryPath + "/content",
-          destFilename: imageName,
-        });
-        await downloadImages(imageArray);
-        if (await RNFS.exists(appConfig.destinationFolder + "/" + imageName)) {
-          setselActivityImage(
-            encodeURI("file://" + appConfig.destinationFolder + imageName)
-          );
-        } else {
-          setselActivityImage("");
-        }
-      }
-      if (
-        currVideoArtData &&
-        currVideoArtData?.cover_image &&
-        currVideoArtData?.cover_image?.url != ""
-      ) {
-        const imageName = removeParams(
-          currVideoArtData?.cover_image?.url.split("/").pop()
-        );
-        const imageArray = [];
-        imageArray.push({
-          srcUrl: currVideoArtData?.cover_image?.url,
-          destFolder: RNFS.DocumentDirectoryPath + "/content",
-          destFilename: imageName,
-        });
-        await downloadImages(imageArray);
-        if (await RNFS.exists(appConfig.destinationFolder + "/" + imageName)) {
-          setselVideoImage(
-            encodeURI("file://" + appConfig.destinationFolder + imageName)
-          );
-        } else {
-          setselVideoImage("");
-        }
-      }
+      setselActivitiesData(currActivityData);      
     };
     fetchData();
   }, [item]);
@@ -286,14 +234,12 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                         style={styles.innerPressable}
                         onPress={(): any => openVideo()}
                       >
-                        <Image
-                          source={
-                            selVideoImage != ""
-                              ? { uri: selVideoImage }
-                              : require("@assets/trash/defaultArticleImage.png")
-                          }
+                        <LoadableImage
+                          item={selVideoArticleData}
+                          imageUrl={selVideoArticleData?.cover_image?.url}
                           style={styles.imageStyle}
-                          resizeMode={"cover"}
+                          resizeMode={FastImage.resizeMode.cover}
+                          toggleSwitchVal={false}
                         />
                         <VectorImage
                           style={styles.close}
@@ -351,14 +297,12 @@ const ChildDevelopmentCollapsibleItem = React.memo((props: any) => {
                         selActivitiesData?.cover_image &&
                         selActivitiesData?.cover_image?.url != "" ? (
                         <>
-                          <Image
-                            source={
-                              selActivityImage != ""
-                                ? { uri: selActivityImage }
-                                : require("@assets/trash/defaultArticleImage.png")
-                            }
+                          <LoadableImage
+                            item={selActivitiesData}
+                            imageUrl={selActivitiesData?.cover_image?.url}
                             style={styles.imageStyle}
-                            resizeMode={"cover"}
+                            resizeMode={FastImage.resizeMode.cover}
+                            toggleSwitchVal={false}
                           />
                         </>
                       ) : null}

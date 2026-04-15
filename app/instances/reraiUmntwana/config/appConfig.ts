@@ -2,11 +2,13 @@ import { Platform } from "react-native";
 import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from "react-native-fs";
 import { isPregnancy } from "../../../services/Utils";
+import { offlineImageMap } from "../assets/offlineImageMap";
 
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: "reraiUmntwana",
   buildFor: "reraiUmntwana", // 'reraiUmntwana'
+  offlineImageMap,
   maxRelatedArticleSize: 3,
   isArticlePinned: "1",
   articleCategory: "4,1,55,56,3,2", //not used
