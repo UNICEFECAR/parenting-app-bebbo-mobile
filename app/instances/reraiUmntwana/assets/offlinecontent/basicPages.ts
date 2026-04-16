@@ -1,5 +1,5 @@
 export const basicPagesData: any = {
-    "ZWen": [
+    "zw-en": [
         {
             "id": 31,
             "type": "Basic page",
@@ -47,10 +47,10 @@ export const basicPagesData: any = {
             "embedded_images": []
         }
     ],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 };

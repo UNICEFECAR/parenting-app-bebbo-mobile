@@ -1,5 +1,5 @@
 export const countryData: any = {
-  "ZWen": [
+  "en": [
     {
       "CountryID": "1",
       "name": "Zimbabwe",
@@ -32,11 +32,5 @@ export const countryData: any = {
         }
       ]
     }
-  ],
-  "ZWsn": [
-
-  ],
-  "ZWnd": [
-
-  ],
+  ]
 };

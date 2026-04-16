@@ -158,8 +158,6 @@ export default (): any => {
   ];
 
   useEffect(() => {
-    if (userIsFirstTime) return;
-    if (!languageCode || !netInfo.isConnected) return;
     const timeout = setTimeout(() => {
         dispatch(
           fetchAPI(
@@ -167,7 +165,7 @@ export default (): any => {
             "",
             dispatch,
             navigationRef.current,
-            languageCode,
+            languageCode || 'en',
             activeChild,
             apiJsonData,
             netInfo.isConnected
@@ -1079,7 +1077,7 @@ export default (): any => {
   };
   return (
     <SafeAreaProvider>
-      {apiData && (
+      {(
         <NavigationContainer
           ref={navigationRef}
           onReady={(): any => {

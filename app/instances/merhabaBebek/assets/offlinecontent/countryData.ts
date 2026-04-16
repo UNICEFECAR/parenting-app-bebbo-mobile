@@ -1,5 +1,5 @@
 export const countryData: any = {
-  "tr": [
+  "en": [
     {
       "CountryID": "1",
       "name": "Türkiye",
@@ -14,9 +14,13 @@ export const countryData: any = {
         "name": "",
         "alt": ""
       },
-      "unicef_logo": null,
-      "content_toggle": "",
-      "app_name": "Merhaba_Bebek",
+      "unicef_logo": {
+        "url": "https://merhababebek.app/sites/turkey/files/styles/content_1200xh_/public/2024-12/Turkish_white_vertical_RGB.webp?itok=F0efkTjo",
+        "name": "Turkish_white_vertical_RGB.png",
+        "alt": "UNICEF logo in Turkish "
+      },
+      "content_toggle": "Pregnancy",
+      "app_name": "merhababebek",
       "languages": [
         {
           "name": "Türkiye",
@@ -24,7 +28,7 @@ export const countryData: any = {
           "languageCode": "tr",
           "locale": "tr",
           "luxonLocale": "tr",
-          "pluralShow": false
+          "pluralShow": "true"
         }
       ]
     }

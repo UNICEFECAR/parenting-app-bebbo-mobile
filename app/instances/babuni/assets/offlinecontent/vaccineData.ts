@@ -8,8 +8,8 @@ export const vaccineData: any = {
             "growth_period": 16,
             "pinned_article": 226,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-06-30T22:42:11+05:30\" class=\"datetime\"\u003ESun, 06/30/2024 - 22:42\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-06-30T23:37:57+05:30\" class=\"datetime\"\u003ESun, 06/30/2024 - 23:37\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-06-30T19:12:11+02:00\" class=\"datetime\"\u003ESun, 06/30/2024 - 19:12\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-06-30T20:07:57+02:00\" class=\"datetime\"\u003ESun, 06/30/2024 - 20:07\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -20,8 +20,8 @@ export const vaccineData: any = {
             "growth_period": 36,
             "pinned_article": 101,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T17:01:14+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:01\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:31+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T13:31:14+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:31\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:31+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -32,8 +32,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 136,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -44,8 +44,8 @@ export const vaccineData: any = {
             "growth_period": 16,
             "pinned_article": 101,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -56,8 +56,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 171,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:31+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:31+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -68,8 +68,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 56,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -80,8 +80,8 @@ export const vaccineData: any = {
             "growth_period": 51,
             "pinned_article": 136,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -92,8 +92,8 @@ export const vaccineData: any = {
             "growth_period": 36,
             "pinned_article": 56,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -104,8 +104,8 @@ export const vaccineData: any = {
             "growth_period": 36,
             "pinned_article": 136,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-11-19T13:00:57+05:30\" class=\"datetime\"\u003ETue, 11/19/2024 - 13:00\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-19T08:30:57+01:00\" class=\"datetime\"\u003ETue, 11/19/2024 - 08:30\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -116,8 +116,8 @@ export const vaccineData: any = {
             "growth_period": 91,
             "pinned_article": 121,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:31+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:31+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -128,8 +128,8 @@ export const vaccineData: any = {
             "growth_period": 206,
             "pinned_article": 121,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:31+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:31+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -140,8 +140,8 @@ export const vaccineData: any = {
             "growth_period": 36,
             "pinned_article": 81,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -152,8 +152,8 @@ export const vaccineData: any = {
             "growth_period": 46,
             "pinned_article": 81,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -164,8 +164,8 @@ export const vaccineData: any = {
             "growth_period": 46,
             "pinned_article": 56,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:58+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:58+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -176,8 +176,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 101,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:57+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-11-19T13:00:44+05:30\" class=\"datetime\"\u003ETue, 11/19/2024 - 13:00\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:57+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-19T08:30:44+01:00\" class=\"datetime\"\u003ETue, 11/19/2024 - 08:30\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -188,8 +188,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 81,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:57+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:32+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:57+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:32+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -200,8 +200,8 @@ export const vaccineData: any = {
             "growth_period": 51,
             "pinned_article": 171,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:57+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:31+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:57+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:31+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -212,8 +212,8 @@ export const vaccineData: any = {
             "growth_period": 36,
             "pinned_article": 171,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2024-05-27T15:21:57+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 15:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2024-05-27T17:05:31+05:30\" class=\"datetime\"\u003EMon, 05/27/2024 - 17:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2024-05-27T11:51:57+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 11:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-05-27T13:35:31+02:00\" class=\"datetime\"\u003EMon, 05/27/2024 - 13:35\u003C/time\u003E\n",
             "old_calendar": 0
         }
     ]

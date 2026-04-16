@@ -1,5 +1,5 @@
 export const ActivitiesData: any = {
-    "ZWen": [
+    "zw-en": [
         {
             "id": 956,
             "type": "Games",
@@ -5487,10 +5487,10 @@ export const ActivitiesData: any = {
             "embedded_images": []
         }
     ],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 
