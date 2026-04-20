@@ -89,9 +89,8 @@ const DailyReads = (): any => {
   );
   let ArticlesData = articleData.filter(
     (x: any) =>
-      x.child_age.includes(activityTaxonomyId) && x.do_not_feature === 0
+      x.child_age.includes(activityTaxonomyId) && (x.do_not_feature === 0 || x.do_not_feature === "0")
   );
-
   const [dataToShowInList, setDataToShowInList] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
   const [activityDataToShowInList, setActivityDataToShowInList] = useState([]);

@@ -400,10 +400,14 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        await setUserProperties({
-          country: route.params?.country?.name,
-          language: newLanguage?.displayName,
-        });
+        try {
+          await setUserProperties({
+            country: route.params?.country?.name,
+            language: newLanguage?.displayName,
+          });
+        } catch (error) {
+          console.error('Error setting user properties:', error);
+        }
       } else {
         console.log("countyData is", countryData);
         console.log("newLanguage is", newLanguage);
@@ -425,10 +429,14 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        await setUserProperties({
-          country: countryData?.name,
-          language: newLanguage?.displayName,
-        });
+        try {
+          await setUserProperties({
+            country: countryData?.name,
+            language: newLanguage?.displayName,
+          });
+        } catch (error) {
+          console.error('Error setting user properties:', error);
+        }
       }
 
       // if (userIsOnboarded == true) {

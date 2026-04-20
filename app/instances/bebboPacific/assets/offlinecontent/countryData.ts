@@ -1,31 +1,27 @@
 export const countryData: any = {
-  "WSen": [
+  "en": [
     {
       "CountryID": "6",
       "name": "Fiji",
-      "country_email": "admin@bebbo.app",
+      "country_email": "admin@bebbopacific.app",
       "country_national_partner": {
-        "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-07/Coat%20of%20Arms.webp?itok=2ywONKod",
-        "name": "Coat of Arms.jpg",
-        "alt": "Fijian government coat of arms"
-      },
-      "country_sponsor_logo": {
         "url": "",
         "name": "",
         "alt": ""
       },
-      "unicef_logo": [],
-      "content_toggle": "",
+      "country_sponsor_logo": {
+        "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-12/FIJI%20government%20logo.webp?itok=x2MqeEhG",
+        "name": "FIJI government logo.png",
+        "alt": "FIJI government logo"
+      },
+      "unicef_logo": {
+        "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-11/Bebbo%20Pacific%20logo%20%28white%29.webp?itok=rQ5sA8eG",
+        "name": "Bebbo Pacific logo (white).png",
+        "alt": "Bebbo Pacific logo (white)"
+      },
+      "content_toggle": "Pregnancy",
       "app_name": "BebboPacific",
       "languages": [
-        {
-          "name": "Fiji",
-          "displayName": "Vosa Vakaviti (Fijian)",
-          "languageCode": "fj-fj",
-          "locale": "FJfj",
-          "luxonLocale": "fj-FJ",
-          "pluralShow": "false"
-        },
         {
           "name": "Fiji",
           "displayName": "English",
@@ -39,16 +35,16 @@ export const countryData: any = {
     {
       "CountryID": "1",
       "name": "Samoa",
-      "country_email": "admin@bebbo.app",
+      "country_email": "admin@bebbopacific.app",
       "country_national_partner": {
-        "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-07/coat-of-arms-of-samoa-logo-png_seeklogo-311632-removebg-preview.webp?itok=5sykndW5",
-        "name": "coat-of-arms-of-samoa-logo-png_seeklogo-311632-removebg-preview.png",
-        "alt": "Samoa government crest"
+        "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-12/fatu_nobg.webp?itok=QzO85Jc3",
+        "name": "fatu_nobg.png",
+        "alt": "FATU logo"
       },
       "country_sponsor_logo": {
-        "url": "",
-        "name": "",
-        "alt": ""
+        "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-12/SAMOA%20government%20logo_bg.webp?itok=6JpsWNwS",
+        "name": "SAMOA government logo_bg.png",
+        "alt": "Samoa government logo"
       },
       "unicef_logo": {
         "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2025-11/Bebbo%20Pacific%20logo%20%28white%29.webp?itok=rQ5sA8eG",
@@ -68,14 +64,5 @@ export const countryData: any = {
         }
       ]
     }
-  ],
-  "WSsm": [
-
-  ],
-  "FJen": [
-
-  ],
-  "FJfj": [
-
-  ],
+  ]
 };

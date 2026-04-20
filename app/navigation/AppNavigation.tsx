@@ -36,7 +36,7 @@ import LocalizationNavigation from "./LocalizationNavigation";
 import { RootStackParamList } from "./types";
 import { retryAlert1 } from "../services/commonApiService";
 import { setchatBotData } from "../redux/reducers/childSlice";
-import { appConfig } from "../instances";
+import { appConfig, countryData } from "../instances";
 import { oncountrtIdChange } from "../redux/reducers/localizationSlice";
 import { useDeepLinkURL } from "../services/DeepLinking";
 import { ThemeContext } from "styled-components";
@@ -1075,9 +1075,27 @@ export default (): any => {
       background: 'transparent',
     },
   };
+  const offlineCountryGroups: any[] =
+  Object.values(countryData || {}).find((val) => Array.isArray(val)) || [];
+  const hasSingleCountryLanguageOffline =
+    offlineCountryGroups.length === 1 &&
+    Array.isArray(offlineCountryGroups[0]?.languages) &&
+    offlineCountryGroups[0].languages.length === 1;
+
+  const hasSingleCountryLanguageOnline =
+    allCountries?.length === 1 &&
+    Array.isArray(allCountries[0]?.languages) &&
+    allCountries[0].languages.length === 1;
+  const startupHasSingleCountryLanguage = netInfo.isConnected
+    ? hasSingleCountryLanguageOnline
+    : hasSingleCountryLanguageOffline;
+
+  const shouldShowNavigator =
+    (netInfo.isConnected && apiData) ||
+    (!netInfo.isConnected && offlineCountryGroups.length > 0);
   return (
     <SafeAreaProvider>
-      {(
+      {shouldShowNavigator && (
         <NavigationContainer
           ref={navigationRef}
           onReady={(): any => {
@@ -1107,8 +1125,7 @@ export default (): any => {
               restartOnLangChange != "yes"
                 ? userIsOnboarded == true
                   ? "HomeDrawerNavigator"
-                  : allCountries?.length === 1 &&
-                    allCountries[0]?.languages?.length === 1
+                  : startupHasSingleCountryLanguage
                   ? "LoadingScreen"
                   : "Localization"
                 : AppLayoutDirectionScreen

@@ -242,20 +242,28 @@ const LanguageSelection = ({ route, navigation }: Props): any => {
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        await setUserProperties({
-          country: route.params?.country?.name,
-          language: language?.displayName,
-        });
+        try {
+          await setUserProperties({
+            country: route.params?.country?.name,
+            language: language?.displayName,
+          });
+        } catch (error) {
+          console.error('Error setting user properties:', error);
+        }
       } else {
         console.log(country, "countryData");
         dispatch(onLocalizationSelect(country));
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        await setUserProperties({
-          country: country?.displayName,
-          language: language?.displayName,
-        });
+        try {
+          await setUserProperties({
+            country: country?.displayName,
+            language: language?.displayName,
+          });
+        } catch (error) {
+          console.error('Error setting user properties:', error);
+        }
       }
 
       // if (userIsOnboarded == true) {
