@@ -1,5 +1,5 @@
 export const taxonomydata: any = {
-    "ZWen": [{
+    "zw-en": [{
         "langCode": "zw-en",
         "allData": {
             "activity_category": [
@@ -1119,10 +1119,10 @@ export const taxonomydata: any = {
             ]
         }
     }],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 };

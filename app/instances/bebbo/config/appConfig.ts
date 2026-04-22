@@ -3,10 +3,12 @@ import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from "react-native-fs";
 import { store } from "../../../../App";
 import { isPregnancy } from "../../../services/Utils";
+import { offlineImageMap } from "../assets/offlineImageMap";
 const config = {
   destinationFolder: `${RNFS.DocumentDirectoryPath}/content/`,
   buildForBebbo: "bebbo",
   buildFor: "bebbo",
+  offlineImageMap,
   maxRelatedArticleSize: 3,
   isArticlePinned: "1",
   articleCategory: "4,1,55,56,3,2",

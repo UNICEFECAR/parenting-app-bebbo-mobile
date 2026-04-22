@@ -1,5 +1,5 @@
 export const ChildDevelopmentData: any = {
-    "ZWen": [
+    "zw-en": [
         {
             "id": 6921,
             "type": "Child Development - Age Periods",
@@ -145,10 +145,10 @@ export const ChildDevelopmentData: any = {
             "mandatory": 1
         }
     ],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 };

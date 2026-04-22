@@ -1,11 +1,11 @@
 export const VideoArticleData: any = {
-    "ZWen": [
+    "zw-en": [
 
     ],
-    "ZWsn": [
+    "zw-sn": [
         
     ],
-    "ZWnd": [
+    "zw-nd": [
         
     ],
 };

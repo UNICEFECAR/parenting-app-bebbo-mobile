@@ -231,6 +231,14 @@ export const onCountryApiSuccess = async (
         prevPage
       );
     }
+    else {
+      const allDatatoStore = await getAllDataOnRetryToStore(
+        appConfig.apiConfig.countryGroups,
+        languageCode,
+        dispatch,
+        prevPage,
+      );
+    }
   }
 
   // navigation.navigate('Walkthrough');

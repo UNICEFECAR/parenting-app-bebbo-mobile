@@ -1,9 +1,9 @@
 export const countryData: any = {
-  "ZWen": [
+  "en": [
     {
       "CountryID": "1",
       "name": "Zimbabwe",
-      "country_email": "admin@bebbo.app",
+      "country_email": "reraiumntwana@gmail.com",
       "country_national_partner": {
         "url": "",
         "name": "",
@@ -19,7 +19,7 @@ export const countryData: any = {
         "name": "RU UNICEF & Ministry logo.png",
         "alt": "RU UNICEF & Ministry logo"
       },
-      "content_toggle": "Pregnancy",
+      "content_toggle": "",
       "app_name": "reraiumntwana",
       "languages": [
         {
@@ -29,14 +29,24 @@ export const countryData: any = {
           "locale": "ZWen",
           "luxonLocale": "en-ZW",
           "pluralShow": "true"
+        },
+        {
+          "name": "Zimbabwe",
+          "displayName": "Shona",
+          "languageCode": "zw-sn",
+          "locale": "ZWsn",
+          "luxonLocale": "sn-ZW",
+          "pluralShow": "false"
+        },
+        {
+          "name": "Zimbabwe",
+          "displayName": "Ndebele",
+          "languageCode": "zw-nd",
+          "locale": "ZWnd",
+          "luxonLocale": "nd-ZW",
+          "pluralShow": "false"
         }
       ]
     }
-  ],
-  "ZWsn": [
-
-  ],
-  "ZWnd": [
-
-  ],
+  ]
 };

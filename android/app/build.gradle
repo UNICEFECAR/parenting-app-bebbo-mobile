@@ -231,8 +231,8 @@ android {
         }
         bangla {
             applicationId 'org.unicef.bangladesh.babuni'
-            versionCode 11
-            versionName "1.0.3"
+            versionCode 12
+            versionName "1.0.4"
             signingConfig signingConfigs.bangla
         }
         merhababebek {

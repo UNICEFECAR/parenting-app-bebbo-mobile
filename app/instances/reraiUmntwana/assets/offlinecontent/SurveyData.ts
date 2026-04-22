@@ -1,11 +1,11 @@
 export const SurveyData: any = {
-    "ZWen": [
+    "zw-en": [
 
     ],
-    "ZWsn": [
+    "zw-sn": [
         
     ],
-    "ZWnd": [
+    "zw-nd": [
         
     ],
 };

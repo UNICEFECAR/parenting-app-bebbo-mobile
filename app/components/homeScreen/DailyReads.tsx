@@ -55,6 +55,73 @@ const styles = StyleSheet.create({
   alignItemsFlexEnd: { alignItems: "flex-end" },
   flexShrink1: { flexShrink: 1 },
 });
+const RenderDailyReadItem = React.memo(({ item,
+  index,
+  isAdvice,
+  isFavourite,
+  t,
+  goToArticleDetail,
+  toggleSwitchVal }: any) => {
+  return (
+    <View>
+      <Pressable
+        onPress={(): any => {
+          goToArticleDetail(item);
+        }}
+      >
+        <DailyBox>
+          <LoadableImage
+            style={styles.cardImage}
+            item={item}
+            toggleSwitchVal={toggleSwitchVal}
+            resizeMode={FastImage.resizeMode.cover}
+          ></LoadableImage>
+          <View>
+            <DailyArtTitle>
+              <HeadingHome3w numberOfLines={1}>{item?.title}</HeadingHome3w>
+            </DailyArtTitle>
+            <OverlayFaded>
+              <LinearGradient
+                colors={[
+                  "rgba(0,0,0,0.0)",
+                  "rgba(0,0,0,0.5)",
+                  "rgba(0,0,0,0.8)",
+                ]}
+                style={styles.linearGradient}
+              >
+                <Text></Text>
+              </LinearGradient>
+            </OverlayFaded>
+          </View>
+          {/* </ImageBackground> */}
+          {/*Tag*/}
+          <DailyTag>
+            <DailyTagText>
+              {item?.hasOwnProperty("activity_category")
+                ? t("homeScreentodaygame")
+                : t("homeScreentodayarticle")}
+            </DailyTagText>
+          </DailyTag>
+          {/*Parent Share , View Details*/}
+          <ShareFavButtons
+              backgroundColor={"#FFF"}
+              item={item}
+              isFavourite={isFavourite}
+              isAdvice={isAdvice}
+            />
+        </DailyBox>
+      </Pressable>
+    </View>
+  );
+},
+(prevProps, nextProps) => {
+  return (
+    prevProps.item?.id === nextProps.item?.id &&
+    prevProps.isAdvice === nextProps.isAdvice &&
+    prevProps.isFavourite === nextProps.isFavourite &&
+    prevProps.toggleSwitchVal === nextProps.toggleSwitchVal
+  );
+});
 const DailyReads = (): any => {
   const netInfo = useNetInfoHook();
   const { t } = useTranslation();
@@ -89,13 +156,12 @@ const DailyReads = (): any => {
   );
   let ArticlesData = articleData.filter(
     (x: any) =>
-      x.child_age.includes(activityTaxonomyId) && x.do_not_feature === 0
+      x.child_age.includes(activityTaxonomyId) && (x.do_not_feature === 0 || x.do_not_feature === "0")
   );
-
   const [dataToShowInList, setDataToShowInList] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
   const [activityDataToShowInList, setActivityDataToShowInList] = useState([]);
-  const goToArticleDetail = (item: any): any => {
+  const goToArticleDetail = useCallback((item: any): any => {
     console.log(
       Object.prototype.hasOwnProperty.call(item, "activity_category"),
       "..ds"
@@ -124,82 +190,20 @@ const DailyReads = (): any => {
       fromAdditionalScreen: "DailyScreen",
       netInfo: netInfo,
     });
-  };
+  }, [
+    navigation,
+    actHeaderColor,
+    actBackgroundColor,
+    artHeaderColor,
+    artBackgroundColor,
+    ActivitiesData,
+    netInfo,
+  ]);
   useEffect(() => {
     return () => setFetchAgain(false);
   }, []);
 
-  const RenderDailyReadItem = React.memo(({ item, index, isAdvice }: any) => {
-    return (
-      <View key={`${index}-index`}>
-        <Pressable
-          onPress={(): any => {
-            goToArticleDetail(item);
-          }}
-          key={index}
-        >
-          <DailyBox>
-            <LoadableImage
-              style={styles.cardImage}
-              item={item}
-              toggleSwitchVal={toggleSwitchVal}
-              resizeMode={FastImage.resizeMode.cover}
-            ></LoadableImage>
-            <View>
-              <DailyArtTitle>
-                <HeadingHome3w numberOfLines={1}>{item?.title}</HeadingHome3w>
-              </DailyArtTitle>
-              <OverlayFaded>
-                <LinearGradient
-                  colors={[
-                    "rgba(0,0,0,0.0)",
-                    "rgba(0,0,0,0.5)",
-                    "rgba(0,0,0,0.8)",
-                  ]}
-                  style={styles.linearGradient}
-                >
-                  <Text></Text>
-                </LinearGradient>
-              </OverlayFaded>
-            </View>
-            {/* </ImageBackground> */}
-            {/*Tag*/}
-            <DailyTag>
-              <DailyTagText>
-                {item?.hasOwnProperty("activity_category")
-                  ? t("homeScreentodaygame")
-                  : t("homeScreentodayarticle")}
-              </DailyTagText>
-            </DailyTag>
-            {/*Parent Share , View Details*/}
-            {isAdvice ? (
-              <ShareFavButtons
-                backgroundColor={"#FFF"}
-                item={item}
-                isFavourite={
-                  favoriteAdvices?.findIndex((x: any) => x == item?.id) > -1
-                    ? true
-                    : false
-                }
-                isAdvice={true}
-              />
-            ) : (
-              <ShareFavButtons
-                backgroundColor={"#FFF"}
-                item={item}
-                isFavourite={
-                  favoriteGames?.findIndex((x: any) => x == item?.id) > -1
-                    ? true
-                    : false
-                }
-                isAdvice={false}
-              />
-            )}
-          </DailyBox>
-        </Pressable>
-      </View>
-    );
-  });
+  
   useEffect(() => {
     let dailyDataCategory: any, showedDailyDataCategory: any;
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
@@ -503,15 +507,28 @@ const DailyReads = (): any => {
       setActivityDataToShowInList(activityDataList);
     }
   }, [activeChild?.uuid, activityTaxonomyId, fetchAgain]);
-  const keyExtractor = useCallback((item: any) => item?.id, []);
+  const keyExtractor = useCallback((item: any) => String(item?.id), []);
 
   const renderItem = useCallback(
     (item: any, index: any, isAdvice: boolean) => {
+      const isFavourite = isAdvice
+      ? favoriteAdvices?.some((x: any) => x == item?.id)
+      : favoriteGames?.some((x: any) => x == item?.id);
       return (
-        <RenderDailyReadItem item={item} index={index} isAdvice={isAdvice} />
+        <RenderDailyReadItem
+        item={item}
+        index={index}
+        isAdvice={isAdvice}
+        isFavourite={isFavourite}
+        t={t}
+        goToArticleDetail={goToArticleDetail}
+        toggleSwitchVal={toggleSwitchVal}
+      />
       );
     },
-    [favoriteAdvices, favoriteGames]
+    [favoriteAdvices, favoriteGames,t,
+      goToArticleDetail,
+      toggleSwitchVal,]
   );
   useEffect(() => {
     if (dataToShowInList?.length === 0 && !fetchAgain) {

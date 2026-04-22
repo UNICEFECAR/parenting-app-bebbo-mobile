@@ -1,81 +1,107 @@
-import React from 'react';
-import { StyleSheet, View, ActivityIndicator, Platform } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
-import { DefaultImage } from '@components/shared/Image';
-import FastImage from 'react-native-fast-image';
-import { useNetInfo } from '@react-native-community/netinfo';
-import { createImageProgress } from './ImageLoad';
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  ImageSourcePropType,
+} from "react-native";
+import FastImage from "react-native-fast-image";
+import { useNetInfo } from "@react-native-community/netinfo";
+import { DefaultImage } from "@components/shared/Image";
+import { createImageProgress } from "./ImageLoad";
+import { resolveImageSource } from "./imageResolver";
+
 const CustomImage = createImageProgress(FastImage);
+const FALLBACK_IMAGE = require("@assets/trash/defaultArticleImage.png");
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
-const LoadableImage = (props: any):any => {
-  const netInfo = useNetInfo();
-  const { style, item, toggleSwitchVal, resizeMode } = props;
-  useFocusEffect(
-    React.useCallback(() => {
-      async function fetchData():Promise<any> {
-        if (!toggleSwitchVal && netInfo.isConnected == true) {
-          if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-            if (item['cover_image'].url.split('https://')[1] || item['cover_image'].url.split('http://')[1]) {
-              FastImage.preload([{
-                uri: item['cover_image'].url
-              }])
-            }
-          }
-        }
-      }
-      fetchData()
 
-    }, [netInfo.isConnected])
-  );
+const LoadableImage = (props: any): any => {
+  const netInfo = useNetInfo();
+
+  const {
+    style,
+    item,
+    toggleSwitchVal,
+    resizeMode,
+    imageUrl,
+    defaultImage = FALLBACK_IMAGE,
+  } = props;
+
+  const [showFallback, setShowFallback] = useState(false);
+
+  const finalImageUrl =
+    imageUrl || item?.cover_image?.url || item?.coverImage || "";
+
+  const isOfflineMode =
+    toggleSwitchVal || netInfo.isConnected === false;
+
+  const resolved = useMemo(() => {
+    console.log("finalImageUrl--",finalImageUrl);
+    console.log("resolveImageSource output--",resolveImageSource({imageUrl: finalImageUrl,defaultImage,}))
+    return resolveImageSource({
+      imageUrl: finalImageUrl,
+      defaultImage,
+    });
+  }, [finalImageUrl, defaultImage]);
+
+  useEffect(() => {
+    setShowFallback(false);
+  }, [finalImageUrl, isOfflineMode]);
+
+  const fallbackSource: ImageSourcePropType =
+    resolved.bundledSource || resolved.defaultSource;
+
+  // No URL at all -> directly show bundled/default fallback
+  console.log(!resolved.onlineSource || !resolved.offlineCacheSource,"nourl",!resolved.onlineSource ,"||", !resolved.offlineCacheSource)
+  if (!resolved.onlineSource || !resolved.offlineCacheSource) {
+    return (
+      <DefaultImage
+        style={style}
+        source={fallbackSource}
+        resizeMode={resizeMode}
+      />
+    );
+  }
+
+  // If FastImage failed, show bundled image or default image
+  console.log("showFallback--",showFallback)
+  if (showFallback) {
+    return (
+      <DefaultImage
+        style={style}
+        source={fallbackSource}
+        resizeMode={resizeMode}
+      />
+    );
+  }
 
   return (
-    <>
-      <View style={styles.container}>
-
-        {
-          (item && item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) ?
-
-            (
-              <CustomImage
-                source={{
-                  uri: item['cover_image'].url,
-                  priority: FastImage.priority.high,
-                  cache: toggleSwitchVal || netInfo.isConnected == false ? FastImage.cacheControl.cacheOnly : FastImage.cacheControl.immutable
-                }}
-                style={style}
-                resizeMode={resizeMode}
-                indicator={():any => <ActivityIndicator
-                  size="large" color="#000"
-                />}
-                renderError={(error: any):any => {
-                  console.log("rendererror", error);
-                  if (Platform.OS == "android") {
-                    return (<DefaultImage
-                      style={style}
-                      source={require('@assets/trash/defaultArticleImage.png')} />);
-                  }
-                  else {
-                    if (netInfo.isConnected == true) {
-                      return (<DefaultImage
-                        style={style}
-                        source={require('@assets/trash/defaultArticleImage.png')} />);
-                    }
-                  }
-                }
-                }
-              />
-            )
-            :
-            <DefaultImage
-              style={style}
-              source={require('@assets/trash/defaultArticleImage.png')} />
-        }
-      </View>
-    </>
+    <CustomImage
+      source={isOfflineMode ? resolved.offlineCacheSource : resolved.onlineSource}
+      style={style}
+      resizeMode={resizeMode || FastImage.resizeMode.cover}
+      indicator={(): any => (
+        <ActivityIndicator size="large" color="#000" />
+      )}
+      onError={() => {
+        setShowFallback(true);
+      }}
+      renderError={(): any => (
+        <DefaultImage
+          style={style}
+          source={fallbackSource}
+          resizeMode={resizeMode}
+        />
+      )}
+    />
   );
-}
+};
+
 export default React.memo(LoadableImage);

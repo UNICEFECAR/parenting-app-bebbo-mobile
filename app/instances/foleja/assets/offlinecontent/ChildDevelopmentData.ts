@@ -1,341 +1,293 @@
-export const ChildDevelopmentData:any = {
-    "xk-sq":  [
+export const ChildDevelopmentData: any = {
+    "xk-sq": [
         {
             "id": 12001,
             "type": "Child Development - Age Periods",
             "title": "Njohja e njëri-tjetrit",
-            "child_age": [
-                43
-            ],
+            "child_age": [43],
             "boy_video_article": 7886,
             "girl_video_article": 7891,
-            "milestone": "<p>Vëzhgoni sjelljen e foshnjës tuaj dhe bisedoni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të parë fëmija juaj: </p>\n\n<ul><li>po qan shumë dhe ju nuk jeni në gjendje ta ngushëlloni foshnjën tuaj</li>\n\t<li>thith dobët dhe ushqehet shumë ngadalë</li>\n\t<li>fle më shumë sesa pritej (më shumë se 16 orë në ditë), ose nuk fle i qetë</li>\n\t<li>nuk lëviz aspak krahët ose këmbët e tij/saj</li>\n\t<li>nuk reagon kur ndodh një zhurmë e fortë</li>\n\t<li>nuk mbyll sytë kur sheh drita të ndritshme.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:47",
+            "milestone": "\u003Cp\u003EVëzhgoni sjelljen e foshnjës tuaj dhe bisedoni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të parë fëmija juaj: \u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Epo qan shumë dhe ju nuk jeni në gjendje ta ngushëlloni foshnjën tuaj\u003C/li\u003E\n\t\u003Cli\u003Ethith dobët dhe ushqehet shumë ngadalë\u003C/li\u003E\n\t\u003Cli\u003Efle më shumë sesa pritej (më shumë se 16 orë në ditë), ose nuk fle i qetë\u003C/li\u003E\n\t\u003Cli\u003Enuk lëviz aspak krahët ose këmbët e tij/saj\u003C/li\u003E\n\t\u003Cli\u003Enuk reagon kur ndodh një zhurmë e fortë\u003C/li\u003E\n\t\u003Cli\u003Enuk mbyll sytë kur sheh drita të ndritshme.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:47:59+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:47\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12002,
             "type": "Child Development - Age Periods",
             "title": "Rregullimet e ndërsjella dhe vendosja e rutinave",
-            "child_age": [
-                44
-            ],
+            "child_age": [44],
             "boy_video_article": 7901,
             "girl_video_article": 7896,
-            "milestone": "<p>Vëzhgoni sjelljen e foshnjës tuaj dhe flisni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të dytë fëmija juaj:</p>\n\n<ul><li>shpesh qan shumë, dhe zakonisht nuk jeni në gjendje ta qetësoni fëmijën</li>\n\t<li> nuk po shikon fytyra as edhe për një kohë të shkurtër</li>\n\t<li> nuk po i përgjigjet dritës së ndritshme ose tingujve të fortë</li>\n\t<li> nuk ushqehet apo fle mirë (ose fle më shumë se 16 orë në ditë)</li>\n\t<li> nuk po lëviz aspak krahët ose këmbët e tij/saj</li>\n\t<li> nuk po sjell duart e tij/saj tek goja </li>\n\t<li> nuk po u buzëqesh njerëzve.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:05",
+            "milestone": "\u003Cp\u003EVëzhgoni sjelljen e foshnjës tuaj dhe flisni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të dytë fëmija juaj:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eshpesh qan shumë, dhe zakonisht nuk jeni në gjendje ta qetësoni fëmijën\u003C/li\u003E\n\t\u003Cli\u003E nuk po shikon fytyra as edhe për një kohë të shkurtër\u003C/li\u003E\n\t\u003Cli\u003E nuk po i përgjigjet dritës së ndritshme ose tingujve të fortë\u003C/li\u003E\n\t\u003Cli\u003E nuk ushqehet apo fle mirë (ose fle më shumë se 16 orë në ditë)\u003C/li\u003E\n\t\u003Cli\u003E nuk po lëviz aspak krahët ose këmbët e tij/saj\u003C/li\u003E\n\t\u003Cli\u003E nuk po sjell duart e tij/saj tek goja \u003C/li\u003E\n\t\u003Cli\u003E nuk po u buzëqesh njerëzve.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:05:48+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:05\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12003,
             "type": "Child Development - Age Periods",
             "title": "Eksperiencat e ndryshme",
-            "child_age": [
-                45
-            ],
+            "child_age": [45],
             "boy_video_article": 7911,
             "girl_video_article": 7906,
-            "milestone": "<p>Vëzhgoni sjelljen e foshnjës tuaj dhe bisedoni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të katërt fëmija juaj: </p>\n\n<ul><li>shpesh qan shumë dhe nuk mund të ngushëllohet</li>\n\t<li>nuk po bën kontakte me sy apo nuk i kushton vëmendje fytyrave të njerëzve</li>\n\t<li>nuk i shikon gjërat ndërsa lëvizin</li>\n\t<li>nuk po bën asnjë tingull ose nuk po i përgjigjet tingujve</li>\n\t<li>nuk mund ta mbajë kokën pa lëvizur</li>\n\t<li>nuk po kërkon një lodër ose objekt që është përpara saj/tij</li>\n\t<li>nuk sjell gjëra në gojën e saj/tij.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:52",
+            "milestone": "\u003Cp\u003EVëzhgoni sjelljen e foshnjës tuaj dhe bisedoni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të katërt fëmija juaj: \u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eshpesh qan shumë dhe nuk mund të ngushëllohet\u003C/li\u003E\n\t\u003Cli\u003Enuk po bën kontakte me sy apo nuk i kushton vëmendje fytyrave të njerëzve\u003C/li\u003E\n\t\u003Cli\u003Enuk i shikon gjërat ndërsa lëvizin\u003C/li\u003E\n\t\u003Cli\u003Enuk po bën asnjë tingull ose nuk po i përgjigjet tingujve\u003C/li\u003E\n\t\u003Cli\u003Enuk mund ta mbajë kokën pa lëvizur\u003C/li\u003E\n\t\u003Cli\u003Enuk po kërkon një lodër ose objekt që është përpara saj/tij\u003C/li\u003E\n\t\u003Cli\u003Enuk sjell gjëra në gojën e saj/tij.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:52:42+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:52\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12004,
             "type": "Child Development - Age Periods",
             "title": "Eksplorimi intensiv",
-            "child_age": [
-                46
-            ],
+            "child_age": [46],
             "boy_video_article": 7921,
             "girl_video_article": 7916,
-            "milestone": "<p>Vëzhgoni sjelljen e foshnjës suaj dhe flisni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të gjashtë fëmija juaj: </p>\n\n<ul><li>rregullisht qan për një kohë të gjatë dhe nuk mund të ngushëllohet</li>\n\t<li>nuk po bën kontakte me sy ose nuk po ndjek objektet në lëvizje me sytë e saj/tij</li>\n\t<li>nuk po dërdëllit ose po kthehet drejt burimit të një tingulli</li>\n\t<li>nuk është duke qeshur ose duke bërë tinguj britme</li>\n\t<li>nuk po rrotullohet</li>\n\t<li>nuk ka kontroll mbi qafën dhe kokën e saj/tij</li>\n\t<li>nuk mund të ulet as me ndihmën dhe mbështetjen tuaj</li>\n\t<li>nuk po kërkon aspak objekte edhe kur e inkurajoni atë ta bëjë këtë</li>\n\t<li>nuk përpiqet të marrë gjëra që janë brenda mundësive</li>\n\t<li>ka vështirësi për të sjellë gjerat në gojën e saj/tij.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:52",
+            "milestone": "\u003Cp\u003EVëzhgoni sjelljen e foshnjës suaj dhe flisni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të gjashtë fëmija juaj: \u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Erregullisht qan për një kohë të gjatë dhe nuk mund të ngushëllohet\u003C/li\u003E\n\t\u003Cli\u003Enuk po bën kontakte me sy ose nuk po ndjek objektet në lëvizje me sytë e saj/tij\u003C/li\u003E\n\t\u003Cli\u003Enuk po dërdëllit ose po kthehet drejt burimit të një tingulli\u003C/li\u003E\n\t\u003Cli\u003Enuk është duke qeshur ose duke bërë tinguj britme\u003C/li\u003E\n\t\u003Cli\u003Enuk po rrotullohet\u003C/li\u003E\n\t\u003Cli\u003Enuk ka kontroll mbi qafën dhe kokën e saj/tij\u003C/li\u003E\n\t\u003Cli\u003Enuk mund të ulet as me ndihmën dhe mbështetjen tuaj\u003C/li\u003E\n\t\u003Cli\u003Enuk po kërkon aspak objekte edhe kur e inkurajoni atë ta bëjë këtë\u003C/li\u003E\n\t\u003Cli\u003Enuk përpiqet të marrë gjëra që janë brenda mundësive\u003C/li\u003E\n\t\u003Cli\u003Eka vështirësi për të sjellë gjerat në gojën e saj/tij.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:52:55+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:52\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12005,
             "type": "Child Development - Age Periods",
             "title": "Zbulimet e reja",
-            "child_age": [
-                47
-            ],
+            "child_age": [47],
             "boy_video_article": 7931,
             "girl_video_article": 7926,
-            "milestone": "<p>Vëzhgoni sjelljen e foshnjës tuaj dhe bisedoni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të nëntë foshnja juaj: </p>\n\n<ul><li>nuk po bën kontakte me sy ose nuk po ndjek objektet në lëvizje me sytë e saj/tij</li>\n\t<li>Nuk po dërdëllit (\"mami\", \"babi\", etj.)</li>\n\t<li>Nuk po e kthen kokën drejt një burimi zanor</li>\n\t<li>nuk shikon atje ku tregoni me gisht</li>\n\t<li>nuk tregon dashuri për kujdestarët e tij/saj - nuk u buzëqesh atyre</li>\n\t<li>nuk i përgjigjet emrit të saj/tij</li>\n\t<li>nuk duket se njeh njerëz të njohur</li>\n\t<li>nuk po rrotullohet</li>\n\t<li>kur e merrni ne krahë, është ose shumë i çlirët ose shumë i ngurtë</li>\n\t<li>nuk mund të ulet as me ndihmën dhe mbështetjen tuaj</li>\n\t<li>ka vështirësi në të ngrënit e ushqimit të fortë.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:06",
+            "milestone": "\u003Cp\u003EVëzhgoni sjelljen e foshnjës tuaj dhe bisedoni me pediatrin tuaj ose infermieren vizituese nëse vëreni se në fund të muajit të nëntë foshnja juaj: \u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Enuk po bën kontakte me sy ose nuk po ndjek objektet në lëvizje me sytë e saj/tij\u003C/li\u003E\n\t\u003Cli\u003ENuk po dërdëllit (\"mami\", \"babi\", etj.)\u003C/li\u003E\n\t\u003Cli\u003ENuk po e kthen kokën drejt një burimi zanor\u003C/li\u003E\n\t\u003Cli\u003Enuk shikon atje ku tregoni me gisht\u003C/li\u003E\n\t\u003Cli\u003Enuk tregon dashuri për kujdestarët e tij/saj - nuk u buzëqesh atyre\u003C/li\u003E\n\t\u003Cli\u003Enuk i përgjigjet emrit të saj/tij\u003C/li\u003E\n\t\u003Cli\u003Enuk duket se njeh njerëz të njohur\u003C/li\u003E\n\t\u003Cli\u003Enuk po rrotullohet\u003C/li\u003E\n\t\u003Cli\u003Ekur e merrni ne krahë, është ose shumë i çlirët ose shumë i ngurtë\u003C/li\u003E\n\t\u003Cli\u003Enuk mund të ulet as me ndihmën dhe mbështetjen tuaj\u003C/li\u003E\n\t\u003Cli\u003Eka vështirësi në të ngrënit e ushqimit të fortë.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:06:01+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:06\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12006,
             "type": "Child Development - Age Periods",
             "title": "Vendosja e zakoneve dhe qëndrueshmëria",
-            "child_age": [
-                48
-            ],
+            "child_age": [48],
             "boy_video_article": 7941,
             "girl_video_article": 7936,
-            "milestone": "<p>Vëzhgoni sjelljen e fëmijës suaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të parë të jetës fëmija juaj:</p>\n\n<ul><li>nuk po bën kontakte me sy ose nuk po ndjek objektet në lëvizje me sytë e saj/tij</li>\n\t<li>nuk interesohet për tinguj</li>\n\t<li>nuk i përgjigjet emrit të tij/saj kur e thirrni</li>\n\t<li>nuk po dërdëllit</li>\n\t<li>nuk po përpiqet t'ju njoftojë në asnjë mënyrë se cilat janë dëshirat ose nevojat e tij/saj</li>\n\t<li>nuk po tregon objektet me gisht</li>\n\t<li>nuk po tregon emocione</li>\n\t<li>nuk po zvarritet</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:06",
+            "milestone": "\u003Cp\u003EVëzhgoni sjelljen e fëmijës suaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të parë të jetës fëmija juaj:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Enuk po bën kontakte me sy ose nuk po ndjek objektet në lëvizje me sytë e saj/tij\u003C/li\u003E\n\t\u003Cli\u003Enuk interesohet për tinguj\u003C/li\u003E\n\t\u003Cli\u003Enuk i përgjigjet emrit të tij/saj kur e thirrni\u003C/li\u003E\n\t\u003Cli\u003Enuk po dërdëllit\u003C/li\u003E\n\t\u003Cli\u003Enuk po përpiqet t'ju njoftojë në asnjë mënyrë se cilat janë dëshirat ose nevojat e tij/saj\u003C/li\u003E\n\t\u003Cli\u003Enuk po tregon objektet me gisht\u003C/li\u003E\n\t\u003Cli\u003Enuk po tregon emocione\u003C/li\u003E\n\t\u003Cli\u003Enuk po zvarritet\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:06:14+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:06\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12007,
             "type": "Child Development - Age Periods",
             "title": "Hapi i parë dhe fjala e parë",
-            "child_age": [
-                49
-            ],
+            "child_age": [49],
             "boy_video_article": 7951,
             "girl_video_article": 7946,
-            "milestone": "<p>Shikoni sjelljen e fëmijës tuaj dhe flisni me pediatrin tuaj nëse vini re se fëmija juaj:</p>\n\n<ul><li>ka vështirësi të shohë ose të dëgjojë disa gjëra</li>\n\t<li>nuk thotë asnjë fjalë të vetme</li>\n\t<li>e ka të vështirë të ndjekë edhe udhëzime të drejtpërdrejta</li>\n\t<li>nuk përdor gjeste dhe nuk tregon me gisht gjatë komunikimit</li>\n\t<li>nuk bën kontakt me sy dhe nuk është i afrueshëm</li>\n\t<li>nuk ecën në mënyrë të pavarur.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:06",
+            "milestone": "\u003Cp\u003EShikoni sjelljen e fëmijës tuaj dhe flisni me pediatrin tuaj nëse vini re se fëmija juaj:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Eka vështirësi të shohë ose të dëgjojë disa gjëra\u003C/li\u003E\n\t\u003Cli\u003Enuk thotë asnjë fjalë të vetme\u003C/li\u003E\n\t\u003Cli\u003Ee ka të vështirë të ndjekë edhe udhëzime të drejtpërdrejta\u003C/li\u003E\n\t\u003Cli\u003Enuk përdor gjeste dhe nuk tregon me gisht gjatë komunikimit\u003C/li\u003E\n\t\u003Cli\u003Enuk bën kontakt me sy dhe nuk është i afrueshëm\u003C/li\u003E\n\t\u003Cli\u003Enuk ecën në mënyrë të pavarur.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:06:27+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:06\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12008,
             "type": "Child Development - Age Periods",
             "title": "Pavarësimi",
-            "child_age": [
-                50
-            ],
+            "child_age": [50],
             "boy_video_article": 7961,
             "girl_video_article": 7956,
-            "milestone": "<p>Ndiqni sjelljen e fëmijës suaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të dytë fëmija juaj:</p>\n\n<ul><li>Nuk ju shikon (kontakt me sy)</li>\n\t<li>ka vështirësi për të parë ose dëgjuar disa gjëra</li>\n\t<li>nuk thotë asnjë fjalë të vetme</li>\n\t<li>nuk tregon objektet me gisht</li>\n\t<li>nuk ndjek udhëzime të thjeshta</li>\n\t<li>nuk tregon ndjenja</li>\n\t<li>nuk po ecën në mënyrë të qëndrueshme</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:06",
+            "milestone": "\u003Cp\u003ENdiqni sjelljen e fëmijës suaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të dytë fëmija juaj:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENuk ju shikon (kontakt me sy)\u003C/li\u003E\n\t\u003Cli\u003Eka vështirësi për të parë ose dëgjuar disa gjëra\u003C/li\u003E\n\t\u003Cli\u003Enuk thotë asnjë fjalë të vetme\u003C/li\u003E\n\t\u003Cli\u003Enuk tregon objektet me gisht\u003C/li\u003E\n\t\u003Cli\u003Enuk ndjek udhëzime të thjeshta\u003C/li\u003E\n\t\u003Cli\u003Enuk tregon ndjenja\u003C/li\u003E\n\t\u003Cli\u003Enuk po ecën në mënyrë të qëndrueshme\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:06:41+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:06\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12009,
             "type": "Child Development - Age Periods",
             "title": "Imagjinata fillon të lulëzojë",
-            "child_age": [
-                51
-            ],
+            "child_age": [51],
             "boy_video_article": 7881,
             "girl_video_article": 7966,
-            "milestone": "<p>Ndiqni sjelljen e fëmijës tuaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të tretë të jetës fëmija juaj:</p>\n\n<ul><li>Nuk ju shikon (kontakt me sy)</li>\n\t<li>ka vështirësi të dëgjojë ose të shohë disa gjëra</li>\n\t<li>nuk flet me fjali të shkurtra (të paktën 3 fjalë së bashku)</li>\n\t<li>ka të folur shumë të paqartë</li>\n\t<li>nuk ndjek udhëzime të thjeshta</li>\n\t<li>nuk dëshiron të luajë me fëmijë të tjerë ose me lodra dhe sende të tjera</li>\n\t<li>nuk shtiret gjatë lojës</li>\n\t<li>nuk mund të vrapojë</li>\n\t<li>nuk shkarravit apo vizaton</li>\n\t<li>nuk mund të mbajë sende të vogla në dorën e saj/tij.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:06",
+            "milestone": "\u003Cp\u003ENdiqni sjelljen e fëmijës tuaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të tretë të jetës fëmija juaj:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENuk ju shikon (kontakt me sy)\u003C/li\u003E\n\t\u003Cli\u003Eka vështirësi të dëgjojë ose të shohë disa gjëra\u003C/li\u003E\n\t\u003Cli\u003Enuk flet me fjali të shkurtra (të paktën 3 fjalë së bashku)\u003C/li\u003E\n\t\u003Cli\u003Eka të folur shumë të paqartë\u003C/li\u003E\n\t\u003Cli\u003Enuk ndjek udhëzime të thjeshta\u003C/li\u003E\n\t\u003Cli\u003Enuk dëshiron të luajë me fëmijë të tjerë ose me lodra dhe sende të tjera\u003C/li\u003E\n\t\u003Cli\u003Enuk shtiret gjatë lojës\u003C/li\u003E\n\t\u003Cli\u003Enuk mund të vrapojë\u003C/li\u003E\n\t\u003Cli\u003Enuk shkarravit apo vizaton\u003C/li\u003E\n\t\u003Cli\u003Enuk mund të mbajë sende të vogla në dorën e saj/tij.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:06:54+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:06\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12010,
             "type": "Child Development - Age Periods",
             "title": "Parashtrimi i pyetjeve",
-            "child_age": [
-                52
-            ],
+            "child_age": [52],
             "boy_video_article": 7976,
             "girl_video_article": 7971,
-            "milestone": "<p>Ndiqni sjelljen e fëmijës tuaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të katërt të jetës fëmija juaj:</p>\n\n<ul><li>Nuk tregon interes për të luajtur lojëra me të tjerët ose për të luajtur lojëra të shtirjes</li>\n\t<li>Injoron fëmijët e tjerë ose nuk u përgjigjet njerëzve jashtë familjes</li>\n\t<li>Nuk mund të kërcej në vend</li>\n\t<li>Ka vështirësi në shkarravitje (bërjen e shenjave në letër)</li>\n\t<li>Nuk ndjek një udhëzim që ka tre pjesë</li>\n\t<li>Nuk mund të tregojë një tregim të preferuar</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:07",
+            "milestone": "\u003Cp\u003ENdiqni sjelljen e fëmijës tuaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të katërt të jetës fëmija juaj:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENuk tregon interes për të luajtur lojëra me të tjerët ose për të luajtur lojëra të shtirjes\u003C/li\u003E\n\t\u003Cli\u003EInjoron fëmijët e tjerë ose nuk u përgjigjet njerëzve jashtë familjes\u003C/li\u003E\n\t\u003Cli\u003ENuk mund të kërcej në vend\u003C/li\u003E\n\t\u003Cli\u003EKa vështirësi në shkarravitje (bërjen e shenjave në letër)\u003C/li\u003E\n\t\u003Cli\u003ENuk ndjek një udhëzim që ka tre pjesë\u003C/li\u003E\n\t\u003Cli\u003ENuk mund të tregojë një tregim të preferuar\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:07:07+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:07\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12011,
             "type": "Child Development - Age Periods",
             "title": "Gëzimi i të shoqëruarit",
-            "child_age": [
-                57
-            ],
+            "child_age": [57],
             "boy_video_article": 7996,
             "girl_video_article": 7991,
-            "milestone": "<p>Ndiqni sjelljen e fëmijës suaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të pestë të jetës fëmija juaj:</p>\n\n<ul><li>Nuk mund të ecë, të vrapojë, të ngjitet, të kërcejë ose të përdorë shkallët me besim</li>\n\t<li>Nuk mund t'i përgjigjet pyetjeve të thjeshta (Si e keni emrin? Kush është familja juaj? Cili është tregimi juaj i preferuar?)</li>\n\t<li>Nuk mund të ndjekë një drejtim me dy pjesë (Të vendosë një filxhan në tryezë! Ose të marrë topin poshtë shtratit!)</li>\n\t<li>Nuk mund të kryejë rutinat e përditshme të tilla si ngrënia ose veshja</li>\n\t<li>Duket se e ka të vështirë të mbajë një laps</li>\n\t<li>Tregon sjellje ekstreme (të tilla si jashtëzakonisht të frikshme, ose agresive, ose të trishtuara)</li>\n\t<li>Nuk flet për aktivitetet e përditshme</li>\n\t<li>Nuk tregon interes për të bashkëvepruar me të rriturit ose fëmijët</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:07",
+            "milestone": "\u003Cp\u003ENdiqni sjelljen e fëmijës suaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të pestë të jetës fëmija juaj:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENuk mund të ecë, të vrapojë, të ngjitet, të kërcejë ose të përdorë shkallët me besim\u003C/li\u003E\n\t\u003Cli\u003ENuk mund t'i përgjigjet pyetjeve të thjeshta (Si e keni emrin? Kush është familja juaj? Cili është tregimi juaj i preferuar?)\u003C/li\u003E\n\t\u003Cli\u003ENuk mund të ndjekë një drejtim me dy pjesë (Të vendosë një filxhan në tryezë! Ose të marrë topin poshtë shtratit!)\u003C/li\u003E\n\t\u003Cli\u003ENuk mund të kryejë rutinat e përditshme të tilla si ngrënia ose veshja\u003C/li\u003E\n\t\u003Cli\u003EDuket se e ka të vështirë të mbajë një laps\u003C/li\u003E\n\t\u003Cli\u003ETregon sjellje ekstreme (të tilla si jashtëzakonisht të frikshme, ose agresive, ose të trishtuara)\u003C/li\u003E\n\t\u003Cli\u003ENuk flet për aktivitetet e përditshme\u003C/li\u003E\n\t\u003Cli\u003ENuk tregon interes për të bashkëvepruar me të rriturit ose fëmijët\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:07:20+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:07\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12012,
             "type": "Child Development - Age Periods",
             "title": "Gatishmëria për mjedise të reja",
-            "child_age": [
-                58
-            ],
+            "child_age": [58],
             "boy_video_article": 7986,
             "girl_video_article": 7981,
-            "milestone": "<p>Ndiqni sjelljen e fëmijës tuaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të gjashtë të jetës fëmija juaj:</p>\n\n<ul><li>Ka një hapësirë vëmendje shumë të shkurtër</li>\n\t<li>Nuk interesohet aspak për shkronjat, numrat, leximin ose shkrimin</li>\n\t<li>Duket se nuk dëgjon mirë</li>\n\t<li>Nuk flet qartë me fjali me 5 ose më shumë fjalë</li>\n\t<li>Nuk tregon histori më të gjata duke përdorur fjali të plota</li>\n\t<li>Nuk vishet dhe nuk përdor tualetin pa ndihmë</li>\n\t<li>Nuk mund të marr pjesë në biseda</li>\n\t<li>Nuk mund të luajë në më shumë se një mënyrë</li>\n\t<li>Nuk mund të tregojë emrin e tij/saj dhe adresën</li>\n\t<li>Nuk mund të qëndroj ose të kërcej në një këmbë</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 12:07",
+            "milestone": "\u003Cp\u003ENdiqni sjelljen e fëmijës tuaj dhe flisni me pediatrin tuaj nëse vëreni se në fund të vitit të gjashtë të jetës fëmija juaj:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EKa një hapësirë vëmendje shumë të shkurtër\u003C/li\u003E\n\t\u003Cli\u003ENuk interesohet aspak për shkronjat, numrat, leximin ose shkrimin\u003C/li\u003E\n\t\u003Cli\u003EDuket se nuk dëgjon mirë\u003C/li\u003E\n\t\u003Cli\u003ENuk flet qartë me fjali me 5 ose më shumë fjalë\u003C/li\u003E\n\t\u003Cli\u003ENuk tregon histori më të gjata duke përdorur fjali të plota\u003C/li\u003E\n\t\u003Cli\u003ENuk vishet dhe nuk përdor tualetin pa ndihmë\u003C/li\u003E\n\t\u003Cli\u003ENuk mund të marr pjesë në biseda\u003C/li\u003E\n\t\u003Cli\u003ENuk mund të luajë në më shumë se një mënyrë\u003C/li\u003E\n\t\u003Cli\u003ENuk mund të tregojë emrin e tij/saj dhe adresën\u003C/li\u003E\n\t\u003Cli\u003ENuk mund të qëndroj ose të kërcej në një këmbë\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:47+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T12:07:34+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 12:07\u003C/time\u003E\n",
             "mandatory": 1
         }
     ],
-    "xk-rs":  [
+    "xk-rs": [
         {
             "id": 12001,
             "type": "Child Development - Age Periods",
             "title": "Upoznavanje",
-            "child_age": [
-                43
-            ],
+            "child_age": [43],
             "boy_video_article": 7886,
             "girl_video_article": 7891,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: </p>\n\n<ul><li>Vaša beba puno plače, a vi niste u mogućnosti da je utešite</li>\n\t<li>Loše sisa i hrani se vrlo sporo</li>\n\t<li>Spava više nego što se očekuje (više od 16 sati dnevno), ili ne spava mirno</li>\n\t<li>Uopšte ne pomera ruke ni noge</li>\n\t<li>Ne trgne se kad začuje jake zvuke ili buku</li>\n\t<li>Ne trepće pri jakim svetlosnim izvorima.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 18:02",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: \u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EVaša beba puno plače, a vi niste u mogućnosti da je utešite\u003C/li\u003E\n\t\u003Cli\u003ELoše sisa i hrani se vrlo sporo\u003C/li\u003E\n\t\u003Cli\u003ESpava više nego što se očekuje (više od 16 sati dnevno), ili ne spava mirno\u003C/li\u003E\n\t\u003Cli\u003EUopšte ne pomera ruke ni noge\u003C/li\u003E\n\t\u003Cli\u003ENe trgne se kad začuje jake zvuke ili buku\u003C/li\u003E\n\t\u003Cli\u003ENe trepće pri jakim svetlosnim izvorima.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T18:02:26+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 18:02\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12002,
             "type": "Child Development - Age Periods",
             "title": "Usklađivanje i prve rutine",
-            "child_age": [
-                44
-            ],
+            "child_age": [44],
             "boy_video_article": 7901,
             "girl_video_article": 7896,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost:</p>\n\n<ul><li>beba često plače, a vi obično ne možete da je umirite</li>\n\t<li> ne posmatra lica čak ni kratko vreme</li>\n\t<li> ne reaguje na jako svetlo ili glasne zvukove</li>\n\t<li> ne hrani se dobro ili previše spava (više od 16 sati dnevno)</li>\n\t<li> uopšte ne pomera ruke ili noge</li>\n\t<li> ne prinosi ruku ustima</li>\n\t<li>  ne osmehuje se.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 18:04",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Ebeba često plače, a vi obično ne možete da je umirite\u003C/li\u003E\n\t\u003Cli\u003E ne posmatra lica čak ni kratko vreme\u003C/li\u003E\n\t\u003Cli\u003E ne reaguje na jako svetlo ili glasne zvukove\u003C/li\u003E\n\t\u003Cli\u003E ne hrani se dobro ili previše spava (više od 16 sati dnevno)\u003C/li\u003E\n\t\u003Cli\u003E uopšte ne pomera ruke ili noge\u003C/li\u003E\n\t\u003Cli\u003E ne prinosi ruku ustima\u003C/li\u003E\n\t\u003Cli\u003E  ne osmehuje se.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T18:04:08+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 18:04\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12003,
             "type": "Child Development - Age Periods",
             "title": "Prva iskustva",
-            "child_age": [
-                45
-            ],
+            "child_age": [45],
             "boy_video_article": 7911,
             "girl_video_article": 7906,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: </p>\n\n<ul><li>često plače, obično ne možete da je umirite</li>\n\t<li>ne ostvaruje kontakt očima, ne usmerava pažnju na lica ljudi</li>\n\t<li>ne prati stvari kada se pomeraju</li>\n\t<li>ne guče i ne odgovara na zvuke</li>\n\t<li>ne drži (ne kontroliše) glavu stabilno</li>\n\t<li>ne poseže za igračkama oko sebe</li>\n\t<li>ne prinosi stvari ustima</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 18:04",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: \u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Ečesto plače, obično ne možete da je umirite\u003C/li\u003E\n\t\u003Cli\u003Ene ostvaruje kontakt očima, ne usmerava pažnju na lica ljudi\u003C/li\u003E\n\t\u003Cli\u003Ene prati stvari kada se pomeraju\u003C/li\u003E\n\t\u003Cli\u003Ene guče i ne odgovara na zvuke\u003C/li\u003E\n\t\u003Cli\u003Ene drži (ne kontroliše) glavu stabilno\u003C/li\u003E\n\t\u003Cli\u003Ene poseže za igračkama oko sebe\u003C/li\u003E\n\t\u003Cli\u003Ene prinosi stvari ustima\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T18:04:49+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 18:04\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12004,
             "type": "Child Development - Age Periods",
             "title": "Intenzivno istraživanje",
-            "child_age": [
-                46
-            ],
+            "child_age": [46],
             "boy_video_article": 7921,
             "girl_video_article": 7916,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: </p>\n\n<ul><li>često plače, obično ne možete da je umirite</li>\n\t<li>ne ostvaruje kontakt očima, ne usmerava pažnju na lica ljudi</li>\n\t<li>Ne brblja i ne okreće se ka izvoru zvuka</li>\n\t<li>Ne smeje se niti cvili</li>\n\t<li>Ne prevrće se (na stomak i na leđa)</li>\n\t<li>Ne kontroliše vrat i glavu</li>\n\t<li>Ne sedi čak ni uz vašu pomoć</li>\n\t<li>ne poseže za objektima čak ni kada je podstičete na to</li>\n\t<li>ne pokušava da dohvati ni one predmete koji su na dohvat</li>\n\t<li>ima poteškoće da stavr prinese ustima</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Tue, 09/07/2021 - 18:05",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: \u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Ečesto plače, obično ne možete da je umirite\u003C/li\u003E\n\t\u003Cli\u003Ene ostvaruje kontakt očima, ne usmerava pažnju na lica ljudi\u003C/li\u003E\n\t\u003Cli\u003ENe brblja i ne okreće se ka izvoru zvuka\u003C/li\u003E\n\t\u003Cli\u003ENe smeje se niti cvili\u003C/li\u003E\n\t\u003Cli\u003ENe prevrće se (na stomak i na leđa)\u003C/li\u003E\n\t\u003Cli\u003ENe kontroliše vrat i glavu\u003C/li\u003E\n\t\u003Cli\u003ENe sedi čak ni uz vašu pomoć\u003C/li\u003E\n\t\u003Cli\u003Ene poseže za objektima čak ni kada je podstičete na to\u003C/li\u003E\n\t\u003Cli\u003Ene pokušava da dohvati ni one predmete koji su na dohvat\u003C/li\u003E\n\t\u003Cli\u003Eima poteškoće da stavr prinese ustima\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-07T18:05:22+02:00\" class=\"datetime\"\u003ETue, 09/07/2021 - 18:05\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12005,
             "type": "Child Development - Age Periods",
             "title": "Nova otkrića",
-            "child_age": [
-                47
-            ],
+            "child_age": [47],
             "boy_video_article": 7931,
             "girl_video_article": 7926,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: </p>\n\n<ul><li>Ne uspostavlja kontakt očima i ne prati objekat koji se pomera</li>\n\t<li>Ne brblja i ne udvaja glasove (ba-ba, ma-ma, de-da)</li>\n\t<li>Ne okreće se ka izvoru zvuka</li>\n\t<li>Ne gelda u pravcu koji pokazujete</li>\n\t<li>Nije zainteresovana za one koji se brinu o njoj - ne osmehuje im se</li>\n\t<li>Ne reaguje na sopstveno ime</li>\n\t<li>Ne prepoznaje ukućane</li>\n\t<li>ne prevrće se</li>\n\t<li>kada je podignete beba je ili suviše mlitava ili suviše zategnuta</li>\n\t<li>ne sedi čak ni uz vašu pomoć</li>\n\t<li>ima poteškoće da jede čvrstu hranu.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:42",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: \u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENe uspostavlja kontakt očima i ne prati objekat koji se pomera\u003C/li\u003E\n\t\u003Cli\u003ENe brblja i ne udvaja glasove (ba-ba, ma-ma, de-da)\u003C/li\u003E\n\t\u003Cli\u003ENe okreće se ka izvoru zvuka\u003C/li\u003E\n\t\u003Cli\u003ENe gelda u pravcu koji pokazujete\u003C/li\u003E\n\t\u003Cli\u003ENije zainteresovana za one koji se brinu o njoj - ne osmehuje im se\u003C/li\u003E\n\t\u003Cli\u003ENe reaguje na sopstveno ime\u003C/li\u003E\n\t\u003Cli\u003ENe prepoznaje ukućane\u003C/li\u003E\n\t\u003Cli\u003Ene prevrće se\u003C/li\u003E\n\t\u003Cli\u003Ekada je podignete beba je ili suviše mlitava ili suviše zategnuta\u003C/li\u003E\n\t\u003Cli\u003Ene sedi čak ni uz vašu pomoć\u003C/li\u003E\n\t\u003Cli\u003Eima poteškoće da jede čvrstu hranu.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:42:08+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:42\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12006,
             "type": "Child Development - Age Periods",
             "title": "Navike i doslednost",
-            "child_age": [
-                48
-            ],
+            "child_age": [48],
             "boy_video_article": 7941,
             "girl_video_article": 7936,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost:</p>\n\n<ul><li>Ne uspostavlja kontakt očima I ne prati objekat koji se pomera</li>\n\t<li>Ne interesuju ga/je zvuci</li>\n\t<li>Ne odaziva se na poziv po imenu</li>\n\t<li>Ne brblja</li>\n\t<li>Ni na koji način ne pokazuje šta mu je potrebno, šta želi</li>\n\t<li>Ne pokazuje predmete prstom</li>\n\t<li>Ne pokazuje osećanja</li>\n\t<li>ne puzi</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:43",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENe uspostavlja kontakt očima I ne prati objekat koji se pomera\u003C/li\u003E\n\t\u003Cli\u003ENe interesuju ga/je zvuci\u003C/li\u003E\n\t\u003Cli\u003ENe odaziva se na poziv po imenu\u003C/li\u003E\n\t\u003Cli\u003ENe brblja\u003C/li\u003E\n\t\u003Cli\u003ENi na koji način ne pokazuje šta mu je potrebno, šta želi\u003C/li\u003E\n\t\u003Cli\u003ENe pokazuje predmete prstom\u003C/li\u003E\n\t\u003Cli\u003ENe pokazuje osećanja\u003C/li\u003E\n\t\u003Cli\u003Ene puzi\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:43:01+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:43\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12007,
             "type": "Child Development - Age Periods",
             "title": "Prvi korak i prva reč",
-            "child_age": [
-                49
-            ],
+            "child_age": [49],
             "boy_video_article": 7951,
             "girl_video_article": 7946,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost:</p>\n\n<ul><li>vaše dete ima teškoće da vidi ili čuje neke stvari</li>\n\t<li>ne izgovara nijednu reč</li>\n\t<li>teško sledi čak i direktna uputstva</li>\n\t<li>ne koristi gestove i pokazivanje prstom u komunikaciji</li>\n\t<li>ne uspostavlja kontakt očima sa vama i ne mazi se</li>\n\t<li>ne hoda samostalno.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:43",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003Evaše dete ima teškoće da vidi ili čuje neke stvari\u003C/li\u003E\n\t\u003Cli\u003Ene izgovara nijednu reč\u003C/li\u003E\n\t\u003Cli\u003Eteško sledi čak i direktna uputstva\u003C/li\u003E\n\t\u003Cli\u003Ene koristi gestove i pokazivanje prstom u komunikaciji\u003C/li\u003E\n\t\u003Cli\u003Ene uspostavlja kontakt očima sa vama i ne mazi se\u003C/li\u003E\n\t\u003Cli\u003Ene hoda samostalno.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:43:34+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:43\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12008,
             "type": "Child Development - Age Periods",
             "title": "Osamostaljivanje",
-            "child_age": [
-                50
-            ],
+            "child_age": [50],
             "boy_video_article": 7961,
             "girl_video_article": 7956,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: :</p>\n\n<ul><li>Ne gleda u vas (mema kontakta očima)</li>\n\t<li>Ima teškoće da čuje ili da vidi određene stvari</li>\n\t<li>Ne izgovara nijednu reč</li>\n\t<li>Ne pkazuje prstom objekte</li>\n\t<li>Ne sledi jednostavne instrukcije</li>\n\t<li>Ne sipoljava osećanja</li>\n\t<li>Ne hoda stabilno</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:44",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost: :\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENe gleda u vas (mema kontakta očima)\u003C/li\u003E\n\t\u003Cli\u003EIma teškoće da čuje ili da vidi određene stvari\u003C/li\u003E\n\t\u003Cli\u003ENe izgovara nijednu reč\u003C/li\u003E\n\t\u003Cli\u003ENe pkazuje prstom objekte\u003C/li\u003E\n\t\u003Cli\u003ENe sledi jednostavne instrukcije\u003C/li\u003E\n\t\u003Cli\u003ENe sipoljava osećanja\u003C/li\u003E\n\t\u003Cli\u003ENe hoda stabilno\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:44:04+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:44\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12009,
             "type": "Child Development - Age Periods",
             "title": "Kada mašta cveta",
-            "child_age": [
-                51
-            ],
+            "child_age": [51],
             "boy_video_article": 7881,
             "girl_video_article": 7966,
-            "milestone": "<p>Svakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost:</p>\n\n<ul><li>Ne gleda u vas (mema kontakta očima)</li>\n\t<li>Ima teškoće da čuje ili da vidi određene stvari</li>\n\t<li>Ne izgovara kratke rečenice (bar sa tri reči)</li>\n\t<li>Nerazgovetno govori</li>\n\t<li>Ne razume jednostavne naloge</li>\n\t<li>Ne želi da se igra sa drugom decom ili sa igračkama</li>\n\t<li>Ne igra se pretvaranja – “kao da” igara</li>\n\t<li>Ne može da trči</li>\n\t<li>Ne škraba i ne crta</li>\n\t<li>Ne može da drži male predmete u šaci.</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:44",
+            "milestone": "\u003Cp\u003ESvakako razgovarajte sa svojim pedijatrom (ili drugim zdravstvenim radnikom) ako vaše dete pokazuje bilo koji od sledećih znakova mogućeg zastoja u razvoju, ako se čini da je dete izgubilo neke veštine koje je ranije imalo ili ako imate druge razloge za zabrinutost:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENe gleda u vas (mema kontakta očima)\u003C/li\u003E\n\t\u003Cli\u003EIma teškoće da čuje ili da vidi određene stvari\u003C/li\u003E\n\t\u003Cli\u003ENe izgovara kratke rečenice (bar sa tri reči)\u003C/li\u003E\n\t\u003Cli\u003ENerazgovetno govori\u003C/li\u003E\n\t\u003Cli\u003ENe razume jednostavne naloge\u003C/li\u003E\n\t\u003Cli\u003ENe želi da se igra sa drugom decom ili sa igračkama\u003C/li\u003E\n\t\u003Cli\u003ENe igra se pretvaranja – “kao da” igara\u003C/li\u003E\n\t\u003Cli\u003ENe može da trči\u003C/li\u003E\n\t\u003Cli\u003ENe škraba i ne crta\u003C/li\u003E\n\t\u003Cli\u003ENe može da drži male predmete u šaci.\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:44:40+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:44\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12010,
             "type": "Child Development - Age Periods",
             "title": "Postavljanje pitanja",
-            "child_age": [
-                52
-            ],
+            "child_age": [52],
             "boy_video_article": 7976,
             "girl_video_article": 7971,
-            "milestone": "<p>Pratite ponašanja svog deteta i porazgovarajte sa izabranim pedijatrom ukoliko na kraju šeste godine primetite da vaše dete:</p>\n\n<ul><li>Ne pokazuje interesovanje za interaktivne ili zajedničke i izmišljene igre</li>\n\t<li>Ignoriše drugu decu ili ne reagiju na osobe van porodice</li>\n\t<li>Ne može da skače u mestu</li>\n\t<li>Ima teškoće u pisanju i crtanju</li>\n\t<li>Ne izvršava naloge koji se sastoje iz tri dela</li>\n\t<li>Ne ume da ispriča omiljenu priču</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:45",
+            "milestone": "\u003Cp\u003EPratite ponašanja svog deteta i porazgovarajte sa izabranim pedijatrom ukoliko na kraju šeste godine primetite da vaše dete:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003ENe pokazuje interesovanje za interaktivne ili zajedničke i izmišljene igre\u003C/li\u003E\n\t\u003Cli\u003EIgnoriše drugu decu ili ne reagiju na osobe van porodice\u003C/li\u003E\n\t\u003Cli\u003ENe može da skače u mestu\u003C/li\u003E\n\t\u003Cli\u003EIma teškoće u pisanju i crtanju\u003C/li\u003E\n\t\u003Cli\u003ENe izvršava naloge koji se sastoje iz tri dela\u003C/li\u003E\n\t\u003Cli\u003ENe ume da ispriča omiljenu priču\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:45:40+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:45\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12011,
             "type": "Child Development - Age Periods",
             "title": "Peta godina - radosti druženja",
-            "child_age": [
-                57
-            ],
+            "child_age": [57],
             "boy_video_article": 7996,
             "girl_video_article": 7991,
-            "milestone": "<p>Pratite ponašanja svog deteta i porazgovarajte sa izabranim pedijatrom ukoliko na kraju šeste godine primetite da vaše dete:   </p>\n<ul>\n<li>\nNe može sigurno da hoda, trči, skoči, da se penje uz stepenice\n</li>\n<li>\nNe može da odgovori na jednostavna pitanja (Kako se zoveš? Ko je tvoja porodica? Koja ti je omiljena priča?)\n</li>\n<li>\nNe može da izvrši nalog sa dva elementa (npr. spusti šolju na sto! ili donesi loptu ispod kreveta je!)\n</li>\n<li>\nNe može samostalno da izvršava svakodnevne rutine – da jede ili da se obuče\n</li>\n<li>\nIma teškoće da drži olovku (bojicu)\n</li>\n<li>\nPrenaglašeno u ponašanju ispoljava osećanja ( strah, agresivnost, tugu)\n</li>\n<li>\nNe govori o dnevnim aktivnostima\n</li>\n<li>\nNe pokazuje interesovanje da ostvari interakciju ni sa decom ni sa odraslima.\n</li>\n</ul>\n",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Thu, 08/12/2021 - 21:48",
+            "milestone": "\u003Cp\u003EPratite ponašanja svog deteta i porazgovarajte sa izabranim pedijatrom ukoliko na kraju šeste godine primetite da vaše dete:   \u003C/p\u003E\n\u003Cul\u003E\n\u003Cli\u003E\nNe može sigurno da hoda, trči, skoči, da se penje uz stepenice\n\u003C/li\u003E\n\u003Cli\u003E\nNe može da odgovori na jednostavna pitanja (Kako se zoveš? Ko je tvoja porodica? Koja ti je omiljena priča?)\n\u003C/li\u003E\n\u003Cli\u003E\nNe može da izvrši nalog sa dva elementa (npr. spusti šolju na sto! ili donesi loptu ispod kreveta je!)\n\u003C/li\u003E\n\u003Cli\u003E\nNe može samostalno da izvršava svakodnevne rutine – da jede ili da se obuče\n\u003C/li\u003E\n\u003Cli\u003E\nIma teškoće da drži olovku (bojicu)\n\u003C/li\u003E\n\u003Cli\u003E\nPrenaglašeno u ponašanju ispoljava osećanja ( strah, agresivnost, tugu)\n\u003C/li\u003E\n\u003Cli\u003E\nNe govori o dnevnim aktivnostima\n\u003C/li\u003E\n\u003Cli\u003E\nNe pokazuje interesovanje da ostvari interakciju ni sa decom ni sa odraslima.\n\u003C/li\u003E\n\u003C/ul\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
             "id": 12012,
             "type": "Child Development - Age Periods",
             "title": "Pred školu",
-            "child_age": [
-                58
-            ],
+            "child_age": [58],
             "boy_video_article": 7986,
             "girl_video_article": 7981,
-            "milestone": "<p>Pratite ponašanja svog deteta i porazgovarajte sa izabranim pedijatrom ukoliko na kraju šeste godine primetite da vaše dete:</p>\n\n<ul><li>Ima vrlo kratak raspon pažnje</li>\n\t<li>Uopšte ga ne zanimaju slova, brojevi, čitanje ili pisanje</li>\n\t<li>Izgleda da ne čuje dobro</li>\n\t<li>Ne govori jasno u rečenicama od 5 ili više reči</li>\n\t<li>Ne priča duže priče koristeći kompletne rečenice</li>\n\t<li>Ne oblači se i ne koristi toalet bez pomoći</li>\n\t<li>Ne može da učestvuje u razgovorima</li>\n\t<li>Ne može da se igra na više načina</li>\n\t<li>Ne može da kaže svoje ime i adresu gde stanuje</li>\n\t<li>Ne može da stoji ili skače na jednoj nozi</li>\n</ul>",
-            "created_at": "Thu, 08/12/2021 - 21:48",
-            "updated_at": "Wed, 09/08/2021 - 11:47",
+            "milestone": "\u003Cp\u003EPratite ponašanja svog deteta i porazgovarajte sa izabranim pedijatrom ukoliko na kraju šeste godine primetite da vaše dete:\u003C/p\u003E\n\n\u003Cul\u003E\n\t\u003Cli\u003EIma vrlo kratak raspon pažnje\u003C/li\u003E\n\t\u003Cli\u003EUopšte ga ne zanimaju slova, brojevi, čitanje ili pisanje\u003C/li\u003E\n\t\u003Cli\u003EIzgleda da ne čuje dobro\u003C/li\u003E\n\t\u003Cli\u003ENe govori jasno u rečenicama od 5 ili više reči\u003C/li\u003E\n\t\u003Cli\u003ENe priča duže priče koristeći kompletne rečenice\u003C/li\u003E\n\t\u003Cli\u003ENe oblači se i ne koristi toalet bez pomoći\u003C/li\u003E\n\t\u003Cli\u003ENe može da učestvuje u razgovorima\u003C/li\u003E\n\t\u003Cli\u003ENe može da se igra na više načina\u003C/li\u003E\n\t\u003Cli\u003ENe može da kaže svoje ime i adresu gde stanuje\u003C/li\u003E\n\t\u003Cli\u003ENe može da stoji ili skače na jednoj nozi\u003C/li\u003E\n\u003C/ul\u003E",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:48:48+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-08T11:47:44+02:00\" class=\"datetime\"\u003EWed, 09/08/2021 - 11:47\u003C/time\u003E\n",
             "mandatory": 1
         }
     ]
