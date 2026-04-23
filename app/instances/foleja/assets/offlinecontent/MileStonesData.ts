@@ -4,1353 +4,3487 @@ export const MileStonesData: any = {
             "id": 7056,
             "type": "Milestone",
             "title": "Mund të numërojë deri në dhjetë dhe të emërtojë dhjetë gjësende pa gabime",
-            "created_at": "Fri, 02/04/2022 - 10:00",
-            "updated_at": "Fri, 02/04/2022 - 11:18",
-            "body": "<p>Gjithashtu mund të thotë \"e para, e dyta\", deri në 10, të numëroj ditët e javës dhe muajt.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7501
-            ],
+            "created_at": "\u003Ctime datetime=\"2022-02-04T10:00:44+01:00\" class=\"datetime\"\u003EFri, 02/04/2022 - 10:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-04T11:18:44+01:00\" class=\"datetime\"\u003EFri, 02/04/2022 - 11:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGjithashtu mund të thotë \"e para, e dyta\", deri në 10, të numëroj ditët e javës dhe muajt.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7501],
             "related_articles": [],
             "related_video_articles": [],
-            "mandatory": 1
+            "mandatory": 0
         },
         {
             "id": 6996,
             "type": "Milestone",
             "title": "I njeh dallimet themelore midis gjërave që janë reale, të shtirura ose imagjinare",
-            "created_at": "Thu, 02/03/2022 - 14:25",
-            "updated_at": "Thu, 02/03/2022 - 14:25",
-            "body": "<p>Trillon histori për një personazh që nuk ekziston, ose e di që kafshët nuk mund të flasin në jetën reale.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7441
-            ],
+            "created_at": "\u003Ctime datetime=\"2022-02-03T14:25:25+01:00\" class=\"datetime\"\u003EThu, 02/03/2022 - 14:25\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-02-03T14:25:25+01:00\" class=\"datetime\"\u003EThu, 02/03/2022 - 14:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ETrillon histori për një personazh që nuk ekziston, ose e di që kafshët nuk mund të flasin në jetën reale.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7441],
             "related_articles": [],
             "related_video_articles": [],
-            "mandatory": 1
+            "mandatory": 0
         },
         {
-            "id": 2961,
+            "id": 2526,
             "type": "Milestone",
-            "title": "Ndihmon kur vishet",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 15:02",
-            "body": "<p>Bashkëpunon kur e vishni atë, fut dorën në mëngët e tij/saj dhe këmbët në çorape.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7276
-            ],
+            "title": "Qetësohet kur e merrni në krah",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur e merrni në krahë, ju e ndjeni se foshnja po përshtatet me përqafimin dhe struket në gjoksin tuaj.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7581],
             "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2541,
-            "type": "Milestone",
-            "title": "Bën tinguj",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Fëmija qan, por edhe prodhon tinguj.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6296
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 7086,
-            "type": "Milestone",
-            "title": "Merr pjesë në aktivitete të ndryshme që kërkojnë shkathtësi të lartë fizike",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Në gjendje të qëndrojë me njërën këmbë, të gjuajë saktë një top, si dhe të godasë me top një objektiv etj. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7531
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2731,
-            "type": "Milestone",
-            "title": "Përgjigjet ndaj tingullit të zërit duke krijuar tinguj – duke bashkuar zanoret: a, e, u...",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 17:18",
-            "body": "<p>Kur dikush i drejtohet fëmijës duke folur, duke kënduar, duke lexuar për të... dhe fëmija reagon.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7211
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6421
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2966,
-            "type": "Milestone",
-            "title": "Bëhet gjithnjë e më i pavarur",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 15:00",
-            "body": "<p>Ndonjëherë reziston në realizimin e urdhrave, zemërohet, dëshiron të kontrollojë të tjerët, grindet, urdhëron, dhe mbron gjërat e tij/saj.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7786
-            ],
-            "related_articles": [
-                4781
-            ],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2556,
-            "type": "Milestone",
-            "title": "Kur qëndron në stomak, ai ngre kokën",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Kur e vendosni në pozitën përmbys, fëmija do të provojë të ngre kokën për të liruar rrugët e frymëmarrjes.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 7106,
-            "type": "Milestone",
-            "title": "Tregon një histori të plotë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Fëmija arrin të ri-tregojë në mënyrë të përmbledhur një histori të caktuar, plotësisht në mënyrë të pavarur dhe të saktë, duke treguar ngjarjet sipas një rendi kronologjik, pra ngjarje në të cilat ai/ajo ka marrë pjesë, apo një shfaqje televizive.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7826
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2746,
-            "type": "Milestone",
-            "title": "Fëmija është i ngazëllyer kur kupton që është koha për të luajtur",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 17:11",
-            "body": "<p>Fëmija gëzohet, duket i/e lumtur dhe kënaqet me lojën dhe kontaktet, veçanërisht me prindërit dhe personat e njohur.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7841
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6441
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2981,
-            "type": "Milestone",
-            "title": "Kupton dhe realizon urdhra të thjeshtë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 14:48",
-            "body": "<p>Ndjek udhëzime të caktuara, të thjeshta dhe pa demonstrim, si dhe mund të kryejë atë që pritet prej tij/saj.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7326
-            ],
-            "related_articles": [
-                4776
-            ],
-            "related_video_articles": [
-                6571
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2561,
-            "type": "Milestone",
-            "title": "Bën tinguj të ndryshëm kur është i lumtur, i mërzitur apo i uritur",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 18:27",
-            "body": "<p>E qara e fëmijës ndryshon kur ka nevoja të caktuara, kështu që bazuar në tingujt që ai/ajo bën mund të dihet nëse fëmija është i/e lumtur, i/e mërzitur apo ka ndonjë nevojë tjetër.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7611
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6316
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 7131,
-            "type": "Milestone",
-            "title": "Arrin të kuptojë ndryshimin midis lojës reale dhe imagjinare, apo lojërave \"besojmë sikur\"",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Ai/ajo vetëm krijon histori, ngjarje, personazhe nga imagjinata e tij/saj; i paraqet ato artistikisht, i përshkruan dhe u cakton atyre atribute që nuk janë realiste. Ai/ajo argëtohet ndërsa e bën këtë, i/e vetëdijshëm/e se gjithçka është e mundur në botën e imagjinatës. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7571
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2766,
-            "type": "Milestone",
-            "title": "Pëlqen të luajë në shoqërinë e fëmijëve",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 17:05",
-            "body": "<p>Loja nuk është më vetëm në mënyrë paralele – krahë për krahë, por ka elemente më komplekse, imagjinare dhe gjallëri.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7371
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6931
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2986,
-            "type": "Milestone",
-            "title": "Shqipton fjalë me kuptim.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Ajo flet të paktën një ose disa fjalë individuale kur u drejtohet prindërve.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7286
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6851
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2566,
-            "type": "Milestone",
-            "title": "Mund të vetë-qetësohet për pak kohë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 18:23",
-            "body": "<p>Fëmija qetëson veten duke thithur gishtin ose dorën e tij/saj të vogël.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7176
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6361
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2786,
-            "type": "Milestone",
-            "title": "Fillon të kuptojë kuptimin e fjalës \"jo\"",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 18:55",
-            "body": "<p>Fillon të kuptojë kuptimin e fjalës \"jo\". Kur dëgjon fjalën, ai/ajo ndalon aktivitetin dhe njeh mosaprovimin.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7226
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6476
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 3001,
-            "type": "Milestone",
-            "title": "Shkarravit në letër në mënyrë të pavarur me një laps ose shkumësa me ngjyra",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>I pëlqen të shkarravisë, qoftë me laps në letër, me dorë në rërë, me shkop mbi baltë, apo ujë në beton. </p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7296
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6606
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2571,
-            "type": "Milestone",
-            "title": "Kthen kokën e tij drejt burimit të zërit dhe tregon se është duke dëgjuar",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 18:22",
-            "body": "<p>Nëse dëgjon një zë njerëzor ose ndonjë tingull tjetër, fëmija kthen kokën në atë drejtim. Ndërsa dëgjon zërin, fëmija vështron prindërit ose personin që flet, duke ngadalësuar lëvizjet e tij.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7721
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6326
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2816,
-            "type": "Milestone",
-            "title": "Përdor njërën dorë më shumë se tjetrën",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Fillon të përdor njërën dorë më shumë – të majtën apo të djathtën.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7356
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6666
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 6976,
-            "type": "Milestone",
-            "title": "I pëlqen të kënaqë të tjerët dhe të ndërveprojë me ato",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Njeh ndjenjat e të tjerëve; ndjen kënaqesi kur ndan emocionet me të tjerë; si dhe është në gjendje të kuptojë konceptin e \"radhës\".</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7426
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2586,
-            "type": "Milestone",
-            "title": "Shfaq mërzitje apo qan nëse aktiviteti ndryshon",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Foshnja ankohet duke qarë nëse lihet në një pozicion për një kohë të gjatë, ose proteston nëse e lëshoni atë pasi e keni mbajtur në krahë.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7181
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2856,
-            "type": "Milestone",
-            "title": "Tërheq veten dhe zvarritet. Disa fëmijë tashmë fillojnë të zvarriten.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 15:51",
-            "body": "<p>Tërheq veten dhe zvarritet. Disa fëmijë tashmë fillojnë të zvarriten. Fëmija mund të vihet vetë në një pozicion duke u zvarritur. Fëmija lëviz duke u zvarritur qoftë prapa apo para.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7706
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6486
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 6981,
-            "type": "Milestone",
-            "title": "Përdor fjali me 4 deri në 5 fjalë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>I përdor fjalët së bashku në mënyra që kanë kuptim dhe që komunikojnë idetë e saj/tij.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7431
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2631,
-            "type": "Milestone",
-            "title": "Fillon të murmurisë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Vokalizon dhe prodhon tinguj që i ngjajnë zanoreve - a, e, i, o, u</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6371
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2866,
-            "type": "Milestone",
-            "title": "Shtyn trupin e vet lart, dhe përpiqet të ngrihet në këmbë.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 18:52",
-            "body": "<p>Shtynë trupin e vet lart, dhe përpiqet të ngrihet në këmbë. Fëmija përpiqet të ngrihet në këmbë duke u mbështetur në mobilje, por i nevojitet ndihmë dhe mbështetje.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7241
-            ],
-            "related_articles": [
-                4531
-            ],
-            "related_video_articles": [
-                6471
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2636,
-            "type": "Milestone",
-            "title": "Ngjitet dhe zbret shkallëve",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Ngjitet në shkallë duke u mbështetur dhe duke përdorur në mënyrë alternative njërën këmbë dhe më pas tjetrën.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6811
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2876,
-            "type": "Milestone",
-            "title": "Disa mënyra të komunikimit të fëmijës kuptohen edhe nga njerëz që nuk janë me të çdo ditë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 15:41",
-            "body": "<p>Fëmija fillon të shqiptojë zërat më qartë dhe përdor gjithnjë e më shumë fjalë me kuptim dhe për këtë arsye komunikimi është më i lehtë.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7346
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 7041,
-            "type": "Milestone",
-            "title": "Përdor fjali me pesë ose më shumë fjalë; përdor fjalët për t'u shprehur për të ardhmen",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Bashkon fjalët për të shprehur idetë e saj/tij; mund të thotë se çfarë \"do\" ose \"mund\" të ndodhë në të ardhmen.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7486
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2646,
-            "type": "Milestone",
-            "title": "Zhvillon koordinimin dorë-sy",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Rritet aftësia për koordinimin dorë-sy, për shembull: fëmija juaj shikon një objekt dhe përpiqet që ta arrijë atë.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6406
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2901,
-            "type": "Milestone",
-            "title": "Kërkon të ndajë interesat dhe kënaqësitë me të rriturit, në mënyrë spontane",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Pëlqen lojëra reciproke, \"unë ta jap ty - ti ma jep mua\", \"unë bëj - ti bën\" dhe të ngjashme si këto.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7731
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2696,
-            "type": "Milestone",
-            "title": "Mund të ulet me pak mbështetje",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Kur ai/ajo ka mbështetje ose mbështetet në diçka, foshnja mund të ulet dhe për një kohë të shkurtër mund të mbajë pozicionin ulur në mënyrë të pavarur.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7671
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2936,
-            "type": "Milestone",
-            "title": "Zgjedh objekte të vogla me gishta, dhe ushqehet me gishta",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Ka një \"kapje\" më të mirë - mund të manipulojë me objekte shumë të vogla duke i kapur ato me gishtin e madh dhe me gishtin tregues.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7766
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6536
-            ],
-            "mandatory": 1
+            "related_video_articles": [6286],
+            "mandatory": 0
         },
         {
             "id": 2531,
             "type": "Milestone",
             "title": "Ngazëllehet kur i flisni",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 18:36",
-            "body": "<p>Kur dëgjon zërin tuaj, foshnja tregon entuziazëm, por gjithashtu vini re se si ngadalëson lëvizjet e tij/saj, duket se po dëgjon, se është i/e pranishëm …</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7586
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:36:26+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur dëgjon zërin tuaj, foshnja tregon entuziazëm, por gjithashtu vini re se si ngadalëson lëvizjet e tij/saj, duket se po dëgjon, se është i/e pranishëm …\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7586],
             "related_articles": [],
-            "related_video_articles": [
-                6311
-            ],
-            "mandatory": 1
+            "related_video_articles": [6311],
+            "mandatory": 0
         },
         {
-            "id": 7081,
+            "id": 2536,
             "type": "Milestone",
-            "title": "Përdor aftësi për të marrë pjesë në mënyrë të pavarur në rutinat e përditshme dhe aktivitetet sociale",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Mund të vishen dhe të zhvishen në mënyrë të pavarur, përdor një lugë dhe pirun, përdor tualetin vetëm dhe lan duart. Mund të ndahet nga prindërit dhe të përfshihet në aktivitete të pavarura sociale. </p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7526
-            ],
+            "title": "Ju shikon ndërsa ju qeshni dhe flisni me të",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:34:28+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur flisni me të, foshnja kërkon me sytë e tij/saj fytyrën tuaj.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7591],
+            "related_articles": [],
+            "related_video_articles": [6291],
+            "mandatory": 0
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Lëshon tinguj",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-05-12T11:56:01+02:00\" class=\"datetime\"\u003EThu, 05/12/2022 - 11:56\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija qan, por edhe prodhon tinguj.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7596],
+            "related_articles": [],
+            "related_video_articles": [6296],
+            "mandatory": 0
+        },
+        {
+            "id": 2546,
+            "type": "Milestone",
+            "title": "Hap dhe mbyll grushtin e tij kur e prekni butësisht",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:31:56+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur prekni pëllëmbën e foshnjës ose vendosni diçka në të, ai/ajo do ta mbyllë grushtin fort. Nëse i jepni gishtin ai/ajo e mban atë fuqishëm.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7601],
+            "related_articles": [],
+            "related_video_articles": [6301],
+            "mandatory": 0
+        },
+        {
+            "id": 2551,
+            "type": "Milestone",
+            "title": "Lëviz krahët dhe këmbët e saj lirshëm në të dy anët",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:30:19+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur fëmija është i/e lirë, ju mund të shihni lëvizje krejtësisht të rastësishme të duarve dhe këmbëve të fëmijës.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7756],
+            "related_articles": [],
+            "related_video_articles": [6306],
+            "mandatory": 0
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "Kur qëndron në stomak, ai ngre kokën",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur e vendosni në pozitën përmbys, fëmija do të provojë të ngre kokën për të liruar rrugët e frymëmarrjes.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7606],
+            "related_articles": [],
+            "related_video_articles": [6281],
+            "mandatory": 0
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "Bën tinguj të ndryshëm kur është i lumtur, i mërzitur apo i uritur",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:27:18+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EE qara e fëmijës ndryshon kur ka nevoja të caktuara, kështu që bazuar në tingujt që ai/ajo bën mund të dihet nëse fëmija është i/e lumtur, i/e mërzitur apo ka ndonjë nevojë tjetër.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7611],
+            "related_articles": [],
+            "related_video_articles": [6316],
+            "mandatory": 0
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "Mund të vetë-qetësohet për pak kohë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:23:27+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija qetëson veten duke thithur gishtin ose dorën e tij/saj të vogël.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7176],
+            "related_articles": [],
+            "related_video_articles": [6361],
+            "mandatory": 0
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Kthen kokën e tij drejt burimit të zërit dhe tregon se është duke dëgjuar",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:22:14+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENëse dëgjon një zë njerëzor ose ndonjë tingull tjetër, fëmija kthen kokën në atë drejtim. Ndërsa dëgjon zërin, fëmija vështron prindërit ose personin që flet, duke ngadalësuar lëvizjet e tij.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7721],
+            "related_articles": [],
+            "related_video_articles": [6326],
+            "mandatory": 0
+        },
+        {
+            "id": 2576,
+            "type": "Milestone",
+            "title": "Gugatë, krijon tinguj",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:20:20+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:20\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFoshnja artikulon zëra të ndryshëm.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7616],
+            "related_articles": [],
+            "related_video_articles": [6321],
+            "mandatory": 0
+        },
+        {
+            "id": 2581,
+            "type": "Milestone",
+            "title": "Ndjek lëvizjen e gjërave dhe të personave me sy",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur lodrat, objektet apo personat i shfaqen përpara, fëmija përpiqet të ndjek linjën e lëvizjes së tyre.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7761],
+            "related_articles": [],
+            "related_video_articles": [6336],
+            "mandatory": 0
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Shfaq mërzitje apo qan nëse aktiviteti ndryshon",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFoshnja ankohet duke qarë nëse lihet në një pozicion për një kohë të gjatë, ose proteston nëse e lëshoni atë pasi e keni mbajtur në krahë.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7181],
             "related_articles": [],
             "related_video_articles": [],
-            "mandatory": 1
+            "mandatory": 0
+        },
+        {
+            "id": 2591,
+            "type": "Milestone",
+            "title": "Në raste të caktuara mban grushtet e hapura, dhe manipulon me to",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:17:14+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPjesën më të madhe të kohës, foshnja ende i mban duart e shtrënguara në grushte, por ai/ajo herë pas here i hap ato dhe i mban të hapura për disa kohë. Foshnja shikon duart duke lëvizur, dhe i mban ato në gojën e tij/saj.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7621],
+            "related_articles": [],
+            "related_video_articles": [6356],
+            "mandatory": 0
+        },
+        {
+            "id": 2596,
+            "type": "Milestone",
+            "title": "Kthen kokën në njërën anë, më pas në anën tjetër",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFoshnja bën shumë lëvizje të ndryshme të qafës dhe kokës.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7626],
+            "related_articles": [],
+            "related_video_articles": [6351],
+            "mandatory": 0
+        },
+        {
+            "id": 2601,
+            "type": "Milestone",
+            "title": "Bën lëvizje të vogla me krahët dhe këmbët e tij",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-06-07T10:26:30+02:00\" class=\"datetime\"\u003ETue, 06/07/2022 - 10:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur është i/e lirë, mund të shihni shumë lëvizje të zakonshme të krahëve dhe këmbëve të fëmijës.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7631],
+            "related_articles": [],
+            "related_video_articles": [6341],
+            "mandatory": 0
+        },
+        {
+            "id": 2606,
+            "type": "Milestone",
+            "title": "Kur është përmbys, foshnja qëndron në tokë, me parakrahët e saj",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur vendoset në pozicionin përmbys, foshnja mund të ngrejë kokën duke u mbështetur në parakrahë, dhe duke u zvarritur në dysheme.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7636],
+            "related_articles": [],
+            "related_video_articles": [6346],
+            "mandatory": 0
+        },
+        {
+            "id": 2611,
+            "type": "Milestone",
+            "title": "Qesh me fytyrën e njerëzve të tjerë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:09:51+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:09\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShpeshherë, buzëqesh lehtësisht dhe në mënyrë spontane me njerëzit afër tij/saj.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7641],
+            "related_articles": [],
+            "related_video_articles": [6401],
+            "mandatory": 0
+        },
+        {
+            "id": 2616,
+            "type": "Milestone",
+            "title": "Vëzhgon me kujdes fytyrat e njerëzve",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVëzhgon me kujdes dhe hollësisht fytyrat e njerëzve, mban kontakt të gjatë me sy.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7186],
+            "related_articles": [],
+            "related_video_articles": [6386],
+            "mandatory": 0
+        },
+        {
+            "id": 2621,
+            "type": "Milestone",
+            "title": "Tregon që është e zemëruar ose e lumtur",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKa reagime që lehtësisht mund të vihen re, të cilat tregojnë kënaqësi apo pakënaqësi.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7646],
+            "related_articles": [],
+            "related_video_articles": [6381],
+            "mandatory": 0
+        },
+        {
+            "id": 2626,
+            "type": "Milestone",
+            "title": "Ndjek me sy një lodër që lëviz nga njëra anë në tjetrën",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:06:52+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:06\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur objektet apo personat lëvizin përpara, foshnja ndjek ritmin e lëvizjes me sy.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7191],
+            "related_articles": [],
+            "related_video_articles": [6396],
+            "mandatory": 0
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Fillon të murmurisë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVokalizon dhe prodhon tinguj që i ngjajnë zanoreve - a, e, i, o, u\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7651],
+            "related_articles": [],
+            "related_video_articles": [6371],
+            "mandatory": 0
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Ngjitet dhe zbret shkallëve",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENgjitet në shkallë duke u mbështetur dhe duke përdorur në mënyrë alternative njërën këmbë dhe më pas tjetrën.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7416],
+            "related_articles": [],
+            "related_video_articles": [6811],
+            "mandatory": 0
+        },
+        {
+            "id": 2641,
+            "type": "Milestone",
+            "title": "Fillon të imitojë lëvizjet dhe shprehjet e fytyrës, si dhe tingujt gjatë lojës",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:02:56+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur i drejtoheni, foshnja juaj përpiqet të përsërisë lëvizjen ose shprehjen tuaj. Ai/ajo përgjigjet ndaj të folurit dhe fjalimit duke prodhuar tinguj.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7656],
+            "related_articles": [3626],
+            "related_video_articles": [6376],
+            "mandatory": 0
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Zhvillon koordinimin dorë-sy",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERritet aftësia për koordinimin dorë-sy, për shembull: fëmija juaj shikon një objekt dhe përpiqet që ta arrijë atë.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7661],
+            "related_articles": [],
+            "related_video_articles": [6406],
+            "mandatory": 0
+        },
+        {
+            "id": 2651,
+            "type": "Milestone",
+            "title": "Kopjon rrathë me një laps, shkumës druri apo dylli",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKopjon rrathë me një laps, shkumës druri apo dylli.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7411],
+            "related_articles": [],
+            "related_video_articles": [6826],
+            "mandatory": 0
+        },
+        {
+            "id": 2656,
+            "type": "Milestone",
+            "title": "Mban një lodër me njërën dorë, e eksploron, e tund dhe e godet atë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:59:01+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:59\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija arrin një objekt dhe e kap atë duke përdorur pjesën e jashtme të pëllëmbës, pa përdorur gishtin e madh. Fëmija manipulon me objektin duke e tundur, duke e goditur ose duke e futur në gojë.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7196],
+            "related_articles": [],
+            "related_video_articles": [6391],
+            "mandatory": 0
+        },
+        {
+            "id": 2666,
+            "type": "Milestone",
+            "title": "Vendos duart në gojë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShumë shpesh, ai/ajo vendos duart e tij/saj në gojë. Ai/ajo gjithashtu eksploron objekte tjera duke i futur në gojë.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7201],
+            "related_articles": [],
+            "related_video_articles": [6366],
+            "mandatory": 0
+        },
+        {
+            "id": 2671,
+            "type": "Milestone",
+            "title": "Mban kokën drejtë, pa e mbështetur atë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:45:05+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur është në një pozicion gjysmë të ulur, fëmija mund ta mbajë kokën në ekuilibër dhe drejtë.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7666],
+            "related_articles": [],
+            "related_video_articles": [6841],
+            "mandatory": 0
+        },
+        {
+            "id": 2676,
+            "type": "Milestone",
+            "title": "Në pozicionin përmbys, mbështetet në mënyrë të qëndrueshme në parakrahë dhe shtyn trupin lart me bërryla",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:36:51+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESiç është duke qëndruar përmbys, fëmija ngre supet dhe kokën duke u mbështetur me bërrylat e tij/saj.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7716],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2681,
+            "type": "Milestone",
+            "title": "Zhvillon një lojë komplekse dhe përfshin të tjerët në të",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPëlqen lojën 'sikur' dhe natyra e lojës është imagjinare me shumë elementë fantazie. Ndonjëherë nuk është e sigurt se çfarë është reale dhe çfarë është imagjinare.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7401],
+            "related_articles": [],
+            "related_video_articles": [6831],
+            "mandatory": 0
+        },
+        {
+            "id": 2686,
+            "type": "Milestone",
+            "title": "Këndon pjesë të thjeshta të këngëve",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKëndon pjesë të thjeshta të këngëve\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7396],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2691,
+            "type": "Milestone",
+            "title": "Rrotullohet nga stomaku në shpinë dhe nga shpina në stomak, në të dy anët",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:32:25+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija mund të rrotullohet dhe të kthehet në çdo drejtim (si nga ana e majtë dhe ajo e djathtë), si nga shpina në stomak dhe nga stomaku në shpinë.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7206],
+            "related_articles": [],
+            "related_video_articles": [6426],
+            "mandatory": 0
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Mund të ulet me pak mbështetje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur ai/ajo ka mbështetje ose mbështetet në diçka, foshnja mund të ulet dhe për një kohë të shkurtër mund të mbajë pozicionin ulur në mënyrë të pavarur.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7671],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
         },
         {
             "id": 2701,
             "type": "Milestone",
             "title": "Mund të thotë një fjali me 2 deri në 3 fjalë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Mund të formulojë dhe të thotë fjali me 2 deri në 3 fjalë mjaft mirë sa anëtarët e familjes mund ta kuptojnë atë.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të formulojë dhe të thotë fjali me 2 deri në 3 fjalë mjaft mirë sa anëtarët e familjes mund ta kuptojnë atë.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7391],
             "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
-            "mandatory": 1
+            "related_video_articles": [6816],
+            "mandatory": 0
+        },
+        {
+            "id": 2706,
+            "type": "Milestone",
+            "title": "Kur qëndron në këmbë, ajo mund ta mbajë peshën e saj për një kohë të shkurtër duke u mbështetur në këmbë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:28:11+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur e mbani foshnjën tuaj në këmbë lart mbi dysheme, ai/ajo mbështetet në dysheme ose duket sikur po kërcen.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7836],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2711,
+            "type": "Milestone",
+            "title": "Mund të thotë emrin, moshën dhe gjininë e vet",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të thotë emrin, moshën dhe gjininë e vet.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7386],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2716,
+            "type": "Milestone",
+            "title": "Eksploron gjërat duke i futur në gojë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:24:35+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija vendos gjithçka që kap në gojë, shpeshherë ai/ajo i fut edhe këmbët e tij/saj në gojë.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7711],
+            "related_articles": [],
+            "related_video_articles": [6436],
+            "mandatory": 0
+        },
+        {
+            "id": 2721,
+            "type": "Milestone",
+            "title": "Merr gjëra që nuk arrihen me një dorë, dhe kur i kap ato, mund t'i lëvizë nga njëra dorë në tjetrën",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:22:29+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija akoma i mban objektet me njërën dorë, por manipulon duke i transferuar nga njëra dorë në tjetrën dhe duke përdorur pjesën e brendshme të pëllëmbës, gishtin e madh dhe gishtin tregues, ndërsa gishtat e tjerë qëndrojnë të fiksuar.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7676],
+            "related_articles": [],
+            "related_video_articles": [6431],
+            "mandatory": 0
+        },
+        {
+            "id": 2726,
+            "type": "Milestone",
+            "title": "Kupton fjalë komplekse",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKupton terma të tillë si: \"të ngjashëm\" dhe \"të ndryshëm\", \"i/e lehtë\" dhe \"i/e vështirë\", \"i/e mirë\" dhe \"i/e keq/e\", \"i/e vogël\" dhe \"i/e madh/e\".\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7816],
+            "related_articles": [],
+            "related_video_articles": [6801],
+            "mandatory": 0
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Përgjigjet ndaj tingullit të zërit duke krijuar tinguj – duke bashkuar zanoret: a, e, u...",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:18:26+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKur dikush i drejtohet fëmijës duke folur, duke kënduar, duke lexuar për të... dhe fëmija reagon.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7211],
+            "related_articles": [],
+            "related_video_articles": [6421],
+            "mandatory": 0
+        },
+        {
+            "id": 2736,
+            "type": "Milestone",
+            "title": "Shpreh me zë të lartë pakënaqësinë ose gëzimin",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:15:24+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija qan dhe proteston me zë të lartë për të shprehur ndjenjat e pakëndshme dhe qesh me zë të lartë për të shprehur kënaqësi.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7746],
+            "related_articles": [],
+            "related_video_articles": [6411],
+            "mandatory": 0
+        },
+        {
+            "id": 2741,
+            "type": "Milestone",
+            "title": "Kupton kuptimin e fjalëve të tilla si \"e imja, e jotja, i/e asaj\", përdor parafjalë dhe përemra",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShqipton fjalë si \"unë\", \"ti\", \"ne\" dhe njeh shumësin e disa fjalëve - si \"qentë\", \"macet\".\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7811],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Fëmija është i ngazëllyer kur kupton që është koha për të luajtur",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:11:47+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija gëzohet, duket i/e lumtur dhe kënaqet me lojën dhe kontaktet, veçanërisht me prindërit dhe personat e njohur.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7841],
+            "related_articles": [],
+            "related_video_articles": [6441],
+            "mandatory": 0
+        },
+        {
+            "id": 2751,
+            "type": "Milestone",
+            "title": "Ndjek udhëzimet që përmbajnë dy ose tre kërkesa",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të përgjigjet ndaj kërkesave të shumta të ndërlidhura verbale (“lëre kukullën dhe ulu në karrige” (“zhvishe xhaketën dhe vish këpucët”). \u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7381],
+            "related_articles": [],
+            "related_video_articles": [6836],
+            "mandatory": 0
+        },
+        {
+            "id": 2756,
+            "type": "Milestone",
+            "title": "Shfaq një gamë të gjerë të emocioneve, dhe njeh emocionet e të tjerëve",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShfaq zemërim, frikë, faj, turp, dhe fillon të tregojë empati, kështu njeh se si ndihen të tjerët (për shembull, ai/ajo dëshiron ta ngushëllojë mikun e tij/saj që po qan me një përqafim).\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7376],
+            "related_articles": [],
+            "related_video_articles": [6821],
+            "mandatory": 0
+        },
+        {
+            "id": 2761,
+            "type": "Milestone",
+            "title": "Njeh anëtarët e familjes dhe i dallon ata nga personat e huaj. Fëmija mund të ketë frikë nga të huajt",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:07:47+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:07\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENjeh anëtarët e familjes dhe i dallon ata nga personat e huaj. Fëmija mund të ketë frikë nga të huajt. Fëmija është i/e lumtur kur sheh persona të njohur, qesh me ta, si dhe u përgjigjet ndryshe njerëzve të njohur dhe atyre të panjohur.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7216],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Pëlqen të luajë në shoqërinë e fëmijëve",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T17:05:31+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 17:05\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ELoja nuk është më vetëm në mënyrë paralele – krahë për krahë, por ka elemente më komplekse, imagjinare dhe gjallëri.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7371],
+            "related_articles": [],
+            "related_video_articles": [6931],
+            "mandatory": 0
+        },
+        {
+            "id": 2771,
+            "type": "Milestone",
+            "title": "Mërzitet kur prindi del nga dhoma dhe relaksohet kur prindi ri-kthehet",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:50:52+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:50\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMërzitet kur prindi del nga dhoma dhe relaksohet kur prindi ri-kthehet. Fëmija tregon shenja ankthi ose fillon të qajë kur prindi del nga dhoma. Fëmija është i/e lumtur kur prindi ose persona të afërt ri-kthehen në dhomë.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7681],
+            "related_articles": [],
+            "related_video_articles": [6506],
+            "mandatory": 0
+        },
+        {
+            "id": 2776,
+            "type": "Milestone",
+            "title": "Reagon kur dëgjon emrin e vet",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T16:55:57+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 16:55\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EReagon kur dëgjon emrin e vet. Fëmija fillon të njoh emrin e vet kur dikush e thërret atë.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7221],
+            "related_articles": [],
+            "related_video_articles": [6446],
+            "mandatory": 0
+        },
+        {
+            "id": 2781,
+            "type": "Milestone",
+            "title": "E ndjen më të lehtë ndarjen nga prindërit",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EReagimet ndaj ndarjes janë më pak intense, ajo qetësohet më shpejtë dhe mëson të mbështetet tek të rriturit e tjerë që gjenden afër kur prindërit largohen.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7366],
+            "related_articles": [],
+            "related_video_articles": [6796],
+            "mandatory": 0
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "Fillon të kuptojë kuptimin e fjalës \"jo\"",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:55:53+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:55\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFillon të kuptojë kuptimin e fjalës \"jo\". Kur dëgjon fjalën, ai/ajo ndalon aktivitetin dhe njeh mosaprovimin.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7226],
+            "related_articles": [],
+            "related_video_articles": [6476],
+            "mandatory": 0
+        },
+        {
+            "id": 2791,
+            "type": "Milestone",
+            "title": "Dërdëllit, bën rrokje dhe prodhon shumë tinguj të ndryshëm",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T16:45:59+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 16:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EDërdëllit, bën rrokje dhe prodhon shumë tinguj të ndryshëm. Fëmija përdor kombinime të shumëfishta të tingujve dhe çiftëzon bashkëtingëllore dhe zanore të ndryshme, përpiqet të përsërisë ose të imitojë tingujt që shqiptojnë të rriturit.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7231],
+            "related_articles": [],
+            "related_video_articles": [6451],
+            "mandatory": 0
+        },
+        {
+            "id": 2796,
+            "type": "Milestone",
+            "title": "Mund të ngjitet dhe të zbresë shkallët",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të ngjitet dhe të zbresë shkallëve, me mbështetje është i/e gatshëm/gatshme të ngjitet shkallëve ose të zbresë nga to me pak ndihmë.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7361],
+            "related_articles": [],
+            "related_video_articles": [6626],
+            "mandatory": 0
+        },
+        {
+            "id": 2801,
+            "type": "Milestone",
+            "title": "Fillon të komunikojë me lëvizje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFillon të komunikojë me lëvizje. Komunikon në mënyrë jo-verbale, duke treguar me dorë objektet e dëshiruara ose duke tundur kokën për të thënë \"jo\".\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7686],
+            "related_articles": [],
+            "related_video_articles": [6481],
+            "mandatory": 0
+        },
+        {
+            "id": 2806,
+            "type": "Milestone",
+            "title": "Ndjek objektin që bie dhe kërkon objektin e fshehur",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENdjek objektin që bie dhe kërkon objektin e fshehur. Nëse objekti është i fshehur nën një filxhan ose batanije, foshnja përpiqet ta zbulojë atë. Kur një objekt bie ose mamaja e hedh atë, foshnja e kërkon me sy objektin e hedhur.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7691],
+            "related_articles": [],
+            "related_video_articles": [6496],
+            "mandatory": 0
+        },
+        {
+            "id": 2811,
+            "type": "Milestone",
+            "title": "Mund të qëndrojë në këmbë, të vrapojë, të kërcejë, dhe të godasë topin",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të qëndrojë në këmbë, të vrapojë, të kërcejë, të godasë topin dhe ta gjuajë më lart se koka e saj.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7321],
+            "related_articles": [],
+            "related_video_articles": [6646],
+            "mandatory": 0
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Përdor njërën dorë më shumë se tjetrën",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFillon të përdor njërën dorë më shumë – të majtën apo të djathtën.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7356],
+            "related_articles": [],
+            "related_video_articles": [6666],
+            "mandatory": 0
+        },
+        {
+            "id": 2821,
+            "type": "Milestone",
+            "title": "Shkarravit në në letër në mënyrë të pavarur",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EËshtë i aftë të mbajë një laps dhe të shkarravisë, të vizatojë ose të kopjojë vija dhe rrathë.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7806],
+            "related_articles": [],
+            "related_video_articles": [6661],
+            "mandatory": 0
+        },
+        {
+            "id": 2826,
+            "type": "Milestone",
+            "title": "Ende vendos objekte në gojën e vet",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EEnde vendos objekte në gojën e vet. Foshnja eksploron objekte duke i mbajtur në gojë. \u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7236],
+            "related_articles": [],
+            "related_video_articles": [6456],
+            "mandatory": 0
+        },
+        {
+            "id": 2831,
+            "type": "Milestone",
+            "title": "Fillon të ndajë dhe të lidhë gjërat me njëra-tjetrën",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T16:10:31+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 16:10\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija mund të lidhë gjërat me njëra-tjetrën, për shembull, një kafshë me një kafshë, një çorape me një çorape.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7751],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2836,
+            "type": "Milestone",
+            "title": "Lehtësisht transferon objektet nga njëra dorë në tjetrën, dhe i lëkund ato",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T16:08:44+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 16:08\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ELehtësisht transferon objektet nga njëra dorë në tjetrën, dhe i lëkund ato. Fëmija manipulon me objektet duke i lëvizur nga dora e majtë në dorën e djathtë, si dhe anasjelltas.\u003Cstrong\u003E           \u003C/strong\u003E\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7696],
+            "related_articles": [],
+            "related_video_articles": [6501],
+            "mandatory": 0
+        },
+        {
+            "id": 2841,
+            "type": "Milestone",
+            "title": "Kap objekte të vogla",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T16:04:47+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 16:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKap objekte të vogla. Fëmija kap objekte të vogla duke përdorur gishtin e madh dhe gishtin tregues. Fëmija akoma përdor të gjithë sipërfaqen e gishtit jo vetëm majat e gishtave për të mbajtur objektin.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7846],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2846,
+            "type": "Milestone",
+            "title": "Në lojë i përdor lodrat me një qëllim të caktuar",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të luajë me lodra dhe e kupton se për çfarë ato shërbejnë dhe si mund t'i përdorë në lojë.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7801],
+            "related_articles": [],
+            "related_video_articles": [6656],
+            "mandatory": 0
+        },
+        {
+            "id": 2851,
+            "type": "Milestone",
+            "title": "Mund të ngrihet në këmbë vetë dhe të ulet vetë pa mbështetje.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T15:54:37+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 15:54\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të ngrihet në këmbë vetë dhe të ulet vetë pa mbështetje. Fëmija në mënyrë të pavarur vendoset në pozicionin ulur. Fëmija ulet pa mbështetje dhe ndihmë shtesë.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7701],
+            "related_articles": [],
+            "related_video_articles": [6466],
+            "mandatory": 0
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Tërheq veten dhe zvarritet. Disa fëmijë tashmë fillojnë të zvarriten.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T15:51:31+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 15:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ETërheq veten dhe zvarritet. Disa fëmijë tashmë fillojnë të zvarriten. Fëmija mund të vihet vetë në një pozicion duke u zvarritur. Fëmija lëviz duke u zvarritur qoftë prapa apo para.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7706],
+            "related_articles": [],
+            "related_video_articles": [6486],
+            "mandatory": 0
+        },
+        {
+            "id": 2861,
+            "type": "Milestone",
+            "title": "Luan lojëra të thjeshta “bëjmë sikur”",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ELuan lojëra të thjeshta \"pretenduese”, për shembull – ushqen një kukull, apo bën sikur po ha një tortë.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7796],
+            "related_articles": [3651],
+            "related_video_articles": [6631],
+            "mandatory": 0
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Shtyn trupin e vet lart, dhe përpiqet të ngrihet në këmbë.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T18:52:29+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 18:52\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShtynë trupin e vet lart, dhe përpiqet të ngrihet në këmbë. Fëmija përpiqet të ngrihet në këmbë duke u mbështetur në mobilje, por i nevojitet ndihmë dhe mbështetje.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7241],
+            "related_articles": [],
+            "related_video_articles": [6471],
+            "mandatory": 0
+        },
+        {
+            "id": 2871,
+            "type": "Milestone",
+            "title": "Shfaq turp dhe nervozizëm kur komunikon me të huajt",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T15:44:45+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 15:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENë prani të të huajve tregon sjellje më të ndryshme sesa me njerëzit që njeh. Fëmija fillon të ndjejë siklet nga personat që nuk i njeh (shmang kontaktin me sy, dhe mbështetet te personat e njohur).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7246],
+            "related_articles": [],
+            "related_video_articles": [6526],
+            "mandatory": 0
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Disa mënyra të komunikimit të fëmijës kuptohen edhe nga njerëz që nuk janë me të çdo ditë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T15:41:33+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 15:41\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija fillon të shqiptojë zërat më qartë dhe përdor gjithnjë e më shumë fjalë me kuptim dhe për këtë arsye komunikimi është më i lehtë.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7346],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2881,
+            "type": "Milestone",
+            "title": "Njeh kafshët dhe tingujt e tyre",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENdërlidh zhurmat me kafshët.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7791],
+            "related_articles": [],
+            "related_video_articles": [6616],
+            "mandatory": 0
+        },
+        {
+            "id": 2886,
+            "type": "Milestone",
+            "title": "Qan kur ndahet nga prindërit",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShfaq shenja të dukshme të shqetësimit, menjëherë pas ndarjes nga prindërit.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7251],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2891,
+            "type": "Milestone",
+            "title": "Kur komunikon me njerëzit e tjerë, përdor një kombinim të fjalëve dhe gjesteve",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShpreh një fjali me 2 deri në 4 fjalë dhe flet për veten në vetën e tretë \"Mia dëshiron\", \"Ema ulet\". \u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7341],
+            "related_articles": [],
+            "related_video_articles": [6621],
+            "mandatory": 0
+        },
+        {
+            "id": 2896,
+            "type": "Milestone",
+            "title": "Ka një lodër të preferuar",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPreferon një lodër të caktuar, e kërkon atë, e mban atë me vete.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7726],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Kërkon të ndajë interesat dhe kënaqësitë me të rriturit, në mënyrë spontane",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPëlqen lojëra reciproke, \"unë ta jap ty - ti ma jep mua\", \"unë bëj - ti bën\" dhe të ngjashme si këto.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7731],
+            "related_articles": [],
+            "related_video_articles": [6551],
+            "mandatory": 0
+        },
+        {
+            "id": 2906,
+            "type": "Milestone",
+            "title": "Kupton emrin e tij, emrat e personave të njohur, emrat e objekteve nga mjedisi i tij, veprimet e përditshme dhe fjalën \"jo\"",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPërgjigjet në mënyrë të duhur ndaj thirrjes së emrit të tij apo ndaj fjalës \"jo\".\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7256],
+            "related_articles": [],
+            "related_video_articles": [6546],
+            "mandatory": 0
+        },
+        {
+            "id": 2911,
+            "type": "Milestone",
+            "title": "Përsërit rrokjet, dhe disa fëmijë tashmë mund të thonë fjalë me kuptim",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EProdhon shumë tinguj të ndryshëm (maaa, baaa...) dhe përdor disa prej tyre si fjalët e para të njohura duke ditur kuptimin e tyre (nëna, babai…).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7736],
+            "related_articles": [],
+            "related_video_articles": [6531],
+            "mandatory": 0
+        },
+        {
+            "id": 2916,
+            "type": "Milestone",
+            "title": "Kupton një udhëzim apo direktivë të shkurtër",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKupton kur i thoni asaj \"sill topin\" ose \"jepja mamit\".\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7741],
+            "related_articles": [],
+            "related_video_articles": [6541],
+            "mandatory": 0
+        },
+        {
+            "id": 2921,
+            "type": "Milestone",
+            "title": "Imiton dhe përdor gjeste",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T15:23:17+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 15:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija mund të thotë \"pa-pa\" për të përshëndetur, lëviz kokën për të thënë \"jo\", drejton gishtin drejt objektit që dëshiron.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7266],
+            "related_articles": [],
+            "related_video_articles": [6521],
+            "mandatory": 0
+        },
+        {
+            "id": 2926,
+            "type": "Milestone",
+            "title": "Kupton dhe ndjek më shumë se një udhëzim të thjeshtë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të ndjekë një ose edhe më shumë kërkesa të thjeshta verbale të tilla si: \"sill një jastëk\", \"eja ulu\", \"hidhe në kosh të mbeturinave\"…\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7821],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2931,
+            "type": "Milestone",
+            "title": "Me kureshtje eksploron me lodrat: i tund ato, i godet, i hedh, u kushton vëmendje detajeve.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EEksploron objekte duke goditur ose duke i ndeshur me njëri-tjetrin (duke vendosur një filxhan mbi një tavolinë ose një lodër mbi një lodër tjetër).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7271],
+            "related_articles": [],
+            "related_video_articles": [6561],
+            "mandatory": 0
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Zgjedh objekte të vogla me gishta, dhe ushqehet me gishta",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKa një \"kapje\" më të mirë - mund të manipulojë me objekte shumë të vogla duke i kapur ato me gishtin e madh dhe me gishtin tregues.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7766],
+            "related_articles": [],
+            "related_video_articles": [6536],
+            "mandatory": 0
+        },
+        {
+            "id": 2941,
+            "type": "Milestone",
+            "title": "Vendos gjërat në një kuti dhe më pas i nxjerr nga ajo.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T15:15:50+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 15:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKa aftësi për të manipuluar më saktë me objektet. Fëmija madje mund të vendos objekte të vogla në një kuti ose një shishe, dhe më pas t'i nxjerrë jashtë saj.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7771],
+            "related_articles": [],
+            "related_video_articles": [6846],
+            "mandatory": 0
+        },
+        {
+            "id": 2946,
+            "type": "Milestone",
+            "title": "Luan krahë për krahë me fëmijët e tjerë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ELuan në mënyrë të pavarur pranë fëmijëve të tjerë; edhe nëse nuk dëshiron të bashkohet me ta nuk ua prish lojën, si dhe mund të fillojë t'i përfshijë gradualisht në lojë, për shembull, duke ndarë me ta një lodër.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7336],
+            "related_articles": [],
+            "related_video_articles": [6636],
+            "mandatory": 0
+        },
+        {
+            "id": 2951,
+            "type": "Milestone",
+            "title": "Ngrihet në këmbë duke u mbështetur në mobilje dhe fillon të ecë afër mobiljeve.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAjo mund të jetë në gjendje të qëndrojë në këmbë duke u mbështetur, ose edhe të qëndrojë në këmbë vetëm pa mbështetje, për një kohë të shkurtër. Ajo përpiqet të lëvizë duke u mbështetur në mobilje ose duke mbajtur dorën e një të rrituri.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7776],
+            "related_articles": [3346],
+            "related_video_articles": [6556],
+            "mandatory": 0
+        },
+        {
+            "id": 2956,
+            "type": "Milestone",
+            "title": "Imiton sjelljen e të rriturve dhe të fëmijëve më të rritur",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EImiton të rriturit dhe bën gjërat që i sheh nga ata, për shembull, shtynë një karrocë fëmijësh, ose lexon një gazetë…\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7331],
+            "related_articles": [],
+            "related_video_articles": [6641],
+            "mandatory": 0
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Ndihmon kur vishet",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T15:02:46+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 15:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBashkëpunon kur e vishni atë, fut dorën në mëngët e tij/saj dhe këmbët në çorape.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7276],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2966,
+            "type": "Milestone",
+            "title": "Bëhet gjithnjë e më i pavarur",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T15:00:52+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 15:00\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENdonjëherë reziston në realizimin e urdhrave, zemërohet, dëshiron të kontrollojë të tjerët, grindet, urdhëron, dhe mbron gjërat e tij/saj.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7786],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2971,
+            "type": "Milestone",
+            "title": "Mund të shprehë ndjenjat",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T14:58:38+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 14:58\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të shprehë dhe të shfaq ndjenja të ndryshme: frikë, zemërim, dhembshuri, faj, gëzim.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7781],
+            "related_articles": [3656],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2976,
+            "type": "Milestone",
+            "title": "Qëndron në këmbë, lëviz dhe ecën në mënyrë të pavarur.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T14:51:28+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 14:51\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija mund të lëvizë në mënyrë të pavarur në drejtime të ndryshme, me shpejtësi të ndryshme ose të kombinojë lëvizje të ndryshme (për të ndaluar lëvizjen dhe për të bërë me dorë).\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7281],
+            "related_articles": [4841],
+            "related_video_articles": [6591],
+            "mandatory": 0
+        },
+        {
+            "id": 2981,
+            "type": "Milestone",
+            "title": "Kupton dhe realizon urdhra të thjeshtë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T14:48:26+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 14:48\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENdjek udhëzime të caktuara, të thjeshta dhe pa demonstrim, si dhe mund të kryejë atë që pritet prej tij/saj.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7326],
+            "related_articles": [],
+            "related_video_articles": [6571],
+            "mandatory": 0
+        },
+        {
+            "id": 2986,
+            "type": "Milestone",
+            "title": "Shqipton fjalë me kuptim.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAjo flet të paktën një ose disa fjalë individuale kur u drejtohet prindërve.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7286],
+            "related_articles": [],
+            "related_video_articles": [6851],
+            "mandatory": 0
+        },
+        {
+            "id": 2991,
+            "type": "Milestone",
+            "title": "Ende shfaq frikë ndaj të huajve dhe situatave",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T14:41:52+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 14:41\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENë kontakt me një të huaj, fëmija reagon me frikë, duke kërkuar një person të njohur ose duke u kapur pas prindit.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7291],
+            "related_articles": [3646, 346],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2996,
+            "type": "Milestone",
+            "title": "I pëlqen të luajë lojëra imagjinative",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-21T14:37:31+01:00\" class=\"datetime\"\u003EFri, 01/21/2022 - 14:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ELuan \"lojëra imagjinative\", fëmija bën sikur pi çaj, ose sikur po ushqen një kukull, etj.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7856],
+            "related_articles": [2141],
+            "related_video_articles": [6576],
+            "mandatory": 0
+        },
+        {
+            "id": 3001,
+            "type": "Milestone",
+            "title": "Shkarravit në letër në mënyrë të pavarur me një laps ose shkumësa me ngjyra",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EI pëlqen të shkarravisë, qoftë me laps në letër, me dorë në rërë, me shkop mbi baltë, apo ujë në beton. \u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7296],
+            "related_articles": [],
+            "related_video_articles": [6606],
+            "mandatory": 0
+        },
+        {
+            "id": 3006,
+            "type": "Milestone",
+            "title": "Di si të përdor objektet për përdorim të përditshëm",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EDemonstron njohuri të përdorimit të objekteve siç janë luga, furça e dhëmbëve, telefoni.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7316],
+            "related_articles": [3991],
+            "related_video_articles": [6601],
+            "mandatory": 0
+        },
+        {
+            "id": 3011,
+            "type": "Milestone",
+            "title": "Vendos një objekt të caktuar në një tjetër",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVendos gjëra në një pjatë apo gotë dhe më pas i heq nga aty. \u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7301],
+            "related_articles": [1986],
+            "related_video_articles": [6586, 2116],
+            "mandatory": 0
+        },
+        {
+            "id": 3016,
+            "type": "Milestone",
+            "title": "Në komunikim, fëmija përdor gjestet për një kuptim të ndërsjelltë më të mirë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-01-18T13:46:33+01:00\" class=\"datetime\"\u003ETue, 01/18/2022 - 13:46\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija përpiqet të imitojë gjestet që bëjnë të rriturit dhe fjalët që ata thonë. Përdor në mënyrë të përshtatshme gjestet në përgjigje të kërkesave (\"mirupafshim\" ose \"jo\").\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7311],
+            "related_articles": [],
+            "related_video_articles": [6596],
+            "mandatory": 0
+        },
+        {
+            "id": 3021,
+            "type": "Milestone",
+            "title": "Pret me padurim për aktivitete të përbashkëta",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAjo imiton shprehjet e fytyrës, gjestet dhe disa aktivitete të njerëzve të afërt, tregon me gishtin tregues atë që i intereson ose u ofron gjëra njerëzve të tjerë në mënyrë që t'u shtojë atyre interesin për to, dhe t'i përfshijë ata në lojë.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7306],
+            "related_articles": [3646],
+            "related_video_articles": [6581],
+            "mandatory": 0
+        },
+        {
+            "id": 5861,
+            "type": "Milestone",
+            "title": "Tregon më shumë interes në libra",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-22T06:04:14+02:00\" class=\"datetime\"\u003EWed, 09/22/2021 - 06:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ETregon interes në libra me imazhe, mund të ndërrojë vetë faqet e një libri me kopertina të forta.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7406],
+            "related_articles": [],
+            "related_video_articles": [6806],
+            "mandatory": 0
+        },
+        {
+            "id": 6971,
+            "type": "Milestone",
+            "title": "Tregon interes për të luajtur me fëmijë dhe të rritur të tjerë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKërkon të tjerët për të luajtur me të; di sesi të përfshihet në lojë dhe të mësojë nga fëmijët dhe të rriturit e tjerë ndërsa luajnë së bashku.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7421],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6976,
+            "type": "Milestone",
+            "title": "I pëlqen të kënaqë të tjerët dhe të ndërveprojë me ato",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENjeh ndjenjat e të tjerëve; ndjen kënaqesi kur ndan emocionet me të tjerë; si dhe është në gjendje të kuptojë konceptin e \"radhës\".\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7426],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6981,
+            "type": "Milestone",
+            "title": "Përdor fjali me 4 deri në 5 fjalë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EI përdor fjalët së bashku në mënyra që kanë kuptim dhe që komunikojnë idetë e saj/tij.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7431],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6986,
+            "type": "Milestone",
+            "title": "Njeh dhe kupton numrat 2 dhe 3",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENëse j'ua kërkoni, ata/ato mund të zgjedhin dy ose tre objekte (lodra, lugë, etj), ose të shikojnë në një kuti me gjëra dhe të tregojnë që aty gjenden dy ose tre objekte.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7436],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6991,
+            "type": "Milestone",
+            "title": "Kupton termat “të ngjashëm” ose “të njëjtë” dhe “të ndryshëm” si dhe mund t'i grupojë gjërat në mënyra të ndryshme (si p.sh. sipas ngjyrës ose madhësisë)",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPër shembull, fëmija mund të flasë për kafshët me gëzof dhe ato që kanë pupla; fëmija mund të tregojë një gjë që është e ndryshme nga të tjerët në një libër (për shembull, djali i vetëm që mban një top).\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7831],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7001,
+            "type": "Milestone",
+            "title": "Flet për gjërat që ndodhin në jetën e tij/të saj",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të tregojë për një festë ditëlindje që ka ndodhur javën e kaluar, ose të përshkruajë një udhëtim që ka bërë me familjen.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7446],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7006,
+            "type": "Milestone",
+            "title": "Këndon një këngë ose tregon tregime që janë mësuar përmendësh",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMendon për një tregim ose këngë të dëgjuar në të kaluarën dhe përpiqet që të kujtojë fjalët.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7451],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7011,
+            "type": "Milestone",
+            "title": "Mund të shkruaj disa shkronja të alfabetit apo të mundohet të kopjoj fotografitë e tjera kur i tregohen atij/asaj paraprakisht",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:42:36+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShikon shkronjat apo fotografitë e objekteve dhe mundohet t`i kopjoj, megjithëse mund të mos duken të sakta.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7456],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7016,
+            "type": "Milestone",
+            "title": "Përdor në mënyrë më të saktë gishtat dhe duart",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ETregon më shumë aftësi në përdorimin e gërshërëve; ndërton kulla (për shembull, me 8 ose më shumë blloqe të mëdha). \u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7461],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7021,
+            "type": "Milestone",
+            "title": "Luan lojëra të thjeshta duke ndjekur rregullat",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENdjek rregulla të thjeshta në lojë dhe respekton rradhën.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7466],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7026,
+            "type": "Milestone",
+            "title": "Ec, vrapon, kërcen, hedh dhe gjuan lehtësisht me shkathtësi topa të mëdhenj",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPërdor trupin me shkathtësi (për shembull, nëse ka mundësi- ai/ajo mund të ngasë një skuter ose biçikletë, apo patina, etj).\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7471],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7031,
+            "type": "Milestone",
+            "title": "Përdor trupin me shumë shkathtësi në aktivitete",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EQëndron në njërën këmbë, kërcen, lëkundet, dhe ngjitet. Nëse ka mundësi mund të ngasë një biçikletë ose skuter, si dhe manipulon me shkathtësi një top duke përdorur vetëm krahët e tij/saj apo vetëm këmbët e tij/saj.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7476],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7036,
+            "type": "Milestone",
+            "title": "Vizaton pamje të sakta të trupit të njeriut dhe forma të thjeshta",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:44:01+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVizaton figurën e njeriut me pjesë të dukshme; mund të vizatojë rrethin, trekëndëshin dhe figura të tjera gjeometrike.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7481],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Përdor fjali me pesë ose më shumë fjalë; përdor fjalët për t'u shprehur për të ardhmen",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBashkon fjalët për të shprehur idetë e saj/tij; mund të thotë se çfarë \"do\" ose \"mund\" të ndodhë në të ardhmen.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7486],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7046,
+            "type": "Milestone",
+            "title": "Mund të tregojë ose të ritregojë një pjesë të një historie (tregimi)",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:42:08+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENë mënyrë të pavarur ritregon idetë kryesore të një historie (tregimi) ose të pjesës së preferuar të historisë (tregimit), siç mund t'ia sugjerojë një i/e rritur.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7491],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7051,
+            "type": "Milestone",
+            "title": "Mund të thotë emrin dhe adresën",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:41:41+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:41\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENëse pyetet, mund të tregojë informacionin bazë për veten e tij/saj.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7496],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7061,
+            "type": "Milestone",
+            "title": "Emërton në mënyrë të saktë, të paktën katër ngjyra",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENjohja e ngjyrave përfshin disa ngjyra si vjollcë dhe portokalli (dhe jo vetëm të kuqe, të verdhë, apo blu). \u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7511],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7066,
+            "type": "Milestone",
+            "title": "Kupton konceptet e kohës \"më parë\" dhe \"më pas\"",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShpjegon atë që ka ndodhur para dhe pas një ngjarje; mund të vendosë stinët e vitit sipas rregullit (për shembull vera vjen pas pranverës). \u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7506],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7071,
+            "type": "Milestone",
+            "title": "Mund të shpjegoj se si përdoren objektet e përditshme",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:40:51+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EShpjegon se si gjërat si telefoni ose paratë përdoren në jetën e përditshme.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7516],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7076,
+            "type": "Milestone",
+            "title": "Zgjedh të marrë pjesë në aktivitete kreative",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:43:02+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:43\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPërfshihet në aktivitete të tilla si këndimi dhe vallëzimi, vizatimi dhe pikturimi, modelimi me argjilë ose me materiale të tjera dhe aktivitete të tjera kreative.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7521],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Përdor aftësi për të marrë pjesë në mënyrë të pavarur në rutinat e përditshme dhe aktivitetet sociale",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të vishen dhe të zhvishen në mënyrë të pavarur, përdor një lugë dhe pirun, përdor tualetin vetëm dhe lan duart. Mund të ndahet nga prindërit dhe të përfshihet në aktivitete të pavarura sociale. \u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7526],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Merr pjesë në aktivitete të ndryshme që kërkojnë shkathtësi të lartë fizike",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENë gjendje të qëndrojë me njërën këmbë, të gjuajë saktë një top, si dhe të godasë me top një objektiv etj. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7531],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7091,
+            "type": "Milestone",
+            "title": "Mund të vizatoj forma komplekse, të shkruaj shkronjat dhe të bëjë vizatime të detajuara",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:45:12+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:45\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të vendosë detaje realiste brenda një vizatimi, bën fotografi më komplekse, përdor me mjeshtëri materialet e vizatimit dhe pikturimit nëse e ka mundësinë.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7536],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7096,
+            "type": "Milestone",
+            "title": "Përdor fjali komplekse",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFjalitë janë gjithnjë e më komplekse. Për shembull, fëmija e përdor saktë kohën e tashme, të shkuarën dhe të ardhmen.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7541],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7101,
+            "type": "Milestone",
+            "title": "Njeh shkronjat e alfabetit dhe ka disa aftësi leximi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMund të njohë shumicën e shkronjave të alfabetit dhe mund të lexojë fjalë të thjeshta me rrokje themelore, si një dyqan, një libër, ma-mi, ba-bi etj. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7546],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Tregon një histori të plotë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EFëmija arrin të ri-tregojë në mënyrë të përmbledhur një histori të caktuar, plotësisht në mënyrë të pavarur dhe të saktë, duke treguar ngjarjet sipas një rendi kronologjik, pra ngjarje në të cilat ai/ajo ka marrë pjesë, apo një shfaqje televizive.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7826],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7111,
+            "type": "Milestone",
+            "title": "E di emrin dhe mbiemrin e tij/saj, moshën dhe adresën e shtëpisë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:46:05+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:46\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAi/ajo di informata bazike për veten e tij/saj dhe mund t'i tregoj kur i kërkohet. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7551],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7116,
+            "type": "Milestone",
+            "title": "Kupton se çfarë ndodh në kohë të ndryshme dhe sesi koha kalon",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKupton kalimin e kohës, kupton se çfarë ndodh në mëngjes, në mesditë dhe në mbrëmje, si dhe mund të planifikojë disa aktivitete.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7851],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7121,
+            "type": "Milestone",
+            "title": "Ndjek rregullat e lojërave dhe ndonjëherë ka ide për rregulla të reja",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:39:57+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAi/ajo i kupton rregullat e vendosura (për shembull, rregullat e lojërave), por herë pas here ai/ajo dëshiron të shtojë disa të reja, që janë ndryshe. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7561],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7126,
+            "type": "Milestone",
+            "title": "Tregon dëshirë për të marrë përgjegjësi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPër shembull, ai/ajo fillon të kujdeset për gjërat e tij/saj.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7566],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Arrin të kuptojë ndryshimin midis lojës reale dhe imagjinare, apo lojërave \"besojmë sikur\"",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAi/ajo vetëm krijon histori, ngjarje, personazhe nga imagjinata e tij/saj; i paraqet ato artistikisht, i përshkruan dhe u cakton atyre atribute që nuk janë realiste. Ai/ajo argëtohet ndërsa e bën këtë, i/e vetëdijshëm/e se gjithçka është e mundur në botën e imagjinatës. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7571],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7136,
+            "type": "Milestone",
+            "title": "Kupton idetë dhe nevojat e njerëzve të tjerë",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:16+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-10T13:44:55+01:00\" class=\"datetime\"\u003EThu, 03/10/2022 - 13:44\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPër këtë arsye ai/ajo i kushton më shumë vëmendje asaj që të tjerët duan apo sugjerojnë dhe dëshiron t'i përmbush ato – ai/ajo është më bashkëpunues/e me shokët/shoqet dhe në funksionimin si ekip.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7576],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
         }
     ],
     "xk-rs": [
         {
+            "id": 7096,
+            "type": "Milestone",
+            "title": "Govori koristeći složene rečenice",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:11:44+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:11\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:12:48+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERečenice su sve složenije i u njima dete pravilno koristi sadašnje, prošlo i buduće vreme.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7541],
+            "related_articles": [],
+            "related_video_articles": [58636],
+            "mandatory": 0
+        },
+        {
+            "id": 7021,
+            "type": "Milestone",
+            "title": "Učestvuje u jednostavnim društvenim igrama ",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:09:54+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:12:56+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUspeva da prati jednostavna pravila igre, poštuje ih, čeka svoj red…\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7466],
+            "related_articles": [],
+            "related_video_articles": [58541],
+            "mandatory": 0
+        },
+        {
+            "id": 7121,
+            "type": "Milestone",
+            "title": "Prati pravila, ali povremeno želi da uvede i nova",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:30+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:13:11+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERazume postavljena pravila igre, ali povremeno želi da doda neka nova, drugačija.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7561],
+            "related_articles": [],
+            "related_video_articles": [58621],
+            "mandatory": 0
+        },
+        {
+            "id": 7136,
+            "type": "Milestone",
+            "title": "Ima razumevanje za ideje i potrebe drugih ljudi",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:30+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:13:26+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:13\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E Sve više obraća pažnju na to šta drugi žele ili predlažu i želi da im izađe u susret – sve bolje sarađuje sa vršnjacima u timskim/zajedničkim aktivnostima. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7576],
+            "related_articles": [],
+            "related_video_articles": [58606],
+            "mandatory": 0
+        },
+        {
+            "id": 7031,
+            "type": "Milestone",
+            "title": "Veštije koristi telo u mnogim aktivnostima",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:29+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:14:21+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da stoji na jednoj nozi, skače, ljulja se, penje se. Ako okolnosti dozovoljavaju vozi bicikl, trotinet, veštije manipuliše loptom koristeći samo ruke i samo noge. \u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7476],
+            "related_articles": [],
+            "related_video_articles": [58561],
+            "mandatory": 0
+        },
+        {
+            "id": 7051,
+            "type": "Milestone",
+            "title": "Zna svoje ime i adresu gde stanuje",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:29+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:14:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EZna osnovne informacije o sebi i može da ih reprodukuje na zahtev.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7496],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7061,
+            "type": "Milestone",
+            "title": "Tačno imenuje najmanje četiri boje",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:29+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:14:39+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOsim osnovnih,  može da prepozna i imenuje izvedene boje (ljubičastu, narandžastu...).\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7511],
+            "related_articles": [],
+            "related_video_articles": [58556],
+            "mandatory": 0
+        },
+        {
+            "id": 7091,
+            "type": "Milestone",
+            "title": "Može da crta  složenije figure, slova ili crteže sa više detalja",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:29+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:14:51+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUme da prikaže realističite detalje na crtežu, crteži su kompleksniji, ako ima  priliku vešto koristi različite tehnike i materijale za slikanje i vajanje.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7536],
+            "related_articles": [],
+            "related_video_articles": [58626],
+            "mandatory": 0
+        },
+        {
+            "id": 7101,
+            "type": "Milestone",
+            "title": "Prepoznaje slova, a može početi i da čita",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:29+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:15:00+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da prepozna većinu slova i da čita osnovne svakodnevne reči i slogove kao što su knjiga, ma-ma, ta-ta itd.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7546],
+            "related_articles": [],
+            "related_video_articles": [58651],
+            "mandatory": 0
+        },
+        {
+            "id": 7111,
+            "type": "Milestone",
+            "title": "Zna svoje ime, prezime, koliko ima godina i adresu na kojoj stanuje",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:29+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:15:08+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EZna osnovne informacije o sebi i može da ih reprodukuje na zahtev.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7551],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7126,
+            "type": "Milestone",
+            "title": "Pokazuje znake odgovornosti",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:29+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:15:15+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENa primer počinje da pazi na svoje stvari, da brine o svom ljubimcu.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7566],
+            "related_articles": [],
+            "related_video_articles": [58631],
+            "mandatory": 0
+        },
+        {
+            "id": 6971,
+            "type": "Milestone",
+            "title": "Pokazuje interesovanje za igru sa sa drugom decom   ",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:30:33+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:30\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ETraži od drugih da se igraju, ume da se uključi u igru i uči od dece i odraslih dok se igra.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7421],
+            "related_articles": [],
+            "related_video_articles": [58511],
+            "mandatory": 0
+        },
+        {
+            "id": 7026,
+            "type": "Milestone",
+            "title": "Sa lakoćom hoda, trči, skače, baca i šutira veliku i malu loptu",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:15:43+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVeštije koristi svoje telo (može da vozi trotinet, bicikl, rolere...).\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7471],
+            "related_articles": [],
+            "related_video_articles": [58496],
+            "mandatory": 0
+        },
+        {
+            "id": 7036,
+            "type": "Milestone",
+            "title": "Crta ljudsku figuru i jednostavne oblike",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:18:09+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ECrta ljudsku figuru sa vidljivim njenim delovima, može da nacrta krug, trougao i druge geometrijske figure.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7481],
+            "related_articles": [],
+            "related_video_articles": [58571],
+            "mandatory": 0
+        },
+        {
+            "id": 7046,
+            "type": "Milestone",
+            "title": "Može da ispriča priču ili prepriča jedan njen deo",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:18:18+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESamostalno prepričava radnju određene priče ili njen deo na predlog odraslog.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7491],
+            "related_articles": [],
+            "related_video_articles": [58591],
+            "mandatory": 0
+        },
+        {
+            "id": 7066,
+            "type": "Milestone",
+            "title": "Razume koncept protoka vremena, šta je pre i posle",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:24:54+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da razume šta se dešava pre a šta kasnije, može da poređa godišnja doba po redosledu (da zima ide posle jeseni na primer).\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7506],
+            "related_articles": [],
+            "related_video_articles": [58566],
+            "mandatory": 0
+        },
+        {
+            "id": 7071,
+            "type": "Milestone",
+            "title": "Zna da objasni kako se koriste predmeti u svakodnevnoj upotrebi",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:24:32+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EZna da objasni čemu služi i kako se koristi na primer novac, hrana, telefon….\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7516],
+            "related_articles": [],
+            "related_video_articles": [58576],
+            "mandatory": 0
+        },
+        {
+            "id": 7076,
+            "type": "Milestone",
+            "title": "Bira da učestvuje u kreativnim aktivnostima",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:21:27+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EČesto se ukljčuje u pevanje i ples, crtanje i slikanje, modelovanje raznim materijalima i druge kreativne igre. \u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7521],
+            "related_articles": [],
+            "related_video_articles": [58586],
+            "mandatory": 0
+        },
+        {
+            "id": 7116,
+            "type": "Milestone",
+            "title": "Razume šta se dešava u različitim vremenskim periodima i razume protok vremena",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:21:42+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERazume šta se dešava ujutro, u podne i uveče, može da isplanira neke aktivnosti.\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7851],
+            "related_articles": [],
+            "related_video_articles": [59251],
+            "mandatory": 0
+        },
+        {
+            "id": 2676,
+            "type": "Milestone",
+            "title": "U položaju na stomaku, oslanja se podlakticama",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:08:27+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:21:54+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EDok leži na stomaku, podiže ramena i glavu visoko naslonjena na laktove.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7716],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7006,
+            "type": "Milestone",
+            "title": "Peva ili recituje stihove dečijih pesmica",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:03:50+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:31:38+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:31\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPokušava da se seti reči pesmice, kao i priče koju je čulo ranije.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7451],
+            "related_articles": [],
+            "related_video_articles": [58516],
+            "mandatory": 0
+        },
+        {
+            "id": 6986,
+            "type": "Milestone",
+            "title": "Razume značenje brojeva 2 i 3",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:03:22+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:22:24+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENa zahtev dete može da izabere dva ili tri predmeta (igračke, kašikice i sl.) ili da gledajući u grupu predmeta odreda da li ih ima dva ili tri.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7436],
+            "related_articles": [],
+            "related_video_articles": [58536],
+            "mandatory": 0
+        },
+        {
+            "id": 6991,
+            "type": "Milestone",
+            "title": "Razume pojmove “slično” i “različito” i grupiše predmete (prema boji, obliku)",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:02:52+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:22:34+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:22\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ENa primer, govori o životinjama koje imaju krzno i koje imaju perije, na slici može da pokaže jednu stvar koja se razlikuje od ostalih.\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7831],
+            "related_articles": [],
+            "related_video_articles": [58546],
+            "mandatory": 0
+        },
+        {
+            "id": 7016,
+            "type": "Milestone",
+            "title": "Preciznije koristi prste i ruke",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:02:18+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:23:25+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:23\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESve veštije koristi makazice, secka. Može da napravi toranj/kulu od 8 ili više kocki (ne lego).\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7461],
+            "related_articles": [],
+            "related_video_articles": [58531],
+            "mandatory": 0
+        },
+        {
+            "id": 7001,
+            "type": "Milestone",
+            "title": "Priča o događajima iz svog života",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T01:01:47+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:01\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:24:12+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da ispriča šta se događalo na rođendanu svojih drugara ili kako je bilo na putovanju.  \u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7446],
+            "related_articles": [],
+            "related_video_articles": [58506],
+            "mandatory": 0
+        },
+        {
+            "id": 7011,
+            "type": "Milestone",
+            "title": "Može da napiše neka slova, trudi se da precrta ponuđenu sliku ",
+            "created_at": "\u003Ctime datetime=\"2021-10-22T00:57:27+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 00:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:00:43+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:00\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGleda u slova ili sliku objekata i pokušava da ih prekopira (ne uvek i tačno).\u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7456],
+            "related_articles": [],
+            "related_video_articles": [58526],
+            "mandatory": 0
+        },
+        {
             "id": 7106,
             "type": "Milestone",
             "title": "Priča kompletnu priču",
-            "created_at": "Wed, 09/29/2021 - 15:52",
-            "updated_at": "Wed, 09/29/2021 - 15:58",
-            "body": "<p>Dete uspeva potpuno samostalno i tačno prepričati zaplet određene priče, pravilno raspoređujući događaje hronološkim redom, događaj u kome je učestvovalo ili TV emisiju. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7826
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:52:43+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:52\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T15:58:03+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:58\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EDete uspeva potpuno samostalno i tačno prepričati zaplet određene priče, pravilno raspoređujući događaje hronološkim redom, događaj u kome je učestvovalo ili TV emisiju. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7826],
             "related_articles": [],
-            "related_video_articles": [
-                58656
-            ],
-            "mandatory": 1
+            "related_video_articles": [58656],
+            "mandatory": 0
         },
         {
             "id": 7086,
             "type": "Milestone",
             "title": "Vešto učestvuje u različitim aktivnostima koje zahtevaju napredne fizičke veštine",
-            "created_at": "Wed, 09/29/2021 - 15:51",
-            "updated_at": "Wed, 09/29/2021 - 15:59",
-            "body": "<p>Može da stoji na jednoj nozi, precizno šutira loptu, loptom pogodi metu itd. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7531
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:51:49+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T15:59:44+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:59\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da stoji na jednoj nozi, precizno šutira loptu, loptom pogodi metu itd. \u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7531],
             "related_articles": [],
-            "related_video_articles": [
-                58611
-            ],
-            "mandatory": 1
+            "related_video_articles": [58611],
+            "mandatory": 0
         },
         {
             "id": 7131,
             "type": "Milestone",
             "title": "Pokazuje razumevanje razlike između stvarnog i pretvaranja ili izmišljotine",
-            "created_at": "Wed, 09/29/2021 - 15:51",
-            "updated_at": "Wed, 09/29/2021 - 16:02",
-            "body": "<p>On/ona samo izmišlja priče, događaje, likove iz svoje mašte, umetnilki ih predstavlja, opisuje i dodeljuje imanja koja nisu realna. Zabavlja se dok to radi, svestan/na da je sve moguće u svetu mašte</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7571
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:51:11+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T16:02:38+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 16:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOn/ona samo izmišlja priče, događaje, likove iz svoje mašte, umetnilki ih predstavlja, opisuje i dodeljuje imanja koja nisu realna. Zabavlja se dok to radi, svestan/na da je sve moguće u svetu mašte\u003C/p\u003E",
+            "child_age": [58],
+            "related_activities": [7571],
             "related_articles": [],
-            "related_video_articles": [
-                58641
-            ],
-            "mandatory": 1
+            "related_video_articles": [58641],
+            "mandatory": 0
         },
         {
             "id": 7081,
             "type": "Milestone",
             "title": "Koristi veštine za samostalno učešće u svakodnevnim rutinama i društvenim aktivnostima",
-            "created_at": "Wed, 09/29/2021 - 15:50",
-            "updated_at": "Wed, 09/29/2021 - 16:04",
-            "body": "<p>Može da se oblači nezavisno, koristi kašiku i viljušku, sam/a koristi toalet i pere ruke. Može se odvojiti od roditelja i uključiti u samostalne društvene aktivnosti. </p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7526
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:50:39+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:50\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T16:04:57+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 16:04\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da se oblači nezavisno, koristi kašiku i viljušku, sam/a koristi toalet i pere ruke. Može se odvojiti od roditelja i uključiti u samostalne društvene aktivnosti. \u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7526],
             "related_articles": [],
-            "related_video_articles": [
-                58596
-            ],
-            "mandatory": 1
+            "related_video_articles": [58596],
+            "mandatory": 0
         },
         {
             "id": 7041,
             "type": "Milestone",
             "title": "Govori u rečenicama od 5 ili više reči; koristi reči kako bi razgovarao o budućnosti",
-            "created_at": "Wed, 09/29/2021 - 15:49",
-            "updated_at": "Wed, 09/29/2021 - 15:53",
-            "body": "<p>Spaja reli da izrazi svoje ideje; može reći “šta če se” or “šta se može” dogoditi u budućnosti.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7486
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:49:45+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:49\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T15:53:48+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:53\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESpaja reli da izrazi svoje ideje; može reći “šta če se” or “šta se može” dogoditi u budućnosti.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7486],
             "related_articles": [],
-            "related_video_articles": [
-                58581
-            ],
-            "mandatory": 1
+            "related_video_articles": [58581],
+            "mandatory": 0
         },
         {
             "id": 7056,
             "type": "Milestone",
             "title": "Može da broji do deset i imenuje deset objekata bez grešaka",
-            "created_at": "Wed, 09/29/2021 - 15:49",
-            "updated_at": "Wed, 09/29/2021 - 15:55",
-            "body": "<p>Takođe, može da kaže \"prvi, drugi\" do broja 10, broji dane u nedelji i mesece.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7501
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:49:17+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:49\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T15:55:39+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:55\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ETakođe, može da kaže \"prvi, drugi\" do broja 10, broji dane u nedelji i mesece.\u003C/p\u003E",
+            "child_age": [57],
+            "related_activities": [7501],
             "related_articles": [],
-            "related_video_articles": [
-                58601
-            ],
-            "mandatory": 1
+            "related_video_articles": [58601],
+            "mandatory": 0
         },
         {
             "id": 6996,
             "type": "Milestone",
             "title": "Poznaje osnovne razlike između stvari koje su stvarne, lažne ili izmišljene",
-            "created_at": "Wed, 09/29/2021 - 15:24",
-            "updated_at": "Wed, 09/29/2021 - 15:42",
-            "body": "<p>Smišlja priču o liku koji ne postoji, ili zna da životinje u stvarnom životu ne mogu govoriti. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7441
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:24:10+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T15:42:45+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:42\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESmišlja priču o liku koji ne postoji, ili zna da životinje u stvarnom životu ne mogu govoriti. \u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7441],
             "related_articles": [],
-            "related_video_articles": [
-                58551
-            ],
-            "mandatory": 1
+            "related_video_articles": [58551],
+            "mandatory": 0
         },
         {
             "id": 6976,
             "type": "Milestone",
             "title": "Voli da ugađa drugima i sarađuje ",
-            "created_at": "Wed, 09/29/2021 - 15:23",
-            "updated_at": "Wed, 09/29/2021 - 15:40",
-            "body": "<p>Prepoznaje osećanja drugih osoba; često voli da deli stvari sa drugima; može da se okreće. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7426
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:23:33+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T15:40:29+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPrepoznaje osećanja drugih osoba; često voli da deli stvari sa drugima; može da se okreće. \u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7426],
             "related_articles": [],
-            "related_video_articles": [
-                58521
-            ],
-            "mandatory": 1
+            "related_video_articles": [58521],
+            "mandatory": 0
         },
         {
             "id": 6981,
             "type": "Milestone",
             "title": "Koristi rečenice od 4 do 5 reči",
-            "created_at": "Wed, 09/29/2021 - 15:22",
-            "updated_at": "Wed, 09/29/2021 - 15:40",
-            "body": "<p>Spaja reči na način koji ima smisla i prenosi svoje ideje. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7431
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-09-29T15:22:56+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T15:40:57+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 15:40\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESpaja reči na način koji ima smisla i prenosi svoje ideje. \u003C/p\u003E",
+            "child_age": [52],
+            "related_activities": [7431],
             "related_articles": [],
-            "related_video_articles": [
-                58501
-            ],
-            "mandatory": 1
+            "related_video_articles": [58501],
+            "mandatory": 0
         },
         {
-            "id": 2961,
+            "id": 2526,
             "type": "Milestone",
-            "title": "Pomaže pri oblačenju",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Sarađuje kada ga oblačite, gura prilikom oblačenja rukava ili nogavica.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7276
-            ],
+            "title": "Opušta se kada je uzmete u naručje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:33:44+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada je podignete osećate kako se beba prilagođava zagrljaju i privija se uz vas.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7581],
             "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2541,
-            "type": "Milestone",
-            "title": "Oglašava se",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Beba se oglašava plakanjem, ali i proizvodi glasove</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6296
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2731,
-            "type": "Milestone",
-            "title": "Na zvuk glasa uzvraća oglašavanjem - spajanjem samoglasnika: a,e,u...",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Kada joj se neko obraća, priča, pevuši, čita… beba odgovara</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7211
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6421
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2966,
-            "type": "Milestone",
-            "title": "Sve više se osamostaljuje",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Ponekad se opire nalozima, ljuti se, želi da kontroliše druge, svađa se, naređuje, brani svoje stvari.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7786
-            ],
-            "related_articles": [
-                4781
-            ],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2556,
-            "type": "Milestone",
-            "title": "Kada leži na stomaku, podiže glavu",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:17",
-            "body": "<p>Kada je stavite u ležeći položaj na stomak beba će pokušavati da podigne glavicu kako bi oslobodila disajne puteve.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2746,
-            "type": "Milestone",
-            "title": "Uzbuđena je kada shvati da je vreme za igru",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Raduje se, izgleda srećno i uživa u igri i kontaktu, pogotovo sa roditeljima i poznatima.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7841
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6441
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2981,
-            "type": "Milestone",
-            "title": "Razume i izvršava jednostavne naloge",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:17",
-            "body": "<p>Prati jednostavno izrečeno upustvo bez pokazivanja i može da izvrši očekivano.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7326
-            ],
-            "related_articles": [
-                4776
-            ],
-            "related_video_articles": [
-                6571
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2561,
-            "type": "Milestone",
-            "title": "Proizvodi različite zvuke kada je srećna, uznemirana ili gladna",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Razlikuje se bebin plač kada ima određene potrebe, pa tako na osnovu oglašavanja može da se prepozna da li je vesela, uznemirena ili ima neku drugu potrebu.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7611
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6316
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2766,
-            "type": "Milestone",
-            "title": "Rado se igra u društvu dece",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Igra više nije samo paralelna – jedni pored drugih, već ima složenijih elemenata, maštovitosti i razigranosti.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7371
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6931
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2986,
-            "type": "Milestone",
-            "title": "Izgovara reči sa značanjem",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:17",
-            "body": "<p>Govori bar jednu ili nekoliko pojedinačnih reči u obraćanju roditeljima.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7286
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6851
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2566,
-            "type": "Milestone",
-            "title": "Može na kratko sama da se smiri",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Umiruje se sisajući prst ili ručicu.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7176
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6361
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2786,
-            "type": "Milestone",
-            "title": "Počinje da razume značenje reči “ne”.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Kada čuje reč ne zaustavlja radnju i prepoznaje neodobravanje.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7226
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6476
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 3001,
-            "type": "Milestone",
-            "title": "Žvrlja samostalno olovkom ili bojicama po papiru",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:18",
-            "body": "<p>Rado upotrebljava pokret žvrljanja bilo da je to olovkom po papiru, rukom po pesku, štapićem po blatu, ili vodom po betonu</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7296
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6606
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2571,
-            "type": "Milestone",
-            "title": "Okreće glavu prema izvoru zvuka i pokazuje da sluša",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Ukoliko čuje ljudski glas ili neki drugi zvuk beba okreće glavicu prema njemu. Dok sluša glas zagleda se u roditelja ili osobu koja govori, usporava pokrete.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7721
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6326
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2816,
-            "type": "Milestone",
-            "title": "Više koristi jednu ruku",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:11",
-            "body": "<p>Počinje više da koristi jednu ruku – levu ili desnu.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7356
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6666
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2586,
-            "type": "Milestone",
-            "title": "Pokazuje dosadu ili zaplače ako se aktivnost promeni",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Buni se plačući ukoliko je dugo ostavljena u jednom položaju, ili pokazuje protest i ukoliko je spustite nakon držanja u naručju.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7181
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2856,
-            "type": "Milestone",
-            "title": "Podiže se u položaj za puzanje, neka deca već puze",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Može da se samostalno postavi u položaj za puzanje. Pokreće se puzeći bez obzira da li je to unazad ili napred.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7706
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6486
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2631,
-            "type": "Milestone",
-            "title": "Počinje da brblja",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Vokalizuje i proizvodi glasove koji liče na vokale – a, e, i, o, u.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6371
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2866,
-            "type": "Milestone",
-            "title": "Odguruje se, pokušava da ustane",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Pokušava da ustane pridržavajući se za nameštaj, ali mu je u tome potrebna pomoć i podrška.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7241
-            ],
-            "related_articles": [
-                4531
-            ],
-            "related_video_articles": [
-                6471
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2636,
-            "type": "Milestone",
-            "title": "Penje se i silazi niz stepeneice",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Stepenicama ide uz pridržavanje stajući naizmenično jednim po jednim stopalom na stepenik.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6811
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2876,
-            "type": "Milestone",
-            "title": "Delove komunikacije deteta razumeju i osobe koje nisu svakodnevno sa njim",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Počinje razgovetnije da izgovara glasove i koristi sve više reči sa značenjem pa je sporazumevanje lakše.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7346
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2646,
-            "type": "Milestone",
-            "title": "Uspostavlja koordinaciju oko – ruka",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:17",
-            "body": "<p>Povaćeva se sposobnost koordinacije ruka – oko, na primer: beba gleda objekat i pokušava da ga dohvati.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6406
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2901,
-            "type": "Milestone",
-            "title": "Spontano traži da deli interesovanja i zadovoljstva sa odraslima",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Uživa u recipročnim igrama dodavanje,  “ja tebi – ti meni” razmena, “ja uradim – ti uradiš” i sl.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7731
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2696,
-            "type": "Milestone",
-            "title": "Može da sedi uz podršku",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Kada ima potporu ili se pridržava beba može da sedi, a na kratko vreme može da zadrži sedeći položaj i samostalno.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7671
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2936,
-            "type": "Milestone",
-            "title": "Prstima uzima male predmete, hrani se prstima",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:39",
-            "body": "<p>Ima bolju sposobnost “pinceta hvata” – može da manipuliše veoma sitnim objektima uzimajući ih palcem i kažiprstom.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7766
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6536
-            ],
-            "mandatory": 1
+            "related_video_articles": [6286],
+            "mandatory": 0
         },
         {
             "id": 2531,
             "type": "Milestone",
             "title": "Uzbudi se kada joj nešto govorite",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Kada čuje vaš glas beba pokazuje uzbuđenje, ali primećujete i da uspori svoje pokrete, izgleda kao da sluša, prisustvuje…</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7586
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:45+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada čuje vaš glas beba pokazuje uzbuđenje, ali primećujete i da uspori svoje pokrete, izgleda kao da sluša, prisustvuje…\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7586],
             "related_articles": [],
-            "related_video_articles": [
-                6311
-            ],
-            "mandatory": 1
+            "related_video_articles": [6311],
+            "mandatory": 0
+        },
+        {
+            "id": 2536,
+            "type": "Milestone",
+            "title": "Gleda vas dok joj se smešite i pričate",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:33:47+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada joj se obraćate, beba pogledom traži vaše lice.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7591],
+            "related_articles": [],
+            "related_video_articles": [6291],
+            "mandatory": 0
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Oglašava se",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:27+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBeba se oglašava plakanjem, ali i proizvodi glasove\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7596],
+            "related_articles": [],
+            "related_video_articles": [6296],
+            "mandatory": 0
+        },
+        {
+            "id": 2546,
+            "type": "Milestone",
+            "title": "Otvara i zatvara šaku kada je nežno dodirnete",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:33:50+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada dodirnete bebin dlan ili nešto stavite u njega ona će čvrsto zatvoriti šaku. Ako joj pružite svoj prst ona se čvrsto drži za njega.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7601],
+            "related_articles": [],
+            "related_video_articles": [6301],
+            "mandatory": 0
+        },
+        {
+            "id": 2551,
+            "type": "Milestone",
+            "title": "Kada je slobodna spontano pokreće ruke i noge",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:33:55+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:33\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada je slobodna možete videti potpuno nasumične pokrete bebinih ruku i nogu.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7756],
+            "related_articles": [],
+            "related_video_articles": [6306],
+            "mandatory": 0
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "Kada leži na stomaku, podiže glavu",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:17:39+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada je stavite u ležeći položaj na stomak beba će pokušavati da podigne glavicu kako bi oslobodila disajne puteve.\u003C/p\u003E",
+            "child_age": [43],
+            "related_activities": [7606],
+            "related_articles": [],
+            "related_video_articles": [6281],
+            "mandatory": 0
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "Proizvodi različite zvuke kada je srećna, uznemirana ili gladna",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:21+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERazlikuje se bebin plač kada ima određene potrebe, pa tako na osnovu oglašavanja može da se prepozna da li je vesela, uznemirena ili ima neku drugu potrebu.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7611],
+            "related_articles": [],
+            "related_video_articles": [6316],
+            "mandatory": 0
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "Može na kratko sama da se smiri",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:23+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUmiruje se sisajući prst ili ručicu.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7176],
+            "related_articles": [],
+            "related_video_articles": [6361],
+            "mandatory": 0
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Okreće glavu prema izvoru zvuka i pokazuje da sluša",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:09+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUkoliko čuje ljudski glas ili neki drugi zvuk beba okreće glavicu prema njemu. Dok sluša glas zagleda se u roditelja ili osobu koja govori, usporava pokrete.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7721],
+            "related_articles": [],
+            "related_video_articles": [6326],
+            "mandatory": 0
+        },
+        {
+            "id": 2576,
+            "type": "Milestone",
+            "title": "Guče, oglašava se",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:05+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EProizvodi različite glasove.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7616],
+            "related_articles": [],
+            "related_video_articles": [6321],
+            "mandatory": 0
+        },
+        {
+            "id": 2581,
+            "type": "Milestone",
+            "title": "Prati očima kretanje stvari i ljudi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:07+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada se u njenom vidokrugu igračke, predmeti ili osobe pomeraju beba pokušava da prati liniju njihovog kretanja.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7761],
+            "related_articles": [],
+            "related_video_articles": [6336],
+            "mandatory": 0
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Pokazuje dosadu ili zaplače ako se aktivnost promeni",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:17+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBuni se plačući ukoliko je dugo ostavljena u jednom položaju, ili pokazuje protest i ukoliko je spustite nakon držanja u naručju.\u003C/p\u003E\u003Cp\u003E \u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7181],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2591,
+            "type": "Milestone",
+            "title": "Povremeno drži šake otvorene, manipuliše njima",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:10+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EŠake veći deo vremena i dalje drži stisnute u pesnice, ali ih povremeno otvara i drži otvorene neki vemenski period. Posmatra svoje ruke kako se pokreću, prinosi ih ustima.\u003C/p\u003E\u003Cp\u003E \u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7621],
+            "related_articles": [],
+            "related_video_articles": [6356],
+            "mandatory": 0
+        },
+        {
+            "id": 2596,
+            "type": "Milestone",
+            "title": "Okreće glavu na jednu, pa na drugu stranu",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:12+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EBeba pravi mnoštvo različitih pokreta vratom i glavom.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7626],
+            "related_articles": [],
+            "related_video_articles": [6351],
+            "mandatory": 0
+        },
+        {
+            "id": 2601,
+            "type": "Milestone",
+            "title": "Pravi fine pokrete rukama i nogama",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:15+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada je slobodna možete videti mnoštvo finih, nasumičnih pokreta bebinih ruku i nogu.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7631],
+            "related_articles": [],
+            "related_video_articles": [6341],
+            "mandatory": 0
+        },
+        {
+            "id": 2606,
+            "type": "Milestone",
+            "title": "U položaju na stomaku oslanja se podlakticama na podlogu",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:23+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada se postavi u položaj na stomaku beba se podiže na podlaktice odupirući se o podlogu i podiže glavicu.\u003C/p\u003E",
+            "child_age": [44],
+            "related_activities": [7636],
+            "related_articles": [],
+            "related_video_articles": [6346],
+            "mandatory": 0
+        },
+        {
+            "id": 2611,
+            "type": "Milestone",
+            "title": "Smeje se na ljudski lik",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:46+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EČesto, lako i spontano se osmehne na ljude u blizini.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7641],
+            "related_articles": [],
+            "related_video_articles": [6401],
+            "mandatory": 0
+        },
+        {
+            "id": 2616,
+            "type": "Milestone",
+            "title": "Pomno posmatra lica ljudi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:38:34+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPažljivo i detaljno posmatra lica ljudi, zadržava dug kontakt očima.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7186],
+            "related_articles": [],
+            "related_video_articles": [6386],
+            "mandatory": 0
+        },
+        {
+            "id": 2621,
+            "type": "Milestone",
+            "title": "Pokazuje da je ljuta ili srećna",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:38:55+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIma prepoznatljive reakcije zadovoljstva i nezadovoljstva.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7646],
+            "related_articles": [],
+            "related_video_articles": [6381],
+            "mandatory": 0
+        },
+        {
+            "id": 2626,
+            "type": "Milestone",
+            "title": "Prati očima kretanje igračke sa jedne na drugu stranu",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:39:05+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada se predmeti ili osobe u vidnom polju pomeraju, pogledom prati putanju kretanja.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7191],
+            "related_articles": [],
+            "related_video_articles": [6396],
+            "mandatory": 0
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Počinje da brblja",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:13+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVokalizuje i proizvodi glasove koji liče na vokale – a, e, i, o, u.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7651],
+            "related_articles": [],
+            "related_video_articles": [6371],
+            "mandatory": 0
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Penje se i silazi niz stepeneice",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:02+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EStepenicama ide uz pridržavanje stajući naizmenično jednim po jednim stopalom na stepenik.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7416],
+            "related_articles": [],
+            "related_video_articles": [6811],
+            "mandatory": 0
+        },
+        {
+            "id": 2641,
+            "type": "Milestone",
+            "title": "Počinje da imitira pokrete i izraze lica, kao i zvuke u igri",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:38:46+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada joj se obraćate beba pokušava da ponovi pokret ili izraz. Na govor i pričanje odgovara, proizvodeći zvuke.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7656],
+            "related_articles": [3626],
+            "related_video_articles": [6376],
+            "mandatory": 0
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Uspostavlja koordinaciju oko – ruka",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:17:43+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPovaćeva se sposobnost koordinacije ruka – oko, na primer: beba gleda objekat i pokušava da ga dohvati.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7661],
+            "related_articles": [],
+            "related_video_articles": [6406],
+            "mandatory": 0
+        },
+        {
+            "id": 2651,
+            "type": "Milestone",
+            "title": "Kopira krugove olovkom, drvenom ili voštanom bojicom",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:38:04+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPrecrtava krugove olovkom, običnom ili voštanom bojicom.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7411],
+            "related_articles": [],
+            "related_video_articles": [6826],
+            "mandatory": 0
+        },
+        {
+            "id": 2656,
+            "type": "Milestone",
+            "title": "Poseže jednom rukom za igračkom, istražuje, trese je i udara",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:55+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003E Poseže za objetkom i grabi ga koristeći spoljnu stranu dlana, bez korišćenja palca. Manipuliše objektom tresući, udarajući ili stavljajući ga u usta.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7196],
+            "related_articles": [],
+            "related_video_articles": [6391],
+            "mandatory": 0
+        },
+        {
+            "id": 2666,
+            "type": "Milestone",
+            "title": "Stavlja ruke u usta",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:38:24+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVrlo često stavlja ruke u usta. I druge objekte istražuje stavljanjem u usta.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7201],
+            "related_articles": [],
+            "related_video_articles": [6366],
+            "mandatory": 0
+        },
+        {
+            "id": 2671,
+            "type": "Milestone",
+            "title": "Glavu drži uspravno, bez pridržavanja",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-04T10:28:34+02:00\" class=\"datetime\"\u003EMon, 10/04/2021 - 10:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada je polusedećem položaju može da održava ravnotežu glave i glavu drži uspravno.\u003C/p\u003E",
+            "child_age": [45],
+            "related_activities": [7666],
+            "related_articles": [],
+            "related_video_articles": [6841],
+            "mandatory": 0
+        },
+        {
+            "id": 2681,
+            "type": "Milestone",
+            "title": "Razvija kompleksnu igru i u nju uključuje druge",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:34:53+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EVoli da se igra igara pretvaranja. Igre su maštovite sa puno izmišljenih elemenata. Ponekad nije sigurno šta je stvarno, a šta \"kobajagi\".\u003C/p\u003E\u003Cp\u003E \u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7401],
+            "related_articles": [],
+            "related_video_articles": [6831],
+            "mandatory": 0
+        },
+        {
+            "id": 2686,
+            "type": "Milestone",
+            "title": "Peva delove jednostvanih pesmica",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:34:06+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPeva delove jednostavnih pesmica.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7396],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2691,
+            "type": "Milestone",
+            "title": "Okreće se sa stomaka na leđa i sa leđa na stomak, na obe strane",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:34:56+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da se prevrne i okrene u bilo kom pravcu (i preko leve i preko desne strane) i sa leđa na stomak i sa stomaka na leđa.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7206],
+            "related_articles": [],
+            "related_video_articles": [6426],
+            "mandatory": 0
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Može da sedi uz podršku",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:03+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada ima potporu ili se pridržava beba može da sedi, a na kratko vreme može da zadrži sedeći položaj i samostalno.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7671],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
         },
         {
             "id": 2701,
             "type": "Milestone",
             "title": "Izgovara rečenicu od 2 do 3 reči",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:12",
-            "body": "<p>Može da sastavi i kaže rečenice od 2 do 3 reči dovoljno dobro da ga ukućani razumeju.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:12:32+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:12\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da sastavi i kaže rečenice od 2 do 3 reči dovoljno dobro da ga ukućani razumeju.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7391],
             "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
-            "mandatory": 1
+            "related_video_articles": [6816],
+            "mandatory": 0
+        },
+        {
+            "id": 2706,
+            "type": "Milestone",
+            "title": "Kada se drži uspravljeno iznad podloge, na kratko održi težinu oslanjajući se stopalima",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:34:58+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada bebu držite uspravno iznad podloge, ona se oslanja na podlogu ili izgleda kao da poskakuje.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7836],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2711,
+            "type": "Milestone",
+            "title": "Zna da kaže svoje ime, godine, pol",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:35:22+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da kaže svoje ime, uzrast i rod.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7386],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2716,
+            "type": "Milestone",
+            "title": "Stvari istražuje stavljajući ih u usta",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:35:32+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESve što dohvati stavlja u usta, vrlo često i noge prinosi ustima.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7711],
+            "related_articles": [],
+            "related_video_articles": [6436],
+            "mandatory": 0
+        },
+        {
+            "id": 2721,
+            "type": "Milestone",
+            "title": "Poseže za stvarima van domašaja, prebacuje iz ruke u ruku",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:35:49+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EZa predmetima i dalje poseže jednom rukom, ali manipuliše prebacujući ih iz jedne u drugu koristeći radijalni deo dlana, palac i kažiprst dok drugi prsti ostaju fiksirani.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7676],
+            "related_articles": [],
+            "related_video_articles": [6431],
+            "mandatory": 0
+        },
+        {
+            "id": 2726,
+            "type": "Milestone",
+            "title": "Razume složene reči",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:35:55+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERazume pojmove kao što su “slično” i “različito”, “lako” i “teško”, “dobar” i “loš”,”malo” i “veliko”.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7816],
+            "related_articles": [],
+            "related_video_articles": [6801],
+            "mandatory": 0
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Na zvuk glasa uzvraća oglašavanjem - spajanjem samoglasnika: a,e,u...",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:59+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada joj se neko obraća, priča, pevuši, čita… beba odgovara\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7211],
+            "related_articles": [],
+            "related_video_articles": [6421],
+            "mandatory": 0
+        },
+        {
+            "id": 2736,
+            "type": "Milestone",
+            "title": "Glasno iskazuje nezadovoljstvo ili radost",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:35:52+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:35\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGlasno plače ili protestuje, da izrazi neprijatna osećanja, a glasno se smeje da izrazi prijatnost.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7746],
+            "related_articles": [],
+            "related_video_articles": [6411],
+            "mandatory": 0
+        },
+        {
+            "id": 2741,
+            "type": "Milestone",
+            "title": "Rezume značenje reči kao što su “moje, tvoje, njeno”, koristi predloge i zamenice",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:36:01+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIzgovara reči poput \"ja\", \"ti\", \"mi\" i zna oblike množine nekih reči - \"kuce\", \"mace\".\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7811],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Uzbuđena je kada shvati da je vreme za igru",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:15:06+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:15\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERaduje se, izgleda srećno i uživa u igri i kontaktu, pogotovo sa roditeljima i poznatima.\u003C/p\u003E",
+            "child_age": [46],
+            "related_activities": [7841],
+            "related_articles": [],
+            "related_video_articles": [6441],
+            "mandatory": 0
+        },
+        {
+            "id": 2751,
+            "type": "Milestone",
+            "title": "Prati uputstva koja sadrže dva-tri naloga",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:36:21+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da odgovori na više vezanih usmenih zahteva (“ostavi lutku i sedi na stolicu” “skini jaknu pa obuj papuče”).\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7381],
+            "related_articles": [],
+            "related_video_articles": [6836],
+            "mandatory": 0
+        },
+        {
+            "id": 2756,
+            "type": "Milestone",
+            "title": "Pokazuje širok opseg emocija, prepoznaje emocije kod drugih",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:34:51+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:34\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPokazuje ljutnju, strah, krivicu, stid, a počinje da pokazuje empatiju pa prepoznaje i kako se drugi osećaju (na pr zagrljajem želi da uteši uplaganog drugara).\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7376],
+            "related_articles": [],
+            "related_video_articles": [6821],
+            "mandatory": 0
+        },
+        {
+            "id": 2761,
+            "type": "Milestone",
+            "title": "Poznaje ukućane, razlikuje ih od nepoznatih osoba i različito reaguje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:29:04+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:29\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERaduje se poznatim osobama, smeje im se, reaguje drugačije na poznate i nepoznate osobe.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7216],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Rado se igra u društvu dece",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:06+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIgra više nije samo paralelna – jedni pored drugih, već ima složenijih elemenata, maštovitosti i razigranosti.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7371],
+            "related_articles": [],
+            "related_video_articles": [6931],
+            "mandatory": 0
+        },
+        {
+            "id": 2771,
+            "type": "Milestone",
+            "title": "Uznemiri se kada roditelj napusti prostoriju i opusti se kada se roditelj vrati",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:28:57+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPokazuje znake uznemirenosti ili počinje da plače kada roditelj napusti prostoriju. Raduje se povratku roditelja i bliskih osoba.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7681],
+            "related_articles": [],
+            "related_video_articles": [6506],
+            "mandatory": 0
+        },
+        {
+            "id": 2776,
+            "type": "Milestone",
+            "title": "Reaguje kada čuje svoje ime",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:28:46+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPočinje da prepoznaje svoje ime kada ga neko doziva.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7221],
+            "related_articles": [],
+            "related_video_articles": [6446],
+            "mandatory": 0
+        },
+        {
+            "id": 2781,
+            "type": "Milestone",
+            "title": "Lakše podnosi odvajanje od roditelja",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:28:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EReakcije na odvajanje manje su intenzivne, brže se umiri i uči da se oslanja i na druge odrasle osobe u okolini kada roditelji odu.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7366],
+            "related_articles": [],
+            "related_video_articles": [6796],
+            "mandatory": 0
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "Počinje da razume značenje reči “ne”.",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:25+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKada čuje reč ne zaustavlja radnju i prepoznaje neodobravanje.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7226],
+            "related_articles": [],
+            "related_video_articles": [6476],
+            "mandatory": 0
+        },
+        {
+            "id": 2791,
+            "type": "Milestone",
+            "title": "Brblja, pravi slogove i proizvodi mnogo različitih glasova",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:28:13+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:28\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKoristi više kombinacija glasova i uparuje različite suglasnike i samoglasnike, pokušava da ponovi ili imitira glasove koje odrasli izgovaraju.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7231],
+            "related_articles": [],
+            "related_video_articles": [6451],
+            "mandatory": 0
+        },
+        {
+            "id": 2796,
+            "type": "Milestone",
+            "title": "Ide uz i niz stepenice, uz pridržavanje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:27:58+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESposobno je da se uz malu pomoći penje uz stepenice ili silazi niz njih.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7361],
+            "related_articles": [],
+            "related_video_articles": [6626],
+            "mandatory": 0
+        },
+        {
+            "id": 2801,
+            "type": "Milestone",
+            "title": "Počinje da komunicira pokretima",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:27:50+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EKomunicira neverbalno pokazujući željene predmete rukom ili odmahujući glavom u značenju “ne”.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7686],
+            "related_articles": [],
+            "related_video_articles": [6481],
+            "mandatory": 0
+        },
+        {
+            "id": 2806,
+            "type": "Milestone",
+            "title": "Prati predmet koji pada i traži predmet koji je skriven",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:27:35+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUkoliko je predmet sakriven ispod čaše ili ćebenceta beba pokušava da ga otkrije. Kada predmet padne ili ga sama baci, beba pogledom traži odbačeni predmet.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7691],
+            "related_articles": [],
+            "related_video_articles": [6496],
+            "mandatory": 0
+        },
+        {
+            "id": 2811,
+            "type": "Milestone",
+            "title": "Može da stoji na prstima, trči, skače, šutira loptu i baca je preko glave",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:27:17+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da stoji na prstima, trči, skače, šutira loptu i baca je preko glave.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7321],
+            "related_articles": [],
+            "related_video_articles": [6646],
+            "mandatory": 0
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Više koristi jednu ruku",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:11:07+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:11\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPočinje više da koristi jednu ruku – levu ili desnu.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7356],
+            "related_articles": [],
+            "related_video_articles": [6666],
+            "mandatory": 0
+        },
+        {
+            "id": 2821,
+            "type": "Milestone",
+            "title": "Šara samostalno po papiru",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:27:04+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:27\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESposobno je da drži olovku i pravi šare, crta ili precrtava linije i krugove.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7806],
+            "related_articles": [],
+            "related_video_articles": [6661],
+            "mandatory": 0
+        },
+        {
+            "id": 2826,
+            "type": "Milestone",
+            "title": "I dalje stavlja predmete u usta",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:26:56+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPredmete istražuje stavljajući ih u usta.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7236],
+            "related_articles": [],
+            "related_video_articles": [6456],
+            "mandatory": 0
+        },
+        {
+            "id": 2831,
+            "type": "Milestone",
+            "title": "Počinje da sortira i sparuje predmete",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:26:48+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUme da upari na primer životinju sa životinjom, čarapu sa čarapom.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7751],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2836,
+            "type": "Milestone",
+            "title": "Lako prebacuje predmete iz ruke u ruku, trese ih",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:26:41+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EManipuliše predmetima premeštajući ih iz leve u desnu ruku i obratno.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7696],
+            "related_articles": [],
+            "related_video_articles": [6501],
+            "mandatory": 0
+        },
+        {
+            "id": 2841,
+            "type": "Milestone",
+            "title": "Sakuplja sitne predmete",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:26:34+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUzima sitne predmete koristeći palac i kažiprst. I dalje koristi celu površinu prsta, a ne samo jagodice da drži objekat.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7846],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2846,
+            "type": "Milestone",
+            "title": "Svrsishodno koristi igračke",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:25:52+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUme da se igra igračkama, zna čemu one služe i kako da ih koristi u igri.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7801],
+            "related_articles": [],
+            "related_video_articles": [6656],
+            "mandatory": 0
+        },
+        {
+            "id": 2851,
+            "type": "Milestone",
+            "title": "Može samo da sedne i da sedi bez podrške",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:25:43+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESamostalno se postavlja u sedeći položaj. Sedi bez dodatne potpore i podupiranja.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7701],
+            "related_articles": [],
+            "related_video_articles": [6466],
+            "mandatory": 0
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Podiže se u položaj za puzanje, neka deca već puze",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:22+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da se samostalno postavi u položaj za puzanje. Pokreće se puzeći bez obzira da li je to unazad ili napred.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7706],
+            "related_articles": [],
+            "related_video_articles": [6486],
+            "mandatory": 0
+        },
+        {
+            "id": 2861,
+            "type": "Milestone",
+            "title": "Igra se jednostavnih igara pretvaranja",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:26:07+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIgra se jednostavnih “kao da” igara, na primer – hrani lutku, jede tortu…\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7796],
+            "related_articles": [3651],
+            "related_video_articles": [6631],
+            "mandatory": 0
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Odguruje se, pokušava da ustane",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:29+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPokušava da ustane pridržavajući se za nameštaj, ali mu je u tome potrebna pomoć i podrška.\u003C/p\u003E",
+            "child_age": [47],
+            "related_activities": [7241],
+            "related_articles": [],
+            "related_video_articles": [6471],
+            "mandatory": 0
+        },
+        {
+            "id": 2871,
+            "type": "Milestone",
+            "title": "Ispoljava stidljivost i nervozu u komunikaciji sa nepoznatim osobama",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:26:19+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:26\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU prisustvu stranaca pokazuje drugačije ponašanje nego sa poznatim osobama. Počinje da se stidi (izbegava kontakt očima, privija se uz poznate) osoba koje ne poznaje.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7246],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Delove komunikacije deteta razumeju i osobe koje nisu svakodnevno sa njim",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:19+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPočinje razgovetnije da izgovara glasove i koristi sve više reči sa značenjem pa je sporazumevanje lakše.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7346],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2881,
+            "type": "Milestone",
+            "title": "Povezuje zvukove sa životinjama",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:29:16+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:29\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EZna kako se oglašava koja životinja.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7791],
+            "related_articles": [],
+            "related_video_articles": [6616],
+            "mandatory": 0
+        },
+        {
+            "id": 2886,
+            "type": "Milestone",
+            "title": "Plače prilikom odvajanja od roditelja",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:29:11+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:29\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPokazuje znake izrazite uznemirenosti neposredno nakon odvajanja od roditelja.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7251],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2891,
+            "type": "Milestone",
+            "title": "U komunikaciji sa ljudima, koristi kombinaciju reči i gestova",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:25:37+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIzgovara rečenicu od 2 do 4 reči, a o sebi govori u trećem licu “Mia hoće” “Deki sedi”.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7341],
+            "related_articles": [],
+            "related_video_articles": [6621],
+            "mandatory": 0
+        },
+        {
+            "id": 2896,
+            "type": "Milestone",
+            "title": "Ima omiljenu igračku",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:21:14+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:21\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPreferira određenu igračku, traži je, nosi sa sobom\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7726],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Spontano traži da deli interesovanja i zadovoljstva sa odraslima",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:13+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUživa u recipročnim igrama dodavanje,  “ja tebi – ti meni” razmena, “ja uradim – ti uradiš” i sl.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7731],
+            "related_articles": [],
+            "related_video_articles": [6551],
+            "mandatory": 0
+        },
+        {
+            "id": 2906,
+            "type": "Milestone",
+            "title": "Zna svoje ime, imena poznatih osoba, nazive predmeta, razume svakodnevne radnje i reč “ne”",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:25:28+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EAdekvatno reaguje na poziv svog imena ili reč “ne”.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7256],
+            "related_articles": [],
+            "related_video_articles": [6546],
+            "mandatory": 0
+        },
+        {
+            "id": 2911,
+            "type": "Milestone",
+            "title": "Ponavlja slogove, a neka deca već mogu da izgovore i reči sa značenjem",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:25:10+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:25\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EProizvodi dosta različitih zvukova (maaa, baaa, daaad..) a neke od njih koristi kao prve prepoznatljive reči znajući njihovo značenje (mama, tata…).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7736],
+            "related_articles": [],
+            "related_video_articles": [6531],
+            "mandatory": 0
+        },
+        {
+            "id": 2916,
+            "type": "Milestone",
+            "title": "Razume kratku instrukciju ili nalog",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:24:23+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:24\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERazume kada joj kažete “donesi loptu” ili “daj mami”.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7741],
+            "related_articles": [],
+            "related_video_articles": [6541],
+            "mandatory": 0
+        },
+        {
+            "id": 2921,
+            "type": "Milestone",
+            "title": "Imitira i koristi gestove",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-22T01:32:13+02:00\" class=\"datetime\"\u003EFri, 10/22/2021 - 01:32\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EUme da kaže “pa-pa” za pozdravljanje, odmahuje glavom za “ne”, pokazuje rukom predmet koji želi.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7266],
+            "related_articles": [],
+            "related_video_articles": [6521],
+            "mandatory": 0
+        },
+        {
+            "id": 2926,
+            "type": "Milestone",
+            "title": "Razume i prati više od jednog jednostavnog uputsva",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:36:31+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da isprati jedan pa čak i više vezanih jednostavnih usmenih zahteva kao što su: “donesi jastuk” “dođi, sedi” “baci u smeće”…\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7821],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2931,
+            "type": "Milestone",
+            "title": "Znatiželjno ispituje igračke: trese ih, udara, baca, obraća pažnju na detalje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:36:28+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIstražuje predmete tako što njima lupa ili udara jednim o drugi (lupa čašom o sto ili jednom igračkom o drugu).\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7271],
+            "related_articles": [],
+            "related_video_articles": [6561],
+            "mandatory": 0
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Prstima uzima male predmete, hrani se prstima",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-30T17:39:35+02:00\" class=\"datetime\"\u003EThu, 09/30/2021 - 17:39\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIma bolju sposobnost “pinceta hvata” – može da manipuliše veoma sitnim objektima uzimajući ih palcem i kažiprstom.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7766],
+            "related_articles": [],
+            "related_video_articles": [6536],
+            "mandatory": 0
+        },
+        {
+            "id": 2941,
+            "type": "Milestone",
+            "title": "Stavlja predmete u kutiju i vadi ih iz nje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:36:26+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIma sposobnost preciznije manipulacije predmetima. Čak i sitne predmete može da stavlja u kutiju ili flašicu i vadi napolje.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7771],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2946,
+            "type": "Milestone",
+            "title": "Igra se pored druge dece",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:36:24+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:36\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EIgra se samostalno pored druge dece, ne mora da im se pridruži, ali im ne kvari igru, može početi da ih postepeno uključuje u igru, na primer nudeći im igračku.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7336],
+            "related_articles": [],
+            "related_video_articles": [6636],
+            "mandatory": 0
+        },
+        {
+            "id": 2951,
+            "type": "Milestone",
+            "title": "Uspravlja se i počinje da hoda pridržavajući se za nameštaj",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-21T23:02:52+02:00\" class=\"datetime\"\u003EThu, 10/21/2021 - 23:02\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože biti sposobna da stoji uz pridržavanje ili čak samostalno bez potpore ostane na kratko u stojećem položaju. Pokušava da se kreće uz pridržavanje za nameštaj ili držeći se za ruku odraslog.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7776],
+            "related_articles": [3346],
+            "related_video_articles": [6556],
+            "mandatory": 0
+        },
+        {
+            "id": 2956,
+            "type": "Milestone",
+            "title": "Imitira ponašanje odraslih osoba i starije dece",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:37:35+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:37\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOponaša starije i radi stvari koje vidi od njih na primer: gura kolica, čita novine…\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7331],
+            "related_articles": [],
+            "related_video_articles": [6641],
+            "mandatory": 0
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Pomaže pri oblačenju",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:15+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ESarađuje kada ga oblačite, gura prilikom oblačenja rukava ili nogavica.\u003C/p\u003E",
+            "child_age": [48],
+            "related_activities": [7276],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2966,
+            "type": "Milestone",
+            "title": "Sve više se osamostaljuje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:14:09+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:14\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPonekad se opire nalozima, ljuti se, želi da kontroliše druge, svađa se, naređuje, brani svoje stvari.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7786],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2971,
+            "type": "Milestone",
+            "title": "Ima širi spektar različitih osećanja",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-10-07T13:38:13+02:00\" class=\"datetime\"\u003EThu, 10/07/2021 - 13:38\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože da ispolji i pokaže raznovrsna osećanja : strah, ljutnju, saosećanje, krivicu, radost.\u003C/p\u003E",
+            "child_age": [50],
+            "related_activities": [7781],
+            "related_articles": [3656],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2976,
+            "type": "Milestone",
+            "title": "Stoji, kreće se i hoda samostalno",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:17:45+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EMože samostalno da se kreće i to u različitm pravcima, različitom brzinom ili da kombinuje različite pokrete (da zaustavi kretanje i maše)\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7281],
+            "related_articles": [4841],
+            "related_video_articles": [6591],
+            "mandatory": 0
+        },
+        {
+            "id": 2981,
+            "type": "Milestone",
+            "title": "Razume i izvršava jednostavne naloge",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:17:49+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPrati jednostavno izrečeno upustvo bez pokazivanja i može da izvrši očekivano.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7326],
+            "related_articles": [],
+            "related_video_articles": [6571],
+            "mandatory": 0
+        },
+        {
+            "id": 2986,
+            "type": "Milestone",
+            "title": "Izgovara reči sa značanjem",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:17:52+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EGovori bar jednu ili nekoliko pojedinačnih reči u obraćanju roditeljima.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7286],
+            "related_articles": [],
+            "related_video_articles": [6851],
+            "mandatory": 0
+        },
+        {
+            "id": 2991,
+            "type": "Milestone",
+            "title": "I dalje pokazuje strah od nepoznatih ljudi i situacija",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:17:55+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EU kontaktu sa nepoznatim reaguje strahom, traženjem poznate osobe ili privijanjem uz roditelja.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7291],
+            "related_articles": [3646, 346],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2996,
+            "type": "Milestone",
+            "title": "Igra se igara pretvaranja",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:17:58+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:17\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPojavljuje se “kao da” igra, pretvara se da pije čaj, hrani lutku I sl.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7856],
+            "related_articles": [2141],
+            "related_video_articles": [6576],
+            "mandatory": 0
+        },
+        {
+            "id": 3001,
+            "type": "Milestone",
+            "title": "Žvrlja samostalno olovkom ili bojicama po papiru",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:18:05+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003ERado upotrebljava pokret žvrljanja bilo da je to olovkom po papiru, rukom po pesku, štapićem po blatu, ili vodom po betonu\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7296],
+            "related_articles": [],
+            "related_video_articles": [6606],
+            "mandatory": 0
+        },
+        {
+            "id": 3006,
+            "type": "Milestone",
+            "title": "Zna kako se koriste predmeti za svakodnevnu upotrebu",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:18:08+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPokazuje poznavanje korišćenja predmeta kao što su kašika, četkica za zube, telefon…\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7316],
+            "related_articles": [3991],
+            "related_video_articles": [6601],
+            "mandatory": 0
+        },
+        {
+            "id": 3011,
+            "type": "Milestone",
+            "title": "Stavlja jedan predmet u drugi",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:18:12+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EStavlja stvari u posudu ili čašu i vadi ih iz nje\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7301],
+            "related_articles": [1986],
+            "related_video_articles": [6586],
+            "mandatory": 0
+        },
+        {
+            "id": 3016,
+            "type": "Milestone",
+            "title": "U komunikaciji koristi gestove za bolje sporazumevanje",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:18:15+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPokušava da imitira gestove koje odrasli prave i reči koje izgovaraju. Adekvatno koristi gestove kao odgovor na zahteve (“pa- pa” ili “ne”).\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7311],
+            "related_articles": [],
+            "related_video_articles": [6596],
+            "mandatory": 0
+        },
+        {
+            "id": 3021,
+            "type": "Milestone",
+            "title": "Raduje se zajedničkim aktivnostima",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:18:17+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EOponaša mimiku, gestove i neke aktivnosti bliskih osoba, pokazuje kažiprstom ono što ga/je zanima ili nudi drugima stvari kako bi ih zainteresovao/la i uključio u igru.\u003C/p\u003E",
+            "child_age": [49],
+            "related_activities": [7306],
+            "related_articles": [3646],
+            "related_video_articles": [6581],
+            "mandatory": 0
+        },
+        {
+            "id": 5861,
+            "type": "Milestone",
+            "title": "Samostalno lista slikovnice",
+            "created_at": "\u003Ctime datetime=\"2021-08-12T21:39:20+02:00\" class=\"datetime\"\u003EThu, 08/12/2021 - 21:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-09-29T12:18:25+02:00\" class=\"datetime\"\u003EWed, 09/29/2021 - 12:18\u003C/time\u003E\n",
+            "body": "\u003Cp\u003EPokazuje interesovanje za slikovnice, može samostalno da okreće listove knjižice tvrdih korica.\u003C/p\u003E",
+            "child_age": [51],
+            "related_activities": [7406],
+            "related_articles": [],
+            "related_video_articles": [6806],
+            "mandatory": 0
         }
     ]
 };

@@ -1,5 +1,5 @@
 export const standardDevData: any = {
-    "ZWen": [{
+    "zw-en": [{
         "weight_for_height": [
             {
                 "child_age": [641, 646, 651, 656],
@@ -260,10 +260,10 @@ export const standardDevData: any = {
             }
         ]
     }],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 }

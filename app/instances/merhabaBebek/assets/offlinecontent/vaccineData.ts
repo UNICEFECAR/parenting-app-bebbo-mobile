@@ -1,6 +1,30 @@
 export const vaccineData: any = {
     "tr": [
         {
+            "uuid": "2f0764d1-d4bf-44c6-8cb8-18698bdad58c",
+            "id": 9266,
+            "type": "Vaccinations - Age Periods",
+            "title": "Hepatit B'ye karşı - pekiştirme dozu",
+            "growth_period": 106,
+            "pinned_article": 7146,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-04-11T16:09:38+03:00\" class=\"datetime\"\u003EFri, 04/11/2025 - 16:09\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-04-14T09:05:49+03:00\" class=\"datetime\"\u003EMon, 04/14/2025 - 09:05\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "f95e4cdb-4813-445e-a552-7148ee887bdc",
+            "id": 9261,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kızamık, Kızamıkçık, Kabakulağa karşı - ek doz",
+            "growth_period": 71,
+            "pinned_article": 1751,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-04-11T16:06:51+03:00\" class=\"datetime\"\u003EFri, 04/11/2025 - 16:06\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-04-11T16:15:09+03:00\" class=\"datetime\"\u003EFri, 04/11/2025 - 16:15\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
             "uuid": "3a7bbd8f-2d5d-46dd-a47c-58826e426bfe",
             "id": 8516,
             "type": "Vaccinations - Age Periods",
@@ -8,8 +32,8 @@ export const vaccineData: any = {
             "growth_period": 286,
             "pinned_article": 7226,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:14:49+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:14</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:44:49+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -20,8 +44,8 @@ export const vaccineData: any = {
             "growth_period": 161,
             "pinned_article": 7191,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:14:20+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:14</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:44:20+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -32,8 +56,8 @@ export const vaccineData: any = {
             "growth_period": 161,
             "pinned_article": 7226,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:13:57+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:13</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:43:57+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -44,8 +68,8 @@ export const vaccineData: any = {
             "growth_period": 161,
             "pinned_article": 1751,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:13:36+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:13</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:43:36+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -56,8 +80,8 @@ export const vaccineData: any = {
             "growth_period": 116,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:12:46+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:12</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:42:46+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:42\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -68,8 +92,8 @@ export const vaccineData: any = {
             "growth_period": 106,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:12:21+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:12</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:42:21+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:42\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -80,8 +104,8 @@ export const vaccineData: any = {
             "growth_period": 106,
             "pinned_article": 7191,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:11:42+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:11</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:41:42+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:41\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -92,8 +116,8 @@ export const vaccineData: any = {
             "growth_period": 106,
             "pinned_article": 7191,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:10:39+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:10</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:40:39+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -104,8 +128,8 @@ export const vaccineData: any = {
             "growth_period": 106,
             "pinned_article": 7266,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:09:54+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:09</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:39:54+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -116,8 +140,8 @@ export const vaccineData: any = {
             "growth_period": 106,
             "pinned_article": 7226,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:09:24+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:09</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:39:24+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -128,8 +152,8 @@ export const vaccineData: any = {
             "growth_period": 86,
             "pinned_article": 1751,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:08:57+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:08</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:38:57+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -140,8 +164,8 @@ export const vaccineData: any = {
             "growth_period": 86,
             "pinned_article": 7106,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:08:27+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:08</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:38:27+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -152,8 +176,8 @@ export const vaccineData: any = {
             "growth_period": 86,
             "pinned_article": 7106,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:08:05+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:08</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:38:05+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -164,8 +188,8 @@ export const vaccineData: any = {
             "growth_period": 51,
             "pinned_article": 7191,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:07:23+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:07</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:37:23+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -176,8 +200,8 @@ export const vaccineData: any = {
             "growth_period": 51,
             "pinned_article": 7266,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:06:47+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:06</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:36:47+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:36\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -188,8 +212,8 @@ export const vaccineData: any = {
             "growth_period": 51,
             "pinned_article": 7191,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:06:24+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:06</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:36:24+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:36\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -200,8 +224,8 @@ export const vaccineData: any = {
             "growth_period": 51,
             "pinned_article": 7226,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:05:59+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:05</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:35:59+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:35\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -209,11 +233,11 @@ export const vaccineData: any = {
             "id": 8431,
             "type": "Vaccinations - Age Periods",
             "title": "Hepatit B'ye karşı - 3. doz",
-            "growth_period": 51,
+            "growth_period": 41,
             "pinned_article": 7146,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:05:30+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:05</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:35:30+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:35\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-04-11T16:05:55+03:00\" class=\"datetime\"\u003EFri, 04/11/2025 - 16:05\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -224,8 +248,8 @@ export const vaccineData: any = {
             "growth_period": 41,
             "pinned_article": 7106,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:03:12+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:03</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:33:12+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:33\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -236,8 +260,8 @@ export const vaccineData: any = {
             "growth_period": 41,
             "pinned_article": 7266,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:02:38+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:02</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:32:38+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:32\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -248,8 +272,8 @@ export const vaccineData: any = {
             "growth_period": 41,
             "pinned_article": 7191,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:02:10+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:02</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:32:10+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:32\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -260,8 +284,8 @@ export const vaccineData: any = {
             "growth_period": 41,
             "pinned_article": 7226,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:01:39+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:01</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:31:39+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:31\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -272,8 +296,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 7246,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T17:01:01+05:30\" class=\"datetime\">Tue, 10/08/2024 - 17:01</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:20+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:31:01+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:31\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:20+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -284,8 +308,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 7106,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T16:59:45+05:30\" class=\"datetime\">Tue, 10/08/2024 - 16:59</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:29:45+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -296,8 +320,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 7266,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T16:59:09+05:30\" class=\"datetime\">Tue, 10/08/2024 - 16:59</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:29:09+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -308,8 +332,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 7191,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T16:58:45+05:30\" class=\"datetime\">Tue, 10/08/2024 - 16:58</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:21+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:28:45+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:28\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:21+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -320,8 +344,8 @@ export const vaccineData: any = {
             "growth_period": 26,
             "pinned_article": 7226,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T16:58:04+05:30\" class=\"datetime\">Tue, 10/08/2024 - 16:58</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:28:04+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:28\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -329,11 +353,11 @@ export const vaccineData: any = {
             "id": 8381,
             "type": "Vaccinations - Age Periods",
             "title": "Hepatit B'ye karşı - 2. doz",
-            "growth_period": 21,
+            "growth_period": 26,
             "pinned_article": 7146,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T16:57:20+05:30\" class=\"datetime\">Tue, 10/08/2024 - 16:57</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:27:20+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:27\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-04-11T16:05:27+03:00\" class=\"datetime\"\u003EFri, 04/11/2025 - 16:05\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -344,8 +368,8 @@ export const vaccineData: any = {
             "growth_period": 16,
             "pinned_article": 7146,
             "pinned_video_article": 0,
-            "created_at": "<time datetime=\"2024-10-08T16:55:26+05:30\" class=\"datetime\">Tue, 10/08/2024 - 16:55</time>\n",
-            "updated_at": "<time datetime=\"2024-11-25T17:31:22+05:30\" class=\"datetime\">Mon, 11/25/2024 - 17:31</time>\n",
+            "created_at": "\u003Ctime datetime=\"2024-10-08T14:25:26+03:00\" class=\"datetime\"\u003ETue, 10/08/2024 - 14:25\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-11-25T15:01:22+03:00\" class=\"datetime\"\u003EMon, 11/25/2024 - 15:01\u003C/time\u003E\n",
             "old_calendar": 0
         }
     ]

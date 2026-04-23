@@ -189,15 +189,18 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       }
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       dispatch(setActiveChildData(child));
-      await setUserProperties({
-        ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
-        is_premature: child.isPremature,
-        child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
-        relationship_with_child: userRelationToParent,
-        parent_gender: child.parent_gender,
-        auto_child: child.autoChild
-      }) // relationship_with_child:monther/father
-
+      try {
+        await setUserProperties({
+          ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
+          is_premature: child.isPremature,
+          child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
+          relationship_with_child: userRelationToParent,
+          parent_gender: child.parent_gender,
+          auto_child: child.autoChild
+        }) // relationship_with_child:monther/father
+      } catch (error) {
+        console.error('Error setting user properties:', error);
+      }
 
     }
     else {
@@ -233,15 +236,18 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         dispatch(setActiveChildData(child));
         const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
-        await setUserProperties({
-          ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
-          is_premature: child.isPremature,
-          child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
-          relationship_with_child: userRelationToParent,
-          parent_gender: child.parent_gender,
-          auto_child: child.autoChild
-        }) // relationship_with_child:monther/father
-
+        try {
+          await setUserProperties({
+            ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
+            is_premature: child.isPremature,
+            child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
+            relationship_with_child: userRelationToParent,
+            parent_gender: child.parent_gender,
+            auto_child: child.autoChild
+          }) // relationship_with_child:monther/father
+        } catch (error) {
+          console.error('Error setting user properties:', error);
+        }
       }
     }
   }
@@ -278,14 +284,18 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       const autoChild = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='autoChild'");
       dispatch(setActiveChildData(child));
-      await setUserProperties({
-        ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
-        is_premature: child.isPremature,
-        child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
-        relationship_with_child: userRelationToParent,
-        parent_gender: child.parent_gender,
-        auto_child: child.autoChild
-      }) // relationship_with_child:monther/father
+      try {
+        await setUserProperties({
+          ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
+          is_premature: child.isPremature,
+          child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
+          relationship_with_child: userRelationToParent,
+          parent_gender: child.parent_gender,
+          auto_child: child.autoChild
+        }) // relationship_with_child:monther/father
+      } catch (error) {
+        console.error('Error setting user properties:', error);
+      }
     }
   }
   const notiFlagObj = { key: 'generateNotifications', value: true };
@@ -572,14 +582,18 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
 export const updateActiveChild = async (child: any, key: any, value: any, dispatch: any, userRelationToParent: any, boyChildGender: any): Promise<any> => {
   child[key] = value;
   dispatch(setActiveChildData(child));
-  await setUserProperties({
-    ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
-    is_premature: child.isPremature,
-    child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
-    relationship_with_child: userRelationToParent,
-    parent_gender: child.parent_gender,
-    auto_child: child.autoChild
-  }) // relationship_with_child:monther/father
+  try {
+    await setUserProperties({
+      ageid: isFutureDateTime(child.birthDate) ? 'expected' : String(child.taxonomyData.id),
+      is_premature: child.isPremature,
+      child_gender: child.gender == appConfig.boyChildGender ? "Boy" : "Girl",
+      relationship_with_child: userRelationToParent,
+      parent_gender: child.parent_gender,
+      auto_child: child.autoChild
+    }) // relationship_with_child:monther/father
+  } catch (error) {
+    console.error('Error setting user properties:', error);
+  }
 }
 export const getAllConfigData = async (dispatch: any): Promise<any> => {
   const allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);

@@ -242,10 +242,14 @@ const Terms = ({ navigation }: Props): any => {
       const eventData = { name: TERMS_ACCEPTED };
       logEvent(eventData, netInfo.isConnected);
     }
-    await setUserProperties({
-      country: country.name,
-      language: language.displayName,
-    });
+    try {
+      await setUserProperties({
+        country: country.name,
+        language: language.displayName,
+      });
+    } catch (error) {
+      console.error('Error setting user properties:', error);
+    }
     dispatch(setAppVersion(ReactNativeVersionInfo.appVersion));
     navigation.navigate("LoadingScreen", {
       apiJsonData: apiJsonData,

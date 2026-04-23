@@ -1,5 +1,5 @@
 export const articledata: any = {
-    "ZWen": [
+    "zw-en": [
         {
             "id": 3206,
             "type": "Article",
@@ -28,10 +28,10 @@ export const articledata: any = {
             "embedded_images": []
         }
     ],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 };

@@ -1,5 +1,5 @@
 export const healthCheckupsData: any = {
-    "ZWen": [
+    "zw-en": [
         {
             "id": 9341,
             "type": "Health Check-ups - Age Periods",
@@ -661,10 +661,10 @@ export const healthCheckupsData: any = {
             "updated_at": "\u003Ctime datetime=\"2025-10-20T11:20:57+02:00\" class=\"datetime\"\u003EMon, 10/20/2025 - 11:20\u003C/time\u003E\n"
         }
     ],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 

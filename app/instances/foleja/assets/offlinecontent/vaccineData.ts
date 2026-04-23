@@ -1,171 +1,414 @@
-export const vaccineData:any = {
+export const vaccineData: any = {
     "xk-sq": [
+        {
+            "uuid": "5cca2468-1541-4d48-88d5-a95f051989e2",
+            "id": 64216,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Difterisë, Tetanozit - rivaksinimi i tretë (dT)",
+            "growth_period": 159461,
+            "pinned_article": 58751,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-28T12:04:12+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 12:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T12:04:12+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 12:04\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "4d1988da-c2f5-4aab-b1c2-7ffa1366c092",
+            "id": 64211,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Difterisë, Tetanozit - rivaksinimi i dytë (dT)",
+            "growth_period": 159456,
+            "pinned_article": 58751,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-28T12:03:04+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 12:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T15:50:54+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 15:50\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "fb6e7f0e-9025-4455-a06b-467125f11fa0",
+            "id": 64206,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër sëmundjeve të shkaktuara nga Haemophilus influenza tipi B - doza e katërt (Hib)",
+            "growth_period": 6560,
+            "pinned_article": 4921,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-28T12:01:29+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 12:01\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:29:02+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:29\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "ae6d80e2-d951-4d5b-b568-df4e5dcaff7d",
+            "id": 64181,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër sëmundjeve të shkaktuara nga Haemophilus influenza tipi B - doza e tretë (Hib)",
+            "growth_period": 6501,
+            "pinned_article": 4921,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:56:19+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:30:30+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:30\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "56b6a81a-8a99-4b7f-afae-8c3af8224132",
+            "id": 64176,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Difterisë, Tetanozit, Pertusisit - doza e tretë (DTaP)",
+            "growth_period": 6501,
+            "pinned_article": 4906,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:55:52+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:55\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:22:47+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:22\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "e3a01998-35b7-4a03-b771-c289cd991fb9",
+            "id": 64171,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Hepatitit B - doza e tretë (HepB)",
+            "growth_period": 6501,
+            "pinned_article": 4661,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:54:54+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:54\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-06T10:49:14+02:00\" class=\"datetime\"\u003EFri, 10/06/2023 - 10:49\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "26f161e1-3174-44f6-bbdf-b48e24c4be4d",
+            "id": 64166,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër sëmundjeve të shkaktuara nga Haemophilus influenza tipi B - doza e dytë (Hib)",
+            "growth_period": 6491,
+            "pinned_article": 4921,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:48:50+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:30:06+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:30\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "7789c2eb-52f9-4f63-9187-6841d47f0733",
+            "id": 64161,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Difterisë, Tetanozit, Pertusisit - doza e dytë (DTaP)",
+            "growth_period": 6491,
+            "pinned_article": 4911,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:48:19+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:21:45+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:21\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "17873a10-cec8-4668-b87f-3c5c12391edb",
+            "id": 64156,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër sëmundjeve të shkaktuara nga Haemophilus influenza tipi B - doza e parë (Hib)",
+            "growth_period": 6476,
+            "pinned_article": 4921,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:46:30+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:29:43+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:29\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "4028550d-e6ba-42f7-9995-070f63ab686b",
+            "id": 64151,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Difterisë, Tetanozit, Pertusisit - doza e parë (DTaP)",
+            "growth_period": 6476,
+            "pinned_article": 4926,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:44:09+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:20:59+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:20\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "7ab74146-52a8-4120-b2d9-469821813d73",
+            "id": 64146,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Hepatitit B - doza e dytë (HepB)",
+            "growth_period": 6471,
+            "pinned_article": 4661,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:41:52+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:41\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T11:27:16+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 11:27\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "1112ea5b-20ca-4c13-bb6a-6f84369e13af",
+            "id": 64141,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Poliomielitit - rivaksinimi i tretë (bOPV)",
+            "growth_period": 159456,
+            "pinned_article": 58786,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:34:39+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:34\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T15:52:07+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 15:52\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "d20fc2a5-ce59-4b74-bbc5-053e46d6a72a",
+            "id": 64136,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Human Papillomavirus (HPV)",
+            "growth_period": 159456,
+            "pinned_article": 65151,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:20:56+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:20\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-08-12T14:34:00+02:00\" class=\"datetime\"\u003EMon, 08/12/2024 - 14:34\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "de45a340-7a76-4736-b8ef-794d9d1a4018",
+            "id": 64131,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Pneumococal Conjugate - doza e tretë (PCV)",
+            "growth_period": 6532,
+            "pinned_article": 65171,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:20:25+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:20\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-08-13T14:05:13+02:00\" class=\"datetime\"\u003ETue, 08/13/2024 - 14:05\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "118ca98e-0791-4f2e-8279-a8a2fd94f584",
+            "id": 64126,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Pneumococal Conjugate - doza e dytë (PCV)",
+            "growth_period": 6491,
+            "pinned_article": 65171,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:19:29+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:19\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-08-13T14:05:29+02:00\" class=\"datetime\"\u003ETue, 08/13/2024 - 14:05\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "e840993d-e317-4c34-992a-61b42812fcaa",
+            "id": 64121,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Rotavirusit - doza e dytë (Rota)",
+            "growth_period": 6491,
+            "pinned_article": 65166,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:18:13+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-08-13T14:07:01+02:00\" class=\"datetime\"\u003ETue, 08/13/2024 - 14:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "ea90265b-1c73-4707-92d5-f648e80e4a72",
+            "id": 64116,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Pneumococal Conjugate (PCV)",
+            "growth_period": 6476,
+            "pinned_article": 65171,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:17:24+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-08-13T14:05:40+02:00\" class=\"datetime\"\u003ETue, 08/13/2024 - 14:05\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "dec55774-fa25-44de-a9f0-7a8a4861e2d4",
+            "id": 64111,
+            "type": "Vaccinations - Age Periods",
+            "title": "Kundër Rotavirusit (Rota)",
+            "growth_period": 6476,
+            "pinned_article": 65166,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2023-09-26T13:14:14+02:00\" class=\"datetime\"\u003ETue, 09/26/2023 - 13:14\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2024-08-13T14:07:23+02:00\" class=\"datetime\"\u003ETue, 08/13/2024 - 14:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
         {
             "uuid": "f4e408be-708b-484e-a72c-ba03c0442a39",
             "id": 56766,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Difterisë, Tetanozit, Pertusisit - rivaksinimi i parë",
-            "growth_period": 59076,
-            "pinned_article": 0,
+            "title": "Kundër Difterisë, Tetanozit, Pertusisit - doza e katërt (DTaP)",
+            "growth_period": 6560,
+            "pinned_article": 4926,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:24",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:24:27+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:23:46+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:23\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "717dbf37-1276-437c-9320-69a4c8a47a59",
             "id": 56761,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër Poliomielitit - rivaksinimi i parë",
-            "growth_period": 59076,
-            "pinned_article": 0,
+            "title": "Kundër Poliomielitit - rivaksinimi i parë (IPV)",
+            "growth_period": 6560,
+            "pinned_article": 59116,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:24",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:24:26+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:04:52+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:04\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "1031a275-6ddf-4903-9689-f5e7ceefdf04",
             "id": 56756,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Fruthit, Parotit, Rubeolës ",
-            "growth_period": 59076,
+            "title": "Kundër Morbillit, Parotitit, Rubellës (MMR)",
+            "growth_period": 6532,
             "pinned_article": 5071,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:12",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:12:42+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:12\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T10:16:10+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 10:16\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "8ba33d0a-5d13-4d3f-aa12-11879c716692",
             "id": 24226,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Poliomielitit - doza e tret",
-            "growth_period": 6491,
-            "pinned_article": 0,
+            "title": " Kundër Poliomielitit - doza e tretë (IPV)",
+            "growth_period": 6501,
+            "pinned_article": 59116,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:23",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:23:11+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:03:21+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:03\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "d294b428-5d83-4314-b512-a48177bbdff1",
             "id": 24221,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Difterisë, Tetanozit, Pertusisit, sëmundjeve të shkaktuara nga Haemophilus influenza tipi B dhe kundër Hepatitit B- doza e tret",
+            "title": "Kundër: Difterisë, Tetanozit, Pertusisit, sëmundjeve të shkaktuara nga Haemophilus influenza tipi B dhe kundër Hepatitit B- doza e tretë (Sipas kalendarit të kaluar të vaksinimit) - DTaP/DT dt; Hib; HepB",
             "growth_period": 6491,
             "pinned_article": 4896,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:22",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:22:40+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-10-31T13:12:27+01:00\" class=\"datetime\"\u003EFri, 10/31/2025 - 13:12\u003C/time\u003E\n",
+            "old_calendar": 1
         },
         {
             "uuid": "b4d28fa4-d05e-4cb1-9472-495a1760eb81",
             "id": 24216,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Poliomielitit - doza e dytë",
-            "growth_period": 6481,
-            "pinned_article": 0,
+            "title": "Kundër: Poliomielitit - doza e dytë (IPV)",
+            "growth_period": 6491,
+            "pinned_article": 59116,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:22",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:22:10+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:04:16+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:04\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "08c47a27-9078-45a1-913b-83c47486de6b",
             "id": 24211,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Difterisë, Tetanozit, Pertusisit, sëmundjeve të shkaktuara nga Haemophilus influenza tipi B dhe kundër Hepatitit B- doza e dytë ",
+            "title": "Kundër: Difterisë, Tetanozit, Pertusisit, sëmundjeve të shkaktuara nga Haemophilus influenza tipi B dhe kundër Hepatitit B- doza e dytë (Sipas kalendarit të kaluar të vaksinimit) - DTaP/DT dt; Hib; HepB",
             "growth_period": 6481,
             "pinned_article": 4896,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:21",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:21:46+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-10-31T13:12:45+01:00\" class=\"datetime\"\u003EFri, 10/31/2025 - 13:12\u003C/time\u003E\n",
+            "old_calendar": 1
         },
         {
             "uuid": "57ed5b31-6674-4752-aa80-14df0bf40891",
             "id": 24206,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Fruthit, Parotit, Rubeolës -  doza e dytë",
-            "growth_period": 59056,
+            "title": "Kundër Morbillit, Parotitit, Rubellës - doza e dytë (MMR)",
+            "growth_period": 6553,
             "pinned_article": 5071,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:21",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:21:01+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T10:19:34+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 10:19\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "68e7d92c-9afd-4f74-af5e-eabadd0021a5",
             "id": 24201,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Difterisë, Tetanozit ",
-            "growth_period": 59056,
-            "pinned_article": 0,
+            "title": "Kundër: Difterisë, Tetanozit (DT)",
+            "growth_period": 6553,
+            "pinned_article": 4911,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:20",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:20:25+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:20\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:27:25+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:27\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "26abf8ad-8c7f-4957-9d78-92998a90babc",
             "id": 24196,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër Poliomielitit - second rivaksinimi i dytë",
-            "growth_period": 59056,
-            "pinned_article": 0,
+            "title": "Kundër Poliomielitit - rivaksinimi i dytë (bOPV)",
+            "growth_period": 6553,
+            "pinned_article": 58786,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:18",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:18:13+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:18\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T10:54:29+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 10:54\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "3ee8f8c7-cf2e-49fc-825c-84dfb9a966d1",
             "id": 24191,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Poliomielitit - doza e parë",
+            "title": "Kundër: Poliomielitit - doza e parë (IPV)",
             "growth_period": 6476,
-            "pinned_article": 0,
+            "pinned_article": 59116,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:17",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:17:33+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-10-17T11:01:45+02:00\" class=\"datetime\"\u003ETue, 10/17/2023 - 11:01\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "19c21901-18fd-40c6-8729-6e4636959de9",
             "id": 24186,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër: Difterisë, Tetanozit, Pertusisit, sëmundjeve të shkaktuara nga Haemophilus influenza tipi B dhe kundër Hepatitit B- doza e parë ",
+            "title": "Kundër: Difterisë, Tetanozit, Pertusisit, sëmundjeve të shkaktuara nga Haemophilus influenza tipi B dhe kundër Hepatitit B- doza e parë (Sipas kalendarit të kaluar të vaksinimit) - DTaP/DT dt; Hib; HepB",
             "growth_period": 6476,
             "pinned_article": 4896,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:17",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:17:00+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-10-31T13:13:02+01:00\" class=\"datetime\"\u003EFri, 10/31/2025 - 13:13\u003C/time\u003E\n",
+            "old_calendar": 1
         },
         {
             "uuid": "1bd9cee8-19e2-4ddb-a1de-0110d4f0fa63",
             "id": 24181,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër Hepatitit B - doza e parë",
+            "title": "Kundër Hepatitit B - doza e parë (HepB)",
             "growth_period": 6466,
             "pinned_article": 4661,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:16",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:16:36+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:16\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T10:29:55+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 10:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "1bdce426-7914-4e70-8dc9-99d1b3c7a98a",
             "id": 24176,
             "type": "Vaccinations - Age Periods",
-            "title": "Kundër Tuberkulozit",
+            "title": "Kundër Tuberkulozit (BCG)",
             "growth_period": 6466,
             "pinned_article": 4676,
             "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 16:14",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-16T16:14:44+02:00\" class=\"datetime\"\u003EFri, 07/16/2021 - 16:14\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2023-09-28T10:28:34+02:00\" class=\"datetime\"\u003EThu, 09/28/2023 - 10:28\u003C/time\u003E\n",
+            "old_calendar": 0
         }
     ],
-    "xk-rs":  [
+    "xk-rs": [
         {
-            "uuid": "79e952d7-9390-4266-985b-04d3c26d6a77",
-            "id": 56841,
+            "uuid": "56714192-64c9-4b51-a837-934bf3947836",
+            "id": 23606,
             "type": "Vaccinations - Age Periods",
-            "title": "revakcina protiv: dečje paralize, difterije, tetanusa,  velikog kašlja",
-            "growth_period": 59056,
+            "title": "Protiv malih boginja, zauški i crvenke",
+            "growth_period": 6533,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2022-03-25T11:46:00+01:00\" class=\"datetime\"\u003EFri, 03/25/2022 - 11:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-25T12:13:23+01:00\" class=\"datetime\"\u003EFri, 03/25/2022 - 12:13\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "819755b6-7fea-4483-bcc6-310eaaf774fa",
+            "id": 23571,
+            "type": "Vaccinations - Age Periods",
+            "title": "Protiv: dečje paralize, difterije, tetanusa, velikog kašlja, oboljenja koje izaziva bakterija Hemofilus influence tip b - prva doza",
+            "growth_period": 6476,
             "pinned_article": 4896,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:46",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2022-03-25T11:40:36+01:00\" class=\"datetime\"\u003EFri, 03/25/2022 - 11:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2022-03-25T12:14:20+01:00\" class=\"datetime\"\u003EFri, 03/25/2022 - 12:14\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "155d3833-7bff-451c-81a0-6e495b83f433",
@@ -175,8 +418,21 @@ export const vaccineData:any = {
             "growth_period": 59056,
             "pinned_article": 5071,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:46",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:46:22+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "79e952d7-9390-4266-985b-04d3c26d6a77",
+            "id": 56841,
+            "type": "Vaccinations - Age Periods",
+            "title": "revakcina protiv: dečje paralize, difterije, tetanusa,  velikog kašlja",
+            "growth_period": 59056,
+            "pinned_article": 4896,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:46:22+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "665b55b6-b73f-499d-af82-639c5e2726a3",
@@ -186,8 +442,9 @@ export const vaccineData:any = {
             "growth_period": 6560,
             "pinned_article": 4896,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:44",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:44:58+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "23778328-5ac2-458d-bcbe-bcfa1df11f67",
@@ -197,8 +454,9 @@ export const vaccineData:any = {
             "growth_period": 6533,
             "pinned_article": 4796,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:44",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:44:57+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "9973c794-70eb-428f-bbb0-b4bed6a25ef5",
@@ -208,8 +466,9 @@ export const vaccineData:any = {
             "growth_period": 6533,
             "pinned_article": 5071,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:41",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:41:21+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:41\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "1e6238ba-eb5b-493b-b52e-4dbec1f6eb56",
@@ -219,8 +478,9 @@ export const vaccineData:any = {
             "growth_period": 6501,
             "pinned_article": 4661,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:40",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:40:05+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "ea6cf0a2-32a5-4e4e-8805-3433c0995ef8",
@@ -230,8 +490,9 @@ export const vaccineData:any = {
             "growth_period": 6496,
             "pinned_article": 4796,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:40",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:40:04+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "f9f560a9-9f8f-4e4e-85b6-06a0d6617b19",
@@ -241,8 +502,9 @@ export const vaccineData:any = {
             "growth_period": 6496,
             "pinned_article": 4896,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:38",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:38:34+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "6fae27ce-8251-439e-a9ca-620ffb042c18",
@@ -252,8 +514,9 @@ export const vaccineData:any = {
             "growth_period": 6486,
             "pinned_article": 4796,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:38",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:38:33+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "ca5e9a0d-8e74-4f2f-a0b2-c74b4b6e16ec",
@@ -263,8 +526,9 @@ export const vaccineData:any = {
             "growth_period": 6486,
             "pinned_article": 4896,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:36",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:36:59+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:36\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "c170a978-9f9b-4429-84f4-c2e7ccd7ed9e",
@@ -274,8 +538,9 @@ export const vaccineData:any = {
             "growth_period": 6476,
             "pinned_article": 4796,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:36",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:36:58+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:36\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "00e61810-90ac-4345-9a33-e1d3ae2ec911",
@@ -285,8 +550,9 @@ export const vaccineData:any = {
             "growth_period": 6476,
             "pinned_article": 4896,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:35",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:35:32+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:35\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "db23593b-62e4-4825-b5c6-2cab9d09176d",
@@ -296,8 +562,9 @@ export const vaccineData:any = {
             "growth_period": 6471,
             "pinned_article": 4661,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:35",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:35:31+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:35\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "decd7258-5ffc-4d75-a78a-50ec5c126c73",
@@ -307,8 +574,9 @@ export const vaccineData:any = {
             "growth_period": 6466,
             "pinned_article": 4676,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:26",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:26:11+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:26\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         },
         {
             "uuid": "59f2268d-91d4-4d5c-a7bb-2d661e631140",
@@ -318,8 +586,9 @@ export const vaccineData:any = {
             "growth_period": 6466,
             "pinned_article": 4661,
             "pinned_video_article": 0,
-            "created_at": "Mon, 07/26/2021 - 15:26",
-            "updated_at": "Mon, 11/22/2021 - 05:29"
+            "created_at": "\u003Ctime datetime=\"2021-07-26T15:26:08+02:00\" class=\"datetime\"\u003EMon, 07/26/2021 - 15:26\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2021-11-22T05:29:28+01:00\" class=\"datetime\"\u003EMon, 11/22/2021 - 05:29\u003C/time\u003E\n",
+            "old_calendar": 0
         }
     ]
 };

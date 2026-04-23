@@ -1,5 +1,5 @@
 export const MileStonesData: any = {
-    "ZWen": [
+    "zw-en": [
         {
             "id": 1631,
             "type": "Milestone",
@@ -1743,10 +1743,10 @@ export const MileStonesData: any = {
             "mandatory": 1
         }
     ],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 };

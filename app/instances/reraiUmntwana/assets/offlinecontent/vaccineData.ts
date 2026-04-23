@@ -1,5 +1,5 @@
 export const vaccineData: any = {
-    "ZWen": [
+    "zw-en": [
         {
             "uuid": "7975fa88-48b4-4c77-8420-ca25081cdd59",
             "id": 9261,
@@ -265,10 +265,10 @@ export const vaccineData: any = {
             "old_calendar": 0
         }
     ],
-    "ZWsn": [
+    "zw-sn": [
 
     ],
-    "ZWnd": [
+    "zw-nd": [
 
     ],
 };

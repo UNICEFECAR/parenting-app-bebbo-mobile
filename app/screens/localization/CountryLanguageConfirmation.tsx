@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
   },
 });
 const CountryLanguageConfirmation = ({ route }: Props): any => {
-  const { country, language } = route.params;
+  const country = route?.params?.country ?? null;
+  const language = route?.params?.language ?? null;
   const dispatch = useAppDispatch();
   const netInfo = useNetInfoHook();
   const [countryData, setCountryData] = useState<any>();
@@ -141,6 +142,7 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
     (state: any) => state.selectedCountry.sponsors
   );
   const allCountries = useAppSelector(selectAllCountries);
+  
   const { t, i18n } = useTranslation();
   console.log(I18nManager.isRTL, "---is rtl val");
   const extractLanguageCode = (languageTag: string): string => {
@@ -194,125 +196,148 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
       }, 500);
     }, [])
   );
-  useEffect(() => {
-    const getSelectedLanguage = (): any => {
-      const selectedLanguage = RNLocalize.getLocales(); // Get the locales
-      return selectedLanguage[0]?.languageCode || "en"; // Extract the language code
+  const getDeviceLocaleTag = (): string => {
+    return RNLocalize.getLocales()?.[0]?.languageTag || "en-US";
+  };
+  
+  const getDeviceLanguageCode = (): string => {
+    return RNLocalize.getLocales()?.[0]?.languageCode || "en";
+  };
+  
+  const getFirstAvailableSelection = () => {
+    const firstCountry = allCountries?.[0] || null;
+    const firstLanguage = firstCountry?.languages?.[0] || null;
+  
+    return {
+      country: firstCountry,
+      language: firstLanguage,
     };
-    const getSelectedCountry = (): any => {
-      const selectedLanguage = RNLocalize.getLocales(); // Get the locales
-      return selectedLanguage[0]?.languageTag || "en-Us"; // Extract the language code
+  };
+  
+  const getCountryByDeviceCountryCode = (deviceCountryCode: string) => {
+    if (!allCountries?.length) return null;
+  
+    const normalizedCode = deviceCountryCode?.toLowerCase();
+  
+    return (
+      allCountries.find((countryItem: any) =>
+        countryItem?.languages?.some((lang: any) => {
+          const luxonLocale = lang?.luxonLocale?.toLowerCase() || "";
+          const languageCodeVal = lang?.languageCode?.toLowerCase() || "";
+  
+          return (
+            luxonLocale.endsWith(`-${normalizedCode}`) ||
+            languageCodeVal.startsWith(`${normalizedCode}-`) ||
+            luxonLocale.split("-")[1]?.toLowerCase() === normalizedCode
+          );
+        })
+      ) || null
+    );
+  };
+  
+  const getMatchingLanguageFromCountry = (countryObj: any) => {
+    if (!countryObj?.languages?.length) return null;
+  
+    const deviceLocaleTag = getDeviceLocaleTag();
+    const deviceLanguageCode = getDeviceLanguageCode();
+  
+    const exactLocaleMatch = countryObj.languages.find(
+      (lang: any) => lang?.luxonLocale === deviceLocaleTag
+    );
+    if (exactLocaleMatch) return exactLocaleMatch;
+  
+    const sameLanguageMatch = countryObj.languages.find((lang: any) => {
+      const luxonLang = lang?.luxonLocale?.split("-")[0]?.toLowerCase();
+      return luxonLang === deviceLanguageCode?.toLowerCase();
+    });
+    if (sameLanguageMatch) return sameLanguageMatch;
+  
+    return countryObj.languages[0] || null;
+  };
+  
+  const getSavedSelection = () => {
+    if (!allCountries?.length) return null;
+    if (!countryId) return null;
+  
+    const savedCountry = allCountries.find(
+      (countryItem: any) =>
+        String(countryItem?.CountryID ?? countryItem?.countryId) === String(countryId)
+    );
+  
+    if (!savedCountry) return null;
+  
+    const savedLanguage =
+      savedCountry.languages?.find(
+        (lang: any) =>
+          lang?.locale === selectedLocale ||
+          lang?.locale === locale ||
+          lang?.languageCode === languageCode
+      ) || savedCountry.languages?.[0];
+  
+    if (!savedLanguage) return null;
+  
+    return {
+      country: savedCountry,
+      language: savedLanguage,
     };
-
-    const selectedLanguage = getSelectedLanguage();
-    const selectedDefaultCountry = getSelectedCountry();
-    console.log("Selected luxon from Device", selectedDefaultCountry);
-    console.log("Selected Language from Device", selectedLanguage);
-    setLuxonLanLocale(selectedDefaultCountry);
-    setDeviceLangCode(selectedLanguage);
-    if (isVisible) {
-      let newCountryId: any;
-      let newCountryLocale: any;
-      if (userIsOnboarded == true) {
-        if (
-          route?.params?.country &&
-          route?.params?.country != null &&
-          route?.params?.country != undefined
-        ) {
-          newCountryId = route.params.country?.CountryID;
-          newCountryLocale = route.params.country?.luxonLocale ?? selectedDefaultCountry;
-          setCountryData(route.params.country);
-        } else {
-          newCountryId = countryId;
-          newCountryLocale = selectedDefaultCountry;
-        }
-      } else {
-        if (!route?.params || Object.keys(route.params).length === 0) {
-          newCountryLocale = selectedDefaultCountry;
-          newCountryId = countryId;
-        } else {
-          if (route?.params?.country && route?.params?.language) {
-            newCountryLocale = route.params.language.luxonLocale ?? selectedDefaultCountry;
-            newCountryId = route.params.country.countryId ?? countryId;
-          } else {
-            newCountryLocale = selectedDefaultCountry;
-            newCountryId = countryId;
-          }
-        }
-      }
-
-      console.log("newCountryId country is", newCountryId);
-      const selectedCountry = allCountries.find(
-        (country: any) => country.CountryID?.toString() === String(newCountryId ?? "")
-      );
-
-      setSponsorsData(selectedCountry);
-      const foundCountry =
-        allCountries?.length === 1
-          ? allCountries?.[0]
-          : getCountryByCountryCode(RNLocalize.getCountry());
-      console.log("Found country is", foundCountry);
-      if (foundCountry != undefined && foundCountry != null) {
-        if (countrySelectedId == 0) {
-          setCountryData(foundCountry);
-          const languagesWithLuxonLocale = foundCountry?.languages?.filter(
-            (lang: any) =>
-              lang.luxonLocale === selectedDefaultCountry ||
-              extractLanguageCode(lang.luxonLocale) === selectedLanguage
-          );
-          if (languagesWithLuxonLocale?.length != 0) {
-            setNewLanguage(languagesWithLuxonLocale?.[0] || {});
-          } else {
-            const selectedLanData = foundCountry?.languages?.filter(
-              (lang: any) => lang.languageCode === languageCode
-            );
-            if (selectedLanData?.length > 0) {
-              setNewLanguage(selectedLanData[0]);
-            } else {
-              setNewLanguage(foundCountry?.languages[0]);
-            }
-          }
-        } else {
-          setCountryData(selectedCountry);
-          const languagesWithLuxonLocale = selectedCountry?.languages?.filter(
-            (lang: any) => lang.locale === locale
-          );
-          if (languagesWithLuxonLocale?.length != 0) {
-            setNewLanguage(languagesWithLuxonLocale?.[0] || {});
-          } else {
-            const selectedLanData = selectedCountry?.languages?.filter(
-              (lang: any) => lang.languageCode === languageCode
-            );
-            if (selectedLanData.length > 0) {
-              setNewLanguage(selectedLanData[0]);
-            } else {
-              setNewLanguage(foundCountry?.languages[0]);
-            }
-          }
-        }
-      } else {
-        setCountryData(selectedCountry);
-        let filteredLanguage: any = null;
-        console.log("selectedLocale is", selectedLocale, newLanguage);
-        if (selectedLocale !== "") {
-          filteredLanguage = selectedCountry?.languages?.filter(
-            (lang: any) => lang.locale === selectedLocale
-          );
-        } else {
-          filteredLanguage = selectedCountry?.languages?.filter(
-            (lang: any) =>
-              lang.luxonLocale === selectedDefaultCountry ||
-              extractLanguageCode(lang.luxonLocale) === selectedLanguage
-          );
-        }
-        if (filteredLanguage?.length > 0) {
-          setNewLanguage(filteredLanguage[0]);
-        } else {
-          setNewLanguage(selectedCountry?.languages[0]);
-        }
-      }
+  };
+  
+  const getInitialSelection = () => {
+    // 1. previously selected
+    const savedSelection = getSavedSelection();
+    if (savedSelection) {
+      return savedSelection;
     }
-  }, [isVisible]);
+  
+    // 2. route params if available
+    if (route?.params?.country && route?.params?.language) {
+      return {
+        country: route.params.country,
+        language: route.params.language,
+      };
+    }
+  
+    // 3. device-based detection
+    const detectedCountry =
+      allCountries?.length === 1
+        ? allCountries[0]
+        : getCountryByDeviceCountryCode(RNLocalize.getCountry());
+  
+    if (detectedCountry) {
+      return {
+        country: detectedCountry,
+        language: getMatchingLanguageFromCountry(detectedCountry),
+      };
+    }
+  
+    // 4. fallback first item
+    return getFirstAvailableSelection();
+  };
+  
+  useEffect(() => {
+    if (!isVisible) return;
+    if (!allCountries?.length) return;
+  
+    const selectedLanguageTag = getDeviceLocaleTag();
+    const selectedLanguageCode = getDeviceLanguageCode();
+  
+    setLuxonLanLocale(selectedLanguageTag);
+    setDeviceLangCode(selectedLanguageCode);
+  
+    const initialSelection = getInitialSelection();
+  
+    setCountryData(initialSelection.country);
+    setNewLanguage(initialSelection.language);
+    setSponsorsData(initialSelection.country);
+  }, [
+    isVisible,
+    allCountries,
+    countryId,
+    selectedLocale,
+    locale,
+    languageCode,
+    route?.params,
+  ]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -370,15 +395,19 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         ],
       });
     } else {
-      if (Object.keys(route.params).length !== 0) {
+      if (route?.params && Object.keys(route.params).length !== 0) {
         dispatch(onLocalizationSelect(route.params));
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        await setUserProperties({
-          country: route.params?.country?.name,
-          language: newLanguage?.displayName,
-        });
+        try {
+          await setUserProperties({
+            country: route.params?.country?.name,
+            language: newLanguage?.displayName,
+          });
+        } catch (error) {
+          console.error('Error setting user properties:', error);
+        }
       } else {
         console.log("countyData is", countryData);
         console.log("newLanguage is", newLanguage);
@@ -390,18 +419,24 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
         console.log("filteredLan is", filteredLan);
         dispatch(
           onLocalizationSelect({
+            country: countryData,
+            language: newLanguage,
             languages: filteredLan,
-            countryId: countryData?.CountryID,
+            countryId: countryData?.CountryID ?? countryData?.countryId,
           })
         );
         // dispatch(onLocalizationSelect(countryData));
         dispatch(
           setInfoModalOpened({ key: "dailyMessageNotification", value: "" })
         );
-        await setUserProperties({
-          country: countryData?.name,
-          language: newLanguage?.displayName,
-        });
+        try {
+          await setUserProperties({
+            country: countryData?.name,
+            language: newLanguage?.displayName,
+          });
+        } catch (error) {
+          console.error('Error setting user properties:', error);
+        }
       }
 
       // if (userIsOnboarded == true) {
@@ -549,8 +584,8 @@ const CountryLanguageConfirmation = ({ route }: Props): any => {
                 </LocalizationContentHead>
                 <LocalizationContentResult>
                   <Heading3>
-                    {Array.isArray(route.params.language)
-                      ? language[0]?.displayName
+                    {Array.isArray(route?.params?.language)
+                      ? language?.[0]?.displayName
                       : newLanguage?.displayName}
                   </Heading3>
                 </LocalizationContentResult>

@@ -1,11 +1,11 @@
 export const FaqsData: any = {
-    "ZWen": [
+    "zw-en": [
 
     ],
-    "ZWsn": [
+    "zw-sn": [
         
     ],
-    "ZWnd": [
+    "zw-nd": [
         
     ],
 };
