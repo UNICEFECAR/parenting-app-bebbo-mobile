@@ -8,10 +8,12 @@ type FastImageRemoteSource = {
   cache?: any;
 };
 
+type BundledAssetSource = number;
+
 type ResolveImageSourceResult = {
   onlineSource: FastImageRemoteSource | null;
   offlineCacheSource: FastImageRemoteSource | null;
-  bundledSource: ImageSourcePropType | null;
+  bundledSource: BundledAssetSource | null;
   defaultSource: ImageSourcePropType;
 };
 
@@ -92,13 +94,14 @@ export const getImagePathPartsFromUrl = (
 
 export const getBundledOfflineImage = (
   imageUrl?: string | null
-): ImageSourcePropType | null => {
+): BundledAssetSource | null => {
   const parts = getImagePathPartsFromUrl(imageUrl);
   if (!parts) {
     return null;
   }
-  console.log("parts is--",appConfig?.offlineImageMap?.[parts.relativeAssetPath] ,"||", null)
-  return appConfig?.offlineImageMap?.[parts.relativeAssetPath] || null;
+
+  const source = appConfig?.offlineImageMap?.[parts.relativeAssetPath] ?? null;
+  return typeof source === "number" ? source : null;
 };
 
 export const resolveImageSource = ({
@@ -109,7 +112,7 @@ export const resolveImageSource = ({
   defaultImage: ImageSourcePropType;
 }): ResolveImageSourceResult => {
   const normalizedUrl = normalizeUrl(imageUrl);
-  console.log("normalizedUrl--",normalizedUrl)
+
   if (!normalizedUrl) {
     return {
       onlineSource: null,

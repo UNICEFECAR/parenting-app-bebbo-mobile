@@ -21,41 +21,92 @@ import { appConfig } from "../../../instances";
 import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData, countryData } from '../../../instances';
 import { Country, CountrySchema } from "../../../database/schema/CountrySchema";
 import { setCountriesStore } from '../../../redux/reducers/localizationSlice';
-export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: any, sortBy?: any, currentChildData?: any): Promise<any> => {
-    // return new Promise((resolve) => {
-    //let dataToStore: any;
+export const getDataToStore = async (
+    languageCode: string,
+    dispatch: any,
+    SchemaToUse: ObjectSchema,
+    SchemaEntity: any,
+    jsonData: any,
+    setAllHardcodedData: any,
+    sortBy?: any,
+    currentChildData?: any
+  ): Promise<any> => {
     let offlineData: any;
+  
     if (SchemaToUse.name == StandardDevWeightForHeightSchema.name) {
-        offlineData = jsonData[languageCode] ? jsonData[languageCode][0].weight_for_height : undefined;
-        if (!offlineData) {
-            offlineData = [];
-        }
+      offlineData = jsonData[languageCode] ? jsonData[languageCode][0]?.weight_for_height : undefined;
+      if (!offlineData) {
+        offlineData = [];
+      }
+    } else if (SchemaToUse.name == StandardDevHeightForAgeSchema.name) {
+      offlineData = jsonData[languageCode] ? jsonData[languageCode][0]?.height_for_age : undefined;
+      if (!offlineData) {
+        offlineData = [];
+      }
+    } else {
+      offlineData = jsonData[languageCode];
+      if (offlineData == undefined || offlineData == "" || offlineData == null) {
+        offlineData = [];
+      }
     }
-    else if (SchemaToUse.name == StandardDevHeightForAgeSchema.name) {
-        offlineData = jsonData[languageCode] ? jsonData[languageCode][0].height_for_age : undefined;
-        if (!offlineData) {
-            offlineData = [];
-        }
-    }
-    else {
-        offlineData = jsonData[languageCode];
-        if (offlineData == undefined || offlineData == "" || offlineData == null) {
-            offlineData = [];
-        }
-    }
+  
     const databaseData2 = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse, sortBy);
+  
     const dataToStore = databaseData2;
     console.log(SchemaToUse.name,'offlineData is......',offlineData,dataToStore)
     // console.log('stringify offlineData is',JSON.stringify(offlineData))
     if (dataToStore?.length > 0) {
-        dispatch(setAllHardcodedData(dataToStore))
-        return dataToStore;
-    } else {
-        dispatch(setAllHardcodedData(JSON.stringify(offlineData)));
-        return offlineData;
+      dispatch(setAllHardcodedData(dataToStore));
+      return dataToStore;
     }
-    // });
-}
+  
+    /**
+     * DB is empty here.
+     * So insert bundled offline data into Realm first,
+     * then read again from Realm and dispatch DB data.
+     */
+    if (offlineData?.length > 0) {
+      try {
+        if (SchemaToUse.name == ArticleEntitySchema.name) {
+          await dataRealmCommon.createArticles(
+            SchemaToUse,
+            offlineData,
+            ""
+          );
+        } else if (
+          SchemaToUse.name == StandardDevWeightForHeightSchema.name ||
+          SchemaToUse.name == StandardDevHeightForAgeSchema.name
+        ) {
+          await dataRealmCommon.create(SchemaToUse, offlineData);
+        } else {
+          await dataRealmCommon.create(SchemaToUse, offlineData);
+        }
+  
+        const insertedData = await dataRealmCommon.getData<typeof SchemaEntity>(
+          SchemaToUse,
+          sortBy
+        );
+  
+        if (insertedData?.length > 0) {
+          dispatch(setAllHardcodedData(insertedData));
+          return insertedData;
+        }
+      } catch (error) {
+        console.log(
+          "Error while inserting offline data into Realm for schema:",
+          SchemaToUse.name,
+          error
+        );
+      }
+    }
+  
+    /**
+     * Final fallback.
+     * If insert failed or offlineData was empty, keep old behavior.
+     */
+    dispatch(setAllHardcodedData(JSON.stringify(offlineData)));
+    return offlineData;
+  };
 const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any): Promise<any> => {
     // return new Promise(async (resolve) => {
     if (prevPage == "CountryLanguageSelection") {

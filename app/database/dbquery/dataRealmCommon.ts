@@ -131,7 +131,7 @@ class DataRealmCommon {
                                     }
                                 } else {
                                     record.isarticle_pinned = articleRelation;
-                                    realm?.create<Entity>(entitySchema.name, record);
+                                    realm?.create<Entity>(entitySchema.name, record, "modified");
                                 }
                             })
                         }
@@ -161,12 +161,12 @@ class DataRealmCommon {
                         const heightforAge = records['height_for_age'];
                         if (weightforheight?.length > 0) {
                             weightforheight.forEach((record: any) => {
-                                realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record);
+                                realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record, "modified");
                             })
                         }
                         if (heightforAge?.length > 0) {
                             heightforAge.forEach((record: any) => {
-                                realm?.create<Entity>(StandardDevHeightForAgeSchema.name, record);
+                                realm?.create<Entity>(StandardDevHeightForAgeSchema.name, record, "modified");
                             })
                         }
                         result="success";
@@ -211,7 +211,7 @@ class DataRealmCommon {
                                 value: value,
                                 createdAt: new Date(),
                                 updatedAt: new Date(),
-                            });
+                            }, "modified");
                             result="success";
                             return result
                         });

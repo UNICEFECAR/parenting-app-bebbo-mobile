@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import VectorImage from "react-native-vector-image";
 import { FlexDirCol } from "./shared/FlexBoxStyle";
@@ -11,13 +11,10 @@ import {
   LoadingContainer,
   LoadingText,
   MainView,
-  PartnerLogo,
-  SponsorLogo,
-  StaticLogo,
-  WrapView,
 } from "./shared/LoadingStyle";
 import { useAppSelector } from "../../App";
 import { gradientColorFirst, gradientColorSecond, gradientColorThird, LoadingScreenColorText } from "@styles/style";
+import { appConfig } from "../instances";
 
 const item = {
   image: flavor == "merhabaBebek" ? BebboLogoShapeMB : BebboLogoShapeNew,
@@ -50,10 +47,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginTop: 45,
   },
-  partnerLogo: {
-    flex: 1,
-    resizeMode: "contain",
-  },
   partnerLogoView: {
     alignContent: "center",
     height: 60,
@@ -61,9 +54,16 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     width: 180,
   },
-  sponsorLogo: {
-    flex: 1,
-    resizeMode: "contain",
+  
+  staticLogoView: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 30,
+  },
+  
+  staticLogoImage: {
+    width: 160,
+    height: 70,
   },
   vectorImageView: { marginBottom: 15 },
   logoImage: {
@@ -72,12 +72,78 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
 });
+const getOfflineImageKeyFromUrl = (url?: string): string | undefined => {
+  if (!url) {
+    return undefined;
+  }
+
+  try {
+    const urlWithoutQuery = url.split("?")[0];
+
+    const match = urlWithoutQuery.match(/\/(\d{4}-\d{2})\/([^/]+)$/);
+
+    if (!match) {
+      return undefined;
+    }
+
+    const folder = match[1];
+    const fileName = decodeURIComponent(match[2]);
+
+    return `${folder}/${fileName}`;
+  } catch (error) {
+    console.log("Error creating offline image key from url", url, error);
+    return undefined;
+  }
+};
+
+const getLoadingLogoSource = (
+  imageObj?: { url?: string; name?: string }
+): ImageSourcePropType | undefined => {
+  const offlineKey = getOfflineImageKeyFromUrl(imageObj?.url);
+
+  if (offlineKey && appConfig?.offlineImageMap?.[offlineKey]) {
+    return appConfig.offlineImageMap[offlineKey];
+  }
+
+  if (imageObj?.url) {
+    return { uri: imageObj.url };
+  }
+
+  return undefined;
+};
+const renderLoadingLogo = (
+  source: ImageSourcePropType | undefined,
+  style: any,
+  resizeMode?: "cover" | "contain" | "stretch" | "repeat" | "center"
+) => {
+  if (!source) {
+    return null;
+  }
+
+  return (
+    <Image
+      source={source}
+      style={style}
+      {...(resizeMode ? { resizeMode } : {})}
+    />
+  );
+};
 const LoadingScreenComponent = (props: any): any => {
   const { t } = useTranslation();
   const sponsors = useAppSelector(
     (state: any) => state.selectedCountry.sponsors
   );
+  const partnerLogoSource = getLoadingLogoSource(
+    sponsors?.country_national_partner
+  );
 
+  const sponsorLogoSource = getLoadingLogoSource(
+    sponsors?.country_sponsor_logo
+  );
+
+  const unicefLogoSource = getLoadingLogoSource(
+    sponsors?.unicef_logo
+  );
   const isMB = flavor === "merhabaBebek";
 
   return (
@@ -99,33 +165,17 @@ const LoadingScreenComponent = (props: any): any => {
                   />
                 )}
               </View>
-              <PartnerLogo
-                style={styles.partnerLogoView}
-                source={
-                  sponsors?.country_national_partner?.url != ""
-                    ? { uri: sponsors?.country_national_partner?.url }
-                    : require("")
-                }
-              />
-              <SponsorLogo
-                style={styles.partnerLogoView}
-                source={
-                  sponsors?.country_sponsor_logo?.url != ""
-                    ? { uri: sponsors?.country_sponsor_logo?.url }
-                    : require("")
-                }
-              />
-              <WrapView>
-                {sponsors?.unicef_logo?.url && (
-                  <StaticLogo
-                    source={
-                      sponsors?.unicef_logo?.url != ""
-                        ? { uri: sponsors.unicef_logo?.url }
-                        : require("")
-                    }
-                  />
-                )}
-              </WrapView>
+              {partnerLogoSource &&
+                renderLoadingLogo(partnerLogoSource, styles.partnerLogoView, "contain")
+              }
+
+              {sponsorLogoSource &&
+                renderLoadingLogo(sponsorLogoSource, styles.partnerLogoView, "contain")
+              }
+
+              <View style={styles.staticLogoView}>
+                {renderLoadingLogo(unicefLogoSource, styles.staticLogoImage)}
+              </View>
             </FlexDirCol>
           </View>
 
@@ -134,7 +184,7 @@ const LoadingScreenComponent = (props: any): any => {
               <ActivityIndicator size="large" color={LoadingScreenColorText} />
             </Text>
             <Text style={styles.loadingText}>
-              <LoadingText style={{color:LoadingScreenColorText}}>{t("loadingText")}</LoadingText>
+              <LoadingText style={{ color: LoadingScreenColorText }}>{t("loadingText")}</LoadingText>
             </Text>
           </View>
         </LinearGradient>
