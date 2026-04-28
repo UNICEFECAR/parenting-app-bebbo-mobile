@@ -319,6 +319,14 @@ export const taxonomydata: any = {
             ],
             "child_age": [
                 {
+                    "id": 701,
+                    "name": "Pregnancy",
+                    "days_from": -300,
+                    "days_to": -1,
+                    "buffers_days": 0,
+                    "age_bracket": [701]
+                },
+                {
                     "id": 641,
                     "name": "1st month",
                     "days_from": 0,
@@ -491,6 +499,11 @@ export const taxonomydata: any = {
                 }
             ],
             "growth_period": [
+                {
+                    "id": 1,
+                    "name": "with full 5,5 years",
+                    "vaccination_opens": 2007
+                },
                 {
                     "id": 271,
                     "name": "from 2 to 4 months",
@@ -812,6 +825,11 @@ export const taxonomydata: any = {
                     "vaccination_opens": 1611
                 },
                 {
+                    "id": 186,
+                    "name": "with full 6 years",
+                    "vaccination_opens": 2190
+                },
+                {
                     "id": 8891,
                     "name": "with full 55 months",
                     "vaccination_opens": 1672
@@ -848,7 +866,7 @@ export const taxonomydata: any = {
                 },
                 {
                     "id": 231,
-                    "name": "from 7 to 14 days",
+                    "name": "with full 7 days",
                     "vaccination_opens": 7
                 }
             ],
@@ -1117,12 +1135,2252 @@ export const taxonomydata: any = {
                     "name": "Parent Guided"
                 }
             ]
+        },
+        "standardDevData": {
+            "standard_deviation": [
+
+            ]
         }
     }],
-    "zw-sn": [
+    "zw-sn": [{
+        "langCode": "zw-sn",
+        "allData": {
+            "activity_category": [
+                {
+                    "id": 721,
+                    "name": "Kufamba",
+                    "unique_name": "motor"
+                },
+                {
+                    "id": 726,
+                    "name": "Manzwiro uye ukama nevanhu",
+                    "unique_name": "socio_ emotional"
+                },
+                {
+                    "id": 731,
+                    "name": "Kufunga",
+                    "unique_name": "cognitive"
+                },
+                {
+                    "id": 736,
+                    "name": "Mutauro nekutaurirana",
+                    "unique_name": "language_and_communication"
+                }
+            ],
+            "category": [
+                {
+                    "id": 376,
+                    "name": "Kukura kwemwana",
+                    "unique_name": "child_development",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 386,
+                    "name": "Kukura kwemuviri wemwana",
+                    "unique_name": "child_growth",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 391,
+                    "name": "Hutano",
+                    "unique_name": "health_and_wellbeing",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 401,
+                    "name": "Kuongororwa kwehutano",
+                    "unique_name": "health_check_ups",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 406,
+                    "name": "Kudya kunovaka muviri nekuyamwisa",
+                    "unique_name": "nutrition_and_breastfeeding",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 411,
+                    "name": "Kuchengetdzeka kwakanaka kwemubereki",
+                    "unique_name": "parenting_corner",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 416,
+                    "name": "Kutamba nekudzidza",
+                    "unique_name": "play_and_learning",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 421,
+                    "name": "Kurera vana zvine hanya",
+                    "unique_name": "responsive_parenting",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 426,
+                    "name": "Kuchengetedzeka kwemwana",
+                    "unique_name": "safety_and_protection",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 431,
+                    "name": "Nhomba",
+                    "unique_name": "vaccination",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 436,
+                    "name": "Vhiki nevhiki",
+                    "unique_name": "week_by_week",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 446,
+                    "name": "Kugara uine hutano",
+                    "unique_name": "staying_healthy",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 451,
+                    "name": "Kugadzirira kusununguka kwemwana",
+                    "unique_name": "preparing_for_a_baby",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 456,
+                    "name": "Rutsigiro panguva yekuzvitakura",
+                    "unique_name": "support_during_pregnancy",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 461,
+                    "name": "Kurwadziwa nepamuviri nekusununguka",
+                    "unique_name": "labour_and_birth",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 466,
+                    "name": "Zvinetso zvenguva yekunge wakazvitakura",
+                    "unique_name": "pregnancy_complications",
+                    "field_type_of_article": "Article for pregnancy"
+                }
+            ],
+            "chatbot_category": [
+                {
+                    "id": 471,
+                    "name": "Kukura kwemwana",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 476,
+                    "name": "Kurera vana zvakanaka",
+                    "unique_name": "better_parenting"
+                },
+                {
+                    "id": 481,
+                    "name": "Kukudza vana vane hutano",
+                    "unique_name": "raising_healthy_children"
+                },
+                {
+                    "id": 491,
+                    "name": "Kugara uine hutano nemufaro",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_child_age": [
+                {
+                    "id": 516,
+                    "name": "Zvose"
+                },
+                {
+                    "id": 496,
+                    "name": "Mwana mucheche"
+                },
+                {
+                    "id": 501,
+                    "name": "Mwana mudiki"
+                },
+                {
+                    "id": 506,
+                    "name": "Mwana mudiki"
+                },
+                {
+                    "id": 511,
+                    "name": "Mwana mudiki asati aenda kuchikoro"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 521,
+                    "name": "Kukura neku dzidza",
+                    "parent_category_id": 471,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 526,
+                    "name": "Kutaura nekuverenga",
+                    "parent_category_id": 471,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 531,
+                    "name": "Nzvimbo yekudzidza",
+                    "parent_category_id": 471,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 536,
+                    "name": "Mwana wangu nechikoro checheche",
+                    "parent_category_id": 471,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 541,
+                    "name": "Kudzidza kuburikidza nekutamba",
+                    "parent_category_id": 471,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 546,
+                    "name": "Hukama hwerudo",
+                    "parent_category_id": 476,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 551,
+                    "name": "Kutamba nemwana wangu",
+                    "parent_category_id": 476,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 556,
+                    "name": "Hunhu hunonetsa",
+                    "parent_category_id": 476,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 561,
+                    "name": "Kudzidza kumba",
+                    "parent_category_id": 476,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 566,
+                    "name": "Kuwirirana kwemwana nevamwe",
+                    "parent_category_id": 476,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 571,
+                    "name": "Kunetseka nekukura",
+                    "parent_category_id": 481,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 576,
+                    "name": "Tsika dzine utano",
+                    "parent_category_id": 481,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 581,
+                    "name": "Kudya zvine utano",
+                    "parent_category_id": 481,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 586,
+                    "name": "Kuyamwisa",
+                    "parent_category_id": 481,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 591,
+                    "name": "Kudzivirirwa nekuchengetedzwa",
+                    "parent_category_id": 481,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 596,
+                    "name": "Pamusoro penhomba",
+                    "parent_category_id": 486,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 601,
+                    "name": "Kuchengeteka kwemajekiseni",
+                    "parent_category_id": 486,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 606,
+                    "name": "Zvirwere zvinodzivirirwa nemajekiseni",
+                    "parent_category_id": 486,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 611,
+                    "name": "Mafambiro ekubaiwa nhomba",
+                    "parent_category_id": 486,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 616,
+                    "name": "Majekiseni nezvirwere",
+                    "parent_category_id": 486,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 621,
+                    "name": "Kugara uine utano uye mufaro",
+                    "parent_category_id": 491,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 626,
+                    "name": "Kuwana rubatsiro panguva yekunetseka",
+                    "parent_category_id": 491,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 631,
+                    "name": "Kutsungirira pamatambudziko ekuve mubereki",
+                    "parent_category_id": 491,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 636,
+                    "name": "Hutano hwepfungwa",
+                    "parent_category_id": 491,
+                    "unique_name": "psychological_wellbeing"
+                }
+            ],
+            "child_age": [
+                {
+                    "id": 701,
+                    "name": "Pamuviri",
+                    "days_from": -300,
+                    "days_to": -1,
+                    "buffers_days": 0,
+                    "age_bracket": [701]
+                },
+                {
+                    "id": 641,
+                    "name": "Mwedzi wekutanga",
+                    "days_from": 0,
+                    "days_to": 31,
+                    "buffers_days": 10,
+                    "age_bracket": [641, 646, 651]
+                },
+                {
+                    "id": 646,
+                    "name": "Mwedzi wechipiri",
+                    "days_from": 32,
+                    "days_to": 60,
+                    "buffers_days": 10,
+                    "age_bracket": [646, 651, 656]
+                },
+                {
+                    "id": 651,
+                    "name": "Mwedzi 3–4",
+                    "days_from": 61,
+                    "days_to": 121,
+                    "buffers_days": 10,
+                    "age_bracket": [651, 656, 661]
+                },
+                {
+                    "id": 656,
+                    "name": "Mwedzi 5–6",
+                    "days_from": 122,
+                    "days_to": 182,
+                    "buffers_days": 10,
+                    "age_bracket": [656, 661, 666]
+                },
+                {
+                    "id": 661,
+                    "name": "Mwedzi 7–9",
+                    "days_from": 183,
+                    "days_to": 274,
+                    "buffers_days": 10,
+                    "age_bracket": [661, 666]
+                },
+                {
+                    "id": 666,
+                    "name": "Mwedzi 10–12",
+                    "days_from": 275,
+                    "days_to": 365,
+                    "buffers_days": 10,
+                    "age_bracket": [666, 671]
+                },
+                {
+                    "id": 671,
+                    "name": "Mwedzi 13–18",
+                    "days_from": 366,
+                    "days_to": 547,
+                    "buffers_days": 10,
+                    "age_bracket": [671, 676]
+                },
+                {
+                    "id": 676,
+                    "name": "Mwedzi 19–24",
+                    "days_from": 548,
+                    "days_to": 730,
+                    "buffers_days": 10,
+                    "age_bracket": [676, 681]
+                },
+                {
+                    "id": 681,
+                    "name": "Mwedzi 25–36",
+                    "days_from": 731,
+                    "days_to": 1095,
+                    "buffers_days": 10,
+                    "age_bracket": [681, 686]
+                },
+                {
+                    "id": 686,
+                    "name": "Mwedzi 37–48",
+                    "days_from": 1096,
+                    "days_to": 1460,
+                    "buffers_days": 10,
+                    "age_bracket": [686, 691]
+                },
+                {
+                    "id": 691,
+                    "name": "Mwedzi 49–60",
+                    "days_from": 1461,
+                    "days_to": 1825,
+                    "buffers_days": 10,
+                    "age_bracket": [691, 696]
+                },
+                {
+                    "id": 696,
+                    "name": "Mwedzi 61–72",
+                    "days_from": 1826,
+                    "days_to": 2190,
+                    "buffers_days": 10,
+                    "age_bracket": [696]
+                }
+            ],
+            "child_gender": [
+                {
+                    "id": 706,
+                    "name": "Mukomana",
+                    "unique_name": "boy"
+                },
+                {
+                    "id": 711,
+                    "name": "Musikana",
+                    "unique_name": "girl"
+                },
+                {
+                    "id": 716,
+                    "name": "Zvese",
+                    "unique_name": "both"
+                }
+            ],
+            "growth_introductory": [
+                {
+                    "id": 771,
+                    "name": "Mwedzi gumi nesere (inosanganisira gore rechipiri)",
+                    "body": "Mugore rechipiri, kukura kwemwana kunoenderera mberi nekudzikira. Mugore iri, mwana anoreba angangoita 12 cm, anowedzera 2-2.5 kg muhuremu uye kukomberedzwa kwemusoro kunowedzera 2-2.5 cm.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 776,
+                    "name": "Kubva pamakore matatu (gore rechitatu zvichienda mberi)",
+                    "body": "Kukura kubva pagore rechitatu zvichienda mberi kunova kwakadzikama. Mwana anowedzera 5-7.5 cm pakureba uye 2-3 kg muhuremu pagore.",
+                    "days_from": 731,
+                    "days_to": 2190
+                },
+                {
+                    "id": 741,
+                    "name": "Mwedzi wekutanga",
+                    "body": "Mumazuva mashanu ekutanga, mwana achangoberekwa anogona kurasikirwa nehuremu hwake kusvika pa10%, asi nekuchengetedzwa kunokurudzirwa  uye kuyamwiswa kwakakwana mwana achadzorera kurasikirwa uku pakupera kwevhiki yechipiri. Munguva inotevera, mwana achawedzera huremu ne20-30g pazuva, kusvika pa5cm pakureba pamwedzi uye 2-2.5 cm pakukura kwemusoro. ",
+                    "days_from": 0,
+                    "days_to": 30
+                },
+                {
+                    "id": 746,
+                    "name": "Mwedzi wechipiri, mwedzi wechitatu",
+                    "body": "Mumwedzi wechipiri newechitatu, mwana anoenderera mberi nekuwedzera pakukura pamwero wakafanana newaakatanga nawo mumavhiki ekutanga. Achawedzera 700-900 g pamwedzi muhuremu, 2.5-4 cm pakureba uye 1.2 cm pakukura kwemusoro.",
+                    "days_from": 31,
+                    "days_to": 91
+                },
+                {
+                    "id": 751,
+                    "name": "Mwedzi wechishanu (unosanganisira mwedzi wechina nemwedzi wechishanu)",
+                    "body": "Kukura kwemwana kunotanga kunonoka mumwedzi wechina, wechishanu newechitanhatu, mwana anowedzera kubva pa450-550g muhuremu ne2cm pakureba. ",
+                    "days_from": 92,
+                    "days_to": 152
+                },
+                {
+                    "id": 756,
+                    "name": "Mwedzi wechitanhatu",
+                    "body": "Mwana anoenderera mberi nekuwedzera 450-550 g pamwedzi muhuremu uye 2 cm pakureba. Mwana paanozosvika pamwedzi mitanhatu anenge awedzera huremu hwake kaviri  kubva pahuremu wekuzvarwa.",
+                    "days_from": 153,
+                    "days_to": 183
+                },
+                {
+                    "id": 761,
+                    "name": "Mwedzi wechipfumbamwe (unosanganisira kubva pamwedzi wechinomwe, kusvika papfumbamwe)",
+                    "body": "Kubva pamwedzi wechinomwe kusvika wechipfumbamwe, kukura kwemwana kunoenderera mberi . Vana vanokura pamwero wakasiyana, asi zvakakosha kutevera maitiro ekukura akavambwa mumwedzi yekutanga yemwana.",
+                    "days_from": 184,
+                    "days_to": 274
+                },
+                {
+                    "id": 766,
+                    "name": "Mwedzi gumi neviri (unosanganisira kubva pamwedzi gumi kusvika pagumi neviri)",
+                    "body": "Mumwedzi yekupedzisira wegore rekutanga, mwana anowedzera kureba angangoita 1 cm pamwedzi uye huremu huchishanduka zvichienderana nematambiro anenge achiitwa nemwana. Mugore rekutanga mwana anofanira kuwedzera huremu zvakapetwa katatu kubva pahuremu wekuzvarwa, kureba zvinosvika 25 cm uye kukura musoro ne 12.5 cm.",
+                    "days_from": 275,
+                    "days_to": 365
+                }
+            ],
+            "growth_period": [
+                {
+                    "id": 1,
+                    "name": "Nemwedzi 5.5 yakazara",
+                    "vaccination_opens": 2007
+                },
+                {
+                    "id": 16,
+                    "name": "pakusunungukwa",
+                    "vaccination_opens": 0
+                },
+                {
+                    "id": 21,
+                    "name": "Pamwedzi 1 wakazara",
+                    "vaccination_opens": 31
+                },
+                {
+                    "id": 26,
+                    "name": "Pamwedzi 2 yakazara",
+                    "vaccination_opens": 63
+                },
+                {
+                    "id": 31,
+                    "name": "Pamwedzi 3 yakazara",
+                    "vaccination_opens": 91
+                },
+                {
+                    "id": 8736,
+                    "name": "Nemwedzi 17 yakazara",
+                    "vaccination_opens": 516
+                },
+                {
+                    "id": 8741,
+                    "name": "Nemwedzi 14 yakazara",
+                    "vaccination_opens": 424
+                },
+                {
+                    "id": 41,
+                    "name": "Pamwedzi 4 yakazara",
+                    "vaccination_opens": 121
+                },
+                {
+                    "id": 8746,
+                    "name": "Nemwedzi 19 yakazara",
+                    "vaccination_opens": 577
+                },
+                {
+                    "id": 301,
+                    "name": "nemazuva matatu akazara",
+                    "vaccination_opens": 3
+                },
+                {
+                    "id": 46,
+                    "name": "Pamwedzi 5 yakazara",
+                    "vaccination_opens": 152
+                },
+                {
+                    "id": 8751,
+                    "name": "Nemwedzi 20 yakazara",
+                    "vaccination_opens": 608
+                },
+                {
+                    "id": 51,
+                    "name": "Pamwedzi 6 yakazara",
+                    "vaccination_opens": 182
+                },
+                {
+                    "id": 8756,
+                    "name": "Nemwedzi 22 yakazara",
+                    "vaccination_opens": 669
+                },
+                {
+                    "id": 8761,
+                    "name": "Nemwedzi 23 yakazara",
+                    "vaccination_opens": 699
+                },
+                {
+                    "id": 61,
+                    "name": "Pamwedzi 7 yakazara",
+                    "vaccination_opens": 213
+                },
+                {
+                    "id": 8766,
+                    "name": "Pamakore 2 akazara",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 66,
+                    "name": "Pamwedzi 8 yakazara",
+                    "vaccination_opens": 244
+                },
+                {
+                    "id": 8771,
+                    "name": "Nemwedzi 26 yakazara",
+                    "vaccination_opens": 789
+                },
+                {
+                    "id": 71,
+                    "name": "pamwedzi mipfumbamwe yakazara",
+                    "vaccination_opens": 274
+                },
+                {
+                    "id": 8776,
+                    "name": "Nemwedzi 25 yakazara",
+                    "vaccination_opens": 761
+                },
+                {
+                    "id": 76,
+                    "name": "Pamwedzi 10 yakazara",
+                    "vaccination_opens": 305
+                },
+                {
+                    "id": 8781,
+                    "name": "Nemwedzi 28 yakazara",
+                    "vaccination_opens": 850
+                },
+                {
+                    "id": 81,
+                    "name": "Pamwedzi 11 yakazara",
+                    "vaccination_opens": 335
+                },
+                {
+                    "id": 8786,
+                    "name": "Nemwedzi 29 yakazara",
+                    "vaccination_opens": 881
+                },
+                {
+                    "id": 86,
+                    "name": "Pamwedzi 12 yakazara",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 8791,
+                    "name": "Nemwedzi 31 yakazara",
+                    "vaccination_opens": 942
+                },
+                {
+                    "id": 8796,
+                    "name": "Nemwedzi 32 yakazara",
+                    "vaccination_opens": 973
+                },
+                {
+                    "id": 96,
+                    "name": "Pamwedzi 15 yakazara",
+                    "vaccination_opens": 456
+                },
+                {
+                    "id": 8801,
+                    "name": "Nemwedzi 34 yakazara",
+                    "vaccination_opens": 1034
+                },
+                {
+                    "id": 356,
+                    "name": "mavhiki matanhatu akazara",
+                    "vaccination_opens": 42
+                },
+                {
+                    "id": 101,
+                    "name": "Pamwedzi 16 yakazara",
+                    "vaccination_opens": 486
+                },
+                {
+                    "id": 8806,
+                    "name": "Nemwedzi 35 yakazara",
+                    "vaccination_opens": 1064
+                },
+                {
+                    "id": 106,
+                    "name": "pamwedzi gumi nesere yakazara",
+                    "vaccination_opens": 547
+                },
+                {
+                    "id": 8811,
+                    "name": "Pamakore 3 akazara",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 366,
+                    "name": "pamazera gumi evhiki",
+                    "vaccination_opens": 70
+                },
+                {
+                    "id": 111,
+                    "name": "Pamwedzi 21 yakazara",
+                    "vaccination_opens": 639
+                },
+                {
+                    "id": 8816,
+                    "name": "Nemwedzi 37 yakazara",
+                    "vaccination_opens": 1126
+                },
+                {
+                    "id": 371,
+                    "name": "pamazera gumi nemana evhiki",
+                    "vaccination_opens": 98
+                },
+                {
+                    "id": 116,
+                    "name": "Pamakore 2 akazara",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 8821,
+                    "name": "Nemwedzi 38 yakazara",
+                    "vaccination_opens": 1154
+                },
+                {
+                    "id": 121,
+                    "name": "Pamwedzi 27 yakazara",
+                    "vaccination_opens": 821
+                },
+                {
+                    "id": 8826,
+                    "name": "Nemwedzi 39 yakazara",
+                    "vaccination_opens": 1185
+                },
+                {
+                    "id": 126,
+                    "name": "Pamwedzi 30 yakazara",
+                    "vaccination_opens": 912
+                },
+                {
+                    "id": 8831,
+                    "name": "Nemwedzi 40 yakazara",
+                    "vaccination_opens": 1215
+                },
+                {
+                    "id": 131,
+                    "name": "Pamwedzi 33 yakazara",
+                    "vaccination_opens": 1004
+                },
+                {
+                    "id": 8836,
+                    "name": "Nemwedzi 41 yakazara",
+                    "vaccination_opens": 1246
+                },
+                {
+                    "id": 136,
+                    "name": "Pamakore 3 akazara",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 8841,
+                    "name": "Nemwedzi 43 yakazara",
+                    "vaccination_opens": 1307
+                },
+                {
+                    "id": 8846,
+                    "name": "Nemwedzi 44 yakazara",
+                    "vaccination_opens": 1338
+                },
+                {
+                    "id": 8851,
+                    "name": "Nemwedzi 45 yakazara",
+                    "vaccination_opens": 1368
+                },
+                {
+                    "id": 8856,
+                    "name": "Nemwedzi 46 yakazara",
+                    "vaccination_opens": 1399
+                },
+                {
+                    "id": 156,
+                    "name": "Pamwedzi 42 yakazara",
+                    "vaccination_opens": 1277
+                },
+                {
+                    "id": 8861,
+                    "name": "Nemwedzi 47 yakazara",
+                    "vaccination_opens": 1429
+                },
+                {
+                    "id": 161,
+                    "name": "Pamakore 4 akazara",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 8866,
+                    "name": "Nemwedzi 49 yakazara",
+                    "vaccination_opens": 1491
+                },
+                {
+                    "id": 166,
+                    "name": "Pamwedzi 54 yakazara",
+                    "vaccination_opens": 1642
+                },
+                {
+                    "id": 8871,
+                    "name": "Nemwedzi 50 yakazara",
+                    "vaccination_opens": 1519
+                },
+                {
+                    "id": 8876,
+                    "name": "Nemwedzi 51 yakazara",
+                    "vaccination_opens": 1550
+                },
+                {
+                    "id": 176,
+                    "name": "pamakore mashanu akazara",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 8881,
+                    "name": "Nemwedzi 52 yakazara",
+                    "vaccination_opens": 1580
+                },
+                {
+                    "id": 8886,
+                    "name": "Nemwedzi 53 yakazara",
+                    "vaccination_opens": 1611
+                },
+                {
+                    "id": 186,
+                    "name": "Nemwedzi 6 yakazara",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 8891,
+                    "name": "Nemwedzi 55 yakazara",
+                    "vaccination_opens": 1672
+                },
+                {
+                    "id": 8896,
+                    "name": "Nemwedzi 56 yakazara",
+                    "vaccination_opens": 1703
+                },
+                {
+                    "id": 8901,
+                    "name": "Nemwedzi 57 yakazara",
+                    "vaccination_opens": 1733
+                },
+                {
+                    "id": 201,
+                    "name": "Pamwedzi 13 yakazara",
+                    "vaccination_opens": 396
+                },
+                {
+                    "id": 8906,
+                    "name": "Nemwedzi 58 yakazara",
+                    "vaccination_opens": 1764
+                },
+                {
+                    "id": 8911,
+                    "name": "Nemwedzi 59 yakazara",
+                    "vaccination_opens": 1794
+                },
+                {
+                    "id": 231,
+                    "name": "nemazuva minomwe akazara",
+                    "vaccination_opens": 7
+                }
+            ],
+            "growth_type": [
+                {
+                    "id": 781,
+                    "name": "Kureba kwemwana pazera rake",
+                    "unique_name": "height_for_age"
+                },
+                {
+                    "id": 786,
+                    "name": "Huremu hwemwana pakureba kwake",
+                    "unique_name": "height_for_weight"
+                }
+            ],
+            "parent_gender": [
+                {
+                    "id": 3386,
+                    "name": "Murume",
+                    "unique_name": "male"
+                },
+                {
+                    "id": 3391,
+                    "name": "Mukadzi",
+                    "unique_name": "female"
+                },
+                {
+                    "id": 3396,
+                    "name": "Vose",
+                    "unique_name": "both"
+                }
+            ],
+            "relationship_to_parent": [
+                {
+                    "id": 3401,
+                    "name": "Amai",
+                    "unique_name": "mother"
+                },
+                {
+                    "id": 3406,
+                    "name": "Baba",
+                    "unique_name": "father"
+                },
+                {
+                    "id": 3411,
+                    "name": "Mumwe muchengeti",
+                    "unique_name": "other_caregiver"
+                },
+                {
+                    "id": 3416,
+                    "name": "Muiti webasa",
+                    "unique_name": "service_provider"
+                }
+            ],
+            "standard_deviation_category": [
+                {
+                    "id": 3421,
+                    "name": "pakati pe -2SD kusvika +2SD"
+                },
+                {
+                    "id": 3426,
+                    "name": "pakati pe -2SD ne -3SD"
+                },
+                {
+                    "id": 3431,
+                    "name": "pakati pe +2SD ne +3SD"
+                },
+                {
+                    "id": 3436,
+                    "name": "pamusoro pe +3SD"
+                },
+                {
+                    "id": 3441,
+                    "name": "pakati pe -2SD kusvika +3SD"
+                },
+                {
+                    "id": 3446,
+                    "name": "pazasi pe -2SD"
+                },
+                {
+                    "id": 3451,
+                    "name": "pazasi pe -3SD"
+                }
+            ],
+            "subcategory": [
+                {
+                    "id": 8706,
+                    "name": "Utano hwepfungwa"
+                },
+                {
+                    "id": 8711,
+                    "name": "Utano hwemuviri"
+                },
+                {
+                    "id": 8716,
+                    "name": "Kubatanidza Basa Neupenyu"
+                },
+                {
+                    "id": 8721,
+                    "name": "Hukama hwevaviri"
+                },
+                {
+                    "id": 8506,
+                    "name": "Kurara"
+                },
+                {
+                    "id": 8511,
+                    "name": "Kuchengetedza nehutsananan"
+                },
+                {
+                    "id": 8516,
+                    "name": "Kubayisa mwana nekutariswa makuriro"
+                },
+                {
+                    "id": 8521,
+                    "name": "Zvinetso zvekukura"
+                },
+                {
+                    "id": 8526,
+                    "name": "Mabikiro ezvokudya"
+                },
+                {
+                    "id": 8531,
+                    "name": "Kudya kwakanaka"
+                },
+                {
+                    "id": 8536,
+                    "name": "Basa remuviri"
+                },
+                {
+                    "id": 8541,
+                    "name": "Unyanzvi hweMafungiro neManzwiro"
+                },
+                {
+                    "id": 8546,
+                    "name": "Mutauro & Kuverenga"
+                },
+                {
+                    "id": 8551,
+                    "name": "Mazano ekutamba"
+                },
+                {
+                    "id": 8556,
+                    "name": "Rubatsiro rwekutanga"
+                },
+                {
+                    "id": 8561,
+                    "name": "Kudzivirira Njodzi"
+                },
+                {
+                    "id": 8566,
+                    "name": "Kudzivirirwa kweMwana"
+                },
+                {
+                    "id": 8571,
+                    "name": "Zviitiko Zvekukurumidzira"
+                },
+                {
+                    "id": 8576,
+                    "name": "Mazano Ekurera Mwana"
+                },
+                {
+                    "id": 8581,
+                    "name": "Zvakakosha pakuyamwisa"
+                },
+                {
+                    "id": 8586,
+                    "name": "Matambudziko pakuyamwisa"
+                },
+                {
+                    "id": 8591,
+                    "name": "Chikafu chokutanga"
+                },
+                {
+                    "id": 8596,
+                    "name": "Kunzwisisa Maitiro eMwana"
+                },
+                {
+                    "id": 8601,
+                    "name": "Hukama hweMubereki nemwana"
+                },
+                {
+                    "id": 8606,
+                    "name": "Hukama Hwemhuri"
+                },
+                {
+                    "id": 8616,
+                    "name": "Mavhiki 0-12"
+                },
+                {
+                    "id": 8621,
+                    "name": "Mavhiki 13-28"
+                },
+                {
+                    "id": 8626,
+                    "name": "Mavhiki 29-40"
+                },
+                {
+                    "id": 8631,
+                    "name": "Tsika dzekudya dzakanaka"
+                },
+                {
+                    "id": 8636,
+                    "name": "Utano Hwepfungwa"
+                },
+                {
+                    "id": 8641,
+                    "name": "Zvidzidzo & Kuongororwa"
+                },
+                {
+                    "id": 8646,
+                    "name": "Zvigadzirwa zvemwana"
+                },
+                {
+                    "id": 8651,
+                    "name": "Basa uye Basa Rehupenyu"
+                },
+                {
+                    "id": 8656,
+                    "name": "Mamiriro Ekuzvitakura"
+                },
+                {
+                    "id": 8661,
+                    "name": "Rutsigiro rweMudiwa"
+                },
+                {
+                    "id": 8666,
+                    "name": "Hukama Hwevaviri"
+                },
+                {
+                    "id": 8671,
+                    "name": "Kuronga"
+                },
+                {
+                    "id": 8676,
+                    "name": "Mhando dzeKuberekwa"
+                },
+                {
+                    "id": 8681,
+                    "name": "Kupora"
+                },
+                {
+                    "id": 8686,
+                    "name": "Mavhiki Ekutanga"
+                },
+                {
+                    "id": 8691,
+                    "name": "Kubereka mwana nguva isati yakwana"
+                },
+                {
+                    "id": 8696,
+                    "name": "Kubuda Mwana Asina Hupenyu"
+                },
+                {
+                    "id": 8701,
+                    "name": "Zvinonetsa zvehutano"
+                }
+            ],
+            "type_of_support": [
+                {
+                    "id": 8726,
+                    "name": "Kutamba kwemunhu ari oga"
+                },
+                {
+                    "id": 8731,
+                    "name": "Zvinotungamirirwa nevabereki"
+                }
+            ]
+        },
+        "standardDevData": {
+            "standard_deviation": [
 
-    ],
-    "zw-nd": [
+            ]
+        }
+    }],
+    "zw-nd": [{
+        "langCode": "zw-nd",
+        "allData": {
+            "activity_category": [
+                {
+                    "id": 721,
+                    "name": "Ukunyakaza",
+                    "unique_name": "motor"
+                },
+                {
+                    "id": 726,
+                    "name": "Ezobudlelwano",
+                    "unique_name": "socio_ emotional"
+                },
+                {
+                    "id": 731,
+                    "name": "Ukucabanga",
+                    "unique_name": "cognitive"
+                },
+                {
+                    "id": 736,
+                    "name": "Ulimi lokukhuluma",
+                    "unique_name": "language_and_communication"
+                }
+            ],
+            "category": [
+                {
+                    "id": 376,
+                    "name": "Ukukhula komntwana",
+                    "unique_name": "child_development",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 386,
+                    "name": "Ukukhula komzimba womntwana",
+                    "unique_name": "child_growth",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 391,
+                    "name": "Impilakahle",
+                    "unique_name": "health_and_wellbeing",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 401,
+                    "name": "Ukuhlolwa impilakahle",
+                    "unique_name": "health_check_ups",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 406,
+                    "name": "Ukudla lokumunyisa",
+                    "unique_name": "nutrition_and_breastfeeding",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 411,
+                    "name": "Impilakahle yabazali",
+                    "unique_name": "parenting_corner",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 416,
+                    "name": "Ukudlala lokufunda",
+                    "unique_name": "play_and_learning",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 421,
+                    "name": "Wondla okukhaliphileyo",
+                    "unique_name": "responsive_parenting",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 426,
+                    "name": "Ukuvikela abantwana",
+                    "unique_name": "safety_and_protection",
+                    "field_type_of_article": "Article for birth to 6 years"
+                },
+                {
+                    "id": 431,
+                    "name": "Ukuhlatshiswa kwabantwana",
+                    "unique_name": "vaccination",
+                    "field_type_of_article": "Article for health and growth tools"
+                },
+                {
+                    "id": 436,
+                    "name": "Iviki ngeviki",
+                    "unique_name": "week_by_week",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 446,
+                    "name": "Ukuba lempilakahle",
+                    "unique_name": "staying_healthy",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 451,
+                    "name": "Ukulungiselela umntwana",
+                    "unique_name": "preparing_for_a_baby",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 456,
+                    "name": "Ukusekelwa ngesikhathi uzithwele",
+                    "unique_name": "support_during_pregnancy",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 461,
+                    "name": "Ukuhelelwa lokubeletha",
+                    "unique_name": "labour_and_birth",
+                    "field_type_of_article": "Article for pregnancy"
+                },
+                {
+                    "id": 466,
+                    "name": "Inhlupho uzithwele",
+                    "unique_name": "pregnancy_complications",
+                    "field_type_of_article": "Article for pregnancy"
+                }
+            ],
+            "chatbot_category": [
+                {
+                    "id": 471,
+                    "name": "Ukukhula komntwana",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 476,
+                    "name": "Ukondla ngcono",
+                    "unique_name": "better_parenting"
+                },
+                {
+                    "id": 481,
+                    "name": "Ukondla abantwana abalempilakahle",
+                    "unique_name": "raising_healthy_children"
+                },
+                {
+                    "id": 486,
+                    "name": "Ukuhlatshiswa kwabantwana",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 491,
+                    "name": "Ukuhlala ujabulile ulempilakahle",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_child_age": [
+                {
+                    "id": 516,
+                    "name": "Bonke"
+                },
+                {
+                    "id": 496,
+                    "name": "Umntwana osanda kuzalwa"
+                },
+                {
+                    "id": 501,
+                    "name": "Umntwana"
+                },
+                {
+                    "id": 506,
+                    "name": "Umntwana"
+                },
+                {
+                    "id": 511,
+                    "name": "Umntwana"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 521,
+                    "name": "Ukukhula lokufunda",
+                    "parent_category_id": 471,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 526,
+                    "name": "Ukukhuluma lokubala",
+                    "parent_category_id": 471,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 531,
+                    "name": "Indawo yokufunda",
+                    "parent_category_id": 471,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 536,
+                    "name": "Umntanami lesikolo se-preschool",
+                    "parent_category_id": 471,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 541,
+                    "name": "Ukufunda ngokudlala",
+                    "parent_category_id": 471,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 546,
+                    "name": "Ubudlelwano obulothando",
+                    "parent_category_id": 476,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 551,
+                    "name": "Ukudlala lomntanami",
+                    "parent_category_id": 476,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 556,
+                    "name": "Ukungaziphathi kahle",
+                    "parent_category_id": 476,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 561,
+                    "name": "Ukufunda ngekhaya",
+                    "parent_category_id": 476,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 566,
+                    "name": "Umntwana ojayele abanye",
+                    "parent_category_id": 476,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 571,
+                    "name": "Esingakukhangelelanga ukuthi kwenzeke abantwana bekhula",
+                    "parent_category_id": 481,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 576,
+                    "name": "Izenzo ezilempilakahle",
+                    "parent_category_id": 481,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 581,
+                    "name": "Ukudla okulempilakahle",
+                    "parent_category_id": 481,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 586,
+                    "name": "Ukumunyisa",
+                    "parent_category_id": 481,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 591,
+                    "name": "Ukugcina kahle lokuvikela ingozi",
+                    "parent_category_id": 481,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 596,
+                    "name": "Ukuhlatshiswa kwabantwana",
+                    "parent_category_id": 486,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 601,
+                    "name": "Ukuhlatshiswa kwabantwana okungela ngozi",
+                    "parent_category_id": 486,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 606,
+                    "name": "imikhuhlane evikelwa yikuhlabisa abantwana",
+                    "parent_category_id": 486,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 611,
+                    "name": "izikhathi zokuhlabisa abantwana",
+                    "parent_category_id": 486,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 616,
+                    "name": "Ukuhlatshiswa kwabantwana lempumela esingazikhangelelanga ezempilakahle",
+                    "parent_category_id": 486,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 621,
+                    "name": "Ukuhlala ujabulile ulempilakahle",
+                    "parent_category_id": 491,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 626,
+                    "name": "Ukuthola uziso ngokuhlukuluza emoyeni",
+                    "parent_category_id": 491,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 631,
+                    "name": "Ukhangelana lobunzima bokuba ngumzali",
+                    "parent_category_id": 491,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 636,
+                    "name": "Impilakahle Yengqondo",
+                    "parent_category_id": 491,
+                    "unique_name": "psychological_wellbeing"
+                }
+            ],
+            "child_age": [
+                {
+                    "id": 701,
+                    "name": "Ukuzithwala",
+                    "days_from": -300,
+                    "days_to": -1,
+                    "buffers_days": 0,
+                    "age_bracket": [701]
+                },
+                {
+                    "id": 641,
+                    "name": "Inyanga yakuqala",
+                    "days_from": 0,
+                    "days_to": 31,
+                    "buffers_days": 10,
+                    "age_bracket": [641, 646, 651]
+                },
+                {
+                    "id": 646,
+                    "name": "Inyanga yesibili",
+                    "days_from": 32,
+                    "days_to": 60,
+                    "buffers_days": 10,
+                    "age_bracket": [646, 651, 656]
+                },
+                {
+                    "id": 651,
+                    "name": "Inyanga 3-4",
+                    "days_from": 61,
+                    "days_to": 121,
+                    "buffers_days": 10,
+                    "age_bracket": [651, 656, 661]
+                },
+                {
+                    "id": 656,
+                    "name": "Inyanga 5-6",
+                    "days_from": 122,
+                    "days_to": 182,
+                    "buffers_days": 10,
+                    "age_bracket": [656, 661, 666]
+                },
+                {
+                    "id": 661,
+                    "name": "Inyanga 7-9",
+                    "days_from": 183,
+                    "days_to": 274,
+                    "buffers_days": 10,
+                    "age_bracket": [661, 666]
+                },
+                {
+                    "id": 666,
+                    "name": "Inyanga 10-12",
+                    "days_from": 275,
+                    "days_to": 365,
+                    "buffers_days": 10,
+                    "age_bracket": [666, 671]
+                },
+                {
+                    "id": 671,
+                    "name": "Inyanga 13-18",
+                    "days_from": 366,
+                    "days_to": 547,
+                    "buffers_days": 10,
+                    "age_bracket": [671, 676]
+                },
+                {
+                    "id": 676,
+                    "name": "Inyanga 19-24",
+                    "days_from": 548,
+                    "days_to": 730,
+                    "buffers_days": 10,
+                    "age_bracket": [676, 681]
+                },
+                {
+                    "id": 681,
+                    "name": "Inyanga 25-36",
+                    "days_from": 731,
+                    "days_to": 1095,
+                    "buffers_days": 10,
+                    "age_bracket": [681, 686]
+                },
+                {
+                    "id": 686,
+                    "name": "Inyanga 37-48",
+                    "days_from": 1096,
+                    "days_to": 1460,
+                    "buffers_days": 10,
+                    "age_bracket": [686, 691]
+                },
+                {
+                    "id": 691,
+                    "name": "Inyanga 49-60",
+                    "days_from": 1461,
+                    "days_to": 1825,
+                    "buffers_days": 10,
+                    "age_bracket": [691, 696]
+                },
+                {
+                    "id": 696,
+                    "name": "Inyanga 61-72",
+                    "days_from": 1826,
+                    "days_to": 2190,
+                    "buffers_days": 10,
+                    "age_bracket": [696]
+                }
+            ],
+            "child_gender": [
+                {
+                    "id": 706,
+                    "name": "Umfana",
+                    "unique_name": "boy"
+                },
+                {
+                    "id": 711,
+                    "name": "Inkazana",
+                    "unique_name": "girl"
+                },
+                {
+                    "id": 716,
+                    "name": "Bonke",
+                    "unique_name": "both"
+                }
+            ],
+            "growth_introductory": [
+                {
+                    "id": 771,
+                    "name": "Inyanga ezilitshumi lasitshiyangalonye (kugoqela lomnyaka wesibili)",
+                    "body": "Ngomnyaka wesibili, ukukhula kuyaqhubeka kuncipha kancane kancane. Ubude buyangezeleleka nge 12cm, isisindo nge 2 kusiya ku 2.5 kg lesingombolozi sekhanda nge 2 kusiya ku 2.5cm.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 776,
+                    "name": "Eminyakeni emithathu kusiya phambili",
+                    "body": "Kusukela emnyakeni wesithathu kusiyaphambili kukhula kulokulingana, ubude bungezelela nge 5 kusiya ku 7.5cm isisindo nge 2 kusiya ku 3kg ngomnyaka.",
+                    "days_from": 731,
+                    "days_to": 2190
+                },
+                {
+                    "id": 741,
+                    "name": "Inyanga yakuqala (1)",
+                    "body": "Ngamalanga okuqala amahlanu umntwana osanda kubelethwa uyehla esisindweni kancane (10%), kodwa engaqhubeka emunya ngemfanelo, umzimba wakhe uyaphenduka sokudlule amaviki amabili. Ngesibanga esilandelayo kumele isisindo singezeleleke nge-20g kusisya ku30g ngelanga, njalo ubude nge 5cm ngenyanga lesigombolozi sekhanda nge 2-2,5cm.",
+                    "days_from": 0,
+                    "days_to": 30
+                },
+                {
+                    "id": 746,
+                    "name": "Inyanga ezimbili (2), Inyanga ezintathu (3)",
+                    "body": "Kunyanga ezimbili kusiya kwezintathu umntwana uyaqhubekeka ekhula ngendlela abekhula ngayo ngenyanga kakuqala. Uyengezelela 700 kusiya 900g ngenyanga, 2.5 kusiya ku 4cm ubude, njalo 1.2cm isigombolozi sekhanda.",
+                    "days_from": 31,
+                    "days_to": 91
+                },
+                {
+                    "id": 751,
+                    "name": "Inyanga ezihlanu (Kugoqela ezinhlanu kusiya kweziyisithupha)",
+                    "body": "Ukukhula kuyaqala ukuncipha kunyanga yesine, eyesihlanu leyesithupha, umntwana ungezelela isisindo ngesilinganiso esiphakathi kwe450 kusiya ku550g, ubude nge 2cm.",
+                    "days_from": 92,
+                    "days_to": 152
+                },
+                {
+                    "id": 756,
+                    "name": "Inyanga eziyisithupha",
+                    "body": "Umntwana uyaqhubeka engezelela isisindo nge 450-550g ngenyanga, lobude nge 2cm. Ngesikhathi lesi umntwana kumele abesesiphinde kabili isisindo sakhe sokuzalwa.",
+                    "days_from": 153,
+                    "days_to": 183
+                },
+                {
+                    "id": 761,
+                    "name": "Inyanga eziyisiyisitshiyangalonye (kugoqela eziyisikhombisa kusiya kweziyisitshiyangalonye)",
+                    "body": "Ukukhula kuyaqhubeka kuncipha. Abantwana bakhula ngendlela etshiyeneyo kodwa kumele belandele indlela abakade bekhulangayo emuva.",
+                    "days_from": 184,
+                    "days_to": 274
+                },
+                {
+                    "id": 766,
+                    "name": "Inyanga ezilitshumi lambili  (kugoqela ezilitshumi kusiya kutshumi lambili)",
+                    "body": "Ngenyanya ezintathu zokucina zomnyaka wakuqala ubude bukhula nge 1 cm ngenyanga, njalo isisido sikhula okuhambelana lokudla komntwana. Ngomnyaka wokuqala umntwana uvame ukuphinda kathathu isisindo sakhe sokuzalwa, ukwengeza ubude bokuzalwa nge25cm, lokukhula isigombolozi sekhanda nge 12.5cm.",
+                    "days_from": 275,
+                    "days_to": 365
+                }
+            ],
+            "growth_period": [
+                {
+                    "id": 1,
+                    "name": "emnyakeni engu 6 epheleleyo",
+                    "vaccination_opens": 2007
+                },
+                {
+                    "id": 16,
+                    "name": "Ezalwa ",
+                    "vaccination_opens": 0
+                },
+                {
+                    "id": 21,
+                    "name": "ngenyanga epheleleyo eyodwa",
+                    "vaccination_opens": 31
+                },
+                {
+                    "id": 26,
+                    "name": "ngenyanga ezipheleleyo ezingu 2",
+                    "vaccination_opens": 63
+                },
+                {
+                    "id": 31,
+                    "name": "ngenyanga ezipheleleyo ezingu 3",
+                    "vaccination_opens": 91
+                },
+                {
+                    "id": 8736,
+                    "name": "ngenyanga ezipheleleyo ezingu 17",
+                    "vaccination_opens": 516
+                },
+                {
+                    "id": 8741,
+                    "name": "ngenyanga ezipheleleyo ezingu 14",
+                    "vaccination_opens": 424
+                },
+                {
+                    "id": 41,
+                    "name": "ngenyanga ezipheleleyo ezingu 4",
+                    "vaccination_opens": 121
+                },
+                {
+                    "id": 8746,
+                    "name": "ngenyanga ezipheleleyo ezingu 19",
+                    "vaccination_opens": 577
+                },
+                {
+                    "id": 301,
+                    "name": "ngamazinsuku 3 ezigcweleyo",
+                    "vaccination_opens": 3
+                },
+                {
+                    "id": 46,
+                    "name": "ngenyanga ezipheleleyo ezingu 5",
+                    "vaccination_opens": 152
+                },
+                {
+                    "id": 8751,
+                    "name": "ngenyanga ezipheleleyo ezingu 20",
+                    "vaccination_opens": 608
+                },
+                {
+                    "id": 51,
+                    "name": "ngenyanga ezipheleleyo ezingu 6",
+                    "vaccination_opens": 182
+                },
+                {
+                    "id": 8756,
+                    "name": "ngenyanga ezipheleleyo ezingu 22",
+                    "vaccination_opens": 669
+                },
+                {
+                    "id": 8761,
+                    "name": "ngenyanga ezipheleleyo ezingu 23",
+                    "vaccination_opens": 699
+                },
+                {
+                    "id": 61,
+                    "name": "ngenyanga ezipheleleyo ezingu 7",
+                    "vaccination_opens": 213
+                },
+                {
+                    "id": 8766,
+                    "name": "emnyakeni engu 2 epheleleyo",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 66,
+                    "name": "ngenyanga ezipheleleyo ezingu 8",
+                    "vaccination_opens": 244
+                },
+                {
+                    "id": 8771,
+                    "name": "ngenyanga ezipheleleyo ezingu 26",
+                    "vaccination_opens": 789
+                },
+                {
+                    "id": 71,
+                    "name": "ngenyanga ezipheleleyo ezingu 9",
+                    "vaccination_opens": 274
+                },
+                {
+                    "id": 8776,
+                    "name": "ngenyanga ezipheleleyo ezingu 25",
+                    "vaccination_opens": 761
+                },
+                {
+                    "id": 76,
+                    "name": "ngenyanga ezipheleleyo ezingu 10",
+                    "vaccination_opens": 305
+                },
+                {
+                    "id": 8781,
+                    "name": "ngenyanga ezipheleleyo ezingu 28",
+                    "vaccination_opens": 850
+                },
+                {
+                    "id": 81,
+                    "name": "ngenyanga ezipheleleyo ezingu 11",
+                    "vaccination_opens": 335
+                },
+                {
+                    "id": 8786,
+                    "name": "ngenyanga ezipheleleyo ezingu 29",
+                    "vaccination_opens": 881
+                },
+                {
+                    "id": 86,
+                    "name": "ngenyanga ezipheleleyo ezingu 12",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 8791,
+                    "name": "ngenyanga ezipheleleyo ezingu 31",
+                    "vaccination_opens": 942
+                },
+                {
+                    "id": 8796,
+                    "name": "ngenyanga ezipheleleyo ezingu 32",
+                    "vaccination_opens": 973
+                },
+                {
+                    "id": 96,
+                    "name": "ngenyanga ezipheleleyo ezingu 15",
+                    "vaccination_opens": 456
+                },
+                {
+                    "id": 8801,
+                    "name": "ngenyanga ezipheleleyo ezingu 34",
+                    "vaccination_opens": 1034
+                },
+                {
+                    "id": 356,
+                    "name": "ngamaviki 6 agcweleyo",
+                    "vaccination_opens": 42
+                },
+                {
+                    "id": 101,
+                    "name": "ngenyanga ezipheleleyo ezingu 16",
+                    "vaccination_opens": 486
+                },
+                {
+                    "id": 8806,
+                    "name": "ngenyanga ezipheleleyo ezingu 35",
+                    "vaccination_opens": 1064
+                },
+                {
+                    "id": 106,
+                    "name": "ngenyanga ezipheleleyo ezingu 18",
+                    "vaccination_opens": 547
+                },
+                {
+                    "id": 8811,
+                    "name": "emnyakeni engu 3 epheleleyo",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 366,
+                    "name": "ngamaviki 10 agcweleyo",
+                    "vaccination_opens": 70
+                },
+                {
+                    "id": 111,
+                    "name": "ngenyanga ezipheleleyo ezingu 21",
+                    "vaccination_opens": 639
+                },
+                {
+                    "id": 8816,
+                    "name": "ngenyanga ezipheleleyo ezingu 37",
+                    "vaccination_opens": 1126
+                },
+                {
+                    "id": 371,
+                    "name": "ngamaviki 14 agcweleyo",
+                    "vaccination_opens": 98
+                },
+                {
+                    "id": 116,
+                    "name": "Emnyakeni engu 2 epheleleyo",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 8821,
+                    "name": "ngenyanga ezipheleleyo ezingu 38",
+                    "vaccination_opens": 1154
+                },
+                {
+                    "id": 121,
+                    "name": "ngenyanga ezipheleleyo ezingu 27",
+                    "vaccination_opens": 821
+                },
+                {
+                    "id": 8826,
+                    "name": "ngenyanga ezipheleleyo ezingu 39",
+                    "vaccination_opens": 1185
+                },
+                {
+                    "id": 126,
+                    "name": "ngenyanga ezipheleleyo ezingu 30",
+                    "vaccination_opens": 912
+                },
+                {
+                    "id": 8831,
+                    "name": "ngenyanga ezingu 40 ezipheleleyo",
+                    "vaccination_opens": 1215
+                },
+                {
+                    "id": 131,
+                    "name": "ngenyanga ezipheleleyo ezingu 33",
+                    "vaccination_opens": 1004
+                },
+                {
+                    "id": 8836,
+                    "name": "ngenyanga ezingu 41 ezipheleleyo",
+                    "vaccination_opens": 1246
+                },
+                {
+                    "id": 136,
+                    "name": "Emnyakeni engu 3 epheleleyo",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 8841,
+                    "name": "ngenyanga ezingu 43 ezipheleleyo",
+                    "vaccination_opens": 1307
+                },
+                {
+                    "id": 8846,
+                    "name": "ngenyanga ezingu 44 ezipheleleyo",
+                    "vaccination_opens": 1338
+                },
+                {
+                    "id": 8851,
+                    "name": "ngenyanga ezingu 45 ezipheleleyo",
+                    "vaccination_opens": 1368
+                },
+                {
+                    "id": 8856,
+                    "name": "ngenyanga ezingu 46 ezipheleleyo",
+                    "vaccination_opens": 1399
+                },
+                {
+                    "id": 156,
+                    "name": "ngenyanga ezingu 42 ezipheleleyo",
+                    "vaccination_opens": 1277
+                },
+                {
+                    "id": 8861,
+                    "name": "ngenyanga ezingu 47 ezipheleleyo",
+                    "vaccination_opens": 1429
+                },
+                {
+                    "id": 161,
+                    "name": "emnyakeni engu 4 epheleleyo",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 8866,
+                    "name": "ngenyanga ezingu 49 ezipheleleyo",
+                    "vaccination_opens": 1491
+                },
+                {
+                    "id": 166,
+                    "name": "ngenyanga ezingu 54 ezipheleleyo",
+                    "vaccination_opens": 1642
+                },
+                {
+                    "id": 8871,
+                    "name": "ngenyanga ezingu 50 ezipheleleyo",
+                    "vaccination_opens": 1519
+                },
+                {
+                    "id": 8876,
+                    "name": "ngenyanga ezingu 51 ezipheleleyo",
+                    "vaccination_opens": 1550
+                },
+                {
+                    "id": 176,
+                    "name": "emnyakeni engu 5 epheleleyo",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 8881,
+                    "name": "ngenyanga ezingu 52 ezipheleleyo",
+                    "vaccination_opens": 1580
+                },
+                {
+                    "id": 8886,
+                    "name": "ngenyanga ezingu 53 ezipheleleyo",
+                    "vaccination_opens": 1611
+                },
+                {
+                    "id": 186,
+                    "name": "emnyakeni engu 5.5",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 8891,
+                    "name": "ngenyanga ezingu 55 ezipheleleyo",
+                    "vaccination_opens": 1672
+                },
+                {
+                    "id": 8896,
+                    "name": "ngenyanga ezingu 56 ezipheleleyo",
+                    "vaccination_opens": 1703
+                },
+                {
+                    "id": 8901,
+                    "name": "ngenyanga ezingu 57 ezipheleleyo",
+                    "vaccination_opens": 1733
+                },
+                {
+                    "id": 201,
+                    "name": "ngenyanga ezipheleleyo ezingu 13",
+                    "vaccination_opens": 396
+                },
+                {
+                    "id": 8906,
+                    "name": "ngenyanga ezingu 58 ezipheleleyo",
+                    "vaccination_opens": 1764
+                },
+                {
+                    "id": 8911,
+                    "name": "ngenyanga ezingu 59 ezipheleleyo",
+                    "vaccination_opens": 1794
+                },
+                {
+                    "id": 231,
+                    "name": "ngamazinsuku 7 ezigcweleyo",
+                    "vaccination_opens": 7
+                }
+            ],
+            "growth_type": [
+                {
+                    "id": 781,
+                    "name": "Ubude siqathanisa leminyaka yokuzalwa",
+                    "unique_name": "height_for_age"
+                },
+                {
+                    "id": 786,
+                    "name": "Isisindo siqathanisa lobude",
+                    "unique_name": "height_for_weight"
+                }
+            ],
+            "parent_gender": [
+                {
+                    "id": 3386,
+                    "name": "Indoda",
+                    "unique_name": "male"
+                },
+                {
+                    "id": 3391,
+                    "name": "Umfazi",
+                    "unique_name": "female"
+                },
+                {
+                    "id": 3396,
+                    "name": "Bonke",
+                    "unique_name": "both"
+                }
+            ],
+            "relationship_to_parent": [
+                {
+                    "id": 3401,
+                    "name": "Umama",
+                    "unique_name": "mother"
+                },
+                {
+                    "id": 3406,
+                    "name": "Ubaba",
+                    "unique_name": "father"
+                },
+                {
+                    "id": 3411,
+                    "name": "Abanye abanakeleli",
+                    "unique_name": "other_caregiver"
+                },
+                {
+                    "id": 3416,
+                    "name": "Abahleli benhlelo",
+                    "unique_name": "service_provider"
+                }
+            ],
+            "standard_deviation_category": [
+                {
+                    "id": 3421,
+                    "name": "phakathi kwe -2SD le +2SD"
+                },
+                {
+                    "id": 3426,
+                    "name": "phakathi kwe -2SD le -3SD"
+                },
+                {
+                    "id": 3431,
+                    "name": "phakathi kwe +2SD le +3SD"
+                },
+                {
+                    "id": 3436,
+                    "name": "phezulu kwe +3SD"
+                },
+                {
+                    "id": 3441,
+                    "name": "phakathi kwe -2SD le +3SD"
+                },
+                {
+                    "id": 3446,
+                    "name": "ngaphansi kwe -2SD"
+                },
+                {
+                    "id": 3451,
+                    "name": "ngaphansi kwe -3SD"
+                }
+            ],
+            "subcategory": [
+                {
+                    "id": 8706,
+                    "name": "Impilakahle yengqondo"
+                },
+                {
+                    "id": 8711,
+                    "name": "Impilakahle yomzimba"
+                },
+                {
+                    "id": 8716,
+                    "name": "Ukuqathanisa umsebenzi lokuphila kahle"
+                },
+                {
+                    "id": 8721,
+                    "name": "Ubudlelwano babazali"
+                },
+                {
+                    "id": 8506,
+                    "name": "Ukulala"
+                },
+                {
+                    "id": 8511,
+                    "name": "Ukunakekela lokuhlanzeka"
+                },
+                {
+                    "id": 8516,
+                    "name": "ukuhlabisa abantwana lokuhlolwa"
+                },
+                {
+                    "id": 8521,
+                    "name": "Inhlupho zokukhula"
+                },
+                {
+                    "id": 8526,
+                    "name": "Indlela zokulungisa lokupheka ukudla"
+                },
+                {
+                    "id": 8531,
+                    "name": "Ukudla okulempilakahle"
+                },
+                {
+                    "id": 8536,
+                    "name": "Imidlalo kumbe imisebenzi eqinisa umzimba"
+                },
+                {
+                    "id": 8541,
+                    "name": "Ubuciko bokuziphatha lezemizwa"
+                },
+                {
+                    "id": 8546,
+                    "name": "Ulimi lokubala"
+                },
+                {
+                    "id": 8551,
+                    "name": "Amacebo okudlala"
+                },
+                {
+                    "id": 8556,
+                    "name": "Usizo lwezempilakahle lwakuqala"
+                },
+                {
+                    "id": 8561,
+                    "name": "Ukuvimbela ingozi"
+                },
+                {
+                    "id": 8566,
+                    "name": "Ukuvikela abantwana"
+                },
+                {
+                    "id": 8571,
+                    "name": "Izehlakalo esingazikhangelelanga"
+                },
+                {
+                    "id": 8576,
+                    "name": "Indlela lamaqhinga okondla abantwana"
+                },
+                {
+                    "id": 8581,
+                    "name": "Okuyinsika yokumunyisa"
+                },
+                {
+                    "id": 8586,
+                    "name": "Inhlupho zokumunyisa"
+                },
+                {
+                    "id": 8591,
+                    "name": "Ukudla kwakuqala"
+                },
+                {
+                    "id": 8596,
+                    "name": "Ukuzwisisa ukuziphatha komntwana"
+                },
+                {
+                    "id": 8601,
+                    "name": "Ubudlelwano bomntwana labazali"
+                },
+                {
+                    "id": 8606,
+                    "name": "Ubudlelwano emulini"
+                },
+                {
+                    "id": 8616,
+                    "name": "Amaviki 0-12"
+                },
+                {
+                    "id": 8621,
+                    "name": "Amaviki 13-28"
+                },
+                {
+                    "id": 8626,
+                    "name": "Amaviki 29-40"
+                },
+                {
+                    "id": 8631,
+                    "name": "Izenzo ezinhle ezempilakahle"
+                },
+                {
+                    "id": 8636,
+                    "name": "Impilakahle yengqondo"
+                },
+                {
+                    "id": 8641,
+                    "name": "Ukuhlolwa"
+                },
+                {
+                    "id": 8646,
+                    "name": "Izinto zabantwana"
+                },
+                {
+                    "id": 8651,
+                    "name": "Umsebenzi lemisebenzini"
+                },
+                {
+                    "id": 8656,
+                    "name": "Izimo zokuzithwala"
+                },
+                {
+                    "id": 8661,
+                    "name": "Ukusekela omunye wakho"
+                },
+                {
+                    "id": 8666,
+                    "name": "Ubudlelwano babazali"
+                },
+                {
+                    "id": 8671,
+                    "name": "Ukuhlela"
+                },
+                {
+                    "id": 8676,
+                    "name": "Indlela zokubeletha"
+                },
+                {
+                    "id": 8681,
+                    "name": "Ukuphola"
+                },
+                {
+                    "id": 8686,
+                    "name": "Amaviki akuqala"
+                },
+                {
+                    "id": 8691,
+                    "name": "Kubeletha isikhathi singekeneli"
+                },
+                {
+                    "id": 8696,
+                    "name": "Ukulahlekelwa ngumntwana ubeletha"
+                },
+                {
+                    "id": 8701,
+                    "name": "Inhlupho zempilakahle"
+                }
+            ],
+            "type_of_support": [
+                {
+                    "id": 8726,
+                    "name": "Ukudlala yedwa"
+                },
+                {
+                    "id": 8731,
+                    "name": "ukudlala lomzali"
+                }
+            ]
+        },
+        "standardDevData": {
+            "standard_deviation": [
 
-    ],
+            ]
+        }
+    }],
 };

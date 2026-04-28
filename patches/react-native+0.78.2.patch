@@ -1,0 +1,47 @@
+diff --git a/node_modules/react-native/Libraries/Components/Switch/Switch.js b/node_modules/react-native/Libraries/Components/Switch/Switch.js
+index b1aa238..c0d513b 100644
+--- a/node_modules/react-native/Libraries/Components/Switch/Switch.js
++++ b/node_modules/react-native/Libraries/Components/Switch/Switch.js
+@@ -220,11 +220,15 @@ const SwitchWithForwardedRef: component(
+       />
+     );
+   } else {
++    const iosSwitchSize =
++      parseInt(String(Platform.Version), 10) >= 26
++        ? {height: 28, width: 63}
++        : {height: 31, width: 51};
+     const platformProps = {
+       disabled,
+       onTintColor: trackColorForTrue,
+       style: StyleSheet.compose(
+-        {height: 31, width: 51},
++        iosSwitchSize,
+         StyleSheet.compose(
+           style,
+           ios_backgroundColor == null
+diff --git a/node_modules/react-native/React/Views/RCTSwitch.m b/node_modules/react-native/React/Views/RCTSwitch.m
+index 0cce9e1..d36ab53 100644
+--- a/node_modules/react-native/React/Views/RCTSwitch.m
++++ b/node_modules/react-native/React/Views/RCTSwitch.m
+@@ -14,7 +14,7 @@ @implementation RCTSwitch
+ - (void)setOn:(BOOL)on animated:(BOOL)animated
+ {
+   _wasOn = on;
+-  [super setOn:on animated:animated];
++  [super setOn:on animated:YES];
+ }
+ 
+ @end
+diff --git a/node_modules/react-native/React/Views/RCTSwitchManager.m b/node_modules/react-native/React/Views/RCTSwitchManager.m
+index b04b51f..eb06e2a 100644
+--- a/node_modules/react-native/React/Views/RCTSwitchManager.m
++++ b/node_modules/react-native/React/Views/RCTSwitchManager.m
+@@ -39,7 +39,7 @@ - (void)onChange:(RCTSwitch *)sender
+     UIView *view = viewRegistry[viewTag];
+ 
+     if ([view isKindOfClass:[UISwitch class]]) {
+-      [(UISwitch *)view setOn:value animated:NO];
++      [(UISwitch *)view setOn:value animated:YES];
+     } else {
+       RCTLogError(@"view type must be UISwitch");
+     }
