@@ -77,8 +77,20 @@ export const getDataToStore = async (
           SchemaToUse.name == StandardDevWeightForHeightSchema.name ||
           SchemaToUse.name == StandardDevHeightForAgeSchema.name
         ) {
-          await dataRealmCommon.create(SchemaToUse, offlineData);
-        } else {
+            let updatedOfflineData : any = [];
+            updatedOfflineData = jsonData[languageCode] ? jsonData[languageCode][0] : []
+          await dataRealmCommon.createStandardDev(updatedOfflineData);
+        } 
+        else if(SchemaToUse.name == TaxonomySchema.name) {
+            let updatedOfflineData : any = [];
+            updatedOfflineData = {
+                langCode: offlineData[0].langCode,
+                allData: JSON.stringify(offlineData[0].allData),
+                standardDevData: JSON.stringify(offlineData[0].standardDevData.standard_deviation),
+            }
+            await dataRealmCommon.create(SchemaToUse, updatedOfflineData);
+        } 
+        else {
           await dataRealmCommon.create(SchemaToUse, offlineData);
         }
   
