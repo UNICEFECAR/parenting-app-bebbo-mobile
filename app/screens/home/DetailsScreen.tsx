@@ -35,6 +35,7 @@ import {
   Dimensions,
   StyleSheet,
   useWindowDimensions,
+  Image,
 } from "react-native";
 import HTML from "react-native-render-html";
 import { ThemeContext } from "styled-components/native";
@@ -60,7 +61,6 @@ import {
   GAME_DETAILS_OPENED,
 } from "@assets/data/firebaseEvents";
 import { addSpaceToHtml } from "../../services/Utils";
-import RenderImage from "../../services/RenderImage";
 import FastImage from "react-native-fast-image";
 import {
   ActivitiesEntity,
@@ -80,6 +80,7 @@ import { ViewDetailsEntity } from "../../database/schema/ArticleActivityViewSche
 import { appConfig } from "../../instances";
 import { selectArticleCategoryArray } from "../../services/selectors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { getHtmlOfflineImageSource } from "../../services/imageResolver";
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -716,6 +717,47 @@ const DetailsScreen = ({ route, navigation }: any): any => {
   const onFilterArrayChange = (newFilterArray: any): any => {
     setFilterArray(newFilterArray);
   };
+
+const renderHtmlImage = ({ tnode }: any): any => {
+  const src = tnode?.attributes?.src;
+
+  if (!src) {
+    return null;
+  }
+
+  const offlineSource = getHtmlOfflineImageSource(
+    src,
+    appConfig.offlineImageMap
+  );
+
+  if (!offlineSource) {
+    return null;
+  }
+
+  const asset = Image.resolveAssetSource(offlineSource);
+
+  const imageWidth = Dimensions.get("window").width - 30;
+
+  const imageHeight =
+    asset?.width && asset?.height
+      ? (imageWidth * asset.height) / asset.width
+      : 220;
+
+  return (
+    <FastImage
+      source={offlineSource}
+      style={{
+        width: imageWidth,
+        height: imageHeight,
+        alignSelf: "center",
+        marginTop: 10,
+        marginBottom: 10,
+      }}
+      resizeMode={FastImage.resizeMode.contain}
+    />
+  );
+};
+
   const cssRules = cssRulesFromSpecs({
     ...defaultTableStylesSpecs,
     thOddBackground: "transparent",
@@ -948,25 +990,16 @@ const DetailsScreen = ({ route, navigation }: any): any => {
                     br: { height: 0 },
                     iframe: { maxWidth: "100%", height: 200 },
                   }}
-                  renderers={{
-                    table,
-                    iframe,
-                    // a: (htmlAttribs: any,): any => {
-                    //   const imagePath: any = htmlAttribs.src;
-                    //   console.log(imagePath, "..imagePath");
-                    //   if (imagePath != "" && imagePath != null && imagePath != undefined) {
-                    //     const itemnew: any = {
-                    //       cover_image: {
-                    //         url: imagePath
-                    //       }
-                    //     };
-                    //     console.log(itemnew, "..itemnew")
-                    //     return (
-                    //       <RenderImage key={imagePath + "/" + Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
-                    //     );
-                    //   }
-                    // },
-                  }}
+                  renderers={netInfo.isConnected
+                    ? {
+                        table,
+                        iframe,
+                      }
+                    : {
+                        table,
+                        iframe,
+                        img: renderHtmlImage,
+                      }}
                   WebView={WebView}
                   ignoredDomTags={IGNORED_TAGS}
                   renderersProps={{

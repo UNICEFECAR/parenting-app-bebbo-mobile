@@ -137,3 +137,39 @@ export const resolveImageSource = ({
     defaultSource: defaultImage,
   };
 };
+
+export const getHtmlOfflineImageSource = (
+  src?: string,
+  offlineImageMap?: Record<string, any>
+): any => {
+  if (!src || !offlineImageMap) {
+    return null;
+  }
+
+  let cleanSrc = src;
+
+  // Remove query params, e.g. ?itok=...
+  cleanSrc = cleanSrc.split("?")[0];
+
+  // Decode URL encoded characters
+  cleanSrc = decodeURIComponent(cleanSrc);
+
+  // Normalize slashes
+  cleanSrc = cleanSrc.replace(/\\/g, "/");
+
+  /**
+   * Example:
+   * https://cms.com/sites/default/files/2025-10/pregnancy-w1.jpg
+   * becomes:
+   * 2025-10/pregnancy-w1.jpg
+   */
+  const match = cleanSrc.match(/(\d{4}-\d{2}\/[^/]+)$/);
+
+  if (!match || !match[1]) {
+    return null;
+  }
+
+  const offlineKey = match[1];
+
+  return offlineImageMap[offlineKey] ?? null;
+};

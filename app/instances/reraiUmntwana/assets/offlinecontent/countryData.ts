@@ -37,14 +37,6 @@ export const countryData: any = {
           "locale": "ZWsn",
           "luxonLocale": "sn-ZW",
           "pluralShow": "false"
-        },
-        {
-          "name": "Zimbabwe",
-          "displayName": "Ndebele",
-          "languageCode": "zw-nd",
-          "locale": "ZWnd",
-          "luxonLocale": "nd-ZW",
-          "pluralShow": "false"
         }
       ]
     }
