@@ -84,12 +84,12 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
+  Switch,
   View,
 } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
 import DocumentPicker, { isErrorWithCode, errorCodes, pick } from "@react-native-documents/picker";
 import RNFS from "react-native-fs";
-import { Switch } from "react-native-gesture-handler";
 import VectorImage from "react-native-vector-image";
 import { ThemeContext } from "styled-components/native";
 import { store, useAppDispatch, useAppSelector } from "../../../App";

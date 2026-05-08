@@ -40,7 +40,7 @@ export const localizationSlice = createSlice({
     onLocalizationSelect: (state, action: PayloadAction<any>): any => {
       console.log('LanguageCode is', action.payload)
       if (action?.payload?.language?.languageCode != undefined) {
-        state.countryId = action.payload.country.countryId;
+        state.countryId = action.payload.country.countryId ?? action.payload.country.CountryID;
         state.languageCode = action.payload.language.languageCode;
         state.luxonLocale = action.payload.language.luxonLocale;
         state.locale = action.payload.language.locale;
