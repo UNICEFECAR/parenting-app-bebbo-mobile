@@ -1,10 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  ActivityIndicator,
-  ImageSourcePropType,
-} from "react-native";
+import { ActivityIndicator, ImageSourcePropType } from "react-native";
 import FastImage from "react-native-fast-image";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { DefaultImage } from "@components/shared/Image";
@@ -13,14 +8,6 @@ import { resolveImageSource } from "./imageResolver";
 
 const CustomImage = createImageProgress(FastImage);
 const FALLBACK_IMAGE = require("@assets/trash/defaultArticleImage.png");
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 const LoadableImage = (props: any): any => {
   const netInfo = useNetInfo();
@@ -35,16 +22,14 @@ const LoadableImage = (props: any): any => {
   } = props;
 
   const [showFallback, setShowFallback] = useState(false);
+  const [offlineResolved, setOfflineResolved] = useState(false);
 
   const finalImageUrl =
     imageUrl || item?.cover_image?.url || item?.coverImage || "";
 
-  const isOfflineMode =
-    toggleSwitchVal || netInfo.isConnected === false;
+  const isOfflineMode = toggleSwitchVal || netInfo.isConnected === false;
 
   const resolved = useMemo(() => {
-    console.log("finalImageUrl--",finalImageUrl);
-    console.log("resolveImageSource output--",resolveImageSource({imageUrl: finalImageUrl,defaultImage,}))
     return resolveImageSource({
       imageUrl: finalImageUrl,
       defaultImage,
@@ -53,38 +38,105 @@ const LoadableImage = (props: any): any => {
 
   useEffect(() => {
     setShowFallback(false);
+    setOfflineResolved(false);
   }, [finalImageUrl, isOfflineMode]);
 
-  const fallbackSource: ImageSourcePropType =
-    resolved.bundledSource || resolved.defaultSource;
+  const bundledSource = resolved.bundledSource;
+  const defaultSource: ImageSourcePropType = resolved.defaultSource;
 
-  // No URL at all -> directly show bundled/default fallback
-  console.log(!resolved.onlineSource || !resolved.offlineCacheSource,"nourl",!resolved.onlineSource ,"||", !resolved.offlineCacheSource)
-  if (!resolved.onlineSource || !resolved.offlineCacheSource) {
+  const shouldFallbackFromLoadEvent = (event: any): boolean => {
+    const width = event?.nativeEvent?.width ?? 0;
+    const height = event?.nativeEvent?.height ?? 0;
+
+    return width <= 0 || height <= 0;
+  };
+
+  const renderBundledOrDefault = () => {
+    if (bundledSource) {
+      return (
+        <FastImage
+          style={style}
+          source={bundledSource as any}
+          resizeMode={resizeMode || FastImage.resizeMode.cover}
+          onLoad={(event: any) => {
+            if (shouldFallbackFromLoadEvent(event)) {
+              return;
+            }
+          }}
+          onError={() => {
+            // Keep empty handler to avoid unhandled native image errors.
+          }}
+        />
+      );
+    }
+
     return (
       <DefaultImage
         style={style}
-        source={fallbackSource}
+        source={defaultSource}
         resizeMode={resizeMode}
       />
     );
+  };
+
+  // Keep this hook BEFORE any return
+  useEffect(() => {
+    if (!isOfflineMode) return;
+    if (!bundledSource) return;
+    if (showFallback) return;
+    if (offlineResolved) return;
+    if (!resolved.onlineSource || !resolved.offlineCacheSource) return;
+
+    const timer = setTimeout(() => {
+      setShowFallback(true);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [
+    isOfflineMode,
+    bundledSource,
+    showFallback,
+    offlineResolved,
+    resolved.onlineSource,
+    resolved.offlineCacheSource,
+  ]);
+
+  if (!resolved.onlineSource || !resolved.offlineCacheSource) {
+    return renderBundledOrDefault();
   }
 
-  // If FastImage failed, show bundled image or default image
-  console.log("showFallback--",showFallback)
   if (showFallback) {
+    return renderBundledOrDefault();
+  }
+
+  if (isOfflineMode) {
     return (
-      <DefaultImage
+      <FastImage
         style={style}
-        source={fallbackSource}
-        resizeMode={resizeMode}
+        source={resolved.offlineCacheSource as any}
+        resizeMode={resizeMode || FastImage.resizeMode.cover}
+        onLoad={(event: any) => {
+          if (shouldFallbackFromLoadEvent(event)) {
+            setOfflineResolved(true);
+            setShowFallback(true);
+            return;
+          }
+
+          setOfflineResolved(true);
+        }}
+        onError={() => {
+          setOfflineResolved(true);
+          setShowFallback(true);
+        }}
       />
     );
   }
 
   return (
     <CustomImage
-      source={isOfflineMode ? resolved.offlineCacheSource : resolved.onlineSource}
+      source={resolved.onlineSource}
       style={style}
       resizeMode={resizeMode || FastImage.resizeMode.cover}
       indicator={(): any => (
@@ -93,13 +145,7 @@ const LoadableImage = (props: any): any => {
       onError={() => {
         setShowFallback(true);
       }}
-      renderError={(): any => (
-        <DefaultImage
-          style={style}
-          source={fallbackSource}
-          resizeMode={resizeMode}
-        />
-      )}
+      renderError={(): any => renderBundledOrDefault()}
     />
   );
 };
