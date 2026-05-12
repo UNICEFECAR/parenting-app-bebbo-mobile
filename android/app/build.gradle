@@ -232,7 +232,7 @@ android {
         bangla {
             applicationId 'org.unicef.bangladesh.babuni'
             versionCode 12
-            versionName "1.0.4"
+            versionName "1.1.0"
             signingConfig signingConfigs.bangla
         }
         merhababebek {
