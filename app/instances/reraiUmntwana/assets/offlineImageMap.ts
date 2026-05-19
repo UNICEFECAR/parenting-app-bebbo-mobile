@@ -1485,6 +1485,7 @@ export const offlineImageMap: Record<string, ImageSourcePropType> = {
   "2026-04/tummy-time-for-babies-pip-9.gif": require("./offlineImages/2026-04/2026-04__6036c56b5fab.gif"),
   "2026-04/twin.png": require("./offlineImages/2026-04/2026-04__116d6e50ff7c.png"),
   "2026-04/unicef2024tigzozo.webp": require("./offlineImages/2026-04/2026-04__7c636a76d518.webp"),
+  "2026-04/unicefun0120762mukwazhi.webp": require("./offlineImages/2026-04/2026-04__5d39ec1c367b.webp"),
   "2026-04/wind-and-newborn-babies-pip-1.gif": require("./offlineImages/2026-04/2026-04__be76fb5de353.gif"),
   "2026-04/wind-and-newborn-babies-pip-2.gif": require("./offlineImages/2026-04/2026-04__ac3ddb58caa5.gif"),
   "2026-04/wind-and-newborn-babies-pip-3.gif": require("./offlineImages/2026-04/2026-04__79f76a535b9e.gif"),
