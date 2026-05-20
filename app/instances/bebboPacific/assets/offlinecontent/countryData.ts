@@ -19,7 +19,7 @@ export const countryData: any = {
         "name": "Bebbo Pacific logo (white).png",
         "alt": "Bebbo Pacific logo (white)"
       },
-      "content_toggle": "Pregnancy",
+      "content_toggle": "",
       "app_name": "BebboPacific",
       "languages": [
         {
@@ -51,7 +51,7 @@ export const countryData: any = {
         "name": "Bebbo Pacific logo (white).png",
         "alt": "Bebbo Pacific logo (white)"
       },
-      "content_toggle": "Pregnancy",
+      "content_toggle": "",
       "app_name": "BebboPacific",
       "languages": [
         {

@@ -1,5 +1,5 @@
 export const vaccineData: any = {
-    "WSen": [
+    "ws-en": [
         {
             "uuid": "ed12d5cb-9a6e-48be-ae3d-514fe4490b4e",
             "id": 9046,
@@ -8,8 +8,8 @@ export const vaccineData: any = {
             "growth_period": 176,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:17:42+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:17\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:18:06+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:18\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:47:42+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:48:06+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:48\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -20,8 +20,8 @@ export const vaccineData: any = {
             "growth_period": 166,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:17:22+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:17\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:20:11+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:20\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:47:22+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:50:11+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:50\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -32,8 +32,8 @@ export const vaccineData: any = {
             "growth_period": 161,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:16:57+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:16\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:20:15+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:20\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:46:57+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:50:15+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:50\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -44,8 +44,8 @@ export const vaccineData: any = {
             "growth_period": 156,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:16:27+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:16\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:20:19+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:20\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:46:27+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:50:19+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:50\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -56,8 +56,8 @@ export const vaccineData: any = {
             "growth_period": 136,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:15:57+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:15\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:20:24+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:20\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:45:57+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:50:24+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:50\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -68,8 +68,8 @@ export const vaccineData: any = {
             "growth_period": 126,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:15:31+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:15\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:20:29+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:20\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:45:31+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:50:29+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:50\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -80,8 +80,8 @@ export const vaccineData: any = {
             "growth_period": 116,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:14:38+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:14\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:19:51+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:19\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:44:38+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:49:51+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:49\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -92,8 +92,8 @@ export const vaccineData: any = {
             "growth_period": 106,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:14:05+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:14\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:20:34+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:20\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:44:05+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:50:34+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:50\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -104,8 +104,8 @@ export const vaccineData: any = {
             "growth_period": 86,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:13:30+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:13\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:20:40+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:20\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:43:30+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:50:40+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:50\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -116,8 +116,8 @@ export const vaccineData: any = {
             "growth_period": 51,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T22:08:15+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:08\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T22:20:45+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 22:20\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:38:15+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:50:45+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:50\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -128,8 +128,8 @@ export const vaccineData: any = {
             "growth_period": 96,
             "pinned_article": 6981,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T21:58:31+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:58\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:59:38+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:59\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:28:31+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:28\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:29:38+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:29\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -140,8 +140,8 @@ export const vaccineData: any = {
             "growth_period": 96,
             "pinned_article": 7046,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T21:56:20+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:56\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:57:00+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:57\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:26:20+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:26\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:27:00+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:27\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -152,8 +152,8 @@ export const vaccineData: any = {
             "growth_period": 71,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T21:54:35+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:54\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:55:02+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:55\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:24:35+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:25:02+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:25\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -164,8 +164,8 @@ export const vaccineData: any = {
             "growth_period": 71,
             "pinned_article": 1721,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T21:51:03+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:51\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:51:27+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:51\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T17:21:03+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T17:21:27+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 17:21\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -176,20 +176,20 @@ export const vaccineData: any = {
             "growth_period": 176,
             "pinned_article": 7081,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T21:15:45+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:15\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:16:08+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:16\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T16:45:45+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:46:08+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:46\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
             "uuid": "8d432f23-6fc5-4cfa-b6ad-7ab4ee1ce819",
             "id": 8971,
             "type": "Vaccinations - Age Periods",
-            "title": "against measles, mumps, rubella - revaccination",
+            "title": "against measles, mumps, rubella - the second dose",
             "growth_period": 96,
             "pinned_article": 1721,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T21:13:24+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:13\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:14:05+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:14\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T16:43:24+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-28T14:30:22+01:00\" class=\"datetime\"\u003EFri, 11/28/2025 - 14:30\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -200,8 +200,8 @@ export const vaccineData: any = {
             "growth_period": 366,
             "pinned_article": 7036,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-11-06T21:06:32+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:06\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:07:05+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:07\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-11-06T16:36:32+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:36\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:37:05+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:37\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -212,8 +212,8 @@ export const vaccineData: any = {
             "growth_period": 86,
             "pinned_article": 0,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-07-07T20:26:05+05:30\" class=\"datetime\"\u003EMon, 07/07/2025 - 20:26\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:12:07+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:12\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-07-07T16:56:05+02:00\" class=\"datetime\"\u003EMon, 07/07/2025 - 16:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:42:07+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:42\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -224,8 +224,8 @@ export const vaccineData: any = {
             "growth_period": 371,
             "pinned_article": 7046,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-07-07T20:24:01+05:30\" class=\"datetime\"\u003EMon, 07/07/2025 - 20:24\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:11:10+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:11\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-07-07T16:54:01+02:00\" class=\"datetime\"\u003EMon, 07/07/2025 - 16:54\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:41:10+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:41\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -236,8 +236,8 @@ export const vaccineData: any = {
             "growth_period": 356,
             "pinned_article": 7061,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:05+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:01:42+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:01\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:31:42+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:31\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -248,8 +248,8 @@ export const vaccineData: any = {
             "growth_period": 366,
             "pinned_article": 7061,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:05+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:05:14+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:35:14+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -260,8 +260,8 @@ export const vaccineData: any = {
             "growth_period": 371,
             "pinned_article": 7061,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:05+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:09:44+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:09\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:39:44+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:39\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -272,8 +272,8 @@ export const vaccineData: any = {
             "growth_period": 371,
             "pinned_article": 6961,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:05+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:10:01+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:10\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:40:01+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:40\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -284,8 +284,8 @@ export const vaccineData: any = {
             "growth_period": 366,
             "pinned_article": 6961,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:04+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:05:38+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:05\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:04+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:35:38+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:35\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -296,8 +296,8 @@ export const vaccineData: any = {
             "growth_period": 16,
             "pinned_article": 7101,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:04+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:01:23+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:01\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:04+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:31:23+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:31\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -308,8 +308,8 @@ export const vaccineData: any = {
             "growth_period": 16,
             "pinned_article": 7001,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:04+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:00:53+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:00\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:04+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:30:53+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:30\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -320,8 +320,8 @@ export const vaccineData: any = {
             "growth_period": 366,
             "pinned_article": 7046,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:04+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:08:28+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:08\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:04+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:38:28+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:38\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -332,8 +332,8 @@ export const vaccineData: any = {
             "growth_period": 371,
             "pinned_article": 7046,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:04+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:10:28+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:10\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:04+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:40:28+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:40\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -344,8 +344,8 @@ export const vaccineData: any = {
             "growth_period": 356,
             "pinned_article": 7046,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:04+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:04:20+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:04\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:04+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:34:20+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:34\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -356,8 +356,8 @@ export const vaccineData: any = {
             "growth_period": 356,
             "pinned_article": 6961,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:04+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:02:18+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:02\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:04+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:32:18+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:32\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
@@ -368,18 +368,209 @@ export const vaccineData: any = {
             "growth_period": 356,
             "pinned_article": 7036,
             "pinned_video_article": 0,
-            "created_at": "\u003Ctime datetime=\"2025-05-22T16:59:03+05:30\" class=\"datetime\"\u003EThu, 05/22/2025 - 16:59\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-06T21:02:44+05:30\" class=\"datetime\"\u003EThu, 11/06/2025 - 21:02\u003C/time\u003E\n",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T13:29:03+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:29\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2025-11-06T16:32:44+01:00\" class=\"datetime\"\u003EThu, 11/06/2025 - 16:32\u003C/time\u003E\n",
             "old_calendar": 0
         }
     ],
-    "WSsm": [
+    "ws-sm": [
 
     ],
-    "FJen": [
-
+    "fj-en": [
+        {
+            "uuid": "21322e4b-3702-4258-ba15-e8da44d61014",
+            "id": 8941,
+            "type": "Vaccinations - Age Periods",
+            "title": "against measles, mumps, rubella - the third dose",
+            "growth_period": 186,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-07-07T16:38:54+02:00\" class=\"datetime\"\u003EMon, 07/07/2025 - 16:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:40+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "7f9a8558-3427-46f5-8290-c7cd72af8a3b",
+            "id": 8936,
+            "type": "Vaccinations - Age Periods",
+            "title": "against typhoid",
+            "growth_period": 86,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-07-07T16:37:15+02:00\" class=\"datetime\"\u003EMon, 07/07/2025 - 16:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:32+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "052f9afe-3195-4bae-a846-cde4065b9739",
+            "id": 8931,
+            "type": "Vaccinations - Age Periods",
+            "title": "against diphtheria, tetanus, pertussis, poliomyelitis, haemophilius influenzae type b, hepatitis b - the fourth dose",
+            "growth_period": 106,
+            "pinned_article": 7061,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-07-07T16:35:04+02:00\" class=\"datetime\"\u003EMon, 07/07/2025 - 16:35\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:48+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "ff7f28d6-72ef-42ce-8355-2bb4f693514b",
+            "id": 6956,
+            "type": "Vaccinations - Age Periods",
+            "title": "against diseases caused by bacteria Streptococus pneumoniae - the second dose",
+            "growth_period": 366,
+            "pinned_article": 6961,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T02:07:30+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 02:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "108cfce0-fcce-4bc9-b330-ee0941cac90b",
+            "id": 6971,
+            "type": "Vaccinations - Age Periods",
+            "title": "against diseases caused by bacteria Streptococus pneumoniae - the third dose",
+            "growth_period": 371,
+            "pinned_article": 6961,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T02:07:46+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 02:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "c870be0b-119c-419c-bca3-e7b1a1162099",
+            "id": 6976,
+            "type": "Vaccinations - Age Periods",
+            "title": "against diphtheria, tetanus, pertussis, polio, haemophilius influenzae type b, hepatitis b  - the third dose",
+            "growth_period": 371,
+            "pinned_article": 7061,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:24+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "70d23dd8-26d3-4505-ab47-0a6d0049685b",
+            "id": 7016,
+            "type": "Vaccinations - Age Periods",
+            "title": "against measles, mumps, rubella - the second dose",
+            "growth_period": 106,
+            "pinned_article": 1721,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:54+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "d1c26b60-1e0c-45c7-99de-2526c05ebd17",
+            "id": 7021,
+            "type": "Vaccinations - Age Periods",
+            "title": "against measles, mumps, rubella - the first dose",
+            "growth_period": 86,
+            "pinned_article": 1721,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:47:34+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:47\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "eb6e781d-a465-4e0f-97e5-f6c82f21d576",
+            "id": 7026,
+            "type": "Vaccinations - Age Periods",
+            "title": "against diseases caused by bacteria Streptococus pneumoniae - the first dose",
+            "growth_period": 356,
+            "pinned_article": 6961,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T02:07:40+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 02:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "339a0f5a-6064-4b31-bd59-18e99a0f77f1",
+            "id": 7076,
+            "type": "Vaccinations - Age Periods",
+            "title": "against diphtheria and tetanus (DT) – the first dose",
+            "growth_period": 186,
+            "pinned_article": 7081,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T02:07:18+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 02:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "a16b5b86-446e-4823-bdd9-778da8165752",
+            "id": 7031,
+            "type": "Vaccinations - Age Periods",
+            "title": "against rotavirus – the second dose",
+            "growth_period": 371,
+            "pinned_article": 7036,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:49+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T02:07:54+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 02:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "943d883c-5edc-49af-9226-6481bc63c8aa",
+            "id": 7086,
+            "type": "Vaccinations - Age Periods",
+            "title": "against rotavirus – the first dose",
+            "growth_period": 356,
+            "pinned_article": 7036,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:49+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T02:07:59+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 02:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "6b016c1c-64fa-4e47-adbd-93e0a7255e65",
+            "id": 7096,
+            "type": "Vaccinations - Age Periods",
+            "title": "against tuberculosis",
+            "growth_period": 16,
+            "pinned_article": 7101,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:49+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T02:07:10+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 02:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "d439ce3d-1702-4d9f-8ed1-4a0efd0ccf6f",
+            "id": 6986,
+            "type": "Vaccinations - Age Periods",
+            "title": "against diphtheria, tetanus, pertussis, polio, haemophilius influenzae type b, hepatitis b  - the second dose",
+            "growth_period": 366,
+            "pinned_article": 7061,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:23:34+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:18+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "9f436c3d-f853-434f-924b-a82e78a25850",
+            "id": 7091,
+            "type": "Vaccinations - Age Periods",
+            "title": "against Hepatitis B",
+            "growth_period": 16,
+            "pinned_article": 7001,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:23:33+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T02:07:25+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 02:07\u003C/time\u003E\n",
+            "old_calendar": 0
+        },
+        {
+            "uuid": "5d2ba4f6-5304-4227-9b14-b74513cf235c",
+            "id": 6991,
+            "type": "Vaccinations - Age Periods",
+            "title": "against diphtheria, tetanus, pertussis, polio, haemophilius influenzae type b, hepatitis b  - the first dose",
+            "growth_period": 356,
+            "pinned_article": 7061,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:21:30+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:12+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n",
+            "old_calendar": 0
+        }
     ],
-    "FJfj": [
+    "fj-fj": [
 
     ],
 };
