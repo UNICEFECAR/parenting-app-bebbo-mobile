@@ -1,11 +1,11 @@
 export const ActivitiesData: any = {
-    "WSen": [
+    "ws-en": [
         {
             "id": 6896,
             "type": "Games",
             "title": "I'm Dressing Myself!",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:21:06+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:02:26+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Your child’s everyday clothing.What You Can Do Together: At this age, your child may show interest in dressing (or, more often at the beginning, undressing) himself. Yes, it is more efficient to do it yourself, but spend some time giving your child a chance to do it themselves.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EYour child’s everyday clothing.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your child may show interest in dressing (or, more often at the beginning, undressing) himself. Yes, it is more efficient to do it yourself, but spend some time giving your child a chance to do it themselves.\u003C/p\u003E\u003Cp\u003EFind times when you are not in a hurry. It may be easiest to start with undressing at bath time. For this and dressing, during this time of interest in dressing, try to choose clothes that are especially easy to put on and take off. You can also encourage your child to do the easiest bits, and perhaps just one item at a time.\u003C/p\u003E\u003Cp\u003EEnrich this activity with conversation while you’re together. Name items, colours, and so on, and describe what your child is doing: “Look, you have your arm in the sleeve of your shirt. That’s great!”\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EDressing one’s self is an important self-help skill that will become essential when school begins. It also builds your child’s sense of competence and independence. To figure out how to put on an article of clothing, your child also needs his thinking skills, to plan what to do first, which part goes where, etc. Language and communication are also strengthened when you have conversations with your child about a task that is very interesting to him.\u003C/p\u003E",
             "activity_category": 716,
@@ -13,7 +13,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [651],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/i%2520am%2520dressing%2520myself-cover-picture.webp?itok=xyFoT4pr",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/i-am-dressing-myself-cover-picture.webp?itok=S1_OLrE_",
                 "name": "i%20am%20dressing%20myself-cover-picture.jpg",
                 "alt": "A parent is changing the baby"
             },
@@ -26,7 +26,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "You Can Reach It",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:21:06+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:48:45+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Soft and colorful toy.What You Can Do Together: The first thing to do is make sure that the soft surface on which your baby will exercise does not have any objects that could distract him. Now lay her face down on her tummy and kneel in front of her feet.Place a soft, colourful toy in front of her and draw your baby's attention to fix her gaze on the toy. You can move it a bit to get her attention.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ESoft and colorful toy.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EThe first thing to do is make sure that the soft surface on which your baby will exercise does not have any objects that could distract him. Now lay her face down on her tummy and kneel in front of her feet.\u003C/p\u003E\u003Cp\u003EPlace a soft, colourful toy in front of her and draw your baby's attention to fix her gaze on the toy. You can move it a bit to get her attention.\u003C/p\u003E\u003Cp\u003EWhen you see the object, your baby will try to reach it, move her head and stretch her arms. If your baby is very young, you will probably only see an attempt to move her head and arms.\u003C/p\u003E\u003Cp\u003ERepeat this exercise in the morning and afternoon, and as the weeks go by, you can increase the difficulty. When you see that your baby can move her head and stretch her arms to reach the toy, gently hold her feet so that she pulls with greater force.\u003C/p\u003E\u003Cp\u003ERemember that your baby is delicate, so you must take it with care to avoid hurting her. If you notice that your baby is tired, stop the game.\u003C/p\u003E\u003Cp\u003EStrength and muscle tone exercises facilitate brain development which will help your baby to have greater control of her movements. By using a colourful object, you will be stimulating your baby's sense of sight.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EWith this easy exercise, you will be helping your baby to stimulate muscle tone, which will make it easier for her to sit, crawl and walk later. One of the most important aspects of developing gross motor skills will help your baby move around and quickly get to know the world.\u003C/p\u003E",
             "activity_category": 721,
@@ -47,7 +47,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Song For Changing Diapers",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:21:06+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:47:33+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Changing table, diaper, cream that you use with your baby.What You Can Do Together: One of the most beautiful ways to communicate with your baby is through songs because it helps them communicate better and reinforces the bond of affection between you. Prepare all the materials you use to change your baby's diaper and make sure there are no dangerous objects on the changing table.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EChanging table, diaper, cream that you use with your baby.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EOne of the most beautiful ways to communicate with your baby is through songs because it helps them communicate better and reinforces the bond of affection between you. Prepare all the materials you use to change your baby's diaper and make sure there are no dangerous objects on the changing table.\u003C/p\u003E\u003Cp\u003ELay your baby on her back on the changing table and start the diaper change process, but this time sing her a cute nursery rhyme. You can try the following song:\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     \"I change your nappy for a clean one, \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     My baby is very clean and comfortable\"\u003C/em\u003E\u003C/p\u003E\u003Cp\u003EYou can alter the activity by reciting poems, talking to them, or saying funny rhymes.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003ESinging to babies facilitates the bonding between baby and adult. It also helps the baby to develop the sense of hearing, language, and social interaction.\u003C/p\u003E",
             "activity_category": 721,
@@ -68,7 +68,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Massage",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:21:06+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T00:02:28+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 00:02\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None; body cream or oil are optional.What You Can Do Together: We will start from the feet and move towards the head. You can first rub your hands against each other to warm them up. Using body cream or oil is optional. Lay your baby on a flat, soft surface so he/she can be comfortable.Feet: Take one of the feet and rotate your baby's foot left to right and right to left a few times. Then massage your baby's foot from ankle to toes. Switch feet and repeat",
             "body": "\u003Cp\u003EMaterials You Need: None; \u003Cem\u003Ebody cream or oil are optional.\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EWe will start from the feet and move towards the head. You can first rub your hands against each other to warm them up. Using body cream or oil is optional. Lay your baby on a flat, soft surface so he/she can be comfortable.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EFeet:\u003C/strong\u003E Take one of the feet and rotate your baby's foot left to right and right to left a few times. Then massage your baby's foot from ankle to toes. Switch feet and repeat\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPalms:\u003C/strong\u003E Use your thumbs to trace circles on the palms of the baby's feet. Change feet and repeat.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EToes:\u003C/strong\u003E To finish off the feet, grasp each of your baby's feet between your thumb and index finger and gently pull your baby's toes until your fingers slide off your baby's toes. Do this for each of your baby's 10 toes.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:  \u003C/strong\u003EStudies suggest that massage can provide different health benefits. For example, massages to children can help to increase the interaction between the child and the mother/ father and help the baby relax by reducing crying and reducing stress hormones.\u003C/p\u003E",
             "activity_category": 706,
@@ -89,7 +89,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Animal Spotting",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:21:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:47:11+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:47\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EHead outdoors to a place where children have the opportunity to spot different wildlife – the countryside or a local park, for example, or even the back garden. Ask children to look around – what animals and insects can they see? Get them to take a long look in different directions and make notes of their observations. Are there creatures in the soil and in the grass? On the leaves of bushes? In the trees? In the sky? They could explore different areas and habitats and compare their fascinating finds.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:  \u003C/strong\u003EA spotting activity requires children to be alert, focus and keep their concentration. By observing their surroundings in search of animals, kids will learn about nature in the world around them. Furthermore, in describing the different wildlife they see, they will be inspired to explore their vocabulary and learn new words.\u003C/p\u003E",
             "activity_category": 716,
@@ -110,7 +110,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Who Am I?",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:21:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:42:08+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:42\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: A photo of your child (this could be on your phone if you do not have one printed).",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA photo of your child (this could be on your phone if you do not have one printed).\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003ELook at the photo together. Say, “Oh, that is ___!” (your child’s first name). “Who is it?  Yes, it is __!” (Your child can say her or his name or say it with your child.) “You’re three years old! You are a girl/boy!” You might talk about your child’s name, age, and gender in the same conversation or start with just the name and age —whatever fits with what your child understands and is interested in. Look at the photo, and perhaps others of your child, at different times, encouraging them to say the name, and age, and “I’m a girl” or “I’m a boy.”  Your child may also enjoy sharing this with other members of the family. Without the photos, try also asking your child, “What’s your name?” “That’s right, you are __!”)\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EKnowing name, age, and gender is part of the development of your child’s identity or sense of themself.  \u003C/p\u003E",
             "activity_category": 716,
@@ -118,7 +118,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [666],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Who-Am-I-cover-picture_0.webp?itok=QUW7KJkz",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/who-am-i-cover-picture_0.webp?itok=PIvukRp7",
                 "name": "Who-Am-I-cover-picture_0.jpeg",
                 "alt": "A mother looking family photo album with her daughters"
             },
@@ -131,7 +131,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Helping Your Baby Self-Comfort",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:21:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:21\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:45:25+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Items you would usually put in or near your baby’s crib or other place where the baby is put to lie down. ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EItems you would usually put in or near your baby’s crib or other place where the baby is put to lie down. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EIt is still important to attend to your baby when they are distressed. However, you will notice that your baby becomes better at calming themselves at least for a short while. You can help your baby by making sure that safe items, that may help your baby self-comfort, are nearby. For example, is there a soft toy your baby likes to stroke? Is there a colourful mobile or picture that is easy for baby to see? Are your baby’s hands in a position in which they can suck on them if that calms your baby? Before immediately going to your baby, pause and look for a while to see if your baby is beginning to be able to make or keep themself calm briefly.   \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour baby knows that they can depend on you to make things better. But your baby is also learning that they can do things to keep themself calm. Self-soothing is an important thing to learn, beginning now but developing in the coming months and years. As always, your loving support is essential. \u003C/p\u003E",
             "activity_category": 711,
@@ -139,7 +139,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [631],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/hollie-santos-aUtvHsu8Uzk-unsplash.webp?itok=AbagNBc_",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/hollie-santos-autvhsu8uzk-unsplash.webp?itok=jaRzd1sH",
                 "name": "hollie-santos-aUtvHsu8Uzk-unsplash.jpg",
                 "alt": "Mother with baby in arms"
             },
@@ -152,7 +152,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Let’s Go For a Walk",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:49:26+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:49\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Two soft blankets.What You Can Do Together: Place the two blankets, one on top of the other, so that your little one has more support and softness on the back. When you have the two blankets ready, place your little one on his back. To start the activity, make sure there are no obstacles on the way.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ETwo soft blankets.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EPlace the two blankets, one on top of the other, so that your little one has more support and softness on the back. When you have the two blankets ready, place your little one on his back. To start the activity, make sure there are no obstacles on the way.\u003C/p\u003E\u003Cp\u003ETake the ends of the blanket and start dragging your little one around the space of the room. During the activity, I recommend that you talk to your little one and ask her: \"What do you see in the room? Look at the ceiling. What's up there? Do you see these toys, whose are they?\" Think of other questions or statements that stimulate your child's language and movements.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis will help your child in her development when she begins to speak. Try to maintain balance within the blanket to develop strength, balance, and encourage her to move more.\u003C/p\u003E",
             "activity_category": 721,
@@ -160,7 +160,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [636],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Let%25E2%2580%2599s%2520Go%2520For%2520a%2520Walk-cover-picture.webp?itok=Uq-vg73a",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/let-s-go-for-a-walk-cover-picture.webp?itok=mCQvVT2_",
                 "name": "Let%E2%80%99s%20Go%20For%20a%20Walk-cover-picture.jpg",
                 "alt": "A baby laying on her or his back and smiling"
             },
@@ -173,7 +173,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Look What You Can Do with Your Hands!",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:50:44+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:50\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your baby is discovering his hands. He looks at them (what ARE they?) and also begins to be able to find his mouth with his hands. You do not have to teach your baby this skill, but you can encourage this new learning in many ways, every day. Make sure that your baby’s hands and arms are free to move for much of the day. Diaper changing, dressing, and bath time may be especially good opportunities for the baby. Often put your baby in positions that make it easy for your baby to see and control his arms and hands. Your baby may seem excited about discovering this “trick.” Pay attention and share the satisfaction in making this connection. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis is an important step in your baby’s ability to control his movements of different parts of the body. It also develops the sense of touch and taste as your baby connects his mouth with his fingers.\u003Cstrong\u003E  \u003C/strong\u003E\u003C/p\u003E",
             "activity_category": 716,
@@ -181,7 +181,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [636],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Look%2520What%2520You%2520Can%2520Do%2520with%2520Your%2520Hands%2521%2520-%2520cover-picture.webp?itok=y1OMaAPn",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/look-what-you-can-do-with-your-hands-cover-picture.webp?itok=GcaQYuFE",
                 "name": "Look%20What%20You%20Can%20Do%20with%20Your%20Hands%21%20-%20cover-picture.jpg",
                 "alt": "A child looking at her or his hands"
             },
@@ -194,7 +194,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Saying \"No\" with Love",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:57:53+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: NoneWhat You Can Do Together: At this age, your baby is most likely beginning to crawl. This means that he is starting to explore all sorts of things in the environment—including things that may be dangerous. You may find that you want or need to tell your baby “no.” How can you do this in a loving, effective way? A few tips:",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your baby is most likely beginning to crawl. This means that he is starting to explore all sorts of things in the environment—including things that may be dangerous. You may find that you want or need to tell your baby “no.” How can you do this in a loving, effective way? A few tips:\u003C/p\u003E\u003Cul\u003E\t\u003Cli\u003E“Babyproof” the environment to eliminate dangerous items that your child might reach.\u003C/li\u003E\t\u003Cli\u003EUse “no” as little as possible. If you see your baby moving towards an unsafe object or place, distract or move him gently to another interesting item.  You might say “Let’s find something safe to play with.”\u003C/li\u003E\t\u003Cli\u003EUse other words, not always “no.”  “Stop” or “Dirty! Make you sick!” may get the same idea across.\u003C/li\u003E\t\u003Cli\u003EBecause your baby won’t understand “no” at first, if you say it, move close to your child and, at the same time, explain briefly (“Ouch! That can hurt you!”) and use a serious tone of voice. \u003C/li\u003E\t\u003Cli\u003EMake most of what your baby hears be “yes,” not “no”!\u003C/li\u003E\u003C/ul\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour baby needs to explore and move his or her body, but this has to happen safely.  You are helping keep your baby safe and teaching him, gradually, to avoid things that are not safe. Your baby is learning to connect a word (“no” or “stop” or “don’t use that”) with an object or situation. This is important for the development of thinking and language. At the same time, he is learning to trust that you will keep him safe and will help him to find good things to do.\u003C/p\u003E",
             "activity_category": 721,
@@ -202,7 +202,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [646],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Saying%2520No%2520with%2520Love-cover-picture.webp?itok=k4wrTdUY",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/saying-no-with-love-cover-picture.webp?itok=ubCkQ9Nr",
                 "name": "Saying%20No%20with%20Love-cover-picture.jpg",
                 "alt": "A baby crawling from under the covers"
             },
@@ -215,7 +215,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Separation and Comfort",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:49+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:00:52+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Objects that your child usually finds comforting.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EObjects that your child usually finds comforting.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EThis is the age at which many babies become very distressed when parents or close caregivers need to leave them for a time - this may be just leaving the room for a few minutes, staying with a neighbour for some hours, or being at a child care centre during parents’ work hours. Distress is normal. In fact, it shows you how much your baby is attached to you. He knows you and depends on you. Your job is to reassure your child and to be sure that your child has access to what might help during the separation.\u003C/p\u003E\u003Cp\u003ERather than sneaking away, talk lovingly to your child and assure him that you will be back soon and that you will take care of your child. Your child may not understand the words but will hear your calm, loving tone of voice. Many children are comforted by their favourite blanket, soft toy, or other objects. Familiar routines (a bottle, a nap in a familiar place, etc.) also help. Be sure the non-parent caregiver knows tips to reassure your child if distressed. \u003C/p\u003E\u003Cp\u003EBe confident that this kind of reaction to separation will become less intense over time and, most likely, will disappear entirely.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThese are important steps in your child’s emotional development. By giving your child gradual experiences with separation, he learns that you always come back (emotional security) and also that comfort can come from other people and experiences (coping strategies). Your child may continue to be upset at separations for many months, but over time his emotions and thinking skills will allow greater success in managing these transitions.\u003C/p\u003E",
             "activity_category": 711,
@@ -223,7 +223,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [651],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Separation%2520and%2520Comfort-cover-picture.webp?itok=LAzDhnif",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/separation-and-comfort-cover-picture.webp?itok=RqiVBgJJ",
                 "name": "Separation%20and%20Comfort-cover-picture.jpg",
                 "alt": "Mother giving a comforting smile to her child"
             },
@@ -236,7 +236,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Whose Is It?",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:49+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:44:05+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Any small objects",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EAny small objects\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EFind a comfortable place to play. Say “Let’s play a game! Here is a [item, a small ball for example].” Give the ball to your child. Now say: “Now it’s [your child’s name]’s ball. It is \u003Cem\u003Eyours!”  \u003C/em\u003EThen say, [child’s name], please give Mama/ Papa the ball. Thank you! Now it’s Mama’s/ Papa's ball — it is \u003Cem\u003Emine!” \u003C/em\u003EContinue handing the item back and forth, making the exchange fun and using the words “yours” and “mine” together with your child’s name and your name. This is just a fun game, not a lesson. Enjoy the time with your child.\u003C/p\u003E\u003Cp\u003EAt other times during your day, remember to use words like “yours, mine, hers/his, etc.” as well as “on, under, over,” and similar words when you place or take items: “Where is your blanket? Oh, it is \u003Cem\u003Eunder \u003C/em\u003Ethe table. Can you get it, please?”\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EAt this age, your child’s language abilities are growing fast. Words describing ownership (mine) and position (under) are important tools for your child to express her understanding of the world. Everyday activities and simple games like this, book-reading, and daily conversations will all build your child’s language and communication skills.\u003C/p\u003E",
             "activity_category": 721,
@@ -244,7 +244,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [666],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Whose%2520Is%2520It-cover-picture.webp?itok=qvWLD1q5",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/whose-is-it-cover-picture.webp?itok=nNxPsgNK",
                 "name": "Whose%20Is%20It-cover-picture.jpg",
                 "alt": "A girl carrying a ball"
             },
@@ -257,7 +257,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "I Play and Learn to Walk",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:49+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:07:05+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:07\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Favourite toys or handmade toys, pillows, soft furniture, boxes.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EFavourite toys or handmade toys, pillows, soft furniture, boxes.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EArrange the furniture so that the child can move around the room and walk between individual soft pieces of furniture while holding on to the pieces of furniture. This encourages maintaining balance while walking. To encourage the child to take the first steps, when he is in a standing position and facing another person, encourage him to step towards that other person who is calling him holding a favourite toy or other objects (sometimes the person himself is a sufficient motive).\u003C/p\u003E\u003Cp\u003EChildren enjoy toys that are pushed and pulled. If you don't already have one, make a simple toy that is pulled by passing a piece of wool or a thicker knitting thread or a soft rope (about 60 cm long) through a box or a thread spool. Tie a ball or a plastic string at the other end to serve as a handle. \u003C/p\u003E\u003Cp\u003EA large box can be a great place to sit and play. Children love to use large packaging as new small spaces in which they can fit and enjoy. Encourage the child to enter, get out of the box, or to sit in it... Make a bridge or a tunnel out of the box so that he can pass through it to the other side, where you or your favourite toy are waiting for him.\u003Cbr\u003ECreate terrain with some obstacles in the room with the help of boxes, small mats, pillows or pieces of soft furniture so that the child can move to overcome those obstacles, to roll over or to cross them, go under and through them.\u003C/p\u003E\u003Cp\u003EThe child learns that different toys \"do\" different things. Let him play with a variety of things that he can roll, push, pull, hug, shake, press, turn, stack, spin and mix. Most children enjoy listening to music. Encourage the child to move forward, around and backwards with the music, because that is how he exercises balance. If necessary, help him by holding his hands. All of this supports his new walking skills.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis activity helps your child learn to move independently in different directions, at different speeds or combine different movements (to stop moving and wave). He is so motivated to master this skill that he will expect you to dedicate every free moment of your life to support him in mastering this so important life function. Please do create the environment he is looking for!\u003C/p\u003E",
             "activity_category": 706,
@@ -265,7 +265,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [656],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/ART_8968.webp?itok=bL4Y01Tu",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/art_8968.webp?itok=0wtWCHdG",
                 "name": "ART_8968.JPG",
                 "alt": "Igram se i učim da hodam"
             },
@@ -278,7 +278,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Family Interview",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:49+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:52:03+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:52\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: NoneWhat You Can Do Together: Decide who’s first in the questioning seat and encourage your kids to ask them questions! Need some inspiration? Try starting with the questions below and see where the conversation takes you!     1. Did you have any pets growing up?     2. Do you prefer winter or summer? Why?     3. What’s your favourite meal?",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EDecide who’s first in the questioning seat and encourage your kids to ask them questions! Need some inspiration? Try starting with the questions below and see where the conversation takes you!\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     1. Did you have any pets growing up?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     2. Do you prefer winter or summer? Why?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     3. What’s your favourite meal?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     4. Have you ever lived in another country? Would you like to? Where?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     5. What’s your favourite song?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     6. Have you ever broken a bone?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     7. What was the last film you watched?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     8. If you could go back in time and meet someone from history, who would it be?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003ENow encourage kids to think of their own questions –– they don’t have to be sensible! How about asking what animal they’re most like, or the food they would eat every day for the rest of their life? Have fun with it!\u003C/p\u003E\u003Cp\u003EMake this activity more fun by encouraging your kids to pretend to be a red carpet reporter!\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EInquisitive kids will be a natural at this activity, where they get to put their family (that’s you!) in the questioning seat! It’s a sure way to build on their social and communication skills and learn something new about you, in the process.\u003C/p\u003E",
             "activity_category": 711,
@@ -299,7 +299,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Balancing",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:48+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:40:54+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: A comfortable chair.What You Can Do Together: Your baby has just been born and barely understands what is going on around her. Her world is so tiny and she has a lot to discover. Do this exercise to help you use your sense of sight and explore your surroundings in the most stimulating way possible.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA comfortable chair.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Your baby has just been born and barely understands what is going on around her. Her world is so tiny and she has a lot to discover. Do this exercise to help you use your sense of sight and explore your surroundings in the most stimulating way possible.\u003C/p\u003E\u003Cp\u003ETo start, you should carry your baby and sit in a comfortable chair. Now hold your baby so that her back is in the same direction as your legs. Support her head with both hands and her back with your arms; in this way, you will be transmitting security.\u003C/p\u003E\u003Cp\u003EIt is time to get their attention so they can fix their gaze on your face. To do this, you can call her by her name, sing her a nice song, recite a nursery rhyme or simply talk nice and positive things to him.\u003C/p\u003E\u003Cp\u003EOnce you've made sure you have their attention, slowly swing your baby from side to side. Keep drawing their attention at all times with beautiful words or songs; you can try different positions to vary the exercise.\u003C/p\u003E\u003Cp\u003EIf you notice that your baby has stopped looking at you, stop and get her attention again. Repeat the exercise until you see that your baby is tired. You should never force the baby to continue playing, as it will become an uncomfortable exercise, and the purpose will not be fulfilled.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis exercise will help your baby to coordinate the movement of her eyes to focus her gaze on an object, in addition to helping her to recognize your face or that of nearby adults, improve social interaction and stimulate the development of body balance.\u003C/p\u003E",
             "activity_category": 706,
@@ -320,7 +320,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "My Special Helper",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:48+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:45:11+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:45\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Everyday objects or other materials used in daily life. For example clean folded clothes; toys or other objects your child has been playing with; spoons, unbreakable cups, or other objects from a meal; materials found in the garden, such as leaves on the ground.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EEveryday objects or other materials used in daily life. For example clean folded clothes; toys or other objects your child has been playing with; spoons, unbreakable cups, or other objects from a meal; materials found in the garden, such as leaves on the ground.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EInvite your child to “be your special helper.” Say something like “I really need your help putting these socks away. Some go in baby sister’s cupboard; some go in yours. Can you please take these and put them away? Oh, what a big help you are. Thank you!”\u003C/p\u003E\u003Cp\u003EThis kind of activity can be part of your routines every day, with different materials and tasks. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour child is learning to cooperate, and that helping others makes your child and others happy. Your child is also learning to follow simple directions and learns the names of more objects. He may be learning how to sort or group things, also —for example, you could ask your child to find all the very little socks and put them in one pile and the bigger socks in another pile. Make this activity fun and friendly, not a test of their abilities.\u003C/p\u003E",
             "activity_category": 711,
@@ -328,7 +328,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [671],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.webp?itok=CV7YFSkS",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/my-special-helper-cover-picture.webp?itok=KdIkPZ_d",
                 "name": "My%20Special%20Helper-cover-picture.jpg",
                 "alt": "Children helping their parents"
             },
@@ -341,7 +341,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Coping with New People and Places",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:48+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:05:13+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:05\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: NoneWhat You Can Do Together: At this age, your child is probably still showing some fear or uneasiness about new people or new situations. At this age, however, your child has more ability—with your help— to find ways to begin to manage his feelings.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your child is probably still showing some fear or uneasiness about new people or new situations. At this age, however, your child has more ability—with your help— to find ways to begin to manage his feelings.\u003C/p\u003E\u003Cp\u003EFind opportunities to give your child gradual exposure to new people and places. It may help to talk about this first, perhaps if possible, showing your child a picture (“Remember grandmother? We are going to visit her later today.”) or “Later you and I will visit Dr. Smith. Just like before, she will look into your mouth, like this” (pretending). If your child becomes upset in a strange situation, you can help by recognizing the feelings (“Yes, I know you are feeling scared.  Sit here on my lap. Do you want to hold your teddy bear?”). After the situation ends, talk soothingly to your child and remind him of some of the ways your child coped: “I know you were a little scared, but remember what you did to make yourself feel better? (naming that)”.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003ERemember that your child’s fears about strange places and people are an important step in his development. It shows how close your child is to you, and that he knows the difference between situations that make him feel secure and those that do not. With your support, your child is also building up “coping strategies” — ways that your child may begin to soothe himself. Your child is beginning to see himself as a capable person but also one who can depend on you and others for comfort.\u003C/p\u003E",
             "activity_category": 711,
@@ -349,7 +349,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [656],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Coping%2520with%2520New%2520People%2520and%2520Places-Caleb%2520Woods-cover-picture.webp?itok=2PDmWimI",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/coping-with-new-people-and-places-caleb-woods-cover-picture.webp?itok=L7VQUTzH",
                 "name": "Coping%20with%20New%20People%20and%20Places-Caleb%20Woods-cover-picture.jpg",
                 "alt": "Toddler showing fear covering face with her arms"
             },
@@ -362,7 +362,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Reading with your baby",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:47+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:59:48+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:59\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: A baby book (made of cloth or with a hardcover, brightly colored pictures, and tactile elements). If you don't have one, you may use plain paper folded in half on which you can draw a few pictures or shapes in bright colors.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA baby book (made of cloth or with a hardcover, brightly colored pictures, and tactile elements). If you don't have one, you may use plain paper folded in half on which you can draw a few pictures or shapes in bright colors.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Put the baby on your lap so that you can look at the book together, but you should also be able to see your baby’s face. Place the book so that you can both see it and then read it! You can describe what is in the picture or tell a story about it, point your finger at the pictures, and name them. Use short and simple sentences. Vary the tone of your voice, be quiet, then be surprised…\u003C/p\u003E\u003Cp\u003ELet your baby see your facial expressions, and you observe his reactions and name those that you see he likes or dislikes. Allow him to touch the book, put it in his mouth (if it is safe), and explore it in other ways. If the baby makes a sound while reading, allow him to \"read\" as well. Listen to him and respond by repeating his sounds, asking questions, and praising him. When you notice that your baby is no longer interested – he looks away or protests in some other way - patiently wait for his attention to return to the book and continue. If the book is no longer interesting to him, come back to it later. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EReading and looking at books together is important for your baby's communication skills and language development.\u003C/p\u003E",
             "activity_category": 721,
@@ -370,7 +370,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [646],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.webp?itok=FTK-5ZSl",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/reading-with-your-baby-cover-picture.webp?itok=TM6wEYr8",
                 "name": "Reading%20with%20your%20baby-cover-picture.jpg",
                 "alt": "A mother looking at the book with her baby"
             },
@@ -383,7 +383,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Search for Hidden Objects",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:47+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:54:31+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:54\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: A few soft toys or things from home that are safe and attractive for the baby.  ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA few soft toys or things from home that are safe and attractive for the baby.  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EPut your baby on her stomach, on the carpet, or other soft surfaces. Sit so that you can see your baby's face and control her safety. Place several toys on one (left or right) side of the baby out of her reach but in the field of her vision. Wait for her to notice them or you draw her attention with a surprised tone of voice (saying: \"Aaaa, what do we have here?\"). Wait for your baby to roll over so she can reach one of the objects. If your baby does not try on her own, help her to roll from her tummy to her back so that she can reach the objects. Encourage her with an enthusiastic voice, a wide smile. When she stops being interested, looks away or protests - repeat the whole process with other objects, on the other side.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour baby has an opportunity to explore objects by looking, moving them from hand to hand, touching, putting them in her mouth.\u003C/p\u003E",
             "activity_category": 716,
@@ -391,7 +391,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [641],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/marcin-jozwiak-zJuHccHbnhA-unsplash.webp?itok=SKlk9i8I",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/marcin-jozwiak-zjuhcchbnha-unsplash.webp?itok=HkKEiJyZ",
                 "name": "marcin-jozwiak-zJuHccHbnhA-unsplash.jpg",
                 "alt": "Searching for hidden objects"
             },
@@ -404,7 +404,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Musical Movements",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:47+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:55:23+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:55\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Music with different rhythms; wooden trowel/spatula/spoon or stick. What You Can Do Together: To start this activity, have the music you will use with your little one ready; you can use music with different rhythms and make them easy to follow.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EMusic with different rhythms; wooden trowel/spatula/spoon or stick. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003ETo start this activity, have the music you will use with your little one ready; you can use music with different rhythms and make them easy to follow.\u003C/p\u003E\u003Cp\u003ECarry your little one and dance to the rhythm of the music. You can move around the house so that he or she becomes familiar with the movement. Then you can sit with your little one on the floor, on a comfortable surface, and follow the rhythm of the music, this time hitting the floor with the wooden paddle/spatula or with your hands. Invite her to imitate the movements you make.\u003C/p\u003E\u003Cp\u003EIn this activity, your little one will not follow the rhythm, but it will be an introduction so that she can achieve it later.\u003C/p\u003E\u003Cp\u003EIf you can't put on music, you can sing a song and dance and perform movements on the floor to the beat.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EWith this activity, you will help your little one initiate his or her sense of rhythm and establish a relationship with movement and sit with some support.\u003C/p\u003E",
             "activity_category": 706,
@@ -425,7 +425,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Sharing Feelings",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:47+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:43:16+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None    ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003Cstrong\u003E  \u003C/strong\u003E  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your child is showing many more emotions. Every day, you may see your child express excitement, sadness, fear or worry, etc. During these times, you can notice and name what he seems to be feeling: “You look so happy. I think you are excited to be going to visit Grandmother.” Or, “I see that you are upset that we cannot play outside today. Let’s find something to play indoors until the rain stops.” Your child may notice others’ feelings. You can help your child even if he does not name the feeling: “Yes, you see that your brother is very sad. He is crying. Can you help him feel better?”\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EWhen you notice, accept, and talk about your child’s feelings, he will begin to understand and express them more fully. Emotional development is an important task at this age. Empathy for others is part of this, too. By helping your child notice and have concern for others’ feelings, you are helping your child become a caring person.\u003C/p\u003E",
             "activity_category": 711,
@@ -433,7 +433,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [666],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Sharing%2520Feelings-cover-picture.webp?itok=coOXjRXC",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/sharing-feelings-cover-picture.webp?itok=kn8jwAoi",
                 "name": "Sharing%20Feelings-cover-picture.jpg",
                 "alt": "A happy child"
             },
@@ -446,7 +446,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Look At Your Ball",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:46+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:43:49+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:43\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Ball; blanket.What You Can Do Together: To carry out this activity, you must prepare the environment where it will happen. Choose a room with few distractors, place the blanket on the floor or a large bed. Then lay your little one on her stomach on the blanket. You should sit facing the front with your legs open, one leg on each side so that you make a barrier in front of your little one.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EBall; blanket.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003ETo carry out this activity, you must prepare the environment where it will happen. Choose a room with few distractors, place the blanket on the floor or a large bed. Then lay your little one on her stomach on the blanket. You should sit facing the front with your legs open, one leg on each side so that you make a barrier in front of your little one.\u003C/p\u003E\u003Cp\u003ENow talk to your little one to get her attention, when you do it, take the ball, show it to her and put it on the floor. Roll the ball slowly from one side to the other so that your little one can follow the ball with her eyes. Continue for about five minutes or until you see that your little one is tired. If your little one cannot lift her head yet, you can show her the ball by moving it only from the bottom up, little by little she willhave enough strength to be able to lift her head and follow the ball with her eyes.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EStrengthen your little one's muscles while stimulating their eyesight by developing the ability to follow moving objects with their gaze, a necessary skill to perform hand-eye coordination tasks such as reading and writing in the future.\u003C/p\u003E",
             "activity_category": 706,
@@ -454,7 +454,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [626],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.webp?itok=X7eiBbKQ",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/look-at-your-ball-cover-picture.webp?itok=7bL-_4pt",
                 "name": "Look%20at%20your%20ball-cover-picture.jpg",
                 "alt": "A new-born baby looking attentively somewhere"
             },
@@ -467,7 +467,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Colour Hunt",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:46+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:50:53+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:50\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Small objects, each of one colour (such as a red sock or an orange).What You Can Do Together: Invite your child to play a “Colour Hunt” game. “Look! Here’s a red sock. Can you find some other things that have a red colour? Let’s look together!” Explore different parts of your home or have the hunt outdoors. Use the name of the colour often.  ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ESmall objects, each of one colour (such as a red sock or an orange).\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EInvite your child to play a “Colour Hunt” game. “Look! Here’s a \u003Cem\u003Ered \u003C/em\u003Esock. Can you find some other things that have a \u003Cem\u003Ered \u003C/em\u003Ecolour? Let’s look together!” Explore different parts of your home or have the hunt outdoors. Use the name of the colour often.  \u003C/p\u003E\u003Cp\u003EAt other times, do the colour hunt activity looking for items of a different colour. Include purple, orange, brown as your child learns more colours. As he learns more, you might ask your child just to find items of a certain colour without matching—or ask your child which colour he wants to look for. \u003C/p\u003E\u003Cp\u003EHelp your child learn colours just by using their names in everyday conversation (cooking: “Now I’ll peel those yellow bananas” or dressing: “Let’s find your purple shirt to wear today.”)\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EKnowing colours is an important part of school readiness. Your child’s thinking is developing as your child learns the concept that objects may look different but have the same colour—and that similar items, like hats, maybe of different colours.\u003C/p\u003E",
             "activity_category": 716,
@@ -475,7 +475,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [676],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.webp?itok=9XPAv0O_",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/colour-hunt-cover-picture.webp?itok=Icu4cuV1",
                 "name": "Colour%20Hunt-cover-picture.jpg",
                 "alt": "Child facing the coloured road"
             },
@@ -488,7 +488,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "\"I went to market\"",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:46+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:48:09+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None What You Can Do Together: One player begins by saying, “I went to the market today and bought… [names an item].” The next player must add an item of their own, while also recalling the previous items said, in the same order. Players take it in turns to keep adding a new item to the list. Continue adding and recalling the items until someone makes a mistake –– then you can start all over again!",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EOne player begins by saying, “I went to the market today and bought… [names an item].” The next player must add an item of their own, while also recalling the previous items said, in the same order. Players take it in turns to keep adding a new item to the list. Continue adding and recalling the items until someone makes a mistake –– then you can start all over again!\u003C/p\u003E\u003Cp\u003EThis game doesn’t have to be limited to the ‘market’! How about trying different variations like the beach or a desert island instead?\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis activity is a great memory test for kids as they try to recall items from an ever-expanding list. It’s a great social game for both small or large groups and is sure to build kids’ confidence in public speaking!\u003C/p\u003E",
             "activity_category": 721,
@@ -509,7 +509,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Making Friends",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:19+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:58:28+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:58\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EYour baby may cry in different ways and by crying he may try to convey different messages. During this period, you may notice that the baby begins to be upset when new, unknown people appear, which was not the case before. This is quite expected. Help him first by always introducing new people gradually and not abruptly and, if possible, in an already familiar environment. Always be with your baby when a new face approaches or addresses her, and if anxiety and crying increase - calm him down. Speak to your baby in a calm voice, holding him in your arms to reassure him that you will not leave her. You can gently rock him, hug him or sing to him. Watch closely to see when your baby is ready for the challenge of making friends again. You will know this when he looks around and explores things and people in his/her surroundings. Slowly try again to introduce him to new people, following her signs of pleasure and discomfort.\u003C/p\u003E\u003Cp\u003EEvery baby is different; your baby may be quite interested in new people, or she may be quite slow to warm up to even friendly strangers. Follow your baby's lead and enjoy your unique little person!\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour baby is learning to react to new situations and people, as his reactions will probably change from week to week. If new people become part of your baby’s world, with your help your baby gets used to them gradually so that he feels comfortable. \u003C/p\u003E",
             "activity_category": 711,
@@ -517,7 +517,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [646],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/nathan-dumlao-lFFDJXu4GxQ-unsplash.webp?itok=0F0WXxZr",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/nathan-dumlao-lffdjxu4gxq-unsplash.webp?itok=BxrFNvK_",
                 "name": "nathan-dumlao-lFFDJXu4GxQ-unsplash.jpg",
                 "alt": "family time together on the couch"
             },
@@ -530,7 +530,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Where Is It?  Bye-Bye!",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:18+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:03:28+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:03\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: A few small items or toys from your home",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:\u003C/strong\u003E A few small items or toys from your home\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E At this age, your child is learning to “say” what he means by using his hands and making gestures. You may notice your baby doing this. You can have fun with a little game to encourage your baby to use these kinds of gestures. Begin by showing your baby a small item or toy. Say, “Oh, here is your doll. Where did it go?” (put the doll somewhere your baby cannot reach). Point to the doll and say: “There he is!” See if your baby also points at it! Then bring the doll back and do it again as long as your child is interested. You can add another gesture by saying “Tell your doll “Bye, bye!” and wave your hand. Guide your baby to wave also: “Bye-bye, doll!” \u003C/p\u003E\u003Cp\u003EWhen your child uses gestures on his own (for example, he might point to some food you have prepared), you can say things like “Yes, you see the bananas! Would you like to have some banana?” You’re showing that you understand your baby’s communication.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child Is Learning:\u003C/strong\u003E Gestures have meaning, and so using them is part of your baby’s language and communication development. He is also learning that when he tries to communicate, you respond. This is like an early conversation. These connections also help strengthen your bonds with your baby and support social and emotional development.\u003C/p\u003E",
             "activity_category": 716,
@@ -538,7 +538,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [651],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Where%2520is%2520it-Bye-bye-cover-picture.webp?itok=92jYqIV4",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/where-is-it-bye-bye-cover-picture.webp?itok=wlrC4c70",
                 "name": "Where%20is%20it-Bye-bye-cover-picture.jpeg",
                 "alt": "A father is showing a toy to his baby"
             },
@@ -551,7 +551,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "The Look of Love",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:18+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:42:18+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:42\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None; soft chair optional. What You Can Do Together: Staring at your baby can be a fun and enriching activity. Before starting, you must prepare the place in which you want to play. Make sure there are no objects or sounds that distract your baby's attention.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone; \u003Cem\u003Esoft chair optional. \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EStaring at your baby can be a fun and enriching activity. Before starting, you must prepare the place in which you want to play. Make sure there are no objects or sounds that distract your baby's attention.\u003C/p\u003E\u003Cp\u003ELay your baby on her back on a soft surface or in her baby seat. Look at her steadily and make sure you've managed to get her attention. Time to have fun! Change the expression on your face, start with a big smile and make a sound. Enjoy her reaction, and he will probably smile back at you. A kiss on the forehead or cheek is always a good idea to make the activity a loving moment.\u003C/p\u003E\u003Cp\u003ETry a variety of gestures but remember that none should scare or cause discomfort.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis fun activity will help you better communicate with your baby since neurons in the brain that make connections related to language development are stimulated. Spending time together in quiet and loving moments also helps your baby strengthen the emotional bond and improve social interaction.\u003C/p\u003E",
             "activity_category": 711,
@@ -572,7 +572,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Happy Feet",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:18+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:42:58+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:42\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Soft blanket; Songs and Rhymes.What You Can Do Together: One of the parts of the body that your baby knows first and with which she enjoys playing are the feet. This game is so simple that you don't need prior preparation, you just have to start by choosing a beautiful song or rhyme with which you can play with your baby's feet.Lay the blanket on the soft surface and lay your baby on it. You should get on your knees beside her.You can start with one of these rhymes about the toes:",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ESoft blanket; Songs and Rhymes.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EOne of the parts of the body that your baby knows first and with which she enjoys playing are the feet. This game is so simple that you don't need prior preparation, you just have to start by choosing a beautiful song or rhyme with which you can play with your baby's feet.\u003C/p\u003E\u003Cp\u003ELay the blanket on the soft surface and lay your baby on it. You should get on your knees beside her.\u003C/p\u003E\u003Cp\u003EYou can start with one of these rhymes about the toes:\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E      This little piggy went to market,\u003C/em\u003E\u003Cbr\u003E\u003Cem\u003E      This little piggy stayed at home,\u003C/em\u003E\u003Cbr\u003E\u003Cem\u003E     This little piggy had roast beef,\u003C/em\u003E\u003Cbr\u003E\u003Cem\u003E     This little piggy had none.\u003C/em\u003E\u003Cbr\u003E\u003Cem\u003E     And this little piggy went...\u003C/em\u003E\u003Cbr\u003E\u003Cem\u003E     \"Wee wee wee\" all the way home...\u003C/em\u003E\u003C/p\u003E\u003Cp\u003EIf you know other songs or rhymes to play with your baby, these types of games are an excellent opportunity to play and learn together. Remember that your baby is very delicate, so the strokes should be gentle, and the tickles should be few to avoid making her feel uncomfortable.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EWith this activity, your baby will begin to know and feel her body, as well as experience sensory pleasure. It will also help with language development, motor control, and social interaction. Your baby will enjoy feeling her feet while developing communication skills and spending a nice time together.\u003C/p\u003E",
             "activity_category": 721,
@@ -593,7 +593,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Movement Exercises",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:18+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:48:08+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:48\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Toys of different sizes and textures or a soft blanket.What You Can Do Together: Before you begin, be sure to prepare the place. You can place your little one in a comfortable space, in front of you, on a rug, on the bed or in a chair.To start this activity, you can prepare your baby’s hands by doing a small massage so that she can respond to the stimulations you give them. Then you can give your little one a toy to feel it, and then place it at a small distance so that she tries to reach it.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EToys of different sizes and textures or a soft blanket.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EBefore you begin, be sure to prepare the place. You can place your little one in a comfortable space, in front of you, on a rug, on the bed or in a chair.\u003C/p\u003E\u003Cp\u003ETo start this activity, you can prepare your baby’s hands by doing a small massage so that she can respond to the stimulations you give them. Then you can give your little one a toy to feel it, and then place it at a small distance so that she tries to reach it.\u003C/p\u003E\u003Cp\u003EIf you don't have toys, you can use a soft blanket so that your little one tries to reach it from a distance. Remember to cheer and celebrate their accomplishments.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EWith this activity, you will help your little one to reach objects with one hand by using hand-eye coordination.\u003C/p\u003E",
             "activity_category": 706,
@@ -614,7 +614,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Say My Name",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:18+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:50:08+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:50\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: NoneWhat You Can Do Together: To carry out this activity, you only need to lay your little one on her back on a soft surface, such as her crib or bed. Now talk to your little one to get his or her attention. When you do it, you can sing her the following song:     Where is (your child's name)?     Where is (your child's name)?     Here you are! Here you are!",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003ETo carry out this activity, you only need to lay your little one on her back on a soft surface, such as her crib or bed. Now talk to your little one to get his or her attention. When you do it, you can sing her the following song:\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     Where is (your child's name)?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     Where is (your child's name)?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     Here you are! Here you are!\u003C/em\u003E\u003C/p\u003E\u003Cp\u003EThen you can vary, saying it out loud and low. Another way to help your baby recognize her name, your voice, and the place of origin of a sound is to place yourself in different positions of the bed or crib and sing the song from there at the foot of the bed, near the pillows, on one side and the other. Sing with your little one's name until your little one can turn around to see where you are. Always end by saying to your baby, “I love you (little one's name)!”. And give them a little kiss.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis activity will help your little one to begin recognising her name and using body movements in response to familiar words.\u003C/p\u003E",
             "activity_category": 721,
@@ -635,7 +635,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "My Address Song",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:17+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:50:12+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:50\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Your child’s name and address, printed in large letters on a piece of paper (for now, this can be just the street address).What You Can Do Together: Invite your child to make up a special song with you. “This will be a special song with YOUR name and YOUR address—the place where you and I live! We can sing the song together and sing it to Daddy (or other family member) later.”Use simple words something like this, and put them to a familiar melody—anything at all:",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EYour child’s name and address, printed in large letters on a piece of paper (for now, this can be just the street address).\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EInvite your child to make up a special song with you. “This will be a special song with YOUR name and YOUR address—the place where you and I live! We can sing the song together and sing it to Daddy (or other family member) later.”\u003C/p\u003E\u003Cp\u003EUse simple words something like this, and put them to a familiar melody—anything at all:\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EI am Joseph, I am Joseph, that is my name, that is my name!\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EI live at 3 Lila Street, I live at 3 Lila Street.\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EThat’s my address, that’s my address!\u003C/em\u003E\u003C/p\u003E\u003Cp\u003ESing the song together. You can point at your child’s written name and address as you do so. Repeat often as you do tasks at home or when you are walking together. Your child will be able to sing it independently after a time.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EKnowing one’s name and address is important as your child becomes ready for school. Songs help children remember many things, not only name and address but letters of the alphabet and other information. Memorizing a song also builds your child’s thinking skills, and creating a song together strengthens your relationship.\u003C/p\u003E",
             "activity_category": 716,
@@ -643,7 +643,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [676],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/My%2520Address%2520Song-cover-image.webp?itok=G8dEU_yw",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/my-address-song-cover-image.webp?itok=y1lSGgKO",
                 "name": "My%20Address%20Song-cover-image.jpg",
                 "alt": "Ребенок идет в школу с рюкзаком"
             },
@@ -656,7 +656,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Floor Game",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:17+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:51:13+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: A floor mat or blanket, favorite toys, rattles.  ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA floor mat or blanket, favorite toys, rattles.  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EPosition the baby so that you can touch his feet. Gently play with his feet and toes and gently tickle him. Touch the baby's finger one by one and at the same time say, \"This finger is… little thumb/mom's finger/dad's finger\" for each finger. While the baby is on his back, place a wind-up toy that produces sound (if you have one) next to or behind the baby. Check if the baby is looking for the source of the sound. Or gently shake a rattle or jar with beans and see if the baby looks for it.\u003C/p\u003E\u003Cp\u003EOn a soft flat surface, on the bed or blanket, while lying on his back, gently tap or massage the baby's hands and fingers as you talk with her - for example, \"Here is your hand; here are your fingers,\" telling her what you are doing. Or you could sing a gentle song as you stroke their hands. Another idea is to use a simple toy that you place where the baby can see it, but where he cannot reach it. Does he try? You might move the toy as the baby looks at it. As the baby gets older, you could encourage your baby to roll over to reach for the toy.\u003C/p\u003E\u003Cp\u003EThere are so many ideas for \"floor time\" as your baby grows! Place a blanket or a towel on the carpet, put the baby on his tummy so that his head is turned to one side. Lie next to the baby to encourage him. The baby can stay in this position as long as he likes it, but make sure that his head is turned to the left and the right side for about the same length of time. Again, you can put favorite toys or objects in front of the baby, but so that they are just a little out of the baby's reach. As your baby gets older, encourage your baby to try to reach them and move in their direction.\u003C/p\u003E\u003Cp\u003E\"Tummy time\" is important for physical development. Make sure the time your baby spends on his tummy is a little longer each day. Observe your baby, so you can gently move the baby if he turns his face directly to the floor, as this can make breathing difficult. As he gets stronger over time, the baby will be able to raise his head and rise a little by pushing with his hands. These motions will later grow into rolling and crawling.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThese are excellent opportunities to use simple games to create a positive, enjoyable environment for your child. During these games, your child learns to explore and control the movements of his body and head. A baby may be able to raise his head and support herself with his arms.  \u003C/p\u003E",
             "activity_category": 706,
@@ -664,7 +664,7 @@ export const ActivitiesData: any = {
             "type_of_support": 0,
             "child_age": [636],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/istra%25C5%25BEivanje%2520u%2520igri%2520konstruktorima.webp?itok=hadVpI8N",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/istrazivanje-u-igri-konstruktorima.webp?itok=IH6GBc5X",
                 "name": "istra%C5%BEivanje%20u%20igri%20konstruktorima.jpg",
                 "alt": "A boy playing on the floor"
             },
@@ -677,7 +677,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Crawl Over Obstacles",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:17+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:00:22+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:00\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Toys (preferably fabric) or cushions.What You Can Do Together: To begin this activity, first choose a room suitable for crawling, better if it is carpeted. Place toys and fabric cushions scattered around the room.Take your little one and make him crawl. See if she can crawl over obstacles.I recommend that you motivate her with affirmations such as: “you can achieve it”. You are capable, I believe in you and reward her with many kisses.Enjoy this activity with your little one.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EToys (preferably fabric) or cushions.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003ETo begin this activity, first choose a room suitable for crawling, better if it is carpeted. Place toys and fabric cushions scattered around the room.\u003C/p\u003E\u003Cp\u003ETake your little one and make him crawl. See if she can crawl over obstacles.\u003C/p\u003E\u003Cp\u003EI recommend that you motivate her with affirmations such as: “you can achieve it”. You are capable, I believe in you and reward her with many kisses.\u003C/p\u003E\u003Cp\u003EEnjoy this activity with your little one.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis activity will help your little one to stimulate her visual perception and logical thinking. It also can help your little one to solve problems, stimulate her vision and strengthen her muscles that will allow her to move quickly.\u003C/p\u003E",
             "activity_category": 716,
@@ -698,7 +698,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Little Claps",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:16+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:51:49+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:51\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Songs and rhymes; a soft blanket or a chair is optional.What You Can Do Together: From the first days of life, your baby begins to learn to know and control her body, and although it is a process that takes time if you look closely, you will see how your little one tries to hold her tiny hands. With these games, you can help her to improve her motor skills.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ESongs and rhymes; a\u003Cem\u003E soft blanket or a chair is optional.\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EFrom the first days of life, your baby begins to learn to know and control her body, and although it is a process that takes time if you look closely, you will see how your little one tries to hold her tiny hands. With these games, you can help her to improve her motor skills.\u003C/p\u003E\u003Cp\u003EBefore you start, you must prepare the place to play. Place the blanket or chair on a comfortable surface. Lay your baby on the blanket and sit close to her so she can see you. Begin by singing songs or rhymes while you play with her hands and fingers. You can try one of the following games:\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E\u003Cstrong\u003E     If you're happy and you know it\u003C/strong\u003E\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     If you are happy and you know it, clap your hands! (clap, clap)\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     If you are happy and you know it, clap your hands! (clap, clap)\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     If you are happy and you know it, and you really want to show it,\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     If you are happy and you know it, clap your hands! (clap, clap)\u003C/em\u003E\u003C/p\u003E\u003Cp\u003ERemember always to hold and move your baby's hands very carefully and delicately when they together.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis activity helps your little one to develop her eye-hand coordination, motor control and initiate social interactions by babbling.\u003C/p\u003E",
             "activity_category": 721,
@@ -719,7 +719,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Watching and Playing Together",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:20:15+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:20\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:39:57+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:39\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: A few interesting, safe playthings or materials from indoors or outdoors.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA few interesting, safe playthings or materials from indoors or outdoors.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your child probably is becoming more interested in being with other children. Your child may not be ready to play with others in complicated games, but he may enjoy playing side-by-side with another child, watching what that child does, and just being together. To encourage this, if possible, find another child of about the same age in the neighbourhood or perhaps in a park. If not possible, perhaps a brother or sister can be the playmate. \u003C/p\u003E\u003Cp\u003EGet your child settled with the other child, with a few playthings nearby (enough for both to use). You might give each child a few things and say something like, “Look! You can play with these. See, your friend is banging the spoon on the pan. What can you do?” The children may do many things, probably not together, but you may see that they are very aware and interested in each other. Help them enjoy relaxed playtime in whatever way they wish. Watch them for safety and perhaps provide a few more materials or show how something might be used.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis is called “parallel play”—when very young children begin to play near each other, but mostly each child is doing their own activity. They are learning by watching others, and sometimes copying what their friend is doing. This is the very start of cooperative play and friendship, which will be so important in later years.\u003C/p\u003E",
             "activity_category": 711,
@@ -727,7 +727,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [661],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Watching%2520and%2520Playing%2520Together-cover-picture.webp?itok=VB3vBTNY",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/watching-and-playing-together-cover-picture.webp?itok=5zsny1T8",
                 "name": "Watching%20and%20Playing%20Together-cover-picture.jpg",
                 "alt": "A boy and a girl playing together"
             },
@@ -740,7 +740,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Making a Picture Schedule",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:47+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:52:51+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:52\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Paper and markers or pens and pencils; One or more picture books (If you do not have, you can make a simple one by pasting magazine pictures onto pages and putting together, or drawing simple pictures); Magazine pictures if you have some; Tape to hang up the schedule.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EPaper and markers or pens and pencils; One or more picture books (If you do not have, you can make a simple one by pasting magazine pictures onto pages and putting together, or drawing simple pictures); Magazine pictures if you have some; Tape to hang up the schedule.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, children are aware that events often happen in a sequence (first, second, last) and at certain times. As they begin school, schedules become important to them. Many children enjoy and are helped by having a simple picture schedule. With your child, you can make one that shows your typical routine at home.\u003C/p\u003E\u003Cp\u003ETake a large piece of paper and some markers. You can number the steps in the day’s routine. Then think with your child: “Every day, what is the first thing you do? Oh, Get Up!” and then help your child to draw something such as her or his bed. You can print the words or help your child do some of that. If there are specific times and your child is interested, you can write those also. Go through the rest of the day, keeping it simple, but with meals, school, playing outdoors, etcetera. Your child might say that weekends are different and might enjoy making a different schedule for those days.\u003C/p\u003E\u003Cp\u003EWhen the schedule is finished, put it up where your child and you can look at it. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYou are building your child’s thinking abilities, as you organize the events of a typical day into an order or sequence (this also helps children’s math ability). Many children also feel more emotionally secure when they know exactly what to expect, especially if many things about life have been unpredictable at this time. \u003C/p\u003E",
             "activity_category": 716,
@@ -748,7 +748,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [681],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Making%2520a%2520Picture%2520Schedule-cover-picture.webp?itok=vLyRE8Vn",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/making-a-picture-schedule-cover-picture.webp?itok=2BnZDaDn",
                 "name": "Making%20a%20Picture%20Schedule-cover-picture.jpeg",
                 "alt": "A weekly planner with stickers"
             },
@@ -761,7 +761,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Playing With the Senses",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:46+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:46:52+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need:  Objects of various soft fabrics: silk, wool, towel, feathers, etc. Objects of various smells: flowers, oranges, soft perfumes, etc. Nature sounds.What You Can Do Together: Exposing your baby to various stimuli will expand their knowledge of her-/himself and the world around them. With this activity, it is easy to expose your baby to sensory stimuli during free moments throughout the day.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:  \u003C/strong\u003EObjects of various soft fabrics: silk, wool, towel, feathers, etc. Objects of various smells: flowers, oranges, soft perfumes, etc. Nature sounds.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EExposing your baby to various stimuli will expand their knowledge of her-/himself and the world around them. With this activity, it is easy to expose your baby to sensory stimuli during free moments throughout the day.\u003C/p\u003E\u003Cp\u003EIf you are at home, use different clothes or objects with different textures. Rub her/his arms, legs, and tummy gently with the tissues and watch the reaction of your baby. If it's positive, you can keep trying different textures one at a time.\u003C/p\u003E\u003Cp\u003EDon't overwhelm your baby with sensations as you can tire them out.\u003C/p\u003E\u003Cp\u003EAnother way to expose her/him to sensory stimuli is to go out to the garden or park, let her/him see and smell the flowers and plants that you find.\u003C/p\u003E\u003Cp\u003EOnly use healthy and safe objects and textures with your baby when completing this activity.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EExposing your baby to various sensory experiences helps your child to form connections in the brain that allow her/him to know and understand the environment around them.\u003C/p\u003E",
             "activity_category": 706,
@@ -769,7 +769,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [631, 636, 641],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/Playing%20With%20the%20Senses-cover-picture.webp?itok=Lnyi3jrE",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/playing-with-the-senses-cover-picture.webp?itok=9woRM_1o",
                 "name": "Playing With the Senses-cover-picture.jpg",
                 "alt": "A child smelling flowers "
             },
@@ -782,7 +782,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Lifting my head",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:45+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:52:33+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:52\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Soft blanket What You Can Do Together: Prepare the materials you will use in advance. Lay the blanket on a flat, comfortable surface. Lay your little one face down and sing this song: Baa, Baa Black Sheep Have you any wool? Yes sir, yes sir, three bags full. One for the master, And one for the dame, And one for the little boy, ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ESoft blanket \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EPrepare the materials you will use in advance. Lay the blanket on a flat, comfortable surface. Lay your little one face down and sing this song: \u003C/p\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cem\u003EBaa, Baa Black Sheep \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EHave you any wool? \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EYes sir, yes sir, \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003Ethree bags full. \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EOne for the master, \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EAnd one for the dame, \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EAnd one for the little boy, \u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EWho lives down the lane.\u003C/em\u003E \u003C/p\u003E\u003C/blockquote\u003E\u003Cp\u003EAlong with the song, gently rub their back. This action will make your little one straighten her/his head and trunk. This activity will help her/him to crawl and will stimulate their sensory skills. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:  \u003C/strong\u003EThis activity will help your little one to develop strength and tone in his/her body and stimulate his/her senses and encourage your baby to lift their head up.\u003C/p\u003E",
             "activity_category": 706,
@@ -790,7 +790,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [636, 641],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/Lifting%20my%20head-cover-picture.webp?itok=OhlIOvlb",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/lifting-my-head-cover-picture.webp?itok=5bxpSnVl",
                 "name": "Lifting my head-cover-picture.jpg",
                 "alt": "A baby lifting her/his head and hands"
             },
@@ -803,7 +803,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Tummy Time ",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:45+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:46:20+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: NoneWhat You Can Do Together: This exercise can be done in the first few days of your baby’s birth.",
             "body": "\u003Cp\u003EMaterials You Need: None\u003C/p\u003E\u003Cp\u003EWhat You Can Do Together: This exercise can be done in the first few days of your baby’s birth.\u003C/p\u003E\u003Cp\u003EPlace your baby on your chest with their head facing you. If your baby puts their head on your chest at first, change her/his head from time to time to prevent her/his head from lying flat on one side for too long. Once your baby manages to hold her/his head up, you can lie down with her/him on the floor, encouraging her/him to use their elbows to raise their head. Provide gentle support for her/his abdomen and arms, so your baby is comfortable. You can place toys on the floor around her/him so he/she can see them.\u003C/p\u003E\u003Cp\u003EAt first, your baby may not like this position, but the duration for which they perform the action will increase upon completing the exercise regularly.\u003C/p\u003E\u003Cul\u003E\t\u003Cli\u003ETummy time primarily helps to develop:\u003C/li\u003E\t\u003Cli\u003ECrawling Balance and coordination\u003C/li\u003E\t\u003Cli\u003EEye-hand coordination\u003C/li\u003E\t\u003Cli\u003EConcentration Confidence and independence\u003C/li\u003E\u003C/ul\u003E\u003Cp\u003EWhat Your Child is Learning: This activity will help your child to develop strong abdominal muscles that will allow her/him to sit, stand, and eventually walk, control weight with only their legs and track objects with his/her eyes.\u003C/p\u003E",
             "activity_category": 706,
@@ -824,7 +824,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Rolling on my back",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:44+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:56:16+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:56\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need:  None  What You Can Do Together: Before starting the activity, you should make sure that the space you will work in is comfortable and free of danger. This space can be on a rug, a blanket, or on a bed. ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:  \u003C/strong\u003ENone  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Before starting the activity, you should make sure that the space you will work in is comfortable and free of danger. This space can be on a rug, a blanket, or on a bed. \u003C/p\u003E\u003Cp\u003EFor this activity, place your little one on his/her back and gently move his/her arms and legs to get them used to the movements. Next, grab her/his right arm and leg and gently move them to the left to help them roll onto their back. Praise them and allow them to rest in that position. Then, place your little one back on her/his back and repeat the procedure for the other side. Remember to give her/him the freedom to do the movements. \u003C/p\u003E\u003Cp\u003EYou can do this activity two or three times while changing his diaper or lying on a flat surface. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:\u003C/strong\u003E With this activity, you will be helping your little one to strengthen her/his arms and legs by teaching her/him to turn on her/his back. \u003C/p\u003E",
             "activity_category": 706,
@@ -832,7 +832,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [641],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/Rolling%20on%20my%20back.webp?itok=FwhDKUlX",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/rolling-on-my-back.webp?itok=5r9R3RMD",
                 "name": "Rolling on my back.jpg",
                 "alt": "A baby rolling on her/his back"
             },
@@ -845,7 +845,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Learning to sit up",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:44+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:53:07+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:53\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Pillows What You Can Do Together: When preparing the space where you will work with your little one, remember that you must create a comfortable environment. You can put your child on a rug, a soft blanket or on the bed. ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:\u003C/strong\u003E Pillows \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E When preparing the space where you will work with your little one, remember that you must create a comfortable environment. You can put your child on a rug, a soft blanket or on the bed. \u003C/p\u003E\u003Cp\u003ELay your little one on his stomach next to some pillows, massage his back to stimulate her/him, then turn her/him over and massage her/his shoulders. Then sit her/him on a pillow. You can show her/him a balloon or flashy object or sing them a song to get their attention. After a few minutes, put her/him down to let her/him rest and then sit her/him down again, but this time place two pillows behind their back so that they experience a straighter position when sitting up. Next, help her/him sit for a few seconds without the support of the pillows on their back, then let him/her rest. \u003C/p\u003E\u003Cp\u003ERepeat this activity two to three times. \u003C/p\u003E\u003Cp\u003EWhat Your Child is Learning: With this activity, your little one will strengthen their back muscles starting with the sitting position. The objective of this activity is to maintain a sitting posture without assistance or support for more than a few seconds.  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning\u003C/strong\u003E: With this activity, your little one will strengthen their back muscles starting with the sitting position. The objective of this activity is to maintain a sitting posture without assistance or support for more than a few seconds.\u003C/p\u003E",
             "activity_category": 706,
@@ -853,7 +853,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [641],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/Learning%20to%20sit%20up-cover-picture1.webp?itok=tYWwXotj",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/learning-to-sit-up-cover-picture1.webp?itok=PmMyx66m",
                 "name": "Learning to sit up-cover-picture1.jpg",
                 "alt": "A baby trying to sit up with the help of her/his mother"
             },
@@ -866,7 +866,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "One, Two, Three, UP! ",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:43+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:59:04+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:59\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Different toys or attractive objects for the child; sofa or headboard.  What You Can Do Together: Before starting the activity, prepare the space with the toys that will be used. Make sure the room is free from distractions. ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:\u003C/strong\u003E Different toys or attractive objects for the child; sofa or headboard.  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Before starting the activity, prepare the space with the toys that will be used. Make sure the room is free from distractions. \u003C/p\u003E\u003Cp\u003EBefore starting the activity, place the selected toys or objects on the sofa or at the head of your bed. Sit your little one on the couch or bed and draw her/his attention to the toys so they can see them, let her/him crawl toward the objects and try to reach them. When he/she is near the back of the sofa or bed, help your little one to kneel, holding their hips so that your child feels safe and secure. To help them stand up, hold on to their waist for support and encourage them to push their legs down to stand. \u003C/p\u003E\u003Cp\u003EEncourage and motivate your little one with each attempt to stand, and at the end of the activity, allow her/him to play with the toys on the bed or couch. Repeat the exercise three times a day. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis simple activity will help your child to stand up with help, strengthen her/his leg muscles and improve her/his coordination. \u003C/p\u003E",
             "activity_category": 706,
@@ -887,7 +887,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Imitating Mom and Dad",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:21+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:44:40+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: NoneWhat You Can Do Together: To carry out this activity, you may take advantage of any situation or activity you are doing and carry it out because you only have to take your baby and place her/him in a comfortable position where you can have face-to-face contact.When they're ready, try making different kinds of faces and sounds and wait the reaction of your baby.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:\u003C/strong\u003E None\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E To carry out this activity, you may take advantage of any situation or activity you are doing and carry it out because you only have to take your baby and place her/him in a comfortable position where you can have face-to-face contact.\u003C/p\u003E\u003Cp\u003EWhen they're ready, try making different kinds of faces and sounds and wait the reaction of your baby.\u003C/p\u003E\u003Col\u003E\t\u003Cli\u003EHere are some ideas:\u003C/li\u003E\t\u003Cli\u003ESing her/him a song while moving your mouth exaggeratedly.\u003C/li\u003E\t\u003Cli\u003EBlink excessively.\u003C/li\u003E\t\u003Cli\u003EStick out your tongue.\u003C/li\u003E\t\u003Cli\u003EMake faces.\u003C/li\u003E\t\u003Cli\u003EMake sounds by pressing your lips together. Cough and yawn.\u003C/li\u003E\u003C/ol\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EWith this activity, your child will be able to distinguish features of a face while developing sight and hearing to get to know the world affectionately and enjoyably.\u003C/p\u003E",
             "activity_category": 711,
@@ -908,7 +908,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Playing at Bath Time ",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:21+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:08:10+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:08\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Bath toys or a few plastic cups or dishes.   What You Can Do Together: Use bath time to encourage thinking and cognitive development. Take a few plastic cups and explore the cause and effect together. Fill the cup with water and when the glass is full, show your child that it sinks. Hold the cup high in the air and show them how the water spills out when you tip the cup.  ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EBath toys or a few plastic cups or dishes.   \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Use bath time to encourage thinking and cognitive development. Take a few plastic cups and explore the cause and effect together. Fill the cup with water and when the glass is full, show your child that it sinks. Hold the cup high in the air and show them how the water spills out when you tip the cup.  \u003C/p\u003E\u003Cp\u003EDescribe what is happening as you do this activity by saying, “Oh, look at the cup! It's going down, down in the water. There it goes!\" With your help, bathing gives her/him the opportunity to understand how things work, while also having a lot of fun. Encourage various types of movement and encourage your child to join in by smiling and praising them when you see them experiment with something new. Bath time also gives your child a chance to show many different emotions—excitement, curiosity, or sadness when realizing bath time is finished. Notice and enjoy your child's growing ability to express all kinds of emotions. \u003C/p\u003E\u003Cp\u003EYou can do this activity at bath time, or to support your baby's exploration with various materials, you can also complete this activity with sand, gravel or dry rice. Always be cautious, as your baby might want to put these materials in their mouth. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EWith this activity your child can slowly understand how things are interconnected and develop understanding and logic. This activity will also aid your child’s motor development. \u003C/p\u003E",
             "activity_category": 716,
@@ -916,7 +916,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [656, 661],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-12/pexels-vladim%C3%ADr-sl%C3%A1dek-10059342.webp?itok=6CQXC5gU",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-12/pexels-vladimir-sladek-10059342.webp?itok=ncBO9C9A",
                 "name": "pexels-vladimír-sládek-10059342.jpg",
                 "alt": "baby in a bath tub"
             },
@@ -929,7 +929,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Musical statues",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:21+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:41:30+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:41\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Music What You Can Do Together: It’s a case of the more the merrier in this fun, energetic game! The concept is simple - while the music is playing, the children dance. But as soon as the music stops, they must freeze and remain absolutely still.  ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EMusic \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E It’s a case of the more the merrier in this fun, energetic game! The concept is simple - while the music is playing, the children dance. But as soon as the music stops, they must freeze and remain absolutely still.  \u003C/p\u003E\u003Cp\u003EYou’ll need one person to control the music and referee the game. Once the referee stops the music, they keep an eye out for any movement from the players. If they spot any shakes, wobbles or twitches, the player is out the game! After 20 seconds or so, the referee restarts the music, and the game continues until there is only one player left standing.  \u003C/p\u003E\u003Cp\u003EVary the music each game (or even each round) and challenge the children to change their moves to match the style. You could include pop, classical, folk, jazz, dance and world music! \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EMusical Statues is a popular party game which can be played anywhere and takes less than a minute to set up. Children get to put their listening and balance skills to the test, as well as their reflexes and dance moves! \u003C/p\u003E",
             "activity_category": 706,
@@ -950,7 +950,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Making Numbers Interesting ",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:21+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:40:43+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:40\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need:  None  What You Can Do Together: Slowly count out loud while making eye contact with the child. This way you will be able to monitor his/her reactions, follow their interest, help her/him when needed, and encourage your child to direct her/his attention towards you. Support and encourage your child to count on their own if they are old enough to do so. Do this by singing simple songs that have numbers and counting in them. ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:  \u003C/strong\u003ENone  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Slowly count out loud while making eye contact with the child. This way you will be able to monitor his/her reactions, follow their interest, help her/him when needed, and encourage your child to direct her/his attention towards you. Support and encourage your child to count on their own if they are old enough to do so. Do this by singing simple songs that have numbers and counting in them. \u003C/p\u003E\u003Cp\u003EDo this activity with your child often. Count pebbles on your walk, count leaves on a branch, count steps from one house to another or the number of windows in your bedroom. \u003C/p\u003E\u003Cp\u003EYou can do this activity every day during free play or during daily routines- dressing, preparing meals, shopping or while walking. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:\u003C/strong\u003E  Numbers are all around us! Teaching your child to enjoy them is one way to develop their mathematical skills.  \u003C/p\u003E",
             "activity_category": 716,
@@ -971,7 +971,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Alphabet animals ",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:20+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:42:42+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:42\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None.  What You Can Do Together: To begin the game, the first player names any animal of their choice. The next player must then say a different animal beginning with the last letter of the previous animal. For example, the game could go as follows: giraffe, elephant, tiger, rhinoceros… If a player can’t think of an animal within one minute (or the agreed time frame), they are out of the game! ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone.  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003ETo begin the game, the first player names any animal of their choice. The next player must then say a different animal beginning with the last letter of the previous animal. For example, the game could go as follows: giraffe, elephant, tiger, rhinoceros… \u003C/p\u003E\u003Cp\u003EIf a player can’t think of an animal within one minute (or the agreed time frame), they are out of the game! \u003C/p\u003E\u003Cp\u003EAlternatively, players could work their way through the alphabet, seeing how many animals they can name for each letter. For a competitive game, award one point to whoever can name (or write down) the most animals for each letter. Whoever has the most points by the end of the alphabet wins! \u003C/p\u003E\u003Cp\u003EOnce you’ve enjoyed alphabet animals, why not try other topics, too? Following the same rules, you could play alphabet countries, towns, food or whatever takes your fancy! \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:\u003C/strong\u003E This simple word game helps children to improve their spelling and vocabulary, as well as expand their knowledge of the animal kingdom. What’s more, it can provide hours of fun on long journeys! \u003C/p\u003E",
             "activity_category": 721,
@@ -992,7 +992,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "20 Questions",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:19+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:49:02+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:49\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: none  What You Can Do Together: Inquisitive kids will love this guessing game, but they’ll need to tread carefully, as they only get to ask 20 questions!  To proceed with the game, the first player thinks of a place or object and comes up with a clue. They say to the other players, “I’m thinking of something / somewhere that _______.” For example, if they player was thinking of ‘trousers’, they would say, “I’m thinking of something that you can wear.” ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:\u003C/strong\u003E none  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EInquisitive kids will love this guessing game, but they’ll need to tread carefully, as they only get to ask 20 questions!  \u003C/p\u003E\u003Cp\u003ETo proceed with the game, the first player thinks of a place or object and comes up with a clue. They say to the other players, “I’m thinking of something / somewhere that _______.” For example, if they player was thinking of ‘trousers’, they would say, “I’m thinking of something that you can wear.” \u003C/p\u003E\u003Cp\u003EEach of the other players then takes it in turn to ask a question, trying to determine what the first player could be thinking of. The questions can only be answered with ‘yes’ or ‘no’, so players will have to think carefully about the type of question they ask. \u003C/p\u003E\u003Cp\u003EThe guessers can only ask 20 questions between them. The aim of the game is to guess the mystery word before your 20 questions run out! \u003C/p\u003E\u003Cp\u003EWhoever guesses correctly gets to be the next person to think of a word. If the players run out of questions, the player should reveal the mystery word and gets another go! \u003C/p\u003E\u003Cp\u003ETip: Set a theme for your game, like countries or sports!  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis activity is perfect for warming up the mental muscles and can be played absolutely anywhere. \u003C/p\u003E",
             "activity_category": 721,
@@ -1000,7 +1000,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [676, 681],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-12/20Questions-cover-image.webp?itok=88OABNvw",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-12/20questions-cover-image.webp?itok=SwOzwvrb",
                 "name": "20Questions-cover-image.png",
                 "alt": "20 questions"
             },
@@ -1013,7 +1013,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Guess the object ",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:19:17+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:19\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:46:14+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:46\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None.  What You Can Do Together: The first player thinks of an object that they can see around them. The other players try to guess the object by asking questions that can only be answered with ‘yes’ or ‘no’. Once the object has been correctly guessed, swap roles! If the guessers give up, the first player gets to have another go. Give the game more structure by setting a limit on the number of questions that can be asked. ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:\u003C/strong\u003E None.  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EThe first player thinks of an object that they can see around them. The other players try to guess the object by asking questions that can only be answered with ‘yes’ or ‘no’. Once the object has been correctly guessed, swap roles! If the guessers give up, the first player gets to have another go. \u003C/p\u003E\u003Cp\u003EGive the game more structure by setting a limit on the number of questions that can be asked. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:\u003C/strong\u003E Kids will need to use their best observational and detective skills to identify the mystery object in this guessing-game activity. The whole family can get involved and it's perfect for playing on the move. \u003C/p\u003E",
             "activity_category": 721,
@@ -1021,7 +1021,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [666, 671],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-12/Guess-The-Object-cover-picture.webp?itok=FyTWVbOd",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-12/guess-the-object-cover-picture.webp?itok=CIDLyTFc",
                 "name": "Guess-The-Object-cover-picture.jpg",
                 "alt": "cartoon child guessing objects"
             },
@@ -1034,7 +1034,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Finish the sentence",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:18:54+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:18\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:53:29+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:53\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None.  What You Can Do Together: Take it in turns to think of a sentence but leave one or more words out for others to fill in. For example, “The_____ cat wanted to eat some ______.\" To keep this game fast paced, don’t worry about making a complete story, just focus on short and snappy sentences that might get a giggle or two! Try to think of interesting ways to start sentences that don’t begin with ‘the’ or ‘a’. How about starting with ‘bang’ or ‘never’? ",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need:\u003C/strong\u003E None.  \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Take it in turns to think of a sentence but leave one or more words out for others to fill in. For example, “The_____ cat wanted to eat some ______.\" To keep this game fast paced, don’t worry about making a complete story, just focus on short and snappy sentences that might get a giggle or two! \u003C/p\u003E\u003Cp\u003ETry to think of interesting ways to start sentences that don’t begin with ‘the’ or ‘a’. How about starting with ‘bang’ or ‘never’? \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:\u003C/strong\u003E This hilarious group game gets kids playing with vocabulary, verbs, nouns, adjectives and tenses. There’s no limit to the number of silly sentences to make – they’re bound to have everyone in fits of giggles! \u003C/p\u003E",
             "activity_category": 721,
@@ -1042,7 +1042,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [681],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-12/Finish_My_Sentence_cover-picture.webp?itok=jFH5_Y9a",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-12/finish_my_sentence_cover-picture.webp?itok=-JyJBfVF",
                 "name": "Finish_My_Sentence_cover-picture.jpg",
                 "alt": "cartoon children talking"
             },
@@ -1055,7 +1055,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Clapping",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:18:52+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:18\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T01:57:03+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 01:57\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: None What You Can Do Together: This beautiful activity can be done at any time and place; in the garden, the bedroom or in any area that your little one feels comfortable with.To start, sit on the floor, sofa, bed or chairs and place your little one with you. Make a funny face to your little one and ask her to also do something funny or touch a part of the body. Even if she doesn't really understand how to do something funny at first, she will try to imitate everything you do soon.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EThis beautiful activity can be done at any time and place; in the garden, the bedroom or in any area that your little one feels comfortable with.\u003C/p\u003E\u003Cp\u003ETo start, sit on the floor, sofa, bed or chairs and place your little one with you. Make a funny face to your little one and ask her to also do something funny or touch a part of the body. Even if she doesn't really understand how to do something funny at first, she will try to imitate everything you do soon.\u003C/p\u003E\u003Cp\u003EWhen your little one does something funny or manages to touch a part of her body that you have asked her, congratulate her by clapping your hands. You can also say \"Bravo!\" encouraging your little one to repeat the action. Take a short pause and then repeat the action. Clap your hands and say \"Bravo!\" to see your little one's reaction. Ask to imitate the clapping. Show how to do it or grab her hands and help her the first few times. Your little one will be able to do it without help.\u003C/p\u003E\u003Cp\u003EClapping can be a difficult activity for your little one, with your help and encouragement it will be easier.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EWith this simple activity, your little one will be beginning to imitate the gestures and actions of adults, while improving the coordination of movements of their little hands and enjoying a moment with you, reinforcing the bond.\u003C/p\u003E",
             "activity_category": 716,
@@ -1076,7 +1076,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "I'm Feeding Myself",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:18:51+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:18\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:04:16+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: Small pieces of food that your baby enjoys; a place for your baby to sit with food in front of the baby.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ESmall pieces of food that your baby enjoys; a place for your baby to sit with food in front of the baby.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EThis is the age that many babies really begin feeding themselves. Your baby probably isn’t using a spoon yet, but fingers work, too! If you have not started yet, begin by putting some pieces of tasty food where your baby can reach them. She may immediately pick one up and put it in her mouth. If so, show your excitement (“You ate that all by yourself!” or “Did the fruit taste delicious?”). You could also nibble a piece yourself, showing how much you enjoyed it. Or put one piece in your baby’s mouth and see if she does the same.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EDepending on your cultural traditions and your child’s development, you may continue occasionally feeding your baby. However, encouraging self-feeding strengthens your baby’s coordination and skill in using her fingers. These are skills that, years later, help her beginning to draw and write. When you talk to your baby during this time, you’re also encouraging language development (for example, names of foods).\u003C/p\u003E",
             "activity_category": 721,
@@ -1084,7 +1084,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [651],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/I%2527m%2520Feeding%2520Myself-cover-picture.webp?itok=gdC8nwTM",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/i-m-feeding-myself-cover-picture.webp?itok=I2hjUSXr",
                 "name": "I%27m%20Feeding%20Myself-cover-picture.jpeg",
                 "alt": "A baby eating with a spoon"
             },
@@ -1097,7 +1097,7 @@ export const ActivitiesData: any = {
             "type": "Games",
             "title": "Singing Nursery Rhymes",
             "created_at": "\u003Ctime datetime=\"2025-05-22T13:18:51+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 13:18\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-11-27T02:01:40+01:00\" class=\"datetime\"\u003EThu, 11/27/2025 - 02:01\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
             "summary": "Materials You Need: NoneWhat You Can Do Together: Sing a nursery rhyme to your child, such as ‘Twinkle, Twinkle Little Star’ or ‘Humpty Dumpty’. Repeat the song adding in clapping and smiling with your child.There are lots of fun nursery rhymes that can be sung in two parts (e.g. ‘Row, Row, Row Your Boat’; ‘Twinkle, Twinkle Little Star’). Infants at the speaking stage can be given their own line or lines to say once they’re familiar with the rhymes.",
             "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003ESing a nursery rhyme to your child, such as ‘Twinkle, Twinkle Little Star’ or ‘Humpty Dumpty’. Repeat the song adding in clapping and smiling with your child.\u003C/p\u003E\u003Cp\u003EThere are lots of fun nursery rhymes that can be sung in two parts (e.g. ‘Row, Row, Row Your Boat’; ‘Twinkle, Twinkle Little Star’). Infants at the speaking stage can be given their own line or lines to say once they’re familiar with the rhymes.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:  \u003C/strong\u003EThis activity is great for developing speech and hearing in young children. Simple rhymes help kids to pronounce words by building phonemic awareness through repeating difficult sound groups. The activity also encourages kids to become good listeners, as the rhymes often have a narrative, meaning children must keep listening to hear the whole story! Teaching your child when to sing their part in the rhyme is great for building social skills – such as turn-taking in conservation and listening.\u003C/p\u003E",
             "activity_category": 721,
@@ -1105,7 +1105,7 @@ export const ActivitiesData: any = {
             "type_of_support": 17186,
             "child_age": [626, 631, 636, 641, 646, 651, 656, 661, 666],
             "cover_image": {
-                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/Singing%2520nursery%2520rhymes%2520-cover-picture.webp?itok=_ad-JBTG",
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/singing-nursery-rhymes-cover-picture.webp?itok=K44PPRVP",
                 "name": "Singing%20nursery%20rhymes%20-cover-picture.png",
                 "alt": "illustration of Singing nursery rhymes"
             },
@@ -1114,13 +1114,606 @@ export const ActivitiesData: any = {
             "embedded_images": []
         }
     ],
-    "WSsm": [
+    "ws-sm": [
 
     ],
-    "FJen": [
-
+    "fj-en": [
+        {
+            "id": 5486,
+            "type": "Games",
+            "title": "Buzzing Bee",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:41+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T02:09:44+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 02:09\u003C/time\u003E\n",
+            "summary": "Materials You Need: A large blanket or soft surface.What You Can Do Together: For your baby, everything is entirely new, and she must develop her senses little by little to be able to know her environment. With this game, your baby will learn to locate the sounds coming from the outside and the touch in different parts of her body.Before you start, you must have the place of play prepared. You should first lay your baby on her back on the blanket or soft surface and sit close so she can hear you.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA large blanket or soft surface.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EFor your baby, everything is entirely new, and she must develop her senses little by little to be able to know her environment. With this game, your baby will learn to locate the sounds coming from the outside and the touch in different parts of her body.\u003C/p\u003E\u003Cp\u003EBefore you start, you must have the place of play prepared. You should first lay your baby on her back on the blanket or soft surface and sit close so she can hear you.\u003C/p\u003E\u003Cp\u003ESecond, imitate the buzzing of a bee while moving your finger over its body. You must make sure that the baby is paying attention. After a few seconds of creating the buzzing of a bee, touch it with your finger and say: \"Buzz.\" Repeat the game, landing on different parts of his body.\u003C/p\u003E\u003Cp\u003EThen repeat the game, but this time follow the movement of the finger with your head. In this way, your baby will locate the sound and relate it to the movement. You can also alternate the tone of the buzz to maintain interest and develop the perception of different sounds.\u003C/p\u003E\u003Cp\u003ELastly, lay your baby on her stomach and repeat the game. This time the baby will not see how the finger moves and will have to wait for the \"buzz\" to reach her body.\u003C/p\u003E\u003Cp\u003ERemember always to have a calm and smiling gesture that transmits a positive message to your baby. Your baby is very delicate, so you should always touch her gently, and the sound you make should not be too loud. If you notice that your baby is scared, start slow and quiet, and increase sound and interaction.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis fun game helps your little one start to have better control of her head and neck and develop the sense of hearing by locating sounds and getting to know her body through the sense of touch. With these types of activities, your little one begins to develop social interaction skills\u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [631],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/buzzing-bee-cover-picture.webp?itok=ne0a69Os",
+                "name": "Buzzing%20Bee-cover-picture.jpg",
+                "alt": "A father doing \"buzzings\" to his baby."
+            },
+            "related_milestone": [5481],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 5386,
+            "type": "Games",
+            "title": "Search for sound",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:41+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T02:09:32+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 02:09\u003C/time\u003E\n",
+            "summary": "Materials You Need: None.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EJust as children love to search for treasure, they are happy to go in search for sounds. All you need to do is to start the habit of stop and listening well in order to catch all the sounds in the room or around you. Stay quiet for a bit and encourage your child to do the same. Say something like \"shhhhh, let's hear what sound we can catch\" and then point to your ears. You may hear pounding, whining, creaking, rattling, scratching, chattering. Encourage the child “Let’s see if we can collect the sounds we can hear. I can hear the clock ticking, the bus passing, the neighbor arriving by elevator.” Use lots of interesting words like that - even if your child doesn't understand them yet.  \u003C/p\u003E\u003Cp\u003EIf the child is older, you can also ask the question \"Where could I find this sound?\" (And then imitate it). Let him enjoy the feeling of discovery and making the connection between the sound and the object that makes it, by naming it. In that way, the language will connect with the concepts and enrich the vocabulary as well. \u003C/p\u003E\u003Cp\u003EYou can use this activity in practically every life situation - during free play and free time, but also during daily routines - dressing, preparing meals, hygiene routine, shopping,  walking, driving, and (if local health requirements permit) waiting for the bus or for your turn at the bank, post office, or at the doctor.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour child is looking forward to activities with you and as you play together he imitates facial expressions, gestures, and some activities of close people, points with her index finger to what interests him, or offers things to other people in order to interest them and involve them in the game. This activity builds his vocabulary and knowledge of the world. Let your child explore the surroundings and tell you what he hears, even with babbling or simple words.\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [656],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/art_3230.webp?itok=uQ2Yakk3",
+                "name": "ART_3230.JPG",
+                "alt": "Potraga za zvukom"
+            },
+            "related_milestone": [5381],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 5366,
+            "type": "Games",
+            "title": "Nature Counting",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:41+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T02:09:14+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 02:09\u003C/time\u003E\n",
+            "summary": "Materials You Need: Clipboard, Paper, Pencil.Optional extra equipment: Magnifying glass, binoculars.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EClipboard, Paper, Pencil.\u003C/p\u003E\u003Cp\u003E\u003Cem\u003EOptional extra equipment: \u003C/em\u003EMagnifying glass, binoculars.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003ETake your child/children outside to explore the natural world. What different kinds of plants and animals can they spot? Get them to stop and look in different places and record their fascinating finds – from up in the treetops to under rocks and stones. They can record their finds in different ways. Perhaps they could make a chart, keeping a tally of all the different plants they find? Or maybe they’d enjoy drawing and labeling the animals and insects they discover? Another fun option would be to introduce a memory game – challenge them to learn a list of the different animals/insects/plants/birds they spot and see if they repeat it out loud. For example, “Today I counted five ducks, three butterflies, one frog, two ladybirds…”. The most important thing is that they have lots of fun as they learn about the world around them!\u003C/p\u003E\u003Cp\u003EThere are more insects in one square mile of empty field than there are people in the world!\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EGetting your child to investigate, name and count the wildlife they can see is a playful challenge for their senses -– and one that reveals the impressive variety of plants and animals that live around them. It’s a great way for them to learn new vocabulary and improve their numeracy skills, too!\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [676],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/naturecounting_cover-picture.webp?itok=ULTEqWyl",
+                "name": "naturecounting_cover-picture.png",
+                "alt": "Illustration of Nature counting"
+            },
+            "related_milestone": [5361],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 5266,
+            "type": "Games",
+            "title": "It Is Fun to Play Together",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:41+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T01:55:56+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 01:55\u003C/time\u003E\n",
+            "summary": "Materials You Need: Nothing special — anything you are using to play with your baby.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENothing special — anything you are using to play with your baby.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EPlay is something that you can do with your baby almost any time. The activities in this resource have many great ideas for what to do. Whatever your game is, encourage your child to be eager and excited to play. For example, you might pick up your baby and say in an excited way, “Look! We are going to look at these things together!” while showing your baby what you will play. Or you might see that your baby’s face already shows eagerness and you could say “I see that you are awake from your nap. Are you ready to play? I am ready! Let’s go!” You don’t need to make your child extremely excited, but create a warm, pleasant feeling for this time together. And of course, if you see that your baby is becoming fussy or tired during the play, bring it to an end or introduce something a bit different.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EAt this age and every age from now on, play becomes the most important way that your child will learn. However, learning will happen best if your child is eager to play. By making playtime enjoyable, you are doing one more thing to build the foundation for early learning, every day.\u003Cstrong\u003E  \u003C/strong\u003E\u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [641],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/it-is-fun-to-play-together-cover-picture.webp?itok=c0tH9c8-",
+                "name": "It%20Is%20Fun%20to%20Play%20Together-cover-picture.jpg",
+                "alt": "A father playing with his baby"
+            },
+            "related_milestone": [5261],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 5171,
+            "type": "Games",
+            "title": "Bus Pick Up",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:41+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:29:47+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:29\u003C/time\u003E\n",
+            "summary": "Materials You Need: Chairs; Props (optional); Money or tokens (optional)What You Can Do Together: Arrange the chairs to resemble the inside of a bus – have one chair at the front for the driver, and a set of chairs behind for the passengers. The more chairs and players, the better the game!Nominate one player to be the driver and get them to take their seat at the front and simulate driving. Encourage them to have fun acting out their role as they pretend to turn corners, stop at traffic lights, beep the horn etc.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EChairs; Props (\u003Cem\u003Eoptional\u003C/em\u003E); Money or tokens (optional)\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EArrange the chairs to resemble the inside of a bus – have one chair at the front for the driver, and a set of chairs behind for the passengers. The more chairs and players, the better the game!\u003C/p\u003E\u003Cp\u003ENominate one player to be the driver and get them to take their seat at the front and simulate driving. Encourage them to have fun acting out their role as they pretend to turn corners, stop at traffic lights, beep the horn etc.\u003C/p\u003E\u003Cp\u003EThe other players stand to one side at their imaginary bus stops, waiting for the driver to collect them. Every so often, the driver should ‘come to a stop’ and announce which stop they have arrived at – example stops could be the park, the town centre, the zoo, the library and the school. Passengers are then free to board the bus, take a seat and begin their journey!\u003C/p\u003E\u003Cp\u003EIt may be a good idea to establish a bus route before the game begins – this way passengers can decide on a destination, board the bus, alight and wait for the bus to return before continuing their trip. You could also have the passengers buy tickets or use tokens – this is a great way for kids to practise counting and mental arithmetic.\u003C/p\u003E\u003Cp\u003EThe main aim is that players have lots of fun exploring their imagination and putting their improvisation skills to the test! Where will they head to on their exciting journey…?\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis exciting group (or family) game encourages kids to use their imagination and improvise as they set out on a make-believe bus journey! It can be used as a fun way to practise arithmetic and numeracy skills, too.\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [681],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/bus-pick-up-cover-picture.webp?itok=9ziQ46KX",
+                "name": "Bus%20pick%20up-cover-picture.jpg",
+                "alt": "Family playing with their children"
+            },
+            "related_milestone": [],
+            "mandatory": 0,
+            "embedded_images": []
+        },
+        {
+            "id": 5156,
+            "type": "Games",
+            "title": "Blanket Game",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:41+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T01:55:26+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 01:55\u003C/time\u003E\n",
+            "summary": "Materials You Need: Soft blanket; Dining chair. ",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ESoft blanket; Dining chair. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EBefore starting the activity, place your little one in the chair to eat and you sit in front of her. Cover your head using a blanket. Say \"\u003Cem\u003E Peekaboo!\u003C/em\u003E \" when you remove the blanket from your head and show your face to the child. This game will cause laughter between you and your little one, the more you play the more fun it will be. Now try to cover your little one's head and pull the blanket to see her little face. You can try covering her head with the blanket and letting her explore how to remove it. Remember to say \"\u003Cem\u003EPeekaboo!\u003C/em\u003E\" every time you take off the blanket.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EStimulate the visual perception and critical thinking of your little one so that she discovers her face and follows the game. More importantly, the baby gets used to your face appearing and disappearing gradually.\u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [646],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/blanket_game-cover-picture.webp?itok=QyyqSGyF",
+                "name": "blanket_game-cover-picture.jpg",
+                "alt": "Smiling baby peeks out from under the blanket"
+            },
+            "related_milestone": [5151],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4956,
+            "type": "Games",
+            "title": "Where Can You Kick It?",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:40+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T01:55:09+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 01:55\u003C/time\u003E\n",
+            "summary": "Materials You Need: One or more balls (if you do not have the balls, you can make them from crumpled paper or rolled-up socks); A cardboard box larger than the balls; Other targets at which your child can kick a ball (for example, a stick laid down on the ground).",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EOne or more balls (if you do not have the balls, you can make them from crumpled paper or rolled-up socks); A cardboard box larger than the balls; Other targets at which your child can kick a ball (for example, a stick laid down on the ground).\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EInvite your child to play a game: “Can you kick your ball? Good! Now let’s try something harder. Can you stand here and kick the ball into that box (box turned on its side with the open end toward the child)? Just use your feet, not your hands. Try again, it’s not easy! Maybe you can stand closer.” Your suggestions depend on your child’s skill and interest. You can make it more challenging: “Now let’s try something different. Can you stand here and kick the ball so that it goes all the way to that stick? Wow, that is good kicking!”\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003ENow your child is developing more advanced physical skills. This and similar activities help your child learn to control their movements. Your child is also developing her or his thinking ability, as your child plans how hard to kick the ball, or what angle will be best so that the ball ends up in the box.\u003C/p\u003E",
+            "activity_category": 706,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [676, 681],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/where-can-you-kick-it-cover-picture.webp?itok=YUmIr0s8",
+                "name": "Where%20Can%20You%20Kick%20It-cover-picture.jpg",
+                "alt": "A girl kicking the ball"
+            },
+            "related_milestone": [4951],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4741,
+            "type": "Games",
+            "title": "Flying Imagination",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:40+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T01:54:50+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 01:54\u003C/time\u003E\n",
+            "summary": "Materials You Need: NoneWhat You Can Do Together: Get your kids to imagine what it would be like to fly. Where would you go? Who would you see? How fast would you travel?Kids could imagine what it might be like to visit the moon, or perhaps they’d use their flying powers to do good, like rescuing animals stuck in high places.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EGet your kids to imagine what it would be like to fly. Where would you go? Who would you see? How fast would you travel?\u003C/p\u003E\u003Cp\u003EKids could imagine what it might be like to visit the moon, or perhaps they’d use their flying powers to do good, like rescuing animals stuck in high places.\u003C/p\u003E\u003Cp\u003EBe sure to probe for details– what do you think it smells like 5000m in the air? What does it feel like on your skin? There are no wrong answers, the sky’s the limit! Did you know that the world’s fastest bird is the peregrine falcon? These brilliant birds can reach speeds of up to 240 miles per hour!\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EImaginative kids will love letting their imaginations run wild as they picture what it would be like to fly! This activity is all about communication, as your kids learn to vocalise their thoughts, feelings and flying fantasies.\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [681],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.webp?itok=zAIa0MDm",
+                "name": "flying_imagination-cover-picture.jpg",
+                "alt": "Illustration of Flying imagination"
+            },
+            "related_milestone": [4736],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4846,
+            "type": "Games",
+            "title": "Imagination Game",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:40+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:29:23+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:29\u003C/time\u003E\n",
+            "summary": "Materials You Need: NoneWhat You Can Do Together: Answer in some way whenever your baby grunts. Let it be a real little \"conversation\" - talk to the baby in a gentle voice, smile at them as you talk; while talking, take short breaks from time to time to give your baby a chance to get involved; at some point, the baby will start making simple noises. Speak in a high or low tone, try whisper and singing. Do this alternately with the baby. Repeat the sounds they make.  ",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAnswer in some way whenever your baby grunts. Let it be a real little \"conversation\" - talk to the baby in a gentle voice, smile at them as you talk; while talking, take short breaks from time to time to give your baby a chance to get involved; at some point, the baby will start making simple noises. Speak in a high or low tone, try whisper and singing. Do this alternately with the baby. Repeat the sounds they make.  \u003C/p\u003E\u003Cp\u003EPlace the baby face to face with you - the baby will watch you as you make those sounds. The baby in this position can watch you change your facial expression (big smile, outstretched tongue, wide eyes, raised eyebrows, puffy cheeks, or blowing). Observe the baby and if you notice that some of these expressions scare them, quickly change your facial expression, and after a while try again with a softened facial expression. Remember that every baby is different and reacts in different ways. In this game, keep an expression for a while to give your baby a chance to try to create a new facial expression by watching and imitating you. Repeat what the baby does. \u003C/p\u003E\u003Cp\u003EAnother idea is to show the baby a doll, or put a small sock on your finger. Say the baby's name as you move the doll or sock up and down like a puppet. Make sure the baby is following that movement. Then move your finger around. Every time you see your baby following the doll's movements, try a new movement. \u003C/p\u003E\u003Cp\u003EThese are very convenient routines while changing diapers, but also can be used in any free moment you spend with the baby.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EAt this stage, the best toy - that fascinates the baby the most - is you! Your face, your voice, your hands, your body. Your baby learns to communicate with you and observes people's faces carefully and in detail, maintains long eye contact.\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [636],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/marcin-jozwiak-B46mx7HGOPk-unsplash.webp?itok=u4OVCf05",
+                "name": "marcin-jozwiak-B46mx7HGOPk-unsplash.jpg",
+                "alt": "Imagination  Game"
+            },
+            "related_milestone": [4841],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 6811,
+            "type": "Games",
+            "title": "Pretending with My Doll",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:13+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:28:57+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:28\u003C/time\u003E\n",
+            "summary": "Materials You Need: A doll or a stuffed animal or anything similar; A few other materials like a small cup and a blanket or cloth; Anything else that your child might use to pretend.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA doll or a stuffed animal or anything similar\u003Cstrong\u003E; \u003C/strong\u003EA few other materials like a small cup and a blanket or cloth\u003Cstrong\u003E; \u003C/strong\u003EAnything else that your child might use to pretend.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your child is beginning to “play pretend”— to use objects to create simple scenes that are familiar to your child. You can encourage this kind of play in simple ways. Sit with your child, take a favourite doll, soft bear or other similar toy (even made from socks and cloth) and pretend that the doll is a baby. You might rock the doll, sing a little song, “feed” with a cup, or tuck into a pretend bed — anything at all, but keep it simple. Put the doll down and see what your child does. They might do what you did or use the materials in a different way. You can describe what your child is doing — “Oh, is your baby sleepy? You are saying good-night!” Keep playing as long as your child is interested. Leave the materials where your child can find and use them again on their own. Add new materials from time to time to keep an interest high.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child Is Learning: \u003C/strong\u003EThis kind of play stimulates your child’s thinking skills as they pretend one object (such as a little toy bear) is something else (such as a real baby). This kind of thinking builds foundations for later academic competence. It also stimulates creativity and imagination and strengthens your bonds with your child as you spend time in enjoyable, playful activities.\u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [656],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/pretending-with-my-doll-cover-picture.webp?itok=posK0etz",
+                "name": "Pretending%20with%20My%20Doll-cover-picture.jpg",
+                "alt": "Girl pretending to make a meal for her toys"
+            },
+            "related_milestone": [6816],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 6636,
+            "type": "Games",
+            "title": "Helping Your Baby Self-Soothe",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:12+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:28:10+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:28\u003C/time\u003E\n",
+            "summary": "Materials You Need: Items you would usually put in or near your baby’s crib or other place where the baby is put to lie down. ",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EItems you would usually put in or near your baby’s crib or other place where the baby is put to lie down. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EIt is still important to attend to your baby when they are distressed. However, you will notice that your baby becomes better at calming themselves at least for a short while. You can help your baby by making sure that safe items, that may help your baby self-soothe, are nearby. For example, is there a soft toy your baby likes to touch? Is there a colourful mobile or picture that is easy for baby to see? Are your baby’s hands in a position in which they can suck on them if that calms your baby? Before immediately going to your baby, pause and look for a while to see if your baby is beginning to be able to make or keep themself calm briefly.   \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour baby knows that they can depend on you to make things better. But your baby is also learning that they can do things to keep themself calm. Self-soothing is an important thing to learn, beginning now but developing in the coming months and years. As always, your loving support is essential. \u003C/p\u003E",
+            "activity_category": 711,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [631],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/hollie-santos-autvhsu8uzk-unsplash.webp?itok=jaRzd1sH",
+                "name": "hollie-santos-aUtvHsu8Uzk-unsplash.jpg",
+                "alt": "Mother with baby in arms"
+            },
+            "related_milestone": [6641],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 6651,
+            "type": "Games",
+            "title": "Take Hat Off",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:12+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:28:26+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:28\u003C/time\u003E\n",
+            "summary": "Materials You Need: Various hats of different sizes or shapes; one chair.What You Can Do Together: Place your little one sitting on a chair or a comfortable surface. He/She can be sitting on the floor, sit in front of him/her and start the activity.Put on your hat first and tell him/her: “look at Mommy with the hat!” This is a hat, followed by that instruction, take off your hat and tell him/her: “Now it's your turn!”",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EVarious hats of different sizes or shapes; one chair.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EPlace your little one sitting on a chair or a comfortable surface. He/She can be sitting on the floor, sit in front of him/her and start the activity.\u003C/p\u003E\u003Cp\u003EPut on your hat first and tell him/her: “look at Mommy with the hat!” This is a hat, followed by that instruction, take off your hat and tell him/her: “Now it's your turn!”\u003C/p\u003E\u003Cp\u003EPlace the hat on your little one's head and tell him/her: now take it off yourself, and you can mimic how the hat should be removed. At this age, you must celebrate his/her triumphs. When he/she takes off his/her hat, you can applaud or say: “Very well done!” Another method would be for you and your little one to have a hat and for both of you to take it off at the same time, or for him/her to take it from you and you from him/her.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis activity will help your little one tostrengthen motor movements, develop social interaction and language skills. Your child learns to sit without any support.\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [646],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/take_hat_out-cover-picture.webp?itok=5j067fTi",
+                "name": "take_hat_out-cover-picture.jpg",
+                "alt": "A child wearing a big black hat"
+            },
+            "related_milestone": [6656],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 6801,
+            "type": "Games",
+            "title": "Massage",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:38:12+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:38\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:28:42+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:28\u003C/time\u003E\n",
+            "summary": "Materials You Need: None; body cream or oil are optional.What You Can Do Together: We will start from the feet and move towards the head. You can first rub your hands against each other to warm them up. Using body cream or oil is optional. Lay your baby on a flat, soft surface so he/she can be comfortable.Feet: Take one of their feet and rotate your baby's foot left to right and right to left a few times. Then massage your baby's foot from ankle to toes. Switch feet and repeat.",
+            "body": "\u003Cp\u003EMaterials You Need: None; \u003Cem\u003Ebody cream or oil are optional.\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EWe will start from the feet and move towards the head. You can first rub your hands against each other to warm them up. Using body cream or oil is optional. Lay your baby on a flat, soft surface so he/she can be comfortable.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EFeet:\u003C/strong\u003E Take one of their feet and rotate your baby's foot left to right and right to left a few times. Then massage your baby's foot from ankle to toes. Switch feet and repeat.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EPalms:\u003C/strong\u003E Use your thumbs to trace circles on the palms of the baby's feet. Change feet and repeat.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EToes:\u003C/strong\u003E To finish off the feet, grasp each of your baby's feet between your thumb and index finger and gently pull your baby's toes until your fingers slide off your baby's toes. Do this for each of your baby's 10 toes.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:  \u003C/strong\u003EStudies suggest that massage can provide different health benefits. For example, massages to children can help to increase the interaction between the child and the mother/ father and help the baby relax by reducing crying and reducing stress hormones.\u003C/p\u003E",
+            "activity_category": 706,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [626],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/massage-cover-picture.webp?itok=RdPJGXE-",
+                "name": "massage-cover-picture.jpeg",
+                "alt": "A parent making massage to a baby"
+            },
+            "related_milestone": [6806],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 6376,
+            "type": "Games",
+            "title": "Family Interview",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:37:30+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:27:37+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:27\u003C/time\u003E\n",
+            "summary": "Materials You Need: NoneWhat You Can Do Together: Decide who’s first in the questioning seat and encourage your kids to ask them questions! Need some inspiration? Try starting with the questions below and see where the conversation takes you!     1. Did you have any pets growing up?     2. Do you prefer winter or summer? Why?     3. What’s your favourite meal?",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EDecide who’s first in the questioning seat and encourage your kids to ask them questions! Need some inspiration? Try starting with the questions below and see where the conversation takes you!\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     1. Did you have any pets growing up?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     2. Do you prefer winter or summer? Why?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     3. What’s your favourite meal?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     4. Have you ever lived in another country? Would you like to? Where?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     5. What’s your favourite song?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     6. Have you ever broken a bone?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     7. What was the last film you watched?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cem\u003E     8. If you could go back in time and meet someone from history, who would it be?\u003C/em\u003E\u003C/p\u003E\u003Cp\u003ENow encourage kids to think of their own questions –– they don’t have to be sensible! How about asking what animal they’re most like, or the food they would eat every day for the rest of their life? Have fun with it!\u003C/p\u003E\u003Cp\u003EMake this activity more fun by encouraging your kids to pretend to be a red carpet reporter!\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EInquisitive kids will be a natural at this activity, where they get to put their family (that’s you!) in the questioning seat! It’s a sure way to build on their social and communication skills and learn something new about you, in the process.\u003C/p\u003E",
+            "activity_category": 711,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [681],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/family_interview-cover-picture.webp?itok=7tG2q9YW",
+                "name": "family_interview-cover-picture.jpg",
+                "alt": "Illustration of Family interview"
+            },
+            "related_milestone": [6381],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 6496,
+            "type": "Games",
+            "title": "Saying \"No\" with Love",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:37:30+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:27:57+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:27\u003C/time\u003E\n",
+            "summary": "Materials You Need: NoneWhat You Can Do Together: At this age, your baby is most likely beginning to crawl. This means that he/she is starting to explore all sorts of things in the environment—including things that may be dangerous. You may find that you want or need to tell your baby “NO.” How can you do this in a loving, effective way? A few tips:",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your baby is most likely beginning to crawl. This means that he/she is starting to explore all sorts of things in the environment—including things that may be dangerous. You may find that you want or need to tell your baby “NO.” How can you do this in a loving, effective way? A few tips:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003E“Babyproof” the environment to eliminate dangerous items that your child might be able to reach.\u003C/li\u003E\u003Cli\u003EUse the specific word “no” as little as possible. If you see your baby moving towards an unsafe object or place, distract or move him/her gently to another interesting item.  You might say “Let’s find something safe to play with.”\u003C/li\u003E\u003Cli\u003ETry to use other words, don't always “no.”  Using “Stop” or “Dirty! Make you sick!” may get the same idea across.\u003C/li\u003E\u003Cli\u003EBecause your baby won’t understand “no” at first, if you say it, move close to your child and, at the same time, explain briefly (“Ouch! That can hurt you!”) and use a serious tone of voice. \u003C/li\u003E\u003Cli\u003EMake most of what your baby hears be “yes,” not “no”!\u003C/li\u003E\u003C/ul\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour baby needs to explore and move his or her body, but this has to happen safely.  You are helping keep your baby safe and teaching him/her, gradually, to avoid things that are not safe. Your baby is learning to connect a word or phrase (“no” or “stop” or “don’t use that”) with an object or situation. This is important for the development of thinking and language. At the same time, he/she is learning to trust that you will keep him/her safe and will help him/her to find good and safe things to do.\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [646],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/saying-no-with-love-cover-picture.webp?itok=ubCkQ9Nr",
+                "name": "Saying%20No%20with%20Love-cover-picture.jpg",
+                "alt": "A baby crawling from under the covers"
+            },
+            "related_milestone": [6501],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 6226,
+            "type": "Games",
+            "title": "Balancing",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:37:30+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:27:22+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:27\u003C/time\u003E\n",
+            "summary": "Materials You Need: A comfortable chair.What You Can Do Together: Your baby has just been born and barely understands what is going on around her. Their world is so tiny and he/she has a lot to discover. Do this exercise to help you use your sense of sight and explore your surroundings in the most stimulating way possible.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA comfortable chair.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Your baby has just been born and barely understands what is going on around her. Their world is so tiny and he/she has a lot to discover. Do this exercise to help you use your sense of sight and explore your surroundings in the most stimulating way possible.\u003C/p\u003E\u003Cp\u003ETo start, you should carry your baby and sit in a comfortable chair. Now hold your baby so that his/her back is in the same direction as your legs. Support his/her head with both hands and his/her back with your arms; in this way, you will be transmitting security.\u003C/p\u003E\u003Cp\u003EIt is time to get their attention so they can fix their gaze on your face. To do this, you can call him/her by their name, sing them a nice song, recite a nursery rhyme or simply talk nice and positive things to him/her.\u003C/p\u003E\u003Cp\u003EOnce you've made sure you have their attention, slowly swing your baby from side to side. Keep drawing their attention at all times with beautiful words or songs; you can try different positions to vary the exercise.\u003C/p\u003E\u003Cp\u003EIf you notice that your baby has stopped looking at you, stop and get their attention again. Repeat the exercise until you see that your baby is tired. You should never force the baby to continue playing, as it will become an uncomfortable exercise, and the purpose will not be fulfilled.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis exercise will help your baby to coordinate the movement of their eyes to focus his/her gaze on an object, in addition to helping them to recognize your face or that of nearby adults, improve social interaction and stimulate the development of body balance.\u003C/p\u003E",
+            "activity_category": 706,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [626],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/balancing-cover-picture.webp?itok=WojKNxHJ",
+                "name": "balancing-cover-picture.jpg",
+                "alt": "The parent is holding the baby supporting his or her head and the baby is attentively looking at the parent."
+            },
+            "related_milestone": [6231],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 5801,
+            "type": "Games",
+            "title": "Cloud Watching",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:37:30+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:37\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:27:07+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:27\u003C/time\u003E\n",
+            "summary": "Materials You Need: None ",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EGet your child/children to lie on their back(s), get comfortable and simply let their eyes explore the sky. Make sure they know not to look directly at the sun. What cloud shapes can they see? Get them to count the clouds and think of ways to describe them. Do they look fluffy, feathery, round, heavy? Do they resemble anything, such as animals or cartoon characters? Are they moving and changing shape? As an individual activity, they could make colourful sketches of what they see. Or, if cloud-watching in a group, the children could take it in turns to tell a story about the cloud ‘characters’.\u003C/p\u003E\u003Cp\u003ECloud watching can be even more magical at twilight. Watch as the clouds absorb the colours of the sunset before fading into the night sky!\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003ETaking time out to stare at the sky gives children a break from a sometimes hectic schedule, challenging feelings, or a rut of boredom. They can stop and learn to simply \"be in a moment\", a useful skill for self-awareness, emotional regulation, and wellbeing. Cloud spotting can also be a fresh source of creative inspiration for ideas, drawings, and stories. Just sit back and watch their imagination grow.\u003C/p\u003E",
+            "activity_category": 711,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [666],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/cloudwatching-cover-picture.webp?itok=aNbY_m9B",
+                "name": "cloudwatching-cover-picture.png",
+                "alt": "Illustration of Cloud watching"
+            },
+            "related_milestone": [5796],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4691,
+            "type": "Games",
+            "title": "Finding Two! Or Three!",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:25:12+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:25\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T02:08:31+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 02:08\u003C/time\u003E\n",
+            "summary": "Materials You Need: Everyday objects that can be found around your home: spoons, articles of clothing, books or magazines, crayons or pencils.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EEveryday objects that can be found around your home: spoons, articles of clothing, books or magazines, crayons or pencils.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EGo on a hunt for two or three items together. To begin, you could say, “Look at all the spoons. Can we find TWO spoons? Oh, here is one, and here is another. That is TWO spoons!” Then you can invite your child to find two more spoons. Put them together.  At a different time, find something different, such as apples — “Let’s get TWO apples, one for you and one for me!” \u003C/p\u003E\u003Cp\u003EDepending on your child’s interest and skill, you might find and count larger numbers of objects. Always make these items that your child is interested in and that have everyday meaning. The activity can be a part of a daily routine, such as preparing a meal — “Please find three cups, one for you, one for me, and one for dad/grandma/grandpa.”  Sometimes your child might also enjoy drawing a picture of (for example) two oranges. You might also look for two or three different objects in a magazine, and if it is an old magazine, cut out the pictures to paste in a book or on a separate sheet of paper.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour child is developing their understanding of numbers—not just counting by memory but connecting those numbers with actual groups of objects. By making this part of everyday life, you are helping your child become curious and eager about math, even at this young age. At the same time, your child is understanding more about how objects may “belong together”— part of learning how to sort and classify. \u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [671],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/finding-two-or-three-cover-picture.webp?itok=xpg1tKQ5",
+                "name": "Finding%20Two%20or%20Three-cover-picture.jpg",
+                "alt": "Child counting objects"
+            },
+            "related_milestone": [4686],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 5931,
+            "type": "Games",
+            "title": "I Love You My Little One",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:24:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:26:53+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:26\u003C/time\u003E\n",
+            "summary": "Materials needed: NoneWhat You Can Do Together: The game consists of holding your baby in your arms while you are rocking her/him, at the same time say the words \"I love you my little one\". Then kiss a part of her/his body: head, nose, toes.The more you cuddle, caresses, and hold your baby, the more self-confident and independent he/she will be when grows up.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials needed:\u003C/strong\u003E None\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together\u003C/strong\u003E: The game consists of holding your baby in your arms while you are rocking her/him, at the same time say the words \"I love you my little one\". Then kiss a part of her/his body: head, nose, toes.\u003C/p\u003E\u003Cp\u003EThe more you cuddle, caresses, and hold your baby, the more self-confident and independent he/she will be when grows up.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning\u003C/strong\u003E: Remember that it is always important to maintain communication with your baby, as the touch of your hands is the first step for parent-child communication.\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [636],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-09/i-love-you-my-little-one-cover-picture.webp?itok=c3C78tx9",
+                "name": "I Love You My Little One-cover-picture.jpg",
+                "alt": "A mother casting a loving glance at her child "
+            },
+            "related_milestone": [5331, 5936],
+            "mandatory": 0,
+            "embedded_images": []
+        },
+        {
+            "id": 4496,
+            "type": "Games",
+            "title": "Me and My Friends",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:23:33+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:23\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
+            "summary": "Materials You Need: Simple playthings or outdoor materials; A safe, well-supervised place for a small number of children to play together.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ESimple playthings or outdoor materials; A safe, well-supervised place for a small number of children to play together.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your child is beginning to play together with others of his/her age—not just side by side but starting to do things together. If possible, bring a small number of children together, at first for short playtimes (unless your child has had many opportunities in childcare programs). In some locations, public parks or playgrounds are good places to find a few playmates, health restrictions permitting. Watch for signs of your child showing interest in playing with another child. If they don’t seem to know what to do, you might make a suggestion or offer objects: “Look, here are two spoons, one for each of you. Can you dig a hole together? Can you dig a really, really big one?” It’s important to supervise for safety and to support children if there are conflicts. Remember that they don’t have a lot of words yet, and their social skills are at an early stage.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour child is beginning to enjoy social interactions outside his family. In school and in life, social competence will be important and will give him pleasure. Your child will also need his thinking skills to plan what to do and how to play with other children, and will develop a greater ability to manage or “regulate” his/her emotions so that the play can continue.\u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [666],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/me-and-my-friends-cover-picture.webp?itok=qbF8w2NE",
+                "name": "Me%20and%20My%20Friends-cover-picture.jpg",
+                "alt": "Two children playing together outside and trying to dig a hole in the ground"
+            },
+            "related_milestone": [4491],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4666,
+            "type": "Games",
+            "title": "Imitation",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:22:07+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T02:08:15+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 02:08\u003C/time\u003E\n",
+            "summary": "Materials You Need: None.    ",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone.    \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EFor this activity, you may use all the free moments when you are face to face with your child - such as changing diapers, mealtimes etc. Attract your child's attention by asking \"What kind of face does a … have?\" and then make a specific facial expression, for example like a fish: suck in your cheeks and move your pursed lips like a fish or, for example, like a bunny: twitch your nose like a bunny… There can also be different facial expressions - angry, sad, scared but also head movements – nodding, turning the head from side to side, hand movements - patting, waving… Wait for your child to look at your action long enough and try to imitate it. Be patient and repeat a movement or facial expression if needed. Give your child a short instruction she can understand - \"Come on, you try it!\" or (if your child is a bit older), \"Can you open your mouth like a fish? Let me see!\" and thereby encourage him/her. When your child repeats an expression or movement, always name what he/she did, because in that way you will encourage speech development. You should also imitate your child’s movements or expressions and give them a name. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYou will be helping your child to follow very simple directions, an important step in the development of your child's thinking, speech development, and socio-emotional development.\u003C/p\u003E",
+            "activity_category": 711,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [656],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/ana-tablas-ob0xblwcamw-unsplash.webp?itok=ABGLYVid",
+                "name": "ana-tablas-oB0xbLwcaMw-unsplash.jpg",
+                "alt": "Mother with her daughter"
+            },
+            "related_milestone": [4661],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4561,
+            "type": "Games",
+            "title": "Making a Picture Schedule",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:22:07+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:22\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
+            "summary": "Materials You Need: Paper and markers or pens and pencils; One or more picture books (If you do not have any, you can make a simple one by pasting magazine pictures onto pages and putting together, or drawing simple pictures); Magazine pictures if you have some; Tape to hang up the schedule.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EPaper and markers or pens and pencils; One or more picture books (If you do not have any, you can make a simple one by pasting magazine pictures onto pages and putting together, or drawing simple pictures); Magazine pictures if you have some; Tape to hang up the schedule.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, children are aware that events often happen in a sequence (first, second, last) and at certain times. As they begin school, schedules become important to them. Many children enjoy and are helped by having a simple picture schedule. With your child, you can make one that shows your typical routine at home.\u003C/p\u003E\u003Cp\u003ETake a large piece of paper and some markers. You can number the steps in the day’s routine. Then think with your child: “Every day, what is the first thing you do? Oh, Get Up!” and then help your child to draw something such as her or his bed. You can print the words or help your child do some of that. If there are specific times and your child is interested, you can write those also. Go through the rest of the day, keeping it simple, you can include meals, school times, after school activities, playing outdoors, etc. Your child might say that weekends are different and might enjoy making a separate schedule for those days.\u003C/p\u003E\u003Cp\u003EWhen the schedule is finished, put it up where your child and you can look at it. \u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYou are building your child’s thinking abilities, as you organize the events of a typical day into an order or sequence (this also helps children’s math ability). Many children also feel more emotionally secure when they know exactly what to expect, especially if many things about life have been unpredictable at this time. \u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [681],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/making-a-picture-schedule-cover-picture.webp?itok=2BnZDaDn",
+                "name": "Making%20a%20Picture%20Schedule-cover-picture.jpeg",
+                "alt": "A weekly planner with stickers"
+            },
+            "related_milestone": [4556],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4546,
+            "type": "Games",
+            "title": "Fingerprint Animals",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:21:34+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T02:08:04+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 02:08\u003C/time\u003E\n",
+            "summary": "Materials You Need: Washable finger paints / non‐toxic paints;  A shallow dish for mixing paint; Paper; Aprons or old clothes; A tablecloth; An old flannel/cotton shirt.What You Can Do Together: Start by preparing everything you’ll need, both to get creative and to clean up as you go (especially with younger children). Ask the children which animals they’d like to create. They might choose a cat, an elephant, a mouse, a turtle… or several animals to create a farm, zoo or rainforest scene!",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EWashable finger paints / non‐toxic paints;  A shallow dish for mixing paint; Paper; Aprons or old clothes; A tablecloth; An old flannel/cotton shirt.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together:\u003C/strong\u003E Start by preparing everything you’ll need, both to get creative and to clean up as you go (especially with younger children). Ask the children which animals they’d like to create. They might choose a cat, an elephant, a mouse, a turtle… or several animals to create a farm, zoo or rainforest scene!\u003C/p\u003E\u003Cp\u003ENext, get the paints out! You could use a shallow dish to mix some paints together – perfect for teaching children how to make new colours. Ask the children to press their fingers or thumbs into the paint and then onto the paper to create the animal heads and bodies. Allow the paint to dry, then ask the children to draw on details, such as ears, stripes, tails – whatever they need to complete their fingerprint creations!\u003C/p\u003E\u003Cp\u003EOlder children might like to get even more imaginative with their fingerprints to create a whole scene, like a fingerprint sea around a turtle or some grass and trees around an elephant. It can be difficult for younger children to resist the urge to smudge and swirl their fingerprints around the page. Provide them with an extra sheet of paper so they can smudge and swirl to their heart’s content!\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning:\u003C/strong\u003E Little ones never tire of getting the paints out! This creative activity allows children to express themselves with colour and detail as they make all their favourite animals using their fingerprints!\u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [681],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/fingerprint-animals-cover-picture.webp?itok=Nm9xmw-u",
+                "name": "fingerprint-animals-cover-picture.jpg",
+                "alt": "Illustration of Fingerprint animals"
+            },
+            "related_milestone": [4541],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4596,
+            "type": "Games",
+            "title": "Making a Pretend Meal",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:21:33+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-10T06:21:04+01:00\" class=\"datetime\"\u003ETue, 02/10/2026 - 06:21\u003C/time\u003E\n",
+            "summary": "Materials You Need: The activity theme (making a meal) is just an example. The materials can be different depending on the play.Some plastic/foam/paper dishes, cups, and spoons; Places and objects your child can use for a pretend stove and fridge (might just be cardboard boxes or a table); Items your child can use for cooking pots or other utensils (safe and small; the item does not have to look exactly like what your child pretends it is)",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EThe activity theme (making a meal) is just an example. The materials can be different depending on the play.\u003C/p\u003E\u003Cp\u003ESome plastic/foam/paper dishes, cups, and spoons; Places and objects your child can use for a pretend stove and fridge (might just be cardboard boxes or a table); Items your child can use for cooking pots or other utensils (safe and small; the item does not have to look exactly like what your child pretends it is)\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, most likely your child is “playing pretend” often. This activity is an example of how you can encourage your child to make his/her play a bit more complex and get others involved. At a quiet time, put out the materials for the play and (in this example) say, “Maybe it will be fun to pretend you are making a meal/making breakfast/lunch/dinner — would you like that? What do you think you will make?” Continue by having a conversation about the pretend meal and providing or pretending to provide other items.\u003C/p\u003E\u003Cp\u003EThen you can also say, “I (or Mama/Dada or big brother/sister) can be your helper. What can I do to help?” Or others in the family can pretend to sit and eat the pretend meal.\u003C/p\u003E\u003Cp\u003EThis and other pretend scenarios can be played over and over again.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EYour child’s thinking skills are supported when he makes believe, pretending, for example, that a box is a stove or a small ball is an egg. Involving others in the play, whether family or other children, strengthens your child’s social competence and ability to cooperate.\u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [666],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/making-a-pretend-meal-cover-picture.webp?itok=U_X9Red8",
+                "name": "Making%20a%20Pretend%20Meal-cover-picture.jpg",
+                "alt": "A sister and a brother preparing a pretend meal"
+            },
+            "related_milestone": [4591],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 5521,
+            "type": "Games",
+            "title": "Imitating Baby",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:20:57+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:20\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:26:15+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:26\u003C/time\u003E\n",
+            "summary": "Materials You Need: None; baby seat optional.What You Can Do Together: Hearing different sounds in the environment helps babies develop language. Do the following exercise to be able to develop communication with your baby.You should first hold your baby, then lay the baby on his/her back on a soft surface or sit the baby in his/her baby seat. Begin the exercise by talking to your baby about different topics, wait for their answer.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003ENone; \u003Cem\u003Ebaby seat optional.\u003C/em\u003E\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EHearing different sounds in the environment helps babies develop language. Do the following exercise to be able to develop communication with your baby.\u003C/p\u003E\u003Cp\u003EYou should first hold your baby, then lay the baby on his/her back on a soft surface or sit the baby in his/her baby seat. Begin the exercise by talking to your baby about different topics, wait for their answer.\u003C/p\u003E\u003Cp\u003EWhen your baby responds, he/she will do so through soft sounds, and you should imitate those sounds, first at the same volume and then with greater intensity, to motivate him/her to respond with more guttural sounds. Remember always to keep a positive and calm attitude. Finish the activity with a kiss on the forehead and a loving hug.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis type of exercise provides the opportunity to stimulate the sense of hearing and recognise different essential phonemes to facilitate the speech process later on. It also allows the baby to listen to the sounds he/she makes.\u003C/p\u003E",
+            "activity_category": 721,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [626],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/imitating-baby-cover-picture.webp?itok=tdsyOTfk",
+                "name": "Imitating%20baby-cover-picture.jpg",
+                "alt": "A mother smiling at the baby and holding her or his tiny hands"
+            },
+            "related_milestone": [5516],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4626,
+            "type": "Games",
+            "title": "Watching and Playing Together",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:20:57+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:20\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T02:07:52+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 02:07\u003C/time\u003E\n",
+            "summary": "Materials You Need: A few interesting, safe playthings, toys or materials from indoors or outdoors.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EA few interesting, safe playthings, toys or materials from indoors or outdoors.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your child probably is becoming more interested in being with other children. Your child may not be ready to play with others in complicated games, but he may enjoy playing side-by-side with another child, watching what that child does, and just being together. To encourage this, if possible, find another child of about the same age in the neighbourhood or perhaps in a park/playground. If not possible, perhaps a brother or sister can be their playmate. \u003C/p\u003E\u003Cp\u003EGet your child settled with the other child, with a few playthings or toys nearby (enough for both to use). You might give each child a few things and say something like, “Look! You can play with these. See, your friend is banging the spoon on the pan/playing with that truck. What can you do?” The children may do many things, probably not together, but you may see that they are very aware and interested in each other. Help them enjoy relaxed playtime in whatever way they wish. Watch them for safety and perhaps provide a few more materials or show them how something might be used.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EThis is called “parallel play”—when very young children begin to play near each other, but mostly each child is doing their own activity. They are learning by watching others, and sometimes copying what their friend is doing. This is the very start of cooperative play and friendship, which will be so important in later years.\u003C/p\u003E",
+            "activity_category": 711,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [661],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/watching-and-playing-together-cover-picture.webp?itok=5zsny1T8",
+                "name": "Watching%20and%20Playing%20Together-cover-picture.jpg",
+                "alt": "A boy and a girl playing together"
+            },
+            "related_milestone": [4621],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 4466,
+            "type": "Games",
+            "title": "How to Make Playdough",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:20:57+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:20\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-02-18T02:07:32+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 02:07\u003C/time\u003E\n",
+            "summary": "Materials You Need: 2 cups plain flour, ½ cup salt, 2 tablespoons of cream of tartar, 2 tablespoons of vegetable oil, food colouring, 1 to 1½ cups of warm water, bowl, mixing spoon.What You Can Do Together: Making playdough at home is a cheap, easy, and a fail-safe way to have fun! You can customise it with different colours, glitter or even smells for a more sensory experience. Playdough is so versatile; it can be used for different learning experiences –– and never gets boring!",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003E2 cups plain flour, ½ cup salt, 2 tablespoons of cream of tartar, 2 tablespoons of vegetable oil, food colouring, 1 to 1½ cups of warm water, bowl, mixing spoon.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EMaking playdough at home is a cheap, easy, and a fail-safe way to have fun! You can customise it with different colours, glitter or even smells for a more sensory experience. Playdough is so versatile; it can be used for different learning experiences –– and never gets boring!\u003C/p\u003E\u003Cp\u003EFirst, mix the flour, salt, cream of tartar, and oil together in a mixing bowl.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cimg src=\"/parent_buddy_prod/docroot/sites/default/files/2021-05/how-to-make-playdough-step1.png\" alt=\"Illustration of How to make playdough Step 1\"\u003E (ADD IMAGE)\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003ENext, if your dough is going to be all one colour add the food colouring to the warm water as it’s an easier way to get a consistent colour, if not move on.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cimg src=\"/parent_buddy_prod/docroot/sites/default/files/2021-05/how-to-make-playdough-step2.png\" alt=\"Illustration of How to make playdough Step 2\"\u003E (ADD IMAGE)\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003EThen, slowly add the water to the mixing bowl a little at a time. Stirring it until it becomes a combined dough.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cimg src=\"/parent_buddy_prod/docroot/sites/default/files/2021-05/how-to-make-playdough-step3.png\" alt=\"Illustration of How to make playdough Step 3\"\u003E (ADD IMAGE)\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003ENext, knead the dough vigorously until all of the stickiness has gone. If it’s still a little sticky you can add a small amount of flour for dusting to get the perfect consistency.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cimg src=\"/parent_buddy_prod/docroot/sites/default/files/2021-05/how-to-make-playdough-step4.png\" alt=\"Illustration of How to make playdough Step 4\"\u003E (ADD IMAGE)\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003EFinally, if you’re making a few colours, scents or glitter dough, split the dough into equal parts depending on how many types you want. Add the dough to small sandwich bags and add a few drops of food colouring, scent or glitter. The more generous you are the brighter the colour will be. Knead the dough inside the bag so that you don’t dye your hands. Keep kneading until it’s mixed thoroughly.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cimg src=\"/parent_buddy_prod/docroot/sites/default/files/2021-05/how-to-make-playdough-step5.png\" alt=\"Illustration of How to make playdough Step 5\"\u003E (ADD IMAGE)\u003C/strong\u003E\u003C/p\u003E\u003Cp\u003EStore playdough in a covered container or zip lock bag (squeeze out the air) to keep it fresh for months! Store in a cool dry place.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EIn this fun activity, your child develops fine motor skills by using fingers and hands more precisely. Your child is having fun and learning a lot with you.  \u003C/p\u003E",
+            "activity_category": 706,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [671],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/how-to-make-playdough-cover-picture.webp?itok=fg-viNEK",
+                "name": "how-to-make-playdough-cover-picture.png",
+                "alt": "Illustration of How to make playdough"
+            },
+            "related_milestone": [4461],
+            "mandatory": 1,
+            "embedded_images": [
+                "/sites/default/files/2021-05/how-to-make-playdough-step1.png",
+                "/sites/default/files/2021-05/how-to-make-playdough-step2.png",
+                "/sites/default/files/2021-05/how-to-make-playdough-step3.png",
+                "/sites/default/files/2021-05/how-to-make-playdough-step4.png",
+                "/sites/default/files/2021-05/how-to-make-playdough-step5.png"
+            ]
+        },
+        {
+            "id": 6896,
+            "type": "Games",
+            "title": "I'm Dressing Myself!",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:20:57+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:20\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-03-20T00:26:34+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 00:26\u003C/time\u003E\n",
+            "summary": "Materials You Need: Your child’s everyday clothing.What You Can Do Together: At this age, your child may show interest in dressing (or, more often at the beginning, undressing) himself. Yes, it is more efficient to do it yourself, but spend some time giving your child a chance to do it themselves.",
+            "body": "\u003Cp\u003E\u003Cstrong\u003EMaterials You Need: \u003C/strong\u003EYour child’s everyday clothing.\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat You Can Do Together: \u003C/strong\u003EAt this age, your child may show interest in dressing (or, more often at the beginning, undressing) himself. Yes, it is more efficient to do it yourself, but spend some time giving your child a chance to do it themselves.\u003C/p\u003E\u003Cp\u003EFind times when you are not in a hurry. It may be easiest to start with undressing at bath time. For this and dressing, during this time of interest in dressing, try to choose clothes that are especially easy to put on and take off. You can also encourage your child to do the easiest bits, and perhaps just one item at a time.\u003C/p\u003E\u003Cp\u003EElevate this activity with conversation while you’re together. Name items, colours, and so on, and describe what your child is doing: “Look, you have your arm in the sleeve of your shirt. That’s great!”\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EWhat Your Child is Learning: \u003C/strong\u003EDressing oneself is an important self-help skill that will become essential when school begins. It also builds your child’s sense of competence and independence. To figure out how to put on an article of clothing, your child also needs his/her thinking skills, to plan what to do first, which part goes where, etc. Language and communication are also strengthened when you have conversations with your child about a task that is very interesting to him/her.\u003C/p\u003E",
+            "activity_category": 716,
+            "equipment": 0,
+            "type_of_support": 17186,
+            "child_age": [651],
+            "cover_image": {
+                "url": "https://bebbopacific.app/sites/somoa/files/styles/content_1200xh_/public/2021-08/i-am-dressing-myself-cover-picture.webp?itok=S1_OLrE_",
+                "name": "i%20am%20dressing%20myself-cover-picture.jpg",
+                "alt": "A parent is changing the baby"
+            },
+            "related_milestone": [6901],
+            "mandatory": 1,
+            "embedded_images": []
+        }
     ],
-    "FJfj": [
+    "fj-fj": [
 
     ],
 }
