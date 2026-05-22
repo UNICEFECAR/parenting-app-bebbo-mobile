@@ -37,6 +37,7 @@ import { imgLogoChatbotNew } from "../../instances";
 import useNetInfoHook from "../../customHooks/useNetInfoHook";
 import { selectAllConfigData } from "../../services/selectors";
 import { gradientColorFirst, gradientColorSecond, gradientColorThird, menuDrawerTextColor } from "@styles/style";
+const flavor = process.env.FLAVOR || "bebbo";
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
   flexShrink1: { flexShrink: 1, color: menuDrawerTextColor },
@@ -93,7 +94,7 @@ const BotBubble = (props: any): any => {
           style={styles.linearGradient}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
-          colors={[gradientColorFirst, gradientColorSecond, gradientColorThird]}
+          colors={flavor == "bebboPacific" ? ["#BAE6FD", "#BAE6FD", "#BAE6FD"] : [gradientColorFirst, gradientColorSecond, gradientColorThird]}
         >
           <VectorImage style={styles.vectorImage} source={imgLogoChatbotNew} />
         </LinearGradient>

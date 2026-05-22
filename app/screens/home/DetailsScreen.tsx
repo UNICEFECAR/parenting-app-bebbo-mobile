@@ -879,7 +879,7 @@ const renderHtmlImage = ({ tnode }: any): any => {
 
           <ScrollView overScrollMode="never" style={styles.scrollView}>
             <View>
-              {detailDataToUse &&
+              {netInfo.isConnected == true && detailDataToUse &&
               detailDataToUse.cover_video &&
               detailDataToUse.cover_video.url != "" &&
               detailDataToUse.cover_video.url != undefined ? (
@@ -888,21 +888,14 @@ const renderHtmlImage = ({ tnode }: any): any => {
                     selectedPinnedArticleData={detailDataToUse}
                   ></VideoPlayer>
                 ) : null
-              ) : detailDataToUse &&
-                detailDataToUse.cover_image &&
-                detailDataToUse.cover_image.url != "" &&
-                detailDataToUse.cover_image.url != undefined ? (
+              ) : (
                 <LoadableImage
                   style={styles.defaultImage}
                   item={detailDataToUse}
                   toggleSwitchVal={toggleSwitchVal}
                   resizeMode={FastImage.resizeMode.cover}
                 />
-              ) : (
-                <DefaultImage
-                  style={styles.defaultImage}
-                  source={require("@assets/trash/defaultArticleImage.png")}
-                />
+             
               )}
             </View>
             {adviceval == true ? (
