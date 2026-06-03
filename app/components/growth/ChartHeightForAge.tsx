@@ -58,6 +58,7 @@ const ChartHeightForAge = (props: any): any => {
   const standardDevData = standardDevDataLoad;
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
+  const { obj, standardDeviation } = React.useMemo(() => {
   let obj: any;
   let standardDeviation: any;
   // if (activeChild?.gender == '526' || activeChild?.gender == '') {
@@ -68,7 +69,7 @@ const ChartHeightForAge = (props: any): any => {
   ) {
     //boy or no gender added
     const genderBoyData = standardDevData?.filter(
-      (item) =>
+      (item: any) =>
         item.growth_type == appConfig.heightForAge &&
         (item.child_gender == taxonomyIds?.boyChildGender ||
           item.child_gender == appConfig.boyChildGender)
@@ -78,7 +79,7 @@ const ChartHeightForAge = (props: any): any => {
   } else {
     //girl
     const genderGirlData = standardDevData?.filter(
-      (item) =>
+      (item: any) =>
         (item.growth_type == appConfig.heightForAge &&
           item.child_gender == taxonomyIds?.girlChildGender) ||
         item.child_gender == appConfig.girlChildGender
@@ -86,7 +87,8 @@ const ChartHeightForAge = (props: any): any => {
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData, "height");
   }
-
+  return { obj, standardDeviation };
+}, [activeChild?.gender, taxonomyIds]);
   const childBirthDate = activeChild.birthDate;
   const childTaxonomyData = activeChild.taxonomyData;
   const sortedMeasurements = activeChild.measures.sort(

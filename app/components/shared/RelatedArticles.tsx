@@ -75,7 +75,10 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
   const netInfo = useNetInfoHook();
   let relartlength = relatedArticles ? relatedArticles.length : 0;
   const articleDataold = useAppSelector(selectArticleDataAll);
-  const articleData = randomArrayShuffle(articleDataold);
+  const articleData = useMemo(
+    () => randomArrayShuffle(articleDataold),
+    [articleDataold]
+  );
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
@@ -176,10 +179,9 @@ const RelatedArticles = (props: RelatedArticlesProps): any => {
         onPress={(): any => {
           goToArticleDetail(item);
         }}
-        key={index}
         style={styles.itemPressable}
       >
-        <RelatedArticleContainer key={index}>
+        <RelatedArticleContainer>
           <LoadableImage
             style={styles.cardImage}
             item={item}
