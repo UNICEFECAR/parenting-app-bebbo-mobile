@@ -78,7 +78,9 @@ const TermsPage = ({ navigation }: Props): any => {
         <OnboardingContainer style={styles.containerView}>
           <OnboardingHeading>
             <ChildAddTop>
-              <Heading1w style={{ color: "#fff" }}>{t("tNcheader")}</Heading1w>
+            <View style={{ flex: 1, paddingRight: 16 }}>
+              <Heading1w style={{ color: "#fff", flexShrink: 1 }}>{t("tNcheader")}</Heading1w>
+              </View>
               <ShiftFromTop5>
                 <Pressable
                   onPress={(): any => {
