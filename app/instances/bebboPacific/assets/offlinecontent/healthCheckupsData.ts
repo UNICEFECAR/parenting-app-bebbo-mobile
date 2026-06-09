@@ -86,6 +86,16 @@ export const healthCheckupsData: any = {
             "updated_at": "\u003Ctime datetime=\"2026-02-20T01:43:30+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:43\u003C/time\u003E\n"
         },
         {
+            "id": 8951,
+            "type": "Health Check-ups - Age Periods",
+            "title": "with full 6 weeks",
+            "growth_period": 356,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "\u003Ctime datetime=\"2025-07-11T17:04:59+02:00\" class=\"datetime\"\u003EFri, 07/11/2025 - 17:04\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-06-01T00:22:47+02:00\" class=\"datetime\"\u003EMon, 06/01/2026 - 00:22\u003C/time\u003E\n"
+        },
+        {
             "id": 8866,
             "type": "Health Check-ups - Age Periods",
             "title": "at birth",
@@ -93,7 +103,7 @@ export const healthCheckupsData: any = {
             "pinned_article": 446,
             "pinned_video_article": 0,
             "created_at": "\u003Ctime datetime=\"2025-05-22T12:56:05+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:56\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:43:51+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:43\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-06-01T00:29:14+02:00\" class=\"datetime\"\u003EMon, 06/01/2026 - 00:29\u003C/time\u003E\n"
         },
         {
             "id": 8881,
