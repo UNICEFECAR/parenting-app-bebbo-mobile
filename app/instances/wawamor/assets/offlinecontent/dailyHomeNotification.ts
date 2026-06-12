@@ -339,9 +339,9 @@ export const dailyHomeNotificationdata: any = {
         {
             "id": 641,
             "type": "Daily Homescreen Messages",
-            "title": "Haga de la lectura un hábito diario para su pequeña o pequeño",
+            "title": "Haz de la lectura un hábito diario. ",
             "created_at": "\u003Ctime datetime=\"2024-09-09T17:46:40+02:00\" class=\"datetime\"\u003EMon, 09/09/2024 - 17:46\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2025-03-20T12:47:22+01:00\" class=\"datetime\"\u003EThu, 03/20/2025 - 12:47\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-04-22T23:28:57+02:00\" class=\"datetime\"\u003EWed, 04/22/2026 - 23:28\u003C/time\u003E\n"
         },
         {
             "id": 386,

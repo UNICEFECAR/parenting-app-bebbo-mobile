@@ -243,8 +243,8 @@ android {
         }
         wawamor {
             applicationId 'org.unicef.ec.wawamor'
-            versionCode 14
-            versionName "1.0.6"
+            versionCode 15
+            versionName "1.1.0"
             signingConfig signingConfigs.wawamor
         }
         reraiumntwana {
@@ -261,8 +261,8 @@ android {
         }
         bebbopacific {
             applicationId 'org.unicef.pc.bebbopacific'
-            versionCode 6
-            versionName "1.0.2"
+            versionCode 7
+            versionName "1.1.0"
             signingConfig signingConfigs.bebbopacific
         }
     }

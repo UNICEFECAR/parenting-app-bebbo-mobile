@@ -1209,7 +1209,7 @@ export const FaqsData: any = {
             "answer_part_1": "\u003Cp\u003EEl llanto es la única forma que tiene tu bebé para decirte que algo necesita. No lo ignores. Cárgalo en tus brazos, abrázalo y arrúllalo con cariño. Revisa si tiene el pañal mojado o si necesita comer: al responder al llanto de tu hija o hijo, le estás enseñando que puede confiar en ti. \u003C/p\u003E\u003Cp\u003EEsta es una de las lecciones más importantes. Con el tiempo, irás descubriendo qué le ayuda a calmarse. Algunas niñas y niños, especialmente cuando ya están un poco más grandes, pueden necesitar que los dejen en un lugar tranquilo por un momento breve; no como castigo, sino como estrategia para autocalmarse.\u003C/p\u003E",
             "answer_part_2": "\u003Cp\u003EMuchas niñas y niños en edad preescolar pueden aprender estrategias para calmarse, como respirar profundo. Estos recursos pueden ofrecerte ideas según la edad de tu hija o hijo y distintas situaciones del día a día. Si tu hija o hijo tiene alguna discapacidad socioemocional (como el autismo), es posible que le cueste más controlar emociones intensas. En ese caso, un profesional de salud puede orientarte con estrategias para prevenir y manejar las crisis. Y si tu hijo o hija no tiene una discapacidad, pero sus llantos fuertes te preocupan, también es buena idea hablarlo con su pediatra. Pedir apoyo a tiempo siempre es un buen paso.\u003C/p\u003E",
             "chatbot_subcategory": 546,
-            "related_article": 0,
+            "related_article": 2606,
             "mandatory": 1
         },
         {
