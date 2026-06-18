@@ -158,7 +158,7 @@ export const ChildDevelopmentData: any = {
             "girl_video_article": 2346,
             "milestone": "\u003Cp\u003EWatch your baby's behaviour and talk to your paediatrician or visiting nurse if you notice that at the end of the first month your baby: \u003C/p\u003E\u003Cul\u003E\u003Cli\u003Eis crying a lot, and you are not able to comfort your baby\u003C/li\u003E\u003Cli\u003Esucks poorly and feeds very slowly\u003C/li\u003E\u003Cli\u003Esleeps more than expected (more than 16 hours a day), or does not sleep peacefully\u003C/li\u003E\u003Cli\u003Eis not moving her/his arms or legs at all\u003C/li\u003E\u003Cli\u003Edoes not startle when a loud noise is made\u003C/li\u003E\u003Cli\u003Edoes not blink at bright lights.\u003C/li\u003E\u003C/ul\u003E",
             "created_at": "\u003Ctime datetime=\"2025-05-22T12:54:36+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:54\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-18T06:24:04+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 06:24\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-06-01T00:26:36+02:00\" class=\"datetime\"\u003EMon, 06/01/2026 - 00:26\u003C/time\u003E\n",
             "mandatory": 1
         },
         {
@@ -182,7 +182,7 @@ export const ChildDevelopmentData: any = {
             "girl_video_article": 2226,
             "milestone": "\u003Cp\u003EFollow your child’s behaviour and talk to your paediatrician if you notice that at the end of the sixth year of life your child:\u003C/p\u003E\u003Cul\u003E\u003Cli\u003EHas a very short attention span\u003C/li\u003E\u003Cli\u003EIs not at all interested in letters, numbers, reading or writing\u003C/li\u003E\u003Cli\u003ESeems not to hear well\u003C/li\u003E\u003Cli\u003EDoesn’t speak clearly in sentences of 5 or more words\u003C/li\u003E\u003Cli\u003EDoesn’t tell longer stories using complete sentences\u003C/li\u003E\u003Cli\u003EDoesn’t dress and use toilet without help\u003C/li\u003E\u003Cli\u003ECan’t take part in conversations\u003C/li\u003E\u003Cli\u003ECan’t play in more than one way\u003C/li\u003E\u003Cli\u003ECan’t give her/his name and address\u003C/li\u003E\u003Cli\u003ECan’t stand or hop on one foot\u003C/li\u003E\u003C/ul\u003E",
             "created_at": "\u003Ctime datetime=\"2025-05-22T12:54:35+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:54\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-18T06:21:53+01:00\" class=\"datetime\"\u003EWed, 02/18/2026 - 06:21\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-06-01T00:26:44+02:00\" class=\"datetime\"\u003EMon, 06/01/2026 - 00:26\u003C/time\u003E\n",
             "mandatory": 1
         },
         {

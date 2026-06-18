@@ -5,7 +5,7 @@ import {
   Heading6Bold,
   ShiftFromTopBottom5,
 } from "../../instances/bebbo/styles/typography";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
@@ -69,7 +69,10 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
     currentSelectedChildId,
   } = props;
   const ActivitiesDataold = useAppSelector(selectActivitiesDataAll);
-  const ActivitiesData = randomArrayShuffle(ActivitiesDataold);
+  const ActivitiesData = useMemo(
+    () => randomArrayShuffle(ActivitiesDataold),
+    [ActivitiesDataold]
+  );
   const toggleSwitchVal = useAppSelector((state: any) =>
     state.bandWidthData?.lowbandWidth ? state.bandWidthData.lowbandWidth : false
   );
@@ -134,7 +137,7 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
       netInfo: netInfo,
     });
   };
-  const RenderActivityItem = React.memo(({ item, index }: any) => {
+  const RenderActivityItem = ({ item, index }: any) => {
     return (
       <Pressable
         onPress={(): any => {
@@ -143,7 +146,7 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
         key={index}
         style={styles.itemPressable}
       >
-        <RelatedArticleContainer key={index}>
+        <RelatedArticleContainer>
           <LoadableImage
             style={styles.cardImage}
             item={item}
@@ -177,8 +180,11 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
         </RelatedArticleContainer>
       </Pressable>
     );
-  });
-
+  };
+  const memoizedValue = useMemo(
+      () => RenderActivityItem,
+      [RenderActivityItem, relatedArticleData]
+    );
   return (
     <>
       {relatedArticleData.length > 0 ? (
@@ -195,9 +201,7 @@ const RelatedActivities = (props: RelatedActivityProps): any => {
               maxToRenderPerBatch={4} // Reduce number in each render batch
               updateCellsBatchingPeriod={100} // Increase time between renders
               windowSize={7} // Reduce the window size
-              renderItem={({ item, index }: any): any => (
-                <RenderActivityItem item={item} index={index} />
-              )}
+              renderItem={memoizedValue}
               keyExtractor={(item: any): any => item.id}
             />
           </View>

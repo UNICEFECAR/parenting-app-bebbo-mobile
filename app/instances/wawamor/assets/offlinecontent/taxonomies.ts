@@ -834,207 +834,258 @@ export const taxonomydata: any = {
             "subcategory": [
                 {
                     "id": 33026,
-                    "name": "Fundamentos de la lactancia"
+                    "name": "Fundamentos de la lactancia",
+                    "unique_name": ""
                 },
                 {
                     "id": 33031,
-                    "name": "Tú y tu pareja"
+                    "name": "Tú y tu pareja",
+                    "unique_name": ""
                 },
                 {
                     "id": 33036,
-                    "name": "Estrategias de crianza"
+                    "name": "Estrategias de crianza",
+                    "unique_name": ""
                 },
                 {
                     "id": 33041,
-                    "name": "Padres primerizos"
+                    "name": "Padres primerizos",
+                    "unique_name": ""
                 },
                 {
                     "id": 33046,
-                    "name": "Primeras comidas"
+                    "name": "Primeras comidas",
+                    "unique_name": ""
                 },
                 {
                     "id": 33051,
-                    "name": "Recetas de alimentos"
+                    "name": "Recetas de alimentos",
+                    "unique_name": ""
                 },
                 {
                     "id": 33056,
-                    "name": "Comportamiento infantil"
+                    "name": "Comportamiento infantil",
+                    "unique_name": ""
                 },
                 {
                     "id": 33061,
-                    "name": "Vínculo entre padres e hijos"
+                    "name": "Vínculo entre padres e hijos",
+                    "unique_name": ""
                 },
                 {
                     "id": 33066,
-                    "name": "Sueño"
+                    "name": "Sueño",
+                    "unique_name": ""
                 },
                 {
                     "id": 33071,
-                    "name": "Actividad física"
+                    "name": "Actividad física",
+                    "unique_name": ""
                 },
                 {
                     "id": 33076,
-                    "name": "Cambios de vida"
+                    "name": "Cambios de vida",
+                    "unique_name": ""
                 },
                 {
                     "id": 33081,
-                    "name": "Bebés prematuros"
+                    "name": "Bebés prematuros",
+                    "unique_name": ""
                 },
                 {
                     "id": 33086,
-                    "name": "El bienestar de los cuidadores"
+                    "name": "El bienestar de los cuidadores",
+                    "unique_name": ""
                 },
                 {
                     "id": 33091,
-                    "name": "Emergencias"
+                    "name": "Emergencias",
+                    "unique_name": ""
                 },
                 {
                     "id": 33096,
-                    "name": "Cuidado de niñas y niños"
+                    "name": "Cuidado de niñas y niños",
+                    "unique_name": ""
                 },
                 {
                     "id": 33101,
-                    "name": "Dudas sobre el desarrollo infantil"
+                    "name": "Dudas sobre el desarrollo infantil",
+                    "unique_name": ""
                 },
                 {
                     "id": 33106,
-                    "name": "Primeros auxilios"
+                    "name": "Primeros auxilios",
+                    "unique_name": ""
                 },
                 {
                     "id": 33111,
-                    "name": "Desafíos de la lactancia"
+                    "name": "Desafíos de la lactancia",
+                    "unique_name": ""
                 },
                 {
                     "id": 33116,
-                    "name": "Relaciones familiares"
+                    "name": "Relaciones familiares",
+                    "unique_name": ""
                 },
                 {
                     "id": 33121,
-                    "name": "Protección infantil"
+                    "name": "Protección infantil",
+                    "unique_name": ""
                 },
                 {
                     "id": 33391,
-                    "name": "0-12 semanas"
+                    "name": "0-12 semanas",
+                    "unique_name": ""
                 },
                 {
                     "id": 33396,
-                    "name": "13-28 semanas"
+                    "name": "13-28 semanas",
+                    "unique_name": ""
                 },
                 {
                     "id": 33401,
-                    "name": "29-40 semanas"
+                    "name": "29-40 semanas",
+                    "unique_name": ""
                 },
                 {
                     "id": 33411,
-                    "name": "Hábitos saludables"
+                    "name": "Hábitos saludables",
+                    "unique_name": ""
                 },
                 {
                     "id": 33416,
-                    "name": "Exámenes y controles de salud"
+                    "name": "Exámenes y controles de salud",
+                    "unique_name": ""
                 },
                 {
                     "id": 33426,
-                    "name": "Diversos escenarios de embarazo"
+                    "name": "Diversos escenarios de embarazo",
+                    "unique_name": ""
                 },
                 {
                     "id": 33436,
-                    "name": "Apoyo entre pareja"
+                    "name": "Apoyo entre pareja",
+                    "unique_name": ""
                 },
                 {
                     "id": 33441,
-                    "name": "Relación con la pareja"
+                    "name": "Relación con la pareja",
+                    "unique_name": ""
                 },
                 {
                     "id": 33446,
-                    "name": "Salud mental"
+                    "name": "Salud mental",
+                    "unique_name": ""
                 },
                 {
                     "id": 33451,
-                    "name": "Trabajo y desarrollo profesional"
+                    "name": "Trabajo y desarrollo profesional",
+                    "unique_name": ""
                 },
                 {
                     "id": 33456,
-                    "name": "Implementos para bebés"
+                    "name": "Implementos para bebés",
+                    "unique_name": ""
                 },
                 {
                     "id": 33466,
-                    "name": "Planificación"
+                    "name": "Planificación",
+                    "unique_name": ""
                 },
                 {
                     "id": 33471,
-                    "name": "Tipos de parto"
+                    "name": "Tipos de parto",
+                    "unique_name": ""
                 },
                 {
                     "id": 33476,
-                    "name": "Recuperación"
+                    "name": "Recuperación",
+                    "unique_name": ""
                 },
                 {
                     "id": 33486,
-                    "name": "Pérdida gestacional y aborto espontáneo"
+                    "name": "Pérdida gestacional y aborto espontáneo",
+                    "unique_name": ""
                 },
                 {
                     "id": 33491,
-                    "name": "Nacimiento prematuro"
+                    "name": "Nacimiento prematuro",
+                    "unique_name": ""
                 },
                 {
                     "id": 32981,
-                    "name": "Enfermedades y alergias"
+                    "name": "Enfermedades y alergias",
+                    "unique_name": ""
                 },
                 {
                     "id": 33496,
-                    "name": "Primeras semanas"
+                    "name": "Primeras semanas",
+                    "unique_name": ""
                 },
                 {
                     "id": 32986,
-                    "name": "Vacunación y controles de salud"
+                    "name": "Vacunación y controles de salud",
+                    "unique_name": ""
                 },
                 {
                     "id": 32991,
-                    "name": "Habilidades socioemocionales"
+                    "name": "Habilidades socioemocionales",
+                    "unique_name": ""
                 },
                 {
                     "id": 32996,
-                    "name": "Alimentación saludable"
+                    "name": "Alimentación saludable",
+                    "unique_name": ""
                 },
                 {
                     "id": 33511,
-                    "name": "Bienestar físico"
+                    "name": "Bienestar físico",
+                    "unique_name": ""
                 },
                 {
                     "id": 33001,
-                    "name": "Prevención de riesgos"
+                    "name": "Prevención de riesgos",
+                    "unique_name": ""
                 },
                 {
                     "id": 33516,
-                    "name": "Preocupaciones de salud"
+                    "name": "Preocupaciones de salud",
+                    "unique_name": ""
                 },
                 {
                     "id": 33006,
-                    "name": "Bienvenida del bebé"
+                    "name": "Bienvenida del bebé",
+                    "unique_name": ""
                 },
                 {
                     "id": 33521,
-                    "name": "Salud mental"
+                    "name": "Salud mental",
+                    "unique_name": ""
                 },
                 {
                     "id": 33011,
-                    "name": "Desarollo del lenguaje y la lectura"
+                    "name": "Desarollo del lenguaje y la lectura",
+                    "unique_name": ""
                 },
                 {
                     "id": 33526,
-                    "name": "Equilibro entre trabajo y vida personal"
+                    "name": "Equilibro entre trabajo y vida personal",
+                    "unique_name": ""
                 },
                 {
                     "id": 33016,
-                    "name": "Cuidado e higiene"
+                    "name": "Cuidado e higiene",
+                    "unique_name": ""
                 },
                 {
                     "id": 33531,
-                    "name": "Vínculo con la pareja"
+                    "name": "Vínculo con la pareja",
+                    "unique_name": ""
                 },
                 {
                     "id": 33021,
-                    "name": "Consejos para promover el juego"
+                    "name": "Consejos para promover el juego",
+                    "unique_name": ""
                 }
             ],
             "type_of_support": [

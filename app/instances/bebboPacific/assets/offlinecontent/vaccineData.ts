@@ -446,7 +446,7 @@ export const vaccineData: any = {
             "pinned_article": 7061,
             "pinned_video_article": 0,
             "created_at": "\u003Ctime datetime=\"2025-05-22T12:58:50+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:58\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-02-20T01:44:24+01:00\" class=\"datetime\"\u003EFri, 02/20/2026 - 01:44\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-06-01T00:29:48+02:00\" class=\"datetime\"\u003EMon, 06/01/2026 - 00:29\u003C/time\u003E\n",
             "old_calendar": 0
         },
         {
