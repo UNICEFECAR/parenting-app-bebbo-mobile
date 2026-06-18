@@ -193,7 +193,6 @@ const GrowthChart = (props: any): any => {
   });
   const { topArea, bottomArea, middleArea } = bgObj;
   const ChartClick = View;
-  console.log(bgObj);
   return (
     <>
       <View style={styles.mainView}>
@@ -419,4 +418,4 @@ const GrowthChart = (props: any): any => {
     </>
   );
 };
-export default GrowthChart;
+export default React.memo(GrowthChart);

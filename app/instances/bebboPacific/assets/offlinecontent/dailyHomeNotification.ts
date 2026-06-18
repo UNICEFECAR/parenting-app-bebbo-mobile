@@ -1802,7 +1802,7 @@ export const dailyHomeNotificationdata: any = {
             "type": "Daily Homescreen Messages",
             "title": "Fatigue and lack of sleep can affect your health ",
             "created_at": "\u003Ctime datetime=\"2025-05-22T12:40:57+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:40\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-03-20T02:30:25+01:00\" class=\"datetime\"\u003EFri, 03/20/2026 - 02:30\u003C/time\u003E\n"
+            "updated_at": "\u003Ctime datetime=\"2026-06-01T00:28:26+02:00\" class=\"datetime\"\u003EMon, 06/01/2026 - 00:28\u003C/time\u003E\n"
         },
         {
             "id": 3086,

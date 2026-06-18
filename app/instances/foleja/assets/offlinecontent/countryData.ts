@@ -19,7 +19,7 @@ export const countryData: any = {
                 "name": "Albanian_white_vertical_RGB_sm.png",
                 "alt": "UNICEF logo in Albanian"
             },
-            "content_toggle": "Pregnancy",
+            "content_toggle": "pregnancy",
             "app_name": "Foleja",
             "languages": [
                 {

@@ -42,6 +42,15 @@ export const SurveyData: any = {
             "updated_at": "\u003Ctime datetime=\"2026-02-24T12:48:26+01:00\" class=\"datetime\"\u003ETue, 02/24/2026 - 12:48\u003C/time\u003E\n"
         },
         {
+            "id": 21,
+            "title": "User Guide",
+            "body": "\u003Cp\u003EWatch the following videos in the user guide to learn how to set up, utilize, and customize the Bebbo Pacific parenting app.\u003C/p\u003E",
+            "type": "user_guide",
+            "survey_feedback_link": "https://www.youtube.com/watch?v=qfofUn4eK2c&amp;list=PLnXEbmiz4_waplpek_zshQ2lz21uOaG4Q",
+            "created_at": "\u003Ctime datetime=\"2025-05-22T12:17:12+02:00\" class=\"datetime\"\u003EThu, 05/22/2025 - 12:17\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-05-31T23:55:36+02:00\" class=\"datetime\"\u003ESun, 05/31/2026 - 23:55\u003C/time\u003E\n"
+        },
+        {
             "id": 31,
             "title": "Bebbo Pacific User Survey for Parents/Caregivers",
             "body": "\u003Cp\u003EYour feedback will help us evaluate effectiveness of the app and improve it. The survey will take 5 to 10 minutes to complete, and your responses will be anonymous.\u003C/p\u003E",

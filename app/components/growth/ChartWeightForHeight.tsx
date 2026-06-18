@@ -70,6 +70,7 @@ const ChartWeightForHeight = (props: any): any => {
 
   const standardDevData = standardDevDataLoad;
   //console.log(standardDevData,"..standardDevData..")
+  const { obj, standardDeviation } = React.useMemo(() => {
   let obj: any;
   let standardDeviation: any;
   if (taxonomyIds?.boyChildGender == "boy" || activeChild?.gender == "") {
@@ -93,6 +94,8 @@ const ChartWeightForHeight = (props: any): any => {
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData, "weight");
   }
+  return { obj, standardDeviation };
+}, [activeChild?.gender, taxonomyIds]);
   const childTaxonomyData = activeChild.taxonomyData;
   const sortedMeasurements = activeChild.measures
     .filter(
