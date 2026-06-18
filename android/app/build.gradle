@@ -219,8 +219,8 @@ android {
         }
         xk {
             applicationId 'org.unicef.kosovo.foleja'
-            versionCode 15
-            versionName "2.4.4"
+            versionCode 16
+            versionName "2.5.0"
             signingConfig signingConfigs.xk
         }
         xkstaging {
