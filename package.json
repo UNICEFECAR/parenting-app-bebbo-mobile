@@ -53,7 +53,7 @@
     "@react-native-google-signin/google-signin": "^15.0.0",
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/drawer": "^6.7.2",
-    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/native": "^7.2.2",
     "@react-navigation/stack": "^6.4.1",
     "@reduxjs/toolkit": "^2.8.2",
     "@robinbobin/react-native-google-drive-api-wrapper": "^2.2.3",
