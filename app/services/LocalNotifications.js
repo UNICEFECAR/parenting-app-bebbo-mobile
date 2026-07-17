@@ -28,13 +28,20 @@ class LocalNotifications {
   }
 
   schduleNotification(date,title,message,notiId,notitype,uuid) {
+    if (!date ||
+      !(date instanceof Date) ||
+      isNaN(date.getTime()) ||
+      date.getTime() <= Date.now()) {
+        console.log("in schduleNotification return")
+      return;
+    }
     const notificationid = String(notiId).length > 9 ? String(notiId).substr(String(notiId).length-9) : String(notiId);
     PushNotification.localNotificationSchedule({
       channelId: 'reminders',
       id:notificationid,
-      title: title,
+      title: String(title ?? ""),
       userInfo: { notitype: notitype ,uuid:uuid},
-      message: message,
+      message: String(message ?? ""),
       date,
       number: 1
     });
