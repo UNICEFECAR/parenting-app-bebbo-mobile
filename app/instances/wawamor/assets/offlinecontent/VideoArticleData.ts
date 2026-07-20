@@ -1,6 +1,36 @@
 export const VideoArticleData: any = {
     "ec-es": [
         {
+            "id": 9501,
+            "type": "Video Article",
+            "title": "¿Por qué es importante llevar a tu hijo o hija a sus controles de salud? ",
+            "created_at": "\u003Ctime datetime=\"2026-07-07T02:31:45+02:00\" class=\"datetime\"\u003ETue, 07/07/2026 - 02:31\u003C/time\u003E\n",
+            "updated_at": "\u003Ctime datetime=\"2026-07-07T02:37:09+02:00\" class=\"datetime\"\u003ETue, 07/07/2026 - 02:37\u003C/time\u003E\n",
+            "summary": "Los primeros 6 años de un niño o niña definen toda su vida. En este video, la doctora Betzabé Tello, especialista en salud materno infantil, nos explica por qué es tan importante llevar a tus hijos a sus controles de salud. Recuerda que en  la app #Wawamor puedes: ",
+            "body": "\u003Cp\u003ELos primeros 6 años de un niño o niña definen toda su vida. En este video, la doctora Betzabé Tello, especialista en salud materno infantil, nos explica por qué es tan importante llevar a tus hijos a sus controles de salud. \u003C/p\u003E\u003Cp\u003ERecuerda que en  la app \u003Ca href=\"https://www.youtube.com/hashtag/wawamor\"\u003E#Wawamor\u003C/a\u003E puedes: \u003C/p\u003E\u003Cul\u003E\u003Cli\u003EConsular el calendario de controles entre los 0 y 6 años.\u003C/li\u003E\u003Cli\u003EProgramar recordatorios para no olvidar ninguna cita. \u003C/li\u003E\u003C/ul\u003E\u003Cp\u003EEn su \u003Cstrong\u003Eprimer año\u003C/strong\u003E, tu bebé necesita un control mensual. \u003Cstrong\u003EA partir del segundo año\u003C/strong\u003E, la frecuencia de los chequeos cambia según su edad.\u003C/p\u003E\u003Cp dir=\"ltr\"\u003E✨Todos los controles son igual de importantes para cuidar su crecimiento, desarrollo y bienestar.\u003C/p\u003E",
+            "category": 386,
+            "child_age": [33376, 596, 601, 606, 611, 616, 621, 626, 631, 636, 641, 646, 651],
+            "child_gender": 666,
+            "parent_gender": 6831,
+            "keywords": [],
+            "cover_video": {
+                "url": "https://www.youtube.com/watch?v=V3ywDij41mg&list=PLakcj23MsCSiUKAgV0EF8FFJPaUPdoJSn&index=16",
+                "name": "La importancia de los chequeos de salud",
+                "site": "youtube"
+            },
+            "cover_image": {
+                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/QpICSBsziwTr1CEHEFjldgF6T4s1mtnohHgEFmMK9f4.jpg",
+                "name": "La importancia de los chequeos de salud",
+                "alt": ""
+            },
+            "related_articles": [],
+            "related_video_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0,
+            "embedded_images": []
+        },
+        {
             "id": 1496,
             "type": "Video Article",
             "title": "4 a 5 años: usa sus habilidades físicas para más actividades. ",
@@ -291,36 +321,6 @@ export const VideoArticleData: any = {
             "cover_image": {
                 "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/GqzR0hwX1C9tchBQeX0WOjCcKRBR52jm-3XlQucBEjs.jpg",
                 "name": "#Wawamor | ¿Por qué la lactancia materna es el mejor alimento para tu bebé?",
-                "alt": ""
-            },
-            "related_articles": [],
-            "related_video_articles": [],
-            "licensed": 0,
-            "premature": 0,
-            "mandatory": 0,
-            "embedded_images": []
-        },
-        {
-            "id": 9356,
-            "type": "Video Article",
-            "title": "¿Cuántos controles de salud necesitan tus hijos?",
-            "created_at": "\u003Ctime datetime=\"2025-10-30T22:36:31+01:00\" class=\"datetime\"\u003EThu, 10/30/2025 - 22:36\u003C/time\u003E\n",
-            "updated_at": "\u003Ctime datetime=\"2026-05-19T04:32:03+02:00\" class=\"datetime\"\u003ETue, 05/19/2026 - 04:32\u003C/time\u003E\n",
-            "summary": "En este video te lo explicamos.",
-            "body": "\u003Cp dir=\"ltr\"\u003E\u003Cstrong\u003ERecuerda:\u003C/strong\u003E\u003C/p\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp dir=\"ltr\"\u003EEn su \u003Cstrong\u003Eprimer año\u003C/strong\u003E, tu bebé necesita un control mensual.\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp dir=\"ltr\"\u003E\u003Cstrong\u003EA partir del segundo año\u003C/strong\u003E, la frecuencia de los chequeos cambia según su edad.\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E\u003Cp dir=\"ltr\"\u003E✨Todos los controles son igual de importantes para cuidar su crecimiento, desarrollo y bienestar.\u003C/p\u003E\u003Cp dir=\"ltr\"\u003EIngresa a Wawamor y revisa el calendario de controles recomendado para cada etapa. \u003C/p\u003E",
-            "category": 386,
-            "child_age": [33376, 596, 601, 606, 611, 616, 621, 626, 631, 636, 641, 646, 651],
-            "child_gender": 666,
-            "parent_gender": 6831,
-            "keywords": [],
-            "cover_video": {
-                "url": "https://www.youtube.com/shorts/4qnCcbjew7A",
-                "name": "#Wawamor | ¿Cuántos controles de salud necesita tu bebé?",
-                "site": "youtube"
-            },
-            "cover_image": {
-                "url": "https://wawamor.ec/sites/ecuador/files/oembed_thumbnails/Xz0UQ9Mqrz5o-FmQU-kOqgN_zI_pEBVl4JTKOVr0l9g.jpg",
-                "name": "#Wawamor | ¿Cuántos controles de salud necesita tu bebé?",
                 "alt": ""
             },
             "related_articles": [],

@@ -15,9 +15,9 @@ export const countryData: any = {
         "alt": "UNICEF Para Cada Infancia"
       },
       "unicef_logo": {
-        "url": "https://wawamor.ec/sites/ecuador/files/styles/content_1200xh_/public/2025-04/LOGO_MUNICIPIODEQUITO.webp?itok=xwluboa_",
-        "name": "LOGO_MUNICIPIODEQUITO.png",
-        "alt": "LOGO MUNICIPIO DE QUITO"
+        "url": "",
+        "name": "",
+        "alt": ""
       },
       "content_toggle": "",
       "app_name": "Wawamor",

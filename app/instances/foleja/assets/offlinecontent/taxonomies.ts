@@ -319,14 +319,6 @@ export const taxonomydata: any = {
             ],
             "child_age": [
                 {
-                    "id": 166191,
-                    "name": "Shtatzënia",
-                    "days_from": -300,
-                    "days_to": -1,
-                    "buffers_days": 0,
-                    "age_bracket": [166191]
-                },
-                {
                     "id": 43,
                     "name": "muaji i parë",
                     "days_from": 0,
@@ -839,175 +831,218 @@ export const taxonomydata: any = {
             "subcategory": [
                 {
                     "id": 161536,
-                    "name": "Ushqimet e para"
+                    "name": "Ushqimet e para",
+                    "unique_name": ""
                 },
                 {
                     "id": 166916,
-                    "name": "Balanci jetë-punë"
+                    "name": "Balanci jetë-punë",
+                    "unique_name": ""
                 },
                 {
                     "id": 166921,
-                    "name": "Raporti me partnerin"
+                    "name": "Raporti me partnerin",
+                    "unique_name": ""
                 },
                 {
                     "id": 161296,
-                    "name": "Receta ushqimi"
+                    "name": "Receta ushqimi",
+                    "unique_name": ""
                 },
                 {
                     "id": 161301,
-                    "name": "Ushqyerje e shëndetshme"
+                    "name": "Ushqyerje e shëndetshme",
+                    "unique_name": ""
                 },
                 {
                     "id": 161306,
-                    "name": "Aktiviteti fizik"
+                    "name": "Aktiviteti fizik",
+                    "unique_name": ""
                 },
                 {
                     "id": 161311,
-                    "name": "Shkathtësitë socio-emocionale"
+                    "name": "Shkathtësitë socio-emocionale",
+                    "unique_name": ""
                 },
                 {
                     "id": 160801,
-                    "name": "Gjumi"
+                    "name": "Gjumi",
+                    "unique_name": ""
                 },
                 {
                     "id": 161316,
-                    "name": "Gjuha dhe leximi"
+                    "name": "Gjuha dhe leximi",
+                    "unique_name": ""
                 },
                 {
                     "id": 160806,
-                    "name": "Kujdesi dhe Higjiena"
+                    "name": "Kujdesi dhe Higjiena",
+                    "unique_name": ""
                 },
                 {
                     "id": 161321,
-                    "name": "Këshilla për lojë"
+                    "name": "Këshilla për lojë",
+                    "unique_name": ""
                 },
                 {
                     "id": 160811,
-                    "name": "Vaksinimi dhe Kontrollet Shendetësore"
+                    "name": "Vaksinimi dhe Kontrollet Shendetësore",
+                    "unique_name": ""
                 },
                 {
                     "id": 160816,
-                    "name": "Shqetësimet rreth zhvillimit të fëmijës"
+                    "name": "Shqetësimet rreth zhvillimit të fëmijës",
+                    "unique_name": ""
                 },
                 {
                     "id": 161586,
-                    "name": "Kuptimi i sjelljes së fëmijëve"
+                    "name": "Kuptimi i sjelljes së fëmijëve",
+                    "unique_name": ""
                 },
                 {
                     "id": 161591,
-                    "name": "Lidhja prind-fëmijë"
+                    "name": "Lidhja prind-fëmijë",
+                    "unique_name": ""
                 },
                 {
                     "id": 161596,
-                    "name": "Marrëdhëniet Familjare"
+                    "name": "Marrëdhëniet Familjare",
+                    "unique_name": ""
                 },
                 {
                     "id": 161431,
-                    "name": "Ndihma e parë"
+                    "name": "Ndihma e parë",
+                    "unique_name": ""
                 },
                 {
                     "id": 161436,
-                    "name": "Parandalimi i rreziqeve"
+                    "name": "Parandalimi i rreziqeve",
+                    "unique_name": ""
                 },
                 {
                     "id": 166816,
-                    "name": "0-12 javë"
+                    "name": "0-12 javë",
+                    "unique_name": ""
                 },
                 {
                     "id": 166821,
-                    "name": "13-28 javë"
+                    "name": "13-28 javë",
+                    "unique_name": ""
                 },
                 {
                     "id": 166826,
-                    "name": "29-40 javë"
+                    "name": "29-40 javë",
+                    "unique_name": ""
                 },
                 {
                     "id": 166831,
-                    "name": "Shprehitë e shëndetshme"
+                    "name": "Shprehitë e shëndetshme",
+                    "unique_name": ""
                 },
                 {
                     "id": 166836,
-                    "name": "Shëndeti mendor"
+                    "name": "Shëndeti mendor",
+                    "unique_name": ""
                 },
                 {
                     "id": 166841,
-                    "name": "Testet dhe Kontrollet shëndetësore"
+                    "name": "Testet dhe Kontrollet shëndetësore",
+                    "unique_name": ""
                 },
                 {
                     "id": 166846,
-                    "name": "Produkte për fëmijë"
+                    "name": "Produkte për fëmijë",
+                    "unique_name": ""
                 },
                 {
                     "id": 166851,
-                    "name": "Puna dhe karriera"
+                    "name": "Puna dhe karriera",
+                    "unique_name": ""
                 },
                 {
                     "id": 166856,
-                    "name": "Përvoja të Shtatzënisë"
+                    "name": "Përvoja të Shtatzënisë",
+                    "unique_name": ""
                 },
                 {
                     "id": 166861,
-                    "name": "Mbështetja nga partneri"
+                    "name": "Mbështetja nga partneri",
+                    "unique_name": ""
                 },
                 {
                     "id": 166866,
-                    "name": "Marrëdhëniet me partnerin"
+                    "name": "Marrëdhëniet me partnerin",
+                    "unique_name": ""
                 },
                 {
                     "id": 166871,
-                    "name": "Planifikimi"
+                    "name": "Planifikimi",
+                    "unique_name": ""
                 },
                 {
                     "id": 166876,
-                    "name": "Llojet e lindjes"
+                    "name": "Llojet e lindjes",
+                    "unique_name": ""
                 },
                 {
                     "id": 161501,
-                    "name": "Mbrojtja e fëmijëve"
+                    "name": "Mbrojtja e fëmijëve",
+                    "unique_name": ""
                 },
                 {
                     "id": 166881,
-                    "name": "Rikuperimi"
+                    "name": "Rikuperimi",
+                    "unique_name": ""
                 },
                 {
                     "id": 161506,
-                    "name": "Emergjencat"
+                    "name": "Emergjencat",
+                    "unique_name": ""
                 },
                 {
                     "id": 166886,
-                    "name": "Javët e para"
+                    "name": "Javët e para",
+                    "unique_name": ""
                 },
                 {
                     "id": 166891,
-                    "name": "Lindja e parakohshme"
+                    "name": "Lindja e parakohshme",
+                    "unique_name": ""
                 },
                 {
                     "id": 161516,
-                    "name": "Strategjitë e prindërimit"
+                    "name": "Strategjitë e prindërimit",
+                    "unique_name": ""
                 },
                 {
                     "id": 166896,
-                    "name": "Aborti dhe komplikimet"
+                    "name": "Aborti dhe komplikimet",
+                    "unique_name": ""
                 },
                 {
                     "id": 166901,
-                    "name": "Problemet Shëndetësore"
+                    "name": "Problemet Shëndetësore",
+                    "unique_name": ""
                 },
                 {
                     "id": 161526,
-                    "name": "Mbi gjidhënien"
+                    "name": "Mbi gjidhënien",
+                    "unique_name": ""
                 },
                 {
                     "id": 166906,
-                    "name": "Shëndeti mendor"
+                    "name": "Shëndeti mendor",
+                    "unique_name": ""
                 },
                 {
                     "id": 161531,
-                    "name": "Sfidat e gjidhënies"
+                    "name": "Sfidat e gjidhënies",
+                    "unique_name": ""
                 },
                 {
                     "id": 166911,
-                    "name": "Shëndeti fizik"
+                    "name": "Shëndeti fizik",
+                    "unique_name": ""
                 }
             ],
             "type_of_support": [
